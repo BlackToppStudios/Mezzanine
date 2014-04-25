@@ -83,33 +83,359 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMezzanine_1_1Resource_1_1AssetGroup-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Mezzanine::Resource::AssetGroup Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a class that stores a specific grouping of Assets, usually based on thier location.  
+ <a href="classMezzanine_1_1Resource_1_1AssetGroup.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="assetgroup_8h_source.html">assetgroup.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::Resource::AssetGroup:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Resource_1_1AssetGroup__coll__graph.svg" width="100%" height="425"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a1e7364a249514c17266b55254b4ed76e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e7364a249514c17266b55254b4ed76e"></a>
+typedef std::map&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>, <br class="typebreak"/>
+<a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">DataStreamPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a1e7364a249514c17266b55254b4ed76e">AssetContainer</a></td></tr>
+<tr class="memdesc:a1e7364a249514c17266b55254b4ed76e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container class for storing <a class="el" href="classMezzanine_1_1Resource_1_1DataStream.html">DataStream</a> instances in this class. <br/></td></tr>
+<tr class="separator:a1e7364a249514c17266b55254b4ed76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6acb2085f17f1ad3ac2bbb2b32af1a51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6acb2085f17f1ad3ac2bbb2b32af1a51"></a>
+typedef AssetContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a6acb2085f17f1ad3ac2bbb2b32af1a51">AssetIterator</a></td></tr>
+<tr class="memdesc:a6acb2085f17f1ad3ac2bbb2b32af1a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1Resource_1_1DataStream.html">DataStream</a> instances stored in this class. <br/></td></tr>
+<tr class="separator:a6acb2085f17f1ad3ac2bbb2b32af1a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f8e75e7180287cf75921f00517af2e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f8e75e7180287cf75921f00517af2e2"></a>
+typedef <br class="typebreak"/>
+AssetContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a9f8e75e7180287cf75921f00517af2e2">ConstAssetIterator</a></td></tr>
+<tr class="memdesc:a9f8e75e7180287cf75921f00517af2e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1Resource_1_1DataStream.html">DataStream</a> instances stored in this class. <br/></td></tr>
+<tr class="separator:a9f8e75e7180287cf75921f00517af2e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3da9339285b4a5de98b843780e26c73"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3da9339285b4a5de98b843780e26c73"></a>
+typedef <br class="typebreak"/>
+UnnamedAssetContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#af3da9339285b4a5de98b843780e26c73">ConstUnnamedAssetIterator</a></td></tr>
+<tr class="memdesc:af3da9339285b4a5de98b843780e26c73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1Resource_1_1DataStream.html">DataStream</a> instances stored by this class. <br/></td></tr>
+<tr class="separator:af3da9339285b4a5de98b843780e26c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3f311efde0d4ad10027e14154389ca2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3f311efde0d4ad10027e14154389ca2"></a>
+typedef std::vector<br class="typebreak"/>
+&lt; <a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#aa3f311efde0d4ad10027e14154389ca2">UnnamedAssetContainer</a></td></tr>
+<tr class="memdesc:aa3f311efde0d4ad10027e14154389ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1Resource_1_1DataStream.html">DataStream</a> storage by this class. <br/></td></tr>
+<tr class="separator:aa3f311efde0d4ad10027e14154389ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77f7e6d1424da95caff81551a0f428b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77f7e6d1424da95caff81551a0f428b7"></a>
+typedef <br class="typebreak"/>
+UnnamedAssetContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a77f7e6d1424da95caff81551a0f428b7">UnnamedAssetIterator</a></td></tr>
+<tr class="memdesc:a77f7e6d1424da95caff81551a0f428b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1Resource_1_1DataStream.html">DataStream</a> instances stored by this class. <br/></td></tr>
+<tr class="separator:a77f7e6d1424da95caff81551a0f428b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa70adee9742635061b53196439c72b1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa70adee9742635061b53196439c72b1f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#aa70adee9742635061b53196439c72b1f">AssetGroup</a> ()</td></tr>
-<tr class="memdesc:aa70adee9742635061b53196439c72b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br/></td></tr>
-<tr class="separator:aa70adee9742635061b53196439c72b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed9b25b19160be983f9e17e1c0b76ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#afed9b25b19160be983f9e17e1c0b76ce">AssetGroup</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;GroupName)</td></tr>
+<tr class="memdesc:afed9b25b19160be983f9e17e1c0b76ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#afed9b25b19160be983f9e17e1c0b76ce">More...</a><br/></td></tr>
+<tr class="separator:afed9b25b19160be983f9e17e1c0b76ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a280d141223b5d11295ff791e87cf36ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a280d141223b5d11295ff791e87cf36ff"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a280d141223b5d11295ff791e87cf36ff">~AssetGroup</a> ()</td></tr>
 <tr class="memdesc:a280d141223b5d11295ff791e87cf36ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr class="separator:a280d141223b5d11295ff791e87cf36ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a246d9b1784d01673cdefa9e95616c3e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a246d9b1784d01673cdefa9e95616c3e4">CreateDataStream</a> (void *Buffer, const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> BufferSize)</td></tr>
+<tr class="memdesc:a246d9b1784d01673cdefa9e95616c3e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a stream from a memory buffer.  <a href="#a246d9b1784d01673cdefa9e95616c3e4">More...</a><br/></td></tr>
+<tr class="separator:a246d9b1784d01673cdefa9e95616c3e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6385107bafc8838ef8e0100fd52236a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a6385107bafc8838ef8e0100fd52236a1">CreateDataStream</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;AssetName, void *Buffer, const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> BufferSize)</td></tr>
+<tr class="memdesc:a6385107bafc8838ef8e0100fd52236a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a named stream from a memory buffer.  <a href="#a6385107bafc8838ef8e0100fd52236a1">More...</a><br/></td></tr>
+<tr class="separator:a6385107bafc8838ef8e0100fd52236a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add1c3114e17798406bda6e9cc0b4cf87"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#add1c3114e17798406bda6e9cc0b4cf87">GetName</a> () const </td></tr>
+<tr class="memdesc:add1c3114e17798406bda6e9cc0b4cf87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of this asset group.  <a href="#add1c3114e17798406bda6e9cc0b4cf87">More...</a><br/></td></tr>
+<tr class="separator:add1c3114e17798406bda6e9cc0b4cf87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4401a8d7a708c0ce38decd14b4dbf11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#ab4401a8d7a708c0ce38decd14b4dbf11">InitializeAssets</a> ()</td></tr>
+<tr class="memdesc:ab4401a8d7a708c0ce38decd14b4dbf11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares some Assets for use within this group.  <a href="#ab4401a8d7a708c0ce38decd14b4dbf11">More...</a><br/></td></tr>
+<tr class="separator:ab4401a8d7a708c0ce38decd14b4dbf11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a719d21c9396e2982d99a96e23a2c69b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a719d21c9396e2982d99a96e23a2c69b8">OpenAssetStream</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;AssetName)</td></tr>
+<tr class="memdesc:a719d21c9396e2982d99a96e23a2c69b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a stream to an asset in an <a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html" title="This is a class that stores a specific grouping of Assets, usually based on thier location...">AssetGroup</a>.  <a href="#a719d21c9396e2982d99a96e23a2c69b8">More...</a><br/></td></tr>
+<tr class="separator:a719d21c9396e2982d99a96e23a2c69b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a680f233be86a20a99a00f397f3df72ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a1e7364a249514c17266b55254b4ed76e">AssetContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a680f233be86a20a99a00f397f3df72ac">GroupAssets</a></td></tr>
+<tr class="memdesc:a680f233be86a20a99a00f397f3df72ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container storing all of the named open streams belonging to this group.  <a href="#a680f233be86a20a99a00f397f3df72ac">More...</a><br/></td></tr>
+<tr class="separator:a680f233be86a20a99a00f397f3df72ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a027a133171caa1c808a59857eda7b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a0a027a133171caa1c808a59857eda7b2">Name</a></td></tr>
+<tr class="memdesc:a0a027a133171caa1c808a59857eda7b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of this group.  <a href="#a0a027a133171caa1c808a59857eda7b2">More...</a><br/></td></tr>
+<tr class="separator:a0a027a133171caa1c808a59857eda7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a640a3c2b40f6b520d6447048ed8fb729"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#aa3f311efde0d4ad10027e14154389ca2">UnnamedAssetContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a640a3c2b40f6b520d6447048ed8fb729">UnnamedGroupAssets</a></td></tr>
+<tr class="memdesc:a640a3c2b40f6b520d6447048ed8fb729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container storing all of the unnamed open streams bleonging to this group.  <a href="#a640a3c2b40f6b520d6447048ed8fb729">More...</a><br/></td></tr>
+<tr class="separator:a640a3c2b40f6b520d6447048ed8fb729"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="assetgroup_8h_source.html#l00051">51</a> of file <a class="el" href="assetgroup_8h_source.html">assetgroup.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<div class="textblock"><p>This is a class that stores a specific grouping of Assets, usually based on thier location. </p>
+
+<p>Definition at line <a class="el" href="assetgroup_8h_source.html#l00053">53</a> of file <a class="el" href="assetgroup_8h_source.html">assetgroup.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="afed9b25b19160be983f9e17e1c0b76ce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mezzanine::Resource::AssetGroup::AssetGroup </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>GroupName</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Class constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GroupName</td><td>The name to be given to this group. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="assetgroup_8cpp_source.html#l00053">53</a> of file <a class="el" href="assetgroup_8cpp_source.html">assetgroup.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a246d9b1784d01673cdefa9e95616c3e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> Mezzanine::Resource::AssetGroup::CreateDataStream </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>Buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td>
+          <td class="paramname"><em>BufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a stream from a memory buffer. </p>
+<dl class="section note"><dt>Note</dt><dd>The created stream will take ownership of the buffer you provide. If you want it to have a separate buffer then create a copy and pass that in. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Buffer</td><td>A pointer to the memory to stream from. </td></tr>
+    <tr><td class="paramname">BufferSize</td><td>The size of the provided buffer in bytes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a> to the stream to the provided buffer. </dd></dl>
+
+<p>Definition at line <a class="el" href="assetgroup_8cpp_source.html#l00097">97</a> of file <a class="el" href="assetgroup_8cpp_source.html">assetgroup.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6385107bafc8838ef8e0100fd52236a1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> Mezzanine::Resource::AssetGroup::CreateDataStream </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>AssetName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>Buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td>
+          <td class="paramname"><em>BufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a named stream from a memory buffer. </p>
+<dl class="section note"><dt>Note</dt><dd>The created stream will take ownership of the buffer you provide. If you want it to have a separate buffer then create a copy and pass that in. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">AssetName</td><td>The name to be given to the created stream. </td></tr>
+    <tr><td class="paramname">Buffer</td><td>A pointer to the memory to stream from. </td></tr>
+    <tr><td class="paramname">BufferSize</td><td>The size of the provided buffer in bytes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a> to the stream to the provided buffer. </dd></dl>
+
+<p>Definition at line <a class="el" href="assetgroup_8cpp_source.html#l00104">104</a> of file <a class="el" href="assetgroup_8cpp_source.html">assetgroup.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="add1c3114e17798406bda6e9cc0b4cf87"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp; Mezzanine::Resource::AssetGroup::GetName </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the name of this asset group. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a const reference to a string containing the name of this group. </dd></dl>
+
+<p>Definition at line <a class="el" href="assetgroup_8cpp_source.html#l00067">67</a> of file <a class="el" href="assetgroup_8cpp_source.html">assetgroup.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab4401a8d7a708c0ce38decd14b4dbf11"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Resource::AssetGroup::InitializeAssets </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prepares some Assets for use within this group. </p>
+<p>After adding all of your assets and declaring them as nessessary, this function is the final step. After calling this function any and all assets within the defined group will be ready to use. Do not initialize any more groups then you need to however, as that will take up memory and drop performance. </p>
+
+<p>Definition at line <a class="el" href="assetgroup_8cpp_source.html#l00072">72</a> of file <a class="el" href="assetgroup_8cpp_source.html">assetgroup.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a719d21c9396e2982d99a96e23a2c69b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> Mezzanine::Resource::AssetGroup::OpenAssetStream </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>AssetName</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opens a stream to an asset in an <a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html" title="This is a class that stores a specific grouping of Assets, usually based on thier location...">AssetGroup</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">AssetName</td><td>The identity of the asset to be opened (commonly a file name). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000101">Todo:</a></b></dt><dd>This entire method is a bit of a hack. When the resource system gets refactored it should go through our archives or whatever equivalent. Since we currently have to put up with <a class="el" href="namespaceOgre.html">Ogre</a>'s system, we'll use it for now as a hack. </dd></dl>
+
+<p>Definition at line <a class="el" href="assetgroup_8cpp_source.html#l00080">80</a> of file <a class="el" href="assetgroup_8cpp_source.html">assetgroup.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a680f233be86a20a99a00f397f3df72ac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#a1e7364a249514c17266b55254b4ed76e">AssetContainer</a> Mezzanine::Resource::AssetGroup::GroupAssets</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Container storing all of the named open streams belonging to this group. </p>
+
+<p>Definition at line <a class="el" href="assetgroup_8h_source.html#l00074">74</a> of file <a class="el" href="assetgroup_8h_source.html">assetgroup.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a027a133171caa1c808a59857eda7b2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::Resource::AssetGroup::Name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The name of this group. </p>
+
+<p>Definition at line <a class="el" href="assetgroup_8h_source.html#l00077">77</a> of file <a class="el" href="assetgroup_8h_source.html">assetgroup.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a640a3c2b40f6b520d6447048ed8fb729"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Resource_1_1AssetGroup.html#aa3f311efde0d4ad10027e14154389ca2">UnnamedAssetContainer</a> Mezzanine::Resource::AssetGroup::UnnamedGroupAssets</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Container storing all of the unnamed open streams bleonging to this group. </p>
+
+<p>Definition at line <a class="el" href="assetgroup_8h_source.html#l00071">71</a> of file <a class="el" href="assetgroup_8h_source.html">assetgroup.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/<a class="el" href="assetgroup_8h_source.html">assetgroup.h</a></li>
 <li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/<a class="el" href="assetgroup_8cpp_source.html">assetgroup.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:13 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

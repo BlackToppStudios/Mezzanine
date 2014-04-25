@@ -126,42 +126,42 @@ namespace Mezzanine
 /// @section UITOC Table Of Contents
 ///     - @ref UIOverview
 ///         - @ref UIIntroduction
-///         - @ref UIFeedBack
+///         - @ref UIFeedback
 ///         - @ref UIAcknowledgments
 ///     - @ref UICore
 ///         - @ref UIClassUIManager
 ///         - @ref UIClassScreen
 ///         - @ref UIClassQuadRenderable
 ///         - @ref UIClassWidget
-///     - @ref UIInputLife
 ///     - @ref UIRender
 ///         - @ref UILayers
 ///             - @ref UIImageLayer
 ///             - @ref UITextLayer
 ///         - @ref UILayerGroups
 ///         - @ref UICaching
+///     - @ref UIInputLife
 ///     - @ref UIConfig
 ///         - @ref UISizePos
 ///         - @ref UILayout
-///         - @ref UIHover
 ///         - @ref UIFactories
 ///         - @ref UIMarkup
 ///     - @ref UIContainer
 ///         - @ref UIPaged
 ///         - @ref UIStacked
 ///
-/// \n \n
+/// \n
 /// @section UIOverview Overview
 ///     - @ref UIIntroduction
 ///     - @ref UIFeedback
+///     - @ref UIAcknowledgments
 ///
 /// @subsection UIIntroduction Introduction
-/// The Mezzanine UI subsystem is designed to be a powerful and feature rich Graphical User Interface system that can be used to power all the UI needs of a given game.
+/// The Mezzanine User Interface (UI) subsystem is designed to be a powerful and feature rich Graphical User Interface system that can be used to power all the UI needs of a given game.
 /// Mezzanine::UI attempts to assemble render operations in as few batches as possible for maximum performance.  Mezzanine::UI also provides a default set of Widgets to
 /// use when assembling an in-game UI that should meet most basic needs, and can be extended if the needs of a game are not met.
 /// \n \n
 /// @subsection UIFeedback Feedback
-/// If you believe you've found a bug in Mezzanine::UI (bugs include compilation problems (errors/warnings), crashes, performance degradation and incorrect
+/// If you believe you've found a bug in Mezzanine::UI (bugs include compilation problems (errors/warnings), crashes, performance degradation or incorrect
 /// behavior), please contact Blacktopp Studios Inc ( http://www.blacktoppstudios.com/ ) . We check the the Forums ( http://www.blacktoppstudios.com/?page_id=753 )
 /// and items sent by our contact form ( http://www.blacktoppstudios.com/?page_id=33 ) regularly. Be sure to include the relevant information so that
 /// the bug can be reproduced: the version of Mezzanine::UI, compiler version and target architecture, the code that uses Mezzanine::UI and exhibits the bug, etc.
@@ -170,16 +170,16 @@ namespace Mezzanine
 /// and you can suggest an improvement, please let us know. However, please note that there are many factors when considering API changes (compatibility
 /// with previous versions, API redundancy, etc.).
 /// \n \n
-/// If you have a contribution to Mezzanine::UI, such as build script for some build system/IDE, or a well-designed set of helper functions, or a binding
+/// If you have a contribution to Mezzanine::UI, such as build script for some build system/IDE, a well-designed set of helper functions, or a binding
 /// to some language other than C++, please let us know. You can include the relevant patches as issue attachments. We will have to communicate on the
 /// Licensing terms of your contribution though.
 /// \n \n
 /// @subsection UIAcknowledgments Acknowledgments
 /// By no means does the author of Mezzanine::UI consider themselves an expert on UI systems nor claims all of the concepts used in Mezzanine::UI are completely original.
-/// In fact the first iteration of Mezzanine::UI was a paper thin wrapper around Gorilla; a simple UI rendering library written for Ogre3D.  This wrapper was expanded with
-/// an early attempt to add typical behaviors such as detecting key presses and mouse hovers was made and something resembling a working system came out of it.  But that
-/// early system was still severely limited and did not have much in the way of forward thinking applied to it.  It was an academic exercise as it was a hack.  Maintaining it
-/// was impractical.
+/// In fact the first iteration of Mezzanine::UI was a paper thin wrapper around Gorilla ( http://www.ogre3d.org/tikiwiki/Gorilla ); a simple UI rendering library written for Ogre3D.
+/// This wrapper was expanded with an early attempt to add typical behaviors such as detecting key presses and mouse hovers was made and something resembling a working system
+/// came out of it.  But that early system was still severely limited and did not have much in the way of forward thinking applied to it.  It was as much an academic exercise
+/// as it was a hack.  Maintaining it was impractical.
 /// \n \n
 /// So actual planning was put forth to create a sane system the core of which could stand the test of time without the need for additional extensive refactors.  To do this an
 /// extensive amount of research was done to better understand how others resolved the issues I had encountered, as well as the issues they encountered from thier early choices,
@@ -190,7 +190,7 @@ namespace Mezzanine
 /// Thank you to everyone responsible for the creation and ongoing existence of these libraries and sharing their thought process for the benefit of others.  Without them
 /// Mezzanine::UI could not exist in it's current form, instead being left as a poorly thought out hack.
 ///
-/// \n \n
+/// \n
 /// @section UICore The Core Classes
 ///     - @ref UIClassUIManager
 ///     - @ref UIClassScreen
@@ -211,19 +211,20 @@ namespace Mezzanine
 /// The UI::Button class has a concept of Activation and Deactivation, however there is no default input for this.  On the UI::Button you can set whatever code for Activation
 /// and Deactivation you need for your game or application.  Although, usually for the sake of user experience you will want to set the same activation code or codes for each
 /// UI::Button in your configuration.  There are a set of methods on the UIManager to facilitate this.  The methods controlling the Auto Register behavior are as follows: \n
-///     @ref Mezzanine::UI::UIManager::EnableButtonAutoRegister(Boole) \n
-///     @ref Mezzanine::UI::UIManager::ButtonAutoRegisterEnabled() const \n
-///     @ref Mezzanine::UI::UIManager::AddAutoRegisterCode(const Input::MetaCode&) \n
-///     @ref Mezzanine::UI::UIManager::RemoveAutoRegisterCode(const Input::MetaCode&) \n
-///     @ref Mezzanine::UI::UIManager::RemoveAllAutoRegisterCodes() \n
-///     @ref Mezzanine::UI::UIManager::GetAutoRegisteredCodes() const \n
+///     - @ref Mezzanine::UI::UIManager::EnableButtonAutoRegister(Boole) \n
+///     - @ref Mezzanine::UI::UIManager::ButtonAutoRegisterEnabled() const \n
+///     - @ref Mezzanine::UI::UIManager::AddAutoRegisterCode(const Input::MetaCode&) \n
+///     - @ref Mezzanine::UI::UIManager::RemoveAutoRegisterCode(const Input::MetaCode&) \n
+///     - @ref Mezzanine::UI::UIManager::RemoveAllAutoRegisterCodes() \n
+///     - @ref Mezzanine::UI::UIManager::GetAutoRegisteredCodes() const \n
+///
 /// \n
 /// It is important to note that these methods are not retroactive in any way.  Adding or removing an Auto-Register code will not update all of the created buttons.  Any change
 /// to the configuration you need to do will need to be done manually.  Ideally you should set the Button Auto-Register codes shortly after the construction of the UIManager and
 /// before construction of any UI Screens to ensure they all get the same codes.
 /// \n \n
 /// Throughout the entire UI system there can only be a single widget that is being focused and is given input priority.  That widget is evaluated, stored, and can be accessed
-/// through the UIManager using the @ref Mezzanine::UI::UIManager::GetWidgetFocus() const method.  The focus widget and the hovered widget may not be the same widget, and you
+/// through the UIManager using the Mezzanine::UI::UIManager::GetWidgetFocus() const method.  The focus widget and the hovered widget may not be the same widget, and you
 /// may want to access them separately.  To retrieve the hovered widget use the @ref Mezzanine::UI::UIManager::GetHoveredWidget() const method.  Both the focus and hovered widget
 /// (be them separate widgets or not) are in part evaluated from hover checks.  Hover checks are primarily performed by UI Screens, however a system-wide hover check can be called
 /// on using the @ref Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) method.  Note that this method is already called on once per update with
@@ -231,7 +232,7 @@ namespace Mezzanine
 /// arises.  Calling @ref Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) will not update the stored focus or hovered widgets.  Screens on the
 /// specified viewport will be checked based on ZOrder, with the highest order Screens checked first.
 ///
-/// \n \n
+/// \n
 /// @subsection UIClassScreen Screen
 /// The @ref Mezzanine::UI::Screen class is the top of the Widget hierarchy and the primary class responsible for the rendering of Widgets.  The UI Screen is created from the
 /// UIManager, and requires a .mta (Mezzanine Texture Atlas) file to have already been loaded.  MTA files can be loaded from the UIManager using the
@@ -398,6 +399,7 @@ namespace Mezzanine
 ///     @ref Mezzanine::UI::Widget::EventFocusUnlocked \n
 ///     @ref Mezzanine::UI::Widget::EventVisibilityShown \n
 ///     @ref Mezzanine::UI::Widget::EventVisibilityHidden \n
+///
 /// \n
 /// In addition to being a @ref Mezzanine::EventPublisher , the Widget class is also a @ref Mezzanine::EventSubscriber .  The default implementation of the
 /// "_HandleInput(const Input::MetaCode&)" method is empty, and must be overridden by a derived class if a Widget needs to subscribe to events belonging to another Widget.
@@ -463,6 +465,7 @@ namespace Mezzanine
 ///     - @ref Mezzanine::UI::TextLayer::SetDefaultFont(FontData*) \n
 ///     - @ref Mezzanine::UI::TextLayer::SetDefaultFont(const String&) \n
 ///     - @ref Mezzanine::UI::TextLayer::SetDefaultFont(const String&,const String&) \n
+///
 /// \n
 /// Note that the constructor listed here should not be called directly.  Instead the appropriate create method should be called on the QuadRenderable that takes a Font or FontName as a parameter.
 /// In addition to a default font, text layers also use a default text colour to decide what colour text should be when one isn't specified in Markup.  This value defaults to white, but can be
@@ -765,6 +768,7 @@ namespace Mezzanine
 ///     - @ref Mezzanine::UI::Screen::CreateWidget(const XML::Node&) \n
 ///     - @ref Mezzanine::UI::Screen::CreateWidget(const String&, const String&, const NameValuePairMap&) \n
 ///     - @ref Mezzanine::UI::Screen::CreateWidget(const String&, const String&, const UnifiedRect&, const NameValuePairMap&) \n
+///
 /// \n
 /// Currently there are no methods to allow the external creation of Widgets for a Screen.  Attempting to access the factory and calling the method to create the Widget should not be attempted.  It
 /// should successfully create the Widget, but then there is no functionality to add it to the Screen afterwards.  Aside from defining the @ref Mezzanine::UI::WidgetFactory::DestroyWidget(Widget*)
@@ -793,7 +797,7 @@ namespace Mezzanine
 ///     - @ref UIPaged
 ///     - @ref UIStacked
 ///
-/// \n \n
+/// \n
 /// Most default provided Widgets are not designed and do not expect to have any children added to them, filling a narrow role where any child it needs is automatically initialized.  The base
 /// @ref Mezzanine::UI::Widget class is a good really basic container for abitrary combinations of other Widgets.  However it doesn't have any special behaviors for hiding a portion of its children
 /// based on other factors.  To meet that need, there are a few Widgets explicitly designed to be containers that only show a portion of their children at a time.  These containers come in two
@@ -816,6 +820,7 @@ namespace Mezzanine
 ///     - @ref Mezzanine::UI::PageProvider::SetXProvider(PageProvider*) \n
 ///     - @ref Mezzanine::UI::PageProvider::SetYProvider(PageProvider*) \n
 ///     - @ref Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*) \n
+///
 /// \n
 /// PagedContainers also check for when a child gains focus, and stores the last child to have gained focus as a convenience for additional custom behaviors with derived classes.  The PageContainer
 /// has a single event that can be subscribed to for custom behaviors outside of the class as well; @ref Mezzanine::UI::PagedContainer::EventChildSelected .  If your needs are simpler, you can retrieve
@@ -824,6 +829,7 @@ namespace Mezzanine
 ///     - @ref Mezzanine::UI::GridContainer \n
 ///     - @ref Mezzanine::UI::HorizontalContainer \n
 ///     - @ref Mezzanine::UI::VerticalContainer \n
+///
 /// \n
 /// @subsection UIStacked Stacked Containers and Buttons
 /// The @ref Mezzanine::UI::StackedContainer is a container class that stores children in explicit sets and intends for a single set to be rendered at a time.  These containers are conceptually much

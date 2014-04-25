@@ -1,3 +1,31 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Threading_1_1FrameScheduler.html" title="This is central object in this algorithm, it is responsible for spawning threads and managing the ord..." alt="" coords="5,5,152,49"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="11,310,179,338"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Audio_1_1AudioManager.html" title="This is the base manager class for the Audio subsystem and it&#39;s operations. " alt="" coords="232,79,443,107"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data. " alt="" coords="252,201,423,229"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user. " alt="" coords="268,134,407,178"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Graphics_1_1MeshManager.html" title="This manager handles the storage, generation, and query of of Graphics Meshes. " alt="" coords="268,369,407,413"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Input_1_1InputManager.html" title="This is the manager responsible for the handling of input devices and events. " alt="" coords="236,435,439,463"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CollisionShapeManager.html" title="This manager is for the storage of all shapes and creation of mesh shapes. " alt="" coords="256,490,419,534"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Resource_1_1ResourceManager.html" title="This is the manager responsible for the loading and unloading of files. " alt="" coords="267,561,408,605"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Scripting_1_1iScriptingManager.html" title="What a scripting manager should look like. " alt="" coords="268,251,407,295"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1UI_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD. " alt="" coords="252,631,423,659"/>
+<area shape="rect" id="node23" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="252,318,423,346"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1Scripting_1_1iScriptCompilationManager.html" title="What a scripting manager should look like. " alt="" coords="501,67,683,111"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1ActorManager.html" title="A manager responsible for the storage and management of all actors that exist in a world..." alt="" coords="507,318,677,346"/>
+<area shape="rect" id="node27" href="$classMezzanine_1_1AreaEffectManager.html" title="A manager responsible for the storage and management of all areaeffects in use. " alt="" coords="493,369,691,397"/>
+<area shape="rect" id="node29" href="$classMezzanine_1_1Audio_1_1SoundScapeManager.html" title="This is the base manager class for audio being played in a 3D environment. " alt="" coords="491,419,693,463"/>
+<area shape="rect" id="node31" href="$classMezzanine_1_1DebrisManager.html" title="A manager responsible for the storage and management of all Debris that exist in a world..." alt="" coords="505,486,679,514"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1Graphics_1_1CameraManager.html" title="This is the manager class for all camera functions. " alt="" coords="523,537,661,581"/>
+<area shape="rect" id="node35" href="$classMezzanine_1_1Graphics_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="523,134,661,178"/>
+<area shape="rect" id="node37" href="$classMezzanine_1_1Physics_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions. " alt="" coords="525,201,659,245"/>
+<area shape="rect" id="node39" href="$classMezzanine_1_1TerrainManager.html" title="This is manager for terrains and their functions. " alt="" coords="503,267,681,295"/>
+<area shape="rect" id="node40" href="$classMezzanine_1_1ObjectSettingsHandler.html" title="An abstract class for other classes that manage groups of settings. " alt="" coords="8,71,181,115"/>
+<area shape="rect" id="node43" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; AudioManager \&gt;" alt="" coords="24,5,165,49"/>
+<area shape="rect" id="node45" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;" alt="" coords="5,494,184,538"/>
+<area shape="rect" id="node47" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; EventManager \&gt;" alt="" coords="24,205,165,249"/>
+<area shape="rect" id="node49" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;" alt="" coords="23,138,167,182"/>
+<area shape="rect" id="node51" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; InputManager \&gt;" alt="" coords="24,427,165,471"/>
+<area shape="rect" id="node53" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; MeshManager \&gt;" alt="" coords="24,361,165,405"/>
+<area shape="rect" id="node55" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;" alt="" coords="21,561,168,605"/>
+<area shape="rect" id="node57" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; UIManager \&gt;" alt="" coords="24,627,165,671"/>
 </map>

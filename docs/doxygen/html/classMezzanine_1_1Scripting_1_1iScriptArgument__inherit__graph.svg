@@ -30,11 +30,11 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Boolean_01_4.html" target="_top" xlink:title="A Bool implementation of a ScriptArgument that is suitable for primitive types in most situations...">
+<a xlink:href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Boole_01_4.html" target="_top" xlink:title="A Bool implementation of a ScriptArgument that is suitable for primitive types in most situations...">
 <polygon fill="white" stroke="black" points="334,-310 334,-354 456,-354 456,-310 334,-310"/>
 <text text-anchor="start" x="342" y="-341" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="start" x="342" y="-329" font-family="FreeSans" font-size="10.00">::ScriptArgumentGeneric</text>
-<text text-anchor="middle" x="395" y="-317" font-family="FreeSans" font-size="10.00">&lt; Boolean &gt;</text>
+<text text-anchor="middle" x="395" y="-317" font-family="FreeSans" font-size="10.00">&lt; Boole &gt;</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node4 -->

@@ -38,10 +38,10 @@
 #   John Blackwood - makoenergy02@gmail.com
 
 cmake_minimum_required(VERSION 2.8)
-project (${TclapProject})
-message ("${TclapProject} - Begin")
+project (${EntreLuaTclapProject})
+message ("${EntreLuaTclapProject} - Begin")
 
-set(TclapDir "tclap-1.2.1")
+set(EntreLuaTclapDir "tclap-1.2.1")
 
 ## Check for new builds at: http://tclap.sourceforge.net/
 ## This version of Tclap is slightly modified to accept -v in addition to --version
@@ -58,8 +58,8 @@ set(TclapDir "tclap-1.2.1")
 #    PARENT_SCOPE)
 
 
-set(TclapIncludeDirectory
-    "${CMAKE_CURRENT_SOURCE_DIR}/${TclapDir}/include"
+set(EntreLuaTclapIncludeDirectory
+    "${CMAKE_CURRENT_SOURCE_DIR}/${EntreLuaTclapDir}/include"
     PARENT_SCOPE)
-message ("${TclapProject} - End")
+message ("${EntreLuaTclapProject} - End")
 

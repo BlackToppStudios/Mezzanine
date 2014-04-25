@@ -1621,9 +1621,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01535"></a><span class="lineno"> 1535</span>&#160;<span class="comment">/// have to look for other tutorials or manuals.</span></div>
 <div class="line"><a name="l01536"></a><span class="lineno"> 1536</span>&#160;<span class="comment">/// \n \n</span></div>
 <div class="line"><a name="l01537"></a><span class="lineno"> 1537</span>&#160;<span class="comment">/// @subsection XMLXPathTypes XPath Types</span></div>
-<div class="line"><a name="l01538"></a><span class="lineno"> 1538</span>&#160;<span class="comment">/// Each XPath expression can have one of the following types: boolean, number, string or node set. Boolean type corresponds to bool type, number type corresponds to double type, string</span></div>
+<div class="line"><a name="l01538"></a><span class="lineno"> 1538</span>&#160;<span class="comment">/// Each XPath expression can have one of the following types: boolean, number, string or node set. Boole type corresponds to bool type, number type corresponds to double type, string</span></div>
 <div class="line"><a name="l01539"></a><span class="lineno"> 1539</span>&#160;<span class="comment">/// type corresponds to either std::string or std::wstring, depending on whether wide character interface is enabled, and node set corresponds to Mezzanine::XML::XPathNodeSet type. There is</span></div>
-<div class="line"><a name="l01540"></a><span class="lineno"> 1540</span>&#160;<span class="comment">/// an enumeration, Mezzanine::XML::XPathValueType, which can take the values @ref Mezzanine::XML::XPathValueType &quot;XPathTypeBoolean&quot;, @ref Mezzanine::XML::XPathValueType &quot;XPathTypeNumber&quot;,</span></div>
+<div class="line"><a name="l01540"></a><span class="lineno"> 1540</span>&#160;<span class="comment">/// an enumeration, Mezzanine::XML::XPathValueType, which can take the values @ref Mezzanine::XML::XPathValueType &quot;XPathTypeBoole&quot;, @ref Mezzanine::XML::XPathValueType &quot;XPathTypeNumber&quot;,</span></div>
 <div class="line"><a name="l01541"></a><span class="lineno"> 1541</span>&#160;<span class="comment">/// @ref Mezzanine::XML::XPathValueType XPathTypeString or @ref Mezzanine::XML::XPathValueType XPathTypeNodeSet, accordingly.</span></div>
 <div class="line"><a name="l01542"></a><span class="lineno"> 1542</span>&#160;<span class="comment">/// \n \n</span></div>
 <div class="line"><a name="l01543"></a><span class="lineno"> 1543</span>&#160;<span class="comment">/// Because an XPath node can be either a node or an attribute, there is a special type, Mezzanine::XML::XPathNode, which is a discriminated union of these types. A value of this type</span></div>
@@ -1758,13 +1758,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01672"></a><span class="lineno"> 1672</span>&#160;<span class="comment">/// @endcode</span></div>
 <div class="line"><a name="l01673"></a><span class="lineno"> 1673</span>&#160;<span class="comment">/// You can evaluate the query using one of the following functions:</span></div>
 <div class="line"><a name="l01674"></a><span class="lineno"> 1674</span>&#160;<span class="comment">/// @code</span></div>
-<div class="line"><a name="l01675"></a><span class="lineno"> 1675</span>&#160;<span class="comment">/// bool Mezzanine::XML::XPathQuery::EvaluateBoolean(const Mezzanine::XML::XPathNode&amp; n) const;</span></div>
+<div class="line"><a name="l01675"></a><span class="lineno"> 1675</span>&#160;<span class="comment">/// bool Mezzanine::XML::XPathQuery::EvaluateBoole(const Mezzanine::XML::XPathNode&amp; n) const;</span></div>
 <div class="line"><a name="l01676"></a><span class="lineno"> 1676</span>&#160;<span class="comment">/// double Mezzanine::XML::XPathQuery::EvaluateNumber(const Mezzanine::XML::XPathNode&amp; n) const;</span></div>
 <div class="line"><a name="l01677"></a><span class="lineno"> 1677</span>&#160;<span class="comment">/// Mezzanine::String Mezzanine::XML::XPathQuery::EvaluateString(const Mezzanine::XML::XPathNode&amp; n) const;</span></div>
 <div class="line"><a name="l01678"></a><span class="lineno"> 1678</span>&#160;<span class="comment">/// Mezzanine::XML::XPathNodeSet Mezzanine::XML::XPathQuery::EvaluateNodeSet(const Mezzanine::XML::XPathNode&amp; n) const;</span></div>
 <div class="line"><a name="l01679"></a><span class="lineno"> 1679</span>&#160;<span class="comment">/// @endcode</span></div>
 <div class="line"><a name="l01680"></a><span class="lineno"> 1680</span>&#160;<span class="comment">/// All functions take the context node as an argument, compute the expression and return the result, converted to the requested type. According to XPath specification, value of any</span></div>
-<div class="line"><a name="l01681"></a><span class="lineno"> 1681</span>&#160;<span class="comment">/// type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, EvaluateBoolean, EvaluateNumber and</span></div>
+<div class="line"><a name="l01681"></a><span class="lineno"> 1681</span>&#160;<span class="comment">/// type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, EvaluateBoole, EvaluateNumber and</span></div>
 <div class="line"><a name="l01682"></a><span class="lineno"> 1682</span>&#160;<span class="comment">/// EvaluateString always return a result, but EvaluateNodeSet results in an error if the return type is not node set ( see @ref XMLXPathError ).</span></div>
 <div class="line"><a name="l01683"></a><span class="lineno"> 1683</span>&#160;<span class="comment">/// @note Calling node.FindNodes(&quot;query&quot;) is equivalent to calling Mezzanine::XML::XPathQuery(&quot;query&quot;).EvaluateNodeSet(node).</span></div>
 <div class="line"><a name="l01684"></a><span class="lineno"> 1684</span>&#160;<span class="comment">///</span></div>
@@ -1801,7 +1801,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01715"></a><span class="lineno"> 1715</span>&#160;<span class="comment">/// {</span></div>
 <div class="line"><a name="l01716"></a><span class="lineno"> 1716</span>&#160;<span class="comment">///     std::string s = QueryName.EvaluateString(tool);</span></div>
 <div class="line"><a name="l01717"></a><span class="lineno"> 1717</span>&#160;<span class="comment">///</span></div>
-<div class="line"><a name="l01718"></a><span class="lineno"> 1718</span>&#160;<span class="comment">///     if (QueryNameValid.EvaluateBoolean(tool)) std::cout &lt;&lt; s &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l01718"></a><span class="lineno"> 1718</span>&#160;<span class="comment">///     if (QueryNameValid.EvaluateBoole(tool)) std::cout &lt;&lt; s &lt;&lt; std::endl;</span></div>
 <div class="line"><a name="l01719"></a><span class="lineno"> 1719</span>&#160;<span class="comment">/// }</span></div>
 <div class="line"><a name="l01720"></a><span class="lineno"> 1720</span>&#160;<span class="comment">/// @endcode</span></div>
 <div class="line"><a name="l01721"></a><span class="lineno"> 1721</span>&#160;<span class="comment">/// @subsection XMLXPathVariables Using Variables</span></div>
@@ -1860,7 +1860,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01774"></a><span class="lineno"> 1774</span>&#160;<span class="comment">/// \n \n</span></div>
 <div class="line"><a name="l01775"></a><span class="lineno"> 1775</span>&#160;<span class="comment">/// In order to get variable value, you should use one of the following functions, depending on the variable type:</span></div>
 <div class="line"><a name="l01776"></a><span class="lineno"> 1776</span>&#160;<span class="comment">/// @code</span></div>
-<div class="line"><a name="l01777"></a><span class="lineno"> 1777</span>&#160;<span class="comment">/// bool Mezzanine::XML::XPathVariable::GetBoolean() const;</span></div>
+<div class="line"><a name="l01777"></a><span class="lineno"> 1777</span>&#160;<span class="comment">/// bool Mezzanine::XML::XPathVariable::GetBoole() const;</span></div>
 <div class="line"><a name="l01778"></a><span class="lineno"> 1778</span>&#160;<span class="comment">/// double Mezzanine::XML::XPathVariable::GetNumber() const;</span></div>
 <div class="line"><a name="l01779"></a><span class="lineno"> 1779</span>&#160;<span class="comment">/// const char_t* Mezzanine::XML::XPathVariable::GetString() const;</span></div>
 <div class="line"><a name="l01780"></a><span class="lineno"> 1780</span>&#160;<span class="comment">/// const Mezzanine::XML::XPathNodeSet&amp; Mezzanine::XML::XPathVariable::GetNodeSet() const;</span></div>
@@ -1882,7 +1882,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01796"></a><span class="lineno"> 1796</span>&#160;<span class="comment">/// @code</span></div>
 <div class="line"><a name="l01797"></a><span class="lineno"> 1797</span>&#160;<span class="comment">/// // Select nodes via compiled query</span></div>
 <div class="line"><a name="l01798"></a><span class="lineno"> 1798</span>&#160;<span class="comment">/// Mezzanine::XML::XPathVariableSet vars;</span></div>
-<div class="line"><a name="l01799"></a><span class="lineno"> 1799</span>&#160;<span class="comment">/// vars.Add(&quot;remote&quot;, Mezzanine::XML::XPathTypeBoolean);</span></div>
+<div class="line"><a name="l01799"></a><span class="lineno"> 1799</span>&#160;<span class="comment">/// vars.Add(&quot;remote&quot;, Mezzanine::XML::XPathTypeBoole);</span></div>
 <div class="line"><a name="l01800"></a><span class="lineno"> 1800</span>&#160;<span class="comment">///</span></div>
 <div class="line"><a name="l01801"></a><span class="lineno"> 1801</span>&#160;<span class="comment">/// Mezzanine::XML::XPathQuery QueryRemoteTools(&quot;/Profile/Tools/Tool[@AllowRemote = string($remote)]&quot;, &amp;vars);</span></div>
 <div class="line"><a name="l01802"></a><span class="lineno"> 1802</span>&#160;<span class="comment">///</span></div>
@@ -2049,6 +2049,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01963"></a><span class="lineno"> 1963</span>&#160;<span class="comment"> */</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:10 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

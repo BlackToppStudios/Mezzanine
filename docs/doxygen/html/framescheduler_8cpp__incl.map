@@ -12,7 +12,7 @@
 <area shape="rect" id="node64" href="$barrier_8h.html" title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive. " alt="" coords="459,425,525,453"/>
 <area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1045,657,1189,685"/>
 <area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="965,657,1021,685"/>
-<area shape="rect" id="node49" href="$mutex_8h.html" title="Declares a Mutex, Mutex tools. " alt="" coords="723,425,789,453"/>
+<area shape="rect" id="node49" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. " alt="" coords="723,425,789,453"/>
 <area shape="rect" id="node51" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically. " alt="" coords="679,502,809,530"/>
 <area shape="rect" id="node73" href="$workunit_8h.html" title="This file has the definition of the workunit. " alt="" coords="891,193,971,221"/>
 <area shape="rect" id="node79" href="$threadingenumerations_8h.html" title="Any enumerations the threading library requires are all declared here. " alt="" coords="1075,502,1237,530"/>

@@ -11,9 +11,9 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-424 6907,-424 6907,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="5074,-387 5074,-419 5228,-419 5228,-387 5074,-387"/>
-<text text-anchor="start" x="5082" y="-406" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="5151" y="-394" font-family="FreeSans" font-size="10.00">/Mezzanine/src/axisalignedbox.h</text>
+<polygon fill="#bfbfbf" stroke="black" points="3538,-387 3538,-419 3692,-419 3692,-387 3538,-387"/>
+<text text-anchor="start" x="3546" y="-406" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3615" y="-394" font-family="FreeSans" font-size="10.00">/Mezzanine/src/axisalignedbox.h</text>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
@@ -25,204 +25,204 @@
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M5063.59,-402.627C4419.77,-399.809 430.028,-381.132 178,-350 165.498,-348.456 152.262,-345.902 139.743,-343.046"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5063.71,-406.127 5073.73,-402.671 5063.74,-399.127 5063.71,-406.127"/>
+<path fill="none" stroke="midnightblue" d="M3527.87,-402.802C3026.43,-401.508 518.792,-392.921 178,-350 165.502,-348.426 152.267,-345.86 139.749,-343.001"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3527.93,-406.302 3537.94,-402.827 3527.95,-399.302 3527.93,-406.302"/>
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine. ">
-<polygon fill="white" stroke="black" points="3669.5,-71 3669.5,-103 3820.5,-103 3820.5,-71 3669.5,-71"/>
-<text text-anchor="start" x="3677.5" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3745" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
+<polygon fill="white" stroke="black" points="3661.5,-71 3661.5,-103 3812.5,-103 3812.5,-71 3661.5,-71"/>
+<text text-anchor="start" x="3669.5" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3737" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge4" class="edge"><title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M5063.71,-402.562C4416.58,-398.898 385.395,-368.767 211,-186 196.886,-171.209 196.652,-154.564 211,-140 242.439,-108.086 3159.73,-90.2811 3669.45,-87.4125"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5063.87,-406.063 5073.89,-402.619 5063.91,-399.063 5063.87,-406.063"/>
+<path fill="none" stroke="midnightblue" d="M3527.92,-400.78C3007.59,-387.102 328.045,-310.744 211,-186 197.011,-171.091 196.653,-154.565 211,-140 242.359,-108.166 3151.5,-90.3032 3661.21,-87.4164"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3527.9,-404.28 3537.99,-401.044 3528.08,-397.283 3527.9,-404.28"/>
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="collidableproxy_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collidableproxy.h">
-<polygon fill="white" stroke="black" points="3715.5,-311 3715.5,-343 3906.5,-343 3906.5,-311 3715.5,-311"/>
-<text text-anchor="start" x="3723.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3811" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collidableproxy.h</text>
+<polygon fill="white" stroke="black" points="3247.5,-311 3247.5,-343 3438.5,-343 3438.5,-311 3247.5,-311"/>
+<text text-anchor="start" x="3255.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3343" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collidableproxy.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge8" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M5063.58,-398.042C4823.65,-384.434 4156.19,-346.578 3906.71,-332.428"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5063.47,-401.541 5073.65,-398.613 5063.87,-394.552 5063.47,-401.541"/>
+<path fill="none" stroke="midnightblue" d="M3547.91,-384.253C3502.58,-371.589 3443.38,-355.048 3400.27,-343.003"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3547.08,-387.655 3557.65,-386.975 3548.96,-380.913 3547.08,-387.655"/>
 </g>
 <!-- Node33 -->
-<g id="node72" class="node"><title>Node33</title>
+<g id="node74" class="node"><title>Node33</title>
 <a xlink:href="mathtool_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/mathtool.cpp">
-<polygon fill="white" stroke="black" points="5159.5,-311 5159.5,-343 5310.5,-343 5310.5,-311 5159.5,-311"/>
-<text text-anchor="start" x="5167.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="5235" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mathtool.cpp</text>
+<polygon fill="white" stroke="black" points="3455.5,-311 3455.5,-343 3606.5,-343 3606.5,-311 3455.5,-311"/>
+<text text-anchor="start" x="3463.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3531" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mathtool.cpp</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node33 -->
-<g id="edge78" class="edge"><title>Node1&#45;&gt;Node33</title>
-<path fill="none" stroke="midnightblue" d="M5176.24,-380.168C5189.45,-368.216 5205.3,-353.871 5217.21,-343.094"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5173.88,-377.578 5168.81,-386.882 5178.58,-382.769 5173.88,-377.578"/>
+<g id="edge82" class="edge"><title>Node1&#45;&gt;Node33</title>
+<path fill="none" stroke="midnightblue" d="M3589.76,-380.168C3576.55,-368.216 3560.7,-353.871 3548.79,-343.094"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3587.42,-382.769 3597.19,-386.882 3592.12,-377.578 3587.42,-382.769"/>
 </g>
 <!-- Node34 -->
-<g id="node74" class="node"><title>Node34</title>
+<g id="node76" class="node"><title>Node34</title>
 <a xlink:href="plane_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/plane.cpp">
-<polygon fill="white" stroke="black" points="5327.5,-311 5327.5,-343 5478.5,-343 5478.5,-311 5327.5,-311"/>
-<text text-anchor="start" x="5335.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="5403" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/plane.cpp</text>
+<polygon fill="white" stroke="black" points="3623.5,-311 3623.5,-343 3774.5,-343 3774.5,-311 3623.5,-311"/>
+<text text-anchor="start" x="3631.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3699" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/plane.cpp</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node34 -->
-<g id="edge80" class="edge"><title>Node1&#45;&gt;Node34</title>
-<path fill="none" stroke="midnightblue" d="M5213.95,-384.014C5255.84,-371.381 5310.25,-354.972 5349.94,-343.003"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5212.7,-380.737 5204.13,-386.975 5214.72,-387.439 5212.7,-380.737"/>
+<g id="edge84" class="edge"><title>Node1&#45;&gt;Node34</title>
+<path fill="none" stroke="midnightblue" d="M3640.24,-380.168C3653.45,-368.216 3669.3,-353.871 3681.21,-343.094"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3637.88,-377.578 3632.81,-386.882 3642.58,-382.769 3637.88,-377.578"/>
 </g>
 <!-- Node35 -->
-<g id="node76" class="node"><title>Node35</title>
+<g id="node78" class="node"><title>Node35</title>
 <a xlink:href="ray_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/ray.cpp">
-<polygon fill="white" stroke="black" points="5495.5,-311 5495.5,-343 5646.5,-343 5646.5,-311 5495.5,-311"/>
-<text text-anchor="start" x="5503.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="5571" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/ray.cpp</text>
+<polygon fill="white" stroke="black" points="3791.5,-311 3791.5,-343 3942.5,-343 3942.5,-311 3791.5,-311"/>
+<text text-anchor="start" x="3799.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3867" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/ray.cpp</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node35 -->
-<g id="edge82" class="edge"><title>Node1&#45;&gt;Node35</title>
-<path fill="none" stroke="midnightblue" d="M5238.44,-391.914C5306.54,-382.628 5403.25,-368.012 5487,-350 5496.31,-347.997 5506.13,-345.587 5515.64,-343.091"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5237.62,-388.492 5228.18,-393.301 5238.56,-395.429 5237.62,-388.492"/>
+<g id="edge86" class="edge"><title>Node1&#45;&gt;Node35</title>
+<path fill="none" stroke="midnightblue" d="M3677.95,-384.014C3719.84,-371.381 3774.25,-354.972 3813.94,-343.003"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3676.7,-380.737 3668.13,-386.975 3678.72,-387.439 3676.7,-380.737"/>
 </g>
 <!-- Node36 -->
-<g id="node78" class="node"><title>Node36</title>
+<g id="node80" class="node"><title>Node36</title>
 <a xlink:href="renderableproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the base class from which graphics proxies inherit...">
-<polygon fill="white" stroke="black" points="4991.5,-305 4991.5,-349 5142.5,-349 5142.5,-305 4991.5,-305"/>
-<text text-anchor="start" x="4999.5" y="-336" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="start" x="4999.5" y="-324" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
-<text text-anchor="middle" x="5067" y="-312" font-family="FreeSans" font-size="10.00">/renderableproxy.h</text>
+<polygon fill="white" stroke="black" points="5127.5,-305 5127.5,-349 5278.5,-349 5278.5,-305 5127.5,-305"/>
+<text text-anchor="start" x="5135.5" y="-336" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="start" x="5135.5" y="-324" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="5203" y="-312" font-family="FreeSans" font-size="10.00">/renderableproxy.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node36 -->
-<g id="edge84" class="edge"><title>Node1&#45;&gt;Node36</title>
-<path fill="none" stroke="midnightblue" d="M5125.66,-380.072C5114.82,-370.268 5102.22,-358.866 5091.48,-349.148"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5123.42,-382.769 5133.19,-386.882 5128.12,-377.578 5123.42,-382.769"/>
+<g id="edge88" class="edge"><title>Node1&#45;&gt;Node36</title>
+<path fill="none" stroke="midnightblue" d="M3702.28,-398.823C3983.53,-385.362 4863.12,-343.266 5127.26,-330.625"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3701.95,-395.335 3692.13,-399.309 3702.29,-402.327 3701.95,-395.335"/>
 </g>
 <!-- Node57 -->
-<g id="node134" class="node"><title>Node57</title>
+<g id="node136" class="node"><title>Node57</title>
 <a xlink:href="sphere_8cpp.html" target="_top" xlink:title="This file contains the implementation for the generic Sphere class for math and spacial query...">
-<polygon fill="white" stroke="black" points="5663.5,-311 5663.5,-343 5814.5,-343 5814.5,-311 5663.5,-311"/>
-<text text-anchor="start" x="5671.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="5739" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/sphere.cpp</text>
+<polygon fill="white" stroke="black" points="5295.5,-311 5295.5,-343 5446.5,-343 5446.5,-311 5295.5,-311"/>
+<text text-anchor="start" x="5303.5" y="-330" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="5371" y="-318" font-family="FreeSans" font-size="10.00">/Mezzanine/src/sphere.cpp</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node57 -->
-<g id="edge154" class="edge"><title>Node1&#45;&gt;Node57</title>
-<path fill="none" stroke="midnightblue" d="M5238.57,-398.12C5339.6,-391.493 5510.38,-377.216 5655,-350 5664.96,-348.126 5675.45,-345.658 5685.53,-343.035"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5238.17,-394.639 5228.41,-398.776 5238.62,-401.624 5238.17,-394.639"/>
+<g id="edge158" class="edge"><title>Node1&#45;&gt;Node57</title>
+<path fill="none" stroke="midnightblue" d="M3702.28,-401.437C4023.61,-395.519 5130.17,-373.618 5287,-350 5297.77,-348.379 5309.12,-345.85 5319.88,-343.053"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3702.03,-397.941 3692.1,-401.624 3702.16,-404.94 3702.03,-397.941"/>
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="entresol_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp">
-<polygon fill="white" stroke="black" points="3669.5,-1 3669.5,-33 3820.5,-33 3820.5,-1 3669.5,-1"/>
-<text text-anchor="start" x="3677.5" y="-20" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3745" y="-8" font-family="FreeSans" font-size="10.00">/Mezzanine/src/entresol.cpp</text>
+<polygon fill="white" stroke="black" points="3661.5,-1 3661.5,-33 3812.5,-33 3812.5,-1 3661.5,-1"/>
+<text text-anchor="start" x="3669.5" y="-20" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3737" y="-8" font-family="FreeSans" font-size="10.00">/Mezzanine/src/entresol.cpp</text>
 </a>
 </g>
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge6" class="edge"><title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M3745,-60.5079C3745,-51.3027 3745,-41.2615 3745,-33.1473"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3741.5,-60.7646 3745,-70.7646 3748.5,-60.7647 3741.5,-60.7646"/>
+<path fill="none" stroke="midnightblue" d="M3737,-60.5079C3737,-51.3027 3737,-41.2615 3737,-33.1473"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3733.5,-60.7646 3737,-70.7646 3740.5,-60.7647 3733.5,-60.7646"/>
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="ghostproxy_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/ghostproxy.h">
-<polygon fill="white" stroke="black" points="3206.5,-229 3206.5,-261 3379.5,-261 3379.5,-229 3206.5,-229"/>
-<text text-anchor="start" x="3214.5" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3293" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/ghostproxy.h</text>
+<polygon fill="white" stroke="black" points="3650.5,-229 3650.5,-261 3823.5,-261 3823.5,-229 3650.5,-229"/>
+<text text-anchor="start" x="3658.5" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3737" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/ghostproxy.h</text>
 </a>
 </g>
 <!-- Node5&#45;&gt;Node6 -->
 <g id="edge10" class="edge"><title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M3705.2,-315.19C3619.35,-304.899 3495.38,-288.435 3388,-268 3377.41,-265.985 3366.24,-263.555 3355.41,-261.039"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3704.88,-318.675 3715.22,-316.383 3705.7,-311.724 3704.88,-318.675"/>
+<path fill="none" stroke="midnightblue" d="M3423.86,-308.828C3431.67,-307.159 3439.48,-305.525 3447,-304 3533.37,-286.482 3555.81,-286.376 3642,-268 3652.04,-265.859 3662.64,-263.446 3672.98,-261.008"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3423.02,-305.428 3413.98,-310.955 3424.49,-312.271 3423.02,-305.428"/>
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="physics_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/physics.h">
-<polygon fill="white" stroke="black" points="3665.5,-147 3665.5,-179 3824.5,-179 3824.5,-147 3665.5,-147"/>
-<text text-anchor="start" x="3673.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3745" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/physics.h</text>
+<a xlink:href="physics_8h.html" target="_top" xlink:title="The file to include to get access to all the physics stuff. ">
+<polygon fill="white" stroke="black" points="3657.5,-147 3657.5,-179 3816.5,-179 3816.5,-147 3657.5,-147"/>
+<text text-anchor="start" x="3665.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3737" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/physics.h</text>
 </a>
 </g>
 <!-- Node5&#45;&gt;Node8 -->
-<g id="edge24" class="edge"><title>Node5&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M3910.5,-308.676C3952.88,-298.656 3995.47,-284.838 4008,-268 4020.21,-251.6 4020.92,-237.846 4008,-222 3957.83,-160.454 3910.33,-204.046 3833,-186 3823.77,-183.847 3814.04,-181.439 3804.54,-179.015"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3909.57,-305.297 3900.61,-310.947 3911.14,-312.119 3909.57,-305.297"/>
+<g id="edge28" class="edge"><title>Node5&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M3419.56,-308.938C3428.78,-307.1 3438.08,-305.398 3447,-304 3489.45,-297.348 3803.07,-299.763 3832,-268 3845.77,-252.886 3841.94,-239.867 3832,-222 3821.15,-202.487 3800.88,-188.599 3781.84,-179.22"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3418.71,-305.539 3409.62,-310.979 3420.12,-312.396 3418.71,-305.539"/>
 </g>
-<!-- Node12 -->
-<g id="node25" class="node"><title>Node12</title>
+<!-- Node14 -->
+<g id="node29" class="node"><title>Node14</title>
 <a xlink:href="rigidproxy_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/rigidproxy.h">
-<polygon fill="white" stroke="black" points="2190,-229 2190,-261 2358,-261 2358,-229 2190,-229"/>
-<text text-anchor="start" x="2198" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="2274" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/rigidproxy.h</text>
+<polygon fill="white" stroke="black" points="2177,-229 2177,-261 2345,-261 2345,-229 2177,-229"/>
+<text text-anchor="start" x="2185" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="2261" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/rigidproxy.h</text>
 </a>
 </g>
-<!-- Node5&#45;&gt;Node12 -->
-<g id="edge26" class="edge"><title>Node5&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M3705.39,-321.366C3416.9,-305.974 2619.65,-263.441 2358.23,-249.494"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3705.26,-324.864 3715.43,-321.902 3705.64,-317.874 3705.26,-324.864"/>
+<!-- Node5&#45;&gt;Node14 -->
+<g id="edge30" class="edge"><title>Node5&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M3237.45,-319.001C3023.03,-302.751 2540.32,-266.168 2345.2,-251.381"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3237.22,-322.493 3247.45,-319.759 3237.75,-315.513 3237.22,-322.493"/>
 </g>
 <!-- Node27 -->
-<g id="node58" class="node"><title>Node27</title>
+<g id="node60" class="node"><title>Node27</title>
 <a xlink:href="softproxy_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/softproxy.h">
-<polygon fill="white" stroke="black" points="4055,-229 4055,-261 4221,-261 4221,-229 4055,-229"/>
-<text text-anchor="start" x="4063" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="4138" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/softproxy.h</text>
+<polygon fill="white" stroke="black" points="2847,-229 2847,-261 3013,-261 3013,-229 2847,-229"/>
+<text text-anchor="start" x="2855" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="2930" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/softproxy.h</text>
 </a>
 </g>
 <!-- Node5&#45;&gt;Node27 -->
-<g id="edge62" class="edge"><title>Node5&#45;&gt;Node27</title>
-<path fill="none" stroke="midnightblue" d="M3884.85,-308.482C3941.8,-294.201 4019.76,-274.651 4074.06,-261.035"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3883.67,-305.168 3874.83,-310.995 3885.38,-311.957 3883.67,-305.168"/>
+<g id="edge66" class="edge"><title>Node5&#45;&gt;Node27</title>
+<path fill="none" stroke="midnightblue" d="M3237.26,-309.298C3174.51,-298.361 3093.49,-283.49 3022,-268 3012.18,-265.873 3001.82,-263.454 2991.73,-261.003"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3236.72,-312.756 3247.17,-311.019 3237.92,-305.859 3236.72,-312.756"/>
 </g>
 <!-- Node30 -->
-<g id="node66" class="node"><title>Node30</title>
+<g id="node68" class="node"><title>Node30</title>
 <a xlink:href="collidablepair_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collidablepair.cpp">
-<polygon fill="white" stroke="black" points="3397,-229 3397,-261 3591,-261 3591,-229 3397,-229"/>
-<text text-anchor="start" x="3405" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3494" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collidablepair.cpp</text>
+<polygon fill="white" stroke="black" points="3031,-229 3031,-261 3225,-261 3225,-229 3031,-229"/>
+<text text-anchor="start" x="3039" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3128" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collidablepair.cpp</text>
 </a>
 </g>
 <!-- Node5&#45;&gt;Node30 -->
-<g id="edge72" class="edge"><title>Node5&#45;&gt;Node30</title>
-<path fill="none" stroke="midnightblue" d="M3739.41,-308.482C3684.2,-294.201 3608.63,-274.651 3555.99,-261.035"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3738.57,-311.879 3749.13,-310.995 3740.32,-305.102 3738.57,-311.879"/>
+<g id="edge76" class="edge"><title>Node5&#45;&gt;Node30</title>
+<path fill="none" stroke="midnightblue" d="M3291.41,-307.324C3254.33,-293.183 3204.96,-274.353 3170.23,-261.105"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3290.44,-310.702 3301.04,-310.995 3292.94,-304.161 3290.44,-310.702"/>
 </g>
 <!-- Node31 -->
-<g id="node68" class="node"><title>Node31</title>
+<g id="node70" class="node"><title>Node31</title>
 <a xlink:href="collidableproxy_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collidableproxy.cpp">
-<polygon fill="white" stroke="black" points="3608.5,-229 3608.5,-261 3809.5,-261 3809.5,-229 3608.5,-229"/>
-<text text-anchor="start" x="3616.5" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3709" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collidableproxy.cpp</text>
+<polygon fill="white" stroke="black" points="3242.5,-229 3242.5,-261 3443.5,-261 3443.5,-229 3242.5,-229"/>
+<text text-anchor="start" x="3250.5" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3343" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collidableproxy.cpp</text>
 </a>
 </g>
 <!-- Node5&#45;&gt;Node31 -->
-<g id="edge74" class="edge"><title>Node5&#45;&gt;Node31</title>
-<path fill="none" stroke="midnightblue" d="M3782.87,-304.384C3765.82,-290.677 3744.47,-273.512 3729.11,-261.167"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3780.86,-307.262 3790.85,-310.799 3785.25,-301.806 3780.86,-307.262"/>
+<g id="edge78" class="edge"><title>Node5&#45;&gt;Node31</title>
+<path fill="none" stroke="midnightblue" d="M3343,-300.567C3343,-287.596 3343,-272.39 3343,-261.167"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3339.5,-300.799 3343,-310.799 3346.5,-300.799 3339.5,-300.799"/>
 </g>
 <!-- Node32 -->
-<g id="node70" class="node"><title>Node32</title>
+<g id="node72" class="node"><title>Node32</title>
 <a xlink:href="collision_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collision.cpp">
-<polygon fill="white" stroke="black" points="3826.5,-229 3826.5,-261 3999.5,-261 3999.5,-229 3826.5,-229"/>
-<text text-anchor="start" x="3834.5" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3913" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collision.cpp</text>
+<polygon fill="white" stroke="black" points="3460.5,-229 3460.5,-261 3633.5,-261 3633.5,-229 3460.5,-229"/>
+<text text-anchor="start" x="3468.5" y="-248" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3547" y="-236" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collision.cpp</text>
 </a>
 </g>
 <!-- Node5&#45;&gt;Node32 -->
-<g id="edge76" class="edge"><title>Node5&#45;&gt;Node32</title>
-<path fill="none" stroke="midnightblue" d="M3839.13,-304.384C3856.18,-290.677 3877.53,-273.512 3892.89,-261.167"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3836.75,-301.806 3831.15,-310.799 3841.14,-307.262 3836.75,-301.806"/>
+<g id="edge80" class="edge"><title>Node5&#45;&gt;Node32</title>
+<path fill="none" stroke="midnightblue" d="M3392.4,-307.143C3427.53,-293.023 3474.12,-274.297 3506.93,-261.105"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3390.79,-304.018 3382.82,-310.995 3393.4,-310.513 3390.79,-304.018"/>
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
@@ -234,267 +234,277 @@
 </g>
 <!-- Node6&#45;&gt;Node7 -->
 <g id="edge12" class="edge"><title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M3361.21,-226.755C3370.17,-224.869 3379.27,-223.206 3388,-222 3817.55,-162.684 3934.38,-251.693 4363,-186 4373.76,-184.351 4385.11,-181.81 4395.87,-179.009"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3360.19,-223.395 3351.18,-228.966 3361.7,-230.231 3360.19,-223.395"/>
+<path fill="none" stroke="midnightblue" d="M3833.91,-241.076C3957.55,-234.88 4177.6,-219.855 4363,-186 4373.11,-184.153 4383.78,-181.664 4394,-179.005"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3833.53,-237.59 3823.72,-241.578 3833.88,-244.582 3833.53,-237.59"/>
 </g>
 <!-- Node6&#45;&gt;Node8 -->
 <g id="edge14" class="edge"><title>Node6&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M3364.93,-226.749C3372.69,-225.03 3380.49,-223.407 3388,-222 3506.56,-199.778 3538.65,-209.294 3657,-186 3666.92,-184.048 3677.37,-181.635 3687.48,-179.113"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3364.12,-223.344 3355.14,-228.97 3365.67,-230.17 3364.12,-223.344"/>
+<path fill="none" stroke="midnightblue" d="M3737,-218.567C3737,-205.596 3737,-190.39 3737,-179.167"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3733.5,-218.799 3737,-228.799 3740.5,-218.799 3733.5,-218.799"/>
 </g>
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
-<a xlink:href="gravitywell_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/gravitywell.cpp">
-<polygon fill="white" stroke="black" points="3071.5,-147 3071.5,-179 3222.5,-179 3222.5,-147 3071.5,-147"/>
-<text text-anchor="start" x="3079.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3147" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/gravitywell.cpp</text>
+<a xlink:href="fieldofforce_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/fieldofforce.cpp">
+<polygon fill="white" stroke="black" points="3127.5,-147 3127.5,-179 3278.5,-179 3278.5,-147 3127.5,-147"/>
+<text text-anchor="start" x="3135.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3203" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/fieldofforce.cpp</text>
 </a>
 </g>
 <!-- Node6&#45;&gt;Node9 -->
 <g id="edge18" class="edge"><title>Node6&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M3255.72,-224.065C3230.92,-210.131 3198.8,-192.095 3175.92,-179.245"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3254.07,-227.15 3264.5,-228.995 3257.5,-221.046 3254.07,-227.15"/>
+<path fill="none" stroke="midnightblue" d="M3666.29,-226.759C3658.14,-224.989 3649.91,-223.352 3642,-222 3485.68,-195.279 3442.91,-215.041 3287,-186 3277.04,-184.145 3266.54,-181.685 3256.47,-179.065"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3665.66,-230.205 3676.19,-228.975 3667.19,-223.374 3665.66,-230.205"/>
 </g>
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
-<a xlink:href="ghostproxy_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/ghostproxy.cpp">
-<polygon fill="white" stroke="black" points="3240,-147 3240,-179 3424,-179 3424,-147 3240,-147"/>
-<text text-anchor="start" x="3248" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3332" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/ghostproxy.cpp</text>
+<a xlink:href="gravityfield_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/gravityfield.cpp">
+<polygon fill="white" stroke="black" points="3295.5,-147 3295.5,-179 3446.5,-179 3446.5,-147 3295.5,-147"/>
+<text text-anchor="start" x="3303.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3371" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/gravityfield.cpp</text>
 </a>
 </g>
 <!-- Node6&#45;&gt;Node10 -->
 <g id="edge20" class="edge"><title>Node6&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M3305.02,-219.728C3311.31,-206.512 3318.81,-190.727 3324.31,-179.167"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3301.84,-218.265 3300.71,-228.799 3308.16,-221.272 3301.84,-218.265"/>
+<path fill="none" stroke="midnightblue" d="M3662.56,-226.623C3655.62,-225.017 3648.69,-223.452 3642,-222 3559.29,-204.037 3537.43,-205.19 3455,-186 3446.02,-183.909 3436.55,-181.508 3427.33,-179.065"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3662.17,-230.127 3672.71,-228.998 3663.77,-223.311 3662.17,-230.127"/>
 </g>
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
-<a xlink:href="physicsmanager_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/physicsmanager.cpp">
-<polygon fill="white" stroke="black" points="3441.5,-147 3441.5,-179 3648.5,-179 3648.5,-147 3441.5,-147"/>
-<text text-anchor="start" x="3449.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3545" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/physicsmanager.cpp</text>
+<a xlink:href="gravitywell_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/gravitywell.cpp">
+<polygon fill="white" stroke="black" points="2735.5,-147 2735.5,-179 2886.5,-179 2886.5,-147 2735.5,-147"/>
+<text text-anchor="start" x="2743.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="2811" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/gravitywell.cpp</text>
 </a>
 </g>
 <!-- Node6&#45;&gt;Node11 -->
 <g id="edge22" class="edge"><title>Node6&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M3351.81,-225.863C3395.45,-211.665 3454.27,-192.522 3495.51,-179.105"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3350.61,-222.572 3342.19,-228.995 3352.78,-229.229 3350.61,-222.572"/>
+<path fill="none" stroke="midnightblue" d="M3668.4,-226.769C3659.57,-224.9 3650.6,-223.237 3642,-222 3313,-174.682 3223.26,-238.203 2895,-186 2884.4,-184.314 2873.22,-181.794 2862.59,-179.032"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3667.78,-230.216 3678.3,-228.955 3669.29,-223.38 3667.78,-230.216"/>
+</g>
+<!-- Node12 -->
+<g id="node24" class="node"><title>Node12</title>
+<a xlink:href="ghostproxy_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/ghostproxy.cpp">
+<polygon fill="white" stroke="black" points="3834,-147 3834,-179 4018,-179 4018,-147 3834,-147"/>
+<text text-anchor="start" x="3842" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3926" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/ghostproxy.cpp</text>
+</a>
+</g>
+<!-- Node6&#45;&gt;Node12 -->
+<g id="edge24" class="edge"><title>Node6&#45;&gt;Node12</title>
+<path fill="none" stroke="midnightblue" d="M3783.19,-224.962C3815.68,-210.863 3858.6,-192.241 3888.88,-179.105"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3781.67,-221.804 3773.89,-228.995 3784.46,-228.226 3781.67,-221.804"/>
+</g>
+<!-- Node13 -->
+<g id="node26" class="node"><title>Node13</title>
+<a xlink:href="physicsmanager_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/physicsmanager.cpp">
+<polygon fill="white" stroke="black" points="2903.5,-147 2903.5,-179 3110.5,-179 3110.5,-147 2903.5,-147"/>
+<text text-anchor="start" x="2911.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3007" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/physicsmanager.cpp</text>
+</a>
+</g>
+<!-- Node6&#45;&gt;Node13 -->
+<g id="edge26" class="edge"><title>Node6&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M3667.54,-226.759C3658.98,-224.933 3650.32,-223.284 3642,-222 3411.73,-186.461 3349.85,-217.505 3119,-186 3105.63,-184.175 3091.45,-181.696 3077.85,-179.041"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3666.99,-230.222 3677.51,-228.971 3668.5,-223.388 3666.99,-230.222"/>
 </g>
 <!-- Node8&#45;&gt;Node3 -->
 <g id="edge16" class="edge"><title>Node8&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M3745,-136.759C3745,-125.566 3745,-112.864 3745,-103.094"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="3741.5,-136.882 3745,-146.882 3748.5,-136.882 3741.5,-136.882"/>
+<path fill="none" stroke="midnightblue" d="M3737,-136.759C3737,-125.566 3737,-112.864 3737,-103.094"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="3733.5,-136.882 3737,-146.882 3740.5,-136.882 3733.5,-136.882"/>
 </g>
-<!-- Node12&#45;&gt;Node8 -->
-<g id="edge28" class="edge"><title>Node12&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M2368.5,-243.589C2638.14,-239.147 3407.7,-223.459 3657,-186 3668.09,-184.334 3679.79,-181.823 3690.92,-179.064"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2368.29,-240.092 2358.35,-243.755 2368.41,-247.091 2368.29,-240.092"/>
+<!-- Node14&#45;&gt;Node8 -->
+<g id="edge32" class="edge"><title>Node14&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M2355.28,-241.262C2662.51,-229.045 3617,-190.806 3649,-186 3660.09,-184.335 3671.79,-181.824 3682.92,-179.065"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2354.92,-237.773 2345.06,-241.668 2355.19,-244.768 2354.92,-237.773"/>
 </g>
-<!-- Node12&#45;&gt;Node9 -->
-<g id="edge34" class="edge"><title>Node12&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M2368.38,-240.227C2547.82,-230.774 2931.96,-208.622 3063,-186 3073.28,-184.225 3084.12,-181.736 3094.47,-179.047"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2367.97,-236.744 2358.16,-240.763 2368.33,-243.734 2367.97,-236.744"/>
+<!-- Node14&#45;&gt;Node9 -->
+<g id="edge34" class="edge"><title>Node14&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M2355.11,-240.892C2546.32,-232.157 2974.38,-210.521 3119,-186 3129.29,-184.256 3140.13,-181.781 3150.48,-179.096"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2354.91,-237.398 2345.08,-241.349 2355.22,-244.39 2354.91,-237.398"/>
 </g>
-<!-- Node12&#45;&gt;Node11 -->
-<g id="edge52" class="edge"><title>Node12&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M2368.23,-242.049C2606.35,-234.296 3227.84,-212.134 3433,-186 3446.78,-184.244 3461.4,-181.729 3475.37,-179.001"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2368.09,-238.552 2358.21,-242.375 2368.31,-245.548 2368.09,-238.552"/>
+<!-- Node14&#45;&gt;Node10 -->
+<g id="edge36" class="edge"><title>Node14&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M2355.5,-240.7C2591.95,-229.779 3196.67,-200.795 3287,-186 3297.44,-184.289 3308.46,-181.794 3318.95,-179.072"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2355.03,-237.218 2345.2,-241.175 2355.35,-244.21 2355.03,-237.218"/>
 </g>
-<!-- Node13 -->
-<g id="node28" class="node"><title>Node13</title>
-<a xlink:href="fieldofforce_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/fieldofforce.cpp">
-<polygon fill="white" stroke="black" points="2299.5,-147 2299.5,-179 2450.5,-179 2450.5,-147 2299.5,-147"/>
-<text text-anchor="start" x="2307.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="2375" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/fieldofforce.cpp</text>
-</a>
+<!-- Node14&#45;&gt;Node11 -->
+<g id="edge38" class="edge"><title>Node14&#45;&gt;Node11</title>
+<path fill="none" stroke="midnightblue" d="M2355.45,-236.99C2450.04,-228.045 2599.48,-211.398 2727,-186 2736.64,-184.08 2746.8,-181.653 2756.59,-179.099"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2354.97,-233.521 2345.34,-237.938 2355.62,-240.49 2354.97,-233.521"/>
 </g>
-<!-- Node12&#45;&gt;Node13 -->
-<g id="edge30" class="edge"><title>Node12&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M2301.86,-222.384C2318.74,-208.677 2339.88,-191.512 2355.09,-179.167"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2299.51,-219.779 2293.95,-228.799 2303.92,-225.214 2299.51,-219.779"/>
-</g>
-<!-- Node14 -->
-<g id="node30" class="node"><title>Node14</title>
-<a xlink:href="gravityfield_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/gravityfield.cpp">
-<polygon fill="white" stroke="black" points="2467.5,-147 2467.5,-179 2618.5,-179 2618.5,-147 2467.5,-147"/>
-<text text-anchor="start" x="2475.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="2543" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/gravityfield.cpp</text>
-</a>
-</g>
-<!-- Node12&#45;&gt;Node14 -->
-<g id="edge32" class="edge"><title>Node12&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M2336.19,-226.042C2382.83,-211.826 2445.97,-192.579 2490.17,-179.105"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2335.05,-222.731 2326.5,-228.995 2337.09,-229.427 2335.05,-222.731"/>
+<!-- Node14&#45;&gt;Node13 -->
+<g id="edge56" class="edge"><title>Node14&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M2355.43,-239.46C2479.64,-231.431 2704.5,-214.337 2895,-186 2907.96,-184.072 2921.68,-181.61 2934.91,-179.017"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2354.95,-235.983 2345.19,-240.116 2355.4,-242.969 2354.95,-235.983"/>
 </g>
 <!-- Node15 -->
-<g id="node33" class="node"><title>Node15</title>
+<g id="node35" class="node"><title>Node15</title>
 <a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform. ">
-<polygon fill="white" stroke="black" points="3841.5,-147 3841.5,-179 3992.5,-179 3992.5,-147 3841.5,-147"/>
-<text text-anchor="start" x="3849.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="3917" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/rigiddebris.cpp</text>
+<polygon fill="white" stroke="black" points="4035.5,-147 4035.5,-179 4186.5,-179 4186.5,-147 4035.5,-147"/>
+<text text-anchor="start" x="4043.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="4111" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/rigiddebris.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node15 -->
-<g id="edge36" class="edge"><title>Node12&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M2368.27,-242.692C2683.46,-234.802 3688.83,-208.164 3833,-186 3843.76,-184.346 3855.11,-181.803 3865.87,-179.002"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2368.16,-239.194 2358.25,-242.943 2368.34,-246.192 2368.16,-239.194"/>
+<!-- Node14&#45;&gt;Node15 -->
+<g id="edge40" class="edge"><title>Node14&#45;&gt;Node15</title>
+<path fill="none" stroke="midnightblue" d="M2355.19,-240.968C2469.41,-236.143 2667.8,-227.969 2838,-222 3102.18,-212.736 3765.58,-225.18 4027,-186 4037.77,-184.386 4049.12,-181.861 4059.88,-179.065"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2354.92,-237.476 2345.08,-241.396 2355.22,-244.47 2354.92,-237.476"/>
 </g>
 <!-- Node16 -->
-<g id="node35" class="node"><title>Node16</title>
+<g id="node37" class="node"><title>Node16</title>
 <a xlink:href="conetwistconstraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/conetwistconstraint.cpp">
-<polygon fill="white" stroke="black" points="2635.5,-147 2635.5,-179 2856.5,-179 2856.5,-147 2635.5,-147"/>
-<text text-anchor="start" x="2643.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="2746" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/conetwistconstraint.cpp</text>
+<polygon fill="white" stroke="black" points="871.5,-147 871.5,-179 1092.5,-179 1092.5,-147 871.5,-147"/>
+<text text-anchor="start" x="879.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="982" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/conetwistconstraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node16 -->
-<g id="edge38" class="edge"><title>Node12&#45;&gt;Node16</title>
-<path fill="none" stroke="midnightblue" d="M2368.55,-229.864C2439.7,-218.312 2539.57,-201.752 2627,-186 2639.11,-183.817 2651.91,-181.431 2664.43,-179.048"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2367.58,-226.476 2358.27,-231.531 2368.7,-233.385 2367.58,-226.476"/>
+<!-- Node14&#45;&gt;Node16 -->
+<g id="edge42" class="edge"><title>Node14&#45;&gt;Node16</title>
+<path fill="none" stroke="midnightblue" d="M2166.71,-241.911C1928.43,-233.831 1306.48,-210.959 1101,-186 1086.48,-184.237 1071.08,-181.736 1056.34,-179.027"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2166.63,-245.41 2176.74,-242.25 2166.86,-238.414 2166.63,-245.41"/>
 </g>
 <!-- Node17 -->
-<g id="node37" class="node"><title>Node17</title>
+<g id="node39" class="node"><title>Node17</title>
 <a xlink:href="constraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/constraint.cpp">
-<polygon fill="white" stroke="black" points="2874,-147 2874,-179 3054,-179 3054,-147 2874,-147"/>
-<text text-anchor="start" x="2882" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="2964" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/constraint.cpp</text>
+<polygon fill="white" stroke="black" points="1110,-147 1110,-179 1290,-179 1290,-147 1110,-147"/>
+<text text-anchor="start" x="1118" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="1200" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/constraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node17 -->
-<g id="edge40" class="edge"><title>Node12&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M2368.13,-239.356C2485.16,-231.479 2690.77,-214.812 2865,-186 2876.58,-184.086 2888.82,-181.614 2900.6,-179.003"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2367.87,-235.866 2358.13,-240.023 2368.34,-242.85 2367.87,-235.866"/>
+<!-- Node14&#45;&gt;Node17 -->
+<g id="edge44" class="edge"><title>Node14&#45;&gt;Node17</title>
+<path fill="none" stroke="midnightblue" d="M2166.73,-241.227C1958.47,-232.566 1464.56,-210.135 1299,-186 1286.86,-184.231 1274.02,-181.727 1261.75,-179.018"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2166.59,-244.725 2176.73,-241.642 2166.88,-237.731 2166.59,-244.725"/>
 </g>
 <!-- Node18 -->
-<g id="node39" class="node"><title>Node18</title>
+<g id="node41" class="node"><title>Node18</title>
 <a xlink:href="gearconstraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/gearconstraint.cpp">
-<polygon fill="white" stroke="black" points="219.5,-147 219.5,-179 418.5,-179 418.5,-147 219.5,-147"/>
-<text text-anchor="start" x="227.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="319" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/gearconstraint.cpp</text>
+<polygon fill="white" stroke="black" points="1307.5,-147 1307.5,-179 1506.5,-179 1506.5,-147 1307.5,-147"/>
+<text text-anchor="start" x="1315.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="1407" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/gearconstraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node18 -->
-<g id="edge42" class="edge"><title>Node12&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M2179.54,-244.204C1852.77,-241.101 771.499,-227.847 427,-186 413.393,-184.347 398.962,-181.823 385.229,-179.044"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2179.89,-247.707 2189.92,-244.301 2179.95,-240.707 2179.89,-247.707"/>
+<!-- Node14&#45;&gt;Node18 -->
+<g id="edge46" class="edge"><title>Node14&#45;&gt;Node18</title>
+<path fill="none" stroke="midnightblue" d="M2166.57,-241.496C2024.56,-235.333 1747.83,-219.85 1515,-186 1502.19,-184.138 1488.63,-181.659 1475.61,-179.018"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2166.83,-245.011 2176.97,-241.942 2167.13,-238.017 2166.83,-245.011"/>
 </g>
 <!-- Node19 -->
-<g id="node41" class="node"><title>Node19</title>
+<g id="node43" class="node"><title>Node19</title>
 <a xlink:href="generic6dofconstraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/generic6dofconstraint.cpp">
-<polygon fill="white" stroke="black" points="436,-147 436,-179 666,-179 666,-147 436,-147"/>
-<text text-anchor="start" x="444" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="551" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/generic6dofconstraint.cpp</text>
+<polygon fill="white" stroke="black" points="1524,-147 1524,-179 1754,-179 1754,-147 1524,-147"/>
+<text text-anchor="start" x="1532" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="1639" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/generic6dofconstraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node19 -->
-<g id="edge44" class="edge"><title>Node12&#45;&gt;Node19</title>
-<path fill="none" stroke="midnightblue" d="M2179.63,-243.335C1882.63,-237.809 969.363,-218.553 675,-186 659.658,-184.303 643.361,-181.797 627.8,-179.055"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2179.87,-246.84 2189.94,-243.526 2180,-239.841 2179.87,-246.84"/>
+<!-- Node14&#45;&gt;Node19 -->
+<g id="edge48" class="edge"><title>Node14&#45;&gt;Node19</title>
+<path fill="none" stroke="midnightblue" d="M2166.51,-235.667C2066.16,-225.32 1903.02,-207.256 1763,-186 1749.47,-183.946 1735.16,-181.524 1721.25,-179.036"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2166.32,-239.166 2176.62,-236.706 2167.03,-232.202 2166.32,-239.166"/>
 </g>
 <!-- Node20 -->
-<g id="node43" class="node"><title>Node20</title>
+<g id="node45" class="node"><title>Node20</title>
 <a xlink:href="generic6dofspringconstraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/generic6dofspringconstraint.cpp">
-<polygon fill="white" stroke="black" points="684,-147 684,-179 940,-179 940,-147 684,-147"/>
-<text text-anchor="start" x="692" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="812" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/generic6dofspringconstraint.cpp</text>
+<polygon fill="white" stroke="black" points="1772,-147 1772,-179 2028,-179 2028,-147 1772,-147"/>
+<text text-anchor="start" x="1780" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="1900" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/generic6dofspringconstraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node20 -->
-<g id="edge46" class="edge"><title>Node12&#45;&gt;Node20</title>
-<path fill="none" stroke="midnightblue" d="M2179.53,-242.292C1917.98,-234.557 1187.96,-211.284 949,-186 932.331,-184.236 914.616,-181.735 897.65,-179.027"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2179.66,-245.798 2189.76,-242.594 2179.87,-238.801 2179.66,-245.798"/>
+<!-- Node14&#45;&gt;Node20 -->
+<g id="edge50" class="edge"><title>Node14&#45;&gt;Node20</title>
+<path fill="none" stroke="midnightblue" d="M2180.64,-226.747C2117.67,-212.444 2030.91,-192.736 1970.59,-179.035"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2180.01,-230.193 2190.54,-228.995 2181.56,-223.367 2180.01,-230.193"/>
 </g>
 <!-- Node21 -->
-<g id="node45" class="node"><title>Node21</title>
+<g id="node47" class="node"><title>Node21</title>
 <a xlink:href="hinge2constraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/hinge2constraint.cpp">
-<polygon fill="white" stroke="black" points="957.5,-147 957.5,-179 1166.5,-179 1166.5,-147 957.5,-147"/>
-<text text-anchor="start" x="965.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="1062" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/hinge2constraint.cpp</text>
+<polygon fill="white" stroke="black" points="2045.5,-147 2045.5,-179 2254.5,-179 2254.5,-147 2045.5,-147"/>
+<text text-anchor="start" x="2053.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="2150" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/hinge2constraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node21 -->
-<g id="edge48" class="edge"><title>Node12&#45;&gt;Node21</title>
-<path fill="none" stroke="midnightblue" d="M2179.45,-241.716C1949.95,-233.454 1368.08,-210.696 1175,-186 1161.2,-184.235 1146.56,-181.733 1132.56,-179.024"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2179.66,-245.225 2189.78,-242.086 2179.91,-238.23 2179.66,-245.225"/>
+<!-- Node14&#45;&gt;Node21 -->
+<g id="edge52" class="edge"><title>Node14&#45;&gt;Node21</title>
+<path fill="none" stroke="midnightblue" d="M2231.16,-222.956C2212.52,-209.186 2188.93,-191.757 2171.99,-179.245"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2229.21,-225.868 2239.33,-228.995 2233.37,-220.238 2229.21,-225.868"/>
 </g>
 <!-- Node22 -->
-<g id="node47" class="node"><title>Node22</title>
+<g id="node49" class="node"><title>Node22</title>
 <a xlink:href="hingeconstraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/hingeconstraint.cpp">
-<polygon fill="white" stroke="black" points="1183.5,-147 1183.5,-179 1386.5,-179 1386.5,-147 1183.5,-147"/>
-<text text-anchor="start" x="1191.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="1285" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/hingeconstraint.cpp</text>
+<polygon fill="white" stroke="black" points="2271.5,-147 2271.5,-179 2474.5,-179 2474.5,-147 2271.5,-147"/>
+<text text-anchor="start" x="2279.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="2373" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/hingeconstraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node22 -->
-<g id="edge50" class="edge"><title>Node12&#45;&gt;Node22</title>
-<path fill="none" stroke="midnightblue" d="M2179.61,-242.966C2018.16,-238.528 1678.93,-225.02 1395,-186 1381.76,-184.18 1367.73,-181.688 1354.28,-179.013"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2179.89,-246.475 2189.98,-243.245 2180.08,-239.477 2179.89,-246.475"/>
+<!-- Node14&#45;&gt;Node22 -->
+<g id="edge54" class="edge"><title>Node14&#45;&gt;Node22</title>
+<path fill="none" stroke="midnightblue" d="M2291.11,-222.956C2309.92,-209.186 2333.72,-191.757 2350.81,-179.245"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2288.86,-220.263 2282.86,-228.995 2293,-225.912 2288.86,-220.263"/>
 </g>
 <!-- Node23 -->
-<g id="node50" class="node"><title>Node23</title>
+<g id="node52" class="node"><title>Node23</title>
 <a xlink:href="point2pointconstraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/point2pointconstraint.cpp">
-<polygon fill="white" stroke="black" points="1403.5,-147 1403.5,-179 1630.5,-179 1630.5,-147 1403.5,-147"/>
-<text text-anchor="start" x="1411.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="1517" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/point2pointconstraint.cpp</text>
+<polygon fill="white" stroke="black" points="2491.5,-147 2491.5,-179 2718.5,-179 2718.5,-147 2491.5,-147"/>
+<text text-anchor="start" x="2499.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="2605" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/point2pointconstraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node23 -->
-<g id="edge54" class="edge"><title>Node12&#45;&gt;Node23</title>
-<path fill="none" stroke="midnightblue" d="M2179.75,-239.014C2055.47,-230.487 1830.16,-212.84 1639,-186 1625.13,-184.052 1610.43,-181.611 1596.23,-179.052"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2179.78,-242.523 2189.99,-239.711 2180.25,-235.54 2179.78,-242.523"/>
+<!-- Node14&#45;&gt;Node23 -->
+<g id="edge58" class="edge"><title>Node14&#45;&gt;Node23</title>
+<path fill="none" stroke="midnightblue" d="M2337.94,-226.659C2397.92,-212.363 2480.37,-192.708 2537.73,-179.035"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2337.06,-223.271 2328.14,-228.995 2338.68,-230.081 2337.06,-223.271"/>
 </g>
 <!-- Node24 -->
-<g id="node52" class="node"><title>Node24</title>
+<g id="node54" class="node"><title>Node24</title>
 <a xlink:href="rigidproxy_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/rigidproxy.cpp">
-<polygon fill="white" stroke="black" points="1647.5,-147 1647.5,-179 1826.5,-179 1826.5,-147 1647.5,-147"/>
-<text text-anchor="start" x="1655.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="1737" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/rigidproxy.cpp</text>
+<polygon fill="white" stroke="black" points="219.5,-147 219.5,-179 398.5,-179 398.5,-147 219.5,-147"/>
+<text text-anchor="start" x="227.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="309" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/rigidproxy.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node24 -->
-<g id="edge56" class="edge"><title>Node12&#45;&gt;Node24</title>
-<path fill="none" stroke="midnightblue" d="M2179.78,-235.012C2090.59,-224.928 1953.16,-207.752 1835,-186 1824.09,-183.991 1812.56,-181.563 1801.39,-179.048"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2179.54,-238.508 2189.87,-236.147 2180.32,-231.552 2179.54,-238.508"/>
+<!-- Node14&#45;&gt;Node24 -->
+<g id="edge60" class="edge"><title>Node14&#45;&gt;Node24</title>
+<path fill="none" stroke="midnightblue" d="M2166.43,-244.473C1838.66,-242.258 752.452,-231.574 407,-186 394.525,-184.354 381.316,-181.815 368.771,-179.015"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2166.82,-247.975 2176.84,-244.542 2166.87,-240.976 2166.82,-247.975"/>
 </g>
 <!-- Node25 -->
-<g id="node54" class="node"><title>Node25</title>
+<g id="node56" class="node"><title>Node25</title>
 <a xlink:href="sliderconstraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/sliderconstraint.cpp">
-<polygon fill="white" stroke="black" points="1843.5,-147 1843.5,-179 2046.5,-179 2046.5,-147 1843.5,-147"/>
-<text text-anchor="start" x="1851.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="1945" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/sliderconstraint.cpp</text>
+<polygon fill="white" stroke="black" points="415.5,-147 415.5,-179 618.5,-179 618.5,-147 415.5,-147"/>
+<text text-anchor="start" x="423.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="517" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/sliderconstraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node25 -->
-<g id="edge58" class="edge"><title>Node12&#45;&gt;Node25</title>
-<path fill="none" stroke="midnightblue" d="M2200.06,-226.571C2142.73,-212.282 2064.08,-192.68 2009.33,-179.035"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2199.23,-229.973 2209.78,-228.995 2200.93,-223.18 2199.23,-229.973"/>
+<!-- Node14&#45;&gt;Node25 -->
+<g id="edge62" class="edge"><title>Node14&#45;&gt;Node25</title>
+<path fill="none" stroke="midnightblue" d="M2166.82,-243.705C1865.65,-239.232 928.173,-222.653 627,-186 613.249,-184.326 598.665,-181.812 584.767,-179.052"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2166.78,-247.205 2176.83,-243.853 2166.89,-240.205 2166.78,-247.205"/>
 </g>
 <!-- Node26 -->
-<g id="node56" class="node"><title>Node26</title>
+<g id="node58" class="node"><title>Node26</title>
 <a xlink:href="universalconstraint_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/universalconstraint.cpp">
-<polygon fill="white" stroke="black" points="2064,-147 2064,-179 2282,-179 2282,-147 2064,-147"/>
-<text text-anchor="start" x="2072" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="2173" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/universalconstraint.cpp</text>
+<polygon fill="white" stroke="black" points="636,-147 636,-179 854,-179 854,-147 636,-147"/>
+<text text-anchor="start" x="644" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="745" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/universalconstraint.cpp</text>
 </a>
 </g>
-<!-- Node12&#45;&gt;Node26 -->
-<g id="edge60" class="edge"><title>Node12&#45;&gt;Node26</title>
-<path fill="none" stroke="midnightblue" d="M2246.14,-222.384C2229.26,-208.677 2208.12,-191.512 2192.91,-179.167"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="2244.08,-225.214 2254.05,-228.799 2248.49,-219.779 2244.08,-225.214"/>
+<!-- Node14&#45;&gt;Node26 -->
+<g id="edge64" class="edge"><title>Node14&#45;&gt;Node26</title>
+<path fill="none" stroke="midnightblue" d="M2166.53,-242.867C1895.13,-236.443 1116.38,-215.868 863,-186 848.387,-184.277 832.873,-181.759 818.063,-179.014"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2166.67,-246.371 2176.75,-243.107 2166.84,-239.373 2166.67,-246.371"/>
 </g>
 <!-- Node27&#45;&gt;Node8 -->
-<g id="edge64" class="edge"><title>Node27&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M4063.12,-226.762C4055.66,-225.09 4048.19,-223.473 4041,-222 3949.09,-203.168 3924.69,-205.88 3833,-186 3823.43,-183.925 3813.34,-181.507 3803.53,-179.032"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4062.37,-230.181 4072.9,-228.984 4063.92,-223.355 4062.37,-230.181"/>
+<g id="edge68" class="edge"><title>Node27&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M2996.88,-226.732C3005.29,-224.893 3013.81,-223.247 3022,-222 3297.94,-179.966 3373.29,-229.505 3649,-186 3659.92,-184.277 3671.45,-181.777 3682.43,-179.053"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2996.05,-223.33 2987.08,-228.967 2997.61,-230.154 2996.05,-223.33"/>
 </g>
-<!-- Node27&#45;&gt;Node11 -->
-<g id="edge68" class="edge"><title>Node27&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M4045.01,-227.701C4032.59,-225.639 4020,-223.675 4008,-222 3852.69,-200.325 3812,-209.803 3657,-186 3644.25,-184.042 3630.75,-181.595 3617.71,-179.034"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4044.48,-231.161 4054.92,-229.372 4045.64,-224.258 4044.48,-231.161"/>
+<!-- Node27&#45;&gt;Node13 -->
+<g id="edge72" class="edge"><title>Node27&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M2952.3,-221.255C2964.98,-207.744 2980.54,-191.176 2991.82,-179.167"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2949.51,-219.114 2945.21,-228.799 2954.61,-223.905 2949.51,-219.114"/>
 </g>
 <!-- Node28 -->
-<g id="node61" class="node"><title>Node28</title>
+<g id="node63" class="node"><title>Node28</title>
 <a xlink:href="softdebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that will compress and deform...">
 <polygon fill="white" stroke="black" points="4203.5,-147 4203.5,-179 4354.5,-179 4354.5,-147 4203.5,-147"/>
 <text text-anchor="start" x="4211.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -502,25 +512,25 @@
 </a>
 </g>
 <!-- Node27&#45;&gt;Node28 -->
-<g id="edge66" class="edge"><title>Node27&#45;&gt;Node28</title>
-<path fill="none" stroke="midnightblue" d="M4174.31,-223.881C4198.23,-209.973 4229.07,-192.039 4251.07,-179.245"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4172.41,-220.942 4165.52,-228.995 4175.92,-226.993 4172.41,-220.942"/>
+<g id="edge70" class="edge"><title>Node27&#45;&gt;Node28</title>
+<path fill="none" stroke="midnightblue" d="M2995.84,-226.736C3004.58,-224.843 3013.47,-223.183 3022,-222 3538.63,-150.338 3679.2,-263.413 4195,-186 4205.77,-184.384 4217.12,-181.858 4227.88,-179.061"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2995.04,-223.329 2986.06,-228.959 2996.59,-230.155 2995.04,-223.329"/>
 </g>
 <!-- Node29 -->
-<g id="node64" class="node"><title>Node29</title>
+<g id="node66" class="node"><title>Node29</title>
 <a xlink:href="softproxy_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/softproxy.cpp">
-<polygon fill="white" stroke="black" points="4010,-147 4010,-179 4186,-179 4186,-147 4010,-147"/>
-<text text-anchor="start" x="4018" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="4098" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/softproxy.cpp</text>
+<polygon fill="white" stroke="black" points="3464,-147 3464,-179 3640,-179 3640,-147 3464,-147"/>
+<text text-anchor="start" x="3472" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="3552" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/softproxy.cpp</text>
 </a>
 </g>
 <!-- Node27&#45;&gt;Node29 -->
-<g id="edge70" class="edge"><title>Node27&#45;&gt;Node29</title>
-<path fill="none" stroke="midnightblue" d="M4125.67,-219.728C4119.23,-206.512 4111.53,-190.727 4105.89,-179.167"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4122.57,-221.346 4130.1,-228.799 4128.86,-218.277 4122.57,-221.346"/>
+<g id="edge74" class="edge"><title>Node27&#45;&gt;Node29</title>
+<path fill="none" stroke="midnightblue" d="M2997.9,-226.715C3005.98,-224.928 3014.15,-223.299 3022,-222 3212.52,-190.479 3264.29,-216.362 3455,-186 3466.54,-184.163 3478.73,-181.696 3490.44,-179.059"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="2997.07,-223.314 2988.1,-228.963 2998.63,-230.137 2997.07,-223.314"/>
 </g>
 <!-- Node37 -->
-<g id="node80" class="node"><title>Node37</title>
+<g id="node82" class="node"><title>Node37</title>
 <a xlink:href="entityproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping basic entity(mesh) functionality...">
 <polygon fill="white" stroke="black" points="4539.5,-223 4539.5,-267 4690.5,-267 4690.5,-223 4539.5,-223"/>
 <text text-anchor="start" x="4547.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -529,12 +539,12 @@
 </a>
 </g>
 <!-- Node36&#45;&gt;Node37 -->
-<g id="edge86" class="edge"><title>Node36&#45;&gt;Node37</title>
-<path fill="none" stroke="midnightblue" d="M4981.33,-311.458C4897.41,-296.234 4770.77,-273.26 4690.52,-258.701"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4980.88,-314.934 4991.35,-313.275 4982.13,-308.046 4980.88,-314.934"/>
+<g id="edge90" class="edge"><title>Node36&#45;&gt;Node37</title>
+<path fill="none" stroke="midnightblue" d="M5117.18,-315.031C5002.31,-299.013 4800.39,-270.853 4690.84,-255.577"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5116.95,-318.533 5127.33,-316.448 5117.91,-311.6 5116.95,-318.533"/>
 </g>
 <!-- Node38 -->
-<g id="node83" class="node"><title>Node38</title>
+<g id="node85" class="node"><title>Node38</title>
 <a xlink:href="graphics_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/graphics.h">
 <polygon fill="white" stroke="black" points="5211.5,-141 5211.5,-185 5362.5,-185 5362.5,-141 5211.5,-141"/>
 <text text-anchor="start" x="5219.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -543,26 +553,26 @@
 </a>
 </g>
 <!-- Node36&#45;&gt;Node38 -->
-<g id="edge132" class="edge"><title>Node36&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M5152.49,-303.926C5228.95,-289.142 5272.96,-324.948 5319,-268 5338.41,-243.992 5320.44,-208.321 5304.63,-185.363"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5151.53,-300.555 5142.5,-306.111 5153.02,-307.393 5151.53,-300.555"/>
+<g id="edge136" class="edge"><title>Node36&#45;&gt;Node38</title>
+<path fill="none" stroke="midnightblue" d="M5288.28,-301.795C5327.04,-289.486 5365.54,-275.702 5371,-268 5382.82,-251.32 5380.43,-240.141 5371,-222 5363.03,-206.661 5349.04,-194.475 5334.74,-185.256"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5286.93,-298.551 5278.44,-304.888 5289.03,-305.229 5286.93,-298.551"/>
 </g>
 <!-- Node41 -->
-<g id="node92" class="node"><title>Node41</title>
+<g id="node94" class="node"><title>Node41</title>
 <a xlink:href="particlesystemproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping particle functionality. ">
-<polygon fill="white" stroke="black" points="4823.5,-223 4823.5,-267 4974.5,-267 4974.5,-223 4823.5,-223"/>
-<text text-anchor="start" x="4831.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="start" x="4831.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
-<text text-anchor="middle" x="4899" y="-230" font-family="FreeSans" font-size="10.00">/particlesystemproxy.h</text>
+<polygon fill="white" stroke="black" points="4875.5,-223 4875.5,-267 5026.5,-267 5026.5,-223 4875.5,-223"/>
+<text text-anchor="start" x="4883.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="start" x="4883.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="4951" y="-230" font-family="FreeSans" font-size="10.00">/particlesystemproxy.h</text>
 </a>
 </g>
 <!-- Node36&#45;&gt;Node41 -->
-<g id="edge102" class="edge"><title>Node36&#45;&gt;Node41</title>
-<path fill="none" stroke="midnightblue" d="M5012.31,-300.304C4990.28,-289.552 4965.18,-277.301 4944.21,-267.066"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5011.01,-303.569 5021.54,-304.81 5014.09,-297.278 5011.01,-303.569"/>
+<g id="edge106" class="edge"><title>Node36&#45;&gt;Node41</title>
+<path fill="none" stroke="midnightblue" d="M5125.25,-301.7C5091.27,-290.643 5051.77,-277.791 5018.98,-267.122"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5124.54,-305.152 5135.14,-304.918 5126.71,-298.495 5124.54,-305.152"/>
 </g>
 <!-- Node43 -->
-<g id="node99" class="node"><title>Node43</title>
+<g id="node101" class="node"><title>Node43</title>
 <a xlink:href="cameraproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping camera functionality. ">
 <polygon fill="white" stroke="black" points="5887.5,-223 5887.5,-267 6038.5,-267 6038.5,-223 5887.5,-223"/>
 <text text-anchor="start" x="5895.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -571,12 +581,12 @@
 </a>
 </g>
 <!-- Node36&#45;&gt;Node43 -->
-<g id="edge112" class="edge"><title>Node36&#45;&gt;Node43</title>
-<path fill="none" stroke="midnightblue" d="M5152.8,-303.873C5309.39,-278.952 5717.56,-257.011 5887.35,-248.61"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5152.15,-300.433 5142.86,-305.518 5153.29,-307.339 5152.15,-300.433"/>
+<g id="edge116" class="edge"><title>Node36&#45;&gt;Node43</title>
+<path fill="none" stroke="midnightblue" d="M5288.72,-303.82C5510.25,-264.986 5763.65,-251.669 5887.39,-247.16"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5288.1,-300.376 5278.87,-305.569 5289.32,-307.268 5288.1,-300.376"/>
 </g>
 <!-- Node45 -->
-<g id="node104" class="node"><title>Node45</title>
+<g id="node106" class="node"><title>Node45</title>
 <a xlink:href="rayquerytool_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/rayquerytool.cpp">
 <polygon fill="white" stroke="black" points="5548,-147 5548,-179 5702,-179 5702,-147 5548,-147"/>
 <text text-anchor="start" x="5556" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -584,40 +594,40 @@
 </a>
 </g>
 <!-- Node36&#45;&gt;Node45 -->
-<g id="edge134" class="edge"><title>Node36&#45;&gt;Node45</title>
-<path fill="none" stroke="midnightblue" d="M5152.69,-303.691C5234.78,-285.247 5258.87,-289.656 5337,-268 5428.54,-242.625 5532.45,-201.588 5586.97,-179.066"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5151.9,-300.282 5142.94,-305.929 5153.47,-307.105 5151.9,-300.282"/>
+<g id="edge138" class="edge"><title>Node36&#45;&gt;Node45</title>
+<path fill="none" stroke="midnightblue" d="M5288.02,-302.004C5319.67,-292.146 5355.73,-280.255 5388,-268 5462.05,-239.884 5546.3,-200.799 5591.73,-179.116"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5286.87,-298.697 5278.35,-304.996 5288.94,-305.384 5286.87,-298.697"/>
 </g>
 <!-- Node52 -->
-<g id="node120" class="node"><title>Node52</title>
+<g id="node122" class="node"><title>Node52</title>
 <a xlink:href="billboardsetproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping billboard functionality. ">
-<polygon fill="white" stroke="black" points="4991.5,-223 4991.5,-267 5142.5,-267 5142.5,-223 4991.5,-223"/>
-<text text-anchor="start" x="4999.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="start" x="4999.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
-<text text-anchor="middle" x="5067" y="-230" font-family="FreeSans" font-size="10.00">/billboardsetproxy.h</text>
+<polygon fill="white" stroke="black" points="5043.5,-223 5043.5,-267 5194.5,-267 5194.5,-223 5043.5,-223"/>
+<text text-anchor="start" x="5051.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="start" x="5051.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="5119" y="-230" font-family="FreeSans" font-size="10.00">/billboardsetproxy.h</text>
 </a>
 </g>
 <!-- Node36&#45;&gt;Node52 -->
-<g id="edge136" class="edge"><title>Node36&#45;&gt;Node52</title>
-<path fill="none" stroke="midnightblue" d="M5067,-294.558C5067,-285.349 5067,-275.538 5067,-267.096"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5063.5,-294.593 5067,-304.593 5070.5,-294.593 5063.5,-294.593"/>
+<g id="edge140" class="edge"><title>Node36&#45;&gt;Node52</title>
+<path fill="none" stroke="midnightblue" d="M5172.79,-297.505C5162.51,-287.475 5151.21,-276.446 5141.63,-267.096"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5170.45,-300.112 5180.05,-304.593 5175.34,-295.103 5170.45,-300.112"/>
 </g>
 <!-- Node54 -->
-<g id="node126" class="node"><title>Node54</title>
+<g id="node128" class="node"><title>Node54</title>
 <a xlink:href="lightproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping light functionality. ">
-<polygon fill="white" stroke="black" points="5159.5,-223 5159.5,-267 5310.5,-267 5310.5,-223 5159.5,-223"/>
-<text text-anchor="start" x="5167.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="start" x="5167.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
-<text text-anchor="middle" x="5235" y="-230" font-family="FreeSans" font-size="10.00">/lightproxy.h</text>
+<polygon fill="white" stroke="black" points="5211.5,-223 5211.5,-267 5362.5,-267 5362.5,-223 5211.5,-223"/>
+<text text-anchor="start" x="5219.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="start" x="5219.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="5287" y="-230" font-family="FreeSans" font-size="10.00">/lightproxy.h</text>
 </a>
 </g>
 <!-- Node36&#45;&gt;Node54 -->
-<g id="edge144" class="edge"><title>Node36&#45;&gt;Node54</title>
-<path fill="none" stroke="midnightblue" d="M5121.69,-300.304C5143.72,-289.552 5168.82,-277.301 5189.79,-267.066"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5119.91,-297.278 5112.46,-304.81 5122.99,-303.569 5119.91,-297.278"/>
+<g id="edge148" class="edge"><title>Node36&#45;&gt;Node54</title>
+<path fill="none" stroke="midnightblue" d="M5233.21,-297.505C5243.49,-287.475 5254.79,-276.446 5264.37,-267.096"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5230.66,-295.103 5225.95,-304.593 5235.55,-300.112 5230.66,-295.103"/>
 </g>
 <!-- Node56 -->
-<g id="node132" class="node"><title>Node56</title>
+<g id="node134" class="node"><title>Node56</title>
 <a xlink:href="renderableproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the base class from which graphics proxies inherit...">
 <polygon fill="white" stroke="black" points="6055.5,-223 6055.5,-267 6206.5,-267 6206.5,-223 6055.5,-223"/>
 <text text-anchor="start" x="6063.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -626,32 +636,32 @@
 </a>
 </g>
 <!-- Node36&#45;&gt;Node56 -->
-<g id="edge152" class="edge"><title>Node36&#45;&gt;Node56</title>
-<path fill="none" stroke="midnightblue" d="M5152.79,-303.882C5546.66,-244.4 5656.42,-328.512 6047,-268 6049.69,-267.583 6052.42,-267.112 6055.16,-266.594"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5152.19,-300.432 5142.84,-305.406 5153.25,-307.351 5152.19,-300.432"/>
+<g id="edge156" class="edge"><title>Node36&#45;&gt;Node56</title>
+<path fill="none" stroke="midnightblue" d="M5288.8,-303.872C5622.8,-252.383 5716.28,-320.454 6047,-268 6049.69,-267.574 6052.41,-267.094 6055.16,-266.569"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5288.18,-300.426 5278.84,-305.431 5289.26,-307.341 5288.18,-300.426"/>
 </g>
 <!-- Node37&#45;&gt;Node7 -->
-<g id="edge88" class="edge"><title>Node37&#45;&gt;Node7</title>
+<g id="edge92" class="edge"><title>Node37&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M4560.36,-218.331C4533.84,-205.385 4502.85,-190.258 4479.98,-179.095"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="4559.01,-221.569 4569.54,-222.81 4562.09,-215.278 4559.01,-221.569"/>
 </g>
 <!-- Node37&#45;&gt;Node15 -->
-<g id="edge94" class="edge"><title>Node37&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M4529.11,-241.397C4409.8,-235.339 4187.53,-220.236 4001,-186 3991.04,-184.171 3980.53,-181.724 3970.46,-179.108"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4529.12,-244.902 4539.28,-241.904 4529.47,-237.91 4529.12,-244.902"/>
+<g id="edge98" class="edge"><title>Node37&#45;&gt;Node15</title>
+<path fill="none" stroke="midnightblue" d="M4529.24,-236.2C4443.97,-226.69 4309.69,-209.656 4195,-186 4185.52,-184.045 4175.53,-181.63 4165.88,-179.107"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="4529.07,-239.702 4539.39,-237.323 4529.84,-232.745 4529.07,-239.702"/>
 </g>
 <!-- Node37&#45;&gt;Node28 -->
-<g id="edge96" class="edge"><title>Node37&#45;&gt;Node28</title>
+<g id="edge100" class="edge"><title>Node37&#45;&gt;Node28</title>
 <path fill="none" stroke="midnightblue" d="M4529.39,-225.789C4480.53,-214.618 4418.21,-200.016 4363,-186 4354.5,-183.842 4345.54,-181.481 4336.76,-179.12"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="4528.76,-229.236 4539.29,-228.048 4530.32,-222.411 4528.76,-229.236"/>
 </g>
 <!-- Node37&#45;&gt;Node38 -->
-<g id="edge90" class="edge"><title>Node37&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M4701.19,-234.668C4736.45,-230.551 4777.66,-225.878 4815,-222 4987.26,-204.106 5032.61,-216.986 5203,-186 5205.68,-185.513 5208.39,-184.981 5211.13,-184.412"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4700.46,-231.23 4690.93,-235.87 4701.27,-238.183 4700.46,-231.23"/>
+<g id="edge94" class="edge"><title>Node37&#45;&gt;Node38</title>
+<path fill="none" stroke="midnightblue" d="M4700.77,-237.195C4852.05,-223.309 5154.9,-194.934 5203,-186 5205.68,-185.503 5208.39,-184.962 5211.13,-184.386"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="4700.23,-233.73 4690.59,-238.128 4700.86,-240.7 4700.23,-233.73"/>
 </g>
 <!-- Node39 -->
-<g id="node88" class="node"><title>Node39</title>
+<g id="node90" class="node"><title>Node39</title>
 <a xlink:href="entityproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping basic entity(mesh) functionality...">
 <polygon fill="white" stroke="black" points="4539.5,-141 4539.5,-185 4690.5,-185 4690.5,-141 4539.5,-141"/>
 <text text-anchor="start" x="4547.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -660,12 +670,12 @@
 </a>
 </g>
 <!-- Node37&#45;&gt;Node39 -->
-<g id="edge98" class="edge"><title>Node37&#45;&gt;Node39</title>
+<g id="edge102" class="edge"><title>Node37&#45;&gt;Node39</title>
 <path fill="none" stroke="midnightblue" d="M4615,-212.558C4615,-203.349 4615,-193.538 4615,-185.096"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="4611.5,-212.593 4615,-222.593 4618.5,-212.593 4611.5,-212.593"/>
 </g>
 <!-- Node40 -->
-<g id="node90" class="node"><title>Node40</title>
+<g id="node92" class="node"><title>Node40</title>
 <a xlink:href="scenemanager_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/scenemanager.cpp">
 <polygon fill="white" stroke="black" points="4875.5,-141 4875.5,-185 5026.5,-185 5026.5,-141 4875.5,-141"/>
 <text text-anchor="start" x="4883.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -674,32 +684,32 @@
 </a>
 </g>
 <!-- Node37&#45;&gt;Node40 -->
-<g id="edge100" class="edge"><title>Node37&#45;&gt;Node40</title>
+<g id="edge104" class="edge"><title>Node37&#45;&gt;Node40</title>
 <path fill="none" stroke="midnightblue" d="M4700.61,-225.789C4749.47,-214.618 4811.79,-200.016 4867,-186 4869.78,-185.293 4872.62,-184.564 4875.48,-183.821"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="4699.68,-222.411 4690.71,-228.048 4701.24,-229.236 4699.68,-222.411"/>
 </g>
 <!-- Node38&#45;&gt;Node3 -->
-<g id="edge92" class="edge"><title>Node38&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M5201.14,-139.903C4912.7,-98.4176 4077.48,-89.3196 3820.86,-87.4478"/>
+<g id="edge96" class="edge"><title>Node38&#45;&gt;Node3</title>
+<path fill="none" stroke="midnightblue" d="M5201.08,-139.894C4910.93,-98.1973 4070.32,-89.2472 3812.82,-87.4299"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="5200.76,-143.385 5211.16,-141.392 5201.79,-136.461 5200.76,-143.385"/>
 </g>
 <!-- Node41&#45;&gt;Node7 -->
-<g id="edge104" class="edge"><title>Node41&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M4813.17,-233.921C4738.28,-223.617 4626.89,-206.75 4531,-186 4521.69,-183.985 4511.87,-181.569 4502.37,-179.071"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4813.11,-237.445 4823.49,-235.332 4814.06,-230.51 4813.11,-237.445"/>
+<g id="edge108" class="edge"><title>Node41&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M4865.24,-236.2C4779.97,-226.69 4645.69,-209.656 4531,-186 4521.52,-184.045 4511.53,-181.63 4501.88,-179.107"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="4865.07,-239.702 4875.39,-237.323 4865.84,-232.745 4865.07,-239.702"/>
 </g>
 <!-- Node41&#45;&gt;Node38 -->
-<g id="edge106" class="edge"><title>Node41&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M4984.82,-221.7C5081.58,-201.261 5109.32,-206.431 5203,-186 5205.66,-185.42 5208.36,-184.808 5211.08,-184.171"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4983.96,-218.305 4974.92,-223.829 4985.43,-225.148 4983.96,-218.305"/>
+<g id="edge110" class="edge"><title>Node41&#45;&gt;Node38</title>
+<path fill="none" stroke="midnightblue" d="M5036.37,-221.726C5110.89,-203.894 5131.85,-203.348 5203,-186 5205.79,-185.319 5208.63,-184.613 5211.5,-183.889"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5035.4,-218.358 5026.5,-224.111 5037.05,-225.162 5035.4,-218.358"/>
 </g>
 <!-- Node41&#45;&gt;Node40 -->
-<g id="edge110" class="edge"><title>Node41&#45;&gt;Node40</title>
-<path fill="none" stroke="midnightblue" d="M4918.63,-214.037C4924.74,-204.408 4931.35,-193.992 4936.99,-185.096"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4915.61,-212.274 4913.21,-222.593 4921.52,-216.022 4915.61,-212.274"/>
+<g id="edge114" class="edge"><title>Node41&#45;&gt;Node40</title>
+<path fill="none" stroke="midnightblue" d="M4951,-212.558C4951,-203.349 4951,-193.538 4951,-185.096"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="4947.5,-212.593 4951,-222.593 4954.5,-212.593 4947.5,-212.593"/>
 </g>
 <!-- Node42 -->
-<g id="node96" class="node"><title>Node42</title>
+<g id="node98" class="node"><title>Node42</title>
 <a xlink:href="particlesystemproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping particle functionality. ">
 <polygon fill="white" stroke="black" points="4707.5,-141 4707.5,-185 4858.5,-185 4858.5,-141 4707.5,-141"/>
 <text text-anchor="start" x="4715.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -708,17 +718,17 @@
 </a>
 </g>
 <!-- Node41&#45;&gt;Node42 -->
-<g id="edge108" class="edge"><title>Node41&#45;&gt;Node42</title>
-<path fill="none" stroke="midnightblue" d="M4859.22,-216.88C4844.58,-206.531 4828.22,-194.964 4814.42,-185.208"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="4857.42,-219.895 4867.61,-222.81 4861.46,-214.179 4857.42,-219.895"/>
+<g id="edge112" class="edge"><title>Node41&#45;&gt;Node42</title>
+<path fill="none" stroke="midnightblue" d="M4896.31,-218.304C4874.28,-207.552 4849.18,-195.301 4828.21,-185.066"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="4895.01,-221.569 4905.54,-222.81 4898.09,-215.278 4895.01,-221.569"/>
 </g>
 <!-- Node43&#45;&gt;Node38 -->
-<g id="edge116" class="edge"><title>Node43&#45;&gt;Node38</title>
+<g id="edge120" class="edge"><title>Node43&#45;&gt;Node38</title>
 <path fill="none" stroke="midnightblue" d="M5876.98,-240.963C5761.21,-234.5 5549.19,-219.032 5371,-186 5368.32,-185.504 5365.61,-184.964 5362.87,-184.389"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="5877.02,-244.471 5887.2,-241.524 5877.41,-237.481 5877.02,-244.471"/>
 </g>
 <!-- Node44 -->
-<g id="node101" class="node"><title>Node44</title>
+<g id="node103" class="node"><title>Node44</title>
 <a xlink:href="cameracontroller_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/cameracontroller.cpp">
 <polygon fill="white" stroke="black" points="6728,-147 6728,-179 6902,-179 6902,-147 6728,-147"/>
 <text text-anchor="start" x="6736" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -726,17 +736,17 @@
 </a>
 </g>
 <!-- Node43&#45;&gt;Node44 -->
-<g id="edge114" class="edge"><title>Node43&#45;&gt;Node44</title>
+<g id="edge118" class="edge"><title>Node43&#45;&gt;Node44</title>
 <path fill="none" stroke="midnightblue" d="M6048.98,-221.833C6344.1,-175.452 6426.34,-228.537 6719,-186 6730.87,-184.274 6743.43,-181.773 6755.41,-179.049"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="6048.17,-218.419 6038.85,-223.452 6049.27,-225.331 6048.17,-218.419"/>
 </g>
 <!-- Node43&#45;&gt;Node45 -->
-<g id="edge118" class="edge"><title>Node43&#45;&gt;Node45</title>
+<g id="edge122" class="edge"><title>Node43&#45;&gt;Node45</title>
 <path fill="none" stroke="midnightblue" d="M5877.42,-225.664C5828.57,-214.453 5766.25,-199.852 5711,-186 5702.31,-183.82 5693.14,-181.447 5684.15,-179.081"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="5876.79,-229.11 5887.32,-227.932 5878.35,-222.286 5876.79,-229.11"/>
 </g>
 <!-- Node46 -->
-<g id="node106" class="node"><title>Node46</title>
+<g id="node108" class="node"><title>Node46</title>
 <a xlink:href="cameramanager_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/cameramanager.cpp">
 <polygon fill="white" stroke="black" points="5719.5,-141 5719.5,-185 5870.5,-185 5870.5,-141 5719.5,-141"/>
 <text text-anchor="start" x="5727.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -745,12 +755,12 @@
 </a>
 </g>
 <!-- Node43&#45;&gt;Node46 -->
-<g id="edge120" class="edge"><title>Node43&#45;&gt;Node46</title>
+<g id="edge124" class="edge"><title>Node43&#45;&gt;Node46</title>
 <path fill="none" stroke="midnightblue" d="M5908.31,-218.304C5886.28,-207.552 5861.18,-195.301 5840.21,-185.066"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="5907.01,-221.569 5917.54,-222.81 5910.09,-215.278 5907.01,-221.569"/>
 </g>
 <!-- Node47 -->
-<g id="node108" class="node"><title>Node47</title>
+<g id="node110" class="node"><title>Node47</title>
 <a xlink:href="cameraproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping camera functionality. ">
 <polygon fill="white" stroke="black" points="5887.5,-141 5887.5,-185 6038.5,-185 6038.5,-141 5887.5,-141"/>
 <text text-anchor="start" x="5895.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -759,12 +769,12 @@
 </a>
 </g>
 <!-- Node43&#45;&gt;Node47 -->
-<g id="edge122" class="edge"><title>Node43&#45;&gt;Node47</title>
+<g id="edge126" class="edge"><title>Node43&#45;&gt;Node47</title>
 <path fill="none" stroke="midnightblue" d="M5963,-212.558C5963,-203.349 5963,-193.538 5963,-185.096"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="5959.5,-212.593 5963,-222.593 5966.5,-212.593 5959.5,-212.593"/>
 </g>
 <!-- Node48 -->
-<g id="node110" class="node"><title>Node48</title>
+<g id="node112" class="node"><title>Node48</title>
 <a xlink:href="gamewindow_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/gamewindow.cpp">
 <polygon fill="white" stroke="black" points="6055.5,-141 6055.5,-185 6206.5,-185 6206.5,-141 6055.5,-141"/>
 <text text-anchor="start" x="6063.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -773,12 +783,12 @@
 </a>
 </g>
 <!-- Node43&#45;&gt;Node48 -->
-<g id="edge124" class="edge"><title>Node43&#45;&gt;Node48</title>
+<g id="edge128" class="edge"><title>Node43&#45;&gt;Node48</title>
 <path fill="none" stroke="midnightblue" d="M6017.69,-218.304C6039.72,-207.552 6064.82,-195.301 6085.79,-185.066"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="6015.91,-215.278 6008.46,-222.81 6018.99,-221.569 6015.91,-215.278"/>
 </g>
 <!-- Node49 -->
-<g id="node112" class="node"><title>Node49</title>
+<g id="node114" class="node"><title>Node49</title>
 <a xlink:href="graphicsmanager_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/graphicsmanager.cpp">
 <polygon fill="white" stroke="black" points="6223.5,-141 6223.5,-185 6374.5,-185 6374.5,-141 6223.5,-141"/>
 <text text-anchor="start" x="6231.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -787,12 +797,12 @@
 </a>
 </g>
 <!-- Node43&#45;&gt;Node49 -->
-<g id="edge126" class="edge"><title>Node43&#45;&gt;Node49</title>
+<g id="edge130" class="edge"><title>Node43&#45;&gt;Node49</title>
 <path fill="none" stroke="midnightblue" d="M6048.37,-221.726C6122.89,-203.894 6143.85,-203.348 6215,-186 6217.79,-185.319 6220.63,-184.613 6223.5,-183.889"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="6047.4,-218.358 6038.5,-224.111 6049.05,-225.162 6047.4,-218.358"/>
 </g>
 <!-- Node50 -->
-<g id="node114" class="node"><title>Node50</title>
+<g id="node116" class="node"><title>Node50</title>
 <a xlink:href="viewport_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/viewport.cpp">
 <polygon fill="white" stroke="black" points="6391.5,-141 6391.5,-185 6542.5,-185 6542.5,-141 6391.5,-141"/>
 <text text-anchor="start" x="6399.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -801,12 +811,12 @@
 </a>
 </g>
 <!-- Node43&#45;&gt;Node50 -->
-<g id="edge128" class="edge"><title>Node43&#45;&gt;Node50</title>
+<g id="edge132" class="edge"><title>Node43&#45;&gt;Node50</title>
 <path fill="none" stroke="midnightblue" d="M6048.76,-221.799C6196.37,-194.909 6238.6,-213.322 6383,-186 6385.67,-185.494 6388.39,-184.945 6391.12,-184.363"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="6048.07,-218.367 6038.88,-223.637 6049.35,-225.249 6048.07,-218.367"/>
 </g>
 <!-- Node51 -->
-<g id="node116" class="node"><title>Node51</title>
+<g id="node118" class="node"><title>Node51</title>
 <a xlink:href="screen_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/screen.cpp">
 <polygon fill="white" stroke="black" points="6559.5,-147 6559.5,-179 6710.5,-179 6710.5,-147 6559.5,-147"/>
 <text text-anchor="start" x="6567.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -814,22 +824,22 @@
 </a>
 </g>
 <!-- Node43&#45;&gt;Node51 -->
-<g id="edge130" class="edge"><title>Node43&#45;&gt;Node51</title>
+<g id="edge134" class="edge"><title>Node43&#45;&gt;Node51</title>
 <path fill="none" stroke="midnightblue" d="M6048.83,-221.835C6270.19,-185.311 6332.88,-223.281 6551,-186 6561.28,-184.242 6572.13,-181.761 6582.48,-179.074"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="6048.14,-218.403 6038.86,-223.514 6049.3,-225.306 6048.14,-218.403"/>
 </g>
 <!-- Node52&#45;&gt;Node38 -->
-<g id="edge138" class="edge"><title>Node52&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M5135.64,-219.414C5165.14,-208.422 5199.27,-195.7 5227.65,-185.122"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5134.39,-216.145 5126.25,-222.918 5136.84,-222.705 5134.39,-216.145"/>
+<g id="edge142" class="edge"><title>Node52&#45;&gt;Node38</title>
+<path fill="none" stroke="midnightblue" d="M5173.69,-218.304C5195.72,-207.552 5220.82,-195.301 5241.79,-185.066"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5171.91,-215.278 5164.46,-222.81 5174.99,-221.569 5171.91,-215.278"/>
 </g>
 <!-- Node52&#45;&gt;Node40 -->
-<g id="edge142" class="edge"><title>Node52&#45;&gt;Node40</title>
-<path fill="none" stroke="midnightblue" d="M5027.22,-216.88C5012.58,-206.531 4996.22,-194.964 4982.42,-185.208"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5025.42,-219.895 5035.61,-222.81 5029.46,-214.179 5025.42,-219.895"/>
+<g id="edge146" class="edge"><title>Node52&#45;&gt;Node40</title>
+<path fill="none" stroke="midnightblue" d="M5064.31,-218.304C5042.28,-207.552 5017.18,-195.301 4996.21,-185.066"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5063.01,-221.569 5073.54,-222.81 5066.09,-215.278 5063.01,-221.569"/>
 </g>
 <!-- Node53 -->
-<g id="node123" class="node"><title>Node53</title>
+<g id="node125" class="node"><title>Node53</title>
 <a xlink:href="billboardsetproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping billboard functionality. ">
 <polygon fill="white" stroke="black" points="5043.5,-141 5043.5,-185 5194.5,-185 5194.5,-141 5043.5,-141"/>
 <text text-anchor="start" x="5051.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -838,22 +848,22 @@
 </a>
 </g>
 <!-- Node52&#45;&gt;Node53 -->
-<g id="edge140" class="edge"><title>Node52&#45;&gt;Node53</title>
-<path fill="none" stroke="midnightblue" d="M5086.63,-214.037C5092.74,-204.408 5099.35,-193.992 5104.99,-185.096"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5083.61,-212.274 5081.21,-222.593 5089.52,-216.022 5083.61,-212.274"/>
+<g id="edge144" class="edge"><title>Node52&#45;&gt;Node53</title>
+<path fill="none" stroke="midnightblue" d="M5119,-212.558C5119,-203.349 5119,-193.538 5119,-185.096"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5115.5,-212.593 5119,-222.593 5122.5,-212.593 5115.5,-212.593"/>
 </g>
 <!-- Node54&#45;&gt;Node38 -->
-<g id="edge146" class="edge"><title>Node54&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M5254.63,-214.037C5260.74,-204.408 5267.35,-193.992 5272.99,-185.096"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5251.61,-212.274 5249.21,-222.593 5257.52,-216.022 5251.61,-212.274"/>
+<g id="edge150" class="edge"><title>Node54&#45;&gt;Node38</title>
+<path fill="none" stroke="midnightblue" d="M5287,-212.558C5287,-203.349 5287,-193.538 5287,-185.096"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5283.5,-212.593 5287,-222.593 5290.5,-212.593 5283.5,-212.593"/>
 </g>
 <!-- Node54&#45;&gt;Node40 -->
-<g id="edge150" class="edge"><title>Node54&#45;&gt;Node40</title>
-<path fill="none" stroke="midnightblue" d="M5149.47,-220.306C5110.34,-209.006 5064.36,-195.731 5026.52,-184.806"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5148.69,-223.722 5159.27,-223.133 5150.63,-216.997 5148.69,-223.722"/>
+<g id="edge154" class="edge"><title>Node54&#45;&gt;Node40</title>
+<path fill="none" stroke="midnightblue" d="M5201.63,-221.726C5127.11,-203.894 5106.15,-203.348 5035,-186 5032.21,-185.319 5029.37,-184.613 5026.5,-183.889"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5200.95,-225.162 5211.5,-224.111 5202.6,-218.358 5200.95,-225.162"/>
 </g>
 <!-- Node55 -->
-<g id="node129" class="node"><title>Node55</title>
+<g id="node131" class="node"><title>Node55</title>
 <a xlink:href="lightproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping light functionality. ">
 <polygon fill="white" stroke="black" points="5379.5,-141 5379.5,-185 5530.5,-185 5530.5,-141 5379.5,-141"/>
 <text text-anchor="start" x="5387.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
@@ -862,9 +872,9 @@
 </a>
 </g>
 <!-- Node54&#45;&gt;Node55 -->
-<g id="edge148" class="edge"><title>Node54&#45;&gt;Node55</title>
-<path fill="none" stroke="midnightblue" d="M5303.64,-219.414C5333.14,-208.422 5367.27,-195.7 5395.65,-185.122"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="5302.39,-216.145 5294.25,-222.918 5304.84,-222.705 5302.39,-216.145"/>
+<g id="edge152" class="edge"><title>Node54&#45;&gt;Node55</title>
+<path fill="none" stroke="midnightblue" d="M5341.69,-218.304C5363.72,-207.552 5388.82,-195.301 5409.79,-185.066"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="5339.91,-215.278 5332.46,-222.81 5342.99,-221.569 5339.91,-215.278"/>
 </g>
 </g>
 </svg>

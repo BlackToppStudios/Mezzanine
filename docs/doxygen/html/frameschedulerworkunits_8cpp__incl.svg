@@ -327,7 +327,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node26 -->
 <g id="node55" class="node"><title>Node26</title>
-<a xlink:href="mutex_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools. ">
+<a xlink:href="mutex_8h.html" target="_top" xlink:title="This file declares and defines a mutex that is a partial implementation. ">
 <polygon fill="white" stroke="black" points="778,-175 778,-195 828,-195 828,-175 778,-175"/>
 <text text-anchor="middle" x="803" y="-182" font-family="FreeSans" font-size="10.00">mutex.h</text>
 </a>

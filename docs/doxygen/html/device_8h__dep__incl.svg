@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 1754;
+var viewWidth = 1586;
 var viewHeight = 392;
 var sectionId = 'dynsection-1';
 </script>
@@ -54,7 +54,7 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/device.h</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-388 1751,-388 1751,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-388 1583,-388 1583,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="462.5,-351 462.5,-383 613.5,-383 613.5,-351 462.5,-351"/>
@@ -87,16 +87,16 @@ var sectionId = 'dynsection-1';
 <path fill="none" stroke="midnightblue" d="M538,-340.508C538,-331.303 538,-321.262 538,-313.147"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="534.5,-340.765 538,-350.765 541.5,-340.765 534.5,-340.765"/>
 </g>
-<!-- Node19 -->
-<g id="node42" class="node"><title>Node19</title>
+<!-- Node18 -->
+<g id="node40" class="node"><title>Node18</title>
 <a xlink:href="device_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/device.cpp">
 <polygon fill="white" stroke="black" points="640.5,-281 640.5,-313 795.5,-313 795.5,-281 640.5,-281"/>
 <text text-anchor="start" x="648.5" y="-300" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="718" y="-288" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/device.cpp</text>
 </a>
 </g>
-<!-- Node1&#45;&gt;Node19 -->
-<g id="edge46" class="edge"><title>Node1&#45;&gt;Node19</title>
+<!-- Node1&#45;&gt;Node18 -->
+<g id="edge44" class="edge"><title>Node1&#45;&gt;Node18</title>
 <path fill="none" stroke="midnightblue" d="M588.827,-347.234C616.565,-336.447 650.472,-323.261 676.585,-313.106"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="587.347,-344.054 579.296,-350.941 589.884,-350.578 587.347,-344.054"/>
 </g>
@@ -129,59 +129,59 @@ var sectionId = 'dynsection-1';
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="mouse_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/mouse.h">
-<polygon fill="white" stroke="black" points="825.5,-211 825.5,-243 976.5,-243 976.5,-211 825.5,-211"/>
-<text text-anchor="start" x="833.5" y="-230" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="901" y="-218" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/mouse.h</text>
+<polygon fill="white" stroke="black" points="739.5,-211 739.5,-243 890.5,-243 890.5,-211 739.5,-211"/>
+<text text-anchor="start" x="747.5" y="-230" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="815" y="-218" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/mouse.h</text>
 </a>
 </g>
 <!-- Node5&#45;&gt;Node6 -->
 <g id="edge10" class="edge"><title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M631.171,-279.033C691.394,-267.42 768.775,-252.498 825.217,-241.614"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="630.436,-275.61 621.28,-280.941 631.761,-282.484 630.436,-275.61"/>
+<path fill="none" stroke="midnightblue" d="M611.504,-278.425C655.013,-267.43 709.59,-253.638 751.267,-243.106"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="610.387,-275.097 601.549,-280.941 612.102,-281.884 610.387,-275.097"/>
+</g>
+<!-- Node13 -->
+<g id="node26" class="node"><title>Node13</title>
+<a xlink:href="buttondevice_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/buttondevice.cpp">
+<polygon fill="white" stroke="black" points="908,-211 908,-243 1090,-243 1090,-211 908,-211"/>
+<text text-anchor="start" x="916" y="-230" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="999" y="-218" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/buttondevice.cpp</text>
+</a>
+</g>
+<!-- Node5&#45;&gt;Node13 -->
+<g id="edge26" class="edge"><title>Node5&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M633.714,-279.767C752.003,-261.365 783.863,-261.543 899,-244 901.873,-243.562 904.79,-243.11 907.735,-242.648"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="632.867,-276.357 623.53,-281.364 633.951,-283.272 632.867,-276.357"/>
 </g>
 <!-- Node14 -->
 <g id="node28" class="node"><title>Node14</title>
-<a xlink:href="buttondevice_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/buttondevice.cpp">
-<polygon fill="white" stroke="black" points="994,-211 994,-243 1176,-243 1176,-211 994,-211"/>
-<text text-anchor="start" x="1002" y="-230" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="1085" y="-218" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/buttondevice.cpp</text>
-</a>
-</g>
-<!-- Node5&#45;&gt;Node14 -->
-<g id="edge28" class="edge"><title>Node5&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M633.487,-279.851C789.867,-258.237 831.937,-264.792 985,-244 987.879,-243.609 990.803,-243.198 993.753,-242.77"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="632.931,-276.394 623.512,-281.246 633.9,-283.327 632.931,-276.394"/>
-</g>
-<!-- Node15 -->
-<g id="node30" class="node"><title>Node15</title>
 <a xlink:href="controller_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/controller.h">
 <polygon fill="white" stroke="black" points="287,-211 287,-243 443,-243 443,-211 287,-211"/>
 <text text-anchor="start" x="295" y="-230" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="365" y="-218" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/controller.h</text>
 </a>
 </g>
-<!-- Node5&#45;&gt;Node15 -->
-<g id="edge30" class="edge"><title>Node5&#45;&gt;Node15</title>
+<!-- Node5&#45;&gt;Node14 -->
+<g id="edge28" class="edge"><title>Node5&#45;&gt;Node14</title>
 <path fill="none" stroke="midnightblue" d="M488.8,-277.093C462.206,-266.332 429.793,-253.217 404.804,-243.106"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="487.728,-280.434 498.31,-280.941 490.353,-273.945 487.728,-280.434"/>
 </g>
-<!-- Node17 -->
-<g id="node36" class="node"><title>Node17</title>
+<!-- Node16 -->
+<g id="node34" class="node"><title>Node16</title>
 <a xlink:href="keyboard_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/keyboard.h">
 <polygon fill="white" stroke="black" points="460.5,-211 460.5,-243 615.5,-243 615.5,-211 460.5,-211"/>
 <text text-anchor="start" x="468.5" y="-230" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="538" y="-218" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/keyboard.h</text>
 </a>
 </g>
-<!-- Node5&#45;&gt;Node17 -->
-<g id="edge38" class="edge"><title>Node5&#45;&gt;Node17</title>
+<!-- Node5&#45;&gt;Node16 -->
+<g id="edge36" class="edge"><title>Node5&#45;&gt;Node16</title>
 <path fill="none" stroke="midnightblue" d="M538,-270.508C538,-261.303 538,-251.262 538,-243.147"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="534.5,-270.765 538,-280.765 541.5,-270.765 534.5,-270.765"/>
 </g>
 <!-- Node6&#45;&gt;Node2 -->
 <g id="edge12" class="edge"><title>Node6&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M815.304,-221.666C705.479,-214.188 509.387,-198.669 343,-174 340.351,-173.607 337.659,-173.186 334.943,-172.741"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="815.121,-225.161 825.334,-222.343 815.592,-218.177 815.121,-225.161"/>
+<path fill="none" stroke="midnightblue" d="M728.993,-219.631C634.154,-210.973 477.205,-195.073 343,-174 340.354,-173.585 337.665,-173.143 334.952,-172.682"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="728.834,-223.131 739.109,-220.548 729.466,-216.159 728.834,-223.131"/>
 </g>
 <!-- Node7 -->
 <g id="node14" class="node"><title>Node7</title>
@@ -193,8 +193,8 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6&#45;&gt;Node7 -->
 <g id="edge14" class="edge"><title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M873.176,-204.352C860.677,-194.179 846.216,-182.408 834.838,-173.147"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="871.089,-207.166 881.054,-210.765 875.508,-201.737 871.089,-207.166"/>
+<path fill="none" stroke="midnightblue" d="M815,-200.508C815,-191.303 815,-181.262 815,-173.147"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="811.5,-200.765 815,-210.765 818.5,-200.765 811.5,-200.765"/>
 </g>
 <!-- Node8 -->
 <g id="node16" class="node"><title>Node8</title>
@@ -206,8 +206,8 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6&#45;&gt;Node8 -->
 <g id="edge16" class="edge"><title>Node6&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M815.287,-214.704C743.134,-204.243 637.246,-188.629 545,-174 542.278,-173.568 539.515,-173.127 536.727,-172.678"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="814.84,-218.176 825.239,-216.146 815.844,-211.248 814.84,-218.176"/>
+<path fill="none" stroke="midnightblue" d="M729.605,-210.888C669.339,-199.517 588.949,-184.349 528.814,-173.003"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="729,-214.335 739.475,-212.75 730.298,-207.457 729,-214.335"/>
 </g>
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
@@ -219,8 +219,8 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6&#45;&gt;Node9 -->
 <g id="edge18" class="edge"><title>Node6&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M928.824,-204.352C941.323,-194.179 955.784,-182.408 967.162,-173.147"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="926.492,-201.737 920.946,-210.765 930.911,-207.166 926.492,-201.737"/>
+<path fill="none" stroke="midnightblue" d="M863.916,-207.093C890.356,-196.332 922.582,-183.217 947.426,-173.106"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="862.403,-203.929 854.46,-210.941 865.042,-210.413 862.403,-203.929"/>
 </g>
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
@@ -232,8 +232,8 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6&#45;&gt;Node10 -->
 <g id="edge20" class="edge"><title>Node6&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M969.44,-208.286C1009.57,-197.314 1059.74,-183.594 1098.1,-173.106"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="968.454,-204.927 959.732,-210.941 970.301,-211.679 968.454,-204.927"/>
+<path fill="none" stroke="midnightblue" d="M900.72,-209.455C956.246,-198.09 1027.89,-183.425 1081.31,-172.492"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="899.996,-206.031 890.901,-211.465 901.4,-212.888 899.996,-206.031"/>
 </g>
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
@@ -245,8 +245,8 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6&#45;&gt;Node11 -->
 <g id="edge22" class="edge"><title>Node6&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M986.641,-209.775C1099.99,-190.737 1130.96,-192.855 1241,-174 1243.79,-173.523 1246.62,-173.022 1249.48,-172.505"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="985.789,-206.369 976.516,-211.495 986.961,-213.271 985.789,-206.369"/>
+<path fill="none" stroke="midnightblue" d="M901.041,-209.764C1051.84,-187.245 1093.17,-196.687 1241,-174 1243.65,-173.594 1246.34,-173.161 1249.05,-172.706"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="900.311,-206.334 890.948,-211.294 901.36,-213.255 900.311,-206.334"/>
 </g>
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
@@ -258,65 +258,52 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6&#45;&gt;Node12 -->
 <g id="edge24" class="edge"><title>Node6&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M987.102,-209.787C1173.99,-183.768 1224.94,-199.323 1409,-174 1411.81,-173.614 1414.66,-173.198 1417.53,-172.759"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="986.35,-206.359 976.938,-211.224 987.33,-213.29 986.35,-206.359"/>
+<path fill="none" stroke="midnightblue" d="M901.07,-209.815C1125.94,-180.09 1186.98,-202.938 1409,-174 1411.81,-173.634 1414.66,-173.236 1417.54,-172.811"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="900.377,-206.376 890.931,-211.176 901.308,-213.314 900.377,-206.376"/>
 </g>
-<!-- Node13 -->
-<g id="node26" class="node"><title>Node13</title>
-<a xlink:href="widget_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/widget.cpp">
-<polygon fill="white" stroke="black" points="1595.5,-141 1595.5,-173 1746.5,-173 1746.5,-141 1595.5,-141"/>
-<text text-anchor="start" x="1603.5" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="1671" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/UI/widget.cpp</text>
-</a>
-</g>
-<!-- Node6&#45;&gt;Node13 -->
-<g id="edge26" class="edge"><title>Node6&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M986.865,-209.858C1252.53,-176.135 1324.46,-208.245 1587,-174 1589.66,-173.654 1592.35,-173.272 1595.07,-172.861"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="986.397,-206.389 976.926,-211.139 987.292,-213.332 986.397,-206.389"/>
-</g>
-<!-- Node15&#45;&gt;Node2 -->
-<g id="edge32" class="edge"><title>Node15&#45;&gt;Node2</title>
+<!-- Node14&#45;&gt;Node2 -->
+<g id="edge30" class="edge"><title>Node14&#45;&gt;Node2</title>
 <path fill="none" stroke="midnightblue" d="M332.284,-205.395C316.573,-195.02 298.06,-182.794 283.572,-173.227"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="330.408,-208.351 340.681,-210.941 334.266,-202.509 330.408,-208.351"/>
 </g>
-<!-- Node15&#45;&gt;Node8 -->
-<g id="edge36" class="edge"><title>Node15&#45;&gt;Node8</title>
+<!-- Node14&#45;&gt;Node8 -->
+<g id="edge34" class="edge"><title>Node14&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M390.888,-204.061C402.294,-193.955 415.425,-182.32 425.777,-173.147"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="388.486,-201.513 383.323,-210.765 393.128,-206.752 388.486,-201.513"/>
 </g>
-<!-- Node16 -->
-<g id="node33" class="node"><title>Node16</title>
+<!-- Node15 -->
+<g id="node31" class="node"><title>Node15</title>
 <a xlink:href="controller_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/controller.cpp">
 <polygon fill="white" stroke="black" points="-0.5,-141 -0.5,-173 166.5,-173 166.5,-141 -0.5,-141"/>
 <text text-anchor="start" x="7.5" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="83" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/controller.cpp</text>
 </a>
 </g>
-<!-- Node15&#45;&gt;Node16 -->
-<g id="edge34" class="edge"><title>Node15&#45;&gt;Node16</title>
+<!-- Node14&#45;&gt;Node15 -->
+<g id="edge32" class="edge"><title>Node14&#45;&gt;Node15</title>
 <path fill="none" stroke="midnightblue" d="M290.449,-208.494C246.109,-197.488 190.402,-183.66 147.883,-173.106"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="289.755,-211.928 300.304,-210.941 291.441,-205.134 289.755,-211.928"/>
 </g>
-<!-- Node17&#45;&gt;Node2 -->
-<g id="edge40" class="edge"><title>Node17&#45;&gt;Node2</title>
+<!-- Node16&#45;&gt;Node2 -->
+<g id="edge38" class="edge"><title>Node16&#45;&gt;Node2</title>
 <path fill="none" stroke="midnightblue" d="M464.242,-208.494C420.373,-197.488 365.26,-183.66 323.193,-173.106"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="463.441,-211.902 473.992,-210.941 465.144,-205.112 463.441,-211.902"/>
 </g>
-<!-- Node17&#45;&gt;Node8 -->
-<g id="edge42" class="edge"><title>Node17&#45;&gt;Node8</title>
+<!-- Node16&#45;&gt;Node8 -->
+<g id="edge40" class="edge"><title>Node16&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M507.977,-204.643C494.227,-194.403 478.238,-182.496 465.684,-173.147"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="506.087,-207.599 516.198,-210.765 510.268,-201.985 506.087,-207.599"/>
 </g>
-<!-- Node18 -->
-<g id="node40" class="node"><title>Node18</title>
+<!-- Node17 -->
+<g id="node38" class="node"><title>Node17</title>
 <a xlink:href="keyboard_8cpp_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/keyboard.cpp">
 <polygon fill="white" stroke="black" points="554,-141 554,-173 720,-173 720,-141 554,-141"/>
 <text text-anchor="start" x="562" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="637" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Input/keyboard.cpp</text>
 </a>
 </g>
-<!-- Node17&#45;&gt;Node18 -->
-<g id="edge44" class="edge"><title>Node17&#45;&gt;Node18</title>
+<!-- Node16&#45;&gt;Node17 -->
+<g id="edge42" class="edge"><title>Node16&#45;&gt;Node17</title>
 <path fill="none" stroke="midnightblue" d="M569.211,-204.932C583.783,-194.628 600.816,-182.584 614.163,-173.147"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="567.106,-202.134 560.961,-210.765 571.147,-207.849 567.106,-202.134"/>
 </g>

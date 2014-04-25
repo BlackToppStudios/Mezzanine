@@ -9,7 +9,7 @@ var searchData=
   ['charactertraits',['CharacterTraits',['../classMezzanine_1_1UI_1_1CharacterTraits.html',1,'Mezzanine::UI']]],
   ['checkbox',['CheckBox',['../classMezzanine_1_1UI_1_1CheckBox.html',1,'Mezzanine::UI']]],
   ['checkboxfactory',['CheckBoxFactory',['../classMezzanine_1_1UI_1_1CheckBoxFactory.html',1,'Mezzanine::UI']]],
-  ['childfocuseventarguments',['ChildFocusEventArguments',['../classMezzanine_1_1UI_1_1ChildFocusEventArguments.html',1,'Mezzanine::UI']]],
+  ['childselectedarguments',['ChildSelectedArguments',['../classMezzanine_1_1UI_1_1ChildSelectedArguments.html',1,'Mezzanine::UI']]],
   ['chorusparameters',['ChorusParameters',['../structMezzanine_1_1Audio_1_1ChorusParameters.html',1,'Mezzanine::Audio']]],
   ['collidablepair',['CollidablePair',['../classMezzanine_1_1Physics_1_1CollidablePair.html',1,'Mezzanine::Physics']]],
   ['collidableproxy',['CollidableProxy',['../classMezzanine_1_1Physics_1_1CollidableProxy.html',1,'Mezzanine::Physics']]],

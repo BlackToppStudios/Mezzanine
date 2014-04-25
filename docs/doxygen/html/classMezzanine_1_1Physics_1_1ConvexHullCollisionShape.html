@@ -142,9 +142,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a9cd8eada1cc9d59aec5727bd19999e5b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html#a9cd8eada1cc9d59aec5727bd19999e5b">GetUnscaledPoint</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index) const </td></tr>
 <tr class="memdesc:a9cd8eada1cc9d59aec5727bd19999e5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an unscaled stored point in this ConvexHull.  <a href="#a9cd8eada1cc9d59aec5727bd19999e5b">More...</a><br/></td></tr>
 <tr class="separator:a9cd8eada1cc9d59aec5727bd19999e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0ef109cc55753a23f72770407703d1b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html#ab0ef109cc55753a23f72770407703d1b">IsInside</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Tolerance) const </td></tr>
-<tr class="memdesc:ab0ef109cc55753a23f72770407703d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a point in local space is inside this shape.  <a href="#ab0ef109cc55753a23f72770407703d1b">More...</a><br/></td></tr>
-<tr class="separator:ab0ef109cc55753a23f72770407703d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a335106dd284cc69f37e3601142738018"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html#a335106dd284cc69f37e3601142738018">IsInside</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Tolerance) const </td></tr>
+<tr class="memdesc:a335106dd284cc69f37e3601142738018"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a point in local space is inside this shape.  <a href="#a335106dd284cc69f37e3601142738018">More...</a><br/></td></tr>
+<tr class="separator:a335106dd284cc69f37e3601142738018"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c8d23312955dd684d98eb7bfcbc0cfa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html#a7c8d23312955dd684d98eb7bfcbc0cfa">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
 <tr class="separator:a7c8d23312955dd684d98eb7bfcbc0cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fbb9c55663ac519c52bba321d67b965"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html#a2fbb9c55663ac519c52bba321d67b965">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
@@ -543,7 +543,7 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
 
 </div>
 </div>
-<a class="anchor" id="ab0ef109cc55753a23f72770407703d1b"></a>
+<a class="anchor" id="a335106dd284cc69f37e3601142738018"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -551,7 +551,7 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Physics::ConvexHullCollisionShape::IsInside </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Physics::ConvexHullCollisionShape::IsInside </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
           <td class="paramname"><em>Location</em>, </td>
@@ -576,7 +576,7 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </div><div class="memdoc">
 
 <p>Checks to see if a point in local space is inside this shape. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a bool indicating whether or not the specified point is inside the shape. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a Boole indicating whether or not the specified point is inside the shape. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Location</td><td>The specified point to perform the check. </td></tr>
@@ -683,6 +683,6 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:13 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

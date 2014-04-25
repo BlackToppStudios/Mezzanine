@@ -11,11 +11,11 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-48 165,-48 165,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1ScriptArgumentGeneric_3_01String_01_4_01_4.html" target="_top" xlink:title="Marks ScriptArgumentGeneric&lt;String&gt; for internal reference counting if a CountedPtr checks...">
+<a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1ScriptArgumentGeneric_3_01Boole_01_4_01_4.html" target="_top" xlink:title="Marks ScriptArgumentGeneric&lt;Real&gt; for internal reference counting if a CountedPtr checks...">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-44 159.5,-44 159.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-31" font-family="FreeSans" font-size="10.00">Mezzanine::ReferenceCount</text>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Traits&lt; Scripting::ScriptArgument</text>
-<text text-anchor="middle" x="80" y="-7" font-family="FreeSans" font-size="10.00">Generic&lt; String &gt; &gt;</text>
+<text text-anchor="middle" x="80" y="-7" font-family="FreeSans" font-size="10.00">Generic&lt; Boole &gt; &gt;</text>
 </a>
 </g>
 </g>

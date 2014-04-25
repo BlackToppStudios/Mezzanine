@@ -206,6 +206,8 @@
 
   @ref XMLManual
 
+  @ref UIManual
+
   @ref LuaManual
 
   @ref Serialization
