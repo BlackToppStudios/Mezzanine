@@ -1746,11 +1746,12 @@ int CatchApp::GetCatchin()
 
     this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( dynamic_cast<Scripting::Lua::Lua51ScriptingEngine*>(this->TheEntresol->GetScriptingManager()) );
     this->LuaScriptWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
-    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "PauseWork" );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "LuaWork" );
 
     this->Profiles->Initialize();
 
     this->CreateLoadingScreen();
+    this->TheEntresol->GetCameraManager()->GetCamera(0)->SetNearClipDistance(0.5);
     this->ChangeState(CatchApp::Catch_Loading);
 
     // Setup the Music
