@@ -1001,5 +1001,71 @@ namespace Mezzanine
 
     Scripting::iScriptingManager* Entresol::GetScriptingManager(const UInt16 WhichOne)
         { return dynamic_cast<Scripting::iScriptingManager*>( this->GetManager(ManagerBase::MT_ScriptingManager, WhichOne) ); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // World Management
+
+    void Entresol::AddWorld(World* WorldToBeAdded)
+    {
+        Worlds.push_back(WorldToBeAdded);
+    }
+
+    World* Entresol::CreateWorld( const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded,
+        const Physics::ManagerConstructionInfo& PhysicsInfo,const String& SceneType )
+    {
+        World* NewWorld = new World(WorldName, ManagerToBeAdded, PhysicsInfo, SceneType );
+        this->AddWorld(NewWorld);
+        return NewWorld;
+    }
+
+    World* Entresol::GetWorld(const String& WorldName)
+    {
+        for( ConstWorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
+        {
+            World* w = (*it);
+            if ( WorldName == w->GetName() ) {
+                return w;
+            }
+        }
+        return NULL;
+    }
+
+    void Entresol::RemoveWorld(const String& WorldName)
+    {
+        for( WorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
+        {
+            World* w = (*it);
+            if ( WorldName == w->GetName() ) {
+                Worlds.erase(it);
+            }
+        }
+    }
+
+    void Entresol::DestroyWorld(const String& WorldName)
+    {
+        for( WorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
+        {
+            World* w = (*it);
+            if ( WorldName == w->GetName() ) {
+                delete w;
+                Worlds.erase(it);
+            }
+        }
+    }
+
+    void Entresol::DestroyAllWorlds()
+    {
+        for( WorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
+        {
+            World* w = (*it);
+            delete w;
+            Worlds.erase(it);
+        }
+    }
+
+    UInt16 Entresol::GetNumWorlds()
+    {
+        return Worlds.size();
+    }
 }
 #endif
