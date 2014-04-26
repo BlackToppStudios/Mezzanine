@@ -9,6 +9,6 @@ var searchData=
   ['borderwidth',['BorderWidth',['../classMezzanine_1_1UI_1_1ImageLayer.html#a754731b764eee710b15e2039cfd176b3',1,'Mezzanine::UI::ImageLayer']]],
   ['bottom',['Bottom',['../classMezzanine_1_1UI_1_1Sprite.html#a05768c2323c762b1034136f62c34688d',1,'Mezzanine::UI::Sprite']]],
   ['boundcontainer',['BoundContainer',['../classMezzanine_1_1UI_1_1StackButton.html#a24b20a7734a97ac619c89562c1adfa3e',1,'Mezzanine::UI::StackButton']]],
-  ['buttonautoregister',['ButtonAutoRegister',['../classMezzanine_1_1UI_1_1UIManager.html#a3f58605dc06720da14126b02671ed46f',1,'Mezzanine::UI::UIManager']]],
+  ['buttonautoregister',['ButtonAutoRegister',['../classMezzanine_1_1UI_1_1UIManager.html#a6072b261d4a495beb3b6f0d1fc07efeb',1,'Mezzanine::UI::UIManager']]],
   ['buttongroup',['ButtonGroup',['../classMezzanine_1_1UI_1_1RadioButton.html#afddc636d8a90757143999bfc9b5d08fc',1,'Mezzanine::UI::RadioButton']]]
 ];

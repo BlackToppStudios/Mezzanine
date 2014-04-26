@@ -9,7 +9,7 @@
 <area shape="rect" id="node51" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class. " alt="" coords="505,347,625,375"/>
 <area shape="rect" id="node55" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="660,425,727,453"/>
 <area shape="rect" id="node57" href="$systemcalls_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="849,502,948,530"/>
-<area shape="rect" id="node60" href="$mutex_8h.html" title="Declares a Mutex, Mutex tools. " alt="" coords="663,502,729,530"/>
+<area shape="rect" id="node60" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. " alt="" coords="663,502,729,530"/>
 <area shape="rect" id="node62" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically. " alt="" coords="715,579,845,607"/>
 <area shape="rect" id="node65" href="$workunitkey_8h.html" title="This file defines the metadata used to sort workunits. " alt="" coords="100,425,199,453"/>
 <area shape="rect" id="node68" href="$spinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. " alt="" coords="1228,425,1305,453"/>

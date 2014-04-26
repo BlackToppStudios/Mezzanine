@@ -120,6 +120,11 @@ typedef <br class="typebreak"/>
 GameWindowContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a6f2ad618892581e6fd50bcec0297064b">ConstGameWindowIterator</a></td></tr>
 <tr class="memdesc:a6f2ad618892581e6fd50bcec0297064b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1Graphics_1_1GameWindow.html">GameWindow</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a6f2ad618892581e6fd50bcec0297064b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af31bc025438d4ada8063765546fc5ff5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af31bc025438d4ada8063765546fc5ff5"></a>
+typedef <br class="typebreak"/>
+ResolutionContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#af31bc025438d4ada8063765546fc5ff5">ConstResolutionIterator</a></td></tr>
+<tr class="memdesc:af31bc025438d4ada8063765546fc5ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for stored supported resolutions. <br/></td></tr>
+<tr class="separator:af31bc025438d4ada8063765546fc5ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b6ff9cf662e88b5e09ad5291be236c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b6ff9cf662e88b5e09ad5291be236c1"></a>
 typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Graphics_1_1GameWindow.html">GameWindow</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a1b6ff9cf662e88b5e09ad5291be236c1">GameWindowContainer</a></td></tr>
 <tr class="memdesc:a1b6ff9cf662e88b5e09ad5291be236c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1Graphics_1_1GameWindow.html">GameWindow</a> storage by this class. <br/></td></tr>
@@ -138,6 +143,15 @@ typedef std::vector<br class="typebreak"/>
 typedef std::vector&lt; <a class="el" href="namespaceMezzanine_1_1Graphics.html#a6938522e19376f3d97db95b6dc9efa0a">RenderSystem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a4b016f3d1381eab81eada6472f22c6db">RenderSystemTypeContainer</a></td></tr>
 <tr class="memdesc:a4b016f3d1381eab81eada6472f22c6db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for registered rendersystem type storage by this class. <br/></td></tr>
 <tr class="separator:a4b016f3d1381eab81eada6472f22c6db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411361b955fdf70db938b82112ed2c0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a411361b955fdf70db938b82112ed2c0b"></a>
+typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Graphics_1_1Resolution.html">Resolution</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a411361b955fdf70db938b82112ed2c0b">ResolutionContainer</a></td></tr>
+<tr class="memdesc:a411361b955fdf70db938b82112ed2c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for storing the detected supported fullscreen resolutions on the current system. <br/></td></tr>
+<tr class="separator:a411361b955fdf70db938b82112ed2c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dcebacc2a172eeb67022bf432af2209"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dcebacc2a172eeb67022bf432af2209"></a>
+typedef <br class="typebreak"/>
+ResolutionContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a0dcebacc2a172eeb67022bf432af2209">ResolutionIterator</a></td></tr>
+<tr class="memdesc:a0dcebacc2a172eeb67022bf432af2209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for stored supported resolutions. <br/></td></tr>
+<tr class="separator:a0dcebacc2a172eeb67022bf432af2209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br/>
 &#160;&#160;<b>MT_AudioManager</b> = 1, 
@@ -237,9 +251,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:af85f5e9cbd1a3208c9ceeb32ace075aa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#af85f5e9cbd1a3208c9ceeb32ace075aa">Deinitialize</a> ()</td></tr>
 <tr class="memdesc:af85f5e9cbd1a3208c9ceeb32ace075aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes this manager from any necessary configuration so it can be safely disposed of.  <a href="#af85f5e9cbd1a3208c9ceeb32ace075aa">More...</a><br/></td></tr>
 <tr class="separator:af85f5e9cbd1a3208c9ceeb32ace075aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32e6d0502a8a5d934cc65942cc9eef68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a32e6d0502a8a5d934cc65942cc9eef68">DestroyAllGameWindows</a> (bool ExcludePrimary=true)</td></tr>
-<tr class="memdesc:a32e6d0502a8a5d934cc65942cc9eef68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys every game window created.  <a href="#a32e6d0502a8a5d934cc65942cc9eef68">More...</a><br/></td></tr>
-<tr class="separator:a32e6d0502a8a5d934cc65942cc9eef68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1afcfa4541df0bfbd3b52a03be09234e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a1afcfa4541df0bfbd3b52a03be09234e">DestroyAllGameWindows</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> ExcludePrimary=true)</td></tr>
+<tr class="memdesc:a1afcfa4541df0bfbd3b52a03be09234e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys every game window created.  <a href="#a1afcfa4541df0bfbd3b52a03be09234e">More...</a><br/></td></tr>
+<tr class="separator:a1afcfa4541df0bfbd3b52a03be09234e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af517b7be99fd0475df95e42bb6f9ee03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#af517b7be99fd0475df95e42bb6f9ee03">DestroyGameWindow</a> (<a class="el" href="classMezzanine_1_1Graphics_1_1GameWindow.html">GameWindow</a> *ToBeDestroyed)</td></tr>
 <tr class="memdesc:af517b7be99fd0475df95e42bb6f9ee03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a created game window by index.  <a href="#af517b7be99fd0475df95e42bb6f9ee03">More...</a><br/></td></tr>
 <tr class="separator:af517b7be99fd0475df95e42bb6f9ee03"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -254,9 +268,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a73c4a494639d62f243377494ec0451e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Graphics.html#a6938522e19376f3d97db95b6dc9efa0a">Graphics::RenderSystem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a73c4a494639d62f243377494ec0451e6">GetCurrRenderSystem</a> ()</td></tr>
 <tr class="memdesc:a73c4a494639d62f243377494ec0451e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current rendersystem being used.  <a href="#a73c4a494639d62f243377494ec0451e6">More...</a><br/></td></tr>
 <tr class="separator:a73c4a494639d62f243377494ec0451e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0324a117b3478ec46527eec2a6322228"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMezzanine_1_1WindowSettings.html">WindowSettings</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a0324a117b3478ec46527eec2a6322228">GetDesktopSettings</a> ()</td></tr>
-<tr class="memdesc:a0324a117b3478ec46527eec2a6322228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the desktop display settings.  <a href="#a0324a117b3478ec46527eec2a6322228">More...</a><br/></td></tr>
-<tr class="separator:a0324a117b3478ec46527eec2a6322228"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33c016d29a01d15c3ea69053ddd1728a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMezzanine_1_1Graphics_1_1WindowSettings.html">WindowSettings</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a33c016d29a01d15c3ea69053ddd1728a">GetDesktopSettings</a> () const </td></tr>
+<tr class="memdesc:a33c016d29a01d15c3ea69053ddd1728a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the desktop display settings.  <a href="#a33c016d29a01d15c3ea69053ddd1728a">More...</a><br/></td></tr>
+<tr class="separator:a33c016d29a01d15c3ea69053ddd1728a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05a428a493dedd4d48e66d2641c60146"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Graphics_1_1GameWindow.html">GameWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a05a428a493dedd4d48e66d2641c60146">GetGameWindow</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index) const </td></tr>
 <tr class="memdesc:a05a428a493dedd4d48e66d2641c60146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a game window by index.  <a href="#a05a428a493dedd4d48e66d2641c60146">More...</a><br/></td></tr>
 <tr class="separator:a05a428a493dedd4d48e66d2641c60146"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -284,18 +298,18 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:ac1d34f5a574eede57801f46ba90f5b85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#ac1d34f5a574eede57801f46ba90f5b85">GetShortenedRenderSystemName</a> (const <a class="el" href="namespaceMezzanine_1_1Graphics.html#a6938522e19376f3d97db95b6dc9efa0a">Graphics::RenderSystem</a> &amp;RenderSys)</td></tr>
 <tr class="memdesc:ac1d34f5a574eede57801f46ba90f5b85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a short hand name of the provided render system.  <a href="#ac1d34f5a574eede57801f46ba90f5b85">More...</a><br/></td></tr>
 <tr class="separator:ac1d34f5a574eede57801f46ba90f5b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa80f5246e97a994e637ab1d160db9ba8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#aa80f5246e97a994e637ab1d160db9ba8">GetSupportedDevices</a> ()</td></tr>
-<tr class="memdesc:aa80f5246e97a994e637ab1d160db9ba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a vector containing all the devices supported by this render system on the current hardware.  <a href="#aa80f5246e97a994e637ab1d160db9ba8">More...</a><br/></td></tr>
-<tr class="separator:aa80f5246e97a994e637ab1d160db9ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab275ce39a1d63c05e4e39e92abe25327"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#ab275ce39a1d63c05e4e39e92abe25327">GetSupportedResolutions</a> ()</td></tr>
-<tr class="memdesc:ab275ce39a1d63c05e4e39e92abe25327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a vector containing all the resolutions supported by this render system on the current hardware.  <a href="#ab275ce39a1d63c05e4e39e92abe25327">More...</a><br/></td></tr>
-<tr class="separator:ab275ce39a1d63c05e4e39e92abe25327"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05e3c352b0983eaa4721ada232bb2ee2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a05e3c352b0983eaa4721ada232bb2ee2">HasOgreBeenInitialized</a> ()</td></tr>
-<tr class="memdesc:a05e3c352b0983eaa4721ada232bb2ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not <a class="el" href="namespaceOgre.html">Ogre</a> has been started.  <a href="#a05e3c352b0983eaa4721ada232bb2ee2">More...</a><br/></td></tr>
-<tr class="separator:a05e3c352b0983eaa4721ada232bb2ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc5e1a6d8d10249b71fac83af6b00822"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#afc5e1a6d8d10249b71fac83af6b00822">HasSDLBeenInitialized</a> ()</td></tr>
-<tr class="memdesc:afc5e1a6d8d10249b71fac83af6b00822"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not SDL has been started.  <a href="#afc5e1a6d8d10249b71fac83af6b00822">More...</a><br/></td></tr>
-<tr class="separator:afc5e1a6d8d10249b71fac83af6b00822"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2beb8a111f3e0039060ca0cf625aae"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a8d2beb8a111f3e0039060ca0cf625aae">GetSupportedDevices</a> () const </td></tr>
+<tr class="memdesc:a8d2beb8a111f3e0039060ca0cf625aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a vector containing all the devices supported by this render system on the current hardware.  <a href="#a8d2beb8a111f3e0039060ca0cf625aae">More...</a><br/></td></tr>
+<tr class="separator:a8d2beb8a111f3e0039060ca0cf625aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ec67662c7181b00fd02449334636733"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a411361b955fdf70db938b82112ed2c0b">ResolutionContainer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a5ec67662c7181b00fd02449334636733">GetSupportedResolutions</a> () const </td></tr>
+<tr class="memdesc:a5ec67662c7181b00fd02449334636733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a vector containing all the resolutions supported by this render system on the current hardware.  <a href="#a5ec67662c7181b00fd02449334636733">More...</a><br/></td></tr>
+<tr class="separator:a5ec67662c7181b00fd02449334636733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97648844078f61f509a6f1cf7adb51c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a97648844078f61f509a6f1cf7adb51c0">HasOgreBeenInitialized</a> ()</td></tr>
+<tr class="memdesc:a97648844078f61f509a6f1cf7adb51c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not <a class="el" href="namespaceOgre.html">Ogre</a> has been started.  <a href="#a97648844078f61f509a6f1cf7adb51c0">More...</a><br/></td></tr>
+<tr class="separator:a97648844078f61f509a6f1cf7adb51c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1017b014d0ef8922ada5cd263ab8b17b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a1017b014d0ef8922ada5cd263ab8b17b">HasSDLBeenInitialized</a> ()</td></tr>
+<tr class="memdesc:a1017b014d0ef8922ada5cd263ab8b17b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not SDL has been started.  <a href="#a1017b014d0ef8922ada5cd263ab8b17b">More...</a><br/></td></tr>
+<tr class="separator:a1017b014d0ef8922ada5cd263ab8b17b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9e10fb9c230d55c5f0f66f7881a49b2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#ae9e10fb9c230d55c5f0f66f7881a49b2">Initialize</a> ()</td></tr>
 <tr class="memdesc:ae9e10fb9c230d55c5f0f66f7881a49b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures this manager for use prior to entering the main loop.  <a href="#ae9e10fb9c230d55c5f0f66f7881a49b2">More...</a><br/></td></tr>
 <tr class="separator:ae9e10fb9c230d55c5f0f66f7881a49b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -303,12 +317,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#af4f73e906001bd0d8e87afc462346e92">RenderOneFrame</a> ()</td></tr>
 <tr class="memdesc:af4f73e906001bd0d8e87afc462346e92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders one frame of the scene. <br/></td></tr>
 <tr class="separator:af4f73e906001bd0d8e87afc462346e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa0f2204849aaaab2c908b05cda957d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#aaa0f2204849aaaab2c908b05cda957d2">SetRenderSystem</a> (const <a class="el" href="namespaceMezzanine_1_1Graphics.html#a6938522e19376f3d97db95b6dc9efa0a">Graphics::RenderSystem</a> &amp;RenderSys, bool InitializeRenderSystem=false)</td></tr>
-<tr class="memdesc:aaa0f2204849aaaab2c908b05cda957d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the render system to be used.  <a href="#aaa0f2204849aaaab2c908b05cda957d2">More...</a><br/></td></tr>
-<tr class="separator:aaa0f2204849aaaab2c908b05cda957d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e9ac746462456163014c63d1327c5c1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a9e9ac746462456163014c63d1327c5c1">SwapAllBuffers</a> (bool WaitForVsync)</td></tr>
-<tr class="memdesc:a9e9ac746462456163014c63d1327c5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps all the buffers of all GameWindows.  <a href="#a9e9ac746462456163014c63d1327c5c1">More...</a><br/></td></tr>
-<tr class="separator:a9e9ac746462456163014c63d1327c5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae336196eb6442c92c27ec4f5c79c4443"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#ae336196eb6442c92c27ec4f5c79c4443">SetRenderSystem</a> (const <a class="el" href="namespaceMezzanine_1_1Graphics.html#a6938522e19376f3d97db95b6dc9efa0a">Graphics::RenderSystem</a> &amp;RenderSys, <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> InitializeRenderSystem=false)</td></tr>
+<tr class="memdesc:ae336196eb6442c92c27ec4f5c79c4443"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the render system to be used.  <a href="#ae336196eb6442c92c27ec4f5c79c4443">More...</a><br/></td></tr>
+<tr class="separator:ae336196eb6442c92c27ec4f5c79c4443"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96ae7fbe272cb2004bf20bd633a0685c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a96ae7fbe272cb2004bf20bd633a0685c">SwapAllBuffers</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> WaitForVsync)</td></tr>
+<tr class="memdesc:a96ae7fbe272cb2004bf20bd633a0685c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps all the buffers of all GameWindows.  <a href="#a96ae7fbe272cb2004bf20bd633a0685c">More...</a><br/></td></tr>
+<tr class="separator:a96ae7fbe272cb2004bf20bd633a0685c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:a6ee3249f71f330394e81e349370d57a8 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ee3249f71f330394e81e349370d57a8"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a6ee3249f71f330394e81e349370d57a8">ManagerBase</a> ()</td></tr>
@@ -321,9 +335,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a70b61244d5182ad40dd056b2664a6aa7">GetInterfaceTypeAsString</a> () const </td></tr>
 <tr class="memdesc:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a string of the interface type of this manager.  <a href="#a70b61244d5182ad40dd056b2664a6aa7">More...</a><br/></td></tr>
 <tr class="separator:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#adc9433deb9026dbbb0b51f35a3a10f02">IsInitialized</a> () const </td></tr>
-<tr class="memdesc:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this manager has been initialized.  <a href="#adc9433deb9026dbbb0b51f35a3a10f02">More...</a><br/></td></tr>
-<tr class="separator:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24237e26773465e6696d9ae6c8cf507a inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a24237e26773465e6696d9ae6c8cf507a">IsInitialized</a> () const </td></tr>
+<tr class="memdesc:a24237e26773465e6696d9ae6c8cf507a inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this manager has been initialized.  <a href="#a24237e26773465e6696d9ae6c8cf507a">More...</a><br/></td></tr>
+<tr class="separator:a24237e26773465e6696d9ae6c8cf507a inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1ObjectSettingsHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html">Mezzanine::ObjectSettingsHandler</a></td></tr>
 <tr class="memitem:aa9a6ab6fbf3c47218915a8f71241e769 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9a6ab6fbf3c47218915a8f71241e769"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aa9a6ab6fbf3c47218915a8f71241e769">ObjectSettingsHandler</a> ()</td></tr>
@@ -364,12 +378,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ac6032ddb1364971221a1c840dac380de inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ac6032ddb1364971221a1c840dac380de">DestroySettingGroup</a> (<a class="el" href="classMezzanine_1_1ObjectSettingGroup.html">ObjectSettingGroup</a> *ToBeDestroyed)</td></tr>
 <tr class="memdesc:ac6032ddb1364971221a1c840dac380de inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a setting group.  <a href="#ac6032ddb1364971221a1c840dac380de">More...</a><br/></td></tr>
 <tr class="separator:ac6032ddb1364971221a1c840dac380de inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a41547c8f68af68a4e20a15aa14860a inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a4a41547c8f68af68a4e20a15aa14860a">GetAutoGenFiles</a> () const </td></tr>
-<tr class="memdesc:a4a41547c8f68af68a4e20a15aa14860a inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create/update settings files upon initialization and destruction.  <a href="#a4a41547c8f68af68a4e20a15aa14860a">More...</a><br/></td></tr>
-<tr class="separator:a4a41547c8f68af68a4e20a15aa14860a inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2748320f8ebede9fd4ddd961a0ea060e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a2748320f8ebede9fd4ddd961a0ea060e">GetAutoGenPath</a> () const </td></tr>
-<tr class="memdesc:a2748320f8ebede9fd4ddd961a0ea060e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create folders when saving.  <a href="#a2748320f8ebede9fd4ddd961a0ea060e">More...</a><br/></td></tr>
-<tr class="separator:a2748320f8ebede9fd4ddd961a0ea060e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6143d74485045ce92b55db102c28fcfb inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a6143d74485045ce92b55db102c28fcfb">GetAutoGenFiles</a> () const </td></tr>
+<tr class="memdesc:a6143d74485045ce92b55db102c28fcfb inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create/update settings files upon initialization and destruction.  <a href="#a6143d74485045ce92b55db102c28fcfb">More...</a><br/></td></tr>
+<tr class="separator:a6143d74485045ce92b55db102c28fcfb inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8bfe7420b9ade58089cf127469f8bf7 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ad8bfe7420b9ade58089cf127469f8bf7">GetAutoGenPath</a> () const </td></tr>
+<tr class="memdesc:ad8bfe7420b9ade58089cf127469f8bf7 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create folders when saving.  <a href="#ad8bfe7420b9ade58089cf127469f8bf7">More...</a><br/></td></tr>
+<tr class="separator:ad8bfe7420b9ade58089cf127469f8bf7 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb95147380378d0f94e4f28b3cd96508 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#acb95147380378d0f94e4f28b3cd96508">GetCurrentSettingsSaveFile</a> () const </td></tr>
 <tr class="memdesc:acb95147380378d0f94e4f28b3cd96508 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the file the "Current" setting group is saved to.  <a href="#acb95147380378d0f94e4f28b3cd96508">More...</a><br/></td></tr>
 <tr class="separator:acb95147380378d0f94e4f28b3cd96508 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -394,6 +408,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a66d85f481956daf504240c4062887869 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a18d82f81497b701db92b943762ae411a">SettingGroupVector</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a66d85f481956daf504240c4062887869">LoadSettingsFromXML</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings)</td></tr>
 <tr class="memdesc:a66d85f481956daf504240c4062887869 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads settings from an xml node.  <a href="#a66d85f481956daf504240c4062887869">More...</a><br/></td></tr>
 <tr class="separator:a66d85f481956daf504240c4062887869 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25764c1d44e89967c4c9ddc830168542 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a25764c1d44e89967c4c9ddc830168542">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:a25764c1d44e89967c4c9ddc830168542 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite this object with it.  <a href="#a25764c1d44e89967c4c9ddc830168542">More...</a><br/></td></tr>
+<tr class="separator:a25764c1d44e89967c4c9ddc830168542 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a184181f2cc11e6b3a7799b80fa961428 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a184181f2cc11e6b3a7799b80fa961428">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot) const </td></tr>
+<tr class="memdesc:a184181f2cc11e6b3a7799b80fa961428 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> ready for serialization.  <a href="#a184181f2cc11e6b3a7799b80fa961428">More...</a><br/></td></tr>
+<tr class="separator:a184181f2cc11e6b3a7799b80fa961428 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5290e6622ef1fcdd5658053f0d53e35 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ad5290e6622ef1fcdd5658053f0d53e35">RemoveGroupFromFile</a> (<a class="el" href="classMezzanine_1_1ObjectSettingGroup.html">ObjectSettingGroup</a> *Group, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:ad5290e6622ef1fcdd5658053f0d53e35 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a previously assigned group from a save file name.  <a href="#ad5290e6622ef1fcdd5658053f0d53e35">More...</a><br/></td></tr>
 <tr class="separator:ad5290e6622ef1fcdd5658053f0d53e35 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -412,18 +432,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:afd5f4af261e30de8b02599a9d3cc3a88 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#afd5f4af261e30de8b02599a9d3cc3a88">SaveSettingsByFile</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:afd5f4af261e30de8b02599a9d3cc3a88 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all settings that have their optional filename set to the specified file.  <a href="#afd5f4af261e30de8b02599a9d3cc3a88">More...</a><br/></td></tr>
 <tr class="separator:afd5f4af261e30de8b02599a9d3cc3a88 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21fd3bde79274a5f7c1caccbc06d80aa inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a21fd3bde79274a5f7c1caccbc06d80aa">SaveSettingsToXML</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings, Boolean SaveCurrent=true)</td></tr>
-<tr class="memdesc:a21fd3bde79274a5f7c1caccbc06d80aa inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all the current setting groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> node.  <a href="#a21fd3bde79274a5f7c1caccbc06d80aa">More...</a><br/></td></tr>
-<tr class="separator:a21fd3bde79274a5f7c1caccbc06d80aa inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99911b1eb47e07eef0c5745a39ecc378 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a99911b1eb47e07eef0c5745a39ecc378">SaveSettingsToXML</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings, <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> SaveCurrent=true)</td></tr>
+<tr class="memdesc:a99911b1eb47e07eef0c5745a39ecc378 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all the current setting groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> node.  <a href="#a99911b1eb47e07eef0c5745a39ecc378">More...</a><br/></td></tr>
+<tr class="separator:a99911b1eb47e07eef0c5745a39ecc378 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae2839db005c52ecdd0fad15723243ca inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aae2839db005c52ecdd0fad15723243ca">SaveSettingsToXML</a> (<a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> &amp;GroupNames, <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings)</td></tr>
 <tr class="memdesc:aae2839db005c52ecdd0fad15723243ca inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the named settings groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> node.  <a href="#aae2839db005c52ecdd0fad15723243ca">More...</a><br/></td></tr>
 <tr class="separator:aae2839db005c52ecdd0fad15723243ca inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c0da58d1e15fc7ecc0f803f329e6556 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a9c0da58d1e15fc7ecc0f803f329e6556">SetAutoGenFiles</a> (Boolean Enable)</td></tr>
-<tr class="memdesc:a9c0da58d1e15fc7ecc0f803f329e6556 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of settings files on initialization and destruction of this object.  <a href="#a9c0da58d1e15fc7ecc0f803f329e6556">More...</a><br/></td></tr>
-<tr class="separator:a9c0da58d1e15fc7ecc0f803f329e6556 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa815d02f8cb4ebd32ecae51f3c1546c8 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aa815d02f8cb4ebd32ecae51f3c1546c8">SetAutoGenPath</a> (Boolean Enable)</td></tr>
-<tr class="memdesc:aa815d02f8cb4ebd32ecae51f3c1546c8 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of a directory path when saving.  <a href="#aa815d02f8cb4ebd32ecae51f3c1546c8">More...</a><br/></td></tr>
-<tr class="separator:aa815d02f8cb4ebd32ecae51f3c1546c8 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93ec53aeebb5e09692c4ddf57909f08e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a93ec53aeebb5e09692c4ddf57909f08e">SetAutoGenFiles</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:a93ec53aeebb5e09692c4ddf57909f08e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of settings files on initialization and destruction of this object.  <a href="#a93ec53aeebb5e09692c4ddf57909f08e">More...</a><br/></td></tr>
+<tr class="separator:a93ec53aeebb5e09692c4ddf57909f08e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeda496c0689f6f0f76d6903ad480370b inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aeda496c0689f6f0f76d6903ad480370b">SetAutoGenPath</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:aeda496c0689f6f0f76d6903ad480370b inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of a directory path when saving.  <a href="#aeda496c0689f6f0f76d6903ad480370b">More...</a><br/></td></tr>
+<tr class="separator:aeda496c0689f6f0f76d6903ad480370b inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac4557c72aee5a8f02a7c1515e857175 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aac4557c72aee5a8f02a7c1515e857175">SetCurrentSettingsSaveFile</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:aac4557c72aee5a8f02a7c1515e857175 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the file that will have this object's "current" settings saved to.  <a href="#aac4557c72aee5a8f02a7c1515e857175">More...</a><br/></td></tr>
 <tr class="separator:aac4557c72aee5a8f02a7c1515e857175 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -476,15 +496,15 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a1136779131acdd09eb02e275256228e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Graphics.html#a6938522e19376f3d97db95b6dc9efa0a">Graphics::RenderSystem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a1136779131acdd09eb02e275256228e0">CurrRenderSys</a></td></tr>
 <tr class="memdesc:a1136779131acdd09eb02e275256228e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A RenderSystem enum value storing the RenderSystem type currently in use.  <a href="#a1136779131acdd09eb02e275256228e0">More...</a><br/></td></tr>
 <tr class="separator:a1136779131acdd09eb02e275256228e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaa230f194cdfc4564d1b3a0bbb7aa4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMezzanine_1_1WindowSettings.html">WindowSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#abaa230f194cdfc4564d1b3a0bbb7aa4a">DesktopSettings</a></td></tr>
+<tr class="memitem:abaa230f194cdfc4564d1b3a0bbb7aa4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMezzanine_1_1Graphics_1_1WindowSettings.html">WindowSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#abaa230f194cdfc4564d1b3a0bbb7aa4a">DesktopSettings</a></td></tr>
 <tr class="memdesc:abaa230f194cdfc4564d1b3a0bbb7aa4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct storing the dimensions of the desktop on the current hardware.  <a href="#abaa230f194cdfc4564d1b3a0bbb7aa4a">More...</a><br/></td></tr>
 <tr class="separator:abaa230f194cdfc4564d1b3a0bbb7aa4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a879bacf4a3b7ac67351c96f74f36dbf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a1b6ff9cf662e88b5e09ad5291be236c1">GameWindowContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a879bacf4a3b7ac67351c96f74f36dbf0">GameWindows</a></td></tr>
 <tr class="memdesc:a879bacf4a3b7ac67351c96f74f36dbf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container storing all the game windows created by this manager.  <a href="#a879bacf4a3b7ac67351c96f74f36dbf0">More...</a><br/></td></tr>
 <tr class="separator:a879bacf4a3b7ac67351c96f74f36dbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8447b6c2d8bbc1105c0b788b8b1b39e"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#aa8447b6c2d8bbc1105c0b788b8b1b39e">OgreBeenInitialized</a></td></tr>
-<tr class="memdesc:aa8447b6c2d8bbc1105c0b788b8b1b39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether the internal graphics subsystem has been initialized.  <a href="#aa8447b6c2d8bbc1105c0b788b8b1b39e">More...</a><br/></td></tr>
-<tr class="separator:aa8447b6c2d8bbc1105c0b788b8b1b39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62120d51c739eedbbc577caa3c77b1ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a62120d51c739eedbbc577caa3c77b1ac">OgreBeenInitialized</a></td></tr>
+<tr class="memdesc:a62120d51c739eedbbc577caa3c77b1ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether the internal graphics subsystem has been initialized.  <a href="#a62120d51c739eedbbc577caa3c77b1ac">More...</a><br/></td></tr>
+<tr class="separator:a62120d51c739eedbbc577caa3c77b1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5eada3f9c70d92935f49a0428058423"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Graphics_1_1GameWindow.html">GameWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#af5eada3f9c70d92935f49a0428058423">PrimaryGameWindow</a></td></tr>
 <tr class="memdesc:af5eada3f9c70d92935f49a0428058423"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the hidden window storing the context and render resources.  <a href="#af5eada3f9c70d92935f49a0428058423">More...</a><br/></td></tr>
 <tr class="separator:af5eada3f9c70d92935f49a0428058423"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -500,26 +520,26 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a8b7fc0c182558058b564fd59558dcd33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a8b7fc0c182558058b564fd59558dcd33">SupportedDevices</a></td></tr>
 <tr class="memdesc:a8b7fc0c182558058b564fd59558dcd33"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container of strings storing all the detected names of video devices on the current hardware.  <a href="#a8b7fc0c182558058b564fd59558dcd33">More...</a><br/></td></tr>
 <tr class="separator:a8b7fc0c182558058b564fd59558dcd33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57dd57b108871dd93b47035cdb450d59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a57dd57b108871dd93b47035cdb450d59">SupportedResolutions</a></td></tr>
-<tr class="memdesc:a57dd57b108871dd93b47035cdb450d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container of strings storing all the detected supported resolutions on the current hardware.  <a href="#a57dd57b108871dd93b47035cdb450d59">More...</a><br/></td></tr>
-<tr class="separator:a57dd57b108871dd93b47035cdb450d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cc545c1adbf22c9e73ac6dfdc608242"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a411361b955fdf70db938b82112ed2c0b">ResolutionContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a0cc545c1adbf22c9e73ac6dfdc608242">SupportedResolutions</a></td></tr>
+<tr class="memdesc:a0cc545c1adbf22c9e73ac6dfdc608242"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container of strings storing all the detected supported resolutions on the current hardware.  <a href="#a0cc545c1adbf22c9e73ac6dfdc608242">More...</a><br/></td></tr>
+<tr class="separator:a0cc545c1adbf22c9e73ac6dfdc608242"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b43c535ad3f46a0d6255cc4c6969458"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMezzanine_1_1Threading_1_1DefaultThreadSpecificStorage.html#a896916be2a41f29a6311ebee7a5f7aab">Threading::DefaultThreadSpecificStorage::Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a6b43c535ad3f46a0d6255cc4c6969458">ThreadResources</a></td></tr>
 <tr class="memdesc:a6b43c535ad3f46a0d6255cc4c6969458"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used for thread safe logging and other thread Specific resources.  <a href="#a6b43c535ad3f46a0d6255cc4c6969458">More...</a><br/></td></tr>
 <tr class="separator:a6b43c535ad3f46a0d6255cc4c6969458"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
-<tr class="memitem:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#ada3bad0fe77ff2fa7404eea7a5c16264">Initialized</a></td></tr>
-<tr class="memdesc:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple bool indicating whether or not this manager has been initialized.  <a href="#ada3bad0fe77ff2fa7404eea7a5c16264">More...</a><br/></td></tr>
-<tr class="separator:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74e19db0ea2164127295a95f30e2e105 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a74e19db0ea2164127295a95f30e2e105">Initialized</a></td></tr>
+<tr class="memdesc:a74e19db0ea2164127295a95f30e2e105 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple Boole indicating whether or not this manager has been initialized.  <a href="#a74e19db0ea2164127295a95f30e2e105">More...</a><br/></td></tr>
+<tr class="separator:a74e19db0ea2164127295a95f30e2e105 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Entresol.html">Entresol</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#ae619b4bd732d7345e0ef59ecde6d03cc">TheEntresol</a></td></tr>
 <tr class="memdesc:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual pointer to the <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a> core class.  <a href="#ae619b4bd732d7345e0ef59ecde6d03cc">More...</a><br/></td></tr>
 <tr class="separator:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1ObjectSettingsHandler')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html">Mezzanine::ObjectSettingsHandler</a></td></tr>
-<tr class="memitem:aaa4ee60fc851d225e18c6612d4b53bb7 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aaa4ee60fc851d225e18c6612d4b53bb7">AutoGenFiles</a></td></tr>
-<tr class="memdesc:aaa4ee60fc851d225e18c6612d4b53bb7 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not this handler will attempt to automatically generate a file if it doesn't exist.  <a href="#aaa4ee60fc851d225e18c6612d4b53bb7">More...</a><br/></td></tr>
-<tr class="separator:aaa4ee60fc851d225e18c6612d4b53bb7 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e19e4187f60dd9493a5b211faa14781 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a0e19e4187f60dd9493a5b211faa14781">AutoGenPath</a></td></tr>
-<tr class="memdesc:a0e19e4187f60dd9493a5b211faa14781 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not this handler will attempt to automatically generate a path to a file if it doesn't exist.  <a href="#a0e19e4187f60dd9493a5b211faa14781">More...</a><br/></td></tr>
-<tr class="separator:a0e19e4187f60dd9493a5b211faa14781 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54de5b5efe8fb78e2c7fc031f6b8f3b9 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a54de5b5efe8fb78e2c7fc031f6b8f3b9">AutoGenFiles</a></td></tr>
+<tr class="memdesc:a54de5b5efe8fb78e2c7fc031f6b8f3b9 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not this handler will attempt to automatically generate a file if it doesn't exist.  <a href="#a54de5b5efe8fb78e2c7fc031f6b8f3b9">More...</a><br/></td></tr>
+<tr class="separator:a54de5b5efe8fb78e2c7fc031f6b8f3b9 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a282ad6be42d6267ca9bc70143790fae4 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a282ad6be42d6267ca9bc70143790fae4">AutoGenPath</a></td></tr>
+<tr class="memdesc:a282ad6be42d6267ca9bc70143790fae4 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not this handler will attempt to automatically generate a path to a file if it doesn't exist.  <a href="#a282ad6be42d6267ca9bc70143790fae4">More...</a><br/></td></tr>
+<tr class="separator:a282ad6be42d6267ca9bc70143790fae4 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cb79cf1452cc3286bc942abecc0650f inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a9cb79cf1452cc3286bc942abecc0650f">CurrentSettingsSaveFile</a></td></tr>
 <tr class="memdesc:a9cb79cf1452cc3286bc942abecc0650f inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the name of the file where the "Current" settings group will be saved to.  <a href="#a9cb79cf1452cc3286bc942abecc0650f">More...</a><br/></td></tr>
 <tr class="separator:a9cb79cf1452cc3286bc942abecc0650f inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -548,13 +568,17 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#acb0c0b9192f8ce94c725d5550e8439f6">GetTypeFromString</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerName)</td></tr>
 <tr class="memdesc:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of manager requested from a string.  <a href="#acb0c0b9192f8ce94c725d5550e8439f6">More...</a><br/></td></tr>
 <tr class="separator:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classMezzanine_1_1ObjectSettingsHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1ObjectSettingsHandler')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html">Mezzanine::ObjectSettingsHandler</a></td></tr>
+<tr class="memitem:a2ae0fba84378bed81838310723f9ecca inherit pub_static_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a2ae0fba84378bed81838310723f9ecca">GetSerializableName</a> ()</td></tr>
+<tr class="memdesc:a2ae0fba84378bed81838310723f9ecca inherit pub_static_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag the class will leave behind as its instances are serialized.  <a href="#a2ae0fba84378bed81838310723f9ecca">More...</a><br/></td></tr>
+<tr class="separator:a2ae0fba84378bed81838310723f9ecca inherit pub_static_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Singleton.html">Mezzanine::Singleton&lt; GraphicsManager &gt;</a></td></tr>
 <tr class="memitem:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67">GetSingletonPtr</a> ()</td></tr>
 <tr class="memdesc:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches a pointer to the singleton.  <a href="#a78fc425584913f0b2c615ec440871a67">More...</a><br/></td></tr>
 <tr class="separator:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a554165fe3e4b594b678d64215fd7a6f9">SingletonValid</a> ()</td></tr>
-<tr class="memdesc:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the singleton pointer is valid.  <a href="#a554165fe3e4b594b678d64215fd7a6f9">More...</a><br/></td></tr>
-<tr class="separator:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a775312ba0ba990afb473e9bd5a4917 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a7a775312ba0ba990afb473e9bd5a4917">SingletonValid</a> ()</td></tr>
+<tr class="memdesc:a7a775312ba0ba990afb473e9bd5a4917 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the singleton pointer is valid.  <a href="#a7a775312ba0ba990afb473e9bd5a4917">More...</a><br/></td></tr>
+<tr class="separator:a7a775312ba0ba990afb473e9bd5a4917 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classMezzanine_1_1Singleton.html">Mezzanine::Singleton&lt; GraphicsManager &gt;</a></td></tr>
 <tr class="memitem:a0db9959ccd7daa1345f4567aa0b0655d inherit pro_static_attribs_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0db9959ccd7daa1345f4567aa0b0655d"></a>
 static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>SingletonPtr</b></td></tr>
@@ -580,9 +604,9 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </div><div class="memdoc">
 
 <p>Basic constructor. </p>
-<p>This creates a basic <a class="el" href="namespaceMezzanine_1_1Graphics.html" title="This namespace is for all the classes belonging to the Graphics Subsystem. ">Graphics</a> Settings with resolution 640x480 with fullscreen set to false </p>
+<p>This creates a basic <a class="el" href="namespaceMezzanine_1_1Graphics.html" title="This namespace is for all the classes belonging to the Graphics Subsystem. ">Graphics</a> Settings with resolution 640x480 with fullscreen set to false. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00116">116</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00117">117</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -607,9 +631,9 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000070">Todo:</a></b></dt><dd>This is currently necessary because a render window of some kind needs to exist for the loading of resources that occurs later in world construction (when this is constructed by the world, which this assumes. If possible this should be removed, to keep construction more flexible. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000066">Todo:</a></b></dt><dd>This is currently necessary because a render window of some kind needs to exist for the loading of resources that occurs later in world construction (when this is constructed by the world, which this assumes. If possible this should be removed, to keep construction more flexible. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00127">127</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00128">128</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -637,11 +661,10 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </div><div class="memdoc">
 
 <p>Takes all the current settings of this handler and serializes them to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a>. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000071">Todo:</a></b></dt><dd>Currently the maximized setting does nothing in the gamewindow. If it gets implemented, so does this. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ae662009cd3cbd713ad79ac95ac9cf320">Mezzanine::ObjectSettingsHandler</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00288">288</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00239">239</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -668,11 +691,11 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </div><div class="memdoc">
 
 <p>Applies all the settings stored by a <a class="el" href="classMezzanine_1_1ObjectSettingGroup.html">ObjectSettingGroup</a>. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000072">Todo:</a></b></dt><dd>May want to make some other data member so that people can accurately get what is set now, instead of what will be set. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000067">Todo:</a></b></dt><dd>May want to make some other data member so that people can accurately get what is set now, instead of what will be set. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a69acdca039f113c3bc7b6410e6277c21">Mezzanine::ObjectSettingsHandler</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00320">320</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00251">251</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -699,7 +722,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Construct the manager and set sane defaults. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00208">208</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00159">159</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -751,7 +774,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created window. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00464">464</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00424">424</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -777,22 +800,22 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </div><div class="memdoc">
 
 <p>Removes this manager from any necessary configuration so it can be safely disposed of. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000075">Todo:</a></b></dt><dd>Here is where we should be shutting down the rendersystem, but <a class="el" href="namespaceOgre.html">Ogre</a> in it's poorly coded ways wasn't designed for that unless you are also deleting Ogre::Root. Take it up with them if you don't like it. (tell me where the thread is when you do, I'll join in) Related: <a href="http://www.ogre3d.org/forums/viewtopic.php?f=4&t=77036&sid=a7ce7512032eb851d50da083795198f3">http://www.ogre3d.org/forums/viewtopic.php?f=4&amp;t=77036&amp;sid=a7ce7512032eb851d50da083795198f3</a> </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000070">Todo:</a></b></dt><dd>Here is where we should be shutting down the rendersystem, but <a class="el" href="namespaceOgre.html">Ogre</a> in it's poorly coded ways wasn't designed for that unless you are also deleting Ogre::Root. Take it up with them if you don't like it. (tell me where the thread is when you do, I'll join in) Related: <a href="http://www.ogre3d.org/forums/viewtopic.php?f=4&t=77036&sid=a7ce7512032eb851d50da083795198f3">http://www.ogre3d.org/forums/viewtopic.php?f=4&amp;t=77036&amp;sid=a7ce7512032eb851d50da083795198f3</a> </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#ab13bf1e752c3b54c7c392ba9a869fb72">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00668">668</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00627">627</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a32e6d0502a8a5d934cc65942cc9eef68"></a>
+<a class="anchor" id="a1afcfa4541df0bfbd3b52a03be09234e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Graphics::GraphicsManager::DestroyAllGameWindows </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>ExcludePrimary</em> = <code>true</code>)</td><td></td>
           <td></td>
         </tr>
@@ -807,7 +830,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00508">508</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00468">468</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -833,7 +856,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00495">495</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00455">455</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -854,19 +877,19 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <dl class="section remark"><dt>Remarks</dt><dd>This does not return a pointer or any other kind of accessor to the actual rendersystem structure. If you need that, then we're doing something wrong. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns an enum value coresponding to the render system being used. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00558">558</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00518">518</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0324a117b3478ec46527eec2a6322228"></a>
+<a class="anchor" id="a33c016d29a01d15c3ea69053ddd1728a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="structMezzanine_1_1WindowSettings.html">WindowSettings</a> &amp; Mezzanine::Graphics::GraphicsManager::GetDesktopSettings </td>
+          <td class="memname">const <a class="el" href="structMezzanine_1_1Graphics_1_1WindowSettings.html">WindowSettings</a> &amp; Mezzanine::Graphics::GraphicsManager::GetDesktopSettings </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -874,12 +897,12 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>Gets the desktop display settings. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Returns</td><td>a <a class="el" href="structMezzanine_1_1WindowSettings.html" title="This stores all the basic configuration options a game window supports. ">WindowSettings</a> struct with the desktop display settings. </td></tr>
+    <tr><td class="paramname">Returns</td><td>a <a class="el" href="structMezzanine_1_1Graphics_1_1WindowSettings.html" title="This stores all the basic configuration options a game window supports. ">WindowSettings</a> struct with the desktop display settings. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00608">608</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00568">568</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -906,7 +929,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the game window at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00474">474</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00434">434</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -934,7 +957,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the game window with the specified caption, or NULL if no game windows with that caption exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00479">479</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00439">439</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -964,7 +987,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#ac41d60f674e75d3d16b5544f4feb199c">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00708">708</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00667">667</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -995,7 +1018,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a388aa37ed71b8667785b789c137aa8c6">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00705">705</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00664">664</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +1038,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>Gets the number of game windows within this manager. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Whole representing the number of game windows within this manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00490">490</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00450">450</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1044,7 +1067,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Implements <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#addfbe41cc6d52613edad52b2572121c0">Mezzanine::ObjectSettingsHandler</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00283">283</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00234">234</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1064,7 +1087,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>Gets the primary(first) game window. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the primary game window. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00521">521</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00481">481</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1090,9 +1113,9 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the name of the provided render system. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000073">Todo:</a></b></dt><dd>This will likely have to change when other OGL systems are implemented </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000068">Todo:</a></b></dt><dd>This will likely have to change when other OGL systems are implemented </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00563">563</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00523">523</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1112,7 +1135,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>Gets the work unit responsible for performing the graphics render of all scenes. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" title="This does the main loop processing for required to make the Graphics Manager function. ">RenderWorkUnit</a> being used by this manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00686">686</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00645">645</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1138,21 +1161,21 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the shortened name of the provided render system. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000074">Todo:</a></b></dt><dd>This will likely have to change when other OGL systems are implemented </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000069">Todo:</a></b></dt><dd>This will likely have to change when other OGL systems are implemented </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00579">579</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00539">539</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa80f5246e97a994e637ab1d160db9ba8"></a>
+<a class="anchor" id="a8d2beb8a111f3e0039060ca0cf625aae"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> * Mezzanine::Graphics::GraphicsManager::GetSupportedDevices </td>
+          <td class="memname">const <a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> &amp; Mezzanine::Graphics::GraphicsManager::GetSupportedDevices </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1161,19 +1184,19 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>This vector is populated when the manager gets initialized. Calling on it before then will give you an empty vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Const Pointer to the vector storing all the supported devices. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00603">603</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00563">563</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab275ce39a1d63c05e4e39e92abe25327"></a>
+<a class="anchor" id="a5ec67662c7181b00fd02449334636733"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> * Mezzanine::Graphics::GraphicsManager::GetSupportedResolutions </td>
+          <td class="memname">const <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a411361b955fdf70db938b82112ed2c0b">GraphicsManager::ResolutionContainer</a> &amp; Mezzanine::Graphics::GraphicsManager::GetSupportedResolutions </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1182,16 +1205,16 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>This vector is populated when the manager gets initialized. Calling on it before then will give you an empty vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Const Pointer to the vector storing all the supported resolutions. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00598">598</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00558">558</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a05e3c352b0983eaa4721ada232bb2ee2"></a>
+<a class="anchor" id="a97648844078f61f509a6f1cf7adb51c0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Graphics::GraphicsManager::HasOgreBeenInitialized </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Graphics::GraphicsManager::HasOgreBeenInitialized </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td></td>
@@ -1200,18 +1223,18 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </div><div class="memdoc">
 
 <p>Gets whether or not <a class="el" href="namespaceOgre.html">Ogre</a> has been started. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a bool indicating whether or not <a class="el" href="namespaceOgre.html">Ogre</a> has been initialized yet. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a Boole indicating whether or not <a class="el" href="namespaceOgre.html">Ogre</a> has been initialized yet. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00697">697</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00656">656</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afc5e1a6d8d10249b71fac83af6b00822"></a>
+<a class="anchor" id="a1017b014d0ef8922ada5cd263ab8b17b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Graphics::GraphicsManager::HasSDLBeenInitialized </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Graphics::GraphicsManager::HasSDLBeenInitialized </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td></td>
@@ -1220,9 +1243,9 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </div><div class="memdoc">
 
 <p>Gets whether or not SDL has been started. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a bool indicating whether or not SDL has been initialized yet. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a Boole indicating whether or not SDL has been initialized yet. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00692">692</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00651">651</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1252,7 +1275,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a864e3cac11928a602c1db28fa2d52ee2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00629">629</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00589">589</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1279,11 +1302,11 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Initializes the internal graphics subsystem with the currently set configuration. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00228">228</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00179">179</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aaa0f2204849aaaab2c908b05cda957d2"></a>
+<a class="anchor" id="ae336196eb6442c92c27ec4f5c79c4443"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1296,7 +1319,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>InitializeRenderSystem</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
@@ -1317,11 +1340,11 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00549">549</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00509">509</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9e9ac746462456163014c63d1327c5c1"></a>
+<a class="anchor" id="a96ae7fbe272cb2004bf20bd633a0685c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1331,7 +1354,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
         <tr>
           <td class="memname">void Mezzanine::Graphics::GraphicsManager::SwapAllBuffers </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>WaitForVsync</em>)</td><td></td>
           <td></td>
         </tr>
@@ -1351,7 +1374,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00623">623</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00583">583</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1376,7 +1399,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>The <a class="el" href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" title="This does the main loop processing for required to make the Graphics Manager function. ">RenderWorkUnit</a> really is an extension of the <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user. ">GraphicsManager</a>, it just exists as a Functor for the sake of simplicity. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00135">135</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00141">141</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1401,7 +1424,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>A RenderSystem enum value storing the RenderSystem type currently in use. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00167">167</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00173">173</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1413,7 +1436,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structMezzanine_1_1WindowSettings.html">WindowSettings</a> Mezzanine::Graphics::GraphicsManager::DesktopSettings</td>
+          <td class="memname"><a class="el" href="structMezzanine_1_1Graphics_1_1WindowSettings.html">WindowSettings</a> Mezzanine::Graphics::GraphicsManager::DesktopSettings</td>
         </tr>
       </table>
   </td>
@@ -1425,7 +1448,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>A struct storing the dimensions of the desktop on the current hardware. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00153">153</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00159">159</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1449,11 +1472,11 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>A container storing all the game windows created by this manager. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00144">144</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00150">150</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa8447b6c2d8bbc1105c0b788b8b1b39e"></a>
+<a class="anchor" id="a62120d51c739eedbbc577caa3c77b1ac"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1461,7 +1484,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Boolean Mezzanine::Graphics::GraphicsManager::OgreBeenInitialized</td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Graphics::GraphicsManager::OgreBeenInitialized</td>
         </tr>
       </table>
   </td>
@@ -1473,7 +1496,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Stores whether the internal graphics subsystem has been initialized. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00170">170</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00176">176</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1497,7 +1520,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>A pointer to the hidden window storing the context and render resources. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00156">156</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00162">162</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1521,7 +1544,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p><a class="el" href="classMezzanine_1_1Track.html" title="A base type that provides container features for different tracks. ">Track</a> all statically linked <a class="el" href="namespaceOgre.html">Ogre</a> render systems, usually only one, but could be many. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00138">138</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00144">144</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1545,7 +1568,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>A listing of the types of rendersystems Types that correspond to the entry in <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#aea15059d3991f0f3fc23ec1ddbc1ce12">RenderSystems</a>. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00141">141</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00147">147</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1569,7 +1592,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>The work unit that does all the rendering. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00160">160</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00166">166</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1593,11 +1616,11 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>A container of strings storing all the detected names of video devices on the current hardware. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00150">150</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00156">156</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a57dd57b108871dd93b47035cdb450d59"></a>
+<a class="anchor" id="a0cc545c1adbf22c9e73ac6dfdc608242"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1605,7 +1628,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> Mezzanine::Graphics::GraphicsManager::SupportedResolutions</td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a411361b955fdf70db938b82112ed2c0b">ResolutionContainer</a> Mezzanine::Graphics::GraphicsManager::SupportedResolutions</td>
         </tr>
       </table>
   </td>
@@ -1617,7 +1640,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>A container of strings storing all the detected supported resolutions on the current hardware. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00147">147</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00153">153</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1641,7 +1664,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Can be used for thread safe logging and other thread Specific resources. </p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00163">163</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8h_source.html#l00169">169</a> of file <a class="el" href="graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1651,6 +1674,6 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

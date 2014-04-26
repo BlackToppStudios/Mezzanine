@@ -126,6 +126,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae81d7180979cc004f9f4b89fa08511cb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.html">iScriptMultipleReturn</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.html#ae81d7180979cc004f9f4b89fa08511cb">GetMostDerived</a> ()</td></tr>
 <tr class="memdesc:ae81d7180979cc004f9f4b89fa08511cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the most Derived type of this class.  <a href="#ae81d7180979cc004f9f4b89fa08511cb">More...</a><br/></td></tr>
 <tr class="separator:ae81d7180979cc004f9f4b89fa08511cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae08b425c515663029d6e37c75d1abf78"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a><br class="typebreak"/>
+&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.html">iScriptArgument</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.html#ae08b425c515663029d6e37c75d1abf78">GetReturn</a> (<a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> ReturnNumber) const =0</td></tr>
+<tr class="memdesc:ae08b425c515663029d6e37c75d1abf78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a value returned from a script.  <a href="#ae08b425c515663029d6e37c75d1abf78">More...</a><br/></td></tr>
+<tr class="separator:ae08b425c515663029d6e37c75d1abf78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d43aaeb134df0d40415505818c608d7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.html#a4d43aaeb134df0d40415505818c608d7">GetReturnCount</a> () const =0</td></tr>
 <tr class="memdesc:a4d43aaeb134df0d40415505818c608d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">How many values are being returned.  <a href="#a4d43aaeb134df0d40415505818c608d7">More...</a><br/></td></tr>
 <tr class="separator:a4d43aaeb134df0d40415505818c608d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -343,7 +347,40 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.html#a2e14658f9163c4d512ed12f7e17b03cc">Mezzanine::Scripting::iScript</a>.</p>
 
-<p>Definition at line <a class="el" href="script_8h_source.html#l00330">330</a> of file <a class="el" href="script_8h_source.html">script.h</a>.</p>
+<p>Definition at line <a class="el" href="script_8h_source.html#l00335">335</a> of file <a class="el" href="script_8h_source.html">script.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae08b425c515663029d6e37c75d1abf78"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt;<a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.html">iScriptArgument</a>&gt; Mezzanine::Scripting::iScriptMultipleReturn::GetReturn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td>
+          <td class="paramname"><em>ReturnNumber</em>)</td><td></td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve a value returned from a script. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ReturnNumber</td><td>The index of the return to return. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference counted pointer to a ScriptArgument. </dd></dl>
 
 </div>
 </div>
@@ -378,6 +415,6 @@ Additional Inherited Members</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

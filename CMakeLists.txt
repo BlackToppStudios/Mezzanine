@@ -576,7 +576,7 @@ add_subdirectory (Mezzanine)
 add_subdirectory (EngineDemo)
 add_subdirectory (Catch)
 add_subdirectory (UnitTests)
-
+add_subdirectory (Tools/Armadillo)
 if(${Mezz_Tools_EntreLua})
     add_subdirectory (Tools/EntreLua)
 endif(${Mezz_Tools_EntreLua})

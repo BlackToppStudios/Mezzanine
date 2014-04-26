@@ -212,7 +212,10 @@ namespace Mezzanine
             { return this->UseFixedYaw; }
 
         void CameraProxy::LookAt(const Vector3& TargetLoc)
-            { this->GraphicsCamera->lookAt( TargetLoc.GetOgreVector3() ); }
+            { this->GraphicsNode->lookAt( TargetLoc.GetOgreVector3(), Ogre::Node::TS_WORLD ); }
+
+        void CameraProxy::MoveRelative(const Vector3& ToMove)
+            { this->GraphicsNode->translate( ToMove.GetOgreVector3(), Ogre::Node::TS_LOCAL ); }
 
         void CameraProxy::SetDirection(const Vector3& Dir)
             { this->SetOrientation( Vector3::Neg_Unit_Z().GetRotationToAxis( Dir ) ); }

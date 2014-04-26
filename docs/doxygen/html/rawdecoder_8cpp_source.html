@@ -151,7 +151,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordtype">bool</span> RawDecoder::IsValid()</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> RawDecoder::IsValid()</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        {</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">return</span> ( RawStream );</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
@@ -161,7 +161,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbeeab1ab265e188be6904b824675b56eecfa" title="Unknown or error condition. ">Audio::Enc_RAW</a>;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">bool</span> RawDecoder::IsSeekingSupported()</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> RawDecoder::IsSeekingSupported()</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
@@ -181,13 +181,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordtype">bool</span> RawDecoder::SetPosition(<a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> Position, <span class="keywordtype">bool</span> Relative)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> RawDecoder::SetPosition(<a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> Position, <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> Relative)</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            this-&gt;RawStream-&gt;SetStreamPosition(Position,( Relative ? <a class="code" href="classMezzanine_1_1Resource_1_1DataStream.html#a7a910c82448c8999065a1159a08a5a03ac5458c1228f7807ef002fcc892564114" title="The current position for read/write operations in the stream. ">Resource::DataStream::SO_Current</a> : <a class="code" href="classMezzanine_1_1Resource_1_1DataStream.html#a7a910c82448c8999065a1159a08a5a03a199b4cbe34d3c1fdafaef7e0b7cf83be" title="The beginning of the stream. ">Resource::DataStream::SO_Beginning</a> ));</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">bool</span> RawDecoder::Seek(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number. ">Real</a> Seconds, <span class="keywordtype">bool</span> Relative)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> RawDecoder::Seek(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number. ">Real</a> Seconds, <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> Relative)</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        {</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> Pos = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a><span class="keyword">&gt;</span>( Seconds * <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number. ">Real</a><span class="keyword">&gt;</span>(this-&gt;Frequency) * static_cast&lt;Real&gt;( this-&gt;GetSampleSize() ) );</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">return</span> this-&gt;SetPosition(Pos,Relative);</div>
@@ -238,6 +238,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

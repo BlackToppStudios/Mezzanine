@@ -296,14 +296,10 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
         DefaultControl->MoveBackward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     // Determine our camera angular movement
-    static Boole MouseCam = false;
-    if( SysKeyboard->IsButtonPressing(Input::KEY_HOME) )
-        MouseCam = true;
-    if( SysKeyboard->IsButtonPressing(Input::KEY_END) )
-        MouseCam = false;
     Vector2 Offset = SysMouse->GetMouseDelta();
-    if( MouseCam && Vector2(0,0) != Offset )
+    if( SysMouse->IsButtonPressed(Input::MOUSEBUTTON_2) && Vector2(0,0) != Offset ) {
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+    }
     // Determine our Debug drawer visibility
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) ) {
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();

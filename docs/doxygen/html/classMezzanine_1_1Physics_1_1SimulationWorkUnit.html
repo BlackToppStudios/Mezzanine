@@ -84,7 +84,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMezzanine_1_1Physics_1_1SimulationWorkUnit-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -185,15 +184,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:af902949bd5480c87e9764e12bcb959d6 inherit pub_methods_classMezzanine_1_1Threading_1_1iWorkUnit"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor. <br/></td></tr>
 <tr class="separator:af902949bd5480c87e9764e12bcb959d6 inherit pub_methods_classMezzanine_1_1Threading_1_1iWorkUnit"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a0c5afbf80ef2359e749af51405f29a85"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html#a0c5afbf80ef2359e749af51405f29a85">SimulationWorkUnit</a> (const <a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html">SimulationWorkUnit</a> &amp;Other)</td></tr>
-<tr class="memdesc:a0c5afbf80ef2359e749af51405f29a85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protected copy constructor. THIS IS NOT ALLOWED.  <a href="#a0c5afbf80ef2359e749af51405f29a85">More...</a><br/></td></tr>
-<tr class="separator:a0c5afbf80ef2359e749af51405f29a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a654301c6895c7e5ff1262cbd494871b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html">SimulationWorkUnit</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html#a654301c6895c7e5ff1262cbd494871b0">operator=</a> (const <a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html">SimulationWorkUnit</a> &amp;Other)</td></tr>
-<tr class="memdesc:a654301c6895c7e5ff1262cbd494871b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protected assignment operator. THIS IS NOT ALLOWED.  <a href="#a654301c6895c7e5ff1262cbd494871b0">More...</a><br/></td></tr>
-<tr class="separator:a654301c6895c7e5ff1262cbd494871b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ae7f9d1c424f1f449a498eb7d8073e778"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html">PhysicsManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html#ae7f9d1c424f1f449a498eb7d8073e778">TargetManager</a></td></tr>
@@ -217,42 +207,8 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.htm
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is a <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. ">Mezzanine::Threading::iWorkUnit</a> for the single threaded processing of physics simulations. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00096">96</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00099">99</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a0c5afbf80ef2359e749af51405f29a85"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Mezzanine::Physics::SimulationWorkUnit::SimulationWorkUnit </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html">SimulationWorkUnit</a> &amp;&#160;</td>
-          <td class="paramname"><em>Other</em>)</td><td></td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Protected copy constructor. THIS IS NOT ALLOWED. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Other</td><td>The other work unit being copied from. WHICH WILL NEVER HAPPEN. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00244">244</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a62c577f78f38f88ee7e15a132cdad9fc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -275,7 +231,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.htm
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00250">250</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00246">246</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -312,41 +268,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.htm
 
 <p>Implements <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html#a9ac07631b2aa961e4c226d0753e3d2b0">Mezzanine::Threading::iWorkUnit</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00259">259</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a654301c6895c7e5ff1262cbd494871b0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html">SimulationWorkUnit</a> &amp; Mezzanine::Physics::SimulationWorkUnit::operator= </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Physics_1_1SimulationWorkUnit.html">SimulationWorkUnit</a> &amp;&#160;</td>
-          <td class="paramname"><em>Other</em>)</td><td></td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Protected assignment operator. THIS IS NOT ALLOWED. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Other</td><td>The other work unit being copied from. WHICH WILL NEVER HAPPEN. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00247">247</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00255">255</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -371,7 +293,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.htm
 
 <p>A pointer to the manager this work unit is processing. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00101">101</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00104">104</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -381,6 +303,6 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.htm
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:13 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

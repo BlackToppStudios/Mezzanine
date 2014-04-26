@@ -7,7 +7,7 @@
 <area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1419,657,1475,685"/>
 <area shape="rect" id="node47" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class. " alt="" coords="713,270,833,298"/>
 <area shape="rect" id="node51" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="861,347,928,375"/>
-<area shape="rect" id="node56" href="$mutex_8h.html" title="Declares a Mutex, Mutex tools. " alt="" coords="953,425,1020,453"/>
+<area shape="rect" id="node56" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. " alt="" coords="953,425,1020,453"/>
 <area shape="rect" id="node61" href="$workunitkey_8h.html" title="This file defines the metadata used to sort workunits. " alt="" coords="536,347,635,375"/>
 <area shape="rect" id="node68" href="$rollingaverage_8h.html" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. " alt="" coords="1003,347,1112,375"/>
 <area shape="rect" id="node77" href="$threadingenumerations_8h.html" title="Any enumerations the threading library requires are all declared here. " alt="" coords="1085,502,1248,530"/>

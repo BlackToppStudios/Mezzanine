@@ -40,6 +40,7 @@
 #ifndef _physicsplanecollisionshape_h
 #define _physicsplanecollisionshape_h
 
+#include "plane.h"
 #include "Physics/fieldcollisionshape.h"
 
 class btStaticPlaneShape;
@@ -55,20 +56,52 @@ namespace Mezzanine
         class MEZZ_LIB PlaneCollisionShape : public FieldCollisionShape
         {
         protected:
+            /// @internal
+            /// @brief A pointer to the internal shape.
             btStaticPlaneShape* PlaneShape;
         public:
-            /// @brief Class Constructor.
+            /// @brief Math Constructor.
             /// @param Name The name of this Shape.
-            PlaneCollisionShape(const String& Name);
+            /// @param Other A plane math class to copy the plane dimensions from.
+            PlaneCollisionShape(const String& Name, const Plane& Other);
+            /// @brief Descriptive constructor.
+            /// @param Norm The positive direction of the plane.
+            /// @param Constant The Constant with which to project the plane.
+            PlaneCollisionShape(const String& Name, const Vector3& Norm, const Real Constant);
             /// @internal
             /// @brief Internal Constructor.
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
             PlaneCollisionShape(const String& Name, btStaticPlaneShape* BulletShape);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            PlaneCollisionShape(const XML::Node& XMLNode);
             /// @brief Class Destructor.
             virtual ~PlaneCollisionShape();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Gets the positive direction of the plane.
+            /// @return Returns a Vector3 expressing the positive direction of this plane.
+            Vector3 GetNormal() const;
+            /// @brief Gets the constant with which to project the plane.
+            /// @return Returns a Real expressing the constant used to project the plane.
+            Real GetConstant() const;
+
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc CollisionShape::ProtoSerialize(XML::Node&) const
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::ProtoDeSerialize(const XML::Node&)
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "PlaneCollisionShape".
+            static String SerializableName();
         };//PlaneCollisionShape
     }//Physics
 }//Mezzanine

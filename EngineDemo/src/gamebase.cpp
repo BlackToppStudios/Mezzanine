@@ -408,7 +408,9 @@ int main(int argc, char **argv)
     TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
 
     //Setup some camera tricks
-    TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,450.0));
+    Graphics::CameraProxy* MainCam = TheEntresol->GetCameraManager()->GetCamera(0);
+    MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
+    MainCam->LookAt(Vector3(0,0,0));
     // ©ameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
     //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
     //DefaultControl->SetHoverHeight(75);
@@ -486,7 +488,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCD);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
@@ -498,7 +500,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCD);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
@@ -511,7 +513,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         RigDeb->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
@@ -524,54 +526,54 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass);
+    RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
     RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
     RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
     RigDeb->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
     RigDeb->AddToWorld();
 
-    object5 = TheEntresol->GetDebrisManager()->CreateRigidDebris("Plane",0);
+    object5 = TheEntresol->GetDebrisManager()->CreateRigidDebris("Plane",0,false);
     object5->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object5->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object5->SetLocation(Vector3(0.0,-100,-300.0));
     object5->AddToWorld();
 
-    object6 = TheEntresol->GetDebrisManager()->CreateRigidDebris("Ramp",0);
+    object6 = TheEntresol->GetDebrisManager()->CreateRigidDebris("Ramp",0,false);
     object6->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object6->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object6->SetLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
     object6->AddToWorld();
 
-    object1 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontRight",mass);
+    object1 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontRight",mass,false);
     object1->GetRigidProxy()->SetCollisionShape(RobitCH);
     object1->GetEntityProxy()->SetMesh(filerobot,groupname);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->AddToWorld();
 
-    object2 = TheEntresol->GetDebrisManager()->CreateRigidDebris("WoodSphere",150.0);
+    object2 = TheEntresol->GetDebrisManager()->CreateRigidDebris("WoodSphere",150.0,false);
     object2->GetRigidProxy()->SetCollisionShape(WoodenSphere);
     object2->GetEntityProxy()->SetMesh("Sphere_Wood.mesh",groupname);
     object2->SetScale(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
     object2->AddToWorld();
 
-    object3 = TheEntresol->GetDebrisManager()->CreateRigidDebris("MetalSphere",200.0);
+    object3 = TheEntresol->GetDebrisManager()->CreateRigidDebris("MetalSphere",200.0,false);
     object3->GetRigidProxy()->SetCollisionShape(MetalSphere);
     object3->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object3->SetScale(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
     object3->AddToWorld();
 
-    object4 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontLeft",mass);
+    object4 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontLeft",mass,false);
     object4->GetRigidProxy()->SetCollisionShape(RobitCD);
     object4->GetEntityProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->AddToWorld();
 
-    object7 = TheEntresol->GetDebrisManager()->CreateRigidDebris("MetalSphere2",800.0);
+    object7 = TheEntresol->GetDebrisManager()->CreateRigidDebris("MetalSphere2",800.0,false);
     object7->GetRigidProxy()->SetCollisionShape(MetalSphere2);
     object7->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object7->SetScale(Vector3(0.3,0.3,0.3));
@@ -593,6 +595,10 @@ void LoadContent()
     BlackHole->SetAttenuation(3.000,Mezzanine::Att_Linear);
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
+
+    Physics::RigidProxy* InvisFloor = TheEntresol->GetPhysicsManager()->CreateRigidProxy(0,false);
+    InvisFloor->SetCollisionShape( new Physics::PlaneCollisionShape("InvisFloor",Plane(Vector3::Unit_Y(),Vector3(0,-300,0))) );
+    InvisFloor->AddToWorld();
 
     //Final Steps
     Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;

@@ -20,6 +20,7 @@ var searchData=
   ['arl_5fratio_5flocked_5fexpanding',['ARL_Ratio_Locked_Expanding',['../namespaceMezzanine_1_1UI.html#a6885a21f0bd018f7af3dc0a0d10b8aeaa49ca61d8ee85f50c4068227c020ccb07',1,'Mezzanine::UI']]],
   ['arl_5fratio_5flocked_5fshrinking',['ARL_Ratio_Locked_Shrinking',['../namespaceMezzanine_1_1UI.html#a6885a21f0bd018f7af3dc0a0d10b8aeaa0281fe422dc57cd5a61e06658b0a9ada',1,'Mezzanine::UI']]],
   ['arl_5fratio_5funlocked',['ARL_Ratio_Unlocked',['../namespaceMezzanine_1_1UI.html#a6885a21f0bd018f7af3dc0a0d10b8aeaad3ca040267f444ebb440e90aa45c2af2',1,'Mezzanine::UI']]],
+  ['arl_5fratio_5fy_5faxis',['ARL_Ratio_Y_Axis',['../namespaceMezzanine_1_1UI.html#a6885a21f0bd018f7af3dc0a0d10b8aeaaca15f3d46c7b6f0a11baf50779e10c9a',1,'Mezzanine::UI']]],
   ['as_5factivated',['AS_Activated',['../classMezzanine_1_1UI_1_1Button.html#a909aa0b51574d09b54ee119ed526b838a27448e29918a0fa03c3e3afb71c37049',1,'Mezzanine::UI::Button']]],
   ['as_5factivation_5fstandby',['AS_Activation_Standby',['../classMezzanine_1_1UI_1_1Button.html#a909aa0b51574d09b54ee119ed526b838ae27c9d42eb9ef30c6f49f0e58d1ad0fc',1,'Mezzanine::UI::Button']]],
   ['as_5fdeactivated',['AS_Deactivated',['../classMezzanine_1_1UI_1_1Button.html#a909aa0b51574d09b54ee119ed526b838aad2db4515462d3afc89b8c218d703467',1,'Mezzanine::UI::Button']]],

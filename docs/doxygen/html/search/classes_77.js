@@ -5,7 +5,7 @@ var searchData=
   ['widgeteventarguments',['WidgetEventArguments',['../classMezzanine_1_1UI_1_1WidgetEventArguments.html',1,'Mezzanine::UI']]],
   ['widgetfactory',['WidgetFactory',['../classMezzanine_1_1UI_1_1WidgetFactory.html',1,'Mezzanine::UI']]],
   ['widgetupdateworkunit',['WidgetUpdateWorkUnit',['../classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.html',1,'Mezzanine::UI']]],
-  ['windowsettings',['WindowSettings',['../structMezzanine_1_1WindowSettings.html',1,'Mezzanine']]],
+  ['windowsettings',['WindowSettings',['../structMezzanine_1_1Graphics_1_1WindowSettings.html',1,'Mezzanine::Graphics']]],
   ['worksorter',['WorkSorter',['../classMezzanine_1_1Threading_1_1WorkSorter.html',1,'Mezzanine::Threading']]],
   ['workunitkey',['WorkUnitKey',['../classMezzanine_1_1Threading_1_1WorkUnitKey.html',1,'Mezzanine::Threading']]],
   ['world',['World',['../classMezzanine_1_1World.html',1,'Mezzanine']]],

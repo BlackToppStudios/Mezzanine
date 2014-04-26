@@ -316,9 +316,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4a37e6fbdd0d17719d0a376af64d16e2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Audio_1_1iSound.html">iSound</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a4a37e6fbdd0d17719d0a376af64d16e2">CreateSound</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Type, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;StreamName, <a class="el" href="namespaceMezzanine.html#ab4f5efed51a1f6fc1799c821c3daf4b7">Char8</a> *Buffer, const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Length, const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Frequency, const <a class="el" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> Config)=0</td></tr>
 <tr class="memdesc:a4a37e6fbdd0d17719d0a376af64d16e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classMezzanine_1_1Audio_1_1iSound.html">iSound</a> from a memory buffer that is unencoded.  <a href="#a4a37e6fbdd0d17719d0a376af64d16e2">More...</a><br/></td></tr>
 <tr class="separator:a4a37e6fbdd0d17719d0a376af64d16e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a123ee30493e5f3329a0eec6019105550"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a123ee30493e5f3329a0eec6019105550">DecoderFactoryExists</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Audio::Encoding</a> Format)</td></tr>
-<tr class="memdesc:a123ee30493e5f3329a0eec6019105550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a <a class="el" href="classMezzanine_1_1Audio_1_1iDecoderFactory.html">iDecoderFactory</a> is already registered with this manager.  <a href="#a123ee30493e5f3329a0eec6019105550">More...</a><br/></td></tr>
-<tr class="separator:a123ee30493e5f3329a0eec6019105550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33c71a90c87ca25044540ff13cabe9fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a33c71a90c87ca25044540ff13cabe9fb">DecoderFactoryExists</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Audio::Encoding</a> Format)</td></tr>
+<tr class="memdesc:a33c71a90c87ca25044540ff13cabe9fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a <a class="el" href="classMezzanine_1_1Audio_1_1iDecoderFactory.html">iDecoderFactory</a> is already registered with this manager.  <a href="#a33c71a90c87ca25044540ff13cabe9fb">More...</a><br/></td></tr>
+<tr class="separator:a33c71a90c87ca25044540ff13cabe9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ca9f9f3dcdae87b8c6b945b9d54dd3e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a9ca9f9f3dcdae87b8c6b945b9d54dd3e">Deinitialize</a> ()=0</td></tr>
 <tr class="memdesc:a9ca9f9f3dcdae87b8c6b945b9d54dd3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes this manager from any necessary configuration so it can be safely disposed of.  <a href="#a9ca9f9f3dcdae87b8c6b945b9d54dd3e">More...</a><br/></td></tr>
 <tr class="separator:a9ca9f9f3dcdae87b8c6b945b9d54dd3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -419,45 +419,45 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a17993bb82315393c3eb19c12b59be8f1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a17993bb82315393c3eb19c12b59be8f1">Initialize</a> ()=0</td></tr>
 <tr class="memdesc:a17993bb82315393c3eb19c12b59be8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures this manager for use prior to entering the main loop.  <a href="#a17993bb82315393c3eb19c12b59be8f1">More...</a><br/></td></tr>
 <tr class="separator:a17993bb82315393c3eb19c12b59be8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5048a43024daee4305d3795c9694f99"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#aa5048a43024daee4305d3795c9694f99">InitializePlaybackDevice</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;DeviceName, const <a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> OutputFrequency=44100)=0</td></tr>
-<tr class="memdesc:aa5048a43024daee4305d3795c9694f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the playback device.  <a href="#aa5048a43024daee4305d3795c9694f99">More...</a><br/></td></tr>
-<tr class="separator:aa5048a43024daee4305d3795c9694f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83961ec9d158906a714835824b751477"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a83961ec9d158906a714835824b751477">IsAmbientMuted</a> () const </td></tr>
-<tr class="memdesc:a83961ec9d158906a714835824b751477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Ambient Sound instances are muted.  <a href="#a83961ec9d158906a714835824b751477">More...</a><br/></td></tr>
-<tr class="separator:a83961ec9d158906a714835824b751477"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa00282f6663f0b21cf76014c8301b3eb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#aa00282f6663f0b21cf76014c8301b3eb">IsDialogMuted</a> () const </td></tr>
-<tr class="memdesc:aa00282f6663f0b21cf76014c8301b3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Dialog Sound instances are muted.  <a href="#aa00282f6663f0b21cf76014c8301b3eb">More...</a><br/></td></tr>
-<tr class="separator:aa00282f6663f0b21cf76014c8301b3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9090877536057c69c8478fd3ee0b7fd9"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a9090877536057c69c8478fd3ee0b7fd9">IsEffectMuted</a> () const </td></tr>
-<tr class="memdesc:a9090877536057c69c8478fd3ee0b7fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Effect Sound instances are muted.  <a href="#a9090877536057c69c8478fd3ee0b7fd9">More...</a><br/></td></tr>
-<tr class="separator:a9090877536057c69c8478fd3ee0b7fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c25dbe2e53689d0d535ea809e3baf69"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a2c25dbe2e53689d0d535ea809e3baf69">IsMusicMuted</a> () const </td></tr>
-<tr class="memdesc:a2c25dbe2e53689d0d535ea809e3baf69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Music Sound instances are muted.  <a href="#a2c25dbe2e53689d0d535ea809e3baf69">More...</a><br/></td></tr>
-<tr class="separator:a2c25dbe2e53689d0d535ea809e3baf69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae628c968a30641ede1847f3b082b1891"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#ae628c968a30641ede1847f3b082b1891">IsMuted</a> () const =0</td></tr>
-<tr class="memdesc:ae628c968a30641ede1847f3b082b1891"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the <a class="el" href="namespaceMezzanine_1_1Audio.html" title="This namespace is for all the classes belonging to the Audio Subsystem. ">Audio</a> subsystem is muted.  <a href="#ae628c968a30641ede1847f3b082b1891">More...</a><br/></td></tr>
-<tr class="separator:ae628c968a30641ede1847f3b082b1891"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99cb22c41625a069eaa887e912b2e1d1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a99cb22c41625a069eaa887e912b2e1d1">IsTypeMuted</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Type) const =0</td></tr>
-<tr class="memdesc:a99cb22c41625a069eaa887e912b2e1d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Sound instances of the specified type are currently muted.  <a href="#a99cb22c41625a069eaa887e912b2e1d1">More...</a><br/></td></tr>
-<tr class="separator:a99cb22c41625a069eaa887e912b2e1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c56655df592a94308e933d86bfff2dc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a4c56655df592a94308e933d86bfff2dc">MuteAmbient</a> (bool Enable)</td></tr>
-<tr class="memdesc:a4c56655df592a94308e933d86bfff2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Ambient Sound instances.  <a href="#a4c56655df592a94308e933d86bfff2dc">More...</a><br/></td></tr>
-<tr class="separator:a4c56655df592a94308e933d86bfff2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98606909d84d5de629c13b1c2b5bf6b5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a98606909d84d5de629c13b1c2b5bf6b5">MuteDialog</a> (bool Enable)</td></tr>
-<tr class="memdesc:a98606909d84d5de629c13b1c2b5bf6b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Dialog Sound instances.  <a href="#a98606909d84d5de629c13b1c2b5bf6b5">More...</a><br/></td></tr>
-<tr class="separator:a98606909d84d5de629c13b1c2b5bf6b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe9a39f93dd93b828b3b7bad5cda2ee9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#abe9a39f93dd93b828b3b7bad5cda2ee9">MuteEffect</a> (bool Enable)</td></tr>
-<tr class="memdesc:abe9a39f93dd93b828b3b7bad5cda2ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Effect Sound instances.  <a href="#abe9a39f93dd93b828b3b7bad5cda2ee9">More...</a><br/></td></tr>
-<tr class="separator:abe9a39f93dd93b828b3b7bad5cda2ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dc6d082cee0ee486b21f1b1c41f0fb1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a2dc6d082cee0ee486b21f1b1c41f0fb1">MuteMusic</a> (bool Enable)</td></tr>
-<tr class="memdesc:a2dc6d082cee0ee486b21f1b1c41f0fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Music Sound instances.  <a href="#a2dc6d082cee0ee486b21f1b1c41f0fb1">More...</a><br/></td></tr>
-<tr class="separator:a2dc6d082cee0ee486b21f1b1c41f0fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81d65f95c866de99f42a6bf7010738bc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a81d65f95c866de99f42a6bf7010738bc">MuteType</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Type, bool Enable)=0</td></tr>
-<tr class="memdesc:a81d65f95c866de99f42a6bf7010738bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Sound instances of a specified type.  <a href="#a81d65f95c866de99f42a6bf7010738bc">More...</a><br/></td></tr>
-<tr class="separator:a81d65f95c866de99f42a6bf7010738bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a887fe272e2587378d95fef1bafdd62a2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a887fe272e2587378d95fef1bafdd62a2">PlaybackDeviceNameValid</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;DeviceName) const =0</td></tr>
-<tr class="memdesc:a887fe272e2587378d95fef1bafdd62a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the named playback device is available.  <a href="#a887fe272e2587378d95fef1bafdd62a2">More...</a><br/></td></tr>
-<tr class="separator:a887fe272e2587378d95fef1bafdd62a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a093119f5d7e9b4271a7a5a93d7b38605"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a093119f5d7e9b4271a7a5a93d7b38605">InitializePlaybackDevice</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;DeviceName, const <a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> OutputFrequency=44100)=0</td></tr>
+<tr class="memdesc:a093119f5d7e9b4271a7a5a93d7b38605"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the playback device.  <a href="#a093119f5d7e9b4271a7a5a93d7b38605">More...</a><br/></td></tr>
+<tr class="separator:a093119f5d7e9b4271a7a5a93d7b38605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2210ee845544b145e84f92c819844f60"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a2210ee845544b145e84f92c819844f60">IsAmbientMuted</a> () const </td></tr>
+<tr class="memdesc:a2210ee845544b145e84f92c819844f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Ambient Sound instances are muted.  <a href="#a2210ee845544b145e84f92c819844f60">More...</a><br/></td></tr>
+<tr class="separator:a2210ee845544b145e84f92c819844f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f537bb36f52f11c40ee7a97e05e9b60"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a3f537bb36f52f11c40ee7a97e05e9b60">IsDialogMuted</a> () const </td></tr>
+<tr class="memdesc:a3f537bb36f52f11c40ee7a97e05e9b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Dialog Sound instances are muted.  <a href="#a3f537bb36f52f11c40ee7a97e05e9b60">More...</a><br/></td></tr>
+<tr class="separator:a3f537bb36f52f11c40ee7a97e05e9b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97576e16f7a7ecb54b7d2b32b663f473"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a97576e16f7a7ecb54b7d2b32b663f473">IsEffectMuted</a> () const </td></tr>
+<tr class="memdesc:a97576e16f7a7ecb54b7d2b32b663f473"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Effect Sound instances are muted.  <a href="#a97576e16f7a7ecb54b7d2b32b663f473">More...</a><br/></td></tr>
+<tr class="separator:a97576e16f7a7ecb54b7d2b32b663f473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3711ad200f3ac5ff1be642a37d087912"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a3711ad200f3ac5ff1be642a37d087912">IsMusicMuted</a> () const </td></tr>
+<tr class="memdesc:a3711ad200f3ac5ff1be642a37d087912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Music Sound instances are muted.  <a href="#a3711ad200f3ac5ff1be642a37d087912">More...</a><br/></td></tr>
+<tr class="separator:a3711ad200f3ac5ff1be642a37d087912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3327b23275519cd8cdd8f6b59fdf95"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a0f3327b23275519cd8cdd8f6b59fdf95">IsMuted</a> () const =0</td></tr>
+<tr class="memdesc:a0f3327b23275519cd8cdd8f6b59fdf95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the <a class="el" href="namespaceMezzanine_1_1Audio.html" title="This namespace is for all the classes belonging to the Audio Subsystem. ">Audio</a> subsystem is muted.  <a href="#a0f3327b23275519cd8cdd8f6b59fdf95">More...</a><br/></td></tr>
+<tr class="separator:a0f3327b23275519cd8cdd8f6b59fdf95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a583b064e53c9b8986d8f62dd741355a9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a583b064e53c9b8986d8f62dd741355a9">IsTypeMuted</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Type) const =0</td></tr>
+<tr class="memdesc:a583b064e53c9b8986d8f62dd741355a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Sound instances of the specified type are currently muted.  <a href="#a583b064e53c9b8986d8f62dd741355a9">More...</a><br/></td></tr>
+<tr class="separator:a583b064e53c9b8986d8f62dd741355a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e4b52a3279fa7da2b30847548924d2b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a7e4b52a3279fa7da2b30847548924d2b">MuteAmbient</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:a7e4b52a3279fa7da2b30847548924d2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Ambient Sound instances.  <a href="#a7e4b52a3279fa7da2b30847548924d2b">More...</a><br/></td></tr>
+<tr class="separator:a7e4b52a3279fa7da2b30847548924d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8bca7e1be25d2e3ce51ab1d4649169"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#aab8bca7e1be25d2e3ce51ab1d4649169">MuteDialog</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:aab8bca7e1be25d2e3ce51ab1d4649169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Dialog Sound instances.  <a href="#aab8bca7e1be25d2e3ce51ab1d4649169">More...</a><br/></td></tr>
+<tr class="separator:aab8bca7e1be25d2e3ce51ab1d4649169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c73ed0aee6260a2e39e5a1ee8c46d03"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a1c73ed0aee6260a2e39e5a1ee8c46d03">MuteEffect</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:a1c73ed0aee6260a2e39e5a1ee8c46d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Effect Sound instances.  <a href="#a1c73ed0aee6260a2e39e5a1ee8c46d03">More...</a><br/></td></tr>
+<tr class="separator:a1c73ed0aee6260a2e39e5a1ee8c46d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a031429e0dbd49d84d5e7ca662ec87c6f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a031429e0dbd49d84d5e7ca662ec87c6f">MuteMusic</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:a031429e0dbd49d84d5e7ca662ec87c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Music Sound instances.  <a href="#a031429e0dbd49d84d5e7ca662ec87c6f">More...</a><br/></td></tr>
+<tr class="separator:a031429e0dbd49d84d5e7ca662ec87c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38343a93f240a018bcb1f921ec1cb9b4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a38343a93f240a018bcb1f921ec1cb9b4">MuteType</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Type, <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)=0</td></tr>
+<tr class="memdesc:a38343a93f240a018bcb1f921ec1cb9b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all Sound instances of a specified type.  <a href="#a38343a93f240a018bcb1f921ec1cb9b4">More...</a><br/></td></tr>
+<tr class="separator:a38343a93f240a018bcb1f921ec1cb9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47894295f5feb8969363bd88f8fb4fec"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a47894295f5feb8969363bd88f8fb4fec">PlaybackDeviceNameValid</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;DeviceName) const =0</td></tr>
+<tr class="memdesc:a47894295f5feb8969363bd88f8fb4fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the named playback device is available.  <a href="#a47894295f5feb8969363bd88f8fb4fec">More...</a><br/></td></tr>
+<tr class="separator:a47894295f5feb8969363bd88f8fb4fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62b5604f864cbda5575a3b33705c58f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62b5604f864cbda5575a3b33705c58f0"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a62b5604f864cbda5575a3b33705c58f0">RemoveAllDecoderFactories</a> ()</td></tr>
 <tr class="memdesc:a62b5604f864cbda5575a3b33705c58f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes (but does not destroy) all registered <a class="el" href="classMezzanine_1_1Audio_1_1iDecoderFactory.html">iDecoderFactory</a> instances. <br/></td></tr>
@@ -477,9 +477,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a6693243c98ed75b41ff696a757c800e3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a6693243c98ed75b41ff696a757c800e3">SetEffectVolume</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Effect)</td></tr>
 <tr class="memdesc:a6693243c98ed75b41ff696a757c800e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the volume for all stored Effect Sound instances.  <a href="#a6693243c98ed75b41ff696a757c800e3">More...</a><br/></td></tr>
 <tr class="separator:a6693243c98ed75b41ff696a757c800e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e0c61c5946c74d32cd018238ad1aa7c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a6e0c61c5946c74d32cd018238ad1aa7c">SetMasterMute</a> (bool Enable)=0</td></tr>
-<tr class="memdesc:a6e0c61c5946c74d32cd018238ad1aa7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all <a class="el" href="namespaceMezzanine_1_1Audio.html" title="This namespace is for all the classes belonging to the Audio Subsystem. ">Audio</a>.  <a href="#a6e0c61c5946c74d32cd018238ad1aa7c">More...</a><br/></td></tr>
-<tr class="separator:a6e0c61c5946c74d32cd018238ad1aa7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8936067c22e6064917fd8ef377f6905c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a8936067c22e6064917fd8ef377f6905c">SetMasterMute</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)=0</td></tr>
+<tr class="memdesc:a8936067c22e6064917fd8ef377f6905c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not to mute all <a class="el" href="namespaceMezzanine_1_1Audio.html" title="This namespace is for all the classes belonging to the Audio Subsystem. ">Audio</a>.  <a href="#a8936067c22e6064917fd8ef377f6905c">More...</a><br/></td></tr>
+<tr class="separator:a8936067c22e6064917fd8ef377f6905c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70046fc4889434a4ee7c8eb5315d32dc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.html#a70046fc4889434a4ee7c8eb5315d32dc">SetMasterVolume</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Master)=0</td></tr>
 <tr class="memdesc:a70046fc4889434a4ee7c8eb5315d32dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the volume for all stored Sound instances.  <a href="#a70046fc4889434a4ee7c8eb5315d32dc">More...</a><br/></td></tr>
 <tr class="separator:a70046fc4889434a4ee7c8eb5315d32dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -507,9 +507,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a70b61244d5182ad40dd056b2664a6aa7">GetInterfaceTypeAsString</a> () const </td></tr>
 <tr class="memdesc:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a string of the interface type of this manager.  <a href="#a70b61244d5182ad40dd056b2664a6aa7">More...</a><br/></td></tr>
 <tr class="separator:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#adc9433deb9026dbbb0b51f35a3a10f02">IsInitialized</a> () const </td></tr>
-<tr class="memdesc:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this manager has been initialized.  <a href="#adc9433deb9026dbbb0b51f35a3a10f02">More...</a><br/></td></tr>
-<tr class="separator:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24237e26773465e6696d9ae6c8cf507a inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a24237e26773465e6696d9ae6c8cf507a">IsInitialized</a> () const </td></tr>
+<tr class="memdesc:a24237e26773465e6696d9ae6c8cf507a inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this manager has been initialized.  <a href="#a24237e26773465e6696d9ae6c8cf507a">More...</a><br/></td></tr>
+<tr class="separator:a24237e26773465e6696d9ae6c8cf507a inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1ObjectSettingsHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html">Mezzanine::ObjectSettingsHandler</a></td></tr>
 <tr class="memitem:aa9a6ab6fbf3c47218915a8f71241e769 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9a6ab6fbf3c47218915a8f71241e769"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aa9a6ab6fbf3c47218915a8f71241e769">ObjectSettingsHandler</a> ()</td></tr>
@@ -550,12 +550,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ac6032ddb1364971221a1c840dac380de inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ac6032ddb1364971221a1c840dac380de">DestroySettingGroup</a> (<a class="el" href="classMezzanine_1_1ObjectSettingGroup.html">ObjectSettingGroup</a> *ToBeDestroyed)</td></tr>
 <tr class="memdesc:ac6032ddb1364971221a1c840dac380de inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a setting group.  <a href="#ac6032ddb1364971221a1c840dac380de">More...</a><br/></td></tr>
 <tr class="separator:ac6032ddb1364971221a1c840dac380de inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a41547c8f68af68a4e20a15aa14860a inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a4a41547c8f68af68a4e20a15aa14860a">GetAutoGenFiles</a> () const </td></tr>
-<tr class="memdesc:a4a41547c8f68af68a4e20a15aa14860a inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create/update settings files upon initialization and destruction.  <a href="#a4a41547c8f68af68a4e20a15aa14860a">More...</a><br/></td></tr>
-<tr class="separator:a4a41547c8f68af68a4e20a15aa14860a inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2748320f8ebede9fd4ddd961a0ea060e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a2748320f8ebede9fd4ddd961a0ea060e">GetAutoGenPath</a> () const </td></tr>
-<tr class="memdesc:a2748320f8ebede9fd4ddd961a0ea060e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create folders when saving.  <a href="#a2748320f8ebede9fd4ddd961a0ea060e">More...</a><br/></td></tr>
-<tr class="separator:a2748320f8ebede9fd4ddd961a0ea060e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6143d74485045ce92b55db102c28fcfb inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a6143d74485045ce92b55db102c28fcfb">GetAutoGenFiles</a> () const </td></tr>
+<tr class="memdesc:a6143d74485045ce92b55db102c28fcfb inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create/update settings files upon initialization and destruction.  <a href="#a6143d74485045ce92b55db102c28fcfb">More...</a><br/></td></tr>
+<tr class="separator:a6143d74485045ce92b55db102c28fcfb inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8bfe7420b9ade58089cf127469f8bf7 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ad8bfe7420b9ade58089cf127469f8bf7">GetAutoGenPath</a> () const </td></tr>
+<tr class="memdesc:ad8bfe7420b9ade58089cf127469f8bf7 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create folders when saving.  <a href="#ad8bfe7420b9ade58089cf127469f8bf7">More...</a><br/></td></tr>
+<tr class="separator:ad8bfe7420b9ade58089cf127469f8bf7 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb95147380378d0f94e4f28b3cd96508 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#acb95147380378d0f94e4f28b3cd96508">GetCurrentSettingsSaveFile</a> () const </td></tr>
 <tr class="memdesc:acb95147380378d0f94e4f28b3cd96508 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the file the "Current" setting group is saved to.  <a href="#acb95147380378d0f94e4f28b3cd96508">More...</a><br/></td></tr>
 <tr class="separator:acb95147380378d0f94e4f28b3cd96508 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -580,6 +580,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a66d85f481956daf504240c4062887869 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a18d82f81497b701db92b943762ae411a">SettingGroupVector</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a66d85f481956daf504240c4062887869">LoadSettingsFromXML</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings)</td></tr>
 <tr class="memdesc:a66d85f481956daf504240c4062887869 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads settings from an xml node.  <a href="#a66d85f481956daf504240c4062887869">More...</a><br/></td></tr>
 <tr class="separator:a66d85f481956daf504240c4062887869 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25764c1d44e89967c4c9ddc830168542 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a25764c1d44e89967c4c9ddc830168542">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:a25764c1d44e89967c4c9ddc830168542 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite this object with it.  <a href="#a25764c1d44e89967c4c9ddc830168542">More...</a><br/></td></tr>
+<tr class="separator:a25764c1d44e89967c4c9ddc830168542 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a184181f2cc11e6b3a7799b80fa961428 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a184181f2cc11e6b3a7799b80fa961428">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot) const </td></tr>
+<tr class="memdesc:a184181f2cc11e6b3a7799b80fa961428 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> ready for serialization.  <a href="#a184181f2cc11e6b3a7799b80fa961428">More...</a><br/></td></tr>
+<tr class="separator:a184181f2cc11e6b3a7799b80fa961428 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5290e6622ef1fcdd5658053f0d53e35 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ad5290e6622ef1fcdd5658053f0d53e35">RemoveGroupFromFile</a> (<a class="el" href="classMezzanine_1_1ObjectSettingGroup.html">ObjectSettingGroup</a> *Group, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:ad5290e6622ef1fcdd5658053f0d53e35 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a previously assigned group from a save file name.  <a href="#ad5290e6622ef1fcdd5658053f0d53e35">More...</a><br/></td></tr>
 <tr class="separator:ad5290e6622ef1fcdd5658053f0d53e35 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -598,18 +604,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:afd5f4af261e30de8b02599a9d3cc3a88 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#afd5f4af261e30de8b02599a9d3cc3a88">SaveSettingsByFile</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:afd5f4af261e30de8b02599a9d3cc3a88 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all settings that have their optional filename set to the specified file.  <a href="#afd5f4af261e30de8b02599a9d3cc3a88">More...</a><br/></td></tr>
 <tr class="separator:afd5f4af261e30de8b02599a9d3cc3a88 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21fd3bde79274a5f7c1caccbc06d80aa inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a21fd3bde79274a5f7c1caccbc06d80aa">SaveSettingsToXML</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings, Boolean SaveCurrent=true)</td></tr>
-<tr class="memdesc:a21fd3bde79274a5f7c1caccbc06d80aa inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all the current setting groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> node.  <a href="#a21fd3bde79274a5f7c1caccbc06d80aa">More...</a><br/></td></tr>
-<tr class="separator:a21fd3bde79274a5f7c1caccbc06d80aa inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99911b1eb47e07eef0c5745a39ecc378 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a99911b1eb47e07eef0c5745a39ecc378">SaveSettingsToXML</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings, <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> SaveCurrent=true)</td></tr>
+<tr class="memdesc:a99911b1eb47e07eef0c5745a39ecc378 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all the current setting groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> node.  <a href="#a99911b1eb47e07eef0c5745a39ecc378">More...</a><br/></td></tr>
+<tr class="separator:a99911b1eb47e07eef0c5745a39ecc378 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae2839db005c52ecdd0fad15723243ca inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aae2839db005c52ecdd0fad15723243ca">SaveSettingsToXML</a> (<a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> &amp;GroupNames, <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings)</td></tr>
 <tr class="memdesc:aae2839db005c52ecdd0fad15723243ca inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the named settings groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> node.  <a href="#aae2839db005c52ecdd0fad15723243ca">More...</a><br/></td></tr>
 <tr class="separator:aae2839db005c52ecdd0fad15723243ca inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c0da58d1e15fc7ecc0f803f329e6556 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a9c0da58d1e15fc7ecc0f803f329e6556">SetAutoGenFiles</a> (Boolean Enable)</td></tr>
-<tr class="memdesc:a9c0da58d1e15fc7ecc0f803f329e6556 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of settings files on initialization and destruction of this object.  <a href="#a9c0da58d1e15fc7ecc0f803f329e6556">More...</a><br/></td></tr>
-<tr class="separator:a9c0da58d1e15fc7ecc0f803f329e6556 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa815d02f8cb4ebd32ecae51f3c1546c8 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aa815d02f8cb4ebd32ecae51f3c1546c8">SetAutoGenPath</a> (Boolean Enable)</td></tr>
-<tr class="memdesc:aa815d02f8cb4ebd32ecae51f3c1546c8 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of a directory path when saving.  <a href="#aa815d02f8cb4ebd32ecae51f3c1546c8">More...</a><br/></td></tr>
-<tr class="separator:aa815d02f8cb4ebd32ecae51f3c1546c8 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93ec53aeebb5e09692c4ddf57909f08e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a93ec53aeebb5e09692c4ddf57909f08e">SetAutoGenFiles</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:a93ec53aeebb5e09692c4ddf57909f08e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of settings files on initialization and destruction of this object.  <a href="#a93ec53aeebb5e09692c4ddf57909f08e">More...</a><br/></td></tr>
+<tr class="separator:a93ec53aeebb5e09692c4ddf57909f08e inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeda496c0689f6f0f76d6903ad480370b inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aeda496c0689f6f0f76d6903ad480370b">SetAutoGenPath</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:aeda496c0689f6f0f76d6903ad480370b inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of a directory path when saving.  <a href="#aeda496c0689f6f0f76d6903ad480370b">More...</a><br/></td></tr>
+<tr class="separator:aeda496c0689f6f0f76d6903ad480370b inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac4557c72aee5a8f02a7c1515e857175 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aac4557c72aee5a8f02a7c1515e857175">SetCurrentSettingsSaveFile</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:aac4557c72aee5a8f02a7c1515e857175 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the file that will have this object's "current" settings saved to.  <a href="#aac4557c72aee5a8f02a7c1515e857175">More...</a><br/></td></tr>
 <tr class="separator:aac4557c72aee5a8f02a7c1515e857175 inherit pub_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -632,19 +638,19 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a98a2f0eebfc473933e53ca19eef145f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container storing all registered <a class="el" href="classMezzanine_1_1Audio_1_1iDecoderFactory.html">iDecoderFactory</a> instances.  <a href="#a98a2f0eebfc473933e53ca19eef145f6">More...</a><br/></td></tr>
 <tr class="separator:a98a2f0eebfc473933e53ca19eef145f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
-<tr class="memitem:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#ada3bad0fe77ff2fa7404eea7a5c16264">Initialized</a></td></tr>
-<tr class="memdesc:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple bool indicating whether or not this manager has been initialized.  <a href="#ada3bad0fe77ff2fa7404eea7a5c16264">More...</a><br/></td></tr>
-<tr class="separator:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74e19db0ea2164127295a95f30e2e105 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a74e19db0ea2164127295a95f30e2e105">Initialized</a></td></tr>
+<tr class="memdesc:a74e19db0ea2164127295a95f30e2e105 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple Boole indicating whether or not this manager has been initialized.  <a href="#a74e19db0ea2164127295a95f30e2e105">More...</a><br/></td></tr>
+<tr class="separator:a74e19db0ea2164127295a95f30e2e105 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Entresol.html">Entresol</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#ae619b4bd732d7345e0ef59ecde6d03cc">TheEntresol</a></td></tr>
 <tr class="memdesc:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual pointer to the <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a> core class.  <a href="#ae619b4bd732d7345e0ef59ecde6d03cc">More...</a><br/></td></tr>
 <tr class="separator:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1ObjectSettingsHandler')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html">Mezzanine::ObjectSettingsHandler</a></td></tr>
-<tr class="memitem:aaa4ee60fc851d225e18c6612d4b53bb7 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aaa4ee60fc851d225e18c6612d4b53bb7">AutoGenFiles</a></td></tr>
-<tr class="memdesc:aaa4ee60fc851d225e18c6612d4b53bb7 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not this handler will attempt to automatically generate a file if it doesn't exist.  <a href="#aaa4ee60fc851d225e18c6612d4b53bb7">More...</a><br/></td></tr>
-<tr class="separator:aaa4ee60fc851d225e18c6612d4b53bb7 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e19e4187f60dd9493a5b211faa14781 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a0e19e4187f60dd9493a5b211faa14781">AutoGenPath</a></td></tr>
-<tr class="memdesc:a0e19e4187f60dd9493a5b211faa14781 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not this handler will attempt to automatically generate a path to a file if it doesn't exist.  <a href="#a0e19e4187f60dd9493a5b211faa14781">More...</a><br/></td></tr>
-<tr class="separator:a0e19e4187f60dd9493a5b211faa14781 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54de5b5efe8fb78e2c7fc031f6b8f3b9 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a54de5b5efe8fb78e2c7fc031f6b8f3b9">AutoGenFiles</a></td></tr>
+<tr class="memdesc:a54de5b5efe8fb78e2c7fc031f6b8f3b9 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not this handler will attempt to automatically generate a file if it doesn't exist.  <a href="#a54de5b5efe8fb78e2c7fc031f6b8f3b9">More...</a><br/></td></tr>
+<tr class="separator:a54de5b5efe8fb78e2c7fc031f6b8f3b9 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a282ad6be42d6267ca9bc70143790fae4 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a282ad6be42d6267ca9bc70143790fae4">AutoGenPath</a></td></tr>
+<tr class="memdesc:a282ad6be42d6267ca9bc70143790fae4 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether or not this handler will attempt to automatically generate a path to a file if it doesn't exist.  <a href="#a282ad6be42d6267ca9bc70143790fae4">More...</a><br/></td></tr>
+<tr class="separator:a282ad6be42d6267ca9bc70143790fae4 inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cb79cf1452cc3286bc942abecc0650f inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a9cb79cf1452cc3286bc942abecc0650f">CurrentSettingsSaveFile</a></td></tr>
 <tr class="memdesc:a9cb79cf1452cc3286bc942abecc0650f inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the name of the file where the "Current" settings group will be saved to.  <a href="#a9cb79cf1452cc3286bc942abecc0650f">More...</a><br/></td></tr>
 <tr class="separator:a9cb79cf1452cc3286bc942abecc0650f inherit pro_attribs_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -667,13 +673,17 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#acb0c0b9192f8ce94c725d5550e8439f6">GetTypeFromString</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerName)</td></tr>
 <tr class="memdesc:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of manager requested from a string.  <a href="#acb0c0b9192f8ce94c725d5550e8439f6">More...</a><br/></td></tr>
 <tr class="separator:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classMezzanine_1_1ObjectSettingsHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1ObjectSettingsHandler')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html">Mezzanine::ObjectSettingsHandler</a></td></tr>
+<tr class="memitem:a2ae0fba84378bed81838310723f9ecca inherit pub_static_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a2ae0fba84378bed81838310723f9ecca">GetSerializableName</a> ()</td></tr>
+<tr class="memdesc:a2ae0fba84378bed81838310723f9ecca inherit pub_static_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag the class will leave behind as its instances are serialized.  <a href="#a2ae0fba84378bed81838310723f9ecca">More...</a><br/></td></tr>
+<tr class="separator:a2ae0fba84378bed81838310723f9ecca inherit pub_static_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Singleton.html">Mezzanine::Singleton&lt; AudioManager &gt;</a></td></tr>
 <tr class="memitem:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67">GetSingletonPtr</a> ()</td></tr>
 <tr class="memdesc:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches a pointer to the singleton.  <a href="#a78fc425584913f0b2c615ec440871a67">More...</a><br/></td></tr>
 <tr class="separator:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a554165fe3e4b594b678d64215fd7a6f9">SingletonValid</a> ()</td></tr>
-<tr class="memdesc:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the singleton pointer is valid.  <a href="#a554165fe3e4b594b678d64215fd7a6f9">More...</a><br/></td></tr>
-<tr class="separator:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a775312ba0ba990afb473e9bd5a4917 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a7a775312ba0ba990afb473e9bd5a4917">SingletonValid</a> ()</td></tr>
+<tr class="memdesc:a7a775312ba0ba990afb473e9bd5a4917 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the singleton pointer is valid.  <a href="#a7a775312ba0ba990afb473e9bd5a4917">More...</a><br/></td></tr>
+<tr class="separator:a7a775312ba0ba990afb473e9bd5a4917 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1ObjectSettingsHandler')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html">Mezzanine::ObjectSettingsHandler</a></td></tr>
 <tr class="memitem:ae662009cd3cbd713ad79ac95ac9cf320 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ae662009cd3cbd713ad79ac95ac9cf320">AppendCurrentSettings</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentNode)=0</td></tr>
 <tr class="memdesc:ae662009cd3cbd713ad79ac95ac9cf320 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes all the current settings of this handler and serializes them to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a>.  <a href="#ae662009cd3cbd713ad79ac95ac9cf320">More...</a><br/></td></tr>
@@ -2419,12 +2429,12 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a123ee30493e5f3329a0eec6019105550"></a>
+<a class="anchor" id="a33c71a90c87ca25044540ff13cabe9fb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Audio::AudioManager::DecoderFactoryExists </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::DecoderFactoryExists </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Audio::Encoding</a>&#160;</td>
           <td class="paramname"><em>Format</em>)</td><td></td>
@@ -3273,7 +3283,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="aa5048a43024daee4305d3795c9694f99"></a>
+<a class="anchor" id="a093119f5d7e9b4271a7a5a93d7b38605"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3281,7 +3291,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::AudioManager::InitializePlaybackDevice </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::InitializePlaybackDevice </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
           <td class="paramname"><em>DeviceName</em>, </td>
@@ -3318,7 +3328,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a83961ec9d158906a714835824b751477"></a>
+<a class="anchor" id="a2210ee845544b145e84f92c819844f60"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3326,7 +3336,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Audio::AudioManager::IsAmbientMuted </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::IsAmbientMuted </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -3346,7 +3356,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="aa00282f6663f0b21cf76014c8301b3eb"></a>
+<a class="anchor" id="a3f537bb36f52f11c40ee7a97e05e9b60"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3354,7 +3364,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Audio::AudioManager::IsDialogMuted </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::IsDialogMuted </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -3374,7 +3384,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a9090877536057c69c8478fd3ee0b7fd9"></a>
+<a class="anchor" id="a97576e16f7a7ecb54b7d2b32b663f473"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3382,7 +3392,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Audio::AudioManager::IsEffectMuted </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::IsEffectMuted </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -3402,7 +3412,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a2c25dbe2e53689d0d535ea809e3baf69"></a>
+<a class="anchor" id="a3711ad200f3ac5ff1be642a37d087912"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3410,7 +3420,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Audio::AudioManager::IsMusicMuted </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::IsMusicMuted </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -3430,7 +3440,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="ae628c968a30641ede1847f3b082b1891"></a>
+<a class="anchor" id="a0f3327b23275519cd8cdd8f6b59fdf95"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3438,7 +3448,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::AudioManager::IsMuted </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::IsMuted </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -3452,11 +3462,11 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 </div><div class="memdoc">
 
 <p>Gets whether or not the <a class="el" href="namespaceMezzanine_1_1Audio.html" title="This namespace is for all the classes belonging to the Audio Subsystem. ">Audio</a> subsystem is muted. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a bool indicating whether or not the <a class="el" href="namespaceMezzanine_1_1Audio.html" title="This namespace is for all the classes belonging to the Audio Subsystem. ">Audio</a> subsystem is currently muted. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a Boole indicating whether or not the <a class="el" href="namespaceMezzanine_1_1Audio.html" title="This namespace is for all the classes belonging to the Audio Subsystem. ">Audio</a> subsystem is currently muted. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a99cb22c41625a069eaa887e912b2e1d1"></a>
+<a class="anchor" id="a583b064e53c9b8986d8f62dd741355a9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3464,7 +3474,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::AudioManager::IsTypeMuted </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::IsTypeMuted </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td>
           <td class="paramname"><em>Type</em>)</td><td></td>
@@ -3496,7 +3506,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a4c56655df592a94308e933d86bfff2dc"></a>
+<a class="anchor" id="a7e4b52a3279fa7da2b30847548924d2b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3506,7 +3516,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
         <tr>
           <td class="memname">void Mezzanine::Audio::AudioManager::MuteAmbient </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>Enable</em>)</td><td></td>
           <td></td>
         </tr>
@@ -3530,7 +3540,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a98606909d84d5de629c13b1c2b5bf6b5"></a>
+<a class="anchor" id="aab8bca7e1be25d2e3ce51ab1d4649169"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3540,7 +3550,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
         <tr>
           <td class="memname">void Mezzanine::Audio::AudioManager::MuteDialog </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>Enable</em>)</td><td></td>
           <td></td>
         </tr>
@@ -3564,7 +3574,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="abe9a39f93dd93b828b3b7bad5cda2ee9"></a>
+<a class="anchor" id="a1c73ed0aee6260a2e39e5a1ee8c46d03"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3574,7 +3584,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
         <tr>
           <td class="memname">void Mezzanine::Audio::AudioManager::MuteEffect </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>Enable</em>)</td><td></td>
           <td></td>
         </tr>
@@ -3598,7 +3608,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a2dc6d082cee0ee486b21f1b1c41f0fb1"></a>
+<a class="anchor" id="a031429e0dbd49d84d5e7ca662ec87c6f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3608,7 +3618,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
         <tr>
           <td class="memname">void Mezzanine::Audio::AudioManager::MuteMusic </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>Enable</em>)</td><td></td>
           <td></td>
         </tr>
@@ -3632,7 +3642,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a81d65f95c866de99f42a6bf7010738bc"></a>
+<a class="anchor" id="a38343a93f240a018bcb1f921ec1cb9b4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3648,7 +3658,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>Enable</em>&#160;</td>
         </tr>
         <tr>
@@ -3682,7 +3692,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a887fe272e2587378d95fef1bafdd62a2"></a>
+<a class="anchor" id="a47894295f5feb8969363bd88f8fb4fec"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3690,7 +3700,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::AudioManager::PlaybackDeviceNameValid </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::AudioManager::PlaybackDeviceNameValid </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
           <td class="paramname"><em>DeviceName</em>)</td><td></td>
@@ -3869,7 +3879,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 
 </div>
 </div>
-<a class="anchor" id="a6e0c61c5946c74d32cd018238ad1aa7c"></a>
+<a class="anchor" id="a8936067c22e6064917fd8ef377f6905c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -3879,7 +3889,7 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
         <tr>
           <td class="memname">virtual void Mezzanine::Audio::AudioManager::SetMasterMute </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>Enable</em>)</td><td></td>
           <td></td>
         </tr>
@@ -4074,6 +4084,6 @@ static AudioManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Sing
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

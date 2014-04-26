@@ -1,0 +1,24 @@
+ .../src/BulletCollision/CollisionShapes/btStaticPlaneShape.h   | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletCollision/CollisionShapes/btStaticPlaneShape.h b/Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletCollision/CollisionShapes/btStaticPlaneShape.h
+index e6e3288..85810f7 100644
+--- a/Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletCollision/CollisionShapes/btStaticPlaneShape.h
++++ b/Mezzanine/libincludes/common/bulletsrc/bulletsvnsrc/src/BulletCollision/CollisionShapes/btStaticPlaneShape.h
+@@ -47,6 +47,16 @@ public:
+ 	virtual void	setLocalScaling(const btVector3& scaling);
+ 	virtual const btVector3& getLocalScaling() const;
+ 	
++	void setPlaneNormal(const btVector3& norm)
++	{
++		m_planeNormal = norm;
++	}
++
++	void setPlaneConstant(const btScalar& con)
++	{
++		m_planeConstant = con;
++	}
++	
+ 	const btVector3&	getPlaneNormal() const
+ 	{
+ 		return	m_planeNormal;

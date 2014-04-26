@@ -69,17 +69,23 @@ namespace Mezzanine
             /// @brief Class Destructor.
             virtual ~FieldCollisionShape();
 
-            /// @copydoc CollisionShape::GetType()
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc CollisionShape::GetType() const
             virtual CollisionShape::ShapeType GetType() const = 0;
-            /// @copydoc CollisionShape::GetBulletShape
+            /// @copydoc CollisionShape::GetBulletConcaveShape() const
             virtual btConcaveShape* GetBulletConcaveShape() const;
 
-            /// @copydoc CollisionShape::GetBulletShape
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc CollisionShape::ProtoSerialize(XML::Node&) const
             virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-            /// @copydoc CollisionShape::GetBulletShape
+            /// @copydoc CollisionShape::ProtoDeSerialize(const XML::Node&)
             virtual void ProtoDeSerialize(const XML::Node& OneNode);
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "FieldCollisionShape"
+            /// @return A string containing "FieldCollisionShape".
             static String SerializableName();
         };//FieldCollisionShape
     }//Physics

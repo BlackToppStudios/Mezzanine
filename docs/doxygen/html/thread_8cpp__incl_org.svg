@@ -118,7 +118,7 @@
 </g>
 <!-- Node27 -->
 <g id="node54" class="node"><title>Node27</title>
-<a xlink:href="mutex_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools. ">
+<a xlink:href="mutex_8h.html" target="_top" xlink:title="This file declares and defines a mutex that is a partial implementation. ">
 <polygon fill="white" stroke="black" points="511,-175 511,-195 561,-195 561,-175 511,-175"/>
 <text text-anchor="middle" x="536" y="-182" font-family="FreeSans" font-size="10.00">mutex.h</text>
 </a>

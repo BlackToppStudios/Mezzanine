@@ -437,7 +437,7 @@ namespace Mezzanine
             for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
             {
                 String GroupName, GroupPath;
-                ArchiveType GroupType;
+                ArchiveType GroupType = AT_Invalid;
                 Boole GroupRecursive = false;
                 // Get the group path
                 CurrAttrib = (*GroupIt).GetAttribute("GroupPath");

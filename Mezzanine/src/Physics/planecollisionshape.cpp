@@ -53,27 +53,100 @@ namespace Mezzanine
         /////////////////////////////////////////
         // PlaneCollisionShape Functions
 
-        PlaneCollisionShape::PlaneCollisionShape(const String& Name)
+        PlaneCollisionShape::PlaneCollisionShape(const String& Name, const Plane& Other)
         {
+            this->Name = Name;
+            this->PlaneShape = new btStaticPlaneShape(Other.Normal.GetBulletVector3(),-(Other.Distance));
+            this->SetPointers(this->PlaneShape);
+        }
 
+        PlaneCollisionShape::PlaneCollisionShape(const String& Name, const Vector3& Norm, const Real Constant)
+        {
+            this->Name = Name;
+            this->PlaneShape = new btStaticPlaneShape(Norm.GetBulletVector3(),Constant);
+            this->SetPointers(this->PlaneShape);
         }
 
         PlaneCollisionShape::PlaneCollisionShape(const String& Name, btStaticPlaneShape* BulletShape)
         {
             this->Name = Name;
-            PlaneShape = BulletShape;
-            SetPointers(PlaneShape);
+            this->PlaneShape = BulletShape;
+            this->SetPointers(this->PlaneShape);
+        }
+
+        PlaneCollisionShape::PlaneCollisionShape(const XML::Node& XMLNode)
+        {
+            this->ProtoDeSerialize(XMLNode);
         }
 
         PlaneCollisionShape::~PlaneCollisionShape()
-        {
-            delete PlaneShape;
-        }
+            { delete this->PlaneShape; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        Vector3 PlaneCollisionShape::GetNormal() const
+            { return Vector3( this->PlaneShape->getPlaneNormal() ); }
+
+        Real PlaneCollisionShape::GetConstant() const
+            { return this->PlaneShape->getPlaneConstant(); }
 
         CollisionShape::ShapeType PlaneCollisionShape::GetType() const
+            { return CollisionShape::ST_Plane; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void PlaneCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            return CollisionShape::ST_Plane;
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->PlaneCollisionShape::SerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->PlaneCollisionShape::SerializableName());}
+
+            XML::Attribute Version = CollisionNode.AppendAttribute("Version");
+            XML::Attribute Constant = CollisionNode.AppendAttribute("Constant");
+            XML::Node Normal = CollisionNode.AppendChild("Normal");
+            if (Version && Normal && Constant) {
+                Version.SetValue(1);
+                Constant.SetValue(this->PlaneShape->getPlaneConstant());
+
+                Vector3 Norm(this->PlaneShape->getPlaneNormal());
+                Norm.ProtoSerialize(Normal);
+            }else{
+                SerializeError("Create Version Attribute", SerializableName());
+            }
+
+            this->FieldCollisionShape::ProtoSerialize(CollisionNode);
         }
+
+        void PlaneCollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
+        {
+            if ( Mezzanine::String(OneNode.Name())==this->PlaneCollisionShape::SerializableName() )
+            {
+                if(OneNode.GetAttribute("Version").AsInt() == 1)
+                {
+                    XML::Attribute Constant = OneNode.GetAttribute("Constant");
+                    if(Constant)
+                        { this->PlaneShape->setPlaneConstant( Constant.AsReal() ); }
+
+                    XML::Node Normal = OneNode.GetChild("Normal").GetFirstChild();
+                    if(Normal)
+                        { this->PlaneShape->setPlaneNormal( Vector3(Normal).GetBulletVector3() ); }
+
+                    XML::Node CollisionNode = OneNode.GetChild(this->FieldCollisionShape::SerializableName());
+                    if(!CollisionNode)
+                        { DeSerializeError("locate FieldCollisionShape node",SerializableName()); }
+                    this->FieldCollisionShape::ProtoDeSerialize(CollisionNode);
+
+                }else{
+                    DeSerializeError("find usable serialization version",SerializableName());
+                }
+            }else{
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+            }
+        }
+
+        String PlaneCollisionShape::SerializableName()
+            { return "PlaneCollisionShape"; }
     }//Physics
 }//Mezzanine
 
