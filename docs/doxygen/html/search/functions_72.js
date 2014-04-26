@@ -104,6 +104,7 @@ var searchData=
   ['removeworkunitaffinity',['RemoveWorkUnitAffinity',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#a298fb3367b47ffd7858957c0a82bff4f',1,'Mezzanine::Threading::FrameScheduler']]],
   ['removeworkunitmain',['RemoveWorkUnitMain',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#a7fb42d2bd67f7545ea54d355df8e4321',1,'Mezzanine::Threading::FrameScheduler']]],
   ['removeworkunitmonopoly',['RemoveWorkUnitMonopoly',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#ac50fa967b1aa1ad3899c2b6fd628b235',1,'Mezzanine::Threading::FrameScheduler']]],
+  ['removeworld',['RemoveWorld',['../classMezzanine_1_1Entresol.html#a5d14924d19599cbbf7b8b0d3469fab74',1,'Mezzanine::Entresol']]],
   ['removeworldtrigger',['RemoveWorldTrigger',['../classMezzanine_1_1Physics_1_1PhysicsManager.html#acad7d5d038145babd47492d50e6705e6',1,'Mezzanine::Physics::PhysicsManager']]],
   ['removeyawlimits',['RemoveYawLimits',['../classMezzanine_1_1CameraController.html#a646de446143f48b1867086fc5125f9ff',1,'Mezzanine::CameraController']]],
   ['renderable',['Renderable',['../classMezzanine_1_1UI_1_1Renderable.html#a1b66d506ebe0b6336a258ef8458e0367',1,'Mezzanine::UI::Renderable::Renderable(Screen *Parent)'],['../classMezzanine_1_1UI_1_1Renderable.html#a5840889d2da8cd09901d049075160cdc',1,'Mezzanine::UI::Renderable::Renderable(const String &amp;RendName, Screen *Parent)']]],
