@@ -281,6 +281,7 @@
 #include "vector3.h"
 #include "managerbase.h"
 #include "singleton.h"
+#include "world.h"
 
 #ifndef SWIG
     #include "Threading/dagframescheduler.h"
@@ -374,6 +375,10 @@ namespace Mezzanine
             typedef std::map<String,ManagerFactory*> ManagerFactoryMap;
             typedef ManagerFactoryMap::iterator ManagerFactoryIterator;
             typedef ManagerFactoryMap::const_iterator ConstManagerFactoryIterator;
+
+            typedef std::vector<World*> WorldContainer;
+            typedef WorldContainer::iterator WorldContainerIterator;
+            typedef WorldContainer::const_iterator ConstWorldContainerIterator;
         private:
             /// @internal
             /// @brief The core structure responsible for our multi-threaded main loop.
@@ -413,6 +418,10 @@ namespace Mezzanine
             /// @internal
             /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
             std::list< ManagerBase* > ManagerList;
+
+            /// @internal
+            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+            WorldContainer Worlds;
 
             /// @internal
             /// @brief Used to track Ogre specific details for the statically linked Particle plugin
@@ -741,6 +750,36 @@ namespace Mezzanine
             UI::UIManager* GetUIManager(const UInt16 WhichOne = 0);
 
             Scripting::iScriptingManager* GetScriptingManager(const UInt16 WhichOne = 0);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // World Management
+
+            /// @brief This adds a world to the list of worlds in the entresol.
+            /// @param WorldToAdd The pointer to the world to be added.
+            void AddWorld(World* WorldToBeAdded);
+            /// @brief This creates a world and adds it to the World List.
+            /// @param WorldName String name of the world.
+            /// @param Managers A container of pre-made managers to be used by this world.
+            /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
+            /// @param SceneType A string containing the name of the underlying scene type for this world.
+            /// @return Returns a pointer to the created world.
+            World* CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded,
+                const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType );
+            /// @brief This gets a world from the world list by name.
+            /// @param WorldName The string name of the world to be accessed..
+            /// @return This returns a pointer to the world with the given name, otherwise returns NULL.
+            World* GetWorld(const String& WorldName);
+            /// @brief This removes the world with the given name from the world list.
+            /// @param WorldName The name of the world to be removed.
+            void RemoveWorld(const String& WorldName);
+            /// @brief This destroys the world with the given name and removes it from the world list.
+            /// @param WorldName The name of the world to be destroyed.
+            void DestroyWorld(const String& WorldName);
+            /// @brief This all the worlds in the world list.
+            void DestroyAllWorlds();
+            /// @brief This gets the number of worlds in the world list.
+            /// @return Returns the number of worlds in the world list.
+            UInt16 GetNumWorlds();
     };//Entresol
 }//Mezzanine
 #endif
