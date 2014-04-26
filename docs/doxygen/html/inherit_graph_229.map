@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structMezzanine_1_1UI_1_1GridVector2.html" title="Simple class used to represent positions or sizes on a grid. " alt="" coords="5,5,181,33"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1TransformableChildObject.html" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="5,5,181,51"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Graphics_1_1Bone.html" title="This class encapsulates the bones contained in a skeleton used for animation. " alt="" coords="231,5,375,51"/>
 </map>

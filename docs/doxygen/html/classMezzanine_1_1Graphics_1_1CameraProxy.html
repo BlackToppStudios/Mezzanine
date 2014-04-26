@@ -104,7 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Graphics_1_1CameraProxy__inherit__graph.svg" width="182" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Graphics_1_1CameraProxy__inherit__graph.svg" width="187" height="328"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::Graphics::CameraProxy:</div>
@@ -189,6 +189,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a00ce059861b72265b7fe56934fad05ab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1CameraProxy.html#a00ce059861b72265b7fe56934fad05ab">LookAt</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;TargetLoc)</td></tr>
 <tr class="memdesc:a00ce059861b72265b7fe56934fad05ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the direction the camera faces based on a 3D point.  <a href="#a00ce059861b72265b7fe56934fad05ab">More...</a><br/></td></tr>
 <tr class="separator:a00ce059861b72265b7fe56934fad05ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01d3420fa671154ce641bbfea65b8e95"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1CameraProxy.html#a01d3420fa671154ce641bbfea65b8e95">MoveRelative</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;ToMove)</td></tr>
+<tr class="memdesc:a01d3420fa671154ce641bbfea65b8e95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera through local space.  <a href="#a01d3420fa671154ce641bbfea65b8e95">More...</a><br/></td></tr>
+<tr class="separator:a01d3420fa671154ce641bbfea65b8e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacea4e113d54b6b0d4593e63df656e89"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1CameraProxy.html#aacea4e113d54b6b0d4593e63df656e89">ProtoDeSerializeProperties</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
 <tr class="memdesc:aacea4e113d54b6b0d4593e63df656e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite the properties of this object with it.  <a href="#aacea4e113d54b6b0d4593e63df656e89">More...</a><br/></td></tr>
 <tr class="separator:aacea4e113d54b6b0d4593e63df656e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -567,7 +570,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 
 <p>Implements <a class="el" href="classMezzanine_1_1Graphics_1_1RenderableProxy.html#a94a215a693af990feaa6190fb3764429">Mezzanine::Graphics::RenderableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00415">415</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00418">418</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -595,7 +598,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Accessor for the internal camera. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the internal camera this proxy is based on. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00412">412</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00415">415</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -713,7 +716,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the aspect ratio of the cameras veiw. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the aspect ratio for the camera frustrum viewport. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00286">286</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00289">289</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -758,7 +761,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00223">223</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00226">226</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -819,7 +822,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Graphics_1_1RenderableProxy.html#a202d06e1ec2a9a71ad0387eb5f158929">Mezzanine::Graphics::RenderableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00403">403</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00406">406</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -848,7 +851,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <dl class="section note"><dt>Note</dt><dd>The direction is not used if this is a point light. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. ">Vector3</a> representing the direction this proxy is emitting light. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00220">220</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00223">223</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -876,7 +879,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the distance in world units at which objects are considered too far to render. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the distance from the camera to the far clipping plane. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00274">274</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00277">277</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -904,7 +907,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the vertical field of view of the camera frustrum. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the current vertical field of view of this camera in radians. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00280">280</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00283">283</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -932,7 +935,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>If fixed yaw is enabled, on which axis is yawing disabled. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. ">Vector3</a> of 0s if disable, otherwise this return the Fixed Yaw Axis. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00296">296</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00299">299</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -960,7 +963,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the name of this Camera. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a const reference to a string containing the cameras name. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00229">229</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00232">232</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -988,7 +991,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the distance in world units at which objects are considered too close to render. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the distance from the camera to the near clipping plane. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00268">268</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00271">271</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1016,7 +1019,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the orientation mode of this cameras frustrum. </p>
 <dl class="section return"><dt>Returns</dt><dd>An OrientationMode enum value that will identify the kind of orientation this cameras frustrum uses. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00247">247</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00250">250</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1044,7 +1047,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the current height of the Orthographic projection window in world units. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real represnting the world unit height of the projection window when Orthographic projection is enabled. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00262">262</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00265">265</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1072,7 +1075,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the current width of the Orthographic projection window in world units. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real represnting the world unit width of the projection window when Orthographic projection is enabled. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00256">256</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00259">259</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1100,7 +1103,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Gets the debug rendering mode for this camera. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a CameraPolyMode enum value representing the current mode of this camera. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00235">235</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00238">238</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1128,7 +1131,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Get the type of projection used by the camera. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ProjectionType enum value that will identify the kind of projection this camera uses. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00241">241</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00244">244</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1154,7 +1157,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 </div><div class="memdoc">
 
 <p>Accessor for the type of proxy. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000063">Todo:</a></b></dt><dd><p class="startdd">Wrap LOD related methods (Camera/Bias). </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000062">Todo:</a></b></dt><dd><p class="startdd">Wrap LOD related methods (Camera/Bias). </p>
 <p class="enddd">Wrap reflection methods? </p>
 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns enum value for the type of proxy this object is. </dd></dl>
@@ -1189,7 +1192,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag the proxy class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00406">406</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00409">409</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1283,6 +1286,40 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 
 </div>
 </div>
+<a class="anchor" id="a01d3420fa671154ce641bbfea65b8e95"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Graphics::CameraProxy::MoveRelative </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>ToMove</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves the camera through local space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ToMove</td><td>The local space vector to move the camera by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00217">217</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aacea4e113d54b6b0d4593e63df656e89"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1315,7 +1352,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Graphics_1_1RenderableProxy.html#ae4f4b51d6835c2c4b89deae72c38694d">Mezzanine::Graphics::RenderableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00330">330</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00333">333</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1351,7 +1388,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Graphics_1_1RenderableProxy.html#ac819cb8a44a37be7a8889f98028fee86">Mezzanine::Graphics::RenderableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00302">302</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00305">305</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1385,7 +1422,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00283">283</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00286">286</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1420,7 +1457,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00217">217</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00220">220</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1454,7 +1491,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00271">271</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00274">274</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1489,7 +1526,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00277">277</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00280">280</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1535,7 +1572,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00289">289</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00292">292</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1569,7 +1606,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00265">265</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00268">268</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1603,7 +1640,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00244">244</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00247">247</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1649,7 +1686,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00250">250</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00253">253</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1684,7 +1721,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00259">259</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00262">262</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1719,7 +1756,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00253">253</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00256">256</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1753,7 +1790,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00232">232</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00235">235</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1788,7 +1825,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00238">238</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="cameraproxy_8cpp_source.html#l00241">241</a> of file <a class="el" href="cameraproxy_8cpp_source.html">cameraproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1943,6 +1980,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Viewport</b></td></t
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 19 2014 17:06:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 26 2014 16:13:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

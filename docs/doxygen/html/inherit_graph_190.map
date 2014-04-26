@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1SlowSplineInterpolator.html" title="If something specifically needs the linear interpolator for T they should use this. " alt="" coords="5,5,253,33"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Resource_1_1DataStream.html" title="This represents a stream to a piece of data, usually a file. " alt="" coords="5,39,155,86"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Resource_1_1FileStream.html" title="This represents a stream to a file on disk using the C++ file stream API. " alt="" coords="203,5,352,51"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Resource_1_1MemoryStream.html" title="This represents a stream to a buffer in memory. " alt="" coords="203,74,352,121"/>
 </map>

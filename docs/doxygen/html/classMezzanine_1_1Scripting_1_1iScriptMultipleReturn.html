@@ -99,14 +99,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn__inherit__graph.svg" width="158" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn__inherit__graph.svg" width="160" height="251"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::Scripting::iScriptMultipleReturn:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn__coll__graph.svg" width="158" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn__coll__graph.svg" width="160" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -200,7 +200,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This script can return simple group of values. </p>
-<p>This loosely correlates to a tuple like the simple returns in Lua or any return in Python. This cannot handle returns that include tuples that contain tuples in a graceful way. </p>
+<p>This loosely correlates to a tuple like the simple returns in <a class="el" href="namespaceMezzanine_1_1Scripting_1_1Lua.html" title="This contains the Lua51 and Lua52 resources. ">Lua</a> or any return in Python. This cannot handle returns that include tuples that contain tuples in a graceful way. </p>
 
 <p>Definition at line <a class="el" href="script_8h_source.html#l00301">301</a> of file <a class="el" href="script_8h_source.html">script.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -234,6 +234,8 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <p>Some scripting languages (Lua51) require knowledge of the return types of the scripts in order to extract them from the language runtime. Pointers to classes derived from <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" title="The interface for a script argument. ">iScriptArgument</a> should convey that typing information to such language runtimes. </p>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#a3b3acab9fe7cfe4b663e5113d13d5445">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
 
 </div>
 </div>
@@ -288,6 +290,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Get the returns from the last exection of the script. </p>
 <dl class="section return"><dt>Returns</dt><dd>An ArgumentSet that can be iterated over to get all the values returned. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#ad4948b197d2d63052e468eb0aec29447">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
 
 </div>
 </div>
@@ -347,6 +351,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.html#a2e14658f9163c4d512ed12f7e17b03cc">Mezzanine::Scripting::iScript</a>.</p>
 
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#ac9a0146d927b0824d90b032673a5de3d">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
+
 <p>Definition at line <a class="el" href="script_8h_source.html#l00335">335</a> of file <a class="el" href="script_8h_source.html">script.h</a>.</p>
 
 </div>
@@ -382,6 +388,8 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference counted pointer to a ScriptArgument. </dd></dl>
 
+<p>Implemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#aaae8c9c87cfc40c7808657d0860e48df">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a4d43aaeb134df0d40415505818c608d7"></a>
@@ -408,6 +416,8 @@ Additional Inherited Members</h2></td></tr>
 <p>How many values are being returned. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole with the amount of items available to be returned now(from the last script call). </dd></dl>
 
+<p>Implemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#a1ccb552e766f92ea8ac3ae0c93641c2d">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -415,6 +425,6 @@ Additional Inherited Members</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 19 2014 17:06:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 26 2014 16:13:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

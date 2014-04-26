@@ -1,26 +1,105 @@
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/mathtool.cpp:53: Warning: problem evaluating expression '0': Syntax error in part '0'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collidableproxy.cpp:95: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/brutestrategy.cpp:55: Warning: the name `brutestategy.cpp' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/kerning.h:47: Warning: the name `uikerning.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/linelist.h:56: Warning: the name `uilinelist.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderable.h:55: Warning: the name `uirenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/vertex.h:51: Warning: the name `uivertex.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/vertex.h:65: Warning: the name `uivertex.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:353: Warning: Compound swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:353: Warning: Compound swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:353: Warning: Compound swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:353: Warning: Compound swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:353: Warning: Compound swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:353: Warning: Compound swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:353: Warning: Compound swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:353: Warning: Compound swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:333: Warning: Compound swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:333: Warning: Compound swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:333: Warning: Compound swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:333: Warning: Compound swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:333: Warning: Compound swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:333: Warning: Compound swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:333: Warning: Compound swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:333: Warning: Compound swig_type_info is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:68: Warning: Compound Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:857: Warning: Compound swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:857: Warning: Compound swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:857: Warning: Compound swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:857: Warning: Compound swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:857: Warning: Compound swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:857: Warning: Compound swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:857: Warning: Compound swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:857: Warning: Compound swig_lua_rawdata is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:52: Warning: Compound Mezzanine::Resource::AssetHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:833: Warning: Compound swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:833: Warning: Compound swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:833: Warning: Compound swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:833: Warning: Compound swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:833: Warning: Compound swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:833: Warning: Compound swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:833: Warning: Compound swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:833: Warning: Compound swig_lua_class is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:499: Warning: Compound Mezzanine::Node::iterator is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:68: Warning: Compound Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/linelist.cpp:57: Warning: Compound Mezzanine::UI::LineListRenderer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/meshterrain.h:52: Warning: Compound Mezzanine::MeshTerrain is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:806: Warning: Compound swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:806: Warning: Compound swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:806: Warning: Compound swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:806: Warning: Compound swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:806: Warning: Compound swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:806: Warning: Compound swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:806: Warning: Compound swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:806: Warning: Compound swig_lua_var_info is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/asset.h:52: Warning: Compound Mezzanine::Resource::Asset is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:482: Warning: Compound Mezzanine::Scripting::Lua::Lua51ScriptingEngineFactory is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:343: Warning: Compound swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:343: Warning: Compound swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:343: Warning: Compound swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:343: Warning: Compound swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:343: Warning: Compound swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:343: Warning: Compound swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:343: Warning: Compound swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:343: Warning: Compound swig_cast_info is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/quadrenderer.h:57: Warning: Compound Mezzanine::UI::QuadRenderer is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:846: Warning: Compound swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:846: Warning: Compound swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:846: Warning: Compound swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:846: Warning: Compound swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:846: Warning: Compound swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:846: Warning: Compound swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:846: Warning: Compound swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:846: Warning: Compound swig_lua_userdata is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:199: Warning: Compound Mezzanine::Node is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:62: Warning: Compound Mezzanine::Node is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:148: Warning: Compound Mezzanine::EndNodeItem is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:813: Warning: Compound swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:813: Warning: Compound swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:813: Warning: Compound swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:813: Warning: Compound swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:813: Warning: Compound swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:813: Warning: Compound swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:813: Warning: Compound swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:813: Warning: Compound swig_lua_const_info is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:185: Warning: Compound Mezzanine::NodeItemPtrCompare is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:793: Warning: Compound Mezzanine::SymbolToIndexMapper is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:822: Warning: Compound swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:822: Warning: Compound swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:822: Warning: Compound swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:822: Warning: Compound swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:822: Warning: Compound swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:822: Warning: Compound swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:822: Warning: Compound swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:822: Warning: Compound swig_lua_method is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:66: Warning: Compound Mezzanine::UI::TextureAtlasInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:211: Warning: Compound Mezzanine::Node::const_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51unsafe.cpp:827: Warning: Compound swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingxmllua51.cpp:827: Warning: Compound swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp:827: Warning: Compound swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingthreadinglua51.cpp:827: Warning: Compound swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp:827: Warning: Compound swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingphysicslua51.cpp:827: Warning: Compound swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51unsafe.cpp:827: Warning: Compound swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:827: Warning: Compound swig_lua_attribute is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/archive.h:54: Warning: Compound Mezzanine::Resource::Archive is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/enumerations.h:161: Warning: Documentation for undefined enum `WorldAndSceneObjectType' found.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:62: Warning: Documentation for undefined enum `ManagerTypeName' found.
@@ -184,6 +263,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:77: Warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:85: Warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:77: Warning: target CollisionShape::GetBulletShape of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:365: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:369: Warning: Found unknown command `\detail'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:113: Warning: target QuadRenderable::CreateLayoutStrat() of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/editbox.h:83: Warning: target QuadRenderable::CreateLayoutStrat() of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/gridcontainer.h:192: Warning: target PagedLayoutContainer::UpdateContainerDimensionsImpl(const Rect&,const Rect&) of \copydoc command not found
@@ -258,11 +339,20 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/enumerations.h:165: Warning: Member WorldObjectType (enumeration) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/macros.h:58: Warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/macros.h:53: Warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.cpp:63: Warning: Member luaopen_Mezzanine(lua_State *L) (function) of file lua51script.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:66: Warning: Member luaopen_Mezzanine(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:75: Warning: Member luaopen_MezzaninePhysics(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:76: Warning: Member luaopen_MezzaninePhysicsSafe(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:67: Warning: Member luaopen_MezzanineSafe(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:72: Warning: Member luaopen_MezzanineThreading(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:73: Warning: Member luaopen_MezzanineThreadingSafe(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:69: Warning: Member luaopen_MezzanineXML(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:70: Warning: Member luaopen_MezzanineXMLSafe(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:141: Warning: Member catch(...) (function) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:149: Warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:150: Warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:156: Warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:154: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:134: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:136: Warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/transform.h:165: Warning: Member operator<<(std::ostream &stream, const Mezzanine::Transform &x) (function) of file transform.h is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:273: Warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
@@ -275,27 +365,65 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:577: Warning: unable to resolve reference to `UI::Mezzanine::Widget' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:577: Warning: unable to resolve reference to `UIWidget' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:584: Warning: unable to resolve reference to `Mezzanine::QuadRenderable::SetLocalVertexCaching(Boole)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:592: Warning: unable to resolve reference to `Mezzanine::UI::UIManager::InjectInput(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:594: Warning: unable to resolve reference to `Mezzanine::UI::WidgetUpdateWork' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:594: Warning: unable to resolve reference to `Mezzanine::UI::WidgetUpdateWork' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:608: Warning: unable to resolve reference to `Mezzanine::UI::Widget::_HandleInput(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:608: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputImpl(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:634: Warning: unable to resolve reference to `Mezzanine::UI::UnifiedDim::CalculateActualDimension(const Real&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:702: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:637: Warning: unable to resolve reference to `Mezzanine::UI::UnifiedDim::CalculateActualDimension(const Real&)' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:705: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:722: Warning: unable to resolve reference to `Mezzanine::UI::HorizontalStrategy' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:722: Warning: unable to resolve reference to `Mezzanine::UI::VerticalStrategy' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:792: Warning: unable to resolve reference to `Mezzanine::UI::MarkupParser::ProcessResult' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:819: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetProviders(PageProvider*, PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:820: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:821: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetYProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:822: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:836: Warning: unable to resolve reference to `Mezzanine::UI::StackedButton' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:708: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:725: Warning: unable to resolve reference to `Mezzanine::UI::HorizontalStrategy' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:725: Warning: unable to resolve reference to `Mezzanine::UI::VerticalStrategy' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:795: Warning: unable to resolve reference to `Mezzanine::UI::MarkupParser::ProcessResult' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:822: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetProviders(PageProvider*, PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:823: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:824: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetYProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:825: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:839: Warning: unable to resolve reference to `Mezzanine::UI::StackedButton' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:567: Warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:647: Warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:647: Warning: explicit link request to 'x' could not be resolved
-todo:127: Warning: unable to resolve reference to `Mezzanine::UI::Widget::_HandleInput(const MetaCode&)' for \ref command
-todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputImpl(const MetaCode&)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:345: Warning: Member converter (variable) of class swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:346: Warning: Member next (variable) of class swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:347: Warning: Member prev (variable) of class swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:344: Warning: Member type (variable) of class swig_cast_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:829: Warning: Member getmethod (variable) of class swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:828: Warning: Member name (variable) of class swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:830: Warning: Member setmethod (variable) of class swig_lua_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:839: Warning: Member attributes (variable) of class swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:841: Warning: Member base_names (variable) of class swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:840: Warning: Member bases (variable) of class swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:836: Warning: Member constructor (variable) of class swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:837: Warning: Member destructor)(void *) (variable) of class swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:838: Warning: Member methods (variable) of class swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:834: Warning: Member name (variable) of class swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:835: Warning: Member type (variable) of class swig_lua_class is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:817: Warning: Member dvalue (variable) of class swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:816: Warning: Member lvalue (variable) of class swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:815: Warning: Member name (variable) of class swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:819: Warning: Member ptype (variable) of class swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:818: Warning: Member pvalue (variable) of class swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:814: Warning: Member type (variable) of class swig_lua_const_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:824: Warning: Member method (variable) of class swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:823: Warning: Member name (variable) of class swig_lua_method is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:860: Warning: Member data[1] (variable) of class swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:859: Warning: Member own (variable) of class swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:858: Warning: Member type (variable) of class swig_lua_rawdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:848: Warning: Member own (variable) of class swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:849: Warning: Member ptr (variable) of class swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:847: Warning: Member type (variable) of class swig_lua_userdata is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:808: Warning: Member get (variable) of class swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:807: Warning: Member name (variable) of class swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:809: Warning: Member set (variable) of class swig_lua_var_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:358: Warning: Member cast_initial (variable) of class swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:359: Warning: Member clientdata (variable) of class swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:356: Warning: Member next (variable) of class swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:355: Warning: Member size (variable) of class swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:357: Warning: Member type_initial (variable) of class swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:354: Warning: Member types (variable) of class swig_module_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:337: Warning: Member cast (variable) of class swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:338: Warning: Member clientdata (variable) of class swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:336: Warning: Member dcast (variable) of class swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:334: Warning: Member name (variable) of class swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:339: Warning: Member owndata (variable) of class swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:335: Warning: Member str (variable) of class swig_type_info is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:1909: Warning: Member RawFile (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/enumerations.h:165: Warning: Member WorldObjectType (enumeration) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/countedptr.h:646: Warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/countedptr.h:646: Warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
@@ -811,8 +939,8 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameramanager.h:83: Warning: unable to resolve reference to `Camera' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameramanager.h:121: Warning: parameters of member Mezzanine::Graphics::CameraManager::GetCamera are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameramanager.h:124: Warning: parameters of member Mezzanine::Graphics::CameraManager::GetCamera are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameraproxy.h:260: Warning: return type of member Mezzanine::Graphics::CameraProxy::_GetBaseGraphicsObject is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameraproxy.h:144: Warning: return type of member Mezzanine::Graphics::CameraProxy::GetCameraToViewportRay is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameraproxy.h:263: Warning: return type of member Mezzanine::Graphics::CameraProxy::_GetBaseGraphicsObject is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameraproxy.h:147: Warning: return type of member Mezzanine::Graphics::CameraProxy::GetCameraToViewportRay is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/renderableproxy.h:104: Warning: target PhysicsProxy::GetCreator() const of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/entityproxy.h:215: Warning: return type of member Mezzanine::Graphics::EntityProxy::_GetBaseGraphicsObject is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/entityproxy.h:90: Warning: parameters of member Mezzanine::Graphics::EntityProxy::ProtoDeSerializeImpl are not (all) documented
@@ -1010,6 +1138,7 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/linegroup.cpp:126: Warning: The following parameters of Mezzanine::Internal::Line3D::GetPoint(const Whole Index) const are not documented:
   parameter 'Index'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:59: Warning: Member StickyConstraint (typedef) of namespace Mezzanine::Physics is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/scriptbindingmainlua51.cpp:1903: Warning: Member Vector3 (typedef) of namespace Mezzanine::Physics is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/physicsenumerations.h:158: Warning: Member ProxyType (enumeration) of namespace Mezzanine::Physics is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collisionshape.h:156: Warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::Physics::CreateShape(CollisionShape::ShapeType ShapeToCreate, const String &Name_, btCollisionShape *ShapeToModel)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collisionshape.h:156: Warning: The following parameters of Mezzanine::Physics::CreateShape(CollisionShape::ShapeType ShapeToCreate, const String &Name_, btCollisionShape *ShapeToModel) are not documented:
@@ -1389,6 +1518,45 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:481: Warning: unable to resolve reference to `Bool' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:405: Warning: unable to resolve reference to `Bool' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:329: Warning: unable to resolve reference to `Bool' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:187: Warning: Member Lua51BoolArgument(Boole InitialValue=false) (function) of class Mezzanine::Scripting::Lua::Lua51BoolArgument is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:127: Warning: Member Lua51RealArgument(Real InitialValue=0.0) (function) of class Mezzanine::Scripting::Lua::Lua51RealArgument is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:93: Warning: unable to resolve reference to `LuaScriptingEngine::compile' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:124: Warning: argument 'SourceCode' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine *Compiler=0, Boole JustAFunctionCall=false, String ScriptName="?")
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:124: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine *Compiler=0, Boole JustAFunctionCall=false, String ScriptName="?") are not documented:
+  parameter 'InitialSourceCode'
+  parameter 'JustAFunctionCall'
+  parameter 'ScriptName'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:129: Warning: argument 'SourceCode' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine &Compiler, Boole JustAFunctionCall=false, String ScriptName="?")
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:129: Warning: argument 'param' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine &Compiler, Boole JustAFunctionCall=false, String ScriptName="?")
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:129: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine &Compiler, Boole JustAFunctionCall=false, String ScriptName="?") are not documented:
+  parameter 'InitialSourceCode'
+  parameter 'Compiler'
+  parameter 'JustAFunctionCall'
+  parameter 'ScriptName'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:258: Warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::AddReturn(CountedPtr< iScriptArgument > ReturnArg)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:258: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::AddReturn(CountedPtr< iScriptArgument > ReturnArg) are not documented:
+  parameter 'ReturnArg'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:197: Warning: argument 'Arg' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:197: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber) are not documented:
+  parameter 'ArgNumber'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:248: Warning: Member Lua51ScriptingEngine(const XML::Node &XMLNode) (function) of class Mezzanine::Scripting::Lua::Lua51ScriptingEngine is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:365: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:369: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:255: Warning: return type of member Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:272: Warning: argument 'ScriptToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:272: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun) are not documented:
+  parameter 'ScriptToRun'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:276: Warning: argument 'ScriptToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script *ScriptToRun)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:276: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script *ScriptToRun) are not documented:
+  parameter 'ScriptToRun'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:316: Warning: return type of member Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IsLibraryOpen is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:365: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:369: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:167: Warning: Member Lua51StringArgument(String InitialValue=String()) (function) of class Mezzanine::Scripting::Lua::Lua51StringArgument is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:147: Warning: Member Lua51WholeArgument(Whole InitialValue=0) (function) of class Mezzanine::Scripting::Lua::Lua51WholeArgument is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: Warning: argument 'FreshScript' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd) are not documented:
+  parameter 'ScriptToAdd'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/stringtool.h:62: Warning: Member Blank (variable) of namespace Mezzanine::StringTools is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/stringtool.h:158: Warning: The following parameters of Mezzanine::StringTools::ConvertToBool(const String &ToConvert, const Boole Default=false) are not documented:
   parameter 'Default'
@@ -1398,7 +1566,7 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:149: Warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:150: Warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:156: Warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:154: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:134: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:136: Warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
 <try>:1: Warning: parameters of member Mezzanine::Threading::try are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/uienumerations.h:110: Warning: Member PositioningFlags (enumeration) of namespace Mezzanine::UI is not documented.
@@ -1696,4 +1864,3 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:148: Warning: unable to resolve reference to `Mezzanine::ResourceManager' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:156: Warning: unable to resolve reference to `mainloop1' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:162: Warning: unable to resolve reference to `actorcontainer1' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:211: Warning: unable to resolve reference to `LuaManual' for \ref command

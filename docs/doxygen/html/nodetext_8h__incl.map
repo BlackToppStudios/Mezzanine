@@ -1,9 +1,9 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/nodetext.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/nodetext.h">
-<area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="624,254,709,282"/>
-<area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="5,331,61,359"/>
-<area shape="rect" id="node39" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes. " alt="" coords="527,99,585,127"/>
-<area shape="rect" id="node5" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1331,331,1475,359"/>
-<area shape="rect" id="node42" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="645,177,805,205"/>
-<area shape="rect" id="node45" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="307,177,416,205"/>
-<area shape="rect" id="node48" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="440,177,571,205"/>
+<area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="627,256,717,285"/>
+<area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="5,333,64,363"/>
+<area shape="rect" id="node39" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes. " alt="" coords="531,101,592,131"/>
+<area shape="rect" id="node5" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1355,333,1501,363"/>
+<area shape="rect" id="node42" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="651,179,813,208"/>
+<area shape="rect" id="node45" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="312,179,421,208"/>
+<area shape="rect" id="node48" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="445,179,576,208"/>
 </map>

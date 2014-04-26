@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered. " alt="" coords="5,5,176,33"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1TextLine.html" title="This represents a single line of text to be rendered by a TextLayer. " alt="" coords="5,48,171,77"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1LeftToRightTextLine.html" title="This is a TextLine specialization class for text read from the left to the right. ..." alt="" coords="220,5,401,51"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1RightToLeftTextLine.html" title="This is a TextLine specialization class for text read from the right to the left. ..." alt="" coords="220,74,401,121"/>
 </map>

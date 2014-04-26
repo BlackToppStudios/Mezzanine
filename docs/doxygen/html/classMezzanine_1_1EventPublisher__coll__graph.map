@@ -1,6 +1,6 @@
 <map id="Mezzanine::EventPublisher" name="Mezzanine::EventPublisher">
-<area shape="rect" id="node4" title="STL class. " alt="" coords="88,102,163,130"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. " alt="" coords="171,195,291,223"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="65,6,185,50"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1EventSubscriberSlot.html" title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. " alt="" coords="203,289,408,317"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="89,104,169,133"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. " alt="" coords="179,200,304,229"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="67,6,192,53"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1EventSubscriberSlot.html" title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. " alt="" coords="211,296,421,325"/>
 </map>

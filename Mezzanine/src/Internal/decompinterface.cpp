@@ -43,7 +43,7 @@
 #include "Internal/decompinterface.h.cpp"
 
 // Keeps this file form being documented by doxygen
-/// @cond 0
+/// @cond DontDocumentInternal
 
 namespace Mezzanine
 {

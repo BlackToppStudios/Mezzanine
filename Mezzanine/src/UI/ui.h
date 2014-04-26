@@ -589,33 +589,36 @@ namespace Mezzanine
 ///
 /// \n \n
 /// @section UIInputLife The Lifetime of an Input
-/// The lifetime of an input making it's journey through @ref Mezzanine::UI starts with a call to @ref Mezzanine::UI::UIManager::InjectInput(const MetaCode&) .  The "Input" referred to in this
-/// section is a @ref Mezzanine::Input::MetaCode instance.  Inside a call to "InjectInput" checks are performed on the input to see if any variables need to be set before processing and then is
-/// stored in another container which will be used when the @ref Mezzanine::UI::WidgetUpdateWork is run in the framescheduler.  When @ref Mezzanine::UI::WidgetUpdateWork is run it will automatically
-/// collect all of the inputs new since the last frame from the @ref Mezzanine::Input::InputManager , so this does not need to be done manually and can get you some weird behavior if you attempt
+/// The lifetime of an input making it's journey through Mezzanine::UI starts with a call to Mezzanine::UI::UIManager::InjectInput(const Input::MetaCode&) . The "Input" referred to in this
+/// section is a Mezzanine::Input::MetaCode instance.  Inside a call to "InjectInput" checks are performed on the input to see if any variables need to be set before processing and then it is
+/// stored in another container which will be used when the Mezzanine::UI::WidgetUpdateWorkUnit is run in the framescheduler.  When Mezzanine::UI::WidgetUpdateWorkUnit is run it will automatically
+/// collect all of the inputs new since the last frame from the Mezzanine::Input::InputManager , so this does not need to be done manually and can get you some weird behavior if you attempt
 /// to do so.  Manual calls to "InjectInput" should only be done in special cases where you are simulating an input that was not made by the user or in Mezzanine configurations without an
 /// InputManager.
 /// \n \n
 /// After all of the new inputs from the input subsystem have been collected and a few other non-input checks have been performed, each input is processed individually.  Inputs are first passed over
-/// to "pre-focus" checks, which are checks that are performed by the UI manager prior to being passed off to the Widget focus if one is set.  This is where checks for locking and unlocking the focus
-/// are done.  A focus can be set by clicking any mouse button while the mouse is hovered over a Widget.  If a focus is already set then it is dropped as the focus before setting the new one.  This
-/// is prevented if the focus is locked.  Focus is locked (in addition to gaining focus) when a mouse button is pressed over a Widget.  The UI manager keeps track of that input and looks for a
+/// to "pre-focus" checks, which are checks that are performed by the UI manager prior to being passed off to the Mezzanine::UI::Widget wtih focus if one is set.  This is where checks for locking
+/// and unlocking the focus
+/// are done.  A focus can be set by clicking any mouse button while the mouse is hovered over a Mezzanine::UI::Widget.  If a focus is already set then it is dropped as the focus before setting the new one.  This
+/// is prevented if the focus is locked.  Focus is locked (in addition to gaining focus) when a mouse button is pressed over a Mezzanine::UI::Widget.  The UI manager keeps track of that input and looks for a
 /// corresponding "Lift" input for that button.  When it detects it the lock will be lifted and a switch will be allowed.  A lock being lifted doesn't mean that a switch will happen immediately and
 /// the same Widget can keep it's focus or even have it's focus locked again.
 /// @todo When hotkeys become available, they will also be able to manipulate/switch the focus.
+///
 /// \n \n
 /// Once the pre-focus checks are complete the input will be passed off to the focus if one is set.  If no focus is set then this set is skipped for that input and it's passed on to the post-focus
-/// checks.  If one is set then the @ref Mezzanine::UI::Widget::_HandleInput(const MetaCode&) method is called on the focus, which internally calls @ref Mezzanine::UI::_HandleInputImpl(const MetaCode&)
-/// to be processed by the specific Widget implementation.  In the implementation method the input will be relevant and "consumed" or it will be an input that the Widget cannot use.  If the input
+/// checks.  If one is set then the Mezzanine::UI::Widget::HandleInput(const Input::MetaCode&) method is called on the focus, which internally calls Mezzanine::UI::HandleInputImpl(const Input::MetaCode&)
+/// to be processed by the specific Mezzanine::UI::Widget implementation.  In the implementation method the input will be relevant and "consumed" or it will be an input that the Mezzanine::UI::Widget cannot use.  If the input
 /// is consumed, then the internal method will return true, which will also return true to the UI manager.  However if the input is something it cannot use then the implementation method will return
-/// false and cause the input to be passed up the Widget hierarchy starting with the parent of the focus.  The parent of the focus then goes through all the same processes as the focus.  It goes to
-/// the implementation method and can be consumed.  If it is then true is returned to the UI manager indicating it was consumed.  Otherwise the parent of that Widget gets an opportunity to consume the
-/// input and so on until either a Widget consumes the input or the Screen all these Widgets belong to is reached.  If true is returned to the UI manager from any of these checks then post-focus checks
+/// false and cause the input to be passed up the Mezzanine::UI::Widget hierarchy starting with the parent of the focus.  The parent of the focus then goes through all the same processes as the focus.  It goes to
+/// the implementation method and can be consumed.  If it is then true is returned to the UI manager indicating it was consumed.  Otherwise the parent of that Mezzanine::UI::Widget gets an opportunity to consume the
+/// input and so on until either a Mezzanine::UI::Widget consumes the input or the Screen all these Widgets belong to is reached.  If true is returned to the UI manager from any of these checks then post-focus checks
 /// are skipped for that input.
 /// \n \n
 /// If the input was consumed, then the UI manager will move on to the next input and repeat the cycle starting at pre-focus checks.  If the focus (or any of it's parent Widgets) did not consume the
 /// input, then it'll move on to the post-focus checks.
 /// @todo Currently this is a (very) small section because while the structure is there no actual checks are performed.  In the future Actions or tab switching between Widgets may go here.
+///
 /// \n \n
 /// After all of the inputs have been processed, then the container storing the inputs is cleared to make room for the next frames inputs.  In most cases the number of inputs to be processed in a given
 /// frame will be either 0 or 1.  A typical frame where there is mouse movement is 4 or 5 inputs.  In the extreme case where you would have a 4-way split screen with controllers there could be upwards

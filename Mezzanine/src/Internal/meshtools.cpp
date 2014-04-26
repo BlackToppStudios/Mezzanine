@@ -40,8 +40,7 @@
 #ifndef _internalmeshtools_cpp
 #define _internalmeshtools_cpp
 
-// Keeps this file form being documented by doxygen
-/// @cond 0
+/// @cond DontDocumentInternal
 
 #include "Internal/meshtools.h.cpp"
 #include "BulletCollision/CollisionShapes/btShapeHull.h"

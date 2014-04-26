@@ -1,6 +1,6 @@
 <map id="Mezzanine::Resource::AssetGroup" name="Mezzanine::Resource::AssetGroup">
-<area shape="rect" id="node4" href="$classMezzanine_1_1CountedPtr.html" title="A simple reference counting pointer. " alt="" coords="352,26,507,70"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1ReferenceCount.html" title="This exists once per object managed by a group of shared pointer to track items in memory..." alt="" coords="7,26,188,70"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="392,126,467,154"/>
-<area shape="rect" id="node10" title="STL class. " alt="" coords="37,118,157,162"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1CountedPtr.html" title="A simple reference counting pointer. " alt="" coords="361,26,519,73"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1ReferenceCount.html" title="This exists once per object managed by a group of shared pointer to track items in memory..." alt="" coords="7,26,193,73"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="400,129,480,159"/>
+<area shape="rect" id="node10" title="STL class. " alt="" coords="37,121,163,167"/>
 </map>

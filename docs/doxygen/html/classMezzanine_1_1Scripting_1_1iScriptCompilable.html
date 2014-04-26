@@ -99,14 +99,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Scripting_1_1iScriptCompilable__inherit__graph.svg" width="150" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Scripting_1_1iScriptCompilable__inherit__graph.svg" width="155" height="251"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::Scripting::iScriptCompilable:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Scripting_1_1iScriptCompilable__coll__graph.svg" width="150" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Scripting_1_1iScriptCompilable__coll__graph.svg" width="155" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -195,7 +195,7 @@ Additional Inherited Members</h2></td></tr>
  These are tiny pieces of data that can be run like miniature programs. In some cases they will be compiled to a bytecode that can swiftly be executed by the appropriate bytecode interpretter. This is generally faster than interpretting text, but slower than running machine code. <br/>
  <br/>
  This class is designed for use with multiple inheritance. If a script returns true from <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.html#af3644b4ee4b4a27b27da25f7510364b7">IsCompilable</a> then its pointer can safely be cast to a ScriptCompilable pointer. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000107">Todo:</a></b></dt><dd><p class="startdd">Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000106">Todo:</a></b></dt><dd><p class="startdd">Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd. </p>
 <p class="enddd">Put the Virtual inheritance back into the this class </p>
 </dd></dl>
 
@@ -255,6 +255,8 @@ Additional Inherited Members</h2></td></tr>
 <p>Get the compiled version of the code if it is available. </p>
 <dl class="section return"><dt>Returns</dt><dd>If there is valid byte code this will retrieve that, otherwise this will return an empty bytecode. </dd></dl>
 
+<p>Implemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#aa893caaeede3c8c497ae56da6b6b7e2c">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a29d33adeff18ad7514ad5e7b3304a418"></a>
@@ -282,6 +284,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A pointer of the most derived pointing to this. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.html#a2e14658f9163c4d512ed12f7e17b03cc">Mezzanine::Scripting::iScript</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#ac9a0146d927b0824d90b032673a5de3d">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
 
 <p>Definition at line <a class="el" href="script_8h_source.html#l00267">267</a> of file <a class="el" href="script_8h_source.html">script.h</a>.</p>
 
@@ -343,6 +347,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.html#aca6d95a143bc299424fb6eb92552f750">Mezzanine::Scripting::iScript</a>.</p>
 
+<p>Implemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#ae0f65ac45cce39c7107ec2f7e4ee8a6c">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="af2166d0756db84bb4638d9b54a5b1248"></a>
@@ -376,6 +382,8 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <p>This is what will be executed. No reverse compiling support is provided, so it is advisable that implementations of this either clear the source code or set it to the source that matches the compiled binary. </p>
 
+<p>Implemented in <a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html#adcffc9405e9378f13a6736e7089ac6a7">Mezzanine::Scripting::Lua::Lua51Script</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -383,6 +391,6 @@ Additional Inherited Members</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 19 2014 17:06:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 26 2014 16:13:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>
