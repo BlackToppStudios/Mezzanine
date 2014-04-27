@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['language_5fobj',['LANGUAGE_OBJ',['../structswig_1_1LANGUAGE__OBJ.html',1,'swig']]],
   ['layoutcontainer',['LayoutContainer',['../classMezzanine_1_1UI_1_1LayoutContainer.html',1,'Mezzanine::UI']]],
   ['layoutstrategy',['LayoutStrategy',['../classMezzanine_1_1UI_1_1LayoutStrategy.html',1,'Mezzanine::UI']]],
   ['lefttorighttextline',['LeftToRightTextLine',['../classMezzanine_1_1UI_1_1LeftToRightTextLine.html',1,'Mezzanine::UI']]],

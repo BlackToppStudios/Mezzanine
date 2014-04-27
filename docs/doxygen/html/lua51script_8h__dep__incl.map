@@ -1,18 +1,10 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h">
-<area shape="rect" id="node3" href="$scripting_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/scripting.h" alt="" coords="1063,229,1268,293"/>
-<area shape="rect" id="node25" href="$lua51workunit_8h.html" title="This file has the declaration for a workunit that can execute lua script every frame. " alt="" coords="1203,117,1408,181"/>
-<area shape="rect" id="node30" href="$lua51script_8cpp.html" title="This file has the implemetation for the Lua script storage. " alt="" coords="1432,117,1637,181"/>
-<area shape="rect" id="node32" href="$lua51scriptargument_8cpp.html" title="This file has the implementation for the Lua script argument. " alt="" coords="1661,117,1867,181"/>
-<area shape="rect" id="node34" href="$lua51scriptingengine_8cpp.html" title="This file has the implementation for the Lua based Scripting system. " alt="" coords="1891,117,2099,181"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="1063,342,1268,389"/>
-<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,446,211,493"/>
-<area shape="rect" id="node9" href="$scriptbindingmainlua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingmainlua51.cpp" alt="" coords="235,437,456,501"/>
-<area shape="rect" id="node11" href="$scriptbindingmainlua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingmainlua51unsafe.cpp" alt="" coords="480,437,741,501"/>
-<area shape="rect" id="node13" href="$scriptbindingphysicslua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingphysicslua51.cpp" alt="" coords="765,437,1003,501"/>
-<area shape="rect" id="node15" href="$scriptbindingphysicslua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingphysicslua51unsafe.cpp" alt="" coords="1027,437,1304,501"/>
-<area shape="rect" id="node17" href="$scriptbindingthreadinglua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingthreadinglua51.cpp" alt="" coords="1328,437,1573,501"/>
-<area shape="rect" id="node19" href="$scriptbindingthreadinglua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingthreadinglua51unsafe.cpp" alt="" coords="1597,437,1883,501"/>
-<area shape="rect" id="node21" href="$scriptbindingxmllua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingxmllua51.cpp" alt="" coords="1907,437,2120,501"/>
-<area shape="rect" id="node23" href="$scriptbindingxmllua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingxmllua51unsafe.cpp" alt="" coords="2144,437,2397,501"/>
-<area shape="rect" id="node28" href="$lua51workunit_8cpp.html" title="This file has the implementation a workunit that can execute lua script every frame. " alt="" coords="1292,229,1497,293"/>
+<area shape="rect" id="node3" href="$scripting_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/scripting.h" alt="" coords="5,229,211,293"/>
+<area shape="rect" id="node9" href="$lua51workunit_8h.html" title="This file has the declaration for a workunit that can execute lua script every frame. " alt="" coords="145,117,351,181"/>
+<area shape="rect" id="node14" href="$lua51script_8cpp.html" title="This file has the implemetation for the Lua script storage. " alt="" coords="375,117,580,181"/>
+<area shape="rect" id="node16" href="$lua51scriptargument_8cpp.html" title="This file has the implementation for the Lua script argument. " alt="" coords="604,117,809,181"/>
+<area shape="rect" id="node18" href="$lua51scriptingengine_8cpp.html" title="This file has the implementation for the Lua based Scripting system. " alt="" coords="833,117,1041,181"/>
+<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="5,342,211,389"/>
+<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,438,211,485"/>
+<area shape="rect" id="node12" href="$lua51workunit_8cpp.html" title="This file has the implementation a workunit that can execute lua script every frame. " alt="" coords="235,229,440,293"/>
 </map>

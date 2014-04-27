@@ -1,15 +1,7 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/playlist.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/playlist.h">
-<area shape="rect" id="node3" href="$audio_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/audio.h" alt="" coords="1063,102,1268,149"/>
-<area shape="rect" id="node25" href="$musicplayer_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/musicplayer.cpp" alt="" coords="1292,102,1537,149"/>
-<area shape="rect" id="node27" href="$playlist_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/playlist.cpp" alt="" coords="1561,102,1780,149"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="1063,198,1268,245"/>
-<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,302,211,349"/>
-<area shape="rect" id="node9" href="$scriptbindingmainlua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingmainlua51.cpp" alt="" coords="235,293,456,357"/>
-<area shape="rect" id="node11" href="$scriptbindingmainlua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingmainlua51unsafe.cpp" alt="" coords="480,293,741,357"/>
-<area shape="rect" id="node13" href="$scriptbindingphysicslua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingphysicslua51.cpp" alt="" coords="765,293,1003,357"/>
-<area shape="rect" id="node15" href="$scriptbindingphysicslua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingphysicslua51unsafe.cpp" alt="" coords="1027,293,1304,357"/>
-<area shape="rect" id="node17" href="$scriptbindingthreadinglua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingthreadinglua51.cpp" alt="" coords="1328,293,1573,357"/>
-<area shape="rect" id="node19" href="$scriptbindingthreadinglua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingthreadinglua51unsafe.cpp" alt="" coords="1597,293,1883,357"/>
-<area shape="rect" id="node21" href="$scriptbindingxmllua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingxmllua51.cpp" alt="" coords="1907,293,2120,357"/>
-<area shape="rect" id="node23" href="$scriptbindingxmllua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingxmllua51unsafe.cpp" alt="" coords="2144,293,2397,357"/>
+<area shape="rect" id="node3" href="$audio_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/audio.h" alt="" coords="5,102,211,149"/>
+<area shape="rect" id="node9" href="$musicplayer_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/musicplayer.cpp" alt="" coords="235,102,480,149"/>
+<area shape="rect" id="node11" href="$playlist_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/playlist.cpp" alt="" coords="504,102,723,149"/>
+<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="5,198,211,245"/>
+<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,294,211,341"/>
 </map>

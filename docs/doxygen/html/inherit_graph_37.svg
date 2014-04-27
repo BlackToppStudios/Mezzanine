@@ -11,11 +11,11 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-52 183,-52 183,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastNoneReturnZero_01_4.html" target="_top" xlink:title="An implementation of the CountedPtrCast that always returns 0 cast to the original pointer type...">
+<a xlink:href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastStatic_01_4.html" target="_top" xlink:title="An implementation of the CountedPtrCast that naively static casts the passed pointer. Reached by putting CastStatic in the ReferenceCountTraits of the target class. ">
 <polygon fill="white" stroke="black" points="0.5,-0.5 0.5,-47.5 177.5,-47.5 177.5,-0.5 0.5,-0.5"/>
 <text text-anchor="start" x="8.5" y="-34.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::CountedPtrCast</text>
 <text text-anchor="start" x="8.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">Impl&lt; ReturnPointer, OriginalPointer,</text>
-<text text-anchor="middle" x="89" y="-8.5" font-family="Helvetica,sans-Serif" font-size="10.00"> CastNoneReturnZero &gt;</text>
+<text text-anchor="middle" x="89" y="-8.5" font-family="Helvetica,sans-Serif" font-size="10.00"> CastStatic &gt;</text>
 </a>
 </g>
 </g>

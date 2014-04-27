@@ -11,9 +11,9 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 119,-26 119,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Matrix3x3.html" target="_top" xlink:title="This is a 3x3 Matrix class used for representing rotations and scaling in an object. ">
+<a xlink:href="classMezzanine_1_1Matrix4x4.html" target="_top" xlink:title="A 4x4 matrix math class for the representation of full transforms. ">
 <polygon fill="white" stroke="black" points="0.5,-0.5 0.5,-21.5 113.5,-21.5 113.5,-0.5 0.5,-0.5"/>
-<text text-anchor="middle" x="57" y="-8.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Matrix3x3</text>
+<text text-anchor="middle" x="57" y="-8.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Matrix4x4</text>
 </a>
 </g>
 </g>

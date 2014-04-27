@@ -3,7 +3,6 @@ var searchData=
   ['managedptr',['ManagedPtr',['../classMezzanine_1_1ManagedPtr.html',1,'Mezzanine']]],
   ['managerbase',['ManagerBase',['../classMezzanine_1_1ManagerBase.html',1,'Mezzanine']]],
   ['managerconstructioninfo',['ManagerConstructionInfo',['../classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html',1,'Mezzanine::Physics']]],
-  ['managerfactory',['ManagerFactory',['../classManagerFactory.html',1,'']]],
   ['managerfactory',['ManagerFactory',['../classMezzanine_1_1ManagerFactory.html',1,'Mezzanine']]],
   ['markupparser',['MarkupParser',['../classMezzanine_1_1UI_1_1MarkupParser.html',1,'Mezzanine::UI']]],
   ['markuptag',['MarkupTag',['../classMezzanine_1_1UI_1_1MarkupTag.html',1,'Mezzanine::UI']]],

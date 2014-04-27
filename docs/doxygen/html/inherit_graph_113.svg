@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 115,-38 115,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Resolution.html" target="_top" xlink:title="This stores all the basic configuration options a game window supports. ">
+<a xlink:href="classMezzanine_1_1Graphics_1_1SceneManagerData.html" target="_top" xlink:title="Stores internal data for the SCeneManager to keep it from cluttering the Header file. ">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-34 109.5,-34 109.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="55" y="-8" font-family="Helvetica,sans-Serif" font-size="10.00">::Resolution</text>
+<text text-anchor="middle" x="55" y="-8" font-family="Helvetica,sans-Serif" font-size="10.00">::SceneManagerData</text>
 </a>
 </g>
 </g>

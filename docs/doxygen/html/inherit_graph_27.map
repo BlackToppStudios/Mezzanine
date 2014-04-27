@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1BezierInterpolator.html" title="A simple functor for interpolating data points in a simple way. " alt="" coords="5,5,232,35"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html" title="A way to store and pass binary buffers, for example compiled bytecode. " alt="" coords="5,5,168,51"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1Lua_1_1FlaggedBuffer.html" title="An expanded version of the BinaryTools::BinaryBuffer to carry one tiny piece of metadata around with ..." alt="" coords="216,5,360,51"/>
 </map>

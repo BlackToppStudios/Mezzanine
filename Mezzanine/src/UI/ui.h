@@ -225,18 +225,18 @@ namespace Mezzanine
 /// \n \n
 /// Throughout the entire UI system there can only be a single widget that is being focused and is given input priority.  That widget is evaluated, stored, and can be accessed
 /// through the UIManager using the Mezzanine::UI::UIManager::GetWidgetFocus() const method.  The focus widget and the hovered widget may not be the same widget, and you
-/// may want to access them separately.  To retrieve the hovered widget use the @ref Mezzanine::UI::UIManager::GetHoveredWidget() const method.  Both the focus and hovered widget
+/// may want to access them separately.  To retrieve the hovered widget use the Mezzanine::UI::UIManager::GetHoveredWidget() const method.  Both the focus and hovered widget
 /// (be them separate widgets or not) are in part evaluated from hover checks.  Hover checks are primarily performed by UI Screens, however a system-wide hover check can be called
-/// on using the @ref Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) method.  Note that this method is already called on once per update with
+/// on using the Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) method.  Note that this method is already called on once per update with
 /// the appropriate parameters IF the mouse is determined to have moved since the last update.  As such you shouldn't need to call on this method manually, but can if the need
-/// arises.  Calling @ref Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) will not update the stored focus or hovered widgets.  Screens on the
+/// arises.  Calling Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) will not update the stored focus or hovered widgets.  Screens on the
 /// specified viewport will be checked based on ZOrder, with the highest order Screens checked first.
 ///
 /// \n
 /// @subsection UIClassScreen Screen
-/// The @ref Mezzanine::UI::Screen class is the top of the Widget hierarchy and the primary class responsible for the rendering of Widgets.  The UI Screen is created from the
-/// UIManager, and requires a .mta (Mezzanine Texture Atlas) file to have already been loaded.  MTA files can be loaded from the UIManager using the
-/// @ref Mezzanine::UI::UIManager::LoadMTA(const String&,const String&) method.  Additionally a viewport needs to be specified and will be where all of the Widgets belonging to that
+/// The Mezzanine::UI::Screen class is the top of the Widget hierarchy and the primary class responsible for the rendering of Widgets.  The UI Screen is created from the
+/// UIManager, and requires an .mta (Mezzanine Texture Atlas) file to have already been loaded.  MTA files can be loaded from the UIManager using the
+/// Mezzanine::UI::UIManager::LoadMTA(const String&,const String&) method.  Additionally a viewport needs to be specified and will be where all of the Widgets belonging to that
 /// screen will be rendered to.  Lastly, a unique name must be specified to create a UI Screen.  If a name already in use is specified, an exception will be thrown.  If the specified
 /// texture atlas isn't available, an exception will be thrown.  If an invalid viewport is provided, a segmentation fault will (likely) occur.
 /// \n \n
@@ -248,10 +248,10 @@ namespace Mezzanine
 /// Widgets to be passed to the graphics subsystem.  Additional in depth information about Widgets and their factories can be found in the following sections: @ref UIClassWidget
 /// and/or @ref UIFactories .
 /// \n \n
-/// Hover checks performed by the UI Screen class is somewhat modular and multiple strategies can be deployed using the @ref Mezzanine::UI::MouseHoverStrategy class.  There is a single
-/// pure virtual method ( @ref Mezzanine::UI::MouseHoverStrategy::FindHoveredWidget(const Vector2&) ) that must be defined in a derived class for it to operate.  MouseHoverStrategies
-/// can be set and retrieved on a given Screen using the @ref Mezzanine::UI::Screen::SetMouseHoverStrategy(MouseHoverStrategy*) and @ref Mezzanine::UI::Screen::GetMouseHoverStrategy() const
-/// , respectively.  Manual hover checks for a single Screen can be done using the @ref Mezzanine::UI::Screen::FindHoveredWidget(const Vector2&) method, which accepts an arbitrary point,
+/// Hover checks performed by the UI Screen class is somewhat modular and multiple strategies can be deployed using the Mezzanine::UI::MouseHoverStrategy class.  There is a single
+/// pure virtual method ( Mezzanine::UI::MouseHoverStrategy::FindHoveredWidget(const Vector2&) ) that must be defined in a derived class for it to operate.  MouseHoverStrategies
+/// can be set and retrieved on a given Screen using the Mezzanine::UI::Screen::SetMouseHoverStrategy(MouseHoverStrategy*) and Mezzanine::UI::Screen::GetMouseHoverStrategy() const
+/// , respectively.  Manual hover checks for a single Screen can be done using the Mezzanine::UI::Screen::FindHoveredWidget(const Vector2&) method, which accepts an arbitrary point,
 /// and calls the FindHoveredWidget method on the currently set MouseHoverStrategy.  This is the same method that is called on when a system-wide Hover check is performed from the UIManager
 /// so it will be called automatically when the mouse has been moved.  Manual calling should only be used for usual setups where a check is desired even if the mouse hasn't moved or if
 /// multiple checks in a single frame are required.  Only a single MouseHoverStrategy can be applied to a screen at a time.

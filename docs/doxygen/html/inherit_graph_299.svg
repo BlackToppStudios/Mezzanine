@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 127,-38 127,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classstd_1_1numeric__limits_3_01Mezzanine_1_1Vector2_01_4.html" target="_top" xlink:title="Get Numeric details on Vector2. ">
+<a xlink:href="classstd_1_1numeric__limits_3_01Mezzanine_1_1Vector3_01_4.html" target="_top" xlink:title="Get Numeric details on Vector3. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-34 122,-34 122,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">std::numeric_limits</text>
-<text text-anchor="middle" x="61" y="-8" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Mezzanine::Vector2 &gt;</text>
+<text text-anchor="middle" x="61" y="-8" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Mezzanine::Vector3 &gt;</text>
 </a>
 </g>
 </g>

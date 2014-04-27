@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 115,-38 115,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Billboard.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a set of 2D billboards in the scene...">
+<a xlink:href="classMezzanine_1_1Graphics_1_1GameWindow.html" target="_top" xlink:title="This class is for creating and managing game windows. ">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-34 109.5,-34 109.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="55" y="-8" font-family="Helvetica,sans-Serif" font-size="10.00">::Billboard</text>
+<text text-anchor="middle" x="55" y="-8" font-family="Helvetica,sans-Serif" font-size="10.00">::GameWindow</text>
 </a>
 </g>
 </g>

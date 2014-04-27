@@ -11,11 +11,11 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-52 147,-52 147,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1Lua_1_1Lua51IntegerArgument_01_4.html" target="_top" xlink:title="Marks Lua51IntegerArgument for internal reference counting if a CountedPtr checks. ">
+<a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1Lua_1_1Lua51NilArgument_01_4.html" target="_top" xlink:title="Marks Lua51NilArgument for internal reference counting if a CountedPtr checks. ">
 <polygon fill="white" stroke="black" points="0.5,-0.5 0.5,-47.5 141.5,-47.5 141.5,-0.5 0.5,-0.5"/>
 <text text-anchor="start" x="8.5" y="-34.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ReferenceCount</text>
 <text text-anchor="start" x="8.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">Traits&lt; Scripting::Lua</text>
-<text text-anchor="middle" x="71" y="-8.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Lua51IntegerArgument &gt;</text>
+<text text-anchor="middle" x="71" y="-8.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Lua51NilArgument &gt;</text>
 </a>
 </g>
 </g>

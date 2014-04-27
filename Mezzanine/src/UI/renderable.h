@@ -52,8 +52,6 @@ namespace Mezzanine
         class ScreenRenderData;
         class Widget;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Renderable
-        /// @headerfile uirenderable.h
         /// @brief Basic class for all structures that get inserted into the rendering hierarchy.
         /// @details
         ///////////////////////////////////////

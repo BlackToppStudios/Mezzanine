@@ -1,16 +1,8 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/actor.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/actor.h">
-<area shape="rect" id="node3" href="$actor_8cpp.html" title="Code used by all actors is implemented here. " alt="" coords="332,102,537,149"/>
-<area shape="rect" id="node5" href="$actormanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actormanager.cpp" alt="" coords="561,102,780,149"/>
-<area shape="rect" id="node7" href="$cameracontroller_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/cameracontroller.cpp" alt="" coords="804,102,1039,149"/>
-<area shape="rect" id="node9" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="1063,102,1268,149"/>
-<area shape="rect" id="node29" href="$rayquerytool_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/rayquerytool.cpp" alt="" coords="1292,102,1503,149"/>
-<area shape="rect" id="node11" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,206,211,253"/>
-<area shape="rect" id="node13" href="$scriptbindingmainlua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingmainlua51.cpp" alt="" coords="235,197,456,261"/>
-<area shape="rect" id="node15" href="$scriptbindingmainlua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingmainlua51unsafe.cpp" alt="" coords="480,197,741,261"/>
-<area shape="rect" id="node17" href="$scriptbindingphysicslua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingphysicslua51.cpp" alt="" coords="765,197,1003,261"/>
-<area shape="rect" id="node19" href="$scriptbindingphysicslua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingphysicslua51unsafe.cpp" alt="" coords="1027,197,1304,261"/>
-<area shape="rect" id="node21" href="$scriptbindingthreadinglua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingthreadinglua51.cpp" alt="" coords="1328,197,1573,261"/>
-<area shape="rect" id="node23" href="$scriptbindingthreadinglua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingthreadinglua51unsafe.cpp" alt="" coords="1597,197,1883,261"/>
-<area shape="rect" id="node25" href="$scriptbindingxmllua51_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingxmllua51.cpp" alt="" coords="1907,197,2120,261"/>
-<area shape="rect" id="node27" href="$scriptbindingxmllua51unsafe_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/Lua51/scriptbindingxmllua51unsafe.cpp" alt="" coords="2144,197,2397,261"/>
+<area shape="rect" id="node3" href="$actor_8cpp.html" title="Code used by all actors is implemented here. " alt="" coords="5,102,211,149"/>
+<area shape="rect" id="node5" href="$actormanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actormanager.cpp" alt="" coords="235,102,453,149"/>
+<area shape="rect" id="node7" href="$cameracontroller_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/cameracontroller.cpp" alt="" coords="477,102,712,149"/>
+<area shape="rect" id="node9" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="736,102,941,149"/>
+<area shape="rect" id="node13" href="$rayquerytool_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/rayquerytool.cpp" alt="" coords="965,102,1176,149"/>
+<area shape="rect" id="node11" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="736,198,941,245"/>
 </map>
