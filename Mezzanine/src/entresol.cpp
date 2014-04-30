@@ -79,6 +79,9 @@
 #include <string>
 #include <cassert>
 
+#include "world.h"
+#include "worldmanager.h"
+
 using namespace std;
 
 namespace Mezzanine
@@ -1010,8 +1013,29 @@ namespace Mezzanine
         Worlds.push_back(WorldToBeAdded);
     }
 
-    World* Entresol::CreateWorld( const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded,
-        const Physics::ManagerConstructionInfo& PhysicsInfo,const String& SceneType )
+    World* Entresol::CreateWorld(const String& WorldName)
+    {
+        World* NewWorld = new World(WorldName);
+        this->AddWorld(NewWorld);
+        return NewWorld;
+    }
+
+    World* Entresol::CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded)
+    {
+        World* NewWorld = new World(WorldName, ManagerToBeAdded);
+        this->AddWorld(NewWorld);
+        return NewWorld;
+    }
+
+    World* Entresol::CreateWorld(const String& WorldName, const Physics::ManagerConstructionInfo& PhysicsInfo,const String& SceneType)
+    {
+        World* NewWorld = new World(WorldName, PhysicsInfo, SceneType );
+        this->AddWorld(NewWorld);
+        return NewWorld;
+    }
+
+    World* Entresol::CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded,
+        const Physics::ManagerConstructionInfo& PhysicsInfo,const String& SceneType)
     {
         World* NewWorld = new World(WorldName, ManagerToBeAdded, PhysicsInfo, SceneType );
         this->AddWorld(NewWorld);
@@ -1030,42 +1054,74 @@ namespace Mezzanine
         return NULL;
     }
 
-    void Entresol::RemoveWorld(const String& WorldName)
+    UInt16 Entresol::GetNumWorlds()
     {
-        for( WorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
+        return Worlds.size();
+    }
+
+    World* Entresol::RemoveWorld(World* WorldToBeRemoved)
+    {
+        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             World* w = (*it);
-            if ( WorldName == w->GetName() ) {
+            if ( WorldToBeRemoved == w ) {
                 Worlds.erase(it);
+                return w;
             }
         }
     }
 
-    void Entresol::DestroyWorld(const String& WorldName)
+    World* Entresol::RemoveWorldByName(const String& WorldName)
     {
-        for( WorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
+        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        {
+            World* w = (*it);
+            if ( WorldName == w->GetName() ) {
+                Worlds.erase(it);
+                return w;
+            }
+        }
+    }
+
+    void Entresol::RemoveAllWorlds()
+    {
+        Worlds.clear();
+    }
+
+    void Entresol::DestroyWorld(World* WorldToBeDestroyed)
+    {
+        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        {
+            World* w = (*it);
+            if ( WorldToBeDestroyed == w ) {
+                delete w;
+                Worlds.erase(it);
+                return;
+            }
+        }
+    }
+
+    void Entresol::DestroyWorldByName(const String& WorldName)
+    {
+        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             World* w = (*it);
             if ( WorldName == w->GetName() ) {
                 delete w;
                 Worlds.erase(it);
+                return;
             }
         }
     }
 
     void Entresol::DestroyAllWorlds()
     {
-        for( WorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
+        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             World* w = (*it);
             delete w;
-            Worlds.erase(it);
         }
-    }
-
-    UInt16 Entresol::GetNumWorlds()
-    {
-        return Worlds.size();
+        Worlds.clear();
     }
 }
 #endif

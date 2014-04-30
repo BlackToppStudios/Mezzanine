@@ -283,7 +283,6 @@
 #include "vector3.h"
 #include "managerbase.h"
 #include "singleton.h"
-#include "world.h"
 
 #ifndef SWIG
     #include "Threading/dagframescheduler.h"
@@ -298,6 +297,8 @@ namespace Mezzanine
     class EventManager;
     class NetworkManager;
     class ManagerFactory;
+    class World;
+    class WorldManager;
     namespace Audio
     {
         class AudioManager;
@@ -761,6 +762,21 @@ namespace Mezzanine
             void AddWorld(World* WorldToBeAdded);
             /// @brief This creates a world and adds it to the World List.
             /// @param WorldName String name of the world.
+            /// @return Returns a pointer to the created world.
+            World* CreateWorld(const String& WorldName);
+            /// @brief This creates a world and adds it to the World List.
+            /// @param WorldName String name of the world.
+            /// @param Managers A container of pre-made managers to be used by this world.
+            /// @return Returns a pointer to the created world.
+            World* CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded);
+            /// @brief This creates a world and adds it to the World List.
+            /// @param WorldName String name of the world.
+            /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
+            /// @param SceneType A string containing the name of the underlying scene type for this world.
+            /// @return Returns a pointer to the created world.
+            World* CreateWorld(const String& WorldName, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+            /// @brief This creates a world and adds it to the World List.
+            /// @param WorldName String name of the world.
             /// @param Managers A container of pre-made managers to be used by this world.
             /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
             /// @param SceneType A string containing the name of the underlying scene type for this world.
@@ -771,13 +787,21 @@ namespace Mezzanine
             /// @param WorldName The string name of the world to be accessed..
             /// @return This returns a pointer to the world with the given name, otherwise returns NULL.
             World* GetWorld(const String& WorldName);
+            /// @brief This removes the given world from the world list.
+            /// @param WorldToBeRemoved Pointer to the world to be removed from the world list.
+            World* RemoveWorld(World* WorldToBeRemoved);
             /// @brief This removes the world with the given name from the world list.
             /// @param WorldName The name of the world to be removed.
-            void RemoveWorld(const String& WorldName);
+            World* RemoveWorldByName(const String& WorldName);
+            /// @brief This removes all worlds from the world list.
+            void RemoveAllWorlds();
+            /// @brief This destroys the given world and removes it from the world list.
+            /// @param WorldToBeDestroyed The name of the world to be destroyed.
+            void DestroyWorld(World* WorldToBeDestroyed);
             /// @brief This destroys the world with the given name and removes it from the world list.
             /// @param WorldName The name of the world to be destroyed.
-            void DestroyWorld(const String& WorldName);
-            /// @brief This all the worlds in the world list.
+            void DestroyWorldByName(const String& WorldName);
+            /// @brief This destroys all the worlds in the world list.
             void DestroyAllWorlds();
             /// @brief This gets the number of worlds in the world list.
             /// @return Returns the number of worlds in the world list.
