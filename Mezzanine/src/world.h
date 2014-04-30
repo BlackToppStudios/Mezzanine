@@ -47,7 +47,6 @@ namespace Mezzanine
 {
     class ActorManager;
     class AreaEffectManager;
-    class CameraManager;
     class TerrainManager;
     namespace Audio
     {
@@ -55,6 +54,7 @@ namespace Mezzanine
     }
     namespace Graphics
     {
+        class CameraManager;
         class SceneManager;
     }
     namespace Physics
@@ -82,26 +82,38 @@ namespace Mezzanine
         /// @internal
         /// @brief A container storing all the managers belonging to this world.
         WorldManagerContainer WorldManagers;
+
+        /// @internal
+        /// @brief Unique string identifier for world.
+        String Name;
     public:
         /// @brief Class constructor.
-        World();
+        /// @param WorldName String name of the world.
+        World(const String& WorldName);
         /// @brief Pre-made manager constructor.
+        /// @param WorldName String name of the world.
         /// @param Managers A container of pre-made managers to be used by this world.
-        World(const WorldManagerContainer& Managers);
+        World(const String& WorldName, const WorldManagerContainer& Managers);
         /// @brief Descriptive constructor.
+        /// @param WorldName String name of the world.
         /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
         /// @param SceneType A string containing the name of the underlying scene type for this world.
-        World(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        World(const String& WorldName, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
         /// @brief Descriptive pre-made manager constructor.
+        /// @param WorldName String name of the world.
         /// @param Managers A container of pre-made managers to be used by this world.
         /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
         /// @param SceneType A string containing the name of the underlying scene type for this world.
-        World(const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        World(const String& WorldName, const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
         /// @brief XML constructor.
         /// @param SelfNode The node that represents the data to populate this world with.
         World(const XML::Node& SelfNode);
         /// @brief class destructor.
         virtual ~World();
+
+        /// @brief Gets the name of this world.
+        /// @return Returns a string containing the name used to identify this world.
+        const String& GetName() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Initialization
@@ -137,7 +149,7 @@ namespace Mezzanine
         AreaEffectManager* GetAreaEffectManager();
         /// @brief This gets the CameraManager from the manager list.
         /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
-        CameraManager* GetCameraManager();
+        Graphics::CameraManager* GetCameraManager();
         /// @brief This gets the PhysicsManager from the manager list.
         /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
         Physics::PhysicsManager* GetPhysicsManager();
@@ -150,6 +162,13 @@ namespace Mezzanine
         /// @brief This gets the TerrainManager from the manager list.
         /// @return This returns a pointer to a TerrainManager, or a NULL pointer if no matching manager exists.
         TerrainManager* GetTerrainManager();
+
+    private:
+        /// @internal
+        /// @brief Helper function used to assist construction.
+        void Construct(     const Physics::ManagerConstructionInfo& PhysicsInfo,
+                            const String& SceneType,
+                            const std::vector <WorldManager*>& ManagerToBeAdded );
     };//World
 }//Mezzanine
 
