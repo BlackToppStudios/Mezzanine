@@ -473,10 +473,9 @@ namespace Mezzanine
             };
 
             ///////////////////////////////////////////////////////////////////////////////
-            /// @class ManagerFactory
-            /// @headerfile managerfactory.h
             /// @brief This is a base class for factories that construct the managers the engine uses.
-            /// @details
+            /// @details This takes a construction info from the ManagerFactory and massages into something that Lua51ScriptingEngine
+            /// is designed to handle
             ///////////////////////////////////////
             class MEZZ_LIB Lua51ScriptingEngineFactory : public ManagerFactory
             {

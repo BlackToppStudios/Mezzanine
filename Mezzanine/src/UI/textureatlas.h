@@ -60,8 +60,7 @@ namespace Mezzanine
         class FontData;
         class Sprite;
         class Glyph;
-        /// @class TextureAtlas
-        /// @headerfile uitextureatlas.h
+
         /// @brief
         /// @details
         class MEZZ_LIB TextureAtlas

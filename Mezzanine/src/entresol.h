@@ -208,7 +208,7 @@
 
   @ref UIManual
 
-  @ref LuaManual
+  @ref ScriptingManual
 
   @ref Serialization
 

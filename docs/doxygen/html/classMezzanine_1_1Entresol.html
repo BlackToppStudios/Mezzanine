@@ -100,14 +100,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Entresol__inherit__graph.svg" width="152" height="134"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Entresol__inherit__graph.svg" width="158" height="136"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::Entresol:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Entresol__coll__graph.svg" width="152" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Entresol__coll__graph.svg" width="158" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -116,6 +116,10 @@ Public Types</h2></td></tr>
 typedef <br class="typebreak"/>
 ManagerFactoryMap::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>ConstManagerFactoryIterator</b></td></tr>
 <tr class="separator:affffc2f3d85a219fde85b56608549a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bcf935eecb83fef782f0683bf697afa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bcf935eecb83fef782f0683bf697afa"></a>
+typedef <br class="typebreak"/>
+WorldContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>ConstWorldContainerIterator</b></td></tr>
+<tr class="separator:a9bcf935eecb83fef782f0683bf697afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0bef2ad312debb823db22e742378e7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0bef2ad312debb823db22e742378e7d"></a>
 typedef ManagerFactoryMap::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>ManagerFactoryIterator</b></td></tr>
 <tr class="separator:aa0bef2ad312debb823db22e742378e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,6 +127,12 @@ typedef ManagerFactoryMap::iterator&#160;</td><td class="memItemRight" valign="b
 typedef std::map&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>, <br class="typebreak"/>
 <a class="el" href="classMezzanine_1_1ManagerFactory.html">ManagerFactory</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ManagerFactoryMap</b></td></tr>
 <tr class="separator:a7d32ab85e4b4346ace4b0f38a453aa70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3542da3574080cf1f41a84f577d70bb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3542da3574080cf1f41a84f577d70bb0"></a>
+typedef std::vector&lt; <a class="el" href="classMezzanine_1_1World.html">World</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>WorldContainer</b></td></tr>
+<tr class="separator:a3542da3574080cf1f41a84f577d70bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec305bc97b1761f23dc9341d78e3687e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec305bc97b1761f23dc9341d78e3687e"></a>
+typedef WorldContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>WorldContainerIterator</b></td></tr>
+<tr class="separator:aec305bc97b1761f23dc9341d78e3687e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -154,6 +164,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a80e76b09dc1d0476e2e1796e131f9e2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a80e76b09dc1d0476e2e1796e131f9e2f">AddManagerFactory</a> (<a class="el" href="classMezzanine_1_1ManagerFactory.html">ManagerFactory</a> *ToBeAdded)</td></tr>
 <tr class="memdesc:a80e76b09dc1d0476e2e1796e131f9e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds/registers a manager factory with this <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a>, allowing it to be constructed through this API.  <a href="#a80e76b09dc1d0476e2e1796e131f9e2f">More...</a><br/></td></tr>
 <tr class="separator:a80e76b09dc1d0476e2e1796e131f9e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff7584a6e04ebf7bba400b7adfe92ce1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#aff7584a6e04ebf7bba400b7adfe92ce1">AddWorld</a> (<a class="el" href="classMezzanine_1_1World.html">World</a> *WorldToBeAdded)</td></tr>
+<tr class="memdesc:aff7584a6e04ebf7bba400b7adfe92ce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This adds a world to the list of worlds in the entresol.  <a href="#aff7584a6e04ebf7bba400b7adfe92ce1">More...</a><br/></td></tr>
+<tr class="separator:aff7584a6e04ebf7bba400b7adfe92ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80b439fa2162ea2fa05425b444e2d364"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a80b439fa2162ea2fa05425b444e2d364">BreakMainLoop</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Break=true)</td></tr>
 <tr class="memdesc:a80b439fa2162ea2fa05425b444e2d364"><td class="mdescLeft">&#160;</td><td class="mdescRight">This makes the main loop end after it's current frame (or cancels a previous attempt to do so).  <a href="#a80b439fa2162ea2fa05425b444e2d364">More...</a><br/></td></tr>
 <tr class="separator:a80b439fa2162ea2fa05425b444e2d364"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,12 +176,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a58f599ef91be74b6f83d17be117764cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a58f599ef91be74b6f83d17be117764cb">CreateManager</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerImplName, <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode, <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> AddToEntresol=true)</td></tr>
 <tr class="memdesc:a58f599ef91be74b6f83d17be117764cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new manager.  <a href="#a58f599ef91be74b6f83d17be117764cb">More...</a><br/></td></tr>
 <tr class="separator:a58f599ef91be74b6f83d17be117764cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49da86109f58a5038c41e1610ae67db7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a49da86109f58a5038c41e1610ae67db7">CreateWorld</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;WorldName, const std::vector&lt; <a class="el" href="classMezzanine_1_1WorldManager.html">WorldManager</a> * &gt; &amp;ManagerToBeAdded, const <a class="el" href="classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html">Physics::ManagerConstructionInfo</a> &amp;PhysicsInfo, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SceneType)</td></tr>
+<tr class="memdesc:a49da86109f58a5038c41e1610ae67db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This creates a world and adds it to the <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. ">World</a> List.  <a href="#a49da86109f58a5038c41e1610ae67db7">More...</a><br/></td></tr>
+<tr class="separator:a49da86109f58a5038c41e1610ae67db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8135feb4d5fc6b258ca54672eb0f41c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a8135feb4d5fc6b258ca54672eb0f41c7">DestroyAllManagerFactories</a> ()</td></tr>
 <tr class="memdesc:a8135feb4d5fc6b258ca54672eb0f41c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all manager factories in this <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a>.  <a href="#a8135feb4d5fc6b258ca54672eb0f41c7">More...</a><br/></td></tr>
 <tr class="separator:a8135feb4d5fc6b258ca54672eb0f41c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a094af80571c2e36de6c4867073d87fdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a094af80571c2e36de6c4867073d87fdc">DestroyAllManagers</a> ()</td></tr>
 <tr class="memdesc:a094af80571c2e36de6c4867073d87fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all managers currently in the <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a>.  <a href="#a094af80571c2e36de6c4867073d87fdc">More...</a><br/></td></tr>
 <tr class="separator:a094af80571c2e36de6c4867073d87fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90bfc98847d1b9e72b87c203e5b90113"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90bfc98847d1b9e72b87c203e5b90113"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a90bfc98847d1b9e72b87c203e5b90113">DestroyAllWorlds</a> ()</td></tr>
+<tr class="memdesc:a90bfc98847d1b9e72b87c203e5b90113"><td class="mdescLeft">&#160;</td><td class="mdescRight">This all the worlds in the world list. <br/></td></tr>
+<tr class="separator:a90bfc98847d1b9e72b87c203e5b90113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d0ad1bbc5082f24a8151c0b988c15ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a3d0ad1bbc5082f24a8151c0b988c15ab">DestroyManager</a> (<a class="el" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a> *ToBeDestroyed)</td></tr>
 <tr class="memdesc:a3d0ad1bbc5082f24a8151c0b988c15ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a manager.  <a href="#a3d0ad1bbc5082f24a8151c0b988c15ab">More...</a><br/></td></tr>
 <tr class="separator:a3d0ad1bbc5082f24a8151c0b988c15ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,6 +198,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a03f789249648832f687a53f76821f0d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a03f789249648832f687a53f76821f0d0">DestroyManagerFactory</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ImplName)</td></tr>
 <tr class="memdesc:a03f789249648832f687a53f76821f0d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes and destroys a manager factory in this <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a>.  <a href="#a03f789249648832f687a53f76821f0d0">More...</a><br/></td></tr>
 <tr class="separator:a03f789249648832f687a53f76821f0d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa081106e0f8f2f896c136e05a4d377e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#aa081106e0f8f2f896c136e05a4d377e2">DestroyWorld</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;WorldName)</td></tr>
+<tr class="memdesc:aa081106e0f8f2f896c136e05a4d377e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This destroys the world with the given name and removes it from the world list.  <a href="#aa081106e0f8f2f896c136e05a4d377e2">More...</a><br/></td></tr>
+<tr class="separator:aa081106e0f8f2f896c136e05a4d377e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac05850439fee1efc5f5a0ef9ea9e7c58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#ac05850439fee1efc5f5a0ef9ea9e7c58">DoOneFrame</a> ()</td></tr>
 <tr class="memdesc:ac05850439fee1efc5f5a0ef9ea9e7c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run one frame.  <a href="#ac05850439fee1efc5f5a0ef9ea9e7c58">More...</a><br/></td></tr>
 <tr class="separator:ac05850439fee1efc5f5a0ef9ea9e7c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -232,6 +255,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a3b86e5b89ab612305a70710fd09ba0dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Graphics_1_1MeshManager.html">Graphics::MeshManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a3b86e5b89ab612305a70710fd09ba0dd">GetMeshManager</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> WhichOne=0)</td></tr>
 <tr class="memdesc:a3b86e5b89ab612305a70710fd09ba0dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the MeshManager from the manager list.  <a href="#a3b86e5b89ab612305a70710fd09ba0dd">More...</a><br/></td></tr>
 <tr class="separator:a3b86e5b89ab612305a70710fd09ba0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0f669acd3370938d7807163db46251"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#abf0f669acd3370938d7807163db46251">GetNumWorlds</a> ()</td></tr>
+<tr class="memdesc:abf0f669acd3370938d7807163db46251"><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the number of worlds in the world list.  <a href="#abf0f669acd3370938d7807163db46251">More...</a><br/></td></tr>
+<tr class="separator:abf0f669acd3370938d7807163db46251"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a855183e9fde6d575aaee94ba1d812b05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html">Physics::PhysicsManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a855183e9fde6d575aaee94ba1d812b05">GetPhysicsManager</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> WhichOne=0)</td></tr>
 <tr class="memdesc:a855183e9fde6d575aaee94ba1d812b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the PhysicsManager from the manager list.  <a href="#a855183e9fde6d575aaee94ba1d812b05">More...</a><br/></td></tr>
 <tr class="separator:a855183e9fde6d575aaee94ba1d812b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,6 +285,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aed4717790bdf375defc5fc4e3cb9627f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html">UI::UIManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#aed4717790bdf375defc5fc4e3cb9627f">GetUIManager</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> WhichOne=0)</td></tr>
 <tr class="memdesc:aed4717790bdf375defc5fc4e3cb9627f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the UIManager from the manager list.  <a href="#aed4717790bdf375defc5fc4e3cb9627f">More...</a><br/></td></tr>
 <tr class="separator:aed4717790bdf375defc5fc4e3cb9627f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19cecbce345517100a6fc1b5ab3cf6ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a19cecbce345517100a6fc1b5ab3cf6ec">GetWorld</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;WorldName)</td></tr>
+<tr class="memdesc:a19cecbce345517100a6fc1b5ab3cf6ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets a world from the world list by name.  <a href="#a19cecbce345517100a6fc1b5ab3cf6ec">More...</a><br/></td></tr>
+<tr class="separator:a19cecbce345517100a6fc1b5ab3cf6ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96f894e20225d43643091c3731acc35d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a96f894e20225d43643091c3731acc35d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a96f894e20225d43643091c3731acc35d">Log</a> (const T &amp;Message)</td></tr>
 <tr class="memdesc:a96f894e20225d43643091c3731acc35d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runtime event and message logging.  <a href="#a96f894e20225d43643091c3731acc35d">More...</a><br/></td></tr>
@@ -288,6 +317,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a5f0d45fab7479f97402e278b0aa35103"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a5f0d45fab7479f97402e278b0aa35103">RemoveManagerFactory</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ImplName)</td></tr>
 <tr class="memdesc:a5f0d45fab7479f97402e278b0aa35103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a manager factory from this <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a>.  <a href="#a5f0d45fab7479f97402e278b0aa35103">More...</a><br/></td></tr>
 <tr class="separator:a5f0d45fab7479f97402e278b0aa35103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d14924d19599cbbf7b8b0d3469fab74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a5d14924d19599cbbf7b8b0d3469fab74">RemoveWorld</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;WorldName)</td></tr>
+<tr class="memdesc:a5d14924d19599cbbf7b8b0d3469fab74"><td class="mdescLeft">&#160;</td><td class="mdescRight">This removes the world with the given name from the world list.  <a href="#a5d14924d19599cbbf7b8b0d3469fab74">More...</a><br/></td></tr>
+<tr class="separator:a5d14924d19599cbbf7b8b0d3469fab74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ba4a043a7a490a7606297c7de1401ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Entresol.html#a6ba4a043a7a490a7606297c7de1401ee">SetTargetFrameRate</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> NewFrameRate)</td></tr>
 <tr class="memdesc:a6ba4a043a7a490a7606297c7de1401ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">This sets a new Target Frame Rate.  <a href="#a6ba4a043a7a490a7606297c7de1401ee">More...</a><br/></td></tr>
 <tr class="separator:a6ba4a043a7a490a7606297c7de1401ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -325,7 +357,7 @@ static <a class="el" href="classMezzanine_1_1Entresol.html">Entresol</a> *&#160;
 <div class="textblock"><p>This is the main entry point for the entire library. </p>
 <p>The entresol coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d <a class="el" href="namespaceMezzanine_1_1Graphics.html" title="This namespace is for all the classes belonging to the Graphics Subsystem. ">Graphics</a>, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one core object. </p>
 
-<p>Definition at line <a class="el" href="entresol_8h_source.html#l00373">373</a> of file <a class="el" href="entresol_8h_source.html">entresol.h</a>.</p>
+<p>Definition at line <a class="el" href="entresol_8h_source.html#l00374">374</a> of file <a class="el" href="entresol_8h_source.html">entresol.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6a95f5946b9dd4366d13b094b225aead"></a>
 <div class="memitem">
@@ -635,6 +667,32 @@ static <a class="el" href="classMezzanine_1_1Entresol.html">Entresol</a> *&#160;
 
 </div>
 </div>
+<a class="anchor" id="aff7584a6e04ebf7bba400b7adfe92ce1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Entresol::AddWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td>
+          <td class="paramname"><em>WorldToBeAdded</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This adds a world to the list of worlds in the entresol. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WorldToAdd</td><td>The pointer to the world to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="entresol_8cpp_source.html#l01008">1008</a> of file <a class="el" href="entresol_8cpp_source.html">entresol.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a80b439fa2162ea2fa05425b444e2d364"></a>
 <div class="memitem">
 <div class="memproto">
@@ -749,6 +807,58 @@ static <a class="el" href="classMezzanine_1_1Entresol.html">Entresol</a> *&#160;
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created manager. </dd></dl>
 
 <p>Definition at line <a class="el" href="entresol_8cpp_source.html#l00806">806</a> of file <a class="el" href="entresol_8cpp_source.html">entresol.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a49da86109f58a5038c41e1610ae67db7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1World.html">World</a> * Mezzanine::Entresol::CreateWorld </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>WorldName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classMezzanine_1_1WorldManager.html">WorldManager</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ManagerToBeAdded</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html">Physics::ManagerConstructionInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>PhysicsInfo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>SceneType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This creates a world and adds it to the <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. ">World</a> List. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WorldName</td><td>String name of the world. </td></tr>
+    <tr><td class="paramname">Managers</td><td>A container of pre-made managers to be used by this world. </td></tr>
+    <tr><td class="paramname">PhysicsInfo</td><td>A ManagerConstructionInfo struct with data on how to configure the physics for this world. </td></tr>
+    <tr><td class="paramname">SceneType</td><td>A string containing the name of the underlying scene type for this world. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created world. </dd></dl>
+
+<p>Definition at line <a class="el" href="entresol_8cpp_source.html#l01013">1013</a> of file <a class="el" href="entresol_8cpp_source.html">entresol.cpp</a>.</p>
 
 </div>
 </div>
@@ -867,6 +977,32 @@ static <a class="el" href="classMezzanine_1_1Entresol.html">Entresol</a> *&#160;
 </dl>
 
 <p>Definition at line <a class="el" href="entresol_8cpp_source.html#l00709">709</a> of file <a class="el" href="entresol_8cpp_source.html">entresol.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa081106e0f8f2f896c136e05a4d377e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Entresol::DestroyWorld </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>WorldName</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This destroys the world with the given name and removes it from the world list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WorldName</td><td>The name of the world to be destroyed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="entresol_8cpp_source.html#l01044">1044</a> of file <a class="el" href="entresol_8cpp_source.html">entresol.cpp</a>.</p>
 
 </div>
 </div>
@@ -1339,6 +1475,26 @@ static <a class="el" href="classMezzanine_1_1Entresol.html">Entresol</a> *&#160;
 
 </div>
 </div>
+<a class="anchor" id="abf0f669acd3370938d7807163db46251"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Mezzanine::Entresol::GetNumWorlds </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This gets the number of worlds in the world list. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the number of worlds in the world list. </dd></dl>
+
+<p>Definition at line <a class="el" href="entresol_8cpp_source.html#l01066">1066</a> of file <a class="el" href="entresol_8cpp_source.html">entresol.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a855183e9fde6d575aaee94ba1d812b05"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1536,6 +1692,33 @@ static <a class="el" href="classMezzanine_1_1Entresol.html">Entresol</a> *&#160;
 
 </div>
 </div>
+<a class="anchor" id="a19cecbce345517100a6fc1b5ab3cf6ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1World.html">World</a> * Mezzanine::Entresol::GetWorld </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>WorldName</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This gets a world from the world list by name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WorldName</td><td>The string name of the world to be accessed.. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a pointer to the world with the given name, otherwise returns NULL. </dd></dl>
+
+<p>Definition at line <a class="el" href="entresol_8cpp_source.html#l01021">1021</a> of file <a class="el" href="entresol_8cpp_source.html">entresol.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a96f894e20225d43643091c3731acc35d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1574,7 +1757,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="entresol_8h_source.html#l00520">520</a> of file <a class="el" href="entresol_8h_source.html">entresol.h</a>.</p>
+<p>Definition at line <a class="el" href="entresol_8h_source.html#l00529">529</a> of file <a class="el" href="entresol_8h_source.html">entresol.h</a>.</p>
 
 </div>
 </div>
@@ -1771,6 +1954,32 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a5d14924d19599cbbf7b8b0d3469fab74"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Entresol::RemoveWorld </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>WorldName</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This removes the world with the given name from the world list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WorldName</td><td>The name of the world to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="entresol_8cpp_source.html#l01033">1033</a> of file <a class="el" href="entresol_8cpp_source.html">entresol.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a6ba4a043a7a490a7606297c7de1401ee"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1861,6 +2070,6 @@ template&lt;class T &gt; </div>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 19 2014 17:06:11 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Apr 27 2014 01:23:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

@@ -1,4 +1,4 @@
 <map id="Mezzanine::AttachableBase" name="Mezzanine::AttachableBase">
-<area shape="rect" id="node3" href="$classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent. " alt="" coords="5,83,184,111"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them. " alt="" coords="208,83,397,111"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent. " alt="" coords="5,83,189,112"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them. " alt="" coords="213,83,405,112"/>
 </map>

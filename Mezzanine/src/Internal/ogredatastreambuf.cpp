@@ -45,8 +45,7 @@
 #include "exception.h"
 #include "entresol.h"
 
-// Keeps this file form being documented by doxygen
-/// @cond 0
+/// @cond DontDocumentInternal
 
 using namespace std;
 

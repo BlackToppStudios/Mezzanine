@@ -1,12 +1,4 @@
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/mathtool.cpp:53: Warning: problem evaluating expression '0': Syntax error in part '0'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collidableproxy.cpp:95: Warning: problem evaluating expression '0': Syntax error in part '0'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/brutestrategy.cpp:55: Warning: the name `brutestategy.cpp' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/kerning.h:47: Warning: the name `uikerning.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/linelist.h:56: Warning: the name `uilinelist.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderable.h:55: Warning: the name `uirenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/vertex.h:51: Warning: the name `uivertex.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/vertex.h:65: Warning: the name `uivertex.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:68: Warning: Compound Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:67: Warning: Compound Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:52: Warning: Compound Mezzanine::Resource::AssetHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:499: Warning: Compound Mezzanine::Node::iterator is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:68: Warning: Compound Mezzanine::NodeItem is not documented.
@@ -184,6 +176,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:77: Warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:85: Warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:77: Warning: target CollisionShape::GetBulletShape of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:365: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:369: Warning: Found unknown command `\detail'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:113: Warning: target QuadRenderable::CreateLayoutStrat() of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/editbox.h:83: Warning: target QuadRenderable::CreateLayoutStrat() of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/gridcontainer.h:192: Warning: target PagedLayoutContainer::UpdateContainerDimensionsImpl(const Rect&,const Rect&) of \copydoc command not found
@@ -258,11 +252,20 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/enumerations.h:165: Warning: Member WorldObjectType (enumeration) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/macros.h:58: Warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/macros.h:53: Warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.cpp:63: Warning: Member luaopen_Mezzanine(lua_State *L) (function) of file lua51script.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:66: Warning: Member luaopen_Mezzanine(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:75: Warning: Member luaopen_MezzaninePhysics(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:76: Warning: Member luaopen_MezzaninePhysicsSafe(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:67: Warning: Member luaopen_MezzanineSafe(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:72: Warning: Member luaopen_MezzanineThreading(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:73: Warning: Member luaopen_MezzanineThreadingSafe(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:69: Warning: Member luaopen_MezzanineXML(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:70: Warning: Member luaopen_MezzanineXMLSafe(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:141: Warning: Member catch(...) (function) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:149: Warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:150: Warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:156: Warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:154: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:134: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:136: Warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/transform.h:165: Warning: Member operator<<(std::ostream &stream, const Mezzanine::Transform &x) (function) of file transform.h is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:273: Warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
@@ -275,27 +278,20 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:577: Warning: unable to resolve reference to `UI::Mezzanine::Widget' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:577: Warning: unable to resolve reference to `UIWidget' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:584: Warning: unable to resolve reference to `Mezzanine::QuadRenderable::SetLocalVertexCaching(Boole)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:592: Warning: unable to resolve reference to `Mezzanine::UI::UIManager::InjectInput(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:594: Warning: unable to resolve reference to `Mezzanine::UI::WidgetUpdateWork' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:594: Warning: unable to resolve reference to `Mezzanine::UI::WidgetUpdateWork' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:608: Warning: unable to resolve reference to `Mezzanine::UI::Widget::_HandleInput(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:608: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputImpl(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:634: Warning: unable to resolve reference to `Mezzanine::UI::UnifiedDim::CalculateActualDimension(const Real&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:702: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:637: Warning: unable to resolve reference to `Mezzanine::UI::UnifiedDim::CalculateActualDimension(const Real&)' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:705: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:722: Warning: unable to resolve reference to `Mezzanine::UI::HorizontalStrategy' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:722: Warning: unable to resolve reference to `Mezzanine::UI::VerticalStrategy' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:792: Warning: unable to resolve reference to `Mezzanine::UI::MarkupParser::ProcessResult' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:819: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetProviders(PageProvider*, PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:820: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:821: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetYProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:822: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:836: Warning: unable to resolve reference to `Mezzanine::UI::StackedButton' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:708: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:725: Warning: unable to resolve reference to `Mezzanine::UI::HorizontalStrategy' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:725: Warning: unable to resolve reference to `Mezzanine::UI::VerticalStrategy' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:795: Warning: unable to resolve reference to `Mezzanine::UI::MarkupParser::ProcessResult' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:822: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetProviders(PageProvider*, PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:823: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:824: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetYProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:825: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:839: Warning: unable to resolve reference to `Mezzanine::UI::StackedButton' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:567: Warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:647: Warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:647: Warning: explicit link request to 'x' could not be resolved
-todo:127: Warning: unable to resolve reference to `Mezzanine::UI::Widget::_HandleInput(const MetaCode&)' for \ref command
-todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputImpl(const MetaCode&)' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/enumerations.h:165: Warning: Member WorldObjectType (enumeration) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/countedptr.h:646: Warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/countedptr.h:646: Warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
@@ -391,14 +387,23 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:91: Warning: Member operator==(T const &key) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:95: Warning: Member operator==(NodeItemClass const &oth) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:107: Warning: Member set(T const &key) (function) of class Mezzanine::NodeItem is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:378: Warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:377: Warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:376: Warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:745: Warning: Member GetScriptingManager(const UInt16 WhichOne=0) (function) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:379: Warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:383: Warning: Member ConstWorldContainerIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:378: Warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:377: Warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:381: Warning: Member WorldContainer (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:382: Warning: Member WorldContainerIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:754: Warning: Member GetScriptingManager(const UInt16 WhichOne=0) (function) of class Mezzanine::Entresol is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: Warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:485: Warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:494: Warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:157: Warning: Found unknown command `\TODO'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:534: Warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:759: Warning: argument 'WorldToAdd' of command @param is not found in the argument list of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:759: Warning: The following parameters of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded) are not documented:
+  parameter 'WorldToBeAdded'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:762: Warning: argument 'Managers' of command @param is not found in the argument list of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded, const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:762: Warning: The following parameters of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded, const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType) are not documented:
+  parameter 'ManagerToBeAdded'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:543: Warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:110: Warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventgamewindow.cpp:62: Warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:68: Warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
@@ -788,6 +793,7 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:918: Warning: Member mEndSymbol (variable) of class Mezzanine::VectorItems is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:919: Warning: Member mItems (variable) of class Mezzanine::VectorItems is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:920: Warning: Member mSymolToIndex (variable) of class Mezzanine::VectorItems is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:75: Warning: Member GetName() const  (function) of class Mezzanine::World is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:68: Warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldtrigger.h:56: Warning: Member Name (variable) of class Mezzanine::WorldTrigger is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:68: Warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
@@ -811,8 +817,8 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameramanager.h:83: Warning: unable to resolve reference to `Camera' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameramanager.h:121: Warning: parameters of member Mezzanine::Graphics::CameraManager::GetCamera are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameramanager.h:124: Warning: parameters of member Mezzanine::Graphics::CameraManager::GetCamera are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameraproxy.h:260: Warning: return type of member Mezzanine::Graphics::CameraProxy::_GetBaseGraphicsObject is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameraproxy.h:144: Warning: return type of member Mezzanine::Graphics::CameraProxy::GetCameraToViewportRay is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameraproxy.h:263: Warning: return type of member Mezzanine::Graphics::CameraProxy::_GetBaseGraphicsObject is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/cameraproxy.h:147: Warning: return type of member Mezzanine::Graphics::CameraProxy::GetCameraToViewportRay is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/renderableproxy.h:104: Warning: target PhysicsProxy::GetCreator() const of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/entityproxy.h:215: Warning: return type of member Mezzanine::Graphics::EntityProxy::_GetBaseGraphicsObject is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/entityproxy.h:90: Warning: parameters of member Mezzanine::Graphics::EntityProxy::ProtoDeSerializeImpl are not (all) documented
@@ -1389,6 +1395,45 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:481: Warning: unable to resolve reference to `Bool' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:405: Warning: unable to resolve reference to `Bool' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:329: Warning: unable to resolve reference to `Bool' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:187: Warning: Member Lua51BoolArgument(Boole InitialValue=false) (function) of class Mezzanine::Scripting::Lua::Lua51BoolArgument is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:127: Warning: Member Lua51RealArgument(Real InitialValue=0.0) (function) of class Mezzanine::Scripting::Lua::Lua51RealArgument is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:93: Warning: unable to resolve reference to `LuaScriptingEngine::compile' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:124: Warning: argument 'SourceCode' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine *Compiler=0, Boole JustAFunctionCall=false, String ScriptName="?")
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:124: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine *Compiler=0, Boole JustAFunctionCall=false, String ScriptName="?") are not documented:
+  parameter 'InitialSourceCode'
+  parameter 'JustAFunctionCall'
+  parameter 'ScriptName'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:129: Warning: argument 'SourceCode' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine &Compiler, Boole JustAFunctionCall=false, String ScriptName="?")
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:129: Warning: argument 'param' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine &Compiler, Boole JustAFunctionCall=false, String ScriptName="?")
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:129: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine &Compiler, Boole JustAFunctionCall=false, String ScriptName="?") are not documented:
+  parameter 'InitialSourceCode'
+  parameter 'Compiler'
+  parameter 'JustAFunctionCall'
+  parameter 'ScriptName'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:258: Warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::AddReturn(CountedPtr< iScriptArgument > ReturnArg)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:258: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::AddReturn(CountedPtr< iScriptArgument > ReturnArg) are not documented:
+  parameter 'ReturnArg'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:197: Warning: argument 'Arg' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51script.h:197: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber) are not documented:
+  parameter 'ArgNumber'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:248: Warning: Member Lua51ScriptingEngine(const XML::Node &XMLNode) (function) of class Mezzanine::Scripting::Lua::Lua51ScriptingEngine is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:365: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:369: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:255: Warning: return type of member Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:272: Warning: argument 'ScriptToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:272: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun) are not documented:
+  parameter 'ScriptToRun'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:276: Warning: argument 'ScriptToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script *ScriptToRun)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:276: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script *ScriptToRun) are not documented:
+  parameter 'ScriptToRun'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:316: Warning: return type of member Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IsLibraryOpen is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:365: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:369: Warning: Found unknown command `\detail'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:167: Warning: Member Lua51StringArgument(String InitialValue=String()) (function) of class Mezzanine::Scripting::Lua::Lua51StringArgument is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:147: Warning: Member Lua51WholeArgument(Whole InitialValue=0) (function) of class Mezzanine::Scripting::Lua::Lua51WholeArgument is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: Warning: argument 'FreshScript' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: Warning: The following parameters of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd) are not documented:
+  parameter 'ScriptToAdd'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/stringtool.h:62: Warning: Member Blank (variable) of namespace Mezzanine::StringTools is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/stringtool.h:158: Warning: The following parameters of Mezzanine::StringTools::ConvertToBool(const String &ToConvert, const Boole Default=false) are not documented:
   parameter 'Default'
@@ -1398,7 +1443,7 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:149: Warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:150: Warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:156: Warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:154: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:134: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:136: Warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
 <try>:1: Warning: parameters of member Mezzanine::Threading::try are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/uienumerations.h:110: Warning: Member PositioningFlags (enumeration) of namespace Mezzanine::UI is not documented.
@@ -1495,7 +1540,7 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textline.h:279: Warning: parameters of member Mezzanine::UI::LeftToRightTextLine::AppendToBack are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textline.h:281: Warning: parameters of member Mezzanine::UI::LeftToRightTextLine::AppendToBack are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textline.h:275: Warning: return type of member Mezzanine::UI::LeftToRightTextLine::GetSecondFromLastCharacter is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/linelist.h:167: Warning: parameters of member Mezzanine::UI::LineList::_AppendRenderData are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/linelist.h:165: Warning: parameters of member Mezzanine::UI::LineList::_AppendRenderData are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/linelist.cpp:59: Warning: Member Parent (variable) of class Mezzanine::UI::LineListRenderer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/linelist.cpp:60: Warning: parameters of member Mezzanine::UI::LineListRenderer::RedrawImpl are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/listbox.h:99: Warning: parameters of member Mezzanine::UI::ListBox::HandleInputImpl are not (all) documented
@@ -1624,20 +1669,20 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textline.h:103: Warning: parameters of member Mezzanine::UI::TextLine::AppendToBack are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textline.h:106: Warning: parameters of member Mezzanine::UI::TextLine::AppendToBack are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/texttoken.h:81: Warning: parameters of member Mezzanine::UI::TextToken::ConvertRenderIndexToRawIndex are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:72: Warning: Member ConstFontDataIterator (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:75: Warning: Member ConstSpriteIterator (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:70: Warning: Member FontDataContainer (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:71: Warning: Member FontDataIterator (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:73: Warning: Member SpriteContainer (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:74: Warning: Member SpriteIterator (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:82: Warning: Member AtlasName (variable) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:78: Warning: Member Fonts (variable) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:81: Warning: Member InverseTextureSize (variable) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:79: Warning: Member Sprites (variable) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:77: Warning: Member TAID (variable) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:80: Warning: Member WhitePixel (variable) of class Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:126: Warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::UI::TextureAtlas::GetFont(const String &FontName) const
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:126: Warning: The following parameters of Mezzanine::UI::TextureAtlas::GetFont(const String &FontName) const are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:71: Warning: Member ConstFontDataIterator (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:74: Warning: Member ConstSpriteIterator (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:69: Warning: Member FontDataContainer (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:70: Warning: Member FontDataIterator (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:72: Warning: Member SpriteContainer (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:73: Warning: Member SpriteIterator (typedef) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:81: Warning: Member AtlasName (variable) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:77: Warning: Member Fonts (variable) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:80: Warning: Member InverseTextureSize (variable) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:78: Warning: Member Sprites (variable) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:76: Warning: Member TAID (variable) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:79: Warning: Member WhitePixel (variable) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:125: Warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::UI::TextureAtlas::GetFont(const String &FontName) const
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:125: Warning: The following parameters of Mezzanine::UI::TextureAtlas::GetFont(const String &FontName) const are not documented:
   parameter 'FontName'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:68: Warning: Member Mat2D (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:69: Warning: Member Mat3D (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
@@ -1696,4 +1741,3 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:148: Warning: unable to resolve reference to `Mezzanine::ResourceManager' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:156: Warning: unable to resolve reference to `mainloop1' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:162: Warning: unable to resolve reference to `actorcontainer1' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:211: Warning: unable to resolve reference to `LuaManual' for \ref command

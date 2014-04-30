@@ -53,8 +53,6 @@ namespace Mezzanine
         class ScreenRenderData;
         class LineListRenderer;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class LineList
-        /// @headerfile uilinelist.h
         /// @brief This is an object comprised of a series of lines.
         /// @details This class isn't an object, but rather just a series of lines.  As such it
         /// doesn't have a position or size.  The position functions exist only to create additional

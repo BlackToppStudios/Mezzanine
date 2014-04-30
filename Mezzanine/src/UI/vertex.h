@@ -48,8 +48,6 @@ namespace Mezzanine
 {
     namespace UI
     {
-        /// @struct Vertex
-        /// @headerfile uivertex.h
         /// @brief Basic class describing a vertex in the UI to be rendered.
         /// @details This is a very low level class used internally by most UI classes.  The values here should never need to be tempered with.
         struct MEZZ_LIB Vertex
@@ -62,8 +60,6 @@ namespace Mezzanine
             Vector2 UV;
         };//Vertex
 
-        /// @struct VertexData
-        /// @headerfile uivertex.h
         /// @brief Basic class describing a vertex in the UI to be rendered.
         /// @details This class is necessary to exist since vertex declarations can't contain Atlas names.
         struct MEZZ_LIB VertexData

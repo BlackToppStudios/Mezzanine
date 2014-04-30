@@ -74,6 +74,7 @@ var searchData=
   ['statusoutofmemory',['StatusOutOfMemory',['../namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a0ce883f736c91386de54a8d7d16f2938',1,'Mezzanine::XML']]],
   ['statusunrecognizedtag',['StatusUnrecognizedTag',['../namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a0b867566188e960394f43c76c27406e9',1,'Mezzanine::XML']]],
   ['stopwatch',['StopWatch',['../classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6ae421b07061ca1f45a2f1080316c3dbb7',1,'Mezzanine::Timer']]],
+  ['stringlib',['StringLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0ac787f0a27f4b1ce272b6638cf4ffd360',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
   ['syntax_5ferror_5fexception',['SYNTAX_ERROR_EXCEPTION',['../classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a515259412a7c8ad6988fab08fc9da075',1,'Mezzanine::Exception']]],
   ['syntax_5ferror_5fexception_5flua',['SYNTAX_ERROR_EXCEPTION_LUA',['../classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a07e16f697fb5576f8759c60c3699d6d3',1,'Mezzanine::Exception']]],
   ['syntax_5ferror_5fexception_5fxml',['SYNTAX_ERROR_EXCEPTION_XML',['../classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a5dab01f1478d2cef474f77f9824faaa7',1,'Mezzanine::Exception']]],

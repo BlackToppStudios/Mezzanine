@@ -92,7 +92,7 @@ namespace Mezzanine
     namespace Physics
     {
 /*
-/// @cond 0
+/// @cond DontDocumentInternal
         ///////////////////////////////////////////////////////////////////////////////
         // ScalingShape Methods
 

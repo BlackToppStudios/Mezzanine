@@ -1,6 +1,9 @@
 # QT Creator Items
 CMakeLists.txt.user*
 
+# Doxygen Temp Files
+*.tmp
+
 # Gedit Temp Files
 *~
 

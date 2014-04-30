@@ -1037,7 +1037,7 @@ namespace Mezzanine
     World* Entresol::CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded,
         const Physics::ManagerConstructionInfo& PhysicsInfo,const String& SceneType)
     {
-        World* NewWorld = new World(WorldName, ManagerToBeAdded, PhysicsInfo, SceneType );
+        World* NewWorld = NULL; //new World(WorldName, ManagerToBeAdded, PhysicsInfo, SceneType );
         this->AddWorld(NewWorld);
         return NewWorld;
     }

@@ -1,6 +1,14 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptingmanager.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptingmanager.h">
-<area shape="rect" id="node3" href="$scripting_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/scripting.h" alt="" coords="5,115,205,175"/>
-<area shape="rect" id="node9" href="$scriptingmanager_8cpp.html" title="The implementation (WTF!!) of the Interface for Scripting Managers. " alt="" coords="229,115,429,175"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="5,225,205,269"/>
-<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,318,205,362"/>
+<area shape="rect" id="node3" href="$scripting_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/scripting.h" alt="" coords="200,341,406,405"/>
+<area shape="rect" id="node9" href="$lua51script_8h.html" title="This file has the interface for the Lua scripts. " alt="" coords="284,117,490,181"/>
+<area shape="rect" id="node23" href="$lua51scriptargument_8h.html" title="This file has the definition of the Script Arguments for Lua 51. " alt="" coords="527,117,732,181"/>
+<area shape="rect" id="node29" href="$lua51scriptingengine_8h.html" title="This file has the interface for the Lua based implementation of the Scripting system. " alt="" coords="782,117,987,181"/>
+<area shape="rect" id="node37" href="$scriptingmanager_8cpp.html" title="The implementation (WTF!!) of the Interface for Scripting Managers. " alt="" coords="1011,117,1216,181"/>
+<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="468,454,674,501"/>
+<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="748,550,954,597"/>
+<area shape="rect" id="node12" href="$lua51workunit_8h.html" title="This file has the declaration for a workunit that can execute lua script every frame. " alt="" coords="47,229,252,293"/>
+<area shape="rect" id="node17" href="$lua51script_8cpp.html" title="This file has the implemetation for the Lua script storage. " alt="" coords="559,229,764,293"/>
+<area shape="rect" id="node19" href="$lua51scriptargument_8cpp.html" title="This file has the implementation for the Lua script argument. " alt="" coords="788,229,994,293"/>
+<area shape="rect" id="node21" href="$lua51scriptingengine_8cpp.html" title="This file has the implementation for the Lua based Scripting system. " alt="" coords="276,229,484,293"/>
+<area shape="rect" id="node15" href="$lua51workunit_8cpp.html" title="This file has the implementation a workunit that can execute lua script every frame. " alt="" coords="583,341,788,405"/>
 </map>

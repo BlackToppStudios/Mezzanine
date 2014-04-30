@@ -1,5 +1,7 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptworkunit.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptworkunit.h">
-<area shape="rect" id="node3" href="$scripting_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/scripting.h" alt="" coords="5,115,205,175"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="5,225,205,269"/>
-<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,318,205,362"/>
+<area shape="rect" id="node3" href="$scripting_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/scripting.h" alt="" coords="5,229,211,293"/>
+<area shape="rect" id="node9" href="$lua51workunit_8h.html" title="This file has the declaration for a workunit that can execute lua script every frame. " alt="" coords="145,117,351,181"/>
+<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="5,342,211,389"/>
+<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,438,211,485"/>
+<area shape="rect" id="node12" href="$lua51workunit_8cpp.html" title="This file has the implementation a workunit that can execute lua script every frame. " alt="" coords="235,229,440,293"/>
 </map>

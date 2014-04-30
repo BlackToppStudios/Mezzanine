@@ -15,5 +15,7 @@ var searchData=
   ['orderpriority',['OrderPriority',['../classMezzanine_1_1UI_1_1Spinner.html#a00cef10b2c52060dbf3c12735dcc53f5',1,'Mezzanine::UI::Spinner']]],
   ['orientation',['Orientation',['../classMezzanine_1_1UI_1_1Screen.html#a7a77f0c30cfc0a643b56ce110b10f655',1,'Mezzanine::UI::Screen']]],
   ['origin',['Origin',['../classMezzanine_1_1Ray.html#aa2e73f84b1137ec1db312fbdfdefac05',1,'Mezzanine::Ray']]],
+  ['oslibname',['OSLibName',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#a4f33c502e53795751d52705305d3f89f',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
+  ['ostablename',['OSTableName',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#a32e3dc565311d8fc8719c5673f149e65',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
   ['overlappingobjects',['OverlappingObjects',['../classMezzanine_1_1AreaEffect.html#acb15d858673fc3b2a3adcc93f32b7f1f',1,'Mezzanine::AreaEffect']]]
 ];

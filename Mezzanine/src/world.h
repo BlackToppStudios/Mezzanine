@@ -72,6 +72,8 @@ namespace Mezzanine
     class MEZZ_LIB World
     {
     public:
+        String GetName() const { return String("A PlaceHolder until Ducky no longer needs it"); }
+
         /// @brief Basic container type for @ref WorldManager storage by this class.
         typedef std::vector< WorldManager* >       WorldManagerContainer;
         /// @brief Iterator type for @ref WorldManager instances stored by this class.

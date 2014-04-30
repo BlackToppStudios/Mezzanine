@@ -1,7 +1,7 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h">
-<area shape="rect" id="node3" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="757,115,912,143"/>
-<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="749,270,835,298"/>
-<area shape="rect" id="node41" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="788,193,881,221"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,347,149,375"/>
-<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1419,347,1475,375"/>
+<area shape="rect" id="node3" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="761,117,919,147"/>
+<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="752,272,843,301"/>
+<area shape="rect" id="node41" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="793,195,887,224"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,349,152,379"/>
+<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1443,349,1501,379"/>
 </map>

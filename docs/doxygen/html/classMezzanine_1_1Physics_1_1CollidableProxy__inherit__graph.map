@@ -1,7 +1,7 @@
 <map id="Mezzanine::Physics::CollidableProxy" name="Mezzanine::Physics::CollidableProxy">
-<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1GhostProxy.html" title="This is the proxy object for ghost objects with no contact response. " alt="" coords="608,5,741,49"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled. " alt="" coords="608,71,741,115"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1SoftProxy.html" title="This is the proxy object for soft/compressable bodies. " alt="" coords="608,138,741,182"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems. " alt="" coords="224,79,379,107"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="5,71,176,115"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1GhostProxy.html" title="This is the proxy object for ghost objects with no contact response. " alt="" coords="631,5,769,51"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled. " alt="" coords="631,74,769,121"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1SoftProxy.html" title="This is the proxy object for soft/compressable bodies. " alt="" coords="631,143,769,190"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems. " alt="" coords="231,83,391,112"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="5,74,181,121"/>
 </map>

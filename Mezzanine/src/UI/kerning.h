@@ -44,8 +44,6 @@ namespace Mezzanine
 {
     namespace UI
     {
-        /// @struct KerningInfo
-        /// @headerfile uikerning.h
         /// @brief Basic class used to describe Kerning for a given Glyph.
         /// @details Kerning is a special spacing amount for abnormally large or small glyphs.  For example, you wouldn't increment
         /// the spacing for the glyph "W" the same amount as you would for "I" in most cases.
