@@ -1037,7 +1037,7 @@ namespace Mezzanine
     World* Entresol::CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded,
         const Physics::ManagerConstructionInfo& PhysicsInfo,const String& SceneType)
     {
-        World* NewWorld = NULL; //new World(WorldName, ManagerToBeAdded, PhysicsInfo, SceneType );
+        World* NewWorld = new World(WorldName, ManagerToBeAdded, PhysicsInfo, SceneType );
         this->AddWorld(NewWorld);
         return NewWorld;
     }
@@ -1069,6 +1069,7 @@ namespace Mezzanine
                 return w;
             }
         }
+        return NULL;
     }
 
     World* Entresol::RemoveWorldByName(const String& WorldName)
@@ -1081,6 +1082,7 @@ namespace Mezzanine
                 return w;
             }
         }
+        return NULL;
     }
 
     void Entresol::RemoveAllWorlds()
@@ -1122,6 +1124,47 @@ namespace Mezzanine
             delete w;
         }
         Worlds.clear();
+    }
+
+    void Entresol::DestroyWorldManager(World* TargetWorld, WorldManager* ToBeDestroyed)
+    {
+        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
+        if( ManIt == this->ManagerFactories.end() )
+        {
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
+        }
+        TargetWorld->RemoveManager(ToBeDestroyed);
+        (*ManIt).second->DestroyManager(ToBeDestroyed);
+    }
+
+    void Entresol::DestroyWorldManagers(World* TargetWorld)
+    {
+        std::vector<WorldManager*> managers = TargetWorld->GetWorldManagers();
+        for( std::vector< WorldManager* >::iterator it = managers.begin(); it != managers.end(); it++ )
+        {
+            this->DestroyWorldManager(TargetWorld, (*it));
+        }
+    }
+
+    void Entresol::DestroyAllWorldManagers()
+    {
+        for( WorldContainerIterator it = Worlds.begin(); it != Worlds.end(); it++ )
+        {
+            this->DestroyWorldManagers(*it);
+        }
+    }
+
+    WorldManager* Entresol::CreateWorldManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld, World* AddedTo)
+    {
+        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
+        if( ManIt == this->ManagerFactories.end() )
+        {
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+        }
+        WorldManager* NewMan = dynamic_cast<WorldManager*>( (*ManIt).second->CreateManager(Params) );
+        if(AddToWorld)
+            AddedTo->AddManager(NewMan);
+        return NewMan;
     }
 }
 #endif

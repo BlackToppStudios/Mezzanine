@@ -806,6 +806,23 @@ namespace Mezzanine
             /// @brief This gets the number of worlds in the world list.
             /// @return Returns the number of worlds in the world list.
             UInt16 GetNumWorlds();
+
+            /// @brief Destroy all managers in given world.
+            /// @param TargetWorld Pointer to the world whose managers are to be destroyed.
+            void DestroyWorldManagers(World* TargetWorld);
+            /// @brief Destroy a manager in given world.
+            /// @param TargetWorld Pointer to the world whose manager is to be destroyed.
+            /// @param ToBeDestroyed Pointer to the manager to be destroyed.
+            void DestroyWorldManager(World* TargetWorld, WorldManager* ToBeDestroyed);
+            /// @brief Destroy all WorldManagers in all worlds.
+            void DestroyAllWorldManagers();
+
+            /// @brief Creates a manager of given type and optionally adds it to a world.  Intended for WorldManagers.
+            /// @param ManagerImplName The name of the manager implementation to create.
+            /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
+            /// @param AddToWorld Whether or not to add the created manager to a World after creation.
+            /// @param AddedTo World to add manager to.
+            WorldManager* CreateWorldManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld, World* AddedTo);
     };//Entresol
 }//Mezzanine
 #endif

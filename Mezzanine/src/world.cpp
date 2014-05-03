@@ -186,45 +186,55 @@ namespace Mezzanine
         }
     }
 
+    void World::RemoveAllManagers()
+    {
+        WorldManagers.clear();
+    }
+
+    std::vector<WorldManager*> World::GetWorldManagers()
+    {
+        return WorldManagers;
+    }
+
     ActorManager* World::GetActorManager()
     {
-        return dynamic_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) );
+        return static_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) );
         //return NULL;
     }
 
     AreaEffectManager* World::GetAreaEffectManager()
     {
-        return dynamic_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
+        return static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
         //return NULL;
     }
 
     Graphics::CameraManager* World::GetCameraManager()
     {
-        return dynamic_cast<Graphics::CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager) );
+        return static_cast<Graphics::CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager) );
         //return NULL;
     }
 
     Physics::PhysicsManager* World::GetPhysicsManager()
     {
-        return dynamic_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
+        return static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
         //return NULL;
     }
 
     Graphics::SceneManager* World::GetSceneManager()
     {
-        return dynamic_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
+        return static_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
         //return NULL;
     }
 
     Audio::SoundScapeManager* World::GetSoundScapeManager()
     {
-        return dynamic_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
+        return static_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
         //return NULL;
     }
 
     TerrainManager* World::GetTerrainManager()
     {
-        return dynamic_cast<TerrainManager*>( this->GetManager(ManagerBase::MT_TerrainManager) );
+        return static_cast<TerrainManager*>( this->GetManager(ManagerBase::MT_TerrainManager) );
         //return NULL;
     }
 }//Mezzanine

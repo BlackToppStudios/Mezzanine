@@ -72,14 +72,13 @@ namespace Mezzanine
     class MEZZ_LIB World
     {
     public:
-        String GetName() const { return String("A PlaceHolder until Ducky no longer needs it"); }
-
         /// @brief Basic container type for @ref WorldManager storage by this class.
         typedef std::vector< WorldManager* >       WorldManagerContainer;
         /// @brief Iterator type for @ref WorldManager instances stored by this class.
         typedef WorldManagerContainer::iterator            WorldManagerIterator;
         /// @brief Const Iterator type for @ref WorldManager instances stored by this class.
         typedef WorldManagerContainer::const_iterator      ConstWorldManagerContainer;
+
     protected:
         /// @internal
         /// @brief A container storing all the managers belonging to this world.
@@ -88,6 +87,13 @@ namespace Mezzanine
         /// @internal
         /// @brief Unique string identifier for world.
         String Name;
+
+    protected:
+        /// @internal
+        /// @brief Helper function used to assist construction.
+        void Construct(     const Physics::ManagerConstructionInfo& PhysicsInfo,
+                            const String& SceneType,
+                            const std::vector <WorldManager*>& ManagerToBeAdded );
     public:
         /// @brief Class constructor.
         /// @param WorldName String name of the world.
@@ -142,6 +148,12 @@ namespace Mezzanine
         /// @brief This removes a manager of a specific type from the list
         /// @param ToBeRemoved The ManagerBase::ManagerTypeName of the manager to remove.
         void RemoveManager(const ManagerBase::ManagerType ToBeRemoved);
+        /// @brief This removes all managers from the manager list.
+        void RemoveAllManagers();
+
+        /// @brief This gets the list of managers in the world.
+        /// @return This returns a pointer to a vector containing the managers in this world.
+        std::vector<WorldManager*> GetWorldManagers();
 
         /// @brief This gets the ActorManager from the manager list.
         /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
@@ -164,13 +176,6 @@ namespace Mezzanine
         /// @brief This gets the TerrainManager from the manager list.
         /// @return This returns a pointer to a TerrainManager, or a NULL pointer if no matching manager exists.
         TerrainManager* GetTerrainManager();
-
-    private:
-        /// @internal
-        /// @brief Helper function used to assist construction.
-        void Construct(     const Physics::ManagerConstructionInfo& PhysicsInfo,
-                            const String& SceneType,
-                            const std::vector <WorldManager*>& ManagerToBeAdded );
     };//World
 }//Mezzanine
 
