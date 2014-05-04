@@ -374,9 +374,18 @@ namespace Mezzanine
         /// @param Destination The point in space to determine the direction for.
         /// @return A normalized Vector3 that indicates the direction from this vector to another.
         Vector3 GetDirection(const Vector3& Destination) const;
+        /// @brief Gets a vector that is perpendicular to this one.
+        /// @remarks There are an infinite number of possibilities for 3 dimensions but this method will guarantee to generate one of them.
+        /// @return Returns a Vector3 that is guarenteed to be perpendicular to this vector.
+        Vector3 Perpendicular() const;
+        /// @brief Gets whether or not a vector is perpendicular to this one.
+        /// @remarks This simply checks if the dot product between these two vectors is zero.
+        /// @param Perp The other Vector3 to compare with.
+        /// @return Returns true if the provided vector is perpendicular to this one.
+        Boole IsPerpendicular(const Vector3& Perp) const;
         /// @brief This will inverse the reals in the vector.
         /// @details This function will inverse all the reals in the vector.
-        /// @return A copy of of the current Vector3
+        /// @return A copy of of the current Vector3.
         Vector3 Inverse();
         /// @brief Gets a reflection vector to the plane with the given normal.
         /// @param Normal The normal of the plane being reflected off of.

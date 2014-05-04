@@ -319,9 +319,8 @@ namespace Mezzanine
 
     Vector3& Vector3::Normalize()
     {
-        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
-        if (0!=TempLength)
-        {
+        Real TempLength = this->Distance( Vector3(0.0f,0.0f,0.0f) );
+        if( 0 != TempLength ) {
              (*this) /= TempLength;
         }else{
             MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Normalize Vector3(0,0,0).");
@@ -331,9 +330,8 @@ namespace Mezzanine
 
     Vector3 Vector3::GetNormal() const
     {
-        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
-        if (0!=TempLength)
-        {
+        Real TempLength = this->Distance( Vector3(0.0f,0.0f,0.0f) );
+        if( 0 != TempLength ) {
             return (*this) / TempLength;
         }else{
             MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Get the Normal of Vector3(0,0,0).");
@@ -345,14 +343,33 @@ namespace Mezzanine
         return (Destination - *this).Normalize();
     }
 
+    Vector3 Vector3::Perpendicular() const
+    {
+        static const Real fSquareZero = (Real)(1e-06 * 1e-06);
+
+        Vector3 Perp = this->CrossProduct( Vector3::Unit_X() );
+        if( Perp.SquaredLength() < fSquareZero ) {
+            // If we're here, then this is vector is on the X axis already.  Use another axis.
+            Perp = this->CrossProduct( Vector3::Unit_Y() );
+        }
+        Perp.Normalize();
+
+        return Perp;
+    }
+
+    Boole Vector3::IsPerpendicular(const Vector3& Perp) const
+    {
+        return ( this->DotProduct(Perp) == 0 );
+    }
+
     Vector3 Vector3::Inverse()
     {
-        if (X!=0)
-            X=1/X;
-        if (Y!=0)
-            Y=1/Y;
-        if (Z!=0)
-            Z=1/Z;
+        if( X != 0 )
+            X = 1 / X;
+        if( Y != 0 )
+            Y = 1 / Y;
+        if( Z != 0 )
+            Z = 1 / Z;
         return *this;
     }
 
