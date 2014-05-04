@@ -1,7 +1,9 @@
 <map id="Mezzanine::Audio::SoundScapeManager" name="Mezzanine::Audio::SoundScapeManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="249,200,425,229"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="251,111,424,140"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="372,5,513,35"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="456,102,603,149"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="356,411,481,440"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="376,209,552,239"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="377,111,551,140"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="499,5,640,35"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="583,102,729,149"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="401,429,527,459"/>
+<area shape="rect" id="node16" title="STL class. " alt="" coords="28,324,108,353"/>
+<area shape="rect" id="node18" title="STL class. " alt="" coords="5,201,131,247"/>
 </map>

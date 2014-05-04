@@ -1,30 +1,30 @@
 <map id="Mezzanine::Audio::SoundProxy" name="Mezzanine::Audio::SoundProxy">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems. " alt="" coords="456,576,616,605"/>
-<area shape="rect" id="node35" href="$classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled. " alt="" coords="873,283,1012,330"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="184,638,360,685"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world. " alt="" coords="2071,577,2236,607"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="1719,692,1844,721"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="2065,741,2241,771"/>
-<area shape="rect" id="node38" href="$classMezzanine_1_1Physics_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions. " alt="" coords="2459,325,2597,371"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="1695,859,1868,888"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="1291,1015,1432,1044"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1708,1050,1855,1097"/>
-<area shape="rect" id="node23" title="STL class. " alt="" coords="232,292,312,321"/>
-<area shape="rect" id="node81" href="$classMezzanine_1_1WorldTrigger.html" title="This is an abstract class for creating in&#45;game triggers. " alt="" coords="649,200,815,229"/>
-<area shape="rect" id="node88" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="467,283,605,330"/>
-<area shape="rect" id="node25" title="STL class. " alt="" coords="7,283,132,330"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world. " alt="" coords="1292,483,1431,530"/>
-<area shape="rect" id="node33" href="$structMezzanine_1_1Physics_1_1CollisionInternalData.html" title="Used to insulate the interface from the implementation details for bullet. " alt="" coords="868,509,1017,555"/>
-<area shape="rect" id="node54" href="$classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled. " alt="" coords="1292,109,1431,155"/>
-<area shape="rect" id="node63" href="$classMezzanine_1_1Physics_1_1CollidablePair.html" title="This is a helper class for storing pairs of collidable proxies in associative containers. " alt="" coords="1292,335,1431,382"/>
-<area shape="rect" id="node71" href="$classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer. " alt="" coords="2853,373,3008,419"/>
-<area shape="rect" id="node75" href="$classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers. " alt="" coords="2831,785,3031,831"/>
-<area shape="rect" id="node41" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="2079,818,2228,865"/>
-<area shape="rect" id="node43" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="1287,826,1436,873"/>
-<area shape="rect" id="node48" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="1695,981,1868,1027"/>
-<area shape="rect" id="node52" href="$classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported. " alt="" coords="1712,70,1851,117"/>
-<area shape="rect" id="node66" href="$classMezzanine_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem. " alt="" coords="2064,182,2243,229"/>
-<area shape="rect" id="node84" href="$classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html" title="This is a helper class storing information needed for the construction of a PhysicsManager. " alt="" coords="2065,113,2241,159"/>
-<area shape="rect" id="node86" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="1712,141,1851,171"/>
-<area shape="rect" id="node91" href="$classMezzanine_1_1Audio_1_1iSound.html" title="This is an interface class for a non&#45;spacialized sound. " alt="" coords="449,629,623,659"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems. " alt="" coords="456,588,616,617"/>
+<area shape="rect" id="node36" href="$classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled. " alt="" coords="873,345,1012,391"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="184,687,360,734"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world. " alt="" coords="2071,624,2236,653"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="1719,471,1844,500"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="2065,451,2241,480"/>
+<area shape="rect" id="node39" href="$classMezzanine_1_1Physics_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions. " alt="" coords="2459,342,2597,389"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="1695,659,1868,688"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="1291,897,1432,927"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1708,933,1855,979"/>
+<area shape="rect" id="node23" title="STL class. " alt="" coords="232,391,312,420"/>
+<area shape="rect" id="node82" href="$classMezzanine_1_1WorldTrigger.html" title="This is an abstract class for creating in&#45;game triggers. " alt="" coords="649,260,815,289"/>
+<area shape="rect" id="node89" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="467,347,605,394"/>
+<area shape="rect" id="node25" title="STL class. " alt="" coords="7,382,132,429"/>
+<area shape="rect" id="node30" href="$classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world. " alt="" coords="1292,533,1431,579"/>
+<area shape="rect" id="node34" href="$structMezzanine_1_1Physics_1_1CollisionInternalData.html" title="Used to insulate the interface from the implementation details for bullet. " alt="" coords="868,533,1017,579"/>
+<area shape="rect" id="node55" href="$classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled. " alt="" coords="1292,261,1431,307"/>
+<area shape="rect" id="node64" href="$classMezzanine_1_1Physics_1_1CollidablePair.html" title="This is a helper class for storing pairs of collidable proxies in associative containers. " alt="" coords="1292,383,1431,430"/>
+<area shape="rect" id="node72" href="$classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer. " alt="" coords="2853,591,3008,638"/>
+<area shape="rect" id="node76" href="$classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers. " alt="" coords="2831,390,3031,437"/>
+<area shape="rect" id="node42" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="2079,739,2228,786"/>
+<area shape="rect" id="node44" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="1287,821,1436,867"/>
+<area shape="rect" id="node49" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="1695,1002,1868,1049"/>
+<area shape="rect" id="node53" href="$classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported. " alt="" coords="1712,271,1851,318"/>
+<area shape="rect" id="node67" href="$classMezzanine_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem. " alt="" coords="2064,5,2243,51"/>
+<area shape="rect" id="node85" href="$classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html" title="This is a helper class storing information needed for the construction of a PhysicsManager. " alt="" coords="2065,75,2241,122"/>
+<area shape="rect" id="node87" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="1712,85,1851,115"/>
+<area shape="rect" id="node92" href="$classMezzanine_1_1Audio_1_1iSound.html" title="This is an interface class for a non&#45;spacialized sound. " alt="" coords="449,484,623,513"/>
 </map>

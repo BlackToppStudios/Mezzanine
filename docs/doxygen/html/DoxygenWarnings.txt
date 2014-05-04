@@ -387,23 +387,29 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:91: Warning: Member operator==(T const &key) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:95: Warning: Member operator==(NodeItemClass const &oth) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:107: Warning: Member set(T const &key) (function) of class Mezzanine::NodeItem is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:379: Warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:383: Warning: Member ConstWorldContainerIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:378: Warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:377: Warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:381: Warning: Member WorldContainer (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:382: Warning: Member WorldContainerIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:754: Warning: Member GetScriptingManager(const UInt16 WhichOne=0) (function) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:380: Warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:384: Warning: Member ConstWorldContainerIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:379: Warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:378: Warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:382: Warning: Member WorldContainer (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:383: Warning: Member WorldContainerIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:755: Warning: Member GetScriptingManager(const UInt16 WhichOne=0) (function) of class Mezzanine::Entresol is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: Warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:494: Warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:157: Warning: Found unknown command `\TODO'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:759: Warning: argument 'WorldToAdd' of command @param is not found in the argument list of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:759: Warning: The following parameters of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:495: Warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:160: Warning: Found unknown command `\TODO'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:760: Warning: argument 'WorldToAdd' of command @param is not found in the argument list of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:760: Warning: The following parameters of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded) are not documented:
   parameter 'WorldToBeAdded'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:762: Warning: argument 'Managers' of command @param is not found in the argument list of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded, const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:762: Warning: The following parameters of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded, const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:767: Warning: argument 'Managers' of command @param is not found in the argument list of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:767: Warning: The following parameters of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded) are not documented:
   parameter 'ManagerToBeAdded'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:543: Warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:778: Warning: argument 'Managers' of command @param is not found in the argument list of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded, const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:778: Warning: The following parameters of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded, const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType) are not documented:
+  parameter 'ManagerToBeAdded'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:820: Warning: return type of member Mezzanine::Entresol::CreateWorldManager is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:544: Warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:790: Warning: return type of member Mezzanine::Entresol::RemoveWorld is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:793: Warning: return type of member Mezzanine::Entresol::RemoveWorldByName is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:110: Warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventgamewindow.cpp:62: Warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:68: Warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
@@ -724,7 +730,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/uimanager.cpp:72: Warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.cpp:79: Warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collisionshapemanager.cpp:81: Warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:86: Warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:89: Warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventmanager.cpp:270: Warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: Warning: Member SingletonPtr (variable) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trackiterator.h:234: Warning: parameters of member Mezzanine::SmoothTrackIterator::operator+ are not (all) documented
@@ -793,7 +799,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:918: Warning: Member mEndSymbol (variable) of class Mezzanine::VectorItems is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:919: Warning: Member mItems (variable) of class Mezzanine::VectorItems is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:920: Warning: Member mSymolToIndex (variable) of class Mezzanine::VectorItems is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:75: Warning: Member GetName() const  (function) of class Mezzanine::World is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:92: Warning: parameters of member Mezzanine::World::Construct are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:68: Warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldtrigger.h:56: Warning: Member Name (variable) of class Mezzanine::WorldTrigger is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:68: Warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
