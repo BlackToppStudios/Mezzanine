@@ -128,6 +128,10 @@ namespace Mezzanine
             void SetIdentity();
 
             /// @brief Sets the individual values of this quaterion directly.
+            /// @param X The X component of the Axis.
+            /// @param Y The Y component of the Axis.
+            /// @param Z The Z component of the Axis.
+            /// @param W Rotation on the Axis X, Y and Z defined.
             void SetValues(const Real& X, const Real& Y, const Real& Z, const Real& W);
 
             /// @brief Generates and sets the values of this quaternion to a rotation from an axis and angle on that axis.
