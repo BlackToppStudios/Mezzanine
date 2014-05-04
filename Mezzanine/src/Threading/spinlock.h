@@ -99,6 +99,8 @@ namespace Mezzanine
                 /// be obtained. The SpinLock remains locked until @c unlock() is called.
                 /// @see lock_guard
                 void Lock();
+                /// @copydoc Lock
+                void lock() {Lock();}
 
                 /// @brief Try to lock the spinlock.
                 /// @details The method will try to lock the SpinLock. If it fails, the function will
@@ -111,6 +113,8 @@ namespace Mezzanine
                 /// @details If any threads are waiting for the lock on this mutex, one of them will
                 /// be unblocked.
                 void Unlock();
+                /// @copydoc Unlock
+                void unlock() {Unlock();}
         };
     }//Threading
 }//Mezzanine

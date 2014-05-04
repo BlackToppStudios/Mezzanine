@@ -596,7 +596,7 @@ void LoadContent()
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
-    Physics::RigidProxy* InvisFloor = TheEntresol->GetPhysicsManager()->CreateRigidProxy(0,false);
+    Physics::RigidProxy* InvisFloor = TheEntresol->GetPhysicsManager()->CreateRigidProxy(10,0,false);
     InvisFloor->SetCollisionShape( new Physics::PlaneCollisionShape("InvisFloor",Plane(Vector3::Unit_Y(),Vector3(0,-300,0))) );
     InvisFloor->AddToWorld();
 

@@ -43,6 +43,8 @@
 
 #include "frameschedulerworkunits.h"
 #include "doublebufferedresource.h"
+#include "lockguard.h"
+#include "spinlock.h"
 
 /// @file
 /// @brief The implementation of any workunits the framescheduler needs to work correctly
@@ -62,7 +64,7 @@ namespace Mezzanine
         {
             if(!AggregationTarget)
                 { AggregationTarget = CurrentThreadStorage.GetFrameScheduler(); }
-            AggregationTarget->LogResources.Lock();
+            lock_guard<SpinLock> g(AggregationTarget->LogResources);
 
             std::ostream& Log = AggregationTarget->GetLog();
             Log << "<Frame Count=\"" << AggregationTarget->GetFrameCount() << "\">" << std::endl;
