@@ -59,25 +59,28 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Constructors
     Quaternion::Quaternion()
-        { SetIdentity(); }
+        { this->SetIdentity(); }
 
     Quaternion::Quaternion(const Real& X, const Real& Y, const Real& Z, const Real& W)
-        { SetValues(X,Y,Z,W); }
+        { this->SetValues(X,Y,Z,W); }
 
     Quaternion::Quaternion(const Real& Angle, const Vector3& Axis)
-        { SetFromAxisAngle(Angle,Axis); }
+        { this->SetFromAxisAngle(Angle,Axis); }
 
     Quaternion::Quaternion(const Matrix3x3& Mat)
-        { SetFromMatrix3x3(Mat); }
+        { this->SetFromMatrix3x3(Mat); }
 
     Quaternion::Quaternion(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ)
-        { SetFromAxes(AxisX,AxisY,AxisZ); }
+        { this->SetFromAxes(AxisX,AxisY,AxisZ); }
+
+    Quaternion::Quaternion(const Vector3& DirectionAxis, const Vector3& UpAxis)
+        { this->SetFromAxisToZ(DirectionAxis,UpAxis); }
 
     Quaternion::Quaternion(const btQuaternion& Other)
-        { ExtractBulletQuaternion(Other); }
+        { this->ExtractBulletQuaternion(Other); }
 
     Quaternion::Quaternion(const Ogre::Quaternion& Other)
-        { ExtractOgreQuaternion(Other); }
+        { this->ExtractOgreQuaternion(Other); }
 
     Quaternion::Quaternion(const Mezzanine::Quaternion& Other)
     {
@@ -166,7 +169,22 @@ namespace Mezzanine
         Mat3.Matrix[1][2] = AxisZ.Y;
         Mat3.Matrix[2][2] = AxisZ.Z;
 
-        SetFromMatrix3x3(Mat3);
+        this->SetFromMatrix3x3(Mat3);
+    }
+
+    void Quaternion::SetFromAxisToZ(const Vector3& DirectionAxis, const Vector3& UpAxis)
+    {
+        Quaternion q;
+        Vector3 zVec = DirectionAxis;
+        zVec.Normalize();
+        Vector3 xVec = UpAxis.CrossProduct( zVec );
+        if( xVec.IsZeroLength() ) {
+            xVec = Vector3::Unit_X();
+        }
+        xVec.Normalize();
+        Vector3 yVec = zVec.CrossProduct( xVec );
+        yVec.Normalize();
+        this->SetFromAxes( xVec, yVec, zVec );
     }
 
     Real Quaternion::DotProduct(const Quaternion& Other) const
