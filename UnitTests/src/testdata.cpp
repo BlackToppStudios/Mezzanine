@@ -107,16 +107,22 @@ namespace Mezzanine
         }
 
         UnitTestGroup::UnitTestGroup() :
-            LongestNameLength(0)
+            LongestNameLength(0),
+            DoSubProcessTest(false),
+            DoAutomaticTest(false),
+            DoInteractiveTest(false)
         {}
 
         UnitTestGroup::UnitTestGroup(const UnitTestGroup& OtherGroup)
             : //set(OtherGroup),
               TestOutput(OtherGroup.TestOutput.str()),
-              TestError(OtherGroup.TestError.str())
+              TestError(OtherGroup.TestError.str()),
+              DoSubProcessTest(OtherGroup.DoSubProcessTest),
+              DoAutomaticTest(OtherGroup.DoAutomaticTest),
+              DoInteractiveTest(OtherGroup.DoInteractiveTest)
         { insert(OtherGroup.begin(),OtherGroup.end()); }
 
-        void UnitTestGroup::RunTests(bool RunAuto, bool RunInteractive)
+        void UnitTestGroup::RunTests()
         {
             streambuf* CoutStreamBuf = cout.rdbuf();
             cout.rdbuf(TestOutput.rdbuf());
@@ -124,10 +130,10 @@ namespace Mezzanine
             cerr.rdbuf(TestError.rdbuf());
 
             TestOutput << std::endl << "<AutomaticTestOutput><![CDATA[" << std::endl;
-            TestError << std::endl<< "<AutomaticTestError><![CDATA[" << std::endl;
+            TestError << std::endl << "<AutomaticTestError><![CDATA[" << std::endl;
             try
             {
-                if(RunAuto)
+                if(DoAutomaticTest)
                     { RunAutomaticTests(); }
                 else if(HasAutomaticTests())
                     { AddTestResult( TestData("AutomaticTests",Testing::Skipped, "RunTests") );}
@@ -143,7 +149,7 @@ namespace Mezzanine
             TestError << "<InteractiveTestError><![CDATA[" << std::endl;
             try
             {
-                if(RunInteractive)
+                if(DoInteractiveTest)
                     { RunInteractiveTests(); }
                 else if(HasInteractiveTests())
                     { AddTestResult( TestData("InteractiveTests",Testing::Skipped, "RunTests") );}
@@ -163,15 +169,25 @@ namespace Mezzanine
             {}
         bool UnitTestGroup::HasAutomaticTests() const
             { return false; }
+        void UnitTestGroup::ShouldRunAutomaticTests()
+            { DoAutomaticTest = true; }
 
         void UnitTestGroup::RunInteractiveTests()
             {}
         bool UnitTestGroup::HasInteractiveTests() const
             { return false; }
+        void UnitTestGroup::ShouldRunInteractiveTests()
+            { DoInteractiveTest = true; }
+
+        String UnitTestGroup::SubprocessTest()
+            { return String(""); }
+        bool UnitTestGroup::HasSubprocessTest() const
+            { return false; }
+        void UnitTestGroup::ShouldRunSubProcessTests()
+            { DoSubProcessTest = true; }
 
         Mezzanine::String UnitTestGroup::Name()
             { return ""; }
-
 
         void UnitTestGroup::AddTestResult(TestData CurrentTest, OverWriteResults Behavior)
         {
@@ -273,7 +289,11 @@ namespace Mezzanine
                         TestOutput << std::endl;
                     }
                     else if(String("UnitTestError")==CurrentName)
-                        { TestError << std::endl << Iter->text() << std::endl; }
+                    {
+                        String Text(Iter->text().as_string());
+                        if(Text.size()>0)
+                           { TestError << std::endl << Text << std::endl; }
+                    }
                     else
                     {
                         throw std::invalid_argument(
@@ -364,7 +384,7 @@ namespace Mezzanine
                 Output.flush();
             }
 
-            if(FullOutput && TestError.str().size()>3 ) // Sometimes the copying put "0\r\n" in TestError
+            if(FullOutput && TestError.str().size()>5 ) // Sometimes the copying put "0\r\n" in TestError
                 { Error << "Errors: " << TestError.str(); }
         }
 
@@ -384,6 +404,7 @@ namespace Mezzanine
                 AddTestResult( TestData("UnhandledException", Testing::Failed, FuncName, File, Line) );
             }
         }
+
 
 
     }// Testing

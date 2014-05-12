@@ -131,6 +131,16 @@ namespace Mezzanine
                 /// @brief Some basic variable for tracking simple statistics
                 unsigned int LongestNameLength;
 
+                /// @brief The output of the last subprocess if any was executed.
+                String SubProcessOutput;
+
+                /// @brief Set to false if subprocess tests should not be executed. True if they should
+                bool DoSubProcessTest;
+                /// @brief Set the flag to run automatic tests
+                bool DoAutomaticTest;
+                /// @brief Sets the flag to run interactive tests
+                bool DoInteractiveTest;
+
             public:
                 /// @brief Default constructor
                 UnitTestGroup();
@@ -144,23 +154,37 @@ namespace Mezzanine
                 /// @n @n This can be overloaded to enable better detection of skipped tests. This niavely reports only
                 /// "TestName::Interactive" and "TestName::Automatic" as skipped, and even then only if HasAutomaticTests
                 /// or HasInteractiveTests return true.
-                /// @param RunAutomaticTests True if the automatic tests should be run false if they should
-                /// @param RunInteractiveTests True if the interactive tests should run false otherwise/.RunInteractiveTests
-                virtual void RunTests(bool RunAuto, bool RunInteractive);
+                virtual void RunTests();
 
                 /// @brief This should be overloaded to run all tests that do require not user interaction
                 virtual void RunAutomaticTests();
-
                 /// @brief Used only to report skipped tests.
                 /// @return Defaults to returning false, but should be overloaded to return true if RunAutomaticTests() implements any tests.
                 virtual bool HasAutomaticTests() const;
+                /// @brief Sets a flag that indicatesz that is the process that should run this subprocess.
+                virtual void ShouldRunAutomaticTests();
 
                 /// @brief This should be overloaded to run all tests require user interaction
                 virtual void RunInteractiveTests();
-
                 /// @brief Used only to report skipped tests.
                 /// @return Defaults to returning false, but should be overloaded to return true if RunInteractiveTests() implements any tests.
                 virtual bool HasInteractiveTests() const;
+                /// @brief Sets a flag that indicatesz that is the process that should run this subprocess.
+                virtual void ShouldRunInteractiveTests();
+
+                /// @brief Does nothing by default, tests which need to run code in a subprocess should override this.
+                /// @details This will be executed in a subprocess before HasAutomaticTests() and RunInteractiveTests();
+                /// @return Whatever was sent to stdout via C++ streams will be captured and sent here instead.
+                virtual String SubprocessTest();
+                /// @brief If this returns false then the test suite treats it like any other test, if true then it enables some features for launching subprocess tests
+                /// @details This will cause an extra command line option to be created (as "debug" + testname). The function SubprocessTest() will be executed in the
+                /// process that the new option is passed into. This allows for subprocess debugging. This will automatically be passed to the test process that will
+                /// executed the sub-process tests.
+                /// @return This returns false by default, any test which wants to execute a subtest will need to implement this to return true.
+                virtual bool HasSubprocessTest() const;
+                /// @brief Sets a flag that indicatesz that is the process that should run this subprocess.
+                virtual void ShouldRunSubProcessTests();
+
 
                 /// @brief Get Name of this UnitTestGroup
                 /// @return The string that must be type at the command line to run this testgroup, should be all lowercase.

@@ -4,8 +4,9 @@ CMakeLists.txt.user*
 # Doxygen Temp Files
 *.tmp
 
-# Gedit Temp Files
+# Editor Temp Files
 *~
+*.autosave
 
 # Libraries
 *.a
