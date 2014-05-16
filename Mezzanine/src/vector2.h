@@ -55,8 +55,6 @@ namespace Ogre
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Vector2
-    /// @headerfile vector2.h
     /// @brief This is used to represent a point on a 2 dimentional area, such as a screen.
     /// @details This contains an X and Y value used to represent coordinates.
     /// This also has a number of facilities to make converting to graphics subsystems
@@ -99,6 +97,10 @@ namespace Mezzanine
         /// @param x The real that will have this vector's X member set to.
         /// @param y The real that will have this vector's Y member set to.
         void SetValues(const Real& x, const Real& y);
+        /// @brief Checks to see if the values of this vector are all zero.
+        /// @return Returns true if all components of this vector are zero, false otherwise.
+        Boole IsZero() const;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Equality Comparison operators
 
@@ -194,6 +196,28 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Fancy Math
 
+        /// @brief This is used to calculate the crossproduct of this and another vector.
+        /// @param Other the Vector to work with to create the cross product.
+        /// @return A Real containing crossproduct of this vector and Vec.
+        Real CrossProduct(const Vector2& Other) const;
+        /// @brief This is used to calculate the dotproduct of this and another vector.
+        /// @param Other The vector to work with to create the cross product.
+        /// @return This is the dotproduct of this vector and vec.
+        Real DotProduct(const Vector2& Other) const;
+        /// @brief Gets the distance between this and another vector.
+        /// @param Other This is the other point to measure the distance to.
+        /// @return Returns a Real representing the distance.
+        Real Distance(const Vector2& Other) const;
+        /// @brief Gets the squared distance between this and another vector.
+        /// @param Other This is the other point to measure the distance to.
+        /// @return Returns a Real representing the distance squared.
+        Real SquaredDistance(const Vector2& Other) const;
+        /// @brief Gets the length of this vector.
+        /// @return Returns a real representing the length of this vector.
+        Real Length() const;
+        /// @brief Gets the length of this vector squared.
+        /// @return Returns a real representing the squared length of this vector.
+        Real SquaredLength() const;
         /// @brief Generates a Vector2 that is perpendicular to this vector.
         /// @return Returns a new Vector2 that is perpendicular to this.
         Vector2 Perpendicular() const;
@@ -215,6 +239,20 @@ namespace Mezzanine
         /// @return A string containing "Vector2"
         static String SerializableName();
     };//Vector2
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A compare fuctor that uses vector length.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB Vector2LengthCompare
+    {
+    public:
+        /// @brief Compares two Vector2's to determine which has the greater length/magnitude.
+        /// @param First The first Vector2 to compare with.
+        /// @param Second The second Vector2 to compare with.
+        /// @return Returns true if the first Vector2 has a smaller length/magnitude than the second, false otherwise.
+        Boole operator()(const Vector2& First, const Vector2& Second) const;
+    };//Vector2LengthCompare
 }//Mezzanine
 
 // We can skip these operators when creating bindings with swig

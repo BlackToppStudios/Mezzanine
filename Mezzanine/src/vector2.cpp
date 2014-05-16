@@ -93,6 +93,11 @@ namespace Mezzanine
         this->Y = y;
     }
 
+    Boole Vector2::IsZero() const
+    {
+        return ( this->X == 0.0 && this->Y == 0.0 );
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
 
@@ -216,17 +221,32 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Fancy Math
 
+    Real Vector2::CrossProduct(const Vector2& Other) const
+        { return ( this->X * Other.Y ) - ( this->Y * Other.X ); }
+
+    Real Vector2::DotProduct(const Vector2& Other) const
+        { return ( this->X * Other.X ) + ( this->Y * Other.Y ); }
+
+    Real Vector2::Distance(const Vector2& Other) const
+        { return ( *this - Other ).Length(); }
+
+    Real Vector2::SquaredDistance(const Vector2& Other) const
+        { return ( *this - Other ).SquaredLength(); }
+
+    Real Vector2::Length() const
+        { return MathTools::Sqrt( this->SquaredLength() ); }
+
+    Real Vector2::SquaredLength() const
+        { return (this->X * this->X + this->Y * this->Y); }
+
     Vector2 Vector2::Perpendicular() const
-    {
-        return Vector2(-Y,X);
-    }
+        { return Vector2(-Y,X); }
 
     Vector2& Vector2::Normalize()
     {
         Real Length = MathTools::Sqrt( X * X + Y * Y );
 
-        if ( Length > 1e-08 )
-        {
+        if( Length > 1e-08 ) {
             Real InvLength = 1.0 / Length;
             X *= InvLength;
             Y *= InvLength;
@@ -276,7 +296,19 @@ namespace Mezzanine
     }
 
     String Vector2::SerializableName()
-    { return String("Vector2"); }
+        { return String("Vector2"); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Vector2LengthCompare methods
+
+    Boole Vector2LengthCompare::operator()(const Vector2& First, const Vector2& Second) const
+    {
+        if( ( First - Second ).SquaredLength() < 1e-6 )
+			return false;
+		if( MathTools::Fabs( First.X - Second.X ) > 1e-3 )
+			return ( First.X < Second.X );
+		return ( First.Y < Second.Y );
+    }
 }//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
