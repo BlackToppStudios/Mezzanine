@@ -338,6 +338,28 @@ namespace Mezzanine
         }
     }
 
+    Vector3& Vector3::Permute()
+    {
+        *this = this->GetPermute();
+        return *this;
+    }
+
+    Vector3 Vector3::GetPermute() const
+    {
+        return Vector3(this->Z,this->X,this->Y);
+    }
+
+    Vector3& Vector3::AntiPermute()
+    {
+        *this = this->GetAntiPermute();
+        return *this;
+    }
+
+    Vector3 Vector3::GetAntiPermute() const
+    {
+        return Vector3(this->Y,this->Z,this->X);
+    }
+
     Vector3 Vector3::GetDirection(const Vector3& Destination) const
     {
         return (Destination - *this).Normalize();
@@ -458,6 +480,11 @@ namespace Mezzanine
         this->X = X;
         this->Y = Y;
         this->Z = Z;
+    }
+
+    Boole Vector3::IsZero() const
+    {
+        return ( this->X == 0.0 && this->Y == 0.0 && this->Z == 0.0 );
     }
 
     Vector3& Vector3::Ceil(const Vector3& Other)
@@ -588,6 +615,20 @@ namespace Mezzanine
         { return lhs * Vec; }
     Mezzanine::Vector3 operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
         { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Vector2LengthCompare methods
+
+    Boole Vector3LengthCompare::operator()(const Vector3& First, const Vector3& Second) const
+    {
+        if( ( First - Second ).SquaredLength() < 1e-6 )
+			return false;
+		if( MathTools::Fabs( First.X - Second.X ) > 1e-3 )
+			return ( First.X < Second.X );
+		if( MathTools::Fabs( First.Y - Second.Y ) > 1e-3 )
+			return ( First.Y < Second.Y );
+		return ( First.Z < Second.Z );
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Class External << Operators for streaming or assignment

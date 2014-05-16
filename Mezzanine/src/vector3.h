@@ -361,13 +361,27 @@ namespace Mezzanine
         Real DotProduct(const Vector3& Vec) const;
         /// @brief This will change this point into it's own normal relative to the origin
         /// @details This will change this vector into one that is the same direction from the origin, but only one unit a away.
-        /// @return Returns a reference to the normalized vector.
+        /// @return Returns a reference to this after being altered.
         Vector3& Normalize();
         /// @brief This returns the normal for this relative to the origin
         /// @details This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through
         /// both the normal and the original point.
         /// @return At a vector3 that is the normal of this Vector3 or 0,0,0 if the current Vector is all 0s
         Vector3 GetNormal() const;
+        /// @brief Shifts all of the components to the right.
+        /// @details This assigns the Z component to X, the X component to Y, and the Y component to Z.
+        /// @return Returns a reference to this after being altered.
+        Vector3& Permute();
+        /// @brief Gets a permuted copy of this vector.
+        /// @return Returns a new Vector3 that has the values this vector would have if it were permuted.
+        Vector3 GetPermute() const;
+        /// @brief Shifts all of the components to the left.
+        /// @details This assigns the Y component to X, the Z component to Y, and the X component to Z.
+        /// @return Returns a reference to this after being altered.
+        Vector3& AntiPermute();
+        /// @brief Gets a anti-permuted copy of this vector.
+        /// @return Returns a new Vector3 that has the values this vector would have if it were anti-permuted.
+        Vector3 GetAntiPermute() const;
         /// @brief This will get the direction between two points.
         /// @details This returns the direction expressed as a vector between this vector
         /// and another provided vector.
@@ -426,6 +440,9 @@ namespace Mezzanine
         /// @param Y Value to set for Y.
         /// @param Z Value to set for Z.
         void SetValues(const Real& X, const Real& Y, const Real& Z);
+        /// @brief Checks to see if the values of this vector are all zero.
+        /// @return Returns true if all components of this vector are zero, false otherwise.
+        Boole IsZero() const;
 
         /// @brief Sets each member of this Vector3 to the higher value between the two vector3s.
         /// @param Other The other Vector to compare with.
@@ -477,6 +494,20 @@ namespace Mezzanine
         const char* __str__();
 
     };//Vector3
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A compare fuctor that uses vector length.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB Vector3LengthCompare
+    {
+    public:
+        /// @brief Compares two Vector3's to determine which has the greater length/magnitude.
+        /// @param First The first Vector3 to compare with.
+        /// @param Second The second Vector3 to compare with.
+        /// @return Returns true if the first Vector3 has a smaller length/magnitude than the second, false otherwise.
+        Boole operator()(const Vector3& First, const Vector3& Second) const;
+    };//Vector3LengthCompare
 }//Mezzanine
 
 namespace std
