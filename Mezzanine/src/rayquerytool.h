@@ -136,9 +136,8 @@ namespace Mezzanine
 
             /// @brief Get a Ray from the current viewport, following the mouse
             /// @details This calls on the graphics subsystem to get a ray from the location of the current camera
-            /// @param Length how long of a ray do you want? Thsi defaults to 1000
             /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
-            static Ray GetMouseRay(Real Length=1000);
+            static Ray GetMouseRay();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

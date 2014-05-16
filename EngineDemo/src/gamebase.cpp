@@ -172,11 +172,9 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
             // Make a declaration for a static constrain so it survives the function lifetime
             static Physics::Point2PointConstraint* Dragger=NULL;
 
-            if( SysMouse->IsButtonPressed(1) )
-            {
+            if( SysMouse->IsButtonPressed(1) ) {
                 UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-                if(UIMan->MouseIsInUISystem())
-                {
+                if( UIMan->MouseIsInUISystem() ) {
                     //UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
                     UI::Widget* Hover = UIMan->GetHoveredWidget();
                     if(Hover) {
@@ -186,12 +184,11 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
                         }
                     }
                 }else{
-                    Ray MouseRay = RayQueryTool::GetMouseRay(5000);
+                    Ray MouseRay = RayQueryTool::GetMouseRay();
                     RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid);
 
                     bool firstframe=false;
-                    if (0 == RayCaster.LastQueryResultsObjectPtr())
-                    {
+                    if( 0 == RayCaster.LastQueryResultsObjectPtr() ) {
                         #ifdef MEZZDEBUG
                         //TheEntresol->Log("No Object Clicked on");
                         #endif

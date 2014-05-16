@@ -86,23 +86,23 @@ public:
 
         {
             Vector3 From(45.0,20.0,-15.0);
-            Vector3 To(40.0,15.0,35.0);
+            Vector3 To(1.0,0.0,0.0);
             Ray Cast(From,To);
             Ray Copy(Cast);
-            TEST( Copy.Origin == From && Copy.Destination == To ,"Ray(const_Ray&)");
+            TEST( Copy.Origin == From && Copy.Normal == To ,"Ray(const_Ray&)");
         }
 
         {
-            Vector3 To(40.0,15.0,35.0);
+            Vector3 To(0.0,-1.0,0.0);
             Ray Single(To);
-            TEST( Single.Origin == Vector3(0.0,0.0,0.0) && Single.Destination == Vector3(40.0,15.0,35.0) ,"Ray(const_Vector3&)");
+            TEST( Single.Origin == Vector3(0.0,0.0,0.0) && Single.Normal == Vector3(0.0,-1.0,0.0) ,"Ray(const_Vector3&)");
         }
 
         {
             Vector3 From(45.0,20.0,-15.0);
-            Vector3 To(40.0,15.0,35.0);
+            Vector3 To(0.0,0.0,1.0);
             Ray Cast(From,To);
-            TEST( Cast.Origin == Vector3(45.0,20.0,-15.0) && Cast.Destination == Vector3(40.0,15.0,35.0) ,"Ray(const_Vector3&,_const_Vector3&)");
+            TEST( Cast.Origin == Vector3(45.0,20.0,-15.0) && Cast.Normal == Vector3(0.0,0.0,1.0) ,"Ray(const_Vector3&,_const_Vector3&)");
         }
 
         {
@@ -110,41 +110,19 @@ public:
             Ogre::Vector3 To(0.0,1.0,0.0);
             Ogre::Ray Cast(From,To);
             Ray Copy(Cast);
-            TEST( Copy.Origin == Vector3(-40.0,0.0,0.0) && Copy.Destination == Vector3(-40.0,1.0,0.0) ,"Ray(const_Ogre::Ray&)");
+            TEST( Copy.Origin == Vector3(-40.0,0.0,0.0) && Copy.Normal == Vector3(0.0,1.0,0.0) ,"Ray(const_Ogre::Ray&)");
         }
 
         {
             Vector3 From(-40.0,0.0,0.0);
             Vector3 To(30.0,0.0,0.0);
             Ray Cast(From,To);
-            TEST( Cast.Length() == 70.0 ,"Length()_const");
+            TEST( Cast.GetNormal() == Vector3(1.0,0.0,0.0) ,"GetNormal()_const");
         }
 
         {
             Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(30.0,0.0,0.0);
-            Ray Cast(From,To);
-            TEST( Cast.GetDirection() == Vector3(1.0,0.0,0.0) ,"GetDirection()_const");
-        }
-
-        {
-            Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(30.0,0.0,0.0);
-            Ray Cast(From,To);
-            TEST( Cast.GetNormal() == Ray(Vector3(-40.0,0.0,0.0),Vector3(-39.0,0.0,0.0)) ,"GetNormal()_const");
-        }
-
-        {
-            Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(30.0,0.0,0.0);
-            Ray Cast(From,To);
-            Cast.Normalize();
-            TEST( Cast == Ray(Vector3(-40.0,0.0,0.0),Vector3(-39.0,0.0,0.0)) ,"Normalize()");
-        }
-
-        {
-            Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(30.0,0.0,0.0);
+            Vector3 To(1.0,0.0,0.0);
             Ray Cast(From,To);
             Plane PassSurface(Vector3(-1.0,0.0,0.0),5);
             Plane FailSurface(Vector3(0.0,0.0,-1.0),10);
@@ -155,7 +133,7 @@ public:
 
         {
             Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(30.0,0.0,0.0);
+            Vector3 To(1.0,0.0,0.0);
             Ray Cast(From,To);
             Sphere PassBall(Vector3(20.0,0.0,0.0),10);
             Sphere FailBall(Vector3(-20.0,-30.0,0.0),10);
@@ -166,7 +144,7 @@ public:
 
         {
             Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(30.0,0.0,0.0);
+            Vector3 To(1.0,0.0,0.0);
             Ray Cast(From,To);
             AxisAlignedBox PassBox(Vector3(-5.0,-5.0,-5.0),Vector3(5.0,5.0,5.0));
             AxisAlignedBox FailBox(Vector3(10.0,-30.0,5.0),Vector3(15.0,-20.0,15.0));
@@ -181,22 +159,22 @@ public:
             Ogre::Ray Cast(From,To);
             Ray Copy;
             Copy.ExtractOgreRay(Cast);
-            TEST( Copy.Origin == Vector3(-40.0,0.0,0.0) && Copy.Destination == Vector3(-40.0,1.0,0.0) ,"ExtractOgreRay(const_Ogre::Ray&)");
+            TEST( Copy.Origin == Vector3(-40.0,0.0,0.0) && Copy.Normal == Vector3(0.0,1.0,0.0) ,"ExtractOgreRay(const_Ogre::Ray&)");
         }
 
         {
             Vector3 From(45.0,20.0,-15.0);
-            Vector3 To(40.0,15.0,35.0);
+            Vector3 To(0.0,1.0,0.0);
             Ray Cast(From,To);
             Ogre::Ray Converted = Cast.GetOgreRay();
-            TEST( Converted.getOrigin() == Ogre::Vector3(45.0,20.0,-15.0) && Converted.getDirection() == Cast.GetDirection().GetOgreVector3() ,"GetOgreRay()_const");
+            TEST( Converted.getOrigin() == Ogre::Vector3(45.0,20.0,-15.0) && Converted.getDirection() == Cast.GetNormal().GetOgreVector3() ,"GetOgreRay()_const");
         }
 
         {
-            String Expected( "<?xml version=\"1.0\"?><Ray Version=\"1\"><Origin><Vector3 Version=\"1\" X=\"45.5\" Y=\"20.5\" Z=\"-15.5\" /></Origin><Destination><Vector3 Version=\"1\" X=\"40.5\" Y=\"15.5\" Z=\"35.5\" /></Destination></Ray>" );
+            String Expected( "<?xml version=\"1.0\"?><Ray Version=\"1\"><Origin><Vector3 Version=\"1\" X=\"45.5\" Y=\"20.5\" Z=\"-15.5\" /></Origin><Normal><Vector3 Version=\"1\" X=\"0\" Y=\"-1\" Z=\"0\" /></Normal></Ray>" );
 
             XML::Document Doc;
-            Ray Cast(Vector3(45.5,20.5,-15.5),Vector3(40.5,15.5,35.5));
+            Ray Cast(Vector3(45.5,20.5,-15.5),Vector3(0.0,-1.0,0.0));
             Cast.ProtoSerialize(Doc);
             StringStream Buffer;
             Doc.Save(Buffer);
@@ -205,7 +183,7 @@ public:
         }
 
         {
-            String Source( "<?xml version=\"1.0\"?><Ray Version=\"1\"><Origin><Vector3 Version=\"1\" X=\"45.5\" Y=\"20.5\" Z=\"-15.5\" /></Origin><Destination><Vector3 Version=\"1\" X=\"40.5\" Y=\"15.5\" Z=\"35.5\" /></Destination></Ray>" );
+            String Source( "<?xml version=\"1.0\"?><Ray Version=\"1\"><Origin><Vector3 Version=\"1\" X=\"45.5\" Y=\"20.5\" Z=\"-15.5\" /></Origin><Normal><Vector3 Version=\"1\" X=\"0\" Y=\"-1\" Z=\"0\" /></Normal></Ray>" );
 
             XML::Document Doc;
             StringStream Buffer;
@@ -215,7 +193,7 @@ public:
             Ray Cast;
             Cast.ProtoDeSerialize(Doc.GetFirstChild());
 
-            TEST( Cast == Ray(Vector3(45.5,20.5,-15.5),Vector3(40.5,15.5,35.5)) ,"ProtoDeSerialize(const_XML::Node&)");
+            TEST( Cast == Ray(Vector3(45.5,20.5,-15.5),Vector3(0.0,-1.0,0.0)) ,"ProtoDeSerialize(const_XML::Node&)");
         }
 
         {
@@ -225,52 +203,24 @@ public:
 
         {
             Vector3 From(45.0,20.0,-15.0);
-            Vector3 To(40.0,15.0,35.0);
+            Vector3 To(0.0,1.0,0.0);
             Ray Cast(From,To);
             Ray Copy;
             Copy = Cast;
-            TEST( Copy.Origin == From && Copy.Destination == To ,"operator=(const_Ray&)");
+            TEST( Copy.Origin == From && Copy.Normal == To ,"operator=(const_Ray&)");
         }
 
         {
-            Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(80.0,0.0,0.0);
-            Ray Cast(From,To);
-            TEST( ( Cast * 2 ) == Ray(Vector3(-40.0,0.0,0.0),Vector3(200.0,0.0,0.0)) ,"operator*(const_Real)_const");
-        }
-
-        {
-            Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(80.0,0.0,0.0);
-            Ray Cast(From,To);
-            TEST( ( Cast / 2 ) == Ray(Vector3(-40.0,0.0,0.0),Vector3(20.0,0.0,0.0)) ,"operator/(const_Real)_const");
-        }
-
-        {
-            Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(80.0,0.0,0.0);
-            Ray Cast(From,To);
-            TEST( ( Cast *= 2 ) == Ray(Vector3(-40.0,0.0,0.0),Vector3(200.0,0.0,0.0)) ,"operator*=(const_Real)");
-        }
-
-        {
-            Vector3 From(-40.0,0.0,0.0);
-            Vector3 To(80.0,0.0,0.0);
-            Ray Cast(From,To);
-            TEST( ( Cast /= 2 ) == Ray(Vector3(-40.0,0.0,0.0),Vector3(20.0,0.0,0.0)) ,"operator/=(const_Real)");
-        }
-
-        {
-            Ray Cast(Vector3(45.0,20.0,-15.0),Vector3(40.0,15.0,35.0));
-            Ray CastPass(Vector3(45.0,20.0,-15.0),Vector3(40.0,15.0,35.0));
-            Ray CastFail(Vector3(-40.0,0.0,0.0),Vector3(30.0,0.0,0.0));
+            Ray Cast(Vector3(45.0,20.0,-15.0),Vector3(0.0,0.0,-1.0));
+            Ray CastPass(Vector3(45.0,20.0,-15.0),Vector3(0.0,0.0,-1.0));
+            Ray CastFail(Vector3(-40.0,0.0,0.0),Vector3(0.0,0.0,1.0));
             TEST( ( Cast == CastPass ) && !( Cast == CastFail ) ,"operator==(const_Ray&)_const");
         }
 
         {
-            Ray Cast(Vector3(45.0,20.0,-15.0),Vector3(40.0,15.0,35.0));
-            Ray CastPass(Vector3(-40.0,0.0,0.0),Vector3(30.0,0.0,0.0));
-            Ray CastFail(Vector3(45.0,20.0,-15.0),Vector3(40.0,15.0,35.0));
+            Ray Cast(Vector3(45.0,20.0,-15.0),Vector3(0.0,0.0,-1.0));
+            Ray CastPass(Vector3(-40.0,0.0,0.0),Vector3(0.0,0.0,1.0));
+            Ray CastFail(Vector3(45.0,20.0,-15.0),Vector3(0.0,0.0,-1.0));
             TEST( ( Cast != CastPass ) && !( Cast != CastFail ) ,"operator!=(const_Ray&)_const");
         }
     }

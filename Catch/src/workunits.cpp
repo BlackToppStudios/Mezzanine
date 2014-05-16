@@ -341,7 +341,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
     {
         if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() )
         {
-            Ray MouseRay = RayQueryTool::GetMouseRay(5000);
+            Ray MouseRay = RayQueryTool::GetMouseRay();
 
             Boole firstframe = false;
             if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid | Mezzanine::WO_DebrisSoft) ) {
