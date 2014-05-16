@@ -40,6 +40,7 @@
 #ifndef _mathtool_h
 #define _mathtool_h
 
+#include "vector2.h"
 #include "vector3.h"
 
 namespace Mezzanine
@@ -48,13 +49,24 @@ namespace Mezzanine
     class Plane;
     class Ray;
     class Sphere;
+    class LineSegment2D;
+    class LineSegment3D;
     /// @namespace Mezzanine::MathTools
     /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
     {
-        /// @brief This is a type used for the ray intersection tests performed on Planes.
+        /// @brief This is a type used for intersection tests that return a point in 2D space.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Vector3> PlaneRayTestResult;
+        typedef std::pair<Boole,Vector2> Point2DTestResult;
+        /// @brief This is a type used for intersection tests that return a point in 3D space.
+        /// @details This type provides more verbose return data that can be used for further tests.
+        typedef std::pair<Boole,Vector3> Point3DTestResult;
+        /// @brief This is a type used for geometry tests that return a line segment in 2D space.
+        /// @details This type provides more verbose return data that can be used for further tests.
+        typedef std::pair<Boole,LineSegment2D> Line2DTestResult;
+        /// @brief This is a type used for geometry tests that return a line segment in 3D space.
+        /// @details This type provides more verbose return data that can be used for further tests.
+        typedef std::pair<Boole,LineSegment3D> Line3DTestResult;
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
         typedef std::pair<Boole,Ray> GeometryRayTestResult;
@@ -156,7 +168,16 @@ namespace Mezzanine
         // Geometry Math
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Geometry Intersection Query
+        // 2D Geometry Intersection Query
+
+        /// @brief Checks to see if two 2D line segments intersect.
+        /// @param Line1 The first line segment to test.
+        /// @param Line2 The second line segment to test.
+        /// @return Returns a std::pair containing whether or not the was an intersection, and the point in 2D space where the intersection occured.
+        Point2DTestResult MEZZ_LIB Intersects(const LineSegment2D& Line1, const LineSegment2D& Line2);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // 3D Geometry Intersection Query
 
         /// @brief Checks to see if a point in 3D space is within an AABB.
         /// @param Box The AABB to check if the point is inside.
@@ -204,8 +225,8 @@ namespace Mezzanine
         /// @brief Checks to see if a ray intersects with a Plane.
         /// @param Surface The Plane to check for intersection.
         /// @param Cast The casted ray to check for intersection.
-        /// @return Returns true if the ray intersects with the provided Plane.
-        PlaneRayTestResult MEZZ_LIB Intersects(const Plane& Surface, const Ray& Cast);
+        /// @return Returns a std::pair containing whether of not the ray hit, and the point in 3D space where it hit if it did.
+        Point3DTestResult MEZZ_LIB Intersects(const Plane& Surface, const Ray& Cast);
         /// @brief Checks to see if a ray intersects with an AABB.
         /// @param Box The AABB to check for intersection.
         /// @param Cast The casted ray to check for intersection.
