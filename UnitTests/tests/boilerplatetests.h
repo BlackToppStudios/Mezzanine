@@ -82,7 +82,6 @@ class boilerplatetests : public UnitTestGroup
 
             TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
         }
-
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const
@@ -95,12 +94,18 @@ class boilerplatetests : public UnitTestGroup
             TestResult Answer = GetTestAnswerFromStdin( "Is this a question? ");
             TEST_RESULT(Answer, "Interactive");
         }
-
         /// @brief Since RunInteractiveTests is implemented so is this.
         /// @return returns true
         virtual bool HasInteractiveTests() const
             { return true; }
 
+
+
+        virtual void RunSubprocessTest()
+            { cout << "This is output during a child process." << endl; }
+        /// @brief Returns true so that
+        virtual bool HasSubprocessTest() const
+            { return true; }
 };
 
 #endif

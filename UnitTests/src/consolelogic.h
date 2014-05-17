@@ -69,7 +69,12 @@ namespace Mezzanine
         /// @return Depends on users input
         TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Boole FailStatusOnIncorrect = true);
 
+        /// @brief Execute a command in a process, piping its standard output to a file
+        /// @return The contents of the file as String
+        String GetCommandResults(String Command);
 
+        /// @brief Sleeps the current thread for an amount of microseconds.
+        /// @param MicroSeconds the amount of micro seconds.
         void sleep_for(UInt32 MicroSeconds);
     }// Testing
 }// Mezzanine

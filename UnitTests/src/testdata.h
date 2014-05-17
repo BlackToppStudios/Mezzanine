@@ -101,8 +101,9 @@ namespace Mezzanine
         /// @brief Just a map to store the content of TestData, incidentally it will lexographically sort the list of tests.
         typedef std::set<TestData> TestDataStorage;
 
-        // Forward declaration.
+        // Forward declarations.
         class UnitTestGroup;
+        class OutputCaptureManager;
 
         /// @brief A group of testnames and the Actual test that implement those test(s).
         typedef std::map<Mezzanine::String, UnitTestGroup*> CoreTestGroup;
@@ -121,12 +122,23 @@ namespace Mezzanine
         /// @brief A single group of tests, suitable for being all the tests of a small subsystem or single class.
         class UnitTestGroup : public TestDataStorage
         {
+            friend class OutputCaptureManager;
+
             protected:
                 /// @brief A destination for all normal ouput in the tests.
                 std::stringstream TestOutput;
-
                 /// @brief A destination for errors
                 std::stringstream TestError;
+
+                /// @brief Used to store the buffer connected to the stdout while it is being redirected.
+                std::streambuf* CoutStreamBuf;
+                /// @brief Used to store the buffer connected to the stderr while it is being redirected.
+                std::streambuf* CerrStreamBuf;
+
+                /// @brief This will direct any output that would have gone to an external process via cout to TestOutput Instead
+                void CaptureOutputBuffers();
+                /// @brief This will direct any error messages that would have gone to an external process via cerr to TestOutput Instead
+                void RestoreOutputBuffers();
 
                 /// @brief Some basic variable for tracking simple statistics
                 unsigned int LongestNameLength;
@@ -140,6 +152,11 @@ namespace Mezzanine
                 bool DoAutomaticTest;
                 /// @brief Sets the flag to run interactive tests
                 bool DoInteractiveTest;
+
+                /// @brief Used while running a test to see if
+                Int32 Completed;
+
+
 
             public:
                 /// @brief Default constructor
@@ -156,6 +173,17 @@ namespace Mezzanine
                 /// or HasInteractiveTests return true.
                 virtual void RunTests();
 
+            protected:
+                /// @brief
+                void LaunchAutomaticTest();
+                /// @brief
+                void LaunchInteractiveTest();
+
+                /// @brief This is used by the normal sequence of test execution to launch test specific subprocesses.
+                /// @return The output to stdout from the subprocess.
+                String LaunchSubProcessTest();
+
+            public:
                 /// @brief This should be overloaded to run all tests that do require not user interaction
                 virtual void RunAutomaticTests();
                 /// @brief Used only to report skipped tests.
@@ -175,7 +203,7 @@ namespace Mezzanine
                 /// @brief Does nothing by default, tests which need to run code in a subprocess should override this.
                 /// @details This will be executed in a subprocess before HasAutomaticTests() and RunInteractiveTests();
                 /// @return Whatever was sent to stdout via C++ streams will be captured and sent here instead.
-                virtual String SubprocessTest();
+                virtual void RunSubprocessTest();
                 /// @brief If this returns false then the test suite treats it like any other test, if true then it enables some features for launching subprocess tests
                 /// @details This will cause an extra command line option to be created (as "debug" + testname). The function SubprocessTest() will be executed in the
                 /// process that the new option is passed into. This allows for subprocess debugging. This will automatically be passed to the test process that will
@@ -237,6 +265,23 @@ namespace Mezzanine
                 /// @param FuncName The function the test was called from, if blank
                 virtual void Test(bool TestCondition, const String& TestName, TestResult IfFalse = Testing::Failed, TestResult IfTrue = Testing::Success,
                                   const String& FuncName = "", const String& File = "", Mezzanine::Whole Line = 0);
+        };
+
+        /// @internal
+        /// @brief Used to aplly RAII to Stdout and STDERR buffers/streams
+        class OutputCaptureManager
+        {
+            private:
+                /// @brief The Target to work with
+                UnitTestGroup* Target;
+            public:
+                /// @brief Captures Output buffers and configures test outputs on creation
+                OutputCaptureManager(UnitTestGroup* RAIITarget) : Target(RAIITarget)
+                    { Target->CaptureOutputBuffers(); }
+                /// @brief Restores original output  buffers on creation
+                ~OutputCaptureManager()
+                    { Target->RestoreOutputBuffers(); }
+
         };
 
 

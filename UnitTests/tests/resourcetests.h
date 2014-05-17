@@ -152,7 +152,7 @@ class resourcetests : public UnitTestGroup
             char* Reasonableu = const_cast<char *>("/usr/share/bin/game");
             char** PtrReasonableu = &Reasonableu;
             TestOutput << "Testing GetExecutableDirFromArg(ArgC,ArgV)" << endl
-                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(ArgC,ArgV) << "\"" << endl
+                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(GetMainArgumentCount(), GetMainArgumentVector()) << "\"" << endl
                  << "With empty records \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(0,0) << "\"" << endl
                  << "With \"" << ExePtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,ExePtr) << "\"" << endl
                  << "With \"" << ExeDSPtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,ExeDSPtr) << "\"" << endl
@@ -177,7 +177,7 @@ class resourcetests : public UnitTestGroup
             MaxInt GetTime = 0;
 
             TestOutput << "Not testing GetExecutableDirFromArg(ArgC,ArgV) but here is the output so you can check if you want" << endl
-                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(ArgC,ArgV) << "\"" << endl
+                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(GetMainArgumentCount(), GetMainArgumentVector()) << "\"" << endl
                  << endl;
             {
                 std::vector<String> CacheDefeater;
@@ -185,7 +185,7 @@ class resourcetests : public UnitTestGroup
                 TestOutput << "Calling GetExecutableDirFromArg(ArgC,ArgV) " << Count << " times and timing it." << endl;
                 TimedTest Timed;
                 for(Whole C=0; C<Count; C++)
-                    { CacheDefeater.push_back(Mezzanine::Resource::GetExecutableDirFromArg(ArgC,ArgV)); }
+                    { CacheDefeater.push_back(Mezzanine::Resource::GetExecutableDirFromArg(GetMainArgumentCount(),GetMainArgumentVector())); }
                 Whole N = (rand()%Count);
                 TestOutput << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
                 ArgTime = Timed.GetLength();
@@ -210,7 +210,7 @@ class resourcetests : public UnitTestGroup
 
 
             TestOutput << "Not testing GetExecutableDir(ArgC,ArgV) but here is the output so you can check if you want" << endl
-                 << "On your system this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDir(ArgC,ArgV) << "\"" << endl
+                 << "On your system this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector()) << "\"" << endl
                  << endl << endl;
             {
                 std::vector<String> CacheDefeater;
@@ -218,7 +218,7 @@ class resourcetests : public UnitTestGroup
                 TestOutput << "Calling GetExecutableDir(ArgC,ArgV) " << Count << " times and timing it." << endl;
                 TimedTest Timed;
                 for(Whole C=0; C<Count; C++)
-                    { CacheDefeater.push_back(Mezzanine::Resource::GetExecutableDir(ArgC,ArgV)); }
+                    { CacheDefeater.push_back(Mezzanine::Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector())); }
                 Whole N = (rand()%Count);
                 TestOutput << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
                 GetTime = Timed.GetLength();
@@ -226,14 +226,6 @@ class resourcetests : public UnitTestGroup
             }
 
             TEST_WARN(ArgTime<SyscallTime,"ArgIsFastest")
-        }
-
-        String GetCommandResults(String Command)
-        {
-            Command += " > CommandResults.txt";
-            (system(Command.c_str()));
-            std::ifstream File("CommandResults.txt");
-            return String( std::istreambuf_iterator<char>(File), std::istreambuf_iterator<char>());
         }
 
         void TestPath()
@@ -356,7 +348,7 @@ class resourcetests : public UnitTestGroup
 
             Temp.str("");
             Temp << "GetExecutableDir(ArgC,ArgV) - On your system with the real args this provides:\n\t\""
-                 << Mezzanine::Resource::GetExecutableDir(ArgC,ArgV) << "\"" << endl
+                 << Mezzanine::Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector()) << "\"" << endl
                  << "Is that location correct? " ;
             TEST_RESULT(GetTestAnswerFromStdin(Temp.str()), "GetExecutableDir(ArgC,ArgV)");
         }
