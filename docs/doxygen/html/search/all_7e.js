@@ -159,6 +159,7 @@ var searchData=
   ['_7eieffectshandler',['~iEffectsHandler',['../classMezzanine_1_1Audio_1_1iEffectsHandler.html#ac929415d4e9f13bb2406e7ce121daad5',1,'Mezzanine::Audio::iEffectsHandler']]],
   ['_7eifilter',['~iFilter',['../classMezzanine_1_1Audio_1_1iFilter.html#a6358da889acf9f50165fb65378af5a7b',1,'Mezzanine::Audio::iFilter']]],
   ['_7eilistener',['~iListener',['../classMezzanine_1_1Audio_1_1iListener.html#a699ef08fab6223af9e4b503b236da3fa',1,'Mezzanine::Audio::iListener']]],
+  ['_7eimage',['~Image',['../classMezzanine_1_1Graphics_1_1Image.html#a289efeb5916e3cec4022706bccdfb1c3',1,'Mezzanine::Graphics::Image']]],
   ['_7eimagelayer',['~ImageLayer',['../classMezzanine_1_1UI_1_1ImageLayer.html#aae3326a2669c288e22259c426ad76897',1,'Mezzanine::UI::ImageLayer']]],
   ['_7einputmanager',['~InputManager',['../classMezzanine_1_1Input_1_1InputManager.html#a16524dcd7524a6b4142dcfca2c2a7621',1,'Mezzanine::Input::InputManager']]],
   ['_7einputmanagerinternaldata',['~InputManagerInternalData',['../classMezzanine_1_1Input_1_1InputManagerInternalData.html#a1058564f575f054ef5c5761c2309c15e',1,'Mezzanine::Input::InputManagerInternalData']]],

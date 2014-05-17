@@ -11,9 +11,9 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 157,-26 157,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1UI_1_1PositioningInfo.html" target="_top" xlink:title="This is a helper class designed to describe the behaviors of a quad when it needs to be repositioned...">
-<polygon fill="white" stroke="black" points="0.5,-0.5 0.5,-21.5 151.5,-21.5 151.5,-0.5 0.5,-0.5"/>
-<text text-anchor="middle" x="76" y="-8.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::UI::PositioningInfo</text>
+<a xlink:href="classMezzanine_1_1UI_1_1NineBoxCheck.html" target="_top" xlink:title="Simple functor for finding which renderable the mouse is hovered over. ">
+<polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 152,-21.5 152,-0.5 0,-0.5"/>
+<text text-anchor="middle" x="76" y="-8.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::UI::NineBoxCheck</text>
 </a>
 </g>
 </g>

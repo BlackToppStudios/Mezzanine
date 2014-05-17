@@ -1,3 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Threading_1_1ReadWriteSpinLock.html" title="A mutex like construct that supports multiple readsingle writer semantics and never makes a system ca..." alt="" coords="7,5,156,51"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Threading_1_1RawFile.html" title="A simple in memory representation of a file. " alt="" coords="7,5,156,51"/>
 </map>

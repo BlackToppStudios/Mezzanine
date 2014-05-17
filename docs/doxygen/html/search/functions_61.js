@@ -41,6 +41,7 @@ var searchData=
   ['addeaxreverbeffectpreset',['AddEAXReverbEffectPreset',['../classMezzanine_1_1Audio_1_1iEffectsHandler.html#a4e0548d14460e52d43705dd0e036b869',1,'Mezzanine::Audio::iEffectsHandler']]],
   ['addechoeffectpreset',['AddEchoEffectPreset',['../classMezzanine_1_1Audio_1_1iEffectsHandler.html#a6c9a5ea3d3a1b28ad51a50d5dfb42b42',1,'Mezzanine::Audio::iEffectsHandler']]],
   ['addequalizereffectpreset',['AddEqualizerEffectPreset',['../classMezzanine_1_1Audio_1_1iEffectsHandler.html#a206643b8b0c03fe5f7863f8c8ee6b284',1,'Mezzanine::Audio::iEffectsHandler']]],
+  ['adderrorscheduler',['AddErrorScheduler',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#a62eabcf9e5b6cc837d260810fd16ddc5',1,'Mezzanine::Threading::FrameScheduler']]],
   ['addevent',['AddEvent',['../classMezzanine_1_1EventManager.html#aa791c61d2665422614d54c7653e87e88',1,'Mezzanine::EventManager::AddEvent()'],['../classMezzanine_1_1EventPublisher.html#a715d5c74f031c5339d3c215f70d1c961',1,'Mezzanine::EventPublisher::AddEvent()']]],
   ['addflangereffectpreset',['AddFlangerEffectPreset',['../classMezzanine_1_1Audio_1_1iEffectsHandler.html#ab13c5c838e6d6b77fe880b91bbf13805',1,'Mezzanine::Audio::iEffectsHandler']]],
   ['addfrequencyshifteffectpreset',['AddFrequencyShiftEffectPreset',['../classMezzanine_1_1Audio_1_1iEffectsHandler.html#a17f624df665a7c8614efe5c199085347',1,'Mezzanine::Audio::iEffectsHandler']]],

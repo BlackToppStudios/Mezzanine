@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 117,-38 117,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Resource_1_1AssetID.html" target="_top" xlink:title="This is a simple class storing the name and group identification of an Asset/Stream. ">
+<a xlink:href="classMezzanine_1_1Resource_1_1Asset.html" target="_top" xlink:title="Mezzanine::Resource\l::Asset">
 <polygon fill="white" stroke="black" points="0,-0 0,-34 112,-34 112,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Resource</text>
-<text text-anchor="middle" x="56" y="-8" font-family="Helvetica,sans-Serif" font-size="10.00">::AssetID</text>
+<text text-anchor="middle" x="56" y="-8" font-family="Helvetica,sans-Serif" font-size="10.00">::Asset</text>
 </a>
 </g>
 </g>

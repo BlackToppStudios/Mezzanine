@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1TransformableChildObject.html" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="5,5,181,51"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1Graphics_1_1Bone.html" title="This class encapsulates the bones contained in a skeleton used for animation. " alt="" coords="231,5,375,51"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Track.html" title="A base type that provides container features for different tracks. " alt="" coords="5,5,208,51"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1TrackLooped.html" title="A track that keeps an extra data point in the track to make sure it loops. " alt="" coords="256,5,424,51"/>
 </map>
