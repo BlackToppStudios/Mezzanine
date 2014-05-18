@@ -50,6 +50,8 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+const String SubSubMessage("This is output during a child process.");
+
 /// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
 class boilerplatetests : public UnitTestGroup
 {
@@ -81,6 +83,10 @@ class boilerplatetests : public UnitTestGroup
             //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
 
             TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
+
+            TestOutput  << "Expecting: " << SubSubMessage << endl
+                        << "Actual:    " << SubProcessOutput << endl;
+            TEST(SubSubMessage==SubProcessOutput, "SubProcess");
         }
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
@@ -100,9 +106,13 @@ class boilerplatetests : public UnitTestGroup
             { return true; }
 
 
-
+        /// @brief This will be launched in a sub sub process by the unit test framework.
         virtual void RunSubprocessTest()
-            { cout << "This is output during a child process." << endl; }
+        {
+            // Please note that test macros mean nothing here. This is run in a subprocess
+            // with as little interference from the Unit Test framework as possible
+            cout << SubSubMessage;
+        }
         /// @brief Returns true so that
         virtual bool HasSubprocessTest() const
             { return true; }

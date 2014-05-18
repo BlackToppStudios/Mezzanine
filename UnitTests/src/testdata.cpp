@@ -147,12 +147,11 @@ namespace Mezzanine
 
         void UnitTestGroup::RunTests()
         {
-            OutputCaptureManager Gaurd(this);
-
             if(DoSubProcessTest)
                 { RunSubprocessTest(); }
             else
             {
+                OutputCaptureManager Guard(this);
                 if(HasSubprocessTest())
                     { SubProcessOutput = LaunchSubProcessTest(); }
                 LaunchAutomaticTest();

@@ -259,7 +259,7 @@ class AllUnitTestGroups : public UnitTestGroup
         virtual void RunTests()
         {
             if (DoAutomaticTest==DoInteractiveTest && DoInteractiveTest==false)   // enforce running automatic tests if no type of test is specified
-                { DoAutomaticTest=true;  }
+                { DoAutomaticTest=true; }
             if(RunAll)
             {
                 // if Runall is set it is presumed that no tests have been added to list of tests to run yet.
@@ -267,12 +267,12 @@ class AllUnitTestGroups : public UnitTestGroup
                     { TestGroupsToRun.push_back(Iter->first); }
             }
 
-            if(DoSubProcessTest) // Should we be executing the test right now?
+            if(MainProcess == GetCurrentProcessDepth())
             {
-                ExecuteSubTest();
-            }else{ // No, We should be executing the test in a place that cannot possibly crash this program
                 IterateSubtests();
-            } // \if(ExecuteInThisMemorySpace)
+            }else{
+                ExecuteSubTest();
+            }
         } // \function
 
         /// @internal
@@ -365,12 +365,13 @@ int main (int argc, char** argv)
             { WriteFile = false; }
         else  // Wasn't a command so it is either gibberish or a test group or debug test group
         {
-            if(ThisArg.size()>SubTestPrefix.size())
+            if(ThisArg.size() > SubTestPrefix.size())
             {
                 if( ThisArg.substr(0,SubTestPrefix.size()) == SubTestPrefix)
                 {
                     Depth = TestSubSubProcess;
-                    GlobalCoreTestGroup::iterator SearchResult = TestGroups.find(ThisArg.substr(5,ThisArg.size()-5));
+                    ThisArg = ThisArg.substr(SubTestPrefix.size(), ThisArg.size()-SubTestPrefix.size());
+                    GlobalCoreTestGroup::iterator SearchResult = TestGroups.find(ThisArg);
                     if(TestGroups.end()==SearchResult)
                     {
                         std::cerr << ThisArg << " appears to be a request to debug a sub-process that does not exist." << std::endl;
@@ -408,7 +409,8 @@ int main (int argc, char** argv)
         Runner.DisplayResults(OutFile, OutFile, SummaryDisplay, FullDisplay);
         OutFile.close();
     }
-    Runner.DisplayResults(cout, cerr, SummaryDisplay, FullDisplay);
+    if(MainProcess == GetCurrentProcessDepth())
+        { Runner.DisplayResults(cout, cerr, SummaryDisplay, FullDisplay); }
 
     for(AllUnitTestGroups::iterator Iter = Runner.begin(); Iter!=Runner.end(); Iter++)
     {
