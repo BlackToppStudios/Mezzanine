@@ -1127,12 +1127,21 @@ class frameschedulertests : public UnitTestGroup
 
             }
 
+            {}
 
         }
-
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const
+            { return true; }
+
+        /// @brief This will be launched in a sub sub process by the unit test framework.
+        virtual void RunSubprocessTest()
+        {
+            //create a framescheduler and crash it here
+        }
+        /// @brief Needs ubprocesses so it returns true.
+        virtual bool HasSubprocessTest() const
             { return true; }
 };
 

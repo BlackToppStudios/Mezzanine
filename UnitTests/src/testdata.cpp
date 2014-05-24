@@ -152,8 +152,6 @@ namespace Mezzanine
             else
             {
                 OutputCaptureManager Guard(this);
-                if(HasSubprocessTest())
-                    { SubProcessOutput = LaunchSubProcessTest(); }
                 LaunchAutomaticTest();
                 LaunchInteractiveTest();
             }

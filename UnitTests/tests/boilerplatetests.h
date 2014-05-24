@@ -84,6 +84,8 @@ class boilerplatetests : public UnitTestGroup
 
             TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
 
+
+            String SubProcessOutput(LaunchSubProcessTest());
             TestOutput  << "Expecting: " << SubSubMessage << endl
                         << "Actual:    " << SubProcessOutput << endl;
             TEST(SubSubMessage==SubProcessOutput, "SubProcess");

@@ -55,6 +55,8 @@
 
 namespace Mezzanine
 {
+    /// @namespace Mezzanine::Testing
+    /// @brief This contains all the items (except the tests themselves) that make the unit tests work.
     namespace Testing
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -143,9 +145,6 @@ namespace Mezzanine
                 /// @brief Some basic variable for tracking simple statistics
                 unsigned int LongestNameLength;
 
-                /// @brief The output of the last subprocess if any was executed.
-                String SubProcessOutput;
-
                 /// @brief Set to false if subprocess tests should not be executed. True if they should
                 bool DoSubProcessTest;
                 /// @brief Set the flag to run automatic tests
@@ -155,7 +154,6 @@ namespace Mezzanine
 
                 /// @brief Used while running a test to see if
                 Int32 Completed;
-
 
 
             public:
@@ -179,7 +177,7 @@ namespace Mezzanine
                 /// @brief
                 void LaunchInteractiveTest();
 
-                /// @brief This is used by the normal sequence of test execution to launch test specific subprocesses.
+                /// @brief Tests should use this to
                 /// @return The output to stdout from the subprocess.
                 String LaunchSubProcessTest();
 

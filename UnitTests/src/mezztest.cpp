@@ -231,14 +231,17 @@ class AllUnitTestGroups : public UnitTestGroup
         /// @brief this is used when there are test to execute and we need to loop over them and run each in a child process.
         void IterateSubtests()
         {
+            setvbuf (stdout, NULL, _IONBF, 0);
             for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
             {
                 ClearTempFile();
                 String SubprocessInvocation(CommandName + " " + *CurrentTestName + " " + MemSpaceArg + " " + Mezzanine::String(DoAutomaticTest?"automatic ":"") + Mezzanine::String(DoInteractiveTest?"interactive ":""));
                 if(system(SubprocessInvocation.c_str()))   // Run a single unit test as another process
                 {
+                    printf("%s", (SubprocessInvocation+String(" - Failure")).c_str() );
                     this->AddTestResult(String("Process::" + *CurrentTestName), Testing::Failed);
                 }else {
+                    printf("%s", (SubprocessInvocation+String(" - Success")).c_str() );
                     this->AddTestResult(String("Process::" + *CurrentTestName), Success);
                 }
 
