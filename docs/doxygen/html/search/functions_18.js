@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['xml_5fattribute_5fstruct',['xml_attribute_struct',['../structpugi_1_1xml__attribute__struct.html#a57bb21cb72613e746a659efdd6425b94',1,'pugi::xml_attribute_struct']]],
+  ['xml_5fnode_5fstruct',['xml_node_struct',['../structpugi_1_1xml__node__struct.html#af9af20f835af8b6b99f9a39c93920ea6',1,'pugi::xml_node_struct']]],
   ['xmlstreamwrapper',['XMLStreamWrapper',['../classMezzanine_1_1XML_1_1XMLStreamWrapper.html#a39f9bb5d15ad642680d580a7997da4eb',1,'Mezzanine::XML::XMLStreamWrapper']]],
   ['xpathnode',['XPathNode',['../classMezzanine_1_1XML_1_1XPathNode.html#ae0e87613502d830c351988b572e962c3',1,'Mezzanine::XML::XPathNode::XPathNode()'],['../classMezzanine_1_1XML_1_1XPathNode.html#ae3c777f45645724c68e7e05856f88daa',1,'Mezzanine::XML::XPathNode::XPathNode(const Node &amp;node)'],['../classMezzanine_1_1XML_1_1XPathNode.html#a8defa38688bce6cef28ac928f8f71b6c',1,'Mezzanine::XML::XPathNode::XPathNode(const Attribute &amp;GetAttribute, const Node &amp;GetParent)']]],
   ['xpathnodeset',['XPathNodeSet',['../classMezzanine_1_1XML_1_1XPathNodeSet.html#a33b78eb97c4643f33580d42adb480a63',1,'Mezzanine::XML::XPathNodeSet::XPathNodeSet()'],['../classMezzanine_1_1XML_1_1XPathNodeSet.html#a8c919ae2f0690ca64c238a14eeaf557a',1,'Mezzanine::XML::XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type=TypeUnsorted)'],['../classMezzanine_1_1XML_1_1XPathNodeSet.html#a876a99e75c2fbc43699f825a497ef209',1,'Mezzanine::XML::XPathNodeSet::XPathNodeSet(const XPathNodeSet &amp;ns)']]],

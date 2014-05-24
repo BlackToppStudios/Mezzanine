@@ -33,6 +33,7 @@ var searchData=
   ['resonance',['Resonance',['../structMezzanine_1_1Audio_1_1AutowahParameters.html#a980d3346619b82961611b63a2f02e64d',1,'Mezzanine::Audio::AutowahParameters']]],
   ['resources',['Resources',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#aef202c7611197d1a426d85bef392638e',1,'Mezzanine::Threading::FrameScheduler']]],
   ['result',['Result',['../classMezzanine_1_1UI_1_1MouseHoverCheck.html#a67b5727e2cd37013f76f087fb879823b',1,'Mezzanine::UI::MouseHoverCheck']]],
+  ['results',['Results',['../structMezzanine_1_1Testing_1_1TestData.html#a9251075cee2f824014710aa5b9f9a93b',1,'Mezzanine::Testing::TestData']]],
   ['right',['Right',['../structMezzanine_1_1Audio_1_1FrequencyShiftParameters.html#af8ff71d0537be8bcd6809cb76839e37f',1,'Mezzanine::Audio::FrequencyShiftParameters::Right()'],['../classMezzanine_1_1UI_1_1Sprite.html#ae540ddfc1ef72c7e3dc727c4c3025846',1,'Mezzanine::UI::Sprite::Right()']]],
   ['rigprox',['RigProx',['../classMezzanine_1_1RigidDebris.html#a387ed59355e48f946f8af99d1c1c47c9',1,'Mezzanine::RigidDebris']]],
   ['roomrollofffactor',['RoomRolloffFactor',['../structMezzanine_1_1Audio_1_1EAXReverbParameters.html#a07af604405871987acb9a205ebd1b23a',1,'Mezzanine::Audio::EAXReverbParameters::RoomRolloffFactor()'],['../structMezzanine_1_1Audio_1_1ReverbParameters.html#a829633fa0f56755f8ec02df99537a749',1,'Mezzanine::Audio::ReverbParameters::RoomRolloffFactor()']]],
