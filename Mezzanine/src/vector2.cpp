@@ -79,6 +79,21 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Prebuilt Vectors
+
+    Vector2 Vector2::Unit_X()
+        { return Vector2(1,0); }
+
+    Vector2 Vector2::Unit_Y()
+        { return Vector2(0,1); }
+
+    Vector2 Vector2::Neg_Unit_X()
+        { return Vector2(-1,0); }
+
+    Vector2 Vector2::Neg_Unit_Y()
+        { return Vector2(0,-1); }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
     void Vector2::SetIdentity()
@@ -118,6 +133,12 @@ namespace Mezzanine
 
     Boole Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X >= Vec.X && this->Y >= Vec.Y); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Unary Operators
+
+    Vector2 Vector2::operator- ()
+        { return Vector2( -(this->X), -(this->Y) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector2 Arithmetic with Real
@@ -237,14 +258,17 @@ namespace Mezzanine
         { return MathTools::Sqrt( this->SquaredLength() ); }
 
     Real Vector2::SquaredLength() const
-        { return (this->X * this->X + this->Y * this->Y); }
+        { return ( this->X * this->X + this->Y * this->Y ); }
 
     Vector2 Vector2::Perpendicular() const
         { return Vector2(-Y,X); }
 
+    Vector2 Vector2::Reflect(const Vector2& Normal) const
+        { return Vector2( *this - ( Normal * ( 2 * this->DotProduct(Normal) ) ) ); }
+
     Vector2& Vector2::Normalize()
     {
-        Real Length = MathTools::Sqrt( X * X + Y * Y );
+        Real Length = this->Length();
 
         if( Length > 1e-08 ) {
             Real InvLength = 1.0 / Length;
@@ -253,6 +277,35 @@ namespace Mezzanine
         }
 
         return *this;
+    }
+
+    Vector2 Vector2::GetNormal() const
+    {
+        Vector2 Ret( *this );
+        return Ret.Normalize();
+    }
+
+    Real Vector2::AngleTo(const Vector2& Other) const
+    {
+        Real Angle = this->AngleBetween(Other);
+
+		if( this->CrossProduct(Other) < 0 )
+			Angle = MathTools::GetTwoPi() - Angle;
+
+		return Angle;
+    }
+
+    Real Vector2::AngleBetween(const Vector2& Other) const
+    {
+        Real LenProduct = this->Length() * Other.Length();
+		// Divide by zero check
+		if( LenProduct < 1e-6f )
+			LenProduct = 1e-6f;
+
+		Real f = this->DotProduct(Other) / LenProduct;
+
+		f = MathTools::Clamp( f, (Real)-1.0, (Real)1.0 );
+		return MathTools::ACos(f);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

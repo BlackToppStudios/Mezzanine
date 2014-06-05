@@ -89,6 +89,22 @@ namespace Mezzanine
         void ExtractOgreVector2(const Ogre::Vector2& Thiers);
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Prebuilt Vectors
+
+        /// @brief Gets a vector representing the X unit of a Vector2.
+        /// @return A Vector2(1,0).
+        static Vector2 Unit_X();
+        /// @brief Gets a vector representing the Y unit of a Vector2.
+        /// @return A Vector2(0,1).
+        static Vector2 Unit_Y();
+        /// @brief Gets a vector representing the negative X unit of a Vector2.
+        /// @return A Vector2(-1,0).
+        static Vector2 Neg_Unit_X();
+        /// @brief Gets a vector representing the negative Y unit of a Vector2.
+        /// @return A Vector2(0,-1).
+        static Vector2 Neg_Unit_Y();
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         /// @brief Sets the values of this vector2 to identity values(0,0).
@@ -131,6 +147,13 @@ namespace Mezzanine
         /// @param Vec This is the other Mezzanine::Vector2.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
         Boole operator>= (const Mezzanine::Vector2 &Vec) const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Unary Operators
+
+        /// @brief Unary Operator.
+        /// @return Returns a copy of this Vector2 with the +/- signs on each value flipped.
+        Vector2 operator- ();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Vector2 Arithmetic with Real
@@ -221,9 +244,27 @@ namespace Mezzanine
         /// @brief Generates a Vector2 that is perpendicular to this vector.
         /// @return Returns a new Vector2 that is perpendicular to this.
         Vector2 Perpendicular() const;
+        /// @brief Gets a reflection vector to the line with the given normal.
+        /// @param Normal The normal of the line being reflected off of.
+        /// @return Returns a Vector3 containing the reflection vector.
+        Vector2 Reflect(const Vector2& Normal) const;
         /// @brief Normalizes this Vector2.
         /// @return Returns a reference to this.
         Vector2& Normalize();
+        /// @brief Gets the normal of this Vector2.
+        /// @return Returns a new Vector2 that is a normalized copy of this Vector2.
+        Vector2 GetNormal() const;
+
+        /// @brief Gets an oriented angle between this Vector2 and another Vector2.
+        /// @note This method assumes both Vector2s are axis vectors.
+        /// @param Other The other Vector2 to compare with.
+        /// @return Returns the angle between both Vector2s in radians in the range of 0pi-2pi.
+        Real AngleTo(const Vector2& Other) const;
+        /// @brief Gets the angle between this Vector2 and another.
+        /// @note This method assumes both Vector2s are axis vectors.
+        /// @param Other The other Vector2 to compare with.
+        /// @return Returns the angle between both Vector2s in radians.
+        Real AngleBetween(const Vector2& Other) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
