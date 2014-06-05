@@ -153,19 +153,19 @@ namespace Mezzanine
         /// @brief Gets a vector representing the X unit of a Vector3.
         /// @return A Vector3(1,0,0).
         static Vector3 Unit_X();
-        /// @brief Gets a vector representing the Y unit of a vector.
+        /// @brief Gets a vector representing the Y unit of a Vector3.
         /// @return A Vector3(0,1,0).
         static Vector3 Unit_Y();
-        /// @brief Gets a vector representing the Z unit of a vector.
+        /// @brief Gets a vector representing the Z unit of a Vector3.
         /// @return A Vector3(0,0,1).
         static Vector3 Unit_Z();
-        /// @brief Gets a vector representing the negative X unit of a vector.
+        /// @brief Gets a vector representing the negative X unit of a Vector3.
         /// @return A Vector3(-1,0,0).
         static Vector3 Neg_Unit_X();
-        /// @brief Gets a vector representing the negative Y unit of a vector.
+        /// @brief Gets a vector representing the negative Y unit of a Vector3.
         /// @return A Vector3(0,-1,0).
         static Vector3 Neg_Unit_Y();
-        /// @brief Gets a vector representing the negative Z unit of a vector.
+        /// @brief Gets a vector representing the negative Z unit of a Vector3.
         /// @return A Vector3(0,0,-1).
         static Vector3 Neg_Unit_Z();
 
