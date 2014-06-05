@@ -69,10 +69,24 @@ namespace Mezzanine
         /// @brief Blank constructor.
         Triangle2D();
         /// @brief Descriptive constructor.
+        /// @param A The first point in space making the triangle.
+        /// @param B The second point in space making the triangle.
+        /// @param C The third point in space making the triangle.
         Triangle2D(const Vector2& A, const Vector2& B, const Vector2& C);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        /// @brief Gets the point in this triangle corresponding to the specified index.
+        /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.
+        /// @param Index The index of the point to retrieve.
+        /// @return Returns a reference to a Vector2 containing the position of the specified point.
+        Vector2& operator[](const Whole& Index);
+        /// @brief Gets the point in this triangle corresponding to the specified index.
+        /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.
+        /// @param Index The index of the point to retrieve.
+        /// @return Returns a const reference to a Vector2 containing the position of the specified point.
+        const Vector2& operator[](const Whole& Index) const;
     };//Triangle2D
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -98,6 +112,9 @@ namespace Mezzanine
         /// @brief Blank constructor.
         Triangle3D();
         /// @brief Descriptive constructor.
+        /// @param A The first point in space making the triangle.
+        /// @param B The second point in space making the triangle.
+        /// @param C The third point in space making the triangle.
         Triangle3D(const Vector3& A, const Vector3& B, const Vector3& C);
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -107,6 +124,17 @@ namespace Mezzanine
         /// @param Other The other triangle to compare with.
         /// @return Returns a line segment expressing the length where the two triangles overlap, or a zero'd out line segment if there is no overlap.
         LineSegment3D GetOverlap(const Triangle3D& Other) const;
+
+        /// @brief Gets the point in this triangle corresponding to the specified index.
+        /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.
+        /// @param Index The index of the point to retrieve.
+        /// @return Returns a reference to a Vector2 containing the position of the specified point.
+        Vector3& operator[](const Whole& Index);
+        /// @brief Gets the point in this triangle corresponding to the specified index.
+        /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.
+        /// @param Index The index of the point to retrieve.
+        /// @return Returns a const reference to a Vector2 containing the position of the specified point.
+        const Vector3& operator[](const Whole& Index) const;
     };//Triangle3D
 }//Mezzanine
 

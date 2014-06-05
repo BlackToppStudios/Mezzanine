@@ -72,6 +72,7 @@ THE SOFTWARE.
 #include "plane.h"
 #include "ray.h"
 #include "mathtool.h"
+#include "exception.h"
 
 namespace
 {
@@ -128,6 +129,32 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
+
+    Vector2& Triangle2D::operator[](const Whole& Index)
+    {
+        switch( Index )
+        {
+            case 0:  return this->PointA;  break;
+            case 1:  return this->PointB;  break;
+            case 2:  return this->PointC;  break;
+            default:
+                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
+        }
+        return this->PointA;
+    }
+
+    const Vector2& Triangle2D::operator[](const Whole& Index) const
+    {
+        switch( Index )
+        {
+            case 0:  return this->PointA;  break;
+            case 1:  return this->PointB;  break;
+            case 2:  return this->PointC;  break;
+            default:
+                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
+        }
+        return this->PointA;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Triangle3D Methods
@@ -256,6 +283,32 @@ namespace Mezzanine
         Vector3 v2 = p + d * ( ( r2 - p[index] ) / d[index] );
 
         return LineSegment3D(v1,v2);
+    }
+
+    Vector3& Triangle3D::operator[](const Whole& Index)
+    {
+        switch( Index )
+        {
+            case 0:  return this->PointA;  break;
+            case 1:  return this->PointB;  break;
+            case 2:  return this->PointC;  break;
+            default:
+                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
+        }
+        return this->PointA;
+    }
+
+    const Vector3& Triangle3D::operator[](const Whole& Index) const
+    {
+        switch( Index )
+        {
+            case 0:  return this->PointA;  break;
+            case 1:  return this->PointB;  break;
+            case 2:  return this->PointC;  break;
+            default:
+                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
+        }
+        return this->PointA;
     }
 }//Mezzanine
 
