@@ -43,6 +43,8 @@
 #include "vector2.h"
 #include "vector3.h"
 
+#include <algorithm>
+
 namespace Mezzanine
 {
     class AxisAlignedBox;
@@ -117,12 +119,31 @@ namespace Mezzanine
         /// @param Denominator The number on bottom.
         /// @return Returns the remainder of division between the two Reals passed in.
         Real MEZZ_LIB Fmod(const Real& Numerator, const Real& Denominator);
+
         /// @brief Checks to see if two Reals are within a certain range of each other.
         /// @param First The first of two Reals to compare.
         /// @param Second The second of two Reals to compare.
         /// @param Tolerance The leeway allowed in how far the two can be apart.
         /// @return Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise.
         Boole MEZZ_LIB WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance);
+
+        /// @brief Extended version of the standard modulo that will wrap negative values.
+        /// @param Num The number to operate on.
+        /// @param Cap The numerical cap for this operation.
+        /// @return Returns the result of the operation, guarenteed to be in the range of 0 to (Cap-1).
+        Integer MEZZ_LIB WrappedModulo(const Integer Num, const Integer Cap);
+
+        /// @brief Convenience method that will clamp a type to be within a specified range.
+        /// @param Val The value to clamp.
+        /// @param Min The minimum allowed value.
+        /// @param Max The maximum allowed value.
+        /// @return Returns the clamped value.
+        template<typename NumType>
+        NumType Clamp(const NumType Val, const NumType Min, const NumType Max)
+        {
+            /// @todo Add an assert?
+            return std::max( std::min( Val, Max ), Min );
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Angle Calculation Functions and Values

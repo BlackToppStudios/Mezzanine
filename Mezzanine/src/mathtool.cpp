@@ -144,6 +144,14 @@ namespace Mezzanine
         Boole WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
             { return ( MathTools::Fabs(Second - First) <= Tolerance ); }
 
+        Integer WrappedModulo(const Integer Num, const Integer Cap)
+        {
+            if( Num >= 0.0 ) {
+                return Num % Cap;
+            }
+            return ( Cap - 1 ) - ( ( 1 + Num ) % Cap );
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Angle Calculation Functions
 
