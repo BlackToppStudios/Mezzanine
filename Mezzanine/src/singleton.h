@@ -40,7 +40,7 @@
 #ifndef _singleton_h
 #define _singleton_h
 
-#if SWIG_MAIN || !SWIG
+#if defined(SWIG_MAIN) || !defined(SWIG)
     #include "exception.h"
 #endif
 
