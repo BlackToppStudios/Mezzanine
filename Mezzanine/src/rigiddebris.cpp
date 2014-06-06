@@ -98,7 +98,7 @@ namespace Mezzanine
 
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         if( PhysMan ) {
-            this->RigProx = PhysMan->CreateRigidProxy(Mass,false);
+            this->RigProx = PhysMan->CreateRigidProxy(Mass);
             this->RigProx->_Bind( this );
         }
 
