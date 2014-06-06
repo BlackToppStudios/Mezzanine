@@ -43,8 +43,6 @@
 #include "vector2.h"
 #include "vector3.h"
 
-#include <algorithm>
-
 namespace Mezzanine
 {
     class AxisAlignedBox;
