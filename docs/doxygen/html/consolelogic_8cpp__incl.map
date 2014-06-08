@@ -6,6 +6,6 @@
 <area shape="rect" id="node4" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="975,395,1123,421"/>
 <area shape="rect" id="node20" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="891,395,951,421"/>
 <area shape="rect" id="node22" href="$testenumerations_8h.html" title="Enumerations and constant values associated with the Unit tests. " alt="" coords="937,245,1071,272"/>
-<area shape="rect" id="node23" href="$pugixml_8h_source.html" title="pugixml.h" alt="" coords="277,320,355,347"/>
-<area shape="rect" id="node24" href="$pugiconfig_8h_source.html" title="pugiconfig.h" alt="" coords="270,395,361,421"/>
+<area shape="rect" id="node23" href="$pugixml_8h.html" title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ..." alt="" coords="277,320,355,347"/>
+<area shape="rect" id="node24" href="$pugiconfig_8h.html" title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ..." alt="" coords="270,395,361,421"/>
 </map>

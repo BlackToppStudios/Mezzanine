@@ -1,43 +1,43 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/image.cpp:52: warning: missing argument after \class.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collidableproxy.cpp:779: warning: File ended in the middle of a comment block! Perhaps a missing \endcode?
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/resourceutilities.cpp:505: warning: File ended in the middle of a comment block! Perhaps a missing \endcode?
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:932: warning: Compound pugi::xpath_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1095: warning: Compound pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:935: warning: Compound pugi::xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1098: warning: Compound pugi::xpath_node is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/image.h:83: warning: Compound Mezzanine::Graphics::ImageSortingKey is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:850: warning: Compound pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1017: warning: Compound pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:244: warning: Compound pugi::xml_writer_file is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:853: warning: Compound pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1020: warning: Compound pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:247: warning: Compound pugi::xml_writer_file is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:67: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:52: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:499: warning: Compound Mezzanine::Node::iterator is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:68: warning: Compound Mezzanine::NodeItem is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:234: warning: Compound pugi::xml_writer is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:237: warning: Compound pugi::xml_writer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/linelist.cpp:57: warning: Compound Mezzanine::UI::LineListRenderer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:274: warning: Compound pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:217: warning: Compound pugi::xml_object_range is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:592: warning: Compound pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:660: warning: Compound pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:828: warning: Compound pugi::xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:277: warning: Compound pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:220: warning: Compound pugi::xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:595: warning: Compound pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:663: warning: Compound pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:831: warning: Compound pugi::xml_parse_result is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/asset.h:52: warning: Compound Mezzanine::Resource::Asset is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:779: warning: Compound pugi::xml_tree_walker is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:986: warning: Compound pugi::xpath_variable_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1077: warning: Compound pugi::xpath_exception is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:782: warning: Compound pugi::xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:989: warning: Compound pugi::xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1080: warning: Compound pugi::xpath_exception is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/quadrenderer.h:57: warning: Compound Mezzanine::UI::QuadRenderer is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:702: warning: Compound pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:705: warning: Compound pugi::xml_attribute_iterator is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:199: warning: Compound Mezzanine::Node is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:62: warning: Compound Mezzanine::Node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1136: warning: Compound pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1139: warning: Compound pugi::xpath_node_set is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:148: warning: Compound Mezzanine::EndNodeItem is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:744: warning: Compound pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:747: warning: Compound pugi::xml_named_node_iterator is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/image.cpp:57: warning: Compound Mezzanine::Graphics::ImageInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:185: warning: Compound Mezzanine::NodeItemPtrCompare is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:258: warning: Compound pugi::xml_writer_stream is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:951: warning: Compound pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:261: warning: Compound pugi::xml_writer_stream is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:954: warning: Compound pugi::xpath_variable is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:793: warning: Compound Mezzanine::SymbolToIndexMapper is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:66: warning: Compound Mezzanine::UI::TextureAtlasInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:211: warning: Compound Mezzanine::Node::const_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:359: warning: Compound pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:362: warning: Compound pugi::xml_node is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/image.h:57: warning: Compound Mezzanine::Graphics::Image is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/enumerations.h:161: warning: Documentation for undefined enum `WorldAndSceneObjectType' found.
@@ -75,6 +75,82 @@
 /home/sqeaky/Code/Mezzanine/UnitTests/src/mezztest.cpp:99: warning: unable to resolve reference to `TestResult' for \ref command
 /home/sqeaky/Code/Mezzanine/UnitTests/src/mezztest.cpp:99: warning: unable to resolve reference to `StringToTestResult' for \ref command
 /home/sqeaky/Code/Mezzanine/UnitTests/src/mezztest.cpp:101: warning: unable to resolve reference to `UnitTestGroup' for \ref command
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:1758: warning: Member ENDSWITH(c, e) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2068: warning: Member PUGI__CHECK_ERROR(err, m) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:94: warning: Member PUGI__DMC_VOLATILE (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2066: warning: Member PUGI__ENDSEG() (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:121: warning: Member PUGI__FN (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:122: warning: Member PUGI__FN_NO_INLINE (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:1091: warning: Member PUGI__IS_CHARTYPE(c, ct) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:1088: warning: Member PUGI__IS_CHARTYPE_IMPL(c, ct, table) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:1092: warning: Member PUGI__IS_CHARTYPEX(c, ct) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:84: warning: Member PUGI__NO_INLINE (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:118: warning: Member PUGI__NS_BEGIN (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:119: warning: Member PUGI__NS_END (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2061: warning: Member PUGI__OPTSET(OPT) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2063: warning: Member PUGI__POPNODE() (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2062: warning: Member PUGI__PUSHNODE(TYPE) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2064: warning: Member PUGI__SCANFOR(X) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2065: warning: Member PUGI__SCANWHILE(X) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2060: warning: Member PUGI__SKIPWS() (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:88: warning: Member PUGI__STATIC_ASSERT(cond) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:2067: warning: Member PUGI__THROW_ERROR(err, m) (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:18: warning: Member SOURCE_PUGIXML_CPP (macro definition) of file pugixml.cpp is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5340: warning: Member as_utf8(const wchar_t *str) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5347: warning: Member as_utf8(const std::basic_string< wchar_t > &str) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5352: warning: Member as_wide(const char *str) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5359: warning: Member as_wide(const std::string &str) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5371: warning: Member get_memory_allocation_function() (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5376: warning: Member get_memory_deallocation_function() (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5365: warning: Member set_memory_management_functions(allocation_function allocate, deallocation_function deallocate) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:3727: warning: Member unspecified_bool_xml_attribute(xml_attribute ***) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:3928: warning: Member unspecified_bool_xml_node(xml_node ***) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:4753: warning: Member unspecified_bool_xml_text(xml_text ***) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:9674: warning: Member unspecified_bool_xpath_node(xpath_node ***) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:10156: warning: Member unspecified_bool_xpath_query(xpath_query ***) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:56: warning: Member PUGIXML_API (macro definition) of file pugixml.h is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:75: warning: Member PUGIXML_CHAR (macro definition) of file pugixml.h is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:61: warning: Member PUGIXML_CLASS (macro definition) of file pugixml.h is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:50: warning: Member PUGIXML_DEPRECATED (macro definition) of file pugixml.h is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:66: warning: Member PUGIXML_FUNCTION (macro definition) of file pugixml.h is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:74: warning: Member PUGIXML_TEXT(t) (macro definition) of file pugixml.h is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:19: warning: Member PUGIXML_VERSION (macro definition) of file pugixml.h is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1210: warning: Member allocation_function)(size_t size) (typedef) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:81: warning: Member char_t (typedef) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1213: warning: Member deallocation_function)(void *ptr) (typedef) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:85: warning: Member string_t (typedef) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:160: warning: Member xml_encoding (enumeration) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:94: warning: Member xml_node_type (enumeration) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:808: warning: Member xml_parse_status (enumeration) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:925: warning: Member xpath_value_type (enumeration) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1202: warning: Member as_utf8(const std::basic_string< wchar_t, std::char_traits< wchar_t >, std::allocator< wchar_t > > &str) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5340: warning: Member as_utf8(const wchar_t *str) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1206: warning: Member as_wide(const std::basic_string< char, std::char_traits< char >, std::allocator< char > > &str) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5352: warning: Member as_wide(const char *str) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5371: warning: Member get_memory_allocation_function() (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5376: warning: Member get_memory_deallocation_function() (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:5365: warning: Member set_memory_management_functions(allocation_function allocate, deallocation_function deallocate) (function) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:195: warning: Member format_default (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:176: warning: Member format_indent (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:185: warning: Member format_no_declaration (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:188: warning: Member format_no_escapes (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:182: warning: Member format_raw (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:191: warning: Member format_save_file_text (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:179: warning: Member format_write_bom (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:119: warning: Member parse_cdata (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:116: warning: Member parse_comments (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:138: warning: Member parse_declaration (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:151: warning: Member parse_default (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:141: warning: Member parse_doctype (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:129: warning: Member parse_eol (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:126: warning: Member parse_escapes (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:156: warning: Member parse_full (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:110: warning: Member parse_minimal (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:113: warning: Member parse_pi (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:132: warning: Member parse_wconv_attribute (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:135: warning: Member parse_wnorm_attribute (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:123: warning: Member parse_ws_pcdata (variable) of namespace pugi is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:146: warning: Member parse_ws_pcdata_single (variable) of namespace pugi is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdatatools.h:195: warning: Member TEST_NO_THROW(CodeThatMightThrow, Name) (macro definition) of file testdatatools.h is not documented.
 <TEST_NO_THROW>:1: warning: parameters of member TEST_NO_THROW are not (all) documented
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdatatools.h:182: warning: argument 'CodeThatMightThrow' of command @param is not found in the argument list of TEST_THROW(ExpectThrown, CodeThatThrows, Name)
@@ -1025,7 +1101,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/stringtool.h:81: warning: parameters of member Mezzanine::StringTools::UpperCaseCopy are not (all) documented
 /home/sqeaky/Code/Mezzanine/UnitTests/src/consolestringmanipulation.cpp:86: warning: Member AllLower(String StringToConvert) (function) of namespace Mezzanine::Testing is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdatatools.h:73: warning: return type of member Mezzanine::Testing::CompareEqualityWithEpsilon is not documented
-/home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h:72: warning: parameters of member Mezzanine::Testing::GetCommandResults are not (all) documented
+/home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h:71: warning: parameters of member Mezzanine::Testing::GetCommandResults are not (all) documented
 /home/sqeaky/Code/Mezzanine/UnitTests/src/consolestringmanipulation.h:52: warning: argument 'If' of command @param is not found in the argument list of Mezzanine::Testing::rtrim(const Mezzanine::String &t)
 /home/sqeaky/Code/Mezzanine/UnitTests/src/consolestringmanipulation.h:52: warning: return type of member Mezzanine::Testing::rtrim is not documented
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:176: warning: Member LaunchAutomaticTest() (function) of class Mezzanine::Testing::UnitTestGroup is not documented.
@@ -1206,365 +1282,365 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/node.h:558: warning: parameters of member Mezzanine::XML::Node::FirstElementByPath are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/node.h:558: warning: return type of member Mezzanine::XML::Node::FirstElementByPath is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/node.h:372: warning: return type of member Mezzanine::XML::Node::InsertChildAfter is not documented
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:288: warning: Member xml_attribute(xml_attribute_struct *attr) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:321: warning: Member as_bool(bool def=false) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:317: warning: Member as_double(double def=0) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:318: warning: Member as_float(float def=0) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:315: warning: Member as_int(int def=0) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:312: warning: Member as_string(const char_t *def="") const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:316: warning: Member as_uint(unsigned int def=0) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:305: warning: Member empty() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:345: warning: Member hash_value() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:348: warning: Member internal_object() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:308: warning: Member name() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:341: warning: Member next_attribute() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:291: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:294: warning: Member operator!() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:298: warning: Member operator!=(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:299: warning: Member operator<(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:301: warning: Member operator<=(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:334: warning: Member operator=(const char_t *rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:335: warning: Member operator=(int rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:336: warning: Member operator=(unsigned int rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:337: warning: Member operator=(double rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:338: warning: Member operator=(bool rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:297: warning: Member operator==(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:300: warning: Member operator>(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:302: warning: Member operator>=(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:342: warning: Member previous_attribute() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:324: warning: Member set_name(const char_t *rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:325: warning: Member set_value(const char_t *rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:328: warning: Member set_value(int rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:329: warning: Member set_value(unsigned int rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:330: warning: Member set_value(double rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:331: warning: Member set_value(bool rhs) (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:309: warning: Member value() const  (function) of class pugi::xml_attribute is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:713: warning: Member difference_type (typedef) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:719: warning: Member iterator_category (typedef) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:715: warning: Member pointer (typedef) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:716: warning: Member reference (typedef) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:714: warning: Member value_type (typedef) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:726: warning: Member xml_attribute_iterator(const xml_attribute &attr, const xml_node &parent) (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:730: warning: Member operator!=(const xml_attribute_iterator &rhs) const  (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:732: warning: Member operator*() const  (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:735: warning: Member operator++() (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:736: warning: Member operator++(int) (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:738: warning: Member operator--() (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:739: warning: Member operator--(int) (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:733: warning: Member operator->() const  (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:729: warning: Member operator==(const xml_attribute_iterator &rhs) const  (function) of class pugi::xml_attribute_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:471: warning: Member header (variable) of class pugi::xml_attribute_struct is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:916: warning: Member document_element() const  (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:880: warning: Member load(std::basic_istream< char, std::char_traits< char > > &stream, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:881: warning: Member load(std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=parse_default) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:885: warning: Member load(const char_t *contents, unsigned int options=parse_default) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:892: warning: Member load_buffer(const void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:896: warning: Member load_buffer_inplace(void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:900: warning: Member load_buffer_inplace_own(void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:888: warning: Member load_file(const char *path, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:889: warning: Member load_file(const wchar_t *path, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:873: warning: Member reset() (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:876: warning: Member reset(const xml_document &proto) (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:903: warning: Member save(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:907: warning: Member save(std::basic_ostream< char, std::char_traits< char > > &stream, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:908: warning: Member save(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &stream, const char_t *indent="\t", unsigned int flags=format_default) const  (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:912: warning: Member save_file(const char *path, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:913: warning: Member save_file(const wchar_t *path, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class pugi::xml_document is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:374: warning: Member xml_node(xml_node_struct *p) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:438: warning: Member append_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:450: warning: Member append_child(xml_node_type type=node_element) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:456: warning: Member append_child(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:444: warning: Member append_copy(const xml_attribute &proto) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:462: warning: Member append_copy(const xml_node &proto) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:423: warning: Member attribute(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:572: warning: Member attributes() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:566: warning: Member attributes_begin() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:567: warning: Member attributes_end() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:560: warning: Member begin() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:422: warning: Member child(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:428: warning: Member child_value() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:431: warning: Member child_value(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:570: warning: Member children() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:571: warning: Member children(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:391: warning: Member empty() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:561: warning: Member end() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:476: warning: Member find_attribute(Predicate pred) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:488: warning: Member find_child(Predicate pred) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:524: warning: Member find_child_by_attribute(const char_t *name, const char_t *attr_name, const char_t *attr_value) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:525: warning: Member find_child_by_attribute(const char_t *attr_name, const char_t *attr_value) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:500: warning: Member find_node(Predicate pred) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:401: warning: Member first_attribute() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:405: warning: Member first_child() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:533: warning: Member first_element_by_path(const char_t *path, char_t delimiter= '/') const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:578: warning: Member hash_value() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:440: warning: Member insert_attribute_after(const char_t *name, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:441: warning: Member insert_attribute_before(const char_t *name, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:452: warning: Member insert_child_after(xml_node_type type, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:458: warning: Member insert_child_after(const char_t *name, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:453: warning: Member insert_child_before(xml_node_type type, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:459: warning: Member insert_child_before(const char_t *name, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:446: warning: Member insert_copy_after(const xml_attribute &proto, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:464: warning: Member insert_copy_after(const xml_node &proto, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:447: warning: Member insert_copy_before(const xml_attribute &proto, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:465: warning: Member insert_copy_before(const xml_node &proto, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:581: warning: Member internal_object() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:402: warning: Member last_attribute() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:406: warning: Member last_child() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:397: warning: Member name() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:409: warning: Member next_sibling() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:424: warning: Member next_sibling(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:575: warning: Member offset_debug() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:377: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:380: warning: Member operator!() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:384: warning: Member operator!=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:385: warning: Member operator<(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:387: warning: Member operator<=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:383: warning: Member operator==(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:386: warning: Member operator>(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:388: warning: Member operator>=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:413: warning: Member parent() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:529: warning: Member path(char_t delimiter= '/') const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:439: warning: Member prepend_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:451: warning: Member prepend_child(xml_node_type type=node_element) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:457: warning: Member prepend_child(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:445: warning: Member prepend_copy(const xml_attribute &proto) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:463: warning: Member prepend_copy(const xml_node &proto) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:410: warning: Member previous_sibling() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:425: warning: Member previous_sibling(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:549: warning: Member print(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:553: warning: Member print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:554: warning: Member print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent="\t", unsigned int flags=format_default, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:468: warning: Member remove_attribute(const xml_attribute &a) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:469: warning: Member remove_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:472: warning: Member remove_child(const xml_node &n) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:473: warning: Member remove_child(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:416: warning: Member root() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:544: warning: Member select_nodes(const char_t *query, xpath_variable_set *variables=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:545: warning: Member select_nodes(const xpath_query &query) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:540: warning: Member select_single_node(const char_t *query, xpath_variable_set *variables=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:541: warning: Member select_single_node(const xpath_query &query) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:434: warning: Member set_name(const char_t *rhs) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:435: warning: Member set_value(const char_t *rhs) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:419: warning: Member text() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:536: warning: Member traverse(xml_tree_walker &walker) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:394: warning: Member type() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:398: warning: Member value() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:564: warning: Member attribute_iterator (typedef) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:558: warning: Member iterator (typedef) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:367: warning: Member unspecified_bool_type)(xml_node ***) (typedef) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:365: warning: Member _root (variable) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:747: warning: Member difference_type (typedef) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:753: warning: Member iterator_category (typedef) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:749: warning: Member pointer (typedef) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:750: warning: Member reference (typedef) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:748: warning: Member value_type (typedef) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:760: warning: Member xml_named_node_iterator(const xml_node &node, const char_t *name) (function) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:764: warning: Member operator!=(const xml_named_node_iterator &rhs) const  (function) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:766: warning: Member operator*() const  (function) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:769: warning: Member operator++() (function) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:770: warning: Member operator++(int) (function) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:767: warning: Member operator->() const  (function) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:763: warning: Member operator==(const xml_named_node_iterator &rhs) const  (function) of class pugi::xml_named_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:564: warning: Member attribute_iterator (typedef) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:558: warning: Member iterator (typedef) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:374: warning: Member xml_node(xml_node_struct *p) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:438: warning: Member append_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:450: warning: Member append_child(xml_node_type type=node_element) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:456: warning: Member append_child(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:444: warning: Member append_copy(const xml_attribute &proto) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:462: warning: Member append_copy(const xml_node &proto) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:423: warning: Member attribute(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:572: warning: Member attributes() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:566: warning: Member attributes_begin() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:567: warning: Member attributes_end() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:560: warning: Member begin() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:422: warning: Member child(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:428: warning: Member child_value() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:431: warning: Member child_value(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:570: warning: Member children() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:571: warning: Member children(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:391: warning: Member empty() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:561: warning: Member end() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:476: warning: Member find_attribute(Predicate pred) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:488: warning: Member find_child(Predicate pred) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:524: warning: Member find_child_by_attribute(const char_t *name, const char_t *attr_name, const char_t *attr_value) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:525: warning: Member find_child_by_attribute(const char_t *attr_name, const char_t *attr_value) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:500: warning: Member find_node(Predicate pred) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:401: warning: Member first_attribute() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:405: warning: Member first_child() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:533: warning: Member first_element_by_path(const char_t *path, char_t delimiter= '/') const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:578: warning: Member hash_value() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:440: warning: Member insert_attribute_after(const char_t *name, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:441: warning: Member insert_attribute_before(const char_t *name, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:452: warning: Member insert_child_after(xml_node_type type, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:458: warning: Member insert_child_after(const char_t *name, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:453: warning: Member insert_child_before(xml_node_type type, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:459: warning: Member insert_child_before(const char_t *name, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:446: warning: Member insert_copy_after(const xml_attribute &proto, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:464: warning: Member insert_copy_after(const xml_node &proto, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:447: warning: Member insert_copy_before(const xml_attribute &proto, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:465: warning: Member insert_copy_before(const xml_node &proto, const xml_node &node) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:581: warning: Member internal_object() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:402: warning: Member last_attribute() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:406: warning: Member last_child() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:397: warning: Member name() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:409: warning: Member next_sibling() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:424: warning: Member next_sibling(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:575: warning: Member offset_debug() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:377: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:380: warning: Member operator!() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:384: warning: Member operator!=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:385: warning: Member operator<(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:387: warning: Member operator<=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:383: warning: Member operator==(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:386: warning: Member operator>(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:388: warning: Member operator>=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:413: warning: Member parent() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:529: warning: Member path(char_t delimiter= '/') const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:439: warning: Member prepend_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:451: warning: Member prepend_child(xml_node_type type=node_element) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:457: warning: Member prepend_child(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:445: warning: Member prepend_copy(const xml_attribute &proto) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:463: warning: Member prepend_copy(const xml_node &proto) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:410: warning: Member previous_sibling() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:425: warning: Member previous_sibling(const char_t *name) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:549: warning: Member print(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:553: warning: Member print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:554: warning: Member print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent="\t", unsigned int flags=format_default, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:468: warning: Member remove_attribute(const xml_attribute &a) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:469: warning: Member remove_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:472: warning: Member remove_child(const xml_node &n) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:473: warning: Member remove_child(const char_t *name) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:416: warning: Member root() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:544: warning: Member select_nodes(const char_t *query, xpath_variable_set *variables=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:545: warning: Member select_nodes(const xpath_query &query) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:540: warning: Member select_single_node(const char_t *query, xpath_variable_set *variables=0) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:541: warning: Member select_single_node(const xpath_query &query) const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:434: warning: Member set_name(const char_t *rhs) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:435: warning: Member set_value(const char_t *rhs) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:419: warning: Member text() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:536: warning: Member traverse(xml_tree_walker &walker) (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:394: warning: Member type() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:398: warning: Member value() const  (function) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:367: warning: Member unspecified_bool_type)(xml_node ***) (typedef) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:365: warning: Member _root (variable) of class pugi::xml_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:671: warning: Member difference_type (typedef) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:677: warning: Member iterator_category (typedef) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:673: warning: Member pointer (typedef) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:674: warning: Member reference (typedef) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:672: warning: Member value_type (typedef) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:684: warning: Member xml_node_iterator(const xml_node &node) (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:688: warning: Member operator!=(const xml_node_iterator &rhs) const  (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:690: warning: Member operator*() const  (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:693: warning: Member operator++() (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:694: warning: Member operator++(int) (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:696: warning: Member operator--() (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:697: warning: Member operator--(int) (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:691: warning: Member operator->() const  (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:687: warning: Member operator==(const xml_node_iterator &rhs) const  (function) of class pugi::xml_node_iterator is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:489: warning: Member header (variable) of class pugi::xml_node_struct is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:483: warning: The following parameters of pugi::xml_node_struct::xml_node_struct(impl::xml_memory_page *page, xml_node_type type) are not documented:
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:291: warning: Member xml_attribute(xml_attribute_struct *attr) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:324: warning: Member as_bool(bool def=false) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:320: warning: Member as_double(double def=0) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:321: warning: Member as_float(float def=0) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:318: warning: Member as_int(int def=0) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:315: warning: Member as_string(const char_t *def="") const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:319: warning: Member as_uint(unsigned int def=0) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:308: warning: Member empty() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:348: warning: Member hash_value() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:351: warning: Member internal_object() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:311: warning: Member name() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:344: warning: Member next_attribute() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:294: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:297: warning: Member operator!() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:301: warning: Member operator!=(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:302: warning: Member operator<(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:304: warning: Member operator<=(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:337: warning: Member operator=(const char_t *rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:338: warning: Member operator=(int rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:339: warning: Member operator=(unsigned int rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:340: warning: Member operator=(double rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:341: warning: Member operator=(bool rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:300: warning: Member operator==(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:303: warning: Member operator>(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:305: warning: Member operator>=(const xml_attribute &r) const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:345: warning: Member previous_attribute() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:327: warning: Member set_name(const char_t *rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:328: warning: Member set_value(const char_t *rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:331: warning: Member set_value(int rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:332: warning: Member set_value(unsigned int rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:333: warning: Member set_value(double rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:334: warning: Member set_value(bool rhs) (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:312: warning: Member value() const  (function) of class pugi::xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:716: warning: Member difference_type (typedef) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:722: warning: Member iterator_category (typedef) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:718: warning: Member pointer (typedef) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:719: warning: Member reference (typedef) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:717: warning: Member value_type (typedef) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:729: warning: Member xml_attribute_iterator(const xml_attribute &attr, const xml_node &parent) (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:733: warning: Member operator!=(const xml_attribute_iterator &rhs) const  (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:735: warning: Member operator*() const  (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:738: warning: Member operator++() (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:739: warning: Member operator++(int) (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:741: warning: Member operator--() (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:742: warning: Member operator--(int) (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:736: warning: Member operator->() const  (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:732: warning: Member operator==(const xml_attribute_iterator &rhs) const  (function) of class pugi::xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:474: warning: Member header (variable) of class pugi::xml_attribute_struct is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:919: warning: Member document_element() const  (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:883: warning: Member load(std::basic_istream< char, std::char_traits< char > > &stream, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:884: warning: Member load(std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=parse_default) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:888: warning: Member load(const char_t *contents, unsigned int options=parse_default) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:895: warning: Member load_buffer(const void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:899: warning: Member load_buffer_inplace(void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:903: warning: Member load_buffer_inplace_own(void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:891: warning: Member load_file(const char *path, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:892: warning: Member load_file(const wchar_t *path, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:876: warning: Member reset() (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:879: warning: Member reset(const xml_document &proto) (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:906: warning: Member save(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:910: warning: Member save(std::basic_ostream< char, std::char_traits< char > > &stream, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:911: warning: Member save(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &stream, const char_t *indent="\t", unsigned int flags=format_default) const  (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:915: warning: Member save_file(const char *path, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:916: warning: Member save_file(const wchar_t *path, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class pugi::xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:377: warning: Member xml_node(xml_node_struct *p) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:441: warning: Member append_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:453: warning: Member append_child(xml_node_type type=node_element) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:459: warning: Member append_child(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:447: warning: Member append_copy(const xml_attribute &proto) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:465: warning: Member append_copy(const xml_node &proto) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:426: warning: Member attribute(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:575: warning: Member attributes() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:569: warning: Member attributes_begin() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:570: warning: Member attributes_end() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:563: warning: Member begin() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:425: warning: Member child(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:431: warning: Member child_value() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:434: warning: Member child_value(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:573: warning: Member children() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:574: warning: Member children(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:394: warning: Member empty() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:564: warning: Member end() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:479: warning: Member find_attribute(Predicate pred) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:491: warning: Member find_child(Predicate pred) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:527: warning: Member find_child_by_attribute(const char_t *name, const char_t *attr_name, const char_t *attr_value) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:528: warning: Member find_child_by_attribute(const char_t *attr_name, const char_t *attr_value) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:503: warning: Member find_node(Predicate pred) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:404: warning: Member first_attribute() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:408: warning: Member first_child() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:536: warning: Member first_element_by_path(const char_t *path, char_t delimiter= '/') const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:581: warning: Member hash_value() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:443: warning: Member insert_attribute_after(const char_t *name, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:444: warning: Member insert_attribute_before(const char_t *name, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:455: warning: Member insert_child_after(xml_node_type type, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:461: warning: Member insert_child_after(const char_t *name, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:456: warning: Member insert_child_before(xml_node_type type, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:462: warning: Member insert_child_before(const char_t *name, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:449: warning: Member insert_copy_after(const xml_attribute &proto, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:467: warning: Member insert_copy_after(const xml_node &proto, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:450: warning: Member insert_copy_before(const xml_attribute &proto, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:468: warning: Member insert_copy_before(const xml_node &proto, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:584: warning: Member internal_object() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:405: warning: Member last_attribute() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:409: warning: Member last_child() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:400: warning: Member name() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:412: warning: Member next_sibling() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:427: warning: Member next_sibling(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:578: warning: Member offset_debug() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:380: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:383: warning: Member operator!() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:387: warning: Member operator!=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:388: warning: Member operator<(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:390: warning: Member operator<=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:386: warning: Member operator==(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:389: warning: Member operator>(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:391: warning: Member operator>=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:416: warning: Member parent() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:532: warning: Member path(char_t delimiter= '/') const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:442: warning: Member prepend_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:454: warning: Member prepend_child(xml_node_type type=node_element) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:460: warning: Member prepend_child(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:448: warning: Member prepend_copy(const xml_attribute &proto) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:466: warning: Member prepend_copy(const xml_node &proto) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:413: warning: Member previous_sibling() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:428: warning: Member previous_sibling(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:552: warning: Member print(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:556: warning: Member print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:557: warning: Member print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent="\t", unsigned int flags=format_default, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:471: warning: Member remove_attribute(const xml_attribute &a) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:472: warning: Member remove_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:475: warning: Member remove_child(const xml_node &n) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:476: warning: Member remove_child(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:419: warning: Member root() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:547: warning: Member select_nodes(const char_t *query, xpath_variable_set *variables=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:548: warning: Member select_nodes(const xpath_query &query) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:543: warning: Member select_single_node(const char_t *query, xpath_variable_set *variables=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:544: warning: Member select_single_node(const xpath_query &query) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:437: warning: Member set_name(const char_t *rhs) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:438: warning: Member set_value(const char_t *rhs) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:422: warning: Member text() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:539: warning: Member traverse(xml_tree_walker &walker) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:397: warning: Member type() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:401: warning: Member value() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:567: warning: Member attribute_iterator (typedef) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:561: warning: Member iterator (typedef) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:370: warning: Member unspecified_bool_type)(xml_node ***) (typedef) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:368: warning: Member _root (variable) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:750: warning: Member difference_type (typedef) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:756: warning: Member iterator_category (typedef) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:752: warning: Member pointer (typedef) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:753: warning: Member reference (typedef) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:751: warning: Member value_type (typedef) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:763: warning: Member xml_named_node_iterator(const xml_node &node, const char_t *name) (function) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:767: warning: Member operator!=(const xml_named_node_iterator &rhs) const  (function) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:769: warning: Member operator*() const  (function) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:772: warning: Member operator++() (function) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:773: warning: Member operator++(int) (function) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:770: warning: Member operator->() const  (function) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:766: warning: Member operator==(const xml_named_node_iterator &rhs) const  (function) of class pugi::xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:567: warning: Member attribute_iterator (typedef) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:561: warning: Member iterator (typedef) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:377: warning: Member xml_node(xml_node_struct *p) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:441: warning: Member append_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:453: warning: Member append_child(xml_node_type type=node_element) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:459: warning: Member append_child(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:447: warning: Member append_copy(const xml_attribute &proto) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:465: warning: Member append_copy(const xml_node &proto) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:426: warning: Member attribute(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:575: warning: Member attributes() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:569: warning: Member attributes_begin() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:570: warning: Member attributes_end() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:563: warning: Member begin() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:425: warning: Member child(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:431: warning: Member child_value() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:434: warning: Member child_value(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:573: warning: Member children() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:574: warning: Member children(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:394: warning: Member empty() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:564: warning: Member end() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:479: warning: Member find_attribute(Predicate pred) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:491: warning: Member find_child(Predicate pred) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:527: warning: Member find_child_by_attribute(const char_t *name, const char_t *attr_name, const char_t *attr_value) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:528: warning: Member find_child_by_attribute(const char_t *attr_name, const char_t *attr_value) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:503: warning: Member find_node(Predicate pred) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:404: warning: Member first_attribute() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:408: warning: Member first_child() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:536: warning: Member first_element_by_path(const char_t *path, char_t delimiter= '/') const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:581: warning: Member hash_value() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:443: warning: Member insert_attribute_after(const char_t *name, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:444: warning: Member insert_attribute_before(const char_t *name, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:455: warning: Member insert_child_after(xml_node_type type, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:461: warning: Member insert_child_after(const char_t *name, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:456: warning: Member insert_child_before(xml_node_type type, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:462: warning: Member insert_child_before(const char_t *name, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:449: warning: Member insert_copy_after(const xml_attribute &proto, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:467: warning: Member insert_copy_after(const xml_node &proto, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:450: warning: Member insert_copy_before(const xml_attribute &proto, const xml_attribute &attr) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:468: warning: Member insert_copy_before(const xml_node &proto, const xml_node &node) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:584: warning: Member internal_object() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:405: warning: Member last_attribute() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:409: warning: Member last_child() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:400: warning: Member name() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:412: warning: Member next_sibling() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:427: warning: Member next_sibling(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:578: warning: Member offset_debug() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:380: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:383: warning: Member operator!() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:387: warning: Member operator!=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:388: warning: Member operator<(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:390: warning: Member operator<=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:386: warning: Member operator==(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:389: warning: Member operator>(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:391: warning: Member operator>=(const xml_node &r) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:416: warning: Member parent() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:532: warning: Member path(char_t delimiter= '/') const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:442: warning: Member prepend_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:454: warning: Member prepend_child(xml_node_type type=node_element) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:460: warning: Member prepend_child(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:448: warning: Member prepend_copy(const xml_attribute &proto) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:466: warning: Member prepend_copy(const xml_node &proto) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:413: warning: Member previous_sibling() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:428: warning: Member previous_sibling(const char_t *name) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:552: warning: Member print(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:556: warning: Member print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:557: warning: Member print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent="\t", unsigned int flags=format_default, unsigned int depth=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:471: warning: Member remove_attribute(const xml_attribute &a) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:472: warning: Member remove_attribute(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:475: warning: Member remove_child(const xml_node &n) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:476: warning: Member remove_child(const char_t *name) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:419: warning: Member root() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:547: warning: Member select_nodes(const char_t *query, xpath_variable_set *variables=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:548: warning: Member select_nodes(const xpath_query &query) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:543: warning: Member select_single_node(const char_t *query, xpath_variable_set *variables=0) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:544: warning: Member select_single_node(const xpath_query &query) const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:437: warning: Member set_name(const char_t *rhs) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:438: warning: Member set_value(const char_t *rhs) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:422: warning: Member text() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:539: warning: Member traverse(xml_tree_walker &walker) (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:397: warning: Member type() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:401: warning: Member value() const  (function) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:370: warning: Member unspecified_bool_type)(xml_node ***) (typedef) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:368: warning: Member _root (variable) of class pugi::xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:674: warning: Member difference_type (typedef) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:680: warning: Member iterator_category (typedef) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:676: warning: Member pointer (typedef) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:677: warning: Member reference (typedef) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:675: warning: Member value_type (typedef) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:687: warning: Member xml_node_iterator(const xml_node &node) (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:691: warning: Member operator!=(const xml_node_iterator &rhs) const  (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:693: warning: Member operator*() const  (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:696: warning: Member operator++() (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:697: warning: Member operator++(int) (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:699: warning: Member operator--() (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:700: warning: Member operator--(int) (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:694: warning: Member operator->() const  (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:690: warning: Member operator==(const xml_node_iterator &rhs) const  (function) of class pugi::xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:492: warning: Member header (variable) of class pugi::xml_node_struct is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.cpp:486: warning: The following parameters of pugi::xml_node_struct::xml_node_struct(impl::xml_memory_page *page, xml_node_type type) are not documented:
   parameter 'page'
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:219: warning: Member const_iterator (typedef) of class pugi::xml_object_range is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:221: warning: Member xml_object_range(It b, It e) (function) of class pugi::xml_object_range is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:225: warning: Member begin() const  (function) of class pugi::xml_object_range is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:226: warning: Member end() const  (function) of class pugi::xml_object_range is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:845: warning: Member description() const  (function) of class pugi::xml_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:842: warning: Member operator bool() const  (function) of class pugi::xml_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:836: warning: Member encoding (variable) of class pugi::xml_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:833: warning: Member offset (variable) of class pugi::xml_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:830: warning: Member status (variable) of class pugi::xml_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:630: warning: Member as_bool(bool def=false) const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:626: warning: Member as_double(double def=0) const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:627: warning: Member as_float(float def=0) const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:624: warning: Member as_int(int def=0) const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:621: warning: Member as_string(const char_t *def="") const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:625: warning: Member as_uint(unsigned int def=0) const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:649: warning: Member data() const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:615: warning: Member empty() const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:618: warning: Member get() const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:609: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:612: warning: Member operator!() const  (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:642: warning: Member operator=(const char_t *rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:643: warning: Member operator=(int rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:644: warning: Member operator=(unsigned int rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:645: warning: Member operator=(double rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:646: warning: Member operator=(bool rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:633: warning: Member set(const char_t *rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:636: warning: Member set(int rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:637: warning: Member set(unsigned int rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:638: warning: Member set(double rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:639: warning: Member set(bool rhs) (function) of class pugi::xml_text is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:794: warning: Member begin(xml_node &node) (function) of class pugi::xml_tree_walker is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:800: warning: Member end(xml_node &node) (function) of class pugi::xml_tree_walker is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:797: warning: Member for_each(xml_node &node)=0 (function) of class pugi::xml_tree_walker is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:787: warning: Member depth() const  (function) of class pugi::xml_tree_walker is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:239: warning: Member write(const void *data, size_t size)=0 (function) of class pugi::xml_writer is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:247: warning: Member xml_writer_file(void *file) (function) of class pugi::xml_writer_file is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:249: warning: Member write(const void *data, size_t size) (function) of class pugi::xml_writer_file is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:261: warning: Member xml_writer_stream(std::basic_ostream< char, std::char_traits< char > > &stream) (function) of class pugi::xml_writer_stream is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:262: warning: Member xml_writer_stream(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &stream) (function) of class pugi::xml_writer_stream is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:264: warning: Member write(const void *data, size_t size) (function) of class pugi::xml_writer_stream is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1083: warning: Member xpath_exception(const xpath_parse_result &result) (function) of class pugi::xpath_exception is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1089: warning: Member result() const  (function) of class pugi::xpath_exception is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1086: warning: Member what() const  (function) of class pugi::xpath_exception is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1107: warning: Member xpath_node(const xml_node &node) (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1108: warning: Member xpath_node(const xml_attribute &attribute, const xml_node &parent) (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1112: warning: Member attribute() const  (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1111: warning: Member node() const  (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1118: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1121: warning: Member operator!() const  (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1125: warning: Member operator!=(const xpath_node &n) const  (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1124: warning: Member operator==(const xpath_node &n) const  (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1115: warning: Member parent() const  (function) of class pugi::xpath_node is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1147: warning: Member const_iterator (typedef) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1140: warning: Member type_t (enumeration) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1153: warning: Member xpath_node_set(const_iterator begin, const_iterator end, type_t type=type_unsorted) (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1159: warning: Member xpath_node_set(const xpath_node_set &ns) (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1172: warning: Member begin() const  (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1182: warning: Member empty() const  (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1173: warning: Member end() const  (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1179: warning: Member first() const  (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1160: warning: Member operator=(const xpath_node_set &ns) (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1169: warning: Member operator[](size_t index) const  (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1166: warning: Member size() const  (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1176: warning: Member sort(bool reverse=false) (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1163: warning: Member type() const  (function) of class pugi::xpath_node_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:946: warning: Member description() const  (function) of class pugi::xpath_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:943: warning: Member operator bool() const  (function) of class pugi::xpath_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:934: warning: Member error (variable) of class pugi::xpath_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:937: warning: Member offset (variable) of class pugi::xpath_parse_result is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1031: warning: Member xpath_query(const char_t *query, xpath_variable_set *variables=0) (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1041: warning: Member evaluate_boolean(const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1062: warning: Member evaluate_node_set(const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1045: warning: Member evaluate_number(const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1050: warning: Member evaluate_string(const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1057: warning: Member evaluate_string(char_t *buffer, size_t capacity, const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1068: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1071: warning: Member operator!() const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1065: warning: Member result() const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1037: warning: Member return_type() const  (function) of class pugi::xpath_query is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:972: warning: Member get_boolean() const  (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:975: warning: Member get_node_set() const  (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:973: warning: Member get_number() const  (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:974: warning: Member get_string() const  (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:966: warning: Member name() const  (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:978: warning: Member set(bool value) (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:979: warning: Member set(double value) (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:980: warning: Member set(const char_t *value) (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:981: warning: Member set(const xpath_node_set &value) (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:969: warning: Member type() const  (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:961: warning: Member xpath_variable(const xpath_variable &) (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:962: warning: Member operator=(const xpath_variable &) (function) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:956: warning: Member _next (variable) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:955: warning: Member _type (variable) of class pugi::xpath_variable is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1002: warning: Member add(const char_t *name, xpath_value_type type) (function) of class pugi::xpath_variable_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1011: warning: Member get(const char_t *name) (function) of class pugi::xpath_variable_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1012: warning: Member get(const char_t *name) const  (function) of class pugi::xpath_variable_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1005: warning: Member set(const char_t *name, bool value) (function) of class pugi::xpath_variable_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1006: warning: Member set(const char_t *name, double value) (function) of class pugi::xpath_variable_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1007: warning: Member set(const char_t *name, const char_t *value) (function) of class pugi::xpath_variable_set is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1008: warning: Member set(const char_t *name, const xpath_node_set &value) (function) of class pugi::xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:222: warning: Member const_iterator (typedef) of class pugi::xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:224: warning: Member xml_object_range(It b, It e) (function) of class pugi::xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:228: warning: Member begin() const  (function) of class pugi::xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:229: warning: Member end() const  (function) of class pugi::xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:848: warning: Member description() const  (function) of class pugi::xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:845: warning: Member operator bool() const  (function) of class pugi::xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:839: warning: Member encoding (variable) of class pugi::xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:836: warning: Member offset (variable) of class pugi::xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:833: warning: Member status (variable) of class pugi::xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:633: warning: Member as_bool(bool def=false) const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:629: warning: Member as_double(double def=0) const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:630: warning: Member as_float(float def=0) const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:627: warning: Member as_int(int def=0) const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:624: warning: Member as_string(const char_t *def="") const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:628: warning: Member as_uint(unsigned int def=0) const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:652: warning: Member data() const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:618: warning: Member empty() const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:621: warning: Member get() const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:612: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:615: warning: Member operator!() const  (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:645: warning: Member operator=(const char_t *rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:646: warning: Member operator=(int rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:647: warning: Member operator=(unsigned int rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:648: warning: Member operator=(double rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:649: warning: Member operator=(bool rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:636: warning: Member set(const char_t *rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:639: warning: Member set(int rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:640: warning: Member set(unsigned int rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:641: warning: Member set(double rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:642: warning: Member set(bool rhs) (function) of class pugi::xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:797: warning: Member begin(xml_node &node) (function) of class pugi::xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:803: warning: Member end(xml_node &node) (function) of class pugi::xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:800: warning: Member for_each(xml_node &node)=0 (function) of class pugi::xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:790: warning: Member depth() const  (function) of class pugi::xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:242: warning: Member write(const void *data, size_t size)=0 (function) of class pugi::xml_writer is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:250: warning: Member xml_writer_file(void *file) (function) of class pugi::xml_writer_file is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:252: warning: Member write(const void *data, size_t size) (function) of class pugi::xml_writer_file is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:264: warning: Member xml_writer_stream(std::basic_ostream< char, std::char_traits< char > > &stream) (function) of class pugi::xml_writer_stream is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:265: warning: Member xml_writer_stream(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &stream) (function) of class pugi::xml_writer_stream is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:267: warning: Member write(const void *data, size_t size) (function) of class pugi::xml_writer_stream is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1086: warning: Member xpath_exception(const xpath_parse_result &result) (function) of class pugi::xpath_exception is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1092: warning: Member result() const  (function) of class pugi::xpath_exception is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1089: warning: Member what() const  (function) of class pugi::xpath_exception is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1110: warning: Member xpath_node(const xml_node &node) (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1111: warning: Member xpath_node(const xml_attribute &attribute, const xml_node &parent) (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1115: warning: Member attribute() const  (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1114: warning: Member node() const  (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1121: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1124: warning: Member operator!() const  (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1128: warning: Member operator!=(const xpath_node &n) const  (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1127: warning: Member operator==(const xpath_node &n) const  (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1118: warning: Member parent() const  (function) of class pugi::xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1150: warning: Member const_iterator (typedef) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1143: warning: Member type_t (enumeration) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1156: warning: Member xpath_node_set(const_iterator begin, const_iterator end, type_t type=type_unsorted) (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1162: warning: Member xpath_node_set(const xpath_node_set &ns) (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1175: warning: Member begin() const  (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1185: warning: Member empty() const  (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1176: warning: Member end() const  (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1182: warning: Member first() const  (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1163: warning: Member operator=(const xpath_node_set &ns) (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1172: warning: Member operator[](size_t index) const  (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1169: warning: Member size() const  (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1179: warning: Member sort(bool reverse=false) (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1166: warning: Member type() const  (function) of class pugi::xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:949: warning: Member description() const  (function) of class pugi::xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:946: warning: Member operator bool() const  (function) of class pugi::xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:937: warning: Member error (variable) of class pugi::xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:940: warning: Member offset (variable) of class pugi::xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1034: warning: Member xpath_query(const char_t *query, xpath_variable_set *variables=0) (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1044: warning: Member evaluate_boolean(const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1065: warning: Member evaluate_node_set(const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1048: warning: Member evaluate_number(const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1053: warning: Member evaluate_string(const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1060: warning: Member evaluate_string(char_t *buffer, size_t capacity, const xpath_node &n) const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1071: warning: Member operator unspecified_bool_type() const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1074: warning: Member operator!() const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1068: warning: Member result() const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1040: warning: Member return_type() const  (function) of class pugi::xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:975: warning: Member get_boolean() const  (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:978: warning: Member get_node_set() const  (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:976: warning: Member get_number() const  (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:977: warning: Member get_string() const  (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:969: warning: Member name() const  (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:981: warning: Member set(bool value) (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:982: warning: Member set(double value) (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:983: warning: Member set(const char_t *value) (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:984: warning: Member set(const xpath_node_set &value) (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:972: warning: Member type() const  (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:964: warning: Member xpath_variable(const xpath_variable &) (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:965: warning: Member operator=(const xpath_variable &) (function) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:959: warning: Member _next (variable) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:958: warning: Member _type (variable) of class pugi::xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1005: warning: Member add(const char_t *name, xpath_value_type type) (function) of class pugi::xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1014: warning: Member get(const char_t *name) (function) of class pugi::xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1015: warning: Member get(const char_t *name) const  (function) of class pugi::xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1008: warning: Member set(const char_t *name, bool value) (function) of class pugi::xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1009: warning: Member set(const char_t *name, double value) (function) of class pugi::xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1010: warning: Member set(const char_t *name, const char_t *value) (function) of class pugi::xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/pugixml.h:1011: warning: Member set(const char_t *name, const xpath_node_set &value) (function) of class pugi::xpath_variable_set is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:98: warning: unable to resolve reference to `Mezzanine::Graphics::Light' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:146: warning: unable to resolve reference to `Mezzanine::Network::NetworkManager' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:148: warning: unable to resolve reference to `Mezzanine::ResourceManager' for \ref command

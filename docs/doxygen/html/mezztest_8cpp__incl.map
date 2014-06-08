@@ -8,6 +8,6 @@
 <area shape="rect" id="node24" href="$testenumerations_8h.html" title="Enumerations and constant values associated with the Unit tests. " alt="" coords="889,320,1023,347"/>
 <area shape="rect" id="node31" href="$consolestringmanipulation_8h.html" title="Some string manipulation functions geared towards console output for use in the Unit Tests..." alt="" coords="1149,245,1331,272"/>
 <area shape="rect" id="node32" href="$testdatatools_8h.html" title="TestData, TestDataStorage and UnitTestGroup class definitions. " alt="" coords="949,171,1056,197"/>
-<area shape="rect" id="node25" href="$pugixml_8h_source.html" title="pugixml.h" alt="" coords="277,395,355,421"/>
-<area shape="rect" id="node26" href="$pugiconfig_8h_source.html" title="pugiconfig.h" alt="" coords="270,469,361,496"/>
+<area shape="rect" id="node25" href="$pugixml_8h.html" title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ..." alt="" coords="277,395,355,421"/>
+<area shape="rect" id="node26" href="$pugiconfig_8h.html" title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ..." alt="" coords="270,469,361,496"/>
 </map>
