@@ -148,7 +148,7 @@ namespace Mezzanine
         void UnitTestGroup::RunTests()
         {
             if(DoSubProcessTest)
-                { RunSubprocessTest(); }
+                { RunSubprocessTest(GetSubSubProcessArgument()); }
             else
             {
                 OutputCaptureManager Guard(this);
@@ -195,8 +195,8 @@ namespace Mezzanine
             TestError << std::endl << "]]></InteractiveTestError>" << std::endl;
         }
 
-        String UnitTestGroup::LaunchSubProcessTest()
-            { return GetCommandResults(GetExecutableName() + String(" ") + SubTestPrefix + Name()); }
+        String UnitTestGroup::LaunchSubProcessTest(const String& Argument)
+            { return GetCommandResults(GetExecutableName() + String(" ") + SubTestPrefix + Name() + String(" ") + Argument); }
 
         void UnitTestGroup::RunAutomaticTests()
             {}
@@ -212,7 +212,7 @@ namespace Mezzanine
         void UnitTestGroup::ShouldRunInteractiveTests()
             { DoInteractiveTest = true; }
 
-        void UnitTestGroup::RunSubprocessTest()
+        void UnitTestGroup::RunSubprocessTest(const String& Arg)
             {}
         bool UnitTestGroup::HasSubprocessTest() const
             { return false; }

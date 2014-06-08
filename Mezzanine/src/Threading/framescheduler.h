@@ -576,6 +576,12 @@ namespace Mezzanine
                 /// @return A null pointer or a pointer to a workunit that aggregates if it exists.
                 virtual LogAggregator* GetLogAggregator();
 
+            public:
+                /// @warning This is not thread safe at all. Any time during the frame using this can break everything.
+                /// @brief Forces the FrameScheduler to find Its LogAggregator and make it flush the logs if it can
+                /// @return This return True if it flushed the logs and false otherwise.
+                virtual Boole ForceLogFlush();
+
         };//FrameScheduler
     } // \Threading
 }// \Mezanine

@@ -155,7 +155,6 @@ namespace Mezzanine
                 /// @brief Used while running a test to see if
                 Int32 Completed;
 
-
             public:
                 /// @brief Default constructor
                 UnitTestGroup();
@@ -179,7 +178,7 @@ namespace Mezzanine
 
                 /// @brief Tests should use this to
                 /// @return The output to stdout from the subprocess.
-                String LaunchSubProcessTest();
+                String LaunchSubProcessTest(const String& Argument = String(""));
 
             public:
                 /// @brief This should be overloaded to run all tests that do require not user interaction
@@ -200,8 +199,9 @@ namespace Mezzanine
 
                 /// @brief Does nothing by default, tests which need to run code in a subprocess should override this.
                 /// @details This will be executed in a subprocess before HasAutomaticTests() and RunInteractiveTests();
+                /// @param Arg An argument from the calling test.
                 /// @return Whatever was sent to stdout via C++ streams will be captured and sent here instead.
-                virtual void RunSubprocessTest();
+                virtual void RunSubprocessTest(const Mezzanine::String& Arg);
                 /// @brief If this returns false then the test suite treats it like any other test, if true then it enables some features for launching subprocess tests
                 /// @details This will cause an extra command line option to be created (as "debug" + testname). The function SubprocessTest() will be executed in the
                 /// process that the new option is passed into. This allows for subprocess debugging. This will automatically be passed to the test process that will

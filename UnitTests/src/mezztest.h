@@ -73,6 +73,10 @@ enum ProcessDepth {
 /// @return a ProcessDepth enum member
 ProcessDepth GetCurrentProcessDepth();
 
+/// @brief If a test needs to pass a string to a subsubprocess it will get stored here
+/// @return A string that a test group intends on passing into a subsubprocess test
+Mezzanine::String GetSubSubProcessArgument();
+
 /// @internal
 /// @brief If this is passed to the command line the test is executed without launching a separate processs.
 /// @details In most cases each test is launched as a separate process and this is passed to it.

@@ -51,7 +51,6 @@ namespace Mezzanine
 {
     namespace Testing
     {
-
         /// @brief Print a message for the user onf the standard output that briefly describes hwo to use this.
         /// @param ThisName The name of the current executable
         /// @param TestGroups This is searched for the current list of valid test names.

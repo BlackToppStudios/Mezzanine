@@ -71,7 +71,6 @@ namespace Mezzanine
 {
     namespace Threading
     {
-
         /// @cond false
 
         // Initializing static members
@@ -88,13 +87,7 @@ namespace Mezzanine
                 Iter++)
             {
                 FrameScheduler* CurrentFrameScheduler = *Iter;
-                LogAggregator* Pointer = CurrentFrameScheduler->GetLogAggregator();
-                if(Pointer)
-                {
-                    DefaultThreadSpecificStorage::Type Storage(CurrentFrameScheduler);
-                    Pointer->DoWork(Storage);
-                    CurrentFrameScheduler->GetLog().flush();
-                }
+                CurrentFrameScheduler->ForceLogFlush();
             }
             exit(1);
         }
@@ -792,6 +785,20 @@ namespace Mezzanine
             }
             return NULL;
 
+        }
+
+        Boole FrameScheduler::ForceLogFlush()
+        {
+            LogAggregator* Pointer = GetLogAggregator();
+            if(Pointer)
+            {
+                DefaultThreadSpecificStorage::Type Storage(this);
+                Pointer->NextFlushForced();
+                Pointer->DoWork(Storage);
+                GetLog().flush();
+                return true;
+            }
+            return false;
         }
 
     } // \FrameScheduler

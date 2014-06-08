@@ -109,7 +109,8 @@ class boilerplatetests : public UnitTestGroup
 
 
         /// @brief This will be launched in a sub sub process by the unit test framework.
-        virtual void RunSubprocessTest()
+        /// @param Arg Unused in this example.
+        virtual void RunSubprocessTest(const String&)
         {
             // Please note that test macros mean nothing here. This is run in a subprocess
             // with as little interference from the Unit Test framework as possible
