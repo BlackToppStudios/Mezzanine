@@ -58,6 +58,7 @@
     #include "Audio/audio.h"
     #include "Threading/dagframescheduler.h"
     #include "Graphics/graphics.h"
+    #include "Graphics/Procedural/procedural.h"
     #include "Input/input.h"
     #include "Physics/physics.h"
     #include "Resource/resource.h"
