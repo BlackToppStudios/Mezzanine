@@ -57,7 +57,7 @@ using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
 /// @brief A String to represent the PausesWorkUnit in the crash tests.
-const String CrashNotWorkUnitName("PausesWorkUnit");
+const String CrashDoesNotWorkUnitName("PausesWorkUnit");
 
 /// @brief A samplework unit that that just block the thread it is in
 /// @details Used in @ref FrameSchedulerGetNext and other tests
@@ -190,29 +190,54 @@ class LoggerCheckWorkUnit : public DefaultWorkUnit
         }
 };
 
-/// @brief A String to represent the CrashUnhandledWorkUnit
-const String CrashUnhandledWorkUnitName("Unhandled");
-
 /// @brief A workunit that reliably crashes
-class CrashUnhandledWorkUnit : public PausesWorkUnit
+class CrashesWorkUnit : public PausesWorkUnit
 {
         Integer CrashOnIteration;
     public:
-        CrashUnhandledWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+        CrashesWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
             PausesWorkUnit(Length_, Name_),
             CrashOnIteration(CrashOnCount)
             { }
 
-        virtual ~CrashUnhandledWorkUnit()
+        virtual ~CrashesWorkUnit()
             { }
+
+        virtual void Crash() = 0;
 
         virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
             PausesWorkUnit::DoWork(CurrentThreadStorage);
             CrashOnIteration--;
             if (CrashOnIteration<1)
-                { throw std::exception(); }
+                { Crash(); }
         }
+};
+
+
+/// @brief A String to represent the CrashUnhandledWorkUnit
+const String CrashUnhandledThrowWorkUnitName("UnhandledThrowWorkUnit");
+
+/// @brief A workunit that reliably crashes
+class CrashUnhandledThrowWorkUnit : public CrashesWorkUnit
+{
+        Integer CrashOnIteration;
+    public:
+        CrashUnhandledThrowWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+            CrashesWorkUnit(CrashOnCount, Length_, Name_)
+            { }
+
+        virtual ~CrashUnhandledThrowWorkUnit()
+            { }
+
+        virtual void Crash()
+            { throw 0; }
+
+};
+
+struct CrashTestResults
+{
+
 };
 
 /// @brief Tests for the Framescheduler class
@@ -275,6 +300,23 @@ class frameschedulertests : public UnitTestGroup
             Converter >> Results;
             return Results;
         }
+
+        CrashTestResults CrashTest(const Mezzanine::String& WorkUnitName)
+        {
+            String CrashTestOutput;
+            TestOutput << endl << "Launching a subprocess which will(or won't') crash because of a " << WorkUnitName << ":" << endl;
+            CrashTestOutput = LaunchSubProcessTest(WorkUnitName);
+            TestOutput << "=============================" << endl
+                       << CrashTestOutput << endl
+                       << "=============================" << endl;
+
+            pugi::xml_document doc;
+            doc.load_buffer(CrashTestOutput.c_str(),CrashTestOutput.size());
+
+            CrashTestResults Results;
+            return Results;
+        }
+
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
         /// @return Returns a String containing "FrameScheduler"
@@ -1156,19 +1198,11 @@ class frameschedulertests : public UnitTestGroup
             }
 
             {
-                String Results;
-
-                Results = LaunchSubProcessTest(CrashNotWorkUnitName);
-                TestOutput << endl << "Launching a subprocess which will not crash:" << endl
-                           << "=============================" << endl
-                           << Results << endl
-                           << "=============================" << endl;
-                pugi::xml_document doc;
-                doc.load_buffer(Results.c_str(),Results.size());
-
+                CrashTest(CrashDoesNotWorkUnitName);
+                CrashTest(CrashUnhandledThrowWorkUnitName);
             }
 
-            {
+            /*{
                 String Results;
 
                 Results = LaunchSubProcessTest(CrashUnhandledWorkUnitName);
@@ -1179,7 +1213,7 @@ class frameschedulertests : public UnitTestGroup
                 pugi::xml_document doc;
                 doc.load_buffer(Results.c_str(),Results.size());
 
-            }
+            }*/
 
         }
         /// @brief Since RunAutomaticTests is implemented so is this.
@@ -1193,16 +1227,18 @@ class frameschedulertests : public UnitTestGroup
             // Please use automatic storage for your Frameschedulers, I did this to carefully manage
             // lifetime to insure I could force crashes, this is not a good idea outside of tests.
             FrameScheduler* Scheduler = new FrameScheduler(&std::cout);
+            //throw 0;
+
             Scheduler->SetThreadCount(1);
             PausesWorkUnit* A = new PausesWorkUnit(0,"WorkUnitA");
             PausesWorkUnit* B = NULL;
             PausesWorkUnit* C = new PausesWorkUnit(0,"WorkUnitC");
             LogAggregator *Agg = new LogAggregator;
 
-            if(CrashUnhandledWorkUnitName == Arg)
-                { B = new CrashUnhandledWorkUnit(0, 0,"WorkUnitB"); }
-            if(CrashNotWorkUnitName == Arg)
-                { B = new PausesWorkUnit(0,"WorkUnitB"); }
+            if(AllLower(CrashUnhandledThrowWorkUnitName) == AllLower(Arg))
+                { B = new CrashUnhandledThrowWorkUnit(0, 0,"WorkUnitB"); }
+            if(AllLower(CrashDoesNotWorkUnitName) == AllLower(Arg))
+                { B = new PausesWorkUnit(0, "WorkUnitB"); }
 
             if(NULL == B)
             {
