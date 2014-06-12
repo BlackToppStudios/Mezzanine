@@ -225,18 +225,18 @@ namespace Mezzanine
 /// \n \n
 /// Throughout the entire UI system there can only be a single widget that is being focused and is given input priority.  That widget is evaluated, stored, and can be accessed
 /// through the UIManager using the Mezzanine::UI::UIManager::GetWidgetFocus() const method.  The focus widget and the hovered widget may not be the same widget, and you
-/// may want to access them separately.  To retrieve the hovered widget use the @ref Mezzanine::UI::UIManager::GetHoveredWidget() const method.  Both the focus and hovered widget
+/// may want to access them separately.  To retrieve the hovered widget use the Mezzanine::UI::UIManager::GetHoveredWidget() const method.  Both the focus and hovered widget
 /// (be them separate widgets or not) are in part evaluated from hover checks.  Hover checks are primarily performed by UI Screens, however a system-wide hover check can be called
-/// on using the @ref Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) method.  Note that this method is already called on once per update with
+/// on using the Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) method.  Note that this method is already called on once per update with
 /// the appropriate parameters IF the mouse is determined to have moved since the last update.  As such you shouldn't need to call on this method manually, but can if the need
-/// arises.  Calling @ref Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) will not update the stored focus or hovered widgets.  Screens on the
+/// arises.  Calling Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&) will not update the stored focus or hovered widgets.  Screens on the
 /// specified viewport will be checked based on ZOrder, with the highest order Screens checked first.
 ///
 /// \n
 /// @subsection UIClassScreen Screen
-/// The @ref Mezzanine::UI::Screen class is the top of the Widget hierarchy and the primary class responsible for the rendering of Widgets.  The UI Screen is created from the
-/// UIManager, and requires a .mta (Mezzanine Texture Atlas) file to have already been loaded.  MTA files can be loaded from the UIManager using the
-/// @ref Mezzanine::UI::UIManager::LoadMTA(const String&,const String&) method.  Additionally a viewport needs to be specified and will be where all of the Widgets belonging to that
+/// The Mezzanine::UI::Screen class is the top of the Widget hierarchy and the primary class responsible for the rendering of Widgets.  The UI Screen is created from the
+/// UIManager, and requires an .mta (Mezzanine Texture Atlas) file to have already been loaded.  MTA files can be loaded from the UIManager using the
+/// Mezzanine::UI::UIManager::LoadMTA(const String&,const String&) method.  Additionally a viewport needs to be specified and will be where all of the Widgets belonging to that
 /// screen will be rendered to.  Lastly, a unique name must be specified to create a UI Screen.  If a name already in use is specified, an exception will be thrown.  If the specified
 /// texture atlas isn't available, an exception will be thrown.  If an invalid viewport is provided, a segmentation fault will (likely) occur.
 /// \n \n
@@ -248,10 +248,10 @@ namespace Mezzanine
 /// Widgets to be passed to the graphics subsystem.  Additional in depth information about Widgets and their factories can be found in the following sections: @ref UIClassWidget
 /// and/or @ref UIFactories .
 /// \n \n
-/// Hover checks performed by the UI Screen class is somewhat modular and multiple strategies can be deployed using the @ref Mezzanine::UI::MouseHoverStrategy class.  There is a single
-/// pure virtual method ( @ref Mezzanine::UI::MouseHoverStrategy::FindHoveredWidget(const Vector2&) ) that must be defined in a derived class for it to operate.  MouseHoverStrategies
-/// can be set and retrieved on a given Screen using the @ref Mezzanine::UI::Screen::SetMouseHoverStrategy(MouseHoverStrategy*) and @ref Mezzanine::UI::Screen::GetMouseHoverStrategy() const
-/// , respectively.  Manual hover checks for a single Screen can be done using the @ref Mezzanine::UI::Screen::FindHoveredWidget(const Vector2&) method, which accepts an arbitrary point,
+/// Hover checks performed by the UI Screen class is somewhat modular and multiple strategies can be deployed using the Mezzanine::UI::MouseHoverStrategy class.  There is a single
+/// pure virtual method ( Mezzanine::UI::MouseHoverStrategy::FindHoveredWidget(const Vector2&) ) that must be defined in a derived class for it to operate.  MouseHoverStrategies
+/// can be set and retrieved on a given Screen using the Mezzanine::UI::Screen::SetMouseHoverStrategy(MouseHoverStrategy*) and Mezzanine::UI::Screen::GetMouseHoverStrategy() const
+/// , respectively.  Manual hover checks for a single Screen can be done using the Mezzanine::UI::Screen::FindHoveredWidget(const Vector2&) method, which accepts an arbitrary point,
 /// and calls the FindHoveredWidget method on the currently set MouseHoverStrategy.  This is the same method that is called on when a system-wide Hover check is performed from the UIManager
 /// so it will be called automatically when the mouse has been moved.  Manual calling should only be used for usual setups where a check is desired even if the mouse hasn't moved or if
 /// multiple checks in a single frame are required.  Only a single MouseHoverStrategy can be applied to a screen at a time.
@@ -589,33 +589,36 @@ namespace Mezzanine
 ///
 /// \n \n
 /// @section UIInputLife The Lifetime of an Input
-/// The lifetime of an input making it's journey through @ref Mezzanine::UI starts with a call to @ref Mezzanine::UI::UIManager::InjectInput(const MetaCode&) .  The "Input" referred to in this
-/// section is a @ref Mezzanine::Input::MetaCode instance.  Inside a call to "InjectInput" checks are performed on the input to see if any variables need to be set before processing and then is
-/// stored in another container which will be used when the @ref Mezzanine::UI::WidgetUpdateWork is run in the framescheduler.  When @ref Mezzanine::UI::WidgetUpdateWork is run it will automatically
-/// collect all of the inputs new since the last frame from the @ref Mezzanine::Input::InputManager , so this does not need to be done manually and can get you some weird behavior if you attempt
+/// The lifetime of an input making it's journey through Mezzanine::UI starts with a call to Mezzanine::UI::UIManager::InjectInput(const Input::MetaCode&) . The "Input" referred to in this
+/// section is a Mezzanine::Input::MetaCode instance.  Inside a call to "InjectInput" checks are performed on the input to see if any variables need to be set before processing and then it is
+/// stored in another container which will be used when the Mezzanine::UI::WidgetUpdateWorkUnit is run in the framescheduler.  When Mezzanine::UI::WidgetUpdateWorkUnit is run it will automatically
+/// collect all of the inputs new since the last frame from the Mezzanine::Input::InputManager , so this does not need to be done manually and can get you some weird behavior if you attempt
 /// to do so.  Manual calls to "InjectInput" should only be done in special cases where you are simulating an input that was not made by the user or in Mezzanine configurations without an
 /// InputManager.
 /// \n \n
 /// After all of the new inputs from the input subsystem have been collected and a few other non-input checks have been performed, each input is processed individually.  Inputs are first passed over
-/// to "pre-focus" checks, which are checks that are performed by the UI manager prior to being passed off to the Widget focus if one is set.  This is where checks for locking and unlocking the focus
-/// are done.  A focus can be set by clicking any mouse button while the mouse is hovered over a Widget.  If a focus is already set then it is dropped as the focus before setting the new one.  This
-/// is prevented if the focus is locked.  Focus is locked (in addition to gaining focus) when a mouse button is pressed over a Widget.  The UI manager keeps track of that input and looks for a
+/// to "pre-focus" checks, which are checks that are performed by the UI manager prior to being passed off to the Mezzanine::UI::Widget wtih focus if one is set.  This is where checks for locking
+/// and unlocking the focus
+/// are done.  A focus can be set by clicking any mouse button while the mouse is hovered over a Mezzanine::UI::Widget.  If a focus is already set then it is dropped as the focus before setting the new one.  This
+/// is prevented if the focus is locked.  Focus is locked (in addition to gaining focus) when a mouse button is pressed over a Mezzanine::UI::Widget.  The UI manager keeps track of that input and looks for a
 /// corresponding "Lift" input for that button.  When it detects it the lock will be lifted and a switch will be allowed.  A lock being lifted doesn't mean that a switch will happen immediately and
 /// the same Widget can keep it's focus or even have it's focus locked again.
 /// @todo When hotkeys become available, they will also be able to manipulate/switch the focus.
+///
 /// \n \n
 /// Once the pre-focus checks are complete the input will be passed off to the focus if one is set.  If no focus is set then this set is skipped for that input and it's passed on to the post-focus
-/// checks.  If one is set then the @ref Mezzanine::UI::Widget::_HandleInput(const MetaCode&) method is called on the focus, which internally calls @ref Mezzanine::UI::_HandleInputImpl(const MetaCode&)
-/// to be processed by the specific Widget implementation.  In the implementation method the input will be relevant and "consumed" or it will be an input that the Widget cannot use.  If the input
+/// checks.  If one is set then the Mezzanine::UI::Widget::HandleInput(const Input::MetaCode&) method is called on the focus, which internally calls Mezzanine::UI::HandleInputImpl(const Input::MetaCode&)
+/// to be processed by the specific Mezzanine::UI::Widget implementation.  In the implementation method the input will be relevant and "consumed" or it will be an input that the Mezzanine::UI::Widget cannot use.  If the input
 /// is consumed, then the internal method will return true, which will also return true to the UI manager.  However if the input is something it cannot use then the implementation method will return
-/// false and cause the input to be passed up the Widget hierarchy starting with the parent of the focus.  The parent of the focus then goes through all the same processes as the focus.  It goes to
-/// the implementation method and can be consumed.  If it is then true is returned to the UI manager indicating it was consumed.  Otherwise the parent of that Widget gets an opportunity to consume the
-/// input and so on until either a Widget consumes the input or the Screen all these Widgets belong to is reached.  If true is returned to the UI manager from any of these checks then post-focus checks
+/// false and cause the input to be passed up the Mezzanine::UI::Widget hierarchy starting with the parent of the focus.  The parent of the focus then goes through all the same processes as the focus.  It goes to
+/// the implementation method and can be consumed.  If it is then true is returned to the UI manager indicating it was consumed.  Otherwise the parent of that Mezzanine::UI::Widget gets an opportunity to consume the
+/// input and so on until either a Mezzanine::UI::Widget consumes the input or the Screen all these Widgets belong to is reached.  If true is returned to the UI manager from any of these checks then post-focus checks
 /// are skipped for that input.
 /// \n \n
 /// If the input was consumed, then the UI manager will move on to the next input and repeat the cycle starting at pre-focus checks.  If the focus (or any of it's parent Widgets) did not consume the
 /// input, then it'll move on to the post-focus checks.
 /// @todo Currently this is a (very) small section because while the structure is there no actual checks are performed.  In the future Actions or tab switching between Widgets may go here.
+///
 /// \n \n
 /// After all of the inputs have been processed, then the container storing the inputs is cleared to make room for the next frames inputs.  In most cases the number of inputs to be processed in a given
 /// frame will be either 0 or 1.  A typical frame where there is mouse movement is 4 or 5 inputs.  In the extreme case where you would have a 4-way split screen with controllers there could be upwards

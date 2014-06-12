@@ -52,8 +52,8 @@ namespace Mezzanine
         // BruteStrategy Functors
 
         ///////////////////////////////////////////////////////////////////////////////
+        /// @internal
         /// @class MouseHoverCheck
-        /// @headerfile brutestategy.cpp
         /// @brief Simple functor for finding which renderable the mouse is hovered over.
         /// @details This is intended for reverse checks.
         ///////////////////////////////////////

@@ -69,12 +69,19 @@ namespace Mezzanine
                 /// @note On Linux AMD64 this pointer brings the size of this class to 64 bytes a common cache line size.
                 FrameScheduler* AggregationTarget;
 
+                /// @brief Used to signal any special condition that forced an abnormal log flush
+                Boole ForcedLog;
+
             public:
                 /// @brief Create a default log agregator with no target
                 LogAggregator();
 
                 /// @brief Virtual Deconstructor
                 virtual ~LogAggregator();
+
+                /// @brief Used to indicate the next log flush is abnormally forced
+                /// @param Force Can be passed to unset the abnormal log flush.
+                void NextFlushForced(Boole Force=true);
 
                 /// @brief This does the actual work of log aggregation.
                 /// @param CurrentThreadStorage This is used to retrieve the framescheduler that will have its log aggregated.

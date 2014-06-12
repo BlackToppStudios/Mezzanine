@@ -171,7 +171,7 @@ class readwritespinlocktests : public UnitTestGroup
 
             { // ReadWriteSpinLock and lock guards
                 {
-                    Threading::lock_guard<ReadWriteSpinLock> g(TryReadWriteSpinlock);
+                    lock_guard<ReadWriteSpinLock> g(TryReadWriteSpinlock);
                 }
                 TEST(true,"RWSpinLock::lock_gaurd");
                 {

@@ -47,7 +47,6 @@ namespace Mezzanine
 {
     class ActorManager;
     class AreaEffectManager;
-    class CameraManager;
     class TerrainManager;
     namespace Audio
     {
@@ -55,6 +54,7 @@ namespace Mezzanine
     }
     namespace Graphics
     {
+        class CameraManager;
         class SceneManager;
     }
     namespace Physics
@@ -78,30 +78,50 @@ namespace Mezzanine
         typedef WorldManagerContainer::iterator            WorldManagerIterator;
         /// @brief Const Iterator type for @ref WorldManager instances stored by this class.
         typedef WorldManagerContainer::const_iterator      ConstWorldManagerContainer;
+
     protected:
         /// @internal
         /// @brief A container storing all the managers belonging to this world.
         WorldManagerContainer WorldManagers;
+
+        /// @internal
+        /// @brief Unique string identifier for world.
+        String Name;
+
+    protected:
+        /// @internal
+        /// @brief Helper function used to assist construction.
+        void Construct(     const Physics::ManagerConstructionInfo& PhysicsInfo,
+                            const String& SceneType,
+                            const std::vector <WorldManager*>& ManagerToBeAdded );
     public:
         /// @brief Class constructor.
-        World();
+        /// @param WorldName String name of the world.
+        World(const String& WorldName);
         /// @brief Pre-made manager constructor.
+        /// @param WorldName String name of the world.
         /// @param Managers A container of pre-made managers to be used by this world.
-        World(const WorldManagerContainer& Managers);
+        World(const String& WorldName, const WorldManagerContainer& Managers);
         /// @brief Descriptive constructor.
+        /// @param WorldName String name of the world.
         /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
         /// @param SceneType A string containing the name of the underlying scene type for this world.
-        World(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        World(const String& WorldName, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
         /// @brief Descriptive pre-made manager constructor.
+        /// @param WorldName String name of the world.
         /// @param Managers A container of pre-made managers to be used by this world.
         /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
         /// @param SceneType A string containing the name of the underlying scene type for this world.
-        World(const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        World(const String& WorldName, const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
         /// @brief XML constructor.
         /// @param SelfNode The node that represents the data to populate this world with.
         World(const XML::Node& SelfNode);
         /// @brief class destructor.
         virtual ~World();
+
+        /// @brief Gets the name of this world.
+        /// @return Returns a string containing the name used to identify this world.
+        const String& GetName() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Initialization
@@ -128,6 +148,12 @@ namespace Mezzanine
         /// @brief This removes a manager of a specific type from the list
         /// @param ToBeRemoved The ManagerBase::ManagerTypeName of the manager to remove.
         void RemoveManager(const ManagerBase::ManagerType ToBeRemoved);
+        /// @brief This removes all managers from the manager list.
+        void RemoveAllManagers();
+
+        /// @brief This gets the list of managers in the world.
+        /// @return This returns a pointer to a vector containing the managers in this world.
+        std::vector<WorldManager*> GetWorldManagers();
 
         /// @brief This gets the ActorManager from the manager list.
         /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
@@ -137,7 +163,7 @@ namespace Mezzanine
         AreaEffectManager* GetAreaEffectManager();
         /// @brief This gets the CameraManager from the manager list.
         /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
-        CameraManager* GetCameraManager();
+        Graphics::CameraManager* GetCameraManager();
         /// @brief This gets the PhysicsManager from the manager list.
         /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
         Physics::PhysicsManager* GetPhysicsManager();

@@ -11,6 +11,9 @@
  * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
  */
 
+/// @file
+/// @brief To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this should probably not be used by the tests
+
 #ifndef HEADER_PUGICONFIG_HPP
 #define HEADER_PUGICONFIG_HPP
 

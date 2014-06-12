@@ -40,6 +40,9 @@
 #ifndef _dagdoubleinclude_h
 #define _dagdoubleinclude_h
 
+/// @file
+/// @brief This file is different between versions of the test framework for compatibility purposes and should be ignored
+
 #include "Threading/dagframescheduler.h"
 
 #endif

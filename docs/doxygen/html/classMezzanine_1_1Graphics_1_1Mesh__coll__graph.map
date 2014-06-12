@@ -1,8 +1,8 @@
 <map id="Mezzanine::Graphics::Mesh" name="Mezzanine::Graphics::Mesh">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1InternalMeshData.html" title="This class is used to store the internal structures needed by the Mesh class. " alt="" coords="275,5,413,49"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Graphics_1_1Skeleton.html" title="This class encapsulates the Skeletal animation functionality of a Mesh. " alt="" coords="275,147,413,191"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Graphics_1_1Bone.html" title="This class encapsulates the bones contained in a skeleton used for animation. " alt="" coords="551,217,689,261"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1TransformableChildObject.html" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="259,227,429,271"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Graphics_1_1InternalSkeletonData.html" title="This class is used to store the internal structures needed by the Skeleton class. ..." alt="" coords="5,147,155,191"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1Graphics_1_1SubMesh.html" title="This class represents a sub&#45;section of an overall mesh. " alt="" coords="11,63,149,107"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1InternalMeshData.html" title="This class is used to store the internal structures needed by the Mesh class. " alt="" coords="280,5,424,51"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Graphics_1_1Skeleton.html" title="This class encapsulates the Skeletal animation functionality of a Mesh. " alt="" coords="280,151,424,198"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Graphics_1_1Bone.html" title="This class encapsulates the bones contained in a skeleton used for animation. " alt="" coords="564,222,708,269"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1TransformableChildObject.html" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="264,233,440,279"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Graphics_1_1InternalSkeletonData.html" title="This class is used to store the internal structures needed by the Skeleton class. ..." alt="" coords="5,151,157,198"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Graphics_1_1SubMesh.html" title="This class represents a sub&#45;section of an overall mesh. " alt="" coords="9,66,153,113"/>
 </map>

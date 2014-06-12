@@ -1,4 +1,4 @@
 <map id="Mezzanine::DebrisFactory" name="Mezzanine::DebrisFactory">
-<area shape="rect" id="node3" href="$classMezzanine_1_1RigidDebrisFactory.html" title="A base factory type for the creation of non&#45;deformable Debris objects. " alt="" coords="5,83,203,111"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1SoftDebrisFactory.html" title="A base factory type for the creation of deformable Debris objects. " alt="" coords="227,83,419,111"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1RigidDebrisFactory.html" title="A base factory type for the creation of non&#45;deformable Debris objects. " alt="" coords="5,83,211,112"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1SoftDebrisFactory.html" title="A base factory type for the creation of deformable Debris objects. " alt="" coords="235,83,432,112"/>
 </map>

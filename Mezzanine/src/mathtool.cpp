@@ -51,7 +51,7 @@
 #include <limits>
 #include <algorithm>
 
-/// @cond 0
+/// @cond DontDocumentInternal
 namespace
 {
     /// @typedef SegmentPosPair

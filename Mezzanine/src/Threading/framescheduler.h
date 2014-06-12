@@ -77,6 +77,8 @@ namespace Mezzanine
             friend class LogAggregator;
             friend class WorkSorter;
 
+            friend void TerminateHandler();
+
             protected:
                 ////////////////////////////////////////////////////////////////////////////////
                 // Data Members
@@ -117,6 +119,11 @@ namespace Mezzanine
                 /// @warning
                 /// @todo write this warning, it is important, but not easy to lay out.
                 DependentGraphType DependentGraph;
+
+                /// @brief A lock that protects the list frame schedulers, for use in the event of an error.
+                static SpinLock FrameSchedulersLock;
+                /// @brief A list frame schedulers, for use in the event of an error.
+                static std::vector<FrameScheduler*> FrameSchedulers;
 
             public:
                 /// @brief The kind of Resource the frame scheduler will use
@@ -171,7 +178,7 @@ namespace Mezzanine
             protected:
                 #endif
 
-                /// @brief Protects DoubleBufferedResources during creation from being accessed by the LogAggregator.
+                /// @brief Protects DoubleBufferedResources during creation and error handling from being accessed by the LogAggregator.
                 SpinLock LogResources;
 
                 #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
@@ -210,6 +217,14 @@ namespace Mezzanine
                 ////////////////////////////////////////////////////////////////////////////////
                 // Protected Methods
 
+                /// @brief Add this scheduler to the list that will log in the event of an unhand;ed exception
+                /// @param SchedulerToAdd The scheduler to add to the list list that will be cleaned up in the event of an error.
+                static void AddErrorScheduler(FrameScheduler* SchedulerToAdd);
+
+                /// @brief Remove the passed scheduler from the list that will log in the event of an unhand;ed exception
+                /// @param SchedulerToRemove The scheduler to remove from the list list that will be cleaned up in the event of an error.
+                static void RemoveErrorScheduler(FrameScheduler* SchedulerToRemove);
+
                 /// @brief Used in destruction to tear down threads.
                 void CleanUpThreads();
 
@@ -246,6 +261,8 @@ namespace Mezzanine
                         std::ostream* _LogDestination,
                         Whole StartingThreadCount = GetCPUCount()
                     );
+
+                void SetErrorHandler();
 
                 /// @brief Destructor
                 /// @details Deletes all std::fstream, WorkUnit, MonopolyWorkUnit and ThreadSpecificStorage objects that this was passed or created during its lifetime.
@@ -550,6 +567,21 @@ namespace Mezzanine
                 /// @brief Get the endpoint for the logs.
                 /// @return An std:ostream reference which can be streamed to commit log entries.
                 std::ostream& GetLog();
+
+            protected:
+                /// @warning This is not thread safe at all. Any time during the frame using this can break everything.
+                /// @brief Get the Log aggregation work unit if one exists for emergency loggin purposes only
+                /// @details Use by the termination handler in the even of an uncaught exception. This should also be avoided because
+                /// It is is implemented a linear search over every workunit and returns the first one derived from LogAggregator.
+                /// @return A null pointer or a pointer to a workunit that aggregates if it exists.
+                virtual LogAggregator* GetLogAggregator();
+
+            public:
+                /// @warning This is not thread safe at all. Any time during the frame using this can break everything.
+                /// @brief Forces the FrameScheduler to find Its LogAggregator and make it flush the logs if it can
+                /// @return This return True if it flushed the logs and false otherwise.
+                virtual Boole ForceLogFlush();
+
         };//FrameScheduler
     } // \Threading
 }// \Mezanine

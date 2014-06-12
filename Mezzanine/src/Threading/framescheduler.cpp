@@ -45,6 +45,7 @@
 #include "doublebufferedresource.h"
 #include "monopoly.h"
 #include "frameschedulerworkunits.h"
+#include "lockguard.h"
 #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
     #include "atomicoperations.h"
 #endif
@@ -70,8 +71,26 @@ namespace Mezzanine
 {
     namespace Threading
     {
-
         /// @cond false
+
+        // Initializing static members
+        SpinLock FrameScheduler::FrameSchedulersLock;
+        std::vector<FrameScheduler*> FrameScheduler::FrameSchedulers;
+
+        /// @brief The function Frameschedulers have std::terminate() call.
+        /// @details This will iterate over every frame scheduler, finds its log aggregator, call it and flush its log.
+        void TerminateHandler()
+        {
+            lock_guard<SpinLock> g(FrameScheduler::FrameSchedulersLock);
+            for(std::vector<FrameScheduler*>::iterator Iter = FrameScheduler::FrameSchedulers.begin();
+                Iter != FrameScheduler::FrameSchedulers.end();
+                Iter++)
+            {
+                FrameScheduler* CurrentFrameScheduler = *Iter;
+                CurrentFrameScheduler->ForceLogFlush();
+            }
+            exit(1);
+        }
 
         /// @brief This is the function that all threads will run, except the main.
         /// @param ThreadStorage A pointer to a ThreadSpecificStorage that has the required data for a thread after it launches.
@@ -125,6 +144,19 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Protected Methods
+
+        void FrameScheduler::AddErrorScheduler(FrameScheduler* SchedulerToAdd)
+        {
+            lock_guard<SpinLock> g(FrameSchedulersLock);
+            FrameSchedulers.push_back(SchedulerToAdd);
+        }
+
+        void FrameScheduler::RemoveErrorScheduler(FrameScheduler* SchedulerToRemove)
+        {
+            lock_guard<SpinLock> g(FrameSchedulersLock);
+            FrameSchedulers.erase( std::remove( FrameSchedulers.begin(), FrameSchedulers.end(), SchedulerToRemove ), FrameSchedulers.end() );
+        }
+
 
         void FrameScheduler::CleanUpThreads()
         {
@@ -188,6 +220,8 @@ namespace Mezzanine
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
             GetLog() << "<MezzanineLog>" << std::endl;
+            AddErrorScheduler(this);
+            SetErrorHandler();
         }
 
         FrameScheduler::FrameScheduler(std::ostream *_LogDestination, Whole StartingThreadCount) :
@@ -216,10 +250,18 @@ namespace Mezzanine
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
             (*LogDestination) << "<MezzanineLog>" << std::endl;
             LogDestination->flush();
+            AddErrorScheduler(this);
+            SetErrorHandler();
+        }
+
+        void FrameScheduler::SetErrorHandler()
+        {
+            std::set_terminate(TerminateHandler);
         }
 
         FrameScheduler::~FrameScheduler()
         {
+            RemoveErrorScheduler(this);
             CleanUpThreads();
 
             (*LogDestination) << "</MezzanineLog>" << std::endl;
@@ -717,6 +759,47 @@ namespace Mezzanine
 
         std::ostream& FrameScheduler::GetLog()
             { return *LogDestination; }
+
+        LogAggregator* FrameScheduler::GetLogAggregator()
+        {
+            LogAggregator* Results = NULL;
+            for(IteratorMain Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); ++Iter)
+            {
+                Results = dynamic_cast<LogAggregator*>(Iter->Unit);
+                if(Results)
+                    { return Results; }
+            }
+
+            for(IteratorAffinity Iter = WorkUnitsAffinity.begin(); Iter!=WorkUnitsAffinity.end(); ++Iter)
+            {
+                Results = dynamic_cast<LogAggregator*>(Iter->Unit);
+                if(Results)
+                    { return Results; }
+            }
+
+            for(IteratorMonoply Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); ++Iter)
+            {
+                Results = dynamic_cast<LogAggregator*>(*Iter);
+                if(Results)
+                    { return Results; }
+            }
+            return NULL;
+
+        }
+
+        Boole FrameScheduler::ForceLogFlush()
+        {
+            LogAggregator* Pointer = GetLogAggregator();
+            if(Pointer)
+            {
+                DefaultThreadSpecificStorage::Type Storage(this);
+                Pointer->NextFlushForced();
+                Pointer->DoWork(Storage);
+                GetLog().flush();
+                return true;
+            }
+            return false;
+        }
 
     } // \FrameScheduler
 }// \Mezanine

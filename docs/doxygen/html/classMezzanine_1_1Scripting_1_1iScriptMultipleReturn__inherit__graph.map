@@ -1,3 +1,4 @@
 <map id="Mezzanine::Scripting::iScriptMultipleReturn" name="Mezzanine::Scripting::iScriptMultipleReturn">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script. " alt="" coords="9,6,148,50"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html" title="This class is used to store a Lua script and in its source and compiled state. " alt="" coords="8,198,152,245"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script. " alt="" coords="8,6,152,53"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="Mezzanine::UI::TagToken" name="Mezzanine::UI::TagToken">
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1InsertTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="5,161,168,205"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1RangeTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="192,169,395,197"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1TextToken.html" title="This class represents a normal text segment from the source string. " alt="" coords="105,6,273,34"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1InsertTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="5,161,176,207"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1RangeTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="200,169,411,199"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1TextToken.html" title="This class represents a normal text segment from the source string. " alt="" coords="109,5,285,35"/>
 </map>

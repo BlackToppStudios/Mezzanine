@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world. " alt="" coords="5,5,128,33"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported. " alt="" coords="6,135,146,177"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1ConeTwistConstraint.html" title="Mezzanine::Physics\l::ConeTwistConstraint" alt="" coords="206,37,359,78"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Physics_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi..." alt="" coords="195,102,371,143"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Physics_1_1GearConstraint.html" title="This is a constraint that duplicate the angular motion of one object to another, adjusted by the prov..." alt="" coords="213,167,353,209"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1Point2PointConstraint.html" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation..." alt="" coords="204,233,361,274"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1Generic6DofConstraint.html" title="Create simple but specific limits on any axis of movement or rotation. " alt="" coords="419,37,581,78"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Physics_1_1HingeConstraint.html" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a..." alt="" coords="430,102,570,143"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1SliderConstraint.html" title="Mezzanine::Physics\l::SliderConstraint" alt="" coords="430,167,570,209"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion..." alt="" coords="629,5,829,46"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1UniversalConstraint.html" title="Mezzanine::Physics\l::UniversalConstraint" alt="" coords="657,70,802,111"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Physics_1_1Hinge2Constraint.html" title="Mezzanine::Physics\l::Hinge2Constraint" alt="" coords="878,5,1018,46"/>
 </map>

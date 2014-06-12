@@ -170,6 +170,14 @@ namespace Mezzanine
             }
         }
 
+        String GetCommandResults(String Command)
+        {
+            Command += " > CommandResults.txt";
+            system(Command.c_str());
+            std::ifstream File("CommandResults.txt");
+            return String( std::istreambuf_iterator<char>(File), std::istreambuf_iterator<char>());
+        }
+
         void sleep_for(UInt32 MicroSeconds)
         {
         #if defined(_MEZZ_THREAD_WIN32_)

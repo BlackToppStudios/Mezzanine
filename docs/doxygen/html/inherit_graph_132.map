@@ -1,17 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1ManagerFactory.html" title="This is a base class for factories that construct the managers the engine uses. " alt="" coords="7,446,188,474"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1DefaultActorManagerFactory.html" title="A factory responsible for the creation and destruction of the default actormanager. " alt="" coords="240,5,451,49"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1DefaultAreaEffectManagerFactory.html" title="A factory responsible for the creation and destruction of the default areaeffectmanager. " alt="" coords="251,71,440,115"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1DefaultDebrisManagerFactory.html" title="A factory responsible for the creation and destruction of the default DebrisManager. " alt="" coords="263,138,428,182"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1DefaultEventManagerFactory.html" title="A factory responsible for the creation and destruction of the default eventmanager. " alt="" coords="240,205,451,249"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1DefaultTerrainManagerFactory.html" title="A factory responsible for the creation and destruction of the default terrainmanager. " alt="" coords="260,271,431,315"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Graphics_1_1DefaultCameraManagerFactory.html" title="A factory responsible for the creation and destruction of the default cameramanager. " alt="" coords="243,338,448,382"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1Graphics_1_1DefaultGraphicsManagerFactory.html" title="A factory responsible for the creation and destruction of the default graphicsmanager. " alt="" coords="239,405,452,449"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1Graphics_1_1DefaultMeshManagerFactory.html" title="A factory responsible for the creation and destruction of the default meshmanager. " alt="" coords="249,471,441,515"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1Graphics_1_1DefaultSceneManagerFactory.html" title="A factory responsible for the creation and destruction of the default scenemanager. " alt="" coords="247,538,444,582"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1Input_1_1DefaultInputManagerFactory.html" title="A factory responsible for the creation and destruction of the default inputmanager. " alt="" coords="263,605,428,649"/>
-<area shape="rect" id="node23" href="$classMezzanine_1_1Physics_1_1DefaultCollisionShapeManagerFactory.html" title="A factory responsible for the creation and destruction of the default collisionshapemanager. " alt="" coords="244,671,447,731"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1Physics_1_1DefaultPhysicsManagerFactory.html" title="A factory responsible for the creation and destruction of the default physicsmanager. " alt="" coords="243,754,448,798"/>
-<area shape="rect" id="node27" href="$classMezzanine_1_1Resource_1_1DefaultResourceManagerFactory.html" title="A factory responsible for the creation and destruction of the default resourcemanager. " alt="" coords="237,821,453,865"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1UI_1_1DefaultUIManagerFactory.html" title="A factory responsible for the creation and destruction of the default uimanager. " alt="" coords="240,887,451,931"/>
+<area shape="rect" id="node1" href="$structMezzanine_1_1Internal_1_1LineVertex.html" title="A small declaration of what our vertexs look like for when we write to the buffers. " alt="" coords="5,5,141,46"/>
 </map>

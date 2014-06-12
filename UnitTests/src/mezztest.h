@@ -46,14 +46,55 @@
 #include "testdatatools.h"
 #include "testenumerations.h"
 
-/// @brief ArgC as it was passed into Main.
-/// @details This cannot be set statically, it must wait for main(int, char**) to
-/// be initialized
-int ArgC;
+/// @brief Get the argument count as it was passed into Main.
+/// @return This is returned as an int
+int GetMainArgumentCount();
 
-/// @brief ArgC as it was passed into Main.
-/// @details This cannot be set statically, it must wait for main(int, char**) to
-/// be initialized
-char** ArgV;
+/// @brief Get the argument vector as it was passed into Main.
+/// @return This is returned as pointer to a null terminated array of pointers to null terminated characters.
+char** GetMainArgumentVector();
+
+/// @brief Get the command/executable name used to invoke this at the command prompt.
+/// @return This is returned as a String.
+Mezzanine::String GetExecutableName();
+
+/// @brief Used to indicate the current 'depth' in the subprocess tree.
+/// @details Since the caller of the unit tests can pass arbitrary gibberish
+/// It is possible to get things that houldonly run in subsubprocesses in the
+/// main test process. This does not truly indicate how many processes have
+/// been spawned, but rather indicates the plans for what will be executed.
+enum ProcessDepth {
+    MainProcess             = 0, ///< The is no plan to execute tests in this process subprocesses will be launched for any tests.
+    TestSubprocess          = 1, ///< One or Tests will be executed in this process, but no subprocess requested by tests will be run.
+    TestSubSubProcess       = 2  ///< Tests requested to run in subrocesse by individual testswill run in this process.
+};
+
+/// @brief Indicates what this test might attempt to do, based on what it thinks the process depth is.
+/// @return a ProcessDepth enum member
+ProcessDepth GetCurrentProcessDepth();
+
+/// @brief If a test needs to pass a string to a subsubprocess it will get stored here
+/// @return A string that a test group intends on passing into a subsubprocess test
+Mezzanine::String GetSubSubProcessArgument();
+
+/// @internal
+/// @brief If this is passed to the command line the test is executed without launching a separate processs.
+/// @details In most cases each test is launched as a separate process and this is passed to it.
+static const Mezzanine::String MemSpaceArg("debugtests");
+
+/// @internal
+/// @brief If this is passed to the command line prepended to a testname that tests subprocess will be executed instead of that test
+static const Mezzanine::String SubTestPrefix("debug");
+
+/// @internal
+/// @brief This is the name of the file used to communicate results from child processes
+/// @warning This variable is used to create temporary files in a percieved insecure way
+/// Everything will be fine as long as nothing else writes to this this file during or
+/// between Tests. If something does, then you probably have big enough problems you
+/// shouldn't be developing software until that is fixed.
+static const Mezzanine::String TempFile("UnitTestWork.txt");
+
+
+
 
 #endif

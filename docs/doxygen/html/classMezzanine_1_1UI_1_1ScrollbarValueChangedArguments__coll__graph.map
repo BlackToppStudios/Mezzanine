@@ -1,6 +1,6 @@
 <map id="Mezzanine::UI::ScrollbarValueChangedArguments" name="Mezzanine::UI::ScrollbarValueChangedArguments">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1WidgetEventArguments.html" title="This is the base class for widget specific event arguments. " alt="" coords="11,275,189,319"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1EventArguments.html" title="This is a common class to represent all possible arguments for a given event that is fired..." alt="" coords="145,195,327,223"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="28,102,103,130"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="5,6,125,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1WidgetEventArguments.html" title="This is the base class for widget specific event arguments. " alt="" coords="9,281,199,327"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1EventArguments.html" title="This is a common class to represent all possible arguments for a given event that is fired..." alt="" coords="152,200,341,229"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="28,104,108,133"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="5,6,131,53"/>
 </map>

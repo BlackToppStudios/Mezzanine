@@ -42,7 +42,6 @@ SUBGROUPING            = YES
 INLINE_GROUPED_CLASSES = NO
 INLINE_SIMPLE_STRUCTS  = NO
 TYPEDEF_HIDES_STRUCT   = NO
-SYMBOL_CACHE_SIZE      = 0
 LOOKUP_CACHE_SIZE      = 0
 #---------------------------------------------------------------------------
 # Build related configuration options
@@ -94,14 +93,14 @@ WARN_LOGFILE           = ../html/DoxygenWarnings.txt
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML
+INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/Scripting/Lua51 ../../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML ../../../UnitTests/src
 # ../../../Mezzanine/src/Internal
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
 RECURSIVE              = NO
 EXCLUDE                =
 EXCLUDE_SYMLINKS       = NO
-EXCLUDE_PATTERNS       =
+EXCLUDE_PATTERNS       = scriptbinding*.cpp
 EXCLUDE_SYMBOLS        =
 EXAMPLE_PATH           = Examples/
 EXAMPLE_PATTERNS       =
@@ -248,7 +247,7 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 TAGFILES               =
 GENERATE_TAGFILE       =
-ALLEXTERNALS           = NFO
+ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 PERL_PATH              = /usr/bin/perl
 #---------------------------------------------------------------------------
@@ -259,9 +258,9 @@ MSCGEN_PATH            =
 HIDE_UNDOC_RELATIONS   = YES
 HAVE_DOT               = YES
 DOT_NUM_THREADS        = 0
-DOT_FONTNAME           = FreeSans
+#DOT_FONTNAME           = FreeSans
 DOT_FONTSIZE           = 10
-DOT_FONTPATH           =
+#DOT_FONTPATH           =
 CLASS_GRAPH            = YES
 COLLABORATION_GRAPH    = YES
 GROUP_GRAPHS           = YES

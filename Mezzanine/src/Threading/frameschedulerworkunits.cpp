@@ -43,6 +43,8 @@
 
 #include "frameschedulerworkunits.h"
 #include "doublebufferedresource.h"
+#include "lockguard.h"
+#include "spinlock.h"
 
 /// @file
 /// @brief The implementation of any workunits the framescheduler needs to work correctly
@@ -52,17 +54,21 @@ namespace Mezzanine
     namespace Threading
     {
 
-        LogAggregator::LogAggregator() : AggregationTarget(NULL)
-        {}
+        LogAggregator::LogAggregator() : AggregationTarget(NULL), ForcedLog(false)
+            {}
 
         LogAggregator::~LogAggregator()
-        {}
+            {}
+
+        void LogAggregator::NextFlushForced(Boole Force)
+            { ForcedLog = Force; }
+
 
         void LogAggregator::DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
             if(!AggregationTarget)
                 { AggregationTarget = CurrentThreadStorage.GetFrameScheduler(); }
-            AggregationTarget->LogResources.Lock();
+            lock_guard<SpinLock> g(AggregationTarget->LogResources);
 
             std::ostream& Log = AggregationTarget->GetLog();
             Log << "<Frame Count=\"" << AggregationTarget->GetFrameCount() << "\">" << std::endl;
@@ -70,7 +76,15 @@ namespace Mezzanine
                 Iter!=AggregationTarget->Resources.end();
                 ++Iter)
             {
-                Log << "<Thread Main=\"" << (AggregationTarget->Resources.begin()==Iter?1:0)<< "\">" << std::endl
+
+                String Forced;
+                if(ForcedLog)
+                {
+                    Forced = (" Forced=\"True\"");
+                    NextFlushForced(false);
+                }
+
+                Log << "<Thread Main=\"" << (AggregationTarget->Resources.begin()==Iter?1:0) << "\"" << Forced << " >" << std::endl
                     << (*Iter)->GetResource<DoubleBufferedLogger>(DBRLogger).GetCommittable().str()
                     << "</Thread>" << std::endl;
                 (*Iter)->GetResource<DoubleBufferedLogger>(DBRLogger).GetCommittable().str("");

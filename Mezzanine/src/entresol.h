@@ -208,7 +208,7 @@
 
   @ref UIManual
 
-  @ref LuaManual
+  @ref ScriptingManual
 
   @ref Serialization
 
@@ -297,6 +297,8 @@ namespace Mezzanine
     class EventManager;
     class NetworkManager;
     class ManagerFactory;
+    class World;
+    class WorldManager;
     namespace Audio
     {
         class AudioManager;
@@ -376,6 +378,10 @@ namespace Mezzanine
             typedef std::map<String,ManagerFactory*> ManagerFactoryMap;
             typedef ManagerFactoryMap::iterator ManagerFactoryIterator;
             typedef ManagerFactoryMap::const_iterator ConstManagerFactoryIterator;
+
+            typedef std::vector<World*> WorldContainer;
+            typedef WorldContainer::iterator WorldContainerIterator;
+            typedef WorldContainer::const_iterator ConstWorldContainerIterator;
         private:
             /// @internal
             /// @brief The core structure responsible for our multi-threaded main loop.
@@ -415,6 +421,10 @@ namespace Mezzanine
             /// @internal
             /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
             std::list< ManagerBase* > ManagerList;
+
+            /// @internal
+            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+            WorldContainer Worlds;
 
             /// @internal
             /// @brief Used to track Ogre specific details for the statically linked Particle plugin
@@ -743,6 +753,76 @@ namespace Mezzanine
             UI::UIManager* GetUIManager(const UInt16 WhichOne = 0);
 
             Scripting::iScriptingManager* GetScriptingManager(const UInt16 WhichOne = 0);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // World Management
+
+            /// @brief This adds a world to the list of worlds in the entresol.
+            /// @param WorldToAdd The pointer to the world to be added.
+            void AddWorld(World* WorldToBeAdded);
+            /// @brief This creates a world and adds it to the World List.
+            /// @param WorldName String name of the world.
+            /// @return Returns a pointer to the created world.
+            World* CreateWorld(const String& WorldName);
+            /// @brief This creates a world and adds it to the World List.
+            /// @param WorldName String name of the world.
+            /// @param Managers A container of pre-made managers to be used by this world.
+            /// @return Returns a pointer to the created world.
+            World* CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded);
+            /// @brief This creates a world and adds it to the World List.
+            /// @param WorldName String name of the world.
+            /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
+            /// @param SceneType A string containing the name of the underlying scene type for this world.
+            /// @return Returns a pointer to the created world.
+            World* CreateWorld(const String& WorldName, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+            /// @brief This creates a world and adds it to the World List.
+            /// @param WorldName String name of the world.
+            /// @param Managers A container of pre-made managers to be used by this world.
+            /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
+            /// @param SceneType A string containing the name of the underlying scene type for this world.
+            /// @return Returns a pointer to the created world.
+            World* CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded,
+                const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType );
+            /// @brief This gets a world from the world list by name.
+            /// @param WorldName The string name of the world to be accessed..
+            /// @return This returns a pointer to the world with the given name, otherwise returns NULL.
+            World* GetWorld(const String& WorldName);
+            /// @brief This removes the given world from the world list.
+            /// @param WorldToBeRemoved Pointer to the world to be removed from the world list.
+            World* RemoveWorld(World* WorldToBeRemoved);
+            /// @brief This removes the world with the given name from the world list.
+            /// @param WorldName The name of the world to be removed.
+            World* RemoveWorldByName(const String& WorldName);
+            /// @brief This removes all worlds from the world list.
+            void RemoveAllWorlds();
+            /// @brief This destroys the given world and removes it from the world list.
+            /// @param WorldToBeDestroyed The name of the world to be destroyed.
+            void DestroyWorld(World* WorldToBeDestroyed);
+            /// @brief This destroys the world with the given name and removes it from the world list.
+            /// @param WorldName The name of the world to be destroyed.
+            void DestroyWorldByName(const String& WorldName);
+            /// @brief This destroys all the worlds in the world list.
+            void DestroyAllWorlds();
+            /// @brief This gets the number of worlds in the world list.
+            /// @return Returns the number of worlds in the world list.
+            UInt16 GetNumWorlds();
+
+            /// @brief Destroy all managers in given world.
+            /// @param TargetWorld Pointer to the world whose managers are to be destroyed.
+            void DestroyWorldManagers(World* TargetWorld);
+            /// @brief Destroy a manager in given world.
+            /// @param TargetWorld Pointer to the world whose manager is to be destroyed.
+            /// @param ToBeDestroyed Pointer to the manager to be destroyed.
+            void DestroyWorldManager(World* TargetWorld, WorldManager* ToBeDestroyed);
+            /// @brief Destroy all WorldManagers in all worlds.
+            void DestroyAllWorldManagers();
+
+            /// @brief Creates a manager of given type and optionally adds it to a world.  Intended for WorldManagers.
+            /// @param ManagerImplName The name of the manager implementation to create.
+            /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
+            /// @param AddToWorld Whether or not to add the created manager to a World after creation.
+            /// @param AddedTo World to add manager to.
+            WorldManager* CreateWorldManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld, World* AddedTo);
     };//Entresol
 }//Mezzanine
 #endif

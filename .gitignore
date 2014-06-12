@@ -1,8 +1,12 @@
 # QT Creator Items
 CMakeLists.txt.user*
 
-# Gedit Temp Files
+# Doxygen Temp Files
+*.tmp
+
+# Editor Temp Files
 *~
+*.autosave
 
 # Libraries
 *.a

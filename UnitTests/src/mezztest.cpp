@@ -52,25 +52,43 @@
 /// @details If you need to change the nature of the executable this is the
 /// file to change. This is where the simple (but robust) sub process
 /// mechanism is implemented. Very little of the rest of the code in the
-/// unit test frame work makes calls to file, and everything that does
+/// unit test frame work makes calls to this file, and everything that does
 /// does so through the UnitTestGroup class via polymorphism.
 
 /// @internal
-/// @brief If this is passed to the command line the test is executed without launching a separate processs.
-/// @details In most cases each test is launched as a separate process and this is passed to it.
-static const Mezzanine::String MemSpaceArg("debugtests");
+/// @brief ArgC as it was passed into Main.
+/// @details This cannot be set statically, it must wait for main(int, char**) to
+/// be initialized
+int ArgC;
+int GetMainArgumentCount()
+    { return ArgC; }
 
 /// @internal
-/// @brief This is the name of the file used to communicate results from child processes
-/// @warning This variable is used to create temporary files in a percieved insecure way
-/// Everything will be fine as long as nothing else writes to this this file during or
-/// between Tests. If something does, then you probably have big enough problems you
-/// shouldn't be developing software until that is fixed.
-static const String TempFile("UnitTestWork.txt");
+/// @brief ArgC as it was passed into Main.
+/// @details This cannot be set statically, it must wait for main(int, char**) to
+/// be initialized
+char** ArgV;
+char** GetMainArgumentVector()
+    { return ArgV; }
 
 /// @internal
 /// @brief This will store the name of the command that launched this executable at run time
 Mezzanine::String CommandName;
+Mezzanine::String GetExecutableName()
+    { return CommandName; }
+
+/// @internal
+/// @brief The current process depth as interpretted by Main
+ProcessDepth Depth;
+ProcessDepth GetCurrentProcessDepth()
+    { return Depth; }
+
+/// @internal
+/// @brief A string intended for use by any subsubprocess test
+Mezzanine::String SubSubProcessArgument;
+Mezzanine::String GetSubSubProcessArgument()
+    { return SubSubProcessArgument; }
+
 
 /// @brief Write the passed UnitTestGroup to an XML temp file
 /// @param TestsToWrite Teh group of tests to write.
@@ -133,27 +151,49 @@ void DeleteTempFile()
 class AllUnitTestGroups : public UnitTestGroup
 {
     private:
-            /// @internal
-            /// @brief So no one uses it
-            void operator=(AllUnitTestGroups&)
-                {}
+        /// @internal
+        /// @brief So no one uses it
+        void operator=(AllUnitTestGroups&)
+            {}
 
-    public:
         /// @internal
         /// @brief Should all tests be run.
         bool RunAll;
 
-        /// @internal
-        /// @brief Should automatic tests be run
-        bool RunAutomaticTests;
+    public:
 
         /// @internal
-        /// @brief Should interactive tests be run
-        bool RunInteractiveTests;
+        /// @brief This indicates we should run automatic tests rather than than launching a subprocess for that
+        virtual void ShouldRunAutomaticTests()
+        {
+            RunAll = false;
+            UnitTestGroup::ShouldRunAutomaticTests();
+        }
 
         /// @internal
-        /// @brief Should the test be run without launching another process.
-        bool ExecuteInThisMemorySpace;
+        /// @brief This indicates we should run interactive tests rather than than launching a subprocess for that
+        virtual void ShouldRunInteractiveTests()
+        {
+            RunAll = false;
+            UnitTestGroup::ShouldRunInteractiveTests();
+        }
+
+        /// @internal
+        /// @brief Tells this whether or not it should be used to run any tests that child tests might want to spwan in a subprocess
+        virtual void ShouldRunSubProcessTests()
+        {
+            RunAll = false;
+            UnitTestGroup::ShouldRunSubProcessTests();
+        }
+
+        /// @internal
+        /// @brief Used to signal
+        virtual void ShouldRunAllTests()
+            { RunAll = true; }
+        /// @internal
+        /// @brief Used to signal that none or only a subset of tests should run
+        virtual void DontRunAllTests()
+            { RunAll = false; }
 
         /// @internal
         /// @brief A collection of all the test groups
@@ -164,9 +204,6 @@ class AllUnitTestGroups : public UnitTestGroup
         /// @param GlobalTestGroups The collection of tests that could be run
         AllUnitTestGroups(GlobalCoreTestGroup& GlobalTestGroups)
             : RunAll(true),
-              RunAutomaticTests(false),
-              RunInteractiveTests(false),
-              ExecuteInThisMemorySpace(false),
               TestGroups(GlobalTestGroups)
         {}
 
@@ -174,53 +211,77 @@ class AllUnitTestGroups : public UnitTestGroup
         /// @brief When determining what tests to run the name are aggregated here
         std::vector<Mezzanine::String> TestGroupsToRun;           //List of tests to run
 
+    private:
+        /// @internal
+        /// @brief This is used when the passed flags at the command prompt or when a master process is executing a single tests.
+        void ExecuteSubTest()
+        {
+            for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName ) // Actually run the tests
+            {
+                try{
+                    if(DoInteractiveTest)
+                        { TestGroups[*CurrentTestName]->ShouldRunInteractiveTests(); }
+                    if(DoAutomaticTest)
+                        { TestGroups[*CurrentTestName]->ShouldRunAutomaticTests(); }
+                    TestGroups[*CurrentTestName]->RunTests();
+                } catch (std::exception e) {
+                    TestError << std::endl << e.what() << std::endl;
+                    // maybe we should log or somehting.
+                }
+
+                (*this) += *(TestGroups[*CurrentTestName]);
+            }
+        }
+
+        /// @internal
+        /// @brief this is used when there are test to execute and we need to loop over them and run each in a child process.
+        void IterateSubtests()
+        {
+            setvbuf (stdout, NULL, _IONBF, 0);
+            for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
+            {
+                ClearTempFile();
+                String SubprocessInvocation(CommandName + " " + *CurrentTestName + " " + MemSpaceArg + " " + Mezzanine::String(DoAutomaticTest?"automatic ":"") + Mezzanine::String(DoInteractiveTest?"interactive ":""));
+                if(system(SubprocessInvocation.c_str()))   // Run a single unit test as another process
+                {
+                    printf("%s", (SubprocessInvocation+String(" - Failure")).c_str() );
+                    this->AddTestResult(String("Process::" + *CurrentTestName), Testing::Failed);
+                }else {
+                    printf("%s", (SubprocessInvocation+String(" - Success")).c_str() );
+                    this->AddTestResult(String("Process::" + *CurrentTestName), Success);
+                }
+
+                try
+                {
+                    (*this) += GetResultsFromTempFile();
+                } catch (std::exception& e) {
+                    TestError << e.what() << endl;
+                }
+
+            }
+            DeleteTempFile();
+        }
+    public:
+
         /// @internal
         /// @brief Determine which tests need to be run and run them
         virtual void RunTests()
         {
-            if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running automatic tests if no type of test is specified
-                { RunAutomaticTests=true;  }
-
-            if (RunAll)
+            if (DoAutomaticTest==DoInteractiveTest && DoInteractiveTest==false)   // enforce running automatic tests if no type of test is specified
+                { DoAutomaticTest=true; }
+            if(RunAll)
             {
+                // if Runall is set it is presumed that no tests have been added to list of tests to run yet.
                 for(map<String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
                     { TestGroupsToRun.push_back(Iter->first); }
             }
 
-            if(ExecuteInThisMemorySpace) // Should we be executing the test right now?
+            if(MainProcess == GetCurrentProcessDepth())
             {
-                for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName ) // Actually run the tests
-                {
-                    try{
-                        TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
-                    } catch (std::exception e) {
-                        TestError << std::endl << e.what() << std::endl;
-                        // maybe we should log or somehting.
-                    }
-
-                    (*this) += *(TestGroups[*CurrentTestName]);
-                }
-            }else{ // No, We should be executing the test in a place that cannot possibly crash this program
-                for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
-                {
-                    ClearTempFile();
-                    if(system(String(CommandName + " " + *CurrentTestName + " " + MemSpaceArg + " " + Mezzanine::String(RunAutomaticTests?"automatic ":"") + Mezzanine::String(RunInteractiveTests?"interactive ":"")).c_str()))   // Run a single unit test as another process
-                    {
-                        this->AddTestResult(String("Process::" + *CurrentTestName), Testing::Failed);
-                    }else {
-                        this->AddTestResult(String("Process::" + *CurrentTestName), Success);
-                    }
-
-                    try
-                    {
-                        (*this) += GetResultsFromTempFile();
-                    } catch (std::exception& e) {
-                        TestError << e.what() << endl;
-                    }
-
-                }
-                DeleteTempFile();
-            } // \if(ExecuteInThisMemorySpace)
+                IterateSubtests();
+            }else{
+                ExecuteSubTest();
+            }
         } // \function
 
         /// @internal
@@ -236,8 +297,8 @@ class AllUnitTestGroups : public UnitTestGroup
                                     bool FullOutput = true,
                                     bool HeaderOutput = true)
         {
-            sleep_for(500000); // A half second sleep to allow subprocesses to finish output and not clobber stdout
-            if(ExecuteInThisMemorySpace) // we are running a test in a seperate process, so we need to control the output for communcation purposes
+            //sleep_for(500000); // A half second sleep to allow subprocesses to finish output and not clobber stdout
+            if(DoSubProcessTest) // we are running a test in a seperate process, so we need to control the output for communcation purposes
             {
                 WriteTempFile(*this);
                 UnitTestGroup::DisplayResults(Output, Error, Summary, FullOutput, HeaderOutput);
@@ -249,6 +310,16 @@ class AllUnitTestGroups : public UnitTestGroup
             }
         }
 };
+
+/// @brief Handles one argument at a time for main
+/// @details This should be the only place that configures global state in the test suite
+/// everywhere else should access global state through the accessors in mezztest.h
+/// @param Arg The argument
+void HandleSingleArgument(Mezzanine::String Arg)
+{
+
+
+}
 
 /// @brief This is the entry point for the unit test executable.
 /// @details This will contruct an AllUnitTestGroups with the listing of unit tests
@@ -264,10 +335,12 @@ class AllUnitTestGroups : public UnitTestGroup
 /// process fails. If the main process cannot create child processes it will return EXIT_FAILURE.
 /// @param argc Is interpretted as the amount of passed arguments
 /// @param argv Is interpretted as the arguments passed in from the launching shell.
-int main (int argc, char** argv)
+int main(int argc, char** argv)
 {
     ArgC = argc;
     ArgV = argv;
+    Depth = MainProcess;
+
     GlobalCoreTestGroup TestGroups;
     bool WriteFile = true;
 
@@ -293,30 +366,60 @@ int main (int argc, char** argv)
         if(ThisArg=="help")
             { return Usage(CommandName, TestGroups); }
         else if(ThisArg==MemSpaceArg)        // Check to see if we do the work now or later
-            { Runner.ExecuteInThisMemorySpace = true; }
+        {
+            Runner.ShouldRunSubProcessTests();
+            Depth = TestSubSubProcess;
+        }
         else if(ThisArg=="testlist")
             { return PrintList(TestGroups); }
         else if(ThisArg=="interactive")
-            { Runner.RunInteractiveTests=true; Runner.RunAll=false; }
+            { Runner.ShouldRunInteractiveTests(); }
         else if(ThisArg=="automatic")
-            { Runner.RunAutomaticTests=true; Runner.RunAll=false; }
+            { Runner.ShouldRunAutomaticTests(); }
         else if(ThisArg=="all")
-            { Runner.RunAll=true; }
+            { Runner.ShouldRunAllTests(); }
         else if(ThisArg=="summary")
             { FullDisplay = false, SummaryDisplay = true; }
         else if(ThisArg=="skipfile")
             { WriteFile = false; }
-        else  // Wasn't a command so it is either gibberish or a test group
+        else  // Wasn't a command so it is either gibberish or a test group or debug test group
         {
-            try
+            if(ThisArg.size() > SubTestPrefix.size())
             {
-                TestGroups.at(ThisArg.c_str());
-                Runner.RunAll=false;
-                Runner.TestGroupsToRun.push_back(AllLower(argv[c]));
-            } catch ( const std::out_of_range&) {
-                std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
-                Usage(CommandName, TestGroups);
-                return ExitInvalidArguments;
+                if( ThisArg.substr(0,SubTestPrefix.size()) == SubTestPrefix)
+                {
+                    Depth = TestSubSubProcess;
+                    ThisArg = ThisArg.substr(SubTestPrefix.size(), ThisArg.size()-SubTestPrefix.size());
+                    GlobalCoreTestGroup::iterator SearchResult = TestGroups.find(ThisArg);
+                    if(TestGroups.end()==SearchResult)
+                    {
+                        std::cerr << ThisArg << " appears to be a request to debug a sub-process that does not exist." << std::endl;
+                        Usage(CommandName, TestGroups);
+                        return ExitInvalidArguments;
+                    }
+                    if(!SearchResult->second->HasSubprocessTest())
+                    {
+                        std::cerr << ThisArg << " appears to be a request to debug a sub-process that does not have a sub process." << std::endl;
+                        Usage(CommandName, TestGroups);
+                        return ExitInvalidArguments;
+                    }
+                    SearchResult->second->ShouldRunSubProcessTests();
+                }
+            }
+            GlobalCoreTestGroup::iterator Found = TestGroups.find(String(ThisArg.c_str()));
+            if(Found != TestGroups.end())
+            {
+                Runner.DontRunAllTests();
+                Runner.TestGroupsToRun.push_back(ThisArg.c_str());
+            }else{
+                if(GetCurrentProcessDepth() == TestSubSubProcess)
+                {
+                    SubSubProcessArgument = String(ThisArg);
+                }else{
+                    std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
+                    Usage(CommandName, TestGroups);
+                    return ExitInvalidArguments;
+                }
             }
         }
     }
@@ -330,7 +433,8 @@ int main (int argc, char** argv)
         Runner.DisplayResults(OutFile, OutFile, SummaryDisplay, FullDisplay);
         OutFile.close();
     }
-    Runner.DisplayResults(cout, cerr, SummaryDisplay, FullDisplay);
+    if(MainProcess == GetCurrentProcessDepth())
+        { Runner.DisplayResults(cout, cerr, SummaryDisplay, FullDisplay); }
 
     for(AllUnitTestGroups::iterator Iter = Runner.begin(); Iter!=Runner.end(); Iter++)
     {

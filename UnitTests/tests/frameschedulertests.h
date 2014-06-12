@@ -34,7 +34,7 @@
    them, so it is best to simply contact us or the Free Software Foundation, if
    you have any questions.
 
-   Joseph Toppi - toppij@gmail.com
+   Joseph Toppi - toppij@gmail.comrrelation are clear. People with a specific class of mental disordrrelation are clear. People with a specific class of mental disorder that hinders ones sense of empathy are more likely to be cruel. Clearly the er that hinders ones sense of empathy are more likely to be cruel. Clearly the
    John Blackwood - makoenergy02@gmail.com
 */
 #ifndef _frameschedulertests_h
@@ -46,6 +46,8 @@
 #include "workunittests.h"
 #include "pugixml.h"
 
+#include <exception>
+
 /// @file
 /// @brief Test the core Framescheduler
 
@@ -53,6 +55,9 @@ using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
+
+/// @brief A String to represent the PausesWorkUnit in the crash tests.
+const String CrashNotWorkUnitName("PausesWorkUnit");
 
 /// @brief A samplework unit that that just block the thread it is in
 /// @details Used in @ref FrameSchedulerGetNext and other tests
@@ -185,6 +190,30 @@ class LoggerCheckWorkUnit : public DefaultWorkUnit
         }
 };
 
+/// @brief A String to represent the CrashUnhandledWorkUnit
+const String CrashUnhandledWorkUnitName("Unhandled");
+
+/// @brief A workunit that reliably crashes
+class CrashUnhandledWorkUnit : public PausesWorkUnit
+{
+        Integer CrashOnIteration;
+    public:
+        CrashUnhandledWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+            PausesWorkUnit(Length_, Name_),
+            CrashOnIteration(CrashOnCount)
+            { }
+
+        virtual ~CrashUnhandledWorkUnit()
+            { }
+
+        virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            PausesWorkUnit::DoWork(CurrentThreadStorage);
+            CrashOnIteration--;
+            if (CrashOnIteration<1)
+                { throw std::exception(); }
+        }
+};
 
 /// @brief Tests for the Framescheduler class
 class frameschedulertests : public UnitTestGroup
@@ -1124,15 +1153,84 @@ class frameschedulertests : public UnitTestGroup
                 TestOutput << "Without knowing the performance of this machine ahead of time, knowing the size of the pause is impossible, how it can be tested for sane values, it is: "
                      << PauseLength << "  microseconds." << endl;
                 TEST( (0<=PauseLength) && (PauseLength<=FrameLength+1),"LastPauseData" );
+            }
+
+            {
+                String Results;
+
+                Results = LaunchSubProcessTest(CrashNotWorkUnitName);
+                TestOutput << endl << "Launching a subprocess which will not crash:" << endl
+                           << "=============================" << endl
+                           << Results << endl
+                           << "=============================" << endl;
+                pugi::xml_document doc;
+                doc.load_buffer(Results.c_str(),Results.size());
 
             }
 
+            {
+                String Results;
+
+                Results = LaunchSubProcessTest(CrashUnhandledWorkUnitName);
+                TestOutput << endl << "Launching a subprocess which will crash because of unhandled exceptions:" << endl
+                           << "=============================" << endl
+                           << Results << endl
+                           << "=============================" << endl;
+                pugi::xml_document doc;
+                doc.load_buffer(Results.c_str(),Results.size());
+
+            }
 
         }
-
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const
+            { return true; }
+
+        /// @brief This will be launched in a sub sub process by the unit test framework.
+        virtual void RunSubprocessTest(const String& Arg)
+        {
+            // Please use automatic storage for your Frameschedulers, I did this to carefully manage
+            // lifetime to insure I could force crashes, this is not a good idea outside of tests.
+            FrameScheduler* Scheduler = new FrameScheduler(&std::cout);
+            Scheduler->SetThreadCount(1);
+            PausesWorkUnit* A = new PausesWorkUnit(0,"WorkUnitA");
+            PausesWorkUnit* B = NULL;
+            PausesWorkUnit* C = new PausesWorkUnit(0,"WorkUnitC");
+            LogAggregator *Agg = new LogAggregator;
+
+            if(CrashUnhandledWorkUnitName == Arg)
+                { B = new CrashUnhandledWorkUnit(0, 0,"WorkUnitB"); }
+            if(CrashNotWorkUnitName == Arg)
+                { B = new PausesWorkUnit(0,"WorkUnitB"); }
+
+            if(NULL == B)
+            {
+                printf("No workunit selected for tests");
+                exit(ExitFailure);
+            }
+
+            B->AddDependency(A);
+            C->AddDependency(B);
+            Agg->AddDependency(C);
+
+            Scheduler->AddWorkUnitMain(A, A->Name);
+            Scheduler->AddWorkUnitMain(B, B->Name);
+            Scheduler->AddWorkUnitMain(C, C->Name);
+            Scheduler->AddWorkUnitMain(Agg, "Aggregator");
+
+            //create a framescheduler and crash it here
+            Scheduler->DoOneFrame();
+            Scheduler->ForceLogFlush();
+
+            delete Scheduler;
+            delete A;
+            delete B;
+            delete C;
+            delete Agg;
+        }
+        /// @brief Needs subprocesses so it returns true.
+        virtual bool HasSubprocessTest() const
             { return true; }
 };
 

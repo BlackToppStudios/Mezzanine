@@ -43,12 +43,12 @@
 /// @file
 /// @brief The definition of the string manipulation functions the unit tests use
 
-#include "testdata.h"
-#include "consolestringmanipulation.h"
+#include "mezztest.h"
 
 #include <vector>
 #include <stdexcept>
 #include <sstream>
+#include <cassert>
 
 using namespace Mezzanine;
 using namespace std;
@@ -106,28 +106,64 @@ namespace Mezzanine
             return Results;
         }
 
-        UnitTestGroup::UnitTestGroup() :
-            LongestNameLength(0)
+        void UnitTestGroup::CaptureOutputBuffers()
+        {
+            CoutStreamBuf = cout.rdbuf();
+            cout.rdbuf(TestOutput.rdbuf());
+            CerrStreamBuf = cerr.rdbuf();
+            cerr.rdbuf(TestError.rdbuf());
+        }
+
+        void UnitTestGroup::RestoreOutputBuffers()
+        {
+            assert(CoutStreamBuf);
+            assert(CoutStreamBuf);
+            cout.rdbuf(CoutStreamBuf);
+            cout.rdbuf(CerrStreamBuf);
+        }
+
+        UnitTestGroup::UnitTestGroup()
+            :   CoutStreamBuf(0),
+                CerrStreamBuf(0),
+                LongestNameLength(0),
+                DoSubProcessTest(false),
+                DoAutomaticTest(false),
+                DoInteractiveTest(false),
+                Completed(0)
         {}
 
         UnitTestGroup::UnitTestGroup(const UnitTestGroup& OtherGroup)
-            : //set(OtherGroup),
-              TestOutput(OtherGroup.TestOutput.str()),
-              TestError(OtherGroup.TestError.str())
+            :   TestOutput(OtherGroup.TestOutput.str()),
+                TestError(OtherGroup.TestError.str()),
+                CoutStreamBuf(0),
+                CerrStreamBuf(0),
+                DoSubProcessTest(OtherGroup.DoSubProcessTest),
+                DoAutomaticTest(OtherGroup.DoAutomaticTest),
+                DoInteractiveTest(OtherGroup.DoInteractiveTest),
+                Completed(0)
         { insert(OtherGroup.begin(),OtherGroup.end()); }
 
-        void UnitTestGroup::RunTests(bool RunAuto, bool RunInteractive)
-        {
-            streambuf* CoutStreamBuf = cout.rdbuf();
-            cout.rdbuf(TestOutput.rdbuf());
-            streambuf* CerrStreamBuf = cerr.rdbuf();
-            cerr.rdbuf(TestError.rdbuf());
 
+
+        void UnitTestGroup::RunTests()
+        {
+            if(DoSubProcessTest)
+                { RunSubprocessTest(GetSubSubProcessArgument()); }
+            else
+            {
+                OutputCaptureManager Guard(this);
+                LaunchAutomaticTest();
+                LaunchInteractiveTest();
+            }
+        }
+
+        void UnitTestGroup::LaunchAutomaticTest()
+        {
             TestOutput << std::endl << "<AutomaticTestOutput><![CDATA[" << std::endl;
-            TestError << std::endl<< "<AutomaticTestError><![CDATA[" << std::endl;
+            TestError << std::endl << "<AutomaticTestError><![CDATA[" << std::endl;
             try
             {
-                if(RunAuto)
+                if(DoAutomaticTest)
                     { RunAutomaticTests(); }
                 else if(HasAutomaticTests())
                     { AddTestResult( TestData("AutomaticTests",Testing::Skipped, "RunTests") );}
@@ -136,14 +172,17 @@ namespace Mezzanine
                           << "Message: " << e.what() << endl;
                 AddTestResult( TestData("UnhandledException", Testing::Failed) );
             }
-            TestOutput << std::endl<< "]]></AutomaticTestOutput>" << std::endl;
-            TestError << std::endl<< "]]></AutomaticTestError>" << std::endl;
+            TestOutput << std::endl << "]]></AutomaticTestOutput>" << std::endl;
+            TestError << std::endl << "]]></AutomaticTestError>" << std::endl;
+        }
 
-            TestOutput << "<InteractiveTestOutput><![CDATA[" << std::endl;
-            TestError << "<InteractiveTestError><![CDATA[" << std::endl;
+        void UnitTestGroup::LaunchInteractiveTest()
+        {
+            TestOutput << std::endl << "<InteractiveTestOutput><![CDATA[" << std::endl;
+            TestError << std::endl << "<InteractiveTestError><![CDATA[" << std::endl;
             try
             {
-                if(RunInteractive)
+                if(DoInteractiveTest)
                     { RunInteractiveTests(); }
                 else if(HasInteractiveTests())
                     { AddTestResult( TestData("InteractiveTests",Testing::Skipped, "RunTests") );}
@@ -154,24 +193,34 @@ namespace Mezzanine
             }
             TestOutput << std::endl << "]]></InteractiveTestOutput>" << std::endl;
             TestError << std::endl << "]]></InteractiveTestError>" << std::endl;
-
-            cout.rdbuf(CoutStreamBuf);
-            cout.rdbuf(CerrStreamBuf);
         }
+
+        String UnitTestGroup::LaunchSubProcessTest(const String& Argument)
+            { return GetCommandResults(GetExecutableName() + String(" ") + SubTestPrefix + Name() + String(" ") + Argument); }
 
         void UnitTestGroup::RunAutomaticTests()
             {}
         bool UnitTestGroup::HasAutomaticTests() const
             { return false; }
+        void UnitTestGroup::ShouldRunAutomaticTests()
+            { DoAutomaticTest = true; }
 
         void UnitTestGroup::RunInteractiveTests()
             {}
         bool UnitTestGroup::HasInteractiveTests() const
             { return false; }
+        void UnitTestGroup::ShouldRunInteractiveTests()
+            { DoInteractiveTest = true; }
+
+        void UnitTestGroup::RunSubprocessTest(const String& Arg)
+            {}
+        bool UnitTestGroup::HasSubprocessTest() const
+            { return false; }
+        void UnitTestGroup::ShouldRunSubProcessTests()
+            { DoSubProcessTest = true; }
 
         Mezzanine::String UnitTestGroup::Name()
             { return ""; }
-
 
         void UnitTestGroup::AddTestResult(TestData CurrentTest, OverWriteResults Behavior)
         {
@@ -273,7 +322,11 @@ namespace Mezzanine
                         TestOutput << std::endl;
                     }
                     else if(String("UnitTestError")==CurrentName)
-                        { TestError << std::endl << Iter->text() << std::endl; }
+                    {
+                        String Text(Iter->text().as_string());
+                        if(Text.size()>0)
+                           { TestError << std::endl << Text << std::endl; }
+                    }
                     else
                     {
                         throw std::invalid_argument(
@@ -364,7 +417,7 @@ namespace Mezzanine
                 Output.flush();
             }
 
-            if(FullOutput && TestError.str().size()>3 ) // Sometimes the copying put "0\r\n" in TestError
+            if(FullOutput && TestError.str().size()>5 ) // Sometimes the copying put "0\r\n" in TestError
                 { Error << "Errors: " << TestError.str(); }
         }
 
@@ -384,6 +437,7 @@ namespace Mezzanine
                 AddTestResult( TestData("UnhandledException", Testing::Failed, FuncName, File, Line) );
             }
         }
+
 
 
     }// Testing

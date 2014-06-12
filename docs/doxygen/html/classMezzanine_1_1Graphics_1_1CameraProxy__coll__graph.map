@@ -1,52 +1,52 @@
 <map id="Mezzanine::Graphics::CameraProxy" name="Mezzanine::Graphics::CameraProxy">
-<area shape="rect" id="node116" href="$classMezzanine_1_1CameraController.html" title="This is a simplified controller class for use with cameras. " alt="" coords="2303,1062,2492,1090"/>
-<area shape="rect" id="node127" href="$classMezzanine_1_1Graphics_1_1Viewport.html" title="This class is for creating and managing viewports within a game window. " alt="" coords="2695,1054,2833,1098"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1RenderableProxy.html" title="This is the base proxy class for world proxies wrapping functionality of the graphics subsystem..." alt="" coords="2976,785,3115,829"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems. " alt="" coords="1844,670,1999,698"/>
-<area shape="rect" id="node37" href="$classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled. " alt="" coords="1120,785,1253,829"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="1880,398,2051,442"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world. " alt="" coords="1768,531,1928,559"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="1733,406,1856,434"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="1732,195,1903,223"/>
-<area shape="rect" id="node40" href="$classMezzanine_1_1Physics_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions. " alt="" coords="1519,1315,1652,1359"/>
-<area shape="rect" id="node93" href="$classMezzanine_1_1Graphics_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="3200,1054,3339,1098"/>
-<area shape="rect" id="node110" href="$classMezzanine_1_1Graphics_1_1CameraManager.html" title="This is the manager class for all camera functions. " alt="" coords="2373,1315,2512,1359"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="383,107,551,135"/>
-<area shape="rect" id="node135" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user. " alt="" coords="2677,1534,2816,1578"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="535,6,668,34"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="575,99,716,143"/>
-<area shape="rect" id="node25" title="STL class. " alt="" coords="889,406,964,434"/>
-<area shape="rect" id="node83" href="$classMezzanine_1_1WorldTrigger.html" title="This is an abstract class for creating in&#45;game triggers. " alt="" coords="1131,531,1293,559"/>
-<area shape="rect" id="node90" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="1263,593,1396,637"/>
-<area shape="rect" id="node98" href="$classMezzanine_1_1Graphics_1_1SceneManagerData.html" title="Stores internal data for the SCeneManager to keep it from cluttering the Header file. " alt="" coords="3151,1193,3292,1237"/>
-<area shape="rect" id="node138" href="$classMezzanine_1_1ObjectSettingsHandler.html" title="An abstract class for other classes that manage groups of settings. " alt="" coords="227,911,400,955"/>
-<area shape="rect" id="node142" href="$classMezzanine_1_1ObjectSettingFile.html" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s. " alt="" coords="453,531,643,559"/>
-<area shape="rect" id="node149" href="$classMezzanine_1_1ObjectSettingSetContainer.html" title="A base class for other classes that store ObjectSettingSet&#39;s. " alt="" coords="939,523,1107,567"/>
-<area shape="rect" id="node27" title="STL class. " alt="" coords="867,289,987,333"/>
-<area shape="rect" id="node31" href="$classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world. " alt="" coords="1436,911,1569,955"/>
-<area shape="rect" id="node35" href="$structMezzanine_1_1Physics_1_1CollisionInternalData.html" title="Used to insulate the interface from the implementation details for bullet. " alt="" coords="1429,785,1576,829"/>
-<area shape="rect" id="node56" href="$classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled. " alt="" coords="1279,911,1412,955"/>
-<area shape="rect" id="node65" href="$classMezzanine_1_1Physics_1_1CollidablePair.html" title="This is a helper class for storing pairs of collidable proxies in associative containers. " alt="" coords="1121,911,1255,955"/>
-<area shape="rect" id="node73" href="$classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer. " alt="" coords="1643,1425,1789,1469"/>
-<area shape="rect" id="node77" href="$classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers. " alt="" coords="1936,1425,2131,1469"/>
-<area shape="rect" id="node43" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="1969,1193,2116,1237"/>
-<area shape="rect" id="node180" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads. " alt="" coords="2756,1315,2903,1359"/>
-<area shape="rect" id="node45" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="2013,911,2160,955"/>
-<area shape="rect" id="node50" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="1921,1054,2089,1098"/>
-<area shape="rect" id="node54" href="$classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported. " alt="" coords="1289,1054,1423,1098"/>
-<area shape="rect" id="node68" href="$classMezzanine_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem. " alt="" coords="1444,1193,1617,1237"/>
-<area shape="rect" id="node86" href="$classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html" title="This is a helper class storing information needed for the construction of a PhysicsManager. " alt="" coords="1675,1123,1845,1167"/>
-<area shape="rect" id="node88" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="2577,793,2711,821"/>
-<area shape="rect" id="node101" href="$classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world. " alt="" coords="2887,991,3009,1019"/>
-<area shape="rect" id="node96" href="$classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" title="A thread specific collection of double&#45;buffered and algorithm specific resources. ..." alt="" coords="3447,911,3604,955"/>
-<area shape="rect" id="node104" href="$classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space. " alt="" coords="3363,1062,3515,1090"/>
-<area shape="rect" id="node118" href="$structMezzanine_1_1AngleLimits.html" title="Boundaries for rotation on one axis. " alt="" coords="2379,919,2533,947"/>
-<area shape="rect" id="node120" href="$classMezzanine_1_1RayQueryTool.html" title="This provides a number of optional tools for working with a Mezzanine::World. " alt="" coords="2184,919,2355,947"/>
-<area shape="rect" id="node129" href="$classMezzanine_1_1Graphics_1_1GameWindow.html" title="This class is for creating and managing game windows. " alt="" coords="2584,1315,2723,1359"/>
-<area shape="rect" id="node131" href="$structMezzanine_1_1Graphics_1_1WindowSettings.html" title="This stores all the basic configuration options a game window supports. " alt="" coords="2937,1193,3076,1237"/>
-<area shape="rect" id="node133" href="$classMezzanine_1_1Graphics_1_1Resolution.html" title="This stores all the basic configuration options a game window supports. " alt="" coords="2857,1054,2996,1098"/>
-<area shape="rect" id="node168" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;" alt="" coords="2675,1643,2819,1687"/>
-<area shape="rect" id="node147" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together. " alt="" coords="589,662,757,706"/>
-<area shape="rect" id="node153" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object. " alt="" coords="832,670,1019,698"/>
-<area shape="rect" id="node178" href="$classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" title="This does the main loop processing for required to make the Graphics Manager function. " alt="" coords="3227,1425,3365,1469"/>
+<area shape="rect" id="node117" href="$classMezzanine_1_1CameraController.html" title="This is a simplified controller class for use with cameras. " alt="" coords="2085,1121,2280,1151"/>
+<area shape="rect" id="node128" href="$classMezzanine_1_1Graphics_1_1Viewport.html" title="This class is for creating and managing viewports within a game window. " alt="" coords="1749,1113,1893,1159"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1RenderableProxy.html" title="This is the base proxy class for world proxies wrapping functionality of the graphics subsystem..." alt="" coords="2496,827,2640,874"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems. " alt="" coords="1636,705,1796,735"/>
+<area shape="rect" id="node38" href="$classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled. " alt="" coords="1075,827,1213,874"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="1676,427,1852,474"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world. " alt="" coords="1509,580,1675,609"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="1527,436,1652,465"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="1955,209,2131,239"/>
+<area shape="rect" id="node41" href="$classMezzanine_1_1Physics_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions. " alt="" coords="951,1382,1089,1429"/>
+<area shape="rect" id="node94" href="$classMezzanine_1_1Graphics_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="2723,1113,2867,1159"/>
+<area shape="rect" id="node111" href="$classMezzanine_1_1Graphics_1_1CameraManager.html" title="This is the manager class for all camera functions. " alt="" coords="2433,1382,2577,1429"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="436,111,609,140"/>
+<area shape="rect" id="node136" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user. " alt="" coords="1321,1611,1465,1658"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="592,5,733,35"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="633,102,780,149"/>
+<area shape="rect" id="node25" title="STL class. " alt="" coords="992,315,1072,344"/>
+<area shape="rect" id="node84" href="$classMezzanine_1_1WorldTrigger.html" title="This is an abstract class for creating in&#45;game triggers. " alt="" coords="757,436,923,465"/>
+<area shape="rect" id="node91" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="1267,499,1405,546"/>
+<area shape="rect" id="node99" href="$classMezzanine_1_1Graphics_1_1SceneManagerData.html" title="Stores internal data for the SCeneManager to keep it from cluttering the Header file. " alt="" coords="2604,1257,2748,1303"/>
+<area shape="rect" id="node139" href="$classMezzanine_1_1ObjectSettingsHandler.html" title="An abstract class for other classes that manage groups of settings. " alt="" coords="76,827,255,874"/>
+<area shape="rect" id="node143" href="$classMezzanine_1_1ObjectSettingFile.html" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s. " alt="" coords="541,436,733,465"/>
+<area shape="rect" id="node150" href="$classMezzanine_1_1ObjectSettingSetContainer.html" title="A base class for other classes that store ObjectSettingSet&#39;s. " alt="" coords="947,427,1117,474"/>
+<area shape="rect" id="node27" title="STL class. " alt="" coords="969,201,1095,247"/>
+<area shape="rect" id="node32" href="$classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world. " alt="" coords="1317,961,1456,1007"/>
+<area shape="rect" id="node36" href="$structMezzanine_1_1Physics_1_1CollisionInternalData.html" title="Used to insulate the interface from the implementation details for bullet. " alt="" coords="1237,827,1387,874"/>
+<area shape="rect" id="node57" href="$classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled. " alt="" coords="864,961,1003,1007"/>
+<area shape="rect" id="node66" href="$classMezzanine_1_1Physics_1_1CollidablePair.html" title="This is a helper class for storing pairs of collidable proxies in associative containers. " alt="" coords="1155,961,1293,1007"/>
+<area shape="rect" id="node74" href="$classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer. " alt="" coords="561,1497,716,1543"/>
+<area shape="rect" id="node78" href="$classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers. " alt="" coords="813,1497,1013,1543"/>
+<area shape="rect" id="node44" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="503,1257,652,1303"/>
+<area shape="rect" id="node181" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads. " alt="" coords="391,1382,540,1429"/>
+<area shape="rect" id="node46" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="345,961,495,1007"/>
+<area shape="rect" id="node51" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="577,1113,751,1159"/>
+<area shape="rect" id="node55" href="$classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported. " alt="" coords="825,1113,964,1159"/>
+<area shape="rect" id="node69" href="$classMezzanine_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem. " alt="" coords="1217,1257,1396,1303"/>
+<area shape="rect" id="node87" href="$classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html" title="This is a helper class storing information needed for the construction of a PhysicsManager. " alt="" coords="1496,1185,1672,1231"/>
+<area shape="rect" id="node89" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="2228,836,2367,865"/>
+<area shape="rect" id="node102" href="$classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world. " alt="" coords="2557,1047,2683,1076"/>
+<area shape="rect" id="node97" href="$classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" title="A thread specific collection of double&#45;buffered and algorithm specific resources. ..." alt="" coords="2928,961,3091,1007"/>
+<area shape="rect" id="node105" href="$classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space. " alt="" coords="2891,1121,3045,1151"/>
+<area shape="rect" id="node119" href="$structMezzanine_1_1AngleLimits.html" title="Boundaries for rotation on one axis. " alt="" coords="2075,969,2235,999"/>
+<area shape="rect" id="node121" href="$classMezzanine_1_1RayQueryTool.html" title="This provides a number of optional tools for working with a Mezzanine::World. " alt="" coords="1875,969,2051,999"/>
+<area shape="rect" id="node130" href="$classMezzanine_1_1Graphics_1_1GameWindow.html" title="This class is for creating and managing game windows. " alt="" coords="1468,1382,1612,1429"/>
+<area shape="rect" id="node132" href="$structMezzanine_1_1Graphics_1_1WindowSettings.html" title="This stores all the basic configuration options a game window supports. " alt="" coords="1917,1257,2061,1303"/>
+<area shape="rect" id="node134" href="$classMezzanine_1_1Graphics_1_1Resolution.html" title="This stores all the basic configuration options a game window supports. " alt="" coords="1917,1113,2061,1159"/>
+<area shape="rect" id="node169" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;" alt="" coords="1320,1726,1467,1773"/>
+<area shape="rect" id="node148" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together. " alt="" coords="683,571,853,618"/>
+<area shape="rect" id="node154" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object. " alt="" coords="1059,580,1251,609"/>
+<area shape="rect" id="node179" href="$classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" title="This does the main loop processing for required to make the Graphics Manager function. " alt="" coords="393,1497,537,1543"/>
 </map>

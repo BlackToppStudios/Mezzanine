@@ -45,31 +45,43 @@
 #include "Physics/physicsmanager.h"
 #include "Graphics/scenemanager.h"
 //#include "pagingmanager.h"
+#include "actormanager.h"
+#include "areaeffectmanager.h"
+#include "Graphics/cameramanager.h"
+#include "Audio/soundscapemanager.h"
+#include "terrainmanager.h"
 
 namespace Mezzanine
 {
-    World::World()
+    World::World(const String& WorldName) :
+        Name(WorldName)
     {
-        // Setup our default parameters
-        //NameValuePairList Params;
-        //Params.push_back( NameValuePair("InternalManagerTypeName","DefaultSceneManager") );
+        Physics::ManagerConstructionInfo PhysicsInfo;
+        std::vector <WorldManager*> temp;
 
-
+        this->Construct(PhysicsInfo,"DefaultSceneManager",temp);
     }
 
-    World::World(const WorldManagerContainer& Managers)
+    World::World(const String& WorldName, const WorldManagerContainer& Managers) :
+        Name(WorldName)
     {
+        Physics::ManagerConstructionInfo PhysicsInfo;
 
+        this->Construct(PhysicsInfo,"DefaultSceneManager",Managers);
     }
 
-    World::World(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType)
+    World::World(const String& WorldName, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType) :
+        Name(WorldName)
     {
+        std::vector <WorldManager*> temp;
 
+        this->Construct(PhysicsInfo, SceneType, temp);
     }
 
-    World::World(const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType)
+    World::World(const String& WorldName, const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType) :
+        Name(WorldName)
     {
-
+        this->Construct(PhysicsInfo, SceneType, Managers);
     }
 
     World::World(const XML::Node& SelfNode)
@@ -80,6 +92,30 @@ namespace Mezzanine
     World::~World()
     {
         this->Deinitialize();
+    }
+
+    void World::Construct(const Physics::ManagerConstructionInfo& PhysicsInfo,
+            const String& SceneType, const std::vector <WorldManager*>& ManagerToBeAdded  )
+    {
+        //add each manager that was passed in to the manager list
+        for(std::vector<WorldManager*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
+            { this->AddManager(*iter); }
+
+        if(this->GetActorManager()==0)
+            { this->AddManager(new ActorManager()); }
+        if(this->GetAreaEffectManager()==0)
+            { this->AddManager(new AreaEffectManager()); }
+        if(this->GetCameraManager()==0)
+            { this->AddManager(new Graphics::CameraManager()); }
+        if(this->GetPhysicsManager()==0)
+            { this->AddManager(new Physics::PhysicsManager(PhysicsInfo)); }
+        if(this->GetSceneManager()==0)
+            { this->AddManager(new Graphics::SceneManager(SceneType)); }
+    }
+
+    const String& World::GetName() const
+    {
+        return this->Name;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -150,46 +186,56 @@ namespace Mezzanine
         }
     }
 
+    void World::RemoveAllManagers()
+    {
+        WorldManagers.clear();
+    }
+
+    std::vector<WorldManager*> World::GetWorldManagers()
+    {
+        return WorldManagers;
+    }
+
     ActorManager* World::GetActorManager()
     {
-        //return dynamic_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) );
-        return NULL;
+        return static_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) );
+        //return NULL;
     }
 
     AreaEffectManager* World::GetAreaEffectManager()
     {
-        //return dynamic_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
-        return NULL;
+        return static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
+        //return NULL;
     }
 
-    CameraManager* World::GetCameraManager()
+    Graphics::CameraManager* World::GetCameraManager()
     {
-        //return dynamic_cast<CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager) );
-        return NULL;
+        return static_cast<Graphics::CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager) );
+        //return NULL;
     }
 
     Physics::PhysicsManager* World::GetPhysicsManager()
     {
-        //return dynamic_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
-        return NULL;
+        return static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
+        //return NULL;
     }
 
     Graphics::SceneManager* World::GetSceneManager()
     {
-        //return dynamic_cast<SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
-        return NULL;
+        return static_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
+        //return NULL;
     }
 
     Audio::SoundScapeManager* World::GetSoundScapeManager()
     {
-        //return dynamic_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
-        return NULL;
+        return static_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
+        //return NULL;
     }
 
     TerrainManager* World::GetTerrainManager()
     {
-        //return dynamic_cast<TerrainManager*>( this->GetManager(ManagerBase::MT_TerrainManager) );
-        return NULL;
+        return static_cast<TerrainManager*>( this->GetManager(ManagerBase::MT_TerrainManager) );
+        //return NULL;
     }
 }//Mezzanine
 
