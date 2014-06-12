@@ -258,17 +258,49 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators
 
-    Vector3 Vector3::operator+ (const Vector3 &Vec) const
+    Vector3 Vector3::operator+ (const Vector3& Vec) const
         { return Vector3(X+Vec.X, Y+Vec.Y, Z+Vec.Z ); }
 
-    Vector3 Vector3::operator- (const Vector3 &Vec) const
+    Vector3 Vector3::operator- (const Vector3& Vec) const
         { return Vector3(X-Vec.X, Y-Vec.Y, Z-Vec.Z ); }
 
-    Vector3 Vector3::operator* (const Vector3 &Vec) const
+    Vector3 Vector3::operator* (const Vector3& Vec) const
         { return Vector3(X*Vec.X, Y*Vec.Y, Z*Vec.Z ); }
 
-    Vector3 Vector3::operator/ (const Vector3 &Vec) const
+    Vector3 Vector3::operator/ (const Vector3& Vec) const
         { return Vector3(X/Vec.X, Y/Vec.Y, Z/Vec.Z ); }
+
+    Vector3& Vector3::operator+= (const Vector3& Vec)
+    {
+        this->X += Vec.X;
+        this->Y += Vec.Y;
+        this->Z += Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator-= (const Vector3& Vec)
+    {
+        this->X -= Vec.X;
+        this->Y -= Vec.Y;
+        this->Z -= Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator*= (const Vector3& Vec)
+    {
+        this->X *= Vec.X;
+        this->Y *= Vec.Y;
+        this->Z *= Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator/= (const Vector3& Vec)
+    {
+        this->X /= Vec.X;
+        this->Y /= Vec.Y;
+        this->Z /= Vec.Z;
+        return *this;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators with btVector3

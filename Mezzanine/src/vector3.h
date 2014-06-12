@@ -276,22 +276,39 @@ namespace Mezzanine
         /// @details Allows for addition from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         /// @return A copy of the calculated Vector3 to allow chained expresions.
-        Vector3 operator+ (const Vector3 &Vec) const;
+        Vector3 operator+ (const Vector3& Vec) const;
         /// @brief Subraction Operator
         /// @details Allows for subtraction from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         /// @return A copy of the calculated Vector3 to allow chained expresions.
-        Vector3 operator- (const Vector3 &Vec) const;
+        Vector3 operator- (const Vector3& Vec) const;
         /// @brief Multiplaction Operator
         /// @details Allows for multiplaction from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         /// @return A copy of the calculated Vector3 to allow chained expresions.
-        Vector3 operator* (const Vector3 &Vec) const;
+        Vector3 operator* (const Vector3& Vec) const;
         /// @brief Division Operator
         /// @details Allows for division from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         /// @return A copy of the calculated Vector3 to allow chained expresions.
-        Vector3 operator/ (const Vector3 &Vec) const;
+        Vector3 operator/ (const Vector3& Vec) const;
+
+        /// @brief Addition Assignment Operator.
+        /// @param Vec The other Vector3 to be added.
+        /// @return Returns a reference to this.
+        Vector3& operator+= (const Vector3& Vec);
+        /// @brief Subraction Assignment Operator.
+        /// @param Vec The other Vector3 to be subtracted.
+        /// @return Returns a reference to this.
+        Vector3& operator-= (const Vector3& Vec);
+        /// @brief Multiplaction Assignment Operator.
+        /// @param Vec The other Vector3 to be multiplied.
+        /// @return Returns a reference to this.
+        Vector3& operator*= (const Vector3& Vec);
+        /// @brief Division Assignment Operator.
+        /// @param Vec The other Vector3 to be divided.
+        /// @return Returns a reference to this.
+        Vector3& operator/= (const Vector3& Vec);
 
         /////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with btVector3
