@@ -56,12 +56,6 @@ class threaddefinetests : public UnitTestGroup
         void RunInteractiveTests()
         {
             TestResult Answer;
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-                Answer = GetTestAnswerFromStdin( "Barriers used to minimize thread creation. Is this corrent?");
-            #else
-                Answer = GetTestAnswerFromStdin("Threads created and joined each frame. Barriers not set for use, is that correct?");
-            #endif
-            TEST_RESULT(Answer, "MEZZ_USEBARRIERSEACHFRAME");
 
             #ifdef MEZZ_DEBUG
                 Answer = GetTestAnswerFromStdin( "Was MEZZ_DEBUG set to True when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? ");

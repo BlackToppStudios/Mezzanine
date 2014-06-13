@@ -1198,8 +1198,8 @@ class frameschedulertests : public UnitTestGroup
             }
 
             {
-                CrashTest(CrashDoesNotWorkUnitName);
-                CrashTest(CrashUnhandledThrowWorkUnitName);
+                //CrashTest(CrashDoesNotWorkUnitName);
+                //CrashTest(CrashUnhandledThrowWorkUnitName);
             }
 
             /*{

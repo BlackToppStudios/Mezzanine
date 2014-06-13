@@ -147,18 +147,6 @@
         #endif
     #endif
 
-
-    /// @def MEZZ_USEBARRIERSEACHFRAME
-    /// @brief This is used to configure whether to re-create threads each frame of or synchronize.
-    /// @details Any synchronization will be done with atomic @ref Mezzanine::Threading::Barrier "Barrier". This is
-    /// controlled by the CMake (or other build system) option Mezz_MinimizeThreadsEachFrame.
-    #ifndef MEZZ_USEBARRIERSEACHFRAME
-        #define MEZZ_USEBARRIERSEACHFRAME
-    #endif
-    #ifndef _MEZZ_MINTHREADS_
-        #undef MEZZ_USEBARRIERSEACHFRAME
-    #endif
-
     /// @def MEZZ_USEATOMICSTODECACHECOMPLETEWORK
     /// @brief This is used to configure whether to atomically store a shortcut to skip checking all workunits.
     /// @details When this is enabled @ref Mezzanine::Threading::AtomicCompareAndSwap32 "Atomic CAS" operations are used to maintain

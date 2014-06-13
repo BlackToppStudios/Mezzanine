@@ -45,7 +45,7 @@
 #
 # This file primarily gathers information from the developer about the build environment
 # and desired game engine options. It makes this information available to the rest of
-# the include cmake files to minimizie duplicated effort.
+# the include cmake files to minimize duplicated effort.
 #
 # Here is a listing of some of the values that this files sets up for consumption by other
 # build scripts, that can be set as cmake options:
@@ -66,7 +66,6 @@
 # Advanced Mezzanine build options
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
-#        Mezz_MinimizeThreadsEachFrame      - On some platforms thread creation is expensive, on others it is cheap and atomics expensive. Use this with your favorite benchmark to maximize performance.
 #        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
 #        Mezz_FramesToTrack                 - How many frame should the runtime performance metrics be tracked for
 #        Mezz_Lua51IncludeDirectory         - Location of headers for lua 5.1
@@ -340,13 +339,6 @@ endif(${Mezz_Tools_EntreLua})
 
 #How long should the default length on rolling averages and other multiframe periods be.
 set(Mezz_FramesToTrack 10 CACHE STRING "How long should frame durations be tracked for")
-
-# Allow the developer to select if New thread should be created each frame or if an atomic barrier should be used to synchronized threads.
-option(Mezz_MinimizeThreadsEachFrame "Used atomics to minimize thread creation" OFF)
-set(MinimizeThreads THREADSEACHFRAME)
-if (Mezz_MinimizeThreadsEachFrame)
-    set(MinimizeThreads MINTHREADS)
-endif (Mezz_MinimizeThreadsEachFrame)
 
 #When looking for work use atomics to advance iterators past complete work units.
 option(Mezz_DecacheWorkUnits "Use atomics to minimize how many WorkUnits are likely to be in CPU cache]." ON)
