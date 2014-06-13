@@ -37,50 +37,40 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsprocedural_h
-#define _graphicsprocedural_h
+
+#ifndef _graphicsimage_cpp
+#define _graphicsimage_cpp
+
+#include "Graphics/image.h"
+#include <Ogre.h>
 
 namespace Mezzanine
 {
     namespace Graphics
     {
-        /// @namespace Mezzanine::Graphics::Procedural
-        /// @brief This namespace is for all the classes that facilitate the procedural creation of art assets.
-        /// @details Our Procedural Graphics system is based on the OgreProcedural library.
-        namespace Procedural
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class InternalImageData
+        /// @brief This class is used to store the internal structures needed by the Image class.
+        ///////////////////////////////////////
+        class MEZZ_LIB InternalImageData
+        {
+            public:
+                Ogre::Image GraphicsImage;
+        };//InternalTextureData
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Image Methods
+
+        Image::Image()
         {
 
-        }//Procedural
+        }
+
+        Image::~Image()
+        {
+
+        }
     }//Graphics
 }//Mezzanine
-
-#include "Graphics/Procedural/proceduraldatatypes.h"
-#include "Graphics/Procedural/proceduralenumerations.h"
-#include "Graphics/Procedural/proceduralutilities.h"
-
-#include "Graphics/Procedural/booleanmeshgenerator.h"
-#include "Graphics/Procedural/boxcornergenerator.h"
-#include "Graphics/Procedural/boxgenerator.h"
-#include "Graphics/Procedural/capsulegenerator.h"
-#include "Graphics/Procedural/conegenerator.h"
-#include "Graphics/Procedural/curvetrack.h"
-#include "Graphics/Procedural/cylindergenerator.h"
-#include "Graphics/Procedural/icospheregenerator.h"
-#include "Graphics/Procedural/meshgenerator.h"
-#include "Graphics/Procedural/multishape.h"
-#include "Graphics/Procedural/path.h"
-#include "Graphics/Procedural/planegenerator.h"
-#include "Graphics/Procedural/roundedboxgenerator.h"
-#include "Graphics/Procedural/shape.h"
-#include "Graphics/Procedural/spheregenerator.h"
-#include "Graphics/Procedural/springgenerator.h"
-#include "Graphics/Procedural/texturebuffer.h"
-#include "Graphics/Procedural/texturegenerators.h"
-#include "Graphics/Procedural/texturemodifiers.h"
-#include "Graphics/Procedural/torusgenerator.h"
-#include "Graphics/Procedural/torusknotgenerator.h"
-#include "Graphics/Procedural/trianglebuffer.h"
-#include "Graphics/Procedural/triangulator.h"
-#include "Graphics/Procedural/tubegenerator.h"
 
 #endif

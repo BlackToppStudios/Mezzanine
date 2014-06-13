@@ -37,50 +37,45 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsprocedural_h
-#define _graphicsprocedural_h
+/*
+ -----------------------------------------------------------------------------
+ This source file is part of ogre-procedural
+
+ For the latest info, see http://code.google.com/p/ogre-procedural/
+
+ Copyright (c) 2010-2013 Michael Broutin
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ -----------------------------------------------------------------------------
+ */
+#ifndef _graphicsproceduraltexturebuffer_h
+#define _graphicsproceduraltexturebuffer_h
 
 namespace Mezzanine
 {
     namespace Graphics
     {
-        /// @namespace Mezzanine::Graphics::Procedural
-        /// @brief This namespace is for all the classes that facilitate the procedural creation of art assets.
-        /// @details Our Procedural Graphics system is based on the OgreProcedural library.
         namespace Procedural
         {
 
         }//Procedural
     }//Graphics
 }//Mezzanine
-
-#include "Graphics/Procedural/proceduraldatatypes.h"
-#include "Graphics/Procedural/proceduralenumerations.h"
-#include "Graphics/Procedural/proceduralutilities.h"
-
-#include "Graphics/Procedural/booleanmeshgenerator.h"
-#include "Graphics/Procedural/boxcornergenerator.h"
-#include "Graphics/Procedural/boxgenerator.h"
-#include "Graphics/Procedural/capsulegenerator.h"
-#include "Graphics/Procedural/conegenerator.h"
-#include "Graphics/Procedural/curvetrack.h"
-#include "Graphics/Procedural/cylindergenerator.h"
-#include "Graphics/Procedural/icospheregenerator.h"
-#include "Graphics/Procedural/meshgenerator.h"
-#include "Graphics/Procedural/multishape.h"
-#include "Graphics/Procedural/path.h"
-#include "Graphics/Procedural/planegenerator.h"
-#include "Graphics/Procedural/roundedboxgenerator.h"
-#include "Graphics/Procedural/shape.h"
-#include "Graphics/Procedural/spheregenerator.h"
-#include "Graphics/Procedural/springgenerator.h"
-#include "Graphics/Procedural/texturebuffer.h"
-#include "Graphics/Procedural/texturegenerators.h"
-#include "Graphics/Procedural/texturemodifiers.h"
-#include "Graphics/Procedural/torusgenerator.h"
-#include "Graphics/Procedural/torusknotgenerator.h"
-#include "Graphics/Procedural/trianglebuffer.h"
-#include "Graphics/Procedural/triangulator.h"
-#include "Graphics/Procedural/tubegenerator.h"
 
 #endif
