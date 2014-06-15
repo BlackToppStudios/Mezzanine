@@ -552,18 +552,12 @@ namespace Mezzanine
         void FrameScheduler::CreateThreads()
         {
             LogResources.Lock(); //Unlocks in FrameScheduler::RunMainThreadWork() after last resource is swapped
-            for(Whole Count = 1; Count<CurrentThreadCount; ++Count)
-            {
-                if(Count+1>Resources.size())
-                    { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
-                Resources[Count]->SwapAllBufferedResources();
-                Threads.push_back(new Thread(ThreadWork, Resources[Count]));
-            }
+            SwapBufferedResources();
         }
 
         void FrameScheduler::RunMainThreadWork()
         {
-            Resources[0]->SwapAllBufferedResources();
+            //Resources[0]->SwapAllBufferedResources();
             LogDependencies();
             LogResources.Unlock();
             ThreadWorkAffinity(Resources[0]); // Do work in this thread and get the units with affinity
@@ -745,13 +739,25 @@ namespace Mezzanine
                 DefaultThreadSpecificStorage::Type Storage(this);
                 Pointer->NextFlushForced();
                 Pointer->DoWork(Storage);
-                //this->
+                this->SwapBufferedResources();
                 Pointer->NextFlushForced();
                 Pointer->DoWork(Storage);
                 GetLog().flush();
                 return true;
             }
             return false;
+        }
+
+        void FrameScheduler::SwapBufferedResources()
+        {
+            Resources[0]->SwapAllBufferedResources();
+            for(Whole Count = 1; Count<CurrentThreadCount; ++Count)
+            {
+                if(Count+1>Resources.size())
+                    { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
+                Resources[Count]->SwapAllBufferedResources();
+                Threads.push_back(new Thread(ThreadWork, Resources[Count]));
+            }
         }
 
     } // \FrameScheduler

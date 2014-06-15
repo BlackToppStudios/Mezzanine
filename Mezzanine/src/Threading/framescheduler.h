@@ -556,6 +556,10 @@ namespace Mezzanine
                 /// @return This return True if it flushed the logs and false otherwise.
                 virtual Boole ForceLogFlush();
 
+                /// @warning This is not thread safe at all. Any time during the frame using this can break everything.
+                /// @brief This takes all active buffered resources offline (therfore available for async processing) and makes all the offline resources active for normal thread use.
+                void SwapBufferedResources();
+
         };//FrameScheduler
     } // \Threading
 }// \Mezanine

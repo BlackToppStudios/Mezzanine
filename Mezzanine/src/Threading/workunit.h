@@ -152,7 +152,7 @@ namespace Mezzanine
                 virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage) = 0;
 
                 /// @brief Virtual destructor.
-                virtual ~iWorkUnit(){}
+                virtual ~iWorkUnit() {}
         };//iWorkUnit
 
 
