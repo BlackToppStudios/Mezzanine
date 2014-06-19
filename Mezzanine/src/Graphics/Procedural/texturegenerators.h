@@ -67,13 +67,60 @@
 #ifndef _graphicsproceduraltexturegenerators_h
 #define _graphicsproceduraltexturegenerators_h
 
+#include "Graphics/Procedural/texturebuffer.h"
+
 namespace Mezzanine
 {
     namespace Graphics
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A base class for texture generators that use the TextureBuffer class.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB TextureGenerator
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                TextureGenerator();
+                /// @brief Class destructor.
+                virtual ~TextureGenerator();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @brief Generates the Texture.
+                /// @param SquareSize The width and height of the texture to create.  This value will be clamped to be at least 8.
+                /// @param TexName The name to give to the generated texture.
+                /// @param TexGroup The asset group to place the texture in.
+                /// @return Returns a pointer to the newly created Texture.
+                Texture* GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup) const;
+                /// @brief Generates the Texture.
+                /// @param TexWidth The pixel width of the texture to be generated.  This value will be clamped to be at least 8.
+                /// @param TexHeight The pixel height of the texture to be generated.  This value will be clamped to be at least 8.
+                /// @param TexName The name to give to the generated texture.
+                /// @param TexGroup The asset group to place the texture in.
+                /// @return Returns a pointer to the newly created Texture.
+                Texture* GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup) const;
+                /// @brief Creates a TextureBuffer with the pixels as configured in this generator.
+                /// @param SquareSize The width and height of the texture to create.  This value will be clamped to be at least 8.
+                /// @return Returns a new TextureBuffer with the generated pixels of this generator.
+                TextureBuffer BuildTextureBuffer(const Whole SquareSize) const;
+                /// @brief Creates a TextureBuffer with the pixels as configured in this generator.
+                /// @param TexWidth The pixel width of the texture to be generated.  This value will be clamped to be at least 8.
+                /// @param TexHeight The pixel height of the texture to be generated.  This value will be clamped to be at least 8.
+                /// @return Returns a new TextureBuffer with the generated pixels of this generator.
+                TextureBuffer BuildTextureBuffer(const Whole TexWidth, const Whole TexHeight) const;
+                /// @brief Replaces and populates the pixels as configured in this generator to a TextureBuffer.
+                /// @param Buffer The buffer to place this generators pixels in.
+                virtual void AddToTextureBuffer(TextureBuffer& Buffer) const = 0;
+
+                /// @brief Gets the name of this generator.
+                /// @return Returns a String containing the name of this generator.
+                virtual String GetName() const = 0;
+            };//TextureProcessing
         }//Procedural
     }//Graphics
 }//Mezzanine

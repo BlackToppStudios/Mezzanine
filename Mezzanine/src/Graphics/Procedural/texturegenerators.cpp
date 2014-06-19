@@ -75,7 +75,47 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            // TextureGenerator Methods
 
+            TextureGenerator::TextureGenerator()
+                {  }
+
+            TextureGenerator::~TextureGenerator()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            Texture* TextureGenerator::GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup) const
+            {
+                TextureBuffer TexBuf(SquareSize);
+                this->AddToTextureBuffer(TexBuf);
+                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup);
+                return NewMesh;
+            }
+
+            Texture* TextureGenerator::GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup) const
+            {
+                TextureBuffer TexBuf(TexWidth,TexHeight);
+                this->AddToTextureBuffer(TexBuf);
+                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup);
+                return NewMesh;
+            }
+
+            TextureBuffer TextureGenerator::BuildTextureBuffer(const Whole SquareSize) const
+            {
+                TextureBuffer TexBuf(SquareSize);
+                this->AddToTextureBuffer(TexBuf);
+                return TexBuf;
+            }
+
+            TextureBuffer TextureGenerator::BuildTextureBuffer(const Whole TexWidth, const Whole TexHeight) const
+            {
+                TextureBuffer TexBuf(TexWidth,TexHeight);
+                this->AddToTextureBuffer(TexBuf);
+                return TexBuf;
+            }
         }//Procedural
     }//Graphics
 }//Mezzanine
