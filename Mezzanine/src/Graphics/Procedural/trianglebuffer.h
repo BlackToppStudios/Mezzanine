@@ -188,9 +188,9 @@ namespace Mezzanine
                 /// @brief Builds a Mesh from this buffer.
                 /// @note The returned mesh will need a material applied to it for proper rendering.
                 /// @param MeshName The name to give to the generated mesh.
-                /// @param MeshGroup The resource group to place the mesh in.
+                /// @param MeshGroup The asset group to place the mesh in.
                 /// @param MatName The name of the material to apply to the mesh.
-                /// @param MatGroup The resource group where the material can be found.
+                /// @param MatGroup The asset group where the material can be found.
                 /// @return Returns a pointer to the created Mesh.
                 Mesh* GenerateMesh(const String& MeshName, const String& MeshGroup, const String& MatName, const String& MatGroup) const;
 
