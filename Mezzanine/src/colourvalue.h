@@ -114,31 +114,37 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Set the Red component of this color
+        /// @brief Set the Red component of this color.
         /// @param Red A Real between 0 and 1 signify how much red this will color with have.
-        void SetRedChannel(const Real& Red);
-        /// @brief Retrieve the Red color component
+        void SetRedChannel(const Real Red);
+        /// @brief Retrieve the Red color component.
         /// @return A Real between 0 and 1 respresenting, how Red this this color is.
         Real GetRedChannel() const;
-        /// @brief Set the Green component of this color
+        /// @brief Set the Green component of this color.
         /// @param Green A Real between 0 and 1 signify how much Green this will color with have.
-        void SetGreenChannel(const Real& Green);
-        /// @brief Retrieve the Green color component
+        void SetGreenChannel(const Real Green);
+        /// @brief Retrieve the Green color component.
         /// @return A Real between 0 and 1 respresenting, how Green this this color is.
         Real GetGreenChannel() const;
-        /// @brief Set the Blue component of this color
+        /// @brief Set the Blue component of this color.
         /// @param Blue A Real between 0 and 1 signify how much Blue this will color with have.
-        void SetBlueChannel(const Real& Blue);
-        /// @brief Retrieve the Blue color component
+        void SetBlueChannel(const Real Blue);
+        /// @brief Retrieve the Blue color component.
         /// @return A Real between 0 and 1 respresenting, how Blue this this color is.
         Real GetBlueChannel() const;
-        /// @brief Set the Alpha component of this color
-        /// @param Red A Alpha between 0 and 1 signify how much Opaque/Transparent this will color with have.
-        void SetAlphaChannel(const Real& Alpha);
-        /// @brief Retrieve the Alpha color component
+        /// @brief Set the Alpha component of this color.
+        /// @param Alpha A Real between 0 and 1 signify how much Opaque/Transparent this will color with have.
+        void SetAlphaChannel(const Real Alpha);
+        /// @brief Retrieve the Alpha color component.
         /// @return A Real between 0 and 1 respresenting, how Transparent this this color is.
         Real GetAlphaChannel() const;
 
+        /// @brief Sets each of the colour channels.
+        /// @param Red A Real between 0 and 1 signify how much red this will color with have.
+        /// @param Green A Real between 0 and 1 signify how much Green this will color with have.
+        /// @param Blue A Real between 0 and 1 signify how much Blue this will color with have.
+        /// @param Alpha A Real between 0 and 1 signify how much Opaque/Transparent this will color with have.
+        void SetValues(const Real Red, const Real Green, const Real Blue, const Real Alpha);
         /// @brief Get the color that is the average of this and another color.
         /// @param OtherColor The other color to average with.
         /// @return A ColourValue with each channel being the arithmetic mean of this and the OtherColor.
