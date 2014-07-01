@@ -81,6 +81,15 @@ namespace Mezzanine
                 BO_Intersection,  ///< Gets only the parts of the two buffers that are overlapping.
                 BO_Difference     ///< Gets only the parts of the two buffers that aren't overlapping.
             };
+
+            /// @enum NoiseType
+            /// @brief An enum used to describe the different types of noise generators.
+            enum NoiseType
+            {
+                NT_White,         ///< White noise.
+                NT_Perlin         ///< Perlin noise.
+            };
+
             /// @enum ShapeSide
             /// @brief An enum used to express which side to work with in Shape operations.
             enum ShapeSide

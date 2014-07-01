@@ -84,6 +84,11 @@ namespace Mezzanine
             class MEZZ_LIB NoiseBase
             {
             public:
+                /// @brief Class constructor.
+                NoiseBase() {  }
+                /// @brief Class destructor.
+                virtual ~NoiseBase() {  }
+
                 /// @brief Generates noise for a theoretical one dimensional array position.
                 /// @remarks Noise generators can generate random, psuedo-random, or non-random noise.  If a generator generates random noise then this method can return
                 /// any arbitrary number and the array position passed in will not matter.  However with other types of generators they can and often will follow a
