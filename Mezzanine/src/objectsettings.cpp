@@ -374,7 +374,7 @@ namespace Mezzanine
             else this->SaveSettingsToXML(GroupNames,RootNode);
             // Open a stream to the saving file
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            Resource::FileStream SettingsStream(FileName,Path,Resource::DataStream::SF_Truncate | Resource::DataStream::SF_Write);
+            Resource::FileStream SettingsStream(FileName,Path,Resource::SF_Truncate | Resource::SF_Write);
             SettingsDoc.Save(SettingsStream,"\t",XML::FormatIndent);
         }else{
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");

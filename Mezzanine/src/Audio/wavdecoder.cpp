@@ -79,16 +79,13 @@ namespace Mezzanine
             this->WavStream->SetStreamPosition(0);
             this->WavStream->Read(Ident,4);
             // Check to see if it is a valid RIFF file
-            if( strncmp(Ident,RIFFTAG,4) == 0 )
-            {
+            if( strncmp(Ident,RIFFTAG,4) == 0 ) {
                 this->WavStream->Read(&Temp32,4);
                 // Check to see if the file is big enough to be valid (not completely accurate)
-                if( Temp32 >= 44 )
-                {
+                if( Temp32 >= 44 ) {
                     this->WavStream->Read(Ident,4);
                     // Check that it is a wave file
-                    if( strncmp(Ident,WAVETAG,4) == 0 )
-                    {
+                    if( strncmp(Ident,WAVETAG,4) == 0 ) {
                         // Save our position
                         StartOffset = this->WavStream->GetStreamPosition();
                         // Scan for the first fmt chuck (not necessarily right after)
@@ -96,18 +93,15 @@ namespace Mezzanine
                             this->WavStream->Read(Ident,4);
                         } while( ( strncmp(Ident,FORMATTAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
                         //Did we find it?
-                        if( this->WavStream->GetStreamPosition() < ( this->WavStream->GetSize() - 16 ) )
-                        {
+                        if( this->WavStream->GetStreamPosition() < ( this->WavStream->GetSize() - 16 ) ) {
                             //Yes, read it in
                             this->WavStream->Read(&Temp32,4);
-                            if( Temp32 >= 16 )
-                            {
+                            if( Temp32 >= 16 ) {
                                 // Check that it is in PCM format, we don't support compressed wavs
                                 this->WavStream->Read(&Temp16,2);
                                 this->Channels = Temp16;
                                 // We only support mono or stereo wavs
-                                if( this->Channels == 1 || this->Channels == 2 )
-                                {
+                                if( this->Channels == 1 || this->Channels == 2 ) {
                                     this->WavStream->Read(&Temp32,4);
                                     this->SampleRate = Temp32;
                                     this->WavStream->Read(&Temp32,4);
@@ -118,8 +112,7 @@ namespace Mezzanine
                                     this->BitsPerSample = Temp16;
 
                                     // We only support 8 bit or 16 bit wavs
-                                    if( this->BitsPerSample == 8 || this->BitsPerSample == 16 )
-                                    {
+                                    if( this->BitsPerSample == 8 || this->BitsPerSample == 16 ) {
                                         // Reset our pointer to start scanning for the data block
                                         this->WavStream->SetStreamPosition(StartOffset);
                                         // Scan for the first data chuck (not necessarily right after)
@@ -128,8 +121,7 @@ namespace Mezzanine
                                         } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
 
                                         // Did we find it?
-                                        if( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() )
-                                        {
+                                        if( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) {
                                             // Get size of data block
                                             this->WavStream->Read(&Temp32,4);
                                             this->DataSize = Temp32;
