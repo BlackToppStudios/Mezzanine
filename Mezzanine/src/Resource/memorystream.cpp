@@ -147,7 +147,7 @@ namespace Mezzanine
                     default:                  this->pbump( this->CheckStreamOffset(WritePosition,off) );                     break;
                 }
             }
-            return -1;
+            return ( which & std::ios_base::in ? this->GetReadPosition() : this->GetWritePosition() );
         }
 
         std::streampos MemoryStreamBuffer::seekpos(std::streampos sp, std::ios_base::openmode which)
@@ -162,6 +162,7 @@ namespace Mezzanine
                 std::streampos WritePosition = this->GetWritePosition();
                 this->pbump( this->CheckStreamPosition( sp ) - WritePosition );
             }
+            return ( which & std::ios_base::in ? this->GetReadPosition() : this->GetWritePosition() );
         }
 
         int MemoryStreamBuffer::sync()
@@ -263,18 +264,19 @@ namespace Mezzanine
             return this->egptr() - this->eback();
         }
 
-        void MemoryStreamBuffer::ConfigureBuffer(const std::streampos Offset, std::ios_base::openmode Mode)
+        void MemoryStreamBuffer::ConfigureBuffer(const std::streampos Pos, std::ios_base::openmode Mode)
         {
             if( this->BufferStart != NULL ) {
                 if( Mode & std::ios_base::in ) {
-                    //this->BufferReadPos = this->BufferStart + Offset;
-                    this->setg(this->BufferStart,this->BufferStart + Offset,this->BufferEnd);
+                    //this->BufferReadPos = this->BufferStart + Pos;
+                    this->setg(this->BufferStart,this->BufferStart + Pos,this->BufferEnd);
                 }
                 if( Mode & std::ios_base::out ) {
-                    //this->BufferWritePos = this->BufferStart + Offset;
+                    //this->BufferWritePos = this->BufferStart + Pos;
                     this->setp(this->BufferStart,this->BufferEnd);
                 }
                 this->OpenMode = Mode;
+                this->seekpos(Pos,Mode);
             }
         }
 

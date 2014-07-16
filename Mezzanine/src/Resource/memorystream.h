@@ -113,13 +113,13 @@ namespace Mezzanine
             /// @param off The amount of advance the current position for the operation specified.  Negative values will reverse the position.
             /// @param way The base point in the stream to apply the offset to.
             /// @param which Whether this should move the read pointer, write pointer, or both.
-            /// @return Returns the updated read or write position, based on which was provided.
+            /// @return Returns the updated read or write position, based on which was provided.  Returns the Read position if both were specified.
             virtual std::streampos seekoff(std::streamoff off, std::ios_base::seekdir way, std::ios_base::openmode which = std::ios_base::in | std::ios_base::out);
             /// @brief Moves the read and/or write pointers to the specified position in the stream.
             /// @remarks Out of bounds positions will be clamped to the closest limit.
             /// @param sp The index the current position will be moved to.
             /// @param which Whether this should move the read pointer, write pointer, or both.
-            /// @return Returns the updated read or write position, based on which was provided.
+            /// @return Returns the updated read or write position, based on which was provided.  Returns the Read position if both were specified.
             virtual std::streampos seekpos(std::streampos sp, std::ios_base::openmode which = std::ios_base::in | std::ios_base::out);
             /// @brief Syncs this stream buffer with it's source.
             /// @remarks This buffer is the source for this type of stream, so syncing isn't required; making this an empty implementation.
@@ -196,9 +196,9 @@ namespace Mezzanine
             std::streamsize GetBufferSize() const;
 
             /// @brief Sets the get and put pointers for the streambuffer and assigns the current position to the specified offset.
-            /// @param Offset The offset to set the current read/write position to.
+            /// @param Pos The offset to set the current read/write position to.
             /// @param Mode An open mode describing if this buffer will be configured for reading, writing, or both.
-            void ConfigureBuffer(const std::streampos Offset, std::ios_base::openmode Mode = std::ios_base::in | std::ios_base::out);
+            void ConfigureBuffer(const std::streampos Pos, std::ios_base::openmode Mode = std::ios_base::in | std::ios_base::out);
             /// @brief Convenience method for deleting the existing buffer being streamed.
             void DestroyBuffer();
 
