@@ -73,7 +73,7 @@ void CatchProfile::Save(const String& ProfilesDir)
     this->SerializeLevelScores(RootNode);
 
     /// @todo Possibly in the future instead of constructing the datastream direct, call on the resource manager to create it(future plans)
-    Resource::FileStream SaveStream(ProfileName+".xml",ProfilesDir+"/",(Resource::DataStream::SF_Truncate | Resource::DataStream::SF_Write));
+    Resource::FileStream SaveStream(ProfileName+".xml",ProfilesDir+"/",(Resource::SF_Truncate | Resource::SF_Write));
     ProfileDoc.Save(SaveStream,"\t",XML::FormatIndent);
 }
 
