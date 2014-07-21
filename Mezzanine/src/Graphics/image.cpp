@@ -44,6 +44,10 @@
 #include "Graphics/image.h"
 #include <Ogre.h>
 
+#ifdef LoadImage
+#undef LoadImage
+#endif
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -54,22 +58,101 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB InternalImageData
         {
-            public:
-                Ogre::Image GraphicsImage;
+        public:
+            /// @internal
+            /// @brief The internal representation of the Image.
+            Ogre::Image GraphicsImage;
         };//InternalTextureData
 
         ///////////////////////////////////////////////////////////////////////////////
         // Image Methods
 
         Image::Image()
-        {
-
-        }
+            { this->IID = new InternalImageData(); }
 
         Image::~Image()
-        {
+            { delete this->IID; }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        UInt32 Image::GetWidth() const
+            { return this->IID->GraphicsImage.getWidth(); }
+
+        UInt32 Image::GetHeight() const
+            { return this->IID->GraphicsImage.getHeight(); }
+
+        UInt32 Image::GetDepth() const
+            { return this->IID->GraphicsImage.getDepth(); }
+
+        Graphics::PixelFormat Image::GetFormat() const
+            { return static_cast<Graphics::PixelFormat>( this->IID->GraphicsImage.getFormat() ); }
+
+        UInt8 Image::GetBitsPerPixel() const
+            { return this->IID->GraphicsImage.getBPP(); }
+
+        Whole Image::GetNumFaces() const
+            { return this->IID->GraphicsImage.getNumFaces(); }
+
+        Whole Image::GetNumMipMaps() const
+            { return this->IID->GraphicsImage.getNumMipmaps(); }
+
+        UInt8* Image::GetImageData()
+            { return static_cast<UInt8*>( this->IID->GraphicsImage.getData() ); }
+
+        const UInt8* Image::GetImageData() const
+            { return static_cast<const UInt8*>( this->IID->GraphicsImage.getData() ); }
+
+        Whole Image::GetSize() const
+            { return this->IID->GraphicsImage.getSize(); }
+
+        Whole Image::GetRowSpan() const
+            { return this->IID->GraphicsImage.getRowSpan(); }
+
+        Image& Image::FlipAroundXAxis()
+        {
+            this->IID->GraphicsImage.flipAroundX();
+            return *this;
         }
+
+        Image& Image::FlipAroundYAxis()
+        {
+            this->IID->GraphicsImage.flipAroundY();
+            return *this;
+        }
+
+        void Image::SetColourAt(const Whole X, const Whole Y, const Whole Z, const ColourValue& Colour)
+            { this->IID->GraphicsImage.setColourAt(Colour.GetOgreColourValue(),X,Y,Z); }
+
+        ColourValue Image::GetColourAt(const Whole X, const Whole Y, const Whole Z) const
+            { return this->IID->GraphicsImage.getColourAt(X,Y,Z); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Loading Methods
+
+        Image& Image::LoadImage(const String& ResourceName, const String& ResourceGroup)
+        {
+            this->IID->GraphicsImage.load(ResourceName,ResourceGroup);
+            return *this;
+        }
+
+        Image& Image::LoadImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
+        {
+            this->IID->GraphicsImage.loadDynamicImage(Data,Width,Height,1,static_cast<Ogre::PixelFormat>(Format),AutoDelete,NumFaces,NumMipMaps);
+            return *this;
+        }
+
+        Image& Image::LoadImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
+        {
+            this->IID->GraphicsImage.loadDynamicImage(Data,Width,Height,Depth,static_cast<Ogre::PixelFormat>(Format),AutoDelete,NumFaces,NumMipMaps);
+            return *this;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        Ogre::Image& Image::_GetInternalImage() const
+            { return this->IID->GraphicsImage; }
     }//Graphics
 }//Mezzanine
 
