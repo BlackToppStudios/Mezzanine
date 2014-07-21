@@ -554,8 +554,20 @@ set(SDLLibraryNames
 ###############################################################################
 # Perform Common Tasks for build options and configuration.
 
-set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Ogre_Arguments} ${FPIC}")
-#message(FATAL_ERROR ${CommonBuildFlags})
+# Check and set a macro for endianess.
+if(NOT MSVC AND NOT ANDROID)
+    # This doesn't work on VS 2010
+    # MSVC only builds for intel anyway
+    include(TestBigEndian)
+    test_big_endian(Mezz_Platform_Big_Endian)
+    if(Mezz_Platform_Big_Endian)
+        set(Mezz_Endian_Arguments "${D}MEZZ_BIG_ENDIAN")
+    else(Mezz_Platform_Big_Endian)
+        set(Mezz_Endian_Arguments "${D}MEZZ_LITTLE_ENDIAN")
+    endif(Mezz_Platform_Big_Endian)
+endif(NOT MSVC AND NOT ANDROID)
+
+set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} ${FPIC}")
 
 ###############################################################################
 # Perform Platform Specific Tasks for build options and configuration.
