@@ -70,6 +70,8 @@
 #include "Graphics/Procedural/texturegenerators.h"
 #include "Graphics/Procedural/noise.h"
 
+#include "Graphics/image.h"
+
 #include "mathtool.h"
 #include "vector3.h"
 
@@ -465,7 +467,18 @@ namespace Mezzanine
 
             void ImageGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
+                Image ImportImg;
+                ImportImg.LoadImage(this->File,this->Group);
 
+                if( ImportImg.GetHeight() >= Buffer.GetHeight() && ImportImg.GetWidth() >= Buffer.GetWidth() ) {
+                    for( Whole Y = 0 ; Y < Buffer->GetHeight() ; ++Y )
+                    {
+                        for( Whole X = 0 ; X < Buffer->GetWidth() ; ++X )
+                        {
+                            Buffer->SetPixel(X,Y,ImportImg.GetColourAt(X,Y,0));
+                        }
+                    }
+                }
             }
 
             String ImageGenerator::GetName() const
