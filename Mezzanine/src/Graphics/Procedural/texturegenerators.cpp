@@ -471,11 +471,11 @@ namespace Mezzanine
                 ImportImg.LoadImage(this->File,this->Group);
 
                 if( ImportImg.GetHeight() >= Buffer.GetHeight() && ImportImg.GetWidth() >= Buffer.GetWidth() ) {
-                    for( Whole Y = 0 ; Y < Buffer->GetHeight() ; ++Y )
+                    for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
                     {
-                        for( Whole X = 0 ; X < Buffer->GetWidth() ; ++X )
+                        for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
                         {
-                            Buffer->SetPixel(X,Y,ImportImg.GetColourAt(X,Y,0));
+                            Buffer.SetPixel(X,Y,ImportImg.GetColourAt(X,Y,0));
                         }
                     }
                 }
