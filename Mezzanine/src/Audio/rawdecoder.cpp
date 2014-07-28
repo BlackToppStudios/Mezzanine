@@ -97,7 +97,7 @@ namespace Mezzanine
 
         Boole RawDecoder::SetPosition(Int32 Position, Boole Relative)
         {
-            this->RawStream->SetStreamPosition(Position,( Relative ? Resource::DataStream::SO_Current : Resource::DataStream::SO_Beginning ));
+            this->RawStream->SetStreamPosition(Position,( Relative ? Resource::SO_Current : Resource::SO_Beginning ));
             return true;
         }
 

@@ -372,6 +372,20 @@ class vector3tests : public UnitTestGroup
             }
 
             {
+                Vector3 Vec1(5.0,0.0,0.0);
+                Vector3 Vec2(0.0,0.0,5.0);
+                Vector3 VecX(-3.0,3.0,0.0);
+                Vector3 VecY(3.0,3.0,0.0);
+
+                Boole Result = Vec1.IsPerpendicular(Vec2) && VecX.IsPerpendicular(VecY);
+                TEST(Result, "IsPerpendicular(Vector3&)");
+
+                Vector3 PerpTest1(45.0,28.0,36.0);
+                Vector3 PerpTest2 = PerpTest1.Perpendicular();
+                TEST(Result && PerpTest1.IsPerpendicular(PerpTest2) ,"Perpendicular()");
+            }
+
+            {
                 Vector3 Vec1(20.0,0.0,0.0);
                 Vector3 Vec2(0.0,5.0,0.0);
                 Vector3 Vec3(0.0,0.0,-50.0);

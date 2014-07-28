@@ -172,11 +172,9 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
             // Make a declaration for a static constrain so it survives the function lifetime
             static Physics::Point2PointConstraint* Dragger=NULL;
 
-            if( SysMouse->IsButtonPressed(1) )
-            {
+            if( SysMouse->IsButtonPressed(1) ) {
                 UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-                if(UIMan->MouseIsInUISystem())
-                {
+                if( UIMan->MouseIsInUISystem() ) {
                     //UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
                     UI::Widget* Hover = UIMan->GetHoveredWidget();
                     if(Hover) {
@@ -186,12 +184,11 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
                         }
                     }
                 }else{
-                    Ray MouseRay = RayQueryTool::GetMouseRay(5000);
+                    Ray MouseRay = RayQueryTool::GetMouseRay();
                     RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid);
 
                     bool firstframe=false;
-                    if (0 == RayCaster.LastQueryResultsObjectPtr())
-                    {
+                    if( 0 == RayCaster.LastQueryResultsObjectPtr() ) {
                         #ifdef MEZZDEBUG
                         //TheEntresol->Log("No Object Clicked on");
                         #endif
@@ -596,7 +593,7 @@ void LoadContent()
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
-    Physics::RigidProxy* InvisFloor = TheEntresol->GetPhysicsManager()->CreateRigidProxy(10,0,false);
+    Physics::RigidProxy* InvisFloor = TheEntresol->GetPhysicsManager()->CreateRigidProxy(0,NULL,false);
     InvisFloor->SetCollisionShape( new Physics::PlaneCollisionShape("InvisFloor",Plane(Vector3::Unit_Y(),Vector3(0,-300,0))) );
     InvisFloor->AddToWorld();
 

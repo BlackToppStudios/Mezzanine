@@ -97,7 +97,7 @@ namespace Mezzanine
         Vector2 LayoutStrategy::HandleChildPositioning(const Rect& OldSelfRect, const Rect& NewSelfRect, const Vector2& NewChildSize, QuadRenderable* Child)
         {
             Vector2 NewPosition;
-            const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
+            //const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
 
             // Resolve our position
             NewPosition.X = MathTools::Floor( this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child) );

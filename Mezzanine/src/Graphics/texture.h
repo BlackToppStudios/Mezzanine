@@ -55,14 +55,14 @@ namespace Mezzanine
     {
         class InternalTextureData;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Texture
-        /// @headerfile texture.h
-        /// @brief This class represents a texture loaded into memory.
+        /// @brief This class represents a texture loaded into video memory.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Texture
         {
             protected:
+                /// @internal
+                /// @brief A pointer to the internal implementation of the Texture.
                 InternalTextureData* ITD;
             public:
                 /// @brief Class Constructor.

@@ -70,9 +70,9 @@ namespace
         Mezzanine::Resource::DataStream* Stream = static_cast<Mezzanine::Resource::DataStream*>(datasource);
         switch(whence)
         {
-            case SEEK_SET:    Stream->SetStreamPosition(offset, Mezzanine::Resource::DataStream::SO_Beginning);  break;
-            case SEEK_CUR:    Stream->SetStreamPosition(offset, Mezzanine::Resource::DataStream::SO_Current);    break;
-            case SEEK_END:    Stream->SetStreamPosition(offset, Mezzanine::Resource::DataStream::SO_End);        break;
+            case SEEK_SET:    Stream->SetStreamPosition(offset, Mezzanine::Resource::SO_Beginning);  break;
+            case SEEK_CUR:    Stream->SetStreamPosition(offset, Mezzanine::Resource::SO_Current);    break;
+            case SEEK_END:    Stream->SetStreamPosition(offset, Mezzanine::Resource::SO_End);        break;
         };
         return 0;
     }

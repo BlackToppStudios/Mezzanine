@@ -96,48 +96,56 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void ColourValue::SetRedChannel(const Real& Red)
-        { RedChannel = Red; }
+    void ColourValue::SetRedChannel(const Real Red)
+        { this->RedChannel = Red; }
 
     Real ColourValue::GetRedChannel() const
-        { return RedChannel; }
+        { return this->RedChannel; }
 
-    void ColourValue::SetGreenChannel(const Real& Green)
-        { GreenChannel = Green; }
+    void ColourValue::SetGreenChannel(const Real Green)
+        { this->GreenChannel = Green; }
 
     Real ColourValue::GetGreenChannel() const
-        { return GreenChannel; }
+        { return this->GreenChannel; }
 
-    void ColourValue::SetBlueChannel(const Real& Blue)
-        { BlueChannel = Blue; }
+    void ColourValue::SetBlueChannel(const Real Blue)
+        { this->BlueChannel = Blue; }
 
     Real ColourValue::GetBlueChannel() const
-        { return BlueChannel; }
+        { return this->BlueChannel; }
 
-    void ColourValue::SetAlphaChannel(const Real& Alpha)
-        { AlphaChannel = Alpha; }
+    void ColourValue::SetAlphaChannel(const Real Alpha)
+        { this->AlphaChannel = Alpha; }
 
     Real ColourValue::GetAlphaChannel() const
-        { return AlphaChannel; }
+        { return this->AlphaChannel; }
+
+    void ColourValue::SetValues(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+    {
+        this->RedChannel = Red;
+        this->GreenChannel = Green;
+        this->BlueChannel = Blue;
+        this->AlphaChannel = Alpha;
+    }
 
     ColourValue ColourValue::Average(const ColourValue& OtherColor) const
     {
-        return ColourValue( (this->RedChannel+OtherColor.RedChannel) * 0.5,
-                            (this->GreenChannel+OtherColor.GreenChannel) * 0.5,
-                            (this->BlueChannel+OtherColor.BlueChannel) * 0.5,
-                            (this->AlphaChannel+OtherColor.AlphaChannel) * 0.5 );
+        return ColourValue( ( this->RedChannel + OtherColor.RedChannel ) * 0.5,
+                            ( this->GreenChannel + OtherColor.GreenChannel ) * 0.5,
+                            ( this->BlueChannel + OtherColor.BlueChannel ) * 0.5,
+                            ( this->AlphaChannel + OtherColor.AlphaChannel ) * 0.5 );
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Overloaded Operators
 
-    Boole ColourValue::operator==(const ColourValue &Colour) const
+    Boole ColourValue::operator==(const ColourValue& Colour) const
         { return ( Colour.RedChannel == this->RedChannel && Colour.GreenChannel == this->GreenChannel && Colour.BlueChannel == this->BlueChannel && Colour.AlphaChannel == this->AlphaChannel ); }
 
-    Boole ColourValue::operator!=(const ColourValue &Colour) const
+    Boole ColourValue::operator!=(const ColourValue& Colour) const
         { return ( Colour.RedChannel != this->RedChannel || Colour.GreenChannel != this->GreenChannel || Colour.BlueChannel != this->BlueChannel || Colour.AlphaChannel != this->AlphaChannel ); }
 
-    void ColourValue::operator=(const ColourValue &OtherColour)
+    void ColourValue::operator=(const ColourValue& OtherColour)
     {
         this->RedChannel = OtherColour.RedChannel;
         this->GreenChannel = OtherColour.GreenChannel;

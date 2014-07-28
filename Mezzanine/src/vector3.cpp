@@ -258,17 +258,49 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators
 
-    Vector3 Vector3::operator+ (const Vector3 &Vec) const
+    Vector3 Vector3::operator+ (const Vector3& Vec) const
         { return Vector3(X+Vec.X, Y+Vec.Y, Z+Vec.Z ); }
 
-    Vector3 Vector3::operator- (const Vector3 &Vec) const
+    Vector3 Vector3::operator- (const Vector3& Vec) const
         { return Vector3(X-Vec.X, Y-Vec.Y, Z-Vec.Z ); }
 
-    Vector3 Vector3::operator* (const Vector3 &Vec) const
+    Vector3 Vector3::operator* (const Vector3& Vec) const
         { return Vector3(X*Vec.X, Y*Vec.Y, Z*Vec.Z ); }
 
-    Vector3 Vector3::operator/ (const Vector3 &Vec) const
+    Vector3 Vector3::operator/ (const Vector3& Vec) const
         { return Vector3(X/Vec.X, Y/Vec.Y, Z/Vec.Z ); }
+
+    Vector3& Vector3::operator+= (const Vector3& Vec)
+    {
+        this->X += Vec.X;
+        this->Y += Vec.Y;
+        this->Z += Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator-= (const Vector3& Vec)
+    {
+        this->X -= Vec.X;
+        this->Y -= Vec.Y;
+        this->Z -= Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator*= (const Vector3& Vec)
+    {
+        this->X *= Vec.X;
+        this->Y *= Vec.Y;
+        this->Z *= Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator/= (const Vector3& Vec)
+    {
+        this->X /= Vec.X;
+        this->Y /= Vec.Y;
+        this->Z /= Vec.Z;
+        return *this;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators with btVector3
@@ -319,9 +351,8 @@ namespace Mezzanine
 
     Vector3& Vector3::Normalize()
     {
-        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
-        if (0!=TempLength)
-        {
+        Real TempLength = this->Distance( Vector3(0.0f,0.0f,0.0f) );
+        if( 0 != TempLength ) {
              (*this) /= TempLength;
         }else{
             MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Normalize Vector3(0,0,0).");
@@ -331,13 +362,34 @@ namespace Mezzanine
 
     Vector3 Vector3::GetNormal() const
     {
-        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
-        if (0!=TempLength)
-        {
+        Real TempLength = this->Distance( Vector3(0.0f,0.0f,0.0f) );
+        if( 0 != TempLength ) {
             return (*this) / TempLength;
         }else{
             MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Get the Normal of Vector3(0,0,0).");
         }
+    }
+
+    Vector3& Vector3::Permute()
+    {
+        *this = this->GetPermute();
+        return *this;
+    }
+
+    Vector3 Vector3::GetPermute() const
+    {
+        return Vector3(this->Z,this->X,this->Y);
+    }
+
+    Vector3& Vector3::AntiPermute()
+    {
+        *this = this->GetAntiPermute();
+        return *this;
+    }
+
+    Vector3 Vector3::GetAntiPermute() const
+    {
+        return Vector3(this->Y,this->Z,this->X);
     }
 
     Vector3 Vector3::GetDirection(const Vector3& Destination) const
@@ -345,14 +397,33 @@ namespace Mezzanine
         return (Destination - *this).Normalize();
     }
 
+    Vector3 Vector3::Perpendicular() const
+    {
+        static const Real fSquareZero = (Real)(1e-06 * 1e-06);
+
+        Vector3 Perp = this->CrossProduct( Vector3::Unit_X() );
+        if( Perp.SquaredLength() < fSquareZero ) {
+            // If we're here, then this is vector is on the X axis already.  Use another axis.
+            Perp = this->CrossProduct( Vector3::Unit_Y() );
+        }
+        Perp.Normalize();
+
+        return Perp;
+    }
+
+    Boole Vector3::IsPerpendicular(const Vector3& Perp) const
+    {
+        return ( this->DotProduct(Perp) == 0 );
+    }
+
     Vector3 Vector3::Inverse()
     {
-        if (X!=0)
-            X=1/X;
-        if (Y!=0)
-            Y=1/Y;
-        if (Z!=0)
-            Z=1/Z;
+        if( X != 0 )
+            X = 1 / X;
+        if( Y != 0 )
+            Y = 1 / Y;
+        if( Z != 0 )
+            Z = 1 / Z;
         return *this;
     }
 
@@ -441,6 +512,11 @@ namespace Mezzanine
         this->X = X;
         this->Y = Y;
         this->Z = Z;
+    }
+
+    Boole Vector3::IsZero() const
+    {
+        return ( this->X == 0.0 && this->Y == 0.0 && this->Z == 0.0 );
     }
 
     Vector3& Vector3::Ceil(const Vector3& Other)
@@ -571,6 +647,20 @@ namespace Mezzanine
         { return lhs * Vec; }
     Mezzanine::Vector3 operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
         { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Vector2LengthCompare methods
+
+    Boole Vector3LengthCompare::operator()(const Vector3& First, const Vector3& Second) const
+    {
+        if( ( First - Second ).SquaredLength() < 1e-6 )
+			return false;
+		if( MathTools::Fabs( First.X - Second.X ) > 1e-3 )
+			return ( First.X < Second.X );
+		if( MathTools::Fabs( First.Y - Second.Y ) > 1e-3 )
+			return ( First.Y < Second.Y );
+		return ( First.Z < Second.Z );
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Class External << Operators for streaming or assignment

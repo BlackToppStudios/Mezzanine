@@ -175,6 +175,8 @@ public:
             TEST( Surface.GetDistance(Point) == 8.0 ,"GetDistance(const_Vector3&)_const");
         }
 
+        /// @todo Write a unit test for "Ray GetOverlap(const Plane& Other) const"
+
         {
             Sphere PassBall(Vector3(-55.0,25,30.0),10);
             Sphere FailBall(Vector3(10.0,10.0,10.0),5);

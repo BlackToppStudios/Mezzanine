@@ -55,59 +55,265 @@ namespace Mezzanine
     namespace Resource
     {
 #ifdef USENEWDATASTREAM
-        void IOStream::Advance(const StreamOff Count)
+        ///////////////////////////////////////////////////////////////////////////////
+        // IStream Methods
+
+        IStream::IStream()
+            {  }
+
+        IStream::~IStream()
+            {  }
+
+        size_t IStream::Read(void* Buffer, StreamSize Size)
         {
-            this->SetStreamPosition(Count,SO_Current);
+            this->read(static_cast<char*>(Buffer),Size);
+            return this->gcount();
         }
+
+        void IStream::SetReadPosition(StreamPos Position)
+            { this->seekg(Position); }
+
+        void IStream::SetReadPosition(StreamOff Offset, SeekOrigin Origin)
+            { this->seekg(Offset,static_cast<std::ios_base::seekdir>(Origin)); }
+
+        StreamPos IStream::GetReadPosition()
+            { return this->tellg(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // OStream Methods
+
+        OStream::OStream()
+            {  }
+
+        OStream::~OStream()
+            {  }
+
+        size_t OStream::Write(const void* Buffer, StreamSize Size)
+        {
+            this->write(static_cast<const char*>(Buffer),Size);
+            return ( this->fail() ? 0 : Size );
+        }
+
+        void OStream::SetWritePosition(StreamPos Position)
+            { this->seekp(Position); }
+
+        void OStream::SetWritePosition(StreamOff Offset, SeekOrigin Origin)
+            { this->seekp(Offset,static_cast<std::ios_base::seekdir>(Origin)); }
+
+        StreamPos OStream::GetWritePosition()
+            { return this->tellp(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // IOStream Methods
+
+        IOStream::IOStream()
+            {  }
+
+        IOStream::~IOStream()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Base Operations
+
+        Boole IOStream::EoF() const
+            { return this->eof(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Input methods
+
+        size_t IOStream::Read(void* Buffer, StreamSize Size)
+        {
+            this->read(static_cast<char*>(Buffer),Size);
+            return this->gcount();
+        }
+
+        void IOStream::SetReadPosition(StreamPos Position)
+            { this->seekg(Position); }
+
+        void IOStream::SetReadPosition(StreamOff Offset, SeekOrigin Origin)
+            { this->seekg(Offset,static_cast<std::ios_base::seekdir>(Origin)); }
+
+        StreamPos IOStream::GetReadPosition()
+            { return this->tellg(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Output methods
+
+        size_t IOStream::Write(const void* Buffer, StreamSize Size)
+        {
+            this->write(static_cast<const char*>(Buffer),Size);
+            return ( this->fail() ? 0 : Size );
+        }
+
+        void IOStream::SetWritePosition(StreamPos Position)
+            { this->seekp(Position); }
+
+        void IOStream::SetWritePosition(StreamOff Offset, SeekOrigin Origin)
+            { this->seekp(Offset,static_cast<std::ios_base::seekdir>(Origin)); }
+
+        StreamPos IOStream::GetWritePosition()
+            { return this->tellp(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Input/Output methods
+
+        void IOStream::Advance(const StreamOff Count)
+            { this->SetStreamPosition(Count,SO_Current); }
 
         void IOStream::SetStreamPosition(StreamPos Position)
         {
-            this->SetReadPosition(Position);
-            this->SetWritePosition(Position);
+            this->seekg(Position);
+            this->seekp(Position);
         }
 
         void IOStream::SetStreamPosition(StreamOff Offset, SeekOrigin Origin)
         {
-            this->SetReadPosition(Offset,Origin);
-            this->SetWritePosition(Offset,Origin);
+            this->seekg(Offset,static_cast<std::ios_base::seekdir>(Origin));
+            this->seekp(Offset,static_cast<std::ios_base::seekdir>(Origin));
         }
 
-        StreamPos IOStream::GetStreamPosition(Boole Read = true)
+        StreamPos IOStream::GetStreamPosition(const Boole Read)
         {
             if(Read) return this->GetReadPosition();
             else return this->GetWritePosition();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Formatting Methods
+
+        String IOStream::GetAsString()
+        {
+            size_t BufferSize = ( this->GetSize() > 0 ? this->GetSize() : 4096 );
+            char* Buffer = new char[BufferSize];
+
+            this->SetStreamPosition(0);
+            String Ret;
+            while( !this->EoF() )
+            {
+                size_t BytesRead = Read(Buffer,BufferSize);
+                Ret.append(Buffer,BytesRead);
+            }
+            delete[] Buffer;
+            return Ret;
+        }
+
+        size_t IOStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim)
+        {
+            Boole TrimCR = false;
+            if( Delim.find_first_of('\n') != String::npos ) {
+                TrimCR = true;
+            }
+
+            char Temp[TEMP_STREAM_SIZE];
+            size_t ChunkSize = std::min(MaxCount,(size_t)TEMP_STREAM_SIZE - 1);
+            size_t TotalCount = 0;
+            size_t ReadCount = 0;
+
+            while( ChunkSize && ( ReadCount = Read(Temp,ChunkSize) ) != 0 )
+            {
+                Temp[ReadCount] = '\0';
+                size_t Pos = std::strcspn(Temp,Delim.c_str());
+
+                if( Pos < ReadCount ) {
+                    this->Advance((long)(Pos + 1 - ReadCount));
+                }
+
+                if( Buffer ) {
+                    std::memcpy(Buffer + TotalCount,Temp,Pos);
+                }
+                TotalCount += Pos;
+
+                if( Pos < ReadCount ) {
+                    if( TrimCR && TotalCount && Buffer[TotalCount - 1] == '\r' ) {
+                        --TotalCount;
+                    }
+                    break;
+                }
+
+                ChunkSize = std::min(MaxCount - TotalCount,(size_t)TEMP_STREAM_SIZE - 1);
+            }
+            Buffer[TotalCount] = '\0';
+            return TotalCount;
+        }
+
+        String IOStream::GetLine(Boole Trim)
+        {
+            char Temp[TEMP_STREAM_SIZE];
+            String Ret;
+            size_t ReadCount;
+
+            while( ( ReadCount = Read(Temp,TEMP_STREAM_SIZE - 1) ) != 0 )
+            {
+                Temp[ReadCount] = '\0';
+
+                char* Pos = std::strchr(Temp,'\n');
+                if( Pos != 0 ) {
+                    this->Advance( (long)(Pos + 1 - Temp - ReadCount) );
+                    *Pos = '\0';
+                }
+
+                Ret += Temp;
+
+                if( Pos != 0 ) {
+                    if( Ret.length() && Ret[Ret.length() - 1] == '\r' ) {
+                        Ret.erase(Ret.length() - 1, 1);
+                    }
+                    break;
+                }
+            }
+
+            if( Trim ) {
+                StringTools::Trim(Ret);
+            }
+
+            return Ret;
+        }
+
+        size_t IOStream::SkipLine(const String& Delim)
+        {
+            char Temp[TEMP_STREAM_SIZE];
+            size_t TotalBytes = 0;
+            size_t ReadCount = 0;
+
+            while( ( ReadCount = Read(Temp,TEMP_STREAM_SIZE - 1) ) != 0 )
+            {
+                Temp[ReadCount] = '\0';
+                size_t Position = std::strcspn(Temp,Delim.c_str());
+
+                if( Position < ReadCount ) {
+                    this->Advance( (long)(Position + 1 - ReadCount) );
+                    TotalBytes += Position + 1;
+                    break;
+                }
+
+                TotalBytes += ReadCount;
+            }
+
+            return TotalBytes;
         }
 #else //USENEWDATASTREAM
         ///////////////////////////////////////////////////////////////////////////////
         // DataStream Methods
         ///////////////////////////////////////
-        DataStream::DataStream(const UInt16 Flags)
-            : SFlags(Flags),
-              Size(0)
-        {
-        }
+        DataStream::DataStream(const UInt16 Flags) :
+            SFlags(Flags),
+            Size(0)
+            {  }
 
         DataStream::~DataStream()
-        {
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         StreamSize DataStream::GetSize() const
-        {
-            return Size;
-        }
+            { return Size; }
 
         Boole DataStream::IsReadable() const
-        {
-            return (SFlags & DataStream::SF_Read);
-        }
+            { return (SFlags & DataStream::SF_Read); }
 
         Boole DataStream::IsWriteable() const
-        {
-            return (SFlags & DataStream::SF_Write);
-        }
+            { return (SFlags & DataStream::SF_Write); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Access and Manipulation
@@ -134,8 +340,7 @@ namespace Mezzanine
         size_t DataStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim)
         {
             Boole TrimCR = false;
-            if(Delim.find_first_of('\n') != String::npos)
-            {
+            if( Delim.find_first_of('\n') != String::npos ) {
                 TrimCR = true;
             }
 
@@ -149,21 +354,17 @@ namespace Mezzanine
                 Temp[ReadCount] = '\0';
                 size_t Pos = std::strcspn(Temp,Delim.c_str());
 
-                if(Pos < ReadCount)
-                {
+                if(Pos < ReadCount) {
                     this->Advance((long)(Pos + 1 - ReadCount));
                 }
 
-                if(Buffer)
-                {
+                if(Buffer) {
                     std::memcpy(Buffer + TotalCount,Temp,Pos);
                 }
                 TotalCount += Pos;
 
-                if(Pos < ReadCount)
-                {
-                    if(TrimCR && TotalCount && Buffer[TotalCount - 1] == '\r')
-                    {
+                if(Pos < ReadCount) {
+                    if(TrimCR && TotalCount && Buffer[TotalCount - 1] == '\r') {
                         --TotalCount;
                     }
                     break;
@@ -186,26 +387,22 @@ namespace Mezzanine
                 Temp[ReadCount] = '\0';
 
                 char* Pos = std::strchr(Temp,'\n');
-                if(Pos != 0)
-                {
+                if(Pos != 0) {
                     this->Advance((long)(Pos + 1 - Temp - ReadCount));
                     *Pos = '\0';
                 }
 
                 Ret += Temp;
 
-                if(Pos != 0)
-                {
-                    if(Ret.length() && Ret[Ret.length() - 1] == '\r')
-                    {
+                if(Pos != 0) {
+                    if(Ret.length() && Ret[Ret.length() - 1] == '\r') {
                         Ret.erase(Ret.length() - 1, 1);
                     }
                     break;
                 }
             }
 
-            if(Trim)
-            {
+            if(Trim) {
                 StringTools::Trim(Ret);
             }
 
@@ -223,8 +420,7 @@ namespace Mezzanine
                 Temp[ReadCount] = '\0';
                 size_t Position = std::strcspn(Temp,Delim.c_str());
 
-                if(Position < ReadCount)
-                {
+                if(Position < ReadCount) {
                     this->Advance((long)(Position + 1 - ReadCount));
                     TotalBytes += Position + 1;
                     break;

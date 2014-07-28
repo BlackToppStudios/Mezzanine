@@ -33,7 +33,7 @@ void StartArea::CreateStartArea(const Vector3& HalfAreaSize)
     //Physics::CollisionShapeMananger* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
 
     if( SceneMan != NULL ) {
-        this->ParSysProx = SceneMan->CreateParticleSystemProxy("StartVortex");
+        this->ParSysProx = SceneMan->CreateParticleSystemProxy("StartVortex",false);
         this->ParSysProx->_Bind(this);
 
         Graphics::ParticleEmitter* ParSysEmit = this->ParSysProx->GetEmitter(0);

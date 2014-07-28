@@ -131,13 +131,6 @@ namespace Mezzanine
                 void Reset(const Document& proto);
 
                 #ifndef SWIG_SAFE
-                /// @brief Load a document from a data stream.
-                /// @param stream The stream to load from.
-                /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-                /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
-                /// @return A ParseResult that stores the the outcome of attempting to load the document.
-                /// @note Not available in the 'Safe' scripting languages because of the file access it provides
-                ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
                 /// @brief Load XML from a stream.
                 /// @param stream An std::istream which has xml text in it.
@@ -215,13 +208,6 @@ namespace Mezzanine
                 ParseResult LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
                 #ifndef SWIG_SAFE
-                /// @brief Save XML document to a stream.
-                /// @param stream The stream to save this document to.
-                /// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-                /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
-                /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
-                void Save(Resource::DataStream& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
                 /// @brief Save XML document to WriterInstance.
                 /// @param WriterInstance The Writer that will be used to output the xml text.

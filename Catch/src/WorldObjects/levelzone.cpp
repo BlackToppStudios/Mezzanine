@@ -29,7 +29,7 @@ void LevelZone::CreateLevelZone()
 {
     Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
     if( SceneMan != NULL ) {
-        this->EntProx = SceneMan->CreateEntityProxy();
+        this->EntProx = SceneMan->CreateEntityProxy(false);
         this->EntProx->_Bind(this);
     }
 }

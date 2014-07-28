@@ -141,6 +141,37 @@ namespace Mezzanine
     Real Plane::GetDistance(const Vector3& Point) const
         { return ( this->Normal.DotProduct(Point) + this->Distance ); }
 
+    Ray Plane::GetOverlap(const Plane& Other) const
+    {
+        //TODO : handle the case where the plane is perpendicular to T
+        Vector3 point1;
+        Vector3 direction = this->Normal.CrossProduct( Other.Normal );
+        if( direction.SquaredLength() < 1e-08 )
+            return Ray();
+
+        Real cp = this->Normal.X * Other.Normal.Y - Other.Normal.X * this->Normal.Y;
+        if( cp != 0 ) {
+            Real denom = 1.0 / cp;
+            point1.X = ( this->Normal.Y * Other.Distance - Other.Normal.Y * this->Distance ) * denom;
+            point1.Y = ( Other.Normal.X * this->Distance - this->Normal.X * Other.Distance ) * denom;
+            point1.Z = 0;
+        }else if( ( cp = this->Normal.Y * Other.Normal.Z - Other.Normal.Y * this->Normal.Z ) != 0 ) {
+            //special case #1
+            Real denom = 1.0 / cp;
+            point1.X = 0.0;
+            point1.Y = ( this->Normal.Z * Other.Distance - Other.Normal.Z * this->Distance ) * denom;
+            point1.Z = ( Other.Normal.Y * this->Distance - this->Normal.Y * Other.Distance ) * denom;
+        }else if( ( cp = this->Normal.X * Other.Normal.Z - Other.Normal.X * this->Normal.Z ) != 0 ) {
+            //special case #2
+            Real denom = 1.0 / cp;
+            point1.X = ( this->Normal.Z * Other.Distance - Other.Normal.Z * this->Distance ) * denom;
+            point1.Y = 0.0;
+            point1.Z = ( Other.Normal.X * this->Distance - this->Normal.X * Other.Distance ) * denom;
+        }
+
+        return Ray(point1,direction);
+    }
+
     Boole Plane::IsOverlapping(const Sphere& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 

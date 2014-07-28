@@ -124,7 +124,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Exact an Ogre::RayQuery with some default parameters and see if we hit anything
         /// @param RayQuery A ManagedRayQuery
-        /// @param ActorRay The Ray to follow and see if it hits something
+        /// @param Ooray The Ray to follow and see if it hits something
         /// @return True if something is hit, false otherwise.
         Boole ExecuteQuery(ManagedRayQuery& RayQuery, Ogre::Ray& Ooray)
         {
@@ -198,6 +198,7 @@ namespace Mezzanine
                 { break; }
 
             // only check this result if its a hit against an entity
+            /// @todo Modify this so we can check for more movable types than just entities.
             if ((NULL != query_result[qr_idx].movable) && (0 == query_result[qr_idx].movable->getMovableType().compare("Entity")))
             {
                 // get the entity to check
@@ -249,14 +250,13 @@ namespace Mezzanine
                     } // \if WSO_ActorRigid
                 }catch(...){
                     ClearReturns();
-                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed during cast in actor raycast.");
+                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed during cast in object raycast.");
                 }
             } // \if entity
         } // \if qr_idx
 
         // Change the closest point into a point relative to the Actor
-        if (IntersectedObject)
-        {
+        if (IntersectedObject) {
             Offset = IntersectedObject->GetOrientation() * ((closest_result - IntersectedObject->GetLocation()) * IntersectedObject->GetScale());
             ValidResult=true;
             return ValidResult;
@@ -291,7 +291,7 @@ namespace Mezzanine
 
     Boole RayQueryTool::RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane)
     {
-        MathTools::PlaneRayTestResult Result = MathTools::Intersects(QueryPlane,QueryRay);
+        MathTools::Point3DTestResult Result = MathTools::Intersects(QueryPlane,QueryRay);
         this->Offset = Result.second;
         this->IntersectedObject = NULL;
         return Result.first;
@@ -355,17 +355,15 @@ namespace Mezzanine
         }//*/
     }
 
-    Ray RayQueryTool::GetMouseRay(Real Length)
+    Ray RayQueryTool::GetMouseRay()
     {
         Graphics::Viewport* HoveredViewport = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
         Vector2 MousePos = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
         Ray MouseRay;
-        if(HoveredViewport)
-        {
+        if(HoveredViewport) {
             MouseRay = Ray( HoveredViewport->GetCamera()->GetCameraToViewportRay(
                             MousePos.X / (Real)(HoveredViewport->GetActualWidth()),
                             MousePos.Y / (Real)(HoveredViewport->GetActualHeight()) ) );
-            MouseRay *= Length;
         }
         return MouseRay;
     }

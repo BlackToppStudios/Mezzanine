@@ -146,6 +146,12 @@ namespace Mezzanine
         /// @return Returns the distance from the plane to the specified point.  Positive values mean the point is on the positive side, and vice versa.
         Real GetDistance(const Vector3& Point) const;
 
+        /// @brief Gets the overlap of two Planes expressed as a Ray.
+        /// @note The "IsOverlapping" method overload that accepts a Plane is a fairly quick and easy check you could perform prior to this method to ensure you get valid results.
+        /// @param Other The other Plane to compare with.
+        /// @return Returns a Ray expressing the overlapping portions of the two Planes, or a blank/default Ray if they don't overlap.
+        Ray GetOverlap(const Plane& Other) const;
+
         /// @brief Checks to see if a sphere overlaps with this Plane.
         /// @param ToCheck The sphere to check for overlap.
         /// @return Returns true if the provided sphere overlaps with this Plane, false otherwise.

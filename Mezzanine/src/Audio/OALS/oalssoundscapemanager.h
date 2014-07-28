@@ -170,18 +170,18 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Proxy Management
 
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const Audio::Encoding, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, const String&, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const Audio::Encoding, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const UInt32, const Audio::BitConfig, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld = true);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const Audio::Encoding, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, const String&, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const Audio::Encoding, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const UInt32, const Audio::BitConfig, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld);
                 /// @copydoc Audio::SoundScapeManager::GetSoundProxy(const UInt32) const
                 virtual Audio::SoundProxy* GetSoundProxy(const UInt32 Index) const;
                 /// @copydoc Audio::SoundScapeManager::GetNumSoundProxies() const

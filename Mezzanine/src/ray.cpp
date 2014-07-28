@@ -56,22 +56,22 @@ namespace Mezzanine
 {
     Ray::Ray() :
         Origin(0,0,0),
-        Destination(0,1,0)
+        Normal(0,1,0)
         {  }
 
     Ray::Ray(const Ray& Other) :
         Origin(Other.Origin),
-        Destination(Other.Destination)
+        Normal(Other.Normal)
         {  }
 
-    Ray::Ray(const Vector3& To) :
-        Destination(To)
-        {  }
+    Ray::Ray(const Vector3& Dir) :
+        Normal(Dir)
+        { this->Normal.Normalize(); }
 
-    Ray::Ray(const Vector3& From, const Vector3& To) :
+    Ray::Ray(const Vector3& From, const Vector3& Dir) :
         Origin(From),
-        Destination(To)
-        {  }
+        Normal(Dir)
+        { this->Normal.Normalize(); }
 
     Ray::Ray(const Ogre::Ray& InternalRay)
         { this->ExtractOgreRay(InternalRay); }
@@ -82,29 +82,14 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Real Ray::Length() const
-        { return this->Origin.Distance(this->Destination); }
+    const Vector3& Ray::GetNormal() const
+        { return this->Normal; }
 
-    Vector3 Ray::GetDirection() const
-        { return ( this->Destination - this->Origin ).Normalize(); }
+    const Vector3& Ray::GetOrigin() const
+        { return this->Origin; }
 
-    Ray Ray::GetNormal() const
-    {
-        Real TempLength = this->Length();
-        if( 0 != TempLength ) {
-            return (*this) / TempLength;
-        }
-        return Ray(*this);
-    }
-
-    Ray& Ray::Normalize()
-    {
-        Real TempLength = this->Length();
-        if( 0 != TempLength ) {
-            return (*this) /= this->Length();
-        }
-        return *this;
-    }
+    Vector3 Ray::GetPointAtDistance(const Real& Distance)
+        { return ( this->Origin + ( this->GetNormal() * Distance ) ); }
 
     Ray::PlaneRayTestResult Ray::Intersects(const Plane& ToCheck) const
         { return MathTools::Intersects(ToCheck,*this); }
@@ -119,10 +104,10 @@ namespace Mezzanine
     // Conversion Methods
 
     void Ray::ExtractOgreRay(const Ogre::Ray& InternalRay)
-        { this->Origin = InternalRay.getOrigin();  this->Destination = InternalRay.getPoint(1); }
+        { this->Origin = InternalRay.getOrigin();  this->Normal = InternalRay.getDirection(); }
 
     Ogre::Ray Ray::GetOgreRay() const
-        { return Ogre::Ray(this->Origin.GetOgreVector3(),this->GetDirection().GetOgreVector3()); }
+        { return Ogre::Ray(this->Origin.GetOgreVector3(),this->GetNormal().GetOgreVector3()); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -136,8 +121,8 @@ namespace Mezzanine
             XML::Node OriginNode = SelfRoot.AppendChild("Origin");
             this->Origin.ProtoSerialize( OriginNode );
 
-            XML::Node DestinationNode = SelfRoot.AppendChild("Destination");
-            this->Destination.ProtoSerialize( DestinationNode );
+            XML::Node NormalNode = SelfRoot.AppendChild("Normal");
+            this->Normal.ProtoSerialize( NormalNode );
 
             return;
         }else{
@@ -154,9 +139,9 @@ namespace Mezzanine
                 if( !OriginNode.Empty() )
                     this->Origin.ProtoDeSerialize(OriginNode);
 
-                XML::Node DestinationNode = SelfRoot.GetChild("Destination").GetFirstChild();
-                if( !DestinationNode.Empty() )
-                    this->Destination.ProtoDeSerialize(DestinationNode);
+                XML::Node NormalNode = SelfRoot.GetChild("Normal").GetFirstChild();
+                if( !NormalNode.Empty() )
+                    this->Normal.ProtoDeSerialize(NormalNode);
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Ray::GetSerializableName() + ": Not Version 1.");
             }
@@ -174,30 +159,18 @@ namespace Mezzanine
     // Operators
 
     void Ray::operator=(const Ray& Other)
-        { this->Origin = Other.Origin;  this->Destination = Other.Destination; }
-
-    Ray Ray::operator*(const Real Factor) const
-        { return Ray( this->Origin, ( ( this->Destination - this->Origin ) * Factor ) + this->Origin ); }
-
-    Ray Ray::operator/(const Real Factor) const
-        { return Ray( this->Origin, ( ( this->Destination - this->Origin ) / Factor ) + this->Origin ); }
-
-    Ray& Ray::operator*=(const Real Factor)
-        { this->Destination = ( ( this->Destination - this->Origin ) * Factor ) + this->Origin;  return *this; }
-
-    Ray& Ray::operator/=(const Real Factor)
-        { this->Destination = ( ( this->Destination - this->Origin ) / Factor ) + this->Origin;  return *this; }
+        { this->Origin = Other.Origin;  this->Normal = Other.Normal; }
 
     Boole Ray::operator==(const Ray& Other) const
-        { return ( this->Origin == Other.Origin && this->Destination == Other.Destination ); }
+        { return ( this->Origin == Other.Origin && this->Normal == Other.Normal ); }
 
     Boole Ray::operator!=(const Ray& Other) const
-        { return ( this->Origin != Other.Origin || this->Destination != Other.Destination ); }
+        { return ( this->Origin != Other.Origin || this->Normal != Other.Normal ); }
 }
 
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Ray& x)
 {
-    stream << "[" << x.Origin << "," << x.Destination << "]";
+    stream << "[" << x.GetOrigin() << "," << x.GetNormal() << "]";
     return stream;
 }
 

@@ -615,7 +615,7 @@ namespace Mezzanine
                 }
 
                 /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-                Resource::FileStream SettingsStream(FileName,".",Resource::DataStream::SF_Truncate | Resource::DataStream::SF_Write);
+                Resource::FileStream SettingsStream(FileName,".",Resource::SF_Truncate | Resource::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
@@ -636,7 +636,7 @@ namespace Mezzanine
                 }
 
                 /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-                Resource::FileStream SettingsStream(FileName,".",Resource::DataStream::SF_Truncate | Resource::DataStream::SF_Write);
+                Resource::FileStream SettingsStream(FileName,".",Resource::SF_Truncate | Resource::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");

@@ -405,6 +405,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Creating Proxies
 
+        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const Boole AddToWorld)
+        {
+            return this->CreateBillboardSetProxy(20,AddToWorld);
+        }
+
         BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const UInt32 InitialPoolSize, const Boole AddToWorld)
         {
             BillboardSetProxy* NewProxy = new BillboardSetProxy(InitialPoolSize,this);

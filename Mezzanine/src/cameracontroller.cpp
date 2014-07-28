@@ -122,8 +122,8 @@ namespace Mezzanine
 
     Real CameraController::FindDistanceToGround()
     {
-        Vector3 Loc(this->Controlled->GetLocation());
-        Vector3 Dest(Loc + Vector3(0,-2000,0));
+        Vector3 Loc( this->Controlled->GetLocation() );
+        Vector3 Dest( Vector3::Neg_Unit_Y() );
         Ray GroundRay(Loc,Dest);
         UInt32 flags = Mezzanine::WO_MeshTerrain | Mezzanine::WO_HeightfieldTerrain | Mezzanine::WO_VectorFieldTerrain | Mezzanine::WO_VoxelTerrain;
         if( !RayCaster.GetFirstObjectOnRayByPolygon(GroundRay,flags) )

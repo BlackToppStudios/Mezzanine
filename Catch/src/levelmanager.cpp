@@ -17,7 +17,7 @@ void LoadFerris()
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
     AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
@@ -224,7 +224,7 @@ void LoadFerris()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",FerrisGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(11.0);
     StartZone->SetParticleMaximumTimeToLive(15.0);
     StartZone->SetLocation(-170,0,0);
@@ -238,7 +238,7 @@ void LoadFerris()
 
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
-    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",FerrisGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(100,0,0);
     ScoreZone->AddToWorld();// */
 
@@ -248,7 +248,7 @@ void LoadFerris()
     BonusZoneParams["SizeY"] = StringTools::ConvertToString(BonusScoreSize.Y);
     BonusZoneParams["SizeZ"] = StringTools::ConvertToString(BonusScoreSize.Z);
     Physics::CollisionShape* BonusScoreShape = new Physics::BoxCollisionShape("BonusAreaShape",BonusScoreSize);
-    Graphics::Mesh* BonusScoreMesh = MeshMan->CreateBoxCornerMesh("BonusAreaMesh",ColourValue(0.50,0.15,0.65,0.8),BonusScoreSize,4.0);
+    Graphics::Mesh* BonusScoreMesh = Graphics::Procedural::BoxCornerGenerator(BonusScoreSize,4.0).GenerateMesh("BonusAreaMesh",FerrisGroup,"Basic/Purple",CommonGroup);
 
     ScoreArea* BonusZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea1",BonusZoneParams,false) );
     BonusZone1->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
@@ -288,7 +288,7 @@ void LoadBigCurve()
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
     AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
@@ -387,7 +387,7 @@ void LoadBigCurve()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",BigCurveGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(8.0);
     StartZone->SetParticleMaximumTimeToLive(10.0);
     StartZone->SetLocation(-180,-60,0);
@@ -401,7 +401,7 @@ void LoadBigCurve()
 
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
-    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",BigCurveGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(120,-20,-10);
     ScoreZone->AddToWorld();// */
 }
@@ -414,7 +414,7 @@ void LoadBlowsNotSucks()
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
     AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
@@ -588,7 +588,7 @@ void LoadBlowsNotSucks()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",BlowsNotSucksGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(6.0);
     StartZone->SetParticleMaximumTimeToLive(9.0);
     StartZone->SetLocation(-170,-70,0);
@@ -600,7 +600,7 @@ void LoadBlowsNotSucks()
     ScoreZone1Params["SizeY"] = StringTools::ConvertToString(Score1Size.Y);
     ScoreZone1Params["SizeZ"] = StringTools::ConvertToString(Score1Size.Z);
     Physics::CollisionShape* ScoreArea1Shape = new Physics::BoxCollisionShape("ScoreArea1Shape",Score1Size);
-    Graphics::Mesh* ScoreArea1Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.8),Score1Size,4.0);
+    Graphics::Mesh* ScoreArea1Mesh = Graphics::Procedural::BoxCornerGenerator(Score1Size,4.0).GenerateMesh("ScoreAreaMesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
 
     ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZone1Params,false) );
     ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreArea1Shape);
@@ -614,7 +614,7 @@ void LoadBlowsNotSucks()
     ScoreZone2Params["SizeY"] = StringTools::ConvertToString(Score2Size.Y);
     ScoreZone2Params["SizeZ"] = StringTools::ConvertToString(Score2Size.Z);
     Physics::CollisionShape* ScoreArea2Shape = new Physics::BoxCollisionShape("ScoreArea2Shape",Score2Size);
-    Graphics::Mesh* ScoreArea2Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.8),Score2Size,4.0);
+    Graphics::Mesh* ScoreArea2Mesh = Graphics::Procedural::BoxCornerGenerator(Score2Size,4.0).GenerateMesh("ScoreAreaMesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
 
     ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea2",ScoreZone2Params,false) );
     ScoreZone2->GetGhostProxy()->SetCollisionShape(ScoreArea2Shape);
@@ -631,7 +631,7 @@ void LoadJustice()
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
     AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
@@ -806,7 +806,7 @@ void LoadJustice()
     StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
     StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
     Physics::CollisionShape* StartAreaShape = new Physics::BoxCollisionShape("StartArea1Shape",StartSize);
-    Graphics::Mesh* StartAreaMesh = MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0);
+    Graphics::Mesh* StartAreaMesh = Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",JusticeGroup,"Basic/Green",CommonGroup);
 
     StartArea* StartZone1 = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone1->GetGhostProxy()->SetCollisionShape(StartAreaShape);
@@ -829,7 +829,7 @@ void LoadJustice()
     ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
     ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
     Physics::CollisionShape* ScoreAreaShape = new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize);
-    Graphics::Mesh* ScoreAreaMesh = MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0);
+    Graphics::Mesh* ScoreAreaMesh = Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",JusticeGroup,"Basic/Blue",CommonGroup);
 
     ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreAreaShape);
@@ -851,7 +851,7 @@ void LoadRollers()
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
     AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
@@ -967,7 +967,7 @@ void LoadRollers()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","ScoreArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",RollersGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(5.0);
     StartZone->SetParticleMaximumTimeToLive(6.0);
     StartZone->SetLocation(-140,60,0);
@@ -981,7 +981,7 @@ void LoadRollers()
 
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
-    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",RollersGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(140,20,0);
     ScoreZone->AddToWorld();// */
 }
@@ -994,7 +994,7 @@ void LoadJustBounce()
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
     AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
@@ -1121,7 +1121,7 @@ void LoadJustBounce()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",JustBounceGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(5.0);
     StartZone->SetParticleMaximumTimeToLive(6.0);
     StartZone->SetLocation(-170,90,0);
@@ -1135,7 +1135,7 @@ void LoadJustBounce()
 
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
-    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",JustBounceGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(158,-25,0);
     ScoreZone->AddToWorld();// */
 }
@@ -1532,7 +1532,7 @@ void LevelManager::UnloadLevel()
     /// @todo This should be populated with the appropriate logic after the world restructuring and engine state refactors are done.
     //Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
@@ -1549,7 +1549,6 @@ void LevelManager::UnloadLevel()
     PhysMan->DestroyAllProxies();
     PhysMan->DestroyAllWorldTriggers();
     CShapeMan->DestroyAllShapes();
-    MeshMan->DestroyAllGeneratedMeshes();
 
     //ResMan->DestroyAssetGroup(LevelMan->GetCurrentLevel()->GetGroupName());
     PhysMan->ClearPhysicsMetaData();

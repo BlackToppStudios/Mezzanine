@@ -38,8 +38,8 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifndef _graphicsmaterial_cpp
-#define _graphicsmaterial_cpp
+#ifndef _graphicstexture_cpp
+#define _graphicstexture_cpp
 
 #include "Graphics/texture.h"
 #include <Ogre.h>

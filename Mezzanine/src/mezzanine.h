@@ -58,6 +58,7 @@
     #include "Audio/audio.h"
     #include "Threading/dagframescheduler.h"
     #include "Graphics/graphics.h"
+    #include "Graphics/Procedural/procedural.h"
     #include "Input/input.h"
     #include "Physics/physics.h"
     #include "Resource/resource.h"
@@ -74,6 +75,7 @@
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "cameracontroller.h"
+#include "circle.h"
 #include "colourvalue.h"
 #include "countedptr.h"
 #include "crossplatform.h"
@@ -114,6 +116,7 @@
 #include "hashedstring.h"
 #include "interpolator.h"
 #include "linegroup.h"
+#include "linesegment.h"
 #include "macros.h"
 #include "managedptr.h"
 #endif
@@ -147,6 +150,7 @@
 #ifndef SWIG
 #include "track.h"
 #include "trackiterator.h"
+#include "triangle.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"
 #endif // \no SWIG
