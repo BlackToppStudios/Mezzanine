@@ -443,6 +443,12 @@ namespace Mezzanine
         return Ret;
     }
 
+    Real* Matrix3x3::operator[](const Whole Row)
+        { return this->Matrix[Row]; }
+
+    const Real* Matrix3x3::operator[](const Whole Row) const
+        { return this->Matrix[Row]; }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Fancy Math
 
