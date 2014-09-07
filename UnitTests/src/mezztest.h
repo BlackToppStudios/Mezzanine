@@ -46,6 +46,8 @@
 #include "testdatatools.h"
 #include "testenumerations.h"
 
+#include <stdexcept> // Used to throw for TEST_THROW
+
 /// @brief Get the argument count as it was passed into Main.
 /// @return This is returned as an int
 int GetMainArgumentCount();
