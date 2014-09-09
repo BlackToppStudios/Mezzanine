@@ -123,25 +123,28 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Real Math & Check Functions
 
-        Real Ceil(const Real& Val)
+        Real Ceil(const Real Val)
             { return std::ceil(Val); }
 
-        Real Floor(const Real& Val)
+        Real Floor(const Real Val)
             { return std::floor(Val); }
 
-        Real Pow(const Real& Val, const Real& Power)
+        Real Pow(const Real Val, const Real Power)
             { return std::pow(Val,Power); }
 
-        Real Sqrt(const Real& Val)
+        Real Exp(const Real Val)
+            { return std::exp(Val); }
+
+        Real Sqrt(const Real Val)
             { return std::sqrt(Val); }
 
-        Real Fabs(const Real& Val)
+        Real Fabs(const Real Val)
             { return std::fabs(Val); }
 
-        Real Fmod(const Real& Numerator, const Real& Denominator)
+        Real Fmod(const Real Numerator, const Real Denominator)
             { return std::fmod(Numerator,Denominator); }
 
-        Boole WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
+        Boole WithinTolerance(const Real First, const Real Second, const Real Tolerance)
             { return ( MathTools::Fabs(Second - First) <= Tolerance ); }
 
         Integer WrappedModulo(const Integer Num, const Integer Cap)
