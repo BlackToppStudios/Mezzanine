@@ -153,6 +153,37 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Overloaded Operators
 
+        /// @brief Scalar Multiplication Operator.
+        /// @param Scalar The Scalar to multiply all the colour channels by.
+        /// @return Returns a new ColourValue with the updated values.
+        ColourValue operator*(const Real Scalar);
+
+        /// @brief Addition Operator.
+        /// @param Colour The ColourValue to add each respective colour channel by.
+        /// @return Returns a new ColourValue with the updated values.
+        ColourValue operator+(const ColourValue& Colour);
+        /// @brief Subtraction Operator.
+        /// @param Colour The ColourValue to subtract each respective colour channel by.
+        /// @return Retruns a new ColourValue with the updated values.
+        ColourValue operator-(const ColourValue& Colour);
+        /// @brief Multiplication Operator.
+        /// @param Colour The ColourValue to multiply each respective colour channel by.
+        /// @return Returns a new ColourValue with the updated values.
+        ColourValue operator*(const ColourValue& Colour);
+
+        /// @brief Addition Operator.
+        /// @param Colour The ColourValue to add each respective colour channel by.
+        /// @return Returns a new ColourValue with the updated values.
+        ColourValue& operator+=(const ColourValue& Colour);
+        /// @brief Subtraction Operator.
+        /// @param Colour The ColourValue to subtract each respective colour channel by.
+        /// @return Retruns a new ColourValue with the updated values.
+        ColourValue& operator-=(const ColourValue& Colour);
+        /// @brief Multiplication Operator.
+        /// @param Colour The ColourValue to multiply each respective colour channel by.
+        /// @return Returns a new ColourValue with the updated values.
+        ColourValue& operator*=(const ColourValue& Colour);
+
         /// @brief Equality Comparison Operator
         /// @param Colour This is another ColourValue to compare with.
         /// @return True if the colors match perfectly, false otherwise
