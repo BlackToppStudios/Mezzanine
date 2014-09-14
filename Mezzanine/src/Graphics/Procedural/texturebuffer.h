@@ -294,6 +294,18 @@ namespace Mezzanine
                 /// @return Returns a Real representing the alpha component of the colour in the specified pixel.  Range: [0.0, 1.0].
                 Real GetAlphaReal(const Whole X, const Whole Y) const;
             };//TextureBuffer
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief Convenience class for pixel processing.
+            /// @details
+            ///////////////////////////////////////
+            struct IntVector2
+            {
+                /// @brief Position on the X axis.
+                Whole X;
+                /// @brief Position on the Y axis.
+                Whole Y;
+            };//IntVector2
         }//Procedural
     }//Graphics
 }//Mezzanine
