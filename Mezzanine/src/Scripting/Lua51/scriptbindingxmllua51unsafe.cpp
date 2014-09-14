@@ -11626,14 +11626,14 @@ static int _wrap_Document_Reset(lua_State* L) {
 static int _wrap_Document_Load__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Resource::DataStream *arg2 = 0 ;
+  std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
   unsigned int arg3 ;
   Mezzanine::XML::Encoding arg4 ;
   Mezzanine::XML::ParseResult result;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Load",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"Resource::DataStream &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< char,std::char_traits< char > > &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Load",3,"unsigned int");
   if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Load",4,"Mezzanine::XML::Encoding");
   
@@ -11642,8 +11642,8 @@ static int _wrap_Document_Load__SWIG_0(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Resource__DataStream,0))){
-    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_Resource__DataStream);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t,0))){
+    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t);
   }
   
   SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
@@ -11667,13 +11667,13 @@ fail:
 static int _wrap_Document_Load__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Resource::DataStream *arg2 = 0 ;
+  std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
   unsigned int arg3 ;
   Mezzanine::XML::ParseResult result;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Load",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"Resource::DataStream &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< char,std::char_traits< char > > &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Load",3,"unsigned int");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
@@ -11681,8 +11681,8 @@ static int _wrap_Document_Load__SWIG_1(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Resource__DataStream,0))){
-    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_Resource__DataStream);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t,0))){
+    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t);
   }
   
   SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
@@ -11705,20 +11705,20 @@ fail:
 static int _wrap_Document_Load__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Resource::DataStream *arg2 = 0 ;
+  std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::XML::ParseResult result;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Load",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"Resource::DataStream &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< char,std::char_traits< char > > &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
     SWIG_fail_ptr("Document_Load",1,SWIGTYPE_p_Mezzanine__XML__Document);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Resource__DataStream,0))){
-    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_Resource__DataStream);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t,0))){
+    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t);
   }
   
   result = (arg1)->Load(*arg2);
@@ -11739,30 +11739,27 @@ fail:
 static int _wrap_Document_Load__SWIG_3(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
+  std::basic_istream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   unsigned int arg3 ;
-  Mezzanine::XML::Encoding arg4 ;
   Mezzanine::XML::ParseResult result;
   
-  SWIG_check_num_args("Mezzanine::XML::Document::Load",4,4)
+  SWIG_check_num_args("Mezzanine::XML::Document::Load",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< char,std::char_traits< char > > &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< wchar_t,std::char_traits< wchar_t > > &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Load",3,"unsigned int");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Load",4,"Mezzanine::XML::Encoding");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
     SWIG_fail_ptr("Document_Load",1,SWIGTYPE_p_Mezzanine__XML__Document);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t,0))){
-    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t,0))){
+    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t);
   }
   
   SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
   arg3 = (unsigned int)lua_tonumber(L, 3);
-  arg4 = (Mezzanine::XML::Encoding)(int)lua_tonumber(L, 4);
-  result = (arg1)->Load(*arg2,arg3,arg4);
+  result = (arg1)->Load(*arg2,arg3);
   {
     Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
@@ -11780,27 +11777,23 @@ fail:
 static int _wrap_Document_Load__SWIG_4(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
-  unsigned int arg3 ;
+  std::basic_istream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::XML::ParseResult result;
   
-  SWIG_check_num_args("Mezzanine::XML::Document::Load",3,3)
+  SWIG_check_num_args("Mezzanine::XML::Document::Load",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< char,std::char_traits< char > > &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Load",3,"unsigned int");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< wchar_t,std::char_traits< wchar_t > > &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
     SWIG_fail_ptr("Document_Load",1,SWIGTYPE_p_Mezzanine__XML__Document);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t,0))){
-    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t,0))){
+    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t);
   }
   
-  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
-  arg3 = (unsigned int)lua_tonumber(L, 3);
-  result = (arg1)->Load(*arg2,arg3);
+  result = (arg1)->Load(*arg2);
   {
     Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
@@ -11816,112 +11809,6 @@ fail:
 
 
 static int _wrap_Document_Load__SWIG_5(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
-  Mezzanine::XML::ParseResult result;
-  
-  SWIG_check_num_args("Mezzanine::XML::Document::Load",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< char,std::char_traits< char > > &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
-    SWIG_fail_ptr("Document_Load",1,SWIGTYPE_p_Mezzanine__XML__Document);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t,0))){
-    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t);
-  }
-  
-  result = (arg1)->Load(*arg2);
-  {
-    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Document_Load__SWIG_6(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_istream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
-  unsigned int arg3 ;
-  Mezzanine::XML::ParseResult result;
-  
-  SWIG_check_num_args("Mezzanine::XML::Document::Load",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< wchar_t,std::char_traits< wchar_t > > &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Load",3,"unsigned int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
-    SWIG_fail_ptr("Document_Load",1,SWIGTYPE_p_Mezzanine__XML__Document);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t,0))){
-    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
-  arg3 = (unsigned int)lua_tonumber(L, 3);
-  result = (arg1)->Load(*arg2,arg3);
-  {
-    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Document_Load__SWIG_7(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_istream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
-  Mezzanine::XML::ParseResult result;
-  
-  SWIG_check_num_args("Mezzanine::XML::Document::Load",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"std::basic_istream< wchar_t,std::char_traits< wchar_t > > &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
-    SWIG_fail_ptr("Document_Load",1,SWIGTYPE_p_Mezzanine__XML__Document);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t,0))){
-    SWIG_fail_ptr("Document_Load",2,SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t);
-  }
-  
-  result = (arg1)->Load(*arg2);
-  {
-    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Document_Load__SWIG_8(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
@@ -11955,7 +11842,7 @@ fail:
 }
 
 
-static int _wrap_Document_Load__SWIG_9(lua_State* L) {
+static int _wrap_Document_Load__SWIG_6(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
@@ -12005,7 +11892,7 @@ static int _wrap_Document_Load(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Resource__DataStream, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -12029,30 +11916,6 @@ static int _wrap_Document_Load(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_Document_Load__SWIG_5(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
         if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0)) {
           _v = 0;
         } else {
@@ -12060,7 +11923,7 @@ static int _wrap_Document_Load(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_Document_Load__SWIG_7(L);
+        return _wrap_Document_Load__SWIG_4(L);
       }
     }
   }
@@ -12079,36 +11942,7 @@ static int _wrap_Document_Load(lua_State* L) {
         _v = SWIG_lua_isnilstring(L,argv[1]);
       }
       if (_v) {
-        return _wrap_Document_Load__SWIG_9(L);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_Document_Load__SWIG_6(L);
-        }
+        return _wrap_Document_Load__SWIG_6(L);
       }
     }
   }
@@ -12126,35 +11960,6 @@ static int _wrap_Document_Load(lua_State* L) {
       {
         void *ptr;
         if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_Document_Load__SWIG_4(L);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Resource__DataStream, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -12182,19 +11987,24 @@ static int _wrap_Document_Load(lua_State* L) {
     }
     if (_v) {
       {
-        _v = SWIG_lua_isnilstring(L,argv[1]);
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
       }
       if (_v) {
         {
           _v = lua_isnumber(L,argv[2]);
         }
         if (_v) {
-          return _wrap_Document_Load__SWIG_8(L);
+          return _wrap_Document_Load__SWIG_3(L);
         }
       }
     }
   }
-  if (argc == 4) {
+  if (argc == 3) {
     int _v;
     {
       void *ptr;
@@ -12206,24 +12016,14 @@ static int _wrap_Document_Load(lua_State* L) {
     }
     if (_v) {
       {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Resource__DataStream, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
+        _v = SWIG_lua_isnilstring(L,argv[1]);
       }
       if (_v) {
         {
           _v = lua_isnumber(L,argv[2]);
         }
         if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_Document_Load__SWIG_0(L);
-          }
+          return _wrap_Document_Load__SWIG_5(L);
         }
       }
     }
@@ -12256,7 +12056,7 @@ static int _wrap_Document_Load(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_Document_Load__SWIG_3(L);
+            return _wrap_Document_Load__SWIG_0(L);
           }
         }
       }
@@ -12265,9 +12065,6 @@ static int _wrap_Document_Load(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Document_Load'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::XML::Document::Load(Resource::DataStream &,unsigned int,Mezzanine::XML::Encoding)\n"
-    "    Mezzanine::XML::Document::Load(Resource::DataStream &,unsigned int)\n"
-    "    Mezzanine::XML::Document::Load(Resource::DataStream &)\n"
     "    Mezzanine::XML::Document::Load(std::basic_istream< char,std::char_traits< char > > &,unsigned int,Mezzanine::XML::Encoding)\n"
     "    Mezzanine::XML::Document::Load(std::basic_istream< char,std::char_traits< char > > &,unsigned int)\n"
     "    Mezzanine::XML::Document::Load(std::basic_istream< char,std::char_traits< char > > &)\n"
@@ -13371,14 +13168,14 @@ static int _wrap_Document_LoadBufferInplaceOwn(lua_State* L) {
 static int _wrap_Document_Save__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Resource::DataStream *arg2 = 0 ;
+  Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
   unsigned int arg4 ;
   Mezzanine::XML::Encoding arg5 ;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Save",5,5)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Resource::DataStream &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Mezzanine::XML::Writer &");
   if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
   if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Save",4,"unsigned int");
   if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::XML::Document::Save",5,"Mezzanine::XML::Encoding");
@@ -13388,8 +13185,8 @@ static int _wrap_Document_Save__SWIG_0(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Resource__DataStream,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Resource__DataStream);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Writer,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Mezzanine__XML__Writer);
   }
   
   arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
@@ -13411,13 +13208,13 @@ fail:
 static int _wrap_Document_Save__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Resource::DataStream *arg2 = 0 ;
+  Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
   unsigned int arg4 ;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Save",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Resource::DataStream &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Mezzanine::XML::Writer &");
   if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
   if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Save",4,"unsigned int");
   
@@ -13426,8 +13223,8 @@ static int _wrap_Document_Save__SWIG_1(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Resource__DataStream,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Resource__DataStream);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Writer,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Mezzanine__XML__Writer);
   }
   
   arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
@@ -13448,12 +13245,12 @@ fail:
 static int _wrap_Document_Save__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Resource::DataStream *arg2 = 0 ;
+  Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Save",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Resource::DataStream &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Mezzanine::XML::Writer &");
   if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
@@ -13461,8 +13258,8 @@ static int _wrap_Document_Save__SWIG_2(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Resource__DataStream,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Resource__DataStream);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Writer,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Mezzanine__XML__Writer);
   }
   
   arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
@@ -13481,19 +13278,19 @@ fail:
 static int _wrap_Document_Save__SWIG_3(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Resource::DataStream *arg2 = 0 ;
+  Mezzanine::XML::Writer *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Save",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Resource::DataStream &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Mezzanine::XML::Writer &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
     SWIG_fail_ptr("Document_Save",1,SWIGTYPE_p_Mezzanine__XML__Document);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Resource__DataStream,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Resource__DataStream);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Writer,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Mezzanine__XML__Writer);
   }
   
   ((Mezzanine::XML::Document const *)arg1)->Save(*arg2);
@@ -13511,14 +13308,14 @@ fail:
 static int _wrap_Document_Save__SWIG_4(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Mezzanine::XML::Writer *arg2 = 0 ;
+  std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
   unsigned int arg4 ;
   Mezzanine::XML::Encoding arg5 ;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Save",5,5)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Mezzanine::XML::Writer &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< char,std::char_traits< char > > &");
   if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
   if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Save",4,"unsigned int");
   if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::XML::Document::Save",5,"Mezzanine::XML::Encoding");
@@ -13528,8 +13325,8 @@ static int _wrap_Document_Save__SWIG_4(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Writer,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Mezzanine__XML__Writer);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t);
   }
   
   arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
@@ -13551,13 +13348,13 @@ fail:
 static int _wrap_Document_Save__SWIG_5(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Mezzanine::XML::Writer *arg2 = 0 ;
+  std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
   unsigned int arg4 ;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Save",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Mezzanine::XML::Writer &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< char,std::char_traits< char > > &");
   if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
   if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Save",4,"unsigned int");
   
@@ -13566,8 +13363,8 @@ static int _wrap_Document_Save__SWIG_5(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Writer,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Mezzanine__XML__Writer);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t);
   }
   
   arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
@@ -13588,12 +13385,12 @@ fail:
 static int _wrap_Document_Save__SWIG_6(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Mezzanine::XML::Writer *arg2 = 0 ;
+  std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Save",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Mezzanine::XML::Writer &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< char,std::char_traits< char > > &");
   if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
@@ -13601,8 +13398,8 @@ static int _wrap_Document_Save__SWIG_6(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Writer,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Mezzanine__XML__Writer);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t);
   }
   
   arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
@@ -13621,19 +13418,19 @@ fail:
 static int _wrap_Document_Save__SWIG_7(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  Mezzanine::XML::Writer *arg2 = 0 ;
+  std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::XML::Document::Save",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"Mezzanine::XML::Writer &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< char,std::char_traits< char > > &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
     SWIG_fail_ptr("Document_Save",1,SWIGTYPE_p_Mezzanine__XML__Document);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Writer,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_Mezzanine__XML__Writer);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t);
   }
   
   ((Mezzanine::XML::Document const *)arg1)->Save(*arg2);
@@ -13651,32 +13448,29 @@ fail:
 static int _wrap_Document_Save__SWIG_8(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
+  std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
   unsigned int arg4 ;
-  Mezzanine::XML::Encoding arg5 ;
   
-  SWIG_check_num_args("Mezzanine::XML::Document::Save",5,5)
+  SWIG_check_num_args("Mezzanine::XML::Document::Save",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< char,std::char_traits< char > > &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &");
   if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
   if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Save",4,"unsigned int");
-  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::XML::Document::Save",5,"Mezzanine::XML::Encoding");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
     SWIG_fail_ptr("Document_Save",1,SWIGTYPE_p_Mezzanine__XML__Document);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t);
   }
   
   arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
   SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
   arg4 = (unsigned int)lua_tonumber(L, 4);
-  arg5 = (Mezzanine::XML::Encoding)(int)lua_tonumber(L, 5);
-  ((Mezzanine::XML::Document const *)arg1)->Save(*arg2,(Mezzanine::Char8 const *)arg3,arg4,arg5);
+  ((Mezzanine::XML::Document const *)arg1)->Save(*arg2,(Mezzanine::Char8 const *)arg3,arg4);
   
   return SWIG_arg;
   
@@ -13691,29 +13485,25 @@ fail:
 static int _wrap_Document_Save__SWIG_9(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
+  std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
-  unsigned int arg4 ;
   
-  SWIG_check_num_args("Mezzanine::XML::Document::Save",4,4)
+  SWIG_check_num_args("Mezzanine::XML::Document::Save",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< char,std::char_traits< char > > &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &");
   if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Save",4,"unsigned int");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
     SWIG_fail_ptr("Document_Save",1,SWIGTYPE_p_Mezzanine__XML__Document);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t,0))){
+    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t);
   }
   
   arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
-  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
-  arg4 = (unsigned int)lua_tonumber(L, 4);
-  ((Mezzanine::XML::Document const *)arg1)->Save(*arg2,(Mezzanine::Char8 const *)arg3,arg4);
+  ((Mezzanine::XML::Document const *)arg1)->Save(*arg2,(Mezzanine::Char8 const *)arg3);
   
   return SWIG_arg;
   
@@ -13726,139 +13516,6 @@ fail:
 
 
 static int _wrap_Document_Save__SWIG_10(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
-  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::Document::Save",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< char,std::char_traits< char > > &");
-  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
-    SWIG_fail_ptr("Document_Save",1,SWIGTYPE_p_Mezzanine__XML__Document);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t);
-  }
-  
-  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
-  ((Mezzanine::XML::Document const *)arg1)->Save(*arg2,(Mezzanine::Char8 const *)arg3);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Document_Save__SWIG_11(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::Document::Save",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< char,std::char_traits< char > > &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
-    SWIG_fail_ptr("Document_Save",1,SWIGTYPE_p_Mezzanine__XML__Document);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t);
-  }
-  
-  ((Mezzanine::XML::Document const *)arg1)->Save(*arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Document_Save__SWIG_12(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
-  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
-  unsigned int arg4 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::Document::Save",4,4)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &");
-  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::Save",4,"unsigned int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
-    SWIG_fail_ptr("Document_Save",1,SWIGTYPE_p_Mezzanine__XML__Document);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t);
-  }
-  
-  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
-  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
-  arg4 = (unsigned int)lua_tonumber(L, 4);
-  ((Mezzanine::XML::Document const *)arg1)->Save(*arg2,(Mezzanine::Char8 const *)arg3,arg4);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Document_Save__SWIG_13(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
-  std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
-  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::Document::Save",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Save",1,"Mezzanine::XML::Document const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Save",2,"std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &");
-  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Save",3,"Mezzanine::Char8 const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
-    SWIG_fail_ptr("Document_Save",1,SWIGTYPE_p_Mezzanine__XML__Document);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t,0))){
-    SWIG_fail_ptr("Document_Save",2,SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t);
-  }
-  
-  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
-  ((Mezzanine::XML::Document const *)arg1)->Save(*arg2,(Mezzanine::Char8 const *)arg3);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Document_Save__SWIG_14(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
@@ -13908,7 +13565,7 @@ static int _wrap_Document_Save(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Resource__DataStream, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -13932,7 +13589,7 @@ static int _wrap_Document_Save(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -13956,30 +13613,6 @@ static int _wrap_Document_Save(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_Document_Save__SWIG_11(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
         if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0)) {
           _v = 0;
         } else {
@@ -13987,36 +13620,7 @@ static int _wrap_Document_Save(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_Document_Save__SWIG_14(L);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        {
-          _v = SWIG_lua_isnilstring(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_Document_Save__SWIG_10(L);
-        }
+        return _wrap_Document_Save__SWIG_10(L);
       }
     }
   }
@@ -14034,64 +13638,6 @@ static int _wrap_Document_Save(lua_State* L) {
       {
         void *ptr;
         if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        {
-          _v = SWIG_lua_isnilstring(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_Document_Save__SWIG_6(L);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        {
-          _v = SWIG_lua_isnilstring(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_Document_Save__SWIG_13(L);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Resource__DataStream, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -14107,7 +13653,7 @@ static int _wrap_Document_Save(lua_State* L) {
       }
     }
   }
-  if (argc == 4) {
+  if (argc == 3) {
     int _v;
     {
       void *ptr;
@@ -14120,7 +13666,7 @@ static int _wrap_Document_Save(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -14131,12 +13677,36 @@ static int _wrap_Document_Save(lua_State* L) {
           _v = SWIG_lua_isnilstring(L,argv[2]);
         }
         if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_Document_Save__SWIG_5(L);
-          }
+          return _wrap_Document_Save__SWIG_9(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Document_Save__SWIG_6(L);
         }
       }
     }
@@ -14169,7 +13739,7 @@ static int _wrap_Document_Save(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_Document_Save__SWIG_12(L);
+            return _wrap_Document_Save__SWIG_8(L);
           }
         }
       }
@@ -14188,41 +13758,7 @@ static int _wrap_Document_Save(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        {
-          _v = SWIG_lua_isnilstring(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_Document_Save__SWIG_9(L);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Resource__DataStream, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -14243,7 +13779,7 @@ static int _wrap_Document_Save(lua_State* L) {
       }
     }
   }
-  if (argc == 5) {
+  if (argc == 4) {
     int _v;
     {
       void *ptr;
@@ -14256,7 +13792,7 @@ static int _wrap_Document_Save(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -14271,12 +13807,7 @@ static int _wrap_Document_Save(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_Document_Save__SWIG_4(L);
-            }
+            return _wrap_Document_Save__SWIG_5(L);
           }
         }
       }
@@ -14295,7 +13826,7 @@ static int _wrap_Document_Save(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Resource__DataStream, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -14353,7 +13884,7 @@ static int _wrap_Document_Save(lua_State* L) {
               _v = lua_isnumber(L,argv[4]);
             }
             if (_v) {
-              return _wrap_Document_Save__SWIG_8(L);
+              return _wrap_Document_Save__SWIG_4(L);
             }
           }
         }
@@ -14363,10 +13894,6 @@ static int _wrap_Document_Save(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Document_Save'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::XML::Document::Save(Resource::DataStream &,Mezzanine::Char8 const *,unsigned int,Mezzanine::XML::Encoding) const\n"
-    "    Mezzanine::XML::Document::Save(Resource::DataStream &,Mezzanine::Char8 const *,unsigned int) const\n"
-    "    Mezzanine::XML::Document::Save(Resource::DataStream &,Mezzanine::Char8 const *) const\n"
-    "    Mezzanine::XML::Document::Save(Resource::DataStream &) const\n"
     "    Mezzanine::XML::Document::Save(Mezzanine::XML::Writer &,Mezzanine::Char8 const *,unsigned int,Mezzanine::XML::Encoding) const\n"
     "    Mezzanine::XML::Document::Save(Mezzanine::XML::Writer &,Mezzanine::Char8 const *,unsigned int) const\n"
     "    Mezzanine::XML::Document::Save(Mezzanine::XML::Writer &,Mezzanine::Char8 const *) const\n"

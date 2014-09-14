@@ -27265,19 +27265,18 @@ fail:
 static int _wrap_ColourValue_SetRedChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real temp2 ;
+  Mezzanine::Real arg2 ;
   
   SWIG_check_num_args("Mezzanine::ColourValue::SetRedChannel",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::SetRedChannel",1,"Mezzanine::ColourValue *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetRedChannel",2,"Mezzanine::Real const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetRedChannel",2,"Mezzanine::Real const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
     SWIG_fail_ptr("ColourValue_SetRedChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
   }
   
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  (arg1)->SetRedChannel((Mezzanine::Real const &)*arg2);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  (arg1)->SetRedChannel(arg2);
   
   return SWIG_arg;
   
@@ -27316,19 +27315,18 @@ fail:
 static int _wrap_ColourValue_SetGreenChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real temp2 ;
+  Mezzanine::Real arg2 ;
   
   SWIG_check_num_args("Mezzanine::ColourValue::SetGreenChannel",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::SetGreenChannel",1,"Mezzanine::ColourValue *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetGreenChannel",2,"Mezzanine::Real const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetGreenChannel",2,"Mezzanine::Real const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
     SWIG_fail_ptr("ColourValue_SetGreenChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
   }
   
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  (arg1)->SetGreenChannel((Mezzanine::Real const &)*arg2);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  (arg1)->SetGreenChannel(arg2);
   
   return SWIG_arg;
   
@@ -27367,19 +27365,18 @@ fail:
 static int _wrap_ColourValue_SetBlueChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real temp2 ;
+  Mezzanine::Real arg2 ;
   
   SWIG_check_num_args("Mezzanine::ColourValue::SetBlueChannel",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::SetBlueChannel",1,"Mezzanine::ColourValue *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetBlueChannel",2,"Mezzanine::Real const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetBlueChannel",2,"Mezzanine::Real const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
     SWIG_fail_ptr("ColourValue_SetBlueChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
   }
   
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  (arg1)->SetBlueChannel((Mezzanine::Real const &)*arg2);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  (arg1)->SetBlueChannel(arg2);
   
   return SWIG_arg;
   
@@ -27418,19 +27415,18 @@ fail:
 static int _wrap_ColourValue_SetAlphaChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real temp2 ;
+  Mezzanine::Real arg2 ;
   
   SWIG_check_num_args("Mezzanine::ColourValue::SetAlphaChannel",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::SetAlphaChannel",1,"Mezzanine::ColourValue *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetAlphaChannel",2,"Mezzanine::Real const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetAlphaChannel",2,"Mezzanine::Real const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
     SWIG_fail_ptr("ColourValue_SetAlphaChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
   }
   
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  (arg1)->SetAlphaChannel((Mezzanine::Real const &)*arg2);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  (arg1)->SetAlphaChannel(arg2);
   
   return SWIG_arg;
   
@@ -27456,6 +27452,41 @@ static int _wrap_ColourValue_GetAlphaChannel(lua_State* L) {
   
   result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetAlphaChannel();
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ColourValue_SetValues(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real arg3 ;
+  Mezzanine::Real arg4 ;
+  Mezzanine::Real arg5 ;
+  
+  SWIG_check_num_args("Mezzanine::ColourValue::SetValues",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::SetValues",1,"Mezzanine::ColourValue *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::SetValues",2,"Mezzanine::Real const");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::ColourValue::SetValues",3,"Mezzanine::Real const");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ColourValue::SetValues",4,"Mezzanine::Real const");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ColourValue::SetValues",5,"Mezzanine::Real const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue_SetValues",1,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+  
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  arg3 = (Mezzanine::Real const)lua_tonumber(L, 3);
+  arg4 = (Mezzanine::Real const)lua_tonumber(L, 4);
+  arg5 = (Mezzanine::Real const)lua_tonumber(L, 5);
+  (arg1)->SetValues(arg2,arg3,arg4,arg5);
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -30453,6 +30484,7 @@ static swig_lua_method swig_ColourValue_methods[]= {
     { "GetBlueChannel", _wrap_ColourValue_GetBlueChannel},
     { "SetAlphaChannel", _wrap_ColourValue_SetAlphaChannel},
     { "GetAlphaChannel", _wrap_ColourValue_GetAlphaChannel},
+    { "SetValues", _wrap_ColourValue_SetValues},
     { "Average", _wrap_ColourValue_Average},
     { "__eq", _wrap_ColourValue___eq},
     { "ProtoSerialize", _wrap_ColourValue_ProtoSerialize},
@@ -47620,14 +47652,13 @@ fail:
 
 static int _wrap_Ceil(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real *arg1 = 0 ;
-  Mezzanine::Real temp1 ;
+  Mezzanine::Real arg1 ;
   Mezzanine::Real result;
   
   SWIG_check_num_args("Mezzanine::MathTools::Ceil",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Ceil",1,"Mezzanine::Real const &");
-  temp1=(Mezzanine::Real)lua_tonumber(L,1); arg1=&temp1;
-  result = (Mezzanine::Real)Mezzanine::MathTools::Ceil((float const &)*arg1);
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Ceil",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Ceil(arg1);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -47641,14 +47672,13 @@ fail:
 
 static int _wrap_Floor(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real *arg1 = 0 ;
-  Mezzanine::Real temp1 ;
+  Mezzanine::Real arg1 ;
   Mezzanine::Real result;
   
   SWIG_check_num_args("Mezzanine::MathTools::Floor",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Floor",1,"Mezzanine::Real const &");
-  temp1=(Mezzanine::Real)lua_tonumber(L,1); arg1=&temp1;
-  result = (Mezzanine::Real)Mezzanine::MathTools::Floor((float const &)*arg1);
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Floor",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Floor(arg1);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -47662,18 +47692,36 @@ fail:
 
 static int _wrap_Pow(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real *arg1 = 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real temp1 ;
-  Mezzanine::Real temp2 ;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
   Mezzanine::Real result;
   
   SWIG_check_num_args("Mezzanine::MathTools::Pow",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Pow",1,"Mezzanine::Real const &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Pow",2,"Mezzanine::Real const &");
-  temp1=(Mezzanine::Real)lua_tonumber(L,1); arg1=&temp1;
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  result = (Mezzanine::Real)Mezzanine::MathTools::Pow((float const &)*arg1,(float const &)*arg2);
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Pow",1,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Pow",2,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Pow(arg1,arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Exp(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::Exp",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Exp",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Exp(arg1);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -47687,14 +47735,13 @@ fail:
 
 static int _wrap_Sqrt(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real *arg1 = 0 ;
-  Mezzanine::Real temp1 ;
+  Mezzanine::Real arg1 ;
   Mezzanine::Real result;
   
   SWIG_check_num_args("Mezzanine::MathTools::Sqrt",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Sqrt",1,"Mezzanine::Real const &");
-  temp1=(Mezzanine::Real)lua_tonumber(L,1); arg1=&temp1;
-  result = (Mezzanine::Real)Mezzanine::MathTools::Sqrt((float const &)*arg1);
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Sqrt",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Sqrt(arg1);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -47708,14 +47755,13 @@ fail:
 
 static int _wrap_Fabs(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real *arg1 = 0 ;
-  Mezzanine::Real temp1 ;
+  Mezzanine::Real arg1 ;
   Mezzanine::Real result;
   
   SWIG_check_num_args("Mezzanine::MathTools::Fabs",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Fabs",1,"Mezzanine::Real const &");
-  temp1=(Mezzanine::Real)lua_tonumber(L,1); arg1=&temp1;
-  result = (Mezzanine::Real)Mezzanine::MathTools::Fabs((float const &)*arg1);
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Fabs",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Fabs(arg1);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -47729,18 +47775,16 @@ fail:
 
 static int _wrap_Fmod(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real *arg1 = 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real temp1 ;
-  Mezzanine::Real temp2 ;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
   Mezzanine::Real result;
   
   SWIG_check_num_args("Mezzanine::MathTools::Fmod",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Fmod",1,"Mezzanine::Real const &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Fmod",2,"Mezzanine::Real const &");
-  temp1=(Mezzanine::Real)lua_tonumber(L,1); arg1=&temp1;
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  result = (Mezzanine::Real)Mezzanine::MathTools::Fmod((float const &)*arg1,(float const &)*arg2);
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Fmod",1,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Fmod",2,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Fmod(arg1,arg2);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -47754,22 +47798,19 @@ fail:
 
 static int _wrap_WithinTolerance(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real *arg1 = 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real *arg3 = 0 ;
-  Mezzanine::Real temp1 ;
-  Mezzanine::Real temp2 ;
-  Mezzanine::Real temp3 ;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real arg3 ;
   Mezzanine::Boole result;
   
   SWIG_check_num_args("Mezzanine::MathTools::WithinTolerance",3,3)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",1,"Mezzanine::Real const &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",2,"Mezzanine::Real const &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",3,"Mezzanine::Real const &");
-  temp1=(Mezzanine::Real)lua_tonumber(L,1); arg1=&temp1;
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  temp3=(Mezzanine::Real)lua_tonumber(L,3); arg3=&temp3;
-  result = (Mezzanine::Boole)Mezzanine::MathTools::WithinTolerance((float const &)*arg1,(float const &)*arg2,(float const &)*arg3);
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",1,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",2,"Mezzanine::Real const");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",3,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  arg3 = (Mezzanine::Real const)lua_tonumber(L, 3);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::WithinTolerance(arg1,arg2,arg3);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
   
@@ -54049,6 +54090,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "Ceil", _wrap_Ceil},
     { "Floor", _wrap_Floor},
     { "Pow", _wrap_Pow},
+    { "Exp", _wrap_Exp},
     { "Sqrt", _wrap_Sqrt},
     { "Fabs", _wrap_Fabs},
     { "Fmod", _wrap_Fmod},
