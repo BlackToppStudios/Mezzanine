@@ -218,17 +218,11 @@ class AllUnitTestGroups : public UnitTestGroup
         {
             for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName ) // Actually run the tests
             {
-                try{
-                    if(DoInteractiveTest)
-                        { TestGroups[*CurrentTestName]->ShouldRunInteractiveTests(); }
-                    if(DoAutomaticTest)
-                        { TestGroups[*CurrentTestName]->ShouldRunAutomaticTests(); }
-                    TestGroups[*CurrentTestName]->RunTests();
-                } catch (std::exception e) {
-                    TestError << std::endl << e.what() << std::endl;
-                    // maybe we should log or somehting.
-                }
-
+                if(DoInteractiveTest)
+                    { TestGroups[*CurrentTestName]->ShouldRunInteractiveTests(); }
+                if(DoAutomaticTest)
+                    { TestGroups[*CurrentTestName]->ShouldRunAutomaticTests(); }
+                TestGroups[*CurrentTestName]->RunTests();
                 (*this) += *(TestGroups[*CurrentTestName]);
             }
         }

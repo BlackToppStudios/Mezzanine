@@ -100,27 +100,14 @@ namespace Mezzanine
             FrameScheduler& FS = *(Storage.GetFrameScheduler());
             iWorkUnit* CurrentUnit;
 
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            while(!FS.LastFrame)
+            do
             {
-                FS.StartFrameSync.Wait(); // Syncs with Main thread in CreateThreads()
-                if(FS.LastFrame)
-                    { break; }
-            #endif
-
-                do
+                while( (CurrentUnit = FS.GetNextWorkUnit()) ) /// @todo needs to skip ahead a unit instead of spinning
                 {
-                    while( (CurrentUnit = FS.GetNextWorkUnit()) ) /// @todo needs to skip ahead a unit instead of spinning
-                    {
-                        if(Starting==CurrentUnit->TakeOwnerShip())
-                            { CurrentUnit->operator()(Storage); }
-                    }
-                } while(!FS.AreAllWorkUnitsComplete());
-
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-                FS.EndFrameSync.Wait(); // Syncs with Main thread in JoinAllThreads()
-            }
-            #endif
+                    if(Starting==CurrentUnit->TakeOwnerShip())
+                        { CurrentUnit->operator()(Storage); }
+                }
+            } while(!FS.AreAllWorkUnitsComplete());
         }
 
         /// @brief This is the function that the main thread runs.
@@ -159,15 +146,7 @@ namespace Mezzanine
 
 
         void FrameScheduler::CleanUpThreads()
-        {
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            while(1!=AtomicCompareAndSwap32(&LastFrame,LastFrame,1));
-            StartFrameSync.SetThreadSyncCount(0);
-            EndFrameSync.SetThreadSyncCount(0); // Handle situations where Threads have not been created yet
-            #else
-            JoinAllThreads();
-            #endif
-        }
+            { JoinAllThreads(); }
 
         void FrameScheduler::DeleteThreads()
         {
@@ -202,11 +181,6 @@ namespace Mezzanine
             CurrentPauseStart(GetTimeStamp()),
             LogDestination(_LogDestination ? _LogDestination : new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc)),
             Sorter(0),
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            StartFrameSync(StartingThreadCount),
-            EndFrameSync(StartingThreadCount),
-            LastFrame(0),
-            #endif
             #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
             DecacheMain(0),
             DecacheAffinity(0),
@@ -231,11 +205,6 @@ namespace Mezzanine
             CurrentPauseStart(GetTimeStamp()),
             LogDestination(_LogDestination),
             Sorter(0),
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            StartFrameSync(StartingThreadCount),
-            EndFrameSync(StartingThreadCount),
-            LastFrame(0),
-            #endif
             #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
             DecacheMain(0),
             DecacheAffinity(0),
@@ -583,33 +552,12 @@ namespace Mezzanine
         void FrameScheduler::CreateThreads()
         {
             LogResources.Lock(); //Unlocks in FrameScheduler::RunMainThreadWork() after last resource is swapped
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-                StartFrameSync.SetThreadSyncCount(CurrentThreadCount);
-                EndFrameSync.SetThreadSyncCount(CurrentThreadCount);
-                for(Whole Count = 1; Count<CurrentThreadCount; ++Count)
-                {
-                    if(Count+1>Resources.size())
-                    {
-                        Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
-                        Resources[Count]->SwapAllBufferedResources();
-                        Threads.push_back(new Thread(ThreadWork, Resources[Count]));
-                    }
-                }
-                StartFrameSync.Wait();
-            #else
-                for(Whole Count = 1; Count<CurrentThreadCount; ++Count)
-                {
-                    if(Count+1>Resources.size())
-                        { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
-                    Resources[Count]->SwapAllBufferedResources();
-                    Threads.push_back(new Thread(ThreadWork, Resources[Count]));
-                }
-            #endif
+            SwapBufferedResources();
         }
 
         void FrameScheduler::RunMainThreadWork()
         {
-            Resources[0]->SwapAllBufferedResources();
+            //Resources[0]->SwapAllBufferedResources();
             LogDependencies();
             LogResources.Unlock();
             ThreadWorkAffinity(Resources[0]); // Do work in this thread and get the units with affinity
@@ -618,9 +566,6 @@ namespace Mezzanine
 
         void FrameScheduler::JoinAllThreads()
         {
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            EndFrameSync.Wait();
-            #else
             for(std::vector<Thread*>::iterator Iter=Threads.begin(); Iter!=Threads.end(); ++Iter)
             {
                 (*Iter)->join();
@@ -628,7 +573,6 @@ namespace Mezzanine
             }
             Threads.clear();
             Threads.reserve(CurrentThreadCount);
-            #endif
 
             if(Sorter)
             {
@@ -795,10 +739,25 @@ namespace Mezzanine
                 DefaultThreadSpecificStorage::Type Storage(this);
                 Pointer->NextFlushForced();
                 Pointer->DoWork(Storage);
+                this->SwapBufferedResources();
+                Pointer->NextFlushForced();
+                Pointer->DoWork(Storage);
                 GetLog().flush();
                 return true;
             }
             return false;
+        }
+
+        void FrameScheduler::SwapBufferedResources()
+        {
+            Resources[0]->SwapAllBufferedResources();
+            for(Whole Count = 1; Count<CurrentThreadCount; ++Count)
+            {
+                if(Count+1>Resources.size())
+                    { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
+                Resources[Count]->SwapAllBufferedResources();
+                Threads.push_back(new Thread(ThreadWork, Resources[Count]));
+            }
         }
 
     } // \FrameScheduler

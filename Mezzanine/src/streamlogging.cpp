@@ -37,37 +37,39 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _threaddefinetests_h
-#define _threaddefinetests_h
 
-#include "mezztest.h"
+#ifndef _logging_cpp
+#define _logging_cpp
 
+#include "streamlogging.h"
 
-/// @brief A simple test to see if the threading compiler flag are set correctly
-class threaddefinetests : public UnitTestGroup
-{
-    public:
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "ThreadDefine"
-        virtual String Name()
-            { return String("ThreadDefine"); }
+LogLevel MergeLogLevel(LogLevel First, LogLevel Second)
+    { return (LogLevel)( First | Second ); }
 
-        /// @brief A series on interactive tests allowing inspection and verification of CMake and compiler options.
-        void RunInteractiveTests()
-        {
-            TestResult Answer;
+LogLevel MergeLogLevel(LogLevel First, LogLevel Second, LogLevel Third)
+    { return MergeLogLevel( MergeLogLevel(First, Second), Third); }
 
-            #ifdef MEZZ_DEBUG
-                Answer = GetTestAnswerFromStdin( "Was MEZZ_DEBUG set to True when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? ");
-            #else
-                Answer = GetTestAnswerFromStdin( "Was MEZZ_DEBUG set to False when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? ");
-            #endif
-            TEST_RESULT(Answer, "MEZZ_DEBUG");
-        }
+LogLevel MergeLogLevel(LogLevel First, LogLevel Second, LogLevel Third, LogLevel Fourth)
+    { return MergeLogLevel( MergeLogLevel(First, Second, Third), Fourth); }
 
-        /// @brief Since RunInteractiveTests is implemented so is this.
-        /// @return returns true
-        virtual bool HasInteractiveTests() const
-            { return true; }
-};
-#endif
+LogLevel MergeLogLevel(LogLevel First, LogLevel Second, LogLevel Third, LogLevel Fourth, LogLevel Fifth)
+    { return MergeLogLevel( MergeLogLevel(First, Second, Third, Fourth), Fifth); }
+
+LogLevel MergeLogLevel(LogLevel First, LogLevel Second, LogLevel Third, LogLevel Fourth, LogLevel Fifth, LogLevel Sixth)
+    { return MergeLogLevel( MergeLogLevel(First, Second, Third, Fourth, Fifth), Sixth); }
+
+LogLevel MergeLogLevel(LogLevel First, LogLevel Second, LogLevel Third, LogLevel Fourth, LogLevel Fifth, LogLevel Sixth, LogLevel Seventh)
+    { return MergeLogLevel( MergeLogLevel(First, Second, Third, Fourth, Fifth, Sixth), Seventh); }
+
+LogLevel MergeLogLevel(LogLevel First, LogLevel Second, LogLevel Third, LogLevel Fourth, LogLevel Fifth, LogLevel Sixth, LogLevel Seventh, LogLevel Eighth)
+    { return MergeLogLevel( MergeLogLevel(First, Second, Third, Fourth, Fifth, Sixth, Seventh), Eighth); }
+
+LogLevel GloballyLogging = LL_TraceAndHigher;
+
+void SetStandardLoggingLevel(LogLevel NewLevel)
+    { GloballyLogging = NewLevel; }
+
+LogLevel GetStandardLoggingLevel()
+    { return GloballyLogging; }
+
+#endif //_logging_cpp

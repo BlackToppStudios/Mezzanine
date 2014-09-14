@@ -217,8 +217,7 @@ class CrashesWorkUnit : public PausesWorkUnit
 
 /// @brief A String to represent the CrashUnhandledWorkUnit
 const String CrashUnhandledThrowWorkUnitName("UnhandledThrowWorkUnit");
-
-/// @brief A workunit that reliably crashes
+/// @brief A workunit that reliably crashes By throwing plain old data without catching it.
 class CrashUnhandledThrowWorkUnit : public CrashesWorkUnit
 {
         Integer CrashOnIteration;
@@ -235,8 +234,26 @@ class CrashUnhandledThrowWorkUnit : public CrashesWorkUnit
 
 };
 
-struct CrashTestResults
+/// @brief A String to represent the CrashDivZeroWorkUnit
+const String CrashDivZeroWorkUnitName("DivZeroWorkUnit");
+/// @brief A workunit that reliably crashes By throwing plain old data without catching it.
+class CrashDivZeroWorkUnit : public CrashesWorkUnit
 {
+        Integer CrashOnIteration;
+    public:
+        CrashDivZeroWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+            CrashesWorkUnit(CrashOnCount, Length_, Name_)
+            { }
+
+        virtual ~CrashDivZeroWorkUnit()
+            { }
+
+        virtual void Crash()
+        {
+            Integer Dividend=1;
+            Integer Dividor=0;
+            cout << Dividend/Dividor << endl;
+        }
 
 };
 
@@ -301,20 +318,33 @@ class frameschedulertests : public UnitTestGroup
             return Results;
         }
 
-        CrashTestResults CrashTest(const Mezzanine::String& WorkUnitName)
+        String CrashTest(const Mezzanine::String& WorkUnitName, Whole ExpectedUnique)
         {
             String CrashTestOutput;
             TestOutput << endl << "Launching a subprocess which will(or won't') crash because of a " << WorkUnitName << ":" << endl;
             CrashTestOutput = LaunchSubProcessTest(WorkUnitName);
-            TestOutput << "=============================" << endl
+            TestOutput << "Raw Log" << endl
+                       << "=============================" << endl
                        << CrashTestOutput << endl
-                       << "=============================" << endl;
+                       << "=============================" << endl
+                       << "Unique WorkUnits Found:" << endl;
 
-            pugi::xml_document doc;
-            doc.load_buffer(CrashTestOutput.c_str(),CrashTestOutput.size());
+            pugi::xml_document CrashResultsDoc;
+            CrashResultsDoc.load_buffer(CrashTestOutput.c_str(), CrashTestOutput.size());
+            pugi::xpath_node_set CrashResultsParsed = CrashResultsDoc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/Pause/@WorkUnitName");
+            std::set<Mezzanine::String> CrashResultCounter;
+            for(pugi::xpath_node_set::const_iterator Iter = CrashResultsParsed.begin();
+                CrashResultsParsed.end() != Iter;
+                Iter++)
+            {
+                Mezzanine::String Temp(Iter->attribute().value());
+                CrashResultCounter.insert(Temp);
+                TestOutput << Temp << endl;
+            }
+            TestOutput << "Found " << CrashResultCounter.size() << " WorkUnits expected " << ExpectedUnique << "." << endl;
+            TEST(ExpectedUnique==CrashResultCounter.size(), "NoCrashTest");
 
-            CrashTestResults Results;
-            return Results;
+            return CrashTestOutput;
         }
 
 
@@ -1198,22 +1228,11 @@ class frameschedulertests : public UnitTestGroup
             }
 
             {
-                CrashTest(CrashDoesNotWorkUnitName);
-                CrashTest(CrashUnhandledThrowWorkUnitName);
+                CrashTest(CrashDoesNotWorkUnitName, 3);         // Not a problem
+                CrashTest(CrashUnhandledThrowWorkUnitName, 2);  // Log everyting aftercrash
+                CrashTest(CrashDivZeroWorkUnitName, 0);         // Cannot recover from hardware traps so buffered logs are lost
+
             }
-
-            /*{
-                String Results;
-
-                Results = LaunchSubProcessTest(CrashUnhandledWorkUnitName);
-                TestOutput << endl << "Launching a subprocess which will crash because of unhandled exceptions:" << endl
-                           << "=============================" << endl
-                           << Results << endl
-                           << "=============================" << endl;
-                pugi::xml_document doc;
-                doc.load_buffer(Results.c_str(),Results.size());
-
-            }*/
 
         }
         /// @brief Since RunAutomaticTests is implemented so is this.
@@ -1239,6 +1258,9 @@ class frameschedulertests : public UnitTestGroup
                 { B = new CrashUnhandledThrowWorkUnit(0, 0,"WorkUnitB"); }
             if(AllLower(CrashDoesNotWorkUnitName) == AllLower(Arg))
                 { B = new PausesWorkUnit(0, "WorkUnitB"); }
+            if(AllLower(CrashDivZeroWorkUnitName) == AllLower(Arg))
+                { B = new CrashDivZeroWorkUnit(0, 0,  "WorkUnitB"); }
+
 
             if(NULL == B)
             {
@@ -1250,20 +1272,16 @@ class frameschedulertests : public UnitTestGroup
             C->AddDependency(B);
             Agg->AddDependency(C);
 
-            Scheduler->AddWorkUnitMain(A, A->Name);
+            Scheduler->AddWorkUnitMain(A, A->Name); // Now the FrameScheduler owns these, it gets to delete them
             Scheduler->AddWorkUnitMain(B, B->Name);
             Scheduler->AddWorkUnitMain(C, C->Name);
             Scheduler->AddWorkUnitMain(Agg, "Aggregator");
 
-            //create a framescheduler and crash it here
+            // run the framescheduler and crash it here
             Scheduler->DoOneFrame();
             Scheduler->ForceLogFlush();
 
             delete Scheduler;
-            delete A;
-            delete B;
-            delete C;
-            delete Agg;
         }
         /// @brief Needs subprocesses so it returns true.
         virtual bool HasSubprocessTest() const

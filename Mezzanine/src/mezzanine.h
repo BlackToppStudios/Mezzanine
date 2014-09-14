@@ -145,6 +145,11 @@
 #endif
 
 #include "sphere.h"
+
+#ifndef SWIG
+#include "streamlogging.h"
+#endif
+
 #include "stringtool.h"
 
 #ifndef SWIG
