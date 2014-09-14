@@ -42,6 +42,7 @@
 #define _graphicstexture_h
 
 #include "datatypes.h"
+#include "Graphics/graphicsenumerations.h"
 
 namespace Ogre
 {
@@ -60,21 +61,50 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Texture
         {
-            protected:
-                /// @internal
-                /// @brief A pointer to the internal implementation of the Texture.
-                InternalTextureData* ITD;
-            public:
-                /// @brief Class Constructor.
-                Texture();
-                /// @brief Class Destructor.
-                ~Texture();
+        protected:
+            /// @internal
+            /// @brief A pointer to the internal implementation of the Texture.
+            InternalTextureData* ITD;
+        public:
+            /// @brief Class Constructor.
+            Texture();
+            /// @brief Class Destructor.
+            ~Texture();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // AssetMethods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
+            /// @brief Gets the width of the source texture in pixels.
+            /// @remarks The actual size of the texture in hardware is subject to change based on a number of configurations in the rendersystem.
+            /// This method ignores those settings and reports only the original unaltered size.
+            /// @return Returns a UInt32 representing the size of this texture on the X axis.
+            UInt32 GetOriginalWidth() const;
+            /// @brief Gets the height of the source texture in pixels.
+            /// @remarks The actual size of the texture in hardware is subject to change based on a number of configurations in the rendersystem.
+            /// This method ignores those settings and reports only the original unaltered size.
+            /// @return Returns a UInt32 representing the size of this texture on the Y axis.
+            UInt32 GetOriginalHeight() const;
+            /// @brief Gets the depth of the source texture in pixels.
+            /// @remarks The actual size of the texture in hardware is subject to change based on a number of configurations in the rendersystem.
+            /// This method ignores those settings and reports only the original unaltered size.
+            /// @return Returns a UInt32 representing the size of this texture on the Z axis.
+            UInt32 GetOriginalDepth() const;
+            /// @brief Gets the pixel format of this image.
+            /// @return Returns a PixelFormat enum value representing how the bits of this image are layed out.
+            Graphics::PixelFormat GetFormat() const;
+            /// @brief Gets the number of MipMaps that exist for this image.
+            /// @return Returns the number of MipMaps this image has.
+            Whole GetNumMipMaps() const;
+
+            /// @brief Gets the size of this image.
+            /// @return Returns a Whole representing the total size of this image in bytes.
+            Whole GetSize() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // AssetMethods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
         };//Texture
     }//Graphics
 }//Mezzanine

@@ -57,22 +57,47 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB InternalTextureData
         {
-            public:
-                Ogre::TexturePtr GraphicsTexture;
+        public:
+            /// @internal
+            /// @brief The internal representation of the Texture.
+            Ogre::TexturePtr GraphicsTexture;
         };//InternalTextureData
 
         ///////////////////////////////////////////////////////////////////////////////
         // Texture Methods
 
         Texture::Texture()
-        {
-
-        }
+            { this->ITD = new InternalTextureData(); }
 
         Texture::~Texture()
-        {
+            { delete this->ITD; }
 
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        UInt32 Texture::GetOriginalWidth() const
+            { this->ITD->GraphicsTexture->getSrcWidth(); }
+
+        UInt32 Texture::GetOriginalHeight() const
+            { this->ITD->GraphicsTexture->getSrcHeight(); }
+
+        UInt32 Texture::GetOriginalDepth() const
+            { this->ITD->GraphicsTexture->getSrcDepth(); }
+
+        Graphics::PixelFormat Texture::GetFormat() const
+            { return static_cast<Graphics::PixelFormat>( this->ITD->GraphicsTexture->getFormat() ); }
+
+        Whole Texture::GetNumMipMaps() const
+            { return this->ITD->GraphicsTexture->getNumMipmaps(); }
+
+        Whole Texture::GetSize() const
+            { return this->ITD->GraphicsTexture->getSize(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // AssetMethods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
     }//Graphics
 }//Mezzanine
 
