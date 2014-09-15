@@ -74,7 +74,11 @@
 
 #include "mathtool.h"
 
-#include "Ogre.h"
+#include <cstring>
+
+#ifdef LoadImage
+#undef LoadImage
+#endif
 
 /// @todo Change this so we're detecting the endianness in Mezzanine code, and adjusting this approproately.
 namespace
@@ -83,12 +87,13 @@ namespace
     /// @brief Convenience enum that stores the colour placement in a word according to endianness.
     enum ProceduralColour
     {
-#if OGRE_ENDIAN == OGRE_ENDIAN_LITTLE
+#if MEZZ_LITTLE_ENDIAN
         PC_Red   = 3,
         PC_Green = 2,
         PC_Blue  = 1,
         PC_Alpha = 0
-#else
+#endif
+#if MEZZ_BIG_ENDIAN
         PC_Red   = 0,
         PC_Green = 1,
         PC_Blue  = 2,
@@ -188,9 +193,12 @@ namespace Mezzanine
 
             Image* TextureBuffer::GenerateImage() const
             {
-                /// @todo Implement this.
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Converting to an Image is reliant on the completion of the Image class.");
-                return NULL;
+                Whole ImageSize = this->Width * this->Height * 4;
+                UInt8* NewBuff = new UInt8[ ImageSize ];
+                memcpy( NewBuff, this->Pixels, ImageSize );
+                Image* NewImage = new Image();
+                NewImage->LoadImage(NewBuff,this->Width,this->Height,Graphics::PF_R8G8B8A8,true);
+                return NewImage;
             }
 
             Texture* TextureBuffer::GenerateTexture(const String& TexName, const String& TexGroup) const
