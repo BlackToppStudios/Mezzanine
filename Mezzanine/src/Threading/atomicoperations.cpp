@@ -41,7 +41,7 @@
 #ifndef _atomic_black_ops_would_be_an_awesome_name_for_a_cheezy_game_cpp
 #define _atomic_black_ops_would_be_an_awesome_name_for_a_cheezy_game_cpp
 
-#include "datatypes.h"
+#include "atomicoperations.h"
 #include "crossplatformincludes.h"
 
 /// @file
