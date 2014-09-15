@@ -27531,6 +27531,197 @@ fail:
 }
 
 
+static int _wrap_ColourValue___mul__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::ColourValue result;
+  
+  SWIG_check_num_args("Mezzanine::ColourValue::operator *",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::operator *",1,"Mezzanine::ColourValue *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::operator *",2,"Mezzanine::Real const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___mul",1,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+  
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  result = (arg1)->operator *(arg2);
+  {
+    Mezzanine::ColourValue * resultptr = new Mezzanine::ColourValue((const Mezzanine::ColourValue &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__ColourValue,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ColourValue___add(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::ColourValue *arg2 = 0 ;
+  Mezzanine::ColourValue result;
+  
+  SWIG_check_num_args("Mezzanine::ColourValue::operator +",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::operator +",1,"Mezzanine::ColourValue *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::operator +",2,"Mezzanine::ColourValue const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___add",1,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___add",2,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+  
+  result = (arg1)->operator +((Mezzanine::ColourValue const &)*arg2);
+  {
+    Mezzanine::ColourValue * resultptr = new Mezzanine::ColourValue((const Mezzanine::ColourValue &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__ColourValue,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ColourValue___sub(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::ColourValue *arg2 = 0 ;
+  Mezzanine::ColourValue result;
+  
+  SWIG_check_num_args("Mezzanine::ColourValue::operator -",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::operator -",1,"Mezzanine::ColourValue *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::operator -",2,"Mezzanine::ColourValue const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___sub",1,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___sub",2,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+  
+  result = (arg1)->operator -((Mezzanine::ColourValue const &)*arg2);
+  {
+    Mezzanine::ColourValue * resultptr = new Mezzanine::ColourValue((const Mezzanine::ColourValue &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__ColourValue,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ColourValue___mul__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::ColourValue *arg2 = 0 ;
+  Mezzanine::ColourValue result;
+  
+  SWIG_check_num_args("Mezzanine::ColourValue::operator *",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::operator *",1,"Mezzanine::ColourValue *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::operator *",2,"Mezzanine::ColourValue const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___mul",1,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___mul",2,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+  
+  result = (arg1)->operator *((Mezzanine::ColourValue const &)*arg2);
+  {
+    Mezzanine::ColourValue * resultptr = new Mezzanine::ColourValue((const Mezzanine::ColourValue &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__ColourValue,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ColourValue___mul(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__ColourValue, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__ColourValue, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_ColourValue___mul__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__ColourValue, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_ColourValue___mul__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'ColourValue___mul'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ColourValue::operator *(Mezzanine::Real const)\n"
+    "    Mezzanine::ColourValue::operator *(Mezzanine::ColourValue const &)\n");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_ColourValue___eq(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
@@ -30486,12 +30677,18 @@ static swig_lua_method swig_ColourValue_methods[]= {
     { "GetAlphaChannel", _wrap_ColourValue_GetAlphaChannel},
     { "SetValues", _wrap_ColourValue_SetValues},
     { "Average", _wrap_ColourValue_Average},
+    { "__add", _wrap_ColourValue___add},
+    { "__sub", _wrap_ColourValue___sub},
+    { "__mul", _wrap_ColourValue___mul},
     { "__eq", _wrap_ColourValue___eq},
     { "ProtoSerialize", _wrap_ColourValue_ProtoSerialize},
     { "ProtoDeSerialize", _wrap_ColourValue_ProtoDeSerialize},
     {0,0}
 };
 static swig_lua_method swig_ColourValue_meta[] = {
+    { "__add", _wrap_ColourValue___add},
+    { "__sub", _wrap_ColourValue___sub},
+    { "__mul", _wrap_ColourValue___mul},
     { "__eq", _wrap_ColourValue___eq},
     {0,0}
 };
