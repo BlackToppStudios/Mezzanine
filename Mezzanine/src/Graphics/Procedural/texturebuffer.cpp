@@ -196,8 +196,7 @@ namespace Mezzanine
                 Whole ImageSize = this->Width * this->Height * 4;
                 UInt8* NewBuff = new UInt8[ ImageSize ];
                 memcpy( NewBuff, this->Pixels, ImageSize );
-                Image* NewImage = new Image();
-                NewImage->LoadImage(NewBuff,this->Width,this->Height,Graphics::PF_R8G8B8A8,true);
+                Image* NewImage = new Image(NewBuff,this->Width,this->Height,Graphics::PF_R8G8B8A8,true);
                 return NewImage;
             }
 
