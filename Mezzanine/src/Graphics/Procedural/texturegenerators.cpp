@@ -467,8 +467,7 @@ namespace Mezzanine
 
             void ImageGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                Image ImportImg;
-                ImportImg.LoadImage(this->File,this->Group);
+                Image ImportImg(this->File,this->Group);
 
                 if( ImportImg.GetHeight() >= Buffer.GetHeight() && ImportImg.GetWidth() >= Buffer.GetWidth() ) {
                     for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
