@@ -335,14 +335,14 @@ int main(int argc, char **argv)
     try
     {
         Physics::ManagerConstructionInfo Info;
-        Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
-        Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
-        Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
-        Info.MaxProxies = 60;
+        Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld;// | Physics::ManagerConstructionInfo::PCF_Multithreaded;
+        //Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
+        //Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
+        //Info.MaxProxies = 60;
         TheEntresol = new Entresol( Info, "DefaultSceneManager", "data/common/");
     }catch(...){
         return 1;
-        // ©ould not create the perfect worldending program
+        // Could not create the perfect worldending program
     }
     TheEntresol->SetTargetFrameRate(60);
 
@@ -402,7 +402,7 @@ int main(int argc, char **argv)
 
     // ©onfigure the wireframe Drawer
     //TheEntresol->GetPhysicsManager()->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
-    TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
+    //TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
 
     //Setup some camera tricks
     Graphics::CameraProxy* MainCam = TheEntresol->GetCameraManager()->GetCamera(0);
@@ -472,7 +472,7 @@ void LoadContent()
 
     Physics::CollisionShapeManager* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
     Physics::CollisionShape* RobitCH = CSMan->GenerateConvexHull("RobitConvexHull",filerobot,groupname);
-    Physics::CollisionShape* RobitCD = CSMan->PerformConvexDecomposition("RobitConvexDecomp",filerobot,groupname,5.0,5.0,10.0);
+    //Physics::CollisionShape* RobitCD = CSMan->PerformConvexDecomposition("RobitConvexDecomp",filerobot,groupname,5.0,5.0,10.0);
     Physics::CollisionShape* PlaneStatic = CSMan->GenerateStaticTriMesh("PlaneShape","Plane.mesh",groupname);
     Physics::CollisionShape* WoodenSphere = new Physics::SphereCollisionShape("WoodSphere",250.0);
     Physics::CollisionShape* MetalSphere = new Physics::SphereCollisionShape("MetalSphere",250.0);
@@ -486,7 +486,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
-        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCD);
+        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
         RigDeb->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
@@ -498,7 +498,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
         RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
-        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCD);
+        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
         RigDeb->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
@@ -564,7 +564,7 @@ void LoadContent()
     object3->AddToWorld();
 
     object4 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontLeft",mass,false);
-    object4->GetRigidProxy()->SetCollisionShape(RobitCD);
+    object4->GetRigidProxy()->SetCollisionShape(RobitCH);
     object4->GetEntityProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
