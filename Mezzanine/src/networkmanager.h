@@ -43,7 +43,7 @@
 #ifndef _networkmanager_h
 #define _networkmanager_h
 
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 
@@ -56,7 +56,7 @@ namespace Mezzanine
     /// @brief This is the central management class for all network I/O operations.
     /// @details
     ///////////////////////////////////////
-    class MEZZ_LIB NetworkManager : public ManagerBase, public Singleton<NetworkManager>
+    class MEZZ_LIB NetworkManager : public EntresolManager, public Singleton<NetworkManager>
     {
     protected:
         //std::map<unsigned short int,Socket*> Sockets;

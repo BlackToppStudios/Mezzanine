@@ -671,8 +671,7 @@ namespace Mezzanine
                 {
                     String Lower = (*ParIt).first;
                     StringTools::ToLowerCase(Lower);
-                    if( "internalmanagertypename" == Lower )
-                    {
+                    if( "internalmanagertypename" == Lower ) {
                         InternalManagerTypeName = (*ParIt).second;
                     }
                 }

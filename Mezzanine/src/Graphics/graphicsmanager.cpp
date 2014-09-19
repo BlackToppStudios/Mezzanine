@@ -671,22 +671,17 @@ namespace Mezzanine
         // DefaultGraphicsManagerFactory Methods
 
         DefaultGraphicsManagerFactory::DefaultGraphicsManagerFactory()
-        {
-        }
+            {  }
 
         DefaultGraphicsManagerFactory::~DefaultGraphicsManagerFactory()
-        {
-        }
+            {  }
 
         String DefaultGraphicsManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultGraphicsManager";
-        }
+            { return "DefaultGraphicsManager"; }
 
         ManagerBase* DefaultGraphicsManagerFactory::CreateManager(NameValuePairList& Params)
         {
-            if(GraphicsManager::SingletonValid())
-            {
+            if( GraphicsManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return GraphicsManager::GetSingletonPtr();
             }else{
@@ -696,18 +691,16 @@ namespace Mezzanine
 
         ManagerBase* DefaultGraphicsManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            if(GraphicsManager::SingletonValid())
-            {
+            if( GraphicsManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return GraphicsManager::GetSingletonPtr();
-            }else return new GraphicsManager(XMLNode);
+            }else{
+                return new GraphicsManager(XMLNode);
+            }
         }
 
         void DefaultGraphicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
-
+            { delete ToBeDestroyed; }
     } // Graphics Namespace
 } //Mezzanine
 

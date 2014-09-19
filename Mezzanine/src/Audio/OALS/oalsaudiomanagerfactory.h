@@ -50,7 +50,6 @@ namespace Mezzanine
         {
             ///////////////////////////////////////////////////////////////////////////////
             /// @class OALSAudioManagerFactory
-            /// @headerfile oalsaudiomanagerfactory.h
             /// @brief A factory responsible for the creation and destruction of the default audiomanager.
             ///////////////////////////////////////
             class MEZZ_LIB OALSAudioManagerFactory : public ManagerFactory

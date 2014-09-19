@@ -42,7 +42,7 @@
 
 #include "datatypes.h"
 #include "enumerations.h"
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "Resource/datastream.h"
@@ -73,7 +73,7 @@ namespace Mezzanine
         /// @details This class is responsible for the reading and writing of files of all kinds, be
         /// it graphical meshes, physics data, or XMl files.
         ///////////////////////////////////////
-        class MEZZ_LIB ResourceManager : public ManagerBase, public Singleton<ResourceManager>
+        class MEZZ_LIB ResourceManager : public EntresolManager, public Singleton<ResourceManager>
         {
         public:
             /// @brief Basic container type for AssetGroup storage in this class.

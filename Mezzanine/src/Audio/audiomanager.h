@@ -44,7 +44,7 @@
 #define _audioaudiomanager_h
 
 #include "datatypes.h"
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "objectsettings.h"
@@ -111,7 +111,7 @@ namespace Mezzanine
         /// @details This is a place for loading, storing, and running sound files as
         /// necessary in a given application.
         ///////////////////////////////////////
-        class MEZZ_LIB AudioManager : public ManagerBase, public ObjectSettingsHandler, public Singleton<AudioManager>
+        class MEZZ_LIB AudioManager : public EntresolManager, public ObjectSettingsHandler, public Singleton<AudioManager>
         {
         public:
             /// @brief Basic container type for @ref iDecoderFactory storage by this class.

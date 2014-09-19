@@ -161,14 +161,11 @@ namespace Mezzanine
             {  }
 
         String DefaultMeshManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultMeshManager";
-        }
+            { return "DefaultMeshManager"; }
 
         ManagerBase* DefaultMeshManagerFactory::CreateManager(NameValuePairList& Params)
         {
-            if(MeshManager::SingletonValid())
-            {
+            if( MeshManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return MeshManager::GetSingletonPtr();
             }else return new MeshManager();
@@ -176,17 +173,14 @@ namespace Mezzanine
 
         ManagerBase* DefaultMeshManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            if(MeshManager::SingletonValid())
-            {
+            if( MeshManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return MeshManager::GetSingletonPtr();
             }else return new MeshManager(XMLNode);
         }
 
         void DefaultMeshManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
+            { delete ToBeDestroyed; }
     }//Graphics
 }//Mezzanine
 

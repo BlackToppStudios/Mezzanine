@@ -82,6 +82,37 @@ namespace Mezzanine
 
         String TextureManager::GetImplementationTypeName() const
             { return "DefaultTextureManager"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // DefaultTextureManagerFactory Methods
+
+        DefaultTextureManagerFactory::DefaultTextureManagerFactory()
+            {  }
+
+        DefaultTextureManagerFactory::~DefaultTextureManagerFactory()
+            {  }
+
+        String DefaultTextureManagerFactory::GetManagerTypeName() const
+            { return "DefaultTextureManager"; }
+
+        ManagerBase* DefaultTextureManagerFactory::CreateManager(NameValuePairMap& Params)
+        {
+            if( TextureManager::SingletonValid() ) {
+                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+                return TextureManager::GetSingletonPtr();
+            }else return new TextureManager();
+        }
+
+        ManagerBase* DefaultTextureManagerFactory::CreateManager(XML::Node& XMLNode)
+        {
+            if( TextureManager::SingletonValid() ) {
+                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+                return TextureManager::GetSingletonPtr();
+            }else return new TextureManager(XMLNode);
+        }
+
+        void DefaultTextureManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+            { delete ToBeDestroyed; }
     }//Graphics
 }//Mezzanine
 

@@ -40,7 +40,7 @@
 #ifndef _uiuimanager_h
 #define _uiuimanager_h
 
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "UI/rect.h"
@@ -110,7 +110,7 @@ namespace Mezzanine
         /// @brief This class is responsible for any and all user interactions with the User interface/HUD.
         /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade mta file(*.mta).
         ///////////////////////////////////////
-        class MEZZ_LIB UIManager : public ManagerBase, public Singleton<UIManager>
+        class MEZZ_LIB UIManager : public EntresolManager, public Singleton<UIManager>
         {
         public:
             /// @brief Basic container type for @ref MarkupParser storage by this class.

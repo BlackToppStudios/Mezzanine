@@ -40,7 +40,7 @@
 #ifndef _graphicstexturemanager_h
 #define _graphicstexturemanager_h
 
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 
@@ -99,6 +99,29 @@ namespace Mezzanine
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
         };//TextureManager
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class DefaultTextureManagerFactory
+        /// @brief A factory responsible for the creation and destruction of the default TextureManager.
+        ///////////////////////////////////////
+        class MEZZ_LIB DefaultTextureManagerFactory : public ManagerFactory
+        {
+        public:
+            /// @brief Class constructor.
+            DefaultTextureManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultTextureManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairMap&)
+            ManagerBase* CreateManager(NameValuePairMap& Params);
+            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+            ManagerBase* CreateManager(XML::Node& XMLNode);
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+        };//DefaultTextureManagerFactory
     }//Graphics
 }//Mezzanine
 

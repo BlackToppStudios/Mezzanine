@@ -42,7 +42,7 @@
 
 #include "vector3.h"
 #include "colourvalue.h"
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 
@@ -67,11 +67,10 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class MeshManager
-        /// @headerfile meshmanager.h
         /// @brief This manager handles the storage, generation, and query of of Graphics Meshes.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB MeshManager : public ManagerBase, public Singleton<MeshManager>
+        class MEZZ_LIB MeshManager : public EntresolManager, public Singleton<MeshManager>
         {
         public:
             /// @brief Basic container type for Mesh storage in this class.
@@ -148,8 +147,7 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultMeshManagerFactory
-        /// @headerfile meshmanager.h
-        /// @brief A factory responsible for the creation and destruction of the default meshmanager.
+        /// @brief A factory responsible for the creation and destruction of the default MeshManager.
         ///////////////////////////////////////
         class MEZZ_LIB DefaultMeshManagerFactory : public ManagerFactory
         {

@@ -50,34 +50,22 @@ namespace Mezzanine
         namespace OALS
         {
             OALSSoundScapeManagerFactory::OALSSoundScapeManagerFactory()
-            {
-            }
+                {  }
 
             OALSSoundScapeManagerFactory::~OALSSoundScapeManagerFactory()
-            {
-            }
+                {  }
 
             String OALSSoundScapeManagerFactory::GetManagerTypeName() const
-            {
-                return "OALSSoundScapeManager";
-            }
+                { return "OALSSoundScapeManager"; }
 
             ManagerBase* OALSSoundScapeManagerFactory::CreateManager(NameValuePairList& Params)
-            {
-                // SoundScapeManagers are not singleton, so let'er rip!
-                return new OALS::SoundScapeManager();
-            }
+                { return new OALS::SoundScapeManager();  /* SoundScapeManagers are not singleton, so let'er rip! */ }
 
             ManagerBase* OALSSoundScapeManagerFactory::CreateManager(XML::Node& XMLNode)
-            {
-                // SoundScapeManagers are not singleton, so let'er rip!
-                return new OALS::SoundScapeManager(XMLNode);
-            }
+                { return new OALS::SoundScapeManager(XMLNode);  /* SoundScapeManagers are not singleton, so let'er rip! */ }
 
             void OALSSoundScapeManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-            {
-                delete ToBeDestroyed;
-            }
+                { delete ToBeDestroyed; }
         }//OALS
     }//Audio
 }//Mezzanine
