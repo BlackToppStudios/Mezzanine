@@ -63,6 +63,7 @@ using namespace std;
 #include "worldobject.h"
 #include "crossplatform.h"
 #include "entresol.h"
+#include "timer.h"
 
 #include "Physics/collisiondispatcher.h.cpp"
 
@@ -1197,9 +1198,21 @@ namespace Mezzanine
 
             Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier(); // Convert from MicroSeconds to Seconds
             int MaxSteps = ( FloatTime < this->StepSize ) ? 1 : int( FloatTime / this->StepSize ) + 1;
+
+            StringStream StepStream;
+            StepStream << "Attempting to step the physics simulation by " << FloatTime << " seconds with " << MaxSteps << " maximum substeps." << std::endl;
+            this->TheEntresol->Log( StepStream.str() );
+            StepStream.str("");
+            Timer PhysicsTimer;
+            PhysicsTimer.Start();
+
             CallBackWorld = this;
             this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
             CallBackWorld = NULL;
+
+            PhysicsTimer.Stop();
+            StepStream << "StepSimulation took " << PhysicsTimer.GetCurrentTimeInMilliseconds() << " milliseconds." << std::endl;
+            this->TheEntresol->Log( StepStream.str() );
         }
 
         Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
