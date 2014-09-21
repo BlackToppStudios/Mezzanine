@@ -558,28 +558,6 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Logging
-
-    void Entresol::LogString(const String& Message)
-    {
-        // if it is in the Audiologs then it has already happened so it needs to be logged first
-        if(Message.size()>0)
-            { this->GetLogStream() << Message; }
-    }
-
-    Logger& Entresol::GetLogStream(Threading::ThreadId ID)
-    {
-        Threading::FrameScheduler::Resource* AlmostResults = this->WorkScheduler.GetThreadResource(ID);
-        if(AlmostResults)
-            { return AlmostResults->GetUsableLogger(); }
-        else
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not access thread Specific Logger from invalid thread."); }
-    }
-
-    Threading::LogAggregator* Entresol::GetLogAggregator()
-        { return this->Aggregator; }
-
-    ///////////////////////////////////////////////////////////////////////////////
     // Initialization
     ///////////////////////////////////////
 
@@ -590,9 +568,8 @@ namespace Mezzanine
         {
             StringStream InitStream;
             InitStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << "." << endl;
-            this->Log(InitStream.str());
-            if((*Iter)->GetInterfaceType() != ManagerBase::MT_GraphicsManager)
-            {
+            this->_Log( InitStream.str() );
+            if( (*Iter)->GetInterfaceType() != ManagerBase::MT_GraphicsManager ) {
                 (*Iter)->Initialize();
             }
         }
@@ -852,7 +829,7 @@ namespace Mezzanine
         {
             ManagerBase* Current = this->ManagerList.front();
             #ifdef MEZZDEBUG
-            this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
+            this->_Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
             #endif
 
             ManagerFactoryIterator ManIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
@@ -869,7 +846,7 @@ namespace Mezzanine
     void Entresol::AddManager(ManagerBase* ManagerToAdd)
     {
         #ifdef MEZZDEBUG
-        this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".\n");
+        this->_Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".\n");
         #endif
         // We have to verify the manager is unique.  A number of issues can arrise if a manager is double inserted.
         for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
@@ -1166,5 +1143,27 @@ namespace Mezzanine
             AddedTo->AddManager(NewMan);
         return NewMan;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Logging
+
+    void Entresol::_LogString(const String& Message)
+    {
+        // if it is in the Audiologs then it has already happened so it needs to be logged first
+        if( Message.size() > 0 )
+            { this->_GetLogStream() << Message; }
+    }
+
+    Logger& Entresol::_GetLogStream(Threading::ThreadId ID)
+    {
+        Threading::FrameScheduler::Resource* AlmostResults = this->WorkScheduler.GetThreadResource(ID);
+        if(AlmostResults)
+            { return AlmostResults->GetUsableLogger(); }
+        else
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not access thread Specific Logger from invalid thread."); }
+    }
+
+    Threading::LogAggregator* Entresol::_GetLogAggregator()
+        { return this->Aggregator; }
 }
 #endif

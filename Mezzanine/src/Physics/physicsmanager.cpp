@@ -109,6 +109,9 @@ namespace Mezzanine
             /// @brief This stores the wireframe being used for rendering.
             Mezzanine::LineGroup* WireFrame;
             /// @internal
+            /// @brief A pointer to the safe logger for debug output.
+            Mezzanine::Logger* ErrorLogger;
+            /// @internal
             /// @brief This stores whether or not to render physics debug lines
             /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
             /// Later we will add support for contact drawing, individual modeling drawing, etc...
@@ -164,6 +167,10 @@ namespace Mezzanine
             virtual int getDebugMode() const;
 
             /// @internal
+            /// @brief Sets the safe logger to sent debug output to.
+            /// @param Logger A pointer to the safe logger for debug output.
+            virtual void SetLogger(Mezzanine::Logger* Logger);
+            /// @internal
             /// @brief Used by the physics subsystem to report errors using the renderer
             /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
             /// Have redirected all input from this function to the Entresol::Log function.
@@ -203,10 +210,10 @@ namespace Mezzanine
             { this->WireFrame->DrawLine( Vector3(from), Vector3(to), ColourValue(color.getX(),color.getY(),color.getZ()) ); }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
-            {}
+            {  }
 
         void InternalDebugDrawer::draw3dText(const btVector3& location,const char* textString)
-            {}
+            {  }
 
         void InternalDebugDrawer::setDebugMode(int debugMode)
         {
@@ -223,11 +230,11 @@ namespace Mezzanine
         int InternalDebugDrawer::getDebugMode() const
             { return this->DebugDrawing; }
 
+        void InternalDebugDrawer::SetLogger(Mezzanine::Logger* Logger)
+            { this->ErrorLogger = Logger; }
+
         void InternalDebugDrawer::reportErrorWarning(const char* warningString)
-        {
-            String temp(warningString);
-            Mezzanine::Entresol::GetSingletonPtr()->Log(temp);
-        }
+            { (*this->ErrorLogger) << warningString << std::endl; }
     }// debug
 
     #ifdef GetObject
@@ -329,12 +336,14 @@ namespace Mezzanine
         {
             // No real logging necessary
             debug::InternalDebugDrawer* Drawer = this->TargetManager->BulletDrawer;
+            Drawer->SetLogger( &CurrentThreadStorage.GetUsableLogger() );
             if( Drawer && Drawer->getDebugMode() )        //this part is responsible for drawing the wireframes
             {
                 Drawer->PrepareForUpdate();
                 this->TargetManager->BulletDynamicsWorld->debugDrawWorld();
                 Drawer->FinalizeUpdate();
             }
+            Drawer->SetLogger(NULL);
         }
 
         ///////////////////////////////////////////////////////////
@@ -1199,10 +1208,8 @@ namespace Mezzanine
             Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier(); // Convert from MicroSeconds to Seconds
             int MaxSteps = ( FloatTime < this->StepSize ) ? 1 : int( FloatTime / this->StepSize ) + 1;
 
-            StringStream StepStream;
-            StepStream << "Attempting to step the physics simulation by " << FloatTime << " seconds with " << MaxSteps << " maximum substeps." << std::endl;
-            this->TheEntresol->Log( StepStream.str() );
-            StepStream.str("");
+            Logger& ThreadLog = CurrentThreadStorage.GetUsableLogger();
+            ThreadLog << "Attempting to step the physics simulation by " << FloatTime << " seconds with " << MaxSteps << " maximum substeps." << std::endl;
             Timer PhysicsTimer;
             PhysicsTimer.Start();
 
@@ -1211,8 +1218,7 @@ namespace Mezzanine
             CallBackWorld = NULL;
 
             PhysicsTimer.Stop();
-            StepStream << "StepSimulation took " << PhysicsTimer.GetCurrentTimeInMilliseconds() << " milliseconds." << std::endl;
-            this->TheEntresol->Log( StepStream.str() );
+            ThreadLog << "StepSimulation took " << PhysicsTimer.GetCurrentTimeInMilliseconds() << " milliseconds." << std::endl;
         }
 
         Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()

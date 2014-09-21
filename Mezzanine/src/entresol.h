@@ -522,30 +522,6 @@ namespace Mezzanine
             void PauseWorld(Boole Pause);
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Logging
-
-            /// @brief Runtime event and message logging.
-            /// @param Message This is what will be streamed to the log
-            /// @throws Anything GetLogStream could throw.
-            template <class T> void Log(const T& Message)
-                { this->LogString(StringTools::ConvertToString(Message)); }
-            /// @brief Log String directly with no conversion
-            /// @param message The string to log
-            /// @throws Anything GetLogStream could throw.
-            void LogString(const String& message);
-            /// @brief A nearly threadsafe logging sink.
-            /// @details If ID is not supplied and the thread is managed by the framescheduler this should be thread safe.
-            /// @param ID Defaults to the id of the current thread, but can be used to retrieve the logger for any thread.
-            /// @return A Logger that can be used by the thread with given ID or outside of Framescheduling in a non-threadsafe way.
-            /// @throws A ParametersRangeException if the thread is not managed by the frame scheduler or it Threading::FrameScheduler::CreateThreads() has not
-            /// been called (It creates the ThreadSpecific resources that contain the Loggers).
-            Logger& GetLogStream(Threading::ThreadId ID = Threading::this_thread::get_id());
-
-            /// @internal
-            /// @brief This is used to asynchronously handle log messages.
-            Threading::LogAggregator* GetLogAggregator();
-
-            ///////////////////////////////////////////////////////////////////////////////
             // Timing system methods
 
             /// @brief This sets a new Target Frame Rate
@@ -823,6 +799,30 @@ namespace Mezzanine
             /// @param AddToWorld Whether or not to add the created manager to a World after creation.
             /// @param AddedTo World to add manager to.
             WorldManager* CreateWorldManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld, World* AddedTo);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Logging
+
+            /// @brief Runtime event and message logging.
+            /// @param Message This is what will be streamed to the log.
+            /// @throws Anything GetLogStream could throw.
+            template <class T> void _Log(const T& Message)
+                { this->_LogString(StringTools::ConvertToString(Message)); }
+            /// @brief Log String directly with no conversion.
+            /// @param Message The string to log.
+            /// @throws Anything GetLogStream could throw.
+            void _LogString(const String& Message);
+            /// @brief A nearly threadsafe logging sink.
+            /// @details If ID is not supplied and the thread is managed by the framescheduler this should be thread safe.
+            /// @param ID Defaults to the id of the current thread, but can be used to retrieve the logger for any thread.
+            /// @return A Logger that can be used by the thread with given ID or outside of Framescheduling in a non-threadsafe way.
+            /// @exception This throws a ParametersRangeException if the thread is not managed by the frame scheduler or it Threading::FrameScheduler::CreateThreads() has not
+            /// been called (It creates the ThreadSpecific resources that contain the Loggers).
+            Logger& _GetLogStream(Threading::ThreadId ID = Threading::this_thread::get_id());
+            /// @internal
+            /// @brief This is used to asynchronously handle log messages.
+            /// @return Returns a pointer to the aggregator responsible for synchronizing logs between threads.
+            Threading::LogAggregator* _GetLogAggregator();
     };//Entresol
 }//Mezzanine
 #endif

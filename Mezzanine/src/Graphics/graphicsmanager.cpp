@@ -275,7 +275,7 @@ namespace Mezzanine
                         this->SetRenderSystem(this->CurrRenderSys,true);
                     }else{
                         /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
-                        Entresol::GetSingletonPtr()->Log("WARNING: Attempting to apply new RenderSystem settings after the GraphicsManager has been initialized.  "
+                        Entresol::GetSingletonPtr()->_Log("WARNING: Attempting to apply new RenderSystem settings after the GraphicsManager has been initialized.  "
                                                       "These Settings will be applied the next time settings are loaded during manager construction if current settings are saved.");
                     }
                 }

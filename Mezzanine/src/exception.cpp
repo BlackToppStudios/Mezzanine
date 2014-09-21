@@ -58,9 +58,8 @@ namespace Mezzanine
           File(SrcFile),
           Line(FileLine)
     {
-        if(Entresol::SingletonValid())
-        {
-            Entresol::GetSingletonPtr()->Log(GetCompleteMessage());
+        if( Entresol::SingletonValid() ) {
+            Entresol::GetSingletonPtr()->_Log( GetCompleteMessage() );
         }else{
             #ifdef MEZZDEBUG
             std::cerr << GetCompleteMessage();
