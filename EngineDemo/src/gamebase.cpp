@@ -610,8 +610,8 @@ void LoadContent()
     music2 = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
     Soundtrack->push_back(music2);
 
-    TheEntresol->Log("Debris Count ");
-    TheEntresol->Log( TheEntresol->GetDebrisManager()->GetNumDebris() );
+    TheEntresol->_Log("Debris Count ");
+    TheEntresol->_Log( TheEntresol->GetDebrisManager()->GetNumDebris() );
 }
 
 void MakeGUI()
