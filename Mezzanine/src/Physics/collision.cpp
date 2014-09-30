@@ -182,9 +182,10 @@ namespace Mezzanine
 
         void Collision::Update()
         {
+            this->InternalData->Manifolds.clear();
             this->InternalAlgo->getAllContactManifolds(this->InternalData->Manifolds);
             Whole NumManifolds = this->InternalData->Manifolds.size();
-            if( this->PenetrationDistances.size() != NumManifolds )
+            if( NumManifolds != 0 && this->PenetrationDistances.size() != NumManifolds )
             {
                 this->UpdatePenetrationDistances();
 
