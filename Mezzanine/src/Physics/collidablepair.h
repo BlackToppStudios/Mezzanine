@@ -70,6 +70,8 @@ namespace Mezzanine
             // Construction and Destruction
 
             /// @brief Class constructor.
+            /// @param A The first proxy in the collision pair.
+            /// @param B The second proxy in the collision pair.
             CollidablePair(CollidableProxy* A, CollidableProxy* B);
             /// @brief Class destructor.
             virtual ~CollidablePair();
