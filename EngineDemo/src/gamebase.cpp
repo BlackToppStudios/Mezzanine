@@ -335,7 +335,7 @@ int main(int argc, char **argv)
     try
     {
         Physics::ManagerConstructionInfo Info;
-        Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld;// | Physics::ManagerConstructionInfo::PCF_Multithreaded;
+        Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
         //Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
         //Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
         //Info.MaxProxies = 60;
