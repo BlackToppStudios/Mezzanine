@@ -43,10 +43,12 @@
 #include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
+#include "Graphics/graphicsenumerations.h"
 
 namespace Ogre
 {
     class TexturePtr;
+    class TextureManager;
 }
 
 namespace Mezzanine
@@ -64,7 +66,7 @@ namespace Mezzanine
         /// @brief This manager handles the storage and query of of Graphics Textures.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB TextureManager : public ManagerBase, public Singleton<TextureManager>
+        class MEZZ_LIB TextureManager : public EntresolManager, public Singleton<TextureManager>
         {
         public:
             /// @brief Basic container type for Texture storage in this class.
@@ -74,6 +76,15 @@ namespace Mezzanine
             /// @brief Const Iterator type for Texture instances stored in this class.
             typedef TextureContainer::const_iterator       ConstTextureIterator;
         protected:
+            /// @internal
+            /// @brief Container storing all of the currently loaded Textures.
+            TextureContainer Textures;
+
+            /// @internal
+            /// @brief Adds a Texture to this manager.
+            /// @exception If the name of the Texture being added is not unique a II_DUPLICATE_IDENTITY_EXCEPTION will be thrown.
+            /// @param ToAdd The Texture to be added.
+            virtual void AddTexture(Texture* ToAdd);
         public:
             /// @brief Class constructor.
             TextureManager();
@@ -82,6 +93,59 @@ namespace Mezzanine
             TextureManager(XML::Node& XMLNode);
             /// @brief Class destructor.
             virtual ~TextureManager();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Manual Creation
+
+            /// @brief Creates a blank texture with a width and height.
+            /// @param ResourceName The name of the resource to be created.
+            /// @param ResourceGroup The name of the group the resource will be created in.
+            /// @param Type The type of blank texture to be created.  See @ref TextureType enum for more details.
+            /// @param Width The width of the texture to be loaded.
+            /// @param Height The height of the texture to be loaded.
+            /// @param NumMipMaps The number of mipmaps that exist for the texture.
+            /// @param Format The pixel format to create the buffer for.
+            /// @param Usage Indicates how the texture will be used so the buffer structure can be optimized.
+            /// @param HWGammaCorrect Whether or not to enable hardware gamma correction (sRGB) on this texture.  The hardware will convert from gamma space to linear space when reading from this texture.  Only applicable for 8-bits per channel textures, will be ignored for other types.
+            /// @param FSAA The level of multisampling to use if this is a render target. Ignored if usage does not include TU_RenderTarget or if the device does not support it.
+            /// @return Returns a pointer to the created texture.
+            Texture* CreateManualTexture(const String& ResourceName, const String& ResourceGroup, const Graphics::TextureType Type, const Whole Width, const Whole Height,
+                                         const Integer NumMipMaps, const Graphics::PixelFormat Format, const Whole Usage = Graphics::TU_Default, const Boole HWGammaCorrect = false, const Whole FSAA = 0);
+            /// @brief Creates a blank texture with a width, height, and depth.
+            /// @param ResourceName The name of the resource to be created.
+            /// @param ResourceGroup The name of the group the resource will be created in.
+            /// @param Type The type of blank texture to be created.  See @ref TextureType enum for more details.
+            /// @param Width The width of the texture to be loaded.
+            /// @param Height The height of the texture to be loaded.
+            /// @param NumMipMaps The number of mipmaps that exist for the texture.
+            /// @param Format The pixel format to create the buffer for.
+            /// @param Usage Indicates how the texture will be used so the buffer structure can be optimized.
+            /// @param HWGammaCorrect Whether or not to enable hardware gamma correction (sRGB) on this texture.  The hardware will convert from gamma space to linear space when reading from this texture.  Only applicable for 8-bits per channel textures, will be ignored for other types.
+            /// @param FSAA The level of multisampling to use if this is a render target. Ignored if usage does not include TU_RenderTarget or if the device does not support it.
+            /// @return Returns a pointer to the created texture.
+            Texture* CreateManualTexture(const String& ResourceName, const String& ResourceGroup, const Graphics::TextureType Type, const Whole Width, const Whole Height, const Whole Depth,
+                                         const Integer NumMipMaps, const Graphics::PixelFormat Format, const Whole Usage = Graphics::TU_Default, const Boole HWGammaCorrect = false, const Whole FSAA = 0);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Texture Management
+
+            /// @brief Loads a Texture file from disk and prepares it for use.
+            /// @param TextureName The name of the Texture file to be loaded.
+            /// @param Group The resource group from which the Texture file should be loaded.
+            /// @return Returns a pointer to the loaded Texture.
+            virtual Texture* LoadTexture(const String& TextureName, const String& Group);
+            /// @brief Unloads a Texture file.
+            /// @param MeshName The name of the Texture to be unloaded.
+            virtual void UnloadTexture(const String& TextureName);
+            /// @brief Gets a Texture stored in this manager.
+            /// @param MeshName The name of the Texture to retrieve.
+            /// @return Returns a pointer to the requested Texture.
+            Texture* GetTexture(const String& TextureName);
+            /// @brief Gets the number of currently loaded Textures.
+            /// @return Returns a Whole representing the number of Textures currently loaded.
+            virtual Whole GetNumTextures();
+            /// @brief Unloads every Texture that is currently loaded.
+            virtual void UnloadAllTextures();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -98,6 +162,19 @@ namespace Mezzanine
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Wraps and stores an Ogre Texture instance.
+            /// @param ToWrap The Ogre Texture to get wrapped.
+            /// @return Returns a pointer to the wrapped Texture.
+            virtual Texture* _WrapInternalTexture(Ogre::TexturePtr ToWrap);
+            /// @internal
+            /// @brief Gets the internal TextureManager.
+            /// @return Returns a pointer to the internal TextureManager.
+            Ogre::TextureManager* _GetInternalManager() const;
         };//TextureManager
 
         ///////////////////////////////////////////////////////////////////////////////

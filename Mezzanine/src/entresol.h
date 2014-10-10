@@ -310,6 +310,7 @@ namespace Mezzanine
         class MeshManager;
         class SceneManager;
         class CameraManager;
+        class TextureManager;
     }
     namespace Input
     {
@@ -723,6 +724,10 @@ namespace Mezzanine
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
             Resource::ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
+            /// @brief This gets the TextureManager from the manager list.
+            /// @param WhichOne If you have multiple TextureManagers this will choose which one to return.
+            /// @return This returns a pointer to a TextureManager, or a NULL pointer if no matching manager exists.
+            Graphics::TextureManager* GetTextureManager(const UInt16 WhichOne = 0);
             /// @brief This gets the UIManager from the manager list.
             /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
             /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.

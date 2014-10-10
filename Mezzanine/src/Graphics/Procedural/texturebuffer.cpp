@@ -69,6 +69,7 @@
 
 #include "Graphics/Procedural/texturebuffer.h"
 
+#include "Graphics/texturemanager.h"
 #include "Graphics/texture.h"
 #include "Graphics/image.h"
 
@@ -200,11 +201,11 @@ namespace Mezzanine
                 return NewImage;
             }
 
-            Texture* TextureBuffer::GenerateTexture(const String& TexName, const String& TexGroup) const
+            Texture* TextureBuffer::GenerateTexture(const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
             {
-                /// @todo Implement this.
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Converting to an Texture is reliant on the completion of the Texture class.");
-                return NULL;
+                Texture* Ret = Graphics::TextureManager::GetSingletonPtr()->CreateManualTexture(TexName,TexGroup,Graphics::TT_2D,this->Width,this->Height,0,Format);
+                Ret->_WriteToBuffer(this->Pixels,this->Width * this->Height * 4,Graphics::PF_R8G8B8A8);
+                return Ret;
             }
 
             ///////////////////////////////////////////////////////////////////////////////

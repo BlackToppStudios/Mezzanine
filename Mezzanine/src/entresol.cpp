@@ -262,6 +262,8 @@ namespace Mezzanine
             { this->AddManager(new UI::UIManager()); }
         if(this->GetMeshManager()==0)
             { this->AddManager(new Graphics::MeshManager()); }
+        if(this->GetTextureManager()==0)
+            { this->AddManager(new Graphics::TextureManager()); }
         if(this->GetCollisionShapeManager()==0)
             { this->AddManager(new Physics::CollisionShapeManager()); }
         if(this->GetCameraManager()==0)
@@ -972,6 +974,11 @@ namespace Mezzanine
     Resource::ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
     {
         return dynamic_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager, WhichOne) );
+    }
+
+    Graphics::TextureManager* Entresol::GetTextureManager(const UInt16 WhichOne)
+    {
+        return dynamic_cast<Graphics::TextureManager*>( this->GetManager(ManagerBase::MT_TextureManager, WhichOne) );
     }
 
     UI::UIManager* Entresol::GetUIManager(const UInt16 WhichOne)

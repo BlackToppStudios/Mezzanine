@@ -41,6 +41,7 @@
 #define _graphicstexturemanager_cpp
 
 #include "Graphics/texturemanager.h"
+#include "Graphics/texture.h"
 
 #include <Ogre.h>
 
@@ -51,18 +52,88 @@ namespace Mezzanine
     namespace Graphics
     {
         TextureManager::TextureManager()
-        {
-
-        }
+            {  }
 
         TextureManager::TextureManager(XML::Node& XMLNode)
         {
-
+            /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
         }
 
         TextureManager::~TextureManager()
         {
+            this->Deinitialize();
+            this->UnloadAllTextures();
+        }
 
+        void TextureManager::AddTexture(Texture* ToAdd)
+        {
+            String TextureName = ToAdd->GetName();
+            TextureIterator TextureIt = this->Textures.find( TextureName );
+            if( TextureIt == this->Textures.end() ) {
+                this->Textures.insert( std::pair<String,Texture*>(TextureName,ToAdd) );
+            }else{
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Textures must have unique names when loaded!");
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Manual Creation
+
+        Texture* TextureManager::CreateManualTexture(const String& ResourceName, const String& ResourceGroup, const Graphics::TextureType Type, const Whole Width, const Whole Height,
+                                                     const Integer NumMipMaps, const Graphics::PixelFormat Format, const Whole Usage, const Boole HWGammaCorrect, const Whole FSAA)
+        {
+            return this->_WrapInternalTexture( this->_GetInternalManager()->createManual(ResourceName,ResourceGroup,static_cast<Ogre::TextureType>(Type),Width,Height,NumMipMaps,static_cast<Ogre::PixelFormat>(Format),Usage,NULL,HWGammaCorrect,FSAA) );
+        }
+
+        Texture* TextureManager::CreateManualTexture(const String& ResourceName, const String& ResourceGroup, const Graphics::TextureType Type, const Whole Width, const Whole Height, const Whole Depth,
+                                                     const Integer NumMipMaps, const Graphics::PixelFormat Format, const Whole Usage, const Boole HWGammaCorrect, const Whole FSAA)
+        {
+            return this->_WrapInternalTexture( this->_GetInternalManager()->createManual(ResourceName,ResourceGroup,static_cast<Ogre::TextureType>(Type),Width,Height,Depth,NumMipMaps,static_cast<Ogre::PixelFormat>(Format),Usage,NULL,HWGammaCorrect,FSAA) );
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Texture Management
+
+        Texture* TextureManager::LoadTexture(const String& TextureName, const String& Group)
+        {
+            TextureIterator TexIt = this->Textures.find(TextureName);
+            if( TexIt != this->Textures.end() ) {
+                return (*TexIt).second;
+            }
+            return this->_WrapInternalTexture( this->_GetInternalManager()->load(TextureName,Group) );
+        }
+
+        void TextureManager::UnloadTexture(const String& TextureName)
+        {
+            TextureIterator TexIt = this->Textures.find(TextureName);
+            if( TexIt == this->Textures.end() ) {
+                return;
+            }
+            this->_GetInternalManager()->unload(TextureName);
+            delete (*TexIt).second;
+            this->Textures.erase(TexIt);
+        }
+
+        Texture* TextureManager::GetTexture(const String& TextureName)
+        {
+            TextureIterator TexIt = this->Textures.find(TextureName);
+            if( TexIt != this->Textures.end() ) {
+                return (*TexIt).second;
+            }
+            return NULL;
+        }
+
+        Whole TextureManager::GetNumTextures()
+        {
+            return this->Textures.size();
+        }
+
+        void TextureManager::UnloadAllTextures()
+        {
+            for( TextureIterator TexIt = this->Textures.begin() ; TexIt != this->Textures.end() ; ++TexIt )
+                { delete (*TexIt).second; }
+            this->Textures.clear();
+            this->_GetInternalManager()->unloadAll();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -82,6 +153,19 @@ namespace Mezzanine
 
         String TextureManager::GetImplementationTypeName() const
             { return "DefaultTextureManager"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        Texture* TextureManager::_WrapInternalTexture(Ogre::TexturePtr ToWrap)
+        {
+            Texture* Wrapped = new Texture(ToWrap);
+            this->AddTexture( Wrapped );
+            return Wrapped;
+        }
+
+        Ogre::TextureManager* TextureManager::_GetInternalManager() const
+            { return Ogre::TextureManager::getSingletonPtr(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultTextureManagerFactory Methods

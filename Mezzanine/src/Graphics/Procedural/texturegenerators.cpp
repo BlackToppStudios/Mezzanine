@@ -95,19 +95,19 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Texture* TextureGenerator::GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup) const
+            Texture* TextureGenerator::GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
             {
                 TextureBuffer TexBuf(SquareSize);
                 this->AddToTextureBuffer(TexBuf);
-                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup);
+                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup,Format);
                 return NewMesh;
             }
 
-            Texture* TextureGenerator::GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup) const
+            Texture* TextureGenerator::GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
             {
                 TextureBuffer TexBuf(TexWidth,TexHeight);
                 this->AddToTextureBuffer(TexBuf);
-                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup);
+                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup,Format);
                 return NewMesh;
             }
 

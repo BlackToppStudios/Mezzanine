@@ -68,6 +68,7 @@
 #define _graphicsproceduraltexturebuffer_h
 
 #include "colourvalue.h"
+#include "Graphics/graphicsenumerations.h"
 
 namespace Mezzanine
 {
@@ -152,8 +153,9 @@ namespace Mezzanine
                 /// @brief Creates a Texture from this buffer.
                 /// @param TexName The name of the Texture to be generated.
                 /// @param TexGroup The name of the resource group to create the Texture in.
+                /// @param Format The pixel format for the generated Texture.
                 /// @return Returns a pointer to the converted Texture.
-                Texture* GenerateTexture(const String& TexName, const String& TexGroup) const;
+                Texture* GenerateTexture(const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Pixel Configuration

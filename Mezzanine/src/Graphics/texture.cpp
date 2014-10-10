@@ -42,7 +42,11 @@
 #define _graphicstexture_cpp
 
 #include "Graphics/texture.h"
+
+#include "exception.h"
+
 #include <Ogre.h>
+#include <OgrePixelFormat.h>
 
 namespace Mezzanine
 {
@@ -66,8 +70,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Texture Methods
 
-        Texture::Texture()
-            { this->ITD = new InternalTextureData(); }
+        Texture::Texture(Ogre::TexturePtr InternalTexture)
+        {
+            this->ITD = new InternalTextureData();
+            this->ITD->GraphicsTexture = InternalTexture;
+        }
 
         Texture::~Texture()
             { delete this->ITD; }
@@ -76,28 +83,83 @@ namespace Mezzanine
         // Utility Methods
 
         UInt32 Texture::GetOriginalWidth() const
-            { this->ITD->GraphicsTexture->getSrcWidth(); }
+            { this->_GetInternalTexture()->getSrcWidth(); }
 
         UInt32 Texture::GetOriginalHeight() const
-            { this->ITD->GraphicsTexture->getSrcHeight(); }
+            { this->_GetInternalTexture()->getSrcHeight(); }
 
         UInt32 Texture::GetOriginalDepth() const
-            { this->ITD->GraphicsTexture->getSrcDepth(); }
+            { this->_GetInternalTexture()->getSrcDepth(); }
 
         Graphics::PixelFormat Texture::GetFormat() const
-            { return static_cast<Graphics::PixelFormat>( this->ITD->GraphicsTexture->getFormat() ); }
+            { return static_cast<Graphics::PixelFormat>( this->_GetInternalTexture()->getFormat() ); }
 
         Whole Texture::GetNumMipMaps() const
-            { return this->ITD->GraphicsTexture->getNumMipmaps(); }
+            { return this->_GetInternalTexture()->getNumMipmaps(); }
 
         Whole Texture::GetSize() const
-            { return this->ITD->GraphicsTexture->getSize(); }
+            { return this->_GetInternalTexture()->getSize(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // AssetMethods
 
+        const String& Texture::GetName() const
+            { return this->_GetInternalTexture()->getName(); }
+
+        const String& Texture::GetGroup() const
+            { return this->_GetInternalTexture()->getGroup(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Buffer Manipulation Methods
+
+        Whole Texture::_ReadFromBuffer(UInt8* DestBuffer, const Whole BufferSize)
+        {
+            Whole TexSize = this->GetSize();
+            if( BufferSize < TexSize ) {
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Destination buffer is too small to fit all texture pixel data.");
+            }
+
+            Ogre::HardwarePixelBufferSharedPtr PixelBuffer = this->_GetInternalTexture()->getBuffer();
+
+            // Lock the pixel buffer and get a pixel box
+            PixelBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL);
+            const Ogre::PixelBox& Box = PixelBuffer->getCurrentLock();
+
+            UInt8* SrcBuf = static_cast<UInt8*>(Box.data);
+
+            Ogre::PixelUtil::bulkPixelConversion(SrcBuf,this->_GetInternalTexture()->getFormat(),DestBuffer,this->_GetInternalTexture()->getFormat(),TexSize);
+            //memcpy(DestBuffer,SrcBuf,TexSize);
+
+            PixelBuffer->unlock();
+
+            return TexSize;
+        }
+
+        void Texture::_WriteToBuffer(UInt8* SrcBuffer, const Whole BufferSize, const Graphics::PixelFormat SrcFormat)
+        {
+            if( this->GetSize() != BufferSize ) {
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Texture and write buffer are different sizes.  Sizes must match.");
+            }
+
+            Ogre::HardwarePixelBufferSharedPtr PixelBuffer = this->_GetInternalTexture()->getBuffer();
+
+            // Lock the pixel buffer and get a pixel box
+            PixelBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL);
+            const Ogre::PixelBox& Box = PixelBuffer->getCurrentLock();
+
+            UInt8* DestBuf = static_cast<UInt8*>(Box.data);
+
+            Ogre::PixelUtil::bulkPixelConversion(SrcBuffer,static_cast<Ogre::PixelFormat>(SrcFormat),DestBuf,this->_GetInternalTexture()->getFormat(),BufferSize);
+
+            // Unlock the pixel buffer
+            PixelBuffer->unlock();
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        Ogre::TexturePtr Texture::_GetInternalTexture() const
+            { return this->ITD->GraphicsTexture; }
     }//Graphics
 }//Mezzanine
 
