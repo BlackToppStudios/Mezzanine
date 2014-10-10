@@ -55,18 +55,14 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB InternalMeshData
         {
-            public:
-                Ogre::MeshPtr GraphicsMesh;
+        public:
+            /// @internal
+            /// @brief The internal representation of the Mesh.
+            Ogre::MeshPtr GraphicsMesh;
         };//InternalMeshData
 
         ///////////////////////////////////////////////////////////////////////////////
         // Mesh Methods
-
-        /*Mesh::Mesh()
-        {
-            this->IMD = new InternalMeshData();
-            this->IMD->GraphicsMesh.setNull();
-        }//*/
 
         Mesh::Mesh(Ogre::MeshPtr InternalMesh)
         {
@@ -75,24 +71,16 @@ namespace Mezzanine
         }
 
         Mesh::~Mesh()
-        {
-            delete IMD;
-        }
+            { delete this->IMD; }
 
         ConstString& Mesh::GetName() const
-        {
-            return _GetInternalMesh()->getName();
-        }
+            { return this->_GetInternalMesh()->getName(); }
 
         ConstString& Mesh::GetGroup() const
-        {
-            return _GetInternalMesh()->getGroup();
-        }
+            { return this->_GetInternalMesh()->getGroup(); }
 
         Ogre::MeshPtr Mesh::_GetInternalMesh() const
-        {
-            return this->IMD->GraphicsMesh;
-        }
+            { return this->IMD->GraphicsMesh; }
     }//Graphics
 }//Mezzanine
 

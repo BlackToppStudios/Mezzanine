@@ -80,33 +80,34 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Non-Generated Mesh Management
+        // Mesh Management
 
         Mesh* MeshManager::LoadMesh(const String& MeshName, const String& Group)
         {
-            MeshIterator it = this->Meshes.find(MeshName);
-            if( it != this->Meshes.end() )
-                return (*it).second;
-            Mesh* Loaded = new Mesh(Ogre::MeshManager::getSingleton().load(MeshName,Group));
-            this->AddMesh( Loaded );
-            return Loaded;
+            MeshIterator MeshIt = this->Meshes.find(MeshName);
+            if( MeshIt != this->Meshes.end() ) {
+                return (*MeshIt).second;
+            }
+            return this->_WrapInternalMesh( this->_GetInternalManager()->load(MeshName,Group) );
         }
 
         void MeshManager::UnloadMesh(const String& MeshName)
         {
-            MeshIterator it = this->Meshes.find(MeshName);
-            if( it == this->Meshes.end() )
+            MeshIterator MeshIt = this->Meshes.find(MeshName);
+            if( MeshIt == this->Meshes.end() ) {
                 return;
-            Ogre::MeshManager::getSingleton().unload(MeshName);
-            delete (*it).second;
-            this->Meshes.erase(it);
+            }
+            this->_GetInternalManager()->unload(MeshName);
+            delete (*MeshIt).second;
+            this->Meshes.erase(MeshIt);
         }
 
         Mesh* MeshManager::GetMesh(const String& MeshName)
         {
-            MeshIterator lit = this->Meshes.find(MeshName);
-            if(lit != this->Meshes.end())
-                return (*lit).second;
+            MeshIterator MeshIt = this->Meshes.find(MeshName);
+            if( MeshIt != this->Meshes.end() ) {
+                return (*MeshIt).second;
+            }
             return NULL;
         }
 
@@ -117,10 +118,10 @@ namespace Mezzanine
 
         void MeshManager::UnloadAllMeshes()
         {
-            for( MeshIterator it = this->Meshes.begin() ; it != this->Meshes.end() ; it++ )
-                { delete (*it).second; }
+            for( MeshIterator MeshIt = this->Meshes.begin() ; MeshIt != this->Meshes.end() ; ++MeshIt )
+                { delete (*MeshIt).second; }
             this->Meshes.clear();
-            Ogre::MeshManager::getSingleton().unloadAll();
+            this->_GetInternalManager()->unloadAll();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -150,6 +151,9 @@ namespace Mezzanine
             this->AddMesh( Wrapped );
             return Wrapped;
         }
+
+        Ogre::MeshManager* MeshManager::_GetInternalManager() const
+            { return Ogre::MeshManager::getSingletonPtr(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultMeshManagerFactory Methods

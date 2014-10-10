@@ -49,6 +49,7 @@
 namespace Ogre
 {
     class MeshPtr;
+    class MeshManager;
 }
 
 namespace Mezzanine
@@ -81,13 +82,13 @@ namespace Mezzanine
             typedef MeshContainer::const_iterator          ConstMeshIterator;
         protected:
             /// @internal
-            /// @brief Container storing all of the currently loaded meshes.
+            /// @brief Container storing all of the currently loaded Meshes.
             MeshContainer Meshes;
 
             /// @internal
-            /// @brief Adds a mesh to this manager.
-            /// @exception If the name of the mesh being added is not unique a II_DUPLICATE_IDENTITY_EXCEPTION will be thrown.
-            /// @param ToAdd The mesh to be added.
+            /// @brief Adds a Mesh to this manager.
+            /// @exception If the name of the Mesh being added is not unique a II_DUPLICATE_IDENTITY_EXCEPTION will be thrown.
+            /// @param ToAdd The Mesh to be added.
             virtual void AddMesh(Mesh* ToAdd);
         public:
             /// @brief Class constructor.
@@ -99,24 +100,24 @@ namespace Mezzanine
             virtual ~MeshManager();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Non-Generated Mesh Management
+            // Mesh Management
 
-            /// @brief Loads a mesh file from disk and prepares it for use.
-            /// @return Returns a pointer to the loaded mesh.
-            /// @param MeshName The name of the mesh file to be loaded.
-            /// @param Group The resource group from which the mesh file should be loaded.
+            /// @brief Loads a Mesh file from disk and prepares it for use.
+            /// @param MeshName The name of the Mesh file to be loaded.
+            /// @param Group The resource group from which the Mesh file should be loaded.
+            /// @return Returns a pointer to the loaded Mesh.
             virtual Mesh* LoadMesh(const String& MeshName, const String& Group);
-            /// @brief Unloads a mesh file.
-            /// @param MeshName The name of the mesh to be unloaded.
+            /// @brief Unloads a Mesh file.
+            /// @param MeshName The name of the Mesh to be unloaded.
             virtual void UnloadMesh(const String& MeshName);
-            /// @brief Gets a mesh stored in this manager.
-            /// @return Returns a pointer to the requested mesh.
-            /// @param MeshName The name of the mesh to retrieve.
+            /// @brief Gets a Mesh stored in this manager.
+            /// @param MeshName The name of the Mesh to retrieve.
+            /// @return Returns a pointer to the requested Mesh.
             Mesh* GetMesh(const String& MeshName);
             /// @brief Gets the number of currently loaded meshes.
-            /// @return Returns a whole representing the number of meshes currently loaded.
+            /// @return Returns a Whole representing the number of meshes currently loaded.
             virtual Whole GetNumMeshes();
-            /// @brief Unloads every mesh that is currently loaded.
+            /// @brief Unloads every Mesh that is currently loaded.
             virtual void UnloadAllMeshes();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -139,10 +140,14 @@ namespace Mezzanine
             // Internal Methods
 
             /// @internal
-            /// @brief Wraps and stores an Ogre mesh instance.
-            /// @param ToWrap The Ogre mesh to get wrapped.
+            /// @brief Wraps and stores an Ogre Mesh instance.
+            /// @param ToWrap The Ogre Mesh to get wrapped.
             /// @return Returns a pointer to the wrapped Mesh.
             virtual Mesh* _WrapInternalMesh(Ogre::MeshPtr ToWrap);
+            /// @internal
+            /// @brief Gets the internal MeshManager.
+            /// @return Returns a pointer to the internal MeshManager.
+            Ogre::MeshManager* _GetInternalManager() const;
         };//MeshManager
 
         ///////////////////////////////////////////////////////////////////////////////
