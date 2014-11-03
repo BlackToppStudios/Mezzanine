@@ -296,6 +296,7 @@ namespace Mezzanine
             AbsoluteDir.Y = MathTools::Fabs( AbsoluteDir.Y );
             AbsoluteDir.Z = MathTools::Fabs( AbsoluteDir.Z );
 
+            // A small fixed sized constant time sorting algorithm for sorting the length of each axis.
             Whole MaxAxis = 0, MidAxis = 1, MinAxis = 2;
             if( AbsoluteDir[0] < AbsoluteDir[2] ) {
                 MaxAxis = 2;

@@ -398,7 +398,7 @@ namespace Mezzanine
             void Construct( const Physics::ManagerConstructionInfo& PhysicsInfo,
                             const String& SceneType,
                             const String& EngineDataPath,
-                            const String& LogFileName,
+                            const String& GraphicsLogFileName,
                             const std::vector <ManagerBase*>& ManagerToBeAdded );
 
             /// @internal
@@ -444,7 +444,9 @@ namespace Mezzanine
             /// log, in the meantime its only interaction with the framescheduler is adding a
             /// LogAggregator WorkUnit.
             /// @param LogFileName The name of the file to log to. Some Subsystems will use this in addition to some other descriptor
-            void SetupLogging(const String& LogFileName);
+            void SetupLogging(const String& OgreLogFileName);
+            void SetupOgreLogging(const String& OgreLogFileName);
+            void SetupInternalLogging();
             /// @internal
             /// @brief Closes log files/streams and removes any WorkUnits from Scheduling dedicated to logging.
             void DestroyLogging();
