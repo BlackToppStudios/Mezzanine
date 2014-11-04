@@ -43,7 +43,7 @@
 #include "datatypes.h"
 #include "Physics/collisionshape.h"
 #ifndef SWIG
-    #include "managerbase.h"
+    #include "entresolmanager.h"
     #include "managerfactory.h"
 #endif
 #include "singleton.h"
@@ -80,7 +80,7 @@ namespace Mezzanine
         /// recommended to store and re-use a collision shape anytime you need it in multiple objects,
         /// rather then re-creating the same shape again and again.
         ///////////////////////////////////////
-        class MEZZ_LIB CollisionShapeManager : public ManagerBase, public Singleton<CollisionShapeManager>
+        class MEZZ_LIB CollisionShapeManager : public EntresolManager, public Singleton<CollisionShapeManager>
         {
         public:
             /// @brief Map container type for CollisionShape storage by this class.

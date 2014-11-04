@@ -40,7 +40,7 @@
 #ifndef _inputinputmanager_h
 #define _inputinputmanager_h
 
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "Input/metacode.h"
@@ -125,7 +125,7 @@ namespace Mezzanine
         /// the appropriate MetaCode(which could trigger something else in the UI system), but this also means great care must be
         /// taken when deciding on the ID's for each Input Sequence.
         ///////////////////////////////////////
-        class MEZZ_LIB InputManager : public ManagerBase, public Singleton<InputManager>
+        class MEZZ_LIB InputManager : public EntresolManager, public Singleton<InputManager>
         {
         public:
             typedef std::vector< Controller* >           ControllerContainer;

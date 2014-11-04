@@ -41,7 +41,7 @@
 #define _graphicsmanager_h
 
 #include "Threading/dagframescheduler.h"
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "Graphics/windowsettings.h"
@@ -116,7 +116,7 @@ namespace Mezzanine
         /// complex graphics settings. We hope to eventually include other items like
         /// shader settings, rendering API, and maybe other settings too.
         ///////////////////////////////////////
-        class MEZZ_LIB GraphicsManager: public ManagerBase, public ObjectSettingsHandler, public Singleton<GraphicsManager>
+        class MEZZ_LIB GraphicsManager: public EntresolManager, public ObjectSettingsHandler, public Singleton<GraphicsManager>
         {
         public:
             /// @brief Basic container type for @ref GameWindow storage by this class.

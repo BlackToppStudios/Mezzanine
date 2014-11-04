@@ -68,6 +68,7 @@
 #define _graphicsproceduraltexturebuffer_h
 
 #include "colourvalue.h"
+#include "Graphics/graphicsenumerations.h"
 
 namespace Mezzanine
 {
@@ -152,8 +153,9 @@ namespace Mezzanine
                 /// @brief Creates a Texture from this buffer.
                 /// @param TexName The name of the Texture to be generated.
                 /// @param TexGroup The name of the resource group to create the Texture in.
+                /// @param Format The pixel format for the generated Texture.
                 /// @return Returns a pointer to the converted Texture.
-                Texture* GenerateTexture(const String& TexName, const String& TexGroup) const;
+                Texture* GenerateTexture(const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Pixel Configuration
@@ -294,6 +296,18 @@ namespace Mezzanine
                 /// @return Returns a Real representing the alpha component of the colour in the specified pixel.  Range: [0.0, 1.0].
                 Real GetAlphaReal(const Whole X, const Whole Y) const;
             };//TextureBuffer
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief Convenience class for pixel processing.
+            /// @details
+            ///////////////////////////////////////
+            struct IntVector2
+            {
+                /// @brief Position on the X axis.
+                Whole X;
+                /// @brief Position on the Y axis.
+                Whole Y;
+            };//IntVector2
         }//Procedural
     }//Graphics
 }//Mezzanine

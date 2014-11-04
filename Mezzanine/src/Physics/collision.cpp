@@ -182,9 +182,10 @@ namespace Mezzanine
 
         void Collision::Update()
         {
+            this->InternalData->Manifolds.clear();
             this->InternalAlgo->getAllContactManifolds(this->InternalData->Manifolds);
             Whole NumManifolds = this->InternalData->Manifolds.size();
-            if( this->PenetrationDistances.size() != NumManifolds )
+            if( NumManifolds != 0 && this->PenetrationDistances.size() != NumManifolds )
             {
                 this->UpdatePenetrationDistances();
 
@@ -257,9 +258,7 @@ namespace Mezzanine
 
         void Collision::_SetProxyA(CollidableProxy* A)
         {
-            if( this->ProxyA ) {
-                Entresol::GetSingletonPtr()->Log("Attepting to change Proxy pointer Member in Collision.  This is not permitted.");
-            }else{
+            if( !this->ProxyA ) {
                 this->ProxyA = A;
                 WorldObject* ObjectA = this->ProxyA->GetParentObject();
                 if( ObjectA ) {
@@ -270,9 +269,7 @@ namespace Mezzanine
 
         void Collision::_SetProxyB(CollidableProxy* B)
         {
-            if( this->ProxyB ) {
-                Entresol::GetSingletonPtr()->Log("Attepting to change Proxy pointer Member in Collision.  This is not permitted.");
-            }else{
+            if( !this->ProxyB ) {
                 this->ProxyB = B;
                 WorldObject* ObjectB = this->ProxyB->GetParentObject();
                 if( ObjectB ) {

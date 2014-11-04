@@ -89,7 +89,7 @@ namespace Mezzanine
             }
             // now check the already generated collisions
             Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-            for( Physics::PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
+            for( Physics::PhysicsManager::CollisionMapIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(Casted == (*ColIt).second->InternalAlgo)
                 {
@@ -210,7 +210,7 @@ namespace Mezzanine
             }
             // now check the already generated collisions
             Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-            for( Physics::PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
+            for( Physics::PhysicsManager::CollisionMapIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(Casted == (*ColIt).second->InternalAlgo)
                 {

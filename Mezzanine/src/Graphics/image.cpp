@@ -67,8 +67,23 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Image Methods
 
-        Image::Image()
-            { this->IID = new InternalImageData(); }
+        Image::Image(const String& ResourceName, const String& ResourceGroup)
+        {
+            this->IID = new InternalImageData();
+            this->LoadImage(ResourceName,ResourceGroup);
+        }
+
+        Image::Image(UInt8* Data, const UInt32 Width, const UInt32 Height, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
+        {
+            this->IID = new InternalImageData();
+            this->LoadImage(Data,Width,Height,Format,AutoDelete,NumFaces,NumMipMaps);
+        }
+
+        Image::Image(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
+        {
+            this->IID = new InternalImageData();
+            this->LoadImage(Data,Width,Height,Depth,Format,AutoDelete,NumFaces,NumMipMaps);
+        }
 
         Image::~Image()
             { delete this->IID; }

@@ -242,31 +242,37 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for @ref CollidableProxy storage by this class.
-            typedef std::vector< CollidableProxy* >             ProxyContainer;
+            typedef std::vector< CollidableProxy* >                 ProxyContainer;
             /// @brief Iterator type for @ref CollidableProxy instances stored by this class.
-            typedef ProxyContainer::iterator                    ProxyIterator;
+            typedef ProxyContainer::iterator                        ProxyIterator;
             /// @brief Const Iterator type for @ref CollidableProxy instances stored by this class.
-            typedef ProxyContainer::const_iterator              ConstProxyIterator;
+            typedef ProxyContainer::const_iterator                  ConstProxyIterator;
             /// @brief Basic container type for @ref Constraint storage by this class.
-            typedef std::vector< Constraint* >                  ConstraintContainer;
+            typedef std::vector< Constraint* >                      ConstraintContainer;
             /// @brief Iterator type for @ref Constraint instances stored by this class.
-            typedef ConstraintContainer::iterator               ConstraintIterator;
+            typedef ConstraintContainer::iterator                   ConstraintIterator;
             /// @brief Const Iterator type for @ref Constraint instances stored by this class.
-            typedef ConstraintContainer::const_iterator         ConstConstraintIterator;
+            typedef ConstraintContainer::const_iterator             ConstConstraintIterator;
             /// @brief Basic container type for @ref WorldTrigger storage by this class.
-            typedef std::vector< WorldTrigger* >                WorldTriggerContainer;
+            typedef std::vector< WorldTrigger* >                    WorldTriggerContainer;
             /// @brief Iterator type for @ref WorldTrigger instances stored by this class.
-            typedef WorldTriggerContainer::iterator             WorldTriggerIterator;
+            typedef WorldTriggerContainer::iterator                 WorldTriggerIterator;
             /// @brief Const Iterator type for @ref WorldTrigger instances stored by this class.
-            typedef WorldTriggerContainer::const_iterator       ConstWorldTriggerIterator;
-            /// @brief Basic container type for @ref Collision storage by this class.
-            typedef std::map< CollidablePair, Collision* >      CollisionContainer;
-            /// @brief Iterator type for @ref Collision instances stored by this class.
-            typedef CollisionContainer::iterator                CollisionIterator;
-            /// @brief Const Iterator type for @ref Collision instances stored by this class.
-            typedef CollisionContainer::const_iterator          ConstCollisionIterator;
+            typedef WorldTriggerContainer::const_iterator           ConstWorldTriggerIterator;
             /// @brief A std::pair to assist with collision sorting operations.
-            typedef std::pair< CollidablePair, Collision* >     CollisionSortPair;
+            typedef std::pair< CollidablePair, Collision* >         CollisionSortPair;
+            /// @brief Basic container type for @ref Collision storage by this class.
+            typedef std::vector< Collision* >                       CollisionContainer;
+            /// @brief Iterator type for @ref Collision instances stored by this class.
+            typedef CollisionContainer::iterator                    CollisionIterator;
+            /// @brief Const Iterator type for @ref Collision instances stored by this class.
+            typedef CollisionContainer::const_iterator              ConstCollisionIterator;
+            /// @brief Container type for storing @ref Collision instances based on the pair of proxies that are colliding.
+            typedef std::map< CollidablePair, Collision* >          CollisionMap;
+            /// @brief Iterator type for sorted @ref Collision instances.
+            typedef CollisionMap::iterator                          CollisionMapIterator;
+            /// @brief Const Iterator type for sorted @ref Collision instances.
+            typedef CollisionMap::const_iterator                    ConstCollisionMapIterator;
         protected:
             friend class CollisionDispatcher;
             friend class ParallelCollisionDispatcher;
@@ -288,7 +294,7 @@ namespace Mezzanine
             ProxyContainer Proxies;
             ConstraintContainer Constraints;
             WorldTriggerContainer Triggers;
-            CollisionContainer Collisions;
+            CollisionMap Collisions;
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
@@ -506,6 +512,11 @@ namespace Mezzanine
             // Collision Management
 
             /// @brief Gets a Collision by collidable pair.
+            /// @param A The first proxy in the collision pair.
+            /// @param B The second proxy in the collision pair.
+            /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.
+            Physics::Collision* GetCollision(CollidableProxy* A, CollidableProxy* B);
+            /// @brief Gets a Collision by collidable pair.
             /// @param Pair A pair of CollidableProxies.
             /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.
             Physics::Collision* GetCollision(CollidablePair* Pair);
@@ -526,17 +537,17 @@ namespace Mezzanine
 
             /// @brief Get an CollisionIterator to the first Collision.
             /// @return An CollisionIterator to the first Collision.
-            CollisionIterator BeginCollision();
+            CollisionMapIterator BeginCollision();
             /// @brief Get a CollisionIterator to one past the last Collision.
             /// @return A CollisionIterator to one past the last Collision.
-            CollisionIterator EndCollision();
+            CollisionMapIterator EndCollision();
             #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
             /// @brief Get a ConstCollisionIterator to the first Collision.
             /// @return A ConstCollisionIterator to the first Collision.
-            ConstCollisionIterator BeginCollision() const;
+            ConstCollisionMapIterator BeginCollision() const;
             /// @brief Get a ConstCollisionIterator to one past the last Collision.
             /// @return A ConstCollisionIterator to one past the last Collision.
-            ConstCollisionIterator EndCollision() const;
+            ConstCollisionMapIterator EndCollision() const;
             #endif
 
             ///////////////////////////////////////////////////////////////////////////////

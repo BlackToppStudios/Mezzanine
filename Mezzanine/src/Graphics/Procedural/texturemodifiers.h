@@ -67,13 +67,429 @@
 #ifndef _graphicsproceduraltexturemodifiers_h
 #define _graphicsproceduraltexturemodifiers_h
 
+#include "Graphics/Procedural/texturebuffer.h"
+
+#include "Graphics/Procedural/Texture/texturemodifier.h"
+
+#include "vector2.h"
+#include "matrix3x3.h"
+
 namespace Mezzanine
 {
     namespace Graphics
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB BlitModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                BlitModifier();
+                /// @brief Class destructor.
+                virtual ~BlitModifier();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//BlitModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB BlurModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                BlurModifier();
+                /// @brief Class destructor.
+                virtual ~BlurModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//BlurModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB ChannelModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                ChannelModifier();
+                /// @brief Class destructor.
+                virtual ~ChannelModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//ChannelModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB CircleModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                CircleModifier();
+                /// @brief Class destructor.
+                virtual ~CircleModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//CircleModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB ColoursModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                ColoursModifier();
+                /// @brief Class destructor.
+                virtual ~ColoursModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//ColoursModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB CombineModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                CombineModifier();
+                /// @brief Class destructor.
+                virtual ~CombineModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//CombineModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB CrackModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                CrackModifier();
+                /// @brief Class destructor.
+                virtual ~CrackModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//CrackModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB CycloidModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                CycloidModifier();
+                /// @brief Class destructor.
+                virtual ~CycloidModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//CycloidModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB DistortModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                DistortModifier();
+                /// @brief Class destructor.
+                virtual ~DistortModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//DistortModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB EdgeDetectionModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                EdgeDetectionModifier();
+                /// @brief Class destructor.
+                virtual ~EdgeDetectionModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//EdgeDetectionModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB EllipseModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                EllipseModifier();
+                /// @brief Class destructor.
+                virtual ~EllipseModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//EllipseModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB GlowModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                GlowModifier();
+                /// @brief Class destructor.
+                virtual ~GlowModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//GlowModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB JitterModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                JitterModifier();
+                /// @brief Class destructor.
+                virtual ~JitterModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//JitterModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB LerpModifier : public TextureModifier
+            {
+            protected:
+            public:
+                /// @brief Blank constructor.
+                LerpModifier();
+                /// @brief Class destructor.
+                virtual ~LerpModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//LerpModifier
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB LightBakeModifier : public TextureModifier
+            {
+            protected:
+                /// @internal
+                /// @brief
+                ColourValue AmbientColour;
+                /// @internal
+                /// @brief
+                ColourValue DiffuseColour;
+                /// @internal
+                /// @brief
+                ColourValue SpecularColour;
+                /// @internal
+                /// @brief
+                Vector3 LightPosition;
+                /// @internal
+                /// @brief
+                TextureBuffer* NormalMap;
+                /// @internal
+                /// @brief
+                UInt8 SpecularPower;
+                /// @internal
+                /// @brief
+                UInt8 BumpPower;
+            public:
+                /// @brief Blank constructor.
+                LightBakeModifier();
+                /// @brief Class destructor.
+                virtual ~LightBakeModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//LightBakeModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

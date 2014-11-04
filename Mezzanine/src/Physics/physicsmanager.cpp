@@ -63,6 +63,7 @@ using namespace std;
 #include "worldobject.h"
 #include "crossplatform.h"
 #include "entresol.h"
+#include "timer.h"
 
 #include "Physics/collisiondispatcher.h.cpp"
 
@@ -107,6 +108,9 @@ namespace Mezzanine
             /// @internal
             /// @brief This stores the wireframe being used for rendering.
             Mezzanine::LineGroup* WireFrame;
+            /// @internal
+            /// @brief A pointer to the safe logger for debug output.
+            Mezzanine::Logger* ErrorLogger;
             /// @internal
             /// @brief This stores whether or not to render physics debug lines
             /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
@@ -163,6 +167,10 @@ namespace Mezzanine
             virtual int getDebugMode() const;
 
             /// @internal
+            /// @brief Sets the safe logger to sent debug output to.
+            /// @param Logger A pointer to the safe logger for debug output.
+            virtual void SetLogger(Mezzanine::Logger* Logger);
+            /// @internal
             /// @brief Used by the physics subsystem to report errors using the renderer
             /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
             /// Have redirected all input from this function to the Entresol::Log function.
@@ -202,10 +210,10 @@ namespace Mezzanine
             { this->WireFrame->DrawLine( Vector3(from), Vector3(to), ColourValue(color.getX(),color.getY(),color.getZ()) ); }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
-            {}
+            {  }
 
         void InternalDebugDrawer::draw3dText(const btVector3& location,const char* textString)
-            {}
+            {  }
 
         void InternalDebugDrawer::setDebugMode(int debugMode)
         {
@@ -222,11 +230,11 @@ namespace Mezzanine
         int InternalDebugDrawer::getDebugMode() const
             { return this->DebugDrawing; }
 
+        void InternalDebugDrawer::SetLogger(Mezzanine::Logger* Logger)
+            { this->ErrorLogger = Logger; }
+
         void InternalDebugDrawer::reportErrorWarning(const char* warningString)
-        {
-            String temp(warningString);
-            Mezzanine::Entresol::GetSingletonPtr()->Log(temp);
-        }
+            { (*this->ErrorLogger) << warningString << std::endl; }
     }// debug
 
     #ifdef GetObject
@@ -328,12 +336,14 @@ namespace Mezzanine
         {
             // No real logging necessary
             debug::InternalDebugDrawer* Drawer = this->TargetManager->BulletDrawer;
+            Drawer->SetLogger( &CurrentThreadStorage.GetUsableLogger() );
             if( Drawer && Drawer->getDebugMode() )        //this part is responsible for drawing the wireframes
             {
                 Drawer->PrepareForUpdate();
                 this->TargetManager->BulletDynamicsWorld->debugDrawWorld();
                 Drawer->FinalizeUpdate();
             }
+            Drawer->SetLogger(NULL);
         }
 
         ///////////////////////////////////////////////////////////
@@ -658,7 +668,7 @@ namespace Mezzanine
         void PhysicsManager::ProcessAllCollisions()
         {
             //Update the collisions that already exist as necessary
-            for( PhysicsManager::CollisionIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ColIt++ )
+            for( PhysicsManager::CollisionMapIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ColIt++ )
                 (*ColIt).second->Update();
             //Process the collisions that are in the creation queue
             AlgoList* AlgoQueue = ( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ?
@@ -675,6 +685,14 @@ namespace Mezzanine
             btCollisionAlgorithm* NewAlgo = AlgoQueue->front();
             while( NewAlgo != NULL )
             {
+                /*for( PhysicsManager::CollisionMapIterator ColIt = this->Collisions.begin() ; ColIt != this->Collisions.end() ; ++ColIt )
+                {
+                    if( NewAlgo == (*ColIt).second->InternalAlgo ) {
+
+                        break;
+                    }
+                }//*/
+                // Old method involving detecting the actual WorldObject pair
                 CollidableProxy* ProxA = NULL;
                 CollidableProxy* ProxB = NULL;
                 /// @todo This is an absurd round-about way to get the data we need,
@@ -682,8 +700,7 @@ namespace Mezzanine
                 btBroadphasePairArray& PairArray = BulletBroadphase->getOverlappingPairCache()->getOverlappingPairArray();
                 for( Integer X = 0 ; X < PairArray.size() ; ++X )
                 {
-                    if( NewAlgo == PairArray[X].m_algorithm )
-                    {
+                    if( NewAlgo == PairArray[X].m_algorithm ) {
                         btCollisionObject* COA = (btCollisionObject*)PairArray[X].m_pProxy0->m_clientObject;
                         ProxA = static_cast<CollidableProxy*>( COA->getUserPointer() );
                         btCollisionObject* COB = (btCollisionObject*)PairArray[X].m_pProxy1->m_clientObject;
@@ -692,23 +709,36 @@ namespace Mezzanine
                     }
                 }
 
-                if( ( ProxA != NULL && ProxA->GetCollisionResponse() ) && ( ProxB != NULL && ProxB->GetCollisionResponse() ) )
-                {
+                if( ( ProxA != NULL && ProxA->GetCollisionResponse() ) && ( ProxB != NULL && ProxB->GetCollisionResponse() ) ) {
                     // Create the collision
                     CollidablePair NewPair(ProxA,ProxB);
-                    PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
-                    if(ColIt == Collisions.end())
+                    /*PhysicsManager::CollisionMapIterator ColIt = Collisions.find(NewPair);
+                    if(ColIt == Collisions.end()) {
+                        Physics::Collision* NewCol = new Physics::Collision(ProxA,ProxB,NewAlgo);
+                        //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
+                        //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
+                        Collisions.insert( CollisionSortPair(NewPair,NewCol) );
+                    }//*/
+                    PhysicsManager::CollisionMapIterator ColIt = this->Collisions.begin();
+                    while( ColIt != this->Collisions.end() )
                     {
+                        if( NewAlgo == (*ColIt).second->InternalAlgo )
+                            break;
+                        ++ColIt;
+                    }
+
+                    if( ColIt == this->Collisions.end() ) {
                         Physics::Collision* NewCol = new Physics::Collision(ProxA,ProxB,NewAlgo);
                         //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         Collisions.insert( CollisionSortPair(NewPair,NewCol) );
                     }
-                }
+                }//*/
                 AlgoQueue->pop_front();
                 if(AlgoQueue->size() > 0) NewAlgo = AlgoQueue->front();
                 else NewAlgo = NULL;
             }//*/
+            AlgoQueue->clear();
         }
 
         PhysicsManager* PhysicsManager::CallBackWorld;
@@ -954,9 +984,15 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Collision Management
 
+        Physics::Collision* PhysicsManager::GetCollision(CollidableProxy* A, CollidableProxy* B)
+        {
+            CollidablePair Pair(A,B);
+            return this->GetCollision(&Pair);
+        }
+
         Physics::Collision* PhysicsManager::GetCollision(CollidablePair* Pair)
         {
-            ConstCollisionIterator ColIt = this->Collisions.find(*Pair);
+            ConstCollisionMapIterator ColIt = this->Collisions.find(*Pair);
             if(ColIt != this->Collisions.end()) return (*ColIt).second;
             else return NULL;
         }
@@ -980,45 +1016,45 @@ namespace Mezzanine
 
         void PhysicsManager::RemoveCollisionsContainingProxy(CollidableProxy* Proxy)
         {
-            if( !Proxy->IsInWorld() )
-                return;
+            // A proxy not in the world can't have collisions
+            if( Proxy->IsInWorld() ) {
+                this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs( Proxy->_GetBasePhysicsObject()->getBroadphaseHandle(), this->BulletDispatcher );
 
-            this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs( Proxy->_GetBasePhysicsObject()->getBroadphaseHandle(), this->BulletDispatcher );
-
-            CollisionIterator ColIt = this->Collisions.begin();
-            while( ColIt != this->Collisions.end() )
-            {
-                Physics::Collision* ToBeDestroyed = (*ColIt).second;
-                if( Proxy == (*ColIt).second->ProxyA || Proxy == (*ColIt).second->ProxyB ) {
-                    CollisionIterator Delete = ColIt;
-                    ++ColIt;
-                    this->Collisions.erase(Delete);
-                    delete ToBeDestroyed;
-                }else{
-                    ++ColIt;
+                CollisionMapIterator ColIt = this->Collisions.begin();
+                while( ColIt != this->Collisions.end() )
+                {
+                    Physics::Collision* ToBeDestroyed = (*ColIt).second;
+                    if( Proxy == (*ColIt).second->ProxyA || Proxy == (*ColIt).second->ProxyB ) {
+                        CollisionMapIterator Delete = ColIt;
+                        ++ColIt;
+                        this->Collisions.erase(Delete);
+                        delete ToBeDestroyed;
+                    }else{
+                        ++ColIt;
+                    }
                 }
             }
         }
 
         void PhysicsManager::DestroyAllCollisions()
         {
-            for( CollisionIterator ColIt = this->Collisions.begin() ; ColIt != this->Collisions.end() ; ++ColIt )
+            for( CollisionMapIterator ColIt = this->Collisions.begin() ; ColIt != this->Collisions.end() ; ++ColIt )
             {
                 delete (*ColIt).second;
             }
             this->Collisions.clear();
         }
 
-        PhysicsManager::CollisionIterator PhysicsManager::BeginCollision()
+        PhysicsManager::CollisionMapIterator PhysicsManager::BeginCollision()
             { return this->Collisions.begin(); }
 
-        PhysicsManager::CollisionIterator PhysicsManager::EndCollision()
+        PhysicsManager::CollisionMapIterator PhysicsManager::EndCollision()
             { return this->Collisions.end(); }
 
-        PhysicsManager::ConstCollisionIterator PhysicsManager::BeginCollision() const
+        PhysicsManager::ConstCollisionMapIterator PhysicsManager::BeginCollision() const
             { return this->Collisions.begin(); }
 
-        PhysicsManager::ConstCollisionIterator PhysicsManager::EndCollision() const
+        PhysicsManager::ConstCollisionMapIterator PhysicsManager::EndCollision() const
             { return this->Collisions.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -1197,9 +1233,18 @@ namespace Mezzanine
 
             Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier(); // Convert from MicroSeconds to Seconds
             int MaxSteps = ( FloatTime < this->StepSize ) ? 1 : int( FloatTime / this->StepSize ) + 1;
+
+            Logger& ThreadLog = CurrentThreadStorage.GetUsableLogger();
+            ThreadLog << "Attempting to step the physics simulation by " << FloatTime << " seconds with " << MaxSteps << " maximum substeps." << std::endl;
+            Timer PhysicsTimer;
+            PhysicsTimer.Start();
+
             CallBackWorld = this;
             this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
             CallBackWorld = NULL;
+
+            PhysicsTimer.Stop();
+            ThreadLog << "StepSimulation took " << PhysicsTimer.GetCurrentTimeInMilliseconds() << " milliseconds." << std::endl;
         }
 
         Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()

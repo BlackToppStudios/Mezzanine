@@ -139,6 +139,27 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Overloaded Operators
 
+    ColourValue ColourValue::operator*(const Real Scalar)
+        { return ColourValue( this->RedChannel * Scalar, this->GreenChannel * Scalar, this->BlueChannel * Scalar, this->AlphaChannel * Scalar); }
+
+    ColourValue ColourValue::operator+(const ColourValue& Colour)
+        { return ColourValue( this->RedChannel + Colour.RedChannel, this->GreenChannel + Colour.GreenChannel, this->BlueChannel + Colour.BlueChannel, this->AlphaChannel + Colour.AlphaChannel ); }
+
+    ColourValue ColourValue::operator-(const ColourValue& Colour)
+        { return ColourValue( this->RedChannel - Colour.RedChannel, this->GreenChannel - Colour.GreenChannel, this->BlueChannel - Colour.BlueChannel, this->AlphaChannel - Colour.AlphaChannel ); }
+
+    ColourValue ColourValue::operator*(const ColourValue& Colour)
+        { return ColourValue( this->RedChannel * Colour.RedChannel, this->GreenChannel * Colour.GreenChannel, this->BlueChannel * Colour.BlueChannel, this->AlphaChannel * Colour.AlphaChannel ); }
+
+    ColourValue& ColourValue::operator+=(const ColourValue& Colour)
+        { this->SetValues( this->RedChannel + Colour.RedChannel, this->GreenChannel + Colour.GreenChannel, this->BlueChannel + Colour.BlueChannel, this->AlphaChannel + Colour.AlphaChannel );  return *this; }
+
+    ColourValue& ColourValue::operator-=(const ColourValue& Colour)
+        { this->SetValues( this->RedChannel - Colour.RedChannel, this->GreenChannel - Colour.GreenChannel, this->BlueChannel - Colour.BlueChannel, this->AlphaChannel - Colour.AlphaChannel );  return *this; }
+
+    ColourValue& ColourValue::operator*=(const ColourValue& Colour)
+        { this->SetValues( this->RedChannel * Colour.RedChannel, this->GreenChannel * Colour.GreenChannel, this->BlueChannel * Colour.BlueChannel, this->AlphaChannel * Colour.AlphaChannel );  return *this; }
+
     Boole ColourValue::operator==(const ColourValue& Colour) const
         { return ( Colour.RedChannel == this->RedChannel && Colour.GreenChannel == this->GreenChannel && Colour.BlueChannel == this->BlueChannel && Colour.AlphaChannel == this->AlphaChannel ); }
 

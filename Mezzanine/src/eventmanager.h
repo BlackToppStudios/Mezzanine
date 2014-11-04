@@ -44,7 +44,7 @@
 //There will be an instance of this class in the world.
 ///////////////////////////////////////
 
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "managerfactory.h"
 #include "eventbase.h"
 #include "singleton.h"
@@ -157,7 +157,7 @@ namespace Mezzanine
     /// the events.
     /// @warning Currently this is not thread safe, even though it should be.
     ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB EventManager: public ManagerBase, public Singleton<EventManager>
+    class MEZZ_LIB EventManager: public EntresolManager, public Singleton<EventManager>
     {
     private:
         /// @internal

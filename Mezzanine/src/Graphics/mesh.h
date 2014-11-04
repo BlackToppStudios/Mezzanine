@@ -61,52 +61,52 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Mesh
         {
-            public:
-                typedef std::vector<SubMesh*>             SubMeshContainer;
-                typedef SubMeshContainer::iterator        SubMeshIterator;
-                typedef SubMeshContainer::const_iterator  ConstSubMeshIterator;
-            protected:
-                InternalMeshData* IMD;
-                Skeleton* MeshSkel;
-                SubMeshContainer SubMeshes;
-            public:
-                /*/// @brief Class Constructor.
-                Mesh();//*/
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param InternalMesh The internal mesh this mesh class is based on.
-                Mesh(Ogre::MeshPtr InternalMesh);
-                /// @brief Class Destructor.
-                ~Mesh();
+        public:
+            typedef std::vector<SubMesh*>             SubMeshContainer;
+            typedef SubMeshContainer::iterator        SubMeshIterator;
+            typedef SubMeshContainer::const_iterator  ConstSubMeshIterator;
+        protected:
+            InternalMeshData* IMD;
+            Skeleton* MeshSkel;
+            SubMeshContainer SubMeshes;
+        public:
+            /*/// @brief Class Constructor.
+            Mesh();//*/
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param InternalMesh The internal Mesh this Mesh class is based on.
+            Mesh(Ogre::MeshPtr InternalMesh);
+            /// @brief Class Destructor.
+            ~Mesh();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Submesh Methods
-
-
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Skeleton Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Submesh Methods
 
 
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Asset Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Skeleton Methods
 
-                /// @brief Gets the Name of this mesh.
-                /// @note If this mesh originated from a file, usually the name of the mesh will be the file name.
-                /// @return Returns a const string reference containing the name of this mesh.
-                ConstString& GetName() const;
-                /// @brief Gets the resource group this mesh belongs to.
-                /// @return Returns a const string reference containing the group this mesh belongs to.
-                ConstString& GetGroup() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
 
-                /// @internal
-                /// @brief Gets the internal Mesh pointer.
-                /// @return Returns a shared pointer pointing to the internal Mesh.
-                Ogre::MeshPtr _GetInternalMesh() const;
+            ///////////////////////////////////////////////////////////////////////////////
+            // Asset Methods
+
+            /// @brief Gets the Name of this Mesh.
+            /// @note If this Mesh originated from a file, usually the name of the Mesh will be the file name.
+            /// @return Returns a const string reference containing the name of this Mesh.
+            ConstString& GetName() const;
+            /// @brief Gets the resource group this Mesh belongs to.
+            /// @return Returns a const string reference containing the group this Mesh belongs to.
+            ConstString& GetGroup() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Gets the internal Mesh pointer.
+            /// @return Returns a shared pointer pointing to the internal Mesh.
+            Ogre::MeshPtr _GetInternalMesh() const;
         };//Mesh
     }//Graphics
 }//Mezzanine

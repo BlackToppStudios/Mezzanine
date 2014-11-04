@@ -67,8 +67,29 @@ namespace Mezzanine
             /// @brief A pointer to the internal implementation of the Image.
             InternalImageData* IID;
         public:
-            /// @brief Class Constructor.
-            Image();
+            /// @brief Resource constructor.
+            /// @param ResourceName The name of the resource to be loaded.
+            /// @param ResourceGroup The name of the group the resource is located in.
+            Image(const String& ResourceName, const String& ResourceGroup);
+            /// @brief 2D image buffer constructor.
+            /// @param Data The buffer to load the image from.
+            /// @param Width The width of the image to be loaded.
+            /// @param Height The height of the image to be loaded.
+            /// @param Format The pixel format of the buffer being loaded.
+            /// @param AutoDelete Whether or not this image owns the buffer, allowing it to delete the buffer when it is done.
+            /// @param NumFaces The number of faces that exist for the image.
+            /// @param NumMipMaps The number of mipmaps that exist for the image.
+            Image(UInt8* Data, const UInt32 Width, const UInt32 Height, const Graphics::PixelFormat Format, const Boole AutoDelete = false, const Whole NumFaces = 1, const UInt8 NumMipMaps = 0);
+            /// @brief 3D image buffer constructor.
+            /// @param Data The buffer to load the image from.
+            /// @param Width The width of the image to be loaded.
+            /// @param Height The height of the image to be loaded.
+            /// @param Depth The depth of the image to be loaded.
+            /// @param Format The pixel format of the buffer being loaded.
+            /// @param AutoDelete Whether or not this image owns the buffer, allowing it to delete the buffer when it is done.
+            /// @param NumFaces The number of faces that exist for the image.
+            /// @param NumMipMaps The number of mipmaps that exist for the image.
+            Image(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete = false, const Whole NumFaces = 1, const UInt8 NumMipMaps = 0);
             /// @brief Class Destructor.
             ~Image();
 

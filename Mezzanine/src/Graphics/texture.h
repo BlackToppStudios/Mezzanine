@@ -42,6 +42,7 @@
 #define _graphicstexture_h
 
 #include "datatypes.h"
+#include "Graphics/graphicsenumerations.h"
 
 namespace Ogre
 {
@@ -60,21 +61,79 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Texture
         {
-            protected:
-                /// @internal
-                /// @brief A pointer to the internal implementation of the Texture.
-                InternalTextureData* ITD;
-            public:
-                /// @brief Class Constructor.
-                Texture();
-                /// @brief Class Destructor.
-                ~Texture();
+        protected:
+            /// @internal
+            /// @brief A pointer to the internal implementation of the Texture.
+            InternalTextureData* ITD;
+        public:
+            /// @brief Class Constructor.
+            Texture(Ogre::TexturePtr InternalTexture);
+            /// @brief Class Destructor.
+            ~Texture();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // AssetMethods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
+            /// @brief Gets the width of the source Texture in pixels.
+            /// @remarks The actual size of the Texture in hardware is subject to change based on a number of configurations in the rendersystem.
+            /// This method ignores those settings and reports only the original unaltered size.
+            /// @return Returns a UInt32 representing the size of this Texture on the X axis.
+            UInt32 GetOriginalWidth() const;
+            /// @brief Gets the height of the source Texture in pixels.
+            /// @remarks The actual size of the Texture in hardware is subject to change based on a number of configurations in the rendersystem.
+            /// This method ignores those settings and reports only the original unaltered size.
+            /// @return Returns a UInt32 representing the size of this Texture on the Y axis.
+            UInt32 GetOriginalHeight() const;
+            /// @brief Gets the depth of the source Texture in pixels.
+            /// @remarks The actual size of the Texture in hardware is subject to change based on a number of configurations in the rendersystem.
+            /// This method ignores those settings and reports only the original unaltered size.
+            /// @return Returns a UInt32 representing the size of this Texture on the Z axis.
+            UInt32 GetOriginalDepth() const;
+            /// @brief Gets the pixel format of this Texture.
+            /// @return Returns a PixelFormat enum value representing how the bits of this Texture are layed out.
+            Graphics::PixelFormat GetFormat() const;
+            /// @brief Gets the number of MipMaps that exist for this Texture.
+            /// @return Returns the number of MipMaps this Texture has.
+            Whole GetNumMipMaps() const;
+
+            /// @brief Gets the size of this Texture.
+            /// @return Returns a Whole representing the total size of this Texture in bytes.
+            Whole GetSize() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Asset Methods
+
+            /// @brief Gets the Name of this Texture.
+            /// @note If this Texture originated from a file, usually the name of the Texture will be the file name.
+            /// @return Returns a const string reference containing the name of this Texture.
+            const String& GetName() const;
+            /// @brief Gets the resource group this Texture belongs to.
+            /// @return Returns a const string reference containing the group this Texture belongs to.
+            const String& GetGroup() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Buffer Manipulation Methods
+
+            /// @brief Reads from the internal buffer and populates the provided buffer with the texture data.
+            /// @exception If the size of the provided buffer is smaller than this texture, a PARAMETERS_EXCEPTION will be thrown.
+            /// @param DestBuffer The buffer to be written to.
+            /// @param BufferSize The size of the buffer provided.
+            /// @return Returns the number of bytes read from the texture.  Usually this will be the size of the texture itself.
+            Whole _ReadFromBuffer(UInt8* DestBuffer, const Whole BufferSize);
+            /// @brief Writes to the textures internal buffer.
+            /// @exception If the size of this texture is smaller than the buffer being written, a PARAMETERS_EXCEPTION will be thrown.
+            /// @param SrcBuffer The buffer containing the pixel data to be written.
+            /// @param BufferSize The size of the buffer being written.
+            /// @param SrcFormat The pixel format of the texture in the source buffer.  Pixel format will automatically be converted to the set format of this texture.
+            void _WriteToBuffer(UInt8* SrcBuffer, const Whole BufferSize, const Graphics::PixelFormat SrcFormat);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Gets the internal Texture pointer.
+            /// @return Returns a shared pointer pointing to the internal Texture.
+            Ogre::TexturePtr _GetInternalTexture() const;
         };//Texture
     }//Graphics
 }//Mezzanine

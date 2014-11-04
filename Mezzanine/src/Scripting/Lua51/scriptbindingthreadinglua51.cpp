@@ -8151,6 +8151,29 @@ fail:
 }
 
 
+static int _wrap_FrameScheduler_SwapBufferedResources(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::FrameScheduler *arg1 = (Mezzanine::Threading::FrameScheduler *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::FrameScheduler::SwapBufferedResources",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::FrameScheduler::SwapBufferedResources",1,"Mezzanine::Threading::FrameScheduler *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
+    SWIG_fail_ptr("FrameScheduler_SwapBufferedResources",1,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
+  }
+  
+  (arg1)->SwapBufferedResources();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_FrameScheduler(void *obj) {
 Mezzanine::Threading::FrameScheduler *arg1 = (Mezzanine::Threading::FrameScheduler *) obj;
 delete arg1;
@@ -8209,6 +8232,7 @@ static swig_lua_method swig_FrameScheduler_methods[]= {
     { "LogDependencies", _wrap_FrameScheduler_LogDependencies},
     { "GetLog", _wrap_FrameScheduler_GetLog},
     { "ForceLogFlush", _wrap_FrameScheduler_ForceLogFlush},
+    { "SwapBufferedResources", _wrap_FrameScheduler_SwapBufferedResources},
     {0,0}
 };
 static swig_lua_method swig_FrameScheduler_meta[] = {

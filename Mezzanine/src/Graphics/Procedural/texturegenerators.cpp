@@ -70,6 +70,8 @@
 #include "Graphics/Procedural/texturegenerators.h"
 #include "Graphics/Procedural/noise.h"
 
+#include "Graphics/image.h"
+
 #include "mathtool.h"
 #include "vector3.h"
 
@@ -93,19 +95,19 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Texture* TextureGenerator::GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup) const
+            Texture* TextureGenerator::GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
             {
                 TextureBuffer TexBuf(SquareSize);
                 this->AddToTextureBuffer(TexBuf);
-                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup);
+                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup,Format);
                 return NewMesh;
             }
 
-            Texture* TextureGenerator::GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup) const
+            Texture* TextureGenerator::GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
             {
                 TextureBuffer TexBuf(TexWidth,TexHeight);
                 this->AddToTextureBuffer(TexBuf);
-                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup);
+                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup,Format);
                 return NewMesh;
             }
 
@@ -465,7 +467,17 @@ namespace Mezzanine
 
             void ImageGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
+                Image ImportImg(this->File,this->Group);
 
+                if( ImportImg.GetHeight() >= Buffer.GetHeight() && ImportImg.GetWidth() >= Buffer.GetWidth() ) {
+                    for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                    {
+                        for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                        {
+                            Buffer.SetPixel(X,Y,ImportImg.GetColourAt(X,Y,0));
+                        }
+                    }
+                }
             }
 
             String ImageGenerator::GetName() const

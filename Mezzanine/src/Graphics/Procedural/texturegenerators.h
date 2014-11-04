@@ -96,15 +96,17 @@ namespace Mezzanine
                 /// @param SquareSize The width and height of the texture to create.  This value will be clamped to be at least 8.
                 /// @param TexName The name to give to the generated texture.
                 /// @param TexGroup The asset group to place the texture in.
+                /// @param Format The pixel format for the generated Texture.
                 /// @return Returns a pointer to the newly created Texture.
-                Texture* GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup) const;
+                Texture* GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
                 /// @brief Generates the Texture.
                 /// @param TexWidth The pixel width of the texture to be generated.  This value will be clamped to be at least 8.
                 /// @param TexHeight The pixel height of the texture to be generated.  This value will be clamped to be at least 8.
                 /// @param TexName The name to give to the generated texture.
                 /// @param TexGroup The asset group to place the texture in.
+                /// @param Format The pixel format for the generated Texture.
                 /// @return Returns a pointer to the newly created Texture.
-                Texture* GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup) const;
+                Texture* GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
                 /// @brief Creates a TextureBuffer with the pixels as configured in this generator.
                 /// @param SquareSize The width and height of the texture to create.  This value will be clamped to be at least 8.
                 /// @return Returns a new TextureBuffer with the generated pixels of this generator.

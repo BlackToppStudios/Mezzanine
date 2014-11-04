@@ -81,6 +81,7 @@ namespace Mezzanine
             MT_NetworkManager,         // Network
             MT_ResourceManager,        // Resource
             MT_ScriptingManager,       // Scripting
+            MT_TextureManager,         // Graphics
             MT_UIManager,              // UI
 
             // World Managers          // Namespaces

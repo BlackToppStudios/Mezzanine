@@ -483,7 +483,7 @@ namespace Mezzanine
 
                 default:                //Never thrown by SDL, but could be added by a user
                     //Entresol::GetSingletonPtr()->LogAndThrow("Unknown SDL Event Inserted.");
-                    Entresol::GetSingletonPtr()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
+                    //Entresol::GetSingletonPtr()->_Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
                     break;
             }
             //free(FromSDLRaw); //Does this need to Happen?

@@ -275,7 +275,7 @@ namespace Mezzanine
                         this->SetRenderSystem(this->CurrRenderSys,true);
                     }else{
                         /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
-                        Entresol::GetSingletonPtr()->Log("WARNING: Attempting to apply new RenderSystem settings after the GraphicsManager has been initialized.  "
+                        Entresol::GetSingletonPtr()->_Log("WARNING: Attempting to apply new RenderSystem settings after the GraphicsManager has been initialized.  "
                                                       "These Settings will be applied the next time settings are loaded during manager construction if current settings are saved.");
                     }
                 }
@@ -671,22 +671,17 @@ namespace Mezzanine
         // DefaultGraphicsManagerFactory Methods
 
         DefaultGraphicsManagerFactory::DefaultGraphicsManagerFactory()
-        {
-        }
+            {  }
 
         DefaultGraphicsManagerFactory::~DefaultGraphicsManagerFactory()
-        {
-        }
+            {  }
 
         String DefaultGraphicsManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultGraphicsManager";
-        }
+            { return "DefaultGraphicsManager"; }
 
         ManagerBase* DefaultGraphicsManagerFactory::CreateManager(NameValuePairList& Params)
         {
-            if(GraphicsManager::SingletonValid())
-            {
+            if( GraphicsManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return GraphicsManager::GetSingletonPtr();
             }else{
@@ -696,18 +691,16 @@ namespace Mezzanine
 
         ManagerBase* DefaultGraphicsManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            if(GraphicsManager::SingletonValid())
-            {
+            if( GraphicsManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return GraphicsManager::GetSingletonPtr();
-            }else return new GraphicsManager(XMLNode);
+            }else{
+                return new GraphicsManager(XMLNode);
+            }
         }
 
         void DefaultGraphicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
-
+            { delete ToBeDestroyed; }
     } // Graphics Namespace
 } //Mezzanine
 
