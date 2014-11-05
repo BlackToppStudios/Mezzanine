@@ -49,7 +49,7 @@
 #include "axisalignedbox.h"
 #include "sphere.h"
 #include "stringtool.h"
-#include "mathtool.h"
+#include "mathtools.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif

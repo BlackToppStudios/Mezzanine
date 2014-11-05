@@ -247,7 +247,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}managedptr.h"
         "${${PROJECT_NAME}_SRC_DIR}managerbase.h"
         "${${PROJECT_NAME}_SRC_DIR}managerfactory.h"
-        "${${PROJECT_NAME}_SRC_DIR}mathtool.h"
+        "${${PROJECT_NAME}_SRC_DIR}mathtools.h"
         "${${PROJECT_NAME}_SRC_DIR}matrix3x3.h"
         "${${PROJECT_NAME}_SRC_DIR}matrix4x4.h"
         "${${PROJECT_NAME}_SRC_DIR}meshterrain.h"

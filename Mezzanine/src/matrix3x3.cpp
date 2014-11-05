@@ -41,7 +41,7 @@
 #define _matrix3x3_cpp
 
 #include "matrix3x3.h"
-#include "mathtool.h"
+#include "mathtools.h"
 #include "entresol.h"
 
 #include "btBulletDynamicsCommon.h"

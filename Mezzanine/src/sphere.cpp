@@ -44,7 +44,7 @@
 /// @brief This file contains the implementation for the generic Sphere class for math and spacial query.
 
 #include "sphere.h"
-#include "mathtool.h"
+#include "mathtools.h"
 #include "axisalignedbox.h"
 #include "plane.h"
 #include "ray.h"

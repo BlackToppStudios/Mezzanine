@@ -61,7 +61,7 @@
 #include "Resource/resourcemanager.h"
 #include "eventmanager.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 #include "timer.h"
 #include "entresol.h"
 

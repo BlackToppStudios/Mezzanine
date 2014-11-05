@@ -40,7 +40,7 @@
 #ifndef _mathtool_cpp
 #define _mathtool_cpp
 
-#include "mathtool.h"
+#include "mathtools.h"
 #include "sphere.h"
 #include "axisalignedbox.h"
 #include "ray.h"

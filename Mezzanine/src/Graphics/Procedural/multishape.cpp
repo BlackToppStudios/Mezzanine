@@ -72,7 +72,7 @@
 
 #include "Graphics/meshmanager.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 
 #include "Ogre.h"
 

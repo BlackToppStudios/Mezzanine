@@ -71,7 +71,7 @@
 #include "Graphics/Procedural/triangulator.h"
 #include "Graphics/Procedural/path.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 #include "linesegment.h"
 #include "triangle.h"
 #include "exception.h"

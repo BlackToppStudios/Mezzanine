@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/cylindergenerator.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 #include "exception.h"
 
 namespace Mezzanine

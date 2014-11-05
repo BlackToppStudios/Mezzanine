@@ -73,7 +73,7 @@
 #include "Graphics/texture.h"
 #include "Graphics/image.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 
 #include <cstring>
 

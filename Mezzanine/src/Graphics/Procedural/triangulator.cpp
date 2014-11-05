@@ -71,7 +71,7 @@
 #include "Graphics/Procedural/shape.h"
 #include "Graphics/Procedural/multishape.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 #include "circle.h"
 #include "stringtool.h"
 #include "exception.h"

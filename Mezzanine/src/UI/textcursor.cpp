@@ -44,7 +44,7 @@
 #include "UI/textcursor.h"
 #include "UI/textline.h"
 #include "UI/character.h"
-#include "mathtool.h"
+#include "mathtools.h"
 #include "stringtool.h"
 #include "XML/xml.h"
 

@@ -42,6 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "vector3.h"
+#include "mathtools.h"
 
 namespace Ogre
 {
@@ -65,8 +66,8 @@ namespace Mezzanine
         typedef std::pair<Boole,Vector3> PlaneRayTestResult;
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Ray> GeometryRayTestResult;
-
+        //typedef MathTools::PointPointInterection GeometryRayTestResult;
+        typedef MathTools::GeometryRayTestResult GeometryRayTestResult;
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 

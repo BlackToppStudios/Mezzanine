@@ -123,7 +123,7 @@
 
 #include "managerbase.h"
 #include "managerfactory.h"
-#include "mathtool.h"
+#include "mathtools.h"
 
 #ifndef SWIG
 #include "meshterrain.h"

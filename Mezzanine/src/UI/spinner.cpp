@@ -51,7 +51,7 @@
 #include "UI/uimanager.h"
 
 #include "stringtool.h"
-#include "mathtool.h"
+#include "mathtools.h"
 
 #include <algorithm>
 #include <sstream>

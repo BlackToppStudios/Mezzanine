@@ -42,7 +42,7 @@
 
 #include "stringtool.h"
 #include "quaternion.h"
-#include "mathtool.h"
+#include "mathtools.h"
 #include "serialization.h"
 #include "vector3.h"
 #include "matrix3x3.h"

@@ -67,8 +67,16 @@ namespace Mezzanine
         /// @brief This is a type used for geometry tests that return a line segment in 3D space.
         /// @details This type provides more verbose return data that can be used for further tests.
         typedef std::pair<Boole,LineSegment3D> Line3DTestResult;
+
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
+        /*class PointPointInterection
+        {
+            public:
+                PointPointInterection
+
+        };*/
+
         typedef std::pair<Boole,Ray> GeometryRayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////

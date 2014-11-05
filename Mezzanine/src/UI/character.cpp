@@ -44,7 +44,7 @@
 #include "UI/character.h"
 #include "UI/textlayer.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 
 namespace Mezzanine
 {

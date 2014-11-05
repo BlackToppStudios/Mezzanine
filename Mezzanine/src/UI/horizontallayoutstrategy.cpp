@@ -42,7 +42,7 @@
 
 #include "UI/horizontallayoutstrategy.h"
 #include "UI/widget.h"
-#include "mathtool.h"
+#include "mathtools.h"
 #include "exception.h"
 
 #include <algorithm>

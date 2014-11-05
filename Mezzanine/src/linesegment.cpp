@@ -41,7 +41,7 @@
 #define _linesegment_cpp
 
 #include "linesegment.h"
-#include "mathtool.h"
+#include "mathtools.h"
 
 namespace Mezzanine
 {

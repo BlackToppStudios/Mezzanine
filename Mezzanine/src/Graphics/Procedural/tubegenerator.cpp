@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/tubegenerator.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 #include "exception.h"
 
 namespace Mezzanine

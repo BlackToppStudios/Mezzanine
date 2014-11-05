@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/Texture/lookupmodifier.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 
 namespace Mezzanine
 {

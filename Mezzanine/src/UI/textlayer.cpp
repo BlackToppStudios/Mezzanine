@@ -52,7 +52,7 @@
 #include "UI/uimanager.h"
 #include "unicode.h"
 #include "stringtool.h"
-#include "mathtool.h"
+#include "mathtools.h"
 
 namespace Mezzanine
 {

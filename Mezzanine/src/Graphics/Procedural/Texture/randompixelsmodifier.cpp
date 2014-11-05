@@ -70,7 +70,7 @@
 #include "Graphics/Procedural/Texture/randompixelsmodifier.h"
 #include "Graphics/Procedural/Texture/rectanglemodifier.h"
 
-#include "mathtool.h"
+#include "mathtools.h"
 
 namespace Mezzanine
 {
