@@ -45,7 +45,7 @@
 #include "exception.h"
 #include "serialization.h"
 #include "stringtool.h"
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif

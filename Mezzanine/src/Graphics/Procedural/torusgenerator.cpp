@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/torusgenerator.h"
 
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 namespace Mezzanine

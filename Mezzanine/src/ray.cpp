@@ -41,7 +41,7 @@
 #define _ray_cpp
 
 #include "ray.h"
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 #include "axisalignedbox.h"
 #include "plane.h"
 #include "sphere.h"

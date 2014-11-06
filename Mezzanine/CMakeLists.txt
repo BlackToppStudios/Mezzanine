@@ -247,7 +247,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}managedptr.h"
         "${${PROJECT_NAME}_SRC_DIR}managerbase.h"
         "${${PROJECT_NAME}_SRC_DIR}managerfactory.h"
-        "${${PROJECT_NAME}_SRC_DIR}mathtools.h"
+        "${${PROJECT_NAME}_SRC_DIR}MathTools/mathtools.h"
+        "${${PROJECT_NAME}_SRC_DIR}MathTools/intersections.h"
         "${${PROJECT_NAME}_SRC_DIR}matrix3x3.h"
         "${${PROJECT_NAME}_SRC_DIR}matrix4x4.h"
         "${${PROJECT_NAME}_SRC_DIR}meshterrain.h"
@@ -604,7 +605,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}linesegment.cpp"
         "${${PROJECT_NAME}_SRC_DIR}managedptr.cpp"
         "${${PROJECT_NAME}_SRC_DIR}managerbase.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}mathtool.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}MathTools/mathtools.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}MathTools/intersections.cpp"
         "${${PROJECT_NAME}_SRC_DIR}matrix3x3.cpp"
         "${${PROJECT_NAME}_SRC_DIR}matrix4x4.cpp"
         "${${PROJECT_NAME}_SRC_DIR}meshterrain.cpp"
@@ -675,6 +677,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingphysicslua51.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmathtoolslua51.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmathtoolslua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51script.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptargument.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptingengine.cpp"
@@ -1148,6 +1152,23 @@ if(${Mezz_SWIG})
             PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp Physics/physics.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        # MathTools/mathtools.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine MathTools library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MATHTOOLS -o Scripting/Lua51/scriptbindingmathtoolslua51.cpp MathTools/mathtools.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine MathTools library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MATHTOOLS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmathtoolslua51unsafe.cpp MathTools/mathtools.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )

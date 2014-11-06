@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/Texture/rectanglemodifier.h"
 
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {

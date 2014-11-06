@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/Texture/normalsmodifier.h"
 
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {

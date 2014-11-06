@@ -43,7 +43,7 @@
 #include "UI/layoutstrategy.h"
 #include "UI/widget.h"
 
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 #include <algorithm>

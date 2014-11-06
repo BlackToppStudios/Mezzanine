@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/texturemodifiers.h"
 
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 #include <cstring>

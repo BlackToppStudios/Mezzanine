@@ -74,7 +74,7 @@
 
 #include "Graphics/meshmanager.h"
 
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 #include "Ogre.h"

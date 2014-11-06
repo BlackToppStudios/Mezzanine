@@ -70,7 +70,7 @@
 #include "Graphics/Procedural/Texture/sharpenmodifier.h"
 #include "Graphics/Procedural/Texture/convolutionmodifier.h"
 
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {

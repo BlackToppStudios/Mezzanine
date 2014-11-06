@@ -73,7 +73,9 @@ namespace Mezzanine
             friend class LogAggregator;
             friend class WorkSorter;
 
-            friend void TerminateHandler();
+            #ifndef SWIG
+                friend void TerminateHandler();
+            #endif
 
             protected:
                 ////////////////////////////////////////////////////////////////////////////////

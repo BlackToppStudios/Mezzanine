@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/Texture/abnormalsmodifier.h"
 
-#include "mathtools.h"
+#include "MathTools/mathtools.h"
 #include "quaternion.h"
 
 namespace Mezzanine
