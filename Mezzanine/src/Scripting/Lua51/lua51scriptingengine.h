@@ -154,11 +154,11 @@ namespace Mezzanine
                         MezzPhysicsLib         = 16384,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzaninePhysicsLibrary
                         MezzPhysicsSafeLib     = 32768,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzaninePhysicsSafeLibrary
                         MezzMathToolsLib       = 65536,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineMathToolsLibrary
-                        MezzMathToolsSafeLib   = 131072,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineMathToolsSafeLibrary
+                        MezzMathToolsSafeLib   = 131072,    ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineMathToolsSafeLibrary
 
 
                         FirstLib    = BaseLib,              ///< Useful for math based ways to work with libraries, This is equal to the numerically lowest lib
-                        LastLib     = MezzPhysicsSafeLib,   ///< Useful for math based ways to work with libraries, This is equal to the numerically highest lib
+                        LastLib     = MezzMathToolsSafeLib, ///< Useful for math based ways to work with libraries, This is equal to the numerically highest lib
 
                         DefaultLibs = BaseLib | StringLib | TableLib | MathLib |
                                       MezzSafeLib | MezzXMLSafeLib | MezzThreadingSafeLib |
@@ -167,7 +167,8 @@ namespace Mezzanine
                                       MathLib | IOLib | OSLib | DebugLib | MezzLib |
                                       MezzSafeLib | MezzXMLLib | MezzXMLSafeLib |
                                       MezzThreadingLib | MezzThreadingSafeLib |
-                                      MezzPhysicsSafeLib | MezzPhysicsLib | MezzMathToolsLib  ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenAllLibraries
+                                      MezzPhysicsSafeLib | MezzPhysicsLib |
+                                      MezzMathToolsLib | MezzMathToolsSafeLib                 ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenAllLibraries
                     };
 
                     static const String NoLibName;                    ///< @brief The name used to identify No libraries, "None"
