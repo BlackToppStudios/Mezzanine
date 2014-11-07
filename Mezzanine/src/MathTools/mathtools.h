@@ -53,6 +53,7 @@ namespace Mezzanine
     }
 }
 
+
 #include "swig.h"
 #ifdef SWIG_MATHTOOLS
     #ifdef SWIG_UNSAFE
@@ -73,6 +74,9 @@ namespace Mezzanine
     %}
 #endif
 
+#include "MathTools/constants.h"
+#include "MathTools/intersections.h"
+
 
 namespace Mezzanine
 {
@@ -86,24 +90,6 @@ namespace Mezzanine
     /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
     {
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Predefined Constants
-
-        /// @brief Gets Pi.
-        Real MEZZ_LIB GetPi();
-        /// @brief Gets Pi times two.
-        Real MEZZ_LIB GetTwoPi();
-        /// @brief Gets half of Pi.
-        Real MEZZ_LIB GetHalfPi();
-        /// @brief Gets Quarter Pi.
-        Real MEZZ_LIB GetQuarterPi();
-
-        /// @brief Gets a multiplier used in converting Radian angular units to degrees.
-        Real MEZZ_LIB GetRadToDegMultiplier();
-        /// @brief Gets a multiplier used in converting Degree angular units to Radians.
-        Real MEZZ_LIB GetDegToRadMultiplier();
-
         ///////////////////////////////////////////////////////////////////////////////
         // Real Math & Check Functions
 
