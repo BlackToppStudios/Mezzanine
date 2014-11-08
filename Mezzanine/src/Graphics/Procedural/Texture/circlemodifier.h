@@ -75,7 +75,78 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A modifier that draws a simple coloured circle onto the texture.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB CircleModifier : public TextureModifier
+            {
+            protected:
+                /// @internal
+                /// @brief The colour of the circle to be drawn.
+                ColourValue CircleColour;
+                /// @internal
+                /// @brief The radius of the circle.
+                Whole CircleRadius;
+                /// @internal
+                /// @brief The position on the X axis of the circle.
+                Whole CircleX;
+                /// @internal
+                /// @brief The position on the Y axis of the circle.
+                Whole CircleY;
 
+                /// @internal
+                /// @brief Convenience method for placing a pixel for the circle.
+                /// @param DeltaX The offset from the origin point on the X axis to place the pixel.
+                /// @param DeltaY The offset from the origin point on the Y axis to place the pixel.
+                /// @param Buffer A reference to the buffer being worked on.
+                void PutPixel(const Whole DeltaX, const Whole DeltaY, TextureBuffer& Buffer);
+            public:
+                /// @brief Blank constructor.
+                CircleModifier();
+                /// @brief Class destructor.
+                virtual ~CircleModifier();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the colour of the circle.
+                /// @param Colour The colour of the circle to be drawn.  Initial Value: 1.0,1.0,1.0,1.0.
+                /// @return Returns a reference to this.
+                CircleModifier& SetColour(const ColourValue& Colour);
+                /// @brief Sets the colour of the circle.
+                /// @param Red The red colour component of the circle to be drawn.  Initial Value: 1.0.
+                /// @param Green The red colour component of the circle to be drawn.  Initial Value: 1.0.
+                /// @param Blue The red colour component of the circle to be drawn.  Initial Value: 1.0.
+                /// @param Alpha The red colour component of the circle to be drawn.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                CircleModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
+                /// @brief Sets the radius of the circle.
+                /// @param Radius The radius of the circle to be drawn.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                CircleModifier& SetRadius(const Whole Radius);
+                /// @brief Sets the pixel position of the center of the circle.
+                /// @param X The position on the X axis of the circle.  Initial Value: 0.
+                /// @param Y The position on the Y axis of the circle.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                CircleModifier& SetPosition(const Whole X, const Whole Y);
+                /// @brief Sets the pixel position of the center of the circle on the X axis.
+                /// @param X The position on the X axis of the circle.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                CircleModifier& SetPositionX(const Whole X);
+                /// @brief Sets the pixel position of the center of the circle on the Y axis.
+                /// @param Y The position on the Y axis of the circle.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                CircleModifier& SetPositionY(const Whole Y);
+            };//CircleModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

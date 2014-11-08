@@ -75,7 +75,101 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A modifier that will alter the basic colour properties of the texture.
+            /// @details A texture or image has properties that control the colours of the image as a whole.  For this modifier these properties are Brightness, Contrast, and Saturation. @n @n
+            /// Brightness is the most straightforward, and it is essentially how close to white the colour is (1.0,1.0,1.0).  The term "Brightness" can usually be interchanged with "Intensity"
+            /// and/or "Luminosity" when talking about pixels on a texture.  Adjusting Brightness will augment all of the colour channels in a pixel.  Keep in mind that there is a maximum value
+            /// for a colour channel and it will clamp to that value, not wrap.  So if a colour channel is at or near is maximum value then colour of the pixel could change towards white instead
+            /// of simply getting brighter. @n
+            /// When using this modifier Brightness values below 127 will reduce the brightness of pixels, and values above it will increase brightness. @n @n
+            /// Contrast is the distance from the most intense to the least intense pixel.  Increasing contrast will cause colours that are dim to become more dim and colours that are bright to
+            /// become more bright.  Likewise, reducing contrast will have the opposite effect and may make more of the colours less distinct.  Like brightness, a colour can also be only so dim
+            /// on a given colour channel and when that limit is reached it is clamped, not wrapped.  So increasing the contrast by too much may make colours be pushed closer to white or black
+            /// instead of a different intensity of the same colour. @n
+            /// When using this modifier Contrast values below 127 will reduce the contrast of pixels, and values above it will increase contrast. @n @n
+            /// Saturation has a similar concept to Contrast, but instead of operating on brightness/intesity, it operates on individual colour channels.  Increasing saturation causes the
+            /// dominate colour channel in a given pixel to be increased, and weaker channels either left the same or weakened depending on their individual values.  As you might expect by now,
+            /// reducing saturation has the opposite effect.  Images with high saturation tend to look more vibrant, but also a bit less realistic. @n
+            /// When using this modifier Saturation values below 127 will reduce the saturation of pixels, and values above it will increase saturation. @n @n
+            ///////////////////////////////////////
+            class MEZZ_LIB ColoursModifier : public TextureModifier
+            {
+            protected:
+                /// @internal
+                /// @brief The base colour to add to the result of the original colour from the image being modified determined by the ColourPercent member.
+                ColourValue ColourBase;
+                /// @internal
+                /// @brief The amount of colour from each channel in the texture to be modified to keep for the result.
+                ColourValue ColourPercent;
+                /// @internal
+                /// @brief The modifier that will adjust the intensity for each pixel.
+                UInt8 ColourBrightness;
+                /// @internal
+                /// @brief The modifier that will adjust the intensity of pixels closer or further to neutral.
+                UInt8 ColourContrast;
+                /// @internal
+                /// @brief The modifier that will adjust the strongest colour channel of a pixel to be more or less extreme in each pixel.
+                UInt8 ColourSaturation;
+                /// @internal
+                /// @brief The modifier that will adjust the alpha channel for each pixel.
+                UInt8 ColourAlpha;
+            public:
+                /// @brief Blank constructor.
+                ColoursModifier();
+                /// @brief Class destructor.
+                virtual ~ColoursModifier();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the base colour to add to the result texture.
+                /// @param Colour The base colour to add to the result of the original colour from the image being modified determined by the ColourPercent member.  Initial Value: (0.0,0.0,0.0,1.0).
+                /// @return Returns a reference to this.
+                ColoursModifier& SetColourBase(const ColourValue& Colour);
+                /// @brief Sets the base colour to add to the result texture.
+                /// @param Red The amount of base red to add to the result of the original colour from the image being modified determined by the ColourPercent member.  Initial Value: 0.0.
+                /// @param Green The amount of base green to add to the result of the original colour from the image being modified determined by the ColourPercent member.  Initial Value: 0.0.
+                /// @param Blue The amount of base blue to add to the result of the original colour from the image being modified determined by the ColourPercent member.  Initial Value: 0.0.
+                /// @param Alpha The amount of base alpha to add to the result of the original colour from the image being modified determined by the ColourPercent member.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                ColoursModifier& SetColourBase(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                /// @brief Sets the amount of colour from each channel to use in the result texture.
+                /// @param Colour The amount of colour from each channel in the texture to be modified to keep for the result.  Initial Value: (1.0,1.0,1.0,1.0).
+                /// @return Returns a reference to this.
+                ColoursModifier& SetColourPercent(const ColourValue& Colour);
+                /// @brief Sets the amount of colour from each channel to use in the result texture.
+                /// @param Red The amount of red in the texture to be modified to keep for the result.  Initial Value: 1.0.
+                /// @param Green The amount of green in the texture to be modified to keep for the result.  Initial Value: 1.0.
+                /// @param Blue The amount of blue in the texture to be modified to keep for the result.  Initial Value: 1.0.
+                /// @param Alpha The amount of alpha in the texture to be modified to keep for the result.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                ColoursModifier& SetColourPercent(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                /// @brief Sets the brightness modifier.
+                /// @param Brightness The modifier that will adjust the intensity for each pixel.  Initial Value: 127.
+                /// @return Returns a reference to this.
+                ColoursModifier& SetBrightness(const UInt8 Brightness);
+                /// @brief Sets the contrast modifier.
+                /// @param Contrast The modifier that will adjust the intensity of pixels closer or further to neutral.  Initial Value: 127.
+                /// @return Returns a reference to this.
+                ColoursModifier& SetContrast(const UInt8 Contrast);
+                /// @brief Sets the saturation modifier.
+                /// @param Saturation The modifier that will adjust the strongest colour channel of a pixel to be more or less extreme in each pixel.  Initial Value: 127.
+                /// @return Returns a reference to this.
+                ColoursModifier& SetSaturation(const UInt8 Saturation);
+                /// @brief Sets the alpha modifier.
+                /// @param Alpha The modifier that will adjust the alpha channel for each pixel.  Initial Value: 127.
+                /// @return Returns a reference to this.
+                ColoursModifier& SetAlpha(const UInt8 Alpha);
+            };//ColoursModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

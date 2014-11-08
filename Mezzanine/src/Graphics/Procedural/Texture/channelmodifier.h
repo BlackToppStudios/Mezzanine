@@ -75,7 +75,49 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A modifier that will zero out selected colour channels or produce a grey version of the provided texture.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB ChannelModifier : public TextureModifier
+            {
+            public:
+                /// @enum ChannelSelect
+                /// @brief An enum describing the operation to be taken.
+                enum ChannelSelect
+                {
+                    CS_Red     = 1,     ///< Zero the red channel for each pixel in the texture.  Ignored if "CS_Gray" is selected.
+                    CS_Green   = 2,     ///< Zero the green channel for each pixel in the texture.  Ignored if "CS_Gray" is selected.
+                    CS_Blue    = 4,     ///< Zero the blue channel for each pixel in the texture.  Ignored if "CS_Gray" is selected.
+                    CS_Alpha   = 8,     ///< Zero the alpha channel for each pixel in the texture.  Warning: This will make the texture disappear.  Ignored if "CS_Gray" is selected.
+                    CS_Gray    = 16     ///< Generate a black and white version of the image by averaging channel intensities.
+                };
+            protected:
+                /// @internal
+                /// @brief A bitfield containing the operation to be performed.
+                Whole ChannelOp;
+            public:
+                /// @brief Blank constructor.
+                ChannelModifier();
+                /// @brief Class destructor.
+                virtual ~ChannelModifier();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the channels that are to be zero'd or if the modifier should generate a gray texture.
+                /// @param Op A bitfield containing the operation to be performed.  Initial Value: CS_Gray.
+                /// @return Returns a reference to this.
+                ChannelModifier& SetSelection(const Whole Op);
+            };//ChannelModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

@@ -75,7 +75,62 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A modifier that will attempt to reduce the sharpness of the texture.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB BlurModifier : public TextureModifier
+            {
+            public:
+                /// @brief An enum used to describe the Blur algorithm to use.
+                enum BlurType
+                {
+                    BT_Box       = 1,
+                    BT_Mean      = 2,
+                    BT_Gaussian  = 3
+                };
+            protected:
+                /// @internal
+                /// @brief The type of Blur operation that will be performed.
+                BlurType Type;
+                /// @internal
+                /// @brief The size of the block of pixels around each pixel to be processed that will be sampled.
+                UInt8 BlurBlockSize;
+                /// @internal
+                /// @brief The weight surrounding pixels of the processing pixel have, with further pixels in the sample block getting reduced weight.
+                UInt8 BlurSigma;
+            public:
+                /// @brief Blank constructor.
+                BlurModifier();
+                /// @brief Class destructor.
+                virtual ~BlurModifier();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the type of bluring operation to be used.
+                /// @param Blur The type of bluring operation that will be performed.
+                /// @return Returns a reference to this.
+                BlurModifier& SetBlurType(const BlurType Blur);
+                /// @brief Sets the sample size for each pixel to be processed.
+                /// @note This value is only used if BT_Gaussian is set as the blur type.
+                /// @param Size The size of the block of pixels around each pixel to be processed that will be sampled.  Generally this value should be around in the range of 1 to 5.  Initial Value: 5.
+                /// @return Returns a reference to this.
+                BlurModifier& SetBlockSize(const UInt8 Size);
+                /// @brief Sets the sigma for each each pixel to be processed.
+                /// @note This value is only used if BT_Gaussian is set as the blur type.
+                /// @param Sigma The weight surrounding pixels of the processing pixel have, with further pixels in the sample block getting reduced weight.  Initial Value: 92.
+                /// @return Returns a reference to this.
+                BlurModifier& SetSigma(const UInt8 Sigma);
+            };//BlurModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

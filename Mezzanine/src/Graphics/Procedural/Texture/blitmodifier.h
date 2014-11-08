@@ -69,13 +69,75 @@
 
 #include "Graphics/Procedural/Texture/texturemodifier.h"
 
+#include "rect.h"
+
 namespace Mezzanine
 {
     namespace Graphics
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A modifier that will copy a portion of one texture and place it into another.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB BlitModifier : public TextureModifier
+            {
+            protected:
+                /// @internal
+                /// @brief A pointer to the source texture from which to copy pixels.
+                TextureBuffer* BlitSrcTexture;
+                /// @internal
+                /// @brief The bounds of the pixels to copy from the source texture.
+                WholeRect BlitSrcRect;
+                /// @internal
+                /// @brief The bounds of the pixels to be copied over in the destination texture.
+                WholeRect BlitDestRect;
+            public:
+                /// @brief Blank constructor.
+                BlitModifier();
+                /// @brief Class destructor.
+                virtual ~BlitModifier();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the source texture to be copied from.
+                /// @param SrcTexture A pointer to the source texture from which to copy pixels.
+                /// @return Returns a reference to this.
+                BlitModifier& SetSrcTexture(TextureBuffer* SrcTexture);
+
+                /// @brief Sets the Rect on the source texture to copy pixels from.
+                /// @param Rect The Rect describing the bounds for the pixels to copy from the source texture.  Initial value is a zero Rect.
+                /// @return Returns a reference to this.
+                BlitModifier& SetSrcRect(const WholeRect& Rect);
+                /// @brief Sets the Rect on the source texture to copy pixels from.
+                /// @param RectLeft The Left edge of the source texture Rect.  Initial Value: 0.
+                /// @param RectTop The Top edge of the source texture Rect.  Initial Value: 0.
+                /// @param RectRight The Right edge of the source texture Rect.  Initial Value: 0.
+                /// @param RectBottom The Bottom edge of the source texture Rect.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                BlitModifier& SetSrcRect(const Whole RectLeft, const Whole RectTop, const Whole RectRight, const Whole RectBottom);
+                /// @brief Sets the Rect on the destination texture to copy pixels to.
+                /// @param Rect The Rect describing the bounds for the pixels to copy to on the desination texture.  Initial value is a zero Rect.
+                /// @return Returns a reference to this.
+                BlitModifier& SetDestRect(const WholeRect& Rect);
+                /// @brief Sets the Rect on the destination texture to copy pixels to.
+                /// @param RectLeft The Left edge of the destination texture Rect.  Initial Value: 0.
+                /// @param RectTop The Top edge of the destination texture Rect.  Initial Value: 0.
+                /// @param RectRight The Right edge of the destination texture Rect.  Initial Value: 0.
+                /// @param RectBottom The Bottom edge of the destination texture Rect.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                BlitModifier& SetDestRect(const Whole RectLeft, const Whole RectTop, const Whole RectRight, const Whole RectBottom);
+            };//BlitModifier
         }//Procedural
     }//Graphics
 }//Mezzanine
