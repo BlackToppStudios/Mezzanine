@@ -136,6 +136,7 @@
 #include "quaternion.h"
 #include "ray.h"
 #include "rayquerytool.h"
+#include "rect.h"
 
 #ifndef SWIG
 #include "rigiddebris.h"
