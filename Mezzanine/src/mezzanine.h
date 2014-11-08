@@ -61,6 +61,7 @@
     #include "Graphics/Procedural/procedural.h"
     #include "Input/input.h"
     #include "Physics/physics.h"
+    #include "MathTools/mathtools.h"
     #include "Resource/resource.h"
     #include "Scripting/scripting.h"
     #include "XML/xml.h"
@@ -123,7 +124,6 @@
 
 #include "managerbase.h"
 #include "managerfactory.h"
-#include "mathtool.h"
 
 #ifndef SWIG
 #include "meshterrain.h"

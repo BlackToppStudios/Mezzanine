@@ -72,7 +72,7 @@
 
 #include "Graphics/image.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "vector3.h"
 
 #include <cstdlib>

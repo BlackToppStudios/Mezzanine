@@ -70,7 +70,7 @@
 #include "Graphics/Procedural/roundedboxgenerator.h"
 #include "Graphics/Procedural/planegenerator.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 namespace Mezzanine

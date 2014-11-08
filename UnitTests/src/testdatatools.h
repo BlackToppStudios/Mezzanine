@@ -98,19 +98,19 @@ namespace Mezzanine
             #endif
         #endif
 
-    #ifndef TEST_EQUAL_MULTI_EPSILON
-        /// @def TEST_EQUAL_MULTI_EPSILON
-        /// @details This is only rarely required. TEST_EQUAL_EPSILON should be prefferred as this can spuriously pass.
-        /// @param LeftValue One value to compare
-        /// @param RightValue One value to compare
-        /// @param EpsilonFactor How many times rounding could occur that could round to the epsilon, so that it can be accounted for?
-        /// @param Name The name of the current test
-        #ifdef __FUNCTION__
-            #define TEST_EQUAL_MULTI_EPSILON(LeftValue, RightValue, Name, EpsilonFactor) Test( CompareEqualityWithEpsilon(LeftValue, RightValue, EpsilonFactor), (Name), Testing::Failed, Testing::Success, __FUNCTION__, __FILE__, __LINE__ );
-        #else
-            #define TEST_EQUAL_MULTI_EPSILON(LeftValue, RightValue, Name, EpsilonFactor) Test( CompareEqualityWithEpsilon(LeftValue, RightValue, EpsilonFactor), (Name), Testing::Failed, Testing::Success, __func__, __FILE__, __LINE__ );
+        #ifndef TEST_EQUAL_MULTI_EPSILON
+            /// @def TEST_EQUAL_MULTI_EPSILON
+            /// @details This is only rarely required. TEST_EQUAL_EPSILON should be prefferred as this can spuriously pass.
+            /// @param LeftValue One value to compare
+            /// @param RightValue One value to compare
+            /// @param EpsilonFactor How many times rounding could occur that could round to the epsilon, so that it can be accounted for?
+            /// @param Name The name of the current test
+            #ifdef __FUNCTION__
+                #define TEST_EQUAL_MULTI_EPSILON(LeftValue, RightValue, Name, EpsilonFactor) Test( CompareEqualityWithEpsilon(LeftValue, RightValue, EpsilonFactor), (Name), Testing::Failed, Testing::Success, __FUNCTION__, __FILE__, __LINE__ );
+            #else
+                #define TEST_EQUAL_MULTI_EPSILON(LeftValue, RightValue, Name, EpsilonFactor) Test( CompareEqualityWithEpsilon(LeftValue, RightValue, EpsilonFactor), (Name), Testing::Failed, Testing::Success, __func__, __FILE__, __LINE__ );
+            #endif
         #endif
-    #endif
 
         #ifndef TEST_WARN
             /// @def TEST_WARN
@@ -245,7 +245,7 @@ namespace Mezzanine
                     CodeToTime;                                                                             \
                     MaxInt TESTLength = TESTDuration.GetLength();                                           \
                     MaxInt TESTTargetTime = ExpectedTime;                                                   \
-                    MaxInt TESTVariance= Variance * double(ExpectedTime);                                   \
+                    MaxInt TESTVariance = Variance * double(ExpectedTime);                                   \
                     if( MaxInt(TESTTargetTime-TESTVariance) < TESTLength &&                                 \
                         TESTLength < MaxInt(TESTTargetTime+TESTVariance))                                   \
                     { AddTestResult( TestData( (Name), Testing::Success, __FUNCTION__, __FILE__, __LINE__) ); } \
@@ -259,7 +259,7 @@ namespace Mezzanine
                     CodeToTime;                                                                             \
                     MaxInt TESTLength = TESTDuration.GetLength();                                           \
                     MaxInt TESTTargetTime = ExpectedTime;                                                   \
-                    MaxInt TESTVariance= Variance * double(ExpectedTime);                                   \
+                    MaxInt TESTVariance = Variance * double(ExpectedTime);                                   \
                     if( MaxInt(TESTTargetTime-TESTVariance) < TESTLength &&                                 \
                         TESTLength < MaxInt(TESTTargetTime+TESTVariance))                                   \
                     { AddTestResult( TestData( (Name), Testing::Success, __func__, __FILE__, __LINE__) ); } \

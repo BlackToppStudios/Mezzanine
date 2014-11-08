@@ -73,7 +73,9 @@ namespace Mezzanine
             friend class LogAggregator;
             friend class WorkSorter;
 
-            friend void TerminateHandler();
+            #ifndef SWIG
+                friend void TerminateHandler();
+            #endif
 
             protected:
                 ////////////////////////////////////////////////////////////////////////////////
@@ -245,6 +247,7 @@ namespace Mezzanine
                         Whole StartingThreadCount = GetCPUCount()
                     );
 
+                /// @brief When Things crash the logs still needs to be flushed and other resources cleaned. This sets a function for when std::terminate is called.
                 void SetErrorHandler();
 
                 /// @brief Destructor
@@ -539,10 +542,15 @@ namespace Mezzanine
 
                 /// @warning This is not thread safe at all. Any time during the frame using this can send gibberish to the log. Use GetThreadUsableLogger instead.
                 /// @brief Get the endpoint for the logs.
-                /// @return An std:ostream reference which can be streamed to commit log entries.
+                /// @return An std::ostream reference which can be streamed to commit log entries.
                 std::ostream& GetLog();
 
+                void ChangeLogTarget(std::ostream* LogTarget);
+
             protected:
+                void InstallLog(std::ostream* LogTarget);
+                void RemoveLog();
+
                 /// @warning This is not thread safe at all. Any time during the frame using this can break everything.
                 /// @brief Get the Log aggregation work unit if one exists for emergency loggin purposes only
                 /// @details Use by the termination handler in the even of an uncaught exception. This should also be avoided because

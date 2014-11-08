@@ -99,21 +99,31 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction Helpers
 
-    void Entresol::SetupLogging(const String& LogFileName)
+    void Entresol::SetupLogging(const String& OgreLogFileName)
+    {
+        SetupOgreLogging(OgreLogFileName);
+        SetupInternalLogging();
+    }
+
+    void Entresol::SetupOgreLogging(const String& OgreLogFileName)
     {
         /// @todo Allow the FrameScheduler Log target to be inspected and changed here
         Ogre::LogManager* OgreLogs = Ogre::LogManager::getSingletonPtr();
         if( NULL == OgreLogs )
             { OgreLogs = new Ogre::LogManager(); }
 
-        if(!LogFileName.empty())
+        if(!OgreLogFileName.empty())
         {
-            OgreLogs->createLog(String("Graphics")+LogFileName,true,true);
+            OgreLogs->createLog(String("Graphics")+OgreLogFileName,true,true);
         }
         else
         {
             OgreLogs->createLog("GraphicsMezzanine.log",true,true);
         }
+    }
+
+    void Entresol::SetupInternalLogging()
+    {
         this->Aggregator = new Threading::LogAggregator();
         Aggregator->SetAggregationTarget(&WorkScheduler);
         this->WorkScheduler.AddWorkUnitMain(Aggregator, "LogAggregator");
@@ -216,10 +226,10 @@ namespace Mezzanine
 
     }
 
-    void Entresol::Construct(   const Physics::ManagerConstructionInfo& PhysicsInfo,
+    void Entresol::Construct(const Physics::ManagerConstructionInfo& PhysicsInfo,
                                 const String& SceneType,
                                 const String& EngineDataPath,
-                                const String& LogFileName,
+                                const String& GraphicsLogFileName,
                                 const std::vector <ManagerBase*>& ManagerToBeAdded )
 
     {
@@ -229,7 +239,7 @@ namespace Mezzanine
         this->ManualLoopBreak = 0;
 
         SetupOgre();
-        SetupLogging(LogFileName);
+        SetupLogging(GraphicsLogFileName);
 
         // Load the necessary plugins.
         SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();

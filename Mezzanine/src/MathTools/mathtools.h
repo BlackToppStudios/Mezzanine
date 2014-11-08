@@ -42,6 +42,41 @@
 
 #include "vector2.h"
 #include "vector3.h"
+#include "MathTools/intersections.h"
+
+namespace Mezzanine
+{
+    /// @namespace Mezzanine::MathTools
+    /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
+    namespace MathTools
+    {
+    }
+}
+
+
+#include "swig.h"
+#ifdef SWIG_MATHTOOLS
+    #ifdef SWIG_UNSAFE
+        %module MezzanineMathTools
+    #else
+        #define SWIG_SAFE
+        %module MezzanineMathToolsSafe
+    #endif
+    #define SWIG_MODULE_SET
+
+    // Tell SWIG to create a module that scripting languages can use called "mezzanine"
+    // and insert a minimum of documentation into the bindingfile
+    %{
+        // code to be inserted verbatim into the swig file goes here
+        #include "mezzanine.h"
+        using namespace Mezzanine;
+        using namespace Mezzanine::MathTools;
+    %}
+#endif
+
+#include "MathTools/constants.h"
+#include "MathTools/intersections.h"
+
 
 namespace Mezzanine
 {
@@ -55,39 +90,6 @@ namespace Mezzanine
     /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
     {
-        /// @brief This is a type used for intersection tests that return a point in 2D space.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Vector2> Point2DTestResult;
-        /// @brief This is a type used for intersection tests that return a point in 3D space.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Vector3> Point3DTestResult;
-        /// @brief This is a type used for geometry tests that return a line segment in 2D space.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,LineSegment2D> Line2DTestResult;
-        /// @brief This is a type used for geometry tests that return a line segment in 3D space.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,LineSegment3D> Line3DTestResult;
-        /// @brief This is a type used for the return of a ray intersection test.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Ray> GeometryRayTestResult;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Predefined Constants
-
-        /// @brief Gets Pi.
-        Real MEZZ_LIB GetPi();
-        /// @brief Gets Pi times two.
-        Real MEZZ_LIB GetTwoPi();
-        /// @brief Gets half of Pi.
-        Real MEZZ_LIB GetHalfPi();
-        /// @brief Gets Quarter Pi.
-        Real MEZZ_LIB GetQuarterPi();
-
-        /// @brief Gets a multiplier used in converting Radian angular units to degrees.
-        Real MEZZ_LIB GetRadToDegMultiplier();
-        /// @brief Gets a multiplier used in converting Degree angular units to Radians.
-        Real MEZZ_LIB GetDegToRadMultiplier();
-
         ///////////////////////////////////////////////////////////////////////////////
         // Real Math & Check Functions
 

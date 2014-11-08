@@ -179,7 +179,6 @@ namespace Mezzanine
             PauseTimeLog(MEZZ_FRAMESTOTRACK),
             CurrentFrameStart(GetTimeStamp()),
             CurrentPauseStart(GetTimeStamp()),
-            LogDestination(_LogDestination ? _LogDestination : new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc)),
             Sorter(0),
             #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
             DecacheMain(0),
@@ -193,7 +192,10 @@ namespace Mezzanine
             NeedToLogDeps(true)
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
-            GetLog() << "<MezzanineLog>" << std::endl;
+            if(_LogDestination)
+                { InstallLog(_LogDestination); }
+            else
+                { InstallLog(new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc)); }
             AddErrorScheduler(this);
             SetErrorHandler();
         }
@@ -203,7 +205,7 @@ namespace Mezzanine
             PauseTimeLog(MEZZ_FRAMESTOTRACK),
             CurrentFrameStart(GetTimeStamp()),
             CurrentPauseStart(GetTimeStamp()),
-            LogDestination(_LogDestination),
+
             Sorter(0),
             #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
             DecacheMain(0),
@@ -217,8 +219,7 @@ namespace Mezzanine
             NeedToLogDeps(true)
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
-            (*LogDestination) << "<MezzanineLog>" << std::endl;
-            LogDestination->flush();
+            InstallLog(_LogDestination);
             AddErrorScheduler(this);
             SetErrorHandler();
         }
@@ -232,15 +233,7 @@ namespace Mezzanine
         {
             RemoveErrorScheduler(this);
             CleanUpThreads();
-
-            (*LogDestination) << "</MezzanineLog>" << std::endl;
-            LogDestination->flush();
-
-            if(LoggingToAnOwnedFileStream)
-            {
-                ((std::fstream*)LogDestination)->close();
-                delete LogDestination;
-            }
+            RemoveLog();
             for(std::vector<WorkUnitKey>::iterator Iter=WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); ++Iter)
                 { delete Iter->Unit; }
             for(std::vector<MonopolyWorkUnit*>::iterator Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); ++Iter)
@@ -703,6 +696,33 @@ namespace Mezzanine
 
         std::ostream& FrameScheduler::GetLog()
             { return *LogDestination; }
+
+
+
+        void FrameScheduler::ChangeLogTarget(std::ostream* LogTarget)
+        {
+            RemoveLog();
+            InstallLog(LogTarget);
+        }
+
+        void FrameScheduler::InstallLog(std::ostream* LogTarget)
+        {
+            LogDestination = LogTarget;
+            (*LogDestination)<< "<MezzanineLog>" << std::endl;
+            LogDestination->flush();
+        }
+
+        void FrameScheduler::RemoveLog()
+        {
+            (*LogDestination) << "</MezzanineLog>" << std::endl;
+            LogDestination->flush();
+
+            if(LoggingToAnOwnedFileStream)
+            {
+                ((std::fstream*)LogDestination)->close();
+                delete LogDestination;
+            }
+        }
 
         LogAggregator* FrameScheduler::GetLogAggregator()
         {

@@ -71,7 +71,8 @@ namespace Mezzanine
         };
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.  @n @n
-        /// The first member stores whether or not there was a hit.  The second member stores ray containing the points where the ray entered and exited the AABB.
+        /// The first member stores whether or not there was a hit.  The second member stores ray containing
+        /// the points where the ray entered and exited the AABB.
         typedef std::pair<Boole,Ray> RayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////

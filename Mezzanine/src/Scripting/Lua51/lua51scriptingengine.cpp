@@ -74,6 +74,13 @@ extern "C"
 
     int luaopen_MezzaninePhysics(lua_State* L);
     int luaopen_MezzaninePhysicsSafe(lua_State* L);
+
+    int luaopen_MezzanineMathTools(lua_State* L);
+    int luaopen_MezzanineMathToolsSafe(lua_State* L);
+}
+
+namespace  {
+    // define a function to push a literal and a string based lua function
 }
 
 namespace Mezzanine
@@ -287,6 +294,8 @@ namespace Mezzanine
             const String Lua51ScriptingEngine::MezzThreadingSafeLibName    = "MezzanineThreadingSafe";
             const String Lua51ScriptingEngine::MezzPhysicsLibName          = "MezzaninePhysics";
             const String Lua51ScriptingEngine::MezzPhysicsSafeLibName      = "MezzaninePhysicsSafe";
+            const String Lua51ScriptingEngine::MezzMathToolsLibName        = "MezzanineMathTools";
+            const String Lua51ScriptingEngine::MezzMathToolsSafeLibName    = "MezzanineMathToolsSafe";
             const String Lua51ScriptingEngine::DefaultLibsName             = "Default";
             const String Lua51ScriptingEngine::AllLibsName                 = "All";
 
@@ -306,6 +315,8 @@ namespace Mezzanine
             const String Lua51ScriptingEngine::MezzThreadingSafeTableName  = "MezzanineThreadingSafe";
             const String Lua51ScriptingEngine::MezzPhysicsTableName        = "MezzaninePhysics";
             const String Lua51ScriptingEngine::MezzPhysicsSafeTableName    = "MezzaninePhysicsSafe";
+            const String Lua51ScriptingEngine::MezzMathToolsTableName      = "MezzanineMathTools";
+            const String Lua51ScriptingEngine::MezzMathToolsSafeTableName  = "MezzanineMathToolsSafe";
 
             const String Lua51ScriptingEngine::TypeNameNil                 = "Nil";
             const String Lua51ScriptingEngine::TypeNameBoolean             = "Boolean";
@@ -342,6 +353,8 @@ namespace Mezzanine
                     case MezzThreadingSafeLib:  return MezzThreadingSafeLibName;
                     case MezzPhysicsLib:        return MezzPhysicsLibName;
                     case MezzPhysicsSafeLib:    return MezzPhysicsSafeLibName;
+                    case MezzMathToolsLib:      return MezzMathToolsLibName;
+                    case MezzMathToolsSafeLib:  return MezzMathToolsSafeLibName;
                     case DefaultLibs:           return DefaultLibsName;
                     case AllLibs:               return AllLibsName;
                     default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to library string: " + ToString(Lib));
@@ -368,6 +381,8 @@ namespace Mezzanine
                     case MezzThreadingSafeLib:  return MezzThreadingSafeTableName;
                     case MezzPhysicsLib:        return MezzPhysicsTableName;
                     case MezzPhysicsSafeLib:    return MezzPhysicsSafeTableName;
+                    case MezzMathToolsLib:      return MezzMathToolsTableName;
+                    case MezzMathToolsSafeLib:  return MezzMathToolsSafeTableName;
                     default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to table string: " + ToString(Lib));
                 }
             }
@@ -401,6 +416,8 @@ namespace Mezzanine
                         else if(Name==LowerCaseCopy(MezzXMLSafeLibName))       { return MezzXMLSafeLib; }
                         else if(Name==LowerCaseCopy(MezzThreadingLibName))     { return MezzThreadingLib; }
                         else if(Name==LowerCaseCopy(MezzThreadingSafeLibName)) { return MezzThreadingSafeLib; }
+                        else if(Name==LowerCaseCopy(MezzThreadingLibName))     { return MezzMathToolsLib; }
+                        else if(Name==LowerCaseCopy(MezzThreadingSafeLibName)) { return MezzMathToolsSafeLib; }
                         else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with m: " + Name); }
                     case 'd':
                         if     (Name==LowerCaseCopy(DebugLibName))             { return DebugLib; }
@@ -569,6 +586,10 @@ namespace Mezzanine
                     { OpenMezzaninePhysicsLibrary(); }
                 if(LibrariesToOpen & MezzPhysicsSafeLib)
                     { OpenMezzaninePhysicsSafeLibrary(); }
+                if(LibrariesToOpen & MezzMathToolsLib)
+                    { OpenMezzanineMathToolsLibrary(); }
+                if(LibrariesToOpen & MezzMathToolsSafeLib)
+                    { OpenMezzanineMathToolsSafeLibrary(); }
             }
 
             Boole Lua51ScriptingEngine::IsLibraryOpen(Lua51Libraries LibToCheck)
@@ -713,6 +734,21 @@ namespace Mezzanine
             void Lua51ScriptingEngine::OpenMezzaninePhysicsSafeLibrary()
             {
                 lua_pushcfunction(State, luaopen_MezzaninePhysicsSafe);
+                lua_pushstring(State, (MezzPhysicsSafeLibName.c_str()) );
+                lua_call(State, 1, 0);
+                SetThreadingSafe();
+            }
+
+            void Lua51ScriptingEngine::OpenMezzanineMathToolsLibrary()
+            {
+                lua_pushcfunction(State, luaopen_MezzanineMathTools);
+                lua_pushstring(State, (MezzPhysicsLibName.c_str()) );
+                lua_call(State, 1, 0);
+                SetThreading();
+            }
+            void Lua51ScriptingEngine::OpenMezzanineMathToolsSafeLibrary()
+            {
+                lua_pushcfunction(State, luaopen_MezzanineMathToolsSafe);
                 lua_pushstring(State, (MezzPhysicsSafeLibName.c_str()) );
                 lua_call(State, 1, 0);
                 SetThreadingSafe();

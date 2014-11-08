@@ -40,7 +40,7 @@
 #ifndef _mathtool_cpp
 #define _mathtool_cpp
 
-#include "mathtool.h"
+#include "mathtools.h"
 #include "sphere.h"
 #include "axisalignedbox.h"
 #include "ray.h"
@@ -85,13 +85,6 @@ namespace
 
         return true;
     }
-
-    const Mezzanine::Real Pi = Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) );
-    const Mezzanine::Real TwoPi = ( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) ) * 2.0;
-    const Mezzanine::Real HalfPi = ( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) ) * 0.5;
-    const Mezzanine::Real QuarterPi = ( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) ) * 0.25;
-    const Mezzanine::Real RadToDegMult = Mezzanine::Real( Mezzanine::Real(180.0) / Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) );
-    const Mezzanine::Real DegToRadMult = Mezzanine::Real( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) / Mezzanine::Real(180.0) );
 }
 /// @endcond
 
@@ -99,27 +92,6 @@ namespace Mezzanine
 {
     namespace MathTools
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Predefined Constants
-
-        Real GetPi()
-            { return Pi; }
-
-        Real GetTwoPi()
-            { return TwoPi; }
-
-        Real GetHalfPi()
-            { return HalfPi; }
-
-        Real GetQuarterPi()
-            { return QuarterPi; }
-
-        Real GetRadToDegMultiplier()
-            { return RadToDegMult; }
-
-        Real GetDegToRadMultiplier()
-            { return DegToRadMult; }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Real Math & Check Functions
 
@@ -180,10 +152,10 @@ namespace Mezzanine
         // Angle Conversion Functions
 
         Real DegreesToRadians(const Real& Degrees)
-            { return Degrees * DegToRadMult; }
+            { return Degrees * GetDegToRadMultiplier(); }
 
         Real RadiansToDegrees(const Real& Radians)
-            { return Radians * RadToDegMult; }
+            { return Radians * GetRadToDegMultiplier(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Geometry Math
@@ -299,6 +271,7 @@ namespace Mezzanine
             AbsoluteDir.Y = MathTools::Fabs( AbsoluteDir.Y );
             AbsoluteDir.Z = MathTools::Fabs( AbsoluteDir.Z );
 
+            // A small fixed sized constant time sorting algorithm for sorting the length of each axis.
             Whole MaxAxis = 0, MidAxis = 1, MinAxis = 2;
             if( AbsoluteDir[0] < AbsoluteDir[2] ) {
                 MaxAxis = 2;

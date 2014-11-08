@@ -42,7 +42,7 @@
 
 #include "cameracontroller.h"
 #include "Graphics/cameraproxy.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "rayquerytool.h"
 #include "ray.h"
 #include "enumerations.h"

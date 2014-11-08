@@ -42,6 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "vector3.h"
+#include "MathTools/mathtools.h"
 
 namespace Ogre
 {
@@ -56,7 +57,11 @@ namespace Mezzanine
     class Sphere;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This represents a line placed in 3D space and is used with spacial queries.
-    /// @details
+    /// @details This is made of Two Vector3 instances. The Origin of a Ray can be thought
+    /// of as its starting location. The Normal of the Ray will be another point defined
+    /// as a Vector3 that is always 1 unit away, as mathematical precision allows. This
+    /// normal is used to indicate direction and from the two points any other points on
+    /// the Ray can be calculated.
     class MEZZ_LIB Ray
     {
     public:
@@ -65,8 +70,8 @@ namespace Mezzanine
         typedef std::pair<Boole,Vector3> PlaneRayTestResult;
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Ray> GeometryRayTestResult;
-
+        //typedef MathTools::PointPointInterection GeometryRayTestResult;
+        typedef MathTools::GeometryRayTestResult GeometryRayTestResult;
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
@@ -90,7 +95,7 @@ namespace Mezzanine
         Ray(const Vector3& Dir);
         /// @brief Descriptive constructor.
         /// @param From The origin for the new Ray.
-        /// @param Dir The direction this Ray is pointing in.
+        /// @param Dir The direction this Ray is pointing in. This will be normalizedprior to use.
         Ray(const Vector3& From, const Vector3& Dir);
         /// @brief Internal constructor.
         /// @param InternalRay This is the Ogre::Ray to copy from.
@@ -111,6 +116,7 @@ namespace Mezzanine
         /// @param Distance The distance from the origin to get the position of.
         /// @return Returns a point in 3D space that is on the ray at the specified distance from the origin.
         Vector3 GetPointAtDistance(const Real& Distance);
+
 
         /// @brief Checks to see if this ray intersects a plane.
         /// @param ToCheck The plane to check for a hit.

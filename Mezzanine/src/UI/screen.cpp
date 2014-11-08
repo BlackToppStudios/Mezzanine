@@ -74,7 +74,7 @@
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/scenemanager.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 #include <OgreRoot.h>

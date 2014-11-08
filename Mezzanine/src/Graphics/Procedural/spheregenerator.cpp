@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/spheregenerator.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 namespace Mezzanine

@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/Texture/rotationzoommodifier.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {

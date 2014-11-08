@@ -49,7 +49,7 @@
 #include "UI/horizontallayoutstrategy.h"
 
 #include "stringtool.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "Input/metacode.h"
 
 #include <algorithm>

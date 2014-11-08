@@ -47,6 +47,7 @@
 #include "pugixml.h"
 
 #include <exception>
+#include <exception.h>
 
 /// @file
 /// @brief Test the core Framescheduler
@@ -253,6 +254,27 @@ class CrashDivZeroWorkUnit : public CrashesWorkUnit
             Integer Dividend=1;
             Integer Dividor=0;
             cout << Dividend/Dividor << endl;
+        }
+
+};
+
+/// @brief A String to represent the CrashDivZeroWorkUnit
+const String CrashMezzExceptionWorkUnitName("MezzExceptionWorkUni");
+/// @brief A workunit that reliably crashes By throwing plain old data without catching it.
+class CrashMezzExceptionWorkUnit : public CrashesWorkUnit
+{
+        Integer CrashOnIteration;
+    public:
+        CrashMezzExceptionWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+            CrashesWorkUnit(CrashOnCount, Length_, Name_)
+            { }
+
+        virtual ~CrashMezzExceptionWorkUnit()
+            { }
+
+        virtual void Crash()
+        {
+            MEZZ_EXCEPTION(Mezzanine::Exception::INTERNAL_EXCEPTION,"This test must crash!!!!!");
         }
 
 };
@@ -1231,6 +1253,8 @@ class frameschedulertests : public UnitTestGroup
                 CrashTest(CrashDoesNotWorkUnitName, 3);         // Not a problem
                 CrashTest(CrashUnhandledThrowWorkUnitName, 2);  // Log everyting aftercrash
                 CrashTest(CrashDivZeroWorkUnitName, 0);         // Cannot recover from hardware traps so buffered logs are lost
+                CrashTest(CrashMezzExceptionWorkUnitName, 2);   // Unhandled exception using standard mezzanine exception generation techniques
+
 
             }
 
@@ -1260,6 +1284,8 @@ class frameschedulertests : public UnitTestGroup
                 { B = new PausesWorkUnit(0, "WorkUnitB"); }
             if(AllLower(CrashDivZeroWorkUnitName) == AllLower(Arg))
                 { B = new CrashDivZeroWorkUnit(0, 0,  "WorkUnitB"); }
+            if(AllLower(CrashMezzExceptionWorkUnitName) == AllLower(Arg))
+                { B = new CrashMezzExceptionWorkUnit(0, 0,  "WorkUnitB"); }
 
 
             if(NULL == B)

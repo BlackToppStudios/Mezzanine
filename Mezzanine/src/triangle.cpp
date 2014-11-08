@@ -71,7 +71,7 @@ THE SOFTWARE.
 #include "linesegment.h"
 #include "plane.h"
 #include "ray.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 namespace

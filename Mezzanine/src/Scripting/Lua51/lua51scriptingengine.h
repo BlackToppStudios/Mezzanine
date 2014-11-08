@@ -153,19 +153,22 @@ namespace Mezzanine
                         MezzThreadingSafeLib   = 8192,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineThreadingSafeLibrary
                         MezzPhysicsLib         = 16384,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzaninePhysicsLibrary
                         MezzPhysicsSafeLib     = 32768,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzaninePhysicsSafeLibrary
+                        MezzMathToolsLib       = 65536,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineMathToolsLibrary
+                        MezzMathToolsSafeLib   = 131072,    ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineMathToolsSafeLibrary
 
 
                         FirstLib    = BaseLib,              ///< Useful for math based ways to work with libraries, This is equal to the numerically lowest lib
-                        LastLib     = MezzPhysicsSafeLib,   ///< Useful for math based ways to work with libraries, This is equal to the numerically highest lib
+                        LastLib     = MezzMathToolsSafeLib, ///< Useful for math based ways to work with libraries, This is equal to the numerically highest lib
 
                         DefaultLibs = BaseLib | StringLib | TableLib | MathLib |
                                       MezzSafeLib | MezzXMLSafeLib | MezzThreadingSafeLib |
-                                      MezzPhysicsSafeLib,                                   ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                                      MezzPhysicsSafeLib | MezzMathToolsSafeLib,              ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                         AllLibs     = BaseLib | PackageLib | StringLib | TableLib |
                                       MathLib | IOLib | OSLib | DebugLib | MezzLib |
                                       MezzSafeLib | MezzXMLLib | MezzXMLSafeLib |
                                       MezzThreadingLib | MezzThreadingSafeLib |
-                                      MezzPhysicsSafeLib | MezzPhysicsLib                   ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
+                                      MezzPhysicsSafeLib | MezzPhysicsLib |
+                                      MezzMathToolsLib | MezzMathToolsSafeLib                 ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenAllLibraries
                     };
 
                     static const String NoLibName;                    ///< @brief The name used to identify No libraries, "None"
@@ -183,8 +186,10 @@ namespace Mezzanine
                     static const String MezzXMLSafeLibName;           ///< @brief The name used to identify the MezzanineXMLSafe library, "MezzanineXMLSafe"
                     static const String MezzThreadingLibName;         ///< @brief The name used to identify the MezzanineThreading library, "MezzanineThreading"
                     static const String MezzThreadingSafeLibName;     ///< @brief The name used to identify the MezzanineThreadingSafe library, "MezzanineThreadingSafe"
-                    static const String MezzPhysicsLibName;           ///< @brief The name used to identify the MezzanineThreading library, "MezzaninePhysics"
-                    static const String MezzPhysicsSafeLibName;       ///< @brief The name used to identify the MezzanineThreadingSafe library, "MezzaninePhysicsSafe"
+                    static const String MezzPhysicsLibName;           ///< @brief The name used to identify the MezzaninePhysics library, "MezzaninePhysics"
+                    static const String MezzPhysicsSafeLibName;       ///< @brief The name used to identify the MezzaninePhysicsSafe library, "MezzaninePhysicsSafe"
+                    static const String MezzMathToolsLibName;         ///< @brief The name used to identify the MezzanineMathTools library, "MezzanineMathTools"
+                    static const String MezzMathToolsSafeLibName;     ///< @brief The name used to identify the MezzanineMathToolsSafe library, "MezzanineMathToolsSafe"
                     static const String DefaultLibsName;              ///< @brief The name used to identify the Default set of libraries, "Default"
                     static const String AllLibsName;                  ///< @brief The name used to identify the set of all libraries, "All"
 
@@ -202,8 +207,10 @@ namespace Mezzanine
                     static const String MezzXMLSafeTableName;         ///< @brief The name used to identify a table loaded by the MezzanineXMLSafe library, "MezzanineXMLSafe"
                     static const String MezzThreadingTableName;       ///< @brief The name used to identify a table loaded by the MezzanineThreading library, "MezzanineThreading"
                     static const String MezzThreadingSafeTableName;   ///< @brief The name used to identify a table loaded by the MezzanineThreadingSafe library, "MezzanineThreadingSafe"
-                    static const String MezzPhysicsTableName;         ///< @brief The name used to identify a table loaded by the MezzanineThreading library, "MezzaninePhysics"
-                    static const String MezzPhysicsSafeTableName;     ///< @brief The name used to identify a table loaded by the MezzanineThreadingSafe library, "MezzaninePhysicsSafe"
+                    static const String MezzPhysicsTableName;         ///< @brief The name used to identify a table loaded by the MezzaninePhysics library, "MezzaninePhysics"
+                    static const String MezzPhysicsSafeTableName;     ///< @brief The name used to identify a table loaded by the MezzaninePhysicsSafe library, "MezzaninePhysicsSafe"
+                    static const String MezzMathToolsTableName;       ///< @brief The name used to identify a table loaded by the MezzanineMathTools library, "MezzanineMathTools"
+                    static const String MezzMathToolsSafeTableName;   ///< @brief The name used to identify a table loaded by the MezzanineMathToolsSafe library, "MezzanineMathToolsSafe"
 
                     static const String TypeNameNil;                  ///< @brief A human friendly representation of the Lua type nil
                     static const String TypeNameBoolean;              ///< @brief A human friendly representation of the Lua type boolean
@@ -403,6 +410,13 @@ namespace Mezzanine
                     /// @details This should not allow access to any functions, methods or classes than can execute code or manage files or crash the client malicious ways.
                     virtual void OpenMezzaninePhysicsSafeLibrary();
 
+                    /// @brief Make the MathTools parts of the Mezzanine Libary available for use in Lua51 scripts.
+                    virtual void OpenMezzanineMathToolsLibrary();
+                    /// @brief Make the MathTools parts of the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @details This should not allow access to any functions, methods or classes than can execute code or manage files or crash the client malicious ways.
+                    virtual void OpenMezzanineMathToolsSafeLibrary();
+
+
                 protected:
                     /// @brief Set The MezzanineXML library as the XML member of the Mezzanine library or fail silently
                     void SetXML();
@@ -469,7 +483,6 @@ namespace Mezzanine
                     /// @param AlreadyDidTables To break cycles a list tables to skip descending into can be provided.
                     /// @warning This is marked as internal because it does far too much and should be broken in many smaller functions
                     void PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName="", std::vector<String> AlreadyDidTables=std::vector<String>());
-
             };
 
             ///////////////////////////////////////////////////////////////////////////////

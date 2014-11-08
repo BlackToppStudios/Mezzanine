@@ -67,10 +67,10 @@ class lua51tests : public UnitTestGroup
                 Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Libset);
                 TestOutput << "Testing " << FeatureName << " functionality, with parameter: " << Input << endl;
                 Scripting::Lua::Lua51Script RealArgScript(Source, LuaRuntimeSafe);
-                LuaRuntimeSafe.Execute(RealArgScript);
+                LuaRuntimeSafe.Execute(RealArgScript); // Since the script is a functions this readies it to be called
                 Scripting::Lua::Lua51Script RealArgCall(FunctionToCall,LuaRuntimeSafe,true);
                 RealArgCall.AddArgument(Input);
-                LuaRuntimeSafe.Execute(RealArgCall);
+                LuaRuntimeSafe.Execute(RealArgCall); // This then calls that script with an argument
                 //TestOutput << " Recieved " << RealReturn->GetReal() << " while expecting " << ExpectedOutput << endl;
                 Real Returned = RealArgCall.GetReturn(0)->GetReal();
                 TestOutput << " Recieved " << Returned << " while expecting " << ExpectedOutput << endl;
@@ -146,8 +146,10 @@ class lua51tests : public UnitTestGroup
             {
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
                 TestOutput << "Checking lib enum values:" << endl;
-                TestOutput << "Default Expected: " << (541+2048+8192) << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::DefaultLibs << endl;
-                TEST(541+2048+8192+32768==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+                Whole DefaultExpected = 541 + 2048 + 8192 + 32768 + 131072;
+                TestOutput << "Default Expected: " << DefaultExpected << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::DefaultLibs << endl;
+                TEST(DefaultExpected==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+
                 int TargetLib=0;
                 for(int lib = Scripting::Lua::Lua51ScriptingEngine::FirstLib;
                     lib <= Scripting::Lua::Lua51ScriptingEngine::LastLib;
@@ -594,9 +596,9 @@ class lua51tests : public UnitTestGroup
                               "       MezzanineSafe.Vector3(0,0,0),\n"
                               "       MezzanineSafe.Vector3(x,0,0)\n"
                               "   )\n"
-                              "   return Charles:Length()\n"
+                              "   return Charles.Normal.X\n"
                               "end",
-                              "Ray", "VecXMultiply", 10, 10, 0.0,
+                              "Ray", "VecXMultiply", 10, 1, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function VecXMultiply(x)\n"

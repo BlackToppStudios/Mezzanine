@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/noise.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {

@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/Texture/vortexmodifier.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {

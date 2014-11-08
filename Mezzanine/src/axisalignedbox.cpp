@@ -44,7 +44,7 @@
 /// @brief This file contains the implementation for the AxisAlignedBox class for representing AABB's of objects in the world.
 
 #include "axisalignedbox.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "plane.h"
 #include "ray.h"
 #include "exception.h"

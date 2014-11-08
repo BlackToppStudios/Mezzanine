@@ -82,7 +82,7 @@ namespace Mezzanine
 #include "Graphics/Procedural/Texture/lightbakemodifier.h"
 #include "Graphics/Procedural/Texture/lookupmodifier.h"
 #include "Graphics/Procedural/Texture/normalsmodifier.h"
-#include "Graphics/Procedural/Texture/oilPaintmodifier.h"
+#include "Graphics/Procedural/Texture/oilpaintmodifier.h"
 #include "Graphics/Procedural/Texture/randompixelsmodifier.h"
 #include "Graphics/Procedural/Texture/rectanglemodifier.h"
 #include "Graphics/Procedural/Texture/rotationzoommodifier.h"

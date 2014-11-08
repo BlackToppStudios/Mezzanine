@@ -50,7 +50,7 @@
 
 #include "Input/metacode.h"
 #include "stringtool.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 
 #include <algorithm>
 

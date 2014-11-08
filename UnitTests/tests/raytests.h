@@ -53,6 +53,7 @@
 #include <Ogre.h>
 
 // Needed because windows sucks and uses macros improperly
+// Sqeaky this crap might have been an intentionally introduced incompatibility issue aspart of an ms EEE
 #ifdef CreateDirectory
 #undef CreateDirectory
 #endif
@@ -128,7 +129,8 @@ public:
             Plane FailSurface(Vector3(0.0,0.0,-1.0),10);
             Ray::PlaneRayTestResult PassResult = Cast.Intersects(PassSurface);
             Ray::PlaneRayTestResult FailResult = Cast.Intersects(FailSurface);
-            TEST( ( PassResult.first && PassResult.second == Vector3(-5.0,0.0,0.0) ) && ( !FailResult.first && FailResult.second == Vector3(0.0,0.0,0.0) ) ,"Intersects(const_Plane&)_const");
+            TEST(PassResult.first && PassResult.second == Vector3(-5.0,0.0,0.0), "Intersects(const_Plane&)_const_positive");
+            TEST(!FailResult.first && FailResult.second == Vector3(0.0,0.0,0.0),"Intersects(const_Plane&)_const_negative");
         }
 
         {
@@ -139,7 +141,8 @@ public:
             Sphere FailBall(Vector3(-20.0,-30.0,0.0),10);
             Ray::GeometryRayTestResult PassResult = Cast.Intersects(PassBall);
             Ray::GeometryRayTestResult FailResult = Cast.Intersects(FailBall);
-            TEST( ( PassResult.first && PassResult.second == Ray(Vector3(10.0,0.0,0.0),Vector3(30.0,0.0,0.0)) ) && ( !FailResult.first && FailResult.second == Ray(Vector3(0.0,0.0,0.0),Vector3(0.0,1.0,0.0)) ) ,"Intersects(const_Sphere&)_const");
+            TEST(PassResult.first && PassResult.second == Ray(Vector3(10.0,0.0,0.0),Vector3(30.0,0.0,0.0)), "Intersects(const_Sphere&)_const_positive");
+            TEST(!FailResult.first && FailResult.second == Ray(Vector3(0.0,0.0,0.0),Vector3(0.0,1.0,0.0)), "Intersects(const_Sphere&)_const_negative");
         }
 
         {
@@ -150,7 +153,8 @@ public:
             AxisAlignedBox FailBox(Vector3(10.0,-30.0,5.0),Vector3(15.0,-20.0,15.0));
             Ray::GeometryRayTestResult PassResult = Cast.Intersects(PassBox);
             Ray::GeometryRayTestResult FailResult = Cast.Intersects(FailBox);
-            TEST( ( PassResult.first && PassResult.second == Ray(Vector3(-5.0,0.0,0.0),Vector3(5.0,0.0,0.0)) ) && ( !FailResult.first && FailResult.second == Ray(Vector3(0.0,0.0,0.0),Vector3(0.0,1.0,0.0)) ) ,"Intersects(const_AxisAlignedBox&)_const");
+            TEST(PassResult.first && PassResult.second == Ray(Vector3(-5.0,0.0,0.0),Vector3(5.0,0.0,0.0)), "Intersects(const_AxisAlignedBox&)_const_positive");
+            TEST(!FailResult.first && FailResult.second == Ray(Vector3(0.0,0.0,0.0),Vector3(0.0,1.0,0.0)), "Intersects(const_AxisAlignedBox&)_const_negative");
         }
 
         {
