@@ -71,7 +71,6 @@ namespace Mezzanine
 #include "Graphics/Procedural/Texture/crackmodifier.h"
 #include "Graphics/Procedural/Texture/cycloidmodifier.h"
 #include "Graphics/Procedural/Texture/dilatemodifier.h"
-#include "Graphics/Procedural/Texture/distortmodifier.h"
 #include "Graphics/Procedural/Texture/edgedetectionmodifier.h"
 #include "Graphics/Procedural/Texture/ellipsemodifier.h"
 #include "Graphics/Procedural/Texture/flipmodifier.h"

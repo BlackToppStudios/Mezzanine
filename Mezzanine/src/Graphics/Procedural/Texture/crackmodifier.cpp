@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/Texture/crackmodifier.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {

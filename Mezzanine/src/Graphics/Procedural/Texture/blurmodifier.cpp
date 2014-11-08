@@ -70,7 +70,7 @@
 #include "Graphics/Procedural/Texture/blurmodifier.h"
 #include "Graphics/Procedural/Texture/convolutionmodifier.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {
