@@ -76,7 +76,7 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A modifier that will attempt to add detail to an image.
+            /// @brief A modifier that will attempt to add detail to a texture.
             /// @details
             ///////////////////////////////////////
             class MEZZ_LIB SharpenModifier : public TextureModifier
