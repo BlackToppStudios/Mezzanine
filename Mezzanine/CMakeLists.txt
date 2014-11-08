@@ -304,6 +304,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}quaternion.h"
         "${${PROJECT_NAME}_SRC_DIR}ray.h"
         "${${PROJECT_NAME}_SRC_DIR}rayquerytool.h"
+        "${${PROJECT_NAME}_SRC_DIR}rect.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resource.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourceenumerations.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourcemanager.h"
