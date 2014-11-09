@@ -210,53 +210,6 @@ namespace Mezzanine
                 // Configuration
 
             };//LerpModifier
-
-            ///////////////////////////////////////////////////////////////////////////////
-            /// @brief
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB LightBakeModifier : public TextureModifier
-            {
-            protected:
-                /// @internal
-                /// @brief
-                ColourValue AmbientColour;
-                /// @internal
-                /// @brief
-                ColourValue DiffuseColour;
-                /// @internal
-                /// @brief
-                ColourValue SpecularColour;
-                /// @internal
-                /// @brief
-                Vector3 LightPosition;
-                /// @internal
-                /// @brief
-                TextureBuffer* NormalMap;
-                /// @internal
-                /// @brief
-                UInt8 SpecularPower;
-                /// @internal
-                /// @brief
-                UInt8 BumpPower;
-            public:
-                /// @brief Blank constructor.
-                LightBakeModifier();
-                /// @brief Class destructor.
-                virtual ~LightBakeModifier();
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
-
-                /// @copydoc TextureModifier::Modify(TextureBuffer&)
-                virtual void Modify(TextureBuffer& Buffer);
-                /// @copydoc TextureModifier::GetName() const
-                virtual String GetName() const;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Configuration
-
-            };//LightBakeModifier
         }//Procedural
     }//Graphics
 }//Mezzanine
