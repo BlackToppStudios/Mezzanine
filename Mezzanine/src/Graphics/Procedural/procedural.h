@@ -78,7 +78,6 @@ namespace Mezzanine
 #include "Graphics/Procedural/Texture/invertmodifier.h"
 #include "Graphics/Procedural/Texture/jittermodifier.h"
 #include "Graphics/Procedural/Texture/lerpmodifier.h"
-#include "Graphics/Procedural/Texture/lightbakemodifier.h"
 #include "Graphics/Procedural/Texture/lookupmodifier.h"
 #include "Graphics/Procedural/Texture/normalsmodifier.h"
 #include "Graphics/Procedural/Texture/oilpaintmodifier.h"
