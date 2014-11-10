@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduralnoisegenerator_h
+#define _graphicsproceduralnoisegenerator_h
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/texturegenerator.h"
 
 namespace Mezzanine
 {
@@ -76,27 +76,58 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
+            /// @brief Fills full image with noise in a given colour.
+            /// @details High quality noise with various noise algorithms.
             ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            class MEZZ_LIB NoiseGenerator : public TextureGenerator
             {
+            protected:
+                /// @internal
+                /// @brief The colour of the noise to be generated.
+                ColourValue GenColour;
+                /// @internal
+                /// @brief The seed to be used for the random number generator.
+                Whole GenSeed;
+                /// @internal
+                /// @brief The type of noise generator to use when generating the image.
+                Procedural::NoiseType NType;
             public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
+                /// @brief Class constructor.
+                NoiseGenerator();
                 /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                virtual ~NoiseGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+                /// @copydoc TextureGenerator::AddToTextureBuffer(TextureBuffer&) const
+                virtual void AddToTextureBuffer(TextureBuffer& Buffer) const;
+                /// @copydoc TextureGenerator::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the colour of the background.
+                /// @param Colour The colour to be applied to the noise to be generated.
+                /// @return Returns a reference to this.
+                NoiseGenerator& SetColour(const ColourValue& Colour);
+                /// @brief Set the colour of the background.
+                /// @param Red The Red component for the background colour.  Range: [0.0, 1.0].
+                /// @param Green The Green component for the background colour.  Range: [0.0, 1.0].
+                /// @param Blue The Blue component for the background colour.  Range: [0.0, 1.0].
+                /// @param Alpha The Alpha component for the background colour.  Range: [0.0, 1.0].
+                /// @return Returns a reference to this.
+                NoiseGenerator& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
+                /// @brief Sets the seed for the "random" number generator.
+                /// @param Seed The seed value for the random number generator.  Initial Value: 5120.
+                /// @return Returns a reference to this.
+                NoiseGenerator& SetSeed(const Whole Seed);
+                /// @brief Set the type of noise generation.
+                /// @param Type Type of noise generator.  Initial Value: NT_White.
+                /// @return Returns a reference to this.
+                NoiseGenerator& SetType(const Procedural::NoiseType Type);
+            };//NoiseGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

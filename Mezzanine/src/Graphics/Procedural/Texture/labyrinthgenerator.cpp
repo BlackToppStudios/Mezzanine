@@ -64,10 +64,13 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsprocedurallabyrinthgenerator_cpp
+#define _graphicsprocedurallabyrinthgenerator_cpp
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/labyrinthgenerator.h"
+#include "Graphics/Procedural/noise.h"
+
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {
@@ -75,28 +78,61 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            LabyrinthGenerator::LabyrinthGenerator() :
+                GenColour(1.0,1.0,1.0,1.0),
+                GenSeed(5120)
+                {  }
+
+            LabyrinthGenerator::~LabyrinthGenerator()
+                {  }
+
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            // Utility
+
+            void LabyrinthGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-            public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
-                /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                srand(this->GenSeed);
+                int RandNum = rand();
+                PerlinNoise Noise(1, 0.65, 1.0 / 16.0, 1.0);
+                Real FilterLevel = 0.7;
+                Real PreserveLevel = 0.3;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+                for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                {
+                    for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                    {
+                        Real NoiseVal = std::min( Real(1.0), MathTools::Abs( Noise.Noise2D( X + RandNum, Y + RandNum ) ) );
+                        Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Buffer.SetAlphaByte( X, Y, this->GenColour.AlphaChannel );
+                    }
+                }
+            }
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+            String LabyrinthGenerator::GetName() const
+                { return "LabyrinthGenerator"; }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            LabyrinthGenerator& LabyrinthGenerator::SetColour(const ColourValue& Colour)
+            {
+                this->GenColour = Colour;
+                return *this;
+            }
+
+            LabyrinthGenerator& LabyrinthGenerator::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            {
+                this->GenColour.SetValues(Red,Green,Blue,Alpha);
+                return *this;
+            }
+
+            LabyrinthGenerator& LabyrinthGenerator::SetSeed(const Whole Seed)
+            {
+                this->GenSeed = Seed;
+                return *this;
+            }
         }//Procedural
     }//Graphics
 }//Mezzanine

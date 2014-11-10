@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduraltexturebuffer_cpp
 #define _graphicsproceduraltexturebuffer_cpp
 
-#include "Graphics/Procedural/texturebuffer.h"
+#include "Graphics/Procedural/Texture/texturebuffer.h"
 
 #include "Graphics/texturemanager.h"
 #include "Graphics/texture.h"

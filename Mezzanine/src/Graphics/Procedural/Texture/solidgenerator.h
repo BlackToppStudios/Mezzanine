@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduralsolidgenerator_h
+#define _graphicsproceduralsolidgenerator_h
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/texturegenerator.h"
 
 namespace Mezzanine
 {
@@ -76,27 +76,44 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
+            /// @brief Fills full image with given colour.
+            /// @details Set all pixel to the same colour.
             ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            class MEZZ_LIB SolidGenerator : public TextureGenerator
             {
+            protected:
+                /// @internal
+                /// @brief The solid colour to generate.
+                ColourValue GenColour;
             public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
+                /// @brief Class constructor.
+                SolidGenerator();
                 /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                virtual ~SolidGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+                /// @copydoc TextureGenerator::AddToTextureBuffer(TextureBuffer&) const
+                virtual void AddToTextureBuffer(TextureBuffer& Buffer) const;
+                /// @copydoc TextureGenerator::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the colour of the background.
+                /// @param Colour The solid colour to be applied to each pixel.
+                /// @return Returns a reference to this.
+                SolidGenerator& SetColour(const ColourValue& Colour);
+                /// @brief Set the colour of the background.
+                /// @param Red The Red component for the background colour.  Range: [0.0, 1.0].
+                /// @param Green The Green component for the background colour.  Range: [0.0, 1.0].
+                /// @param Blue The Blue component for the background colour.  Range: [0.0, 1.0].
+                /// @param Alpha The Alpha component for the background colour.  Range: [0.0, 1.0].
+                /// @return Returns a reference to this.
+                SolidGenerator& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
+            };//SolidGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

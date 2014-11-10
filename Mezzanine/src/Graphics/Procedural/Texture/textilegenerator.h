@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduraltextilegenerator_h
+#define _graphicsproceduraltextilegenerator_h
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/texturegenerator.h"
 
 namespace Mezzanine
 {
@@ -76,27 +76,51 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
+            /// @brief Creates a textile structured image.
+            /// @details Creates a textile structure from a specified perlin noise on a coloured background.
             ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            class MEZZ_LIB TextileGenerator : public TextureGenerator
             {
+            protected:
+                /// @internal
+                /// @brief The background colour of the textile to be generated.
+                ColourValue GenColour;
+                /// @internal
+                /// @brief The seed to be used for the random number generator.
+                Whole GenSeed;
             public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
+                /// @brief Class constructor.
+                TextileGenerator();
                 /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                virtual ~TextileGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+                /// @copydoc TextureGenerator::AddToTextureBuffer(TextureBuffer&) const
+                virtual void AddToTextureBuffer(TextureBuffer& Buffer) const;
+                /// @copydoc TextureGenerator::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the colour of the background.
+                /// @param Colour The colour to be applied to the textile to be generated.
+                /// @return Returns a reference to this.
+                TextileGenerator& SetColour(const ColourValue& Colour);
+                /// @brief Set the colour of the background.
+                /// @param Red The Red component for the background colour.  Range: [0.0, 1.0].
+                /// @param Green The Green component for the background colour.  Range: [0.0, 1.0].
+                /// @param Blue The Blue component for the background colour.  Range: [0.0, 1.0].
+                /// @param Alpha The Alpha component for the background colour.  Range: [0.0, 1.0].
+                /// @return Returns a reference to this.
+                TextileGenerator& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
+                /// @brief Sets the seed for the "random" number generator.
+                /// @param Seed The seed value for the random number generator.  Initial Value: 5120.
+                /// @return Returns a reference to this.
+                TextileGenerator& SetSeed(const Whole Seed);
+            };//TextileGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

@@ -64,10 +64,12 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduralimagegenerator_cpp
+#define _graphicsproceduralimagegenerator_cpp
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/imagegenerator.h"
+
+#include "Graphics/image.h"
 
 namespace Mezzanine
 {
@@ -75,28 +77,42 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ImageGenerator::ImageGenerator()
+                {  }
+
+            ImageGenerator::~ImageGenerator()
+                {  }
+
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            // Utility
+
+            void ImageGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-            public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
-                /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                Image ImportImg(this->File,this->Group);
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+                if( ImportImg.GetHeight() >= Buffer.GetHeight() && ImportImg.GetWidth() >= Buffer.GetWidth() ) {
+                    for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                    {
+                        for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                        {
+                            Buffer.SetPixel(X,Y,ImportImg.GetColourAt(X,Y,0));
+                        }
+                    }
+                }
+            }
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+            String ImageGenerator::GetName() const
+                { return "ImageGenerator"; }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            ImageGenerator& ImageGenerator::SetFile(const String& FileName, const String& GroupName)
+            {
+                this->File = FileName;
+                this->Group = GroupName;
+                return *this;
+            }
         }//Procedural
     }//Graphics
 }//Mezzanine

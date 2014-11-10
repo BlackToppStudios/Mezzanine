@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduralsolidgenerator_cpp
+#define _graphicsproceduralsolidgenerator_cpp
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/solidgenerator.h"
 
 namespace Mezzanine
 {
@@ -75,28 +75,44 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            SolidGenerator::SolidGenerator() :
+                GenColour(1.0,1.0,1.0,1.0)
+                {  }
+
+            SolidGenerator::~SolidGenerator()
+                {  }
+
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            // Utility
+
+            void SolidGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-            public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
-                /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                {
+                    for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                    {
+                        Buffer.SetPixel(X,Y,this->GenColour);
+                    }
+                }
+            }
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+            String SolidGenerator::GetName() const
+                { return "SolidGenerator"; }
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            SolidGenerator& SolidGenerator::SetColour(const ColourValue& Colour)
+            {
+                this->GenColour = Colour;
+                return *this;
+            }
+
+            SolidGenerator& SolidGenerator::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            {
+                this->GenColour.SetValues(Red,Green,Blue,Alpha);
+                return *this;
+            }
         }//Procedural
     }//Graphics
 }//Mezzanine
