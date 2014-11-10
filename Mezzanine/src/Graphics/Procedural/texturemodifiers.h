@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduraltexturemodifiers_h
 #define _graphicsproceduraltexturemodifiers_h
 
-#include "Graphics/Procedural/texturebuffer.h"
+#include "Graphics/Procedural/Texture/texturebuffer.h"
 
 #include "Graphics/Procedural/Texture/texturemodifier.h"
 

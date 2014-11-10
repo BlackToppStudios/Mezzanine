@@ -64,10 +64,11 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduralcloudgenerator_cpp
+#define _graphicsproceduralcloudgenerator_cpp
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/cloudgenerator.h"
+#include "Graphics/Procedural/noise.h"
 
 namespace Mezzanine
 {
@@ -75,28 +76,61 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            CloudGenerator::CloudGenerator() :
+                GenColour(1.0,1.0,1.0,1.0),
+                GenSeed(5120)
+                {  }
+
+            CloudGenerator::~CloudGenerator()
+                {  }
+
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            // Utility
+
+            void CloudGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-            public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
-                /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                srand(this->GenSeed);
+                int RandNum = rand();
+                PerlinNoise Noise(8, 0.5, 1.0 / 32.0, 1.0);
+                Real FilterLevel = 0.7;
+                Real PreserveLevel = 0.3;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+                for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                {
+                    for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                    {
+                        Real NoiseVal = std::max( 0.0, std::min( 1.0, Noise.Noise2D( X + RandNum, Y + RandNum ) * 0.5 + 0.5 ) );
+                        Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Buffer.SetAlphaByte( X, Y, this->GenColour.AlphaChannel );
+                    }
+                }
+            }
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+            String CloudGenerator::GetName() const
+                { return "CloudGenerator"; }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            CloudGenerator& CloudGenerator::SetColour(const ColourValue& Colour)
+            {
+                this->GenColour = Colour;
+                return *this;
+            }
+
+            CloudGenerator& CloudGenerator::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            {
+                this->GenColour.SetValues(Red,Green,Blue,Alpha);
+                return *this;
+            }
+
+            CloudGenerator& CloudGenerator::SetSeed(const Whole Seed)
+            {
+                this->GenSeed = Seed;
+                return *this;
+            }
         }//Procedural
     }//Graphics
 }//Mezzanine

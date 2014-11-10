@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduralimagegenerator_h
+#define _graphicsproceduralimagegenerator_h
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/texturegenerator.h"
 
 namespace Mezzanine
 {
@@ -76,27 +76,41 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
+            /// @brief Creates an image to be modified from a pre-existing image on disk.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            class MEZZ_LIB ImageGenerator : public TextureGenerator
             {
+            protected:
+                /// @internal
+                /// @brief The name of the file to load.
+                String File;
+                /// @internal
+                /// @brief The name of the resource group the file belongs to.
+                String Group;
             public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
+                /// @brief Class constructor.
+                ImageGenerator();
                 /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                virtual ~ImageGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+                /// @copydoc TextureGenerator::AddToTextureBuffer(TextureBuffer&) const
+                virtual void AddToTextureBuffer(TextureBuffer& Buffer) const;
+                /// @copydoc TextureGenerator::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the file to be loaded by this generator.
+                /// @param FileName The name of the file to load.
+                /// @param GroupName The name of the resource group the file belongs to.
+                /// @return Returns a reference to this.
+                ImageGenerator& SetFile(const String& FileName, const String& GroupName);
+            };//ImageGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

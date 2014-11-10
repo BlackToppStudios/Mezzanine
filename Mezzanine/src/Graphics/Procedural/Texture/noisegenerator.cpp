@@ -64,10 +64,11 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduralnoisegenerator_cpp
+#define _graphicsproceduralnoisegenerator_cpp
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/noisegenerator.h"
+#include "Graphics/Procedural/noise.h"
 
 namespace Mezzanine
 {
@@ -75,28 +76,82 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            NoiseGenerator::NoiseGenerator() :
+                GenColour(1.0,1.0,1.0,1.0),
+                GenSeed(5120),
+                NType(Procedural::NT_White)
+                {  }
+
+            NoiseGenerator::~NoiseGenerator()
+                {  }
+
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            // Utility
+
+            void NoiseGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-            public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
-                /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                NoiseBase* NoiseGen = NULL;
+                switch( this->NType )
+                {
+                    case Procedural::NT_Perlin:
+                    {
+                        NoiseGen = new PerlinNoise();
+                        break;
+                    }
+                    case Procedural::NT_White:
+                    default:
+                    {
+                        NoiseGen = new WhiteNoise(this->GenSeed);
+                        break;
+                    }
+                }
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+                UInt8* Field = NoiseGen->Field2D( Buffer.GetWidth(), Buffer.GetHeight() );
+                for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                {
+                    for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                    {
+                        Real NoiseVal = (Real)Field[Y * Buffer.GetWidth() + X];
+                        Buffer.SetRedByte( X, Y, (UInt8)( NoiseVal * this->GenColour.RedChannel ) );
+                        Buffer.SetGreenByte( X, Y, (UInt8)( NoiseVal * this->GenColour.GreenChannel ) );
+                        Buffer.SetBlueByte( X, Y, (UInt8)( NoiseVal * this->GenColour.BlueChannel ) );
+                        Buffer.SetAlphaByte( X, Y, (UInt8)( this->GenColour.AlphaChannel * 255.0 ) );
+                    }
+                }
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+                delete[] Field;
+                delete NoiseGen;
+            }
+
+            String NoiseGenerator::GetName() const
+                { return "NoiseGenerator"; }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            NoiseGenerator& NoiseGenerator::SetColour(const ColourValue& Colour)
+            {
+                this->GenColour = Colour;
+                return *this;
+            }
+
+            NoiseGenerator& NoiseGenerator::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            {
+                this->GenColour.SetValues(Red,Green,Blue,Alpha);
+                return *this;
+            }
+
+            NoiseGenerator& NoiseGenerator::SetSeed(const Whole Seed)
+            {
+                this->GenSeed = Seed;
+                return *this;
+            }
+
+            NoiseGenerator& NoiseGenerator::SetType(const Procedural::NoiseType Type)
+            {
+                this->NType = Type;
+                return *this;
+            }
         }//Procedural
     }//Graphics
 }//Mezzanine

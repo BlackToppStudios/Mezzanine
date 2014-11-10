@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifier_h
-#define _graphicsproceduraltexturemodifier_h
+#ifndef _graphicsproceduraltexturegenerator_cpp
+#define _graphicsproceduraltexturegenerator_cpp
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/Texture/texturegenerator.h"
 
 namespace Mezzanine
 {
@@ -75,28 +75,44 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            TextureGenerator::TextureGenerator()
+                {  }
+
+            TextureGenerator::~TextureGenerator()
+                {  }
+
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A base class for modifying the contents of an already populated texture buffer.
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB TextureModifier
+            // Utility
+
+            Texture* TextureGenerator::GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
             {
-            public:
-                /// @brief Blank constructor.
-                TextureModifier() {  }
-                /// @brief Class destructor.
-                virtual ~TextureModifier() {  }
+                TextureBuffer TexBuf(SquareSize);
+                this->AddToTextureBuffer(TexBuf);
+                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup,Format);
+                return NewMesh;
+            }
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+            Texture* TextureGenerator::GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
+            {
+                TextureBuffer TexBuf(TexWidth,TexHeight);
+                this->AddToTextureBuffer(TexBuf);
+                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup,Format);
+                return NewMesh;
+            }
 
-                /// @brief Alters the generated pixels in a TextureBuffer.
-                /// @param Buffer The buffer to be modified.
-                virtual void Modify(TextureBuffer& Buffer) = 0;
-                /// @brief Gets the name of this modifier.
-                /// @return Returns a string containing the name of this modifier.
-                virtual String GetName() const = 0;
-            };//TextureModifier
+            TextureBuffer TextureGenerator::BuildTextureBuffer(const Whole SquareSize) const
+            {
+                TextureBuffer TexBuf(SquareSize);
+                this->AddToTextureBuffer(TexBuf);
+                return TexBuf;
+            }
+
+            TextureBuffer TextureGenerator::BuildTextureBuffer(const Whole TexWidth, const Whole TexHeight) const
+            {
+                TextureBuffer TexBuf(TexWidth,TexHeight);
+                this->AddToTextureBuffer(TexBuf);
+                return TexBuf;
+            }
         }//Procedural
     }//Graphics
 }//Mezzanine
