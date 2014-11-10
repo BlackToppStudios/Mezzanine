@@ -212,7 +212,7 @@ namespace Mezzanine
 
             Boole DelaunayTriangle::IsDegenerate() const
             {
-                if( MathTools::Fabs( ( this->GetPoint(1) - this->GetPoint(0) ).CrossProduct( this->GetPoint(2) - this->GetPoint(0) ) ) < 1e-4 )
+                if( MathTools::Abs( ( this->GetPoint(1) - this->GetPoint(0) ).CrossProduct( this->GetPoint(2) - this->GetPoint(0) ) ) < 1e-4 )
                     return true;
                 return false;
             }
@@ -274,8 +274,8 @@ namespace Mezzanine
                     Real MaxTriangleSize = 0.0;
                     for( Point2DIterator PointIt = List.begin() ; PointIt != List.end() ; ++PointIt )
                     {
-                        MaxTriangleSize = std::max<Real>( MaxTriangleSize, MathTools::Fabs( PointIt->X ) );
-                        MaxTriangleSize = std::max<Real>( MaxTriangleSize, MathTools::Fabs( PointIt->Y ) );
+                        MaxTriangleSize = std::max<Real>( MaxTriangleSize, MathTools::Abs( PointIt->X ) );
+                        MaxTriangleSize = std::max<Real>( MaxTriangleSize, MathTools::Abs( PointIt->Y ) );
                     }
 
                     List.push_back( Vector2( -3 * MaxTriangleSize, -3 * MaxTriangleSize ) );

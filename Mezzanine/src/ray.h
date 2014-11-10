@@ -106,12 +106,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Gets the normal of this ray.
-        /// @return Returns a vector3 that is the direction this ray is pointing.
+        /// @brief Gets the normal of this Ray.
+        /// @return Returns a Vector3 that is the direction this ray is pointing.
         const Vector3& GetNormal() const;
+        /// @brief Sets the normal of this Ray.
+        /// @param FreshNormal A Vector3 that will be normalized and is the direction this Ray is pointing.
+        void SetNormal(const Vector3& FreshNormal);
+
         /// @brief Gets the origin of this ray.
-        /// @return Returns a vector3 containing the origin of this ray.
+        /// @return Returns a Vector3 containing the origin of this Ray.
         const Vector3& GetOrigin() const;
+        /// @brief Sets the origin of this ray.
+        /// @param FreshOrigin A Vector3 that will become the origin of this Ray.
+        void SetOrigin(const Vector3& FreshOrigin);
+
         /// @brief Gets a point on the ray at a distance.
         /// @param Distance The distance from the origin to get the position of.
         /// @return Returns a point in 3D space that is on the ray at the specified distance from the origin.

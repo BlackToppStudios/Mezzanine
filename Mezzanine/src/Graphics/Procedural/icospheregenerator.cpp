@@ -195,21 +195,21 @@ namespace Mezzanine
                     Vector2& t0 = TexCoords[ Faces[ Index * 3 + 0 ] ];
                     Vector2& t1 = TexCoords[ Faces[ Index * 3 + 1 ] ];
                     Vector2& t2 = TexCoords[ Faces[ Index * 3 + 2 ] ];
-                    if( MathTools::Fabs( t2.X - t0.X ) > 0.5 ) {
+                    if( MathTools::Abs( t2.X - t0.X ) > 0.5 ) {
                         if( t0.X < 0.5 ) {
                             IndexToSplit.push_back( Faces[ Index * 3 ] );
                         }else{
                             IndexToSplit.push_back( Faces[ Index * 3 + 2 ] );
                         }
                     }
-                    if( MathTools::Fabs( t1.X - t0.X ) > 0.5 ) {
+                    if( MathTools::Abs( t1.X - t0.X ) > 0.5 ) {
                         if( t0.X < 0.5 ) {
                             IndexToSplit.push_back( Faces[ Index * 3 ] );
                         }else{
                             IndexToSplit.push_back( Faces[ Index * 3 + 1 ] );
                         }
                     }
-                    if( MathTools::Fabs( t2.X - t1.X ) > 0.5 ) {
+                    if( MathTools::Abs( t2.X - t1.X ) > 0.5 ) {
                         if( t1.X < 0.5 ) {
                             IndexToSplit.push_back( Faces[ Index * 3 + 1 ] );
                         }else{

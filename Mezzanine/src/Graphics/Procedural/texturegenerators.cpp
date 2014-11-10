@@ -519,7 +519,7 @@ namespace Mezzanine
                 {
                     for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
                     {
-                        Real NoiseVal = std::min( Real(1.0), MathTools::Fabs( Noise.Noise2D( X + RandNum, Y + RandNum ) ) );
+                        Real NoiseVal = std::min( Real(1.0), MathTools::Abs( Noise.Noise2D( X + RandNum, Y + RandNum ) ) );
                         Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, 255.0 ) );
                         Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, 255.0 ) );
                         Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, 255.0 ) );
@@ -580,7 +580,7 @@ namespace Mezzanine
                 {
                     for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
                     {
-                        Real NoiseVal = std::min( Real(1.0), MathTools::Fabs( MathTools::Sin( X * XFact + Y * YFact + Noise.Noise2D( X + RandNum, Y + RandNum ) ) * MathTools::GetPi() ) );
+                        Real NoiseVal = std::min( Real(1.0), MathTools::Abs( MathTools::Sin( X * XFact + Y * YFact + Noise.Noise2D( X + RandNum, Y + RandNum ) ) * MathTools::GetPi() ) );
                         Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, 255.0 ) );
                         Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, 255.0 ) );
                         Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, 255.0 ) );
@@ -838,7 +838,7 @@ namespace Mezzanine
                     {
                         Real xv = ( (Real)(X - w2) ) / (Real)Buffer.GetWidth();
                         Real yv = ( (Real)(Y - h2) ) / (Real)Buffer.GetHeight();
-                        Real NoiseVal = std::min<Real>( Real(1.0), MathTools::Fabs( MathTools::Sin( ( sqrt(xv * xv + yv * yv) + Noise.Noise2D(X + RandNum, Y + RandNum) ) * MathTools::GetPi() * 2 * this->GenRings ) ) );
+                        Real NoiseVal = std::min<Real>( Real(1.0), MathTools::Abs( MathTools::Sin( ( sqrt(xv * xv + yv * yv) + Noise.Noise2D(X + RandNum, Y + RandNum) ) * MathTools::GetPi() * 2 * this->GenRings ) ) );
                         Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, Real(255.0) ) );
                         Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, Real(255.0) ) );
                         Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, Real(255.0) ) );

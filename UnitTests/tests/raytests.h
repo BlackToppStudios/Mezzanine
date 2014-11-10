@@ -107,9 +107,9 @@ namespace
         // Code in this function is based on the equivalent in Ogre
         Mezzanine::Vector3 CastDir = Cast.GetNormal();
         Mezzanine::Vector3 AbsoluteDir = CastDir;
-        AbsoluteDir.X = Mezzanine::MathTools::Fabs( AbsoluteDir.X );
-        AbsoluteDir.Y = Mezzanine::MathTools::Fabs( AbsoluteDir.Y );
-        AbsoluteDir.Z = Mezzanine::MathTools::Fabs( AbsoluteDir.Z );
+        AbsoluteDir.X = Mezzanine::MathTools::Abs( AbsoluteDir.X );
+        AbsoluteDir.Y = Mezzanine::MathTools::Abs( AbsoluteDir.Y );
+        AbsoluteDir.Z = Mezzanine::MathTools::Abs( AbsoluteDir.Z );
 
         // A small fixed sized constant time sorting algorithm for sorting the length of each axis.
         Mezzanine::Whole MaxAxis = 0, MidAxis = 1, MinAxis = 2;

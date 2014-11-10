@@ -163,7 +163,7 @@ namespace Mezzanine
 
         Boole Overlap(const Plane& Surface, const Sphere& Ball)
         {
-            return ( MathTools::Fabs( Surface.GetDistance( Ball.Center ) ) <= Ball.Radius );
+            return ( MathTools::Abs( Surface.GetDistance( Ball.Center ) ) <= Ball.Radius );
         }
 
         Boole Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2)
@@ -187,7 +187,7 @@ namespace Mezzanine
         {
             // Code in this function is based on the equivalent in Ogre
             Real Denom = Surface.Normal.DotProduct( Cast.GetNormal() );// + Surface.Distance;
-            if( MathTools::Fabs(Denom) < std::numeric_limits<Real>::epsilon() ) {
+            if( MathTools::Abs(Denom) < std::numeric_limits<Real>::epsilon() ) {
                 return Point3DTestResult( false, Vector3() );
             }else{
                 Real Nom = Surface.Normal.DotProduct( Cast.GetOrigin() ) + Surface.Distance;
@@ -202,9 +202,9 @@ namespace Mezzanine
             // Code in this function is based on the equivalent in Ogre
             Vector3 CastDir = Cast.GetNormal();
             Vector3 AbsoluteDir = CastDir;
-            AbsoluteDir.X = MathTools::Fabs( AbsoluteDir.X );
-            AbsoluteDir.Y = MathTools::Fabs( AbsoluteDir.Y );
-            AbsoluteDir.Z = MathTools::Fabs( AbsoluteDir.Z );
+            AbsoluteDir.X = MathTools::Abs( AbsoluteDir.X );
+            AbsoluteDir.Y = MathTools::Abs( AbsoluteDir.Y );
+            AbsoluteDir.Z = MathTools::Abs( AbsoluteDir.Z );
 
             // A small fixed sized constant time sorting algorithm for sorting the length of each axis.
             Whole MaxAxis = 0, MidAxis = 1, MinAxis = 2;
@@ -217,6 +217,11 @@ namespace Mezzanine
             }else if( AbsoluteDir[1] > AbsoluteDir[MaxAxis] ) {
                 MidAxis = MaxAxis;
                 MaxAxis = 1;
+            }
+
+            if(IsInside(Box,Cast.Origin))
+            {
+                return GeometryRayTestResult(true,Ray());
             }
 
             SegmentPosPair Distances(0,std::numeric_limits<Real>::infinity());

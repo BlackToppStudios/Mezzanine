@@ -85,8 +85,14 @@ namespace Mezzanine
     const Vector3& Ray::GetNormal() const
         { return this->Normal; }
 
+    void Ray::SetNormal(const Vector3& FreshNormal)
+        { this->Normal = FreshNormal.GetNormal(); }
+
     const Vector3& Ray::GetOrigin() const
         { return this->Origin; }
+
+    void Ray::SetOrigin(const Vector3& FreshOrigin)
+        { this->Origin = FreshOrigin; }
 
     Vector3 Ray::GetPointAtDistance(const Real& Distance)
         { return ( this->Origin + ( this->GetNormal() * Distance ) ); }
