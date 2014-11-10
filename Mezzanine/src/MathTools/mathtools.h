@@ -74,8 +74,10 @@ namespace Mezzanine
     %}
 #endif
 
+#include "MathTools/arithmetic.h"
 #include "MathTools/constants.h"
 #include "MathTools/intersections.h"
+#include "MathTools/trigonometry.h"
 
 
 namespace Mezzanine
@@ -90,108 +92,6 @@ namespace Mezzanine
     /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Real Math & Check Functions
-
-        /// @brief Rounds a Real up.
-        /// @param Val The value to be rounded.
-        /// @return Returns the result of the rounding.
-        Real MEZZ_LIB Ceil(const Real Val);
-        /// @brief Rounds a Real down.
-        /// @param Val The value to be rounded.
-        /// @return Returns the result of the rounding.
-        Real MEZZ_LIB Floor(const Real Val);
-        /// @brief Raises a Real to a power.
-        /// @param Val The base number to be raised.
-        /// @param Power The power (or exponent) to raise the Real by.
-        /// @return Returns the Raised Eeal.
-        Real MEZZ_LIB Pow(const Real Val, const Real Power);
-        /// @brief Raises Base-e to the exponent specified.
-        /// @remarks In case you are like me and don't know what Base-e is, it's essentially an irrational number (like Pi) that is used
-        /// in a number of exponential functions.  It's exact value can't be expressed, but it's value out to 20 decimal places is as follows: @n
-        /// 2.71828182845904523536 @n @n
-        /// So this method is really: return = (Base-e)^Val
-        /// @param Val The exponent to raise Base-e by.
-        /// @return Returns a Real that is the computed value of Base-e to the specified power.
-        Real MEZZ_LIB Exp(const Real Val);
-        /// @brief Gets the square root of a Real.
-        /// @param Val The number to be calculated.
-        /// @return Returns the calculated square root.
-        Real MEZZ_LIB Sqrt(const Real Val);
-        /// @brief Gets the absolute alue of a Real.
-        /// @param Val The value to get the absolute value of.
-        /// @return Returns the absolute value of the Real.
-        Real MEZZ_LIB Fabs(const Real Val);
-        /// @brief Modulo, fo' Reals.  Returns the remainder of the division between two Reals.
-        /// @param Numerator The number on top.
-        /// @param Denominator The number on bottom.
-        /// @return Returns the remainder of division between the two Reals passed in.
-        Real MEZZ_LIB Fmod(const Real Numerator, const Real Denominator);
-
-        /// @brief Checks to see if two Reals are within a certain range of each other.
-        /// @param First The first of two Reals to compare.
-        /// @param Second The second of two Reals to compare.
-        /// @param Tolerance The leeway allowed in how far the two can be apart.
-        /// @return Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise.
-        Boole MEZZ_LIB WithinTolerance(const Real First, const Real Second, const Real Tolerance);
-
-        /// @brief Extended version of the standard modulo that will wrap negative values.
-        /// @param Num The number to operate on.
-        /// @param Cap The numerical cap for this operation.
-        /// @return Returns the result of the operation, guarenteed to be in the range of 0 to (Cap-1).
-        Integer MEZZ_LIB WrappedModulo(const Integer Num, const Integer Cap);
-
-        /// @brief Convenience method that will clamp a type to be within a specified range.
-        /// @param Val The value to clamp.
-        /// @param Min The minimum allowed value.
-        /// @param Max The maximum allowed value.
-        /// @return Returns the clamped value.
-        template<typename NumType>
-        NumType Clamp(const NumType Val, const NumType Min, const NumType Max)
-        {
-            /// @todo Add an assert?
-            return std::max( std::min( Val, Max ), Min );
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Angle Calculation Functions and Values
-
-        /// @brief Calculates the Cosine of an angle.
-        /// @param Radians The angle to be computed in Radians.
-        /// @return Returns a Real representing the Cosine of the angle provided.
-        Real MEZZ_LIB Cos(const Real& Radians);
-        /// @brief Calculates the Sine of an angle.
-        /// @param Radians The angle to be computed in Radians.
-        /// @return Returns a Real representing the Sine of the angle provided.
-        Real MEZZ_LIB Sin(const Real& Radians);
-        /// @brief Calculates the Tangent of an angle.
-        /// @param Radians The angle to be computed in Radians.
-        /// @return Returns a Real representing the Tangent of the angle provided.
-        Real MEZZ_LIB Tan(const Real& Radians);
-        /// @brief Calculates the principal value of the arc Cosine of an angle.
-        /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
-        /// @return Returns a Real representing the principal value of the arc Cosine of the angle provided in Radians.
-        Real MEZZ_LIB ACos(const Real& Interval);
-        /// @brief Calculates the principal value of the arc Sine of an angle.
-        /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
-        /// @return Returns a Real representing the principal value of the arc Sine of the angle provided in Radians.
-        Real MEZZ_LIB ASin(const Real& Interval);
-        /// @brief Calculates the principal value of the arc Tangent of an angle.
-        /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
-        /// @return Returns a Real representing the principal value of the arc Tangent of the angle provided in Radians.
-        Real MEZZ_LIB ATan(const Real& Interval);
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Angle Conversion Functions and Values
-
-        /// @brief Converts an angle in Degree's to the same angle Radians.
-        /// @param Degrees The number of Degree's to convert.
-        /// @return Returns the converted number in Radians.
-        Real MEZZ_LIB DegreesToRadians(const Real& Degrees);
-        /// @brief Converts an angle in Radians's to the same angle Degrees.
-        /// @param Radians The number of Radians's to convert.
-        /// @return Returns the converted number in Degrees.
-        Real MEZZ_LIB RadiansToDegrees(const Real& Radians);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Geometry Math
