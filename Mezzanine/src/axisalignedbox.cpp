@@ -153,6 +153,32 @@ namespace Mezzanine
                         ( ZEx == AE_Min ? this->MinExt.Z : this->MaxExt.Z ) );
     }
 
+    Real AxisAlignedBox::GetSideExtent(AxisAlignedBox::Side WhichSideExtent) const
+    {
+        switch(WhichSideExtent)
+        {
+            case SideMinX: return this->MinExt.X;
+            case SideMinY: return this->MinExt.Y;
+            case SideMinZ: return this->MinExt.Z;
+            case SideMaxX: return this->MaxExt.X;
+            case SideMaxY: return this->MaxExt.Y;
+            case SideMaxZ: return this->MaxExt.Z;
+        }
+    }
+
+    Plane AxisAlignedBox::GetSidePlane(AxisAlignedBox::Side WhichSidePlane) const
+    {
+        Real Extent = GetSideExtent(WhichSidePlane); /// @todo This plane stuff is farfrom optimal,
+        Real SideMultiplier = (Extent>=0) ? 1 : -1;
+        switch(WhichSidePlane)
+        {
+            case SideMinX: case SideMaxX: return Plane(Vector3::Unit_X()*SideMultiplier, Extent);
+            case SideMinY: case SideMaxY: return Plane(Vector3::Unit_Y()*SideMultiplier, Extent);
+            case SideMinZ: case SideMaxZ: return Plane(Vector3::Unit_Z()*SideMultiplier, Extent);
+        }
+
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Conversion Methods
 

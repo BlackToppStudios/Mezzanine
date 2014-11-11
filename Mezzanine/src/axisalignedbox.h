@@ -44,6 +44,7 @@
 /// @brief This file contains the AxisAlignedBox class for representing AABB's of objects in the world.
 
 #include "vector3.h"
+#include "plane.h"
 
 namespace Ogre
 {
@@ -74,6 +75,18 @@ namespace Mezzanine
         /// The first member stores whether or not there was a hit.  The second member stores ray containing
         /// the points where the ray entered and exited the AABB.
         typedef std::pair<Boole,Ray> RayTestResult;
+
+        /// @brief Used to uniquely identify sides of an axis aligned box.
+        enum Side
+        {
+            SideMinX = 0,
+            SideMinY = 1,
+            SideMinZ = 2,
+            SideMaxX = 3,
+            SideMaxY = 4,
+            SideMaxZ = 5
+        };
+
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -167,6 +180,12 @@ namespace Mezzanine
         /// @param ZEx The extent for the Z axis to retrieve.
         /// @return Returns a Vector3 representing the position of the specified corner.
         Vector3 GetCorner(const AxisExtent XEx, const AxisExtent YEx, const AxisExtent ZEx) const;
+
+
+        Real GetSideExtent(Side WhichSideExtent) const;
+        /// @brief Get a plane corresponding to a side of the box.
+        /// @param WhichSidePlane Which side do you want a plane for?
+        Plane GetSidePlane(Side WhichSidePlane) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Conversion Methods
