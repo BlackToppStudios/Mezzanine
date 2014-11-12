@@ -221,7 +221,18 @@ namespace Mezzanine
 
             if(IsInside(Box,Cast.Origin))
             {
-                return GeometryRayTestResult(true,Ray());
+                Vector3 Intersects;
+                Intersects[MinAxis] = 0;
+                Intersects[MidAxis] = 0;
+                Intersects[MaxAxis] = 1;
+                /*Plane Side(Intersects,)
+                if(CastDir[MaxAxis]>0)
+                {
+
+                }else{
+
+                }
+                return GeometryRayTestResult(true,Ray(,Vector3));*/
             }
 
             SegmentPosPair Distances(0,std::numeric_limits<Real>::infinity());

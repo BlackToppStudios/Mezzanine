@@ -97,7 +97,7 @@ namespace Mezzanine
         Plane(const Plane& Other);
         /// @brief Descriptive constructor.
         /// @param Norm The positive direction of the plane.
-        /// @param Constant The Constant with which to project the plane.
+        /// @param Constant The Constant distance of the origin with which to project the plane.
         Plane(const Vector3& Norm, const Real Constant);
         /// @brief Dual Vector constructor.
         /// @param Norm The positive direction of the plane.

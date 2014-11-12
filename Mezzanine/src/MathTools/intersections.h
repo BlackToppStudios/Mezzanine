@@ -42,6 +42,7 @@
 
 #include "vector2.h"
 #include "vector3.h"
+#include "plane.h"
 
 namespace Mezzanine
 {
@@ -86,6 +87,16 @@ namespace Mezzanine
                 operator bool()
                     { return IntersectionCount != 0; }
 #endif
+        };
+
+        class PlaneAlignedQuad
+        {
+            public
+                Plane AlignedOn;
+                Vector2 MinExtents;
+                Vector2 MaxExtents;
+
+
         };
 
         typedef std::pair<Boole,Ray> GeometryRayTestResult;
