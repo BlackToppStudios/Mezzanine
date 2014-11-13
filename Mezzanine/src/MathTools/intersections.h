@@ -91,12 +91,48 @@ namespace Mezzanine
 
         class PlaneAlignedQuad
         {
-            public
-                Plane AlignedOn;
+            private:
+                StandardAxis AlignedOn;
+                Real DistanceFromOrigin;
                 Vector2 MinExtents;
                 Vector2 MaxExtents;
+            public:
 
+                PlaneAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
+                                 const Real& Distance = 0.0,
+                                 const Vector2& Min = Vector2(),
+                                 const Vector2& Max = Vector2())
+                    : AlignedOn(PlanarAlignment),
+                      MinExtents(Min),
+                      MaxExtents(Max)
+                {}
 
+                static Vector2 DropAxisToConvert(Vector3 Point, StandardAxis AxisToDrop)
+                {
+
+                }
+
+                bool OverlapsWith(Vector3 Other) const
+                {
+                    if(DistanceFromOrigin == Other[AlignedOn])
+                    {
+                        return OverlapsWithPointOnPl();
+                    }
+                    /*witch(StandardAxis)
+                    {
+                        case Axis_X:
+
+                        case Axis_Y:
+                        case Axis_Z:
+                    }*/
+
+                    return false;
+                }
+
+                bool OverlapsWithPointOnPl() const
+                {
+
+                }
         };
 
         typedef std::pair<Boole,Ray> GeometryRayTestResult;
