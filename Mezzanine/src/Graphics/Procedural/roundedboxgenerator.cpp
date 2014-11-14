@@ -109,7 +109,7 @@ namespace Mezzanine
                 Integer Offset = 0;
 
                 Vector3 centerPosition = ( Vector3::Unit_X() * ( 0.5 * XPos * this->BoxSize.X ) ) + ( Vector3::Unit_Y() * ( 0.5 * YPos * this->BoxSize.Y ) ) + ( Vector3::Unit_Z() * ( 0.5 * ZPos * this->BoxSize.Z ) );
-                Vector3 vy0 =  Vector3::Unit_X() * ( 1.f - MathTools::Fabs(XPos) ) + Vector3::Unit_Y() * ( 1.f - MathTools::Fabs(YPos) ) + Vector3::Unit_Z() * ( 1.f - MathTools::Fabs(ZPos) );//extrusion direction
+                Vector3 vy0 =  Vector3::Unit_X() * ( 1.f - MathTools::Abs(XPos) ) + Vector3::Unit_Y() * ( 1.f - MathTools::Abs(YPos) ) + Vector3::Unit_Z() * ( 1.f - MathTools::Abs(ZPos) );//extrusion direction
 
                 Vector3 vx0 = vy0.GetAntiPermute();
                 Vector3 vz0 = vy0.GetPermute();
@@ -120,7 +120,7 @@ namespace Mezzanine
                 if( vx0.CrossProduct(vy0).DotProduct(vz0) < 0.0 )
                     vy0 = -vy0;
 
-                Real height = ( 1 - MathTools::Fabs(XPos) ) * this->BoxSize.X + ( 1 - MathTools::Fabs(YPos) ) * this->BoxSize.Y + ( 1 - MathTools::Fabs(ZPos) ) * this->BoxSize.Z;
+                Real height = ( 1 - MathTools::Abs(XPos) ) * this->BoxSize.X + ( 1 - MathTools::Abs(YPos) ) * this->BoxSize.Y + ( 1 - MathTools::Abs(ZPos) ) * this->BoxSize.Z;
                 Vector3 OffsetPosition = centerPosition - ( vy0 * ( 0.5 * height ) );
                 Integer numSegHeight = 1;
 

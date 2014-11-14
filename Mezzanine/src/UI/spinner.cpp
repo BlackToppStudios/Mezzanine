@@ -389,7 +389,7 @@ namespace Mezzanine
         Real Spinner::GetCurrentXPage() const
         {
             if( this->OrderPriority == UI::OP_Horizontal_Vertical ) {
-                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxYPages() ) + 1 );
+                return MathTools::Ceil( MathTools::Mod( this->SpinValue , this->GetMaxYPages() ) + 1 );
             }else if( this->OrderPriority == OP_Vertical_Horizontal ) {
                 return MathTools::Ceil( this->SpinValue / this->GetMaxXPages() );
             }
@@ -401,7 +401,7 @@ namespace Mezzanine
             if( this->OrderPriority == UI::OP_Horizontal_Vertical ) {
                 return MathTools::Ceil( this->SpinValue / this->GetMaxYPages() );
             }else if( this->OrderPriority == OP_Vertical_Horizontal ) {
-                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxXPages() ) + 1 );
+                return MathTools::Ceil( MathTools::Mod( this->SpinValue , this->GetMaxXPages() ) + 1 );
             }
             return 1;
         }

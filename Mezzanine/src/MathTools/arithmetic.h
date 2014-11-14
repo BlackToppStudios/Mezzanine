@@ -78,12 +78,12 @@ namespace Mezzanine
         /// @brief Gets the absolute alue of a Real.
         /// @param Val The value to get the absolute value of.
         /// @return Returns the absolute value of the Real.
-        Real MEZZ_LIB Fabs(const Real Val);
+        Real MEZZ_LIB Abs(const Real Val);
         /// @brief Modulo, fo' Reals.  Returns the remainder of the division between two Reals.
         /// @param Numerator The number on top.
         /// @param Denominator The number on bottom.
         /// @return Returns the remainder of division between the two Reals passed in.
-        Real MEZZ_LIB Fmod(const Real Numerator, const Real Denominator);
+        Real MEZZ_LIB Mod(const Real Numerator, const Real Denominator);
 
         /// @brief Checks to see if two Reals are within a certain range of each other.
         /// @param First The first of two Reals to compare.

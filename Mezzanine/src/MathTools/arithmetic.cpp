@@ -68,14 +68,14 @@ namespace Mezzanine
         Real Sqrt(const Real Val)
             { return std::sqrt(Val); }
 
-        Real Fabs(const Real Val)
+        Real Abs(const Real Val)
             { return std::fabs(Val); }
 
-        Real Fmod(const Real Numerator, const Real Denominator)
+        Real Mod(const Real Numerator, const Real Denominator)
             { return std::fmod(Numerator,Denominator); }
 
         Boole WithinTolerance(const Real First, const Real Second, const Real Tolerance)
-            { return ( MathTools::Fabs(Second - First) <= Tolerance ); }
+            { return ( MathTools::Abs(Second - First) <= Tolerance ); }
 
         Integer WrappedModulo(const Integer Num, const Integer Cap)
         {

@@ -213,7 +213,7 @@ namespace Mezzanine
                         Vector2 B = CurrShape.GetPoint(SegmentIndex + 1);
                         if( A.Y != B.Y && ( A.Y - Point.Y ) * ( B.Y - Point.Y ) <= 0.0 ) {
                             Vector2 Intersect( A.X + ( Point.Y - A.Y ) * ( B.X - A.X ) / ( B.Y - A.Y ), Point.Y );
-                            Real Dist = MathTools::Fabs( Point.X - Intersect.X );
+                            Real Dist = MathTools::Abs( Point.X - Intersect.X );
                             if( Dist < ClosestSegmentDistance ) {
                                 ClosestSegmentIndex = SegmentIndex;
                                 ClosestSegmentDistance = Dist;

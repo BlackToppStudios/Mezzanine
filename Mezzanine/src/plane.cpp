@@ -128,7 +128,7 @@ namespace Mezzanine
     Plane::Side Plane::GetSide(const Vector3& Center, const Vector3& HalfSize) const
     {
         Real CenterDist = this->GetDistance(Center);
-        Real MaxDist = MathTools::Fabs( this->Normal.DotProduct(HalfSize) );
+        Real MaxDist = MathTools::Abs( this->Normal.DotProduct(HalfSize) );
         if( CenterDist < -MaxDist ) {
             return Plane::S_Negative;
         }else if( CenterDist > +MaxDist ) {

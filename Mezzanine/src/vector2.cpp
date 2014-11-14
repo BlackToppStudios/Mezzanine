@@ -358,7 +358,7 @@ namespace Mezzanine
     {
         if( ( First - Second ).SquaredLength() < 1e-6 )
 			return false;
-		if( MathTools::Fabs( First.X - Second.X ) > 1e-3 )
+		if( MathTools::Abs( First.X - Second.X ) > 1e-3 )
 			return ( First.X < Second.X );
 		return ( First.Y < Second.Y );
     }

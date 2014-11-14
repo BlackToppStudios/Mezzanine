@@ -19022,10 +19022,10 @@ static int _wrap_Fabs(lua_State* L) {
   Mezzanine::Real arg1 ;
   Mezzanine::Real result;
   
-  SWIG_check_num_args("Mezzanine::MathTools::Fabs",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Fabs",1,"Mezzanine::Real const");
+  SWIG_check_num_args("Mezzanine::MathTools::Abs",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Abs",1,"Mezzanine::Real const");
   arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Fabs(arg1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Abs(arg1);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -19043,12 +19043,12 @@ static int _wrap_Fmod(lua_State* L) {
   Mezzanine::Real arg2 ;
   Mezzanine::Real result;
   
-  SWIG_check_num_args("Mezzanine::MathTools::Fmod",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Fmod",1,"Mezzanine::Real const");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Fmod",2,"Mezzanine::Real const");
+  SWIG_check_num_args("Mezzanine::MathTools::Mod",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Mod",1,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Mod",2,"Mezzanine::Real const");
   arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
   arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Fmod(arg1,arg2);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Mod(arg1,arg2);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   

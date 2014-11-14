@@ -191,7 +191,7 @@ namespace Mezzanine
             else if( i == 1 ) Vec = Other.PointB;
             else if( i == 2 ) Vec = Other.PointC;
             du[i] = n1.DotProduct( Vec ) + d1;
-            if( MathTools::Fabs( du[i] ) < 1e-6 )
+            if( MathTools::Abs( du[i] ) < 1e-6 )
                 du[i] = 0.0;
         }
 
@@ -216,7 +216,7 @@ namespace Mezzanine
             else if( i == 1 ) Vec = this->PointB;
             else if( i == 2 ) Vec = this->PointC;
             dv[i] = n2.DotProduct( Vec ) + d2;
-            if( MathTools::Fabs( dv[i] ) < 1e-6 )
+            if( MathTools::Abs( dv[i] ) < 1e-6 )
                 dv[i] = 0.0;
         }
 
@@ -236,10 +236,10 @@ namespace Mezzanine
         // Project triangle points onto the intersection line
 
         /* compute and index to the largest component of D */
-        Real Max = MathTools::Fabs( d[0] );
+        Real Max = MathTools::Abs( d[0] );
         Integer index = 0;
-        Real b = MathTools::Fabs( d[1] );
-        Real c = MathTools::Fabs( d[2] );
+        Real b = MathTools::Abs( d[1] );
+        Real c = MathTools::Abs( d[2] );
         if ( b > Max )
             Max = b, index = 1;
         if ( c > Max )

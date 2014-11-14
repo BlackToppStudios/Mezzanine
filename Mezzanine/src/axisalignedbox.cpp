@@ -88,7 +88,7 @@ namespace Mezzanine
     Real AxisAlignedBox::GetVolume() const
     {
         Vector3 Diff = this->MaxExt - this->MinExt;
-        return ( Diff.X * Diff.Y * Diff.Z );
+        return ( MathTools::Abs(Diff.X) * MathTools::Abs(Diff.Y) * MathTools::Abs(Diff.Z) );
     }
 
     AxisAlignedBox AxisAlignedBox::GetOverlap(const AxisAlignedBox& Other) const
