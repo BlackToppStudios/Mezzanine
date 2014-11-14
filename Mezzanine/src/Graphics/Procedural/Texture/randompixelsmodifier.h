@@ -118,7 +118,7 @@ namespace Mezzanine
                 /// @param Blue The Blue component for the colour of the randomly generated pixels.  Initial Value: 1.0.
                 /// @param Alpha The Alpha component for the colour of the randomly generated pixels.  Initial Value: 1.0.
                 /// @return Returns a reference to this.
-                RandomPixelsModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                RandomPixelsModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
                 /// @brief Sets the colour of the pixels to be generated.
                 /// @param Red The Red component for the colour of the randomly generated pixels.  Initial Value: 1.0.
                 /// @param Green The Green component for the colour of the randomly generated pixels.  Initial Value: 1.0.

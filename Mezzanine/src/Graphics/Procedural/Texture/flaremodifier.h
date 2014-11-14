@@ -116,14 +116,14 @@ namespace Mezzanine
                 /// @brief Sets the colour of the flare to be rendered.
                 /// @param Colour The colour of the flare to draw.  Initial Value: (1.0,1.0,1.0,1.0).
                 /// @return Returns a reference to this.
-                FlareModifier& SetFlareColour(const ColourValue& Colour);
+                FlareModifier& SetColour(const ColourValue& Colour);
                 /// @brief Sets the colour of the flare to be rendered.
                 /// @param Red The amount of red colour in the flare to draw.  Initial Value: 1.0.
                 /// @param Green The amount of green colour in the flare to draw.  Initial Value: 1.0.
                 /// @param Blue The amount of blue colour in the flare to draw.  Initial Value: 1.0.
                 /// @param Alpha The amount of alpha colour in the flare to draw.  Initial Value: 1.0.
                 /// @return Returns a reference to this.
-                FlareModifier& SetFlareColour(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                FlareModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
                 /// @brief Sets the center position of the flare.
                 /// @param Center The central position of the flare on the texture in relative coordinates.  Initial Value: (0.5,0.5).
                 /// @return Returns a reference to this.

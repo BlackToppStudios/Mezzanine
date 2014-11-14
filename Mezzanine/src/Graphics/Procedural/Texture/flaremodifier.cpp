@@ -134,13 +134,13 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            FlareModifier& FlareModifier::SetFlareColour(const ColourValue& Colour)
+            FlareModifier& FlareModifier::SetColour(const ColourValue& Colour)
             {
                 this->FlareColour = Colour;
                 return *this;
             }
 
-            FlareModifier& FlareModifier::SetFlareColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            FlareModifier& FlareModifier::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
             {
                 this->FlareColour.SetValues(Red,Green,Blue,Alpha);
                 return *this;

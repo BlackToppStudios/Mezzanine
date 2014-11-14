@@ -234,14 +234,14 @@ namespace Mezzanine
                 /// @brief Sets the colour of the lines to be drawn for the Cycloid.
                 /// @param Colour The colour of the Cycloid to draw.  Initial Value: (1.0,1.0,1.0,1.0).
                 /// @return Returns a reference to this.
-                CycloidModifier& SetCycloidColour(const ColourValue& Colour);
+                CycloidModifier& SetColour(const ColourValue& Colour);
                 /// @brief Sets the colour of the lines to be drawn for the Cycloid.
                 /// @param Red The amount of red in the Cycloid that will be drawn.  Initial Value: 1.0.
                 /// @param Green The amount of green in the Cycloid that will be drawn.  Initial Value: 1.0.
                 /// @param Blue The amount of blue in the Cycloid that will be drawn.  Initial Value: 1.0.
                 /// @param Alpha The amount of alpha in the Cycloid that will be drawn.  Initial Value: 1.0.
                 /// @return Returns a reference to this.
-                CycloidModifier& SetCycloidColour(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                CycloidModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
                 /// @brief Sets the center position of the Cycloid.
                 /// @param Center The center position of the Cycloid on the texture in relative units.  Initial Value: (0.5,0.5).
                 /// @return Returns a reference to this.
