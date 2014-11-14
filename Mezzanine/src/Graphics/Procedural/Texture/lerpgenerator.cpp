@@ -64,10 +64,13 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraljittermodifier_cpp
-#define _graphicsproceduraljittermodifier_cpp
+#ifndef _graphicsprocedurallerpgenerator_cpp
+#define _graphicsprocedurallerpgenerator_cpp
 
-#include "Graphics/Procedural/Texture/jittermodifier.h"
+#include "Graphics/Procedural/Texture/lerpgenerator.h"
+
+#include "exception.h"
+#include "interpolator.h"
 
 namespace Mezzanine
 {
@@ -75,55 +78,73 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            JitterModifier::JitterModifier() :
-                GeneratorSeed(5120),
-                JitterRadius(32)
+            LerpGenerator::LerpGenerator() :
+                FirstTexture(NULL),
+                SecondTexture(NULL),
+                InterpolateAmount(0.5)
                 {  }
 
-            JitterModifier::~JitterModifier()
+            LerpGenerator::~LerpGenerator()
                 {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            void JitterModifier::Modify(TextureBuffer& Buffer)
+            void LerpGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                TextureBuffer TempBuffer(Buffer);
-                srand(this->GeneratorSeed);
-                Integer TargetWidth = static_cast<Integer>( Buffer.GetWidth() );
-                Integer TargetHeight = static_cast<Integer>( Buffer.GetHeight() );
-                Integer Radius = static_cast<Integer>( 1.0 + ( 9.0 / 255.0 ) * ( static_cast<Real>(this->JitterRadius) - 1.0 ) );
-                //Integer MaxDist = Radius * 2 + 1;
-                for( Integer Y = 0; Y < TargetHeight ; ++Y )
-                {
-                    for( Integer X = 0; X < TargetWidth ; ++X )
-                    {
-                        Integer NewX = X + ( rand() % ( Radius * 2 + 1 ) ) - Radius;
-                        Integer NewY = Y + ( rand() % ( Radius * 2 + 1 ) ) - Radius;
+                const Whole TargetWidth = Buffer.GetWidth();
+                const Whole TargetHeight = Buffer.GetHeight();
+                if( TargetWidth > this->FirstTexture->GetWidth() || TargetHeight > this->FirstTexture->GetHeight() ) {
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The FirstTexture provided for LERP is not large enough to lerp onto the target texture.");
+                }
+                if( TargetWidth > this->SecondTexture->GetWidth() || TargetHeight > this->SecondTexture->GetHeight() ) {
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The SecondTexture provided for LERP is not large enough to lerp onto the target texture.");
+                }
 
-                        if( NewX >= 0 && NewX < TargetWidth && NewY >= 0 && NewY < TargetHeight ) {
-                            TempBuffer.SetPixel(static_cast<Whole>(NewX),static_cast<Whole>(NewY), Buffer.GetPixel(static_cast<Whole>(X),static_cast<Whole>(Y)) );
-                        }
+                for( Whole Y = 0 ; Y < TargetHeight ; ++Y )
+                {
+                    for( Whole X = 0 ; X < TargetWidth ; ++X )
+                    {
+                        ColourValue FirstColour = this->FirstTexture->GetPixel(X,Y);
+                        ColourValue SecondColour = this->SecondTexture->GetPixel(X,Y);
+
+                        /*ColourValue TargetColour( FirstColour.RedChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.RedChannel * this->InterpolateAmount,
+                                                  FirstColour.GreenChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.GreenChannel * this->InterpolateAmount,
+                                                  FirstColour.BlueChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.BlueChannel * this->InterpolateAmount,
+                                                  FirstColour.AlphaChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.AlphaChannel * this->InterpolateAmount);//*/
+                        LinearInterpolator<Real> Interpolator;
+                        ColourValue TargetColour( Interpolator.InterpolateMath(FirstColour.RedChannel,SecondColour.RedChannel,this->InterpolateAmount),
+                                                  Interpolator.InterpolateMath(FirstColour.GreenChannel,SecondColour.GreenChannel,this->InterpolateAmount),
+                                                  Interpolator.InterpolateMath(FirstColour.BlueChannel,SecondColour.BlueChannel,this->InterpolateAmount),
+                                                  Interpolator.InterpolateMath(FirstColour.AlphaChannel,SecondColour.AlphaChannel,this->InterpolateAmount) );
+                        Buffer.SetPixel(X,Y,TargetColour);
                     }
                 }
-                Buffer.SetData(TempBuffer);
             }
 
-            String JitterModifier::GetName() const
-                { return "JitterModifier"; }
+            String LerpGenerator::GetName() const
+                { return "LerpGenerator"; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            JitterModifier& JitterModifier::SetGeneratorSeed(const Whole Seed)
+            LerpGenerator& LerpGenerator::SetFirstTexture(TextureBuffer* First)
             {
-                this->GeneratorSeed = Seed;
+                this->FirstTexture = First;
                 return *this;
             }
 
-            JitterModifier& JitterModifier::SetJitterRadius(const UInt16 Radius)
+            LerpGenerator& LerpGenerator::SetSecondTexture(TextureBuffer* Second)
             {
-                this->JitterRadius = Radius;
+                this->SecondTexture = Second;
+                return *this;
+            }
+
+            LerpGenerator& LerpGenerator::SetInterpolateAmount(const Real Amount)
+            {
+                if( Amount >= 0.0 && Amount <= 1.0 ) {
+                    this->InterpolateAmount = Amount;
+                }
                 return *this;
             }
         }//Procedural

@@ -75,7 +75,45 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A modifier that will randomly shuffle the pixel being processed to a nearby position.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB JitterModifier : public TextureModifier
+            {
+            protected:
+                /// @internal
+                /// @brief The seed to be used for the random number generator.
+                Whole GeneratorSeed;
+                /// @internal
+                /// @brief The radius around the pixel being processed in which the pixel can be displaced.
+                UInt16 JitterRadius;
+            public:
+                /// @brief Blank constructor.
+                JitterModifier();
+                /// @brief Class destructor.
+                virtual ~JitterModifier();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the seed for the "random" number generator.
+                /// @param Seed The seed value for the random number generator.  Initial Value: 5120.
+                /// @return Returns a reference to this.
+                JitterModifier& SetGeneratorSeed(const Whole Seed);
+                /// @brief Sets the range in which pixels can be swapped.
+                /// @param Radius The radius around the pixel being processed in which the pixel can be displaced.  Initial Value: 32.
+                /// @return Returns a reference to this.
+                JitterModifier& SetJitterRadius(const UInt16 Radius);
+            };//JitterModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

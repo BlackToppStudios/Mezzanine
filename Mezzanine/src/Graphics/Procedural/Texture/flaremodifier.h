@@ -64,16 +64,12 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifiers_h
-#define _graphicsproceduraltexturemodifiers_h
-
-#include "Graphics/Procedural/Texture/texturebuffer.h"
+#ifndef _graphicsproceduralflaremodifier_h
+#define _graphicsproceduralflaremodifier_h
 
 #include "Graphics/Procedural/Texture/texturemodifier.h"
 
 #include "vector2.h"
-#include "rect.h"
-#include "matrix3x3.h"
 
 namespace Mezzanine
 {
@@ -82,17 +78,29 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief
+            /// @brief A modifier that will draw an illuminated circle that fades over a distance to a previous texture.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB EdgeDetectionModifier : public TextureModifier
+            class MEZZ_LIB FlareModifier : public TextureModifier
             {
             protected:
+                /// @internal
+                /// @brief The colour of the flare to draw.
+                ColourValue FlareColour;
+                /// @internal
+                /// @brief The central position of the flare on the texture in relative coordinates.
+                Vector2 FlareCenter;
+                /// @internal
+                /// @brief The radius of the flare to draw in relative coordinates.
+                Vector2 FlareRadius;
+                /// @internal
+                /// @brief A modifier for the intensity of the flare colour.
+                Real FlareBrightness;
             public:
                 /// @brief Blank constructor.
-                EdgeDetectionModifier();
+                FlareModifier();
                 /// @brief Class destructor.
-                virtual ~EdgeDetectionModifier();
+                virtual ~FlareModifier();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -105,7 +113,46 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-            };//EdgeDetectionModifier
+                /// @brief Sets the colour of the flare to be rendered.
+                /// @param Colour The colour of the flare to draw.  Initial Value: (1.0,1.0,1.0,1.0).
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareColour(const ColourValue& Colour);
+                /// @brief Sets the colour of the flare to be rendered.
+                /// @param Red The amount of red colour in the flare to draw.  Initial Value: 1.0.
+                /// @param Green The amount of green colour in the flare to draw.  Initial Value: 1.0.
+                /// @param Blue The amount of blue colour in the flare to draw.  Initial Value: 1.0.
+                /// @param Alpha The amount of alpha colour in the flare to draw.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareColour(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                /// @brief Sets the center position of the flare.
+                /// @param Center The central position of the flare on the texture in relative coordinates.  Initial Value: (0.5,0.5).
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareCenter(const Vector2& Center);
+                /// @brief Sets the center position of the flare on the X axis.
+                /// @param X The center position of the flare on the X axis in relative coordinates.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareCenterX(const Real X);
+                /// @brief Sets the center position of the flare on the Y axis.
+                /// @param Y The center position of the flare on the Y axis in relative coordinates.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareCenterY(const Real Y);
+                /// @brief Sets the radius size of the flare.
+                /// @param Radius The radius of the flare to draw in relative coordinates.  Initial Value: (0.5,0.5).
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareRadius(const Vector2& Radius);
+                /// @brief Sets the radius size of the flare on the X axis.
+                /// @param X The radius of the flare on the X axis in relative coordinates.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareRadiusX(const Real X);
+                /// @brief Sets the radius size of the flare on the Y axis.
+                /// @param Y The radius of the flare on the Y axis in relative coordinates.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareRadiusY(const Real Y);
+                /// @brief Sets the brightness of the flare.
+                /// @param Brightness A modifier for the intensity of the flare colour.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareBrightness(const Real Brightness);
+            };//FlareModifier
         }//Procedural
     }//Graphics
 }//Mezzanine
