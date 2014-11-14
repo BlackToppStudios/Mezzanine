@@ -69,6 +69,8 @@ namespace Mezzanine
         /// @details This type provides more verbose return data that can be used for further tests.
         typedef std::pair<Boole,LineSegment3D> Line3DTestResult;
 
+        typedef std::pair<Boole,Ray> GeometryRayTestResult;
+
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
         class PointPointInterection
@@ -89,53 +91,79 @@ namespace Mezzanine
 #endif
         };
 
-        class PlaneAlignedQuad
-        {
-            private:
-                StandardAxis AlignedOn;
-                Real DistanceFromOrigin;
-                Vector2 MinExtents;
-                Vector2 MaxExtents;
-            public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // 2D Geometry Intersection Query
 
-                PlaneAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
-                                 const Real& Distance = 0.0,
-                                 const Vector2& Min = Vector2(),
-                                 const Vector2& Max = Vector2())
-                    : AlignedOn(PlanarAlignment),
-                      MinExtents(Min),
-                      MaxExtents(Max)
-                {}
+        /// @brief Checks to see if two 2D line segments intersect.
+        /// @param Line1 The first line segment to test.
+        /// @param Line2 The second line segment to test.
+        /// @return Returns a std::pair containing whether or not the was an intersection, and the point in 2D space where the intersection occured.
+        Point2DTestResult MEZZ_LIB Intersects(const LineSegment2D& Line1, const LineSegment2D& Line2);
 
-                static Vector2 DropAxisToConvert(Vector3 Point, StandardAxis AxisToDrop)
-                {
+        ///////////////////////////////////////////////////////////////////////////////
+        // 3D Geometry Intersection Query
 
-                }
+        /// @brief Checks to see if a point in 3D space is within an AABB.
+        /// @param Box The AABB to check if the point is inside.
+        /// @param Point The point in 3D space to check if it is within the AABB.
+        /// @return Returns true if the provided point is within the AABB, false otherwise.
+        Boole MEZZ_LIB IsInside(const AxisAlignedBox& Box, const Vector3& Point);
+        /// @brief Checks to see if a point in 3D space is within a Sphere.
+        /// @param Ball The Sphere to check if the point is inside.
+        /// @param Point The point in 3D space to check if it is within the Sphere.
+        /// @return Returns true if the provided point is within the sphere, false otherwise.
+        Boole MEZZ_LIB IsInside(const Sphere& Ball, const Vector3& Point);
 
-                bool OverlapsWith(Vector3 Other) const
-                {
-                    if(DistanceFromOrigin == Other[AlignedOn])
-                    {
-                        return OverlapsWithPointOnPl();
-                    }
-                    /*witch(StandardAxis)
-                    {
-                        case Axis_X:
+        /// @brief Checks to see if an AABB and Sphere are overlapping.
+        /// @param Box The AABB to check for overlap.
+        /// @param Ball The Sphere to check for overlap.
+        /// @return Returns true if the AABB and Sphere overlap, false otherwise.
+        Boole MEZZ_LIB Overlap(const AxisAlignedBox& Box, const Sphere& Ball);
+        /// @brief Checks to see if an AANN and Plane are overlapping.
+        /// @param Box The AABB to check for overlap.
+        /// @param Surface The Plane to check for overlap.
+        /// @return Returns true if the AABB and Pland overlap, false otherwise.
+        Boole MEZZ_LIB Overlap(const AxisAlignedBox& Box, const Plane& Surface);
+        /// @brief Checks to see if a Plane and Sphere are overlapping.
+        /// @param Surface The Plane to check for overlap.
+        /// @param Ball The Sphere to check for overlap.
+        /// @return Returns true if the Plane and Sphere overlap, false otherwise.
+        Boole MEZZ_LIB Overlap(const Plane& Surface, const Sphere& Ball);
 
-                        case Axis_Y:
-                        case Axis_Z:
-                    }*/
+        /// @brief Checks to see if two AABBs are overlapping.
+        /// @param Box1 The first AABB to check for overlap.
+        /// @param Box2 The second AABB to check for overlap.
+        /// @return Returns true if the two AABBs are overlapping, false otherwise.
+        Boole MEZZ_LIB Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2);
+        /// @brief Checks to see if two Spheres are overlapping.
+        /// @param Ball1 The first Sphere to check for overlap.
+        /// @param Ball2 The second Sphere to check for overlap.
+        /// @return Returns true if the two Spheres are overlapping, false otherwise.
+        Boole MEZZ_LIB Overlap(const Sphere& Ball1, const Sphere& Ball2);
+        /// @brief Checks to see if two Planes are overlapping.
+        /// @param Surface1 The first Plane to check for overlap.
+        /// @param Surface2 The second Plane to check for overlap.
+        /// @return Returns true if the two Planes are overlapping, false otherwise.
+        Boole MEZZ_LIB Overlap(const Plane& Surface1, const Plane& Surface2);
 
-                    return false;
-                }
+        /// @brief Checks to see if a ray intersects with a Plane.
+        /// @param Surface The Plane to check for intersection.
+        /// @param Cast The casted ray to check for intersection.
+        /// @return Returns a std::pair containing whether of not the ray hit, and the point in 3D space where it hit if it did.
+        Point3DTestResult MEZZ_LIB Intersects(const Plane& Surface, const Ray& Cast);
+        /// @brief Checks to see if a ray intersects with an AABB.
+        /// @param Box The AABB to check for intersection.
+        /// @param Cast The casted ray to check for intersection.
+        /// @return Returns a std::pair containing whether or not the ray hit, and if it did also a ray that is the subsection of the casted ray that went through the AABB.
+        GeometryRayTestResult MEZZ_LIB Intersects(const AxisAlignedBox& Box, const Ray& Cast);
+        /// @brief Checks to see if a ray intersects with a Sphere.
+        /// @param Ball The Sphere to check for intersection.
+        /// @param Cast The casted ray to check for intersection.
+        /// @return Returns a std::pair containing whether or not the ray hit, and if it did also a ray that is the subsection of the casted ray that went through the Sphere.
+        GeometryRayTestResult MEZZ_LIB Intersects(const Sphere& Ball, const Ray& Cast);
 
-                bool OverlapsWithPointOnPl() const
-                {
 
-                }
-        };
 
-        typedef std::pair<Boole,Ray> GeometryRayTestResult;
     }//MathTools
 }//Mezzanine
 

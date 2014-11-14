@@ -37,56 +37,25 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mathtool_h
-#define _mathtool_h
+#ifndef _mathtoolintersectiontools_cpp
+#define _mathtoolintersectiontools_cpp
 
-#include "vector2.h"
-#include "vector3.h"
-#include "MathTools/intersections.h"
+#include "mathtools.h"
 
-namespace Mezzanine
+
+/// @cond DontDocumentInternal
+namespace
 {
-    /// @namespace Mezzanine::MathTools
-    /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
-    namespace MathTools
-    {
-    }
+
 }
-
-
-#include "swig.h"
-#ifdef SWIG_MATHTOOLS
-    #ifdef SWIG_UNSAFE
-        %module MezzanineMathTools
-    #else
-        #define SWIG_SAFE
-        %module MezzanineMathToolsSafe
-    #endif
-    #define SWIG_MODULE_SET
-
-    // Tell SWIG to create a module that scripting languages can use called "mezzanine"
-    // and insert a minimum of documentation into the bindingfile
-    %{
-        // code to be inserted verbatim into the swig file goes here
-        #include "mezzanine.h"
-        using namespace Mezzanine;
-        using namespace Mezzanine::MathTools;
-    %}
-#endif
-
-#include "MathTools/arithmetic.h"
-#include "MathTools/constants.h"
-#include "MathTools/intersections.h"
-#include "MathTools/intersectiontools.h"
-#include "MathTools/trigonometry.h"
-
+/// @endcond
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::MathTools
-    /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
     {
+
+
 
     }//MathTools
 }//Mezzanine
