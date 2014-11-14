@@ -126,7 +126,7 @@ namespace Mezzanine
                 ColourValue CombineFilterColour;
                 /// @internal
                 /// @brief A container of all the layers to be applied to the target texture in sequence.
-                std::vector<CombineLayer> CombineLayers;
+                CombineLayerContainer CombineLayers;
 
                 /// @internal
                 /// @brief Processes a single layer to combine it with the target image.
