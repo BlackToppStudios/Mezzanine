@@ -70,19 +70,44 @@ namespace Mezzanine
                 Vector2 MinExtents;         ///< The lowest extents of the rect on the plane concerned. Both values here must be lower than their respective max values
                 Vector2 MaxExtents;         ///< The highest extents of the rect.
 
-
+                /// @brief Simply drop one axis to create a two dimensional coordinate on an implied plane.
+                /// @param Point A Vector3 that needs a dimension dropped.
+                /// @param AxisToDrop The axis to be dropped which must then be implied to have the resulting Vector2 make Sense in 3d space
+                /// @return A Vector2.
                 static Vector2 DropAxisToCreateVector2(Vector3 Point, StandardAxis AxisToDrop)
                 {
                     switch(AxisToDrop)
                     {
-                        case Axis_X: return Vector2(Point.Z,Point.Y);
-                        case Axis_Y: return Vector2(Point.X,Point.Z);
-                        case Axis_Z: return Vector2(Point.X,Point.Y);
+                        case Axis_X: return Vector2(Point.Z, Point.Y);
+                        case Axis_Y: return Vector2(Point.X, Point.Z);
+                        case Axis_Z: return Vector2(Point.X, Point.Y);
                         default:
                             MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
                     }
                 }
 
+                /// @brief Add the axis back into the Point to transform it from a 2d coordinate on an implied plane, to one actually in 3d space.
+                /// @param Point A Vector3 that needs a dimension dropped.
+                /// @param AxisToRegain The axis to be returned to an explicit state.
+                /// @param Missing The value for the new axis.
+                /// @return A Vector3 un-mutated back into 3d space
+                static Vector3 DropAxisToCreateVector2(Vector2 Point, StandardAxis AxisToRegain, Real Missing)
+                {
+                    switch(AxisToDrop)
+                    {
+                        case Axis_X: return Vector3(Missing, Point.Y, Point.X);
+                        case Axis_Y: return Vector3(Point.X, Missing, Point.Y);
+                        case Axis_Z: return Vector3(Point.X, Point.Y, Missing);
+                        default:
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "");
+                    }
+                }
+
+                /// @brief Direct Advanced Constructor - Uses Vectors already on the implied plan
+                /// @param PlanarAlignment The raw StandardAxis to be used in the constructed PlaneAlignedQuad
+                /// @param Distance The raw Real to be used in the constructed PlaneAlignedQuad
+                /// @param Min The raw Vector2 to be used in the constructed PlaneAlignedQuad as the Minimum extent
+                /// @param Max The raw Vector2 to be used in the constructed PlaneAlignedQuad as the Maximum extent
                 PlaneAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
                                  const Real& Distance = 0.0,
                                  const Vector2& Min = Vector2(),
@@ -93,6 +118,10 @@ namespace Mezzanine
                       MaxExtents(Max)
                 {}
 
+                /// @brief Common Constructor - Create using 3d Points.
+                /// @param PlanarAlignment The plane this must be aligned on.
+                /// @param Min A 3d point
+                /// @param Max
                 PlaneAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
                                  const Vector3& Min = Vector3(),
                                  const Vector3& Max = Vector3())
