@@ -137,7 +137,7 @@ namespace Mezzanine
                 /// @param Blue The Blue component for the colour of the rectangle to generate.  Initial Value: 1.0.
                 /// @param Alpha The Alpha component for the colour of the rectangle to generate.  Initial Value: 1.0.
                 /// @return Returns a reference to this.
-                RectangleModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                RectangleModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
                 /// @brief Sets the colour of the rectangle to be generated.
                 /// @param Red The Red component for the colour of the rectangle to generate.  Initial Value: 255.
                 /// @param Green The Green component for the colour of the rectangle to generate.  Initial Value: 255.
@@ -145,6 +145,47 @@ namespace Mezzanine
                 /// @param Alpha The Alpha component for the colour of the rectangle to generate.  Initial Value: 255.
                 /// @return Returns a reference to this.
                 RectangleModifier& SetColour(const UInt8 Red, const UInt8 Green, const UInt8 Blue, const UInt8 Alpha);
+
+                /// @brief Sets the relative position and size of this rectangle..
+                /// @param XPosition The left edge of the rectangle in relative coordinates.  Initial Value: 0.0.
+                /// @param YPosition The top edge of the rectangle in relative coordinates.  Initial Value: 0.0.
+                /// @param XSize The horizontal size of the rectangle in relative coordinates.  Initial Value: 1.0.
+                /// @param YSize The vertical size of the rectangle in relative coordinates.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                RectangleModifier& SetRectangle(const Real XPosition, const Real YPosition, const Real XSize, const Real YSize);
+                /// @brief Sets the offsets for the position and size of this rectangle.
+                /// @param XPosition The left edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param YPosition The top edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param XSize The horizontal size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param YSize The vertical size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                RectangleModifier& SetRectangle(const Integer XPosition, const Integer YPosition, const Integer XSize, const Integer YSize);
+                /// @brief Sets the relative and offset values for the rectangle.
+                /// @param XPositionRel The left edge of the rectangle in relative coordinates.  Initial Value: 0.0.
+                /// @param YPositionRel The top edge of the rectangle in relative coordinates.  Initial Value: 0.0.
+                /// @param XSizeRel The horizontal size of the rectangle in relative coordinates.  Initial Value: 1.0.
+                /// @param YSizeRel The vertical size of the rectangle in relative coordinates.  Initial Value: 1.0.
+                /// @param XPositionAdj The left edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param YPositionAdj The top edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param XSizeAdj The horizontal size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param YSizeAdj The vertical size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                RectangleModifier& SetRectangle(const Real XPositionRel, const Real YPositionRel, const Real XSizeRel, const Real YSizeRel, const Integer XPositionAdj, const Integer YPositionAdj, const Integer XSizeAdj, const Integer YSizeAdj);
+
+                /// @brief Sets the relative and offset values for the rectangle position.
+                /// @param XPositionRel The left edge of the rectangle in relative coordinates.  Initial Value: 0.0.
+                /// @param YPositionRel The top edge of the rectangle in relative coordinates.  Initial Value: 0.0.
+                /// @param XPositionAdj The left edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param YPositionAdj The top edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                RectangleModifier& SetPosition(const Real XPositionRel, const Real YPositionRel, const Integer XPositionAdj, const Integer YPositionAdj);
+                /// @brief Sets the relative and offset values for the rectangle size.
+                /// @param XSizeRel The horizontal size of the rectangle in relative coordinates.  Initial Value: 1.0.
+                /// @param YSizeRel The vertical size of the rectangle in relative coordinates.  Initial Value: 1.0.
+                /// @param XSizeAdj The horizontal size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param YSizeAdj The vertical size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                RectangleModifier& SetSize(const Real XSizeRel, const Real YSizeRel, const Integer XSizeAdj, const Integer YSizeAdj);
 
                 /// @brief Sets the relative component of the left edge.
                 /// @param X The left edge of the rectangle in relative coordinates.  Initial Value: 0.0.
@@ -178,32 +219,6 @@ namespace Mezzanine
                 /// @param Y The vertical size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
                 /// @return Returns a reference to this.
                 RectangleModifier& SetYSizeAdj(const Integer Y);
-
-                /// @brief Sets the relative position and size of this rectangle..
-                /// @param XPosition The left edge of the rectangle in relative coordinates.  Initial Value: 0.0.
-                /// @param YPosition The top edge of the rectangle in relative coordinates.  Initial Value: 0.0.
-                /// @param XSize The horizontal size of the rectangle in relative coordinates.  Initial Value: 1.0.
-                /// @param YSize The vertical size of the rectangle in relative coordinates.  Initial Value: 1.0.
-                /// @return Returns a reference to this.
-                RectangleModifier& SetRectangle(const Real XPosition, const Real YPosition, const Real XSize, const Real YSize);
-                /// @brief Sets the offsets for the position and size of this rectangle.
-                /// @param XPosition The left edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
-                /// @param YPosition The top edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
-                /// @param XSize The horizontal size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
-                /// @param YSize The vertical size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
-                /// @return Returns a reference to this.
-                RectangleModifier& SetRectangle(const Integer XPosition, const Integer YPosition, const Integer XSize, const Integer YSize);
-                /// @brief Sets the four corner positions of the rectangle to be drawn.
-                /// @param XPositionRel The left edge of the rectangle in relative coordinates.  Initial Value: 0.0.
-                /// @param YPositionRel The top edge of the rectangle in relative coordinates.  Initial Value: 0.0.
-                /// @param XSizeRel The horizontal size of the rectangle in relative coordinates.  Initial Value: 1.0.
-                /// @param YSizeRel The vertical size of the rectangle in relative coordinates.  Initial Value: 1.0.
-                /// @param XPositionAdj The left edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
-                /// @param YPositionAdj The top edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
-                /// @param XSizeAdj The horizontal size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
-                /// @param YSizeAdj The vertical size adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
-                /// @return Returns a reference to this.
-                RectangleModifier& SetRectangle(const Real XPositionRel, const Real YPositionRel, const Real XSizeRel, const Real YSizeRel, const Integer XPositionAdj, const Integer YPositionAdj, const Integer XSizeAdj, const Integer YSizeAdj);
             };//RectangleModifier
         }//Procedural
     }//Graphics

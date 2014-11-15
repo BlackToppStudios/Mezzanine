@@ -90,17 +90,23 @@ namespace Mezzanine
                 Whole CircleRadius;
                 /// @internal
                 /// @brief The position on the X axis of the circle.
-                Whole CircleX;
+                Real CircleXRel;
                 /// @internal
                 /// @brief The position on the Y axis of the circle.
-                Whole CircleY;
+                Real CircleYRel;
+                /// @internal
+                /// @brief The position on the X axis of the circle.
+                Integer CircleXAdj;
+                /// @internal
+                /// @brief The position on the Y axis of the circle.
+                Integer CircleYAdj;
 
                 /// @internal
                 /// @brief Convenience method for placing a pixel for the circle.
-                /// @param DeltaX The offset from the origin point on the X axis to place the pixel.
-                /// @param DeltaY The offset from the origin point on the Y axis to place the pixel.
+                /// @param XPos The position on the X axis to place the pixel.
+                /// @param YPos The position on the Y axis to place the pixel.
                 /// @param Buffer A reference to the buffer being worked on.
-                void PutPixel(const Whole DeltaX, const Whole DeltaY, TextureBuffer& Buffer);
+                void PutPixel(const Integer XPos, const Integer YPos, TextureBuffer& Buffer);
             public:
                 /// @brief Blank constructor.
                 CircleModifier();
@@ -129,23 +135,35 @@ namespace Mezzanine
                 /// @param Alpha The red colour component of the circle to be drawn.  Initial Value: 1.0.
                 /// @return Returns a reference to this.
                 CircleModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
+
                 /// @brief Sets the radius of the circle.
                 /// @param Radius The radius of the circle to be drawn.  Initial Value: 0.
                 /// @return Returns a reference to this.
                 CircleModifier& SetRadius(const Whole Radius);
-                /// @brief Sets the pixel position of the center of the circle.
-                /// @param X The position on the X axis of the circle.  Initial Value: 0.
-                /// @param Y The position on the Y axis of the circle.  Initial Value: 0.
+
+                /// @brief Sets the relative and offset values for the rectangle position.
+                /// @param XRel The left edge of the rectangle in relative coordinates.  Initial Value: 0.5.
+                /// @param YRel The top edge of the rectangle in relative coordinates.  Initial Value: 0.5.
+                /// @param XAdj The left edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @param YAdj The top edge adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
                 /// @return Returns a reference to this.
-                CircleModifier& SetPosition(const Whole X, const Whole Y);
-                /// @brief Sets the pixel position of the center of the circle on the X axis.
-                /// @param X The position on the X axis of the circle.  Initial Value: 0.
+                CircleModifier& SetPosition(const Real XRel, const Real YRel, const Integer XAdj, const Integer YAdj);
+                /// @brief Sets the relative component of the center position on the X axis.
+                /// @param X The X axis center position of the circle in relative coordinates.  Initial Value: 0.5.
                 /// @return Returns a reference to this.
-                CircleModifier& SetPositionX(const Whole X);
-                /// @brief Sets the pixel position of the center of the circle on the Y axis.
-                /// @param Y The position on the Y axis of the circle.  Initial Value: 0.
+                CircleModifier& SetXPositionRel(const Real X);
+                /// @brief Sets the relative component of the center position on the Y axis.
+                /// @param Y The Y axis center position of the circle in relative coordinates.  Initial Value: 0.5.
                 /// @return Returns a reference to this.
-                CircleModifier& SetPositionY(const Whole Y);
+                CircleModifier& SetYPositionRel(const Real Y);
+                /// @brief Sets the absolute component of the center position on the X axis.
+                /// @param X The X axis adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                CircleModifier& SetXPositionAdj(const Integer X);
+                /// @brief Sets the absolute component of the center position on the Y axis.
+                /// @param Y The Y axis adjustment of the rectangle after relative coordinates are calculated.  Initial Value: 0.
+                /// @return Returns a reference to this.
+                CircleModifier& SetYPositionAdj(const Integer Y);
             };//CircleModifier
         }//Procedural
     }//Graphics

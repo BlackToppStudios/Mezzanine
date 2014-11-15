@@ -78,22 +78,24 @@ namespace Mezzanine
             CircleModifier::CircleModifier() :
                 CircleColour(ColourValue::White()),
                 CircleRadius(0),
-                CircleX(0),
-                CircleY(0)
+                CircleXRel(0.5),
+                CircleYRel(0.5),
+                CircleXAdj(0),
+                CircleYAdj(0)
                 {  }
 
             CircleModifier::~CircleModifier()
                 {  }
 
-            void CircleModifier::PutPixel(const Whole DeltaX, const Whole DeltaY, TextureBuffer& Buffer)
+            void CircleModifier::PutPixel(const Integer XPos, const Integer YPos, TextureBuffer& Buffer)
             {
-                if( this->CircleX + DeltaX < 0 || this->CircleX + DeltaX >= Buffer.GetWidth() ) {
+                if( XPos < 0 || XPos >= static_cast<Integer>( Buffer.GetWidth() ) ) {
                     return;
                 }
-                if( this->CircleY + DeltaY < 0 || this->CircleY + DeltaY >= Buffer.GetWidth() ) {
+                if( YPos < 0 || YPos >= static_cast<Integer>( Buffer.GetHeight() ) ) {
                     return;
                 }
-                Buffer.SetPixel(this->CircleX + DeltaX,this->CircleY + DeltaY,this->CircleColour);
+                Buffer.SetPixel(XPos,YPos,this->CircleColour);
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -101,20 +103,26 @@ namespace Mezzanine
 
             void CircleModifier::Modify(TextureBuffer& Buffer)
             {
-                Whole X = 0;
-                Whole Y = this->CircleRadius;
-                Whole P = 3 - ( 2 * this->CircleRadius );
+                const Integer TargetWidth = static_cast<Integer>( Buffer.GetWidth() );
+                const Integer TargetHeight = static_cast<Integer>( Buffer.GetHeight() );
+                const Integer XPos = ( ( this->CircleXRel * TargetWidth ) + this->CircleXAdj );
+                const Integer YPos = ( ( this->CircleYRel * TargetHeight ) + this->CircleYAdj );
+
+                Integer X = 0;
+                Integer Y = this->CircleRadius;
+                Integer P = 3 - ( 2 * this->CircleRadius );
+
                 while( X <= Y )
                 {
-                    for( Whole DeltaY = -Y ; DeltaY <= Y ; DeltaY++ )
+                    for( Integer DeltaY = -Y ; DeltaY <= Y ; DeltaY++ )
                     {
-                        this->PutPixel(+X,DeltaY,Buffer);
-                        this->PutPixel(-X,DeltaY,Buffer);
+                        this->PutPixel( XPos + (+X), YPos + DeltaY, Buffer );
+                        this->PutPixel( XPos + (-X), YPos + DeltaY, Buffer );
                     }
-                    for( Whole DeltaX = -X ; DeltaX <= X ; DeltaX++ )
+                    for( Integer DeltaX = -X ; DeltaX <= X ; DeltaX++ )
                     {
-                        this->PutPixel(+Y,DeltaX,Buffer);
-                        this->PutPixel(-Y,DeltaX,Buffer);
+                        this->PutPixel( XPos + DeltaX, YPos + (+Y), Buffer );
+                        this->PutPixel( XPos + DeltaX, YPos + (-Y), Buffer );
                     }
                     if( P < 0 ) {
                         P += 4 * X++ + 6;
@@ -148,22 +156,36 @@ namespace Mezzanine
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetPosition(const Whole X, const Whole Y)
+            CircleModifier& CircleModifier::SetPosition(const Real XRel, const Real YRel, const Integer XAdj, const Integer YAdj)
             {
-                this->CircleX = X;
-                this->CircleY = Y;
+                this->CircleXRel = XRel;
+                this->CircleYRel = YRel;
+                this->CircleXAdj = XAdj;
+                this->CircleYAdj = YAdj;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetPositionX(const Whole X)
+            CircleModifier& CircleModifier::SetXPositionRel(const Real X)
             {
-                this->CircleX = X;
+                this->CircleXRel = X;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetPositionY(const Whole Y)
+            CircleModifier& CircleModifier::SetYPositionRel(const Real Y)
             {
-                this->CircleY = Y;
+                this->CircleYRel = Y;
+                return *this;
+            }
+
+            CircleModifier& CircleModifier::SetXPositionAdj(const Integer X)
+            {
+                this->CircleXAdj = X;
+                return *this;
+            }
+
+            CircleModifier& CircleModifier::SetYPositionAdj(const Integer Y)
+            {
+                this->CircleYAdj = Y;
                 return *this;
             }
         }//Procedural

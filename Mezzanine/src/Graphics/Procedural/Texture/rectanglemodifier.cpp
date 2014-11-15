@@ -128,30 +128,6 @@ namespace Mezzanine
             RectangleModifier& RectangleModifier::SetColour(const UInt8 Red, const UInt8 Green, const UInt8 Blue, const UInt8 Alpha)
                 { this->FillColour.SetValues(static_cast<Real>(Red) / 255.0,static_cast<Real>(Green) / 255.0,static_cast<Real>(Blue) / 255.0,static_cast<Real>(Alpha) / 255.0);  return *this; }
 
-            RectangleModifier& RectangleModifier::SetXPositionRel(const Real X)
-                { this->PositionXRel = X;  return *this; }
-
-            RectangleModifier& RectangleModifier::SetYPositionRel(const Real Y)
-                { this->PositionYRel = Y;  return *this; }
-
-            RectangleModifier& RectangleModifier::SetXSizeRel(const Real X)
-                { this->SizeXRel = X;  return *this; }
-
-            RectangleModifier& RectangleModifier::SetYSizeRel(const Real Y)
-                { this->SizeYRel = Y;  return *this; }
-
-            RectangleModifier& RectangleModifier::SetXPositionAdj(const Integer X)
-                { this->PositionXAdj = X;  return *this; }
-
-            RectangleModifier& RectangleModifier::SetYPositionAdj(const Integer Y)
-                { this->PositionYAdj = Y;  return *this; }
-
-            RectangleModifier& RectangleModifier::SetXSizeAdj(const Integer X)
-                { this->SizeXAdj = X;  return *this; }
-
-            RectangleModifier& RectangleModifier::SetYSizeAdj(const Integer Y)
-                { this->SizeYAdj = Y;  return *this; }
-
             RectangleModifier& RectangleModifier::SetRectangle(const Real XPosition, const Real YPosition, const Real XSize, const Real YSize)
             {
                 this->PositionXRel = XPosition;
@@ -182,6 +158,48 @@ namespace Mezzanine
                 this->SizeYAdj = YSizeAdj;
                 return *this;
             }
+
+            RectangleModifier& RectangleModifier::SetPosition(const Real XPositionRel, const Real YPositionRel, const Integer XPositionAdj, const Integer YPositionAdj)
+            {
+                this->PositionXRel = XPositionRel;
+                this->PositionYRel = YPositionRel;
+                this->PositionXAdj = XPositionAdj;
+                this->PositionYAdj = YPositionAdj;
+                return *this;
+            }
+
+            RectangleModifier& RectangleModifier::SetSize(const Real XSizeRel, const Real YSizeRel, const Integer XSizeAdj, const Integer YSizeAdj)
+            {
+                this->SizeXRel = XSizeRel;
+                this->SizeYRel = YSizeRel;
+                this->SizeXAdj = XSizeAdj;
+                this->SizeYAdj = YSizeAdj;
+                return *this;
+            }
+
+            RectangleModifier& RectangleModifier::SetXPositionRel(const Real X)
+                { this->PositionXRel = X;  return *this; }
+
+            RectangleModifier& RectangleModifier::SetYPositionRel(const Real Y)
+                { this->PositionYRel = Y;  return *this; }
+
+            RectangleModifier& RectangleModifier::SetXSizeRel(const Real X)
+                { this->SizeXRel = X;  return *this; }
+
+            RectangleModifier& RectangleModifier::SetYSizeRel(const Real Y)
+                { this->SizeYRel = Y;  return *this; }
+
+            RectangleModifier& RectangleModifier::SetXPositionAdj(const Integer X)
+                { this->PositionXAdj = X;  return *this; }
+
+            RectangleModifier& RectangleModifier::SetYPositionAdj(const Integer Y)
+                { this->PositionYAdj = Y;  return *this; }
+
+            RectangleModifier& RectangleModifier::SetXSizeAdj(const Integer X)
+                { this->SizeXAdj = X;  return *this; }
+
+            RectangleModifier& RectangleModifier::SetYSizeAdj(const Integer Y)
+                { this->SizeYAdj = Y;  return *this; }
         }//Procedural
     }//Graphics
 }//Mezzanine
