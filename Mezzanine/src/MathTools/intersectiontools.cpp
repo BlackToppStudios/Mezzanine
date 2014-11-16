@@ -55,7 +55,71 @@ namespace Mezzanine
     namespace MathTools
     {
 
+        Vector2 AxisAlignedQuad::DropAxisToCreateVector2(Vector3 Point, StandardAxis AxisToDrop)
+        {
+            switch(AxisToDrop)
+            {
+                case Axis_X: return Vector2(Point.Z, Point.Y);
+                case Axis_Y: return Vector2(Point.X, Point.Z);
+                case Axis_Z: return Vector2(Point.X, Point.Y);
+                default:
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
+            }
+        }
 
+        Vector3 AxisAlignedQuad::DropAxisToCreateVector2(Vector2 Point, StandardAxis AxisToRegain, Real Missing)
+        {
+            switch(AxisToRegain)
+            {
+                case Axis_X: return Vector3(Missing, Point.Y, Point.X);
+                case Axis_Y: return Vector3(Point.X, Missing, Point.Y);
+                case Axis_Z: return Vector3(Point.X, Point.Y, Missing);
+                default:
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "");
+            }
+        }
+
+        AxisAlignedQuad::AxisAlignedQuad(const StandardAxis &PlanarAlignment, const Real &Distance, const Vector2 &Min, const Vector2 &Max)
+            : AlignedOn(PlanarAlignment),
+              DistanceFromOrigin(Distance),
+              MinExtents(Min),
+              MaxExtents(Max)
+        {}
+
+        AxisAlignedQuad::AxisAlignedQuad(const StandardAxis &PlanarAlignment, const Vector3 &Min, const Vector3 &Max)
+            : AlignedOn(PlanarAlignment),
+              DistanceFromOrigin(Min[PlanarAlignment]),
+              MinExtents(AxisAlignedQuad::DropAxisToCreateVector2(Min,PlanarAlignment)),
+              MaxExtents(AxisAlignedQuad::DropAxisToCreateVector2(Max,PlanarAlignment))
+        {
+            if( Min[PlanarAlignment] != Max[PlanarAlignment] )
+            {
+                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
+            }
+        }
+
+        bool AxisAlignedQuad::OverlapsWith(Vector3 Other) const
+        {
+            if(DistanceFromOrigin == Other[AlignedOn])
+                { return OverlapsWith( DropAxisToCreateVector2(Other, AlignedOn) ); }
+            return false;
+        }
+
+        bool AxisAlignedQuad::OverlapsWith(Vector2 Other) const
+        {
+            if( MinExtents.X <= Other.X && Other.X <= MaxExtents.X &&
+                    MinExtents.Y <= Other.Y && Other.Y <= MaxExtents.Y )
+                { return true; }
+            return false;
+        }
+
+        bool AxisAlignedQuad::operator==(const AxisAlignedQuad &Other) const
+        {
+            return  AlignedOn == Other.AlignedOn &&
+                    DistanceFromOrigin == Other.DistanceFromOrigin &&
+                    MinExtents == Other.MinExtents &&
+                    MaxExtents == Other.MaxExtents;
+        }
 
     }//MathTools
 }//Mezzanine

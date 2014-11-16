@@ -42,16 +42,11 @@
 
 #include "vector2.h"
 #include "vector3.h"
-#include "plane.h"
 
 namespace Mezzanine
 {
-    class AxisAlignedBox;
-    class Plane;
-    class Ray;
-    class Sphere;
-    class LineSegment2D;
-    class LineSegment3D;
+
+
     /// @namespace Mezzanine::MathTools
     /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
@@ -62,7 +57,7 @@ namespace Mezzanine
         /// case of working on a Z axis aligned rectangle easy, but means that the Z axis might be considered
         /// As the X or Y axis for X or Y aligned planes. This causes some logical rotation but should be no
         /// issue if the convention is followed. Use static function DropAxisToCreateVector2 to ease this.
-        class PlaneAlignedQuad
+        class AxisAlignedQuad
         {
             public:
                 StandardAxis AlignedOn;     ///< This axis this plane exists on, Since the quad must be axis aligned we can forgo all but a AA unit-vector here (no quaternions needed).
@@ -74,79 +69,47 @@ namespace Mezzanine
                 /// @param Point A Vector3 that needs a dimension dropped.
                 /// @param AxisToDrop The axis to be dropped which must then be implied to have the resulting Vector2 make Sense in 3d space
                 /// @return A Vector2.
-                static Vector2 DropAxisToCreateVector2(Vector3 Point, StandardAxis AxisToDrop)
-                {
-                    switch(AxisToDrop)
-                    {
-                        case Axis_X: return Vector2(Point.Z, Point.Y);
-                        case Axis_Y: return Vector2(Point.X, Point.Z);
-                        case Axis_Z: return Vector2(Point.X, Point.Y);
-                        default:
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
-                    }
-                }
+                static Vector2 DropAxisToCreateVector2(Vector3 Point, StandardAxis AxisToDrop);
 
                 /// @brief Add the axis back into the Point to transform it from a 2d coordinate on an implied plane, to one actually in 3d space.
                 /// @param Point A Vector3 that needs a dimension dropped.
                 /// @param AxisToRegain The axis to be returned to an explicit state.
                 /// @param Missing The value for the new axis.
                 /// @return A Vector3 un-mutated back into 3d space
-                static Vector3 DropAxisToCreateVector2(Vector2 Point, StandardAxis AxisToRegain, Real Missing)
-                {
-                    switch(AxisToDrop)
-                    {
-                        case Axis_X: return Vector3(Missing, Point.Y, Point.X);
-                        case Axis_Y: return Vector3(Point.X, Missing, Point.Y);
-                        case Axis_Z: return Vector3(Point.X, Point.Y, Missing);
-                        default:
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "");
-                    }
-                }
+                static Vector3 DropAxisToCreateVector2(Vector2 Point, StandardAxis AxisToRegain, Real Missing);
 
                 /// @brief Direct Advanced Constructor - Uses Vectors already on the implied plan
                 /// @param PlanarAlignment The raw StandardAxis to be used in the constructed PlaneAlignedQuad
                 /// @param Distance The raw Real to be used in the constructed PlaneAlignedQuad
                 /// @param Min The raw Vector2 to be used in the constructed PlaneAlignedQuad as the Minimum extent
                 /// @param Max The raw Vector2 to be used in the constructed PlaneAlignedQuad as the Maximum extent
-                PlaneAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
+                AxisAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
                                  const Real& Distance = 0.0,
                                  const Vector2& Min = Vector2(),
-                                 const Vector2& Max = Vector2())
-                    : AlignedOn(PlanarAlignment),
-                      DistanceFromOrigin(Distance),
-                      MinExtents(Min),
-                      MaxExtents(Max)
-                {}
+                                 const Vector2& Max = Vector2());
 
                 /// @brief Common Constructor - Create using 3d Points.
                 /// @param PlanarAlignment The plane this must be aligned on.
                 /// @param Min A 3d point
-                /// @param Max
-                PlaneAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
+                /// @parReturnam Max
+                AxisAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
                                  const Vector3& Min = Vector3(),
-                                 const Vector3& Max = Vector3())
-                    : AlignedOn(PlanarAlignment),
-                      DistanceFromOrigin(Min[PlanarAlignment]),
-                      MinExtents(PlaneAlignedQuad::DropAxisToCreateVector2(Min,PlanarAlignment)),
-                      MaxExtents(PlaneAlignedQuad::DropAxisToCreateVector2(Max,PlanarAlignment))
-                {
-                    if( Min[PlanarAlignment] != Max[PlanarAlignment] )
-                    {
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
-                    }
-                }
+                                 const Vector3& Max = Vector3());
 
-                bool OverlapsWith(Vector3 Other) const
-                {
-                    if(DistanceFromOrigin == Other[AlignedOn])
-                        { return OverlapsWithPointOnPl(); }
-                    return false;
-                }
+                /// @brief Determines if the point in 3d space is on the plane thisis interested and inside the box this defines.
+                /// @param Other The point in d space to check.
+                /// @return If this axis this quad is aligned on perfectly matches and the remaining coordinates are inside this quad this returns true.
+                bool OverlapsWith(Vector3 Other) const;
 
-                bool OverlapsWithPointOnPl() const
-                {
+                /// @brief This checks a point already in the two dimensional space of the plane to see if it is inside the quad.
+                /// @param Other A 2d Point in the plane of interest.
+                /// @return True if the point is inside the quad ad false otherwise.
+                bool OverlapsWith(Vector2 Other) const;
 
-                }
+                /// @brief Is this the same as some other AxisAlignedQuad?
+                /// @param Other The AxisAlignedQuad on the Right hand side.
+                /// @return True If this and the Other are identical by value.
+                bool operator== (const AxisAlignedQuad& Other) const;
         };
     }//MathTools
 }//Mezzanine
