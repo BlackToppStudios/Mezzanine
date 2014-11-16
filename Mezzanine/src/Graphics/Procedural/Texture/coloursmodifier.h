@@ -152,7 +152,7 @@ namespace Mezzanine
                 /// @param Blue The amount of blue in the texture to be modified to keep for the result.  Initial Value: 1.0.
                 /// @param Alpha The amount of alpha in the texture to be modified to keep for the result.  Initial Value: 1.0.
                 /// @return Returns a reference to this.
-                ColoursModifier& SetColourPercent(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                ColoursModifier& SetColourPercent(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
                 /// @brief Sets the brightness modifier.
                 /// @param Brightness The modifier that will adjust the intensity for each pixel.  Initial Value: 127.
                 /// @return Returns a reference to this.

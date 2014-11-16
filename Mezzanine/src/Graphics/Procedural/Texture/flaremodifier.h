@@ -64,10 +64,12 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralrandompixelsmodifier_h
-#define _graphicsproceduralrandompixelsmodifier_h
+#ifndef _graphicsproceduralflaremodifier_h
+#define _graphicsproceduralflaremodifier_h
 
 #include "Graphics/Procedural/Texture/texturemodifier.h"
+
+#include "vector2.h"
 
 namespace Mezzanine
 {
@@ -76,26 +78,29 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A modifer that will draw coloured pixels at random positions on the texture.
+            /// @brief A modifier that will draw an illuminated circle that fades over a distance to a previous texture.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB RandomPixelsModifier : public TextureModifier
+            class MEZZ_LIB FlareModifier : public TextureModifier
             {
             protected:
                 /// @internal
-                /// @brief The colour of the randomly placed pixels.
-                ColourValue PixelColour;
+                /// @brief The colour of the flare to draw.
+                ColourValue FlareColour;
                 /// @internal
-                /// @brief The number of randomly placed pixels to generate.
-                Whole PixelCount;
+                /// @brief The central position of the flare on the texture in relative coordinates.
+                Vector2 FlareCenter;
                 /// @internal
-                /// @brief The seed to be used for the randomly generatated texture positions the pixels will be drawn to.
-                Whole GeneratorSeed;
+                /// @brief The radius of the flare to draw in relative coordinates.
+                Vector2 FlareRadius;
+                /// @internal
+                /// @brief A modifier for the intensity of the flare colour.
+                Real FlareBrightness;
             public:
                 /// @brief Blank constructor.
-                RandomPixelsModifier();
+                FlareModifier();
                 /// @brief Class destructor.
-                virtual ~RandomPixelsModifier();
+                virtual ~FlareModifier();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -108,35 +113,46 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-                /// @brief Sets the colour of the pixels to be generated.
-                /// @param Colour The colour of the randomly placed pixels.  Initial Value: 1.0, 1.0, 1.0, 1.0.
+                /// @brief Sets the colour of the flare to be rendered.
+                /// @param Colour The colour of the flare to draw.  Initial Value: (1.0,1.0,1.0,1.0).
                 /// @return Returns a reference to this.
-                RandomPixelsModifier& SetColour(const ColourValue& Colour);
-                /// @brief Sets the colour of the pixels to be generated.
-                /// @param Red The Red component for the colour of the randomly generated pixels.  Initial Value: 1.0.
-                /// @param Green The Green component for the colour of the randomly generated pixels.  Initial Value: 1.0.
-                /// @param Blue The Blue component for the colour of the randomly generated pixels.  Initial Value: 1.0.
-                /// @param Alpha The Alpha component for the colour of the randomly generated pixels.  Initial Value: 1.0.
+                FlareModifier& SetColour(const ColourValue& Colour);
+                /// @brief Sets the colour of the flare to be rendered.
+                /// @param Red The amount of red colour in the flare to draw.  Initial Value: 1.0.
+                /// @param Green The amount of green colour in the flare to draw.  Initial Value: 1.0.
+                /// @param Blue The amount of blue colour in the flare to draw.  Initial Value: 1.0.
+                /// @param Alpha The amount of alpha colour in the flare to draw.  Initial Value: 1.0.
                 /// @return Returns a reference to this.
-                RandomPixelsModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
-                /// @brief Sets the colour of the pixels to be generated.
-                /// @param Red The Red component for the colour of the randomly generated pixels.  Initial Value: 1.0.
-                /// @param Green The Green component for the colour of the randomly generated pixels.  Initial Value: 1.0.
-                /// @param Blue The Blue component for the colour of the randomly generated pixels.  Initial Value: 1.0.
-                /// @param Alpha The Alpha component for the colour of the randomly generated pixels.  Initial Value: 1.0.
+                FlareModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
+                /// @brief Sets the center position of the flare.
+                /// @param Center The central position of the flare on the texture in relative coordinates.  Initial Value: (0.5,0.5).
                 /// @return Returns a reference to this.
-                RandomPixelsModifier& SetColour(const UInt8 Red, const UInt8 Green, const UInt8 Blue, const UInt8 Alpha);
-                /// @brief Sets the number of pixels to generate.
-                /// @remarks If this is left as zero then the number of pixels generated will be decided based on the textures size, taking the square root of both
-                /// the width and height, adding them together, and multiplying by 10.
-                /// @param Count The number of randomly placed pixels to generate.  Initial Value: 0.
+                FlareModifier& SetFlareCenter(const Vector2& Center);
+                /// @brief Sets the center position of the flare on the X axis.
+                /// @param X The center position of the flare on the X axis in relative coordinates.  Initial Value: 0.5.
                 /// @return Returns a reference to this.
-                RandomPixelsModifier& SetPixelCount(const Whole Count);
-                /// @brief Sets the seed for the random number generator used to determine pixel positions.
-                /// @param Seed The seed to be used for the randomly generatated texture positions the pixels will be drawn to.  Initial Value: 5120.
+                FlareModifier& SetFlareCenterX(const Real X);
+                /// @brief Sets the center position of the flare on the Y axis.
+                /// @param Y The center position of the flare on the Y axis in relative coordinates.  Initial Value: 0.5.
                 /// @return Returns a reference to this.
-                RandomPixelsModifier& SetSeed(const Whole Seed);
-            };//RandomPixelsModifier
+                FlareModifier& SetFlareCenterY(const Real Y);
+                /// @brief Sets the radius size of the flare.
+                /// @param Radius The radius of the flare to draw in relative coordinates.  Initial Value: (0.5,0.5).
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareRadius(const Vector2& Radius);
+                /// @brief Sets the radius size of the flare on the X axis.
+                /// @param X The radius of the flare on the X axis in relative coordinates.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareRadiusX(const Real X);
+                /// @brief Sets the radius size of the flare on the Y axis.
+                /// @param Y The radius of the flare on the Y axis in relative coordinates.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareRadiusY(const Real Y);
+                /// @brief Sets the brightness of the flare.
+                /// @param Brightness A modifier for the intensity of the flare colour.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareBrightness(const Real Brightness);
+            };//FlareModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

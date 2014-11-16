@@ -151,14 +151,14 @@ namespace Mezzanine
                 /// @brief Sets the colour of the generated cracks.
                 /// @param Colour The base colour to give to the pixels forming the cracks.  Initial Value: (1.0,1.0,1.0,1.0).
                 /// @return Returns a reference to this.
-                CrackModifier& SetCrackColour(const ColourValue& Colour);
+                CrackModifier& SetColour(const ColourValue& Colour);
                 /// @brief Sets the colour of the generated cracks.
                 /// @param Red The amount of red to give to the pixels forming the cracks.  Initial Value: 1.0.
                 /// @param Green The amount of green to give to the pixels forming the cracks.  Initial Value: 1.0.
                 /// @param Blue The amount of blue to give to the pixels forming the cracks.  Initial Value: 1.0.
                 /// @param Alpha The amount of alpha to give to the pixels forming the cracks.  Initial Value: 1.0.
                 /// @return Returns a reference to this.
-                CrackModifier& SetCrackColour(const Real Red, const Real Green, const Real Blue, const Real Alpha);
+                CrackModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
                 /// @brief Sets how many cracks to create.
                 /// @param Count The number of cracks to generate.  Initial Value: 100.
                 /// @return Returns a reference to this.

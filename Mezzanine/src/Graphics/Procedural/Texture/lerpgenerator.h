@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralglowmodifier_h
-#define _graphicsproceduralglowmodifier_h
+#ifndef _graphicsprocedurallerpgenerator_h
+#define _graphicsprocedurallerpgenerator_h
 
-#include "Graphics/Procedural/Texture/texturemodifier.h"
+#include "Graphics/Procedural/Texture/texturegenerator.h"
 
 namespace Mezzanine
 {
@@ -75,7 +75,54 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief Creates a texture that is the interpolated result between two other textures.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB LerpGenerator : public TextureGenerator
+            {
+            protected:
+                /// @internal
+                /// @brief The first texture to interpolate.
+                TextureBuffer* FirstTexture;
+                /// @internal
+                /// @brief The second texture to interpolate.
+                TextureBuffer* SecondTexture;
+                /// @internal
+                /// @brief The amount to interpolate each colour channel of the provided textures.
+                Real InterpolateAmount;
+            public:
+                /// @brief Class constructor.
+                LerpGenerator();
+                /// @brief Class destructor.
+                virtual ~LerpGenerator();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureGenerator::AddToTextureBuffer(TextureBuffer&) const
+                virtual void AddToTextureBuffer(TextureBuffer& Buffer) const;
+                /// @copydoc TextureGenerator::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief The first texture to interpolate.
+                /// @exception If the texture provided here isn't at least the same size as the texture to be generated a PARAMETERS_EXCEPTION will be thrown.
+                /// @param First A pointer to the first texture to interpolate between.  Initial Value: NULL.
+                /// @return Returns a reference to this.
+                LerpGenerator& SetFirstTexture(TextureBuffer* First);
+                /// @brief The second texture to interpolate.
+                /// @exception If the texture provided here isn't at least the same size as the texture to be generated a PARAMETERS_EXCEPTION will be thrown.
+                /// @param Second A pointer to the second texture to interpolate between.  Initial Value: NULL.
+                /// @return Returns a reference to this.
+                LerpGenerator& SetSecondTexture(TextureBuffer* Second);
+                /// @brief Sets how much interpolation between the two textures to do.
+                /// @param Amount The amount of interpolation to perform on each colour channel of each pixel.  Must be in the range of 0-1.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                LerpGenerator& SetInterpolateAmount(const Real Amount);
+            };//LerpGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

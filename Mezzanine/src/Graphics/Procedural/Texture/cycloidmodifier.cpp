@@ -366,13 +366,13 @@ namespace Mezzanine
                 return *this;
             }
 
-            CycloidModifier& CycloidModifier::SetCycloidColour(const ColourValue& Colour)
+            CycloidModifier& CycloidModifier::SetColour(const ColourValue& Colour)
             {
                 this->CycloidColour = Colour;
                 return *this;
             }
 
-            CycloidModifier& CycloidModifier::SetCycloidColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            CycloidModifier& CycloidModifier::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
             {
                 this->CycloidColour.SetValues(Red,Green,Blue,Alpha);
                 return *this;

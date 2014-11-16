@@ -226,13 +226,13 @@ namespace Mezzanine
                 return *this;
             }
 
-            CrackModifier& CrackModifier::SetCrackColour(const ColourValue& Colour)
+            CrackModifier& CrackModifier::SetColour(const ColourValue& Colour)
             {
                 this->CrackColour = Colour;
                 return *this;
             }
 
-            CrackModifier& CrackModifier::SetCrackColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            CrackModifier& CrackModifier::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
             {
                 this->CrackColour.SetValues(Red,Green,Blue,Alpha);
                 return *this;

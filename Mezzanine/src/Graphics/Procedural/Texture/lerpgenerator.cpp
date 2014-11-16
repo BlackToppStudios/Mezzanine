@@ -64,10 +64,13 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralcirclemodifier_cpp
-#define _graphicsproceduralcirclemodifier_cpp
+#ifndef _graphicsprocedurallerpgenerator_cpp
+#define _graphicsprocedurallerpgenerator_cpp
 
-#include "Graphics/Procedural/Texture/circlemodifier.h"
+#include "Graphics/Procedural/Texture/lerpgenerator.h"
+
+#include "exception.h"
+#include "interpolator.h"
 
 namespace Mezzanine
 {
@@ -75,117 +78,73 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            CircleModifier::CircleModifier() :
-                CircleColour(ColourValue::White()),
-                CircleRadius(0),
-                CircleXRel(0.5),
-                CircleYRel(0.5),
-                CircleXAdj(0),
-                CircleYAdj(0)
+            LerpGenerator::LerpGenerator() :
+                FirstTexture(NULL),
+                SecondTexture(NULL),
+                InterpolateAmount(0.5)
                 {  }
 
-            CircleModifier::~CircleModifier()
+            LerpGenerator::~LerpGenerator()
                 {  }
-
-            void CircleModifier::PutPixel(const Integer XPos, const Integer YPos, TextureBuffer& Buffer)
-            {
-                if( XPos < 0 || XPos >= static_cast<Integer>( Buffer.GetWidth() ) ) {
-                    return;
-                }
-                if( YPos < 0 || YPos >= static_cast<Integer>( Buffer.GetHeight() ) ) {
-                    return;
-                }
-                Buffer.SetPixel(XPos,YPos,this->CircleColour);
-            }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            void CircleModifier::Modify(TextureBuffer& Buffer)
+            void LerpGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                const Integer TargetWidth = static_cast<Integer>( Buffer.GetWidth() );
-                const Integer TargetHeight = static_cast<Integer>( Buffer.GetHeight() );
-                const Integer XPos = ( ( this->CircleXRel * TargetWidth ) + this->CircleXAdj );
-                const Integer YPos = ( ( this->CircleYRel * TargetHeight ) + this->CircleYAdj );
+                const Whole TargetWidth = Buffer.GetWidth();
+                const Whole TargetHeight = Buffer.GetHeight();
+                if( TargetWidth > this->FirstTexture->GetWidth() || TargetHeight > this->FirstTexture->GetHeight() ) {
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The FirstTexture provided for LERP is not large enough to lerp onto the target texture.");
+                }
+                if( TargetWidth > this->SecondTexture->GetWidth() || TargetHeight > this->SecondTexture->GetHeight() ) {
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The SecondTexture provided for LERP is not large enough to lerp onto the target texture.");
+                }
 
-                Integer X = 0;
-                Integer Y = this->CircleRadius;
-                Integer P = 3 - ( 2 * this->CircleRadius );
-
-                while( X <= Y )
+                for( Whole Y = 0 ; Y < TargetHeight ; ++Y )
                 {
-                    for( Integer DeltaY = -Y ; DeltaY <= Y ; DeltaY++ )
+                    for( Whole X = 0 ; X < TargetWidth ; ++X )
                     {
-                        this->PutPixel( XPos + (+X), YPos + DeltaY, Buffer );
-                        this->PutPixel( XPos + (-X), YPos + DeltaY, Buffer );
-                    }
-                    for( Integer DeltaX = -X ; DeltaX <= X ; DeltaX++ )
-                    {
-                        this->PutPixel( XPos + DeltaX, YPos + (+Y), Buffer );
-                        this->PutPixel( XPos + DeltaX, YPos + (-Y), Buffer );
-                    }
-                    if( P < 0 ) {
-                        P += 4 * X++ + 6;
-                    }else{
-                        P += 4 * ( X++ - Y-- ) + 10;
+                        ColourValue FirstColour = this->FirstTexture->GetPixel(X,Y);
+                        ColourValue SecondColour = this->SecondTexture->GetPixel(X,Y);
+
+                        /*ColourValue TargetColour( FirstColour.RedChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.RedChannel * this->InterpolateAmount,
+                                                  FirstColour.GreenChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.GreenChannel * this->InterpolateAmount,
+                                                  FirstColour.BlueChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.BlueChannel * this->InterpolateAmount,
+                                                  FirstColour.AlphaChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.AlphaChannel * this->InterpolateAmount);//*/
+                        LinearInterpolator<Real> Interpolator;
+                        ColourValue TargetColour( Interpolator.InterpolateMath(FirstColour.RedChannel,SecondColour.RedChannel,this->InterpolateAmount),
+                                                  Interpolator.InterpolateMath(FirstColour.GreenChannel,SecondColour.GreenChannel,this->InterpolateAmount),
+                                                  Interpolator.InterpolateMath(FirstColour.BlueChannel,SecondColour.BlueChannel,this->InterpolateAmount),
+                                                  Interpolator.InterpolateMath(FirstColour.AlphaChannel,SecondColour.AlphaChannel,this->InterpolateAmount) );
+                        Buffer.SetPixel(X,Y,TargetColour);
                     }
                 }
             }
 
-            String CircleModifier::GetName() const
-                { return "CircleModifier"; }
+            String LerpGenerator::GetName() const
+                { return "LerpGenerator"; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            CircleModifier& CircleModifier::SetColour(const ColourValue& Colour)
+            LerpGenerator& LerpGenerator::SetFirstTexture(TextureBuffer* First)
             {
-                this->CircleColour = Colour;
+                this->FirstTexture = First;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            LerpGenerator& LerpGenerator::SetSecondTexture(TextureBuffer* Second)
             {
-                this->CircleColour.SetValues(Red,Green,Blue,Alpha);
+                this->SecondTexture = Second;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetRadius(const Whole Radius)
+            LerpGenerator& LerpGenerator::SetInterpolateAmount(const Real Amount)
             {
-                this->CircleRadius = Radius;
-                return *this;
-            }
-
-            CircleModifier& CircleModifier::SetPosition(const Real XRel, const Real YRel, const Integer XAdj, const Integer YAdj)
-            {
-                this->CircleXRel = XRel;
-                this->CircleYRel = YRel;
-                this->CircleXAdj = XAdj;
-                this->CircleYAdj = YAdj;
-                return *this;
-            }
-
-            CircleModifier& CircleModifier::SetXPositionRel(const Real X)
-            {
-                this->CircleXRel = X;
-                return *this;
-            }
-
-            CircleModifier& CircleModifier::SetYPositionRel(const Real Y)
-            {
-                this->CircleYRel = Y;
-                return *this;
-            }
-
-            CircleModifier& CircleModifier::SetXPositionAdj(const Integer X)
-            {
-                this->CircleXAdj = X;
-                return *this;
-            }
-
-            CircleModifier& CircleModifier::SetYPositionAdj(const Integer Y)
-            {
-                this->CircleYAdj = Y;
+                if( Amount >= 0.0 && Amount <= 1.0 ) {
+                    this->InterpolateAmount = Amount;
+                }
                 return *this;
             }
         }//Procedural

@@ -64,8 +64,8 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsprocedurallerpmodifier_h
-#define _graphicsprocedurallerpmodifier_h
+#ifndef _graphicsproceduralweighedlerpmodifier_h
+#define _graphicsproceduralweighedlerpmodifier_h
 
 #include "Graphics/Procedural/Texture/texturemodifier.h"
 
@@ -75,7 +75,49 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A modifier that will use the colours of the texture to be modified to perform a linear interpolation between two other textures.
+            /// @details This modifier will perform a Lerp operation between the two specified textures.  This differs from the LerpGenerator in that the
+            /// texture to be modified is used to determine the amount of interpolation there is to be performed.  This operation is done on each colour
+            /// channel of each pixel.  The result of the Lerp is then written back to the texture.
+            ///////////////////////////////////////
+            class MEZZ_LIB WeighedLerpModifier : public TextureModifier
+            {
+            protected:
+                /// @internal
+                /// @brief The first texture to interpolate.
+                TextureBuffer* FirstTexture;
+                /// @internal
+                /// @brief The second texture to interpolate.
+                TextureBuffer* SecondTexture;
+            public:
+                /// @brief Blank constructor.
+                WeighedLerpModifier();
+                /// @brief Class destructor.
+                virtual ~WeighedLerpModifier();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                virtual void Modify(TextureBuffer& Buffer);
+                /// @copydoc TextureModifier::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief The first texture to interpolate.
+                /// @exception If the texture provided here isn't at least the same size as the texture to be modified a PARAMETERS_EXCEPTION will be thrown.
+                /// @param First A pointer to the first texture to interpolate between.  Initial Value: NULL.
+                /// @return Returns a reference to this.
+                WeighedLerpModifier& SetFirstTexture(TextureBuffer* First);
+                /// @brief The second texture to interpolate.
+                /// @exception If the texture provided here isn't at least the same size as the texture to be modified a PARAMETERS_EXCEPTION will be thrown.
+                /// @param Second A pointer to the second texture to interpolate between.  Initial Value: NULL.
+                /// @return Returns a reference to this.
+                WeighedLerpModifier& SetSecondTexture(TextureBuffer* Second);
+            };//WeighedLerpModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

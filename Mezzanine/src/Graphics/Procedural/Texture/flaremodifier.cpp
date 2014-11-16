@@ -64,10 +64,12 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralcirclemodifier_cpp
-#define _graphicsproceduralcirclemodifier_cpp
+#ifndef _graphicsproceduralflaremodifier_cpp
+#define _graphicsproceduralflaremodifier_cpp
 
-#include "Graphics/Procedural/Texture/circlemodifier.h"
+#include "Graphics/Procedural/Texture/flaremodifier.h"
+
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {
@@ -75,117 +77,114 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            CircleModifier::CircleModifier() :
-                CircleColour(ColourValue::White()),
-                CircleRadius(0),
-                CircleXRel(0.5),
-                CircleYRel(0.5),
-                CircleXAdj(0),
-                CircleYAdj(0)
+            FlareModifier::FlareModifier() :
+                FlareColour(1.0,1.0,1.0,1.0),
+                FlareCenter(0.5,0.5),
+                FlareRadius(0.5,0.5),
+                FlareBrightness(1.0)
                 {  }
 
-            CircleModifier::~CircleModifier()
+            FlareModifier::~FlareModifier()
                 {  }
-
-            void CircleModifier::PutPixel(const Integer XPos, const Integer YPos, TextureBuffer& Buffer)
-            {
-                if( XPos < 0 || XPos >= static_cast<Integer>( Buffer.GetWidth() ) ) {
-                    return;
-                }
-                if( YPos < 0 || YPos >= static_cast<Integer>( Buffer.GetHeight() ) ) {
-                    return;
-                }
-                Buffer.SetPixel(XPos,YPos,this->CircleColour);
-            }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            void CircleModifier::Modify(TextureBuffer& Buffer)
+            void FlareModifier::Modify(TextureBuffer& Buffer)
             {
-                const Integer TargetWidth = static_cast<Integer>( Buffer.GetWidth() );
-                const Integer TargetHeight = static_cast<Integer>( Buffer.GetHeight() );
-                const Integer XPos = ( ( this->CircleXRel * TargetWidth ) + this->CircleXAdj );
-                const Integer YPos = ( ( this->CircleYRel * TargetHeight ) + this->CircleYAdj );
+                Integer TargetWidth = static_cast<Integer>( Buffer.GetWidth() );
+                Integer TargetHeight = static_cast<Integer>( Buffer.GetHeight() );
+                Integer CenterX	= static_cast<Integer>( this->FlareCenter.X * static_cast<Real>( TargetWidth ) );
+                Integer CenterY	= static_cast<Integer>( this->FlareCenter.Y * static_cast<Real>( TargetHeight ) );
+                Integer RadiusX	= static_cast<Integer>( this->FlareRadius.X * static_cast<Real>( TargetWidth ) );
+                Integer RadiusY	= static_cast<Integer>( this->FlareRadius.Y * static_cast<Real>( TargetHeight ) );
+                Real FlareRed = this->FlareColour.RedChannel * 255.0;
+                Real FlareGreen = this->FlareColour.GreenChannel * 255.0;
+                Real FlareBlue = this->FlareColour.BlueChannel * 255.0;
+                Real InverseRadiusX = 1.0 / static_cast<Real>( RadiusX );
+                Real InverseRadiusY = 1.0 / static_cast<Real>( RadiusY );
 
-                Integer X = 0;
-                Integer Y = this->CircleRadius;
-                Integer P = 3 - ( 2 * this->CircleRadius );
-
-                while( X <= Y )
+                for( Integer Y = 0 ; Y < TargetHeight ; ++Y )
                 {
-                    for( Integer DeltaY = -Y ; DeltaY <= Y ; DeltaY++ )
+                    Real DeltaY = static_cast<Real>( Y - CenterY ) * InverseRadiusY;
+
+                    for( Integer X = 0 ; X < TargetWidth ; ++X )
                     {
-                        this->PutPixel( XPos + (+X), YPos + DeltaY, Buffer );
-                        this->PutPixel( XPos + (-X), YPos + DeltaY, Buffer );
-                    }
-                    for( Integer DeltaX = -X ; DeltaX <= X ; DeltaX++ )
-                    {
-                        this->PutPixel( XPos + DeltaX, YPos + (+Y), Buffer );
-                        this->PutPixel( XPos + DeltaX, YPos + (-Y), Buffer );
-                    }
-                    if( P < 0 ) {
-                        P += 4 * X++ + 6;
-                    }else{
-                        P += 4 * ( X++ - Y-- ) + 10;
+                        Real DeltaX = static_cast<Real>( X - CenterX ) * InverseRadiusX;
+                        Real Distance = MathTools::Sqrt(DeltaX * DeltaX + DeltaY * DeltaY);
+                        if( Distance >= 1.0 ) {
+                            Distance = 0.0;
+                        }else{
+                            Distance = 1.0 - Distance;
+                        }
+
+                        Whole Red = static_cast<Whole>( static_cast<Real>( Buffer.GetRedByte(X,Y) ) + ( ( Distance * FlareRed ) * this->FlareBrightness ) );
+                        Whole Green = static_cast<Whole>( static_cast<Real>( Buffer.GetGreenByte(X,Y) ) + ( ( Distance * FlareGreen ) * this->FlareBrightness ) );
+                        Whole Blue = static_cast<Whole>( static_cast<Real>( Buffer.GetBlueByte(X,Y) ) + ( ( Distance * FlareBlue ) * this->FlareBrightness ) );
+                        UInt8 Alpha = Buffer.GetAlphaByte(X,Y);
+
+                        Buffer.SetPixelByte(X,Y, static_cast<UInt8>( (Red < 255) ? Red : 255 ),static_cast<UInt8>( (Green < 255) ? Green : 255 ),static_cast<UInt8>( (Blue < 255) ? Blue : 255 ),Alpha);
                     }
                 }
             }
 
-            String CircleModifier::GetName() const
-                { return "CircleModifier"; }
+            String FlareModifier::GetName() const
+                { return "FlareModifier"; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            CircleModifier& CircleModifier::SetColour(const ColourValue& Colour)
+            FlareModifier& FlareModifier::SetColour(const ColourValue& Colour)
             {
-                this->CircleColour = Colour;
+                this->FlareColour = Colour;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+            FlareModifier& FlareModifier::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
             {
-                this->CircleColour.SetValues(Red,Green,Blue,Alpha);
+                this->FlareColour.SetValues(Red,Green,Blue,Alpha);
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetRadius(const Whole Radius)
+            FlareModifier& FlareModifier::SetFlareCenter(const Vector2& Center)
             {
-                this->CircleRadius = Radius;
+                this->FlareCenter = Center;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetPosition(const Real XRel, const Real YRel, const Integer XAdj, const Integer YAdj)
+            FlareModifier& FlareModifier::SetFlareCenterX(const Real X)
             {
-                this->CircleXRel = XRel;
-                this->CircleYRel = YRel;
-                this->CircleXAdj = XAdj;
-                this->CircleYAdj = YAdj;
+                this->FlareCenter.X = X;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetXPositionRel(const Real X)
+            FlareModifier& FlareModifier::SetFlareCenterY(const Real Y)
             {
-                this->CircleXRel = X;
+                this->FlareCenter.Y = Y;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetYPositionRel(const Real Y)
+            FlareModifier& FlareModifier::SetFlareRadius(const Vector2& Radius)
             {
-                this->CircleYRel = Y;
+                this->FlareRadius = Radius;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetXPositionAdj(const Integer X)
+            FlareModifier& FlareModifier::SetFlareRadiusX(const Real X)
             {
-                this->CircleXAdj = X;
+                this->FlareRadius.X = X;
                 return *this;
             }
 
-            CircleModifier& CircleModifier::SetYPositionAdj(const Integer Y)
+            FlareModifier& FlareModifier::SetFlareRadiusY(const Real Y)
             {
-                this->CircleYAdj = Y;
+                this->FlareRadius.Y = Y;
+                return *this;
+            }
+
+            FlareModifier& FlareModifier::SetFlareBrightness(const Real Brightness)
+            {
+                this->FlareBrightness = Brightness;
                 return *this;
             }
         }//Procedural
