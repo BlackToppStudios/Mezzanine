@@ -101,10 +101,13 @@ namespace Mezzanine
                 /// @return If this axis this quad is aligned on perfectly matches and the remaining coordinates are inside this quad this returns true.
                 bool OverlapsWith(Vector3 Other) const;
 
-                /// @brief This checks a point already in the two dimensional space of the plane to see if it is inside the quad.
-                /// @param Other A 2d Point in the plane of interest.
-                /// @return True if the point is inside the quad ad false otherwise.
-                bool OverlapsWith(Vector2 Other) const;
+                #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+                    /// @brief This checks a point already in the two dimensional space of the plane to see if it is inside the quad.
+                    /// @param Other A 2d Point in the plane of interest.
+                    /// @return True if the point is inside the quad ad false otherwise.
+                    /// @note This is not accessible in the Lua API, This is a performance optimization and should be disregarded there.
+                    bool OverlapsWith(Vector2 Other) const;
+                #endif
 
                 /// @brief Is this the same as some other AxisAlignedQuad?
                 /// @param Other The AxisAlignedQuad on the Right hand side.

@@ -102,6 +102,10 @@ class intersectiontests : public UnitTestGroup
                         );
 
 
+
+
+
+
         }
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
