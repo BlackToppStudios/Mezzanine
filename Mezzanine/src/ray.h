@@ -42,7 +42,9 @@
 
 #include "crossplatformexport.h"
 #include "vector3.h"
-#include "MathTools/mathtools.h"
+#ifndef SWIG
+    #include "MathTools/mathtools.h"
+#endif
 
 namespace Ogre
 {

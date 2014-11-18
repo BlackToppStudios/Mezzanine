@@ -78,22 +78,26 @@ namespace Mezzanine
                 /// @return A Vector3 un-mutated back into 3d space
                 static Vector3 DropAxisToCreateVector2(Vector2 Point, StandardAxis AxisToRegain, Real Missing);
 
-                /// @brief Direct Advanced Constructor - Uses Vectors already on the implied plan
-                /// @param PlanarAlignment The raw StandardAxis to be used in the constructed PlaneAlignedQuad
-                /// @param Distance The raw Real to be used in the constructed PlaneAlignedQuad
-                /// @param Min The raw Vector2 to be used in the constructed PlaneAlignedQuad as the Minimum extent
-                /// @param Max The raw Vector2 to be used in the constructed PlaneAlignedQuad as the Maximum extent
-                AxisAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
-                                 const Real& Distance = 0.0,
-                                 const Vector2& Min = Vector2(),
-                                 const Vector2& Max = Vector2());
+                #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+                    /// @brief Direct Advanced Constructor - Uses Vectors already on the implied plan
+                    /// @param PlanarAlignment The raw StandardAxis to be used in the constructed PlaneAlignedQuad
+                    /// @param Distance The raw Real to be used in the constructed PlaneAlignedQuad
+                    /// @param Min The raw Vector2 to be used in the constructed PlaneAlignedQuad as the Minimum extent
+                    /// @param Max The raw Vector2 to be used in the constructed PlaneAlignedQuad as the Maximum extent
+                    /// @note This is not available via the Lua API
+                    AxisAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
+                                     const Real& Distance = 0.0,
+                                     const Vector2& Min = Vector2(),
+                                     const Vector2& Max = Vector2());
+                #endif
+
 
                 /// @brief Common Constructor - Create using 3d Points.
                 /// @param PlanarAlignment The plane this must be aligned on.
                 /// @param Min A 3d point
                 /// @parReturnam Max
-                AxisAlignedQuad(const StandardAxis& PlanarAlignment = Axis_X,
-                                 const Vector3& Min = Vector3(),
+                AxisAlignedQuad(const StandardAxis& PlanarAlignment,
+                                 const Vector3& Min,
                                  const Vector3& Max = Vector3());
 
                 /// @brief Determines if the point in 3d space is on the plane thisis interested and inside the box this defines.

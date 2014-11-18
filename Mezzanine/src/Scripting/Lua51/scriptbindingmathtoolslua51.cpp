@@ -19393,140 +19393,6 @@ static int _wrap_AxisAlignedQuad_DropAxisToCreateVector2(lua_State* L) {
 static int _wrap_new_AxisAlignedQuad__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::StandardAxis *arg1 = 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Vector2 *arg3 = 0 ;
-  Mezzanine::Vector2 *arg4 = 0 ;
-  Mezzanine::StandardAxis temp1 ;
-  Mezzanine::Real temp2 ;
-  Mezzanine::MathTools::AxisAlignedQuad *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",4,4)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",1,"Mezzanine::StandardAxis const &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",2,"Mezzanine::Real const &");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",3,"Mezzanine::Vector2 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",4,"Mezzanine::Vector2 const &");
-  temp1=(Mezzanine::StandardAxis)(int)lua_tonumber(L,1); arg1=&temp1;
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Vector2,0))){
-    SWIG_fail_ptr("new_AxisAlignedQuad",3,SWIGTYPE_p_Mezzanine__Vector2);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_Mezzanine__Vector2,0))){
-    SWIG_fail_ptr("new_AxisAlignedQuad",4,SWIGTYPE_p_Mezzanine__Vector2);
-  }
-  
-  result = (Mezzanine::MathTools::AxisAlignedQuad *)new Mezzanine::MathTools::AxisAlignedQuad((Mezzanine::StandardAxis const &)*arg1,(Mezzanine::Real const &)*arg2,(Mezzanine::Vector2 const &)*arg3,(Mezzanine::Vector2 const &)*arg4);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_AxisAlignedQuad__SWIG_1(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::StandardAxis *arg1 = 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Vector2 *arg3 = 0 ;
-  Mezzanine::StandardAxis temp1 ;
-  Mezzanine::Real temp2 ;
-  Mezzanine::MathTools::AxisAlignedQuad *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",3,3)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",1,"Mezzanine::StandardAxis const &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",2,"Mezzanine::Real const &");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",3,"Mezzanine::Vector2 const &");
-  temp1=(Mezzanine::StandardAxis)(int)lua_tonumber(L,1); arg1=&temp1;
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Vector2,0))){
-    SWIG_fail_ptr("new_AxisAlignedQuad",3,SWIGTYPE_p_Mezzanine__Vector2);
-  }
-  
-  result = (Mezzanine::MathTools::AxisAlignedQuad *)new Mezzanine::MathTools::AxisAlignedQuad((Mezzanine::StandardAxis const &)*arg1,(Mezzanine::Real const &)*arg2,(Mezzanine::Vector2 const &)*arg3);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_AxisAlignedQuad__SWIG_2(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::StandardAxis *arg1 = 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::StandardAxis temp1 ;
-  Mezzanine::Real temp2 ;
-  Mezzanine::MathTools::AxisAlignedQuad *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",1,"Mezzanine::StandardAxis const &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",2,"Mezzanine::Real const &");
-  temp1=(Mezzanine::StandardAxis)(int)lua_tonumber(L,1); arg1=&temp1;
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  result = (Mezzanine::MathTools::AxisAlignedQuad *)new Mezzanine::MathTools::AxisAlignedQuad((Mezzanine::StandardAxis const &)*arg1,(Mezzanine::Real const &)*arg2);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_AxisAlignedQuad__SWIG_3(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::StandardAxis *arg1 = 0 ;
-  Mezzanine::StandardAxis temp1 ;
-  Mezzanine::MathTools::AxisAlignedQuad *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",1,"Mezzanine::StandardAxis const &");
-  temp1=(Mezzanine::StandardAxis)(int)lua_tonumber(L,1); arg1=&temp1;
-  result = (Mezzanine::MathTools::AxisAlignedQuad *)new Mezzanine::MathTools::AxisAlignedQuad((Mezzanine::StandardAxis const &)*arg1);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_AxisAlignedQuad__SWIG_4(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::MathTools::AxisAlignedQuad *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",0,0)
-  result = (Mezzanine::MathTools::AxisAlignedQuad *)new Mezzanine::MathTools::AxisAlignedQuad();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_AxisAlignedQuad__SWIG_5(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::StandardAxis *arg1 = 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
   Mezzanine::StandardAxis temp1 ;
@@ -19559,7 +19425,7 @@ fail:
 }
 
 
-static int _wrap_new_AxisAlignedQuad__SWIG_6(lua_State* L) {
+static int _wrap_new_AxisAlignedQuad__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::StandardAxis *arg1 = 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
@@ -19587,15 +19453,53 @@ fail:
 }
 
 
+static int _wrap_new_AxisAlignedQuad__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::StandardAxis *arg1 = 0 ;
+  Mezzanine::StandardAxis temp1 ;
+  Mezzanine::MathTools::AxisAlignedQuad *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",1,"Mezzanine::StandardAxis const &");
+  temp1=(Mezzanine::StandardAxis)(int)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::MathTools::AxisAlignedQuad *)new Mezzanine::MathTools::AxisAlignedQuad((Mezzanine::StandardAxis const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_AxisAlignedQuad__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MathTools::AxisAlignedQuad *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad",0,0)
+  result = (Mezzanine::MathTools::AxisAlignedQuad *)new Mezzanine::MathTools::AxisAlignedQuad();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_new_AxisAlignedQuad(lua_State* L) {
   int argc;
-  int argv[5]={
-    1,2,3,4,5
+  int argv[4]={
+    1,2,3,4
   };
   
   argc = lua_gettop(L);
   if (argc == 0) {
-    return _wrap_new_AxisAlignedQuad__SWIG_4(L);
+    return _wrap_new_AxisAlignedQuad__SWIG_3(L);
   }
   if (argc == 1) {
     int _v;
@@ -19603,7 +19507,7 @@ static int _wrap_new_AxisAlignedQuad(lua_State* L) {
       _v = lua_isnumber(L,argv[0]);
     }
     if (_v) {
-      return _wrap_new_AxisAlignedQuad__SWIG_3(L);
+      return _wrap_new_AxisAlignedQuad__SWIG_2(L);
     }
   }
   if (argc == 2) {
@@ -19621,21 +19525,7 @@ static int _wrap_new_AxisAlignedQuad(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_new_AxisAlignedQuad__SWIG_6(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      _v = lua_isnumber(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_new_AxisAlignedQuad__SWIG_2(L);
+        return _wrap_new_AxisAlignedQuad__SWIG_1(L);
       }
     }
   }
@@ -19663,65 +19553,7 @@ static int _wrap_new_AxisAlignedQuad(lua_State* L) {
           }
         }
         if (_v) {
-          return _wrap_new_AxisAlignedQuad__SWIG_5(L);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      _v = lua_isnumber(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          void *ptr;
-          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector2, 0)) {
-            _v = 0;
-          } else {
-            _v = 1;
-          }
-        }
-        if (_v) {
-          return _wrap_new_AxisAlignedQuad__SWIG_1(L);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      _v = lua_isnumber(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          void *ptr;
-          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector2, 0)) {
-            _v = 0;
-          } else {
-            _v = 1;
-          }
-        }
-        if (_v) {
-          {
-            void *ptr;
-            if (lua_isuserdata(L,argv[3])==0 || SWIG_ConvertPtr(L,argv[3], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector2, 0)) {
-              _v = 0;
-            } else {
-              _v = 1;
-            }
-          }
-          if (_v) {
-            return _wrap_new_AxisAlignedQuad__SWIG_0(L);
-          }
+          return _wrap_new_AxisAlignedQuad__SWIG_0(L);
         }
       }
     }
@@ -19729,13 +19561,10 @@ static int _wrap_new_AxisAlignedQuad(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_AxisAlignedQuad'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad(Mezzanine::StandardAxis const &,Mezzanine::Real const &,Mezzanine::Vector2 const &,Mezzanine::Vector2 const &)\n"
-    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad(Mezzanine::StandardAxis const &,Mezzanine::Real const &,Mezzanine::Vector2 const &)\n"
-    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad(Mezzanine::StandardAxis const &,Mezzanine::Real const &)\n"
-    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad(Mezzanine::StandardAxis const &)\n"
-    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad()\n"
     "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad(Mezzanine::StandardAxis const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
-    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad(Mezzanine::StandardAxis const &,Mezzanine::Vector3 const &)\n");
+    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad(Mezzanine::StandardAxis const &,Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad(Mezzanine::StandardAxis const &)\n"
+    "    Mezzanine::MathTools::AxisAlignedQuad::AxisAlignedQuad()\n");
   lua_error(L);return 0;
 }
 
