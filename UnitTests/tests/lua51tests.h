@@ -761,11 +761,13 @@ class lua51tests : public UnitTestGroup
                               "Sphere", "TestSphere", 3, 5, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                TestLuaScript("function TestMathTool(x)\n"
+                /*TestLuaScript("function TestMathTool(x)\n"
+                              ""
                               "   return MezzanineSafe.Ceil(x)\n"
                               "end",
                               "MathTool", "TestMathTool", 3.5, 4.0, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+                */
 
                 TestLuaScript("function TestRootEnumerations(x)\n"
                               "   return MezzanineSafe.AT_Zip\n"
@@ -797,6 +799,13 @@ class lua51tests : public UnitTestGroup
                               "  return MezzanineSafe.EventBase_GameWindow\n"
                               "end",
                               "OldEvent", "TestOldEventSystem", 8, Mezzanine::EventBase::GameWindow, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestAxisAlignedQuad(x)\n"
+                              "  a=MezzanineSafe.AxisAlignedQuad(MezzanineSafe.Axis_X, MezzanineSafe.Vector3(x,0,0), MezzanineSafe.Vector3(x,1,1))\n"
+                              "  return a:DistanceFromOrigin\n"
+                              "end",
+                              "OldEvent", "TestAxisAlignedQuad", 8, Mezzanine::Axis_X, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 //AreaEffectUpdateWorkUnit
