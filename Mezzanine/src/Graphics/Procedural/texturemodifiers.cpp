@@ -93,8 +93,6 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            ///////////////////////////////////////////////////////////////////////////////
-            // EdgeDetectionModifier Methods
 
         }//Procedural
     }//Graphics

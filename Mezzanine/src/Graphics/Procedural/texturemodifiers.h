@@ -81,31 +81,7 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            ///////////////////////////////////////////////////////////////////////////////
-            /// @brief
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB EdgeDetectionModifier : public TextureModifier
-            {
-            protected:
-            public:
-                /// @brief Blank constructor.
-                EdgeDetectionModifier();
-                /// @brief Class destructor.
-                virtual ~EdgeDetectionModifier();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
-
-                /// @copydoc TextureModifier::Modify(TextureBuffer&)
-                virtual void Modify(TextureBuffer& Buffer);
-                /// @copydoc TextureModifier::GetName() const
-                virtual String GetName() const;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Configuration
-
-            };//EdgeDetectionModifier
         }//Procedural
     }//Graphics
 }//Mezzanine
