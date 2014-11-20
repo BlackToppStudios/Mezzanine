@@ -120,7 +120,6 @@ namespace Mezzanine
 #include "Graphics/Procedural/shape.h"
 #include "Graphics/Procedural/spheregenerator.h"
 #include "Graphics/Procedural/springgenerator.h"
-#include "Graphics/Procedural/texturemodifiers.h"
 #include "Graphics/Procedural/torusgenerator.h"
 #include "Graphics/Procedural/torusknotgenerator.h"
 #include "Graphics/Procedural/trianglebuffer.h"
