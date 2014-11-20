@@ -434,6 +434,15 @@ class lua51tests : public UnitTestGroup
                 TestLuaLibraryExclusion("mut=Mezzanine.Threading.Mutex()\n",
                                         "MezzanineThreading", "MezzanineSafe.Threading.Mutex",
                                         Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLib);
+
+                TestLuaLibraryExclusion("mut=Mezzanine.Threading.Mutex()\n",
+                                        "MezzanineThreading", "MezzanineSafe.Threading.Mutex",
+                                        Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLib);
+
+                TestLuaLibraryExclusion("mut=MezzanineSafe.MathTools.AxisAlignedQuad(MezzanineSafe.Axis_X, MezzanineSafe.Vector3(x,0,0), MezzanineSafe.Vector3(x,1,1))\n",
+                                        "MezzanineMathTools", "MezzanineSafe.Threading.Mutex",
+                                        Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzMathToolsLib);
+
             }
 
             {
@@ -761,13 +770,12 @@ class lua51tests : public UnitTestGroup
                               "Sphere", "TestSphere", 3, 5, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                /*TestLuaScript("function TestMathTool(x)\n"
-                              ""
-                              "   return MezzanineSafe.Ceil(x)\n"
+                TestLuaScript("function TestMathTool(x)\n"
+                              "   return MezzanineSafe.MathTools_Ceil(x)\n"
                               "end",
                               "MathTool", "TestMathTool", 3.5, 4.0, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
-                */
+
 
                 TestLuaScript("function TestRootEnumerations(x)\n"
                               "   return MezzanineSafe.AT_Zip\n"
