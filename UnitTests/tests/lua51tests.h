@@ -440,7 +440,7 @@ class lua51tests : public UnitTestGroup
                                         Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLib);
 
                 TestLuaLibraryExclusion("mut=MezzanineSafe.MathTools.AxisAlignedQuad(MezzanineSafe.Axis_X, MezzanineSafe.Vector3(x,0,0), MezzanineSafe.Vector3(x,1,1))\n",
-                                        "MezzanineMathTools", "MezzanineSafe.Threading.Mutex",
+                                        "MezzanineMathTools", "MezzanineSafe.MathTools.Mutex",
                                         Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzMathToolsLib);
 
             }
