@@ -106,6 +106,7 @@ namespace Mezzanine
                 // Configuration
 
                 /// @brief Sets the file to be loaded by this generator.
+                /// @exception If the generated buffer is too small to fit the specified texture then a PARAMETERS_EXCEPTION will be thrown.
                 /// @param FileName The name of the file to load.
                 /// @param GroupName The name of the resource group the file belongs to.
                 /// @return Returns a reference to this.
