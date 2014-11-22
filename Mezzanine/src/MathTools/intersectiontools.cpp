@@ -55,7 +55,7 @@ namespace Mezzanine
     namespace MathTools
     {
 
-        Vector2 AxisAlignedQuad::DropAxisToCreateVector2(Vector3 Point, StandardAxis AxisToDrop)
+        Vector2 AxisAlignedQuad::DropAxisToCreateVector2(const Vector3& Point, const StandardAxis AxisToDrop)
         {
             switch(AxisToDrop)
             {
@@ -67,7 +67,7 @@ namespace Mezzanine
             }
         }
 
-        Vector3 AxisAlignedQuad::DropAxisToCreateVector2(Vector2 Point, StandardAxis AxisToRegain, Real Missing)
+        Vector3 AxisAlignedQuad::DropAxisToCreateVector2(const Vector2& Point, const StandardAxis AxisToRegain, const Real Missing)
         {
             switch(AxisToRegain)
             {
@@ -79,14 +79,14 @@ namespace Mezzanine
             }
         }
 
-        AxisAlignedQuad::AxisAlignedQuad(const StandardAxis &PlanarAlignment, const Real &Distance, const Vector2 &Min, const Vector2 &Max)
+        AxisAlignedQuad::AxisAlignedQuad(const StandardAxis PlanarAlignment, const Real Distance, const Vector2& Min, const Vector2& Max)
             : AlignedOn(PlanarAlignment),
               DistanceFromOrigin(Distance),
               MinExtents(Min),
               MaxExtents(Max)
         {}
 
-        AxisAlignedQuad::AxisAlignedQuad(const StandardAxis &PlanarAlignment, const Vector3 &Min, const Vector3 &Max)
+        AxisAlignedQuad::AxisAlignedQuad(const StandardAxis PlanarAlignment, const Vector3& Min, const Vector3& Max)
             : AlignedOn(PlanarAlignment),
               DistanceFromOrigin(Min[PlanarAlignment]),
               MinExtents(AxisAlignedQuad::DropAxisToCreateVector2(Min,PlanarAlignment)),
@@ -98,14 +98,14 @@ namespace Mezzanine
             }
         }
 
-        bool AxisAlignedQuad::OverlapsWith(Vector3 Other) const
+        Boole AxisAlignedQuad::OverlapsWith(const Vector3& Other) const
         {
             if(DistanceFromOrigin == Other[AlignedOn])
                 { return OverlapsWith( DropAxisToCreateVector2(Other, AlignedOn) ); }
             return false;
         }
 
-        bool AxisAlignedQuad::OverlapsWith(Vector2 Other) const
+        Boole AxisAlignedQuad::OverlapsWith(const Vector2& Other) const
         {
             if( MinExtents.X <= Other.X && Other.X <= MaxExtents.X &&
                     MinExtents.Y <= Other.Y && Other.Y <= MaxExtents.Y )
@@ -113,7 +113,7 @@ namespace Mezzanine
             return false;
         }
 
-        bool AxisAlignedQuad::operator==(const AxisAlignedQuad &Other) const
+        Boole AxisAlignedQuad::operator==(const AxisAlignedQuad& Other) const
         {
             return  AlignedOn == Other.AlignedOn &&
                     DistanceFromOrigin == Other.DistanceFromOrigin &&
