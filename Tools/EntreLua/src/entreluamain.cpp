@@ -107,6 +107,7 @@ struct EntreLuaOptions
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzXMLSafeLibName);
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLibName);
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingSafeLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzMathToolsLibName);
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DefaultLibsName);
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::AllLibsName);
         }
