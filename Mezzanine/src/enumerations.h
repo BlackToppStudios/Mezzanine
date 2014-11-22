@@ -134,10 +134,12 @@ namespace Mezzanine
     /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
     enum StandardAxis
     {
-        Axis_Invalid   = -1,   ///< Not an axis, Don't pass this into functions or operator[] functions, it is intended as an error value.
-        Axis_X         = 0,    ///< X axis
-        Axis_Y         = 1,    ///< Y axis
-        Axis_Z         = 2     ///< Z axis
+        Axis_Invalid   = -1,        ///< Not an axis, Don't pass this into functions or operator[] functions, it is intended as an error value.
+        Axis_X         = 0,         ///< X axis
+        Axis_Min       = Axis_X,     ///< For mathematical shortcuts this can be used as the lower limit for valid axis
+        Axis_Y         = 1,         ///< Y axis
+        Axis_Z         = 2,         ///< Z axis
+        Axis_Max       = Axis_Y     ///< For mathematical shortcuts this can be used as the upper limit
     };
 
     /// @enum TrackType
