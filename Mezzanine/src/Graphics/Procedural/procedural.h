@@ -61,6 +61,7 @@ namespace Mezzanine
 #include "Graphics/Procedural/Texture/abnormalsmodifier.h"
 #include "Graphics/Procedural/Texture/alphamodifier.h"
 #include "Graphics/Procedural/Texture/alphamaskmodifier.h"
+#include "Graphics/Procedural/Texture/atlasgenerator.h"
 #include "Graphics/Procedural/Texture/blitmodifier.h"
 #include "Graphics/Procedural/Texture/blurmodifier.h"
 #include "Graphics/Procedural/Texture/cellgenerator.h"
