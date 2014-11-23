@@ -83,13 +83,13 @@ namespace Mezzanine
         // Utility Methods
 
         UInt32 Texture::GetOriginalWidth() const
-            { this->_GetInternalTexture()->getSrcWidth(); }
+            { return this->_GetInternalTexture()->getSrcWidth(); }
 
         UInt32 Texture::GetOriginalHeight() const
-            { this->_GetInternalTexture()->getSrcHeight(); }
+            { return this->_GetInternalTexture()->getSrcHeight(); }
 
         UInt32 Texture::GetOriginalDepth() const
-            { this->_GetInternalTexture()->getSrcDepth(); }
+            { return this->_GetInternalTexture()->getSrcDepth(); }
 
         Graphics::PixelFormat Texture::GetFormat() const
             { return static_cast<Graphics::PixelFormat>( this->_GetInternalTexture()->getFormat() ); }

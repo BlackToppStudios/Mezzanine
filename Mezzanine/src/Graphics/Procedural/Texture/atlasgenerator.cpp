@@ -64,16 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifiers_h
-#define _graphicsproceduraltexturemodifiers_h
+#ifndef _graphicsproceduralatlasgenerator_cpp
+#define _graphicsproceduralatlasgenerator_cpp
 
-#include "Graphics/Procedural/Texture/texturebuffer.h"
-
-#include "Graphics/Procedural/Texture/texturemodifier.h"
-
-#include "vector2.h"
-#include "rect.h"
-#include "matrix3x3.h"
+#include "Graphics/Procedural/Texture/atlasgenerator.h"
 
 namespace Mezzanine
 {
@@ -81,31 +75,7 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            ///////////////////////////////////////////////////////////////////////////////
-            /// @brief
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB EdgeDetectionModifier : public TextureModifier
-            {
-            protected:
-            public:
-                /// @brief Blank constructor.
-                EdgeDetectionModifier();
-                /// @brief Class destructor.
-                virtual ~EdgeDetectionModifier();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
-
-                /// @copydoc TextureModifier::Modify(TextureBuffer&)
-                virtual void Modify(TextureBuffer& Buffer);
-                /// @copydoc TextureModifier::GetName() const
-                virtual String GetName() const;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Configuration
-
-            };//EdgeDetectionModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

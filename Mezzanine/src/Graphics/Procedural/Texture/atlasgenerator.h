@@ -64,28 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltexturemodifiers_cpp
-#define _graphicsproceduraltexturemodifiers_cpp
+#ifndef _graphicsproceduralatlasgenerator_h
+#define _graphicsproceduralatlasgenerator_h
 
-#include "Graphics/Procedural/texturemodifiers.h"
-
-#include "MathTools/mathtools.h"
-#include "exception.h"
-
-#include <cstring>
-
-namespace
-{
-    /// @internal
-    /// @brief Convenience class for pixel processing.
-    struct IntVector2
-    {
-        /// @brief Position on the X axis.
-        Mezzanine::Whole X;
-        /// @brief Position on the Y axis.
-        Mezzanine::Whole Y;
-    };//IntVector2
-}
+#include "Graphics/Procedural/Texture/texturegenerator.h"
 
 namespace Mezzanine
 {
@@ -94,8 +76,30 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            // EdgeDetectionModifier Methods
+            /// @brief A generator that will produce an image that is a number of other images placed side by side with no overlap.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB AtlasGenerator : public TextureGenerator
+            {
+            protected:
+            public:
+                /// @brief Class constructor.
+                AtlasGenerator();
+                /// @brief Class destructor.
+                virtual ~AtlasGenerator();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc TextureGenerator::AddToTextureBuffer(TextureBuffer&) const
+                virtual void AddToTextureBuffer(TextureBuffer& Buffer) const;
+                /// @copydoc TextureGenerator::GetName() const
+                virtual String GetName() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+            };//AtlasGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine
