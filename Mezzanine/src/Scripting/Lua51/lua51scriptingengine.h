@@ -252,6 +252,8 @@ namespace Mezzanine
                     /// or not during instantation.
                     explicit Lua51ScriptingEngine(NameValuePairList& Params);
 
+                    /// @brief Construct by deserializing
+                    /// @param XMLNode An XML::Node That contains an A valid lua scripting engine.
                     explicit Lua51ScriptingEngine(const XML::Node& XMLNode);
 
                     /// @brief Virtual Deconstructor
@@ -428,10 +430,15 @@ namespace Mezzanine
                     /// @brief Set The MezzanineThreadingSafe library as the Threading member of the MezzanineSafe library or fail silently
                     void SetThreadingSafe();
 
-                    /// @brief Set The MezzanineThreading library as the Threading member of the Mezzanine library or fail silently
+                    /// @brief Set The MezzaninePhysics library as the Physics member of the Mezzanine library or fail silently
                     void SetPhysics();
-                    /// @brief Set The MezzanineThreadingSafe library as the Threading member of the MezzanineSafe library or fail silently
+                    /// @brief Set The MezzaninePhysicsSafe library as the Physics member of the MezzanineSafe library or fail silently
                     void SetPhysicsSafe();
+
+                    /// @brief Set The MezzanineMathTools library as the MathTools member of the Mezzanine library or fail silently
+                    void SetMathTools();
+                    /// @brief Set The MezzanineMathToolsSafe library as the MathTools member of the MezzanineSafe library or fail silently
+                    void SetMathToolsSafe();
 
                 ///////////////////////////////////////////////////////////////////////////////////////
                 // Other Lua Manipulation

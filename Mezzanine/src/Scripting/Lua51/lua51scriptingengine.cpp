@@ -729,14 +729,14 @@ namespace Mezzanine
                 lua_pushcfunction(State, luaopen_MezzaninePhysics);
                 lua_pushstring(State, (MezzPhysicsLibName.c_str()) );
                 lua_call(State, 1, 0);
-                SetThreading();
+                SetPhysics();
             }
             void Lua51ScriptingEngine::OpenMezzaninePhysicsSafeLibrary()
             {
                 lua_pushcfunction(State, luaopen_MezzaninePhysicsSafe);
                 lua_pushstring(State, (MezzPhysicsSafeLibName.c_str()) );
                 lua_call(State, 1, 0);
-                SetThreadingSafe();
+                SetPhysicsSafe();
             }
 
             void Lua51ScriptingEngine::OpenMezzanineMathToolsLibrary()
@@ -744,14 +744,14 @@ namespace Mezzanine
                 lua_pushcfunction(State, luaopen_MezzanineMathTools);
                 lua_pushstring(State, (MezzPhysicsLibName.c_str()) );
                 lua_call(State, 1, 0);
-                SetThreading();
+                SetMathTools();
             }
             void Lua51ScriptingEngine::OpenMezzanineMathToolsSafeLibrary()
             {
                 lua_pushcfunction(State, luaopen_MezzanineMathToolsSafe);
                 lua_pushstring(State, (MezzPhysicsSafeLibName.c_str()) );
                 lua_call(State, 1, 0);
-                SetThreadingSafe();
+                SetMathToolsSafe();
             }
 
             void Lua51ScriptingEngine::SetXML()
@@ -768,6 +768,11 @@ namespace Mezzanine
                 { AliasLibrary("Mezzanine", "MezzaninePhysics", "Physics"); }
             void Lua51ScriptingEngine::SetPhysicsSafe()
                 { AliasLibrary("MezzanineSafe", "MezzaninePhysicsSafe", "Physics"); }
+
+            void Lua51ScriptingEngine::SetMathTools()
+                { AliasLibrary("Mezzanine", "MezzanineMathTools", "MathTools"); }
+            void Lua51ScriptingEngine::SetMathToolsSafe()
+                { AliasLibrary("MezzanineSafe", "MezzanineMathToolsSafe", "MathTools"); }
 
             lua_State* Lua51ScriptingEngine::GetRawLuaState()
                 { return State; }
