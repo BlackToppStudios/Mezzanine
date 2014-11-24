@@ -77,7 +77,8 @@ class lua51tests : public UnitTestGroup
 
                 TEST((ExpectedOutput==Returned || (Returned-Epsilon<ExpectedOutput && ExpectedOutput<Returned+Epsilon))
                      , String("SWIGWrapped::") + FeatureName);
-            } catch (ScriptLuaException& ) {
+            } catch (Exception& Error) {
+                //Error.what()
                 TEST_RESULT(Testing::Failed, String("SWIGWrapped::") + FeatureName);
             }
             TestOutput << "End " << FeatureName << " Test" << endl << endl;
