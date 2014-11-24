@@ -78,6 +78,8 @@ class lua51tests : public UnitTestGroup
                 TEST((ExpectedOutput==Returned || (Returned-Epsilon<ExpectedOutput && ExpectedOutput<Returned+Epsilon))
                      , String("SWIGWrapped::") + FeatureName);
             } catch (Exception& Error) {
+                TestOutput << "Test Failed because of '" << Error.GetExceptionTypeName() << "'" << std::endl
+                           << "With Message: " << Error.GetCompleteMessage() << std::endl;
                 //Error.what()
                 TEST_RESULT(Testing::Failed, String("SWIGWrapped::") + FeatureName);
             }
@@ -772,7 +774,7 @@ class lua51tests : public UnitTestGroup
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestMathTool(x)\n"
-                              "   return MezzanineMathToolsSafe.Ceil(3.4)x)\n"
+                              "   return MezzanineMathToolsSafe.Ceil(x)\n"
                               "end",
                               "MathToolCeil", "TestMathTool", 3.5, 4.0, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
@@ -810,14 +812,6 @@ class lua51tests : public UnitTestGroup
                               "OldEvent", "TestOldEventSystem", 8, Mezzanine::EventBase::GameWindow, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                TestLuaScript("function TestAxisAlignedQuad(x)\n"
-                              "  a=MezzanineSafe.AxisAlignedQuad(MezzanineSafe.Axis_X, MezzanineSafe.Vector3(x,0,0), MezzanineSafe.Vector3(x,1,1))\n"
-                              "  return a:DistanceFromOrigin\n"
-                              "end",
-                              "OldEvent", "TestAxisAlignedQuad", 8, Mezzanine::Axis_X, 0.0,
-                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
-
-                //AreaEffectUpdateWorkUnit
             }
 
         }
