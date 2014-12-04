@@ -148,12 +148,13 @@ namespace Mezzanine
                 Whole GetHeight() const;
 
                 /// @brief Creates an Image from this buffer.
+                /// @param Format The pixel format for the generated Image.  Defaults to: Graphics::PF_R8G8B8A8 (Ideal for PNG).
                 /// @return Returns a pointer to the converted Image.
-                Image* GenerateImage() const;
+                Image* GenerateImage(const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
                 /// @brief Creates a Texture from this buffer.
                 /// @param TexName The name of the Texture to be generated.
                 /// @param TexGroup The name of the resource group to create the Texture in.
-                /// @param Format The pixel format for the generated Texture.
+                /// @param Format The pixel format for the generated Texture.  Defaults to: Graphics::PF_R8G8B8A8 (Ideal for PNG).
                 /// @return Returns a pointer to the converted Texture.
                 Texture* GenerateTexture(const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
 

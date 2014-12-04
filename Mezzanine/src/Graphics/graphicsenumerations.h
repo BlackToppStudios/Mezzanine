@@ -105,6 +105,71 @@ namespace Mezzanine
             CPM_Solid     = 3         ///< Normal rendering.
         };
 
+        /// @enum ImageFileFormat
+        /// @brief This enum describes the various file formats for images supported by the Mezzanine.
+        /// @details Every format mentioned here has read support.  Many do not have write support.  Those that do will say so explicitly. @n @n
+        /// In addition to the formats listed here there are also a TON of unlisted raw image formats made and used by digital camera's that can be read.  The list for those formats is extremely large
+        /// and this list may one day be populated with them, but for now they will be left off of the list.  LibRAW provides that functionality and you can look at it's documentation if you need to know
+        /// which camera formats are supported.  @n @n
+        /// This is NOT an exhaustive list of what each format supports.  If you attempt to load or save an image the information here indicates it should work but does not, then some detail not mentioned here is
+        /// likely preventing it from working.  Or the information here could be wrong.  Regardless information here should not be taken as a final authority.  Most of these formats have quirks.
+        enum ImageFileFormat
+        {
+            IFF_Ext_Unknown = 0,  ///< Used exclusively in error conditions.
+            // FreeImage formats
+            IFF_Ext_bmp   = 1,    ///< Bitmap image.  Lossless compression format that can support most non-float pixel formats.  Supports Alpha channel.  Writing is supported.
+            IFF_Ext_cut   = 2,    ///< Acronym unknown.  Lossless compression format that supports 8-bits-per-pixel integer pixel format if it has an accompanying .PAL (Palette) file defining the colours it contains.  Otherwise .cut files are treated as grey scale images.  Does not support Alpha channel.
+            IFF_Ext_exr   = 3,    ///< Acronym unknown.  Supports Lossless or Lossy compression with 16-bit float, 32-bit float, or 32-bit integer colour channels with an arbitrary number of colour channels per pixel.  Intended for HDR images.  Supports Alpha channel.  Writing is supported.
+            IFF_Ext_gif   = 4,    ///< Graphics Interchange Format image.  Lossless compression format that supports 8-bits-per-pixel and animations.  Does not support Alpha channel.  Writing is supported.
+            IFF_Ext_g3    = 5,    ///< Acronym unknown.  Lossless compression format that supports 1-bit-per-pixel integer pixel format.  Does not support Alpha channel.
+            IFF_Ext_hdp   = 6,    ///< Alternative name for jxr.  See jxr extension information for more information.
+            IFF_Ext_hdr   = 7,    ///< High Dynamic Ranging image.  Lossless compression format that stores RGB in 8-bit colour channels with an 8-bit shared exponent taken from the brightest colour for a 32-bits-per-pixel float pixel format.  Intended for HDR images. Does not support Alpha channel.  Writing is supported.
+            IFF_Ext_ico   = 8,    ///< Icon image.  This format isn't an image so much as it is a container for a bmp or png image.  It's limitations and capabilities are the same as those images, with one exception: .ico images are limited to 256x256 sizes.  Writing is supported.
+            IFF_Ext_iff   = 9,    ///< Interchange File Format image.  Lossless compression format that supports 8-bit integer colour channels with an optional 8-bit Alpha channel, allowing either 24-bit or 32-bit pixels.  Supports Alpha channel.
+            IFF_Ext_jif   = 10,   ///< JPEG Interchange Format image, subtle alternative in how pixels are packed to the jpeg extension.  See jpeg extension information for more information..  Writing is supported.
+            IFF_Ext_jng   = 11,   ///< JPEG Network Graphics image.  This format extends the JPEG format by supporting Lossless or Lossy compression, 8-bit or 12-bit integer colour channels, and supports an Alpha channel.  Writing is supported.
+            IFF_Ext_jpe   = 12,   ///< Shorthand for jpeg.  See jpeg extension information for more information.
+            IFF_Ext_jpg   = 13,   ///< Shorthand for jpeg.  See jpeg extension information for more information.
+            IFF_Ext_jpeg  = 14,   ///< Joint Photographic Experts Group image.  Lossy compression format that supports 24-bits-per-pixel integer pixel format.  Does not support Alpha channel.  Writing is supported.
+            IFF_Ext_jp2   = 15,   ///< JPEG 2000 image.  This format extends the JPEG format by improving the underlying compression algorithm, supporting arbitrary bit depths up to 32-bit colour channels as integers or floats including an Alpha channel, and enabling lossy or lossless compression.  Supports Alpha channel.  Writing is supported.
+            IFF_Ext_jxr   = 16,   ///< JPEG XR image.  This extends the the JPEG standard by adding support for lossless compression and enabling 16-bit integer colour channels, enabling an Alpha channel, and enabling 16-bit (half-precision) or 32-bit (full precision) float pixel formats.  Supports Alpha channel.  Writing is supported.
+            IFF_Ext_j2c   = 17,   ///< JPEG 2000 Codestream image.  This is an image format that is generally embedded inside a jp2 or j2k image file, and shouldn't be seen independently, but might for debugging or special use cases.  Has the same limitations as jp2/j2k image files.  Writing is supported.
+            IFF_Ext_j2k   = 18,   ///< JPEG 2000 image, an alternative name for jp2 image files.  See jp2 extension information for more information.
+            IFF_Ext_koa   = 19,   ///< Koala Paint image.  Gonna level with you, when I looked up this format I found results that references 8-bit computers and Commodore 64's.  I also believe this format only supports 16 colours.  You probably shouldn't be using this.  Ever.
+            IFF_Ext_lbm   = 20,   ///< Interleaved Bitmap image, which is an alternative name to the iff image format.  See iff extension information for more information.
+            IFF_Ext_mng   = 21,   ///< Multiple-image Network Graphics image.  This is an animated image format that can have frames encoded as png or jng images.  See png or jng extension information for more information..
+            IFF_Ext_pbm   = 22,   ///< Portable Bitmap, a Netpbm format image.  Uncompressed format that supports only 1-bit-per-pixel.  Does not support Alpha channel.  Writing is supported.
+            IFF_Ext_pcd   = 23,   ///< (Kodak) Photo CD image.  Lossless compression format that supports 24-bits-per-pixel.  Does not support Alpha channel.
+            IFF_Ext_pct   = 24,   ///< (Macintosh QuickDraw) Picture image, an alternative name for pict image files.  See pict extension information for more information.
+            IFF_Ext_pcx   = 25,   ///< Personal Computer Exchange image.  This was the first widely accepted DOS image format!  In the off chance you need to hear more; the format in it's current form uses lossless compression, supports 1-bit and 24-bit pixels, and everything sensical in between.  Does not support Alpha channel.
+            IFF_Ext_pfm   = 26,   ///< Portable Float Map, an unofficial Netpbm format image.  Lossless compression format that supports 8-bit or 24-bit float pixel format.  Does not support Alpha channel.  Writing is supported.
+            IFF_Ext_pgm   = 27,   ///< Portable Graymap, a Netpbm format image.  Uncompressed format that can support 8-bit or 16-bit pixels in a single channel (greyscale).  Does not support Alpha channel.  Writing is supported.
+            IFF_Ext_pic   = 28,   ///< (Macintosh QuickDraw) Picture image, an alternative name for pict image files.  See pict extension information for more information.
+            IFF_Ext_pict  = 29,   ///< (Macintosh QuickDraw) Picture image.  This is a file that stores 16-bit opcodes that provide instructions for how to draw it's contents to QuickDraw.  This makes it a Vector image format rather than a Raster format.  Support for this format was discontinued with MacOSX.
+            IFF_Ext_png   = 30,   ///< Portable Network Graphics image.  Lossless compression format that generally is 32-bits-per-pixel integer pixel format, but can be configured to have anything between 1-bit and 64-bits per pixel.  Supports Alpha channel.  Writing is supported.
+            IFF_Ext_ppm   = 31,   ///< Portable Pixmap, a Netpbm format image.  Uncompressed format that can support 8-bit or 16-bit integer colour channels.  Does not support Alpha channel.  Writing is supported.
+            IFF_Ext_psd   = 32,   ///< Photoshop Document image.  Normal image format properties are unknown, but psd files are designed to store normal image data plus tons of additional Adobe metadata.
+            IFF_Ext_ras   = 33,   ///< Sun Raster image.  Lossless compression format that supports 1-bit, 8-bit, and 24-bit integer pixel formats.  Does not support Alpha channel.
+            IFF_Ext_sgi   = 34,   ///< Silicon Graphics Image.  Lossless compression format that supports 24-bit or 48-bit integer pixel formats.  Does not support Alpha channel.
+            IFF_Ext_targa = 35,   ///< Truevision Advanced Raster Graphics Adapter image, an alternative name for tga image files.  See tga extension information for more information.
+            IFF_Ext_tga   = 36,   ///< Truevision Graphics Adapter image.  Lossless compression format that supports 24-bit or 32-bit integer pixel formats.  Supports Alpha channel.  Writing is supported.
+            IFF_Ext_tif   = 37,   ///< Shorthand for tiff.  See tiff extension information for more information.
+            IFF_Ext_tiff  = 38,   ///< Tagged Image File Format image.  Lossless compression format that supports 1-bit, 2-bit, 8-bit, or 32-bit integer pixels formats, as well as 32-bit or 64-bit float or double pixel formats.  Supports Alpha channel.  Writing is supported.
+            IFF_Ext_wap   = 39,   ///< Shorthand for wbmp.  See wbmp extension information for more information.
+            IFF_Ext_wbm   = 40,   ///< Shorthand for wbmp.  See wbmp extension information for more information.
+            IFF_Ext_wbmp  = 41,   ///< Wireless Bitmap image.  Lossless compression format that supports 1-bit-per-pixel integer pixel format.  Does not support Alpha channel.  Writing is supported.
+            IFF_Ext_wdp   = 42,   ///< Alternative name for jxr.  See jxr extension information for more information.
+            IFF_Ext_webp  = 43,   ///< (Google) Webp image.  Lossless or lossy compression format that supports 8-bit integer colour channels.  Supports Alpha channel.  Writing is supported.
+            IFF_Ext_xbm   = 44,   ///< X11 Bitmap image.  Uncompressed format that uses c-style syntax to provide instructions on how to construct the image.
+            IFF_Ext_xpm   = 45,   ///< X11 Pixmap image.  Lossless compression format that supports 24-bit integer pixel formats.  Does not support Alpha channel.  Writing is supported.
+
+            // Non-FreeImage formats
+            IFF_Ext_dds   = 46,   ///< DirectDraw Surface image.  Lossy or Lossless compression format that supports a wide range of pixel formats, as well as texture arrays, cube maps, and volume maps.  Despite it's name some GL implementations support it's use as well, allowing it to stay compressed in video memory.  Supports Alpha channel.
+            IFF_Ext_ktx   = 47,   ///< Acronym unknown.  Uses Ericsson Texture Compression which is lossy and supports 8-bit colour channels.  This is dominately used on Android devices and in some cases can stay compressed in video memory.  Supports Alpha channel.
+            IFF_Ext_pkm   = 48,   ///< Alternative name for ktx.  See ktx extension information for more information.
+            IFF_Ext_pvr   = 49    ///< PowerVR image.  Lossy compression format that supports 2-bit or 4-bit integer pixels formats.  This is dominately used on iOS devices to store simple images and in some cases can stay compressed in video memory.  Does not support Alpha channel.
+        };
+
         /// @enum LightType
         /// @brief This is used by LightProxies to describe how light is emitted from the proxy source.
         enum LightType

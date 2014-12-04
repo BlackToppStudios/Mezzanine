@@ -42,6 +42,12 @@
 #define _graphicsimage_cpp
 
 #include "Graphics/image.h"
+#include "Graphics/graphicsutilities.h"
+
+#include "Resource/resourceutilities.h"
+
+#include "stringtool.h"
+
 #include <Ogre.h>
 
 #ifdef LoadImage
@@ -160,6 +166,47 @@ namespace Mezzanine
         Image& Image::LoadImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
         {
             this->IID->GraphicsImage.loadDynamicImage(Data,Width,Height,Depth,static_cast<Ogre::PixelFormat>(Format),AutoDelete,NumFaces,NumMipMaps);
+            return *this;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Saving Methods
+
+        Image& Image::SaveImage(const String& FileName, const String& GroupName)
+        {
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Saving images via asset groups is not supported yet.");
+            return *this;
+        }
+
+        Image& Image::SaveImageExplicit(const String& FilePath, const String& FileName)
+        {
+            String FullPath = FilePath;
+            String Separator(1,Resource::GetDirectorySeparator());
+            if( !StringTools::EndsWith(FilePath,Separator,true) ) {
+                FullPath.append(Separator);
+            }
+            FullPath.append(FileName);
+            return this->SaveImageExplicit(FullPath);
+        }
+
+        Image& Image::SaveImageExplicit(const String& File)
+        {
+            // Ogre does everything for us in a straightforward manner
+            this->IID->GraphicsImage.save(File);
+            return *this;
+        }
+
+        Image& Image::SaveImage(const Graphics::ImageFileFormat Format, std::ostream* Stream)
+        {
+            // Be lazy
+            return this->SaveImage(Graphics::ConvertImageFileExtension(Format),Stream);
+        }
+
+        Image& Image::SaveImage(const String& Extension, std::ostream* Stream)
+        {
+            Ogre::DataStreamPtr OgreStream = this->IID->GraphicsImage.encode(Extension);
+            Ogre::MemoryDataStream* RawOgreStream = static_cast<Ogre::MemoryDataStream*>( OgreStream.getPointer() );
+            Stream->write(reinterpret_cast<char*>(RawOgreStream->getPtr()),RawOgreStream->size());
             return *this;
         }
 

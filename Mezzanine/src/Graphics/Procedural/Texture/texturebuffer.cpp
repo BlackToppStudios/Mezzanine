@@ -75,6 +75,8 @@
 
 #include "MathTools/mathtools.h"
 
+#include <OgrePixelFormat.h>
+
 #include <cstring>
 
 #ifdef LoadImage
@@ -192,12 +194,12 @@ namespace Mezzanine
             Whole TextureBuffer::GetHeight() const
                 { return this->Height; }
 
-            Image* TextureBuffer::GenerateImage() const
+            Image* TextureBuffer::GenerateImage(const Graphics::PixelFormat Format) const
             {
                 Whole ImageSize = this->Width * this->Height * 4;
                 UInt8* NewBuff = new UInt8[ ImageSize ];
-                memcpy( NewBuff, this->Pixels, ImageSize );
-                Image* NewImage = new Image(NewBuff,this->Width,this->Height,Graphics::PF_R8G8B8A8,true);
+                Ogre::PixelUtil::bulkPixelConversion(this->Pixels,static_cast<Ogre::PixelFormat>(Graphics::PF_R8G8B8A8),NewBuff,static_cast<Ogre::PixelFormat>(Format),ImageSize);
+                Image* NewImage = new Image(NewBuff,this->Width,this->Height,Format,true);
                 return NewImage;
             }
 

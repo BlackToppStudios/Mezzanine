@@ -183,6 +183,50 @@ namespace Mezzanine
             Image& LoadImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete = false, const Whole NumFaces = 1, const UInt8 NumMipMaps = 0);
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Saving Methods
+
+            /// @brief Writes this image to the disk.
+            /// @remarks This method will infer the encoding from the provided file extension which needs to be included in the FileName parameter.  Check the ImageFileFormat enum
+            /// for details on which formats/extensions have write support.  Also keep in mind that different file formats have support for different pixel formats.  Ensure you are
+            /// encoding to something that can support the currently set pixel format otherwise you risk generating a corrupted image.
+            /// @param FileName The name of the file to save this as.
+            /// @param GroupName The name of the asset group to save this to.
+            /// @return Returns a reference to this.
+            Image& SaveImage(const String& FileName, const String& GroupName);
+            /// @brief Writes this image to the disk.
+            /// @remarks This method will infer the encoding from the provided file extension which needs to be included in the FileName parameter.  Check the ImageFileFormat enum
+            /// for details on which formats/extensions have write support.  Also keep in mind that different file formats have support for different pixel formats.  Ensure you are
+            /// encoding to something that can support the currently set pixel format otherwise you risk generating a corrupted image.  @n @n
+            /// This method also completely bypasses the bulk of the Mezzanine resource system and writes directly to the filesystem.  Use with care.
+            /// @param FilePath The directory path to where the file will be placed.
+            /// @param FileName The name of the file to save this as.
+            /// @return Returns a reference to this.
+            Image& SaveImageExplicit(const String& FilePath, const String& FileName);
+            /// @brief Writes this image to the disk.
+            /// @remarks This method will infer the encoding from the provided file extension which needs to be included in the FileName parameter.  Check the ImageFileFormat enum
+            /// for details on which formats/extensions have write support.  Also keep in mind that different file formats have support for different pixel formats.  Ensure you are
+            /// encoding to something that can support the currently set pixel format otherwise you risk generating a corrupted image.  @n @n
+            /// This method also completely bypasses the bulk of the Mezzanine resource system and writes directly to the filesystem.  Use with care.
+            /// @param File The full path and filename of the image to be written.
+            /// @return Returns a reference to this.
+            Image& SaveImageExplicit(const String& File);
+
+            /// @brief Writes this image in a final serializable form to an output stream.
+            /// @remarks Keep in mind that different file formats have support for different pixel formats.  Ensure you are encoding to something that can support the currently set
+            /// pixel format otherwise you risk generating a corrupted image.
+            /// @param Format The ImageFileFormat to encode the image with.
+            /// @param Stream A pointer to the stream to save this image to.
+            /// @return Returns a reference to this.
+            Image& SaveImage(const Graphics::ImageFileFormat Format, std::ostream* Stream);
+            /// @brief Writes this image in a final serializable form to an output stream.
+            /// @remarks This method will infer the encoding from the provided file extension.  Keep in mind that different file formats have support for different pixel formats.
+            /// Ensure you are encoding to something that can support the currently set pixel format otherwise you risk generating a corrupted image.
+            /// @param Extension A string containing the extension to encode to (not including the period).
+            /// @param Stream A pointer to the stream to save this image to.
+            /// @return Returns a reference to this.
+            Image& SaveImage(const String& Extension, std::ostream* Stream);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
             /// @internal
