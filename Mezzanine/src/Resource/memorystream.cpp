@@ -259,6 +259,18 @@ namespace Mezzanine
             this->SetBuffer(NewBuf,BufferSize,true);
         }
 
+        Char8* MemoryStreamBuffer::GetBufferStart() const
+        {
+            // Gonna use the std api for consistency, but could return raw members as well
+            return this->eback();
+        }
+
+        Char8* MemoryStreamBuffer::GetBufferEnd() const
+        {
+            // Gonna use the std api for consistency, but could return raw members as well
+            return this->egptr();
+        }
+
         std::streamsize MemoryStreamBuffer::GetBufferSize() const
         {
             return this->egptr() - this->eback();
@@ -326,6 +338,12 @@ namespace Mezzanine
 
         void MemoryStream::CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Mode)
             { this->Buffer.CopyBuffer(static_cast<const char*>(Buffer),BufferSize);  this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(Mode)); }
+
+        Char8* MemoryStream::GetBufferStart() const
+            { return this->Buffer.GetBufferStart(); }
+
+        Char8* MemoryStream::GetBufferEnd() const
+            { return this->Buffer.GetBufferEnd(); }
 
         void MemoryStream::SetFreeBuffer(const Boole FreeBuf)
             { this->Buffer.SetFreeBuffer(FreeBuf); }

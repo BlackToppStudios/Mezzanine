@@ -191,6 +191,12 @@ namespace Mezzanine
             /// @param BufferSize The size of the buffer to be copied.
             void CopyBuffer(const char* Buffer, const Whole BufferSize);
 
+            /// @brief Gets the start of this buffer.
+            /// @return Returns a pointer to the first valid element in this buffer.
+            Char8* GetBufferStart() const;
+            /// @brief Gets the end of this buffer.
+            /// @return Returns a pointer to one passed the last valid element in this buffer.
+            Char8* GetBufferEnd() const;
             /// @brief Gets the size of the current buffer being streamed to/from.
             /// @return Returns a std::streamsize representing the size of the current buffer, or 0 if one hasn't been initialized.
             std::streamsize GetBufferSize() const;
@@ -259,6 +265,13 @@ namespace Mezzanine
             /// @param BufferSize The size of the buffer to be copied.
             /// @param Mode An open mode describing if this buffer will be configured for reading, writing, or both.
             void CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Mode = Resource::SF_Read | Resource::SF_Write);
+
+            /// @brief Gets the start of this buffer.
+            /// @return Returns a pointer to the first valid element in this buffer.
+            Char8* GetBufferStart() const;
+            /// @brief Gets the end of this buffer.
+            /// @return Returns a pointer to one passed the last valid element in this buffer.
+            Char8* GetBufferEnd() const;
 
             /// @brief Sets if this should delete it's internal buffer when it is destroyed.
             /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
