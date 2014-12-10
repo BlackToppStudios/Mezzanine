@@ -192,7 +192,7 @@ namespace Mezzanine
                                 break;
                             }
                         }
-                        Buffer.SetAlphaByte( X, Y, this->GenColour.AlphaChannel );
+                        Buffer.SetAlphaReal( X, Y, this->GenColour.AlphaChannel );
                     }
                 }
             }

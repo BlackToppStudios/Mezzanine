@@ -78,6 +78,7 @@
 #include <OgrePixelFormat.h>
 
 #include <cstring>
+#include <limits>
 
 #ifdef LoadImage
 #undef LoadImage
@@ -115,13 +116,13 @@ namespace Mezzanine
                 Width( std::max(SquareSize,Whole(8)) ),
                 Height( std::max(SquareSize,Whole(8)) )
             {
-                this->Pixels = new UInt8[this->Width * this->Height * 4];
-                memset(this->Pixels, 0, this->Width * this->Height * 4 * sizeof(UInt8));
+                this->Pixels = new ColourChannelType[ this->GetSubChannelCount() ];
+                memset(this->Pixels, 0, this->GetByteSize());
                 for( Whole Y = 0 ; Y < this->Height ; Y++ )
                 {
                     for( Whole X = 0 ; X < this->Width ; X++ )
                     {
-                        this->SetAlphaByte( X, Y, (UInt8)255 );
+                        this->SetAlphaByte( X, Y, std::numeric_limits<ColourChannelType>::max() );
                     }
                 }
             }
@@ -130,61 +131,77 @@ namespace Mezzanine
                 Width( std::max(TexWidth,Whole(8)) ),
                 Height( std::max(TexHeight,Whole(8)) )
             {
-                this->Pixels = new UInt8[this->Width * this->Height * 4];
-                memset(this->Pixels, 0, this->Width * this->Height * 4 * sizeof(UInt8));
+                this->Pixels = new ColourChannelType[ this->GetSubChannelCount() ];
+                memset(this->Pixels, 0, this->GetByteSize() );
                 for( Whole Y = 0 ; Y < this->Height ; Y++ )
                 {
                     for( Whole X = 0 ; X < this->Width ; X++ )
                     {
-                        this->SetAlphaByte( X, Y, (UInt8)255 );
+                        this->SetAlphaByte( X, Y, std::numeric_limits<ColourChannelType>::max() );
                     }
                 }
             }
 
-            TextureBuffer::TextureBuffer(const TextureBuffer& Other)
-            {
-                this->Width = Other.GetWidth();
-                this->Height = Other.GetHeight();
-
-                this->Pixels = new UInt8[this->Width * this->Height * 4];
-                memcpy(this->Pixels, Other.Pixels, this->Width * this->Height * 4 * sizeof(UInt8));
-            }
+            TextureBuffer::TextureBuffer(const TextureBuffer& Other) :
+                Width( 8 ),
+                Height( 8 )
+                { this->SetData(Other); }
 
             TextureBuffer::~TextureBuffer()
                 { delete[] Pixels; }
 
-            UInt8& TextureBuffer::GetPixel(const Whole X, const Whole Y, const UInt16 Component)
+            TextureBuffer::ColourChannelType& TextureBuffer::GetPixel(const Whole X, const Whole Y, const UInt16 Component)
             {
                 if( X >= this->Width || Y >= this->Height ) {
                     MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Requesting pixel position in TextureBuffer that is out of bounds.");
                 }
 
-                return this->Pixels[ Y * this->Width * 4 + X * 4 + Component ];
+                return this->Pixels[ Y * this->Width * 4 + X * 4 + Component * sizeof(ColourChannelType) ];
             }
 
-            const UInt8& TextureBuffer::GetPixel(const Whole X, const Whole Y, const UInt16 Component) const
+            const TextureBuffer::ColourChannelType& TextureBuffer::GetPixel(const Whole X, const Whole Y, const UInt16 Component) const
             {
                 if( X >= this->Width || Y >= this->Height ) {
                     MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Requesting pixel position in TextureBuffer that is out of bounds.");
                 }
 
-                return this->Pixels[ Y * this->Width * 4 + X * 4 + Component ];
+                return this->Pixels[ Y * this->Width * 4 + X * 4 + Component * sizeof(ColourChannelType) ];
             }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            void TextureBuffer::SetData(const Whole BuffWidth, const Whole BuffHeight, const UInt8* Buffer)
+            void TextureBuffer::SetData(const Whole BuffWidth, const Whole BuffHeight, const ColourChannelType* Buffer)
             {
-                if( Buffer != NULL && this->Width == BuffWidth && this->Height == BuffHeight ) {
-                    memcpy(this->Pixels,Buffer,this->Width * this->Height * 4 * sizeof(UInt8));
+                if( Buffer != NULL ) {
+                    if( this->Width != BuffWidth || this->Height != BuffHeight ) {
+                        this->Width = BuffWidth;
+                        this->Height = BuffHeight;
+
+                        if( this->Pixels != NULL ) {
+                            delete[] this->Pixels;
+                        }
+
+                        this->Pixels = new ColourChannelType[ this->GetSubChannelCount() ];
+                    }
+                    memcpy(this->Pixels,Buffer,this->GetByteSize());
                 }
             }
 
             void TextureBuffer::SetData(const TextureBuffer& Other)
             {
-                if( Other.Pixels != NULL && this->Width == Other.Width && this->Height == Other.Height ) {
-                    memcpy(this->Pixels,Other.Pixels,this->Width * this->Height * 4 * sizeof(UInt8));
+                if( Other.Pixels != NULL ) {
+                    if( this->Width != Other.Width || this->Height != Other.Height ) {
+                        this->Width = Other.GetWidth();
+                        this->Height = Other.GetHeight();
+
+                        if( this->Pixels != NULL ) {
+                            delete[] this->Pixels;
+                        }
+
+                        this->Pixels = new ColourChannelType[ this->GetSubChannelCount() ];
+                    }
+                    memcpy(this->Pixels, Other.Pixels, this->GetByteSize());
                 }
             }
 
@@ -194,11 +211,19 @@ namespace Mezzanine
             Whole TextureBuffer::GetHeight() const
                 { return this->Height; }
 
+            Whole TextureBuffer::GetPixelCount() const
+                { return this->Width * this->Height; }
+
+            Whole TextureBuffer::GetSubChannelCount() const
+                { return this->GetPixelCount() * 4; }
+
+            Whole TextureBuffer::GetByteSize() const
+                { return this->GetSubChannelCount() * sizeof(ColourChannelType); }
+
             Image* TextureBuffer::GenerateImage(const Graphics::PixelFormat Format) const
             {
-                Whole ImageSize = this->Width * this->Height * 4;
-                UInt8* NewBuff = new UInt8[ ImageSize ];
-                Ogre::PixelUtil::bulkPixelConversion(this->Pixels,static_cast<Ogre::PixelFormat>(Graphics::PF_R8G8B8A8),NewBuff,static_cast<Ogre::PixelFormat>(Format),ImageSize);
+                ColourChannelType* NewBuff = new ColourChannelType[ this->GetSubChannelCount() ];
+                Ogre::PixelUtil::bulkPixelConversion(this->Pixels,static_cast<Ogre::PixelFormat>(Graphics::PF_R8G8B8A8),NewBuff,static_cast<Ogre::PixelFormat>(Format),this->GetPixelCount());
                 Image* NewImage = new Image(NewBuff,this->Width,this->Height,Format,true);
                 return NewImage;
             }
@@ -206,7 +231,7 @@ namespace Mezzanine
             Texture* TextureBuffer::GenerateTexture(const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
             {
                 Texture* Ret = Graphics::TextureManager::GetSingletonPtr()->CreateManualTexture(TexName,TexGroup,Graphics::TT_2D,this->Width,this->Height,0,Format);
-                Ret->_WriteToBuffer(this->Pixels,this->Width * this->Height * 4,Graphics::PF_R8G8B8A8);
+                Ret->_WriteToBuffer(this->Pixels,this->GetByteSize(),Graphics::PF_R8G8B8A8);
                 return Ret;
             }
 
@@ -218,7 +243,7 @@ namespace Mezzanine
                 this->SetPixelReal(X,Y,Colour.RedChannel,Colour.GreenChannel,Colour.BlueChannel,Colour.AlphaChannel);
             }
 
-            void TextureBuffer::SetPixelByte(const Whole X, const Whole Y, const UInt8 Red, const UInt8 Green, const UInt8 Blue, const UInt8 Alpha)
+            void TextureBuffer::SetPixelByte(const Whole X, const Whole Y, const ColourChannelType Red, const ColourChannelType Green, const ColourChannelType Blue, const ColourChannelType Alpha)
             {
                 this->SetRedByte(X,Y,Red);
                 this->SetGreenByte(X,Y,Green);
@@ -237,65 +262,65 @@ namespace Mezzanine
             ColourValue TextureBuffer::GetPixel(const Whole X, const Whole Y) const
                 { return ColourValue( this->GetRedReal(X,Y), this->GetGreenReal(X,Y), this->GetBlueReal(X,Y), this->GetAlphaReal(X,Y) ); }
 
-            void TextureBuffer::SetRedByte(const Whole X, const Whole Y, const UInt8 Red)
+            void TextureBuffer::SetRedByte(const Whole X, const Whole Y, const ColourChannelType Red)
                 { this->GetPixel(X,Y,PC_Red) = Red; }
 
             void TextureBuffer::SetRedReal(const Whole X, const Whole Y, const Real Red)
             {
                 if( Red > 1.0 || Red < 0.0 )
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Red colour component to be set is outside the expected range [0.0-1.0]."); }
-                this->GetPixel(X,Y,PC_Red) = static_cast<UInt8>( MathTools::Clamp(Red * Real(255.0),Real(0.0),Real(255.0)) );
+                this->GetPixel(X,Y,PC_Red) = static_cast<ColourChannelType>( MathTools::Clamp(Red * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
-            UInt8 TextureBuffer::GetRedByte(const Whole X, const Whole Y) const
+            TextureBuffer::ColourChannelType TextureBuffer::GetRedByte(const Whole X, const Whole Y) const
                 { return this->GetPixel(X,Y,PC_Red); }
 
             Real TextureBuffer::GetRedReal(const Whole X, const Whole Y) const
                 { return ( static_cast<Real>( this->GetPixel(X,Y,PC_Red) ) / 255.0 ); }
 
-            void TextureBuffer::SetGreenByte(const Whole X, const Whole Y, const UInt8 Green)
+            void TextureBuffer::SetGreenByte(const Whole X, const Whole Y, const ColourChannelType Green)
                 { this->GetPixel(X,Y,PC_Green) = Green; }
 
             void TextureBuffer::SetGreenReal(const Whole X, const Whole Y, const Real Green)
             {
                 if( Green > 1.0 || Green < 0.0 )
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Green colour component to be set is outside the expected range [0.0-1.0]."); }
-                this->GetPixel(X,Y,PC_Green) = static_cast<UInt8>( MathTools::Clamp(Green * Real(255.0),Real(0.0),Real(255.0)) );
+                this->GetPixel(X,Y,PC_Green) = static_cast<ColourChannelType>( MathTools::Clamp(Green * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
-            UInt8 TextureBuffer::GetGreenByte(const Whole X, const Whole Y) const
+            TextureBuffer::ColourChannelType TextureBuffer::GetGreenByte(const Whole X, const Whole Y) const
                 { return this->GetPixel(X,Y,PC_Green); }
 
             Real TextureBuffer::GetGreenReal(const Whole X, const Whole Y) const
                 { return ( static_cast<Real>( this->GetPixel(X,Y,PC_Green) ) / 255.0 ); }
 
-            void TextureBuffer::SetBlueByte(const Whole X, const Whole Y, const UInt8 Blue)
+            void TextureBuffer::SetBlueByte(const Whole X, const Whole Y, const ColourChannelType Blue)
                 { this->GetPixel(X,Y,PC_Blue) = Blue; }
 
             void TextureBuffer::SetBlueReal(const Whole X, const Whole Y, const Real Blue)
             {
                 if( Blue > 1.0 || Blue < 0.0 )
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Blue colour component to be set is outside the expected range [0.0-1.0]."); }
-                this->GetPixel(X,Y,PC_Blue) = static_cast<UInt8>( MathTools::Clamp(Blue * Real(255.0),Real(0.0),Real(255.0)) );
+                this->GetPixel(X,Y,PC_Blue) = static_cast<ColourChannelType>( MathTools::Clamp(Blue * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
-            UInt8 TextureBuffer::GetBlueByte(const Whole X, const Whole Y) const
+            TextureBuffer::ColourChannelType TextureBuffer::GetBlueByte(const Whole X, const Whole Y) const
                 { return this->GetPixel(X,Y,PC_Blue); }
 
             Real TextureBuffer::GetBlueReal(const Whole X, const Whole Y) const
                 { return ( static_cast<Real>( this->GetPixel(X,Y,PC_Blue) ) / 255.0 ); }
 
-            void TextureBuffer::SetAlphaByte(const Whole X, const Whole Y, const UInt8 Alpha)
+            void TextureBuffer::SetAlphaByte(const Whole X, const Whole Y, const ColourChannelType Alpha)
                 { this->GetPixel(X,Y,PC_Alpha) = Alpha; }
 
             void TextureBuffer::SetAlphaReal(const Whole X, const Whole Y, const Real Alpha)
             {
                 if( Alpha > 1.0 || Alpha < 0.0 )
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Alpha colour component to be set is outside the expected range [0.0-1.0]."); }
-                this->GetPixel(X,Y,PC_Alpha) = static_cast<UInt8>( MathTools::Clamp(Alpha * Real(255.0),Real(0.0),Real(255.0)) );
+                this->GetPixel(X,Y,PC_Alpha) = static_cast<ColourChannelType>( MathTools::Clamp(Alpha * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
-            UInt8 TextureBuffer::GetAlphaByte(const Whole X, const Whole Y) const
+            TextureBuffer::ColourChannelType TextureBuffer::GetAlphaByte(const Whole X, const Whole Y) const
                 { return this->GetPixel(X,Y,PC_Alpha); }
 
             Real TextureBuffer::GetAlphaReal(const Whole X, const Whole Y) const

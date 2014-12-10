@@ -88,16 +88,32 @@ namespace Mezzanine
             {
                 TextureBuffer TexBuf(SquareSize);
                 this->AddToTextureBuffer(TexBuf);
-                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup,Format);
-                return NewMesh;
+                Texture* NewTexture = TexBuf.GenerateTexture(TexName,TexGroup,Format);
+                return NewTexture;
             }
 
             Texture* TextureGenerator::GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format) const
             {
                 TextureBuffer TexBuf(TexWidth,TexHeight);
                 this->AddToTextureBuffer(TexBuf);
-                Texture* NewMesh = TexBuf.GenerateTexture(TexName,TexGroup,Format);
-                return NewMesh;
+                Texture* NewTexture = TexBuf.GenerateTexture(TexName,TexGroup,Format);
+                return NewTexture;
+            }
+
+            Image* TextureGenerator::GenerateImage(const Whole SquareSize, const Graphics::PixelFormat Format) const
+            {
+                TextureBuffer TexBuf(SquareSize);
+                this->AddToTextureBuffer(TexBuf);
+                Image* NewImage = TexBuf.GenerateImage(Format);
+                return NewImage;
+            }
+
+            Image* TextureGenerator::GenerateImage(const Whole TexWidth, const Whole TexHeight, const Graphics::PixelFormat Format) const
+            {
+                TextureBuffer TexBuf(TexWidth,TexHeight);
+                this->AddToTextureBuffer(TexBuf);
+                Image* NewImage = TexBuf.GenerateImage(Format);
+                return NewImage;
             }
 
             TextureBuffer TextureGenerator::BuildTextureBuffer(const Whole SquareSize) const

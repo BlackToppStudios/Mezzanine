@@ -93,27 +93,42 @@ namespace Mezzanine
                 // Utility
 
                 /// @brief Generates the Texture.
-                /// @param SquareSize The width and height of the texture to create.  This value will be clamped to be at least 8.
-                /// @param TexName The name to give to the generated texture.
-                /// @param TexGroup The asset group to place the texture in.
+                /// @param SquareSize The width and height of the Texture to create.  This value will be clamped to be at least 8.
+                /// @param TexName The name to give to the generated Texture.
+                /// @param TexGroup The asset group to place the Texture in.
                 /// @param Format The pixel format for the generated Texture.
                 /// @return Returns a pointer to the newly created Texture.
                 Texture* GenerateTexture(const Whole SquareSize, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
                 /// @brief Generates the Texture.
-                /// @param TexWidth The pixel width of the texture to be generated.  This value will be clamped to be at least 8.
-                /// @param TexHeight The pixel height of the texture to be generated.  This value will be clamped to be at least 8.
-                /// @param TexName The name to give to the generated texture.
-                /// @param TexGroup The asset group to place the texture in.
+                /// @param TexWidth The pixel width of the Texture to be generated.  This value will be clamped to be at least 8.
+                /// @param TexHeight The pixel height of the Texture to be generated.  This value will be clamped to be at least 8.
+                /// @param TexName The name to give to the generated Texture.
+                /// @param TexGroup The asset group to place the Texture in.
                 /// @param Format The pixel format for the generated Texture.
                 /// @return Returns a pointer to the newly created Texture.
                 Texture* GenerateTexture(const Whole TexWidth, const Whole TexHeight, const String& TexName, const String& TexGroup, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
+
+                /// @brief Generates the Image.
+                /// @remarks The generated image is not owned by this generator or anything.  It is up to the user/caller of this method to clean it up.
+                /// @param SquareSize The width and height of the Image to create.  This value will be clamped to be at least 8.
+                /// @param Format The pixel format for the generated Image.
+                /// @return Returns a pointer to the newly created Image.
+                Image* GenerateImage(const Whole SquareSize, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
+                /// @brief Generates the Image.
+                /// @remarks The generated image is not owned by this generator or anything.  It is up to the user/caller of this method to clean it up.
+                /// @param TexWidth The pixel width of the Image to be generated.  This value will be clamped to be at least 8.
+                /// @param TexHeight The pixel height of the Image to be generated.  This value will be clamped to be at least 8.
+                /// @param Format The pixel format for the generated Image.
+                /// @return Returns a pointer to the newly created Image.
+                Image* GenerateImage(const Whole TexWidth, const Whole TexHeight, const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
+
                 /// @brief Creates a TextureBuffer with the pixels as configured in this generator.
-                /// @param SquareSize The width and height of the texture to create.  This value will be clamped to be at least 8.
+                /// @param SquareSize The width and height of the Texture to create.  This value will be clamped to be at least 8.
                 /// @return Returns a new TextureBuffer with the generated pixels of this generator.
                 TextureBuffer BuildTextureBuffer(const Whole SquareSize) const;
                 /// @brief Creates a TextureBuffer with the pixels as configured in this generator.
-                /// @param TexWidth The pixel width of the texture to be generated.  This value will be clamped to be at least 8.
-                /// @param TexHeight The pixel height of the texture to be generated.  This value will be clamped to be at least 8.
+                /// @param TexWidth The pixel width of the Texture to be generated.  This value will be clamped to be at least 8.
+                /// @param TexHeight The pixel height of the Texture to be generated.  This value will be clamped to be at least 8.
                 /// @return Returns a new TextureBuffer with the generated pixels of this generator.
                 TextureBuffer BuildTextureBuffer(const Whole TexWidth, const Whole TexHeight) const;
                 /// @brief Replaces and populates the pixels as configured in this generator to a TextureBuffer.

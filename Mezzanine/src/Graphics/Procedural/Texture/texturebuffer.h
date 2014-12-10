@@ -85,10 +85,13 @@ namespace Mezzanine
             ///////////////////////////////////////
             class MEZZ_LIB TextureBuffer
             {
+            public:
+                /// @brief Convenience typedef for the datatype containing the value for each colour channel.
+                typedef UInt8 ColourChannelType;
             protected:
                 /// @internal
                 /// @brief A pointer to the buffer storing all the pixels of this texture buffer.
-                UInt8* Pixels;
+                ColourChannelType* Pixels;
                 /// @internal
                 /// @brief The size of the texture to be generated on the X axis.
                 Whole Width;
@@ -102,16 +105,16 @@ namespace Mezzanine
                 /// @param X The X position of the pixel to access.
                 /// @param Y The Y position of the pixel to access.
                 /// @param Component The colour component to access.
-                /// @return Returns a UInt8 reference to the requested component of the requested pixel.
-                UInt8& GetPixel(const Whole X, const Whole Y, const UInt16 Component);
+                /// @return Returns a ColourChannelType reference to the requested component of the requested pixel.
+                ColourChannelType& GetPixel(const Whole X, const Whole Y, const UInt16 Component);
                 /// @internal
                 /// @brief Gets access to the pixel at the specified position in this buffer.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of the pixel to access.
                 /// @param Y The Y position of the pixel to access.
                 /// @param Component The colour component to access.
-                /// @return Returns a const UInt8 reference to the requested component of the requested pixel.
-                const UInt8& GetPixel(const Whole X, const Whole Y, const UInt16 Component) const;
+                /// @return Returns a const ColourChannelType reference to the requested component of the requested pixel.
+                const ColourChannelType& GetPixel(const Whole X, const Whole Y, const UInt16 Component) const;
             public:
                 /// @brief Square size constructor.
                 /// @param SquareSize The width and height of the texture to create.  This value will be clamped to be at least 8.
@@ -135,7 +138,7 @@ namespace Mezzanine
                 /// @param BuffWidth The Width of the image in the provided buffer.
                 /// @param BuffHeight The Height of the image in the provided buffer.
                 /// @param Buffer A pointer to the buffer to be copied.
-                void SetData(const Whole BuffWidth, const Whole BuffHeight, const UInt8* Buffer);
+                void SetData(const Whole BuffWidth, const Whole BuffHeight, const ColourChannelType* Buffer);
                 /// @brief Copies image data from another buffer into this buffer.
                 /// @param Other The other TextureBuffer that will having it's contents copied to this.
                 void SetData(const TextureBuffer& Other);
@@ -147,7 +150,18 @@ namespace Mezzanine
                 /// @return Returns a Whole representing the height of this TextureBuffer in pixels.
                 Whole GetHeight() const;
 
+                /// @brief Gets the number of pixels in this texture.
+                /// @return Returns the total number of pixels in this texture (width * height).
+                Whole GetPixelCount() const;
+                /// @brief Gets the number of colour channels among all the pixels in this texture.
+                /// @return Returns the total number of colour channels in this texture (PixelCount * 4).
+                Whole GetSubChannelCount() const;
+                /// @brief Gets the size of the internal buffer in bytes.
+                /// @return Returns the size of the buffer containing the pixels of the image in bytes.
+                Whole GetByteSize() const;
+
                 /// @brief Creates an Image from this buffer.
+                /// @remarks The generated image is not owned by this buffer or anything.  It is up to the user/caller of this method to clean it up.
                 /// @param Format The pixel format for the generated Image.  Defaults to: Graphics::PF_R8G8B8A8 (Ideal for PNG).
                 /// @return Returns a pointer to the converted Image.
                 Image* GenerateImage(const Graphics::PixelFormat Format = Graphics::PF_R8G8B8A8) const;
@@ -175,7 +189,7 @@ namespace Mezzanine
                 /// @param Green The amount of Green colour to be applied to the specified pixel.  Range: [0, 255].
                 /// @param Blue The amount of Blue colour to be applied to the specified pixel.  Range: [0, 255].
                 /// @param Alpha The amount of Alpha colour to be applied to the specified pixel.  Range: [0, 255].
-                void SetPixelByte(const Whole X, const Whole Y, const UInt8 Red, const UInt8 Green, const UInt8 Blue, const UInt8 Alpha = 255);
+                void SetPixelByte(const Whole X, const Whole Y, const ColourChannelType Red, const ColourChannelType Green, const ColourChannelType Blue, const ColourChannelType Alpha = 255);
                 /// @brief Set colour of a specified pixel using a 0.0-1.0 range.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @exception If any of the colour values passed in are outside of the range of 0.0-1.0, then a PARAMETERS_RANGE_EXCEPTION will be thrown.
@@ -198,7 +212,7 @@ namespace Mezzanine
                 /// @param X The X position of pixel to change the colour of.
                 /// @param Y The Y position of pixel to change the colour of.
                 /// @param Red The amount of red colour to be applied to the specified pixel.  Range: [0, 255].
-                void SetRedByte(const Whole X, const Whole Y, const UInt8 Red);
+                void SetRedByte(const Whole X, const Whole Y, const ColourChannelType Red);
                 /// @brief Sets the red colour value of a specified pixel.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @exception If any of the colour values passed in are outside of the range of 0.0-1.0, then a PARAMETERS_RANGE_EXCEPTION will be thrown.
@@ -210,8 +224,8 @@ namespace Mezzanine
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of pixel to retrieve.
                 /// @param Y The Y position of pixel to retrieve.
-                /// @return Returns a UInt8 representing the red component of the colour in the specified pixel.  Range: [0, 255].
-                UInt8 GetRedByte(const Whole X, const Whole Y) const;
+                /// @return Returns a ColourChannelType representing the red component of the colour in the specified pixel.  Range: [0, 255].
+                ColourChannelType GetRedByte(const Whole X, const Whole Y) const;
                 /// @brief Gets the red colour value of a specified pixel.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of pixel to retrieve.
@@ -224,7 +238,7 @@ namespace Mezzanine
                 /// @param X The X position of pixel to change the colour of.
                 /// @param Y The Y position of pixel to change the colour of.
                 /// @param Green The amount of green colour to be applied to the specified pixel.  Range: [0, 255].
-                void SetGreenByte(const Whole X, const Whole Y, const UInt8 Green);
+                void SetGreenByte(const Whole X, const Whole Y, const ColourChannelType Green);
                 /// @brief Sets the green colour value of a specified pixel.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @exception If any of the colour values passed in are outside of the range of 0.0-1.0, then a PARAMETERS_RANGE_EXCEPTION will be thrown.
@@ -236,8 +250,8 @@ namespace Mezzanine
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of pixel to retrieve.
                 /// @param Y The Y position of pixel to retrieve.
-                /// @return Returns a UInt8 representing the green component of the colour in the specified pixel.  Range: [0, 255].
-                UInt8 GetGreenByte(const Whole X, const Whole Y) const;
+                /// @return Returns a ColourChannelType representing the green component of the colour in the specified pixel.  Range: [0, 255].
+                ColourChannelType GetGreenByte(const Whole X, const Whole Y) const;
                 /// @brief Gets the green colour value of a specified pixel.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of pixel to retrieve.
@@ -250,7 +264,7 @@ namespace Mezzanine
                 /// @param X The X position of pixel to change the colour of.
                 /// @param Y The Y position of pixel to change the colour of.
                 /// @param Blue The amount of blue colour to be applied to the specified pixel.  Range: [0, 255].
-                void SetBlueByte(const Whole X, const Whole Y, const UInt8 Blue);
+                void SetBlueByte(const Whole X, const Whole Y, const ColourChannelType Blue);
                 /// @brief Sets the blue colour value of a specified pixel.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @exception If any of the colour values passed in are outside of the range of 0.0-1.0, then a PARAMETERS_RANGE_EXCEPTION will be thrown.
@@ -262,8 +276,8 @@ namespace Mezzanine
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of pixel to retrieve.
                 /// @param Y The Y position of pixel to retrieve.
-                /// @return Returns a UInt8 representing the blue component of the colour in the specified pixel.  Range: [0, 255].
-                UInt8 GetBlueByte(const Whole X, const Whole Y) const;
+                /// @return Returns a ColourChannelType representing the blue component of the colour in the specified pixel.  Range: [0, 255].
+                ColourChannelType GetBlueByte(const Whole X, const Whole Y) const;
                 /// @brief Gets the blue colour value of a specified pixel.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of pixel to retrieve.
@@ -276,7 +290,7 @@ namespace Mezzanine
                 /// @param X The X position of pixel to change the colour of.
                 /// @param Y The Y position of pixel to change the colour of.
                 /// @param Alpha The amount of alpha colour to be applied to the specified pixel.  Range: [0, 255].
-                void SetAlphaByte(const Whole X, const Whole Y, const UInt8 Alpha);
+                void SetAlphaByte(const Whole X, const Whole Y, const ColourChannelType Alpha);
                 /// @brief Sets the alpha colour value of a specified pixel.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @exception If any of the colour values passed in are outside of the range of 0.0-1.0, then a PARAMETERS_RANGE_EXCEPTION will be thrown.
@@ -288,8 +302,8 @@ namespace Mezzanine
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of pixel to retrieve.
                 /// @param Y The Y position of pixel to retrieve.
-                /// @return Returns a UInt8 representing the alpha component of the colour in the specified pixel.  Range: [0, 255].
-                UInt8 GetAlphaByte(const Whole X, const Whole Y) const;
+                /// @return Returns a ColourChannelType representing the alpha component of the colour in the specified pixel.  Range: [0, 255].
+                ColourChannelType GetAlphaByte(const Whole X, const Whole Y) const;
                 /// @brief Gets the alpha colour value of a specified pixel.
                 /// @exception If the X or Y location go beyond the set size of this texture buffer, then a MM_OUT_OF_BOUNDS_EXCEPTION will be thrown.
                 /// @param X The X position of pixel to retrieve.
