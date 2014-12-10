@@ -759,6 +759,9 @@ namespace Mezzanine
         //DefaultTerrainManager
         ManIt = this->ManagerFactories.find("DefaultTerrainManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultTerrainManagerFactory());
+        //DefaultTextureManager
+        ManIt = this->ManagerFactories.find("DefaultTextureManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultTextureManagerFactory());
         //DefaultUIManager
         ManIt = this->ManagerFactories.find("DefaultUIManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new UI::DefaultUIManagerFactory());

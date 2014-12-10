@@ -179,7 +179,7 @@ namespace Mezzanine
         String DefaultTextureManagerFactory::GetManagerTypeName() const
             { return "DefaultTextureManager"; }
 
-        ManagerBase* DefaultTextureManagerFactory::CreateManager(NameValuePairMap& Params)
+        ManagerBase* DefaultTextureManagerFactory::CreateManager(NameValuePairList& Params)
         {
             if( TextureManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

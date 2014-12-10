@@ -64,6 +64,7 @@ namespace Mezzanine
 #include "Graphics/cameraproxy.h"
 #include "Graphics/entityproxy.h"
 #include "Graphics/gamewindow.h"
+#include "Graphics/image.h"
 #include "Graphics/lightproxy.h"
 #include "Graphics/material.h"
 #include "Graphics/mesh.h"

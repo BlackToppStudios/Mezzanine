@@ -148,8 +148,8 @@ namespace Mezzanine
             const Ogre::PixelBox& Box = PixelBuffer->getCurrentLock();
 
             UInt8* DestBuf = static_cast<UInt8*>(Box.data);
-
-            Ogre::PixelUtil::bulkPixelConversion(SrcBuffer,static_cast<Ogre::PixelFormat>(SrcFormat),DestBuf,this->_GetInternalTexture()->getFormat(),BufferSize);
+            Whole PixelCount = BufferSize / Ogre::PixelUtil::getNumElemBytes(static_cast<Ogre::PixelFormat>(SrcFormat));
+            Ogre::PixelUtil::bulkPixelConversion(SrcBuffer,static_cast<Ogre::PixelFormat>(SrcFormat),DestBuf,this->_GetInternalTexture()->getFormat(),PixelCount);
 
             // Unlock the pixel buffer
             PixelBuffer->unlock();

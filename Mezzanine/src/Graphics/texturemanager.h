@@ -192,8 +192,8 @@ namespace Mezzanine
             /// @copydoc ManagerFactory::GetManagerTypeName()
             String GetManagerTypeName() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairMap&)
-            ManagerBase* CreateManager(NameValuePairMap& Params);
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
