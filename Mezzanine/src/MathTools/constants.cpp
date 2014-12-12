@@ -52,6 +52,8 @@ namespace
     const Mezzanine::Real QuarterPi = ( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) ) * 0.25;
     const Mezzanine::Real RadToDegMult = Mezzanine::Real( Mezzanine::Real(180.0) / Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) );
     const Mezzanine::Real DegToRadMult = Mezzanine::Real( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) / Mezzanine::Real(180.0) );
+    const Mezzanine::Real Sqrt2 = Mezzanine::Real( Mezzanine::MathTools::Sqrt(2.0) );
+    const Mezzanine::Real Sqrt3 = Mezzanine::Real( Mezzanine::MathTools::Sqrt(3.0) );
 }
 /// @endcond
 

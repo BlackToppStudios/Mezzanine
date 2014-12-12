@@ -59,6 +59,11 @@ namespace Mezzanine
         /// @brief Gets Quarter Pi.
         Real MEZZ_LIB GetQuarterPi();
 
+        /// @brief Gets the square root of 2.
+        Real MEZZ_LIB GetSqrtTwo();
+        /// @brief Gets the square root of 3.
+        Real MEZZ_LIB GetSqrtThree();
+
         /// @brief Gets a multiplier used in converting Radian angular units to degrees.
         Real MEZZ_LIB GetRadToDegMultiplier();
         /// @brief Gets a multiplier used in converting Degree angular units to Radians.
