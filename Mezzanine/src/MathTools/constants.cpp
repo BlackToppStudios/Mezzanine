@@ -76,6 +76,12 @@ namespace Mezzanine
         Real GetQuarterPi()
             { return QuarterPi; }
 
+        Real GetSqrtTwo()
+            { return Sqrt2; }
+
+        Real GetSqrtThree()
+            { return Sqrt3; }
+
         Real GetRadToDegMultiplier()
             { return RadToDegMult; }
 
