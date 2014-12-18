@@ -62,6 +62,7 @@
     #include "Input/input.h"
     #include "Physics/physics.h"
     #include "MathTools/mathtools.h"
+    #include "Noise/noise.h"
     #include "Resource/resource.h"
     #include "Scripting/scripting.h"
     #include "XML/xml.h"

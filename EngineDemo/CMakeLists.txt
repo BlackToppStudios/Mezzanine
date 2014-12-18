@@ -155,6 +155,7 @@ CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomef
 CopyLicenseFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt BulletZLibLicense.txt )
 CopyLicenseFromMezzanineDuringBuild( data/common/gpl-2.0.txt gpl-2.0.txt )
 CopyLicenseFromMezzanineDuringBuild( data/common/gpl-3.0.txt gpl-3.0.txt)
+CopyLicenseFromMezzanineDuringBuild( data/common/lgpl-2.1.txt lgpl-2.1.tx)
 CopyLicenseFromMezzanineDuringBuild( data/common/lgpl-3.0.txt lgpl-3.0.tx)
 CopyLicenseFromMezzanineDuringBuild( data/common/Licenses.txt Licenses.txt)
 CopyLicenseFromMezzanineDuringBuild( data/common/Lua-MIT.txt Lua-MIT.txt)

@@ -274,6 +274,7 @@ CopyFilesDuringBuild( common/Examples.material data/Examples.material )
 CopyFilesDuringBuild( common/clouds.jpg data/clouds.jpg )
 
 CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/lgpl-2.1.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt )
