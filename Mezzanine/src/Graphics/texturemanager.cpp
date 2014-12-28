@@ -62,7 +62,6 @@ namespace Mezzanine
         TextureManager::~TextureManager()
         {
             this->Deinitialize();
-            this->UnloadAllTextures();
         }
 
         void TextureManager::AddTexture(Texture* ToAdd)
@@ -143,7 +142,12 @@ namespace Mezzanine
             { this->Initialized = true; }
 
         void TextureManager::Deinitialize()
-            { this->Initialized = false; }
+        {
+            if( this->Initialized ) {
+                this->UnloadAllTextures();
+                this->Initialized = false;
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Type Identifier Methods

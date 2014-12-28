@@ -40,15 +40,18 @@
 #ifndef _graphicsmanager_cpp
 #define _graphicsmanager_cpp
 
-#include "graphicsmanager.h"
-#include "eventmanager.h"
+#include "Graphics/graphicsmanager.h"
 #include "Graphics/cameramanager.h"
-#include "Resource/resourcemanager.h"
-#include "UI/uimanager.h"
+#include "Graphics/texturemanager.h"
 #include "Graphics/cameraproxy.h"
-#include "Graphics/cameramanager.h"
-#include "crossplatform.h"
 #include "Graphics/viewport.h"
+
+#include "Resource/resourcemanager.h"
+
+#include "UI/uimanager.h"
+
+#include "eventmanager.h"
+#include "crossplatform.h"
 #include "stringtool.h"
 #include "entresol.h"
 
@@ -629,6 +632,11 @@ namespace Mezzanine
             if( this->Initialized )
             {
                 this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( this->RenderWork );
+
+                // Textures are loaded into video memory, which we can only do with a valid and initialized rendering context.
+                // If the context goes away, such as is the case when the rendersystem is shut down then we can't have textures loaded.
+                // So deinitialize the TextureManager.
+                this->TheEntresol->GetTextureManager()->Deinitialize();
 
                 /// @todo Here is where we should be shutting down the rendersystem, but Ogre in it's poorly coded ways wasn't
                 /// designed for that unless you are also deleting Ogre::Root.  Take it up with them if you don't like it.
