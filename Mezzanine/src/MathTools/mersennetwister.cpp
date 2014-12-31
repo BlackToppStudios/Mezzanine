@@ -37,45 +37,17 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mathtools_h
-#define _mathtools_h
+#ifndef _mathtoolsmersennetwister_cpp
+#define _mathtoolsmersennetwister_cpp
+
+#include "MathTools/mersennetwister.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::MathTools
-    /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
     {
 
-    }
-}
-
-#include "swig.h"
-#ifdef SWIG_MATHTOOLS
-    #ifdef SWIG_UNSAFE
-        %module MezzanineMathTools
-    #else
-        #define SWIG_SAFE
-        %module MezzanineMathToolsSafe
-    #endif
-    #define SWIG_MODULE_SET
-
-    // Tell SWIG to create a module that scripting languages can use called "mezzanine"
-    // and insert a minimum of documentation into the bindingfile
-    %{
-        // code to be inserted verbatim into the swig file goes here
-        #include "mezzanine.h"
-        using namespace Mezzanine;
-        using namespace Mezzanine::MathTools;
-    %}
-#endif
-
-#include "MathTools/arithmetic.h"
-#include "MathTools/constants.h"
-#include "MathTools/intersections.h"
-#include "MathTools/intersectiontools.h"
-#include "MathTools/mersennetwister.h"
-#include "MathTools/randomnumber.h"
-#include "MathTools/trigonometry.h"
+    }//MathTools
+}//Mezzanine
 
 #endif
