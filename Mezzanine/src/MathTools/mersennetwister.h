@@ -226,17 +226,19 @@ namespace Mezzanine
                 this->Left = Traits::StateSize;
                 this->Next = this->State;
 
+                Integer ShiftDist = static_cast<Integer>( Traits::ShiftSize );
                 for( CurrIndex = Traits::StateSize - Traits::ShiftSize + 1 ; --CurrIndex ; ++CurrVal )
                 {
-                    *CurrVal = CurrVal[Traits::ShiftSize] ^ Traits::Twist(CurrVal[0],CurrVal[1]);
+                    *CurrVal = CurrVal[ShiftDist] ^ Traits::Twist(CurrVal[0],CurrVal[1]);
                 }
 
+                ShiftDist = static_cast<Integer>( Traits::ShiftSize ) - static_cast<Integer>( Traits::StateSize );
                 for( CurrIndex = Traits::ShiftSize ; --CurrIndex ; ++CurrVal )
                 {
-                    *CurrVal = CurrVal[ Traits::ShiftSize - Traits::StateSize ] ^ Traits::Twist(CurrVal[0],CurrVal[1]);
+                    *CurrVal = CurrVal[ShiftDist] ^ Traits::Twist(CurrVal[0],CurrVal[1]);
                 }
 
-                *CurrVal = CurrVal[ Traits::ShiftSize - Traits::StateSize ] ^ Traits::Twist(CurrVal[0],this->State[0]);
+                *CurrVal = CurrVal[ShiftDist] ^ Traits::Twist(CurrVal[0],this->State[0]);
             }
         public:
             /// @brief Blank constructor.
