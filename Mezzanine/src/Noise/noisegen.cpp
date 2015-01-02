@@ -122,16 +122,16 @@ namespace Mezzanine
                 }
                 case NQ_Standard:
                 {
-                    xs = SCurve3 (X - (PreciseReal)x0);
-                    ys = SCurve3 (Y - (PreciseReal)y0);
-                    zs = SCurve3 (Z - (PreciseReal)z0);
+                    xs = SCurve3(X - (PreciseReal)x0);
+                    ys = SCurve3(Y - (PreciseReal)y0);
+                    zs = SCurve3(Z - (PreciseReal)z0);
                     break;
                 }
                 case NQ_Best:
                 {
-                    xs = SCurve5 (X - (PreciseReal)x0);
-                    ys = SCurve5 (Y - (PreciseReal)y0);
-                    zs = SCurve5 (Z - (PreciseReal)z0);
+                    xs = SCurve5(X - (PreciseReal)x0);
+                    ys = SCurve5(Y - (PreciseReal)y0);
+                    zs = SCurve5(Z - (PreciseReal)z0);
                     break;
                 }
             }
@@ -156,7 +156,7 @@ namespace Mezzanine
             ix1  = LinearInterpolate(n0, n1, xs);
             iy1  = LinearInterpolate(ix0, ix1, ys);
 
-            return LinearInterpolate (iy0, iy1, zs);
+            return LinearInterpolate(iy0, iy1, zs);
         }
 
         PreciseReal GradientNoise3D(const PreciseReal fX, const PreciseReal fY, const PreciseReal fZ, const Integer iX, const Integer iY, const Integer iZ, const Integer Seed)
@@ -228,16 +228,16 @@ namespace Mezzanine
                 }
                 case NQ_Standard:
                 {
-                    xs = SCurve3 (X - (PreciseReal)x0);
-                    ys = SCurve3 (Y - (PreciseReal)y0);
-                    zs = SCurve3 (Z - (PreciseReal)z0);
+                    xs = SCurve3(X - (PreciseReal)x0);
+                    ys = SCurve3(Y - (PreciseReal)y0);
+                    zs = SCurve3(Z - (PreciseReal)z0);
                     break;
                 }
                 case NQ_Best:
                 {
-                    xs = SCurve5 (X - (PreciseReal)x0);
-                    ys = SCurve5 (Y - (PreciseReal)y0);
-                    zs = SCurve5 (Z - (PreciseReal)z0);
+                    xs = SCurve5(X - (PreciseReal)x0);
+                    ys = SCurve5(Y - (PreciseReal)y0);
+                    zs = SCurve5(Z - (PreciseReal)z0);
                     break;
                 }
             }
@@ -247,21 +247,21 @@ namespace Mezzanine
             // noise values using the S-curve value as the interpolant (trilinear
             // interpolation.)
             PreciseReal n0, n1, ix0, ix1, iy0, iy1;
-            n0   = ValueNoise3D (x0, y0, z0, Seed);
-            n1   = ValueNoise3D (x1, y0, z0, Seed);
-            ix0  = LinearInterpolate (n0, n1, xs);
-            n0   = ValueNoise3D (x0, y1, z0, Seed);
-            n1   = ValueNoise3D (x1, y1, z0, Seed);
-            ix1  = LinearInterpolate (n0, n1, xs);
-            iy0  = LinearInterpolate (ix0, ix1, ys);
-            n0   = ValueNoise3D (x0, y0, z1, Seed);
-            n1   = ValueNoise3D (x1, y0, z1, Seed);
-            ix0  = LinearInterpolate (n0, n1, xs);
-            n0   = ValueNoise3D (x0, y1, z1, Seed);
-            n1   = ValueNoise3D (x1, y1, z1, Seed);
-            ix1  = LinearInterpolate (n0, n1, xs);
-            iy1  = LinearInterpolate (ix0, ix1, ys);
-            return LinearInterpolate (iy0, iy1, zs);
+            n0   = ValueNoise3D(x0, y0, z0, Seed);
+            n1   = ValueNoise3D(x1, y0, z0, Seed);
+            ix0  = LinearInterpolate(n0, n1, xs);
+            n0   = ValueNoise3D(x0, y1, z0, Seed);
+            n1   = ValueNoise3D(x1, y1, z0, Seed);
+            ix1  = LinearInterpolate(n0, n1, xs);
+            iy0  = LinearInterpolate(ix0, ix1, ys);
+            n0   = ValueNoise3D(x0, y0, z1, Seed);
+            n1   = ValueNoise3D(x1, y0, z1, Seed);
+            ix0  = LinearInterpolate(n0, n1, xs);
+            n0   = ValueNoise3D(x0, y1, z1, Seed);
+            n1   = ValueNoise3D(x1, y1, z1, Seed);
+            ix1  = LinearInterpolate(n0, n1, xs);
+            iy1  = LinearInterpolate(ix0, ix1, ys);
+            return LinearInterpolate(iy0, iy1, zs);
         }
 
         PreciseReal ValueNoise3D(const Integer X, const Integer Y, const Integer Z, const Integer Seed)
