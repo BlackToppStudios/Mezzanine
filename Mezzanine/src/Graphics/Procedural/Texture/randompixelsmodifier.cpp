@@ -95,7 +95,7 @@ namespace Mezzanine
                 IntVector2 Point;
                 std::vector<IntVector2> PixelList;
 
-                srand(this->GeneratorSeed);
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GeneratorSeed);
                 Whole Area = Buffer.GetWidth() * Buffer.GetHeight();
                 Whole GenerateCount = this->PixelCount;
                 if( GenerateCount == 0 ) {
@@ -109,8 +109,8 @@ namespace Mezzanine
 
                 while( PixelList.size() != GenerateCount )
                 {
-                    Point.X = rand() % Buffer.GetWidth();
-                    Point.Y = rand() % Buffer.GetHeight();
+                    Point.X = NumGen.GenerateUInt() % Buffer.GetWidth();
+                    Point.Y = NumGen.GenerateUInt() % Buffer.GetHeight();
 
                     Boole InList = false;
                     for( std::vector<IntVector2>::iterator iter = PixelList.begin() ; iter != PixelList.end() ; iter++ )

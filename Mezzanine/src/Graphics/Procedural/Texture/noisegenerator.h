@@ -81,6 +81,9 @@ namespace Mezzanine
             ///////////////////////////////////////
             class MEZZ_LIB NoiseGenerator : public TextureGenerator
             {
+            public:
+                /// @brief Convenience typedef for a container of generated noise.
+                typedef std::vector<Real> NoiseField;
             protected:
                 /// @internal
                 /// @brief The colour of the noise to be generated.
@@ -91,6 +94,25 @@ namespace Mezzanine
                 /// @internal
                 /// @brief The type of noise generator to use when generating the image.
                 Procedural::NoiseType NType;
+
+                /// @internal
+                /// @brief Converts all of the values in a NoiseField to a 0-1 range.
+                /// @param ToNormalize The NoiseField to be converted.
+                /// @param MinVal The minimum value generated in the provided field.
+                /// @param MaxVal The maximum value generated in the provided field.
+                void FitToRange(NoiseField& ToNormalize, const Real MinVal, const Real MaxVal) const;
+                /// @internal
+                /// @brief Generates a grid of perlin noise.
+                /// @param X The width of the field to generate.
+                /// @param Y The height of the field to generate.
+                /// @return Returns a container of generated perlin noise.
+                NoiseField GeneratePerlinNoiseField(const Whole X, const Whole Y) const;
+                /// @internal
+                /// @brief Generates a grid of white noise.
+                /// @param X The width of the field to generate.
+                /// @param Y The height of the field to generate.
+                /// @return Returns a container of generated white noise.
+                NoiseField GenerateWhiteNoiseField(const Whole X, const Whole Y) const;
             public:
                 /// @brief Class constructor.
                 NoiseGenerator();

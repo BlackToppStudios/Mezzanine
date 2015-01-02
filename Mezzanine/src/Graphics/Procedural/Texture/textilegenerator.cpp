@@ -68,7 +68,8 @@
 #define _graphicsproceduraltextilegenerator_cpp
 
 #include "Graphics/Procedural/Texture/textilegenerator.h"
-#include "Graphics/Procedural/noise.h"
+
+#include "Noise/Module/perlin.h"
 
 #include "MathTools/mathtools.h"
 
@@ -91,9 +92,13 @@ namespace Mezzanine
 
             void TextileGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                srand(this->GenSeed);
-                int RandNum = rand();
-                PerlinNoise Noise(3, 0.65, 1.0 / 8.0, 1.0);
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GenSeed);
+                Whole RandNum = NumGen.GenerateUInt();
+                Noise::Module::Perlin Noise;
+                Noise.SetFrequency(1.0 / 8.0);
+                Noise.SetLacunarity(2.0);
+                Noise.SetOctaveCount(3);
+                Noise.SetPersistence(0.65);
                 Real FilterLevel = 0.7;
                 Real PreserveLevel = 0.3;
 
@@ -101,7 +106,7 @@ namespace Mezzanine
                 {
                     for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
                     {
-                        Real NoiseVal = std::max( 0.0, std::min( 1.0, ( MathTools::Sin( X + Noise.Noise2D( X + RandNum, Y + RandNum ) ) + MathTools::Sin( Y + Noise.Noise2D( X + RandNum, Y + RandNum ) ) ) * 0.25 + 0.5 ) );
+                        Real NoiseVal = std::max( 0.0, std::min( 1.0, ( MathTools::Sin( X + Noise.GetValue( X + RandNum, Y + RandNum, 0 ) ) + MathTools::Sin( Y + Noise.GetValue( X + RandNum, Y + RandNum, 0 ) ) ) * 0.25 + 0.5 ) );
                         Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, 255.0) );
                         Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, 255.0) );
                         Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, 255.0) );

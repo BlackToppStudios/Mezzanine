@@ -68,7 +68,11 @@
 #define _graphicsproceduralnoisegenerator_cpp
 
 #include "Graphics/Procedural/Texture/noisegenerator.h"
-#include "Graphics/Procedural/noise.h"
+
+#include "MathTools/randomnumber.h"
+#include "Noise/Module/perlin.h"
+
+#include <cstdlib>
 
 namespace Mezzanine
 {
@@ -85,42 +89,92 @@ namespace Mezzanine
             NoiseGenerator::~NoiseGenerator()
                 {  }
 
+            void NoiseGenerator::FitToRange(NoiseField& ToNormalize, const Real MinVal, const Real MaxVal) const
+            {
+                Real RangeSize = MaxVal - MinVal;
+                if( RangeSize > 0.0 ) {
+                    for( Whole Index = 0 ; Index < ToNormalize.size() ; ++Index )
+                    {
+                        ToNormalize[Index] = ( ToNormalize[Index] - MinVal ) / RangeSize;
+                    }
+                }
+            }
+
+            NoiseGenerator::NoiseField NoiseGenerator::GeneratePerlinNoiseField(const Whole X, const Whole Y) const
+            {
+                NoiseField RetField( X * Y );
+                Real MinNoise = 9999999999.9;
+                Real MaxNoise = -999999999.9;
+                Noise::Module::Perlin PerlinMod;
+                for( Whole CurrX = 0 ; CurrX < X ; ++CurrX )
+                {
+                    for( Whole CurrY = 0 ; CurrY < Y ; ++CurrY )
+                    {
+                        Real NoiseVal = PerlinMod.GetValue(CurrX,CurrY,0);
+                        if( NoiseVal < MinNoise )
+                            MinNoise = NoiseVal;
+                        if( NoiseVal > MaxNoise )
+                            MaxNoise = NoiseVal;
+                        RetField[CurrY * X + CurrX] = NoiseVal;
+                    }
+                }
+                this->FitToRange(RetField,MinNoise,MaxNoise);
+                return RetField;
+            }
+
+            NoiseGenerator::NoiseField NoiseGenerator::GenerateWhiteNoiseField(const Whole X, const Whole Y) const
+            {
+                NoiseField RetField( X * Y );
+                Real MinNoise = 9999999999.9;
+                Real MaxNoise = -999999999.9;
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GenSeed);
+                for( Whole Index = 0 ; Index < RetField.size() ; ++Index )
+                {
+                    Real NoiseVal = NumGen.GenerateScaledReal();
+                    if( NoiseVal < MinNoise )
+                        MinNoise = NoiseVal;
+                    if( NoiseVal > MaxNoise )
+                        MaxNoise = NoiseVal;
+                    RetField[Index] = NoiseVal;
+                }
+                this->FitToRange(RetField,MinNoise,MaxNoise);
+                return RetField;
+            }
+
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             void NoiseGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                NoiseBase* NoiseGen = NULL;
+                NoiseField Field;
+                Whole TargetWidth = Buffer.GetWidth();
+                Whole TargetHeight = Buffer.GetHeight();
                 switch( this->NType )
                 {
                     case Procedural::NT_Perlin:
                     {
-                        NoiseGen = new PerlinNoise();
+                        Field = this->GeneratePerlinNoiseField( TargetWidth, TargetHeight );
                         break;
                     }
                     case Procedural::NT_White:
                     default:
                     {
-                        NoiseGen = new WhiteNoise(this->GenSeed);
+                        Field = this->GenerateWhiteNoiseField( Buffer.GetWidth(), TargetHeight );
                         break;
                     }
                 }
 
-                UInt8* Field = NoiseGen->Field2D( Buffer.GetWidth(), Buffer.GetHeight() );
-                for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                for( Whole Y = 0 ; Y < TargetHeight ; ++Y )
                 {
-                    for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                    for( Whole X = 0 ; X < TargetWidth ; ++X )
                     {
-                        Real NoiseVal = (Real)Field[Y * Buffer.GetWidth() + X];
-                        Buffer.SetRedByte( X, Y, (UInt8)( NoiseVal * this->GenColour.RedChannel ) );
-                        Buffer.SetGreenByte( X, Y, (UInt8)( NoiseVal * this->GenColour.GreenChannel ) );
-                        Buffer.SetBlueByte( X, Y, (UInt8)( NoiseVal * this->GenColour.BlueChannel ) );
+                        Real NoiseVal = (Real)Field[Y * TargetWidth + X];
+                        Buffer.SetRedByte( X, Y, (UInt8)( NoiseVal * this->GenColour.RedChannel * 255.0 ) );
+                        Buffer.SetGreenByte( X, Y, (UInt8)( NoiseVal * this->GenColour.GreenChannel * 255.0 ) );
+                        Buffer.SetBlueByte( X, Y, (UInt8)( NoiseVal * this->GenColour.BlueChannel * 255.0 ) );
                         Buffer.SetAlphaByte( X, Y, (UInt8)( this->GenColour.AlphaChannel * 255.0 ) );
                     }
                 }
-
-                delete[] Field;
-                delete NoiseGen;
             }
 
             String NoiseGenerator::GetName() const

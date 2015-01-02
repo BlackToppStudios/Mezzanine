@@ -68,7 +68,8 @@
 #define _graphicsproceduralwoodgenerator_cpp
 
 #include "Graphics/Procedural/Texture/woodgenerator.h"
-#include "Graphics/Procedural/noise.h"
+
+#include "Noise/Module/perlin.h"
 
 #include "MathTools/mathtools.h"
 
@@ -80,18 +81,21 @@ namespace Mezzanine
         {
             WoodGenerator::WoodGenerator() :
                 GenColour(1.0,1.0,1.0,1.0),
+                GenTurbulence(0.01),
                 GenSeed(5120),
                 GenRings(8)
                 {  }
 
             WoodGenerator::WoodGenerator(const Whole Rings, const ColourValue& Colour) :
                 GenColour(Colour),
+                GenTurbulence(0.01),
                 GenSeed(5120),
                 GenRings(Rings)
                 {  }
 
             WoodGenerator::WoodGenerator(const Whole Seed, const Whole Rings, const ColourValue& Colour) :
                 GenColour(Colour),
+                GenTurbulence(0.01),
                 GenSeed(Seed),
                 GenRings(Rings)
                 {  }
@@ -104,25 +108,29 @@ namespace Mezzanine
 
             void WoodGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                srand(this->GenSeed);
-                int RandNum = rand();
-                Real FilterLevel = 0.7;
-                Real PreserveLevel = 0.3;
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GenSeed);
+                Whole RandNum = NumGen.GenerateUInt();
 
-                PerlinNoise Noise( 8, 0.5, 1.0 / 32.0, 0.05 );
-                Whole w2 = Buffer.GetWidth() / 2;
-                Whole h2 = Buffer.GetHeight() / 2;
+                Noise::Module::Perlin Noise;
+                Noise.SetFrequency(1 / 48.0);
+                Noise.SetLacunarity(2.20703125);
+                Noise.SetOctaveCount(3);
+                Noise.SetPersistence(0.5);
+                Whole TargetWidth = Buffer.GetWidth();
+                Whole TargetHeight = Buffer.GetHeight();
+                Real HalfWidth = static_cast<Real>( TargetWidth ) * 0.5;
+                Real HalfHeight = static_cast<Real>( TargetHeight ) * 0.5;
 
-                for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                for( Whole Y = 0 ; Y < TargetHeight ; ++Y )
                 {
-                    for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                    for( Whole X = 0 ; X < TargetWidth ; ++X )
                     {
-                        Real xv = ( (Real)(X - w2) ) / (Real)Buffer.GetWidth();
-                        Real yv = ( (Real)(Y - h2) ) / (Real)Buffer.GetHeight();
-                        Real NoiseVal = std::min<Real>( Real(1.0), MathTools::Abs( MathTools::Sin( ( sqrt(xv * xv + yv * yv) + Noise.Noise2D(X + RandNum, Y + RandNum) ) * MathTools::GetPi() * 2 * this->GenRings ) ) );
-                        Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, Real(255.0) ) );
-                        Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, Real(255.0) ) );
-                        Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, Real(255.0) ) );
+                        Real xv = ( static_cast<Real>(X) - HalfWidth ) / static_cast<Real>( TargetWidth );
+                        Real yv = ( static_cast<Real>(Y) - HalfHeight ) / static_cast<Real>( TargetHeight );
+                        Real NoiseVal = std::min<Real>( Real(1.0), MathTools::Abs( MathTools::Sin( ( MathTools::Sqrt(xv * xv + yv * yv) + this->GenTurbulence * Noise.GetValue( X + RandNum, Y + RandNum, 0 ) ) * MathTools::GetPi() * 2 * this->GenRings ) ) );
+                        Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( this->GenColour.RedChannel * 255.0 * NoiseVal, Real(255.0) ) );
+                        Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( this->GenColour.GreenChannel * 255.0 * NoiseVal, Real(255.0) ) );
+                        Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( this->GenColour.BlueChannel * 255.0 * NoiseVal, Real(255.0) ) );
                         Buffer.SetAlphaReal( X, Y, this->GenColour.AlphaChannel );
                     }
                 }
@@ -143,6 +151,12 @@ namespace Mezzanine
             WoodGenerator& WoodGenerator::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
             {
                 this->GenColour.SetValues(Red,Green,Blue,Alpha);
+                return *this;
+            }
+
+            WoodGenerator& WoodGenerator::SetTurbulence(const Real Turb)
+            {
+                this->GenTurbulence = Turb;
                 return *this;
             }
 

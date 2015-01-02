@@ -69,6 +69,8 @@
 
 #include "Graphics/Procedural/Texture/jittermodifier.h"
 
+#include "MathTools/randomnumber.h"
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -89,7 +91,7 @@ namespace Mezzanine
             void JitterModifier::Modify(TextureBuffer& Buffer)
             {
                 TextureBuffer TempBuffer(Buffer);
-                srand(this->GeneratorSeed);
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GeneratorSeed);
                 Integer TargetWidth = static_cast<Integer>( Buffer.GetWidth() );
                 Integer TargetHeight = static_cast<Integer>( Buffer.GetHeight() );
                 Integer Radius = static_cast<Integer>( 1.0 + ( 9.0 / 255.0 ) * ( static_cast<Real>(this->JitterRadius) - 1.0 ) );
@@ -98,8 +100,8 @@ namespace Mezzanine
                 {
                     for( Integer X = 0; X < TargetWidth ; ++X )
                     {
-                        Integer NewX = X + ( rand() % ( Radius * 2 + 1 ) ) - Radius;
-                        Integer NewY = Y + ( rand() % ( Radius * 2 + 1 ) ) - Radius;
+                        Integer NewX = X + ( NumGen.GenerateUInt() % ( Radius * 2 + 1 ) ) - Radius;
+                        Integer NewY = Y + ( NumGen.GenerateUInt() % ( Radius * 2 + 1 ) ) - Radius;
 
                         if( NewX >= 0 && NewX < TargetWidth && NewY >= 0 && NewY < TargetHeight ) {
                             TempBuffer.SetPixel(static_cast<Whole>(NewX),static_cast<Whole>(NewY), Buffer.GetPixel(static_cast<Whole>(X),static_cast<Whole>(Y)) );

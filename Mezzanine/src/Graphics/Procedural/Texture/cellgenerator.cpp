@@ -98,48 +98,51 @@ namespace Mezzanine
                 Boole cfc;
                 Real Coeff;
 
-                srand(this->GenSeed);
+                Whole TargetWidth = Buffer.GetWidth();
+                Whole TargetHeight = Buffer.GetHeight();
+
                 const Real Regularity = this->GenRegularity / 255.0;
                 std::vector<Vector3> CellPoints( this->GenDensity * this->GenDensity );
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GenSeed);
 
                 for( Whole Y = 0 ; Y < this->GenDensity ; ++Y )
                 {
                     for( Whole X = 0 ; X < this->GenDensity ; ++X )
                     {
-                        Real RandNum1 = static_cast<Real>( rand() ) / 65536.0;
-                        Real RandNum2 = static_cast<Real>( rand() ) / 65536.0;
-                        CellPoints[X + Y * this->GenDensity].X = ( X + 0.5 + ( RandNum1 - 0.5 ) * ( 1 - Regularity ) ) / this->GenDensity - 1.0 / Buffer.GetWidth();
-                        CellPoints[X + Y * this->GenDensity].Y = ( Y + 0.5 + ( RandNum2 - 0.5 ) * ( 1 - Regularity ) ) / this->GenDensity - 1.0 / Buffer.GetHeight();
+                        Real RandNum1 = NumGen.GeneratePositiveReal();//static_cast<Real>( NumGen.GenerateInt() ) / 65536.0;
+                        Real RandNum2 = NumGen.GeneratePositiveReal();//static_cast<Real>( NumGen.GenerateInt() ) / 65536.0;
+                        CellPoints[X + Y * this->GenDensity].X = ( X + 0.5 + ( RandNum1 - 0.5 ) * ( 1 - Regularity ) ) / this->GenDensity - 1.0 / TargetWidth;
+                        CellPoints[X + Y * this->GenDensity].Y = ( Y + 0.5 + ( RandNum2 - 0.5 ) * ( 1 - Regularity ) ) / this->GenDensity - 1.0 / TargetHeight;
                         CellPoints[X + Y * this->GenDensity].Z = 0;
                     }
                 }
 
-                for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
+                for( Whole Y = 0 ; Y < TargetHeight ; ++Y )
                 {
-                    for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
+                    for( Whole X = 0 ; X < TargetWidth ; ++X )
                     {
                         Vector3 PixelPos;
-                        PixelPos.X = static_cast<Real>( X ) / static_cast<Real>( Buffer.GetWidth() ),
-                        PixelPos.Y = static_cast<Real>( Y ) / static_cast<Real>( Buffer.GetHeight() );
+                        PixelPos.X = static_cast<Real>( X ) / static_cast<Real>( TargetWidth ),
+                        PixelPos.Y = static_cast<Real>( Y ) / static_cast<Real>( TargetHeight );
                         PixelPos.Z = 0.0;
 
                         Real MinDist = 10.0;
                         Real NextMinDist = MinDist;
-                        Integer Xo = X * this->GenDensity / Buffer.GetWidth();
-                        Integer Yo = Y * this->GenDensity / Buffer.GetHeight();
+                        Integer Xo = X * this->GenDensity / TargetWidth;
+                        Integer Yo = Y * this->GenDensity / TargetHeight;
                         for( Integer V = -1 ; V < 2 ; ++V )
                         {
                             Integer Vo = ( ( Yo + this->GenDensity + V ) % this->GenDensity ) * this->GenDensity;
                             for( Integer U = -1 ; U < 2 ; ++U )
                             {
                                 Vector3 CellPos = CellPoints[ ( ( Xo + this->GenDensity + U ) % this->GenDensity ) + Vo ];
-                                if( U == -1 && X * this->GenDensity < Buffer.GetWidth() )
+                                if( U == -1 && X * this->GenDensity < TargetWidth )
                                     { CellPos.X -= 1; }
-                                if( V == -1 && Y * this->GenDensity < Buffer.GetHeight() )
+                                if( V == -1 && Y * this->GenDensity < TargetHeight )
                                     { CellPos.Y -= 1; }
-                                if( U == 1 && X * this->GenDensity >= Buffer.GetWidth() * ( this->GenDensity - 1 ) )
+                                if( U == 1 && X * this->GenDensity >= TargetWidth * ( this->GenDensity - 1 ) )
                                     { CellPos.X += 1; }
-                                if( V == 1 && Y * this->GenDensity >= Buffer.GetHeight() * ( this->GenDensity - 1 ) )
+                                if( V == 1 && Y * this->GenDensity >= TargetHeight * ( this->GenDensity - 1 ) )
                                     { CellPos.Y += 1; }
 
                                 Real Norm = PixelPos.Distance(CellPos);
@@ -178,17 +181,17 @@ namespace Mezzanine
                             {
                                 cfc = ( ( Xo & 1 ) ^ ( Yo & 1 ) ) != 0;
                                 Coeff = ( 1 - 2 * cfc ) / 2.5;
-                                Buffer.SetRedByte( X, Y, (UInt8)( ( cfc + Coeff * MinDist ) * this->GenColour.RedChannel * 255.0 ) );
-                                Buffer.SetGreenByte( X, Y, (UInt8)( ( cfc + Coeff * MinDist ) * this->GenColour.GreenChannel * 255.0 ) );
-                                Buffer.SetBlueByte( X, Y, (UInt8)( ( cfc + Coeff * MinDist ) * this->GenColour.BlueChannel * 255.0 ) );
+                                Buffer.SetRedByte( X, Y, static_cast<UInt8>( ( cfc + Coeff * MinDist ) * this->GenColour.RedChannel * 255.0 ) );
+                                Buffer.SetGreenByte( X, Y, static_cast<UInt8>( ( cfc + Coeff * MinDist ) * this->GenColour.GreenChannel * 255.0 ) );
+                                Buffer.SetBlueByte( X, Y, static_cast<UInt8>( ( cfc + Coeff * MinDist ) * this->GenColour.BlueChannel * 255.0 ) );
                                 break;
                             }
                             default:
                             case CellGenerator::CM_Grid:
                             {
-                                Buffer.SetRedByte( X, Y, (UInt8)( MinDist * this->GenColour.RedChannel * 255.0 ) );
-                                Buffer.SetGreenByte( X, Y, (UInt8)( MinDist * this->GenColour.GreenChannel * 255.0 ) );
-                                Buffer.SetBlueByte( X, Y, (UInt8)( MinDist * this->GenColour.BlueChannel * 255.0 ) );
+                                Buffer.SetRedByte( X, Y, static_cast<UInt8>( MinDist * this->GenColour.RedChannel * 255.0 ) );
+                                Buffer.SetGreenByte( X, Y, static_cast<UInt8>( MinDist * this->GenColour.GreenChannel * 255.0 ) );
+                                Buffer.SetBlueByte( X, Y, static_cast<UInt8>( MinDist * this->GenColour.BlueChannel * 255.0 ) );
                                 break;
                             }
                         }

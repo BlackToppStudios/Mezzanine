@@ -68,7 +68,8 @@
 #define _graphicsprocedurallabyrinthgenerator_cpp
 
 #include "Graphics/Procedural/Texture/labyrinthgenerator.h"
-#include "Graphics/Procedural/noise.h"
+
+#include "Noise/Module/perlin.h"
 
 #include "MathTools/mathtools.h"
 
@@ -91,9 +92,13 @@ namespace Mezzanine
 
             void LabyrinthGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                srand(this->GenSeed);
-                int RandNum = rand();
-                PerlinNoise Noise(1, 0.65, 1.0 / 16.0, 1.0);
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GenSeed);
+                Whole RandNum = NumGen.GenerateUInt();
+                Noise::Module::Perlin Noise;
+                Noise.SetFrequency(1.0 / 16.0);
+                Noise.SetLacunarity(2.0);
+                Noise.SetOctaveCount(1);
+                Noise.SetPersistence(0.65);
                 Real FilterLevel = 0.7;
                 Real PreserveLevel = 0.3;
 
@@ -101,7 +106,7 @@ namespace Mezzanine
                 {
                     for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
                     {
-                        Real NoiseVal = std::min( Real(1.0), MathTools::Abs( Noise.Noise2D( X + RandNum, Y + RandNum ) ) );
+                        Real NoiseVal = std::min( Real(1.0), MathTools::Abs( Noise.GetValue( X + RandNum, Y + RandNum, 0 ) ) );
                         Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, 255.0 ) );
                         Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, 255.0 ) );
                         Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, 255.0 ) );

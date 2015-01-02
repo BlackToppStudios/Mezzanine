@@ -68,7 +68,8 @@
 #define _graphicsproceduralmarblegenerator_cpp
 
 #include "Graphics/Procedural/Texture/marblegenerator.h"
-#include "Graphics/Procedural/noise.h"
+
+#include "Noise/Module/perlin.h"
 
 #include "MathTools/mathtools.h"
 
@@ -80,6 +81,7 @@ namespace Mezzanine
         {
             MarbleGenerator::MarbleGenerator() :
                 GenColour(1.0,1.0,1.0,1.0),
+                GenTurbulence(2.0),
                 GenSeed(5120)
                 {  }
 
@@ -91,22 +93,24 @@ namespace Mezzanine
 
             void MarbleGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                srand(this->GenSeed);
-                int RandNum = rand();
-                PerlinNoise Noise(2, 0.65, 1.0 / 32.0, 1.0);
-                Real XFact = 1.0 / 96.0;
-                Real YFact = 1.0 / 48.0;
-                Real FilterLevel = 0.7;
-                Real PreserveLevel = 0.3;
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GenSeed);
+                Whole RandNum = NumGen.GenerateUInt();
+                Noise::Module::Perlin Noise;
+                Noise.SetFrequency(1.0 / 32.0);
+                Noise.SetLacunarity(1.5);
+                Noise.SetOctaveCount(2);
+                Noise.SetPersistence(0.15);
+                Real XFact = ( 1.0 / 96.0 );
+                Real YFact = ( 1.0 / 48.0 );
 
                 for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
                 {
                     for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
                     {
-                        Real NoiseVal = std::min( Real(1.0), MathTools::Abs( MathTools::Sin( X * XFact + Y * YFact + Noise.Noise2D( X + RandNum, Y + RandNum ) ) * MathTools::GetPi() ) );
-                        Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.RedChannel * 255.0 + FilterLevel * this->GenColour.RedChannel * 255.0 * NoiseVal, 255.0 ) );
-                        Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.GreenChannel * 255.0 + FilterLevel * this->GenColour.GreenChannel * 255.0 * NoiseVal, 255.0 ) );
-                        Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( PreserveLevel * this->GenColour.BlueChannel * 255.0 + FilterLevel * this->GenColour.BlueChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Real NoiseVal = std::min( Real(1.0), MathTools::Abs( MathTools::Sin( X * XFact + Y * YFact + this->GenTurbulence * Noise.GetValue( X + RandNum, Y + RandNum, 0 ) ) * MathTools::GetPi() ) );
+                        Buffer.SetRedByte( X, Y, (UInt8)std::min<Real>( this->GenColour.RedChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Buffer.SetGreenByte( X, Y, (UInt8)std::min<Real>( this->GenColour.GreenChannel * 255.0 * NoiseVal, 255.0 ) );
+                        Buffer.SetBlueByte( X, Y, (UInt8)std::min<Real>( this->GenColour.BlueChannel * 255.0 * NoiseVal, 255.0 ) );
                         Buffer.SetAlphaReal( X, Y, this->GenColour.AlphaChannel );
                     }
                 }
@@ -127,6 +131,12 @@ namespace Mezzanine
             MarbleGenerator& MarbleGenerator::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
             {
                 this->GenColour.SetValues(Red,Green,Blue,Alpha);
+                return *this;
+            }
+
+            MarbleGenerator& MarbleGenerator::SetTurbulence(const Real Turb)
+            {
+                this->GenTurbulence = Turb;
                 return *this;
             }
 

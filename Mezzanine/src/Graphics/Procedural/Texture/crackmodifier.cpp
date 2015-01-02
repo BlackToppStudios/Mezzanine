@@ -100,7 +100,7 @@ namespace Mezzanine
                     return;
                 }
 
-                srand( this->GeneratorSeed );
+                MathTools::MersenneTwisterGenerator32 NumGen(this->GeneratorSeed);
 
                 Whole TargetWidth = Buffer.GetWidth();
                 Whole TargetHeight = Buffer.GetHeight();
@@ -115,9 +115,9 @@ namespace Mezzanine
 
                 for( Whole CurrCrack = 0 ; CurrCrack < this->CrackCount ; ++CurrCrack )
                 {
-                    Real X = ( static_cast<Real>( rand() ) / RAND_MAX ) * static_cast<Real>( TargetWidth );
-                    Real Y = ( static_cast<Real>( rand() ) / RAND_MAX ) * static_cast<Real>( TargetHeight );
-                    Real Angle = MathTools::GetTwoPi() * ( static_cast<Real>( rand() ) / RAND_MAX );
+                    Real X = static_cast<Real>( NumGen.GenerateScaledReal() ) * static_cast<Real>( TargetWidth );
+                    Real Y = static_cast<Real>( NumGen.GenerateScaledReal() ) * static_cast<Real>( TargetHeight );
+                    Real Angle = MathTools::GetTwoPi() * static_cast<Real>( NumGen.GenerateScaledReal() );
                     Whole PixelCount = static_cast<Whole>( this->CrackLength );
                     ColourValue NormalsPixel = this->NormalsTexture->GetPixel( static_cast<Whole>(X), static_cast<Whole>(Y) );
 
@@ -127,12 +127,12 @@ namespace Mezzanine
                         NormalLength = ( NormalLength > 0 ) ? MathTools::Sqrt(NormalLength) : 0;
                         PixelCount = std::min<Whole>( static_cast<Whole>( PixelCount * NormalLength * NormalLength / 8.0 ), static_cast<Whole>( this->CrackLength ) );
                     }else if( this->CrackLengthMode == CrackModifier::LM_Random ) {
-                        PixelCount = static_cast<Whole>( PixelCount * ( static_cast<Real>( rand() ) / RAND_MAX ) * 2.0 );
+                        PixelCount = static_cast<Whole>( PixelCount * ( static_cast<Real>( NumGen.GenerateScaledReal() ) * 2.0 ) );
                     }
 
                     while( --PixelCount >= 0 )
                     {
-                        Angle += static_cast<Real>( this->CrackVariation ) / 256.0 * ( 2.0 * (static_cast<Real>( rand() ) / RAND_MAX) - 1.0 );
+                        Angle += static_cast<Real>( this->CrackVariation ) / 256.0 * ( 2.0 * ( static_cast<Real>( NumGen.GenerateScaledReal() ) - 1.0 ) );
 
                         X = X + MathTools::Cos( Angle );
                         Y = Y + MathTools::Sin( Angle );

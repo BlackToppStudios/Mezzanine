@@ -86,6 +86,9 @@ namespace Mezzanine
                 /// @brief The background colour of the texture to be generated.
                 ColourValue GenColour;
                 /// @internal
+                /// @brief The amount of disruption to apply to the pattern.
+                Real GenTurbulence;
+                /// @internal
                 /// @brief The seed to be used for the random number generator.
                 Whole GenSeed;
                 /// @internal
@@ -128,6 +131,10 @@ namespace Mezzanine
                 /// @param Alpha The Alpha component for the background colour.  Range: [0.0, 1.0].
                 /// @return Returns a reference to this.
                 WoodGenerator& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
+                /// @brief Sets the turbulence that will modify the generated pattern.
+                /// @param Turb The amount of disruption to apply to the pattern.  Initial Value: 0.01.
+                /// @return Returns a reference to this.
+                WoodGenerator& SetTurbulence(const Real Turb);
                 /// @brief Sets the seed for the "random" number generator.
                 /// @param Seed The seed value for the random number generator.  Initial Value: 5120.
                 /// @return Returns a reference to this.
