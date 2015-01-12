@@ -44,6 +44,8 @@
         </DefaultSceneManager>
     <!--<DefaultScriptingManager>
         </DefaultScriptingManager>-->
+        <DefaultTextureManager>
+        </DefaultTextureManager>
         <DefaultUIManager>
         </DefaultUIManager>
     </Managers>
