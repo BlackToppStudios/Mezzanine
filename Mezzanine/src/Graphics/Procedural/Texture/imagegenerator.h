@@ -73,6 +73,7 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        class Image;
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
@@ -83,11 +84,8 @@ namespace Mezzanine
             {
             protected:
                 /// @internal
-                /// @brief The name of the file to load.
-                String File;
-                /// @internal
-                /// @brief The name of the resource group the file belongs to.
-                String Group;
+                /// @brief A pointer to the image to copy into a TextureBuffer.
+                Image* GenImage;
             public:
                 /// @brief Class constructor.
                 ImageGenerator();
@@ -98,6 +96,8 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc TextureGenerator::AddToTextureBuffer(TextureBuffer&) const
+                /// @exception If the generated buffer is too small to fit the specified image then a PARAMETERS_EXCEPTION will be thrown. @n
+                /// If an image has not been set then an INVALID_STATE_EXCEPTION will be thrown.
                 virtual void AddToTextureBuffer(TextureBuffer& Buffer) const;
                 /// @copydoc TextureGenerator::GetName() const
                 virtual String GetName() const;
@@ -105,12 +105,10 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-                /// @brief Sets the file to be loaded by this generator.
-                /// @exception If the generated buffer is too small to fit the specified texture then a PARAMETERS_EXCEPTION will be thrown.
-                /// @param FileName The name of the file to load.
-                /// @param GroupName The name of the resource group the file belongs to.
+                /// @brief Sets the image to copy into the TextureBuffer.
+                /// @param ToGenerate The image to be copied into a texture buffer.
                 /// @return Returns a reference to this.
-                ImageGenerator& SetFile(const String& FileName, const String& GroupName);
+                ImageGenerator& SetImage(Image* ToGenerate);
             };//ImageGenerator
         }//Procedural
     }//Graphics

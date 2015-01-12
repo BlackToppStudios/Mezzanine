@@ -79,7 +79,8 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            ImageGenerator::ImageGenerator()
+            ImageGenerator::ImageGenerator() :
+                GenImage(NULL)
                 {  }
 
             ImageGenerator::~ImageGenerator()
@@ -90,17 +91,19 @@ namespace Mezzanine
 
             void ImageGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
-                Image ImportImg(this->File,this->Group);
+                if( GenImage == NULL ) {
+                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"An input image has not been set.");
+                }
 
-                if( ImportImg.GetHeight() < Buffer.GetHeight() || ImportImg.GetWidth() < Buffer.GetWidth() ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The provided buffer is too small to place the specified image \"" + this->File + "\".");
+                if( GenImage->GetHeight() < Buffer.GetHeight() || GenImage->GetWidth() < Buffer.GetWidth() ) {
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The provided buffer is too small to place the provided image.");
                 }
 
                 for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )
                 {
                     for( Whole X = 0 ; X < Buffer.GetWidth() ; ++X )
                     {
-                        Buffer.SetPixel(X,Y,ImportImg.GetColourAt(X,Y,0));
+                        Buffer.SetPixel(X,Y,GenImage->GetColourAt(X,Y,0));
                     }
                 }
             }
@@ -111,10 +114,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            ImageGenerator& ImageGenerator::SetFile(const String& FileName, const String& GroupName)
+            ImageGenerator& ImageGenerator::SetImage(Image* ToGenerate)
             {
-                this->File = FileName;
-                this->Group = GroupName;
+                this->GenImage = ToGenerate;
                 return *this;
             }
         }//Procedural
