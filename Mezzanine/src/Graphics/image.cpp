@@ -73,6 +73,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Image Methods
 
+        Image::Image()
+        {
+            this->IID = new InternalImageData();
+        }
+
         Image::Image(const String& ResourceName, const String& ResourceGroup)
         {
             this->IID = new InternalImageData();
@@ -82,13 +87,13 @@ namespace Mezzanine
         Image::Image(UInt8* Data, const UInt32 Width, const UInt32 Height, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
         {
             this->IID = new InternalImageData();
-            this->LoadImage(Data,Width,Height,Format,AutoDelete,NumFaces,NumMipMaps);
+            this->InitializeImage(Data,Width,Height,Format,AutoDelete,NumFaces,NumMipMaps);
         }
 
         Image::Image(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
         {
             this->IID = new InternalImageData();
-            this->LoadImage(Data,Width,Height,Depth,Format,AutoDelete,NumFaces,NumMipMaps);
+            this->InitializeImage(Data,Width,Height,Depth,Format,AutoDelete,NumFaces,NumMipMaps);
         }
 
         Image::~Image()
@@ -149,23 +154,26 @@ namespace Mezzanine
             { return this->IID->GraphicsImage.getColourAt(X,Y,Z); }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Loading Methods
+        // Initialize Methods
 
-        Image& Image::LoadImage(const String& ResourceName, const String& ResourceGroup)
-        {
-            this->IID->GraphicsImage.load(ResourceName,ResourceGroup);
-            return *this;
-        }
-
-        Image& Image::LoadImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
+        Image& Image::InitializeImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
         {
             this->IID->GraphicsImage.loadDynamicImage(Data,Width,Height,1,static_cast<Ogre::PixelFormat>(Format),AutoDelete,NumFaces,NumMipMaps);
             return *this;
         }
 
-        Image& Image::LoadImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
+        Image& Image::InitializeImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete, const Whole NumFaces, const UInt8 NumMipMaps)
         {
             this->IID->GraphicsImage.loadDynamicImage(Data,Width,Height,Depth,static_cast<Ogre::PixelFormat>(Format),AutoDelete,NumFaces,NumMipMaps);
+            return *this;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Loading Methods
+
+        Image& Image::LoadImage(const String& ResourceName, const String& ResourceGroup)
+        {
+            this->IID->GraphicsImage.load(ResourceName,ResourceGroup);
             return *this;
         }
 
@@ -175,24 +183,6 @@ namespace Mezzanine
         Image& Image::SaveImage(const String& FileName, const String& GroupName)
         {
             MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Saving images via asset groups is not supported yet.");
-            return *this;
-        }
-
-        Image& Image::SaveImageExplicit(const String& FilePath, const String& FileName)
-        {
-            String FullPath = FilePath;
-            String Separator(1,Resource::GetDirectorySeparator());
-            if( !StringTools::EndsWith(FilePath,Separator,true) ) {
-                FullPath.append(Separator);
-            }
-            FullPath.append(FileName);
-            return this->SaveImageExplicit(FullPath);
-        }
-
-        Image& Image::SaveImageExplicit(const String& File)
-        {
-            // Ogre does everything for us in a straightforward manner
-            this->IID->GraphicsImage.save(File);
             return *this;
         }
 
@@ -207,6 +197,37 @@ namespace Mezzanine
             Ogre::DataStreamPtr OgreStream = this->IID->GraphicsImage.encode(Extension);
             Ogre::MemoryDataStream* RawOgreStream = static_cast<Ogre::MemoryDataStream*>( OgreStream.getPointer() );
             Stream->write(reinterpret_cast<char*>(RawOgreStream->getPtr()),RawOgreStream->size());
+            return *this;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Loading Methods
+
+        Image& Image::_LoadImage(const String& FilePath, const String& FileName)
+            { return this->_LoadImage(Resource::CombinePathAndFileName(FilePath,FileName)); }
+
+        Image& Image::_LoadImage(const String& File)
+        {
+            std::ifstream* ImageFileStream = new std::ifstream();
+            ImageFileStream->open(File.c_str(),std::ifstream::in | std::ifstream::binary);
+            if( ImageFileStream->fail() ) {
+                MEZZ_EXCEPTION(Exception::IO_EXCEPTION,"Unable to open the file at: \"" + File + "\".");
+            }
+            Ogre::DataStreamPtr OgreStreamPtr(new Ogre::FileStreamDataStream(ImageFileStream,true));
+            this->IID->GraphicsImage.load(OgreStreamPtr,File.substr(File.find_last_of('.')+1));
+            return *this;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Saving Methods
+
+        Image& Image::_SaveImage(const String& FilePath, const String& FileName)
+            { return this->_SaveImage(Resource::CombinePathAndFileName(FilePath,FileName)); }
+
+        Image& Image::_SaveImage(const String& File)
+        {
+            // Ogre does everything for us in a straightforward manner
+            this->IID->GraphicsImage.save(File);
             return *this;
         }
 

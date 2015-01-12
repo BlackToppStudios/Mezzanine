@@ -67,6 +67,8 @@ namespace Mezzanine
             /// @brief A pointer to the internal implementation of the Image.
             InternalImageData* IID;
         public:
+            /// @brief Blank, no-init constructor.
+            Image();
             /// @brief Resource constructor.
             /// @param ResourceName The name of the resource to be loaded.
             /// @param ResourceGroup The name of the group the resource is located in.
@@ -153,13 +155,8 @@ namespace Mezzanine
             ColourValue GetColourAt(const Whole X, const Whole Y, const Whole Z) const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Loading Methods
+            // Initialize Methods
 
-            /// @brief Loads an image.
-            /// @param ResourceName The name of the resource to be loaded.
-            /// @param ResourceGroup The name of the group the resource is located in.
-            /// @return Returns a reference to this.
-            Image& LoadImage(const String& ResourceName, const String& ResourceGroup);
             /// @brief Loads an image from a buffer.
             /// @param Data The buffer to load the image from.
             /// @param Width The width of the image to be loaded.
@@ -169,7 +166,7 @@ namespace Mezzanine
             /// @param NumFaces The number of faces that exist for the image.
             /// @param NumMipMaps The number of mipmaps that exist for the image.
             /// @return Returns a reference to this.
-            Image& LoadImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const Graphics::PixelFormat Format, const Boole AutoDelete = false, const Whole NumFaces = 1, const UInt8 NumMipMaps = 0);
+            Image& InitializeImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const Graphics::PixelFormat Format, const Boole AutoDelete = false, const Whole NumFaces = 1, const UInt8 NumMipMaps = 0);
             /// @brief Loads an image from a buffer.
             /// @param Data The buffer to load the image from.
             /// @param Width The width of the image to be loaded.
@@ -180,7 +177,16 @@ namespace Mezzanine
             /// @param NumFaces The number of faces that exist for the image.
             /// @param NumMipMaps The number of mipmaps that exist for the image.
             /// @return Returns a reference to this.
-            Image& LoadImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete = false, const Whole NumFaces = 1, const UInt8 NumMipMaps = 0);
+            Image& InitializeImage(UInt8* Data, const UInt32 Width, const UInt32 Height, const UInt32 Depth, const Graphics::PixelFormat Format, const Boole AutoDelete = false, const Whole NumFaces = 1, const UInt8 NumMipMaps = 0);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Loading Methods
+
+            /// @brief Loads an image.
+            /// @param ResourceName The name of the resource to be loaded.
+            /// @param ResourceGroup The name of the group the resource is located in.
+            /// @return Returns a reference to this.
+            Image& LoadImage(const String& ResourceName, const String& ResourceGroup);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Saving Methods
@@ -193,23 +199,6 @@ namespace Mezzanine
             /// @param GroupName The name of the asset group to save this to.
             /// @return Returns a reference to this.
             Image& SaveImage(const String& FileName, const String& GroupName);
-            /// @brief Writes this image to the disk.
-            /// @remarks This method will infer the encoding from the provided file extension which needs to be included in the FileName parameter.  Check the ImageFileFormat enum
-            /// for details on which formats/extensions have write support.  Also keep in mind that different file formats have support for different pixel formats.  Ensure you are
-            /// encoding to something that can support the currently set pixel format otherwise you risk generating a corrupted image.  @n @n
-            /// This method also completely bypasses the bulk of the Mezzanine resource system and writes directly to the filesystem.  Use with care.
-            /// @param FilePath The directory path to where the file will be placed.
-            /// @param FileName The name of the file to save this as.
-            /// @return Returns a reference to this.
-            Image& SaveImageExplicit(const String& FilePath, const String& FileName);
-            /// @brief Writes this image to the disk.
-            /// @remarks This method will infer the encoding from the provided file extension which needs to be included in the FileName parameter.  Check the ImageFileFormat enum
-            /// for details on which formats/extensions have write support.  Also keep in mind that different file formats have support for different pixel formats.  Ensure you are
-            /// encoding to something that can support the currently set pixel format otherwise you risk generating a corrupted image.  @n @n
-            /// This method also completely bypasses the bulk of the Mezzanine resource system and writes directly to the filesystem.  Use with care.
-            /// @param File The full path and filename of the image to be written.
-            /// @return Returns a reference to this.
-            Image& SaveImageExplicit(const String& File);
 
             /// @brief Writes this image in a final serializable form to an output stream.
             /// @remarks Keep in mind that different file formats have support for different pixel formats.  Ensure you are encoding to something that can support the currently set
@@ -225,6 +214,44 @@ namespace Mezzanine
             /// @param Stream A pointer to the stream to save this image to.
             /// @return Returns a reference to this.
             Image& SaveImage(const String& Extension, std::ostream* Stream);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Loading Methods
+
+            /// @internal
+            /// @brief Reads an image from the disk.
+            /// @param FilePath The directory path to where the file is to be found.
+            /// @param FileName The name of the file to look for.
+            /// @return Returns a reference to this.
+            Image& _LoadImage(const String& FilePath, const String& FileName);
+            /// @internal
+            /// @brief Reads an image from the disk.
+            /// @param File The full path and filename of the image to be read.
+            /// @return Returns a reference to this.
+            Image& _LoadImage(const String& File);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Saving Methods
+
+            /// @internal
+            /// @brief Writes this image to the disk.
+            /// @remarks This method will infer the encoding from the provided file extension which needs to be included in the FileName parameter.  Check the ImageFileFormat enum
+            /// for details on which formats/extensions have write support.  Also keep in mind that different file formats have support for different pixel formats.  Ensure you are
+            /// encoding to something that can support the currently set pixel format otherwise you risk generating a corrupted image.  @n @n
+            /// This method also completely bypasses the bulk of the Mezzanine resource system and writes directly to the filesystem.  Use with care.
+            /// @param FilePath The directory path to where the file will be placed.
+            /// @param FileName The name of the file to save this as.
+            /// @return Returns a reference to this.
+            Image& _SaveImage(const String& FilePath, const String& FileName);
+            /// @internal
+            /// @brief Writes this image to the disk.
+            /// @remarks This method will infer the encoding from the provided file extension which needs to be included in the FileName parameter.  Check the ImageFileFormat enum
+            /// for details on which formats/extensions have write support.  Also keep in mind that different file formats have support for different pixel formats.  Ensure you are
+            /// encoding to something that can support the currently set pixel format otherwise you risk generating a corrupted image.  @n @n
+            /// This method also completely bypasses the bulk of the Mezzanine resource system and writes directly to the filesystem.  Use with care.
+            /// @param File The full path and filename of the image to be written.
+            /// @return Returns a reference to this.
+            Image& _SaveImage(const String& File);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
