@@ -114,7 +114,7 @@ namespace Mezzanine
                         }
                     }
 
-                    Buffer.SetData( TempBuffer );
+                    Buffer.SetData(TempBuffer);
                 }
             }
 
