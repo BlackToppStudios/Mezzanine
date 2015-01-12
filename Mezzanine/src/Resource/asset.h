@@ -40,22 +40,81 @@
 #ifndef _resourceasset_h
 #define _resourceasset_h
 
+#include "datatypes.h"
+
 namespace Mezzanine
 {
     namespace Resource
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief
-        /// @details
+        /// @brief A convenience base class for objects that may need common IO operations exposed for them.
+        /// @details An Asset is just a class that may need saving or loading operations present on the class.  Any
+        /// data that has IO performed on it can be an Asset, regardless of whether or not it is represented by
+        /// this class. @n @n
+        /// The internal IO methods bypass the resource system and access the resource directly.  This should be
+        /// avoided in most use cases as you could be opening multiple streams to the same assets or creating race
+        /// conditions, or generating large delays for the WorkUnit if it is being executed in a WorkUnit.  They
+        /// were primarily created to facilitate testing.
         ///////////////////////////////////////
-        class Asset
+        class MEZZ_LIB Asset
         {
         protected:
+            // Listing of classes to be Assets:
+            // Audio::Sound
+            // Graphics::Image
         public:
             /// @brief Class constructor.
             Asset();
             /// @brief Class destructor.
-            ~Asset();
+            virtual ~Asset();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Loading Methods
+
+            /// @brief Loads an asset from an input stream.
+            /// @param Stream The stream this asset will be read from.
+            virtual void LoadAsset(std::istream* Stream) = 0;
+            /// @brief Loads an asset from an asset group.
+            /// @param FileName The name of the file to search for.
+            /// @param GroupName The name of the asset group to look for the resource in.
+            virtual void LoadAsset(const String& FileName, const String& GroupName);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Saving Methods
+
+            /// @brief Saves an asset to an output stream.
+            /// @param Stream The stream this asset will written to.
+            virtual void SaveAsset(std::ostream* Stream) = 0;
+            /// @brief Saves an asset to an asset group.
+            /// @param FileName The name of the file to save as.
+            /// @param GroupName The name of the asset group to save to.
+            virtual void SaveAsset(const String& FileName, const String& GroupName);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Loading Methods
+
+            /// @internal
+            /// @brief Workaround method to load an asset from the filesystem.
+            /// @param File The complete file path and a name of the asset to be loaded.
+            virtual void _LoadAsset(const String& File) = 0;
+            /// @internal
+            /// @brief Workaround method to load an asset from the filesystem.
+            /// @param FilePath The directory path the file should be loaded from.
+            /// @param FileName The name of the file to search for.
+            virtual void _LoadAsset(const String& FilePath, const String& FileName);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Saving Methods
+
+            /// @internal
+            /// @brief Workaround method to save an asset to the filesystem.
+            /// @param File The complete file path and a name of the asset to be saved.
+            virtual void _SaveAsset(const String& File) = 0;
+            /// @internal
+            /// @brief Workaround method to save an asset to the filesystem.
+            /// @param FilePath The directory path the file should be saved to.
+            /// @param FileName The name of the file to save as.
+            virtual void _SaveAsset(const String& FilePath, const String& FileName);
         };//Asset
     }//Resource
 }//Mezzanine
