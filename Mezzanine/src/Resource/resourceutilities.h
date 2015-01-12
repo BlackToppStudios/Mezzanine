@@ -111,6 +111,12 @@ namespace Mezzanine
         /// @return Semicolon ';' on windows and Forward slash ':' on other operating systems.
         Char8 MEZZ_LIB GetPathSeparator();
 
+        /// @brief Convenience method to verify the necessary system separator is present when concatenating.
+        /// @param FilePath The directory path to the file.
+        /// @param FileName The name of the file.
+        /// @return Returns a full string that is the concatenated path and filename.
+        String MEZZ_LIB CombinePathAndFileName(const String& FilePath, const String& FileName);
+
         ///////////////////////////////////////////////////////////////////////////////
         // System Path Utilities
 

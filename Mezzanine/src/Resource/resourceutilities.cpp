@@ -265,6 +265,17 @@ namespace Mezzanine
             #endif
         }
 
+        String CombinePathAndFileName(const String& FilePath, const String& FileName)
+        {
+            String FullPath = FilePath;
+            String Separator(1,Resource::GetDirectorySeparator());
+            if( !StringTools::EndsWith(FilePath,Separator,true) ) {
+                FullPath.append(Separator);
+            }
+            FullPath.append(FileName);
+            return FullPath;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // System Path Utilities
 
