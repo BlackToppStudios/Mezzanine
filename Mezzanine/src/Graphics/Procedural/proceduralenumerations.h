@@ -82,6 +82,24 @@ namespace Mezzanine
                 BO_Difference     ///< Gets only the parts of the two buffers that aren't overlapping.
             };
 
+            /// @enum ColourChannelIndex
+            /// @brief Convenience enum that stores the colour placement in a word according to endianness.
+            enum ColourChannelIndex
+            {
+            #if MEZZ_LITTLE_ENDIAN
+                CCI_Red   = 3,
+                CCI_Green = 2,
+                CCI_Blue  = 1,
+                CCI_Alpha = 0
+            #endif
+            #if MEZZ_BIG_ENDIAN
+                CCI_Red   = 0,
+                CCI_Green = 1,
+                CCI_Blue  = 2,
+                CCI_Alpha = 3
+            #endif
+            };
+
             /// @enum NoiseType
             /// @brief An enum used to describe the different types of noise generators.
             enum NoiseType
