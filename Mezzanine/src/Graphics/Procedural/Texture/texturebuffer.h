@@ -119,7 +119,7 @@ namespace Mezzanine
                 /// @brief Square size constructor.
                 /// @param SquareSize The width and height of the texture to create.  This value will be clamped to be at least 8.
                 TextureBuffer(const Whole SquareSize);
-                /// @brief Square size constructor.
+                /// @brief Size dimensions constructor.
                 /// @param TexWidth The pixel width of the texture to create.  This value will be clamped to be at least 8.
                 /// @param TexHeight The pixel height of the texture to create.  This value will be clamped to be at least 8.
                 TextureBuffer(const Whole TexWidth, const Whole TexHeight);
@@ -132,13 +132,6 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @brief Copies image data from another buffer into this buffer.
-                /// @note This method copies the contents of the provided buffer, so deletion of the provided buffer after this operation is safe. @n
-                /// If the buffer provided is NULL or if the dimensions provided do not match the set dimensions for this TextureBuffer then this method will do nothing.
-                /// @param BuffWidth The Width of the image in the provided buffer.
-                /// @param BuffHeight The Height of the image in the provided buffer.
-                /// @param Buffer A pointer to the buffer to be copied.
-                void SetData(const Whole BuffWidth, const Whole BuffHeight, const ColourChannelType* Buffer);
                 /// @brief Copies image data from another buffer into this buffer.
                 /// @param Other The other TextureBuffer that will having it's contents copied to this.
                 void SetData(const TextureBuffer& Other);

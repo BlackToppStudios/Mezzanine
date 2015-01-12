@@ -68,6 +68,7 @@
 #define _graphicsproceduraltexturebuffer_cpp
 
 #include "Graphics/Procedural/Texture/texturebuffer.h"
+#include "Graphics/Procedural/proceduralenumerations.h"
 
 #include "Graphics/texturemanager.h"
 #include "Graphics/texture.h"
@@ -83,28 +84,6 @@
 #ifdef LoadImage
 #undef LoadImage
 #endif
-
-/// @todo Change this so we're detecting the endianness in Mezzanine code, and adjusting this approproately.
-namespace
-{
-    /// @enum ProceduralColour
-    /// @brief Convenience enum that stores the colour placement in a word according to endianness.
-    enum ProceduralColour
-    {
-#if MEZZ_LITTLE_ENDIAN
-        PC_Red   = 3,
-        PC_Green = 2,
-        PC_Blue  = 1,
-        PC_Alpha = 0
-#endif
-#if MEZZ_BIG_ENDIAN
-        PC_Red   = 0,
-        PC_Green = 1,
-        PC_Blue  = 2,
-        PC_Alpha = 3
-#endif
-    };
-}
 
 namespace Mezzanine
 {
@@ -143,6 +122,7 @@ namespace Mezzanine
             }
 
             TextureBuffer::TextureBuffer(const TextureBuffer& Other) :
+                Pixels(NULL),
                 Width( 8 ),
                 Height( 8 )
                 { this->SetData(Other); }
@@ -170,23 +150,6 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
-
-            void TextureBuffer::SetData(const Whole BuffWidth, const Whole BuffHeight, const ColourChannelType* Buffer)
-            {
-                if( Buffer != NULL ) {
-                    if( this->Width != BuffWidth || this->Height != BuffHeight ) {
-                        this->Width = BuffWidth;
-                        this->Height = BuffHeight;
-
-                        if( this->Pixels != NULL ) {
-                            delete[] this->Pixels;
-                        }
-
-                        this->Pixels = new ColourChannelType[ this->GetSubChannelCount() ];
-                    }
-                    memcpy(this->Pixels,Buffer,this->GetByteSize());
-                }
-            }
 
             void TextureBuffer::SetData(const TextureBuffer& Other)
             {
@@ -263,68 +226,68 @@ namespace Mezzanine
                 { return ColourValue( this->GetRedReal(X,Y), this->GetGreenReal(X,Y), this->GetBlueReal(X,Y), this->GetAlphaReal(X,Y) ); }
 
             void TextureBuffer::SetRedByte(const Whole X, const Whole Y, const ColourChannelType Red)
-                { this->GetPixel(X,Y,PC_Red) = Red; }
+                { this->GetPixel(X,Y,Procedural::CCI_Red) = Red; }
 
             void TextureBuffer::SetRedReal(const Whole X, const Whole Y, const Real Red)
             {
                 if( Red > 1.0 || Red < 0.0 )
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Red colour component to be set is outside the expected range [0.0-1.0]."); }
-                this->GetPixel(X,Y,PC_Red) = static_cast<ColourChannelType>( MathTools::Clamp(Red * Real(255.0),Real(0.0),Real(255.0)) );
+                this->GetPixel(X,Y,Procedural::CCI_Red) = static_cast<ColourChannelType>( MathTools::Clamp(Red * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
             TextureBuffer::ColourChannelType TextureBuffer::GetRedByte(const Whole X, const Whole Y) const
-                { return this->GetPixel(X,Y,PC_Red); }
+                { return this->GetPixel(X,Y,Procedural::CCI_Red); }
 
             Real TextureBuffer::GetRedReal(const Whole X, const Whole Y) const
-                { return ( static_cast<Real>( this->GetPixel(X,Y,PC_Red) ) / 255.0 ); }
+                { return ( static_cast<Real>( this->GetPixel(X,Y,Procedural::CCI_Red) ) / 255.0 ); }
 
             void TextureBuffer::SetGreenByte(const Whole X, const Whole Y, const ColourChannelType Green)
-                { this->GetPixel(X,Y,PC_Green) = Green; }
+                { this->GetPixel(X,Y,Procedural::CCI_Green) = Green; }
 
             void TextureBuffer::SetGreenReal(const Whole X, const Whole Y, const Real Green)
             {
                 if( Green > 1.0 || Green < 0.0 )
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Green colour component to be set is outside the expected range [0.0-1.0]."); }
-                this->GetPixel(X,Y,PC_Green) = static_cast<ColourChannelType>( MathTools::Clamp(Green * Real(255.0),Real(0.0),Real(255.0)) );
+                this->GetPixel(X,Y,Procedural::CCI_Green) = static_cast<ColourChannelType>( MathTools::Clamp(Green * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
             TextureBuffer::ColourChannelType TextureBuffer::GetGreenByte(const Whole X, const Whole Y) const
-                { return this->GetPixel(X,Y,PC_Green); }
+                { return this->GetPixel(X,Y,Procedural::CCI_Green); }
 
             Real TextureBuffer::GetGreenReal(const Whole X, const Whole Y) const
-                { return ( static_cast<Real>( this->GetPixel(X,Y,PC_Green) ) / 255.0 ); }
+                { return ( static_cast<Real>( this->GetPixel(X,Y,Procedural::CCI_Green) ) / 255.0 ); }
 
             void TextureBuffer::SetBlueByte(const Whole X, const Whole Y, const ColourChannelType Blue)
-                { this->GetPixel(X,Y,PC_Blue) = Blue; }
+                { this->GetPixel(X,Y,Procedural::CCI_Blue) = Blue; }
 
             void TextureBuffer::SetBlueReal(const Whole X, const Whole Y, const Real Blue)
             {
                 if( Blue > 1.0 || Blue < 0.0 )
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Blue colour component to be set is outside the expected range [0.0-1.0]."); }
-                this->GetPixel(X,Y,PC_Blue) = static_cast<ColourChannelType>( MathTools::Clamp(Blue * Real(255.0),Real(0.0),Real(255.0)) );
+                this->GetPixel(X,Y,Procedural::CCI_Blue) = static_cast<ColourChannelType>( MathTools::Clamp(Blue * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
             TextureBuffer::ColourChannelType TextureBuffer::GetBlueByte(const Whole X, const Whole Y) const
-                { return this->GetPixel(X,Y,PC_Blue); }
+                { return this->GetPixel(X,Y,Procedural::CCI_Blue); }
 
             Real TextureBuffer::GetBlueReal(const Whole X, const Whole Y) const
-                { return ( static_cast<Real>( this->GetPixel(X,Y,PC_Blue) ) / 255.0 ); }
+                { return ( static_cast<Real>( this->GetPixel(X,Y,Procedural::CCI_Blue) ) / 255.0 ); }
 
             void TextureBuffer::SetAlphaByte(const Whole X, const Whole Y, const ColourChannelType Alpha)
-                { this->GetPixel(X,Y,PC_Alpha) = Alpha; }
+                { this->GetPixel(X,Y,Procedural::CCI_Alpha) = Alpha; }
 
             void TextureBuffer::SetAlphaReal(const Whole X, const Whole Y, const Real Alpha)
             {
                 if( Alpha > 1.0 || Alpha < 0.0 )
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Alpha colour component to be set is outside the expected range [0.0-1.0]."); }
-                this->GetPixel(X,Y,PC_Alpha) = static_cast<ColourChannelType>( MathTools::Clamp(Alpha * Real(255.0),Real(0.0),Real(255.0)) );
+                this->GetPixel(X,Y,Procedural::CCI_Alpha) = static_cast<ColourChannelType>( MathTools::Clamp(Alpha * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
             TextureBuffer::ColourChannelType TextureBuffer::GetAlphaByte(const Whole X, const Whole Y) const
-                { return this->GetPixel(X,Y,PC_Alpha); }
+                { return this->GetPixel(X,Y,Procedural::CCI_Alpha); }
 
             Real TextureBuffer::GetAlphaReal(const Whole X, const Whole Y) const
-                { return ( static_cast<Real>( this->GetPixel(X,Y,PC_Alpha) ) / 255.0 ); }
+                { return ( static_cast<Real>( this->GetPixel(X,Y,Procedural::CCI_Alpha) ) / 255.0 ); }
         }//Procedural
     }//Graphics
 }//Mezzanine
