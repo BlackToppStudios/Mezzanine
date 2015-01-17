@@ -109,14 +109,14 @@ namespace Mezzanine
 
             void ConvolutionModifier::Modify(TextureBuffer& Buffer)
             {
-                Whole Width = Buffer.GetWidth();
-                Whole Height = Buffer.GetHeight();
+                Whole TargetWidth = Buffer.GetWidth();
+                Whole TargetHeight = Buffer.GetHeight();
                 Integer Radius = static_cast<Integer>( this->KernelSize ) >> 1;
                 TextureBuffer TempBuffer( Buffer );
 
-                for( Whole Y = 0 ; Y < Height ; ++Y )
+                for( Whole Y = 0 ; Y < TargetHeight ; ++Y )
                 {
-                    for( Whole X = 0 ; X < Width ; ++X )
+                    for( Whole X = 0 ; X < TargetWidth ; ++X )
                     {
                         Integer Red = 0;
                         Integer Green = 0;
@@ -128,21 +128,23 @@ namespace Mezzanine
                         for( UInt8 i = 0 ; i < this->KernelSize ; ++i )
                         {
                             Integer iRad = i - Radius;
+                            Integer YPos = static_cast<Integer>(Y) + iRad;
 
-                            if( (Y + iRad) < 0 )
+                            if( YPos < 0 )
                                 continue;
-                            if( (Y + iRad) >= Buffer.GetHeight() )
+                            if( YPos >= static_cast<Integer>( TargetHeight ) )
                                 break;
 
                             for( UInt8 j = 0 ; j < this->KernelSize ; ++j )
                             {
                                 Integer jRad = j - Radius;
+                                Integer XPos = static_cast<Integer>(X) + jRad;
 
-                                if( ( X + jRad ) < 0 )
+                                if( XPos < 0 )
                                     continue;
-                                if( ( X + jRad ) < Buffer.GetWidth() ) {
+                                if( XPos < static_cast<Integer>( TargetWidth ) ) {
                                     Real KernelVal = this->KernelData[ i * this->KernelSize + j ];
-                                    ColourValue Pixel = Buffer.GetPixel(Y + iRad, X + jRad);
+                                    ColourValue Pixel = Buffer.GetPixel(XPos,YPos);
                                     Div += static_cast<Integer>( KernelVal );
                                     KernelVal *= 255.0;
                                     Red += static_cast<Integer>( KernelVal * Pixel.RedChannel );
@@ -179,11 +181,11 @@ namespace Mezzanine
                         }
 
                         /// @todo The X and Y here was originally swapped when I transposed the code from Ogre Procedural.  It didn't seem right so I changed it.  Who is wronger?
-                        TempBuffer.SetPixel( X, Y, ColourValue(
-                                            (UInt8)( (Red > 255) ? 255 : ((Red < 0) ? 0 : Red) ),
-                                            (UInt8)( (Green > 255) ? 255 : ((Green < 0) ? 0 : Green) ),
-                                            (UInt8)( (Blue > 255) ? 255 : ((Blue < 0) ? 0 : Blue) ),
-                                            (UInt8)( (Alpha > 255) ? 255 : ((Alpha < 0) ? 0 : Alpha) ) ) );
+                        TempBuffer.SetPixelByte( X, Y,
+                                            static_cast<UInt8>( (Red > 255) ? 255 : ( (Red < 0) ? 0 : Red ) ),
+                                            static_cast<UInt8>( (Green > 255) ? 255 : ( (Green < 0) ? 0 : Green ) ),
+                                            static_cast<UInt8>( (Blue > 255) ? 255 : ( (Blue < 0) ? 0 : Blue ) ),
+                                            static_cast<UInt8>( (Alpha > 255) ? 255 : ( (Alpha < 0) ? 0 : Alpha ) ) );
                     }
                 }
 

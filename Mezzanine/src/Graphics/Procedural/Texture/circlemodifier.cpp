@@ -108,28 +108,45 @@ namespace Mezzanine
                 const Integer XPos = ( ( this->CircleXRel * TargetWidth ) + this->CircleXAdj );
                 const Integer YPos = ( ( this->CircleYRel * TargetHeight ) + this->CircleYAdj );
 
-                Integer X = 0;
+                Integer IntRadius = static_cast<Integer>( this->CircleRadius );
+                Integer SquareRadius = IntRadius * IntRadius;
+                for( Integer Y = -IntRadius ; Y < IntRadius ; ++Y )
+                {
+                    for( Integer X = -IntRadius ; X < IntRadius ; ++X )
+                    {
+                        if( X * X + Y * Y < SquareRadius ) {
+                            this->PutPixel( XPos + X, YPos + Y, Buffer );
+                        }
+                    }
+                }
+                /// @todo Investigate the proper implementation of this algorithm.
+                /// This appears to be the Midpoint Circle Algorithm, but also can't handle the left and right edges after the angle becomes perfectly diagonal.
+                /// This should be able to produce superior results, faster, compared to the brute force algorithm above.
+                /*Integer X = 0;
                 Integer Y = this->CircleRadius;
-                Integer P = 3 - ( 2 * this->CircleRadius );
+                //Integer P = 3 - ( 2 * this->CircleRadius );
+                Integer P = 1 - this->CircleRadius;
 
                 while( X <= Y )
                 {
                     for( Integer DeltaY = -Y ; DeltaY <= Y ; DeltaY++ )
                     {
-                        this->PutPixel( XPos + (+X), YPos + DeltaY, Buffer );
-                        this->PutPixel( XPos + (-X), YPos + DeltaY, Buffer );
+                        this->PutPixel( XPos + X, YPos + DeltaY, Buffer );
+                        this->PutPixel( XPos - X, YPos + DeltaY, Buffer );
                     }
                     for( Integer DeltaX = -X ; DeltaX <= X ; DeltaX++ )
                     {
-                        this->PutPixel( XPos + DeltaX, YPos + (+Y), Buffer );
-                        this->PutPixel( XPos + DeltaX, YPos + (-Y), Buffer );
+                        this->PutPixel( XPos + DeltaX, YPos + Y, Buffer );
+                        this->PutPixel( XPos + DeltaX, YPos - Y, Buffer );
                     }
                     if( P < 0 ) {
-                        P += 4 * X++ + 6;
+                        //P += 4 * X++ + 6;
+                        P += 2 * X++ + 1;
                     }else{
-                        P += 4 * ( X++ - Y-- ) + 10;
+                        //P += 4 * ( X++ - Y-- ) + 10;
+                        P += 2 * ( X++ - Y-- ) + 1;
                     }
-                }
+                }//*/
             }
 
             String CircleModifier::GetName() const

@@ -75,22 +75,44 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            /*///////////////////////////////////////////////////////////////////////////////
-            /// @brief
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A modifier that will set a pixels colour if it's intensity is outside a set threshold.
             /// @details
             ///////////////////////////////////////
             class MEZZ_LIB ThresholdModifier : public TextureModifier
             {
             public:
-                /// @brief An enum to describe the behavior to take
+                /// @enum ThresholdMode
+                /// @brief An enum to describe when to replace the colour of a pixel.
                 enum ThresholdMode
                 {
-                    TM_Expand_Downwards = 0,    ///<
-                    TM_Expand_Upwards = 1,      ///<
-                    TM_Compress_Below = 2,      ///<
-                    TM_Compress_Above = 3       ///<
+                    TM_Above = 1,                            ///< Uses only the upper limit.  Any pixel with an intensity above the set upper limit will be replaced.
+                    TM_Below = 2,                            ///< Uses only the lower limit.  Any pixel with an intensity below the set lower limit will be replaced.
+                    TM_OutsideRange = TM_Below | TM_Above    ///< Uses both the upper and lower limits.  Any pixel with an intensity outside their range will be replaced.
+                };
+                /// @enum ReplaceMode
+                /// @brief An enum to describe with what granularity pixels will be checked and replaced.
+                enum ReplaceMode
+                {
+                    RM_PixelIntensity = 1,   ///< Checks against the total intensity of the pixel and will replace the entire pixel if it is outside the set threshold.
+                    RM_ColourChannels = 2    ///< Checks each colour channel, and will replace just the colour channels that are outside the set threshold.
                 };
             protected:
+                /// @internal
+                /// @brief The colour to apply if the pixel is outside the allowed threshold.
+                ColourValue ThresholdColour;
+                /// @internal
+                /// @brief The lower limit of the threshold to check for.
+                Real LowerLimit;
+                /// @internal
+                /// @brief The upper limit of the threshold to check for.
+                Real UpperLimit;
+                /// @internal
+                /// @brief The mode that determines which limits are used for the allowed threshold.
+                UInt16 Threshold;
+                /// @internal
+                /// @brief The mode that determines the granularity of checks to be performed.
+                UInt16 Replace;
             public:
                 /// @brief Blank constructor.
                 ThresholdModifier();
@@ -108,7 +130,41 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-            };//ThresholdModifier//*/
+                /// @brief Sets the colour to use if a pixel is outside the set threshold.
+                /// @param Colour The colour to apply if the pixel intensity is outside the allowed threshold.  Initial Value: (0.0,0.0,0.0,1.0).
+                /// @return Returns a reference to this.
+                ThresholdModifier& SetColour(const ColourValue& Colour);
+                /// @brief Sets the colour to use if a pixel is outside the set threshold.
+                /// @param Red The amount of Red to apply if the pixel intensity is outside the allowed threshold.  Initial Value: 0.0.
+                /// @param Green The amount of Green to apply if the pixel intensity is outside the allowed threshold.  Initial Value: 0.0.
+                /// @param Blue The amount of Blue to apply if the pixel intensity is outside the allowed threshold.  Initial Value: 0.0.
+                /// @param Alpha The amount of Alpha to apply if the pixel intensity is outside the allowed threshold.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                ThresholdModifier& SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha = 1.0);
+
+                /// @brief Sets the lower limit of the threshold.
+                /// @param Lower The lower limit of the threshold to check for.  Initial Value: 0.0.
+                /// @return Returns a reference to this.
+                ThresholdModifier& SetLowerLimit(const Real Lower);
+                /// @brief Sets the upper limit of the threshold.
+                /// @param Upper The upper limit of the threshold to check for.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                ThresholdModifier& SetUpperLimit(const Real Upper);
+                /// @brief Sets the lower and upper limit of the threshold.
+                /// @param Lower The lower limit of the threshold to check for.  Initial Value: 0.0.
+                /// @param Upper The upper limit of the threshold to check for.  Initial Value: 1.0.
+                /// @return Returns a reference to this.
+                ThresholdModifier& SetLimitRange(const Real Lower, const Real Upper);
+
+                /// @brief Sets which limits are to be considered for the threshold.
+                /// @param Mode The mode that determines which limits are used for the allowed threshold.  Initial Value: TM_Below.
+                /// @return Returns a reference to this.
+                ThresholdModifier& SetThresholdMode(const ThresholdMode Mode);
+                /// @brief Sets the components of the pixel to be replaced.
+                /// @param Mode The mode that determines the granularity of checks to be performed.  Initial Value: RM_PixelIntensity.
+                /// @return Returns a reference to this.
+                ThresholdModifier& SetReplaceMode(const ReplaceMode Mode);
+            };//ThresholdModifier
         }//Procedural
     }//Graphics
 }//Mezzanine

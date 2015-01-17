@@ -75,7 +75,88 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            // Not Implemented
+            ThresholdModifier::ThresholdModifier() :
+                ThresholdColour(0.0,0.0,0.0,1.0),
+                LowerLimit(0.0),
+                UpperLimit(1.0),
+                Threshold(ThresholdModifier::TM_Below),
+                Replace(ThresholdModifier::RM_PixelIntensity)
+                {  }
+
+            ThresholdModifier::~ThresholdModifier()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            void ThresholdModifier::Modify(TextureBuffer& Buffer)
+            {
+                Whole TargetWidth = Buffer.GetWidth();
+                Whole TargetHeight = Buffer.GetHeight();
+
+                for( Whole Y = 0 ; Y < TargetHeight ; ++Y )
+                {
+                    for( Whole X = 0 ; X < TargetWidth ; ++X )
+                    {
+                        const ColourValue Pixel = Buffer.GetPixel(X,Y);
+
+                        if( this->Replace == ThresholdModifier::RM_PixelIntensity ) {
+                            Real Intensity = ( Pixel.RedChannel + Pixel.GreenChannel + Pixel.BlueChannel ) / 3;
+
+                            if( this->Threshold & ThresholdModifier::TM_Below && Intensity < this->LowerLimit ) {
+                                Buffer.SetPixel(X,Y,this->ThresholdColour);
+                            }else if( this->Threshold & ThresholdModifier::TM_Above && Intensity > this->UpperLimit ) {
+                                Buffer.SetPixel(X,Y,this->ThresholdColour);
+                            }
+                        }else if( this->Replace == ThresholdModifier::RM_ColourChannels ) {
+                            if( this->Threshold & ThresholdModifier::TM_Below && Pixel.RedChannel < this->LowerLimit ) {
+                                Buffer.SetRedReal(X,Y,this->ThresholdColour.RedChannel);
+                            }else if( this->Threshold & ThresholdModifier::TM_Above && Pixel.RedChannel > this->UpperLimit ) {
+                                Buffer.SetRedReal(X,Y,this->ThresholdColour.RedChannel);
+                            }
+
+                            if( this->Threshold & ThresholdModifier::TM_Below && Pixel.GreenChannel < this->LowerLimit ) {
+                                Buffer.SetGreenReal(X,Y,this->ThresholdColour.GreenChannel);
+                            }else if( this->Threshold & ThresholdModifier::TM_Above && Pixel.GreenChannel > this->UpperLimit ) {
+                                Buffer.SetGreenReal(X,Y,this->ThresholdColour.GreenChannel);
+                            }
+
+                            if( this->Threshold & ThresholdModifier::TM_Below && Pixel.BlueChannel < this->LowerLimit ) {
+                                Buffer.SetBlueReal(X,Y,this->ThresholdColour.BlueChannel);
+                            }else if( this->Threshold & ThresholdModifier::TM_Above && Pixel.BlueChannel > this->UpperLimit ) {
+                                Buffer.SetBlueReal(X,Y,this->ThresholdColour.BlueChannel);
+                            }
+                        }
+                    }
+                }
+            }
+
+            String ThresholdModifier::GetName() const
+                { return "ThresholdModifier"; }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            ThresholdModifier& ThresholdModifier::SetColour(const ColourValue& Colour)
+                { this->ThresholdColour = Colour;  return *this; }
+
+            ThresholdModifier& ThresholdModifier::SetColour(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+                { this->ThresholdColour.SetValues(Red,Green,Blue,Alpha);  return *this; }
+
+            ThresholdModifier& ThresholdModifier::SetLowerLimit(const Real Lower)
+                { this->LowerLimit = Lower;  return *this; }
+
+            ThresholdModifier& ThresholdModifier::SetUpperLimit(const Real Upper)
+                { this->UpperLimit = Upper;  return *this; }
+
+            ThresholdModifier& ThresholdModifier::SetLimitRange(const Real Lower, const Real Upper)
+                { this->LowerLimit = Lower;  this->UpperLimit = Upper;  return *this; }
+
+            ThresholdModifier& ThresholdModifier::SetThresholdMode(const ThresholdModifier::ThresholdMode Mode)
+                { this->Threshold = Mode;  return *this; }
+
+            ThresholdModifier& ThresholdModifier::SetReplaceMode(const ThresholdModifier::ReplaceMode Mode)
+                { this->Replace = Mode;  return *this; }
         }//Procedural
     }//Graphics
 }//Mezzanine

@@ -89,21 +89,21 @@ namespace Mezzanine
 
             void VortexModifier::Modify(TextureBuffer& Buffer)
             {
-                Whole Width = Buffer.GetWidth();
-                Whole Height = Buffer.GetHeight();
-                Whole dwCenterX	= static_cast<Whole>( this->VortexCenter.X * static_cast<Real>(Width) );
-                Whole dwCenterY	= static_cast<Whole>( this->VortexCenter.Y * static_cast<Real>(Height) );
-                Whole dwRadiusX	= static_cast<Whole>( this->VortexRadius.X * static_cast<Real>(Width) );
-                Whole dwRadiusY	= static_cast<Whole>( this->VortexRadius.Y * static_cast<Real>(Height) );
+                Integer TargetWidth = Buffer.GetWidth();
+                Integer TargetHeight = Buffer.GetHeight();
+                Integer dwCenterX	= static_cast<Integer>( this->VortexCenter.X * static_cast<Real>(TargetWidth) );
+                Integer dwCenterY	= static_cast<Integer>( this->VortexCenter.Y * static_cast<Real>(TargetHeight) );
+                Integer dwRadiusX	= static_cast<Integer>( this->VortexRadius.X * static_cast<Real>(TargetWidth) );
+                Integer dwRadiusY	= static_cast<Integer>( this->VortexRadius.Y * static_cast<Real>(TargetHeight) );
                 Real f1_RadiusX = 1.0 / static_cast<Real>(dwRadiusX);
                 Real f1_RadiusY = 1.0 / static_cast<Real>(dwRadiusY);
                 TextureBuffer TempBuffer( Buffer );
 
-                for( Whole Y = 0 ; Y < Height ; ++Y )
+                for( Integer Y = 0 ; Y < TargetHeight ; ++Y )
                 {
                     Real dY = static_cast<Real>( Y - dwCenterY ) * f1_RadiusY;
 
-                    for( Whole X = 0 ; X < Width ; ++X )
+                    for( Integer X = 0 ; X < TargetWidth ; ++X )
                     {
                         Real dX = static_cast<Real>( X - dwCenterX ) * f1_RadiusX;
                         Real d = MathTools::Sqrt( dX * dX + dY * dY );
@@ -121,10 +121,10 @@ namespace Mezzanine
                             nX = bX * MathTools::Cos(rad) - nY * MathTools::Sin(rad) + dwCenterX;
                             nY = bX * MathTools::Sin(rad) + nY * MathTools::Cos(rad) + dwCenterY;
 
-                            if( nX >= Width ) nX = nX - Width;
-                            if( nY >= Height ) nY = nY - Height;
-                            if( nX < 0 ) nX = Width + nX;
-                            if( nY < 0 ) nY = Height + nY;
+                            if( nX >= TargetWidth ) nX = nX - TargetWidth;
+                            if( nY >= TargetHeight ) nY = nY - TargetHeight;
+                            if( nX < 0 ) nX = TargetWidth + nX;
+                            if( nY < 0 ) nY = TargetHeight + nY;
 
                             Integer iX = static_cast<Integer>(nX);
                             Integer iY = static_cast<Integer>(nY);
@@ -137,18 +137,18 @@ namespace Mezzanine
                             Real ur = fracX * ( 1.0 - fracY );
                             Real lr = fracX * fracY;
 
-                            Integer WrapX = ( iX + 1 ) % Width;
-                            Integer WrapY = ( iY + 1 ) % Height;
+                            Integer WrapX = ( iX + 1 ) % TargetWidth;
+                            Integer WrapY = ( iY + 1 ) % TargetHeight;
                             ColourValue PixelUL = Buffer.GetPixel( iX, iY );
                             ColourValue PixelUR = Buffer.GetPixel( WrapX, iY );
                             ColourValue PixelLL = Buffer.GetPixel( iX, WrapY );
                             ColourValue PixelLR = Buffer.GetPixel( WrapX, WrapY );
 
-                            TempBuffer.SetPixel( X, Y, ColourValue(
+                            TempBuffer.SetPixelByte( X, Y,
                                                  ( ul * PixelUL.RedChannel * 255.0 + ll * PixelLL.RedChannel * 255.0 + ur * PixelUR.RedChannel * 255.0 + lr * PixelLR.RedChannel * 255.0 ),
                                                  ( ul * PixelUL.GreenChannel * 255.0 + ll * PixelLL.GreenChannel * 255.0 + ur * PixelUR.GreenChannel * 255.0 + lr * PixelLR.GreenChannel * 255.0 ),
                                                  ( ul * PixelUL.BlueChannel * 255.0 + ll * PixelLL.BlueChannel * 255.0 + ur * PixelUR.BlueChannel * 255.0 + lr * PixelLR.BlueChannel * 255.0 ),
-                                                 ( ul * PixelUL.AlphaChannel * 255.0 + ll * PixelLL.AlphaChannel * 255.0 + ur * PixelUR.AlphaChannel * 255.0 + lr * PixelLR.AlphaChannel * 255.0 ) ) );
+                                                 ( ul * PixelUL.AlphaChannel * 255.0 + ll * PixelLL.AlphaChannel * 255.0 + ur * PixelUR.AlphaChannel * 255.0 + lr * PixelLR.AlphaChannel * 255.0 ) );
                         }
                     }
                 }
@@ -165,6 +165,9 @@ namespace Mezzanine
             VortexModifier& VortexModifier::SetVortexCenter(const Vector2& Center)
                 { this->VortexCenter = Center;  return *this; }
 
+            VortexModifier& VortexModifier::SetVortexCenter(const Real X, const Real Y)
+                { this->VortexCenter.X = X;  this->VortexCenter.Y = Y;  return *this; }
+
             VortexModifier& VortexModifier::SetVortexCenterX(const Real X)
                 { this->VortexCenter.X = X;  return *this; }
 
@@ -173,6 +176,9 @@ namespace Mezzanine
 
             VortexModifier& VortexModifier::SetVortexRadius(const Vector2& Radius)
                 { this->VortexRadius = Radius;  return *this; }
+
+            VortexModifier& VortexModifier::SetVortexRadius(const Real X, const Real Y)
+                { this->VortexRadius.X = X;  this->VortexRadius.Y = Y;  return *this; }
 
             VortexModifier& VortexModifier::SetVortexRadiusX(const Real X)
                 { this->VortexRadius.X = X;  return *this; }

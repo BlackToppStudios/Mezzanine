@@ -100,6 +100,8 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc TextureModifier::Modify(TextureBuffer&)
+                /// @remarks This image provides the weights that determine how much interpolation between the two parameters image there is to
+                /// perfrom, and then writes the result to this buffer.
                 virtual void Modify(TextureBuffer& Buffer);
                 /// @copydoc TextureModifier::GetName() const
                 virtual String GetName() const;

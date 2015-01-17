@@ -152,6 +152,13 @@ namespace Mezzanine
                 return *this;
             }
 
+            FlareModifier& FlareModifier::SetFlareCenter(const Real X, const Real Y)
+            {
+                this->FlareCenter.X = X;
+                this->FlareCenter.Y = Y;
+                return *this;
+            }
+
             FlareModifier& FlareModifier::SetFlareCenterX(const Real X)
             {
                 this->FlareCenter.X = X;
@@ -167,6 +174,13 @@ namespace Mezzanine
             FlareModifier& FlareModifier::SetFlareRadius(const Vector2& Radius)
             {
                 this->FlareRadius = Radius;
+                return *this;
+            }
+
+            FlareModifier& FlareModifier::SetFlareRadius(const Real X, const Real Y)
+            {
+                this->FlareRadius.X = X;
+                this->FlareRadius.Y = Y;
                 return *this;
             }
 

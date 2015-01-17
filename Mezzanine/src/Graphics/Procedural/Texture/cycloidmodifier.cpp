@@ -71,6 +71,8 @@
 
 #include "MathTools/mathtools.h"
 
+#include "exception.h"
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -109,7 +111,7 @@ namespace Mezzanine
 
                     Phi += Step;
                 }
-                while( !( SignedX == CurrX && SignedY == CurrY && Phi < 100.0 * MathTools::GetPi()) || Phi < MathTools::GetTwoPi() );
+                while( !( SignedX == CurrX && SignedY == CurrY && Phi < 100.0 * MathTools::GetPi() ) || Phi < MathTools::GetTwoPi() );
             }
 
             void CycloidModifier::ProcessHypotrochoid(const Integer XPos, const Integer YPos, const Real Step, TextureBuffer& Buffer)
@@ -255,6 +257,10 @@ namespace Mezzanine
             void CycloidModifier::Modify(TextureBuffer& Buffer)
             {
                 if( this->CycloidPenSize != 0 ) {
+                    if( this->Parameter_r == 0 && this->Parameter_R == 0 && this->Parameter_e == 0 && this->Parameter_d == 0 ) {
+                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"No parameters have been set for Cycloid rendering.");
+                    }
+
                     Integer XPos = static_cast<Integer>( static_cast<Real>( Buffer.GetWidth() * this->CycloidCenter.X ) );
                     Integer YPos = static_cast<Integer>( static_cast<Real>( Buffer.GetHeight() * this->CycloidCenter.Y ) );
                     Real Step = MathTools::GetPi() / static_cast<Real>( std::min( Buffer.GetHeight(), Buffer.GetWidth() ) );
@@ -306,6 +312,11 @@ namespace Mezzanine
             {
                 this->Type = ToDraw;
                 return *this;
+            }
+
+            CycloidModifier& CycloidModifier::SetDefaultParameters(const Whole SquareSize)
+            {
+                this->SetDefaultParameters(SquareSize,SquareSize);
             }
 
             CycloidModifier& CycloidModifier::SetDefaultParameters(const Whole TextureWidth, const Whole TextureHeight)

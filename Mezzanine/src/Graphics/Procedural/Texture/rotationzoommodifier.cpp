@@ -121,7 +121,13 @@ namespace Mezzanine
                         Texel += Buffer.GetPixel( vt % Height, ( ut + 1 ) % Width ) * uf * ( 1.0 - vf );
                         Texel += Buffer.GetPixel( ( vt + 1 ) % Height, ut % Width ) * ( 1.0 - uf ) * vf;
                         Texel += Buffer.GetPixel( ( vt + 1 ) % Height, ( ut + 1 ) % Width ) * uf * vf;
+
+                        Texel.RedChannel = std::min(Real(1.0),Texel.RedChannel);
+                        Texel.GreenChannel = std::min(Real(1.0),Texel.GreenChannel);
+                        Texel.BlueChannel = std::min(Real(1.0),Texel.BlueChannel);
+                        Texel.AlphaChannel = std::min(Real(1.0),Texel.AlphaChannel);
                         TempBuffer.SetPixel(X,Y,Texel);
+
                         TexU += RotCos * fZoomX;
                         TexV += RotSin * fZoomY;
                     }

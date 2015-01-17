@@ -143,11 +143,11 @@ namespace Mezzanine
                         NormY = (NormY * Norm) * 127.0f + 128.0f;
                         Real NormZ = Norm * 127.0f + 128.0f;
 
-                        TempBuffer.SetPixel( X, Y, ColourValue(
+                        TempBuffer.SetPixelByte( X, Y,
                                              static_cast<UInt8>( NormX ),
                                              static_cast<UInt8>( NormY ),
                                              static_cast<UInt8>( NormZ ),
-                                             Buffer.GetAlphaByte(X,Y) ) );
+                                             Buffer.GetAlphaByte(X,Y) );
                     }
                 }
 

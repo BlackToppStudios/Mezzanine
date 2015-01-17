@@ -227,6 +227,10 @@ namespace Mezzanine
                 /// @return Returns a reference to this.
                 CycloidModifier& SetCycloidType(const CycloidType ToDraw);
                 /// @brief Sets the default values for every parameter.
+                /// @param SquareSize The pixel width and height of the texture to draw to.
+                /// @return Returns a reference to this.
+                CycloidModifier& SetDefaultParameters(const Whole SquareSize);
+                /// @brief Sets the default values for every parameter.
                 /// @param TextureWidth The pixel width of the texture to draw to.
                 /// @param TextureHeight The pixel height of the texture to draw to.
                 /// @return Returns a reference to this.

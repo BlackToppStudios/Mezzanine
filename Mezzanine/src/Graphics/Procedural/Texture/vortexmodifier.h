@@ -111,33 +111,43 @@ namespace Mezzanine
                 // Configuration
 
                 /// @brief Sets the center point where the texture will be twisted.
-                /// @param Center The center of the twisting circle on the texture.
+                /// @param Center The center of the twisting circle on the texture.  Initial Value: (0.0,0.0).
                 /// @return Returns a reference to this.
                 VortexModifier& SetVortexCenter(const Vector2& Center);
+                /// @brief Sets the center point where the texture will be twisted.
+                /// @param X The center of the twisting circle on the X axis.  Initial Value: 0.0.
+                /// @param Y The center of the twisting circle on the Y axis.  Initial Value: 0.0.
+                /// @return Returns a reference to this.
+                VortexModifier& SetVortexCenter(const Real X, const Real Y);
                 /// @brief Sets the center point on the X axis where the texture will be twisted.
-                /// @param X The center of the twisting circle on the X axis.
+                /// @param X The center of the twisting circle on the X axis.  Initial Value: 0.0.
                 /// @return Returns a reference to this.
                 VortexModifier& SetVortexCenterX(const Real X);
                 /// @brief Sets the center point on the Y axis where the texture will be twisted.
-                /// @param Y The center of the twisting circle on the Y axis.
+                /// @param Y The center of the twisting circle on the Y axis.  Initial Value: 0.0.
                 /// @return Returns a reference to this.
                 VortexModifier& SetVortexCenterY(const Real Y);
 
                 /// @brief Sets the radius of the twisting circle.
-                /// @param Radius The size of the twisting circle on the texture.
+                /// @param Radius The size of the twisting circle on the texture.  Initial Value: (0.0,0.0).
                 /// @return Returns a reference to this.
                 VortexModifier& SetVortexRadius(const Vector2& Radius);
+                /// @brief Sets the radius of the twisting circle.
+                /// @param X The radius of the twisting circle on the X axis.  Initial Value: 0.0.
+                /// @param Y The radius of the twisting circle on the Y axis.  Initial Value: 0.0.
+                /// @return Returns a reference to this.
+                VortexModifier& SetVortexRadius(const Real X, const Real Y);
                 /// @brief Sets the radius on the X axis of the twisting circle.
-                /// @param X The radius of the twisting circle on the X axis.
+                /// @param X The radius of the twisting circle on the X axis.  Initial Value: 0.0.
                 /// @return Returns a reference to this.
                 VortexModifier& SetVortexRadiusX(const Real X);
                 /// @brief Sets the radius on the Y axis of the twisting circle.
-                /// @param Y The radius of the twisting circle on the Y axis.
+                /// @param Y The radius of the twisting circle on the Y axis.  Initial Value: 0.0.
                 /// @return Returns a reference to this.
                 VortexModifier& SetVortexRadiusY(const Real Y);
 
                 /// @brief Sets the angle by which to rotate pixels within the vortex.
-                /// @param Twist The amount of rotation in radians to be applied to pixels within the vortex.
+                /// @param Twist The amount of rotation in radians to be applied to pixels within the vortex.  Initial Value: 0.0.
                 /// @return Returns a reference to this.
                 VortexModifier& SetVortexTwist(const Real Twist);
             };//VortexModifier

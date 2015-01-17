@@ -128,6 +128,11 @@ namespace Mezzanine
                 /// @param Center The central position of the flare on the texture in relative coordinates.  Initial Value: (0.5,0.5).
                 /// @return Returns a reference to this.
                 FlareModifier& SetFlareCenter(const Vector2& Center);
+                /// @brief Sets the center position of the flare.
+                /// @param X The center position of the flare on the X axis in relative coordinates.  Initial Value: 0.5.
+                /// @param Y The center position of the flare on the Y axis in relative coordinates.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareCenter(const Real X, const Real Y);
                 /// @brief Sets the center position of the flare on the X axis.
                 /// @param X The center position of the flare on the X axis in relative coordinates.  Initial Value: 0.5.
                 /// @return Returns a reference to this.
@@ -140,6 +145,11 @@ namespace Mezzanine
                 /// @param Radius The radius of the flare to draw in relative coordinates.  Initial Value: (0.5,0.5).
                 /// @return Returns a reference to this.
                 FlareModifier& SetFlareRadius(const Vector2& Radius);
+                /// @brief Sets the radius size of the flare.
+                /// @param X The radius of the flare on the X axis in relative coordinates.  Initial Value: 0.5.
+                /// @param Y The radius of the flare on the Y axis in relative coordinates.  Initial Value: 0.5.
+                /// @return Returns a reference to this.
+                FlareModifier& SetFlareRadius(const Real X, const Real Y);
                 /// @brief Sets the radius size of the flare on the X axis.
                 /// @param X The radius of the flare on the X axis in relative coordinates.  Initial Value: 0.5.
                 /// @return Returns a reference to this.
