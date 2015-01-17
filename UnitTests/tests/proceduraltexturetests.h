@@ -400,18 +400,6 @@ public:
         }
         // Now do the modifiers
         {
-            // Abnormals Modifier - Suspect
-            Graphics::Procedural::TextureBuffer TestBuffer(SquareSize);
-            Graphics::Procedural::TextureBuffer ParameterBuffer(SquareSize);
-            Graphics::Procedural::GradientGenerator().AddToTextureBuffer(TestBuffer);
-            Graphics::Procedural::CellGenerator().SetDensity(4).SetRegularity(234).AddToTextureBuffer(ParameterBuffer);
-            Graphics::Procedural::AbnormalsModifier().SetAbnormalsTexture(&ParameterBuffer).Modify(TestBuffer);
-            TempImage = TestBuffer.GenerateImage();
-            TempImage->_SaveImage("./ProceduralTexture-AbnormalsModTest.png");
-            this->Clean(TempImage);//*/
-        }
-
-        {
             // AlphaMask Modifier
             /*Graphics::Procedural::TextureBuffer TestBuffer(SquareSize);
             Graphics::Procedural::TextureBuffer ParameterBuffer(SquareSize);

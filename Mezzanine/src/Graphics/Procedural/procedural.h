@@ -58,7 +58,6 @@ namespace Mezzanine
 #include "Graphics/Procedural/proceduralenumerations.h"
 #include "Graphics/Procedural/proceduralutilities.h"
 
-#include "Graphics/Procedural/Texture/abnormalsmodifier.h"
 #include "Graphics/Procedural/Texture/alphamodifier.h"
 #include "Graphics/Procedural/Texture/alphamaskmodifier.h"
 #include "Graphics/Procedural/Texture/atlasgenerator.h"

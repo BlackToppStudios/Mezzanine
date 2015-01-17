@@ -236,7 +236,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/triangulator.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/tubegenerator.h"
         # Graphics - Procedural - Texture Items
-        "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/abnormalsmodifier.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/alphamodifier.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/alphamaskmodifier.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/atlasgenerator.h"
@@ -662,7 +661,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/triangulator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/tubegenerator.cpp"
         # Graphics - Procedural - Texture Items
-        "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/abnormalsmodifier.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/alphamodifier.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/alphamaskmodifier.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/atlasgenerator.cpp"
