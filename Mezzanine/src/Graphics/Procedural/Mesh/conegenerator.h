@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltorusgenerator_h
-#define _graphicsproceduraltorusgenerator_h
+#ifndef _graphicsproceduralconegenerator_h
+#define _graphicsproceduralconegenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
@@ -76,35 +76,33 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for a torus mesh.
+            /// @brief A generator class for a cone mesh.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB TorusGenerator : public MeshGenerator<TorusGenerator>
+            class MEZZ_LIB ConeGenerator : public MeshGenerator<ConeGenerator>
             {
             protected:
                 /// @internal
-                /// @brief The radius of the primary ring of the torus.
-                /// @remarks This radius does not encapsulate the complete AABB of the torus.  Add Toroidal radius to this value to get the full bounds.
-                Real TorusPoloidalRadius;
+                /// @brief The radius of the cone.
+                Real ConeRadius;
                 /// @internal
-                /// @brief The radius of the secondary ring of the torus.
-                /// @remarks This is the value for the "thickness" of the ring.
-                Real TorusToroidalRadius;
+                /// @brief The height of the cone.
+                Real ConeHeight;
                 /// @internal
-                /// @brief The resolution of the Poloidal ring.
-                Whole NumPoloidalSeg;
+                /// @brief The resolution of the circular component of the cone.
+                Whole NumSegCircle;
                 /// @internal
-                /// @brief The resolution of the Toroidal ring.
-                Whole NumToroidalSeg;
+                /// @brief The number of segments in the cones length.
+                Whole NumSegHeight;
             public:
                 /// @brief Class constructor.
-                /// @param PoloidalRadius The radius of the primary ring of the torus.
-                /// @param ToroidalRadius The radius of the secondary ring of the torus.
-                /// @param PoloidalSeg The resolution of the primary ring of the torus.
-                /// @param ToroidalSeg The resolution of the secondary ring of the torus.
-                TorusGenerator(const Real PoloidalRadius, const Real ToroidalRadius, const Whole PoloidalSeg = 16, const Whole ToroidalSeg = 16);
+                /// @param Radius The radius of the cone.
+                /// @param Height The height of the cone.
+                /// @param SegCircle The resolution of the circular component of the cone.
+                /// @param SegHeight The number of segments in the cones length.
+                ConeGenerator(const Real Radius, const Real Height, const Whole SegCircle = 16, const Whole SegHeight = 1);
                 /// @brief Class destructor.
-                virtual ~TorusGenerator();
+                virtual ~ConeGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -115,28 +113,28 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-                /// @brief Sets the radius of the torus.
+                /// @brief Sets the base radius.
                 /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param PoloidalRadius The radius of the primary ring of the torus.
+                /// @param Radius The radius of the cone.
                 /// @return Returns a reference to this.
-                TorusGenerator& SetPoloidalRadius(const Real PoloidalRadius);
-                /// @brief Sets the radius of the torus ring.  AKA it's thickness.
-                /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param ToroidalRadius The radius of the secondary ring of the torus.
+                ConeGenerator& SetRadius(const Real Radius);
+                /// @brief Sets the height of the cone.
+                /// @exception If the height is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param Height The height of the cone.
                 /// @return Returns a reference to this.
-                TorusGenerator& SetToroidalRadius(const Real ToroidalRadius);
+                ConeGenerator& SetHeight(const Real Height);
 
-                /// @brief Sets the number of segments on the Poloidal ring.
+                /// @brief Sets the number of segments on the side of the base.
                 /// @exception If the number of segments is less than three, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param PoloidalSeg The resolution of the primary ring of the torus.
+                /// @param SegCircle The resolution of the circular component of the cone.
                 /// @return Returns a reference to this.
-                TorusGenerator& SetNumPoloidalSeg(const Whole PoloidalSeg);
-                /// @brief Sets the number of segments along the guiding circle.
-                /// @exception If the number of segments is less than three, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param ToroidalSegThe resolution of the secondary ring of the torus.
+                ConeGenerator& SetNumSegCircle(const Whole SegCircle);
+                /// @brief Sets the number of segments on the height.
+                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SegHeight The number of segments in the cones length.
                 /// @return Returns a reference to this.
-                TorusGenerator& SetNumToroidalSeg(const Whole ToroidalSeg);
-            };//TorusGenerator
+                ConeGenerator& SetNumSegHeight(const Whole SegHeight);
+            };//ConeGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

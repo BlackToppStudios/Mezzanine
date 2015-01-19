@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltorusknotgenerator_h
-#define _graphicsproceduraltorusknotgenerator_h
+#ifndef _graphicsproceduraltorusgenerator_h
+#define _graphicsproceduraltorusgenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
@@ -76,13 +76,10 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for a torus knot mesh.
+            /// @brief A generator class for a torus mesh.
             /// @details
-            /// @todo This is a fairly simple implementation of a knoted torus, ideally suited to generating a Trefoil Knot.
-            /// Additional paramters could be added to give this generator more flexibility.  See the following link for details:
-            /// http://wiki.blender.org/index.php/Extensions:2.6/Py/Scripts/Curve/Torus_Knot
             ///////////////////////////////////////
-            class MEZZ_LIB TorusKnotGenerator : public MeshGenerator<TorusKnotGenerator>
+            class MEZZ_LIB TorusGenerator : public MeshGenerator<TorusGenerator>
             {
             protected:
                 /// @internal
@@ -94,12 +91,6 @@ namespace Mezzanine
                 /// @remarks This is the value for the "thickness" of the ring.
                 Real TorusToroidalRadius;
                 /// @internal
-                /// @brief Controls how many times the knot is going around the torus.
-                Integer PParameter;
-                /// @internal
-                /// @brief Controls how many times the knot goes through the center of the torus.
-                Integer QParameter;
-                /// @internal
                 /// @brief The resolution of the Poloidal ring.
                 Whole NumPoloidalSeg;
                 /// @internal
@@ -109,13 +100,11 @@ namespace Mezzanine
                 /// @brief Class constructor.
                 /// @param PoloidalRadius The radius of the primary ring of the torus.
                 /// @param ToroidalRadius The radius of the secondary ring of the torus.
-                /// @param PParam Controls how many times the knot is going around the torus.
-                /// @param QParam Controls how many times the knot goes through the center of the torus.
                 /// @param PoloidalSeg The resolution of the primary ring of the torus.
                 /// @param ToroidalSeg The resolution of the secondary ring of the torus.
-                TorusKnotGenerator(const Real PoloidalRadius, const Real ToroidalRadius, const Integer PParam = 2, const Integer QParam = 3, const Whole PoloidalSeg = 16, const Whole ToroidalSeg = 16);
+                TorusGenerator(const Real PoloidalRadius, const Real ToroidalRadius, const Whole PoloidalSeg = 16, const Whole ToroidalSeg = 16);
                 /// @brief Class destructor.
-                virtual ~TorusKnotGenerator();
+                virtual ~TorusGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -130,35 +119,24 @@ namespace Mezzanine
                 /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
                 /// @param PoloidalRadius The radius of the primary ring of the torus.
                 /// @return Returns a reference to this.
-                TorusKnotGenerator& SetPoloidalRadius(const Real PoloidalRadius);
+                TorusGenerator& SetPoloidalRadius(const Real PoloidalRadius);
                 /// @brief Sets the radius of the torus ring.  AKA it's thickness.
                 /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
                 /// @param ToroidalRadius The radius of the secondary ring of the torus.
                 /// @return Returns a reference to this.
-                TorusKnotGenerator& SetToroidalRadius(const Real ToroidalRadius);
-
-                /// @brief Sets the p parameter of the knot
-                /// @exception If the paramter is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param PParam Controls how many times the knot is going around the torus.
-                /// @return Returns a reference to this.
-                TorusKnotGenerator& SetPParameter(const Integer PParam);
-                /// @brief Sets the q parameter of the knot
-                /// @exception If the paramter is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param QParam Controls how many times the knot goes through the center of the torus.
-                /// @return Returns a reference to this.
-                TorusKnotGenerator& SetQParameter(const Integer QParam);
+                TorusGenerator& SetToroidalRadius(const Real ToroidalRadius);
 
                 /// @brief Sets the number of segments on the Poloidal ring.
                 /// @exception If the number of segments is less than three, a PARAMETERS_EXCEPTION will be thrown.
                 /// @param PoloidalSeg The resolution of the primary ring of the torus.
                 /// @return Returns a reference to this.
-                TorusKnotGenerator& SetNumPoloidalSeg(const Whole PoloidalSeg);
+                TorusGenerator& SetNumPoloidalSeg(const Whole PoloidalSeg);
                 /// @brief Sets the number of segments along the guiding circle.
                 /// @exception If the number of segments is less than three, a PARAMETERS_EXCEPTION will be thrown.
                 /// @param ToroidalSegThe resolution of the secondary ring of the torus.
                 /// @return Returns a reference to this.
-                TorusKnotGenerator& SetNumToroidalSeg(const Whole ToroidalSeg);
-            };//TorusKnotGenerator
+                TorusGenerator& SetNumToroidalSeg(const Whole ToroidalSeg);
+            };//TorusGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

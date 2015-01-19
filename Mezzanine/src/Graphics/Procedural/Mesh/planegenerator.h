@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralboxgenerator_h
-#define _graphicsproceduralboxgenerator_h
+#ifndef _graphicsproceduralplanegenerator_h
+#define _graphicsproceduralplanegenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
@@ -76,54 +76,33 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for a box mesh.
+            /// @brief A generator class for a plane mesh.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB BoxGenerator : public MeshGenerator<BoxGenerator>
+            class MEZZ_LIB PlaneGenerator : public MeshGenerator<PlaneGenerator>
             {
-            public:
-                /// @brief A String containing the name of the Negative X face of the box.
-                static const String TAG_NEGX;
-                /// @brief A String containing the name of the Negative Y face of the box.
-                static const String TAG_NEGY;
-                /// @brief A String containing the name of the Negative Z face of the box.
-                static const String TAG_NEGZ;
-                /// @brief A String containing the name of the X face of the box.
-                static const String TAG_X;
-                /// @brief A String containing the name of the Y face of the box.
-                static const String TAG_Y;
-                /// @brief A String containing the name of the Z face of the box.
-                static const String TAG_Z;
             protected:
                 /// @internal
-                /// @brief The size of the box to generate.
-                Vector3 BoxHalf;
+                /// @brief The facing direction of the plane.
+                Vector3 PlaneNormal;
                 /// @internal
-                /// @brief The number of segments to generate along the X axis for each face.
+                /// @brief The size of the plane.
+                Vector2 PlaneSize;
+                /// @internal
+                /// @brief The number of segments to generate on the X axis.
                 Whole NumSegX;
                 /// @internal
-                /// @brief The number of segments to generate along the Y axis for each face.
+                /// @brief The number of segments to generate on the Y axis.
                 Whole NumSegY;
-                /// @internal
-                /// @brief The number of segments to generate along the Z axis for each face.
-                Whole NumSegZ;
             public:
-                /// @brief Vector constructor.
-                /// @param HalfExtents The half size of the box to generate.
-                /// @param SegX The number of segments to generate along the X axis for each face.
-                /// @param SegY The number of segments to generate along the Y axis for each face.
-                /// @param SegZ The number of segments to generate along the Z axis for each face.
-                BoxGenerator(const Vector3& HalfExtents, const Whole SegX = 1, const Whole SegY = 1, const Whole SegZ = 1);
-                /// @brief Real constructor.
-                /// @param HalfSizeX The half size of the box to generate on the X axis.
-                /// @param HalfSizeY The half size of the box to generate on the Y axis.
-                /// @param HalfSizeZ The half size of the box to generate on the Z axis.
-                /// @param SegX The number of segments to generate along the X axis for each face.
-                /// @param SegY The number of segments to generate along the Y axis for each face.
-                /// @param SegZ The number of segments to generate along the Z axis for each face.
-                BoxGenerator(const Real HalfSizeX, const Real HalfSizeY, const Real HalfSizeZ, const Whole SegX = 1, const Whole SegY = 1, const Whole SegZ = 1);
+                /// @brief Blank constructor.
+                PlaneGenerator();
+                /// @brief Descriptive constructor.
+                /// @param Norm The facing direction of the plane.
+                /// @param Size The size of the plane.
+                PlaneGenerator(const Vector3& Norm, const Vector2& Size);
                 /// @brief Class destructor.
-                virtual ~BoxGenerator();
+                virtual ~PlaneGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -134,45 +113,41 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-                /// @brief Sets the half size along the X axis.
-                /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param HalfSizeX The half size to set for the generated box on the X axis.
+                /// @brief Sets the normal of the plane.
+                /// @exception If the normal is zero length a PARAMETERS_EXCEPTION will be thrown.
+                /// @param Norm The facing direction to apply to the plane.
                 /// @return Returns a reference to this.
-                BoxGenerator& SetHalfSizeX(const Real HalfSizeX);
-                /// @brief Sets the half size along the Y axis.
-                /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param HalfSizeY The half size to set for the generated box on the Y axis.
-                /// @return Returns a reference to this.
-                BoxGenerator& SetHalfSizeY(const Real HalfSizeY);
-                /// @brief Sets the half size along the Z axis.
-                /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param HalfSizeZ The half size to set for the generated box on the Z axis.
-                /// @return Returns a reference to this.
-                BoxGenerator& SetHalfSizeZ(const Real HalfSizeZ);
-                /// @brief Sets the half size of the box.
-                /// @param HalfExtents The half size of the box that will be generated.
-                /// @return Returns a reference to this.
-                BoxGenerator& SetHalfExtents(const Vector3& HalfExtents);
+                PlaneGenerator& SetNormal(const Vector3& Norm);
 
-                /// @brief Sets the number of segments along X axis.
+                /// @brief Sets the size of this plane on the X axis.
+                /// @exception If the size passed in is zero or less a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SizeX The size to set for the generated plane on the X axis.
+                /// @return Returns a reference to this.
+                PlaneGenerator& SetSizeX(const Real SizeX);
+                /// @brief Sets the size of this plane on the Y axis.
+                /// @exception If the size passed in is zero or less a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SizeX The size to set for the generated plane on the Y axis.
+                /// @return Returns a reference to this.
+                PlaneGenerator& SetSizeY(const Real SizeY);
+                /// @brief Sets the size of the plane.
+                /// @exception If the size passed in on either axis is zero or less a PARAMETERS_EXCEPTION will be thrown.
+                /// @param Size The size to set for the generated plane.
+                /// @return Returns a reference to this.
+                PlaneGenerator& SetSize(const Vector2 Size);
+
+                /// @brief Sets the number of segements along local X axis.
                 /// @remarks The default number of segments on the X axis is 1.
                 /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
                 /// @param SegX The number of segments to set along the X axis.
                 /// @return Returns a reference to this.
-                BoxGenerator& SetNumSegX(const Whole SegX);
-                /// @brief Sets the number of segments along Y axis.
+                PlaneGenerator& SetNumSegX(const Whole SegX);
+                /// @brief Sets the number of segments along local Y axis.
                 /// @remarks The default number of segments on the Y axis is 1.
                 /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegX The number of segments to set along the Y axis.
+                /// @param SegY The number of segments to set along the Y axis.
                 /// @return Returns a reference to this.
-                BoxGenerator& SetNumSegY(const Whole SegY);
-                /// @brief Sets the number of segments along Z axis.
-                /// @remarks The default number of segments on the Z axis is 1.
-                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegX The number of segments to set along the Z axis.
-                /// @return Returns a reference to this.
-                BoxGenerator& SetNumSegZ(const Whole SegZ);
-            };//BoxGenerator
+                PlaneGenerator& SetNumSegY(const Whole SegY);
+            };//PlaneGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

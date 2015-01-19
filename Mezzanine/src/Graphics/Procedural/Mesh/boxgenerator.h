@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralboxcornergenerator_h
-#define _graphicsproceduralboxcornergenerator_h
+#ifndef _graphicsproceduralboxgenerator_h
+#define _graphicsproceduralboxgenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
@@ -76,31 +76,54 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for a mesh composed of boxes that outline the corner edges of a larger box.
+            /// @brief A generator class for a box mesh.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB BoxCornerGenerator : public MeshGenerator<BoxCornerGenerator>
+            class MEZZ_LIB BoxGenerator : public MeshGenerator<BoxGenerator>
             {
+            public:
+                /// @brief A String containing the name of the Negative X face of the box.
+                static const String TAG_NEGX;
+                /// @brief A String containing the name of the Negative Y face of the box.
+                static const String TAG_NEGY;
+                /// @brief A String containing the name of the Negative Z face of the box.
+                static const String TAG_NEGZ;
+                /// @brief A String containing the name of the X face of the box.
+                static const String TAG_X;
+                /// @brief A String containing the name of the Y face of the box.
+                static const String TAG_Y;
+                /// @brief A String containing the name of the Z face of the box.
+                static const String TAG_Z;
             protected:
                 /// @internal
                 /// @brief The size of the box to generate.
                 Vector3 BoxHalf;
                 /// @internal
-                /// @brief The thickness of boxes that will be generated in each corner for each axis.
-                Real BoxThick;
+                /// @brief The number of segments to generate along the X axis for each face.
+                Whole NumSegX;
+                /// @internal
+                /// @brief The number of segments to generate along the Y axis for each face.
+                Whole NumSegY;
+                /// @internal
+                /// @brief The number of segments to generate along the Z axis for each face.
+                Whole NumSegZ;
             public:
                 /// @brief Vector constructor.
                 /// @param HalfExtents The half size of the box to generate.
-                /// @param CornerThickness The thickness of boxes that will be generated in each corner for each axis.
-                BoxCornerGenerator(const Vector3& HalfExtents, const Real CornerThickness);
+                /// @param SegX The number of segments to generate along the X axis for each face.
+                /// @param SegY The number of segments to generate along the Y axis for each face.
+                /// @param SegZ The number of segments to generate along the Z axis for each face.
+                BoxGenerator(const Vector3& HalfExtents, const Whole SegX = 1, const Whole SegY = 1, const Whole SegZ = 1);
                 /// @brief Real constructor.
                 /// @param HalfSizeX The half size of the box to generate on the X axis.
                 /// @param HalfSizeY The half size of the box to generate on the Y axis.
                 /// @param HalfSizeZ The half size of the box to generate on the Z axis.
-                /// @param CornerThickness The thickness of boxes that will be generated in each corner for each axis.
-                BoxCornerGenerator(const Real HalfSizeX, const Real HalfSizeY, const Real HalfSizeZ, const Real CornerThickness);
+                /// @param SegX The number of segments to generate along the X axis for each face.
+                /// @param SegY The number of segments to generate along the Y axis for each face.
+                /// @param SegZ The number of segments to generate along the Z axis for each face.
+                BoxGenerator(const Real HalfSizeX, const Real HalfSizeY, const Real HalfSizeZ, const Whole SegX = 1, const Whole SegY = 1, const Whole SegZ = 1);
                 /// @brief Class destructor.
-                virtual ~BoxCornerGenerator();
+                virtual ~BoxGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -113,30 +136,43 @@ namespace Mezzanine
 
                 /// @brief Sets the half size along the X axis.
                 /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SizeX The size to set for the generated box on the X axis.
+                /// @param HalfSizeX The half size to set for the generated box on the X axis.
                 /// @return Returns a reference to this.
-                BoxCornerGenerator& SetHalfSizeX(const Real HalfSizeX);
+                BoxGenerator& SetHalfSizeX(const Real HalfSizeX);
                 /// @brief Sets the half size along the Y axis.
                 /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SizeY The size to set for the generated box on the Y axis.
+                /// @param HalfSizeY The half size to set for the generated box on the Y axis.
                 /// @return Returns a reference to this.
-                BoxCornerGenerator& SetHalfSizeY(const Real HalfSizeY);
+                BoxGenerator& SetHalfSizeY(const Real HalfSizeY);
                 /// @brief Sets the half size along the Z axis.
                 /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SizeZ The size to set for the generated box on the Z axis.
+                /// @param HalfSizeZ The half size to set for the generated box on the Z axis.
                 /// @return Returns a reference to this.
-                BoxCornerGenerator& SetHalfSizeZ(const Real HalfSizeZ);
+                BoxGenerator& SetHalfSizeZ(const Real HalfSizeZ);
                 /// @brief Sets the half size of the box.
-                /// @param Size The half size of the box that will be generated.
+                /// @param HalfExtents The half size of the box that will be generated.
                 /// @return Returns a reference to this.
-                BoxCornerGenerator& SetHalfExtents(const Vector3& HalfExtents);
+                BoxGenerator& SetHalfExtents(const Vector3& HalfExtents);
 
-                /// @brief Sets how far into the box from the edge for each axis the corner component will be sized for.
-                /// @exception If the thickness is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param CornerThickness The thickness of boxes that will be generated in each corner for each axis.
+                /// @brief Sets the number of segments along X axis.
+                /// @remarks The default number of segments on the X axis is 1.
+                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SegX The number of segments to set along the X axis.
                 /// @return Returns a reference to this.
-                BoxCornerGenerator& SetCornerThickness(const Real CornerThickness);
-            };//BoxCornerGenerator
+                BoxGenerator& SetNumSegX(const Whole SegX);
+                /// @brief Sets the number of segments along Y axis.
+                /// @remarks The default number of segments on the Y axis is 1.
+                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SegX The number of segments to set along the Y axis.
+                /// @return Returns a reference to this.
+                BoxGenerator& SetNumSegY(const Whole SegY);
+                /// @brief Sets the number of segments along Z axis.
+                /// @remarks The default number of segments on the Z axis is 1.
+                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SegX The number of segments to set along the Z axis.
+                /// @return Returns a reference to this.
+                BoxGenerator& SetNumSegZ(const Whole SegZ);
+            };//BoxGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

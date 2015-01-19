@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduralicospheregenerator_cpp
 #define _graphicsproceduralicospheregenerator_cpp
 
-#include "Graphics/Procedural/icospheregenerator.h"
+#include "Graphics/Procedural/Mesh/icospheregenerator.h"
 
 #include "MathTools/mathtools.h"
 #include "exception.h"

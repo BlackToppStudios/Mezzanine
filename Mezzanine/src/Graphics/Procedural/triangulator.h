@@ -68,7 +68,7 @@
 #define _graphicsproceduraltriangulator_h
 
 #include "Graphics/Procedural/proceduraldatatypes.h"
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 #include "linesegment.h"
 #include "triangle.h"

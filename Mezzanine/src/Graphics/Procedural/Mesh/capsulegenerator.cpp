@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduralcapsulegenerator_cpp
 #define _graphicsproceduralcapsulegenerator_cpp
 
-#include "Graphics/Procedural/capsulegenerator.h"
+#include "Graphics/Procedural/Mesh/capsulegenerator.h"
 
 #include "MathTools/mathtools.h"
 #include "exception.h"

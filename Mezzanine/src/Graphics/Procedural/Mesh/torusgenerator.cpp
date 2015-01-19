@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralspheregenerator_cpp
-#define _graphicsproceduralspheregenerator_cpp
+#ifndef _graphicsproceduraltorusgenerator_cpp
+#define _graphicsproceduraltorusgenerator_cpp
 
-#include "Graphics/Procedural/spheregenerator.h"
+#include "Graphics/Procedural/Mesh/torusgenerator.h"
 
 #include "MathTools/mathtools.h"
 #include "exception.h"
@@ -78,88 +78,91 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            SphereGenerator::SphereGenerator(const Real Radius, const Whole Rings, const Whole SegCircle) :
-                SphereRadius(Radius),
-                NumRings(Rings),
-                NumSegCircle(SegCircle)
+            TorusGenerator::TorusGenerator(const Real PoloidalRadius, const Real ToroidalRadius, const Whole PoloidalSeg, const Whole ToroidalSeg) :
+                TorusPoloidalRadius(PoloidalRadius),
+                TorusToroidalRadius(ToroidalRadius),
+                NumPoloidalSeg(PoloidalSeg),
+                NumToroidalSeg(ToroidalSeg)
                 {  }
 
-            SphereGenerator::~SphereGenerator()
+            TorusGenerator::~TorusGenerator()
                 {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            void SphereGenerator::AddToTriangleBuffer(TriangleBuffer& Buffer) const
+            void TorusGenerator::AddToTriangleBuffer(TriangleBuffer& Buffer) const
             {
                 Buffer.RebaseOffset();
-                Buffer.EstimateVertexCount( ( this->NumRings + 1 ) * ( this->NumSegCircle + 1 ) );
-                Buffer.EstimateIndexCount( this->NumRings * ( this->NumSegCircle + 1 ) * 6 );
+                Buffer.EstimateVertexCount( ( this->NumPoloidalSeg + 1 ) * ( this->NumToroidalSeg + 1 ) );
+                Buffer.EstimateIndexCount( ( this->NumPoloidalSeg ) * ( this->NumToroidalSeg + 1 ) * 6 );
 
-                Real fDeltaRingAngle = ( MathTools::GetPi() / this->NumRings );
-                Real fDeltaSegAngle = ( MathTools::GetTwoPi() / this->NumSegCircle );
+                Real deltaSection = ( MathTools::GetTwoPi() / this->NumToroidalSeg );
+                Real deltaCircle = ( MathTools::GetTwoPi() / this->NumPoloidalSeg );
                 Integer Offset = 0;
 
-                // Generate the group of rings for the sphere
-                for( Whole Ring = 0 ; Ring <= this->NumRings ; ++Ring )
+                for( Whole i = 0 ; i <= this->NumPoloidalSeg ; i++ )
                 {
-                    Real r0 = this->SphereRadius * sinf( Ring * fDeltaRingAngle );
-                    Real y0 = this->SphereRadius * cosf( Ring * fDeltaRingAngle );
-
-                    // Generate the group of segments for the current ring
-                    for( Whole Segment = 0 ; Segment <= this->NumSegCircle ; ++Segment )
+                    for( Whole j = 0 ; j<= this->NumToroidalSeg ; j++ )
                     {
-                        Real x0 = r0 * sinf( Segment * fDeltaSegAngle );
-                        Real z0 = r0 * cosf( Segment * fDeltaSegAngle );
+                        Vector3 c0( this->TorusPoloidalRadius, 0.0, 0.0 );
+                        Vector3 v0( this->TorusPoloidalRadius + this->TorusToroidalRadius * cosf( j * deltaSection ), this->TorusToroidalRadius * sinf( j * deltaSection ), 0.0 );
+                        Quaternion q( i * deltaCircle, Vector3::Unit_Y() );
+                        Vector3 v = q * v0;
+                        Vector3 c = q * c0;
+                        this->AddPoint( Buffer, v,
+                                        ( v - c ).GetNormal(),
+                                        Vector2( i / (Real)this->NumPoloidalSeg, j / (Real)this->NumToroidalSeg ) );
 
-                        // Add one vertex to the strip which makes up the sphere
-                        this->AddPoint(Buffer, Vector3(x0, y0, z0),
-                                       Vector3(x0, y0, z0).GetNormal(),
-                                       Vector2( (Real)Segment / (Real)this->NumSegCircle, (Real)Ring / (Real)this->NumRings ) );
-
-                        if( Ring != this->NumRings ) {
-                            if( Segment != this->NumSegCircle ) {
-                                // each vertex (except the last) has six indices pointing to it
-                                if( Ring != this->NumRings - 1 ) {
-                                    Buffer.AddTriangle(Offset + this->NumSegCircle + 2, Offset, Offset + this->NumSegCircle + 1);
-                                }
-                                if( Ring != 0 ) {
-                                    Buffer.AddTriangle(Offset + this->NumSegCircle + 2, Offset + 1, Offset);
-                                }
-                            }
-                            Offset++;
+                        if( i != this->NumPoloidalSeg ) {
+                            Buffer.AddIndex( Offset + this->NumToroidalSeg + 1 );
+                            Buffer.AddIndex( Offset );
+                            Buffer.AddIndex( Offset + this->NumToroidalSeg );
+                            Buffer.AddIndex( Offset + this->NumToroidalSeg + 1 );
+                            Buffer.AddIndex( Offset + 1 );
+                            Buffer.AddIndex( Offset );
                         }
-                    }// for each segment
-                }// for each ring
+                        Offset++;
+                    }
+                }
             }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            SphereGenerator& SphereGenerator::SetRadius(const Real Radius)
+            TorusGenerator& TorusGenerator::SetPoloidalRadius(const Real PoloidalRadius)
             {
-                if( Radius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated sphere mesh must be greater than zero.");
+                if( PoloidalRadius <= 0.0 )
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for Poloidal ring of a generated torus mesh must be greater than zero.");
 
-                this->SphereRadius = Radius;
+                this->TorusPoloidalRadius = PoloidalRadius;
                 return *this;
             }
 
-            SphereGenerator& SphereGenerator::SetNumRings(const Whole Rings)
+            TorusGenerator& TorusGenerator::SetToroidalRadius(const Real ToroidalRadius)
             {
-                if( Rings == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of rings for generated sphere mesh must be greater than zero.");
+                if( ToroidalRadius <= 0.0 )
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for Toroidal ring of a generated torus mesh must be greater than zero.");
 
-                this->NumRings = Rings;
+                this->TorusToroidalRadius = ToroidalRadius;
                 return *this;
             }
 
-            SphereGenerator& SphereGenerator::SetNumSegCircle(const Whole SegCircle)
+            TorusGenerator& TorusGenerator::SetNumPoloidalSeg(const Whole PoloidalSeg)
             {
-                if( SegCircle < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated cylinder mesh must be greater than two.");
+                if( PoloidalSeg < 3 )
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for Poloidal ring of generated torus mesh must be greater than two.");
 
-                this->NumSegCircle = SegCircle;
+                this->NumPoloidalSeg = PoloidalSeg;
+                return *this;
+            }
+
+            TorusGenerator& TorusGenerator::SetNumToroidalSeg(const Whole ToroidalSeg)
+            {
+                if( ToroidalSeg < 3 )
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for Toroidal ring of generated torus mesh must be greater than two.");
+
+                this->NumToroidalSeg = ToroidalSeg;
                 return *this;
             }
         }//Procedural

@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralspheregenerator_h
-#define _graphicsproceduralspheregenerator_h
+#ifndef _graphicsproceduralspringgenerator_cpp
+#define _graphicsproceduralspringgenerator_cpp
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/springgenerator.h"
 
 namespace Mezzanine
 {
@@ -75,56 +75,7 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for a sphere mesh.
-            /// @details
-            ///////////////////////////////////////
-            class MEZZ_LIB SphereGenerator : public MeshGenerator<SphereGenerator>
-            {
-            protected:
-                /// @internal
-                /// @brief The radius of the sphere.
-                Real SphereRadius;
-                /// @internal
-                /// @brief The number of rings controlling the resolution along the vertical axis.
-                Whole NumRings;
-                /// @internal
-                /// @brief The number of segments along the circumference of the rings.
-                Whole NumSegCircle;
-            public:
-                /// @brief Class constuctor.
-                /// @param Radius The radius of the sphere.
-                /// @param Rings The number of rings controlling the resolution along the vertical axis.
-                /// @param SegCircle The number of segments along the circumference of the rings.
-                SphereGenerator(const Real Radius, const Whole Rings = 16, const Whole SegCircle = 16);
-                /// @brief Class destructor.
-                virtual ~SphereGenerator();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
-
-                /// @copydoc MeshGenerator::AddToTriangleBuffer(TriangleBuffer&) const
-                virtual void AddToTriangleBuffer(TriangleBuffer& Buffer) const;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Configuration
-
-                /// @brief Sets the radius of the sphere.
-                /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Radius The radius of the sphere.
-                /// @return Returns a reference to this.
-                SphereGenerator& SetRadius(const Real Radius);
-                /// @brief Sets the number of rings,
-                /// @exception If the number of rings is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Rings The number of rings controlling the resolution along the vertical axis.
-                /// @return Returns a reference to this.
-                SphereGenerator& SetNumRings(const Whole Rings);
-                /// @brief Sets the number of segments along the circumference of the rings.
-                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegCircle The number of segments along the circumference of the rings.
-                /// @return Returns a reference to this.
-                SphereGenerator& SetNumSegCircle(const Whole SegCircle);
-            };//SphereGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralplanegenerator_h
-#define _graphicsproceduralplanegenerator_h
+#ifndef _graphicsproceduralspheregenerator_h
+#define _graphicsproceduralspheregenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
@@ -76,33 +76,29 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for a plane mesh.
+            /// @brief A generator class for a sphere mesh.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB PlaneGenerator : public MeshGenerator<PlaneGenerator>
+            class MEZZ_LIB SphereGenerator : public MeshGenerator<SphereGenerator>
             {
             protected:
                 /// @internal
-                /// @brief The facing direction of the plane.
-                Vector3 PlaneNormal;
+                /// @brief The radius of the sphere.
+                Real SphereRadius;
                 /// @internal
-                /// @brief The size of the plane.
-                Vector2 PlaneSize;
+                /// @brief The number of rings controlling the resolution along the vertical axis.
+                Whole NumRings;
                 /// @internal
-                /// @brief The number of segments to generate on the X axis.
-                Whole NumSegX;
-                /// @internal
-                /// @brief The number of segments to generate on the Y axis.
-                Whole NumSegY;
+                /// @brief The number of segments along the circumference of the rings.
+                Whole NumSegCircle;
             public:
-                /// @brief Blank constructor.
-                PlaneGenerator();
-                /// @brief Descriptive constructor.
-                /// @param Norm The facing direction of the plane.
-                /// @param Size The size of the plane.
-                PlaneGenerator(const Vector3& Norm, const Vector2& Size);
+                /// @brief Class constuctor.
+                /// @param Radius The radius of the sphere.
+                /// @param Rings The number of rings controlling the resolution along the vertical axis.
+                /// @param SegCircle The number of segments along the circumference of the rings.
+                SphereGenerator(const Real Radius, const Whole Rings = 16, const Whole SegCircle = 16);
                 /// @brief Class destructor.
-                virtual ~PlaneGenerator();
+                virtual ~SphereGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -113,41 +109,22 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-                /// @brief Sets the normal of the plane.
-                /// @exception If the normal is zero length a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Norm The facing direction to apply to the plane.
+                /// @brief Sets the radius of the sphere.
+                /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param Radius The radius of the sphere.
                 /// @return Returns a reference to this.
-                PlaneGenerator& SetNormal(const Vector3& Norm);
-
-                /// @brief Sets the size of this plane on the X axis.
-                /// @exception If the size passed in is zero or less a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SizeX The size to set for the generated plane on the X axis.
+                SphereGenerator& SetRadius(const Real Radius);
+                /// @brief Sets the number of rings,
+                /// @exception If the number of rings is set to 0, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param Rings The number of rings controlling the resolution along the vertical axis.
                 /// @return Returns a reference to this.
-                PlaneGenerator& SetSizeX(const Real SizeX);
-                /// @brief Sets the size of this plane on the Y axis.
-                /// @exception If the size passed in is zero or less a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SizeX The size to set for the generated plane on the Y axis.
-                /// @return Returns a reference to this.
-                PlaneGenerator& SetSizeY(const Real SizeY);
-                /// @brief Sets the size of the plane.
-                /// @exception If the size passed in on either axis is zero or less a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Size The size to set for the generated plane.
-                /// @return Returns a reference to this.
-                PlaneGenerator& SetSize(const Vector2 Size);
-
-                /// @brief Sets the number of segements along local X axis.
-                /// @remarks The default number of segments on the X axis is 1.
+                SphereGenerator& SetNumRings(const Whole Rings);
+                /// @brief Sets the number of segments along the circumference of the rings.
                 /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegX The number of segments to set along the X axis.
+                /// @param SegCircle The number of segments along the circumference of the rings.
                 /// @return Returns a reference to this.
-                PlaneGenerator& SetNumSegX(const Whole SegX);
-                /// @brief Sets the number of segments along local Y axis.
-                /// @remarks The default number of segments on the Y axis is 1.
-                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegY The number of segments to set along the Y axis.
-                /// @return Returns a reference to this.
-                PlaneGenerator& SetNumSegY(const Whole SegY);
-            };//PlaneGenerator
+                SphereGenerator& SetNumSegCircle(const Whole SegCircle);
+            };//SphereGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

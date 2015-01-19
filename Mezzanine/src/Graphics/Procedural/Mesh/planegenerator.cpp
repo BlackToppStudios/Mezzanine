@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduralplanegenerator_cpp
 #define _graphicsproceduralplanegenerator_cpp
 
-#include "Graphics/Procedural/planegenerator.h"
+#include "Graphics/Procedural/Mesh/planegenerator.h"
 
 #include "exception.h"
 

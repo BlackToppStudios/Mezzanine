@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduralroundedboxgenerator_h
 #define _graphicsproceduralroundedboxgenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {

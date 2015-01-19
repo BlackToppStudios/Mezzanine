@@ -64,11 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralbooleanmeshgenerator_h
-#define _graphicsproceduralbooleanmeshgenerator_h
+#ifndef _graphicsproceduralboxcornergenerator_h
+#define _graphicsproceduralboxcornergenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
-#include "Graphics/Procedural/proceduralenumerations.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
@@ -77,34 +76,31 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for performing boolean operations on two buffers.
+            /// @brief A generator class for a mesh composed of boxes that outline the corner edges of a larger box.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB BooleanGenerator : public MeshGenerator<BooleanGenerator>
+            class MEZZ_LIB BoxCornerGenerator : public MeshGenerator<BoxCornerGenerator>
             {
             protected:
                 /// @internal
-                /// @brief The operation to be performed on the two buffers.
-                BooleanOperation BoolOp;
+                /// @brief The size of the box to generate.
+                Vector3 BoxHalf;
                 /// @internal
-                /// @brief The first of the two buffers to operate on.
-                TriangleBuffer* FirstBuffer;
-                /// @internal
-                /// @brief The second of the two buffers to operate on.
-                TriangleBuffer* SecondBuffer;
+                /// @brief The thickness of boxes that will be generated in each corner for each axis.
+                Real BoxThick;
             public:
-                /// @brief Blank constructor.
-                BooleanGenerator();
-                /// @brief Operation constructor.
-                /// @param Op The operation to be performed on the two buffers.
-                BooleanGenerator(const BooleanOperation Op);
-                /// @brief Descriptive constructor.
-                /// @param First The first of the two buffers to operate on.
-                /// @param Second The second of the two buffers to operate on.
-                /// @param Op The operation to be performed on the two buffers.
-                BooleanGenerator(TriangleBuffer* First, TriangleBuffer* Second, const BooleanOperation Op);
+                /// @brief Vector constructor.
+                /// @param HalfExtents The half size of the box to generate.
+                /// @param CornerThickness The thickness of boxes that will be generated in each corner for each axis.
+                BoxCornerGenerator(const Vector3& HalfExtents, const Real CornerThickness);
+                /// @brief Real constructor.
+                /// @param HalfSizeX The half size of the box to generate on the X axis.
+                /// @param HalfSizeY The half size of the box to generate on the Y axis.
+                /// @param HalfSizeZ The half size of the box to generate on the Z axis.
+                /// @param CornerThickness The thickness of boxes that will be generated in each corner for each axis.
+                BoxCornerGenerator(const Real HalfSizeX, const Real HalfSizeY, const Real HalfSizeZ, const Real CornerThickness);
                 /// @brief Class destructor.
-                virtual ~BooleanGenerator();
+                virtual ~BoxCornerGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -115,19 +111,32 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-                /// @brief Sets the first buffers to operate on.
-                /// @param First The first of the two buffers to operate on.
+                /// @brief Sets the half size along the X axis.
+                /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SizeX The size to set for the generated box on the X axis.
                 /// @return Returns a reference to this.
-                BooleanGenerator& SetFirstBuffer(TriangleBuffer* First);
-                /// @brief Sets the second buffers to operate on.
-                /// @param Second The second of the two buffers to operate on.
+                BoxCornerGenerator& SetHalfSizeX(const Real HalfSizeX);
+                /// @brief Sets the half size along the Y axis.
+                /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SizeY The size to set for the generated box on the Y axis.
                 /// @return Returns a reference to this.
-                BooleanGenerator& SetSecondBuffer(TriangleBuffer* Second);
-                /// @brief Sets the boolean operation to be performed.
-                /// @param Op The operation to be performed on the two buffers.
+                BoxCornerGenerator& SetHalfSizeY(const Real HalfSizeY);
+                /// @brief Sets the half size along the Z axis.
+                /// @exception If the size is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SizeZ The size to set for the generated box on the Z axis.
                 /// @return Returns a reference to this.
-                BooleanGenerator& SetBooleanOperation(const BooleanOperation Op);
-            };//BooleanGenerator
+                BoxCornerGenerator& SetHalfSizeZ(const Real HalfSizeZ);
+                /// @brief Sets the half size of the box.
+                /// @param Size The half size of the box that will be generated.
+                /// @return Returns a reference to this.
+                BoxCornerGenerator& SetHalfExtents(const Vector3& HalfExtents);
+
+                /// @brief Sets how far into the box from the edge for each axis the corner component will be sized for.
+                /// @exception If the thickness is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param CornerThickness The thickness of boxes that will be generated in each corner for each axis.
+                /// @return Returns a reference to this.
+                BoxCornerGenerator& SetCornerThickness(const Real CornerThickness);
+            };//BoxCornerGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

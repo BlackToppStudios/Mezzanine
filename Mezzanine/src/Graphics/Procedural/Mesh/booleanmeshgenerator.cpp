@@ -67,7 +67,8 @@
 #ifndef _graphicsproceduralbooleanmeshgenerator_cpp
 #define _graphicsproceduralbooleanmeshgenerator_cpp
 
-#include "Graphics/Procedural/booleanmeshgenerator.h"
+#include "Graphics/Procedural/Mesh/booleanmeshgenerator.h"
+
 #include "Graphics/Procedural/triangulator.h"
 #include "Graphics/Procedural/path.h"
 

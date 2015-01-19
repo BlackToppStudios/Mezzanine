@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduralboxcornergenerator_cpp
 #define _graphicsproceduralboxcornergenerator_cpp
 
-#include "Graphics/Procedural/boxcornergenerator.h"
+#include "Graphics/Procedural/Mesh/boxcornergenerator.h"
 
 #include "exception.h"
 

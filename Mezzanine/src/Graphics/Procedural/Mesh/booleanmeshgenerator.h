@@ -64,10 +64,11 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralspringgenerator_cpp
-#define _graphicsproceduralspringgenerator_cpp
+#ifndef _graphicsproceduralbooleanmeshgenerator_h
+#define _graphicsproceduralbooleanmeshgenerator_h
 
-#include "Graphics/Procedural/springgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
+#include "Graphics/Procedural/proceduralenumerations.h"
 
 namespace Mezzanine
 {
@@ -75,7 +76,58 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief A generator class for performing boolean operations on two buffers.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB BooleanGenerator : public MeshGenerator<BooleanGenerator>
+            {
+            protected:
+                /// @internal
+                /// @brief The operation to be performed on the two buffers.
+                BooleanOperation BoolOp;
+                /// @internal
+                /// @brief The first of the two buffers to operate on.
+                TriangleBuffer* FirstBuffer;
+                /// @internal
+                /// @brief The second of the two buffers to operate on.
+                TriangleBuffer* SecondBuffer;
+            public:
+                /// @brief Blank constructor.
+                BooleanGenerator();
+                /// @brief Operation constructor.
+                /// @param Op The operation to be performed on the two buffers.
+                BooleanGenerator(const BooleanOperation Op);
+                /// @brief Descriptive constructor.
+                /// @param First The first of the two buffers to operate on.
+                /// @param Second The second of the two buffers to operate on.
+                /// @param Op The operation to be performed on the two buffers.
+                BooleanGenerator(TriangleBuffer* First, TriangleBuffer* Second, const BooleanOperation Op);
+                /// @brief Class destructor.
+                virtual ~BooleanGenerator();
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @copydoc MeshGenerator::AddToTriangleBuffer(TriangleBuffer&) const
+                virtual void AddToTriangleBuffer(TriangleBuffer& Buffer) const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
+
+                /// @brief Sets the first buffers to operate on.
+                /// @param First The first of the two buffers to operate on.
+                /// @return Returns a reference to this.
+                BooleanGenerator& SetFirstBuffer(TriangleBuffer* First);
+                /// @brief Sets the second buffers to operate on.
+                /// @param Second The second of the two buffers to operate on.
+                /// @return Returns a reference to this.
+                BooleanGenerator& SetSecondBuffer(TriangleBuffer* Second);
+                /// @brief Sets the boolean operation to be performed.
+                /// @param Op The operation to be performed on the two buffers.
+                /// @return Returns a reference to this.
+                BooleanGenerator& SetBooleanOperation(const BooleanOperation Op);
+            };//BooleanGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

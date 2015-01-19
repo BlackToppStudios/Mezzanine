@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralconegenerator_h
-#define _graphicsproceduralconegenerator_h
+#ifndef _graphicsproceduraltorusknotgenerator_h
+#define _graphicsproceduraltorusknotgenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
@@ -76,33 +76,46 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for a cone mesh.
+            /// @brief A generator class for a torus knot mesh.
             /// @details
+            /// @todo This is a fairly simple implementation of a knoted torus, ideally suited to generating a Trefoil Knot.
+            /// Additional paramters could be added to give this generator more flexibility.  See the following link for details:
+            /// http://wiki.blender.org/index.php/Extensions:2.6/Py/Scripts/Curve/Torus_Knot
             ///////////////////////////////////////
-            class MEZZ_LIB ConeGenerator : public MeshGenerator<ConeGenerator>
+            class MEZZ_LIB TorusKnotGenerator : public MeshGenerator<TorusKnotGenerator>
             {
             protected:
                 /// @internal
-                /// @brief The radius of the cone.
-                Real ConeRadius;
+                /// @brief The radius of the primary ring of the torus.
+                /// @remarks This radius does not encapsulate the complete AABB of the torus.  Add Toroidal radius to this value to get the full bounds.
+                Real TorusPoloidalRadius;
                 /// @internal
-                /// @brief The height of the cone.
-                Real ConeHeight;
+                /// @brief The radius of the secondary ring of the torus.
+                /// @remarks This is the value for the "thickness" of the ring.
+                Real TorusToroidalRadius;
                 /// @internal
-                /// @brief The resolution of the circular component of the cone.
-                Whole NumSegCircle;
+                /// @brief Controls how many times the knot is going around the torus.
+                Integer PParameter;
                 /// @internal
-                /// @brief The number of segments in the cones length.
-                Whole NumSegHeight;
+                /// @brief Controls how many times the knot goes through the center of the torus.
+                Integer QParameter;
+                /// @internal
+                /// @brief The resolution of the Poloidal ring.
+                Whole NumPoloidalSeg;
+                /// @internal
+                /// @brief The resolution of the Toroidal ring.
+                Whole NumToroidalSeg;
             public:
                 /// @brief Class constructor.
-                /// @param Radius The radius of the cone.
-                /// @param Height The height of the cone.
-                /// @param SegCircle The resolution of the circular component of the cone.
-                /// @param SegHeight The number of segments in the cones length.
-                ConeGenerator(const Real Radius, const Real Height, const Whole SegCircle = 16, const Whole SegHeight = 1);
+                /// @param PoloidalRadius The radius of the primary ring of the torus.
+                /// @param ToroidalRadius The radius of the secondary ring of the torus.
+                /// @param PParam Controls how many times the knot is going around the torus.
+                /// @param QParam Controls how many times the knot goes through the center of the torus.
+                /// @param PoloidalSeg The resolution of the primary ring of the torus.
+                /// @param ToroidalSeg The resolution of the secondary ring of the torus.
+                TorusKnotGenerator(const Real PoloidalRadius, const Real ToroidalRadius, const Integer PParam = 2, const Integer QParam = 3, const Whole PoloidalSeg = 16, const Whole ToroidalSeg = 16);
                 /// @brief Class destructor.
-                virtual ~ConeGenerator();
+                virtual ~TorusKnotGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -113,28 +126,39 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-                /// @brief Sets the base radius.
+                /// @brief Sets the radius of the torus.
                 /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Radius The radius of the cone.
+                /// @param PoloidalRadius The radius of the primary ring of the torus.
                 /// @return Returns a reference to this.
-                ConeGenerator& SetRadius(const Real Radius);
-                /// @brief Sets the height of the cone.
-                /// @exception If the height is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Height The height of the cone.
+                TorusKnotGenerator& SetPoloidalRadius(const Real PoloidalRadius);
+                /// @brief Sets the radius of the torus ring.  AKA it's thickness.
+                /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param ToroidalRadius The radius of the secondary ring of the torus.
                 /// @return Returns a reference to this.
-                ConeGenerator& SetHeight(const Real Height);
+                TorusKnotGenerator& SetToroidalRadius(const Real ToroidalRadius);
 
-                /// @brief Sets the number of segments on the side of the base.
+                /// @brief Sets the p parameter of the knot
+                /// @exception If the paramter is set to 0, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param PParam Controls how many times the knot is going around the torus.
+                /// @return Returns a reference to this.
+                TorusKnotGenerator& SetPParameter(const Integer PParam);
+                /// @brief Sets the q parameter of the knot
+                /// @exception If the paramter is set to 0, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param QParam Controls how many times the knot goes through the center of the torus.
+                /// @return Returns a reference to this.
+                TorusKnotGenerator& SetQParameter(const Integer QParam);
+
+                /// @brief Sets the number of segments on the Poloidal ring.
                 /// @exception If the number of segments is less than three, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegCircle The resolution of the circular component of the cone.
+                /// @param PoloidalSeg The resolution of the primary ring of the torus.
                 /// @return Returns a reference to this.
-                ConeGenerator& SetNumSegCircle(const Whole SegCircle);
-                /// @brief Sets the number of segments on the height.
-                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegHeight The number of segments in the cones length.
+                TorusKnotGenerator& SetNumPoloidalSeg(const Whole PoloidalSeg);
+                /// @brief Sets the number of segments along the guiding circle.
+                /// @exception If the number of segments is less than three, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param ToroidalSegThe resolution of the secondary ring of the torus.
                 /// @return Returns a reference to this.
-                ConeGenerator& SetNumSegHeight(const Whole SegHeight);
-            };//ConeGenerator
+                TorusKnotGenerator& SetNumToroidalSeg(const Whole ToroidalSeg);
+            };//TorusKnotGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

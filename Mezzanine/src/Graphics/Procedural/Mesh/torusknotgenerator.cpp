@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduraltorusknotgenerator_cpp
 #define _graphicsproceduraltorusknotgenerator_cpp
 
-#include "Graphics/Procedural/torusknotgenerator.h"
+#include "Graphics/Procedural/Mesh/torusknotgenerator.h"
 
 #include "MathTools/mathtools.h"
 #include "exception.h"

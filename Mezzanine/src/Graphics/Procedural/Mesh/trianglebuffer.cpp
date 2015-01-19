@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduraltrianglebuffer_cpp
 #define _graphicsproceduraltrianglebuffer_cpp
 
-#include "Graphics/Procedural/trianglebuffer.h"
+#include "Graphics/Procedural/Mesh/trianglebuffer.h"
 
 #include "Graphics/meshmanager.h"
 

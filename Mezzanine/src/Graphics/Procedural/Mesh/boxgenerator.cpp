@@ -67,8 +67,8 @@
 #ifndef _graphicsproceduralboxgenerator_cpp
 #define _graphicsproceduralboxgenerator_cpp
 
-#include "Graphics/Procedural/boxgenerator.h"
-#include "Graphics/Procedural/planegenerator.h"
+#include "Graphics/Procedural/Mesh/boxgenerator.h"
+#include "Graphics/Procedural/Mesh/planegenerator.h"
 
 #include "exception.h"
 

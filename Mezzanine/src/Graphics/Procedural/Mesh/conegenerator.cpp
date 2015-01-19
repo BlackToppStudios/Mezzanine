@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduraltorusgenerator_cpp
-#define _graphicsproceduraltorusgenerator_cpp
+#ifndef _graphicsproceduralconegenerator_cpp
+#define _graphicsproceduralconegenerator_cpp
 
-#include "Graphics/Procedural/torusgenerator.h"
+#include "Graphics/Procedural/Mesh/conegenerator.h"
 
 #include "MathTools/mathtools.h"
 #include "exception.h"
@@ -78,91 +78,119 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            TorusGenerator::TorusGenerator(const Real PoloidalRadius, const Real ToroidalRadius, const Whole PoloidalSeg, const Whole ToroidalSeg) :
-                TorusPoloidalRadius(PoloidalRadius),
-                TorusToroidalRadius(ToroidalRadius),
-                NumPoloidalSeg(PoloidalSeg),
-                NumToroidalSeg(ToroidalSeg)
+            ConeGenerator::ConeGenerator(const Real Radius, const Real Height, const Whole SegCircle, const Whole SegHeight) :
+                ConeRadius(Radius),
+                ConeHeight(Height),
+                NumSegCircle(SegCircle),
+                NumSegHeight(SegHeight)
                 {  }
 
-            TorusGenerator::~TorusGenerator()
+            ConeGenerator::~ConeGenerator()
                 {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            void TorusGenerator::AddToTriangleBuffer(TriangleBuffer& Buffer) const
+            void ConeGenerator::AddToTriangleBuffer(TriangleBuffer& Buffer) const
             {
                 Buffer.RebaseOffset();
-                Buffer.EstimateVertexCount( ( this->NumPoloidalSeg + 1 ) * ( this->NumToroidalSeg + 1 ) );
-                Buffer.EstimateIndexCount( ( this->NumPoloidalSeg ) * ( this->NumToroidalSeg + 1 ) * 6 );
+                Buffer.EstimateVertexCount( ( this->NumSegHeight + 1 ) * ( this->NumSegCircle + 1 ) + this->NumSegCircle + 2 );
+                Buffer.EstimateIndexCount( this->NumSegHeight * this->NumSegCircle * 6 + 3 * this->NumSegCircle );
 
-                Real deltaSection = ( MathTools::GetTwoPi() / this->NumToroidalSeg );
-                Real deltaCircle = ( MathTools::GetTwoPi() / this->NumPoloidalSeg );
+                Real deltaAngle = ( MathTools::GetTwoPi() / this->NumSegCircle );
+                Real deltaHeight = this->ConeHeight / (Real)this->NumSegHeight;
                 Integer Offset = 0;
 
-                for( Whole i = 0 ; i <= this->NumPoloidalSeg ; i++ )
-                {
-                    for( Whole j = 0 ; j<= this->NumToroidalSeg ; j++ )
-                    {
-                        Vector3 c0( this->TorusPoloidalRadius, 0.0, 0.0 );
-                        Vector3 v0( this->TorusPoloidalRadius + this->TorusToroidalRadius * cosf( j * deltaSection ), this->TorusToroidalRadius * sinf( j * deltaSection ), 0.0 );
-                        Quaternion q( i * deltaCircle, Vector3::Unit_Y() );
-                        Vector3 v = q * v0;
-                        Vector3 c = q * c0;
-                        this->AddPoint( Buffer, v,
-                                        ( v - c ).GetNormal(),
-                                        Vector2( i / (Real)this->NumPoloidalSeg, j / (Real)this->NumToroidalSeg ) );
+                Vector3 refNormal = Vector3( this->ConeRadius, this->ConeHeight, 0.f ).GetNormal();
+                Quaternion q;
 
-                        if( i != this->NumPoloidalSeg ) {
-                            Buffer.AddIndex( Offset + this->NumToroidalSeg + 1 );
+                for( Whole i = 0 ; i <= this->NumSegHeight ; i++ )
+                {
+                    Real r0 = this->ConeRadius * ( 1 - i / (Real)this->NumSegHeight );
+                    for( Whole j = 0; j <= this->NumSegCircle ; j++ )
+                    {
+                        Real x0 = r0 * cosf( j * deltaAngle );
+                        Real z0 = r0 * sinf( j * deltaAngle );
+
+                        q.SetFromAxisAngle( -deltaAngle * j, Vector3::Unit_Y() );
+
+                        this->AddPoint(Buffer, Vector3( x0, i * deltaHeight, z0 ),
+                                       q * refNormal,
+                                       Vector2( j / (Real)this->NumSegCircle, i / (Real)this->NumSegHeight ) );
+
+                        if( i != this->NumSegHeight && j != this->NumSegCircle ) {
+                            Buffer.AddIndex( Offset + this->NumSegCircle + 2 );
                             Buffer.AddIndex( Offset );
-                            Buffer.AddIndex( Offset + this->NumToroidalSeg );
-                            Buffer.AddIndex( Offset + this->NumToroidalSeg + 1 );
+                            Buffer.AddIndex( Offset + this->NumSegCircle + 1 );
+                            Buffer.AddIndex( Offset + this->NumSegCircle + 2 );
                             Buffer.AddIndex( Offset + 1 );
                             Buffer.AddIndex( Offset );
                         }
+
                         Offset++;
                     }
+                }
+
+                //low cap
+                Integer CenterIndex = Offset;
+                this->AddPoint(Buffer, Vector3(0.0,0.0,0.0),
+                               Vector3::Neg_Unit_Y(),
+                               Vector2(0.0,1.0) );
+                Offset++;
+                for( Whole j = 0 ; j <= this->NumSegCircle ; j++ )
+                {
+                    Real x0 = this->ConeRadius * cosf( j * deltaAngle );
+                    Real z0 = this->ConeRadius * sinf( j * deltaAngle );
+
+                    this->AddPoint(Buffer, Vector3(x0, 0.0f, z0),
+                                   Vector3::Neg_Unit_Y(),
+                                   Vector2( j / (Real)this->NumSegCircle, 0.0 ) );
+
+                    if( j != this->NumSegCircle ) {
+                        Buffer.AddIndex( CenterIndex );
+                        Buffer.AddIndex( Offset );
+                        Buffer.AddIndex( Offset + 1 );
+                    }
+                    Offset++;
                 }
             }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            TorusGenerator& TorusGenerator::SetPoloidalRadius(const Real PoloidalRadius)
+            ConeGenerator& ConeGenerator::SetRadius(const Real Radius)
             {
-                if( PoloidalRadius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for Poloidal ring of a generated torus mesh must be greater than zero.");
+                if( Radius <= 0.0 )
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated cone mesh must be greater than zero.");
 
-                this->TorusPoloidalRadius = PoloidalRadius;
+                this->ConeRadius = Radius;
                 return *this;
             }
 
-            TorusGenerator& TorusGenerator::SetToroidalRadius(const Real ToroidalRadius)
+            ConeGenerator& ConeGenerator::SetHeight(const Real Height)
             {
-                if( ToroidalRadius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for Toroidal ring of a generated torus mesh must be greater than zero.");
+                if( Height <= 0.0 )
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Height for a generated cone mesh must be greater than zero.");
 
-                this->TorusToroidalRadius = ToroidalRadius;
+                this->ConeHeight = Height;
                 return *this;
             }
 
-            TorusGenerator& TorusGenerator::SetNumPoloidalSeg(const Whole PoloidalSeg)
+            ConeGenerator& ConeGenerator::SetNumSegCircle(const Whole SegCircle)
             {
-                if( PoloidalSeg < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for Poloidal ring of generated torus mesh must be greater than two.");
+                if( SegCircle < 3 )
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated cone mesh must be greater than two.");
 
-                this->NumPoloidalSeg = PoloidalSeg;
+                this->NumSegCircle = SegCircle;
                 return *this;
             }
 
-            TorusGenerator& TorusGenerator::SetNumToroidalSeg(const Whole ToroidalSeg)
+            ConeGenerator& ConeGenerator::SetNumSegHeight(const Whole SegHeight)
             {
-                if( ToroidalSeg < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for Toroidal ring of generated torus mesh must be greater than two.");
+                if( SegHeight == 0 )
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for length component of generated cone mesh must be greater than zero.");
 
-                this->NumToroidalSeg = ToroidalSeg;
+                this->NumSegHeight = SegHeight;
                 return *this;
             }
         }//Procedural

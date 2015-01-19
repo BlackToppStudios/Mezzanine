@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduraltubegenerator_cpp
 #define _graphicsproceduraltubegenerator_cpp
 
-#include "Graphics/Procedural/tubegenerator.h"
+#include "Graphics/Procedural/Mesh/tubegenerator.h"
 
 #include "MathTools/mathtools.h"
 #include "exception.h"

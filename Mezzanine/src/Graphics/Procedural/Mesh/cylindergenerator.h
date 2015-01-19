@@ -64,10 +64,10 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
-#ifndef _graphicsproceduralcapsulegenerator_h
-#define _graphicsproceduralcapsulegenerator_h
+#ifndef _graphicsproceduralcylindergenerator_h
+#define _graphicsproceduralcylindergenerator_h
 
-#include "Graphics/Procedural/meshgenerator.h"
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
@@ -76,37 +76,37 @@ namespace Mezzanine
         namespace Procedural
         {
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief A generator class for a capsule mesh with rounded ends.
+            /// @brief A generator class for a cylinder mesh with flat ends.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB CapsuleGenerator : public MeshGenerator<CapsuleGenerator>
+            class MEZZ_LIB CylinderGenerator : public MeshGenerator<CylinderGenerator>
             {
             protected:
                 /// @internal
-                /// @brief The radius of the capsule main body.
-                Real CapsuleRadius;
+                /// @brief The radius of the cylinder.
+                Real CylinderRadius;
                 /// @internal
-                /// @brief The total height of the capsule main body.
-                Real CapsuleHeight;
+                /// @brief The height of the cylinder.
+                Real CylinderHeight;
                 /// @internal
-                /// @brief The resolution of both hemispheres at the end of the capsule.
-                Whole NumRings;
-                /// @internal
-                /// @brief The resolution of the circular component of the capsule.
+                /// @brief The resolution of the circular component of the cylinder.
                 Whole NumSegCircle;
                 /// @internal
-                /// @brief The number of segments in the capsules body length.
+                /// @brief The number of segments in the cylinders length.
                 Whole NumSegHeight;
+                /// @internal
+                /// @brief Whether or not the ends of the cylinder will be generated/closed.
+                Boole CapEnds;
             public:
                 /// @brief Class constructor.
-                /// @param Radius The radius of the capsule main body.
-                /// @param Height The total height of the capsule main body.
-                /// @param Rings The resolution of both hemispheres at the end of the capsule.
-                /// @param SegCircle The resolution of the circular component of the capsule.
-                /// @param SegHeight The number of segments in the capsules body length.
-                CapsuleGenerator(const Real Radius, const Real Height, const Whole Rings = 8, const Whole SegCircle = 16, const Whole SegHeight = 1);
+                /// @param Radius The radius of the cylinder.
+                /// @param Height The height of the cylinder.
+                /// @param SegCircle The resolution of the circular component of the cylinder.
+                /// @param SegHeight The number of segments in the cylinders length.
+                /// @param Capped Whether or not the ends of the cylinder will be generated/closed.
+                CylinderGenerator(const Real Radius, const Real Height, const Whole SegCircle = 16, const Whole SegHeight = 1, const Boole Capped = true);
                 /// @brief Class destructor.
-                virtual ~CapsuleGenerator();
+                virtual ~CylinderGenerator();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -117,34 +117,32 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
-                /// @brief Sets the radius of the main body part of the capsule.
+                /// @brief Sets the radius of the cylinder.
                 /// @exception If the radius is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Radius The radius of the capsule main body.
+                /// @param Radius The radius of the cylinder.
                 /// @return Returns a reference to this.
-                CapsuleGenerator& SetRadius(const Real Radius);
-                /// @brief Sets the height of the main body part of the capsule.
+                CylinderGenerator& SetRadius(const Real Radius);
+                /// @brief Sets the number of segments along the height of the cylinder.
                 /// @exception If the height is set to 0 or less, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Height The total height of the capsule main body.
+                /// @param Height The height of the cylinder.
                 /// @return Returns a reference to this.
-                CapsuleGenerator& SetHeight(const Real Height);
+                CylinderGenerator& SetHeight(const Real Height);
+                /// @brief Sets whether the cylinder has endings or not.
+                /// @param Capped Whether or not the ends of the cylinder will be generated/closed.
+                /// @return Returns a reference to this.
+                CylinderGenerator& SetCapped(const Boole Capped);
 
-                /// @brief Sets the number of segments of the sphere part.
-                /// @exception If the number of rings is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param Rings The resolution of both hemispheres at the end of the capsule.
+                /// @brief Sets the number of segments when rotating around the cylinder's axis.
+                /// @exception If the number of segments is less than three, a PARAMETERS_EXCEPTION will be thrown.
+                /// @param SegCircle The resolution of the circular component of the cylinder.
                 /// @return Returns a reference to this.
-                CapsuleGenerator& SetNumRings(const Whole Rings);
-
-                /// @brief Sets the number of segments when rotating around the cylinder.
+                CylinderGenerator& SetNumSegCircle(const Whole SegCircle);
+                /// @brief Sets the number of segments along the height of the cylinder.
                 /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegCircle The resolution of the circular component of the capsule.
+                /// @param SegHeight The number of segments in the cylinders length.
                 /// @return Returns a reference to this.
-                CapsuleGenerator& SetNumSegCircle(const Whole SegCircle);
-                /// @brief Sets the number of segments along the axis of the cylinder.
-                /// @exception If the number of segments is set to 0, a PARAMETERS_EXCEPTION will be thrown.
-                /// @param SegHeight The number of segments in the capsules body length.
-                /// @return Returns a reference to this.
-                CapsuleGenerator& SetNumSegHeight(const Whole SegHeight);
-            };//CapsuleGenerator
+                CylinderGenerator& SetNumSegHeight(const Whole SegHeight);
+            };//CylinderGenerator
         }//Procedural
     }//Graphics
 }//Mezzanine

@@ -67,7 +67,7 @@
 #ifndef _graphicsproceduralcylindergenerator_cpp
 #define _graphicsproceduralcylindergenerator_cpp
 
-#include "Graphics/Procedural/cylindergenerator.h"
+#include "Graphics/Procedural/Mesh/cylindergenerator.h"
 
 #include "MathTools/mathtools.h"
 #include "exception.h"

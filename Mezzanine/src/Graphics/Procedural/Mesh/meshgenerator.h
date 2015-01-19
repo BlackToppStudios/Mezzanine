@@ -71,7 +71,7 @@
 #include "vector3.h"
 #include "quaternion.h"
 
-#include "Graphics/Procedural/trianglebuffer.h"
+#include "Graphics/Procedural/Mesh/trianglebuffer.h"
 
 namespace Mezzanine
 {

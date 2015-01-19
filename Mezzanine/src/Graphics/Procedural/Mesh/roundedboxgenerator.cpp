@@ -67,8 +67,8 @@
 #ifndef _graphicsproceduralroundedboxgenerator_cpp
 #define _graphicsproceduralroundedboxgenerator_cpp
 
-#include "Graphics/Procedural/roundedboxgenerator.h"
-#include "Graphics/Procedural/planegenerator.h"
+#include "Graphics/Procedural/Mesh/roundedboxgenerator.h"
+#include "Graphics/Procedural/Mesh/planegenerator.h"
 
 #include "MathTools/mathtools.h"
 #include "exception.h"
