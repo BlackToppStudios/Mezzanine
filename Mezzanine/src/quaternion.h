@@ -153,6 +153,11 @@ namespace Mezzanine
             /// @param UpAxis The up axis in local space.
             void SetFromAxisToZ(const Vector3& DirectionAxis, const Vector3& UpAxis);
 
+            /// @brief Converts the rotation expressed by this Quaternion into it's individual rotation and axis components.
+            /// @param Angle The amount of rotation to apply to the axis.
+            /// @param Axis The Axis this quaternions rotation is on.
+            void ConvertToAngleAxis(Real& Angle, Vector3& Axis) const;
+
             /// @brief Gets the Dot Product of this quaternion and another quaternion.
             /// @param Other The other quaternion to calculate the dot product from.
             /// @return Returns a Real that is the Dot Product of the two quaternions.

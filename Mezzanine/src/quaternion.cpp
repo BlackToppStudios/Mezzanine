@@ -187,6 +187,19 @@ namespace Mezzanine
         this->SetFromAxes( xVec, yVec, zVec );
     }
 
+    void Quaternion::ConvertToAngleAxis(Real& Angle, Vector3& Axis) const
+    {
+        Real SquareLength = this->X * this->X + this->Y * this->Y + this->Z * this->Z;
+        if( SquareLength < 0.0 ) {
+            Angle = 2.0 * MathTools::ACos(this->W);
+            Real InvLength = 1 / MathTools::Sqrt(SquareLength);
+            Axis.SetValues(this->X * InvLength, this->Y * InvLength, this->Z * InvLength);
+        }else{
+            Angle = 0.0;
+            Axis.SetValues(1.0,0.0,0.0);
+        }
+    }
+
     Real Quaternion::DotProduct(const Quaternion& Other) const
     {
         return this->X * Other.X + this->Y * Other.Y + this->Z * Other.Z + this->W * Other.W;
