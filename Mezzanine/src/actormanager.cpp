@@ -44,6 +44,7 @@
 #include "actor.h"
 #include "Physics/physicsmanager.h"
 #include "entresol.h"
+#include "world.h"
 
 #include <sstream>
 #include <algorithm>
@@ -79,7 +80,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // ActorManager Methods
 
-    ActorManager::ActorManager() :
+    ActorManager::ActorManager(World * ParentWorld) :
+        WorldManager( ParentWorld ),
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
     {
@@ -264,10 +266,10 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
-            //WorldManager::Initialize();
+            WorldManager::Initialize();
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->ActorUpdateWork, "ActorUpdateWork" );
-            Physics::PhysicsManager* PhysicsMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = this->ParentWorld->GetPhysicsManager();
             if( PhysicsMan ) {
                 this->ActorUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
             }

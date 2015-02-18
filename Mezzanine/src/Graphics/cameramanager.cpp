@@ -47,6 +47,7 @@
 
 #include "cameracontroller.h"
 #include "entresol.h"
+#include "world.h"
 
 #include <Ogre.h>
 
@@ -57,20 +58,15 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        CameraManager::CameraManager() :
+        CameraManager::CameraManager(World * ParentWorld) :
+            WorldManager(ParentWorld),
             SceneMan(NULL)
         {
-            Graphics::SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
-            if( SceneCheck )
-                this->SceneMan = SceneCheck;
         }
 
         CameraManager::CameraManager(XML::Node& XMLNode) :
             SceneMan(NULL)
         {
-            Graphics::SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
-            if( SceneCheck )
-                this->SceneMan = SceneCheck;
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
         }
 
@@ -210,11 +206,11 @@ namespace Mezzanine
         {
             if( !this->Initialized )
             {
-                //WorldManager::Initialize();
+                WorldManager::Initialize();
 
                 if( !this->SceneMan )
                 {
-                    SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+                    SceneManager* SceneCheck = ParentWorld->GetSceneManager();
                     if( SceneCheck ) {
                         this->SceneMan = SceneCheck;
                     }else{

@@ -124,7 +124,7 @@ namespace Mezzanine
         Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
     public:
         /// @brief Class constructor.
-        ActorManager();
+        ActorManager(World * ParentWorld = NULL);
         /// @brief XML constructor.
         /// @param XMLNode The node of the xml document to construct from.
         ActorManager(XML::Node& XMLNode);

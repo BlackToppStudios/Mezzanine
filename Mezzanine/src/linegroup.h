@@ -49,6 +49,7 @@ namespace Mezzanine
 {
     // Just a few forward declarations to make wrapping some functionality to engine internals easier.
     class Entresol;
+    class World;
     namespace Internal
     {
         class Line3D;
@@ -63,9 +64,11 @@ namespace Mezzanine
     class MEZZ_LIB LineGroup
     {
         /// @todo TODO: This class really should support rotation, the underlying implementation does.
+        private:
+            World * ParentWorld;
         public:
             /// @brief Basic Constructor.
-            LineGroup();
+            LineGroup(World * ParentWorld);
             /// @brief Default Destructor.
             ~LineGroup();
 

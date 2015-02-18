@@ -252,10 +252,6 @@ namespace Mezzanine
         //Dummy param list so we can use the auto-added manager types if needed
         NameValuePairList Params;
         // Create and add any managers that have not been taken care of yet.
-        if(this->GetActorManager()==0)
-            { this->AddManager(new ActorManager()); }
-        if(this->GetAreaEffectManager()==0)
-            { this->AddManager(new AreaEffectManager()); }
         if(this->GetResourceManager()==0)
             { this->AddManager(new Resource::ResourceManager(EngineDataPath)); }
         if(this->GetGraphicsManager()==0)
@@ -264,10 +260,6 @@ namespace Mezzanine
             { this->AddManager(new EventManager()); }
         if(this->GetInputManager()==0)
             { this->AddManager(new Input::InputManager()); }
-        if(this->GetPhysicsManager()==0)
-            { this->AddManager(new Physics::PhysicsManager(PhysicsInfo)); }
-        if(this->GetSceneManager()==0)
-            { this->AddManager(new Graphics::SceneManager(SceneType)); }
         if(this->GetUIManager()==0)
             { this->AddManager(new UI::UIManager()); }
         if(this->GetMeshManager()==0)
@@ -276,15 +268,10 @@ namespace Mezzanine
             { this->AddManager(new Graphics::TextureManager()); }
         if(this->GetCollisionShapeManager()==0)
             { this->AddManager(new Physics::CollisionShapeManager()); }
-        if(this->GetCameraManager()==0)
-            { this->AddManager(new Graphics::CameraManager()); }
-        if(this->GetDebrisManager()==0)
-            { this->AddManager(new DebrisManager()); }
+
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
         if(this->GetAudioManager()==0)
             { this->AddManager( this->CreateManager("OALSAudioManager",Params,false) ); }
-        if(this->GetSoundScapeManager()==0)
-            { this->AddManager( this->CreateManager("OALSSoundScapeManager",Params,false) ); }
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
         // This Tests various assumptions about the way the platform works, and will not act
@@ -554,6 +541,7 @@ namespace Mezzanine
     {
         DestroyAllManagers();
         DestroyAllManagerFactories();
+        DestroyAllWorlds();
         DestroyLogging();
 
         DestroyOgre();
@@ -563,10 +551,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void Entresol::PauseWorld(Boole Pause)
+    void Entresol::PauseAllWorlds(Boole Pause)
     {
-        this->GetPhysicsManager()->PauseSimulation(Pause);
-        this->GetSceneManager()->PauseAllParticles(Pause);
+        for ( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        {
+            (*it)->GetPhysicsManager()->PauseSimulation(Pause);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -610,8 +600,12 @@ namespace Mezzanine
     void Entresol::PreMainLoopInit()
     {
         VerifyManagerInitializations();
-        this->GetPhysicsManager()->MainLoopInitialize();
-        this->GetAreaEffectManager()->MainLoopInitialize();
+
+        for ( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        {
+            (*it)->GetPhysicsManager()->MainLoopInitialize();
+            (*it)->GetAreaEffectManager()->MainLoopInitialize();
+        }
     }
 
     void Entresol::DoOneFrame()
@@ -914,34 +908,14 @@ namespace Mezzanine
         }
     }
 
-    ActorManager* Entresol::GetActorManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager, WhichOne) );
-    }
-
-    AreaEffectManager* Entresol::GetAreaEffectManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager, WhichOne) );
-    }
-
     Audio::AudioManager* Entresol::GetAudioManager(const UInt16 WhichOne)
     {
         return dynamic_cast<Audio::AudioManager*>( this->GetManager(ManagerBase::MT_AudioManager, WhichOne) );
     }
 
-    Graphics::CameraManager* Entresol::GetCameraManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager, WhichOne) );
-    }
-
     Physics::CollisionShapeManager* Entresol::GetCollisionShapeManager(const UInt16 WhichOne)
     {
         return dynamic_cast<Physics::CollisionShapeManager*>( this->GetManager(ManagerBase::MT_CollisionShapeManager, WhichOne) );
-    }
-
-    DebrisManager* Entresol::GetDebrisManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<DebrisManager*>( this->GetManager(ManagerBase::MT_DebrisManager, WhichOne) );
     }
 
     EventManager* Entresol::GetEventManager(const UInt16 WhichOne)
@@ -969,20 +943,6 @@ namespace Mezzanine
         return dynamic_cast<NetworkManager*>( this->GetManager(ManagerBase::MT_NetworkManager, WhichOne) );
     }
     #endif
-    Physics::PhysicsManager* Entresol::GetPhysicsManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager, WhichOne) );
-    }
-
-    Graphics::SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager, WhichOne) );
-    }
-
-    Audio::SoundScapeManager* Entresol::GetSoundScapeManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager, WhichOne) );
-    }
 
     Resource::ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
     {

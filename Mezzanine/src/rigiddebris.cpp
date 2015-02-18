@@ -52,6 +52,7 @@
 #include "Physics/rigidproxy.h"
 
 #include "entresol.h"
+#include "world.h"
 #include "exception.h"
 #include "stringtool.h"
 #include "serialization.h"
@@ -90,13 +91,13 @@ namespace Mezzanine
 
     void RigidDebris::CreateRigidDebris(const Real Mass)
     {
-        Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+        Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
         if( SceneMan ) {
             this->EntProx = SceneMan->CreateEntityProxy(false);
             this->EntProx->_Bind( this );
         }
 
-        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
         if( PhysMan ) {
             this->RigProx = PhysMan->CreateRigidProxy(Mass);
             this->RigProx->_Bind( this );
@@ -109,13 +110,13 @@ namespace Mezzanine
 
     void RigidDebris::CreateRigidDebris(const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
     {
-        Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+        Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
         if( SceneMan ) {
             this->EntProx = SceneMan->CreateEntityProxy(DebMesh,false);
             this->EntProx->_Bind( this );
         }
 
-        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
         if( PhysMan ) {
             this->RigProx = PhysMan->CreateRigidProxy(Mass,DebShape,false);
             this->RigProx->_Bind( this );
@@ -130,7 +131,7 @@ namespace Mezzanine
     {
         this->RemoveFromWorld();
         if( this->EntProx ) {
-            Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+            Graphics::SceneManager* SceneMan = ParentWorld->GetSceneManager();
             if( SceneMan ) {
                 SceneMan->DestroyProxy( this->EntProx );
                 this->EntProx = NULL;
@@ -138,7 +139,7 @@ namespace Mezzanine
         }
 
         if( this->RigProx ) {
-            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
             if( PhysMan ) {
                 PhysMan->DestroyProxy( this->RigProx );
                 this->RigProx = NULL;
@@ -358,7 +359,7 @@ namespace Mezzanine
 
                 XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
                 if( !EntProxNode.Empty() ) {
-                    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                    Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
                     if( SceneMan ) {
                         this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
                         this->EntProx->_Bind( this );
@@ -367,7 +368,7 @@ namespace Mezzanine
 
                 XML::Node RigProxNode = ProxiesNode.GetChild("RigProx").GetFirstChild();
                 if( !RigProxNode.Empty() ) {
-                    Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+                    Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
                     if( PhysMan ) {
                         this->RigProx = PhysMan->CreateRigidProxy(RigProxNode);
                         this->RigProx->_Bind( this );

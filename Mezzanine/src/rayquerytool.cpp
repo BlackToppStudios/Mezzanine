@@ -57,6 +57,7 @@ using namespace std;
 #include "managedptr.h"
 #include "serialization.h"
 #include "entresol.h"
+#include "world.h"
 
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/scenemanager.h"
@@ -96,17 +97,19 @@ namespace Mezzanine
                 /// @brief The actual ogre object we want to use.
                 Ogre::RaySceneQuery* RayQuery;
 
+                World * ParentWorld;
+
                 /// @brief Create the ogre specific handle and sort items for raycasting.
                 void Construct()
                 {
-                    RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+                    RayQuery = this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
                     RayQuery->setSortByDistance(true);
                 }
                 /// @brief CAll the Ogre API to clean up this wierd handle thing
                 void Deconstruct()
                 {
                     if(GetPointer())
-                        { Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->destroyQuery(RayQuery); }
+                        { this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->destroyQuery(RayQuery); }
                 }
 
                 /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
@@ -117,6 +120,8 @@ namespace Mezzanine
                 /// @return The pointer to the managed data. This is expected to return a value that resolves to false when used as a condition when invalid.
                 TargetPtrType GetPointer()
                     { return RayQuery; }
+
+                explicit RayQueryHandle(World * ParentWorld) : ParentWorld( ParentWorld ) {}
         };
 
         typedef ManagedPtr<RayQueryHandle> ManagedRayQuery;
@@ -141,8 +146,8 @@ namespace Mezzanine
         }
     }
 
-    RayQueryTool::RayQueryTool()
-        : ValidResult(false), IntersectedObject(NULL)
+    RayQueryTool::RayQueryTool(World * ParentWorld)
+        : ValidResult(false), IntersectedObject(NULL), ParentWorld(ParentWorld)
         { ClearReturns(); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -176,7 +181,8 @@ namespace Mezzanine
     ///////////////////////////////////////
     Boole RayQueryTool::GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags)
     {
-        ManagedRayQuery RayQuery;
+        RayQueryHandle ray( this->ParentWorld );
+        ManagedRayQuery RayQuery( ray );
         Ogre::Ray Ooray = ObjectRay.GetOgreRay();
 
         if(!ExecuteQuery(RayQuery, Ooray))
@@ -267,7 +273,8 @@ namespace Mezzanine
 
     Boole RayQueryTool::GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags)
     {
-        ManagedRayQuery RayQuery;
+        RayQueryHandle ray( this->ParentWorld );
+        ManagedRayQuery RayQuery( ray );
         Ogre::Ray Ooray = ObjectRay.GetOgreRay();
         if(!ExecuteQuery(RayQuery, Ooray))
             { return ClearReturns(); }
@@ -422,12 +429,12 @@ namespace Mezzanine
                 String WorldObjectName(OneNode.GetAttribute("WorldObject").AsString());
                 if (WorldObjectName.size()) {
                     /// @todo This is temporary code that should be replaced with something more robust to find the proper world object.
-                    IntersectedObject = Entresol::GetSingletonPtr()->GetDebrisManager()->GetDebris(WorldObjectName);
+                    IntersectedObject = this->ParentWorld->GetDebrisManager()->GetDebris(WorldObjectName);
                     if( IntersectedObject == NULL ) {
-                        IntersectedObject = Entresol::GetSingletonPtr()->GetActorManager()->GetActor(WorldObjectName);
+                        IntersectedObject = this->ParentWorld->GetActorManager()->GetActor(WorldObjectName);
                     }
                     if( IntersectedObject == NULL ) {
-                        IntersectedObject = Entresol::GetSingletonPtr()->GetAreaEffectManager()->GetAreaEffect(WorldObjectName);
+                        IntersectedObject = this->ParentWorld->GetAreaEffectManager()->GetAreaEffect(WorldObjectName);
                     }
                 }else{
                     IntersectedObject = NULL;

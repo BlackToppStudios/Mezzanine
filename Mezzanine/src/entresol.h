@@ -520,9 +520,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Pauses all animations, particles, and object movement throughout the world.
+            /// @brief Pauses all animations, particles, and object movement throughout all worlds.
             /// @param Pause Pauses the world if true, unpauses if false.
-            void PauseWorld(Boole Pause);
+            void PauseAllWorlds(Boole Pause);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Timing system methods
@@ -664,30 +664,14 @@ namespace Mezzanine
             /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
             void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
 
-            /// @brief This gets the ActorManager from the manager list.
-            /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
-            /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
-            ActorManager* GetActorManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the AreaEffectManager from the manager list.
-            /// @param WhichOne If you have multiple AreaEffectManagers this will choose which one to return.
-            /// @return This returns a pointer to a AreaEffectManager, or a NULL pointer if no matching manager exists.
-            AreaEffectManager* GetAreaEffectManager(const UInt16 WhichOne = 0);
             /// @brief This gets the AudioManager from the manager list.
             /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
             /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.
             Audio::AudioManager* GetAudioManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the CameraManager from the manager list.
-            /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
-            /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
-            Graphics::CameraManager* GetCameraManager(const UInt16 WhichOne = 0);
             /// @brief This gets the CollisionShapeManager from the manager list.
             /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
             /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.
             Physics::CollisionShapeManager* GetCollisionShapeManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the DebrisManager from the manager list.
-            /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
-            /// @return This returns a pointer to a DebrisManager, or a NULL pointer if no matching manager exists.
-            DebrisManager* GetDebrisManager(const UInt16 WhichOne = 0);
             /// @brief This gets the EventManager from the manager list.
             /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
             /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
@@ -710,18 +694,6 @@ namespace Mezzanine
             /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
             NetworkManager* GetNetworkManager(const UInt16 WhichOne = 0);
 #endif
-            /// @brief This gets the PhysicsManager from the manager list.
-            /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
-            /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
-            Physics::PhysicsManager* GetPhysicsManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the SceneManager from the manager list.
-            /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.
-            /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
-            Graphics::SceneManager* GetSceneManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the SoundScapeManager from the manager list.
-            /// @param WhichOne If you have multiple SoundScapeManagers this will choose which one to return.
-            /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.
-            Audio::SoundScapeManager* GetSoundScapeManager(const UInt16 WhichOne = 0);
             /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.

@@ -180,7 +180,7 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
-            //WorldManager::Initialize();
+            WorldManager::Initialize();
 
             this->Initialized = true;
         }

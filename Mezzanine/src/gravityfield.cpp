@@ -47,6 +47,7 @@
 #include "Physics/physicsmanager.h"
 
 #include "entresol.h"
+#include "world.h"
 #include "serialization.h"
 #include "exception.h"
 
@@ -92,7 +93,7 @@ namespace Mezzanine
 
         if( !RemovedObjects.empty() )
         {
-            const Vector3 WorldGravity = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetWorldGravity();
+            const Vector3 WorldGravity = this->ParentWorld->GetPhysicsManager()->GetWorldGravity();
 
             for( ObjectIterator RemovedIt = this->RemovedObjects.begin() ; RemovedIt != this->RemovedObjects.end() ; ++RemovedIt )
             {

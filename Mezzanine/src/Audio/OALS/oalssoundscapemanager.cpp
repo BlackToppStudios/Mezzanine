@@ -423,7 +423,7 @@ namespace Mezzanine
             {
                 if( !this->Initialized )
                 {
-                    //WorldManager::Initialize();
+                    WorldManager::Initialize();
 
                     OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                     if( AudioMan == NULL )

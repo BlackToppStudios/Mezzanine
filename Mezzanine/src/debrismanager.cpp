@@ -49,6 +49,7 @@
 
 #include "Physics/physicsmanager.h"
 #include "entresol.h"
+#include "world.h"
 
 namespace Mezzanine
 {
@@ -81,7 +82,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // DebrisManager Methods
 
-    DebrisManager::DebrisManager()
+    DebrisManager::DebrisManager(World * ParentWorld) :
+        WorldManager( ParentWorld )
     {
         this->AddDebrisFactory( new RigidDebrisFactory() );
         this->AddDebrisFactory( new SoftDebrisFactory() );
@@ -341,10 +343,10 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
-            //WorldManager::Initialize();
+            WorldManager::Initialize();
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->DebrisUpdateWork, "DebrisUpdateWork" );
-            Physics::PhysicsManager* PhysicsMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = this->ParentWorld->GetPhysicsManager();
             if( PhysicsMan ) {
                 this->DebrisUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
             }

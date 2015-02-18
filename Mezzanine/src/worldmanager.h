@@ -63,7 +63,7 @@ namespace Mezzanine
         Boole OperationsPaused;
     public:
         /// @brief Class constructor.
-        WorldManager();
+        WorldManager(World * ParentWorld = NULL);
         /// @brief Class destructor.
         virtual ~WorldManager();
 

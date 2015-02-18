@@ -76,6 +76,7 @@ namespace Mezzanine
 {
     // internal forward declarations
     class Entresol;
+    class World;
     class WorldTrigger;
     namespace debug {
         class InternalDebugDrawer;
@@ -345,7 +346,7 @@ namespace Mezzanine
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
             /// @param Info The construction info class with all the settings you wish the world to have.
-            PhysicsManager(const ManagerConstructionInfo& Info);
+            PhysicsManager(const ManagerConstructionInfo& Info, World * ParentWorld = NULL );
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             PhysicsManager(XML::Node& XMLNode);

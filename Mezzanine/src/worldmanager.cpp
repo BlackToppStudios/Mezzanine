@@ -47,8 +47,8 @@
 
 namespace Mezzanine
 {
-    WorldManager::WorldManager() :
-        ParentWorld(NULL),
+    WorldManager::WorldManager(World * ParentWorld) :
+        ParentWorld(ParentWorld),
         OperationsPaused(false)
         {  }
 

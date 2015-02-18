@@ -126,10 +126,10 @@ namespace Mezzanine
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
             /// @param InternalManagerTypeName The name of the scenemanager type to be constructed.
-            SceneManager(const String& InternalManagerTypeName = "DefaultSceneManager");
+            SceneManager(World * ParentWorld = NULL, const String& InternalManagerTypeName = "DefaultSceneManager");
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            SceneManager(XML::Node& XMLNode);
+            SceneManager(World * ParentWorld, XML::Node& XMLNode);
             /// @brief Class Destructor.
             /// @details The class destructor.
             virtual ~SceneManager();
