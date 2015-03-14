@@ -69,9 +69,9 @@
 
 #include "Graphics/Procedural/proceduraldatatypes.h"
 #include "Graphics/Procedural/proceduralenumerations.h"
-#include "Graphics/Procedural/curvetrack.h"
 
 #include "linesegment.h"
+#include "track.h"
 
 namespace Ogre
 {
@@ -174,6 +174,22 @@ namespace Mezzanine
                 /// @param Last The last index of this shape to be in the new shape.
                 /// @return Returns a new shape containing the specified points from this shape.
                 Shape ExtractSubShape(const Whole First, const Whole Last);
+
+                /// @brief Appends the contents of a 2D track to this shape.
+                /// @remarks Low values for NumPoints will cause curves to look blocky.  How how it should be depends on the resolution of the curve you want.
+                /// @param Curve The 2D curved track of points to append to this shape.
+                /// @param NumPoints The number of points along the curve to generate for this shape.
+                template< template<class> class Interpolator >
+                void AppendTrack(const Track< Interpolator< Vector2 > >& Curve, const Whole NumPoints)
+                {
+                    // Minus one because we want to include the end of the curve without going over the number of points requested
+                    for( Whole CurrPoint = 0 ; CurrPoint < NumPoints ; ++CurrPoint )
+                    {
+                        Real InterpolateVal = static_cast<Real>( CurrPoint ) / static_cast<Real>( NumPoints - 1 );
+                        Vector2 CurvePoint = Curve.GetInterpolated(InterpolateVal);
+                        this->AddPoint(CurvePoint);
+                    }
+                }
 
                 /// @brief Gets the number of segments in this shape.
                 /// @return Returns a Whole containing the number of segments that form this shape.
@@ -390,14 +406,6 @@ namespace Mezzanine
                 /// @brief Converts the shape to a 3D path.
                 /// @return Returns a path where: 3D.X = 2D.X, 3D.Y = 0, 3D.Z = 2D.Y for each point in this shape.
                 Path ConvertToPath() const;
-                /// @brief Converts this shape into a CurveTrack, with X=Key and Y=Value.
-                /// @param Mode The addressing mode this CurveTrack is to use for position queries.
-                /// @return Returns a CurveTrack where X=Key and Y=Value for each point.
-                CurveTrack ConvertToTrack(const CurveTrack::AddressingMode Mode = CurveTrack::AM_Relative_Lineic) const;
-                /// @brief Creates a shape with the keys of this shape and extra keys coming from a CurveTrack.
-                /// @param ToMerge The CurveTrack to merge keys with.
-                /// @return Returns a new Shape coming from the merge between original shape and the CurveTrack.
-                Shape MergeKeysWithTrack(const CurveTrack& ToMerge) const;
                 /// @brief Applies a "thickness" to a shape, ie a bit like the extruder, but in 2D.
                 /// @param Amount The amount of thickness to be applied to this shape.
                 /// @return Returns a MultiShape instance that is the thickened shape.

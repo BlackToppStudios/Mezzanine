@@ -69,7 +69,6 @@
 
 #include "Graphics/Procedural/shape.h"
 #include "Graphics/Procedural/multishape.h"
-#include "Graphics/Procedural/curvetrack.h"
 #include "Graphics/Procedural/path.h"
 
 #include "Graphics/meshmanager.h"
@@ -875,58 +874,11 @@ namespace Mezzanine
                 Path RetPath;
                 ConstPoint2DIterator BeginIt = this->Points.begin();
                 for( ConstPoint2DIterator PointIt = BeginIt ; PointIt != this->Points.end() ; ++PointIt )
-                    { RetPath.Add( Vector3( (*PointIt).X, 0, (*PointIt).Y ) ); }
+                    { RetPath.AddPoint( Vector3( (*PointIt).X, 0, (*PointIt).Y ) ); }
                 if( this->Closed && this->Points.size() > 2 ) {
-                    RetPath.Add( Vector3( (*BeginIt).X, 0, (*BeginIt).Y ) );
+                    RetPath.AddPoint( Vector3( (*BeginIt).X, 0, (*BeginIt).Y ) );
                 }
                 return RetPath;
-            }
-
-            CurveTrack Shape::ConvertToTrack(const CurveTrack::AddressingMode Mode) const
-            {
-                CurveTrack Ret( Mode );
-                for ( ConstPoint2DIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
-                    { Ret.AddKeyFrame(PointIt->X,PointIt->Y); }
-                return Ret;
-            }
-
-            Shape Shape::MergeKeysWithTrack(const CurveTrack& ToMerge) const
-            {
-                if( !ToMerge.IsInsertPoint() || ToMerge.GetAddressingMode() == CurveTrack::AM_Point ) {
-                    return *this;
-                }
-                Real TotalLength = this->GetTotalLength();
-
-                Real LineicPos = 0;
-                Real ShapeLineicPos = 0;
-                Shape RetShape;
-                if( this->Closed ) {
-                    RetShape.Close();
-                }
-                RetShape.AddPoint( this->GetPoint(0) );
-                for( Whole Index = 1 ; Index < this->Points.size() ;  )
-                {
-                    Real NextLineicPos = ShapeLineicPos + ( this->Points[ Index ] - this->Points[ Index - 1 ] ).Length();
-
-                    CurveTrack::ConstKeyFrameIterator FrameIt = ToMerge._GetKeyValueAfter( LineicPos, LineicPos / TotalLength, Index - 1 );
-
-                    Real NextTrackPos = FrameIt->first;
-                    if( ToMerge.GetAddressingMode() == CurveTrack::AM_Relative_Lineic ) {
-                        NextTrackPos *= TotalLength;
-                    }
-
-                    // Adds the closest point to the curve, being either from the shape or the track
-                    if( NextLineicPos <= NextTrackPos || LineicPos >= NextTrackPos ) {
-                        RetShape.AddPoint( this->Points[Index] );
-                        Index++;
-                        LineicPos = NextLineicPos;
-                        ShapeLineicPos = NextLineicPos;
-                    }else{
-                        RetShape.AddPoint( this->GetPosition( Index - 1, ( NextTrackPos - ShapeLineicPos ) / ( NextLineicPos - ShapeLineicPos ) ) );
-                        LineicPos = NextTrackPos;
-                    }
-                }
-                return RetShape;
             }
 
             MultiShape Shape::Thicken(const Real Amount)
