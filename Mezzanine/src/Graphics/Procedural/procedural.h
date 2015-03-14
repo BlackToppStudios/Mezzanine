@@ -58,7 +58,6 @@ namespace Mezzanine
 #include "Graphics/Procedural/proceduralenumerations.h"
 #include "Graphics/Procedural/proceduralutilities.h"
 
-#include "Graphics/Procedural/curvetrack.h"
 #include "Graphics/Procedural/multishape.h"
 #include "Graphics/Procedural/path.h"
 #include "Graphics/Procedural/shape.h"
@@ -72,8 +71,10 @@ namespace Mezzanine
 #include "Graphics/Procedural/Mesh/conegenerator.h"
 #include "Graphics/Procedural/Mesh/cylindergenerator.h"
 #include "Graphics/Procedural/Mesh/cylinderuvmodifier.h"
+#include "Graphics/Procedural/Mesh/extruder.h"
 #include "Graphics/Procedural/Mesh/hemisphereuvmodifier.h"
 #include "Graphics/Procedural/Mesh/icospheregenerator.h"
+#include "Graphics/Procedural/Mesh/lathe.h"
 #include "Graphics/Procedural/Mesh/meshgenerator.h"
 #include "Graphics/Procedural/Mesh/planegenerator.h"
 #include "Graphics/Procedural/Mesh/planeuvmodifier.h"
