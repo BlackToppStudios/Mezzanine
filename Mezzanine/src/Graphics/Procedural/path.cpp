@@ -69,7 +69,6 @@
 
 #include "Graphics/Procedural/path.h"
 #include "Graphics/Procedural/shape.h"
-#include "Graphics/Procedural/curvetrack.h"
 
 #include "Graphics/meshmanager.h"
 
@@ -83,15 +82,18 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            Path::Path()
+            Path::Path() :
+                Closed(false)
                 {  }
 
             Path::Path(Point3DIterator Begin, Point3DIterator End) :
-                Track(Begin,End)
+                Points(Begin,End),
+                Closed(false)
                 {  }
 
             Path::Path(const Point3DContainer& DataSet) :
-                Track(DataSet)
+                Points(DataSet),
+                Closed(false)
                 {  }
 
             Path::~Path()
@@ -118,8 +120,8 @@ namespace Mezzanine
                     Vector3 HeadFirst = SegmentMap.begin()->first;
                     Vector3 HeadSecond = SegmentMap.begin()->second;
                     Path CurrPath;
-                    CurrPath.Add(HeadFirst);
-                    CurrPath.Add(HeadSecond);
+                    CurrPath.AddPoint(HeadFirst);
+                    CurrPath.AddPoint(HeadSecond);
                     Vec3MapIterator FirstSeg = SegmentMap.begin();
                     Vec3MapRange Correspondants2 = SegmentMap.equal_range(HeadSecond);
                     for( Vec3MapIterator CorrIt = Correspondants2.first ; CorrIt != Correspondants2.second ;  )
@@ -138,7 +140,7 @@ namespace Mezzanine
                         if( Next != SegmentMap.end() ) {
                             FoundSomething = true;
                             HeadSecond = Next->second;
-                            CurrPath.Add(HeadSecond);
+                            CurrPath.AddPoint(HeadSecond);
                             Vec3MapRange Correspondants = SegmentMap.equal_range(HeadSecond);
                             for( Vec3MapIterator CorrIt = Correspondants.first ; CorrIt != Correspondants.second ;  )
                             {
@@ -165,12 +167,11 @@ namespace Mezzanine
                             SegmentMap.erase(Previous);
                         }
                     }
-                    /*
                     // This code section is only relevant if closing of a path could be toggled without changing types.
                     if( CurrPath.GetPoint(0).SquaredDistance( CurrPath.GetPoint( CurrPath.GetSegCount() + 1 ) ) < 1e-6 ) {
-                        CurrPath.GetPointsReference().pop_back();
+                        CurrPath.GetPoints().pop_back();
                         CurrPath.Close();
-                    }//*/
+                    }
                     GeneratedPaths.push_back(CurrPath);
                 }
             }
@@ -180,7 +181,7 @@ namespace Mezzanine
                 Ogre::ManualObject* TempMan = new Ogre::ManualObject("TempMan");
                 TempMan->begin("BaseWhiteNoLighting",Ogre::RenderOperation::OT_LINE_STRIP);
 
-                for( ConstPoint3DIterator PointIt = this->DataPoints.begin() ; PointIt != this->DataPoints.end() ; ++PointIt )
+                for( ConstPoint3DIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
                     { TempMan->position( (*PointIt).GetOgreVector3() ); }
 
                 TempMan->end();
@@ -191,20 +192,20 @@ namespace Mezzanine
 
             Path& Path::AppendPath(const Path& Other)
             {
-                this->DataPoints.insert( this->DataPoints.end(), Other.DataPoints.begin(), Other.DataPoints.end() );
+                this->Points.insert( this->Points.end(), Other.Points.begin(), Other.Points.end() );
                 return *this;
             }
 
             Path& Path::AppendPathRel(const Path& Other)
             {
-                if( this->DataPoints.empty() ) {
+                if( this->Points.empty() ) {
                     this->AppendPath(Other);
                 }else{
-                    Vector3 refVector = *( this->DataPoints.end() - 1 );
-                    Point3DContainer Points( Other.DataPoints.begin(), Other.DataPoints.end() );
+                    Vector3 refVector = *( this->Points.end() - 1 );
+                    Point3DContainer Points( Other.Points.begin(), Other.Points.end() );
                     for( Point3DIterator PointIt = Points.begin() ; PointIt != Points.end() ; ++PointIt )
                         { (*PointIt) += refVector; }
-                    this->DataPoints.insert( this->DataPoints.end(), Points.begin(), Points.end() );
+                    this->Points.insert( this->Points.end(), Points.begin(), Points.end() );
                 }
                 return *this;
             }
@@ -213,23 +214,23 @@ namespace Mezzanine
             {
                 Path Ret;
                 for( Whole Index = First ; Index < Last ; ++Index )
-                    { Ret.Add( this->DataPoints[Index] ); }
+                    { Ret.AddPoint( this->Points[Index] ); }
                 return Ret;
             }
 
             Integer Path::GetSegCount() const
             {
-                return ( this->DataPoints.size() - 1 );
+                return ( this->Points.size() - 1 ) + ( this->Closed ? 1 : 0 );
             }
 
             Real Path::GetTotalLength() const
             {
                 Real Length = 0;
-                for( Whole Index = 0 ; Index < this->DataPoints.size() ; ++Index )
-                    { Length += ( this->DataPoints[ Index + 1 ] - this->DataPoints[ Index ] ).Length(); }
-                //if( this->Closed ) {
-                //    Length += ( this->DataPoints.back() - *(this->DataPoints.begin()) ).Length();
-                //}
+                for( Whole Index = 0 ; Index < this->Points.size() ; ++Index )
+                    { Length += ( this->Points[ Index + 1 ] - this->Points[ Index ] ).Length(); }
+                if( this->Closed ) {
+                    Length += ( this->Points.back() - *(this->Points.begin()) ).Length();
+                }
                 return Length;
             }
 
@@ -237,56 +238,85 @@ namespace Mezzanine
             {
                 Real Length = 0;
                 for( Whole Index = 0 ; Index < PointIndex ; ++Index )
-                    { Length += ( this->DataPoints[ Index + 1 ] - this->DataPoints[ Index ] ).Length(); }
-                //if( this->Closed ) {
-                //    Length += ( this->DataPoints.back() - *(this->DataPoints.begin()) ).Length();
-                //}
+                    { Length += ( this->Points[ Index + 1 ] - this->Points[ Index ] ).Length(); }
+                if( this->Closed ) {
+                    Length += ( this->Points.back() - *(this->Points.begin()) ).Length();
+                }
                 return Length;
             }
 
             Path& Path::Reflect(const Vector3& Normal)
             {
-                for( Point3DIterator PointIt = this->DataPoints.begin() ; PointIt != this->DataPoints.end() ; ++PointIt )
+                for( Point3DIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
                     { (*PointIt) = PointIt->Reflect(Normal); }
                 return *this;
             }
 
             Path& Path::Reverse()
             {
-                std::reverse( this->DataPoints.begin(), this->DataPoints.end() );
+                std::reverse( this->Points.begin(), this->Points.end() );
                 return *this;
+            }
+
+            Path& Path::Close()
+            {
+                this->Closed = true;
+                return *this;
+            }
+
+            Boole Path::IsClosed() const
+            {
+                return this->Closed;
             }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Point Management
 
+            Path& Path::AddPoint(const Vector3& ToAdd)
+            {
+                this->Points.push_back(ToAdd);
+                return *this;
+            }
+
+            Path& Path::AddPoint(const Real X, const Real Y, const Real Z)
+            {
+                this->Points.push_back(Vector3(X,Y,Z));
+                return *this;
+            }
+
             Path& Path::InsertPoint(const Whole Index, const Real X, const Real Y, const Real Z)
             {
-                this->DataPoints.insert( this->DataPoints.begin() + Index, Vector3(X,Y,Z) );
+                this->Points.insert( this->Points.begin() + Index, Vector3(X,Y,Z) );
                 return *this;
             }
 
             Path& Path::InsertPoint(const Whole Index, const Vector3& Point)
             {
-                this->DataPoints.insert( this->DataPoints.begin() + Index, Point );
+                this->Points.insert( this->Points.begin() + Index, Point );
                 return *this;
             }
 
             const Vector3& Path::GetPoint(const Integer Index) const
-                { return this->DataPoints.at( MathTools::Clamp( Index, 0, Integer(this->DataPoints.size()) - 1 ) ); }
+            {
+                if( this->Closed ) {
+                    return this->Points.at( MathTools::WrappedModulo(Index, this->Points.size()) );
+                }else{
+                    return this->Points.at( MathTools::Clamp( Index, 0, Integer(this->Points.size()) - 1 ) );
+                }
+            }
 
             Point3DContainer& Path::GetPoints()
-                { return this->DataPoints; }
+                { return this->Points; }
 
             const Point3DContainer& Path::GetPoints() const
-                { return this->DataPoints; }
+                { return this->Points; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform
 
             Path& Path::Translate(const Vector3& Trans)
             {
-                for( Point3DIterator PointIt = this->DataPoints.begin() ; PointIt != this->DataPoints.end() ; ++PointIt )
+                for( Point3DIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
                     { (*PointIt) += Trans; }
                 return *this;
             }
@@ -303,7 +333,7 @@ namespace Mezzanine
 
             Path& Path::Scale(const Real ScaleX, const Real ScaleY, const Real ScaleZ)
             {
-                for( Point3DIterator PointIt = this->DataPoints.begin() ; PointIt != this->DataPoints.end() ; ++PointIt )
+                for( Point3DIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
                 {
                     (*PointIt).X *= ScaleX;
                     (*PointIt).Y *= ScaleY;
@@ -324,22 +354,22 @@ namespace Mezzanine
             {
                 // If the path isn't closed, we get a different calculation at the end, because
                 // the tangent shall not be null
-                //if( !this->Closed && Index == this->DataPoints.size() - 1 && Index > 0 ) {
-                //    return ( this->DataPoints[ Index ] - this->DataPoints[ Index - 1 ] ).GetNormal();
-                //}else{
+                if( !this->Closed && Index == this->Points.size() - 1 && Index > 0 ) {
+                    return ( this->Points[ Index ] - this->Points[ Index - 1 ] ).GetNormal();
+                }else{
                     return ( this->GetPoint( Index + 1 ) - this->GetPoint( Index ) ).GetNormal();
-                //}
+                }
             }
 
             Vector3 Path::GetDirectionBefore(const Whole Index) const
             {
                 // If the path isn't closed, we get a different calculation at the end, because
                 // the tangent shall not be null
-                //if( !this->Closed && Index == 1 ) {
-                //    return ( this->DataPoints[1] - this->DataPoints[0] ).GetNormal();
-                //}else{
+                if( !this->Closed && Index == 1 ) {
+                    return ( this->Points[1] - this->Points[0] ).GetNormal();
+                }else{
                     return ( this->GetPoint( Index ) - this->GetPoint( Index - 1 ) ).GetNormal();
-                //}
+                }
             }
 
             Vector3 Path::GetAvgDirection(const Whole Index) const
@@ -353,48 +383,12 @@ namespace Mezzanine
             Shape Path::ConvertToShape() const
             {
                 Shape RetShape;
-                for( ConstPoint3DIterator PointIt = this->DataPoints.begin() ; PointIt != this->DataPoints.end() ; ++PointIt )
+                for( ConstPoint3DIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
                     { RetShape.AddPoint( PointIt->X, PointIt->Y ); }
-                //if( this->Closed ) {
-                //    RetShape.Close();
-                //}
+                if( this->Closed ) {
+                    RetShape.Close();
+                }
                 return RetShape;
-            }
-
-            Path Path::MergeKeysWithTrack(const CurveTrack& ToMerge) const
-            {
-                if( !ToMerge.IsInsertPoint() || ToMerge.GetAddressingMode() == CurveTrack::AM_Point ) {
-                    return *this;
-                }
-                Real TotalLength = this->GetTotalLength();
-
-                Real LineicPos = 0;
-                Real PathLineicPos = 0;
-                Path RetPath;
-                RetPath.Add( this->GetPoint(0) );
-                for( Whole Index = 1 ; Index < this->DataPoints.size() ;  )
-                {
-                    Real NextLineicPos = PathLineicPos + ( this->DataPoints[Index] - this->DataPoints[ Index - 1 ] ).Length();
-
-                    std::map<Real,Real>::const_iterator CurveIt = ToMerge._GetKeyValueAfter( LineicPos, LineicPos / TotalLength, Index - 1 );
-
-                    Real NextTrackPos = CurveIt->first;
-                    if( ToMerge.GetAddressingMode() == CurveTrack::AM_Relative_Lineic ) {
-                        NextTrackPos *= TotalLength;
-                    }
-
-                    // Adds the closest point to the curve, being either from the path or the ToMerge
-                    if( NextLineicPos <= NextTrackPos || LineicPos >= NextTrackPos ) {
-                        RetPath.Add( this->DataPoints[Index] );
-                        Index++;
-                        LineicPos = NextLineicPos;
-                        PathLineicPos = NextLineicPos;
-                    }else{
-                        RetPath.Add( this->GetInterpolated( Index - 1, ( NextTrackPos - PathLineicPos ) / ( NextLineicPos - PathLineicPos ) ) );
-                        LineicPos = NextTrackPos;
-                    }
-                }
-                return RetPath;
             }
         }//Procedural
     }//Graphics

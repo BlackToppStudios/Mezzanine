@@ -82,7 +82,6 @@ namespace Mezzanine
         {
             class Path;
             class Shape;
-            class CurveTrack;
 
             /// @typedef PathContainer
             /// @brief Basic container type for the storage of Paths.
@@ -92,8 +91,15 @@ namespace Mezzanine
             /// @brief A collection of interconnected 3D points used to express path through 3D space.
             /// @details
             ///////////////////////////////////////
-            class MEZZ_LIB Path : public Track< LinearInterpolator< Vector3 > >
+            class MEZZ_LIB Path
             {
+            protected:
+                /// @internal
+                /// @brief A container storing all of the points in this path.
+                Point3DContainer Points;
+                /// @internal
+                /// @brief Whether or not the end of this path connects to the beginning of this path.
+                Boole Closed;
             public:
                 /// @brief Blank constructor.
                 Path();
@@ -135,6 +141,22 @@ namespace Mezzanine
                 /// @return Returns a reference to this.
                 Path ExtractSubPath(const Whole First, const Whole Last);
 
+                /// @brief Appends the contents of a 3D track to this shape.
+                /// @remarks Low values for NumPoints will cause curves to look blocky.  How how it should be depends on the resolution of the curve you want.
+                /// @param Curve The 3D curved track of points to append to this shape.
+                /// @param NumPoints The number of points along the curve to generate for this shape.
+                template< template<class> class Interpolator >
+                void AppendTrack(const Track< Interpolator< Vector3 > >& Curve, const Whole NumPoints)
+                {
+                    // Minus one because we want to include the end of the curve without going over the number of points requested
+                    for( Whole CurrPoint = 0 ; CurrPoint < NumPoints ; ++CurrPoint )
+                    {
+                        Real InterpolateVal = static_cast<Real>( CurrPoint ) / static_cast<Real>( NumPoints - 1 );
+                        Vector3 CurvePoint = Curve.GetInterpolated(InterpolateVal);
+                        this->AddPoint(CurvePoint);
+                    }
+                }
+
                 /// @brief Gets the number of segments in this path.
                 /// @return Returns a Whole containing the number of segments that form this path.
                 Integer GetSegCount() const;
@@ -155,8 +177,26 @@ namespace Mezzanine
                 /// @return Returns a reference to this.
                 Path& Reverse();
 
+                /// @brief Connects the last point in this path to the first point.
+                /// @return Returns a reference to this.
+                Path& Close();
+                /// @brief Gets whether or not the final point in this path connects to the first point.
+                /// @return Returns true if this path is currently closed.
+                Boole IsClosed() const;
+
                 ///////////////////////////////////////////////////////////////////////////////
                 // Point Management
+
+                /// @brief Adds a point to this path.
+                /// @param ToAdd The location of the point to add.
+                /// @return Returns a reference to this.
+                Path& AddPoint(const Vector3& ToAdd);
+                /// @brief Adds a point to this path.
+                /// @param X The location of the point to add on the X axis.
+                /// @param Y The location of the point to add on the Y axis.
+                /// @param Z The location of the point to add on the Z axis.
+                /// @return Returns a reference to this.
+                Path& AddPoint(const Real X, const Real Y, const Real Z);
 
                 /// @brief Inserts a point to the path.
                 /// @param Index the index before the inserted point.
@@ -238,10 +278,6 @@ namespace Mezzanine
                 /// @brief Converts the path to a 2D shape, dropping the Z component.
                 /// @return Returns a shape where the X and Y components are copied, and the Z component is dropped for each point.
                 Shape ConvertToShape() const;
-                /// @brief Creates a path with the keys of this shape and extra keys coming from a CurveTrack.
-                /// @param ToMerge The CurveTrack to merge keys with.
-                /// @return Returns a new path coming from the merge between original path and the CurveTrack.
-                Path MergeKeysWithTrack(const CurveTrack& ToMerge) const;
             };//Path
         }//Procedural
     }//Graphics
