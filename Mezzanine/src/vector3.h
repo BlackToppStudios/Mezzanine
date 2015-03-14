@@ -385,6 +385,11 @@ namespace Mezzanine
         /// both the normal and the original point.
         /// @return At a vector3 that is the normal of this Vector3 or 0,0,0 if the current Vector is all 0s
         Vector3 GetNormal() const;
+        /// @brief Gets the angle between this and another vector assuming both are directional vectors.
+        /// @note The vectors provided do not need to be normalized.
+        /// @param Direction The other directional vector to get the angular distance from.
+        /// @return Returns the angle between both directional vectors.
+        Real AngleBetween(const Vector3& Direction) const;
         /// @brief Shifts all of the components to the right.
         /// @details This assigns the Z component to X, the X component to Y, and the Y component to Z.
         /// @return Returns a reference to this after being altered.

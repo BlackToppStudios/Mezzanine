@@ -370,6 +370,20 @@ namespace Mezzanine
         }
     }
 
+    Real Vector3::AngleBetween(const Vector3& Direction) const
+    {
+        Real LengthProduct = this->Length() * Direction.Length();
+        // Divide by zero check
+        if( LengthProduct < 1e-6f ) {
+            LengthProduct = 1e-6f;
+        }
+
+        // Sorry about the variable name.  :(
+        Real Temp = this->DotProduct(Direction) / LengthProduct;
+        Temp = MathTools::Clamp(Temp, Real(-1.0), Real(1.0) );
+        return MathTools::ACos(Temp);
+    }
+
     Vector3& Vector3::Permute()
     {
         *this = this->GetPermute();

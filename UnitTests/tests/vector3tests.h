@@ -347,7 +347,6 @@ class vector3tests : public UnitTestGroup
                 TEST(VecX==Vec1 && VecY==Vec2 && VecZ==Vec3, "Normalize()");
             }
 
-
             {
                 Vector3 Vec1(112.0,0.0,0.0);
                 Vector3 Vec2(0.0,23.0,0.0);
@@ -357,6 +356,38 @@ class vector3tests : public UnitTestGroup
                 Vector3 VecZ(0.0,0.0,-1.0);
 
                 TEST(VecX==Vec1.GetNormal() && VecY==Vec2.GetNormal() && VecZ==Vec3.GetNormal(), "GetNormal()");
+            }
+
+
+            {
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 VecX(3.0,1.0,2.0);
+
+                TEST(VecX==Vec1.Permute(), "Permute()");
+            }
+
+
+            {
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 VecX(3.0,1.0,2.0);
+
+                TEST(VecX==Vec1.GetPermute(), "GetPermute()");
+            }
+
+
+            {
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 VecX(2.0,3.0,1.0);
+
+                TEST(VecX==Vec1.AntiPermute(), "AntiPermute()");
+            }
+
+
+            {
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 VecX(2.0,3.0,1.0);
+
+                TEST(VecX==Vec1.GetAntiPermute(), "GetAntiPermute()");
             }
 
             {
