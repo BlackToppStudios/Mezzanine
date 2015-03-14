@@ -69,6 +69,7 @@
 
 #include "vector2.h"
 #include "linesegment.h"
+#include "track.h"
 
 namespace Mezzanine
 {
@@ -76,6 +77,31 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            ///////////////////////////////////////////////////////////////////////////////
+            // Curve Types
+
+            /// @typedef LinearCurve1D
+            /// @brief A track of 1 dimensional points that are linearly interpolated between.
+            typedef Track< LinearInterpolator< Real > >     LinearCurve1D;
+            /// @typedef LinearCurve2D
+            /// @brief A track of 2 dimensional points that are linearly interpolated between.
+            typedef Track< LinearInterpolator< Vector2 > >  LinearCurve2D;
+            /// @typedef LinearCurve3D
+            /// @brief A track of 3 dimensional points that are linearly interpolated between.
+            typedef Track< LinearInterpolator< Vector3 > >  LinearCurve3D;
+            /// @typedef BezierCurve1D
+            /// @brief A track of 1 dimentional points that are interpolated between with a Bezier interpolator.
+            typedef Track< BezierInterpolator< Real > >     BezierCurve1D;
+            /// @typedef BezierCurve2D
+            /// @brief A track of 2 dimentional points that are interpolated between with a Bezier interpolator.
+            typedef Track< BezierInterpolator< Vector2 > >  BezierCurve2D;
+            /// @typedef BezierCurve3D
+            /// @brief A track of 3 dimentional points that are interpolated between with a Bezier interpolator.
+            typedef Track< BezierInterpolator< Vector3 > >  BezierCurve3D;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Container and Iterator Types
+
             /// @typedef Point2DContainer
             /// @brief Basic container type for the storage of 2D points.
             typedef std::vector<Vector2>                Point2DContainer;
