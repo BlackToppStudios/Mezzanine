@@ -51,81 +51,111 @@ namespace Mezzanine
 {
     namespace Internal
     {
-        /// @internal
-        /// @struct This struct helps stored collected info of a mesh.
-        /// @headerfile internalmeshtools.h.cpp
-        /// @brief This is a helper data structure for gathering mesh information.
-        /// @details As the class is gathering information from the mesh to use in a soft body, it'll store the values here so that the entity can be safely removed.
-        struct MEZZ_LIB MeshInfo
+        namespace MeshTools
         {
-            MeshInfo();
-            ~MeshInfo();
-            Ogre::Vector3* Verticies;
-            int* Indicies;
-            Ogre::Vector3* Normals;
-            Ogre::Vector2* Textures;
-            int VCount;
-            int ICount;
-            Ogre::String Name;
-            Ogre::String Material;
-            Ogre::String MaterialFile;
-            Ogre::String Group;
-            Ogre::RenderOperation::OperationType RendOp;
-        };
+            ///////////////////////////////////////////////////////////////////////////////
+            // Convenience Types
 
-        /// @internal
-        /// @class MeshTools
-        /// @headerfile internalmeshtools.h.cpp
-        /// @brief This is a helper class to aid in mesh manipulation and information gathering.
-        /// @details
-        class MEZZ_LIB MeshTools
-        {
-            protected:
-            public:
-                /// @brief Class constructor.
-                MeshTools();
-                /// @brief Class destructor.
-                ~MeshTools();
-                /// @brief Gets the verticy information of the mesh.
-                /// @details This function will read the mesh provided and gather the verticies inside it for re-use.
-                /// @param TheEntity The entity from which to extract the information.
-                /// @param TheMesh The struct to populate with the information gathered.
-                static void GetMeshVerticies(Ogre::Entity* TheEntity, MeshInfo &TheMesh);
-                /// @brief Gets the indicy information of the mesh.
-                /// @details This function will read the mesh provided and gather the indicies inside it for re-use.
-                /// @param TheEntity The entity from which to extract the information.
-                /// @param TheMesh The struct to populate with the information gathered.
-                static void GetMeshIndicies(Ogre::Entity* TheEntity, MeshInfo &TheMesh);
-                /// @brief Gets the normals information of the mesh.
-                /// @details This function will read the mesh provided and gather the normals of each verticy inside it for re-use.
-                /// @param TheEntity The entity from which to extract the information.
-                /// @param TheMesh The struct to populate with the information gathered.
-                static void GetMeshNormals(Ogre::Entity* TheEntity, MeshInfo &TheMesh);
-                /// @brief Gets the texture coordinates information of the mesh.
-                /// @details This function will read the mesh provided and gather the texture coordinates inside it for re-use.
-                /// @param TheEntity The entity from which to extract the information.
-                /// @param TheMesh The struct to populate with the information gathered.
-                static void GetMeshTextures(Ogre::Entity* TheEntity, MeshInfo &TheMesh);
-                /// @brief Gets other information from the mesh.
-                /// @details This function will get the Render Operation, Material Name, and Entity Name from the entity for re-use.
-                /// @param TheEntity The entity from which to extract the information.
-                /// @param TheMesh The struct to populate with the information gathered.
-                static void GetOtherMeshInfo(Ogre::Entity* TheEntity, MeshInfo &TheMesh);
-                /// @brief Creates a trimesh shape from the mesh file.
-                /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file.
-                /// @param TheEntity The entity from which to extract the information.
-                /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
-                static btTriangleMesh* CreateBulletTrimesh(Ogre::Entity* TheEntity, Boole UseAllSubmeshes = false);
-                /// @brief used to get information about 3d graphical objects at specific locations
-                static void GetMeshInformation(Ogre::Entity *entity,
-                                    size_t &vertex_count,
-                                    Ogre::Vector3* &vertices,
-                                    size_t &index_count,
-                                    unsigned long* &indices,
-                                    const Ogre::Vector3 &position,
-                                    const Ogre::Quaternion &orient,
-                                    const Ogre::Vector3 &scale);
-        };//internalmeshtool
+            /// @brief Convenience type for a container of Vector3s.
+            typedef std::vector<Ogre::Vector3> Vector3Vec;
+            /// @brief Convenience type for a container of Vector2s.
+            typedef std::vector<Ogre::Vector2> Vector2Vec;
+            /// @brief Convenience type for a container of Integers.
+            typedef std::vector<Integer> IntVec;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Simple Utility
+
+            /// @brief Gets the total number of vertices stored in a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @return Gets the number of vertices that exist across all SubMeshes in a Mesh.
+            Whole MEZZ_LIB GetVertexCount(Ogre::MeshPtr TheMesh);
+            /// @brief Gets the total number of indexes stored in a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @return Gets the number of indices that exist across all SubMeshes in a Mesh.
+            Whole MEZZ_LIB GetIndexCount(Ogre::MeshPtr TheMesh);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Multi SubMesh Query
+
+            /// @brief Gets all of the vertex positions in a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @return Returns a vector of Vector3s containing the positions of each vertex across all SubMeshes in a Mesh.
+            Vector3Vec MEZZ_LIB GetVertexPositions(Ogre::MeshPtr TheMesh);
+            /// @brief Gets all of the vertex normals in a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @return Returns a vector of Vector3s containing the normals of each vertex across all SubMeshes in a Mesh.
+            Vector3Vec MEZZ_LIB GetVertexNormals(Ogre::MeshPtr TheMesh);
+            /// @brief Gets all of the vertex UVs in a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @return Returns a vector of Vector2s containing the UVs of each vertex across all SubMeshes in a Mesh.
+            Vector2Vec MEZZ_LIB GetVertexUVs(Ogre::MeshPtr TheMesh);
+            /// @brief Gets all of the indexes in a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @return Returns a vector of Integers containg the index data across all SubMeshes in a Mesh.
+            IntVec MEZZ_LIB GetIndexes(Ogre::MeshPtr TheMesh);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Single SubMesh Query
+
+            /// @brief Gets all of the vertex positions in a specific SubMesh of a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @param SubMeshIndex The index of the specific SubMesh to get vertex data from.
+            /// @return Returns a vector of Vector3s containing the positions of each vertex in the specified SubMesh.
+            Vector3Vec MEZZ_LIB GetSubMeshVertexPositions(Ogre::MeshPtr TheMesh, const Whole SubMeshIndex);
+            /// @brief Gets all of the vertex normals in a specific SubMesh of a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @param SubMeshIndex The index of the specific SubMesh to get vertex data from.
+            /// @return Returns a vector of Vector3s containing the normals of each vertex in the specified SubMesh.
+            Vector3Vec MEZZ_LIB GetSubMeshVertexNormals(Ogre::MeshPtr TheMesh, const Whole SubMeshIndex);
+            /// @brief Gets all of the vertex UVs in a specific SubMesh of a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @param SubMeshIndex The index of the specific SubMesh to get vertex data from.
+            /// @return Returns a vector of Vector2s containing the UVs of each vertex in the specified SubMesh.
+            Vector2Vec MEZZ_LIB GetSubMeshVertexUVs(Ogre::MeshPtr TheMesh, const Whole SubMeshIndex);
+            /// @brief Gets all of the indexes in a specific SubMesh of a Mesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @param SubMeshIndex The index of the specific SubMesh to get index data from.
+            /// @return Returns a vector of Integers containg the index data for the specified SubMesh.
+            IntVec MEZZ_LIB GetSubMeshIndexes(Ogre::MeshPtr TheMesh, const Whole SubMeshIndex);
+
+            /// @brief Gets the name of the material assigned to a specific SubMesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @param SubMeshIndex The index of the specific SubMesh to get the assigned material from.
+            /// @return Returns a String containing the name of the material assigned to the specified SubMesh.
+            String MEZZ_LIB GetSubMeshMaterialName(Ogre::MeshPtr TheMesh, const Whole SubMeshIndex);
+            /// @brief Gets the filename where the material assigned to a specific SubMesh came from.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @param SubMeshIndex The index of the specific SubMesh to get the material file from.
+            /// @return Returns the filename the material assigned to the specified SubMesh was parsed from.
+            String MEZZ_LIB GetSubMeshMaterialOrigin(Ogre::MeshPtr TheMesh, const Whole SubMeshIndex);
+            /// @brief Gets the type of Render Operation being used to render a specific SubMesh.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @param SubMeshIndex The index of the specific SubMesh to get the RenderOperation of.
+            /// @return Returns the type of RenderOperation being used to render the specified SubMesh.
+            Ogre::RenderOperation::OperationType MEZZ_LIB GetSubMeshRenderType(Ogre::MeshPtr TheMesh, const Whole SubMeshIndex);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Interweaved Element Fetch
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Miscellaneous Information
+
+            /// @brief
+            /// @param TheEntity The graphics object to collect Mesh data from.
+            /// @param VertexArray The vector which will be populated with Vertex information.
+            /// @param IndexArray The vector which will be populated with Index information.
+            void MEZZ_LIB GetTransformedMeshData(Ogre::Entity* TheEntity, Vector3Vec& VertexArray, IntVec& IndexArray);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Physics Utilities
+
+            /// @brief Creates a trimesh shape from the mesh file.
+            /// @param TheMesh The internal Mesh being queried.
+            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
+            /// @return Returns a pointer to a btTriangleMesh copy of the provided mesh which can be used for physics collision shapes.
+            btTriangleMesh* MEZZ_LIB CreateBulletTrimesh(Ogre::MeshPtr TheMesh, const Boole UseAllSubmeshes = false);
+        }//MeshTools
     }//internal
 }//Mezzanine
 

@@ -194,55 +194,42 @@ namespace Mezzanine
         for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
         {
             // stop checking if we have found a raycast hit that is closer than all remaining entities
-            if ( (0.0f <= closest_distance) && (closest_distance < query_result[qr_idx].distance))
+            if( (0.0f <= closest_distance) && (closest_distance < query_result[qr_idx].distance) )
                 { break; }
 
             // only check this result if its a hit against an entity
             /// @todo Modify this so we can check for more movable types than just entities.
-            if ((NULL != query_result[qr_idx].movable) && (0 == query_result[qr_idx].movable->getMovableType().compare("Entity")))
-            {
+            if( (NULL != query_result[qr_idx].movable) && (0 == query_result[qr_idx].movable->getMovableType().compare("Entity")) ) {
                 // get the entity to check
                 Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
 
                 try
                 {
                     WorldObject* HitMetaInfo = Ogre::any_cast<Graphics::RenderableProxy*>(pentity->getUserAny())->GetParentObject();
-                    if( HitMetaInfo && ( HitMetaInfo->GetType() & ObjectFlags ) )
-                    {
-                        // mesh data to retrieve
-                        size_t vertex_count;
-                        size_t index_count;
-                        Ogre::Vector3 *vertices;
-                        unsigned long *indices;
+                    if( HitMetaInfo && ( HitMetaInfo->GetType() & ObjectFlags ) ) {
+                        // Data containers to be populated
+                        Internal::MeshTools::Vector3Vec vertices;
+                        Internal::MeshTools::IntVec indices;
 
                         // get the mesh information
-                        Internal::MeshTools::GetMeshInformation( pentity, vertex_count, vertices, index_count, indices,
-                                                                 pentity->getParentNode()->_getDerivedPosition(),
-                                                                 pentity->getParentNode()->_getDerivedOrientation(),
-                                                                 pentity->getParentNode()->_getDerivedScale());
+                        Internal::MeshTools::GetTransformedMeshData( pentity, vertices, indices );
 
                         // test for hitting individual triangles on the mesh
                         Boole new_closest_found = false;
-                        for (size_t i = 0; i < index_count; i += 3)
+                        for( size_t i = 0 ; i < indices.size() ; i += 3 )
                         {
                             // check for a hit against this triangle
                             std::pair<bool, Ogre::Real> hit = Ogre::Math::intersects(Ooray, vertices[indices[i]], vertices[indices[i+1]], vertices[indices[i+2]], true, false);
 
                             // if it was a hit check if its the closest
-                            if (hit.first && ((0.0f > closest_distance) || (hit.second < closest_distance)) )
-                            {
+                            if( hit.first && ( (0.0f > closest_distance) || (hit.second < closest_distance) ) ) {
                                     closest_distance = hit.second;                        // this is the closest so far, save it off
                                     new_closest_found = true;
                             }
                         }
 
-                        // free the vertices and indices memory
-                        delete[] vertices;
-                        delete[] indices;
-
                         // if we found a new closest raycast for this object, update the closest_result before moving on to the next object.
-                        if (new_closest_found)
-                        {
+                        if( new_closest_found ) {
                             closest_result = Ooray.getPoint(closest_distance);
                             IntersectedObject = Ogre::any_cast<Graphics::RenderableProxy*>(pentity->getUserAny())->GetParentObject();
                         }
