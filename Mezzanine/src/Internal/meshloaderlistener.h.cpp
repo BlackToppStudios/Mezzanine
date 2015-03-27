@@ -37,59 +37,49 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internaliostreamwrapper_h_cpp
-#define _internaliostreamwrapper_h_cpp
+#ifndef _internalmeshloaderlistener_h_cpp
+#define _internalmeshloaderlistener_h_cpp
 
-// Keeps this file from being documented by doxygen
+// Keeps this file form being documented by doxygen
 /// @cond DontDocumentInternal
 
+#include <Ogre.h>
 #include "datatypes.h"
-
-#include <OgreDataStream.h>
 
 namespace Mezzanine
 {
     namespace Internal
     {
-        class MEZZ_LIB IOStreamWrapper : public Ogre::DataStream
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A set of callbacks for different stages of internal mesh deserialization.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB MeshLoaderListener : public Ogre::MeshSerializerListener
         {
         protected:
-            /// @internal
-            /// @brief A pointer to the I/O stream being wrapped.
-            std::iostream* Stream;
-            /// @internal
-            /// @brief Stores whether or not the stream should be deleted when this wrapper is destroyed.
-            Boole CleanUp;
         public:
             /// @brief Class constructor.
-            /// @param ToBeWrapped A pointer to the I/O stream to be wrapped.
-            /// @param Clean Whether or not the stream should be deleted when this wrapper is destroyed.
-            IOStreamWrapper(std::iostream* ToBeWrapped, const Boole Clean);
+            MeshLoaderListener();
             /// @brief Class destructor.
-            virtual ~IOStreamWrapper();
+            virtual ~MeshLoaderListener();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+            // Callbacks
 
-            /// @copydoc Ogre::DataStream::read(void*, size_t)
-            size_t read(void* buf, size_t count);
-            /// @copydoc Ogre::DataStream::write(const void*, size_t)
-            size_t write(const void* buf, size_t count);
-
-            /// @copydoc Ogre::DataStream::skip(long)
-            void skip(long count);
-            /// @copydoc Ogre::DataStream::seek(size_t)
-            void seek(size_t pos);
-
-            /// @copydoc Ogre::DataStream::tell() const
-            size_t tell() const;
-            /// @copydoc Ogre::DataStream::eof() const
-            bool eof() const;
-            /// @copydoc Ogre::DataStream::close()
-            void close();
-        };//IOStreamWrapper
+            /// @brief Callback for when the material is decoded and applied.
+            /// @param mesh A pointer to the mesh being decoded.
+            /// @param name The name of the material (not the file) being assigned.
+            virtual void processMaterialName(Ogre::Mesh* mesh, Ogre::String* name);
+            /// @brief Callback for when the skeleton is decoded and applied.
+            /// @param mesh A pointer to the mesh being decoded.
+            /// @param name The name of the skeleton being assigned.
+            virtual void processSkeletonName(Ogre::Mesh* mesh, Ogre::String* name);
+            /// @brief Callback for when mesh deseriailzation is completed.
+            /// @param mesh A pointer to the fully decoded mesh.
+            virtual void processMeshCompleted(Ogre::Mesh* mesh);
+        };//MeshLoaderListener
     }//Internal
-}//Nezzanine
+}//Mezzanine
 
 /// @endcond
 

@@ -233,6 +233,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/icospheregenerator.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/lathe.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/meshgenerator.h"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/meshloader.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/meshmodifier.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/planegenerator.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/planeuvmodifier.h"
@@ -310,6 +311,8 @@ set(${PROJECT_NAME}_sources
         # Internal Items
         "${${PROJECT_NAME}_SRC_DIR}Internal/decompinterface.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/iostreamwrapper.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Internal/materialloaderlistener.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Internal/meshloaderlistener.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/meshtools.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/motionstate.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/murmurhash3.h.cpp"
@@ -672,6 +675,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/hemisphereuvmodifier.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/icospheregenerator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/lathe.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/meshloader.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/planegenerator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/planeuvmodifier.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Mesh/roundedboxgenerator.cpp"
@@ -745,6 +749,8 @@ set(${PROJECT_NAME}_sources
         # Internal Items
         "${${PROJECT_NAME}_SRC_DIR}Internal/decompinterface.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/iostreamwrapper.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Internal/materialloaderlistener.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Internal/meshloaderlistener.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/meshtools.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/motionstate.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/murmurhash3.cpp"

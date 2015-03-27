@@ -37,59 +37,53 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internaliostreamwrapper_h_cpp
-#define _internaliostreamwrapper_h_cpp
+#ifndef _internalmeshloaderlistener_cpp
+#define _internalmeshloaderlistener_cpp
 
-// Keeps this file from being documented by doxygen
+// Keeps this file form being documented by doxygen
 /// @cond DontDocumentInternal
 
-#include "datatypes.h"
+#include "Internal/meshloaderlistener.h.cpp"
+#include "Internal/iostreamwrapper.h.cpp"
 
-#include <OgreDataStream.h>
+#include "Resource/resourcemanager.h"
 
 namespace Mezzanine
 {
     namespace Internal
     {
-        class MEZZ_LIB IOStreamWrapper : public Ogre::DataStream
+        MeshLoaderListener::MeshLoaderListener()
+            {  }
+
+        MeshLoaderListener::~MeshLoaderListener()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Callbacks
+
+        void MeshLoaderListener::processMaterialName(Ogre::Mesh* mesh, Ogre::String* name)
         {
-        protected:
-            /// @internal
-            /// @brief A pointer to the I/O stream being wrapped.
-            std::iostream* Stream;
-            /// @internal
-            /// @brief Stores whether or not the stream should be deleted when this wrapper is destroyed.
-            Boole CleanUp;
-        public:
-            /// @brief Class constructor.
-            /// @param ToBeWrapped A pointer to the I/O stream to be wrapped.
-            /// @param Clean Whether or not the stream should be deleted when this wrapper is destroyed.
-            IOStreamWrapper(std::iostream* ToBeWrapped, const Boole Clean);
-            /// @brief Class destructor.
-            virtual ~IOStreamWrapper();
+            // I don't think we need to actually do anything here, since materials are parsed at resource group init.
+        }
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+        void MeshLoaderListener::processSkeletonName(Ogre::Mesh* mesh, Ogre::String* name)
+        {
+            String GroupName = mesh->getGroup();
 
-            /// @copydoc Ogre::DataStream::read(void*, size_t)
-            size_t read(void* buf, size_t count);
-            /// @copydoc Ogre::DataStream::write(const void*, size_t)
-            size_t write(const void* buf, size_t count);
+            Resource::DataStreamPtr SkeletonStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(*name,GroupName);
+            Ogre::DataStreamPtr SkeletonWrapper(new IOStreamWrapper(SkeletonStream.get(),false));
 
-            /// @copydoc Ogre::DataStream::skip(long)
-            void skip(long count);
-            /// @copydoc Ogre::DataStream::seek(size_t)
-            void seek(size_t pos);
+            Ogre::SkeletonPtr NewSkel = static_cast<Ogre::SkeletonPtr>( Ogre::SkeletonManager::getSingletonPtr()->create(*name,GroupName,true));
+            Ogre::SkeletonSerializer SkelSerial;
+            SkelSerial.importSkeleton(SkeletonWrapper,NewSkel.get());
+        }
 
-            /// @copydoc Ogre::DataStream::tell() const
-            size_t tell() const;
-            /// @copydoc Ogre::DataStream::eof() const
-            bool eof() const;
-            /// @copydoc Ogre::DataStream::close()
-            void close();
-        };//IOStreamWrapper
+        void MeshLoaderListener::processMeshCompleted(Ogre::Mesh* mesh)
+        {
+            /*  \o/  */
+        }
     }//Internal
-}//Nezzanine
+}//Mezzanine
 
 /// @endcond
 

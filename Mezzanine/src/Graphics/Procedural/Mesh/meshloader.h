@@ -37,60 +37,50 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internaliostreamwrapper_h_cpp
-#define _internaliostreamwrapper_h_cpp
+#ifndef _graphicsproceduralmeshloader_h
+#define _graphicsproceduralmeshloader_h
 
-// Keeps this file from being documented by doxygen
-/// @cond DontDocumentInternal
-
-#include "datatypes.h"
-
-#include <OgreDataStream.h>
+#include "Graphics/Procedural/Mesh/meshgenerator.h"
 
 namespace Mezzanine
 {
-    namespace Internal
+    namespace Graphics
     {
-        class MEZZ_LIB IOStreamWrapper : public Ogre::DataStream
+        class Mesh;
+        namespace Procedural
         {
-        protected:
-            /// @internal
-            /// @brief A pointer to the I/O stream being wrapped.
-            std::iostream* Stream;
-            /// @internal
-            /// @brief Stores whether or not the stream should be deleted when this wrapper is destroyed.
-            Boole CleanUp;
-        public:
-            /// @brief Class constructor.
-            /// @param ToBeWrapped A pointer to the I/O stream to be wrapped.
-            /// @param Clean Whether or not the stream should be deleted when this wrapper is destroyed.
-            IOStreamWrapper(std::iostream* ToBeWrapped, const Boole Clean);
-            /// @brief Class destructor.
-            virtual ~IOStreamWrapper();
-
             ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+            /// @brief A generator class for loading an external mesh into a procedural buffer.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB MeshLoader : public MeshGenerator<MeshLoader>
+            {
+            protected:
+                /// @internal
+                /// @brief A pointer to the Mesh to copy into a TriangleBuffer.
+                Mesh* GenMesh;
+            public:
+                /// @brief Class constructor.
+                MeshLoader();
+                /// @brief Class destructor.
+                virtual ~MeshLoader();
 
-            /// @copydoc Ogre::DataStream::read(void*, size_t)
-            size_t read(void* buf, size_t count);
-            /// @copydoc Ogre::DataStream::write(const void*, size_t)
-            size_t write(const void* buf, size_t count);
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
 
-            /// @copydoc Ogre::DataStream::skip(long)
-            void skip(long count);
-            /// @copydoc Ogre::DataStream::seek(size_t)
-            void seek(size_t pos);
+                /// @copydoc MeshGenerator::AddToTriangleBuffer(TriangleBuffer&) const
+                virtual void AddToTriangleBuffer(TriangleBuffer& Buffer) const;
 
-            /// @copydoc Ogre::DataStream::tell() const
-            size_t tell() const;
-            /// @copydoc Ogre::DataStream::eof() const
-            bool eof() const;
-            /// @copydoc Ogre::DataStream::close()
-            void close();
-        };//IOStreamWrapper
-    }//Internal
-}//Nezzanine
+                ///////////////////////////////////////////////////////////////////////////////
+                // Configuration
 
-/// @endcond
+                /// @brief Sets the Mesh to be copied to the TriangleBuffer.
+                /// @param ToGenerate The Mesh to be copied.
+                /// @return Returns a reference to this.
+                MeshLoader& SetMesh(Mesh* ToGenerate);
+            };//MeshLoader
+        }//Procedural
+    }//Graphics
+}//Mezzanine
 
 #endif

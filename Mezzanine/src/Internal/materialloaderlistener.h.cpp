@@ -37,59 +37,44 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internaliostreamwrapper_h_cpp
-#define _internaliostreamwrapper_h_cpp
+#ifndef _internalmaterialloaderlistener_h_cpp
+#define _internalmaterialloaderlistener_h_cpp
 
-// Keeps this file from being documented by doxygen
+// Keeps this file form being documented by doxygen
 /// @cond DontDocumentInternal
 
+#include <OgreScriptCompiler.h>
 #include "datatypes.h"
-
-#include <OgreDataStream.h>
 
 namespace Mezzanine
 {
     namespace Internal
     {
-        class MEZZ_LIB IOStreamWrapper : public Ogre::DataStream
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A set of callbacks for different stages of internal material parsing.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB MaterialLoaderListener : public Ogre::ScriptCompilerListener
         {
         protected:
-            /// @internal
-            /// @brief A pointer to the I/O stream being wrapped.
-            std::iostream* Stream;
-            /// @internal
-            /// @brief Stores whether or not the stream should be deleted when this wrapper is destroyed.
-            Boole CleanUp;
         public:
             /// @brief Class constructor.
-            /// @param ToBeWrapped A pointer to the I/O stream to be wrapped.
-            /// @param Clean Whether or not the stream should be deleted when this wrapper is destroyed.
-            IOStreamWrapper(std::iostream* ToBeWrapped, const Boole Clean);
+            MaterialLoaderListener();
             /// @brief Class destructor.
-            virtual ~IOStreamWrapper();
+            virtual ~MaterialLoaderListener();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+            // Callbacks
 
-            /// @copydoc Ogre::DataStream::read(void*, size_t)
-            size_t read(void* buf, size_t count);
-            /// @copydoc Ogre::DataStream::write(const void*, size_t)
-            size_t write(const void* buf, size_t count);
-
-            /// @copydoc Ogre::DataStream::skip(long)
-            void skip(long count);
-            /// @copydoc Ogre::DataStream::seek(size_t)
-            void seek(size_t pos);
-
-            /// @copydoc Ogre::DataStream::tell() const
-            size_t tell() const;
-            /// @copydoc Ogre::DataStream::eof() const
-            bool eof() const;
-            /// @copydoc Ogre::DataStream::close()
-            void close();
-        };//IOStreamWrapper
+            /// @brief Handles a single event that occurs in a ScriptCompiler.
+            /// @param compiler A pointer to the compiler that is firing the event.
+            /// @param evt A pointer to the specific event being fired.
+            /// @param retval A utility pointer to some event specific metadata.  Listeners are expected to know exactly what type this is to use it.
+            /// @return If the return is true, then that will indicate the script is done being processed.  This always retruns false.
+            virtual bool handleEvent(Ogre::ScriptCompiler* compiler, Ogre::ScriptCompilerEvent* evt, void* retval);
+        };//MaterialLoaderListener
     }//Internal
-}//Nezzanine
+}//Mezzanine
 
 /// @endcond
 

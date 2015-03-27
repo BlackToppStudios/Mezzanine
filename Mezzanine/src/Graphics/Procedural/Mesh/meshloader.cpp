@@ -37,60 +37,47 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internaliostreamwrapper_h_cpp
-#define _internaliostreamwrapper_h_cpp
+#ifndef _graphicsproceduralmeshloader_cpp
+#define _graphicsproceduralmeshloader_cpp
 
-// Keeps this file from being documented by doxygen
-/// @cond DontDocumentInternal
-
-#include "datatypes.h"
-
-#include <OgreDataStream.h>
+#include "Graphics/Procedural/Mesh/meshloader.h"
 
 namespace Mezzanine
 {
-    namespace Internal
+    namespace Graphics
     {
-        class MEZZ_LIB IOStreamWrapper : public Ogre::DataStream
+        namespace Procedural
         {
-        protected:
-            /// @internal
-            /// @brief A pointer to the I/O stream being wrapped.
-            std::iostream* Stream;
-            /// @internal
-            /// @brief Stores whether or not the stream should be deleted when this wrapper is destroyed.
-            Boole CleanUp;
-        public:
-            /// @brief Class constructor.
-            /// @param ToBeWrapped A pointer to the I/O stream to be wrapped.
-            /// @param Clean Whether or not the stream should be deleted when this wrapper is destroyed.
-            IOStreamWrapper(std::iostream* ToBeWrapped, const Boole Clean);
-            /// @brief Class destructor.
-            virtual ~IOStreamWrapper();
+            MeshLoader::MeshLoader() :
+                GenMesh(NULL)
+                {  }
+
+            MeshLoader::~MeshLoader()
+                {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc Ogre::DataStream::read(void*, size_t)
-            size_t read(void* buf, size_t count);
-            /// @copydoc Ogre::DataStream::write(const void*, size_t)
-            size_t write(const void* buf, size_t count);
+            void MeshLoader::AddToTriangleBuffer(TriangleBuffer& Buffer) const
+            {
 
-            /// @copydoc Ogre::DataStream::skip(long)
-            void skip(long count);
-            /// @copydoc Ogre::DataStream::seek(size_t)
-            void seek(size_t pos);
 
-            /// @copydoc Ogre::DataStream::tell() const
-            size_t tell() const;
-            /// @copydoc Ogre::DataStream::eof() const
-            bool eof() const;
-            /// @copydoc Ogre::DataStream::close()
-            void close();
-        };//IOStreamWrapper
-    }//Internal
-}//Nezzanine
+                // Prep the buffer
+                //Buffer.RebaseOffset();
+                //Buffer.EstimateVertexCount(  );
+                //Buffer.EstimateIndexCount(  );
+            }
 
-/// @endcond
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            MeshLoader& MeshLoader::SetMesh(Mesh* ToGenerate)
+            {
+                this->GenMesh = ToGenerate;
+                return *this;
+            }
+        }//Procedural
+    }//Graphics
+}//Mezzanine
 
 #endif
