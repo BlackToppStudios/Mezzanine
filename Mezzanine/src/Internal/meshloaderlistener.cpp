@@ -73,9 +73,13 @@ namespace Mezzanine
             Resource::DataStreamPtr SkeletonStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(*name,GroupName);
             Ogre::DataStreamPtr SkeletonWrapper(new IOStreamWrapper(SkeletonStream.get(),false));
 
-            Ogre::SkeletonPtr NewSkel = static_cast<Ogre::SkeletonPtr>( Ogre::SkeletonManager::getSingletonPtr()->create(*name,GroupName,true));
-            Ogre::SkeletonSerializer SkelSerial;
-            SkelSerial.importSkeleton(SkeletonWrapper,NewSkel.get());
+            // Verify it's not already loaded.
+            Ogre::SkeletonPtr NewSkel = Ogre::SkeletonManager::getSingletonPtr()->getByName(*name,GroupName);
+            if( NewSkel.isNull() ) {
+                NewSkel = static_cast<Ogre::SkeletonPtr>( Ogre::SkeletonManager::getSingletonPtr()->create(*name,GroupName,true));
+                Ogre::SkeletonSerializer SkelSerial;
+                SkelSerial.importSkeleton(SkeletonWrapper,NewSkel.get());
+            }
         }
 
         void MeshLoaderListener::processMeshCompleted(Ogre::Mesh* mesh)
