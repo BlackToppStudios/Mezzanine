@@ -50,7 +50,7 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
-/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
+/// @brief A small series of tests to verify basic functionality of procedurally generating textures from the Mezzanine API.
 class proceduraltexturetests : public UnitTestGroup
 {
 public:
