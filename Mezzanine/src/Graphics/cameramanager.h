@@ -100,7 +100,7 @@ namespace Mezzanine
             SceneManager* SceneMan;
         public:
             /// @brief Class Constructor.
-            CameraManager();
+            CameraManager(World * ParentWorld = NULL);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             CameraManager(XML::Node& XMLNode);

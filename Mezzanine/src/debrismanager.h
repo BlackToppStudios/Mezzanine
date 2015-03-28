@@ -134,7 +134,7 @@ namespace Mezzanine
         Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
     public:
         /// @brief Class constructor.
-        DebrisManager();
+        DebrisManager(World * ParentWorld = NULL);
         /// @brief XML constructor.
         /// @param XMLNode The node of the xml document to construct from.
         DebrisManager(XML::Node& XMLNode);

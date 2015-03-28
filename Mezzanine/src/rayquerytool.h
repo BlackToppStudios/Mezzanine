@@ -57,6 +57,7 @@ namespace Mezzanine
     class Plane;
     class Ray;
     class WorldObject;
+    class World;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class RayQueryTool
     /// @headerfile rayquerytool.h
@@ -74,11 +75,13 @@ namespace Mezzanine
             /// @brief If there is an WorldObject result to a query the result will be stored in this.
             /// @warning This is weak reference, Some other system could delete out from under us and we cannot delete this.
             WorldObject* IntersectedObject;
+            /// @brief World to perform queries in.
+            World * ParentWorld;
 
         public:
 
             /// @brief Create a RayQueryTool ready for querying
-            RayQueryTool();
+            RayQueryTool(World * ParentWorld = NULL);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query Results

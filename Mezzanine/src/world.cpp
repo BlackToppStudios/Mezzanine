@@ -41,6 +41,7 @@
 #ifndef _world_cpp
 #define _world_cpp
 
+#include "entresol.h"
 #include "world.h"
 #include "Physics/physicsmanager.h"
 #include "Graphics/scenemanager.h"
@@ -50,6 +51,7 @@
 #include "Graphics/cameramanager.h"
 #include "Audio/soundscapemanager.h"
 #include "terrainmanager.h"
+#include "debrismanager.h"
 
 namespace Mezzanine
 {
@@ -101,16 +103,29 @@ namespace Mezzanine
         for(std::vector<WorldManager*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
             { this->AddManager(*iter); }
 
+        //Dummy param list so we can use the auto-added manager types if needed
+        NameValuePairList Params;
         if(this->GetActorManager()==0)
-            { this->AddManager(new ActorManager()); }
+            { this->AddManager(new ActorManager(this)); }
         if(this->GetAreaEffectManager()==0)
-            { this->AddManager(new AreaEffectManager()); }
+            { this->AddManager(new AreaEffectManager(this)); }
         if(this->GetCameraManager()==0)
-            { this->AddManager(new Graphics::CameraManager()); }
+            { this->AddManager(new Graphics::CameraManager(this)); }
         if(this->GetPhysicsManager()==0)
-            { this->AddManager(new Physics::PhysicsManager(PhysicsInfo)); }
+            { this->AddManager(new Physics::PhysicsManager(PhysicsInfo, this)); }
         if(this->GetSceneManager()==0)
-            { this->AddManager(new Graphics::SceneManager(SceneType)); }
+            { this->AddManager(new Graphics::SceneManager(this, SceneType)); }
+        if(this->GetDebrisManager()==0)
+            { this->AddManager(new DebrisManager(this)); }
+
+        #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+        if(this->GetSoundScapeManager()==0)
+        {
+            WorldManager * audio_manager = dynamic_cast<WorldManager*>( Entresol::GetSingletonPtr()->CreateManager("OALSSoundScapeManager",Params,false) );
+            audio_manager->_SetWorld( this );
+            this->AddManager( audio_manager );
+        }
+        #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
     }
 
     const String& World::GetName() const
@@ -135,6 +150,14 @@ namespace Mezzanine
         {
             (*ManIter)->Deinitialize();
         }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void World::PauseWorld(Boole Pause)
+    {
+        this->GetPhysicsManager()->PauseSimulation(Pause);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -237,6 +260,12 @@ namespace Mezzanine
         return static_cast<TerrainManager*>( this->GetManager(ManagerBase::MT_TerrainManager) );
         //return NULL;
     }
+
+    DebrisManager* World::GetDebrisManager()
+    {
+        return static_cast<DebrisManager*>( this->GetManager(ManagerBase::MT_DebrisManager) );
+    }
+
 }//Mezzanine
 
 #endif

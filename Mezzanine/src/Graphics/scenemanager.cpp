@@ -52,6 +52,7 @@
 #include "worldobject.h"
 #include "stringtool.h"
 #include "entresol.h"
+#include "world.h"
 
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/entityproxy.h"
@@ -174,7 +175,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // SceneManager Methods
 
-        SceneManager::SceneManager(const String& InternalManagerTypeName) :
+        SceneManager::SceneManager(World * ParentWorld, const String& InternalManagerTypeName) :
+            WorldManager(ParentWorld),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -184,7 +186,8 @@ namespace Mezzanine
             //OgreManager->setShadowCameraSetup(ShadowCam);
         }
 
-        SceneManager::SceneManager(XML::Node& XMLNode) :
+        SceneManager::SceneManager(World * ParentWorld, XML::Node& XMLNode) :
+            WorldManager(ParentWorld),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -600,9 +603,9 @@ namespace Mezzanine
             if( !this->Initialized )
             {
                 // Manager Initializations
-                //WorldManager::Initialize();
+                WorldManager::Initialize();
 
-                CameraManager* CamMan = this->TheEntresol->GetCameraManager();
+                CameraManager* CamMan = this->ParentWorld->GetCameraManager();
                 if( CamMan ) {
                     CamMan->Initialize();
                 }
@@ -618,7 +621,7 @@ namespace Mezzanine
                 this->DestroyAllProxies();
 
                 // Manager Initializations
-                CameraManager* CamMan = this->TheEntresol->GetCameraManager();
+                CameraManager* CamMan = this->ParentWorld->GetCameraManager();
                 if( CamMan ) {
                     CamMan->Deinitialize();
                 }
@@ -675,13 +678,13 @@ namespace Mezzanine
                         InternalManagerTypeName = (*ParIt).second;
                     }
                 }
-                return new SceneManager(InternalManagerTypeName);
+                return new SceneManager(NULL,InternalManagerTypeName);
             }
         }
 
         ManagerBase* DefaultSceneManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            return new SceneManager(XMLNode);
+            return new SceneManager(NULL, XMLNode);
         }
 
         void DefaultSceneManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)

@@ -43,6 +43,7 @@
 #include "linegroup.h"
 #include "Graphics/scenemanager.h"
 #include "entresol.h"
+#include "world.h"
 
 #include <Ogre.h>
 #include <vector>
@@ -111,10 +112,12 @@ namespace Mezzanine
             /// @internal
             /// @brief Pointer to the node that will be used exclusively for this renderable.
             Ogre::SceneNode* SelfNode;
+            /// @brief Parent World to locate SceneManager
+            World * ParentWorld;
         public:
             /// @internal
             /// @brief Default Constructor
-            Line3D();
+            Line3D(World * ParentWorld);
             /// @internal
             /// @brief Destructor
             ~Line3D();
@@ -169,10 +172,11 @@ namespace Mezzanine
             Ogre::SceneNode* GetNode() const;
         };//Line3D
 
-        Line3D::Line3D()
+        Line3D::Line3D(World * ParentWorldArg) 
+            : ParentWorld(ParentWorldArg)
         {
             mRenderOp.vertexData = new Ogre::VertexData();
-            this->SelfNode = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+            this->SelfNode = this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
 
             // Initialization stuff
             mRenderOp.indexData = 0;
@@ -206,7 +210,7 @@ namespace Mezzanine
 
         Line3D::~Line3D()
         {
-            Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
+            this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
             delete mRenderOp.vertexData;
         }
 
@@ -354,9 +358,10 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Mezzanine::LineGroup
 
-    LineGroup::LineGroup()
+    LineGroup::LineGroup(World * ParentWorld)
+        : ParentWorld(ParentWorld)
     {
-        this->LineData = new Internal::Line3D();
+        this->LineData = new Internal::Line3D(this->ParentWorld);
     }
 
     LineGroup::~LineGroup(void)

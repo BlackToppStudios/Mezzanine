@@ -63,6 +63,7 @@ using namespace std;
 #include "worldobject.h"
 #include "crossplatform.h"
 #include "entresol.h"
+#include "world.h"
 #include "timer.h"
 
 #include "Physics/collisiondispatcher.h.cpp"
@@ -116,10 +117,14 @@ namespace Mezzanine
             /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
             /// Later we will add support for contact drawing, individual modeling drawing, etc...
             int DebugDrawing;
+
+            /// @brief Parent World To draw in
+            World* ParentWorld;
+
         public:
             /// @internal
             /// @brief Basic Constructor
-            InternalDebugDrawer();
+            InternalDebugDrawer(World * ParentWorld);
             /// @internal
             /// @brief Destructor
             virtual ~InternalDebugDrawer();
@@ -178,9 +183,10 @@ namespace Mezzanine
             virtual void reportErrorWarning(const char* warningString);
         };
 
-        InternalDebugDrawer::InternalDebugDrawer() :
+        InternalDebugDrawer::InternalDebugDrawer(World * ParentWorld) :
             WireFrame(NULL),
-            DebugDrawing(Physics::DDM_NoDebug)
+            DebugDrawing(Physics::DDM_NoDebug),
+            ParentWorld(ParentWorld)
             {  }
 
         InternalDebugDrawer::~InternalDebugDrawer()
@@ -192,7 +198,7 @@ namespace Mezzanine
         void InternalDebugDrawer::PrepareForUpdate()
         {
             if( this->WireFrame == NULL ) {
-                this->WireFrame = new Mezzanine::LineGroup();
+                this->WireFrame = new Mezzanine::LineGroup(this->ParentWorld);
                 if( this->DebugDrawing != Physics::DDM_NoDebug ) {
                     this->WireFrame->AddToWorld();
                 }
@@ -376,7 +382,8 @@ namespace Mezzanine
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(const ManagerConstructionInfo& Info) :
+        PhysicsManager::PhysicsManager(const ManagerConstructionInfo& Info, World * ParentWorld ) :
+            WorldManager(ParentWorld),
             SimulationPaused(false),
             DebugRenderMode(0),
             SubstepModifier(1),
@@ -543,9 +550,9 @@ namespace Mezzanine
                                                                              ThreadCount );
                 this->BulletDispatcherThreads = new PosixThreadSupport(BulletThreadInfo);
                 #endif //WINDOWS
-                this->BulletDispatcher = new ParallelCollisionDispatcher(this->BulletDispatcherThreads,ThreadCount,this->BulletCollisionConfiguration);
+                this->BulletDispatcher = new ParallelCollisionDispatcher(this, this->BulletDispatcherThreads,ThreadCount,this->BulletCollisionConfiguration);
             }else{
-                this->BulletDispatcher = new CollisionDispatcher(this->BulletCollisionConfiguration);
+                this->BulletDispatcher = new CollisionDispatcher(this, this->BulletCollisionConfiguration);
             }
 
             // Create the constraint solver
@@ -1084,7 +1091,7 @@ namespace Mezzanine
             }
 
             if( this->Initialized && this->BulletDrawer == NULL ) {
-                this->BulletDrawer = new debug::InternalDebugDrawer();
+                this->BulletDrawer = new debug::InternalDebugDrawer(this->ParentWorld);
                 this->BulletDrawer->setDebugMode( this->DebugRenderMode );
                 this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
             }
@@ -1142,10 +1149,10 @@ namespace Mezzanine
         {
             if( !this->Initialized )
             {
-                //WorldManager::Initialize();
+                WorldManager::Initialize();
 
                 // Create the debugdrawer
-                this->BulletDrawer = new debug::InternalDebugDrawer();
+                this->BulletDrawer = new debug::InternalDebugDrawer(this->ParentWorld);
                 this->BulletDrawer->setDebugMode( this->DebugRenderMode );
                 this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
 
@@ -1159,9 +1166,9 @@ namespace Mezzanine
                 if( GraphicsMan )
                     this->SimulationWork->AddDependency( GraphicsMan->GetRenderWork() );
 
-                Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
-                Mezzanine::AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
-                Mezzanine::DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+                Mezzanine::ActorManager* ActorMan = this->ParentWorld->GetActorManager();
+                Mezzanine::AreaEffectManager* AEMan = this->ParentWorld->GetAreaEffectManager();
+                Mezzanine::DebrisManager* DebrisMan = this->ParentWorld->GetDebrisManager();
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
                 this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork, "DebugDrawWork" );
@@ -1328,7 +1335,7 @@ namespace Mezzanine
                             PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
                     }
                 }
-                return new PhysicsManager(PhysInfo);
+                return new PhysicsManager(PhysInfo, NULL);
             }
         }
 

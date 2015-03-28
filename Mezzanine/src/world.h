@@ -62,6 +62,7 @@ namespace Mezzanine
         class PhysicsManager;
         class ManagerConstructionInfo;
     }
+    class DebrisManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class World
     /// @headerfile world.h
@@ -132,6 +133,13 @@ namespace Mezzanine
         void Deinitialize();
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Pauses all animations, particles, and object movement throughout the world.
+        /// @param Pause Pauses the world if true, unpauses if false.
+        void PauseWorld(Boole Pause);
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Upper Management
 
         /// @brief This adds a manager, in the correct order, to the list that the world calls on.
@@ -176,6 +184,9 @@ namespace Mezzanine
         /// @brief This gets the TerrainManager from the manager list.
         /// @return This returns a pointer to a TerrainManager, or a NULL pointer if no matching manager exists.
         TerrainManager* GetTerrainManager();
+        /// @brief This gets the DebrisManager from the manager list.
+        /// @return This returns a pointer to a DebrisManager, or a NULL pointer if no matching manager exists.
+        DebrisManager* GetDebrisManager();
     };//World
 }//Mezzanine
 

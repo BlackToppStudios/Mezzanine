@@ -102,7 +102,6 @@ namespace Mezzanine
     /// The pointer-like semantics and esures it is destructed exactly once.
     /// This is expected to have members:
     ///    - TargetPtrType - The type of the underlying pointer.
-    ///    - TargetPtrType - The type of the underlying pointer.
     ///    - void Construct() - Called on initial construction.
     ///    - void SetPointer(TargetPtrType Value) - called for copy construction, assignements and with NULL Value for invalidations.
     ///    - TargetPtrType GetPointer() - for dereferencing.
@@ -152,10 +151,11 @@ namespace Mezzanine
             /// not limited to the members defined here. This constructor will call the copy copystructor of the handle before
             /// Calling Construct() on it.
             ManagedPtr(Handle StatefulHandle = Handle())
+                : Target( StatefulHandle )
             {
-                Target=StatefulHandle;
                 Target.Construct();
             }
+
             /// @brief Creates the Target from an already constructed one but invalidates Other ManagedPtr
             /// @details This transfer ownership (who will deconstruct the handle) from the Other ManagedPtr to this one. This
             /// Does not call Construct().
@@ -203,7 +203,7 @@ namespace Mezzanine
             /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             TargetPtrType Get()
-                { return Target.GePointer(); }
+                { return Target.GetPointer(); }
 
             /// @copydoc Get
             /// @note Provided to match method names on standard smart pointers
@@ -219,7 +219,7 @@ namespace Mezzanine
             /// @param Other The right hand portion of the comparison
             /// @return Bool Hopefully thi is false, becase
             Boole operator== (ManagedPtr& Other)
-                { return Target.GetPointer() == Other.Target.GetP0inter(); }
+                { return Target.GetPointer() == Other.Target.GetPointer(); }
 
             /// @brief Destroy the target and invalidate it.
             ~ManagedPtr()

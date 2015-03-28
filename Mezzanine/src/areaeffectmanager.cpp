@@ -50,6 +50,7 @@
 
 #include "actormanager.h"
 #include "entresol.h"
+#include "world.h"
 
 #include <sstream>
 #include <algorithm>
@@ -86,7 +87,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // AreaEffectManager Methods
 
-    AreaEffectManager::AreaEffectManager() :
+    AreaEffectManager::AreaEffectManager(World * ParentWorld) :
+        WorldManager(ParentWorld),
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
     {
@@ -418,17 +420,17 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
-            //WorldManager::Initialize();
+            WorldManager::Initialize();     // Verify we have a world
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork, "AreaEffectUpdateWork" );
 
-            Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = this->ParentWorld->GetPhysicsManager();
             if( PhysicsMan ) {
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetWorldTriggerUpdateWork() );
             }
 
-            Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
+            Mezzanine::ActorManager* ActorMan = this->ParentWorld->GetActorManager();
             if( ActorMan ) {
                 this->AreaEffectUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
             }
