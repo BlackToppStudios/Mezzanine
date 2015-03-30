@@ -27,10 +27,10 @@ StartArea::~StartArea()
 void StartArea::CreateStartArea(const Vector3& HalfAreaSize)
 {
     CatchApp::GetCatchAppPointer()->RegisterStartArea(this);
-    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
-    //Graphics::MeshManager* MeshMan = Entresol::GetSingletonPtr()->GetMeshManager();
-    //Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-    //Physics::CollisionShapeMananger* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
+    Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
+    //Graphics::MeshManager* MeshMan = this->ParentWorld->GetMeshManager();
+    //Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
+    //Physics::CollisionShapeMananger* CSMan = this->ParentWorld->GetCollisionShapeManager();
 
     if( SceneMan != NULL ) {
         this->ParSysProx = SceneMan->CreateParticleSystemProxy("StartVortex",false);
@@ -57,7 +57,7 @@ void StartArea::CreateStartArea(const Vector3& HalfAreaSize)
 void StartArea::DestroyStartArea()
 {
     this->RemoveFromWorld();
-    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+    Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
     if( this->ParSysProx != NULL && SceneMan != NULL ) {
         SceneMan->DestroyProxy( this->ParSysProx );
         this->ParSysProx = NULL;
@@ -129,7 +129,7 @@ void StartArea::ApplyEffect()
 
     if( !this->RemovedObjects.empty() )
     {
-        const Vector3 WorldGrav = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetWorldGravity();
+        const Vector3 WorldGrav = this->ParentWorld->GetPhysicsManager()->GetWorldGravity();
         for( ObjectIterator ObjIt = this->RemovedObjects.begin() ; ObjIt != this->RemovedObjects.end() ; ObjIt++ )
         {
             ProxyContainer ColProxies;
@@ -335,7 +335,7 @@ void StartArea::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
 
             XML::Node ParSysProxNode = ProxiesNode.GetChild("ParSysProx").GetFirstChild();
             if( !ParSysProxNode.Empty() ) {
-                Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
                 if( SceneMan ) {
                     this->ParSysProx = SceneMan->CreateParticleSystemProxy(ParSysProxNode);
                     this->ParSysProx->_Bind( this );

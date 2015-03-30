@@ -27,7 +27,7 @@ LevelZone::~LevelZone()
 
 void LevelZone::CreateLevelZone()
 {
-    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+    Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
     if( SceneMan != NULL ) {
         this->EntProx = SceneMan->CreateEntityProxy(false);
         this->EntProx->_Bind(this);
@@ -37,7 +37,7 @@ void LevelZone::CreateLevelZone()
 void LevelZone::DestroyLevelZone()
 {
     this->RemoveFromWorld();
-    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+    Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
     if( this->EntProx != NULL && SceneMan != NULL ) {
         SceneMan->DestroyProxy( this->EntProx );
         this->EntProx = NULL;
@@ -271,7 +271,7 @@ void LevelZone::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
 
             XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
             if( !EntProxNode.Empty() ) {
-                Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
                 if( SceneMan ) {
                     this->EntProx = SceneMan->CreateEntityProxy(EntProxNode);
                     this->EntProx->_Bind( this );

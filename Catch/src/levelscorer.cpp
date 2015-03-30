@@ -24,7 +24,7 @@ Whole LevelScorer::GetItemScoreValue(Debris* Item)
 Real LevelScorer::FindHighestMultiplier(Debris* Throwable)
 {
     Real RetMulti = 0.0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = this->GameApp->GetTheWorld()->GetAreaEffectManager();
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -73,7 +73,7 @@ Whole LevelScorer::CalculateTimerScore()
         ThrowableContainer& Throwables = this->GameApp->GetThrowables();
         Whole ActorsInScoreZones = 0;
 
-        AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+        AreaEffectManager* AEMan = this->GameApp->GetTheWorld()->GetAreaEffectManager();
         AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
         for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
         {
@@ -246,7 +246,7 @@ Whole LevelScorer::PresentFinalScore()
 Whole LevelScorer::GetNumScoreAreas() const
 {
     Whole ScoreAreaCount = 0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = this->GameApp->GetTheWorld()->GetAreaEffectManager();
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -260,7 +260,7 @@ Whole LevelScorer::GetNumScoreAreas() const
 Whole LevelScorer::GetNumAddedThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = this->GameApp->GetTheWorld()->GetAreaEffectManager();
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -280,7 +280,7 @@ Whole LevelScorer::GetNumAddedThrowables() const
 Whole LevelScorer::GetNumOverlappingThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = this->GameApp->GetTheWorld()->GetAreaEffectManager();
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -300,7 +300,7 @@ Whole LevelScorer::GetNumOverlappingThrowables() const
 Whole LevelScorer::GetNumRemovedThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = this->GameApp->GetTheWorld()->GetAreaEffectManager();
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {

@@ -281,7 +281,7 @@ CatchPostInputWorkUnit::~CatchPostInputWorkUnit()
 void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     // Setup our pointers
-    Graphics::CameraManager* CamMan = Entresol::GetSingletonPtr()->GetCameraManager();
+    Graphics::CameraManager* CamMan = CatchApp::GetCatchAppPointer()->GetTheWorld()->GetCameraManager();
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
@@ -302,7 +302,7 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     }
     // Determine our Debug drawer visibility
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) ) {
-        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = CatchApp::GetCatchAppPointer()->GetTheWorld()->GetPhysicsManager();
         if( PhysMan->GetDebugRenderingMode() == Physics::DDM_NoDebug ) {
             PhysMan->SetDebugRenderingMode( Physics::DDM_DrawWireframe );
         }else{
@@ -357,7 +357,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                         rigid->GetRigidProxy()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
                         Dragger = new Physics::Point2PointConstraint(rigid->GetRigidProxy(), LocalPivot);
                         Dragger->SetTAU(0.001);
-                        Entresol::GetSingletonPtr()->GetPhysicsManager()->AddConstraint(Dragger);
+                        CatchApp::GetCatchAppPointer()->GetTheWorld()->GetPhysicsManager()->AddConstraint(Dragger);
                         Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
                         Dragger->SetParam(Physics::Con_CFM,0.8,-1);
                         //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
@@ -379,7 +379,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
 
             if(Dragger && !this->CatchApplication->IsInsideAnyStartZone( this->CatchApplication->LastObjectThrown ) ) {
                 Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
+                CatchApp::GetCatchAppPointer()->GetTheWorld()->GetPhysicsManager()->RemoveConstraint(Dragger);
                 Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
             }
         }
@@ -387,7 +387,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
     }else{  //Since we are no longer clicking we need to setup for the next clicking
         if( Dragger ) {
             Physics::RigidProxy* Prox = Dragger->GetProxyA();
-            Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
+            CatchApp::GetCatchAppPointer()->GetTheWorld()->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger = NULL;
             Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);

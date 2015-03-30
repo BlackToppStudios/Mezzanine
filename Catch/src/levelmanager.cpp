@@ -14,14 +14,15 @@ void LoadFerris()
     // Get our major roots
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
+    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -35,7 +36,7 @@ void LoadFerris()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -285,14 +286,15 @@ void LoadBigCurve()
     // Get our major roots
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
+    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -306,7 +308,7 @@ void LoadBigCurve()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -411,14 +413,15 @@ void LoadBlowsNotSucks()
     // Get our major roots
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
+    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -432,7 +435,7 @@ void LoadBlowsNotSucks()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -628,14 +631,15 @@ void LoadJustice()
     // Get our major roots
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
+    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -649,7 +653,7 @@ void LoadJustice()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -848,14 +852,15 @@ void LoadRollers()
     // Get our major roots
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
+    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -869,7 +874,7 @@ void LoadRollers()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -991,14 +996,15 @@ void LoadJustBounce()
     // Get our major roots
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
+    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -1012,7 +1018,7 @@ void LoadJustBounce()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -1529,29 +1535,19 @@ void LevelManager::LoadNextLevel()
 
 void LevelManager::UnloadLevel()
 {
-    /// @todo This should be populated with the appropriate logic after the world restructuring and engine state refactors are done.
+    // World Cleanup
+    this->TheEntresol->GetWorld(0)->Clear();
+
+    // Entresol Cleanup
+
+    /// @todo This should be populated with the appropriate logic after the engine state refactors are done.
     //Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActorMan = this->TheEntresol->GetActorManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
 
-    PhysMan->DestroyAllConstraints();
-    ActorMan->DestroyAllActors();
-    AreaEffectMan->DestroyAllAreaEffects();
-    DebrisMan->DestroyAllDebris();
-    SceneMan->DestroyAllProxies();
-    SceneMan->DisableSky();
-    PhysMan->DestroyAllProxies();
-    PhysMan->DestroyAllWorldTriggers();
     CShapeMan->DestroyAllShapes();
-
     //ResMan->DestroyAssetGroup(LevelMan->GetCurrentLevel()->GetGroupName());
-    PhysMan->ClearPhysicsMetaData();
 
     UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
     GameScreen->GetWidget("GS_LevelReport")->Hide();

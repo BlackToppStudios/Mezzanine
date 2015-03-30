@@ -47,6 +47,7 @@ protected:
     Scripting::Lua::Lua51WorkUnit* LuaScriptWork;
 
     Entresol* TheEntresol;
+    World* TheWorld;
     ProfileManager* Profiles;
     LevelManager* LevelMan;
     LevelScorer* Scorer;
@@ -105,6 +106,7 @@ public:
     Scripting::Lua::Lua51WorkUnit* GetLuaScriptWork() const;
 
     Entresol* GetTheEntresol() const;
+    World* GetTheWorld() const;
 
     ThrowableContainer& GetThrowables();
     LevelManager* GetLevelManager() const;
