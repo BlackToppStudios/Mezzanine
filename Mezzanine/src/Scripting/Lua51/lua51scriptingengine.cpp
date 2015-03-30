@@ -330,7 +330,8 @@ namespace Mezzanine
 
             const String Lua51ScriptingEngine::GlobalTableName             = "_G";
 
-            const String Lua51ScriptingEngine::ScriptEngineName            = "Lua51ScriptingEngine";
+            const String Lua51ScriptingEngine::ScriptEngineName                = "Lua51ScriptingEngine";
+            const ManagerBase::ManagerType Lua51ScriptingEngine::InterfaceType = ManagerBase::MT_ScriptingManager;
 
             const String& Lua51ScriptingEngine::GetLibName(Lua51ScriptingEngine::Lua51Libraries Lib)
             {
@@ -897,19 +898,20 @@ namespace Mezzanine
                 lua_pop(State, 1);
             }
 
-            String Lua51ScriptingEngineFactory::GetManagerTypeName() const
+            String Lua51ScriptingEngineFactory::GetManagerImplName() const
                 { return Lua51ScriptingEngine::ScriptEngineName; }
 
-            ManagerBase*Lua51ScriptingEngineFactory::CreateManager(NameValuePairList& Params)
+            ManagerBase::ManagerType Lua51ScriptingEngineFactory::GetManagerType() const
+                { return Lua51ScriptingEngine::InterfaceType; }
+
+            EntresolManager* Lua51ScriptingEngineFactory::CreateManager(NameValuePairList& Params)
                 { return new Lua51ScriptingEngine(Params); }
 
-            ManagerBase*Lua51ScriptingEngineFactory::CreateManager(XML::Node& XMLNode)
+            EntresolManager* Lua51ScriptingEngineFactory::CreateManager(XML::Node& XMLNode)
                 { return new Lua51ScriptingEngine(XMLNode); }
 
-            void Lua51ScriptingEngineFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+            void Lua51ScriptingEngineFactory::DestroyManager(EntresolManager* ToBeDestroyed)
                 { delete ToBeDestroyed; }
-
-
         } // Lua
     } // Scripting
 } // Mezzanine

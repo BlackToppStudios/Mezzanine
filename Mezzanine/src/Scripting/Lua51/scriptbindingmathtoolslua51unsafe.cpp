@@ -2642,102 +2642,108 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_ChannelType swig_types[0]
-#define SWIGTYPE_p_Mezzanine__ArithmeticException swig_types[1]
-#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[2]
-#define SWIGTYPE_p_Mezzanine__DirectoryException swig_types[3]
-#define SWIGTYPE_p_Mezzanine__DirectoryNotFoundException swig_types[4]
-#define SWIGTYPE_p_Mezzanine__DirectoryPermissionException swig_types[5]
-#define SWIGTYPE_p_Mezzanine__DirectoryReadException swig_types[6]
-#define SWIGTYPE_p_Mezzanine__DirectoryWriteException swig_types[7]
-#define SWIGTYPE_p_Mezzanine__Exception swig_types[8]
-#define SWIGTYPE_p_Mezzanine__FileException swig_types[9]
-#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[10]
-#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[11]
-#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[12]
-#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[13]
-#define SWIGTYPE_p_Mezzanine__IOException swig_types[14]
-#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[15]
-#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[16]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[17]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[18]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[19]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[20]
-#define SWIGTYPE_p_Mezzanine__InternalException swig_types[21]
-#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[22]
-#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[23]
-#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[24]
-#define SWIGTYPE_p_Mezzanine__LineSegment2D swig_types[25]
-#define SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad swig_types[26]
-#define SWIGTYPE_p_Mezzanine__MathTools__PointPointInterection swig_types[27]
-#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[28]
-#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[29]
-#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[30]
-#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[31]
-#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[32]
-#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[33]
-#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[34]
-#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[35]
-#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[36]
-#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[37]
-#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[38]
-#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[39]
-#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[40]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[41]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[42]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[43]
-#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[44]
-#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[45]
-#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[46]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[47]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[48]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[49]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[50]
-#define SWIGTYPE_p_Mezzanine__Sphere swig_types[51]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[52]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[53]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[54]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[55]
-#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[56]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[57]
-#define SWIGTYPE_p_Mezzanine__Vector2LengthCompare swig_types[58]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[59]
-#define SWIGTYPE_p_Mezzanine__Vector3LengthCompare swig_types[60]
-#define SWIGTYPE_p_Ogre__Plane swig_types[61]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[62]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[63]
-#define SWIGTYPE_p_RayTestResult swig_types[64]
-#define SWIGTYPE_p_SDL_Event swig_types[65]
-#define SWIGTYPE_p_XML__Node swig_types[66]
-#define SWIGTYPE_p_bool swig_types[67]
-#define SWIGTYPE_p_btVector3 swig_types[68]
-#define SWIGTYPE_p_char swig_types[69]
-#define SWIGTYPE_p_double swig_types[70]
-#define SWIGTYPE_p_float swig_types[71]
-#define SWIGTYPE_p_int swig_types[72]
-#define SWIGTYPE_p_long_long swig_types[73]
-#define SWIGTYPE_p_short swig_types[74]
-#define SWIGTYPE_p_signed_char swig_types[75]
-#define SWIGTYPE_p_std__exception swig_types[76]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[77]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[78]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__LineSegment2D_t swig_types[79]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__LineSegment3D_t swig_types[80]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[81]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector2_t swig_types[82]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[83]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[84]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[85]
-#define SWIGTYPE_p_std__string swig_types[86]
-#define SWIGTYPE_p_std__stringstream swig_types[87]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[88]
-#define SWIGTYPE_p_std__wstring swig_types[89]
-#define SWIGTYPE_p_unsigned_char swig_types[90]
-#define SWIGTYPE_p_unsigned_int swig_types[91]
-#define SWIGTYPE_p_unsigned_long swig_types[92]
-#define SWIGTYPE_p_unsigned_long_long swig_types[93]
-#define SWIGTYPE_p_unsigned_short swig_types[94]
-static swig_type_info *swig_types[96];
-static swig_module_info swig_module = {swig_types, 95, 0, 0, 0, 0};
+#define SWIGTYPE_p_IntType swig_types[1]
+#define SWIGTYPE_p_Mezzanine__ArithmeticException swig_types[2]
+#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[3]
+#define SWIGTYPE_p_Mezzanine__DirectoryException swig_types[4]
+#define SWIGTYPE_p_Mezzanine__DirectoryNotFoundException swig_types[5]
+#define SWIGTYPE_p_Mezzanine__DirectoryPermissionException swig_types[6]
+#define SWIGTYPE_p_Mezzanine__DirectoryReadException swig_types[7]
+#define SWIGTYPE_p_Mezzanine__DirectoryWriteException swig_types[8]
+#define SWIGTYPE_p_Mezzanine__Exception swig_types[9]
+#define SWIGTYPE_p_Mezzanine__FileException swig_types[10]
+#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[11]
+#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[12]
+#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[13]
+#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[14]
+#define SWIGTYPE_p_Mezzanine__IOException swig_types[15]
+#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[16]
+#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[17]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[18]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[19]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[20]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[21]
+#define SWIGTYPE_p_Mezzanine__InternalException swig_types[22]
+#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[23]
+#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[24]
+#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[25]
+#define SWIGTYPE_p_Mezzanine__LineSegment2D swig_types[26]
+#define SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad swig_types[27]
+#define SWIGTYPE_p_Mezzanine__MathTools__MT32Traits swig_types[28]
+#define SWIGTYPE_p_Mezzanine__MathTools__MT64Traits swig_types[29]
+#define SWIGTYPE_p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT32Traits_t swig_types[30]
+#define SWIGTYPE_p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT64Traits_t swig_types[31]
+#define SWIGTYPE_p_Mezzanine__MathTools__PointPointInterection swig_types[32]
+#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[33]
+#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[34]
+#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[35]
+#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[36]
+#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[37]
+#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[38]
+#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[39]
+#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[40]
+#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[41]
+#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[42]
+#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[43]
+#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[44]
+#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[45]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[46]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[47]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[48]
+#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[49]
+#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[50]
+#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[51]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[52]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[53]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[54]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[55]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[56]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[57]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[58]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[59]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[60]
+#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[61]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[62]
+#define SWIGTYPE_p_Mezzanine__Vector2LengthCompare swig_types[63]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[64]
+#define SWIGTYPE_p_Mezzanine__Vector3LengthCompare swig_types[65]
+#define SWIGTYPE_p_Ogre__Plane swig_types[66]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[67]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[68]
+#define SWIGTYPE_p_RayTestResult swig_types[69]
+#define SWIGTYPE_p_SDL_Event swig_types[70]
+#define SWIGTYPE_p_UIntType swig_types[71]
+#define SWIGTYPE_p_XML__Node swig_types[72]
+#define SWIGTYPE_p_bool swig_types[73]
+#define SWIGTYPE_p_btVector3 swig_types[74]
+#define SWIGTYPE_p_char swig_types[75]
+#define SWIGTYPE_p_double swig_types[76]
+#define SWIGTYPE_p_float swig_types[77]
+#define SWIGTYPE_p_int swig_types[78]
+#define SWIGTYPE_p_long_long swig_types[79]
+#define SWIGTYPE_p_short swig_types[80]
+#define SWIGTYPE_p_signed_char swig_types[81]
+#define SWIGTYPE_p_std__exception swig_types[82]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[83]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[84]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__LineSegment2D_t swig_types[85]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__LineSegment3D_t swig_types[86]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[87]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector2_t swig_types[88]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[89]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[90]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[91]
+#define SWIGTYPE_p_std__string swig_types[92]
+#define SWIGTYPE_p_std__stringstream swig_types[93]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[94]
+#define SWIGTYPE_p_std__wstring swig_types[95]
+#define SWIGTYPE_p_unsigned_char swig_types[96]
+#define SWIGTYPE_p_unsigned_int swig_types[97]
+#define SWIGTYPE_p_unsigned_long swig_types[98]
+#define SWIGTYPE_p_unsigned_long_long swig_types[99]
+#define SWIGTYPE_p_unsigned_short swig_types[100]
+static swig_type_info *swig_types[102];
+static swig_module_info swig_module = {swig_types, 101, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3097,6 +3103,337 @@ static swig_lua_namespace swig_string_Sf_SwigStatic = {
 static swig_lua_class *swig_string_bases[] = {0};
 static const char *swig_string_base_names[] = {0};
 static swig_lua_class _wrap_class_string = { "string", "string", &SWIGTYPE_p_std__string,_proxy__wrap_new_string, swig_delete_string, swig_string_methods, swig_string_attributes, &swig_string_Sf_SwigStatic, swig_string_meta, swig_string_bases, swig_string_base_names };
+
+static int _wrap_Ceil(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::Ceil",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Ceil",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Ceil(arg1);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Floor(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::Floor",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Floor",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Floor(arg1);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Pow(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::Pow",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Pow",1,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Pow",2,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Pow(arg1,arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Exp(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::Exp",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Exp",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Exp(arg1);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Sqrt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::Sqrt",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Sqrt",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Sqrt(arg1);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Abs(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::Abs",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Abs",1,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Abs(arg1);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Mod(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::Mod",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Mod",1,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Mod",2,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  result = (Mezzanine::Real)Mezzanine::MathTools::Mod(arg1,arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WithinTolerance(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real arg3 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::WithinTolerance",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",1,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",2,"Mezzanine::Real const");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",3,"Mezzanine::Real const");
+  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  arg3 = (Mezzanine::Real const)lua_tonumber(L, 3);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::WithinTolerance(arg1,arg2,arg3);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WrappedModulo(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Integer arg1 ;
+  Mezzanine::Integer arg2 ;
+  Mezzanine::Integer result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::WrappedModulo",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::WrappedModulo",1,"Mezzanine::Integer const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::WrappedModulo",2,"Mezzanine::Integer const");
+  arg1 = (Mezzanine::Integer const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Integer const)lua_tonumber(L, 2);
+  result = (Mezzanine::Integer)Mezzanine::MathTools::WrappedModulo(arg1,arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetPi(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::GetPi",0,0)
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetPi();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetTwoPi(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::GetTwoPi",0,0)
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetTwoPi();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetHalfPi(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::GetHalfPi",0,0)
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetHalfPi();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetQuarterPi(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::GetQuarterPi",0,0)
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetQuarterPi();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetSqrtTwo(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::GetSqrtTwo",0,0)
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetSqrtTwo();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetSqrtThree(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::GetSqrtThree",0,0)
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetSqrtThree();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetRadToDegMultiplier(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::GetRadToDegMultiplier",0,0)
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetRadToDegMultiplier();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetDegToRadMultiplier(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::GetDegToRadMultiplier",0,0)
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetDegToRadMultiplier();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
 
 static int _wrap_Vector2_X_set(lua_State* L) {
   int SWIG_arg = 0;
@@ -16786,6 +17123,37 @@ fail:
 }
 
 
+static int _wrap_Vector3_AngleBetween(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::Vector3::AngleBetween",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector3::AngleBetween",1,"Mezzanine::Vector3 const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Vector3::AngleBetween",2,"Mezzanine::Vector3 const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("Vector3_AngleBetween",1,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("Vector3_AngleBetween",2,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  result = (Mezzanine::Real)((Mezzanine::Vector3 const *)arg1)->AngleBetween((Mezzanine::Vector3 const &)*arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Vector3_Permute(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
@@ -17715,6 +18083,7 @@ static swig_lua_method swig_Vector3_methods[]= {
     { "DotProduct", _wrap_Vector3_DotProduct},
     { "Normalize", _wrap_Vector3_Normalize},
     { "GetNormal", _wrap_Vector3_GetNormal},
+    { "AngleBetween", _wrap_Vector3_AngleBetween},
     { "Permute", _wrap_Vector3_Permute},
     { "GetPermute", _wrap_Vector3_GetPermute},
     { "AntiPermute", _wrap_Vector3_AntiPermute},
@@ -20827,303 +21196,6 @@ static int _wrap_Intersects(lua_State* L) {
 }
 
 
-static int _wrap_Ceil(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::Ceil",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Ceil",1,"Mezzanine::Real const");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Ceil(arg1);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Floor(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::Floor",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Floor",1,"Mezzanine::Real const");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Floor(arg1);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Pow(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Real arg2 ;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::Pow",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Pow",1,"Mezzanine::Real const");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Pow",2,"Mezzanine::Real const");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Pow(arg1,arg2);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Exp(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::Exp",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Exp",1,"Mezzanine::Real const");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Exp(arg1);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Sqrt(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::Sqrt",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Sqrt",1,"Mezzanine::Real const");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Sqrt(arg1);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Abs(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::Abs",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Abs",1,"Mezzanine::Real const");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Abs(arg1);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Mod(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Real arg2 ;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::Mod",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::Mod",1,"Mezzanine::Real const");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::Mod",2,"Mezzanine::Real const");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
-  result = (Mezzanine::Real)Mezzanine::MathTools::Mod(arg1,arg2);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WithinTolerance(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Real arg2 ;
-  Mezzanine::Real arg3 ;
-  Mezzanine::Boole result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::WithinTolerance",3,3)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",1,"Mezzanine::Real const");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",2,"Mezzanine::Real const");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::MathTools::WithinTolerance",3,"Mezzanine::Real const");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
-  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
-  arg3 = (Mezzanine::Real const)lua_tonumber(L, 3);
-  result = (Mezzanine::Boole)Mezzanine::MathTools::WithinTolerance(arg1,arg2,arg3);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WrappedModulo(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Integer arg1 ;
-  Mezzanine::Integer arg2 ;
-  Mezzanine::Integer result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::WrappedModulo",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::WrappedModulo",1,"Mezzanine::Integer const");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::WrappedModulo",2,"Mezzanine::Integer const");
-  arg1 = (Mezzanine::Integer const)lua_tonumber(L, 1);
-  arg2 = (Mezzanine::Integer const)lua_tonumber(L, 2);
-  result = (Mezzanine::Integer)Mezzanine::MathTools::WrappedModulo(arg1,arg2);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetPi(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::GetPi",0,0)
-  result = (Mezzanine::Real)Mezzanine::MathTools::GetPi();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetTwoPi(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::GetTwoPi",0,0)
-  result = (Mezzanine::Real)Mezzanine::MathTools::GetTwoPi();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetHalfPi(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::GetHalfPi",0,0)
-  result = (Mezzanine::Real)Mezzanine::MathTools::GetHalfPi();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetQuarterPi(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::GetQuarterPi",0,0)
-  result = (Mezzanine::Real)Mezzanine::MathTools::GetQuarterPi();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetRadToDegMultiplier(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::GetRadToDegMultiplier",0,0)
-  result = (Mezzanine::Real)Mezzanine::MathTools::GetRadToDegMultiplier();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetDegToRadMultiplier(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Real result;
-  
-  SWIG_check_num_args("Mezzanine::MathTools::GetDegToRadMultiplier",0,0)
-  result = (Mezzanine::Real)Mezzanine::MathTools::GetDegToRadMultiplier();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_AxisAlignedQuad_AlignedOn_set(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::MathTools::AxisAlignedQuad *arg1 = (Mezzanine::MathTools::AxisAlignedQuad *) 0 ;
@@ -21696,6 +21768,247 @@ static swig_lua_class *swig_AxisAlignedQuad_bases[] = {0};
 static const char *swig_AxisAlignedQuad_base_names[] = {0};
 static swig_lua_class _wrap_class_AxisAlignedQuad = { "AxisAlignedQuad", "AxisAlignedQuad", &SWIGTYPE_p_Mezzanine__MathTools__AxisAlignedQuad,_proxy__wrap_new_AxisAlignedQuad, swig_delete_AxisAlignedQuad, swig_AxisAlignedQuad_methods, swig_AxisAlignedQuad_attributes, &swig_AxisAlignedQuad_Sf_SwigStatic, swig_AxisAlignedQuad_meta, swig_AxisAlignedQuad_bases, swig_AxisAlignedQuad_base_names };
 
+static int _wrap_MT32Traits_Twist(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MathTools::MT32Traits::UIntType *arg1 = 0 ;
+  Mezzanine::MathTools::MT32Traits::UIntType *arg2 = 0 ;
+  Mezzanine::MathTools::MT32Traits::UIntType temp1 ;
+  Mezzanine::MathTools::MT32Traits::UIntType temp2 ;
+  Mezzanine::MathTools::MT32Traits::UIntType result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::MT32Traits::Twist",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::MT32Traits::Twist",1,"Mezzanine::MathTools::MT32Traits::UIntType const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::MT32Traits::Twist",2,"Mezzanine::MathTools::MT32Traits::UIntType const &");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  temp1=(Mezzanine::MathTools::MT32Traits::UIntType)lua_tonumber(L,1); arg1=&temp1;
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  temp2=(Mezzanine::MathTools::MT32Traits::UIntType)lua_tonumber(L,2); arg2=&temp2;
+  result = (Mezzanine::MathTools::MT32Traits::UIntType)Mezzanine::MathTools::MT32Traits::Twist((unsigned int const &)*arg1,(unsigned int const &)*arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MT32Traits_Temper(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MathTools::MT32Traits::UIntType arg1 ;
+  Mezzanine::MathTools::MT32Traits::UIntType result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::MT32Traits::Temper",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::MT32Traits::Temper",1,"Mezzanine::MathTools::MT32Traits::UIntType");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  arg1 = (Mezzanine::MathTools::MT32Traits::UIntType)lua_tonumber(L, 1);
+  result = (Mezzanine::MathTools::MT32Traits::UIntType)Mezzanine::MathTools::MT32Traits::Temper(arg1);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_MT32Traits(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MathTools::MT32Traits *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::MT32Traits::MT32Traits",0,0)
+  result = (Mezzanine::MathTools::MT32Traits *)new Mezzanine::MathTools::MT32Traits();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__MT32Traits,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MT32Traits(void *obj) {
+Mezzanine::MathTools::MT32Traits *arg1 = (Mezzanine::MathTools::MT32Traits *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_MT32Traits(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_MT32Traits);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_MT32Traits_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_MT32Traits_methods[]= {
+    {0,0}
+};
+static swig_lua_method swig_MT32Traits_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_MT32Traits_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_MT32Traits_Sf_SwigStatic_constants[]= {
+    {SWIG_LUA_CONSTTAB_INT("WordSize", Mezzanine::MathTools::MT32Traits::WordSize)},
+    {SWIG_LUA_CONSTTAB_INT("StateSize", Mezzanine::MathTools::MT32Traits::StateSize)},
+    {SWIG_LUA_CONSTTAB_INT("ShiftSize", Mezzanine::MathTools::MT32Traits::ShiftSize)},
+    {SWIG_LUA_CONSTTAB_INT("MaxDoubleValue", Mezzanine::MathTools::MT32Traits::MaxDoubleValue)},
+    {SWIG_LUA_CONSTTAB_INT("InitValue", Mezzanine::MathTools::MT32Traits::InitValue)},
+    {SWIG_LUA_CONSTTAB_INT("ArrayInitSeed", Mezzanine::MathTools::MT32Traits::ArrayInitSeed)},
+    {SWIG_LUA_CONSTTAB_INT("ArrayInitValue_1", Mezzanine::MathTools::MT32Traits::ArrayInitValue_1)},
+    {SWIG_LUA_CONSTTAB_INT("ArrayInitValue_2", Mezzanine::MathTools::MT32Traits::ArrayInitValue_2)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_MT32Traits_Sf_SwigStatic_methods[]= {
+    { "Twist", _wrap_MT32Traits_Twist},
+    { "Temper", _wrap_MT32Traits_Temper},
+    {0,0}
+};
+static swig_lua_class* swig_MT32Traits_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_MT32Traits_Sf_SwigStatic = {
+    "MT32Traits",
+    swig_MT32Traits_Sf_SwigStatic_methods,
+    swig_MT32Traits_Sf_SwigStatic_attributes,
+    swig_MT32Traits_Sf_SwigStatic_constants,
+    swig_MT32Traits_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_MT32Traits_bases[] = {0};
+static const char *swig_MT32Traits_base_names[] = {0};
+static swig_lua_class _wrap_class_MT32Traits = { "MT32Traits", "MT32Traits", &SWIGTYPE_p_Mezzanine__MathTools__MT32Traits,_proxy__wrap_new_MT32Traits, swig_delete_MT32Traits, swig_MT32Traits_methods, swig_MT32Traits_attributes, &swig_MT32Traits_Sf_SwigStatic, swig_MT32Traits_meta, swig_MT32Traits_bases, swig_MT32Traits_base_names };
+
+static int _wrap_MT64Traits_Twist(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MathTools::MT64Traits::UIntType *arg1 = 0 ;
+  Mezzanine::MathTools::MT64Traits::UIntType *arg2 = 0 ;
+  Mezzanine::MathTools::MT64Traits::UIntType temp1 ;
+  Mezzanine::MathTools::MT64Traits::UIntType temp2 ;
+  Mezzanine::MathTools::MT64Traits::UIntType result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::MT64Traits::Twist",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::MT64Traits::Twist",1,"Mezzanine::MathTools::MT64Traits::UIntType const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::MathTools::MT64Traits::Twist",2,"Mezzanine::MathTools::MT64Traits::UIntType const &");
+  temp1=(Mezzanine::MathTools::MT64Traits::UIntType)lua_tonumber(L,1); arg1=&temp1;
+  temp2=(Mezzanine::MathTools::MT64Traits::UIntType)lua_tonumber(L,2); arg2=&temp2;
+  result = (Mezzanine::MathTools::MT64Traits::UIntType)Mezzanine::MathTools::MT64Traits::Twist((unsigned long long const &)*arg1,(unsigned long long const &)*arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MT64Traits_Temper(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MathTools::MT64Traits::UIntType arg1 ;
+  Mezzanine::MathTools::MT64Traits::UIntType result;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::MT64Traits::Temper",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::MathTools::MT64Traits::Temper",1,"Mezzanine::MathTools::MT64Traits::UIntType");
+  arg1 = (Mezzanine::MathTools::MT64Traits::UIntType)lua_tonumber(L, 1);
+  result = (Mezzanine::MathTools::MT64Traits::UIntType)Mezzanine::MathTools::MT64Traits::Temper(arg1);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_MT64Traits(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MathTools::MT64Traits *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::MathTools::MT64Traits::MT64Traits",0,0)
+  result = (Mezzanine::MathTools::MT64Traits *)new Mezzanine::MathTools::MT64Traits();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MathTools__MT64Traits,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MT64Traits(void *obj) {
+Mezzanine::MathTools::MT64Traits *arg1 = (Mezzanine::MathTools::MT64Traits *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_MT64Traits(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_MT64Traits);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_MT64Traits_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_MT64Traits_methods[]= {
+    {0,0}
+};
+static swig_lua_method swig_MT64Traits_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_MT64Traits_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_MT64Traits_Sf_SwigStatic_constants[]= {
+    {SWIG_LUA_CONSTTAB_INT("WordSize", Mezzanine::MathTools::MT64Traits::WordSize)},
+    {SWIG_LUA_CONSTTAB_INT("StateSize", Mezzanine::MathTools::MT64Traits::StateSize)},
+    {SWIG_LUA_CONSTTAB_INT("ShiftSize", Mezzanine::MathTools::MT64Traits::ShiftSize)},
+    {SWIG_LUA_CONSTTAB_STRING("MaxDoubleValue", "Mezzanine::MathTools::MT64Traits::MaxDoubleValue")},
+    {SWIG_LUA_CONSTTAB_STRING("InitValue", "Mezzanine::MathTools::MT64Traits::InitValue")},
+    {SWIG_LUA_CONSTTAB_STRING("ArrayInitSeed", "Mezzanine::MathTools::MT64Traits::ArrayInitSeed")},
+    {SWIG_LUA_CONSTTAB_STRING("ArrayInitValue_1", "Mezzanine::MathTools::MT64Traits::ArrayInitValue_1")},
+    {SWIG_LUA_CONSTTAB_STRING("ArrayInitValue_2", "Mezzanine::MathTools::MT64Traits::ArrayInitValue_2")},
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_MT64Traits_Sf_SwigStatic_methods[]= {
+    { "Twist", _wrap_MT64Traits_Twist},
+    { "Temper", _wrap_MT64Traits_Temper},
+    {0,0}
+};
+static swig_lua_class* swig_MT64Traits_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_MT64Traits_Sf_SwigStatic = {
+    "MT64Traits",
+    swig_MT64Traits_Sf_SwigStatic_methods,
+    swig_MT64Traits_Sf_SwigStatic_attributes,
+    swig_MT64Traits_Sf_SwigStatic_constants,
+    swig_MT64Traits_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_MT64Traits_bases[] = {0};
+static const char *swig_MT64Traits_base_names[] = {0};
+static swig_lua_class _wrap_class_MT64Traits = { "MT64Traits", "MT64Traits", &SWIGTYPE_p_Mezzanine__MathTools__MT64Traits,_proxy__wrap_new_MT64Traits, swig_delete_MT64Traits, swig_MT64Traits_methods, swig_MT64Traits_attributes, &swig_MT64Traits_Sf_SwigStatic, swig_MT64Traits_meta, swig_MT64Traits_bases, swig_MT64Traits_base_names };
+
 static int _wrap_Cos(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Real *arg1 = 0 ;
@@ -21868,8 +22181,8 @@ static swig_lua_attribute swig_SwigModule_attributes[] = {
     {0,0,0}
 };
 static swig_lua_const_info swig_SwigModule_constants[]= {
-    {SWIG_LUA_CONSTTAB_INT("MEZZ_FRAMESTOTRACK", 10)},
     {SWIG_LUA_CONSTTAB_INT("MEZZANINE_CORE", 1)},
+    {SWIG_LUA_CONSTTAB_INT("MEZZ_FRAMESTOTRACK", 10)},
     {SWIG_LUA_CONSTTAB_INT("AT_FileSystem", Mezzanine::AT_FileSystem)},
     {SWIG_LUA_CONSTTAB_INT("AT_Zip", Mezzanine::AT_Zip)},
     {SWIG_LUA_CONSTTAB_INT("AT_Invalid", Mezzanine::AT_Invalid)},
@@ -22053,9 +22366,42 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("Plane_S_Positive", Mezzanine::Plane::S_Positive)},
     {SWIG_LUA_CONSTTAB_INT("Plane_S_Negative", Mezzanine::Plane::S_Negative)},
     {SWIG_LUA_CONSTTAB_INT("Plane_S_Both", Mezzanine::Plane::S_Both)},
+    {SWIG_LUA_CONSTTAB_INT("MT32Traits_WordSize", Mezzanine::MathTools::MT32Traits::WordSize)},
+    {SWIG_LUA_CONSTTAB_INT("MT32Traits_StateSize", Mezzanine::MathTools::MT32Traits::StateSize)},
+    {SWIG_LUA_CONSTTAB_INT("MT32Traits_ShiftSize", Mezzanine::MathTools::MT32Traits::ShiftSize)},
+    {SWIG_LUA_CONSTTAB_INT("MT32Traits_MaxDoubleValue", Mezzanine::MathTools::MT32Traits::MaxDoubleValue)},
+    {SWIG_LUA_CONSTTAB_INT("MT32Traits_InitValue", Mezzanine::MathTools::MT32Traits::InitValue)},
+    {SWIG_LUA_CONSTTAB_INT("MT32Traits_ArrayInitSeed", Mezzanine::MathTools::MT32Traits::ArrayInitSeed)},
+    {SWIG_LUA_CONSTTAB_INT("MT32Traits_ArrayInitValue_1", Mezzanine::MathTools::MT32Traits::ArrayInitValue_1)},
+    {SWIG_LUA_CONSTTAB_INT("MT32Traits_ArrayInitValue_2", Mezzanine::MathTools::MT32Traits::ArrayInitValue_2)},
+    {SWIG_LUA_CONSTTAB_INT("MT64Traits_WordSize", Mezzanine::MathTools::MT64Traits::WordSize)},
+    {SWIG_LUA_CONSTTAB_INT("MT64Traits_StateSize", Mezzanine::MathTools::MT64Traits::StateSize)},
+    {SWIG_LUA_CONSTTAB_INT("MT64Traits_ShiftSize", Mezzanine::MathTools::MT64Traits::ShiftSize)},
+    {SWIG_LUA_CONSTTAB_STRING("MT64Traits_MaxDoubleValue", "Mezzanine::MathTools::MT64Traits::MaxDoubleValue")},
+    {SWIG_LUA_CONSTTAB_STRING("MT64Traits_InitValue", "Mezzanine::MathTools::MT64Traits::InitValue")},
+    {SWIG_LUA_CONSTTAB_STRING("MT64Traits_ArrayInitSeed", "Mezzanine::MathTools::MT64Traits::ArrayInitSeed")},
+    {SWIG_LUA_CONSTTAB_STRING("MT64Traits_ArrayInitValue_1", "Mezzanine::MathTools::MT64Traits::ArrayInitValue_1")},
+    {SWIG_LUA_CONSTTAB_STRING("MT64Traits_ArrayInitValue_2", "Mezzanine::MathTools::MT64Traits::ArrayInitValue_2")},
     {0,0,0,0,0,0}
 };
 static swig_lua_method swig_SwigModule_methods[]= {
+    { "Ceil", _wrap_Ceil},
+    { "Floor", _wrap_Floor},
+    { "Pow", _wrap_Pow},
+    { "Exp", _wrap_Exp},
+    { "Sqrt", _wrap_Sqrt},
+    { "Abs", _wrap_Abs},
+    { "Mod", _wrap_Mod},
+    { "WithinTolerance", _wrap_WithinTolerance},
+    { "WrappedModulo", _wrap_WrappedModulo},
+    { "GetPi", _wrap_GetPi},
+    { "GetTwoPi", _wrap_GetTwoPi},
+    { "GetHalfPi", _wrap_GetHalfPi},
+    { "GetQuarterPi", _wrap_GetQuarterPi},
+    { "GetSqrtTwo", _wrap_GetSqrtTwo},
+    { "GetSqrtThree", _wrap_GetSqrtThree},
+    { "GetRadToDegMultiplier", _wrap_GetRadToDegMultiplier},
+    { "GetDegToRadMultiplier", _wrap_GetDegToRadMultiplier},
     { "Vector2_Unit_X", _wrap_Vector2_Unit_X},
     { "Vector2_Unit_Y", _wrap_Vector2_Unit_Y},
     { "Vector2_Neg_Unit_X", _wrap_Vector2_Neg_Unit_X},
@@ -22079,22 +22425,11 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "IsInside", _wrap_IsInside},
     { "Overlap", _wrap_Overlap},
     { "Intersects", _wrap_Intersects},
-    { "Ceil", _wrap_Ceil},
-    { "Floor", _wrap_Floor},
-    { "Pow", _wrap_Pow},
-    { "Exp", _wrap_Exp},
-    { "Sqrt", _wrap_Sqrt},
-    { "Abs", _wrap_Abs},
-    { "Mod", _wrap_Mod},
-    { "WithinTolerance", _wrap_WithinTolerance},
-    { "WrappedModulo", _wrap_WrappedModulo},
-    { "GetPi", _wrap_GetPi},
-    { "GetTwoPi", _wrap_GetTwoPi},
-    { "GetHalfPi", _wrap_GetHalfPi},
-    { "GetQuarterPi", _wrap_GetQuarterPi},
-    { "GetRadToDegMultiplier", _wrap_GetRadToDegMultiplier},
-    { "GetDegToRadMultiplier", _wrap_GetDegToRadMultiplier},
     { "AxisAlignedQuad_DropAxisToCreateVector2", _wrap_AxisAlignedQuad_DropAxisToCreateVector2},
+    { "MT32Traits_Twist", _wrap_MT32Traits_Twist},
+    { "MT32Traits_Temper", _wrap_MT32Traits_Temper},
+    { "MT64Traits_Twist", _wrap_MT64Traits_Twist},
+    { "MT64Traits_Temper", _wrap_MT64Traits_Temper},
     { "Cos", _wrap_Cos},
     { "Sin", _wrap_Sin},
     { "Tan", _wrap_Tan},
@@ -22161,6 +22496,8 @@ static swig_lua_class* swig_SwigModule_classes[]= {
 &_wrap_class_Plane,
 &_wrap_class_PointPointInterection,
 &_wrap_class_AxisAlignedQuad,
+&_wrap_class_MT32Traits,
+&_wrap_class_MT64Traits,
     0
 };
 static swig_lua_namespace* swig_SwigModule_namespaces[] = {
@@ -22605,6 +22942,7 @@ static void *_p_Mezzanine__NotImplementedExceptionTo_p_std__exception(void *x, i
     return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::NotImplementedException *) x));
 }
 static swig_type_info _swigt__p_ChannelType = {"_p_ChannelType", "ChannelType *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IntType = {"_p_IntType", "IntType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__ArithmeticException = {"_p_Mezzanine__ArithmeticException", "Mezzanine::ArithmeticException *", 0, 0, (void*)&_wrap_class_ArithmeticException, 0};
 static swig_type_info _swigt__p_Mezzanine__AxisAlignedBox = {"_p_Mezzanine__AxisAlignedBox", "Mezzanine::AxisAlignedBox *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__DirectoryException = {"_p_Mezzanine__DirectoryException", "Mezzanine::DirectoryException *", 0, 0, (void*)&_wrap_class_DirectoryException, 0};
@@ -22631,6 +22969,10 @@ static swig_type_info _swigt__p_Mezzanine__InvalidStateException = {"_p_Mezzanin
 static swig_type_info _swigt__p_Mezzanine__InvalidVersionException = {"_p_Mezzanine__InvalidVersionException", "Mezzanine::InvalidVersionException *", 0, 0, (void*)&_wrap_class_InvalidVersionException, 0};
 static swig_type_info _swigt__p_Mezzanine__LineSegment2D = {"_p_Mezzanine__LineSegment2D", "Mezzanine::LineSegment2D *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__MathTools__AxisAlignedQuad = {"_p_Mezzanine__MathTools__AxisAlignedQuad", "Mezzanine::MathTools::AxisAlignedQuad *", 0, 0, (void*)&_wrap_class_AxisAlignedQuad, 0};
+static swig_type_info _swigt__p_Mezzanine__MathTools__MT32Traits = {"_p_Mezzanine__MathTools__MT32Traits", "Mezzanine::MathTools::MT32Traits *", 0, 0, (void*)&_wrap_class_MT32Traits, 0};
+static swig_type_info _swigt__p_Mezzanine__MathTools__MT64Traits = {"_p_Mezzanine__MathTools__MT64Traits", "Mezzanine::MathTools::MT64Traits *", 0, 0, (void*)&_wrap_class_MT64Traits, 0};
+static swig_type_info _swigt__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT32Traits_t = {"_p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT32Traits_t", "Mezzanine::MathTools::MersenneTwisterGenerator32 *|Mezzanine::MathTools::MersenneTwisterGenerator< Mezzanine::MathTools::MT32Traits > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT64Traits_t = {"_p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT64Traits_t", "Mezzanine::MathTools::MersenneTwisterGenerator64 *|Mezzanine::MathTools::MersenneTwisterGenerator< Mezzanine::MathTools::MT64Traits > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__MathTools__PointPointInterection = {"_p_Mezzanine__MathTools__PointPointInterection", "Mezzanine::MathTools::PointPointInterection *", 0, 0, (void*)&_wrap_class_PointPointInterection, 0};
 static swig_type_info _swigt__p_Mezzanine__MemoryManagementException = {"_p_Mezzanine__MemoryManagementException", "Mezzanine::MemoryManagementException *", 0, 0, (void*)&_wrap_class_MemoryManagementException, 0};
 static swig_type_info _swigt__p_Mezzanine__MemoryOutOfBoundsException = {"_p_Mezzanine__MemoryOutOfBoundsException", "Mezzanine::MemoryOutOfBoundsException *", 0, 0, (void*)&_wrap_class_MemoryOutOfBoundsException, 0};
@@ -22670,6 +23012,7 @@ static swig_type_info _swigt__p_Ogre__Vector2 = {"_p_Ogre__Vector2", "Ogre::Vect
 static swig_type_info _swigt__p_Ogre__Vector3 = {"_p_Ogre__Vector3", "Ogre::Vector3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_RayTestResult = {"_p_RayTestResult", "RayTestResult *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzanine::RawEvent *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_UIntType = {"_p_UIntType", "UIntType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_XML__Node = {"_p_XML__Node", "XML::Node *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "bool *|Mezzanine::Boole *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btVector3 = {"_p_btVector3", "btVector3 *", 0, 0, (void*)0, 0};
@@ -22702,6 +23045,7 @@ static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "Mezzanin
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_ChannelType,
+  &_swigt__p_IntType,
   &_swigt__p_Mezzanine__ArithmeticException,
   &_swigt__p_Mezzanine__AxisAlignedBox,
   &_swigt__p_Mezzanine__DirectoryException,
@@ -22728,6 +23072,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__InvalidVersionException,
   &_swigt__p_Mezzanine__LineSegment2D,
   &_swigt__p_Mezzanine__MathTools__AxisAlignedQuad,
+  &_swigt__p_Mezzanine__MathTools__MT32Traits,
+  &_swigt__p_Mezzanine__MathTools__MT64Traits,
+  &_swigt__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT32Traits_t,
+  &_swigt__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT64Traits_t,
   &_swigt__p_Mezzanine__MathTools__PointPointInterection,
   &_swigt__p_Mezzanine__MemoryManagementException,
   &_swigt__p_Mezzanine__MemoryOutOfBoundsException,
@@ -22767,6 +23115,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Ogre__Vector3,
   &_swigt__p_RayTestResult,
   &_swigt__p_SDL_Event,
+  &_swigt__p_UIntType,
   &_swigt__p_XML__Node,
   &_swigt__p_bool,
   &_swigt__p_btVector3,
@@ -22799,6 +23148,7 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_ChannelType[] = {  {&_swigt__p_ChannelType, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IntType[] = {  {&_swigt__p_IntType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ArithmeticException[] = {  {&_swigt__p_Mezzanine__ArithmeticException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AxisAlignedBox[] = {  {&_swigt__p_Mezzanine__AxisAlignedBox, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__DirectoryException[] = {  {&_swigt__p_Mezzanine__DirectoryException, 0, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__DirectoryException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__DirectoryException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__DirectoryException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__DirectoryException, 0, 0},{0, 0, 0, 0}};
@@ -22825,6 +23175,10 @@ static swig_cast_info _swigc__p_Mezzanine__InvalidStateException[] = {  {&_swigt
 static swig_cast_info _swigc__p_Mezzanine__InvalidVersionException[] = {  {&_swigt__p_Mezzanine__InvalidVersionException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__LineSegment2D[] = {  {&_swigt__p_Mezzanine__LineSegment2D, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__MathTools__AxisAlignedQuad[] = {  {&_swigt__p_Mezzanine__MathTools__AxisAlignedQuad, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__MathTools__MT32Traits[] = {  {&_swigt__p_Mezzanine__MathTools__MT32Traits, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__MathTools__MT64Traits[] = {  {&_swigt__p_Mezzanine__MathTools__MT64Traits, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT32Traits_t[] = {  {&_swigt__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT32Traits_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT64Traits_t[] = {  {&_swigt__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT64Traits_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__MathTools__PointPointInterection[] = {  {&_swigt__p_Mezzanine__MathTools__PointPointInterection, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__MemoryManagementException[] = {  {&_swigt__p_Mezzanine__MemoryManagementException, 0, 0, 0},  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_Mezzanine__MemoryManagementException, 0, 0},  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_Mezzanine__MemoryManagementException, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__MemoryOutOfBoundsException[] = {  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, 0, 0, 0},{0, 0, 0, 0}};
@@ -22864,6 +23218,7 @@ static swig_cast_info _swigc__p_Ogre__Vector2[] = {  {&_swigt__p_Ogre__Vector2, 
 static swig_cast_info _swigc__p_Ogre__Vector3[] = {  {&_swigt__p_Ogre__Vector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_RayTestResult[] = {  {&_swigt__p_RayTestResult, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_UIntType[] = {  {&_swigt__p_UIntType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_XML__Node[] = {  {&_swigt__p_XML__Node, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_btVector3[] = {  {&_swigt__p_btVector3, 0, 0, 0},{0, 0, 0, 0}};
@@ -22896,6 +23251,7 @@ static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_ChannelType,
+  _swigc__p_IntType,
   _swigc__p_Mezzanine__ArithmeticException,
   _swigc__p_Mezzanine__AxisAlignedBox,
   _swigc__p_Mezzanine__DirectoryException,
@@ -22922,6 +23278,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__InvalidVersionException,
   _swigc__p_Mezzanine__LineSegment2D,
   _swigc__p_Mezzanine__MathTools__AxisAlignedQuad,
+  _swigc__p_Mezzanine__MathTools__MT32Traits,
+  _swigc__p_Mezzanine__MathTools__MT64Traits,
+  _swigc__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT32Traits_t,
+  _swigc__p_Mezzanine__MathTools__MersenneTwisterGeneratorT_Mezzanine__MathTools__MT64Traits_t,
   _swigc__p_Mezzanine__MathTools__PointPointInterection,
   _swigc__p_Mezzanine__MemoryManagementException,
   _swigc__p_Mezzanine__MemoryOutOfBoundsException,
@@ -22961,6 +23321,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Ogre__Vector3,
   _swigc__p_RayTestResult,
   _swigc__p_SDL_Event,
+  _swigc__p_UIntType,
   _swigc__p_XML__Node,
   _swigc__p_bool,
   _swigc__p_btVector3,
