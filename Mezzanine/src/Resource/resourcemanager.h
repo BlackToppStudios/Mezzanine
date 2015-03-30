@@ -43,7 +43,7 @@
 #include "datatypes.h"
 #include "enumerations.h"
 #include "entresolmanager.h"
-#include "managerfactory.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
 #include "Resource/datastream.h"
 
@@ -95,6 +95,11 @@ namespace Mezzanine
             typedef NamedDataStreamContainer::iterator         NamedDataStreamIterator;
             /// @brief Const Iterator type for named @ref DataStream instances stored by this class.
             typedef NamedDataStreamContainer::const_iterator   ConstNamedDataStreamIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             /// @internal
             /// @brief Container storing all of the asset groups created and managed by this manager.
@@ -244,7 +249,7 @@ namespace Mezzanine
         /// @headerfile resourcemanager.h
         /// @brief A factory responsible for the creation and destruction of the default resourcemanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultResourceManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultResourceManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -252,15 +257,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultResourceManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
+            EntresolManager* CreateManager(NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
+            EntresolManager* CreateManager(XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultResourceManagerFactory
     }//Resource
 }//Mezzanine

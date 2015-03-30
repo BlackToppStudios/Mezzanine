@@ -51,6 +51,9 @@ namespace Mezzanine
 
     namespace Graphics
     {
+        const String TextureManager::ImplementationName = "DefaultTextureManager";
+        const ManagerBase::ManagerType TextureManager::InterfaceType = ManagerBase::MT_TextureManager;
+
         TextureManager::TextureManager()
             {  }
 
@@ -153,10 +156,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType TextureManager::GetInterfaceType() const
-            { return ManagerBase::MT_TextureManager; }
+            { return TextureManager::InterfaceType; }
 
         String TextureManager::GetImplementationTypeName() const
-            { return "DefaultTextureManager"; }
+            { return TextureManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
@@ -180,10 +183,13 @@ namespace Mezzanine
         DefaultTextureManagerFactory::~DefaultTextureManagerFactory()
             {  }
 
-        String DefaultTextureManagerFactory::GetManagerTypeName() const
-            { return "DefaultTextureManager"; }
+        String DefaultTextureManagerFactory::GetManagerImplName() const
+            { return TextureManager::ImplementationName; }
 
-        ManagerBase* DefaultTextureManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultTextureManagerFactory::GetManagerType() const
+            { return TextureManager::InterfaceType; }
+
+        EntresolManager* DefaultTextureManagerFactory::CreateManager(NameValuePairList& Params)
         {
             if( TextureManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -191,7 +197,7 @@ namespace Mezzanine
             }else return new TextureManager();
         }
 
-        ManagerBase* DefaultTextureManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultTextureManagerFactory::CreateManager(XML::Node& XMLNode)
         {
             if( TextureManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -199,7 +205,7 @@ namespace Mezzanine
             }else return new TextureManager(XMLNode);
         }
 
-        void DefaultTextureManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultTextureManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
             { delete ToBeDestroyed; }
     }//Graphics
 }//Mezzanine

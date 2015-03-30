@@ -80,10 +80,10 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            SoundScapeManager();
+            SoundScapeManager(World* Creator);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            SoundScapeManager(XML::Node& XMLNode);
+            SoundScapeManager(World* Creator, XML::Node& XMLNode);
             /// @brief Class destructor.
             virtual ~SoundScapeManager();
 
@@ -168,7 +168,7 @@ namespace Mezzanine
             /// @param ToBeDestroyed A pointer to the @ref SoundProxy you want deleted.
             virtual void DestroySoundProxy(SoundProxy* ToBeDestroyed) = 0;
             /// @brief Deletes all stored @ref SoundProxy instances.
-            virtual void DestroyAllSoundProxies() = 0;
+            virtual void DestroyAllProxies() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Convenience Creation Methods

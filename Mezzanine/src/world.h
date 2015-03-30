@@ -47,7 +47,10 @@ namespace Mezzanine
 {
     class ActorManager;
     class AreaEffectManager;
+    class DebrisManager;
     class TerrainManager;
+    class WorldManager;
+    class WorldManagerFactory;
     namespace Audio
     {
         class SoundScapeManager;
@@ -62,7 +65,6 @@ namespace Mezzanine
         class PhysicsManager;
         class ManagerConstructionInfo;
     }
-    class DebrisManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class World
     /// @headerfile world.h
@@ -73,28 +75,32 @@ namespace Mezzanine
     class MEZZ_LIB World
     {
     public:
+        /// @brief Basic container type for factories that construct known manager types.
+        typedef std::map<String,WorldManagerFactory*>      ManagerFactoryMap;
+        /// @brief Iterator type for manager factories stored by this class.
+        typedef ManagerFactoryMap::iterator                ManagerFactoryIterator;
+        /// @brief Const Iterator type for manager factories stored by this class.
+        typedef ManagerFactoryMap::const_iterator          ConstManagerFactoryIterator;
         /// @brief Basic container type for @ref WorldManager storage by this class.
-        typedef std::vector< WorldManager* >       WorldManagerContainer;
+        typedef std::vector< WorldManager* >               WorldManagerContainer;
         /// @brief Iterator type for @ref WorldManager instances stored by this class.
         typedef WorldManagerContainer::iterator            WorldManagerIterator;
         /// @brief Const Iterator type for @ref WorldManager instances stored by this class.
         typedef WorldManagerContainer::const_iterator      ConstWorldManagerContainer;
-
     protected:
+        /// @internal
+        /// @brief A global container for registered factories for WorldManagers.
+        static ManagerFactoryMap ManagerFactories;
         /// @internal
         /// @brief A container storing all the managers belonging to this world.
         WorldManagerContainer WorldManagers;
-
         /// @internal
         /// @brief Unique string identifier for world.
         String Name;
-
     protected:
         /// @internal
         /// @brief Helper function used to assist construction.
-        void Construct(     const Physics::ManagerConstructionInfo& PhysicsInfo,
-                            const String& SceneType,
-                            const std::vector <WorldManager*>& ManagerToBeAdded );
+        void Construct(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType, const std::vector <WorldManager*>& ManagerToBeAdded );
     public:
         /// @brief Class constructor.
         /// @param WorldName String name of the world.
@@ -120,9 +126,21 @@ namespace Mezzanine
         /// @brief class destructor.
         virtual ~World();
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
         /// @brief Gets the name of this world.
         /// @return Returns a string containing the name used to identify this world.
         const String& GetName() const;
+        /// @brief Pauses all animations, particles, and object movement throughout the world.
+        /// @param Pause Pauses the world if true, unpauses if false.
+        void PauseWorld(Boole Pause);
+
+        /// @brief Clears the world of all objects.
+        /// @remarks This will delete all world objects and supporting objects (such as constraints) and any metadata related to them.
+        /// This method is designed to clear the slate for the world back to zero and be ready for re-use without having to destroy and
+        /// recreate the world and setting custom configurations in the world.
+        void Clear();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Initialization
@@ -133,14 +151,27 @@ namespace Mezzanine
         void Deinitialize();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @brief Pauses all animations, particles, and object movement throughout the world.
-        /// @param Pause Pauses the world if true, unpauses if false.
-        void PauseWorld(Boole Pause);
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Upper Management
+
+        /// @brief Creates a new manager.
+        /// @param ManagerImplName The name of the manager implementation to create.
+        /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
+        /// @param AddToWorld Whether or not to add the created manager to the World after creation.
+        /// @return Returns a pointer to the created manager.
+        WorldManager* CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld = true);
+        /// @brief Creates a new manager.
+        /// @param ManagerImplName The name of the manager implementation to create.
+        /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
+        /// @param AddToWorld Whether or not to add the created manager to the World after creation.
+        /// @return Returns a pointer to the created manager.
+        WorldManager* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToWorld = true);
+        /// @brief Destroys a manager.
+        /// @warning Some managers may depend on other managers for a part of their functionality.  Use individual destruction of managers carefully.
+        /// @param ToBeDestroyed The manager to be destroyed.
+        void DestroyManager(WorldManager* ToBeDestroyed);
+        /// @brief Destroys all managers currently in the World.
+        /// @warning Do not call this in anything that is run during the main loop.  If you do you will have a bad time.
+        void DestroyAllManagers();
 
         /// @brief This adds a manager, in the correct order, to the list that the world calls on.
         /// @param ManagerToAdd The pointer to the manager to be added.
@@ -161,7 +192,10 @@ namespace Mezzanine
 
         /// @brief This gets the list of managers in the world.
         /// @return This returns a pointer to a vector containing the managers in this world.
-        std::vector<WorldManager*> GetWorldManagers();
+        WorldManagerContainer& GetWorldManagers();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Specific Manager Fetch
 
         /// @brief This gets the ActorManager from the manager list.
         /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
@@ -169,24 +203,48 @@ namespace Mezzanine
         /// @brief This gets the AreaEffectManager from the manager list.
         /// @return This returns a pointer to a AreaEffectManager, or a NULL pointer if no matching manager exists.
         AreaEffectManager* GetAreaEffectManager();
-        /// @brief This gets the CameraManager from the manager list.
-        /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
-        Graphics::CameraManager* GetCameraManager();
-        /// @brief This gets the PhysicsManager from the manager list.
-        /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
-        Physics::PhysicsManager* GetPhysicsManager();
-        /// @brief This gets the SceneManager from the manager list.
-        /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
-        Graphics::SceneManager* GetSceneManager();
-        /// @brief This gets the SoundScapeManager from the manager list.
-        /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.
-        Audio::SoundScapeManager* GetSoundScapeManager();
-        /// @brief This gets the TerrainManager from the manager list.
-        /// @return This returns a pointer to a TerrainManager, or a NULL pointer if no matching manager exists.
-        TerrainManager* GetTerrainManager();
         /// @brief This gets the DebrisManager from the manager list.
         /// @return This returns a pointer to a DebrisManager, or a NULL pointer if no matching manager exists.
         DebrisManager* GetDebrisManager();
+        /// @brief This gets the TerrainManager from the manager list.
+        /// @return This returns a pointer to a TerrainManager, or a NULL pointer if no matching manager exists.
+        TerrainManager* GetTerrainManager();
+        /// @brief This gets the SoundScapeManager from the manager list.
+        /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.
+        Audio::SoundScapeManager* GetSoundScapeManager();
+        /// @brief This gets the CameraManager from the manager list.
+        /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
+        Graphics::CameraManager* GetCameraManager();
+        /// @brief This gets the SceneManager from the manager list.
+        /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
+        Graphics::SceneManager* GetSceneManager();
+        /// @brief This gets the PhysicsManager from the manager list.
+        /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
+        Physics::PhysicsManager* GetPhysicsManager();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Factories Management
+
+        /// @brief Adds/registers a manager factory for use with World instances.
+        /// @param ToBeAdded The manager factory to be added.
+        static void AddManagerFactory(WorldManagerFactory* ToBeAdded);
+        /// @brief Removes a manager factory from the container of registered factories.
+        /// @param ToBeRemoved A pointer to the manager factory that is to be removed.
+        static void RemoveManagerFactory(WorldManagerFactory* ToBeRemoved);
+        /// @brief Removes a manager factory from the container of registered factories.
+        /// @param ImplName The name of the manager implementation created by the factory to be removed.
+        static void RemoveManagerFactory(const String& ImplName);
+        /// @brief Removes and destroys a manager factory in the container of registered factories.
+        /// @param ToBeRemoved A pointer to the manager factory that is to be removed and destroyed.
+        static void DestroyManagerFactory(WorldManagerFactory* ToBeRemoved);
+        /// @brief Removes and destroys a manager factory in the container of registered factories.
+        /// @param ImplName The name of the manager implementation created by the factory to be removed and destroyed.
+        static void DestroyManagerFactory(const String& ImplName);
+        /// @brief Destroys all registered manager factories.
+        /// @warning The destruction of manager factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
+        static void DestroyAllManagerFactories();
+        /// @brief Adds all the default manager factories provided by the engine.
+        static void AddAllEngineDefaultManagerFactories();
     };//World
 }//Mezzanine
 

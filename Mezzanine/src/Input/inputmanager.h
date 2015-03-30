@@ -41,7 +41,7 @@
 #define _inputinputmanager_h
 
 #include "entresolmanager.h"
-#include "managerfactory.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
 #include "Input/metacode.h"
 #include "Input/sequencecontainer.h"
@@ -128,9 +128,17 @@ namespace Mezzanine
         class MEZZ_LIB InputManager : public EntresolManager, public Singleton<InputManager>
         {
         public:
+            /// @brief Basic container type for game controller instances.
             typedef std::vector< Controller* >           ControllerContainer;
+            /// @brief Iterator type for game controller instances stored by this class.
             typedef ControllerContainer::iterator        ControllerIterator;
+            /// @brief Const Iterator type for game controller instances stored by this class.
             typedef ControllerContainer::const_iterator  ConstControllerIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             friend class DeviceUpdateWorkUnit;
 
@@ -236,7 +244,7 @@ namespace Mezzanine
         /// @headerfile inputmanager.h
         /// @brief A factory responsible for the creation and destruction of the default inputmanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultInputManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultInputManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -244,15 +252,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultInputManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
+            EntresolManager* CreateManager(NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
+            EntresolManager* CreateManager(XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultInputManagerFactory
     }//Input
 }//Mezzanine

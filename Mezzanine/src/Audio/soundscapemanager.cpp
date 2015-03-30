@@ -46,10 +46,12 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        SoundScapeManager::SoundScapeManager()
+        SoundScapeManager::SoundScapeManager(World* Creator) :
+            WorldManager(Creator)
             {  }
 
-        SoundScapeManager::SoundScapeManager(XML::Node& XMLNode)
+        SoundScapeManager::SoundScapeManager(World* Creator, XML::Node& XMLNode) :
+            WorldManager(Creator)
             {  }
 
         SoundScapeManager::~SoundScapeManager()

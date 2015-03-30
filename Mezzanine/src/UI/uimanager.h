@@ -41,7 +41,7 @@
 #define _uiuimanager_h
 
 #include "entresolmanager.h"
-#include "managerfactory.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
 #include "UI/rect.h"
 #include "Input/metacode.h"
@@ -137,6 +137,11 @@ namespace Mezzanine
             typedef InputContainer::const_iterator                 ConstInputIterator;
             /// @brief An std::pair type for returning the result of a font suggestion.
             typedef std::pair< String, Real >                      FontResult;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             /// @internal
             /// @brief A container storing all the registered/known markup parsers.
@@ -433,7 +438,7 @@ namespace Mezzanine
         /// @headerfile uimanager.h
         /// @brief A factory responsible for the creation and destruction of the default uimanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultUIManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultUIManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -441,15 +446,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultUIManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
+            EntresolManager* CreateManager(NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
+            EntresolManager* CreateManager(XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultUIManagerFactory
     }//UI
 }//Mezzanine

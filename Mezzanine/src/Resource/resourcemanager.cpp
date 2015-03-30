@@ -64,6 +64,9 @@ namespace Mezzanine
 
     namespace Resource
     {
+        const String ResourceManager::ImplementationName = "DefaultResourceManager";
+        const ManagerBase::ManagerType ResourceManager::InterfaceType = ManagerBase::MT_ResourceManager;
+
         ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
         {
             this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
@@ -250,10 +253,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType ResourceManager::GetInterfaceType() const
-            { return ManagerBase::MT_ResourceManager; }
+            { return ResourceManager::InterfaceType; }
 
         String ResourceManager::GetImplementationTypeName() const
-            { return "DefaultResourceManager"; }
+            { return ResourceManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultResourceManagerFactory Methods
@@ -264,48 +267,48 @@ namespace Mezzanine
         DefaultResourceManagerFactory::~DefaultResourceManagerFactory()
             {  }
 
-        String DefaultResourceManagerFactory::GetManagerTypeName() const
-            { return "DefaultResourceManager"; }
+        String DefaultResourceManagerFactory::GetManagerImplName() const
+            { return ResourceManager::ImplementationName; }
 
-        ManagerBase* DefaultResourceManagerFactory::CreateManager(NameValuePairList& Params)
-        {
-            if(ResourceManager::SingletonValid())
-            {
-                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-                return ResourceManager::GetSingletonPtr();
-            }else{
-                if( Params.empty() ) {
-                    return new ResourceManager();
-                }else{
-                    String EngineDataPath;
-                    ArchiveType ArchiveType_;
-                    for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
-                    {
-                        String Lower = (*ParIt).first;
-                        StringTools::ToLowerCase(Lower);
-                        if( "enginedatapath" == Lower ) {
-                            EngineDataPath = (*ParIt).second;
-                        }else if( "archivetype" == Lower ) {
-                            ArchiveType_ = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
-                        }
-                    }
-                    return new ResourceManager(EngineDataPath,ArchiveType_);
-                }
-            }
-        }
+        ManagerBase::ManagerType DefaultResourceManagerFactory::GetManagerType() const
+            { return ResourceManager::InterfaceType; }
 
-        ManagerBase* DefaultResourceManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultResourceManagerFactory::CreateManager(NameValuePairList& Params)
         {
             if( ResourceManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return ResourceManager::GetSingletonPtr();
-            }else return new ResourceManager(XMLNode);
+            }
+            if( Params.empty() ) {
+                return new ResourceManager();
+            }
+
+            String EngineDataPath;
+            ArchiveType ArchiveType_;
+            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            {
+                String Lower = (*ParIt).first;
+                StringTools::ToLowerCase(Lower);
+                if( "enginedatapath" == Lower ) {
+                    EngineDataPath = (*ParIt).second;
+                }else if( "archivetype" == Lower ) {
+                    ArchiveType_ = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
+                }
+            }
+            return new ResourceManager(EngineDataPath,ArchiveType_);
         }
 
-        void DefaultResourceManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        EntresolManager* DefaultResourceManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            delete ToBeDestroyed;
+            if( ResourceManager::SingletonValid() ) {
+                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+                return ResourceManager::GetSingletonPtr();
+            }
+            return new ResourceManager(XMLNode);
         }
+
+        void DefaultResourceManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+            { delete ToBeDestroyed; }
     }//Resource
 }//Mezzanine
 

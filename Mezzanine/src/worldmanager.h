@@ -63,7 +63,8 @@ namespace Mezzanine
         Boole OperationsPaused;
     public:
         /// @brief Class constructor.
-        WorldManager(World * ParentWorld = NULL);
+        /// @param Creator The parent world that is creating the manager.
+        WorldManager(World* Creator);
         /// @brief Class destructor.
         virtual ~WorldManager();
 
@@ -84,16 +85,6 @@ namespace Mezzanine
         /// @copydoc ManagerBase::Initialize()
         /// @exception If this is called while no valid world is set, this will throw an "INVALID_STATE_EXCEPTION".
         virtual void Initialize();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        /// @internal
-        /// @brief Sets the world this manager belongs to.
-        /// @exception If this manager is already initialized, this method will throw an "INVALID_STATE_EXCEPTION".
-        /// @note When hooking up to other subsystems this will be the world used to retrieve the other managers for those systems.
-        /// @param Parent The world that this manager will belong to.
-        virtual void _SetWorld(World* Parent);
     };//WorldManager
 }//Mezzanine
 

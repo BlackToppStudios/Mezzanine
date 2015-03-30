@@ -41,7 +41,7 @@
 #define _areaeffectmanager_h
 
 #include "worldmanager.h"
-#include "managerfactory.h"
+#include "worldmanagerfactory.h"
 #ifndef SWIG
     #include "Threading/workunit.h"
 #endif
@@ -114,6 +114,11 @@ namespace Mezzanine
         typedef AreaEffectContainer::iterator         AreaEffectIterator;
         /// @brief Const Iterator type for AreaEffect instances stored by this class.
         typedef AreaEffectContainer::const_iterator   ConstAreaEffectIterator;
+
+        /// @brief A String containing the name of this manager implementation.
+        static const String ImplementationName;
+        /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+        static const ManagerBase::ManagerType InterfaceType;
     protected:
         friend class AreaEffectUpdateWorkUnit;
 
@@ -132,10 +137,12 @@ namespace Mezzanine
         Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
     public:
         /// @brief Class constructor.
-        AreaEffectManager(World * ParentWorld = NULL);
+        /// @param Creator The parent world that is creating the manager.
+        AreaEffectManager(World* Creator);
         /// @brief XML constructor.
+        /// @param Creator The parent world that is creating the manager.
         /// @param XMLNode The node of the xml document to construct from.
-        AreaEffectManager(XML::Node& XMLNode);
+        AreaEffectManager(World* Creator, XML::Node& XMLNode);
         /// @brief Class destructor.
         virtual ~AreaEffectManager();
 
@@ -288,10 +295,9 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class DefaultAreaEffectManagerFactory
-    /// @headerfile areaeffectmanager.h
     /// @brief A factory responsible for the creation and destruction of the default areaeffectmanager.
     ///////////////////////////////////////
-    class DefaultAreaEffectManagerFactory : public ManagerFactory
+    class DefaultAreaEffectManagerFactory : public WorldManagerFactory
     {
     public:
         /// @brief Class constructor.
@@ -299,15 +305,17 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~DefaultAreaEffectManagerFactory();
 
-        /// @copydoc ManagerFactory::GetManagerTypeName()
-        String GetManagerTypeName() const;
+        /// @copydoc ManagerFactory::GetManagerImplName()
+        String GetManagerImplName() const;
+        /// @copydoc ManagerFactory::GetManagerType() const
+        ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-        ManagerBase* CreateManager(NameValuePairList& Params);
-        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-        ManagerBase* CreateManager(XML::Node& XMLNode);
-        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-        void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, NameValuePairList&)
+        WorldManager* CreateManager(World* Creator, NameValuePairList& Params);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, XML::Node&)
+        WorldManager* CreateManager(World* Creator, XML::Node& XMLNode);
+        /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+        void DestroyManager(WorldManager* ToBeDestroyed);
     };//DefaultAreaEffectManagerFactory
 }//Mezzanine
 

@@ -115,6 +115,11 @@ namespace Mezzanine
                 typedef ProxyContainer::iterator                    ProxyIterator;
                 /// @brief Const Iterator type for @ref OALS::SoundProxy instances stored by this class.
                 typedef ProxyContainer::const_iterator              ConstProxyIterator;
+
+                /// @brief A String containing the name of this manager implementation.
+                static const String ImplementationName;
+                /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+                static const ManagerBase::ManagerType InterfaceType;
             protected:
                 friend class BufferUpdate3DWorkUnit;
 
@@ -146,10 +151,12 @@ namespace Mezzanine
                 void DestroyAllContexts();
             public:
                 /// @brief Class constructor.
-                SoundScapeManager();
+                /// @param Creator The parent world that is creating the manager.
+                SoundScapeManager(World* Creator);
                 /// @brief XML constructor.
+                /// @param Creator The parent world that is creating the manager.
                 /// @param XMLNode The node of the xml document to construct from.
-                SoundScapeManager(XML::Node& XMLNode);
+                SoundScapeManager(World* Creator, XML::Node& XMLNode);
                 /// @brief Class destructor.
                 virtual ~SoundScapeManager();
 
@@ -188,8 +195,8 @@ namespace Mezzanine
                 virtual UInt32 GetNumSoundProxies() const;
                 /// @copydoc Audio::SoundScapeManager::DestroySoundProxy(SoundProxy*)
                 virtual void DestroySoundProxy(Audio::SoundProxy* ToBeDestroyed);
-                /// @copydoc Audio::SoundScapeManager::DestroyAllSoundProxies()
-                virtual void DestroyAllSoundProxies();
+                /// @copydoc Audio::SoundScapeManager::DestroyAllProxies()
+                virtual void DestroyAllProxies();
 
                 #ifndef SWIG
                 /// @brief Gets an iterator to the first Sound Proxy in this manager.

@@ -87,8 +87,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // AreaEffectManager Methods
 
-    AreaEffectManager::AreaEffectManager(World * ParentWorld) :
-        WorldManager(ParentWorld),
+    const String AreaEffectManager::ImplementationName = "DefaultAreaEffectManager";
+    const ManagerBase::ManagerType AreaEffectManager::InterfaceType = ManagerBase::MT_AreaEffectManager;
+
+    AreaEffectManager::AreaEffectManager(World* Creator) :
+        WorldManager(Creator),
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
     {
@@ -99,7 +102,8 @@ namespace Mezzanine
         this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
     }
 
-    AreaEffectManager::AreaEffectManager(XML::Node& XMLNode) :
+    AreaEffectManager::AreaEffectManager(World* Creator, XML::Node& XMLNode) :
+        WorldManager(Creator),
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
     {
@@ -457,10 +461,10 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType AreaEffectManager::GetInterfaceType() const
-        { return ManagerBase::MT_AreaEffectManager; }
+        { return AreaEffectManager::InterfaceType; }
 
     String AreaEffectManager::GetImplementationTypeName() const
-        { return "DefaultAreaEffectManager"; }
+        { return AreaEffectManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultAreaEffectManagerFactory Methods
@@ -471,16 +475,19 @@ namespace Mezzanine
     DefaultAreaEffectManagerFactory::~DefaultAreaEffectManagerFactory()
         {  }
 
-    String DefaultAreaEffectManagerFactory::GetManagerTypeName() const
-        { return "DefaultAreaEffectManager"; }
+    String DefaultAreaEffectManagerFactory::GetManagerImplName() const
+        { return AreaEffectManager::ImplementationName; }
 
-    ManagerBase* DefaultAreaEffectManagerFactory::CreateManager(NameValuePairList& Params)
-        { return new AreaEffectManager(); }
+    ManagerBase::ManagerType DefaultAreaEffectManagerFactory::GetManagerType() const
+        { return AreaEffectManager::InterfaceType; }
 
-    ManagerBase* DefaultAreaEffectManagerFactory::CreateManager(XML::Node& XMLNode)
-        { return new AreaEffectManager(XMLNode); }
+    WorldManager* DefaultAreaEffectManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+        { return new AreaEffectManager(Creator); }
 
-    void DefaultAreaEffectManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    WorldManager* DefaultAreaEffectManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+        { return new AreaEffectManager(Creator,XMLNode); }
+
+    void DefaultAreaEffectManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

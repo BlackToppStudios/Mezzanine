@@ -116,6 +116,8 @@ namespace Mezzanine
         // GraphicsManager Methods
 
         //template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = NULL;
+        const String GraphicsManager::ImplementationName = "DefaultGraphicsManager";
+        const ManagerBase::ManagerType GraphicsManager::InterfaceType = ManagerBase::MT_GraphicsManager;
 
         GraphicsManager::GraphicsManager() :
             PrimaryGameWindow(NULL),
@@ -670,10 +672,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType GraphicsManager::GetInterfaceType() const
-            { return ManagerBase::MT_GraphicsManager; }
+            { return GraphicsManager::InterfaceType; }
 
         String GraphicsManager::GetImplementationTypeName() const
-            { return "DefaultGraphicsManager"; }
+            { return GraphicsManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultGraphicsManagerFactory Methods
@@ -684,10 +686,13 @@ namespace Mezzanine
         DefaultGraphicsManagerFactory::~DefaultGraphicsManagerFactory()
             {  }
 
-        String DefaultGraphicsManagerFactory::GetManagerTypeName() const
-            { return "DefaultGraphicsManager"; }
+        String DefaultGraphicsManagerFactory::GetManagerImplName() const
+            { return GraphicsManager::ImplementationName; }
 
-        ManagerBase* DefaultGraphicsManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultGraphicsManagerFactory::GetManagerType() const
+            { return GraphicsManager::InterfaceType; }
+
+        EntresolManager* DefaultGraphicsManagerFactory::CreateManager(NameValuePairList& Params)
         {
             if( GraphicsManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -697,7 +702,7 @@ namespace Mezzanine
             }
         }
 
-        ManagerBase* DefaultGraphicsManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultGraphicsManagerFactory::CreateManager(XML::Node& XMLNode)
         {
             if( GraphicsManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -707,7 +712,7 @@ namespace Mezzanine
             }
         }
 
-        void DefaultGraphicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultGraphicsManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
             { delete ToBeDestroyed; }
     } // Graphics Namespace
 } //Mezzanine

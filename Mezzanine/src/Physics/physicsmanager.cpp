@@ -355,7 +355,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////
         // Physicsmanager functions
 
-        PhysicsManager::PhysicsManager() :
+        const String PhysicsManager::ImplementationName = "DefaultPhysicsManager";
+        const ManagerBase::ManagerType PhysicsManager::InterfaceType = ManagerBase::MT_PhysicsManager;
+
+        PhysicsManager::PhysicsManager(World* Creator) :
+            WorldManager(Creator),
             SimulationPaused(false),
             DebugRenderMode(0),
             SubstepModifier(1),
@@ -382,8 +386,8 @@ namespace Mezzanine
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(const ManagerConstructionInfo& Info, World * ParentWorld ) :
-            WorldManager(ParentWorld),
+        PhysicsManager::PhysicsManager(World* Creator, const ManagerConstructionInfo& Info) :
+            WorldManager(Creator),
             SimulationPaused(false),
             DebugRenderMode(0),
             SubstepModifier(1),
@@ -408,7 +412,8 @@ namespace Mezzanine
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(XML::Node& XMLNode) :
+        PhysicsManager::PhysicsManager(World* Creator, XML::Node& XMLNode) :
+            WorldManager(Creator),
             SimulationPaused(false),
             DebugRenderMode(0),
             SubstepModifier(1),
@@ -434,11 +439,9 @@ namespace Mezzanine
             XML::Attribute CurrAttrib;
 
             XML::Node WorldSettings = XMLNode.GetChild("WorldSettings");
-            if(!WorldSettings.Empty())
-            {
+            if(!WorldSettings.Empty()) {
                 CurrAttrib = WorldSettings.GetAttribute("LimitlessWorld");
-                if(!CurrAttrib.Empty())
-                {
+                if(!CurrAttrib.Empty()) {
                     Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
                 }else{
                     CurrAttrib = WorldSettings.GetAttribute("WorldUpperBounds");
@@ -452,13 +455,11 @@ namespace Mezzanine
                         Info.MaxProxies = CurrAttrib.AsWhole();
                 }
                 CurrAttrib = WorldSettings.GetAttribute("SoftRigidWorld");
-                if(!CurrAttrib.Empty())
-                {
+                if(!CurrAttrib.Empty()) {
                     Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
                 }
                 CurrAttrib = WorldSettings.GetAttribute("MultiThreaded");
-                if(!CurrAttrib.Empty())
-                {
+                if(!CurrAttrib.Empty()) {
                     Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
                 }
             }
@@ -466,8 +467,7 @@ namespace Mezzanine
             this->Construct(Info);
 
             XML::Node StepModifier = XMLNode.GetChild("SubStepModifier");
-            if(!StepModifier.Empty())
-            {
+            if(!StepModifier.Empty()) {
                 CurrAttrib = WorldSettings.GetAttribute("Modifier");
                 if(!CurrAttrib.Empty()) {
                     SetSimulationSubstepModifier(CurrAttrib.AsWhole());
@@ -475,8 +475,7 @@ namespace Mezzanine
             }
 
             XML::Node DebugRender = XMLNode.GetChild("DebugRendering");
-            if(!DebugRender.Empty())
-            {
+            if(!DebugRender.Empty()) {
                 int RenderMode = 0;
                 CurrAttrib = WorldSettings.GetAttribute("RenderingMode");
                 if(!CurrAttrib.Empty())
@@ -1267,10 +1266,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType PhysicsManager::GetInterfaceType() const
-            { return ManagerBase::MT_PhysicsManager; }
+            { return PhysicsManager::InterfaceType; }
 
         String PhysicsManager::GetImplementationTypeName() const
-            { return "DefaultPhysicsManager"; }
+            { return PhysicsManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
@@ -1285,64 +1284,66 @@ namespace Mezzanine
         // DefaultPhysicsManagerFactory Methods
 
         DefaultPhysicsManagerFactory::DefaultPhysicsManagerFactory()
-            {}
+            {  }
 
         DefaultPhysicsManagerFactory::~DefaultPhysicsManagerFactory()
-            {}
+            {  }
 
-        String DefaultPhysicsManagerFactory::GetManagerTypeName() const
-            { return "DefaultPhysicsManager"; }
+        String DefaultPhysicsManagerFactory::GetManagerImplName() const
+            { return PhysicsManager::ImplementationName; }
 
-        ManagerBase* DefaultPhysicsManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultPhysicsManagerFactory::GetManagerType() const
+            { return PhysicsManager::InterfaceType; }
+
+        WorldManager* DefaultPhysicsManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
         {
-            if(Params.empty()) return new PhysicsManager();
-            else
-            {
-                ManagerConstructionInfo PhysInfo;
-                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
-                {
-                    String Lower = (*ParIt).first;
-                    StringTools::ToLowerCase(Lower);
-                    if( "geographyupperbounds" == Lower )
-                    {
-                        PhysInfo.GeographyUpperBounds = StringTools::ConvertToVector3( (*ParIt).second );
-                    }
-                    else if( "geographylowerbounds" == Lower )
-                    {
-                        PhysInfo.GeographyLowerBounds = StringTools::ConvertToVector3( (*ParIt).second );
-                    }
-                    else if( "maxproxies" == Lower )
-                    {
-                        PhysInfo.MaxProxies = StringTools::ConvertToUInt32( (*ParIt).second );
-                    }
-                    else if( "gravity" == Lower )
-                    {
-                        PhysInfo.Gravity = StringTools::ConvertToVector3( (*ParIt).second );
-                    }
-                    else if( "softrigidworld" == Lower )
-                    {
-                        if(StringTools::ConvertToBool( (*ParIt).second ))
-                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
-                    }
-                    else if( "limitlessworld" == Lower )
-                    {
-                        if(StringTools::ConvertToBool( (*ParIt).second ))
-                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
-                    }
-                    else if( "multithreaded" == Lower )
-                    {
-                        if(StringTools::ConvertToBool( (*ParIt).second ))
-                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
-                    }
-                }
-                return new PhysicsManager(PhysInfo, NULL);
+            if( Params.empty() ) {
+                return new PhysicsManager(Creator);
             }
+            ManagerConstructionInfo PhysInfo;
+            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            {
+                String Lower = (*ParIt).first;
+                StringTools::ToLowerCase(Lower);
+                if( "geographyupperbounds" == Lower )
+                {
+                    PhysInfo.GeographyUpperBounds = StringTools::ConvertToVector3( (*ParIt).second );
+                }
+                else if( "geographylowerbounds" == Lower )
+                {
+                    PhysInfo.GeographyLowerBounds = StringTools::ConvertToVector3( (*ParIt).second );
+                }
+                else if( "maxproxies" == Lower )
+                {
+                    PhysInfo.MaxProxies = StringTools::ConvertToUInt32( (*ParIt).second );
+                }
+                else if( "gravity" == Lower )
+                {
+                    PhysInfo.Gravity = StringTools::ConvertToVector3( (*ParIt).second );
+                }
+                else if( "softrigidworld" == Lower )
+                {
+                    if(StringTools::ConvertToBool( (*ParIt).second ))
+                        PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
+                }
+                else if( "limitlessworld" == Lower )
+                {
+                    if(StringTools::ConvertToBool( (*ParIt).second ))
+                        PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
+                }
+                else if( "multithreaded" == Lower )
+                {
+                    if(StringTools::ConvertToBool( (*ParIt).second ))
+                        PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
+                }
+            }
+            return new PhysicsManager(Creator,PhysInfo);
         }
 
-        ManagerBase* DefaultPhysicsManagerFactory::CreateManager(XML::Node& XMLNode)
-            { return new PhysicsManager(XMLNode); }
+        WorldManager* DefaultPhysicsManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+            { return new PhysicsManager(Creator,XMLNode); }
 
-        void DefaultPhysicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultPhysicsManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
             { delete ToBeDestroyed; }
     }//Physics
 }//Mezzanine

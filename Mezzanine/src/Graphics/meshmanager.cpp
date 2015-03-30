@@ -54,6 +54,9 @@ namespace Mezzanine
 
     namespace Graphics
     {
+        const String MeshManager::ImplementationName = "DefaultMeshManager";
+        const ManagerBase::ManagerType MeshManager::InterfaceType = ManagerBase::MT_MeshManager;
+
         MeshManager::MeshManager()
             {  }
 
@@ -137,10 +140,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType MeshManager::GetInterfaceType() const
-            { return ManagerBase::MT_MeshManager; }
+            { return MeshManager::InterfaceType; }
 
         String MeshManager::GetImplementationTypeName() const
-            { return "DefaultMeshManager"; }
+            { return MeshManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
@@ -164,10 +167,13 @@ namespace Mezzanine
         DefaultMeshManagerFactory::~DefaultMeshManagerFactory()
             {  }
 
-        String DefaultMeshManagerFactory::GetManagerTypeName() const
-            { return "DefaultMeshManager"; }
+        String DefaultMeshManagerFactory::GetManagerImplName() const
+            { return MeshManager::ImplementationName; }
 
-        ManagerBase* DefaultMeshManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultMeshManagerFactory::GetManagerType() const
+            { return MeshManager::InterfaceType; }
+
+        EntresolManager* DefaultMeshManagerFactory::CreateManager(NameValuePairList& Params)
         {
             if( MeshManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -175,7 +181,7 @@ namespace Mezzanine
             }else return new MeshManager();
         }
 
-        ManagerBase* DefaultMeshManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultMeshManagerFactory::CreateManager(XML::Node& XMLNode)
         {
             if( MeshManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -183,7 +189,7 @@ namespace Mezzanine
             }else return new MeshManager(XMLNode);
         }
 
-        void DefaultMeshManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultMeshManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
             { delete ToBeDestroyed; }
     }//Graphics
 }//Mezzanine

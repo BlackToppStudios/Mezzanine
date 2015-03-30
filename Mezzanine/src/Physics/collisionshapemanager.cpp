@@ -83,10 +83,11 @@ namespace Mezzanine
     namespace Physics
     {
         //template<> CollisionShapeManager* Singleton<CollisionShapeManager>::SingletonPtr = NULL;
+        const String CollisionShapeManager::ImplementationName = "DefaultCollisionShapeManager";
+        const ManagerBase::ManagerType CollisionShapeManager::InterfaceType = ManagerBase::MT_CollisionShapeManager;
 
         CollisionShapeManager::CollisionShapeManager()
-        {
-        }
+            {  }
 
         CollisionShapeManager::CollisionShapeManager(XML::Node& XMLNode)
         {
@@ -755,49 +756,44 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType CollisionShapeManager::GetInterfaceType() const
-            { return ManagerBase::MT_CollisionShapeManager; }
+            { return CollisionShapeManager::InterfaceType; }
 
         String CollisionShapeManager::GetImplementationTypeName() const
-            { return "DefaultCollisionShapeManager"; }
+            { return CollisionShapeManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultCollisionShapeManagerFactory Methods
 
         DefaultCollisionShapeManagerFactory::DefaultCollisionShapeManagerFactory()
-        {
-        }
+            {  }
 
         DefaultCollisionShapeManagerFactory::~DefaultCollisionShapeManagerFactory()
-        {
-        }
+            {  }
 
-        String DefaultCollisionShapeManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultCollisionShapeManager";
-        }
+        String DefaultCollisionShapeManagerFactory::GetManagerImplName() const
+            { return CollisionShapeManager::ImplementationName; }
 
-        ManagerBase* DefaultCollisionShapeManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultCollisionShapeManagerFactory::GetManagerType() const
+            { return CollisionShapeManager::InterfaceType; }
+
+        EntresolManager* DefaultCollisionShapeManagerFactory::CreateManager(NameValuePairList& Params)
         {
-            if(CollisionShapeManager::SingletonValid())
-            {
+            if( CollisionShapeManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return CollisionShapeManager::GetSingletonPtr();
             }else return new CollisionShapeManager();
         }
 
-        ManagerBase* DefaultCollisionShapeManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultCollisionShapeManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            if(CollisionShapeManager::SingletonValid())
-            {
+            if( CollisionShapeManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return CollisionShapeManager::GetSingletonPtr();
             }else return new CollisionShapeManager(XMLNode);
         }
 
-        void DefaultCollisionShapeManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
+        void DefaultCollisionShapeManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+            { delete ToBeDestroyed; }
     }//Physics
 }//Mezzanine
 

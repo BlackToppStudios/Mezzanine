@@ -296,7 +296,8 @@ namespace Mezzanine
     class DebrisManager;
     class EventManager;
     class NetworkManager;
-    class ManagerFactory;
+    class EntresolManager;
+    class EntresolManagerFactory;
     class World;
     class WorldManager;
     namespace Audio
@@ -375,433 +376,432 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB Entresol : public Singleton<Entresol>
     {
-        public:
-            typedef std::map<String,ManagerFactory*> ManagerFactoryMap;
-            typedef ManagerFactoryMap::iterator ManagerFactoryIterator;
-            typedef ManagerFactoryMap::const_iterator ConstManagerFactoryIterator;
+    public:
+        /// @brief Basic container type for factories that construct known manager types.
+        typedef std::map<String,EntresolManagerFactory*>   ManagerFactoryMap;
+        /// @brief Basic container type for factories that construct known manager types.
+        typedef std::vector<EntresolManagerFactory*>       ManagerFactoryVec;
+        /// @brief Iterator type for manager factories stored by this class.
+        typedef ManagerFactoryMap::iterator                ManagerFactoryIterator;
+        /// @brief Const Iterator type for manager factories stored by this class.
+        typedef ManagerFactoryMap::const_iterator          ConstManagerFactoryIterator;
+        /// @brief Basic container type for World storage.
+        typedef std::vector<World*>                        WorldContainer;
+        /// @brief Iterator type for Worlds stored by this class.
+        typedef WorldContainer::iterator                   WorldContainerIterator;
+        /// @brief Const Iterator type for Worlds stored by this class.
+        typedef WorldContainer::const_iterator             ConstWorldContainerIterator;
+    private:
+        /// @internal
+        /// @brief The core structure responsible for our multi-threaded main loop.
+        Threading::FrameScheduler WorkScheduler;
 
-            typedef std::vector<World*> WorldContainer;
-            typedef WorldContainer::iterator WorldContainerIterator;
-            typedef WorldContainer::const_iterator ConstWorldContainerIterator;
-        private:
-            /// @internal
-            /// @brief The core structure responsible for our multi-threaded main loop.
-            Threading::FrameScheduler WorkScheduler;
+        //Used by the constructors
+        /// @internal
+        /// @brief This is called by most of the constructors so that the is one unified place to have all the settings made.
+        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
+        /// @param SceneType This is the type of Scene Manager to be created.
+        /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
+        /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
+        /// @param ManagersToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
+        void Construct( const Physics::ManagerConstructionInfo& PhysicsInfo,
+                        const String& SceneType,
+                        const String& EngineDataPath,
+                        const String& GraphicsLogFileName,
+                        const std::vector<EntresolManager*>& ManagersToBeAdded );
 
-            //Used by the constructors
-            /// @internal
-            /// @brief This is called by most of the constructors so that the is one unified place to have all the settings made.
-            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-            /// @param SceneType This is the type of Scene Manager to be created.
-            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
-            /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
-            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
-            void Construct( const Physics::ManagerConstructionInfo& PhysicsInfo,
-                            const String& SceneType,
-                            const String& EngineDataPath,
-                            const String& GraphicsLogFileName,
-                            const std::vector <ManagerBase*>& ManagerToBeAdded );
+        /// @internal
+        /// @brief Used to intialize from XML
+        /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
+        /// @param ArchType Should This be looking for raw or zip or whatever kind of files.
+        /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.
+        void ConstructFromXML(  const String& EngineDataPath,
+                                const ArchiveType ArchType,
+                                const String& InitializerFile );
 
-            /// @internal
-            /// @brief Used to intialize from XML
-            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
-            /// @param ArchType Should This be looking for raw or zip or whatever kind of files.
-            /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.
-            void ConstructFromXML(  const String& EngineDataPath,
-                                    const ArchiveType ArchType,
-                                    const String& InitializerFile );
+        /// @brief Perform a series of checks that could change on certain system or from certain codechanges to alert us to any problems early.
+        void SanityChecks();
 
-            /// @brief Perform a series of checks that could change on certain system or from certain codechanges to alert us to any problems early.
-            void SanityChecks();
+        Boole VerifyManagerInitializations();
 
-            Boole VerifyManagerInitializations();
+        /// @internal
+        /// @brief This is a map containing all the registered manager factories.
+        ManagerFactoryMap ManagerFactories;
+        /// @internal
+        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+        std::list< EntresolManager* > ManagerList;
 
-            /// @internal
-            /// @brief This is a map containing all the registered manager factories.
-            ManagerFactoryMap ManagerFactories;
-            /// @internal
-            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
-            std::list< ManagerBase* > ManagerList;
+        /// @internal
+        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+        WorldContainer Worlds;
 
-            /// @internal
-            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
-            WorldContainer Worlds;
+        /// @internal
+        /// @brief Used to track Ogre specific details for the statically linked Particle plugin
+        Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
 
-            /// @internal
-            /// @brief Used to track Ogre specific details for the statically linked Particle plugin
-            Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
+        //Used to break the mainloop
+        Int32 ManualLoopBreak;
 
-            //Used to break the mainloop
-            Int32 ManualLoopBreak;
+        /// @internal
+        /// @brief Responsible for asynchronously flushing the logs to disk (or wherever they sync to).
+        Threading::LogAggregator* Aggregator;
 
-            /// @internal
-            /// @brief Responsible for asynchronously flushing the logs to disk (or wherever they sync to).
-            Threading::LogAggregator* Aggregator;
+        /// @internal
+        /// @brief Create and direct streams used for logging that are not part of the FrameScheduler
+        /// @details This sets the name of the Ogre log file (so must be called after the SetupOgre
+        /// function is called). This will be changed in the future to change/set the framescheduler
+        /// log, in the meantime its only interaction with the framescheduler is adding a
+        /// LogAggregator WorkUnit.
+        /// @param LogFileName The name of the file to log to. Some Subsystems will use this in addition to some other descriptor
+        void SetupLogging(const String& OgreLogFileName);
+        void SetupOgreLogging(const String& OgreLogFileName);
+        void SetupInternalLogging();
+        /// @internal
+        /// @brief Closes log files/streams and removes any WorkUnits from Scheduling dedicated to logging.
+        void DestroyLogging();
 
-            /// @internal
-            /// @brief Create and direct streams used for logging that are not part of the FrameScheduler
-            /// @details This sets the name of the Ogre log file (so must be called after the SetupOgre
-            /// function is called). This will be changed in the future to change/set the framescheduler
-            /// log, in the meantime its only interaction with the framescheduler is adding a
-            /// LogAggregator WorkUnit.
-            /// @param LogFileName The name of the file to log to. Some Subsystems will use this in addition to some other descriptor
-            void SetupLogging(const String& OgreLogFileName);
-            void SetupOgreLogging(const String& OgreLogFileName);
-            void SetupInternalLogging();
-            /// @internal
-            /// @brief Closes log files/streams and removes any WorkUnits from Scheduling dedicated to logging.
-            void DestroyLogging();
+        /// @internal
+        /// @brief If not already created create an instance of Ogre.
+        void SetupOgre();
+        /// @internal
+        /// @brief Do any teardown required for Ogre, then destroy Ogre.
+        void DestroyOgre();
+        /// @internal
+        /// @brief Do any teardown required for SDL
+        void DestroySDL();
 
-            /// @internal
-            /// @brief If not already created create an instance of Ogre.
-            void SetupOgre();
-            /// @internal
-            /// @brief Do any teardown required for Ogre, then destroy Ogre.
-            void DestroyOgre();
-            /// @internal
-            /// @brief Do any teardown required for SDL
-            void DestroySDL();
+    public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Creation and Deletion methods
 
-        public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Creation and Deletion methods
+        /// @brief Initializer file constructor.
+        /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
+        /// If the file provided is not one of this type this function will throw an exception. @n @n
+        /// When initializing factories in the XML file this constructor does not initialize any additional manager factories, so if they are called this will throw an exception.
+        /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
+        /// @param ArchType The type of archive at the path provided.
+        /// @param InitializerFile The file that describes how to initialize Mezzanine.
+        Entresol(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
+        /// @brief Factory and initializer file constructor.
+        /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
+        /// If the file provided is not one of this type this function will throw an exception. @n @n
+        /// Also default factories are already added and thus do not need to be included in the Factory vector.
+        /// @param CustomFactories A vector containing the additional factories to be registered before initializing the engine.
+        /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
+        /// @param ArchType The type of archive at the path provided.
+        /// @param InitializerFile The file that describes how to initialize Mezzanine.
+        Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
+        /// @brief Descriptive constructor With Manager Pointers
+        /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
+        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
+        /// @param SceneType A cue to the scenemanager as to how rendering should occur.
+        /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
+        /// @param LogFileName This is the place that log messages get sent to.
+        Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
+                   const String& SceneType,
+                   const String& EngineDataPath,
+                   const String& LogFileName = "Mezzanine.log" );
+        /// @brief Descriptive constructor
+        /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the entresol.
+        /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other
+        /// constructors this one can accept a vector of pointers to managers which will be added.
+        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
+        /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.
+        /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
+        /// @param LogFileName This is the place that log messages get sent to.
+        /// @param SceneType A cue to the scenemanager as to how rendering should occur.
+        /// @param ManagersToBeAdded This is a vector of manager pointers that will be used instead of creating new ones.
+        Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
+                   const String& SceneType,
+                   const String& EngineDataPath,
+                   const String& LogFileName,
+                   const std::vector<EntresolManager*>& ManagersToBeAdded);
+        /// @brief Default constructor.
+        /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a entresol which expands for 100 units from the Origin, and only allows 10 Actors.
+        /// @warning Do not make a new entresol if one already exists. This can only cause problems.
+        Entresol();
+        /// @brief Deconstructor.
+        /// @details This Tears down all the items created by the entresol, and safely frees any graphical resources, we will also delete any Objects passed into the
+        /// entresol by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager).
+        ~Entresol();
 
-            /// @brief Initializer file constructor.
-            /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
-            /// If the file provided is not one of this type this function will throw an exception. @n @n
-            /// When initializing factories in the XML file this constructor does not initialize any additional manager factories, so if they are called this will throw an exception.
-            /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
-            /// @param ArchType The type of archive at the path provided.
-            /// @param InitializerFile The file that describes how to initialize Mezzanine.
-            Entresol(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
-            /// @brief Factory and initializer file constructor.
-            /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
-            /// If the file provided is not one of this type this function will throw an exception. @n @n
-            /// Also default factories are already added and thus do not need to be included in the Factory vector.
-            /// @param CustomFactories A vector containing the additional factories to be registered before initializing the engine.
-            /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
-            /// @param ArchType The type of archive at the path provided.
-            /// @param InitializerFile The file that describes how to initialize Mezzanine.
-            Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
-            /// @brief Descriptive constructor With Manager Pointers
-            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
-            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-            /// @param SceneType A cue to the scenemanager as to how rendering should occur.
-            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
-            /// @param LogFileName This is the place that log messages get sent to.
-            Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
-                       const String& SceneType,
-                       const String& EngineDataPath,
-                       const String& LogFileName = "Mezzanine.log" );
-            /// @brief Descriptive constructor
-            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the entresol.
-            /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other
-            /// constructors this one can accept a vector of pointers to managers which will be added.
-            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.
-            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
-            /// @param LogFileName This is the place that log messages get sent to.
-            /// @param SceneType A cue to the scenemanager as to how rendering should occur.
-            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones.
-            Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
-                       const String& SceneType,
-                       const String& EngineDataPath,
-                       const String& LogFileName,
-                       const std::vector <ManagerBase*>& ManagerToBeAdded);
-            /// @brief Default constructor.
-            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a entresol which expands for 100 units from the Origin, and only allows 10 Actors.
-            /// @warning Do not make a new entresol if one already exists. This can only cause problems.
-            Entresol();
-            /// @brief Deconstructor.
-            /// @details This Tears down all the items created by the entresol, and safely frees any graphical resources, we will also delete any Objects passed into the
-            /// entresol by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager).
-            ~Entresol();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+        /// @brief Pauses all animations, particles, and object movement throughout all worlds.
+        /// @param Pause Pauses the world if true, unpauses if false.
+        void PauseAllWorlds(Boole Pause);
 
-            /// @brief Pauses all animations, particles, and object movement throughout all worlds.
-            /// @param Pause Pauses the world if true, unpauses if false.
-            void PauseAllWorlds(Boole Pause);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Timing system methods
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Timing system methods
+        /// @brief This sets a new Target Frame Rate
+        /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to
+        /// Entresol::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms
+        /// @param NewFrameRate The new desired frame rate.
+        /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
+        void SetTargetFrameRate(const Whole NewFrameRate);
+        /// @brief This sets a new target time in milliseconds.
+        /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
+        /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
+        /// set it too high, and system resources could becom completely taxed and power will be wasted.
+        /// @param NewTargetTime The new length of time, in milliseconds.
+        /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
+        void SetTargetFrameTimeMilliseconds(const Whole NewTargetTime);
+        /// @brief This sets a new target time microseconds.
+        /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
+        /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
+        /// set it too high, and system resources could becom completely taxed and power will be wasted.
+        /// @param NewTargetTime The new length of time, in microseconds.
+        /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
+        void SetTargetFrameTimeMicroseconds(const Whole NewTargetTime);
+        /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be.
+        /// @details In practice I've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there.  like there was a " Schedule : " right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn't click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
+        /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
+        /// @return This returns a Whole with the current value in milliseconds.
+        Whole GetTargetFrameTimeMilliseconds() const;
+        /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be.
+        /// @details In practice I've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there.  like there was a " Schedule : " right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn't click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
+        /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
+        /// @return This returns a Whole with the current value in microseconds.
+        Whole GetTargetFrameTimeMicroseconds() const;
 
-            /// @brief This sets a new Target Frame Rate
-            /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to
-            /// Entresol::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms
-            /// @param NewFrameRate The new desired frame rate.
-            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-            void SetTargetFrameRate(const Whole NewFrameRate);
-            /// @brief This sets a new target time in milliseconds.
-            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
-            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
-            /// set it too high, and system resources could becom completely taxed and power will be wasted.
-            /// @param NewTargetTime The new length of time, in milliseconds.
-            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-            void SetTargetFrameTimeMilliseconds(const Whole NewTargetTime);
-            /// @brief This sets a new target time microseconds.
-            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
-            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
-            /// set it too high, and system resources could becom completely taxed and power will be wasted.
-            /// @param NewTargetTime The new length of time, in microseconds.
-            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-            void SetTargetFrameTimeMicroseconds(const Whole NewTargetTime);
-            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be.
-            /// @details In practice I've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there.  like there was a " Schedule : " right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn't click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
-            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
-            /// @return This returns a Whole with the current value in milliseconds.
-            Whole GetTargetFrameTimeMilliseconds() const;
-            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be.
-            /// @details In practice I've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there.  like there was a " Schedule : " right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn't click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
-            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
-            /// @return This returns a Whole with the current value in microseconds.
-            Whole GetTargetFrameTimeMicroseconds() const;
+        /// @brief Gets the amount of time since the last time the last frame took to run.
+        /// @details This returns, in milliseconds the amount of time since the frame started.
+        /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
+        Whole GetLastFrameTimeMilliseconds() const;
+        /// @brief Gets the amount of time since the last time the last frame took to run.
+        /// @details This returns, in microseconds the amount of time since the frame started.
+        /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
+        Whole GetLastFrameTimeMicroseconds() const;
 
-            /// @brief Gets the amount of time since the last time the last frame took to run.
-            /// @details This returns, in milliseconds the amount of time since the frame started.
-            /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
-            Whole GetLastFrameTimeMilliseconds() const;
-            /// @brief Gets the amount of time since the last time the last frame took to run.
-            /// @details This returns, in microseconds the amount of time since the frame started.
-            /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
-            Whole GetLastFrameTimeMicroseconds() const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Initialization
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Initialization
+        /// @brief This initializes all managers and worlds currently in the Entresol.
+        /// @param CallMainLoop Should the main loop be called.
+        void EngineInit(const Boole& CallMainLoop = false);
 
-            /// @brief This initializes all managers and worlds currently in the Entresol.
-            /// @param CallMainLoop Should the main loop be called.
-            void EngineInit(const Boole& CallMainLoop = false);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Main Loop
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Main Loop
+        /// @brief Gets the core structure responsible for scheduling work in the Entresol main loop.
+        /// @return Returns a reference to the FrameScheduler being used by this Entresol.
+        Threading::FrameScheduler& GetScheduler();
 
-            /// @brief Gets the core structure responsible for scheduling work in the Entresol main loop.
-            /// @return Returns a reference to the FrameScheduler being used by this Entresol.
-            Threading::FrameScheduler& GetScheduler();
+        /// @brief This Function house the main loop.
+        /// @details If using this you don't need to worry about initialization of managers or other pre main loop items.
+        void MainLoop();
 
-            /// @brief This Function house the main loop.
-            /// @details If using this you don't need to worry about initialization of managers or other pre main loop items.
-            void MainLoop();
+        /// @brief Initialize any default managers and any added after construction. This should be called before DoOneFrame()
+        void PreMainLoopInit();
 
-            /// @brief Initialize any default managers and any added after construction. This should be called before DoOneFrame()
-            void PreMainLoopInit();
+        /// @brief Run one frame
+        /// @details This should only be called after Managers and other Pre Main loop items
+        void DoOneFrame();
 
-            /// @brief Run one frame
-            /// @details This should only be called after Managers and other Pre Main loop items
-            void DoOneFrame();
+        /// @brief This makes the main loop end after it's current frame (or cancels a previous attempt to do so).
+        /// @param Break If true this will break the main loop after the next iteration or the end of the current one. If false the main loop will just keep running.
+        /// @details If called while not in the main loop, it will affect the next main loop iteration.
+        /// This function is thread safe and can be called from any work unit at any time.
+        void BreakMainLoop(Boole Break = true);
 
-            /// @brief This makes the main loop end after it's current frame (or cancels a previous attempt to do so).
-            /// @param Break If true this will break the main loop after the next iteration or the end of the current one. If false the main loop will just keep running.
-            /// @details If called while not in the main loop, it will affect the next main loop iteration.
-            /// This function is thread safe and can be called from any work unit at any time.
-            void BreakMainLoop(Boole Break = true);
+        /// @brief How many frames have elasped?
+        /// @return A Whole containing the currect 0 based frame number.
+        Whole GetFrameCount() const;
 
-            /// @brief How many frames have elasped?
-            /// @return A Whole containing the currect 0 based frame number.
-            Whole GetFrameCount() const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Factory Management
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Factory Management
+        /// @brief Adds/registers a manager factory with this Entresol, allowing it to be constructed through this API.
+        /// @param ToBeAdded The manager factory to be added.
+        void AddManagerFactory(EntresolManagerFactory* ToBeAdded);
+        /// @brief Removes a manager factory from this Entresol.
+        /// @param ToBeRemoved A pointer to the manager factory that is to be removed.
+        void RemoveManagerFactory(EntresolManagerFactory* ToBeRemoved);
+        /// @brief Removes a manager factory from this Entresol.
+        /// @param ImplName The name of the manager implementation created by the factory to be removed.
+        void RemoveManagerFactory(const String& ImplName);
+        /// @brief Removes and destroys a manager factory in this Entresol.
+        /// @param ToBeRemoved A pointer to the manager factory that is to be removed and destroyed.
+        void DestroyManagerFactory(EntresolManagerFactory* ToBeRemoved);
+        /// @brief Removes and destroys a manager factory in this Entresol.
+        /// @param ImplName The name of the manager implementation created by the factory to be removed and destroyed.
+        void DestroyManagerFactory(const String& ImplName);
+        /// @brief Destroys all manager factories in this Entresol.
+        /// @warning The destruction of manager factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
+        void DestroyAllManagerFactories();
+        /// @brief Adds all the default manager factories provided by the engine to the Entresol.
+        void AddAllEngineDefaultManagerFactories();
 
-            /// @brief Adds/registers a manager factory with this Entresol, allowing it to be constructed through this API.
-            /// @param ToBeAdded The manager factory to be added.
-            void AddManagerFactory(ManagerFactory* ToBeAdded);
-            /// @brief Removes a manager factory from this Entresol.
-            /// @param ToBeRemoved A pointer to the manager factory that is to be removed.
-            void RemoveManagerFactory(ManagerFactory* ToBeRemoved);
-            /// @brief Removes a manager factory from this Entresol.
-            /// @param ImplName The name of the manager implementation created by the factory to be removed.
-            void RemoveManagerFactory(const String& ImplName);
-            /// @brief Removes and destroys a manager factory in this Entresol.
-            /// @param ToBeRemoved A pointer to the manager factory that is to be removed and destroyed.
-            void DestroyManagerFactory(ManagerFactory* ToBeRemoved);
-            /// @brief Removes and destroys a manager factory in this Entresol.
-            /// @param ImplName The name of the manager implementation created by the factory to be removed and destroyed.
-            void DestroyManagerFactory(const String& ImplName);
-            /// @brief Destroys all manager factories in this Entresol.
-            /// @warning The destruction of manager factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
-            void DestroyAllManagerFactories();
-            /// @brief Adds all the default manager factories provided by the engine to the Entresol.
-            void AddAllEngineDefaultManagerFactories();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Upper Management
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Upper Management
+        /// @brief Creates a new manager.
+        /// @param ManagerImplName The name of the manager implementation to create.
+        /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
+        /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
+        /// @return Returns a pointer to the created manager.
+        EntresolManager* CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToEntresol = true);
+        /// @brief Creates a new manager.
+        /// @param ManagerImplName The name of the manager implementation to create.
+        /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
+        /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
+        /// @return Returns a pointer to the created manager.
+        EntresolManager* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToEntresol = true);
+        /// @brief Destroys a manager.
+        /// @param ToBeDestroyed The manager to be destroyed.
+        void DestroyManager(EntresolManager* ToBeDestroyed);
+        /// @brief Destroys all managers currently in the Entresol.
+        /// @warning Do not call this in anything that is run during the main loop.  If you do you will have a bad time.
+        void DestroyAllManagers();
 
-            /// @brief Creates a new manager.
-            /// @param ManagerImplName The name of the manager implementation to create.
-            /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
-            /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
-            /// @return Returns a pointer to the created manager.
-            ManagerBase* CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToEntresol = true);
-            /// @brief Creates a new manager.
-            /// @param ManagerImplName The name of the manager implementation to create.
-            /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
-            /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
-            /// @return Returns a pointer to the created manager.
-            ManagerBase* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToEntresol = true);
-            /// @brief Destroys a manager.
-            /// @param ToBeDestroyed The manager to be destroyed.
-            void DestroyManager(ManagerBase* ToBeDestroyed);
-            /// @brief Destroys all managers currently in the Entresol.
-            /// @warning Do not call this in anything that is run during the main loop.  If you do you will have a bad time.
-            void DestroyAllManagers();
+        /// @brief This adds a manager, in the correct order, to the list that the Entresol calls on.
+        /// @param ManagerToAdd The pointer to the manager to be added.
+        void AddManager(EntresolManager* ManagerToAdd);
+        /// @brief This removes a manager by finding the matching pointer.
+        /// @param ManagerToRemove A pointer to the manager to be removed.
+        void RemoveManager(EntresolManager* ManagerToRemove);
+        /// @brief This is will find the manager of a given type.
+        /// @param RetrieveType The ManagerBase::ManagerTypeName of the manager to get.
+        /// @param WhichOne If not getting the first/only manager of the given type, get one.
+        /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists.
+        EntresolManager* GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne = 0);
+        /// @brief This removes a manager of a specific type from the list
+        /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
+        /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
+        void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
 
-            /// @brief This adds a manager, in the correct order, to the list that the Entresol calls on.
-            /// @param ManagerToAdd The pointer to the manager to be added.
-            void AddManager(ManagerBase* ManagerToAdd);
-            /// @brief This removes a manager by finding the matching pointer.
-            /// @param ManagerToRemove A pointer to the manager to be removed.
-            void RemoveManager(ManagerBase* ManagerToRemove);
-            /// @brief This is will find the manager of a given type.
-            /// @param RetrieveType The ManagerBase::ManagerTypeName of the manager to get.
-            /// @param WhichOne If not getting the first/only manager of the given type, get one.
-            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists.
-            ManagerBase* GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne = 0);
-            /// @brief This removes a manager of a specific type from the list
-            /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
-            /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
-            void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
-
-            /// @brief This gets the AudioManager from the manager list.
-            /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
-            /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.
-            Audio::AudioManager* GetAudioManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the CollisionShapeManager from the manager list.
-            /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
-            /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.
-            Physics::CollisionShapeManager* GetCollisionShapeManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the EventManager from the manager list.
-            /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
-            /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
-            EventManager* GetEventManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the GraphicsManager from the manager list.
-            /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
-            /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
-            Graphics::GraphicsManager* GetGraphicsManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the InputManager from the manager list.
-            /// @param WhichOne If you have multiple InputManagers this will choose which one to return.
-            /// @return This returns a pointer to a InputManager, or a NULL pointer if no matching manager exists.
-            Input::InputManager* GetInputManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the MeshManager from the manager list.
-            /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
-            /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
-            Graphics::MeshManager* GetMeshManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the AudioManager from the manager list.
+        /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
+        /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.
+        Audio::AudioManager* GetAudioManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the CollisionShapeManager from the manager list.
+        /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
+        /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.
+        Physics::CollisionShapeManager* GetCollisionShapeManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the EventManager from the manager list.
+        /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
+        /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
+        EventManager* GetEventManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the GraphicsManager from the manager list.
+        /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
+        /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
+        Graphics::GraphicsManager* GetGraphicsManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the InputManager from the manager list.
+        /// @param WhichOne If you have multiple InputManagers this will choose which one to return.
+        /// @return This returns a pointer to a InputManager, or a NULL pointer if no matching manager exists.
+        Input::InputManager* GetInputManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the MeshManager from the manager list.
+        /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
+        /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
+        Graphics::MeshManager* GetMeshManager(const UInt16 WhichOne = 0);
 #ifdef MEZZNETWORK
-            /// @brief This gets the NetworkManager from the manager list.
-            /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.
-            /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
-            NetworkManager* GetNetworkManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the NetworkManager from the manager list.
+        /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.
+        /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
+        NetworkManager* GetNetworkManager(const UInt16 WhichOne = 0);
 #endif
-            /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
-            /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
-            /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
-            Resource::ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the TextureManager from the manager list.
-            /// @param WhichOne If you have multiple TextureManagers this will choose which one to return.
-            /// @return This returns a pointer to a TextureManager, or a NULL pointer if no matching manager exists.
-            Graphics::TextureManager* GetTextureManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the UIManager from the manager list.
-            /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
-            /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
-            UI::UIManager* GetUIManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
+        /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
+        /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
+        Resource::ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the TextureManager from the manager list.
+        /// @param WhichOne If you have multiple TextureManagers this will choose which one to return.
+        /// @return This returns a pointer to a TextureManager, or a NULL pointer if no matching manager exists.
+        Graphics::TextureManager* GetTextureManager(const UInt16 WhichOne = 0);
+        /// @brief This gets the UIManager from the manager list.
+        /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
+        /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
+        UI::UIManager* GetUIManager(const UInt16 WhichOne = 0);
+        /// @brief This gets a ScriptingManager from the manager list.
+        /// @param WhichOne If you have multiple ScriptingManagers this will choose which one to return.
+        /// @return This returns a pointer to a ScriptingManager, or a NULL pointer if no matching manager exists.
+        Scripting::iScriptingManager* GetScriptingManager(const UInt16 WhichOne = 0);
 
-            Scripting::iScriptingManager* GetScriptingManager(const UInt16 WhichOne = 0);
+        ///////////////////////////////////////////////////////////////////////////////
+        // World Management
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // World Management
+        /// @brief This creates a world and adds it to the World List.
+        /// @param WorldName String name of the world.
+        /// @return Returns a pointer to the created world.
+        World* CreateWorld(const String& WorldName);
+        /// @brief This creates a world and adds it to the World List.
+        /// @param WorldName String name of the world.
+        /// @param Managers A container of pre-made managers to be used by this world.
+        /// @return Returns a pointer to the created world.
+        World* CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded);
+        /// @brief This creates a world and adds it to the World List.
+        /// @param WorldName String name of the world.
+        /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
+        /// @param SceneType A string containing the name of the underlying scene type for this world.
+        /// @return Returns a pointer to the created world.
+        World* CreateWorld(const String& WorldName, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        /// @brief This creates a world and adds it to the World List.
+        /// @param WorldName String name of the world.
+        /// @param ManagersToBeAdded A container of pre-made managers to be used by this world.
+        /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
+        /// @param SceneType A string containing the name of the underlying scene type for this world.
+        /// @return Returns a pointer to the created world.
+        World* CreateWorld(const String& WorldName, const std::vector<WorldManager*>& ManagersToBeAdded, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
 
-            /// @brief This adds a world to the list of worlds in the entresol.
-            /// @param WorldToAdd The pointer to the world to be added.
-            void AddWorld(World* WorldToBeAdded);
-            /// @brief This creates a world and adds it to the World List.
-            /// @param WorldName String name of the world.
-            /// @return Returns a pointer to the created world.
-            World* CreateWorld(const String& WorldName);
-            /// @brief This creates a world and adds it to the World List.
-            /// @param WorldName String name of the world.
-            /// @param Managers A container of pre-made managers to be used by this world.
-            /// @return Returns a pointer to the created world.
-            World* CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded);
-            /// @brief This creates a world and adds it to the World List.
-            /// @param WorldName String name of the world.
-            /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
-            /// @param SceneType A string containing the name of the underlying scene type for this world.
-            /// @return Returns a pointer to the created world.
-            World* CreateWorld(const String& WorldName, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
-            /// @brief This creates a world and adds it to the World List.
-            /// @param WorldName String name of the world.
-            /// @param Managers A container of pre-made managers to be used by this world.
-            /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
-            /// @param SceneType A string containing the name of the underlying scene type for this world.
-            /// @return Returns a pointer to the created world.
-            World* CreateWorld(const String& WorldName, const std::vector <WorldManager*>& ManagerToBeAdded,
-                const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType );
-            /// @brief This gets a world from the world list by name.
-            /// @param WorldName The string name of the world to be accessed..
-            /// @return This returns a pointer to the world with the given name, otherwise returns NULL.
-            World* GetWorld(const String& WorldName);
-            /// @brief This removes the given world from the world list.
-            /// @param WorldToBeRemoved Pointer to the world to be removed from the world list.
-            World* RemoveWorld(World* WorldToBeRemoved);
-            /// @brief This removes the world with the given name from the world list.
-            /// @param WorldName The name of the world to be removed.
-            World* RemoveWorldByName(const String& WorldName);
-            /// @brief This removes all worlds from the world list.
-            void RemoveAllWorlds();
-            /// @brief This destroys the given world and removes it from the world list.
-            /// @param WorldToBeDestroyed The name of the world to be destroyed.
-            void DestroyWorld(World* WorldToBeDestroyed);
-            /// @brief This destroys the world with the given name and removes it from the world list.
-            /// @param WorldName The name of the world to be destroyed.
-            void DestroyWorldByName(const String& WorldName);
-            /// @brief This destroys all the worlds in the world list.
-            void DestroyAllWorlds();
-            /// @brief This gets the number of worlds in the world list.
-            /// @return Returns the number of worlds in the world list.
-            UInt16 GetNumWorlds();
+        /// @brief This adds a world to the list of worlds in the entresol.
+        /// @param WorldToAdd The pointer to the world to be added.
+        void AddWorld(World* WorldToBeAdded);
 
-            /// @brief Destroy all managers in given world.
-            /// @param TargetWorld Pointer to the world whose managers are to be destroyed.
-            void DestroyWorldManagers(World* TargetWorld);
-            /// @brief Destroy a manager in given world.
-            /// @param TargetWorld Pointer to the world whose manager is to be destroyed.
-            /// @param ToBeDestroyed Pointer to the manager to be destroyed.
-            void DestroyWorldManager(World* TargetWorld, WorldManager* ToBeDestroyed);
-            /// @brief Destroy all WorldManagers in all worlds.
-            void DestroyAllWorldManagers();
+        /// @brief This gets a world from the world list by name.
+        /// @param WorldName The string name of the world to retrieve.
+        /// @return Returns a pointer to the world with the given name, otherwise returns NULL.
+        World* GetWorld(const String& WorldName);
+        /// @brief This gets a world from the world list by index.
+        /// @param WorldIndex The index of the world to retrieve.
+        /// @return Returns a pointer to the world at the specified index.
+        World* GetWorld(const Whole Index);
+        /// @brief This gets the number of worlds in the world list.
+        /// @return Returns the number of worlds in the world list.
+        UInt16 GetNumWorlds();
+        /// @brief This removes the given world from the world list.
+        /// @param WorldToBeRemoved Pointer to the world to be removed from the world list.
+        /// @return Returns a pointer to the removed world.
+        World* RemoveWorld(World* WorldToBeRemoved);
+        /// @brief This removes the world with the given name from the world list.
+        /// @param WorldName The name of the world to be removed.
+        /// @return Returns a pointer to the removed world.
+        World* RemoveWorldByName(const String& WorldName);
+        /// @brief This removes all worlds from the world list.
+        void RemoveAllWorlds();
+        /// @brief This destroys the given world and removes it from the world list.
+        /// @param WorldToBeDestroyed The name of the world to be destroyed.
+        void DestroyWorld(World* WorldToBeDestroyed);
+        /// @brief This destroys the world with the given name and removes it from the world list.
+        /// @param WorldName The name of the world to be destroyed.
+        void DestroyWorldByName(const String& WorldName);
+        /// @brief This destroys all the worlds in the world list.
+        void DestroyAllWorlds();
 
-            /// @brief Creates a manager of given type and optionally adds it to a world.  Intended for WorldManagers.
-            /// @param ManagerImplName The name of the manager implementation to create.
-            /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
-            /// @param AddToWorld Whether or not to add the created manager to a World after creation.
-            /// @param AddedTo World to add manager to.
-            WorldManager* CreateWorldManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld, World* AddedTo);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Logging
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Internal Logging
-
-            /// @brief Runtime event and message logging.
-            /// @param Message This is what will be streamed to the log.
-            /// @throws Anything GetLogStream could throw.
-            template <class T> void _Log(const T& Message)
-                { this->_LogString(StringTools::ConvertToString(Message)); }
-            /// @brief Log String directly with no conversion.
-            /// @param Message The string to log.
-            /// @throws Anything GetLogStream could throw.
-            void _LogString(const String& Message);
-            /// @brief A nearly threadsafe logging sink.
-            /// @details If ID is not supplied and the thread is managed by the framescheduler this should be thread safe.
-            /// @param ID Defaults to the id of the current thread, but can be used to retrieve the logger for any thread.
-            /// @return A Logger that can be used by the thread with given ID or outside of Framescheduling in a non-threadsafe way.
-            /// @exception This throws a ParametersRangeException if the thread is not managed by the frame scheduler or it Threading::FrameScheduler::CreateThreads() has not
-            /// been called (It creates the ThreadSpecific resources that contain the Loggers).
-            Logger& _GetLogStream(Threading::ThreadId ID = Threading::this_thread::get_id());
-            /// @internal
-            /// @brief This is used to asynchronously handle log messages.
-            /// @return Returns a pointer to the aggregator responsible for synchronizing logs between threads.
-            Threading::LogAggregator* _GetLogAggregator();
+        /// @brief Runtime event and message logging.
+        /// @param Message This is what will be streamed to the log.
+        /// @throws Anything GetLogStream could throw.
+        template <class T> void _Log(const T& Message)
+            { this->_LogString(StringTools::ConvertToString(Message)); }
+        /// @brief Log String directly with no conversion.
+        /// @param Message The string to log.
+        /// @throws Anything GetLogStream could throw.
+        void _LogString(const String& Message);
+        /// @brief A nearly threadsafe logging sink.
+        /// @details If ID is not supplied and the thread is managed by the framescheduler this should be thread safe.
+        /// @param ID Defaults to the id of the current thread, but can be used to retrieve the logger for any thread.
+        /// @return A Logger that can be used by the thread with given ID or outside of Framescheduling in a non-threadsafe way.
+        /// @exception This throws a ParametersRangeException if the thread is not managed by the frame scheduler or it Threading::FrameScheduler::CreateThreads() has not
+        /// been called (It creates the ThreadSpecific resources that contain the Loggers).
+        Logger& _GetLogStream(Threading::ThreadId ID = Threading::this_thread::get_id());
+        /// @internal
+        /// @brief This is used to asynchronously handle log messages.
+        /// @return Returns a pointer to the aggregator responsible for synchronizing logs between threads.
+        Threading::LogAggregator* _GetLogAggregator();
     };//Entresol
 }//Mezzanine
 #endif

@@ -42,7 +42,7 @@
 
 #include "colourvalue.h"
 #include "worldmanager.h"
-#include "managerfactory.h"
+#include "worldmanagerfactory.h"
 #include "singleton.h"
 #include "quaternion.h"
 #include "vector3.h"
@@ -88,6 +88,11 @@ namespace Mezzanine
             /// @brief Const Iterator type for RenderableProxy instances stored by this class.
             typedef ProxyContainer::const_iterator                ConstProxyIterator;
 
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
+
             /// @brief needs to be documented
             enum SceneShadowTechnique
             {                                     //Shadow Docs from Ogre ShadowTechnique Documentation.
@@ -114,24 +119,22 @@ namespace Mezzanine
             /// @internal
             /// @brief Container storing all of the RenderableProxy instances created by this manager.
             ProxyContainer Proxies;
-
             /// @internal
             /// @brief Pointer to a class storing sensative internal data for the scene.
             SceneManagerData* SMD;
-
             /// @internal
             /// @brief Can be used for thread safe logging and other thread specific resources.
             Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
         public:
             /// @brief Class Constructor.
-            /// @details Standard class initialization constructor.
+            /// @param Creator The parent world that is creating the manager.
             /// @param InternalManagerTypeName The name of the scenemanager type to be constructed.
-            SceneManager(World * ParentWorld = NULL, const String& InternalManagerTypeName = "DefaultSceneManager");
+            SceneManager(World* Creator, const String& InternalManagerTypeName = "DefaultSceneManager");
             /// @brief XML constructor.
+            /// @param Creator The parent world that is creating the manager.
             /// @param XMLNode The node of the xml document to construct from.
-            SceneManager(World * ParentWorld, XML::Node& XMLNode);
-            /// @brief Class Destructor.
-            /// @details The class destructor.
+            SceneManager(World* Creator, XML::Node& XMLNode);
+            /// @brief Class destructor.
             virtual ~SceneManager();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -395,10 +398,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultSceneManagerFactory
-        /// @headerfile scenemanager.h
         /// @brief A factory responsible for the creation and destruction of the default scenemanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultSceneManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultSceneManagerFactory : public WorldManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -406,15 +408,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultSceneManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, NameValuePairList&)
+            WorldManager* CreateManager(World* Creator, NameValuePairList& Params);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, XML::Node&)
+            WorldManager* CreateManager(World* Creator, XML::Node& XMLNode);
+            /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+            void DestroyManager(WorldManager* ToBeDestroyed);
         };//DefaultSceneManagerFactory
     }//Graphics
 }//Mezzanine

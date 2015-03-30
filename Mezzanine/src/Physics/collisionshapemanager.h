@@ -44,7 +44,7 @@
 #include "Physics/collisionshape.h"
 #ifndef SWIG
     #include "entresolmanager.h"
-    #include "managerfactory.h"
+    #include "entresolmanagerfactory.h"
 #endif
 #include "singleton.h"
 
@@ -95,6 +95,11 @@ namespace Mezzanine
             typedef ShapeVector::iterator                 ShapeVectorIterator;
             /// @brief Const Vector Iterator type for CollisionShape instances stored by this class.
             typedef ShapeVector::const_iterator           ConstShapeVectorIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             /// @internal
             /// @brief This stores the names and collision Shapes
@@ -289,10 +294,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultCollisionShapeManagerFactory
-        /// @headerfile collisionshapemanager.h
         /// @brief A factory responsible for the creation and destruction of the default collisionshapemanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultCollisionShapeManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultCollisionShapeManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -300,15 +304,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultCollisionShapeManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
+            EntresolManager* CreateManager(NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
+            EntresolManager* CreateManager(XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultCollisionShapeManagerFactory
     }//Physics
 }//Mezzanine

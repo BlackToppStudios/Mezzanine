@@ -55,16 +55,19 @@ namespace Mezzanine
             OALSSoundScapeManagerFactory::~OALSSoundScapeManagerFactory()
                 {  }
 
-            String OALSSoundScapeManagerFactory::GetManagerTypeName() const
-                { return "OALSSoundScapeManager"; }
+            String OALSSoundScapeManagerFactory::GetManagerImplName() const
+                { return OALS::SoundScapeManager::ImplementationName; }
 
-            ManagerBase* OALSSoundScapeManagerFactory::CreateManager(NameValuePairList& Params)
-                { return new OALS::SoundScapeManager();  /* SoundScapeManagers are not singleton, so let'er rip! */ }
+            ManagerBase::ManagerType OALSSoundScapeManagerFactory::GetManagerType() const
+                { return OALS::SoundScapeManager::InterfaceType; }
 
-            ManagerBase* OALSSoundScapeManagerFactory::CreateManager(XML::Node& XMLNode)
-                { return new OALS::SoundScapeManager(XMLNode);  /* SoundScapeManagers are not singleton, so let'er rip! */ }
+            WorldManager* OALSSoundScapeManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+                { return new OALS::SoundScapeManager(Creator); }
 
-            void OALSSoundScapeManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+            WorldManager* OALSSoundScapeManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+                { return new OALS::SoundScapeManager(Creator,XMLNode); }
+
+            void OALSSoundScapeManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
                 { delete ToBeDestroyed; }
         }//OALS
     }//Audio

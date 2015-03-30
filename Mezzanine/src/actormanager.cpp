@@ -80,15 +80,19 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // ActorManager Methods
 
-    ActorManager::ActorManager(World * ParentWorld) :
-        WorldManager( ParentWorld ),
+    const String ActorManager::ImplementationName = "DefaultActorManager";
+    const ManagerBase::ManagerType ActorManager::InterfaceType = ManagerBase::MT_ActorManager;
+
+    ActorManager::ActorManager(World* Creator) :
+        WorldManager(Creator),
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
     {
         this->ActorUpdateWork = new ActorUpdateWorkUnit(this);
     }
 
-    ActorManager::ActorManager(XML::Node& XMLNode) :
+    ActorManager::ActorManager(World* Creator, XML::Node& XMLNode) :
+        WorldManager(Creator),
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
     {
@@ -296,10 +300,10 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType ActorManager::GetInterfaceType() const
-        { return ManagerBase::MT_ActorManager; }
+        { return ActorManager::InterfaceType; }
 
     String ActorManager::GetImplementationTypeName() const
-        { return "DefaultActorManager"; }
+        { return ActorManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultActorManagerFactory Methods
@@ -310,16 +314,19 @@ namespace Mezzanine
     DefaultActorManagerFactory::~DefaultActorManagerFactory()
         {  }
 
-    String DefaultActorManagerFactory::GetManagerTypeName() const
-        { return "DefaultActorManager"; }
+    String DefaultActorManagerFactory::GetManagerImplName() const
+        { return ActorManager::ImplementationName; }
 
-    ManagerBase* DefaultActorManagerFactory::CreateManager(NameValuePairList& Params)
-        { return new ActorManager(); }
+    ManagerBase::ManagerType DefaultActorManagerFactory::GetManagerType() const
+        { return ActorManager::InterfaceType; }
 
-    ManagerBase* DefaultActorManagerFactory::CreateManager(XML::Node& XMLNode)
-        { return new ActorManager(XMLNode); }
+    WorldManager* DefaultActorManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+        { return new ActorManager(Creator); }
 
-    void DefaultActorManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    WorldManager* DefaultActorManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+        { return new ActorManager(Creator,XMLNode); }
+
+    void DefaultActorManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

@@ -73,18 +73,6 @@ namespace Mezzanine
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot initialize a world manager without a valid world.");
         }
     }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal Methods
-
-    void WorldManager::_SetWorld(World* Parent)
-    {
-        if( this->IsInitialized() ) {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot assign new world while a world manager is in operation/initialized.");
-        }
-
-        this->ParentWorld = Parent;
-    }
 }//Mezzanine
 
 #endif

@@ -55,10 +55,13 @@ namespace Mezzanine
             OALSAudioManagerFactory::~OALSAudioManagerFactory()
                 {  }
 
-            String OALSAudioManagerFactory::GetManagerTypeName() const
-                { return "OALSAudioManager"; }
+            String OALSAudioManagerFactory::GetManagerImplName() const
+                { return OALS::AudioManager::ImplementationName; }
 
-            ManagerBase* OALSAudioManagerFactory::CreateManager(NameValuePairList& Params)
+            ManagerBase::ManagerType OALSAudioManagerFactory::GetManagerType() const
+                { return OALS::AudioManager::InterfaceType; }
+
+            EntresolManager* OALSAudioManagerFactory::CreateManager(NameValuePairList& Params)
             {
                 if( AudioManager::SingletonValid() ) {
                     /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -66,7 +69,7 @@ namespace Mezzanine
                 }else return new OALS::AudioManager();
             }
 
-            ManagerBase* OALSAudioManagerFactory::CreateManager(XML::Node& XMLNode)
+            EntresolManager* OALSAudioManagerFactory::CreateManager(XML::Node& XMLNode)
             {
                 if( AudioManager::SingletonValid() ) {
                     /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -74,7 +77,7 @@ namespace Mezzanine
                 }else return new OALS::AudioManager(XMLNode);
             }
 
-            void OALSAudioManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+            void OALSAudioManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
                 { delete ToBeDestroyed; }
         }//OALS
     }//Audio

@@ -134,6 +134,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // AudioManager Methods
 
+            const String OALS::AudioManager::ImplementationName = "OALSAudioManager";
+            const ManagerBase::ManagerType OALS::AudioManager::InterfaceType = ManagerBase::MT_AudioManager;
+
             OALS::AudioManager::AudioManager() :
                 InternalDevice(NULL),
                 NonSpacialContext(NULL),
@@ -686,7 +689,7 @@ namespace Mezzanine
                     this->DestroyAllSounds();
                     for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
                     {
-                        (*SSM)->DestroyAllSoundProxies();
+                        (*SSM)->DestroyAllProxies();
                         (*SSM)->DestroyAllListeners();
                     }
 
@@ -794,7 +797,7 @@ namespace Mezzanine
 
             String OALS::AudioManager::GetImplementationTypeName() const
             {
-                return "OALSAudioManager";
+                return OALS::AudioManager::ImplementationName;
             }
 
             ///////////////////////////////////////////////////////////////////////////////

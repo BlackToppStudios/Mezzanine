@@ -193,6 +193,11 @@ namespace Mezzanine
                 typedef SoundScapeManagerContainer::iterator        SoundScapeManagerIterator;
                 /// @brief Const Iterator type for @ref OALS::SoundScapeManager instances registered to this class.
                 typedef SoundScapeManagerContainer::const_iterator  ConstSoundScapeManagerIterator;
+
+                /// @brief A String containing the name of this manager implementation.
+                static const String ImplementationName;
+                /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+                static const ManagerBase::ManagerType InterfaceType;
             protected:
                 friend class BufferUpdate2DWorkUnit;
                 friend class EffectFilterCleanWorkUnit;

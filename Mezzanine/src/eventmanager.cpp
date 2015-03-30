@@ -268,6 +268,8 @@ namespace Mezzanine
     // EventManager Methods
 
     template<> EventManager* Singleton<EventManager>::SingletonPtr = NULL;
+    const String EventManager::ImplementationName = "DefaultEventManager";
+    const ManagerBase::ManagerType EventManager::InterfaceType = ManagerBase::MT_EventManager;
 
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
@@ -673,50 +675,44 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType EventManager::GetInterfaceType() const
-        { return ManagerBase::MT_EventManager; }
+        { return EventManager::InterfaceType; }
 
     String EventManager::GetImplementationTypeName() const
-        { return "DefaultEventManager"; }
+        { return EventManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultEventManagerFactory Methods
 
     DefaultEventManagerFactory::DefaultEventManagerFactory()
-    {
-    }
+        {  }
 
     DefaultEventManagerFactory::~DefaultEventManagerFactory()
-    {
-    }
+        {  }
 
-    String DefaultEventManagerFactory::GetManagerTypeName() const
-    {
-        return "DefaultEventManager";
-    }
+    String DefaultEventManagerFactory::GetManagerImplName() const
+        { return EventManager::ImplementationName; }
 
-    ManagerBase* DefaultEventManagerFactory::CreateManager(NameValuePairList& Params)
+    ManagerBase::ManagerType DefaultEventManagerFactory::GetManagerType() const
+        { return EventManager::InterfaceType; }
+
+    EntresolManager* DefaultEventManagerFactory::CreateManager(NameValuePairList& Params)
     {
-        if(EventManager::SingletonValid())
-        {
+        if( EventManager::SingletonValid() ) {
             /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
             return EventManager::GetSingletonPtr();
         }else return new EventManager();
     }
 
-    ManagerBase* DefaultEventManagerFactory::CreateManager(XML::Node& XMLNode)
+    EntresolManager* DefaultEventManagerFactory::CreateManager(XML::Node& XMLNode)
     {
-        if(EventManager::SingletonValid())
-        {
+        if( EventManager::SingletonValid() ) {
             /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
             return EventManager::GetSingletonPtr();
         }else return new EventManager(XMLNode);
     }
 
-    void DefaultEventManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-    {
-        delete ToBeDestroyed;
-    }
-
+    void DefaultEventManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+        { delete ToBeDestroyed; }
 }//Mezzanine
 
 

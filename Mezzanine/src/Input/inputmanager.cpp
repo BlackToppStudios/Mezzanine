@@ -159,6 +159,8 @@ namespace Mezzanine
         // InputManager Methods
 
         //template<> InputManager* Singleton<InputManager>::SingletonPtr = NULL;
+        const String InputManager::ImplementationName = "DefaultInputManager";
+        const ManagerBase::ManagerType InputManager::InterfaceType = ManagerBase::MT_InputManager;
 
         InputManager::InputManager() :
             IMID(NULL),
@@ -337,49 +339,44 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType InputManager::GetInterfaceType() const
-            { return ManagerBase::MT_InputManager; }
+            { return InputManager::InterfaceType; }
 
         String InputManager::GetImplementationTypeName() const
-            { return "DefaultInputManager"; }
+            { return InputManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultInputManagerFactory Methods
 
         DefaultInputManagerFactory::DefaultInputManagerFactory()
-        {
-        }
+            {  }
 
         DefaultInputManagerFactory::~DefaultInputManagerFactory()
-        {
-        }
+            {  }
 
-        String DefaultInputManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultInputManager";
-        }
+        String DefaultInputManagerFactory::GetManagerImplName() const
+            { return InputManager::ImplementationName; }
 
-        ManagerBase* DefaultInputManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultInputManagerFactory::GetManagerType() const
+            { return InputManager::InterfaceType; }
+
+        EntresolManager* DefaultInputManagerFactory::CreateManager(NameValuePairList& Params)
         {
-            if(InputManager::SingletonValid())
-            {
+            if( InputManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return InputManager::GetSingletonPtr();
             }else return new InputManager();
         }
 
-        ManagerBase* DefaultInputManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultInputManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            if(InputManager::SingletonValid())
-            {
+            if( InputManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return InputManager::GetSingletonPtr();
             }else return new InputManager(XMLNode);
         }
 
-        void DefaultInputManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
+        void DefaultInputManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+            { delete ToBeDestroyed; }
     }//Input
 }//Mezzanine
 

@@ -58,13 +58,16 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        CameraManager::CameraManager(World * ParentWorld) :
-            WorldManager(ParentWorld),
-            SceneMan(NULL)
-        {
-        }
+        const String CameraManager::ImplementationName = "DefaultCameraManager";
+        const ManagerBase::ManagerType CameraManager::InterfaceType = ManagerBase::MT_CameraManager;
 
-        CameraManager::CameraManager(XML::Node& XMLNode) :
+        CameraManager::CameraManager(World* Creator) :
+            WorldManager(Creator),
+            SceneMan(NULL)
+            {  }
+
+        CameraManager::CameraManager(World* Creator, XML::Node& XMLNode) :
+            WorldManager(Creator),
             SceneMan(NULL)
         {
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -243,10 +246,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType CameraManager::GetInterfaceType() const
-            { return ManagerBase::MT_CameraManager; }
+            { return CameraManager::InterfaceType; }
 
         String CameraManager::GetImplementationTypeName() const
-            { return "DefaultCameraManager"; }
+            { return CameraManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultCameraManagerFactory Methods
@@ -257,16 +260,19 @@ namespace Mezzanine
         DefaultCameraManagerFactory::~DefaultCameraManagerFactory()
             {  }
 
-        String DefaultCameraManagerFactory::GetManagerTypeName() const
-            { return "DefaultCameraManager"; }
+        String DefaultCameraManagerFactory::GetManagerImplName() const
+            { return CameraManager::ImplementationName; }
 
-        ManagerBase* DefaultCameraManagerFactory::CreateManager(NameValuePairList& Params)
-            { return new CameraManager(); }
+        ManagerBase::ManagerType DefaultCameraManagerFactory::GetManagerType() const
+            { return CameraManager::InterfaceType; }
 
-        ManagerBase* DefaultCameraManagerFactory::CreateManager(XML::Node& XMLNode)
-            { return new CameraManager(XMLNode); }
+        WorldManager* DefaultCameraManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+            { return new CameraManager(Creator); }
 
-        void DefaultCameraManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        WorldManager* DefaultCameraManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+            { return new CameraManager(Creator,XMLNode); }
+
+        void DefaultCameraManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
             { delete ToBeDestroyed; }
     }//Graphics
 }//Mezzanine

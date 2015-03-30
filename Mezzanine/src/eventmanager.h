@@ -45,7 +45,7 @@
 ///////////////////////////////////////
 
 #include "entresolmanager.h"
-#include "managerfactory.h"
+#include "entresolmanagerfactory.h"
 #include "eventbase.h"
 #include "singleton.h"
 #include "vector2.h"
@@ -159,7 +159,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     class MEZZ_LIB EventManager: public EntresolManager, public Singleton<EventManager>
     {
-    private:
+    public:
+        /// @brief A String containing the name of this manager implementation.
+        static const String ImplementationName;
+        /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+        static const ManagerBase::ManagerType InterfaceType;
+    protected:
         /// @internal
         /// @brief All the internal data for this EventManager
         Internal::EventManagerInternalData* _Data;
@@ -179,7 +184,6 @@ namespace Mezzanine
         friend std::ostream& MEZZ_LIB ::operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr);
         friend std::istream& MEZZ_LIB ::operator >> (std::istream& stream, Mezzanine::EventManager& Mgr);
         friend void MEZZ_LIB ::operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
-
     public:
         /// @brief Default constructor.
         EventManager();
@@ -413,7 +417,7 @@ namespace Mezzanine
     /// @headerfile eventmanager.h
     /// @brief A factory responsible for the creation and destruction of the default eventmanager.
     ///////////////////////////////////////
-    class MEZZ_LIB DefaultEventManagerFactory : public ManagerFactory
+    class MEZZ_LIB DefaultEventManagerFactory : public EntresolManagerFactory
     {
     public:
         /// @brief Class constructor.
@@ -421,15 +425,17 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~DefaultEventManagerFactory();
 
-        /// @copydoc ManagerFactory::GetManagerTypeName()
-        String GetManagerTypeName() const;
+        /// @copydoc ManagerFactory::GetManagerImplName()
+        String GetManagerImplName() const;
+        /// @copydoc ManagerFactory::GetManagerType() const
+        ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-        ManagerBase* CreateManager(NameValuePairList& Params);
-        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-        ManagerBase* CreateManager(XML::Node& XMLNode);
-        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-        void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
+        EntresolManager* CreateManager(NameValuePairList& Params);
+        /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
+        EntresolManager* CreateManager(XML::Node& XMLNode);
+        /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+        void DestroyManager(EntresolManager* ToBeDestroyed);
     };//DefaultEventManagerFactory
 }//Mezzanine
 

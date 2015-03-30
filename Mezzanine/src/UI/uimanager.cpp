@@ -97,6 +97,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // UIManager Methods
 
+        const String UIManager::ImplementationName = "DefaultUIManager";
+        const ManagerBase::ManagerType UIManager::InterfaceType = ManagerBase::MT_UIManager;
+
         UIManager::UIManager() :
             HoveredWidget(NULL),
             WidgetFocus(NULL),
@@ -719,10 +722,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType UIManager::GetInterfaceType() const
-            { return ManagerBase::MT_UIManager; }
+            { return UIManager::InterfaceType; }
 
         String UIManager::GetImplementationTypeName() const
-            { return "DefaultUIManager"; }
+            { return UIManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultUIManagerFactory Methods
@@ -733,10 +736,13 @@ namespace Mezzanine
         DefaultUIManagerFactory::~DefaultUIManagerFactory()
             {  }
 
-        String DefaultUIManagerFactory::GetManagerTypeName() const
-            { return "DefaultUIManager"; }
+        String DefaultUIManagerFactory::GetManagerImplName() const
+            { return UIManager::ImplementationName; }
 
-        ManagerBase* DefaultUIManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultUIManagerFactory::GetManagerType() const
+            { return UIManager::InterfaceType; }
+
+        EntresolManager* DefaultUIManagerFactory::CreateManager(NameValuePairList& Params)
         {
             if( UIManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -744,7 +750,7 @@ namespace Mezzanine
             }else return new UIManager();
         }
 
-        ManagerBase* DefaultUIManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultUIManagerFactory::CreateManager(XML::Node& XMLNode)
         {
             if( UIManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -752,7 +758,7 @@ namespace Mezzanine
             }else return new UIManager(XMLNode);
         }
 
-        void DefaultUIManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultUIManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
             { delete ToBeDestroyed; }
     }//UI
 }//Mezzanine

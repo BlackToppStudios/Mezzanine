@@ -96,7 +96,11 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // SoundScapeManager Methods
 
-            SoundScapeManager::SoundScapeManager() :
+            const String SoundScapeManager::ImplementationName = "DefaultSoundScapeManager";
+            const ManagerBase::ManagerType SoundScapeManager::InterfaceType = ManagerBase::MT_SoundScapeManager;
+
+            SoundScapeManager::SoundScapeManager(World* Creator) :
+                Audio::SoundScapeManager(Creator),
                 BufferUpdate3DWork(NULL),
                 ThreadResources(NULL)
             {
@@ -110,7 +114,8 @@ namespace Mezzanine
                 this->Contexts.resize(OALS_MAX_LISTENERS_PER_MANAGER,NULL);
             }
 
-            SoundScapeManager::SoundScapeManager(XML::Node& XMLNode) :
+            SoundScapeManager::SoundScapeManager(World* Creator, XML::Node& XMLNode) :
+                Audio::SoundScapeManager(Creator),
                 BufferUpdate3DWork(NULL),
                 ThreadResources(NULL)
             {
@@ -136,7 +141,7 @@ namespace Mezzanine
                     AudioMan->_UnregisterSoundScapeManager(this);
                 }
 
-                this->DestroyAllSoundProxies();
+                this->DestroyAllProxies();
                 this->DestroyAllListeners();
             }
 
@@ -390,7 +395,7 @@ namespace Mezzanine
                 }
             }
 
-            void SoundScapeManager::DestroyAllSoundProxies()
+            void SoundScapeManager::DestroyAllProxies()
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
@@ -463,7 +468,7 @@ namespace Mezzanine
 
             String SoundScapeManager::GetImplementationTypeName() const
             {
-                return "OALSSoundScapeManager";
+                return OALS::SoundScapeManager::ImplementationName;
             }
         }//OALS
     }//Audio

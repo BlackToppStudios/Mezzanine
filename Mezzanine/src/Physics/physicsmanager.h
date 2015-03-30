@@ -60,7 +60,7 @@ typedef float btScalar;
 #include "datatypes.h"
 #ifndef SWIG
     #include "worldmanager.h"
-    #include "managerfactory.h"
+    #include "worldmanagerfactory.h"
     #include "singleton.h"
 #endif
 #ifndef SWIG
@@ -274,6 +274,11 @@ namespace Mezzanine
             typedef CollisionMap::iterator                          CollisionMapIterator;
             /// @brief Const Iterator type for sorted @ref Collision instances.
             typedef CollisionMap::const_iterator                    ConstCollisionMapIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             friend class CollisionDispatcher;
             friend class ParallelCollisionDispatcher;
@@ -338,20 +343,17 @@ namespace Mezzanine
             /// @brief Internal Callback that is called each substep of the simulation.
             static void InternalTickCallback(btDynamicsWorld* world, btScalar timeStep);
         public:
-            /// @brief Simple Constructor
-            /// @details This constructor will assign some sane default values and will create a physics
-            /// world that can be used immediately
-            PhysicsManager();
-            /// @brief Simple Constructor
-            /// @details This constructor will assign some sane default values and will create a physics
-            /// world that can be used immediately
+            /// @brief Default settings constructor.
+            /// @param Creator The parent world that is creating the manager.
+            PhysicsManager(World* Creator);
+            /// @brief More explicit constructor.
+            /// @param Creator The parent world that is creating the manager.
             /// @param Info The construction info class with all the settings you wish the world to have.
-            PhysicsManager(const ManagerConstructionInfo& Info, World * ParentWorld = NULL );
+            PhysicsManager(World* Creator, const ManagerConstructionInfo& Info);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            PhysicsManager(XML::Node& XMLNode);
-            /// @brief Deconstructor
-            /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
+            PhysicsManager(World* Creator, XML::Node& XMLNode);
+            /// @brief Class destructor.
             virtual ~PhysicsManager();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -633,10 +635,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultPhysicsManagerFactory
-        /// @headerfile physicsmanager.h
         /// @brief A factory responsible for the creation and destruction of the default physicsmanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultPhysicsManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultPhysicsManagerFactory : public WorldManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -644,16 +645,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultPhysicsManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, NameValuePairList&)
+            WorldManager* CreateManager(World* Creator, NameValuePairList& Params);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, XML::Node&)
+            WorldManager* CreateManager(World* Creator, XML::Node& XMLNode);
+            /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+            void DestroyManager(WorldManager* ToBeDestroyed);
         };//DefaultPhysicsManagerFactory
     }//Physics
 }//Mezzanine

@@ -54,9 +54,7 @@
 
 // Enabled implementation includes
 #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
-    // Permit the factories to be visible so they can be auto-added.
     #include "Audio/OALS/oalsaudiomanagerfactory.h"
-    #include "Audio/OALS/oalssoundscapemanagerfactory.h"
 #endif // ENABLE_OALS_AUDIO_IMPLEMENTATION
 
 #ifdef MEZZLUA51
@@ -171,7 +169,7 @@ namespace Mezzanine
     Entresol::Entresol()
     {
         Physics::ManagerConstructionInfo PhysicsInfo;
-        std::vector <ManagerBase*> temp;
+        std::vector <EntresolManager*> temp;
 
         this->Construct(PhysicsInfo,"DefaultSceneManager",".","Mezzanine.log",temp);
     }
@@ -185,9 +183,9 @@ namespace Mezzanine
             { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
 
-    Entresol::Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
+    Entresol::Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
     {
-        for(std::vector<ManagerFactory*>::iterator it = CustomFactories.begin(); it != CustomFactories.end(); ++it)
+        for(ManagerFactoryVec::iterator it = CustomFactories.begin(); it != CustomFactories.end(); ++it)
         {
             AddManagerFactory( (*it) );
         }
@@ -204,7 +202,7 @@ namespace Mezzanine
                         const String& EngineDataPath,
                         const String& LogFileName)
     {
-        std::vector <ManagerBase*> temp;
+        std::vector<EntresolManager*> temp;
         this->Construct(PhysicsInfo,
                         SceneType,
                         EngineDataPath,
@@ -216,13 +214,13 @@ namespace Mezzanine
                         const String& SceneType,
                         const String& EngineDataPath,
                         const String& LogFileName,
-                        const std::vector <ManagerBase*>& ManagerToBeAdded)
+                        const std::vector<EntresolManager*>& ManagersToBeAdded)
     {
         this->Construct(PhysicsInfo,
                         SceneType,
                         EngineDataPath,
                         LogFileName,
-                        ManagerToBeAdded );
+                        ManagersToBeAdded );
 
     }
 
@@ -230,11 +228,12 @@ namespace Mezzanine
                                 const String& SceneType,
                                 const String& EngineDataPath,
                                 const String& GraphicsLogFileName,
-                                const std::vector <ManagerBase*>& ManagerToBeAdded )
+                                const std::vector<EntresolManager*>& ManagersToBeAdded )
 
     {
         //Add default manager factories
-        AddAllEngineDefaultManagerFactories();
+        this->AddAllEngineDefaultManagerFactories();
+        World::AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values
         this->ManualLoopBreak = 0;
 
@@ -246,7 +245,7 @@ namespace Mezzanine
         Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
 
         //add each manager that was passed in to the manager list
-        for(std::vector<ManagerBase*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
+        for(std::vector<EntresolManager*>::const_iterator iter = ManagersToBeAdded.begin(); iter!= ManagersToBeAdded.end(); iter++)
             { this->AddManager(*iter); }
 
         //Dummy param list so we can use the auto-added manager types if needed
@@ -281,7 +280,8 @@ namespace Mezzanine
     void Entresol::ConstructFromXML(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
     {
         //Add default manager factories
-        AddAllEngineDefaultManagerFactories();
+        this->AddAllEngineDefaultManagerFactories();
+        World::AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values.
         this->ManualLoopBreak = false;
 
@@ -428,8 +428,7 @@ namespace Mezzanine
         }
 
         // Load additional resource groups
-        if(!ResourceInit.empty())
-        {
+        if( !ResourceInit.empty() ) {
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
             Resource::FileStream ResourceStream(ResourceInit,EngineDataPath);
             XML::Document ResourceDoc;
@@ -473,8 +472,7 @@ namespace Mezzanine
         }
 
         // Configure the UI
-        if(!GUIInit.empty())
-        {
+        if(!GUIInit.empty()) {
             /// @todo This is currently not implemented.
         }
 
@@ -490,13 +488,11 @@ namespace Mezzanine
         Log(sizeof(Input::InputCode));
         Log(sizeof(SDL_Scancode));
         Log(sizeof(int));//*/
-        if(sizeof(Input::InputCode) != sizeof(SDL_Scancode))
-        {
+        if(sizeof(Input::InputCode) != sizeof(SDL_Scancode)) {
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
         }
 
-        if(sizeof(Input::InputCode) != sizeof(int))
-        {
+        if(sizeof(Input::InputCode) != sizeof(int)) {
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
         }
     }
@@ -504,21 +500,18 @@ namespace Mezzanine
     Boole Entresol::VerifyManagerInitializations()
     {
         std::vector<String> ManagerNames;
-        for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
+        for (std::list< EntresolManager* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
-            if(!(*Iter)->IsInitialized())
-            {
+            if(!(*Iter)->IsInitialized()) {
                 ManagerNames.push_back( (*Iter)->GetInterfaceTypeAsString() );
             }
         }
 
-        if(ManagerNames.empty())
-        {
+        if( ManagerNames.empty() ) {
             return true;
         }else{
             StringStream ExceptionStream;
-            if(1 == ManagerNames.size())
-            {
+            if( 1 == ManagerNames.size() ) {
                 ExceptionStream << "Manager: ";
                 ExceptionStream << ManagerNames.at(0);
                 ExceptionStream << "is not initialized.  All managers need to be initiailzed when entering the main loop.";
@@ -539,13 +532,14 @@ namespace Mezzanine
     //tears the world down
     Entresol::~Entresol()
     {
-        DestroyAllManagers();
-        DestroyAllManagerFactories();
-        DestroyAllWorlds();
-        DestroyLogging();
+        this->DestroyAllWorlds();
+        World::DestroyAllManagerFactories();
+        this->DestroyAllManagers();
+        this->DestroyAllManagerFactories();
+        this->DestroyLogging();
 
-        DestroyOgre();
-        DestroySDL();
+        this->DestroyOgre();
+        this->DestroySDL();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -553,7 +547,7 @@ namespace Mezzanine
 
     void Entresol::PauseAllWorlds(Boole Pause)
     {
-        for ( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             (*it)->GetPhysicsManager()->PauseSimulation(Pause);
         }
@@ -566,7 +560,7 @@ namespace Mezzanine
     void Entresol::EngineInit( const Boole &CallMainLoop )
     {
         Graphics::GraphicsManager::GetSingletonPtr()->Initialize();
-        for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
+        for (std::list< EntresolManager* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
             StringStream InitStream;
             InitStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << "." << endl;
@@ -601,7 +595,7 @@ namespace Mezzanine
     {
         VerifyManagerInitializations();
 
-        for ( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             (*it)->GetPhysicsManager()->MainLoopInitialize();
             (*it)->GetAreaEffectManager()->MainLoopInitialize();
@@ -629,8 +623,7 @@ namespace Mezzanine
 
     void Entresol::BreakMainLoop(Boole Break)
     {
-        if(Break)
-        {
+        if(Break) {
             while(!ManualLoopBreak)
                 { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,0,1); }
         } else {
@@ -670,14 +663,14 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Factory Management
 
-    void Entresol::AddManagerFactory(ManagerFactory* ToBeAdded)
+    void Entresol::AddManagerFactory(EntresolManagerFactory* ToBeAdded)
     {
-        this->ManagerFactories.insert(std::pair<String,ManagerFactory*>(ToBeAdded->GetManagerTypeName(),ToBeAdded));
+        this->ManagerFactories.insert(std::pair<String,EntresolManagerFactory*>(ToBeAdded->GetManagerImplName(),ToBeAdded));
     }
 
-    void Entresol::RemoveManagerFactory(ManagerFactory* ToBeRemoved)
+    void Entresol::RemoveManagerFactory(EntresolManagerFactory* ToBeRemoved)
     {
-        this->RemoveManagerFactory(ToBeRemoved->GetManagerTypeName());
+        this->RemoveManagerFactory(ToBeRemoved->GetManagerImplName());
     }
 
     void Entresol::RemoveManagerFactory(const String& ImplName)
@@ -687,9 +680,9 @@ namespace Mezzanine
             { this->ManagerFactories.erase(ManIt); }
     }
 
-    void Entresol::DestroyManagerFactory(ManagerFactory* ToBeRemoved)
+    void Entresol::DestroyManagerFactory(EntresolManagerFactory* ToBeRemoved)
     {
-        this->DestroyManagerFactory(ToBeRemoved->GetManagerTypeName());
+        this->DestroyManagerFactory(ToBeRemoved->GetManagerImplName());
     }
 
     void Entresol::DestroyManagerFactory(const String& ImplName)
@@ -711,21 +704,9 @@ namespace Mezzanine
     void Entresol::AddAllEngineDefaultManagerFactories()
     {
         ManagerFactoryIterator ManIt;
-        //DefaultActorManager
-        ManIt = this->ManagerFactories.find("DefaultActorManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultActorManagerFactory());
-        //DefaultAreaEffectManager
-        ManIt = this->ManagerFactories.find("DefaultAreaEffectManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultAreaEffectManagerFactory());
-        //DefaultCameraManager
-        ManIt = this->ManagerFactories.find("DefaultCameraManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultCameraManagerFactory());
         //DefaultCollisionShapeManager
         ManIt = this->ManagerFactories.find("DefaultCollisionShapeManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Physics::DefaultCollisionShapeManagerFactory());
-        //DefaultDebrisManager
-        ManIt = this->ManagerFactories.find("DefaultDebrisManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultDebrisManagerFactory());
         //DefaultEventManager
         ManIt = this->ManagerFactories.find("DefaultEventManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultEventManagerFactory());
@@ -741,18 +722,9 @@ namespace Mezzanine
         //DefaultNetworkManager
         ManIt = this->ManagerFactories.find("DefaultNetworkManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultNetworkManagerFactory());
-        //DefaultPhysicsManager
-        ManIt = this->ManagerFactories.find("DefaultPhysicsManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Physics::DefaultPhysicsManagerFactory());
         //DefaultResourceManager
         ManIt = this->ManagerFactories.find("DefaultResourceManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Resource::DefaultResourceManagerFactory());
-        //DefaultSceneManager
-        ManIt = this->ManagerFactories.find("DefaultSceneManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultSceneManagerFactory());
-        //DefaultTerrainManager
-        ManIt = this->ManagerFactories.find("DefaultTerrainManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultTerrainManagerFactory());
         //DefaultTextureManager
         ManIt = this->ManagerFactories.find("DefaultTextureManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultTextureManagerFactory());
@@ -764,9 +736,6 @@ namespace Mezzanine
         //OALSAudioManager
         ManIt = this->ManagerFactories.find("OALSAudioManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Audio::OALS::OALSAudioManagerFactory());
-        //OALSSoundScapeManager
-        ManIt = this->ManagerFactories.find("OALSSoundScapeManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
         #ifdef MEZZLUA51
@@ -779,33 +748,33 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
 
-    ManagerBase* Entresol::CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld)
+    EntresolManager* Entresol::CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld)
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
         if( ManIt == this->ManagerFactories.end() )
         {
             MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
-        ManagerBase* NewMan = (*ManIt).second->CreateManager(Params);
+        EntresolManager* NewMan = (*ManIt).second->CreateManager(Params);
         if(AddToWorld)
             this->AddManager(NewMan);
         return NewMan;
     }
 
-    ManagerBase* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToWorld)
+    EntresolManager* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToWorld)
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
         if( ManIt == this->ManagerFactories.end() )
         {
             MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
-        ManagerBase* NewMan = (*ManIt).second->CreateManager(XMLNode);
+        EntresolManager* NewMan = (*ManIt).second->CreateManager(XMLNode);
         if(AddToWorld)
             this->AddManager(NewMan);
         return NewMan;
     }
 
-    void Entresol::DestroyManager(ManagerBase* ToBeDestroyed)
+    void Entresol::DestroyManager(EntresolManager* ToBeDestroyed)
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
         if( ManIt == this->ManagerFactories.end() )
@@ -836,7 +805,7 @@ namespace Mezzanine
         this->ManagerList.clear();//*/
         while( !(this->ManagerList.empty()) )
         {
-            ManagerBase* Current = this->ManagerList.front();
+            EntresolManager* Current = this->ManagerList.front();
             #ifdef MEZZDEBUG
             this->_Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
             #endif
@@ -852,13 +821,13 @@ namespace Mezzanine
         }//*/
     }
 
-    void Entresol::AddManager(ManagerBase* ManagerToAdd)
+    void Entresol::AddManager(EntresolManager* ManagerToAdd)
     {
         #ifdef MEZZDEBUG
         this->_Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".\n");
         #endif
         // We have to verify the manager is unique.  A number of issues can arrise if a manager is double inserted.
-        for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
+        for( std::list< EntresolManager* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
         {
             if( (*ManIter) == ManagerToAdd )
                 return;
@@ -866,9 +835,9 @@ namespace Mezzanine
         this->ManagerList.push_back(ManagerToAdd);
     }
 
-    ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne)
+    EntresolManager* Entresol::GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne)
     {
-        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+        for(std::list< EntresolManager* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
             if( (*ManIter)->GetInterfaceType() == RetrieveType )
             {
@@ -879,9 +848,9 @@ namespace Mezzanine
         return NULL;
     }
 
-    void Entresol::RemoveManager(ManagerBase* ManagerToRemove)
+    void Entresol::RemoveManager(EntresolManager* ManagerToRemove)
     {
-        for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
+        for( std::list< EntresolManager* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
         {
             if( *ManIter == ManagerToRemove )
             {
@@ -893,7 +862,7 @@ namespace Mezzanine
 
     void Entresol::RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne)
     {
-        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+        for(std::list< EntresolManager* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
             if( (*ManIter)->GetInterfaceType() == ManagersToRemoveType )
             {
@@ -965,11 +934,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // World Management
 
-    void Entresol::AddWorld(World* WorldToBeAdded)
-    {
-        Worlds.push_back(WorldToBeAdded);
-    }
-
     World* Entresol::CreateWorld(const String& WorldName)
     {
         World* NewWorld = new World(WorldName);
@@ -999,6 +963,11 @@ namespace Mezzanine
         return NewWorld;
     }
 
+    void Entresol::AddWorld(World* WorldToBeAdded)
+    {
+        Worlds.push_back(WorldToBeAdded);
+    }
+
     World* Entresol::GetWorld(const String& WorldName)
     {
         for( ConstWorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
@@ -1011,9 +980,14 @@ namespace Mezzanine
         return NULL;
     }
 
+    World* Entresol::GetWorld(const Whole Index)
+    {
+        return this->Worlds.at(Index);
+    }
+
     UInt16 Entresol::GetNumWorlds()
     {
-        return Worlds.size();
+        return this->Worlds.size();
     }
 
     World* Entresol::RemoveWorld(World* WorldToBeRemoved)
@@ -1022,7 +996,7 @@ namespace Mezzanine
         {
             World* w = (*it);
             if ( WorldToBeRemoved == w ) {
-                Worlds.erase(it);
+                this->Worlds.erase(it);
                 return w;
             }
         }
@@ -1035,7 +1009,7 @@ namespace Mezzanine
         {
             World* w = (*it);
             if ( WorldName == w->GetName() ) {
-                Worlds.erase(it);
+                this->Worlds.erase(it);
                 return w;
             }
         }
@@ -1044,7 +1018,7 @@ namespace Mezzanine
 
     void Entresol::RemoveAllWorlds()
     {
-        Worlds.clear();
+        this->Worlds.clear();
     }
 
     void Entresol::DestroyWorld(World* WorldToBeDestroyed)
@@ -1054,7 +1028,7 @@ namespace Mezzanine
             World* w = (*it);
             if ( WorldToBeDestroyed == w ) {
                 delete w;
-                Worlds.erase(it);
+                this->Worlds.erase(it);
                 return;
             }
         }
@@ -1067,7 +1041,7 @@ namespace Mezzanine
             World* w = (*it);
             if ( WorldName == w->GetName() ) {
                 delete w;
-                Worlds.erase(it);
+                this->Worlds.erase(it);
                 return;
             }
         }
@@ -1080,48 +1054,7 @@ namespace Mezzanine
             World* w = (*it);
             delete w;
         }
-        Worlds.clear();
-    }
-
-    void Entresol::DestroyWorldManager(World* TargetWorld, WorldManager* ToBeDestroyed)
-    {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
-        if( ManIt == this->ManagerFactories.end() )
-        {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
-        }
-        TargetWorld->RemoveManager(ToBeDestroyed);
-        (*ManIt).second->DestroyManager(ToBeDestroyed);
-    }
-
-    void Entresol::DestroyWorldManagers(World* TargetWorld)
-    {
-        std::vector<WorldManager*> managers = TargetWorld->GetWorldManagers();
-        for( std::vector< WorldManager* >::iterator it = managers.begin(); it != managers.end(); it++ )
-        {
-            this->DestroyWorldManager(TargetWorld, (*it));
-        }
-    }
-
-    void Entresol::DestroyAllWorldManagers()
-    {
-        for( WorldContainerIterator it = Worlds.begin(); it != Worlds.end(); it++ )
-        {
-            this->DestroyWorldManagers(*it);
-        }
-    }
-
-    WorldManager* Entresol::CreateWorldManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld, World* AddedTo)
-    {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
-        if( ManIt == this->ManagerFactories.end() )
-        {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
-        }
-        WorldManager* NewMan = dynamic_cast<WorldManager*>( (*ManIt).second->CreateManager(Params) );
-        if(AddToWorld)
-            AddedTo->AddManager(NewMan);
-        return NewMan;
+        this->Worlds.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

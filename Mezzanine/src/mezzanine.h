@@ -88,6 +88,8 @@
 
 #ifndef SWIG
 #include "entresol.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
 #endif
 
 #include "enumerations.h"
@@ -167,7 +169,11 @@
 #include "vector2.h"
 #include "vector3.h"
 
+#include "world.h"
+#include "worldmanager.h"
+#include "worldmanagerfactory.h"
 #include "worldobject.h"
+#include "worldproxy.h"
 
 #ifndef SWIG
 #include "worldtrigger.h"

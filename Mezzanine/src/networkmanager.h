@@ -44,7 +44,7 @@
 #define _networkmanager_h
 
 #include "entresolmanager.h"
-#include "managerfactory.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
 
 namespace Mezzanine
@@ -58,6 +58,11 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB NetworkManager : public EntresolManager, public Singleton<NetworkManager>
     {
+    public:
+        /// @brief A String containing the name of this manager implementation.
+        static const String ImplementationName;
+        /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+        static const ManagerBase::ManagerType InterfaceType;
     protected:
         //std::map<unsigned short int,Socket*> Sockets;
     public:
@@ -97,7 +102,7 @@ namespace Mezzanine
     /// @headerfile networkmanager.h
     /// @brief A factory responsible for the creation and destruction of the default networkmanager.
     ///////////////////////////////////////
-    class MEZZ_LIB DefaultNetworkManagerFactory : public ManagerFactory
+    class MEZZ_LIB DefaultNetworkManagerFactory : public EntresolManagerFactory
     {
     public:
         /// @brief Class constructor.
@@ -105,15 +110,17 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~DefaultNetworkManagerFactory();
 
-        /// @copydoc ManagerFactory::GetManagerTypeName()
-        String GetManagerTypeName() const;
+        /// @copydoc ManagerFactory::GetManagerImplName()
+        String GetManagerImplName() const;
+        /// @copydoc ManagerFactory::GetManagerType() const
+        ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-        ManagerBase* CreateManager(NameValuePairList& Params);
-        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-        ManagerBase* CreateManager(XML::Node& XMLNode);
-        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-        void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
+        EntresolManager* CreateManager(NameValuePairList& Params);
+        /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
+        EntresolManager* CreateManager(XML::Node& XMLNode);
+        /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+        void DestroyManager(EntresolManager* ToBeDestroyed);
     };//DefaultNetworkManagerFactory
 }//Mezzanine
 

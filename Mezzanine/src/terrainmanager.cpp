@@ -48,11 +48,15 @@
 
 namespace Mezzanine
 {
-    TerrainManager::TerrainManager()
-    {
-    }
+    const String TerrainManager::ImplementationName = "DefaultTerrainManager";
+    const ManagerBase::ManagerType TerrainManager::InterfaceType = ManagerBase::MT_TerrainManager;
 
-    TerrainManager::TerrainManager(XML::Node& XMLNode)
+    TerrainManager::TerrainManager(World* Creator) :
+        WorldManager(Creator)
+        {  }
+
+    TerrainManager::TerrainManager(World* Creator, XML::Node& XMLNode) :
+        WorldManager(Creator)
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
@@ -178,18 +182,15 @@ namespace Mezzanine
 
     void TerrainManager::Initialize()
     {
-        if( !this->Initialized )
-        {
-            WorldManager::Initialize();
-
+        if( !this->Initialized ) {
+            this->WorldManager::Initialize();
             this->Initialized = true;
         }
     }
 
     void TerrainManager::Deinitialize()
     {
-        if( this->Initialized )
-        {
+        if( this->Initialized ) {
             this->Initialized = false;
         }
     }
@@ -198,41 +199,34 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType TerrainManager::GetInterfaceType() const
-        { return ManagerBase::MT_TerrainManager; }
+        { return TerrainManager::InterfaceType; }
 
     String TerrainManager::GetImplementationTypeName() const
-        { return "DefaultTerrainManager"; }
+        { return TerrainManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultTerrainManagerFactory Methods
 
     DefaultTerrainManagerFactory::DefaultTerrainManagerFactory()
-    {
-    }
+        {  }
 
     DefaultTerrainManagerFactory::~DefaultTerrainManagerFactory()
-    {
-    }
+        {  }
 
-    String DefaultTerrainManagerFactory::GetManagerTypeName() const
-    {
-        return "DefaultTerrainManager";
-    }
+    String DefaultTerrainManagerFactory::GetManagerImplName() const
+        { return TerrainManager::ImplementationName; }
 
-    ManagerBase* DefaultTerrainManagerFactory::CreateManager(NameValuePairList& Params)
-    {
-        return new TerrainManager();
-    }
+    ManagerBase::ManagerType DefaultTerrainManagerFactory::GetManagerType() const
+        { return TerrainManager::InterfaceType; }
 
-    ManagerBase* DefaultTerrainManagerFactory::CreateManager(XML::Node& XMLNode)
-    {
-        return new TerrainManager(XMLNode);
-    }
+    WorldManager* DefaultTerrainManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+        { return new TerrainManager(Creator); }
 
-    void DefaultTerrainManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-    {
-        delete ToBeDestroyed;
-    }
+    WorldManager* DefaultTerrainManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+        { return new TerrainManager(Creator,XMLNode); }
+
+    void DefaultTerrainManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
+        { delete ToBeDestroyed; }
 }//Mezzanine
 
 #endif

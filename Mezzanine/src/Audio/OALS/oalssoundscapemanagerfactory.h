@@ -40,7 +40,7 @@
 #ifndef _audiooalssoundscapemanagerfactory_h
 #define _audiooalssoundscapemanagerfactory_h
 
-#include "managerfactory.h"
+#include "worldmanagerfactory.h"
 
 namespace Mezzanine
 {
@@ -52,24 +52,25 @@ namespace Mezzanine
             /// @class OALSSoundScapeManagerFactory
             /// @brief A factory responsible for the creation and destruction of the default audiomanager.
             ///////////////////////////////////////
-            class MEZZ_LIB OALSSoundScapeManagerFactory : public ManagerFactory
+            class MEZZ_LIB OALSSoundScapeManagerFactory : public WorldManagerFactory
             {
-                public:
-                    /// @brief Class constructor.
-                    OALSSoundScapeManagerFactory();
-                    /// @brief Class destructor.
-                    virtual ~OALSSoundScapeManagerFactory();
+            public:
+                /// @brief Class constructor.
+                OALSSoundScapeManagerFactory();
+                /// @brief Class destructor.
+                virtual ~OALSSoundScapeManagerFactory();
 
-                    /// @copydoc ManagerFactory::GetManagerTypeName()
-                    String GetManagerTypeName() const;
-                    /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-                    ManagerBase* CreateManager(NameValuePairList& Params);
+                /// @copydoc ManagerFactory::GetManagerImplName()
+                String GetManagerImplName() const;
+                /// @copydoc ManagerFactory::GetManagerType() const
+                ManagerBase::ManagerType GetManagerType() const;
 
-                    /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-                    ManagerBase* CreateManager(XML::Node& XMLNode);
-
-                    /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-                    void DestroyManager(ManagerBase* ToBeDestroyed);
+                /// @copydoc WorldManagerFactory::CreateManager(World*, NameValuePairList&)
+                WorldManager* CreateManager(World* Creator, NameValuePairList& Params);
+                /// @copydoc WorldManagerFactory::CreateManager(World*, XML::Node&)
+                WorldManager* CreateManager(World* Creator, XML::Node& XMLNode);
+                /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+                void DestroyManager(WorldManager* ToBeDestroyed);
             };//OALSSoundScapeManagerFactory
         }//OALS
     }//Audio

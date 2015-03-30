@@ -82,8 +82,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // DebrisManager Methods
 
-    DebrisManager::DebrisManager(World * ParentWorld) :
-        WorldManager( ParentWorld )
+    const String DebrisManager::ImplementationName = "DefaultDebrisManager";
+    const ManagerBase::ManagerType DebrisManager::InterfaceType = ManagerBase::MT_DebrisManager;
+
+    DebrisManager::DebrisManager(World* Creator) :
+        WorldManager(Creator)
     {
         this->AddDebrisFactory( new RigidDebrisFactory() );
         this->AddDebrisFactory( new SoftDebrisFactory() );
@@ -91,7 +94,8 @@ namespace Mezzanine
         this->DebrisUpdateWork = new DebrisUpdateWorkUnit(this);
     }
 
-    DebrisManager::DebrisManager(XML::Node& XMLNode)
+    DebrisManager::DebrisManager(World* Creator, XML::Node& XMLNode) :
+        WorldManager(Creator)
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
 
@@ -373,10 +377,10 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType DebrisManager::GetInterfaceType() const
-        { return ManagerBase::MT_DebrisManager; }
+        { return DebrisManager::InterfaceType; }
 
     String DebrisManager::GetImplementationTypeName() const
-        { return "DefaultDebrisManager"; }
+        { return DebrisManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultDebrisManagerFactory Methods
@@ -387,16 +391,19 @@ namespace Mezzanine
     DefaultDebrisManagerFactory::~DefaultDebrisManagerFactory()
         {  }
 
-    String DefaultDebrisManagerFactory::GetManagerTypeName() const
-        { return "DefaultDebrisManager"; }
+    String DefaultDebrisManagerFactory::GetManagerImplName() const
+        { return DebrisManager::ImplementationName; }
 
-    ManagerBase* DefaultDebrisManagerFactory::CreateManager(NameValuePairList& Params)
-        { return new DebrisManager(); }
+    ManagerBase::ManagerType DefaultDebrisManagerFactory::GetManagerType() const
+        { return DebrisManager::InterfaceType; }
 
-    ManagerBase* DefaultDebrisManagerFactory::CreateManager(XML::Node& XMLNode)
-        { return new DebrisManager(XMLNode); }
+    WorldManager* DefaultDebrisManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+        { return new DebrisManager(Creator); }
 
-    void DefaultDebrisManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    WorldManager* DefaultDebrisManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+        { return new DebrisManager(Creator,XMLNode); }
+
+    void DefaultDebrisManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

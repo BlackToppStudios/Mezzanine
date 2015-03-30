@@ -42,7 +42,7 @@
 
 #include "datatypes.h"
 #include "worldmanager.h"
-#include "managerfactory.h"
+#include "worldmanagerfactory.h"
 #include "singleton.h"
 #include "quaternion.h"
 #include "ray.h"
@@ -88,6 +88,11 @@ namespace Mezzanine
             typedef CameraControllerContainer::iterator             CameraControllerIterator;
             /// @brief Const Iterator type for @ref CameraController instances stored by this class.
             typedef CameraControllerContainer::const_iterator       ConstCameraControllerIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             /// @internal
             /// @brief Container storing all of the Camera instances created by this manager.
@@ -100,10 +105,12 @@ namespace Mezzanine
             SceneManager* SceneMan;
         public:
             /// @brief Class Constructor.
-            CameraManager(World * ParentWorld = NULL);
+            /// @param Creator The parent world that is creating the manager.
+            CameraManager(World* Creator);
             /// @brief XML constructor.
+            /// @param Creator The parent world that is creating the manager.
             /// @param XMLNode The node of the xml document to construct from.
-            CameraManager(XML::Node& XMLNode);
+            CameraManager(World* Creator, XML::Node& XMLNode);
             /// @brief Class Destructor.
             virtual ~CameraManager();
 
@@ -187,10 +194,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultCameraManagerFactory
-        /// @headerfile cameramanager.h
         /// @brief A factory responsible for the creation and destruction of the default cameramanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultCameraManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultCameraManagerFactory : public WorldManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -198,15 +204,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultCameraManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, NameValuePairList&)
+            WorldManager* CreateManager(World* Creator, NameValuePairList& Params);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, XML::Node&)
+            WorldManager* CreateManager(World* Creator, XML::Node& XMLNode);
+            /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+            void DestroyManager(WorldManager* ToBeDestroyed);
         };//DefaultCameraManagerFactory
     }//Graphics
 }//Mezzanine

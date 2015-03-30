@@ -37,43 +37,42 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _audiooalsaudiomanagerfactory_h
-#define _audiooalsaudiomanagerfactory_h
+#ifndef _worldmanagerfactory_h
+#define _worldmanagerfactory_h
 
-#include "entresolmanagerfactory.h"
+#include "managerfactory.h"
 
 namespace Mezzanine
 {
-    namespace Audio
+    class World;
+    class WorldManager;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class WorldManagerFactory
+    /// @brief This is a base class for factories that construct managers used by the World class.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB WorldManagerFactory : public ManagerFactory
     {
-        namespace OALS
-        {
-            ///////////////////////////////////////////////////////////////////////////////
-            /// @class OALSAudioManagerFactory
-            /// @brief A factory responsible for the creation and destruction of the default audiomanager.
-            ///////////////////////////////////////
-            class MEZZ_LIB OALSAudioManagerFactory : public EntresolManagerFactory
-            {
-            public:
-                /// @brief Class constructor.
-                OALSAudioManagerFactory();
-                /// @brief Class destructor.
-                virtual ~OALSAudioManagerFactory();
+    public:
+        /// @brief Class constructor.
+        WorldManagerFactory() {  }
+        /// @brief Class destructor.
+        virtual ~WorldManagerFactory() {  }
 
-                /// @copydoc ManagerFactory::GetManagerImplName()
-                String GetManagerImplName() const;
-                /// @copydoc ManagerFactory::GetManagerType() const
-                ManagerBase::ManagerType GetManagerType() const;
-
-                /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
-                EntresolManager* CreateManager(NameValuePairList& Params);
-                /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
-                EntresolManager* CreateManager(XML::Node& XMLNode);
-                /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
-                void DestroyManager(EntresolManager* ToBeDestroyed);
-            };//OALSAudioManagerFactory
-        }//OALS
-    }//Audio
+        /// @brief Creates a manager of the type represented by this factory.
+        /// @param Creator The parent world that is creating the manager.
+        /// @param Params A NameValuePairList containing the params to be applied during construction.
+        /// @return Returns a pointer to the created manager.
+        virtual WorldManager* CreateManager(World* Creator, NameValuePairList& Params) = 0;
+        /// @brief Creates a manager from XML.
+        /// @param Creator The parent world that is creating the manager.
+        /// @param XMLNode The node of the xml document to construct from.
+        /// @return Returns a pointer to the created manager.
+        virtual WorldManager* CreateManager(World* Creator, XML::Node& XMLNode) = 0;
+        /// @brief Destroys a Manager created by this factory.
+        /// @param ToBeDestroyed A pointer to the manager to be destroyed.
+        virtual void DestroyManager(WorldManager* ToBeDestroyed) = 0;
+    };//WorldManagerFactory
 }//Mezzanine
 
 #endif

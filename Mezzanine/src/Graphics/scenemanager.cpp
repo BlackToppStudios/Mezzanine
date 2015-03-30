@@ -175,8 +175,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // SceneManager Methods
 
-        SceneManager::SceneManager(World * ParentWorld, const String& InternalManagerTypeName) :
-            WorldManager(ParentWorld),
+        const String SceneManager::ImplementationName = "DefaultSceneManager";
+        const ManagerBase::ManagerType SceneManager::InterfaceType = ManagerBase::MT_SceneManager;
+
+        SceneManager::SceneManager(World* Creator, const String& InternalManagerTypeName) :
+            WorldManager(Creator),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -186,8 +189,8 @@ namespace Mezzanine
             //OgreManager->setShadowCameraSetup(ShadowCam);
         }
 
-        SceneManager::SceneManager(World * ParentWorld, XML::Node& XMLNode) :
-            WorldManager(ParentWorld),
+        SceneManager::SceneManager(World* Creator, XML::Node& XMLNode) :
+            WorldManager(Creator),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -634,16 +637,16 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType SceneManager::GetInterfaceType() const
-            { return ManagerBase::MT_SceneManager; }
+            { return SceneManager::InterfaceType; }
 
         String SceneManager::GetImplementationTypeName() const
-            { return "DefaultSceneManager"; }
+            { return SceneManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal/Other
 
         Ogre::SceneManager* SceneManager::_GetGraphicsWorldPointer() const
-            { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
+            { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : NULL; }
 
         SceneManagerData* SceneManager::_GetRawInternalDataPointer() const
             { return this->SMD; }
@@ -652,42 +655,40 @@ namespace Mezzanine
         // DefaultSceneManagerFactory Methods
 
         DefaultSceneManagerFactory::DefaultSceneManagerFactory()
-        {
-        }
+            {  }
 
         DefaultSceneManagerFactory::~DefaultSceneManagerFactory()
-        {
-        }
+            {  }
 
-        String DefaultSceneManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultSceneManager";
-        }
+        String DefaultSceneManagerFactory::GetManagerImplName() const
+            { return SceneManager::ImplementationName; }
 
-        ManagerBase* DefaultSceneManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultSceneManagerFactory::GetManagerType() const
+            { return SceneManager::InterfaceType; }
+
+        WorldManager* DefaultSceneManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
         {
-            if(Params.empty()) return new SceneManager();
-            else
-            {
-                String InternalManagerTypeName;
-                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
-                {
-                    String Lower = (*ParIt).first;
-                    StringTools::ToLowerCase(Lower);
-                    if( "internalmanagertypename" == Lower ) {
-                        InternalManagerTypeName = (*ParIt).second;
-                    }
-                }
-                return new SceneManager(NULL,InternalManagerTypeName);
+            if( Params.empty() ) {
+                return new SceneManager(Creator);
             }
+            String InternalManagerTypeName;
+            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            {
+                String Lower = (*ParIt).first;
+                StringTools::ToLowerCase(Lower);
+                if( "internalmanagertypename" == Lower ) {
+                    InternalManagerTypeName = (*ParIt).second;
+                }
+            }
+            return new SceneManager(Creator,InternalManagerTypeName);
         }
 
-        ManagerBase* DefaultSceneManagerFactory::CreateManager(XML::Node& XMLNode)
+        WorldManager* DefaultSceneManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
         {
-            return new SceneManager(NULL, XMLNode);
+            return new SceneManager(Creator,XMLNode);
         }
 
-        void DefaultSceneManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultSceneManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
         {
             delete ToBeDestroyed;
         }

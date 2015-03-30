@@ -47,10 +47,11 @@
 namespace Mezzanine
 {
     template<> NetworkManager* Singleton<NetworkManager>::SingletonPtr = NULL;
+    const String NetworkManager::ImplementationName = "DefaultNetworkManager";
+    const ManagerBase::ManagerType NetworkManager::InterfaceType = ManagerBase::MT_NetworkManager;
 
     NetworkManager::NetworkManager()
-    {
-    }
+        {  }
 
     NetworkManager::NetworkManager(XML::Node& XMLNode)
     {
@@ -81,49 +82,44 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType NetworkManager::GetInterfaceType() const
-        { return ManagerBase::MT_NetworkManager; }
+        { return NetworkManager::InterfaceType; }
 
     String NetworkManager::GetImplementationTypeName() const
-        { return "DefaultNetworkManager"; }
+        { return NetworkManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultNetworkManagerFactory Methods
 
     DefaultNetworkManagerFactory::DefaultNetworkManagerFactory()
-    {
-    }
+        {  }
 
     DefaultNetworkManagerFactory::~DefaultNetworkManagerFactory()
-    {
-    }
+        {  }
 
-    String DefaultNetworkManagerFactory::GetManagerTypeName() const
-    {
-        return "DefaultNetworkManager";
-    }
+    String DefaultNetworkManagerFactory::GetManagerImplName() const
+        { return NetworkManager::ImplementationName; }
 
-    ManagerBase* DefaultNetworkManagerFactory::CreateManager(NameValuePairList& Params)
+    ManagerBase::ManagerType DefaultNetworkManagerFactory::GetManagerType() const
+        { return NetworkManager::InterfaceType; }
+
+    EntresolManager* DefaultNetworkManagerFactory::CreateManager(NameValuePairList& Params)
     {
-        if(NetworkManager::SingletonValid())
-        {
+        if( NetworkManager::SingletonValid() ) {
             /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
             return NetworkManager::GetSingletonPtr();
         }else return new NetworkManager();
     }
 
-    ManagerBase* DefaultNetworkManagerFactory::CreateManager(XML::Node& XMLNode)
+    EntresolManager* DefaultNetworkManagerFactory::CreateManager(XML::Node& XMLNode)
     {
-        if(NetworkManager::SingletonValid())
-        {
+        if( NetworkManager::SingletonValid() ) {
             /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
             return NetworkManager::GetSingletonPtr();
         }else return new NetworkManager(XMLNode);
     }
 
-    void DefaultNetworkManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-    {
-        delete ToBeDestroyed;
-    }
+    void DefaultNetworkManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+        { delete ToBeDestroyed; }
 }//Mezzanine
 
 #endif
