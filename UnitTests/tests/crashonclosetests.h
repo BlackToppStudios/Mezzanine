@@ -80,7 +80,7 @@ class crashonclosetests : public UnitTestGroup
             ////////////////////////////////////////////////////////////////
             // Entresolused for timing when it doesn't exist crash
             {
-                Mezzanine::Physics::PhysicsManager Simulation;
+                Mezzanine::Physics::PhysicsManager Simulation(NULL);
                 Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
                 RigidA->SetGravity(Vector3(0,9.8,0));
                 FrameScheduler FS;
