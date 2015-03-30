@@ -90,8 +90,10 @@
 
 #include "datatypes.h"
 
+#ifndef SWIG
 #include <ctime>
 #include <cassert>
+#endif
 
 namespace Mezzanine
 {
