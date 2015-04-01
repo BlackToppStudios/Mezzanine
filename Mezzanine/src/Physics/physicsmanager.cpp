@@ -1103,7 +1103,6 @@ namespace Mezzanine
             for( Integer X = 0 ; X < NumPairs ; X++ )
             {
                 btBroadphasePair& CurrPair = PairArray.at(X);
-                Pairs->cleanOverlappingPair(CurrPair,this->BulletDispatcher);
                 Pairs->removeOverlappingPair(CurrPair.m_pProxy0,CurrPair.m_pProxy1,this->BulletDispatcher);
             }
 

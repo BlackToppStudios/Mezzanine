@@ -105,7 +105,7 @@ namespace Mezzanine
 
     World::~World()
     {
-        this->Deinitialize();
+        this->DestroyAllManagers();
     }
 
     void World::Construct(const Physics::ManagerConstructionInfo& PhysicsInfo,
@@ -266,7 +266,20 @@ namespace Mezzanine
 
     void World::DestroyAllManagers()
     {
+        this->Clear();
         this->Deinitialize();
+        /*std::list<WorldManager*> WorldManagerList(this->WorldManagers.begin(),this->WorldManagers.end());
+        while( !(WorldManagerList.empty()) )
+        {
+            WorldManager* Current = WorldManagerList.front();
+            ManagerFactoryIterator FactoryIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
+            if( FactoryIt == this->ManagerFactories.end() ) {
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+            }else{
+                (*FactoryIt).second->DestroyManager(Current);
+            }
+            WorldManagerList.pop_front();
+        }//*/
         for( WorldManagerIterator WorldManIt = this->WorldManagers.begin() ; WorldManIt != this->WorldManagers.end() ; ++WorldManIt )
         {
             String ImplName = (*WorldManIt)->GetImplementationTypeName();
@@ -276,7 +289,7 @@ namespace Mezzanine
             }else{
                 (*FactoryIt).second->DestroyManager( (*WorldManIt) );
             }
-        }
+        }//*/
         this->WorldManagers.clear();
     }
 
