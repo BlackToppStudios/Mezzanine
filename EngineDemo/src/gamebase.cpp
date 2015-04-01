@@ -46,7 +46,7 @@ Graphics::CameraProxy* FirstCam = NULL;
 Graphics::CameraProxy* MainCam = NULL;
 
 void CreateDemoWorld();
-void DestoryDemoWorld();
+void DestroyDemoWorld();
 
 class DemoPreEventWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -356,97 +356,14 @@ int main(int argc, char **argv)
         TheEntresol->EngineInit(false);
 
         CreateDemoWorld();
-        // CreateDemoWorld();
+        DestroyDemoWorld();
+        CreateDemoWorld();
 
         // TheEntresol->EngineInit(false);
 
         //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
         //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXSeconds,5);
         //TheEntresol->SetLoggingFrequency(Entresol::LogNever);
-
-        // Create World and all it's lovely Managers
-        // DemoWorld = TheEntresol->CreateWorld( "DemoWorld", Info, "DefaultSceneManager" );
-
-        // if ( DemoWorld == NULL )
-        // {
-        //     return 1;
-        // }
-
-        // DemoWorld->Initialize();
-
-
-        // Graphics::GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
-
-        // // ©reate the windows!
-        // Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
-        // Graphics::CameraProxy* FirstCam = DemoWorld->GetCameraManager()->CreateCamera("FirstCam");
-        // //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
-        // FirstWindow->CreateViewport(FirstCam,0);
-        // FirstCam->SetLocation( Vector3(0,50,900) );
-        // FirstCam->LookAt( Vector3(0,0,0) );
-
-        // /*Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
-        // Camera* SecondCam = TheEntresol->GetCameraManager()->CreateCamera("SecondCam");
-        // Graphics::Viewport* SecondViewport = SecondWindow->CreateViewport(SecondCam);
-        // SecondCam->SetLocation( Vector3(-300,50,-50) );
-        // SecondCam->LookAt( Vector3(0,0,0) );//*/
-
-        // // Setup our workunits
-        // DemoPreEventWork = new DemoPreEventWorkUnit();
-        // TheEntresol->GetEventManager()->GetEventPumpWork()->AddDependency( DemoPreEventWork );
-        // TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork, "DemoPreEventWork" );
-
-        // DemoPostInputWork = new DemoPostInputWorkUnit(DemoWorld);
-        // DemoPostInputWork->AddDependency( TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
-        // TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork, "DemoPostInputWork" );
-
-        // DemoPostRenderWork = new DemoPostRenderWorkUnit();
-        // DemoPostRenderWork->AddDependency( TheEntresol->GetGraphicsManager()->GetRenderWork() );
-        // DemoPostRenderWork->AddDependency( DemoWorld->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
-        // TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostRenderWork, "DemoPostRenderWork" );
-
-        // DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();
-        // DemoPostPhysicsWork->AddDependency( DemoWorld->GetPhysicsManager()->GetSimulationWork() );
-        // TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostPhysicsWork, "DemoPostPhysicsWork" );
-
-        // // Init
-        // TheEntresol->EngineInit(false);
-
-        // // Configure Shadows
-        // DemoWorld->GetSceneManager()->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
-        // DemoWorld->GetSceneManager()->SetShadowFarDistance(3000);
-
-        // //Set up polling for the letter Q
-        // TheEntresol->GetEventManager()->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
-
-        // //Actually Load the game stuff
-        // LoadContent();
-
-
-        // // ©onfigure the wireframe Drawer
-        // //TheEntresol->GetPhysicsManager()->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
-        // //TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
-
-        // //Setup some camera tricks
-        // Graphics::CameraProxy* MainCam = DemoWorld->GetCameraManager()->GetCamera(0);
-        // MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
-        // MainCam->LookAt(Vector3(0,0,0));
-        // // ©ameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
-        // //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
-        // //DefaultControl->SetHoverHeight(75);
-        // Graphics::LightProxy* Headlight = DemoWorld->GetSceneManager()->CreateLightProxy(Graphics::LT_Directional);
-        // Vector3 LightLoc(200,300,0);
-        // Headlight->SetLocation(LightLoc);
-        // LightLoc.X = -LightLoc.X;
-        // LightLoc.Y = -LightLoc.Y;
-        // LightLoc.Normalize();
-        // Headlight->SetDirection(LightLoc);
-        // Headlight->SetDiffuseColour(ColourValue(0.7,0.7,0.7,1.0));
-        // Headlight->SetSpecularColour(ColourValue(0.7,0.7,0.7,1.0));
-        // Headlight->SetLocation(Vector3(0,150,0));
-        // Headlight->AddToWorld();
-        //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
-        // ©ameraNode->AttachObject(Headlight);
 
         //Generate the UI
         MakeGUI();
@@ -476,16 +393,13 @@ int main(int argc, char **argv)
 
 void CreateDemoWorld()
 {
-    DestoryDemoWorld();
-
     Physics::ManagerConstructionInfo Info;
     Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
 
     // Create World and all it's lovely Managers
     DemoWorld = TheEntresol->CreateWorld( "DemoWorld", Info, "DefaultSceneManager" );
 
-    if ( DemoWorld == NULL )
-    {
+    if( DemoWorld == NULL ) {
         throw RuntimeAssertionException(
             "Failed to Create New Demo World",
             __func__,
@@ -569,29 +483,25 @@ void CreateDemoWorld()
 
 }
 
-void DestoryDemoWorld()
+void DestroyDemoWorld()
 {
     // Make sure everything is dead before starting again
 
     // Check if Threaded Workunits are still alive
     // RemoveWorkUnitMain
-    if ( DemoPreEventWork )
-    {
+    if( DemoPreEventWork ) {
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPreEventWork );
         DemoPreEventWork = NULL;
     }
-    if ( DemoPostInputWork )
-    {
+    if( DemoPostInputWork ) {
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostInputWork );
         DemoPostInputWork = NULL;
     }
-    if ( DemoPostRenderWork )
-    {
+    if( DemoPostRenderWork ) {
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostRenderWork );
         DemoPostRenderWork = NULL;
     }
-    if ( DemoPostPhysicsWork )
-    {
+    if( DemoPostPhysicsWork ) {
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostPhysicsWork );
         DemoPostPhysicsWork = NULL;
     }
@@ -599,17 +509,15 @@ void DestoryDemoWorld()
     MainCam = NULL;
     FirstCam = NULL;
 
-    Entresol::GetSingletonPtr()->GetCollisionShapeManager()->RemoveAllShapes();
-
     // Destory the World Last, ya dumbby!
-    if ( DemoWorld )
-    {
+    if( DemoWorld ) {
         TheEntresol->DestroyWorld( DemoWorld );
         DemoWorld = NULL;
     }
 
-    if (FirstWindow)
-    {
+    Entresol::GetSingletonPtr()->GetCollisionShapeManager()->DestroyAllShapes();
+
+    if( FirstWindow ) {
         TheEntresol->GetGraphicsManager()->DestroyGameWindow( FirstWindow );
         FirstWindow = NULL;
     }
