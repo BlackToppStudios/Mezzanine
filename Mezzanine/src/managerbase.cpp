@@ -113,6 +113,9 @@ namespace Mezzanine
             case ManagerBase::MT_LogManager:
                 return "LogManager";
                 break;
+            case ManagerBase::MT_MaterialManager:
+                return "MaterialManager";
+                break;
             case ManagerBase::MT_MeshManager:
                 return "MeshManager";
                 break;
@@ -139,6 +142,9 @@ namespace Mezzanine
                 break;
             case ManagerBase::MT_TerrainManager:
                 return "TerrainManager";
+                break;
+            case ManagerBase::MT_TextureManager:
+                return "TextureManager";
                 break;
             case ManagerBase::MT_UIManager:
                 return "UIManager";
@@ -206,7 +212,8 @@ namespace Mezzanine
             }
             case 'm':
             {
-                return ManagerBase::MT_MeshManager;
+                if( 'a' == Lower.at(1) ) return ManagerBase::MT_MaterialManager;
+                else if( 'e' == Lower.at(1) )return ManagerBase::MT_MeshManager;
                 break;
             }
             case 'n':
@@ -238,7 +245,8 @@ namespace Mezzanine
             }
             case 't':
             {
-                return ManagerBase::MT_TerrainManager;
+                if( 'r' == Lower.at(2) ) return ManagerBase::MT_TerrainManager;
+                else if( 'x' == Lower.at(2) ) return ManagerBase::MT_TextureManager;
                 break;
             }
             case 'u':
