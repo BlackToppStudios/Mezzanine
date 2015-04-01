@@ -515,8 +515,7 @@ namespace Mezzanine
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_LimitlessWorld ) {
                 this->BulletBroadphase = new btDbvtBroadphase();
             }else{
-                if( Info.MaxProxies < 65536 )
-                {
+                if( Info.MaxProxies < 65536 ) {
                     this->BulletBroadphase = new btAxisSweep3(Info.GeographyLowerBounds.GetBulletVector3(),
                                                               Info.GeographyUpperBounds.GetBulletVector3(),
                                                               Info.MaxProxies);
@@ -562,7 +561,6 @@ namespace Mezzanine
                                                                                   SolverlsMemoryFunc,
                                                                                   ThreadCount );
                 this->BulletSolverThreads = new Win32ThreadSupport(BulletThreadInfo);
-                this->BulletSolverThreads->startSPU();
                 #else //WINDOWS
                 PosixThreadSupport::ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
                                                                              SolverThreadFunc,
@@ -636,15 +634,15 @@ namespace Mezzanine
             this->BulletBroadphase = NULL;
             delete this->GhostCallback;
             this->GhostCallback = NULL;
-            if(BulletDrawer) {
+            if( this->BulletDrawer ) {
                 delete this->BulletDrawer;
                 this->BulletDrawer = NULL;
             }
-            if(BulletSolverThreads) {
+            if( this->BulletSolverThreads ) {
                 delete this->BulletSolverThreads;
                 this->BulletSolverThreads = NULL;
             }
-            if(BulletDispatcherThreads) {
+            if( this->BulletDispatcherThreads ) {
                 delete this->BulletDispatcherThreads;
                 this->BulletDispatcherThreads = NULL;
             }
@@ -1206,18 +1204,10 @@ namespace Mezzanine
                 }
                 this->SimulationWork->ClearDependencies();
 
-                if(this->TheEntresol)
-                {
-                    if(this->ThreadCount){
-                        this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
-                    }else{
-                        this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
-                    }
+                if( this->TheEntresol ) {
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
                 }
-
-
 
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.

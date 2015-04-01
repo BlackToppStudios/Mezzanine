@@ -313,10 +313,8 @@ namespace Mezzanine
         void CollisionShapeManager::StoreShape(CollisionShape* Shape)
         {
             ShapeMapIterator CS = this->CollisionShapes.find(Shape->GetName());
-            if(CS != this->CollisionShapes.end())
-            {
-                if((*CS).second != Shape)
-                {
+            if(CS != this->CollisionShapes.end()) {
+                if((*CS).second != Shape) {
                     MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Name of Collision Shape already exists on another object.  Names should be Unique.");
                 }
             }else{
