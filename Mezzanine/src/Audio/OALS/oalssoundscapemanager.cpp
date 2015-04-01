@@ -96,7 +96,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // SoundScapeManager Methods
 
-            const String SoundScapeManager::ImplementationName = "DefaultSoundScapeManager";
+            const String SoundScapeManager::ImplementationName = "OALSSoundScapeManager";
             const ManagerBase::ManagerType SoundScapeManager::InterfaceType = ManagerBase::MT_SoundScapeManager;
 
             SoundScapeManager::SoundScapeManager(World* Creator) :
