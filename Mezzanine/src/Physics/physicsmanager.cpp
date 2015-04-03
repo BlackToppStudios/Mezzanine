@@ -554,7 +554,7 @@ namespace Mezzanine
             }
 
             // Create the constraint solver
-            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+            /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                 #ifdef WINDOWS
                 Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
                                                                                   SolverThreadFunc,
@@ -568,11 +568,10 @@ namespace Mezzanine
                                                                              ThreadCount );
                 this->BulletSolverThreads = new PosixThreadSupport(BulletThreadInfo);
                 #endif //WINDOWS
-                //this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
+                this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
+            }else{//*/
                 this->BulletSolver = new btSequentialImpulseConstraintSolver();
-            }else{
-                this->BulletSolver = new btSequentialImpulseConstraintSolver();
-            }
+            //}
 
             // Create the world
             //if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_SoftRigidWorld ) {
