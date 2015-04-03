@@ -177,7 +177,7 @@ namespace Mezzanine
         void TextCursor::MoveCursorRight()
         {
             Whole NumChars = this->Layer->GetNumCharacters();
-            if( this->IndexPosition >= 0 && this->IndexPosition < NumChars ) {
+            if( this->IndexPosition >= 0 && static_cast<Whole>( this->IndexPosition ) < NumChars ) {
                 ++(this->IndexPosition);
                 this->Layer->_MarkDirty();
             }
