@@ -85,90 +85,30 @@
 #include "datatypes.h"
 #include "debris.h"
 #include "debrismanager.h"
-
-#ifndef SWIG
-#include "entresol.h"
-#include "entresolmanager.h"
-#include "entresolmanagerfactory.h"
-#endif
-
 #include "enumerations.h"
 #include "event.h"
 #include "eventarguments.h"
-
-
 #include "eventbase.h"
 #include "eventgamewindow.h"
 #include "eventmanager.h"
 #include "eventpublisher.h"
 #include "eventquit.h"
-
-
 #include "eventsubscriber.h"
 #include "eventsubscriberslot.h"
-
-#ifndef SWIG
-#include "eventuserinput.h"
-#endif
-
 #include "exception.h"
-
-#ifndef SWIG
-#include "fieldofforce.h"
-#include "gravityfield.h"
-#include "gravitywell.h"
-#include "hashedstring.h"
-#include "interpolator.h"
-#include "linegroup.h"
-#include "linesegment.h"
-#include "macros.h"
-#include "managedptr.h"
-#endif
-
 #include "managerbase.h"
 #include "managerfactory.h"
-
-#ifndef SWIG
-#include "meshterrain.h"
-#include "network.h"
-#include "networkmanager.h"
-#include "objectsettings.h"
-#endif
-
 #include "plane.h"
 #include "quaternion.h"
 #include "ray.h"
 #include "rayquerytool.h"
 #include "rect.h"
-
-#ifndef SWIG
-#include "rigiddebris.h"
-#include "serialization.h"
-#include "singleton.h"
-#include "softdebris.h"
-#endif
-
 #include "sphere.h"
-
-#ifndef SWIG
-#include "streamlogging.h"
-#endif
-
 #include "stringtool.h"
-
-#ifndef SWIG
-#include "track.h"
-#include "trackiterator.h"
-#include "triangle.h"
-#include "terrainbase.h"
-#include "terrainmanager.h"
-#endif // \no SWIG
-
 #include "timer.h"
 #include "transform.h"
 #include "vector2.h"
 #include "vector3.h"
-
 #include "world.h"
 #include "worldmanager.h"
 #include "worldmanagerfactory.h"
@@ -176,7 +116,36 @@
 #include "worldproxy.h"
 
 #ifndef SWIG
+#include "entresol.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
+#include "eventuserinput.h"
+#include "fieldofforce.h"
+#include "gravityfield.h"
+#include "gravitywell.h"
+#include "hashedstring.h"
+#include "interpolator.h"
+#include "interval.h"
+#include "linegroup.h"
+#include "linesegment.h"
+#include "macros.h"
+#include "managedptr.h"
+#include "meshterrain.h"
+#include "network.h"
+#include "networkmanager.h"
+#include "objectsettings.h"
+#include "rigiddebris.h"
+#include "serialization.h"
+#include "singleton.h"
+#include "softdebris.h"
+#include "streamlogging.h"
+#include "track.h"
+#include "trackiterator.h"
+#include "triangle.h"
+#include "terrainbase.h"
+#include "terrainmanager.h"
+#include "uidgenerator.h"
 #include "worldtrigger.h"
-#endif // \no SWIG
+#endif // no SWIG
 
-#endif // \ _mezzanine_h
+#endif // _mezzanine_h
