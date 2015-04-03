@@ -12,7 +12,6 @@
 void LoadFerris()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
@@ -284,7 +283,6 @@ void LoadFerris()
 void LoadBigCurve()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
@@ -411,7 +409,6 @@ void LoadBigCurve()
 void LoadBlowsNotSucks()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
@@ -629,7 +626,6 @@ void LoadBlowsNotSucks()
 void LoadJustice()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
@@ -850,7 +846,6 @@ void LoadJustice()
 void LoadRollers()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
@@ -994,7 +989,6 @@ void LoadRollers()
 void LoadJustBounce()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
