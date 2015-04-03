@@ -91,7 +91,7 @@ namespace Mezzanine
         for( IDIterator IDRangeIt = this->FreeIDs.begin() ; IDRangeIt != this->FreeIDs.end() ; ++IDRangeIt )
         {
             // Find the range we're in
-            if( !( (*IDRangeIt) > ID ) ) {
+            if( (*IDRangeIt).IsWithinBounds(ID) ) {
                 // Rule out being on the edges
                 if( (*IDRangeIt).GetLowerBound() == ID ) {
                     // Just increment the bounds
@@ -109,7 +109,7 @@ namespace Mezzanine
 
                 // Get all the ranges before the split into our new container
                 if( IDRangeIt != this->FreeIDs.begin() ) {
-                    Temp.insert(this->FreeIDs.begin(),IDRangeIt,Temp.end());
+                    Temp.insert(Temp.end(),this->FreeIDs.begin(),IDRangeIt);
                 }
 
                 // Perform the split
@@ -119,7 +119,7 @@ namespace Mezzanine
                 // Get all the ranges after the split into our container
                 IDIterator AfterIterator = IDRangeIt + 1;
                 if( AfterIterator != this->FreeIDs.end() ) {
-                    Temp.insert(AfterIterator,this->FreeIDs.end(),Temp.end());
+                    Temp.insert(Temp.end(),AfterIterator,this->FreeIDs.end());
                 }
 
                 // Cleanup
@@ -130,7 +130,7 @@ namespace Mezzanine
         return false;
     }
 
-    void UIDGenerator::ReleaseID(const UIDGenerator::IDType ID)
+    Boole UIDGenerator::ReleaseID(const UIDGenerator::IDType ID)
     {
         // Only proceed if we are working with a valid ID
         if( ID >= 1 ) {
@@ -142,14 +142,14 @@ namespace Mezzanine
                 }else{
                     this->FreeIDs.insert(IDBegin,IntervalType(ID,ID));
                 }
-                return;
+                return true;
             }else{
                 // Ok, the ID being released isn't before the first free ID interval
                 for( IDIterator IDRangeIt = IDBegin ; IDRangeIt != this->FreeIDs.end() ; ++IDRangeIt )
                 {
                     // Check if we have an invalid/already issued ID
                     if( (*IDRangeIt).IsWithinBounds(ID) ) {
-                        return;
+                        return false;
                     }
                     // Check the lowest value of the next range
                     IDIterator NextRange = IDRangeIt + 1;
@@ -163,10 +163,10 @@ namespace Mezzanine
                         if( BorderPrev && BorderNext ) {
                             // This is the last ID separating two intervals, gotta merge
                             IDContainer Temp;
-                            Temp.insert(this->FreeIDs.begin(),IDRangeIt,Temp.end());
+                            Temp.insert(Temp.end(),this->FreeIDs.begin(),IDRangeIt);
                             Temp.push_back( IntervalType((*IDRangeIt).GetLowerBound(),(*NextRange).GetUpperBound()) );
                             if( NextRange + 1 != this->FreeIDs.end() ) {
-                                Temp.insert(NextRange + 1,this->FreeIDs.end(),Temp.end());
+                                Temp.insert(Temp.end(),NextRange + 1,this->FreeIDs.end());
                             }
                             this->FreeIDs.swap(Temp);
                         }else if( BorderPrev ) {
@@ -176,11 +176,12 @@ namespace Mezzanine
                         }else{
                             this->FreeIDs.insert(IDBegin,IntervalType(ID,ID));
                         }
-                        return;
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
     void UIDGenerator::Sort()

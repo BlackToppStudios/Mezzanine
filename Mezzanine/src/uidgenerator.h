@@ -89,7 +89,8 @@ namespace Mezzanine
         Boole ReserveID(const IDType ID);
         /// @brief Frees up an ID so that it can be reused.
         /// @param ID The ID to be freed up for reuse.
-        void ReleaseID(const IDType ID);
+        /// @return Returns true of the ID was successfully released, false if it was already free.
+        Boole ReleaseID(const IDType ID);
 
         /// @brief Sorts the free IDs stored in this generator.
         void Sort();
