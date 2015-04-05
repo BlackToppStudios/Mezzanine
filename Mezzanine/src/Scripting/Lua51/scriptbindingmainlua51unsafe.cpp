@@ -2736,144 +2736,143 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 #define SWIGTYPE_p_Mezzanine__FunctorEventSubscriber swig_types[92]
 #define SWIGTYPE_p_Mezzanine__FunctorSubscriberSlot swig_types[93]
 #define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[94]
-#define SWIGTYPE_p_Mezzanine__Graphics__CameraManager swig_types[95]
-#define SWIGTYPE_p_Mezzanine__Graphics__CameraProxy swig_types[96]
-#define SWIGTYPE_p_Mezzanine__Graphics__Mesh swig_types[97]
-#define SWIGTYPE_p_Mezzanine__Graphics__SceneManager swig_types[98]
-#define SWIGTYPE_p_Mezzanine__GravityField swig_types[99]
-#define SWIGTYPE_p_Mezzanine__GravityWell swig_types[100]
-#define SWIGTYPE_p_Mezzanine__IOException swig_types[101]
-#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[102]
-#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[103]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[104]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[105]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[106]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[107]
-#define SWIGTYPE_p_Mezzanine__InternalException swig_types[108]
-#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[109]
-#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[110]
-#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[111]
-#define SWIGTYPE_p_Mezzanine__ManagerBase swig_types[112]
-#define SWIGTYPE_p_Mezzanine__ManagerFactory swig_types[113]
-#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[114]
-#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[115]
-#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[116]
-#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[117]
-#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[118]
-#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[119]
-#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[120]
-#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[121]
-#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[122]
-#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[123]
-#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[124]
-#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[125]
-#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[126]
-#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[127]
-#define SWIGTYPE_p_Mezzanine__Physics__Collision swig_types[128]
-#define SWIGTYPE_p_Mezzanine__Physics__CollisionShape swig_types[129]
-#define SWIGTYPE_p_Mezzanine__Physics__GhostProxy swig_types[130]
-#define SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo swig_types[131]
-#define SWIGTYPE_p_Mezzanine__Physics__PhysicsManager swig_types[132]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[133]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[134]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[135]
-#define SWIGTYPE_p_Mezzanine__RayQueryTool swig_types[136]
-#define SWIGTYPE_p_Mezzanine__RectBaseT_float_t swig_types[137]
-#define SWIGTYPE_p_Mezzanine__RectBaseT_unsigned_long_t swig_types[138]
-#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[139]
-#define SWIGTYPE_p_Mezzanine__RigidDebris swig_types[140]
-#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[141]
-#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[142]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[143]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[144]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[145]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[146]
-#define SWIGTYPE_p_Mezzanine__ScriptSubscriberSlot swig_types[147]
-#define SWIGTYPE_p_Mezzanine__Scripting__iScript swig_types[148]
-#define SWIGTYPE_p_Mezzanine__SingletonT_Mezzanine__EventManager_t swig_types[149]
-#define SWIGTYPE_p_Mezzanine__SoftDebris swig_types[150]
-#define SWIGTYPE_p_Mezzanine__Sphere swig_types[151]
-#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[152]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[153]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[154]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[155]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[156]
-#define SWIGTYPE_p_Mezzanine__TerrainManager swig_types[157]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[158]
-#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[159]
-#define SWIGTYPE_p_Mezzanine__Timer swig_types[160]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[161]
-#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[162]
-#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[163]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[164]
-#define SWIGTYPE_p_Mezzanine__Vector2LengthCompare swig_types[165]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[166]
-#define SWIGTYPE_p_Mezzanine__Vector3LengthCompare swig_types[167]
-#define SWIGTYPE_p_Mezzanine__World swig_types[168]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[169]
-#define SWIGTYPE_p_Mezzanine__WorldManagerFactory swig_types[170]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[171]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[172]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[173]
-#define SWIGTYPE_p_ObjectContainer swig_types[174]
-#define SWIGTYPE_p_ObjectIterator swig_types[175]
-#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[176]
-#define SWIGTYPE_p_Ogre__ColourValue swig_types[177]
-#define SWIGTYPE_p_Ogre__Plane swig_types[178]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[179]
-#define SWIGTYPE_p_Ogre__Ray swig_types[180]
-#define SWIGTYPE_p_Ogre__Sphere swig_types[181]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[182]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[183]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[184]
-#define SWIGTYPE_p_ProxyContainer swig_types[185]
-#define SWIGTYPE_p_ProxyIterator swig_types[186]
-#define SWIGTYPE_p_RayTestResult swig_types[187]
-#define SWIGTYPE_p_SDL_Event swig_types[188]
-#define SWIGTYPE_p_SlotContainer swig_types[189]
-#define SWIGTYPE_p_SlotIterator swig_types[190]
-#define SWIGTYPE_p_SlotPair swig_types[191]
-#define SWIGTYPE_p_WorldManagerContainer swig_types[192]
-#define SWIGTYPE_p_WorldManagerIterator swig_types[193]
-#define SWIGTYPE_p_XML__Node swig_types[194]
-#define SWIGTYPE_p_bool swig_types[195]
-#define SWIGTYPE_p_btQuaternion swig_types[196]
-#define SWIGTYPE_p_btTransform swig_types[197]
-#define SWIGTYPE_p_btVector3 swig_types[198]
-#define SWIGTYPE_p_char swig_types[199]
-#define SWIGTYPE_p_double swig_types[200]
-#define SWIGTYPE_p_float swig_types[201]
-#define SWIGTYPE_p_int swig_types[202]
-#define SWIGTYPE_p_long_long swig_types[203]
-#define SWIGTYPE_p_short swig_types[204]
-#define SWIGTYPE_p_signed_char swig_types[205]
-#define SWIGTYPE_p_std__exception swig_types[206]
-#define SWIGTYPE_p_std__listT_Mezzanine__EventBase_p_t swig_types[207]
-#define SWIGTYPE_p_std__listT_Mezzanine__EventGameWindow_p_t swig_types[208]
-#define SWIGTYPE_p_std__listT_Mezzanine__EventQuit_p_t swig_types[209]
-#define SWIGTYPE_p_std__listT_Mezzanine__EventUserInput_p_t swig_types[210]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[211]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[212]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[213]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[214]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[215]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[216]
-#define SWIGTYPE_p_std__string swig_types[217]
-#define SWIGTYPE_p_std__stringstream swig_types[218]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__AttachableChild_p_t__iterator swig_types[219]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__EventSubscriberSlot_p_t__iterator swig_types[220]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldManager_p_t swig_types[221]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_t swig_types[222]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_t swig_types[223]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[224]
-#define SWIGTYPE_p_std__wstring swig_types[225]
-#define SWIGTYPE_p_unsigned_char swig_types[226]
-#define SWIGTYPE_p_unsigned_int swig_types[227]
-#define SWIGTYPE_p_unsigned_long swig_types[228]
-#define SWIGTYPE_p_unsigned_long_long swig_types[229]
-#define SWIGTYPE_p_unsigned_short swig_types[230]
-static swig_type_info *swig_types[232];
-static swig_module_info swig_module = {swig_types, 231, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Graphics__CameraProxy swig_types[95]
+#define SWIGTYPE_p_Mezzanine__Graphics__Mesh swig_types[96]
+#define SWIGTYPE_p_Mezzanine__Graphics__SceneManager swig_types[97]
+#define SWIGTYPE_p_Mezzanine__GravityField swig_types[98]
+#define SWIGTYPE_p_Mezzanine__GravityWell swig_types[99]
+#define SWIGTYPE_p_Mezzanine__IOException swig_types[100]
+#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[101]
+#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[102]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[103]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[104]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[105]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[106]
+#define SWIGTYPE_p_Mezzanine__InternalException swig_types[107]
+#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[108]
+#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[109]
+#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[110]
+#define SWIGTYPE_p_Mezzanine__ManagerBase swig_types[111]
+#define SWIGTYPE_p_Mezzanine__ManagerFactory swig_types[112]
+#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[113]
+#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[114]
+#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[115]
+#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[116]
+#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[117]
+#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[118]
+#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[119]
+#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[120]
+#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[121]
+#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[122]
+#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[123]
+#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[124]
+#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[125]
+#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[126]
+#define SWIGTYPE_p_Mezzanine__Physics__Collision swig_types[127]
+#define SWIGTYPE_p_Mezzanine__Physics__CollisionShape swig_types[128]
+#define SWIGTYPE_p_Mezzanine__Physics__GhostProxy swig_types[129]
+#define SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo swig_types[130]
+#define SWIGTYPE_p_Mezzanine__Physics__PhysicsManager swig_types[131]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[132]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[133]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[134]
+#define SWIGTYPE_p_Mezzanine__RayQueryTool swig_types[135]
+#define SWIGTYPE_p_Mezzanine__RectBaseT_float_t swig_types[136]
+#define SWIGTYPE_p_Mezzanine__RectBaseT_unsigned_long_t swig_types[137]
+#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[138]
+#define SWIGTYPE_p_Mezzanine__RigidDebris swig_types[139]
+#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[140]
+#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[141]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[142]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[143]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[144]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[145]
+#define SWIGTYPE_p_Mezzanine__ScriptSubscriberSlot swig_types[146]
+#define SWIGTYPE_p_Mezzanine__Scripting__iScript swig_types[147]
+#define SWIGTYPE_p_Mezzanine__SingletonT_Mezzanine__EventManager_t swig_types[148]
+#define SWIGTYPE_p_Mezzanine__SoftDebris swig_types[149]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[150]
+#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[151]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[152]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[153]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[154]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[155]
+#define SWIGTYPE_p_Mezzanine__TerrainManager swig_types[156]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[157]
+#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[158]
+#define SWIGTYPE_p_Mezzanine__Timer swig_types[159]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[160]
+#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[161]
+#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[162]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[163]
+#define SWIGTYPE_p_Mezzanine__Vector2LengthCompare swig_types[164]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[165]
+#define SWIGTYPE_p_Mezzanine__Vector3LengthCompare swig_types[166]
+#define SWIGTYPE_p_Mezzanine__World swig_types[167]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[168]
+#define SWIGTYPE_p_Mezzanine__WorldManagerFactory swig_types[169]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[170]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[171]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[172]
+#define SWIGTYPE_p_ObjectContainer swig_types[173]
+#define SWIGTYPE_p_ObjectIterator swig_types[174]
+#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[175]
+#define SWIGTYPE_p_Ogre__ColourValue swig_types[176]
+#define SWIGTYPE_p_Ogre__Plane swig_types[177]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[178]
+#define SWIGTYPE_p_Ogre__Ray swig_types[179]
+#define SWIGTYPE_p_Ogre__Sphere swig_types[180]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[181]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[182]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[183]
+#define SWIGTYPE_p_ProxyContainer swig_types[184]
+#define SWIGTYPE_p_ProxyIterator swig_types[185]
+#define SWIGTYPE_p_RayTestResult swig_types[186]
+#define SWIGTYPE_p_SDL_Event swig_types[187]
+#define SWIGTYPE_p_SlotContainer swig_types[188]
+#define SWIGTYPE_p_SlotIterator swig_types[189]
+#define SWIGTYPE_p_SlotPair swig_types[190]
+#define SWIGTYPE_p_WorldManagerContainer swig_types[191]
+#define SWIGTYPE_p_WorldManagerIterator swig_types[192]
+#define SWIGTYPE_p_XML__Node swig_types[193]
+#define SWIGTYPE_p_bool swig_types[194]
+#define SWIGTYPE_p_btQuaternion swig_types[195]
+#define SWIGTYPE_p_btTransform swig_types[196]
+#define SWIGTYPE_p_btVector3 swig_types[197]
+#define SWIGTYPE_p_char swig_types[198]
+#define SWIGTYPE_p_double swig_types[199]
+#define SWIGTYPE_p_float swig_types[200]
+#define SWIGTYPE_p_int swig_types[201]
+#define SWIGTYPE_p_long_long swig_types[202]
+#define SWIGTYPE_p_short swig_types[203]
+#define SWIGTYPE_p_signed_char swig_types[204]
+#define SWIGTYPE_p_std__exception swig_types[205]
+#define SWIGTYPE_p_std__listT_Mezzanine__EventBase_p_t swig_types[206]
+#define SWIGTYPE_p_std__listT_Mezzanine__EventGameWindow_p_t swig_types[207]
+#define SWIGTYPE_p_std__listT_Mezzanine__EventQuit_p_t swig_types[208]
+#define SWIGTYPE_p_std__listT_Mezzanine__EventUserInput_p_t swig_types[209]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[210]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[211]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[212]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[213]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[214]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[215]
+#define SWIGTYPE_p_std__string swig_types[216]
+#define SWIGTYPE_p_std__stringstream swig_types[217]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__AttachableChild_p_t__iterator swig_types[218]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__EventSubscriberSlot_p_t__iterator swig_types[219]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldManager_p_t swig_types[220]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_t swig_types[221]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_t swig_types[222]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[223]
+#define SWIGTYPE_p_std__wstring swig_types[224]
+#define SWIGTYPE_p_unsigned_char swig_types[225]
+#define SWIGTYPE_p_unsigned_int swig_types[226]
+#define SWIGTYPE_p_unsigned_long swig_types[227]
+#define SWIGTYPE_p_unsigned_long_long swig_types[228]
+#define SWIGTYPE_p_unsigned_short swig_types[229]
+static swig_type_info *swig_types[231];
+static swig_module_info swig_module = {swig_types, 230, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -25253,7 +25252,6 @@ static swig_lua_const_info swig_ManagerBase_Sf_SwigStatic_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("MT_UIManager", Mezzanine::ManagerBase::MT_UIManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_ActorManager", Mezzanine::ManagerBase::MT_ActorManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_AreaEffectManager", Mezzanine::ManagerBase::MT_AreaEffectManager)},
-    {SWIG_LUA_CONSTTAB_INT("MT_CameraManager", Mezzanine::ManagerBase::MT_CameraManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_DebrisManager", Mezzanine::ManagerBase::MT_DebrisManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_PagingManager", Mezzanine::ManagerBase::MT_PagingManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_PhysicsManager", Mezzanine::ManagerBase::MT_PhysicsManager)},
@@ -54683,30 +54681,6 @@ fail:
 }
 
 
-static int _wrap_World_GetCameraManager(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
-  Mezzanine::Graphics::CameraManager *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::World::GetCameraManager",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::World::GetCameraManager",1,"Mezzanine::World *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__World,0))){
-    SWIG_fail_ptr("World_GetCameraManager",1,SWIGTYPE_p_Mezzanine__World);
-  }
-  
-  result = (Mezzanine::Graphics::CameraManager *)(arg1)->GetCameraManager();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Graphics__CameraManager,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_World_GetSceneManager(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
@@ -54974,6 +54948,167 @@ fail:
 }
 
 
+static int _wrap_World_ProtoSerialize(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::World::ProtoSerialize",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::World::ProtoSerialize",1,"Mezzanine::World const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::World::ProtoSerialize",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("World_ProtoSerialize",1,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("World_ProtoSerialize",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  ((Mezzanine::World const *)arg1)->ProtoSerialize(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_World_ProtoSerializeProperties(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::World::ProtoSerializeProperties",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::World::ProtoSerializeProperties",1,"Mezzanine::World const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::World::ProtoSerializeProperties",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("World_ProtoSerializeProperties",1,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("World_ProtoSerializeProperties",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  ((Mezzanine::World const *)arg1)->ProtoSerializeProperties(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_World_ProtoDeSerialize(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::World::ProtoDeSerialize",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::World::ProtoDeSerialize",1,"Mezzanine::World *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::World::ProtoDeSerialize",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("World_ProtoDeSerialize",1,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("World_ProtoDeSerialize",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  (arg1)->ProtoDeSerialize((Mezzanine::XML::Node const &)*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_World_ProtoDeSerializeProperties(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::World::ProtoDeSerializeProperties",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::World::ProtoDeSerializeProperties",1,"Mezzanine::World *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::World::ProtoDeSerializeProperties",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("World_ProtoDeSerializeProperties",1,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("World_ProtoDeSerializeProperties",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  (arg1)->ProtoDeSerializeProperties((Mezzanine::XML::Node const &)*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_World_GetDerivedSerializableName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::World::GetDerivedSerializableName",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::World::GetDerivedSerializableName",1,"Mezzanine::World const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("World_GetDerivedSerializableName",1,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  result = ((Mezzanine::World const *)arg1)->GetDerivedSerializableName();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_World_GetSerializableName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::World::GetSerializableName",0,0)
+  result = Mezzanine::World::GetSerializableName();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_World(void *obj) {
 Mezzanine::World *arg1 = (Mezzanine::World *) obj;
 delete arg1;
@@ -55008,9 +55143,13 @@ static swig_lua_method swig_World_methods[]= {
     { "GetDebrisManager", _wrap_World_GetDebrisManager},
     { "GetTerrainManager", _wrap_World_GetTerrainManager},
     { "GetSoundScapeManager", _wrap_World_GetSoundScapeManager},
-    { "GetCameraManager", _wrap_World_GetCameraManager},
     { "GetSceneManager", _wrap_World_GetSceneManager},
     { "GetPhysicsManager", _wrap_World_GetPhysicsManager},
+    { "ProtoSerialize", _wrap_World_ProtoSerialize},
+    { "ProtoSerializeProperties", _wrap_World_ProtoSerializeProperties},
+    { "ProtoDeSerialize", _wrap_World_ProtoDeSerialize},
+    { "ProtoDeSerializeProperties", _wrap_World_ProtoDeSerializeProperties},
+    { "GetDerivedSerializableName", _wrap_World_GetDerivedSerializableName},
     {0,0}
 };
 static swig_lua_method swig_World_meta[] = {
@@ -55029,6 +55168,7 @@ static swig_lua_method swig_World_Sf_SwigStatic_methods[]= {
     { "DestroyManagerFactory", _wrap_World_DestroyManagerFactory},
     { "DestroyAllManagerFactories", _wrap_World_DestroyAllManagerFactories},
     { "AddAllEngineDefaultManagerFactories", _wrap_World_AddAllEngineDefaultManagerFactories},
+    { "GetSerializableName", _wrap_World_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_World_Sf_SwigStatic_classes[]= {
@@ -56667,7 +56807,6 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_UIManager", Mezzanine::ManagerBase::MT_UIManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_ActorManager", Mezzanine::ManagerBase::MT_ActorManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_AreaEffectManager", Mezzanine::ManagerBase::MT_AreaEffectManager)},
-    {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_CameraManager", Mezzanine::ManagerBase::MT_CameraManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_DebrisManager", Mezzanine::ManagerBase::MT_DebrisManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_PagingManager", Mezzanine::ManagerBase::MT_PagingManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_PhysicsManager", Mezzanine::ManagerBase::MT_PhysicsManager)},
@@ -56942,6 +57081,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "World_DestroyManagerFactory", _wrap_World_DestroyManagerFactory},
     { "World_DestroyAllManagerFactories", _wrap_World_DestroyAllManagerFactories},
     { "World_AddAllEngineDefaultManagerFactories", _wrap_World_AddAllEngineDefaultManagerFactories},
+    { "World_GetSerializableName", _wrap_World_GetSerializableName},
     { "WorldProxy_GetSerializableName", _wrap_WorldProxy_GetSerializableName},
     {0,0}
 };
@@ -57720,7 +57860,6 @@ static swig_type_info _swigt__p_Mezzanine__FileWriteException = {"_p_Mezzanine__
 static swig_type_info _swigt__p_Mezzanine__FunctorEventSubscriber = {"_p_Mezzanine__FunctorEventSubscriber", "Mezzanine::FunctorEventSubscriber *", 0, 0, (void*)&_wrap_class_FunctorEventSubscriber, 0};
 static swig_type_info _swigt__p_Mezzanine__FunctorSubscriberSlot = {"_p_Mezzanine__FunctorSubscriberSlot", "Mezzanine::FunctorSubscriberSlot *", 0, 0, (void*)&_wrap_class_FunctorSubscriberSlot, 0};
 static swig_type_info _swigt__p_Mezzanine__GoalTimer = {"_p_Mezzanine__GoalTimer", "Mezzanine::GoalTimer *", 0, 0, (void*)&_wrap_class_GoalTimer, 0};
-static swig_type_info _swigt__p_Mezzanine__Graphics__CameraManager = {"_p_Mezzanine__Graphics__CameraManager", "Mezzanine::Graphics::CameraManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Graphics__CameraProxy = {"_p_Mezzanine__Graphics__CameraProxy", "Mezzanine::Graphics::CameraProxy *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Graphics__Mesh = {"_p_Mezzanine__Graphics__Mesh", "Mezzanine::Graphics::Mesh *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Graphics__SceneManager = {"_p_Mezzanine__Graphics__SceneManager", "Mezzanine::Graphics::SceneManager *", 0, 0, (void*)0, 0};
@@ -57953,7 +58092,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__FunctorEventSubscriber,
   &_swigt__p_Mezzanine__FunctorSubscriberSlot,
   &_swigt__p_Mezzanine__GoalTimer,
-  &_swigt__p_Mezzanine__Graphics__CameraManager,
   &_swigt__p_Mezzanine__Graphics__CameraProxy,
   &_swigt__p_Mezzanine__Graphics__Mesh,
   &_swigt__p_Mezzanine__Graphics__SceneManager,
@@ -58186,7 +58324,6 @@ static swig_cast_info _swigc__p_Mezzanine__FileWriteException[] = {  {&_swigt__p
 static swig_cast_info _swigc__p_Mezzanine__FunctorEventSubscriber[] = {  {&_swigt__p_Mezzanine__FunctorEventSubscriber, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__FunctorSubscriberSlot[] = {  {&_swigt__p_Mezzanine__FunctorSubscriberSlot, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__GoalTimer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Graphics__CameraManager[] = {  {&_swigt__p_Mezzanine__Graphics__CameraManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Graphics__CameraProxy[] = {  {&_swigt__p_Mezzanine__Graphics__CameraProxy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Graphics__Mesh[] = {  {&_swigt__p_Mezzanine__Graphics__Mesh, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Graphics__SceneManager[] = {  {&_swigt__p_Mezzanine__Graphics__SceneManager, 0, 0, 0},{0, 0, 0, 0}};
@@ -58419,7 +58556,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__FunctorEventSubscriber,
   _swigc__p_Mezzanine__FunctorSubscriberSlot,
   _swigc__p_Mezzanine__GoalTimer,
-  _swigc__p_Mezzanine__Graphics__CameraManager,
   _swigc__p_Mezzanine__Graphics__CameraProxy,
   _swigc__p_Mezzanine__Graphics__Mesh,
   _swigc__p_Mezzanine__Graphics__SceneManager,
