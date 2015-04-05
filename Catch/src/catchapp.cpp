@@ -1514,7 +1514,7 @@ void CatchApp::CreateLoadingScreen()
 
     GUI->LoadMTA("Catch_Loading.mta","Common");
     Graphics::Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
-    UIViewport->SetCamera(this->TheWorld->GetCameraManager()->CreateCamera("Main"));
+    UIViewport->SetCamera(this->TheWorld->GetSceneManager()->CreateCamera());
 
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen","Catch_Loading",UIViewport,9);
     UI::Widget* BackgroundWidget = LoadScreen->CreateWidget("LoadBackground",UI::UnifiedRect(0,0,1.7777,1,0,0,0,0));
@@ -1755,7 +1755,11 @@ int CatchApp::GetCatchin()
     this->Profiles->Initialize();
 
     this->CreateLoadingScreen();
-    this->TheWorld->GetCameraManager()->GetCamera(0)->SetNearClipDistance(0.5);
+
+    Graphics::CameraProxy* DefaultCam = static_cast<Graphics::CameraProxy*>( this->TheWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    DefaultCam->SetNearClipDistance(0.5);
+    this->PostInputWork->GetDefaultControl().SetControlledCamera(DefaultCam);
+
     this->ChangeState(CatchApp::Catch_Loading);
 
     // Setup the Music

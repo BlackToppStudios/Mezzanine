@@ -35,7 +35,7 @@ void LoadFerris()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -306,7 +306,7 @@ void LoadBigCurve()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -432,7 +432,7 @@ void LoadBlowsNotSucks()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -649,7 +649,7 @@ void LoadJustice()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -869,7 +869,7 @@ void LoadRollers()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -1012,7 +1012,7 @@ void LoadJustBounce()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = CatchWorld->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 

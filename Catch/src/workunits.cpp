@@ -278,27 +278,28 @@ CatchPostInputWorkUnit::CatchPostInputWorkUnit(CatchApp* Target) :
 CatchPostInputWorkUnit::~CatchPostInputWorkUnit()
     {  }
 
+CameraController& CatchPostInputWorkUnit::GetDefaultControl()
+    { return this->DefaultControl; }
+
 void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     // Setup our pointers
-    Graphics::CameraManager* CamMan = CatchApp::GetCatchAppPointer()->GetTheWorld()->GetCameraManager();
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-    CameraController* DefaultControl = CamMan->GetOrCreateCameraController(CamMan->GetCamera(0));
     // Determine our camera linear movement
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A) )
-        DefaultControl->StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
+        DefaultControl.StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D) )
-        DefaultControl->StrafeRight(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
+        DefaultControl.StrafeRight(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W) )
-        DefaultControl->MoveForward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
+        DefaultControl.MoveForward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
-        DefaultControl->MoveBackward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
+        DefaultControl.MoveBackward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     // Determine our camera angular movement
     Vector2 Offset = SysMouse->GetMouseDelta();
     if( SysMouse->IsButtonPressed(Input::MOUSEBUTTON_2) && Vector2(0,0) != Offset ) {
-        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+        DefaultControl.Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
     }
     // Determine our Debug drawer visibility
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) ) {
