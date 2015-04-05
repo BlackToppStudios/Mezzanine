@@ -89,9 +89,6 @@ namespace Mezzanine
             case ManagerBase::MT_AudioManager:
                 return "AudioManager";
                 break;
-            case ManagerBase::MT_CameraManager:
-                return "CameraManager";
-                break;
             case ManagerBase::MT_CollisionShapeManager:
                 return "CollisionShapeManager";
                 break;
@@ -177,9 +174,7 @@ namespace Mezzanine
             }
             case 'c':
             {
-                if( 'a' == Lower.at(1) ) {
-                    return ManagerBase::MT_CameraManager;
-                }else if( 'o' == Lower.at(1) ) {
+                if( 'o' == Lower.at(1) ) {
                     if( 'l' == Lower.at(2) ) return ManagerBase::MT_CollisionShapeManager;
                     else if( 'm' == Lower.at(2) ) return ManagerBase::MT_CompositorManager;
                 }

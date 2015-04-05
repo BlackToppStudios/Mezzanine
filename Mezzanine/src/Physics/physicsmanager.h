@@ -409,6 +409,7 @@ namespace Mezzanine
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             GhostProxy* CreateGhostProxy(const XML::Node& SelfRoot);
+
             /// @brief Creates a new RigidProxy.
             /// @param Mass The mass of the new proxy.
             /// @return Returns a pointer to the created proxy.
@@ -423,6 +424,7 @@ namespace Mezzanine
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             RigidProxy* CreateRigidProxy(const XML::Node& SelfRoot);
+
             /// @brief Creates a new SoftProxy.
             /// @param Mass The total mass of the new proxy.
             /// @return Returns a pointer to the created proxy.
@@ -439,6 +441,12 @@ namespace Mezzanine
             /// @param Index The index of the CollidableProxy to be retrieved.
             /// @return Returns a pointer to the CollidableProxy at the specified index.
             CollidableProxy* GetProxy(const UInt32 Index) const;
+            /// @brief Gets the n-th proxy of the specified type.
+            /// @note This manager only stores CollidableProxy types.  As such, specifying a type of proxy that isn't derived from CollidableProxy will always return NULL.
+            /// @param Type The type of proxy to retrieve.
+            /// @param Which Which proxy of the specified type to retrieve.
+            /// @return Returns a pointer to the specified proxy, or NULL if there is no n-th proxy.
+            CollidableProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
             /// @brief Gets the number of CollidableProxy instances in this manager.
             /// @return Returns a UInt32 representing the number of CollidableProxy instances contained in this manager.
             UInt32 GetNumProxies() const;

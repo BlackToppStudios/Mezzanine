@@ -40,7 +40,6 @@
 #ifndef _graphicsscenemanager_cpp
 #define _graphicsscenemanager_cpp
 
-#include "Graphics/cameramanager.h"
 #include "Graphics/scenemanager.h"
 
 #include "Physics/physicsmanager.h"
@@ -55,6 +54,7 @@
 #include "world.h"
 
 #include "Graphics/billboardsetproxy.h"
+#include "Graphics/cameraproxy.h"
 #include "Graphics/entityproxy.h"
 #include "Graphics/lightproxy.h"
 #include "Graphics/particlesystemproxy.h"
@@ -433,6 +433,20 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        CameraProxy* SceneManager::CreateCamera()
+        {
+            CameraProxy* NewProxy = new CameraProxy(this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        CameraProxy* SceneManager::CreateCamera(const XML::Node& SelfRoot)
+        {
+            CameraProxy* NewProxy = new CameraProxy(SelfRoot,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
         EntityProxy* SceneManager::CreateEntityProxy(const Boole AddToWorld)
         {
             EntityProxy* NewProxy = new EntityProxy(this);
@@ -520,6 +534,20 @@ namespace Mezzanine
         RenderableProxy* SceneManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
+        RenderableProxy* SceneManager::GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const
+        {
+            if( Mezzanine::PT_Graphics_All_Proxies & Type ) {
+                for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+                {
+                    if( (*ProxIt)->GetProxyType() == Type ) {
+                        if( 0 == Which ) return (*ProxIt);
+                        else --Which;
+                    }
+                }
+            }
+            return NULL;
+        }
+
         UInt32 SceneManager::GetNumProxies() const
             { return this->Proxies.size(); }
 
@@ -603,15 +631,9 @@ namespace Mezzanine
 
         void SceneManager::Initialize()
         {
-            if( !this->Initialized )
-            {
+            if( !this->Initialized ) {
                 // Manager Initializations
                 WorldManager::Initialize();
-
-                CameraManager* CamMan = this->ParentWorld->GetCameraManager();
-                if( CamMan ) {
-                    CamMan->Initialize();
-                }
 
                 this->Initialized = true;
             }
@@ -619,16 +641,8 @@ namespace Mezzanine
 
         void SceneManager::Deinitialize()
         {
-            if( this->Initialized )
-            {
+            if( this->Initialized ) {
                 this->DestroyAllProxies();
-
-                // Manager Initializations
-                CameraManager* CamMan = this->ParentWorld->GetCameraManager();
-                if( CamMan ) {
-                    CamMan->Deinitialize();
-                }
-
                 this->Initialized = false;
             }
         }

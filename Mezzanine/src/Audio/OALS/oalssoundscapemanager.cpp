@@ -373,17 +373,31 @@ namespace Mezzanine
                 return this->CreateSoundProxy(Type,SoundStream,Frequency,Config,AddToWorld);
             }
 
-            Audio::SoundProxy* SoundScapeManager::GetSoundProxy(const UInt32 Index) const
+            Audio::SoundProxy* SoundScapeManager::GetProxy(const UInt32 Index) const
             {
                 return this->Proxies.at(Index);
             }
 
-            UInt32 SoundScapeManager::GetNumSoundProxies() const
+            Audio::SoundProxy* SoundScapeManager::GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const
+            {
+                if( Mezzanine::PT_Audio_All_Proxies & Type ) {
+                    for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+                    {
+                        if( (*ProxIt)->GetProxyType() == Type ) {
+                            if( 0 == Which ) return (*ProxIt);
+                            else --Which;
+                        }
+                    }
+                }
+                return NULL;
+            }
+
+            UInt32 SoundScapeManager::GetNumProxies() const
             {
                 return this->Proxies.size();
             }
 
-            void SoundScapeManager::DestroySoundProxy(Audio::SoundProxy* ToBeDestroyed)
+            void SoundScapeManager::DestroyProxy(Audio::SoundProxy* ToBeDestroyed)
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {

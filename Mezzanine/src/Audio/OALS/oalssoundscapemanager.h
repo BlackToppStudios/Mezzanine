@@ -189,12 +189,15 @@ namespace Mezzanine
                 virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld);
                 /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const UInt32, const Audio::BitConfig, const Boole)
                 virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld);
+
                 /// @copydoc Audio::SoundScapeManager::GetSoundProxy(const UInt32) const
-                virtual Audio::SoundProxy* GetSoundProxy(const UInt32 Index) const;
+                virtual Audio::SoundProxy* GetProxy(const UInt32 Index) const;
+                /// @copydoc Audio::SoundScapeManager::GetProxy(const Mezzanine::ProxyType, UInt32) const
+                virtual Audio::SoundProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
                 /// @copydoc Audio::SoundScapeManager::GetNumSoundProxies() const
-                virtual UInt32 GetNumSoundProxies() const;
+                virtual UInt32 GetNumProxies() const;
                 /// @copydoc Audio::SoundScapeManager::DestroySoundProxy(SoundProxy*)
-                virtual void DestroySoundProxy(Audio::SoundProxy* ToBeDestroyed);
+                virtual void DestroyProxy(Audio::SoundProxy* ToBeDestroyed);
                 /// @copydoc Audio::SoundScapeManager::DestroyAllProxies()
                 virtual void DestroyAllProxies();
 

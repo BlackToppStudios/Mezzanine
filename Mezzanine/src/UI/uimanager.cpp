@@ -53,7 +53,6 @@
 // includes for the creation and destruction of the global parser
 #include "UI/defaultmarkupparser.h"
 
-#include "Graphics/cameramanager.h"
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/viewport.h"
 #include "Input/inputmanager.h"

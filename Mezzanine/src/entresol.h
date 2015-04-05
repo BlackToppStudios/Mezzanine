@@ -127,7 +127,6 @@
             // World Managers          // Namespaces
             MT_ActorManager = 100,     // Mezzanine
             MT_AreaEffectManager,      // Mezzanine
-            MT_CameraManager,          // Graphics
             MT_PagingManager,          // Paging
             MT_PhysicsManager,         // Physics
             MT_SceneManager,           // Graphics
@@ -138,7 +137,6 @@
    @subsubsection managerlist A list of Managers in the Mezzanine
     - @ref Mezzanine::ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton
     - @ref Mezzanine::Audio::AudioManager - Play, stop and otherwise work with sound and music.
-    - @ref Mezzanine::Graphics::CameraManager - Add/remove Multiple camera's from the world
     - @ref Mezzanine::Physics::CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection
     - @ref Mezzanine::EventManager - Get messages and events from the operating system (and user, but that will change)
     - @ref Mezzanine::Graphics::GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.
@@ -310,7 +308,6 @@ namespace Mezzanine
         class GraphicsManager;
         class MeshManager;
         class SceneManager;
-        class CameraManager;
         class TextureManager;
     }
     namespace Input

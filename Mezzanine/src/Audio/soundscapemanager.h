@@ -157,16 +157,23 @@ namespace Mezzanine
             /// @param AddToWorld Wether or not the new @ref SoundProxy instance should be added to the world after it has been created.
             /// @return Returns a pointer to the @ref SoundProxy instance that was created.
             virtual SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld) = 0;
+
             /// @brief Gets an @ref SoundProxy instance by index.
             /// @param Index The index of the @ref SoundProxy to be retrieved.
             /// @return Returns a pointer to the @ref SoundProxy at the specified index.
-            virtual SoundProxy* GetSoundProxy(const UInt32 Index) const = 0;
+            virtual SoundProxy* GetProxy(const UInt32 Index) const = 0;
+            /// @brief Gets the n-th proxy of the specified type.
+            /// @note This manager only stores SoundProxy types.  As such, specifying a type of proxy that isn't SoundProxy or derived from SoundProxy will always return NULL.
+            /// @param Type The type of proxy to retrieve.
+            /// @param Which Which proxy of the specified type to retrieve.
+            /// @return Returns a pointer to the specified proxy, or NULL if there is no n-th proxy.
+            virtual SoundProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const = 0;
             /// @brief Gets the number of @ref SoundProxy instances in this manager.
             /// @return Returns a UInt32 representing the number of @ref SoundProxy instances contained in this manager.
-            virtual UInt32 GetNumSoundProxies() const = 0;
+            virtual UInt32 GetNumProxies() const = 0;
             /// @brief Deletes a @ref SoundProxy.
             /// @param ToBeDestroyed A pointer to the @ref SoundProxy you want deleted.
-            virtual void DestroySoundProxy(SoundProxy* ToBeDestroyed) = 0;
+            virtual void DestroyProxy(SoundProxy* ToBeDestroyed) = 0;
             /// @brief Deletes all stored @ref SoundProxy instances.
             virtual void DestroyAllProxies() = 0;
 

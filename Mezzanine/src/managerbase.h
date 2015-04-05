@@ -88,7 +88,6 @@ namespace Mezzanine
 
             MT_ActorManager = 100,     // Mezzanine
             MT_AreaEffectManager,      // Mezzanine
-            MT_CameraManager,          // Graphics
             MT_DebrisManager,          // Mezzanine
             MT_PagingManager,          // Paging
             MT_PhysicsManager,         // Physics

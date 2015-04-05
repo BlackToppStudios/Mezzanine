@@ -41,25 +41,40 @@
 #define _cameracontroller_cpp
 
 #include "cameracontroller.h"
+
+#include "enumerations.h"
+#include "ray.h"
+#include "rayquerytool.h"
+#include "worldmanager.h"
+#include "worldobject.h"
+
 #include "Graphics/cameraproxy.h"
 #include "MathTools/mathtools.h"
-#include "rayquerytool.h"
-#include "ray.h"
-#include "enumerations.h"
-#include "actor.h"
 
 namespace Mezzanine
 {
-    CameraController::CameraController(Graphics::CameraProxy* ToBeControlled) :
-        Controlled(ToBeControlled),
-        CurrentMMode(CCM_Fly),
+    CameraController::CameraController() :
+        Controlled(NULL),
+        YawLimits(NULL),
+        PitchLimits(NULL),
+        RollLimits(NULL),
         HoverHeight(2),
         YawRad(0),
         PitchRad(0),
         RollRad(0),
+        CurrentMMode(CCM_Fly)
+        {  }
+
+    CameraController::CameraController(Graphics::CameraProxy* ToBeControlled) :
+        Controlled(ToBeControlled),
         YawLimits(NULL),
         PitchLimits(NULL),
-        RollLimits(NULL)
+        RollLimits(NULL),
+        HoverHeight(2),
+        YawRad(0),
+        PitchRad(0),
+        RollRad(0),
+        CurrentMMode(CCM_Fly)
         {  }
 
     CameraController::~CameraController()
@@ -72,31 +87,31 @@ namespace Mezzanine
     void CameraController::CheckAngleRollover(Real Angle)
     {
         Real Pi = MathTools::GetPi();
-        if(Angle > Pi) {
+        if( Angle > Pi ) {
             Angle = -Pi + (Angle - Pi);
-        }else if(Angle < -Pi) {
+        }else if( Angle < -Pi ) {
             Angle = Pi + (Angle + Pi);
         }
     }
 
     void CameraController::CheckAngleLimits()
     {
-        if(this->YawLimits) {
-            if(YawRad > this->YawLimits->Upper)
+        if( this->YawLimits ) {
+            if( YawRad > this->YawLimits->Upper )
                 YawRad = this->YawLimits->Upper;
-            if(YawRad < this->YawLimits->Lower)
+            if( YawRad < this->YawLimits->Lower )
                 YawRad = this->YawLimits->Lower;
         }
-        if(this->PitchLimits) {
-            if(PitchRad > this->PitchLimits->Upper)
+        if( this->PitchLimits ) {
+            if( PitchRad > this->PitchLimits->Upper )
                 PitchRad = this->PitchLimits->Upper;
-            if(PitchRad < this->PitchLimits->Lower)
+            if( PitchRad < this->PitchLimits->Lower )
                 PitchRad = this->PitchLimits->Lower;
         }
-        if(this->YawLimits) {
-            if(RollRad > this->RollLimits->Upper)
+        if( this->YawLimits ) {
+            if( RollRad > this->RollLimits->Upper )
                 RollRad = this->RollLimits->Upper;
-            if(RollRad < this->RollLimits->Lower)
+            if( RollRad < this->RollLimits->Lower )
                 RollRad = this->RollLimits->Lower;
         }
     }
@@ -134,6 +149,12 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
+
+    void CameraController::SetControlledCamera(Graphics::CameraProxy* ToBeControlled)
+    {
+        this->Controlled = ToBeControlled;
+        this->RayCaster.SetWorld( this->Controlled->GetCreator()->GetWorld() );
+    }
 
     Graphics::CameraProxy* CameraController::GetControlledCamera() const
         { return this->Controlled; }

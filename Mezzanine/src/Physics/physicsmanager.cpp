@@ -859,6 +859,20 @@ namespace Mezzanine
         CollidableProxy* PhysicsManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
+        CollidableProxy* PhysicsManager::GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const
+        {
+            if( Mezzanine::PT_Physics_All_Proxies & Type ) {
+                for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+                {
+                    if( (*ProxIt)->GetProxyType() == Type ) {
+                        if( 0 == Which ) return (*ProxIt);
+                        else --Which;
+                    }
+                }
+            }
+            return NULL;
+        }
+
         UInt32 PhysicsManager::GetNumProxies() const
             { return this->Proxies.size(); }
 

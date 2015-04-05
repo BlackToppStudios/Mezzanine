@@ -41,7 +41,6 @@
 #define _graphicsmanager_cpp
 
 #include "Graphics/graphicsmanager.h"
-#include "Graphics/cameramanager.h"
 #include "Graphics/texturemanager.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/viewport.h"

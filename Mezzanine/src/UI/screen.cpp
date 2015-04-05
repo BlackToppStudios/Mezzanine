@@ -69,7 +69,6 @@
 
 #include "Graphics/gamewindow.h"
 #include "Graphics/viewport.h"
-#include "Graphics/cameramanager.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/scenemanager.h"
@@ -245,7 +244,7 @@ namespace Mezzanine
             if( GameViewport ) {
                 Graphics::CameraProxy* Cam = this->GameViewport->GetCamera();
                 if( Cam ) {
-                    Graphics::SceneManager* SceneMan = static_cast<Graphics::CameraManager*>( Cam->GetCreator() )->GetScene();
+                    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( Cam->GetCreator() );
                     if( SceneMan ) return SceneMan;
                     else return NULL;
                 }else return NULL;

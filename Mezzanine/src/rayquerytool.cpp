@@ -61,7 +61,6 @@ using namespace std;
 
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/scenemanager.h"
-#include "Graphics/cameramanager.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/gamewindow.h"
 #include "Graphics/viewport.h"
@@ -89,40 +88,46 @@ namespace Mezzanine
         /// @brief Ogre demands the use of special functions to delete a Ogre::RaySceneQuery, this handles that with RAII
         class RayQueryHandle
         {
-            public:
-                /// @brief This will work with a raw pointer to a Ogre::RaySceneQuery to manage a Ogre::RaySceneQuery.
-                typedef Ogre::RaySceneQuery* TargetPtrType;
-                /// @brief This will manage a Ogre::RaySceneQuery
-                typedef Ogre::RaySceneQuery TargetType;
-                /// @brief The actual ogre object we want to use.
-                Ogre::RaySceneQuery* RayQuery;
+        public:
+            /// @brief This will work with a raw pointer to a Ogre::RaySceneQuery to manage a Ogre::RaySceneQuery.
+            typedef Ogre::RaySceneQuery* TargetPtrType;
+            /// @brief This will manage a Ogre::RaySceneQuery
+            typedef Ogre::RaySceneQuery TargetType;
+            /// @brief The actual ogre object we want to use.
+            Ogre::RaySceneQuery* RayQuery;
+            /// @brief The world in which to perform the ray query.
+            World* ParentWorld;
 
-                World * ParentWorld;
+            /// @brief Class constructor.
+            /// @param QueryWorld The world in which to perform the ray query.
+            explicit RayQueryHandle(World* QueryWorld) :
+                ParentWorld(QueryWorld)
+                {  }
 
-                /// @brief Create the ogre specific handle and sort items for raycasting.
-                void Construct()
-                {
-                    RayQuery = this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-                    RayQuery->setSortByDistance(true);
-                }
-                /// @brief CAll the Ogre API to clean up this wierd handle thing
-                void Deconstruct()
-                {
-                    if(GetPointer())
-                        { this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->destroyQuery(RayQuery); }
-                }
+            /// @brief Create the ogre specific handle and sort items for raycasting.
+            void Construct()
+            {
+                this->RayQuery = this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+                this->RayQuery->setSortByDistance(true);
+            }
 
-                /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
-                /// @param Value The new value for the pointer. If NULL the only thing that the ManagedPtr will do to the handle is call its deconstruct method.
-                void SetPointer(TargetPtrType Value)
-                    { RayQuery = Value; }
-                /// @brief This is what the ManagedPtr with use for dereferencing.
-                /// @return The pointer to the managed data. This is expected to return a value that resolves to false when used as a condition when invalid.
-                TargetPtrType GetPointer()
-                    { return RayQuery; }
+            /// @brief CAll the Ogre API to clean up this wierd handle thing
+            void Deconstruct()
+            {
+                if( this->GetPointer() )
+                    { this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->destroyQuery(this->RayQuery); }
+            }
 
-                explicit RayQueryHandle(World * ParentWorld) : ParentWorld( ParentWorld ) {}
-        };
+            /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
+            /// @param Value The new value for the pointer. If NULL the only thing that the ManagedPtr will do to the handle is call its deconstruct method.
+            void SetPointer(TargetPtrType Value)
+                { this->RayQuery = Value; }
+
+            /// @brief This is what the ManagedPtr with use for dereferencing.
+            /// @return The pointer to the managed data. This is expected to return a value that resolves to false when used as a condition when invalid.
+            TargetPtrType GetPointer()
+                { return this->RayQuery; }
+        };//RayQueryHandle
 
         typedef ManagedPtr<RayQueryHandle> ManagedRayQuery;
 
@@ -133,52 +138,63 @@ namespace Mezzanine
         /// @return True if something is hit, false otherwise.
         Boole ExecuteQuery(ManagedRayQuery& RayQuery, Ogre::Ray& Ooray)
         {
-            if(RayQuery)          //Double check that the Rayquery is valid
-            {
+            if( RayQuery ) {        //Double check that the Rayquery is valid
                 RayQuery->setRay(Ooray);
                 RayQuery->setQueryMask(-1); // GetFirstActorOnRayByAABB did not do this
-                if( RayQuery->execute().size() <= 0 ) //Did we hit anything
-                    { return false; }
-                return true;
+
+                if( RayQuery->execute().size() <= 0 ) return false;//Did we hit anything
+                else return true;
             }else{                          // Something Failed
                 MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
             }
+            return false;
         }
     }
 
-    RayQueryTool::RayQueryTool(World * ParentWorld)
-        : ValidResult(false), IntersectedObject(NULL), ParentWorld(ParentWorld)
-        { ClearReturns(); }
+    ///////////////////////////////////////////////////////////////////////////////
+    // RayQueryTool Methods
+
+    RayQueryTool::RayQueryTool() :
+        IntersectedObject(NULL),
+        ParentWorld(NULL),
+        ValidResult(false)
+        { this->ClearReturns(); }
+
+    RayQueryTool::RayQueryTool(World* QueryWorld) :
+        IntersectedObject(NULL),
+        ParentWorld(QueryWorld),
+        ValidResult(false)
+        { this->ClearReturns(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void RayQueryTool::SetWorld(World* QueryWorld)
+        { this->ParentWorld = QueryWorld; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // World Ray Query Results
-    ///////////////////////////////////////
 
     Boole RayQueryTool::ClearReturns()
     {
-        ValidResult = false;
-        Offset = Vector3();
-        IntersectedObject = NULL;
-        return ValidResult;
+        this->ValidResult = false;
+        this->Offset = Vector3();
+        this->IntersectedObject = NULL;
+        return this->ValidResult;
     }
 
     Boole RayQueryTool::LastQueryResultsValid() const
-        { return ValidResult; }
+        { return this->ValidResult; }
 
     Vector3 RayQueryTool::LastQueryResultsOffset() const
-        { return Offset; }
+        { return this->Offset; }
 
     WorldObject* RayQueryTool::LastQueryResultsObjectPtr() const
-        { return IntersectedObject; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Query Helpers
-    ///////////////////////////////////////
-
+        { return this->IntersectedObject; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Ray Queries
-    ///////////////////////////////////////
+
     Boole RayQueryTool::GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags)
     {
         RayQueryHandle ray( this->ParentWorld );

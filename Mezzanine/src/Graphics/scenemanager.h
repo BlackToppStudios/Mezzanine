@@ -65,6 +65,7 @@ namespace Mezzanine
     {
         class RenderableProxy;
         class BillboardSetProxy;
+        class CameraProxy;
         class EntityProxy;
         class LightProxy;
         class ParticleSystemProxy;
@@ -265,6 +266,15 @@ namespace Mezzanine
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             BillboardSetProxy* CreateBillboardSetProxy(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new camera.
+            /// @return Returns a pointer to the created camera.
+            CameraProxy* CreateCamera();
+            /// @brief Creates a new camera.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created camera.
+            CameraProxy* CreateCamera(const XML::Node& SelfRoot);
+
             /// @brief Creates a new EntityProxy.
             /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
@@ -284,6 +294,7 @@ namespace Mezzanine
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             EntityProxy* CreateEntityProxy(const XML::Node& SelfRoot);
+
             /// @brief Creates a new LightProxy.
             /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
@@ -297,6 +308,7 @@ namespace Mezzanine
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             LightProxy* CreateLightProxy(const XML::Node& SelfRoot);
+
             /// @brief Creates a new ParticleSystemProxy.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
@@ -314,6 +326,12 @@ namespace Mezzanine
             /// @param Index The index of the RenderableProxy to be retrieved.
             /// @return Returns a pointer to the RenderableProxy at the specified index.
             RenderableProxy* GetProxy(const UInt32 Index) const;
+            /// @brief Gets the n-th proxy of the specified type.
+            /// @note This manager only stores RenderableProxy types.  As such, specifying a type of proxy that isn't derived from RenderableProxy will always return NULL.
+            /// @param Type The type of proxy to retrieve.
+            /// @param Which Which proxy of the specified type to retrieve.
+            /// @return Returns a pointer to the specified proxy, or NULL if there is no n-th proxy.
+            RenderableProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
             /// @brief Gets the number of RenderableProxy instances in this manager.
             /// @return Returns a UInt32 representing the number of RenderableProxy instances contained in this manager.
             UInt32 GetNumProxies() const;

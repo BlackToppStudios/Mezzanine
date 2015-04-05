@@ -41,7 +41,6 @@
 #define _graphicsviewport_cpp
 
 #include "Graphics/viewport.h"
-#include "Graphics/cameramanager.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/gamewindow.h"
 
