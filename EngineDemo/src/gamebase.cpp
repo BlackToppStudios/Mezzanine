@@ -39,11 +39,12 @@ DemoPostInputWorkUnit*      DemoPostInputWork    = NULL;
 DemoPostRenderWorkUnit*     DemoPostRenderWork   = NULL;
 DemoPostPhysicsWorkUnit*    DemoPostPhysicsWork  = NULL;
 
-World * DemoWorld = NULL;
+World* DemoWorld = NULL;
 
 Graphics::GameWindow* FirstWindow = NULL;
-Graphics::CameraProxy* FirstCam = NULL;
 Graphics::CameraProxy* MainCam = NULL;
+
+CameraController* CamControl = NULL;
 
 void CreateDemoWorld();
 void DestroyDemoWorld();
@@ -106,158 +107,149 @@ public:
 
 class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
-        World * m_pWorld;
-        RayQueryTool RayCaster;
-    public:
-        DemoPostInputWorkUnit(World * world) : m_pWorld(world), RayCaster(world) {  }
-        virtual ~DemoPostInputWorkUnit() {  }
+protected:
+    World* OneWorld;
+    RayQueryTool RayCaster;
+public:
+    DemoPostInputWorkUnit(World* TheWorld) : OneWorld(TheWorld), RayCaster(TheWorld) {  }
+    virtual ~DemoPostInputWorkUnit() {  }
 
-        void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            //User Input through a WorldQueryTool
-            Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-            Input::Mouse* SysMouse = InputMan->GetSystemMouse();
-            Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-            Input::Controller* Controller1 = NULL;
-            if( InputMan->GetNumControllers() > 0 )
-                Controller1 = InputMan->GetController(0);
+    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+    {
+        //User Input through a WorldQueryTool
+        Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
+        Input::Mouse* SysMouse = InputMan->GetSystemMouse();
+        Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
+        Input::Controller* Controller1 = NULL;
+        if( InputMan->GetNumControllers() > 0 )
+            Controller1 = InputMan->GetController(0);
 
-            CameraController* DefaultControl = m_pWorld->GetCameraManager()->GetOrCreateCameraController(m_pWorld->GetCameraManager()->GetCamera(0));
-            if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
-                { DefaultControl->StrafeLeft(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
+            { CamControl->StrafeLeft(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
-                { DefaultControl->StrafeRight(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
+            { CamControl->StrafeRight(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
-                { DefaultControl->MoveForward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
+            { CamControl->MoveForward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
-                { DefaultControl->MoveBackward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
+            { CamControl->MoveBackward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
 
-            static bool MouseCam = false;
-            if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
-                { MouseCam = true; }
+        static bool MouseCam = false;
+        if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
+            { MouseCam = true; }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_END))
-                { MouseCam = false; }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_END))
+            { MouseCam = false; }
 
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_BACKSLASH) )
-                { m_pWorld->GetPhysicsManager()->SetTimeMultiplier(1.0); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_BACKSLASH) )
+            { OneWorld->GetPhysicsManager()->SetTimeMultiplier(1.0); }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHTBRACKET) )
-            {
-                Real Factor = m_pWorld->GetPhysicsManager()->GetTimeMultiplier() * 1.5;
-                if(Factor>2.0)
-                    { Factor = 2.0; }
-                m_pWorld->GetPhysicsManager()->SetTimeMultiplier(Factor);
-            }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHTBRACKET) ) {
+            Real Factor = OneWorld->GetPhysicsManager()->GetTimeMultiplier() * 1.5;
+            if(Factor>2.0)
+                { Factor = 2.0; }
+            OneWorld->GetPhysicsManager()->SetTimeMultiplier(Factor);
+        }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_LEFTBRACKET) )
-            {
-                Real Factor = m_pWorld->GetPhysicsManager()->GetTimeMultiplier() * .75;
-                if(Factor<0.01)
-                    { Factor = 0.01; }
-                m_pWorld->GetPhysicsManager()->SetTimeMultiplier(Factor);
-            }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFTBRACKET) ) {
+            Real Factor = OneWorld->GetPhysicsManager()->GetTimeMultiplier() * .75;
+            if(Factor<0.01)
+                { Factor = 0.01; }
+            OneWorld->GetPhysicsManager()->SetTimeMultiplier(Factor);
+        }
 
-            Vector2 Offset = SysMouse->GetMouseDelta();
-            if( MouseCam && Vector2(0,0) != Offset )
-                DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+        Vector2 Offset = SysMouse->GetMouseDelta();
+        if( MouseCam && Vector2(0,0) != Offset )
+            CamControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
-            {
-                Audio::iSound* Theme = Soundtrack->at(1);
-                if(!Theme->IsPlaying())
-                    { Theme->Play(); }
-            }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) ) {
+            Audio::iSound* Theme = Soundtrack->at(1);
+            if(!Theme->IsPlaying())
+                { Theme->Play(); }
+        }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
-            {
-                Audio::iSound* Theme = Soundtrack->at(1);
-                if(Theme->IsPlaying())
-                    { Theme->Stop(); }
-            }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) ) {
+            Audio::iSound* Theme = Soundtrack->at(1);
+            if(Theme->IsPlaying())
+                { Theme->Stop(); }
+        }
 
-            // Make a declaration for a static constrain so it survives the function lifetime
-            static Physics::Point2PointConstraint* Dragger=NULL;
+        // Make a declaration for a static constrain so it survives the function lifetime
+        static Physics::Point2PointConstraint* Dragger=NULL;
 
-            if( SysMouse->IsButtonPressed(1) ) {
-                UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-                if( UIMan->MouseIsInUISystem() ) {
-                    //UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
-                    UI::Widget* Hover = UIMan->GetHoveredWidget();
-                    if(Hover) {
-                        Hover = Hover->GetBottomMostHoveredWidget();
-                        if( "D_Exit" == Hover->GetName() ) {
-                            TheEntresol->BreakMainLoop();
-                        }
+        if( SysMouse->IsButtonPressed(1) ) {
+            UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+            if( UIMan->MouseIsInUISystem() ) {
+                //UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
+                UI::Widget* Hover = UIMan->GetHoveredWidget();
+                if(Hover) {
+                    Hover = Hover->GetBottomMostHoveredWidget();
+                    if( "D_Exit" == Hover->GetName() ) {
+                        TheEntresol->BreakMainLoop();
                     }
-                }else{
-                    Ray MouseRay = RayQueryTool::GetMouseRay();
-                    RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid);
+                }
+            }else{
+                Ray MouseRay = RayQueryTool::GetMouseRay();
+                RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid);
 
-                    bool firstframe=false;
-                    if( 0 == RayCaster.LastQueryResultsObjectPtr() ) {
-                        #ifdef MEZZDEBUG
-                        //TheEntresol->Log("No Object Clicked on");
-                        #endif
+                bool firstframe=false;
+                if( 0 == RayCaster.LastQueryResultsObjectPtr() ) {
+                    #ifdef MEZZDEBUG
+                    //TheEntresol->Log("No Object Clicked on");
+                    #endif
+                }else{
+                    #ifdef MEZZDEBUG
+                    //TheEntresol->Log("Object Clicked on"); TheEntresol->Log(*ClickOnActor);
+                    //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
+                    //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
+                    //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
+                    #endif
+                    if( !( RayCaster.LastQueryResultsObjectPtr()->IsStatic() || RayCaster.LastQueryResultsObjectPtr()->IsKinematic() ) ) {
+                        if(!Dragger) { //If we have a dragger, then this is dragging, not clicking
+                            if(RayCaster.LastQueryResultsObjectPtr()->GetType() == Mezzanine::WO_DebrisRigid) { //This is Dragging let's do some checks for sanity
+                                Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
+                                RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
+                                rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
+                                //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
+                                Dragger = new Physics::Point2PointConstraint(rigid->GetRigidProxy(), LocalPivot);
+                                Dragger->SetTAU(0.001);
+                                OneWorld->GetPhysicsManager()->AddConstraint(Dragger);
+                                Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
+                                Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
+                                firstframe=true;
+                            }else{  // since we don't
+                                #ifdef MEZZDEBUG
+                                //TheEntresol->Log("Object is not an ActorRigid.  Aborting.");
+                                #endif
+                            }
+                        }
                     }else{
                         #ifdef MEZZDEBUG
-                        //TheEntresol->Log("Object Clicked on"); TheEntresol->Log(*ClickOnActor);
-                        //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
-                        //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
-                        //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
+                        //TheEntresol->Log("Object is Static/Kinematic.  Aborting.");
                         #endif
-                        if( !( RayCaster.LastQueryResultsObjectPtr()->IsStatic() || RayCaster.LastQueryResultsObjectPtr()->IsKinematic() ) )
-                        {
-                            if(!Dragger) //If we have a dragger, then this is dragging, not clicking
-                            {
-                                if(RayCaster.LastQueryResultsObjectPtr()->GetType() == Mezzanine::WO_DebrisRigid) //This is Dragging let's do some checks for sanity
-                                {
-                                    Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                                    RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
-                                    rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
-                                    //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                                    Dragger = new Physics::Point2PointConstraint(rigid->GetRigidProxy(), LocalPivot);
-                                    Dragger->SetTAU(0.001);
-                                    m_pWorld->GetPhysicsManager()->AddConstraint(Dragger);
-                                    Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                                    Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                                    firstframe=true;
-                                }else{  // since we don't
-                                    #ifdef MEZZDEBUG
-                                    //TheEntresol->Log("Object is not an ActorRigid.  Aborting.");
-                                    #endif
-                                }
-                            }
-                        }else{
-                            #ifdef MEZZDEBUG
-                            //TheEntresol->Log("Object is Static/Kinematic.  Aborting.");
-                            #endif
-                        }
-                    }
-
-                    // This chunk of code calculates the 3d point that the actor needs to be dragged to
-                    if (RayCaster.RayPlaneIntersection(MouseRay, PlaneOfPlay))
-                    {
-                        if(Dragger&&!firstframe)
-                            { Dragger->SetPivotBLocation(RayCaster.LastQueryResultsOffset()); }
                     }
                 }
 
-            }else{  //Since we are no longer clicking we need to setup for the next clicking
-                if(Dragger)
-                {
-                    Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                    m_pWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
-                    delete Dragger;
-                    Dragger = NULL;
-                    Prox->SetActivationState(Physics::AS_Active);
+                // This chunk of code calculates the 3d point that the actor needs to be dragged to
+                if( RayCaster.RayPlaneIntersection(MouseRay, PlaneOfPlay) ) {
+                    if(Dragger&&!firstframe)
+                        { Dragger->SetPivotBLocation(RayCaster.LastQueryResultsOffset()); }
                 }
             }
+
+        }else{  //Since we are no longer clicking we need to setup for the next clicking
+            if( Dragger ) {
+                Physics::RigidProxy* Prox = Dragger->GetProxyA();
+                OneWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
+                delete Dragger;
+                Dragger = NULL;
+                Prox->SetActivationState(Physics::AS_Active);
+            }
         }
+    }
 };//DemoPostInputWorkUnit
 
 class DemoPostRenderWorkUnit : public Threading::DefaultWorkUnit
@@ -412,19 +404,17 @@ void CreateDemoWorld()
 
     Graphics::GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
 
-    // ©reate the windows!
-    FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
-    FirstCam = DemoWorld->GetCameraManager()->CreateCamera("FirstCam");
-    //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
-    FirstWindow->CreateViewport(FirstCam,0);
-    FirstCam->SetLocation( Vector3(0,50,900) );
-    FirstCam->LookAt( Vector3(0,0,0) );
+    MainCam = DemoWorld->GetSceneManager()->CreateCamera();
+    MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
+    MainCam->LookAt(Vector3(0,0,0));
 
-    /*Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
-    Camera* SecondCam = TheEntresol->GetCameraManager()->CreateCamera("SecondCam");
-    Graphics::Viewport* SecondViewport = SecondWindow->CreateViewport(SecondCam);
-    SecondCam->SetLocation( Vector3(-300,50,-50) );
-    SecondCam->LookAt( Vector3(0,0,0) );//*/
+    CamControl = new CameraController(MainCam);
+    //CamControl->SetMovementMode(CameraController::CCM_Walk);
+    //CamControl->SetHoverHeight(75);
+
+    // Create the window(s)!
+    FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
+    FirstWindow->CreateViewport(MainCam,0);
 
     // Setup our workunits
     DemoPreEventWork = new DemoPreEventWorkUnit();
@@ -454,17 +444,10 @@ void CreateDemoWorld()
     //Actually Load the game stuff
     LoadContent();
 
-    // ©onfigure the wireframe Drawer
+    // Configure the wireframe Drawer
     //TheEntresol->GetPhysicsManager()->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
     //TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
 
-    //Setup some camera tricks
-    MainCam = DemoWorld->GetCameraManager()->GetCamera(0);
-    MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
-    MainCam->LookAt(Vector3(0,0,0));
-    // ©ameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
-    //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
-    //DefaultControl->SetHoverHeight(75);
     Graphics::LightProxy* Headlight = DemoWorld->GetSceneManager()->CreateLightProxy(Graphics::LT_Directional);
     Vector3 LightLoc(200,300,0);
     Headlight->SetLocation(LightLoc);
@@ -477,7 +460,7 @@ void CreateDemoWorld()
     Headlight->SetLocation(Vector3(0,150,0));
     Headlight->AddToWorld();
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
-    // ©ameraNode->AttachObject(Headlight);
+    // CameraNode->AttachObject(Headlight);
 
     std::cerr << "Finished Creating World\n";
 
@@ -507,7 +490,6 @@ void DestroyDemoWorld()
     }
 
     MainCam = NULL;
-    FirstCam = NULL;
 
     // Destory the World Last, ya dumbby!
     if( DemoWorld ) {
