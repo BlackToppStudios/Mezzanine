@@ -4628,7 +4628,7 @@ static int _wrap_PhysicsManager_CreateSoftProxy(lua_State* L) {
 }
 
 
-static int _wrap_PhysicsManager_GetProxy(lua_State* L) {
+static int _wrap_PhysicsManager_GetProxy__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
   Mezzanine::UInt32 arg2 ;
@@ -4653,6 +4653,96 @@ static int _wrap_PhysicsManager_GetProxy(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_PhysicsManager_GetProxy__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::ProxyType arg2 ;
+  Mezzanine::UInt32 arg3 ;
+  Mezzanine::Physics::CollidableProxy *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::GetProxy",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::GetProxy",1,"Mezzanine::Physics::PhysicsManager const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::GetProxy",2,"Mezzanine::ProxyType const");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::GetProxy",3,"Mezzanine::UInt32");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("PhysicsManager_GetProxy",1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  }
+  
+  arg2 = (Mezzanine::ProxyType const)(int)lua_tonumber(L, 2);
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (Mezzanine::UInt32)lua_tonumber(L, 3);
+  result = (Mezzanine::Physics::CollidableProxy *)((Mezzanine::Physics::PhysicsManager const *)arg1)->GetProxy(arg2,arg3);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PhysicsManager_GetProxy(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_PhysicsManager_GetProxy__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_PhysicsManager_GetProxy__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'PhysicsManager_GetProxy'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::Physics::PhysicsManager::GetProxy(Mezzanine::UInt32 const) const\n"
+    "    Mezzanine::Physics::PhysicsManager::GetProxy(Mezzanine::ProxyType const,Mezzanine::UInt32) const\n");
+  lua_error(L);return 0;
 }
 
 
@@ -30244,6 +30334,30 @@ fail:
 }
 
 
+static int _wrap_WorldProxy_GetProxyID(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WorldProxy *arg1 = (Mezzanine::WorldProxy *) 0 ;
+  Mezzanine::UInt32 result;
+  
+  SWIG_check_num_args("Mezzanine::WorldProxy::GetProxyID",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldProxy::GetProxyID",1,"Mezzanine::WorldProxy const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WorldProxy,0))){
+    SWIG_fail_ptr("WorldProxy_GetProxyID",1,SWIGTYPE_p_Mezzanine__WorldProxy);
+  }
+  
+  result = (Mezzanine::UInt32)((Mezzanine::WorldProxy const *)arg1)->GetProxyID();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_WorldProxy_GetCreator(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldProxy *arg1 = (Mezzanine::WorldProxy *) 0 ;
@@ -31426,6 +31540,7 @@ static swig_lua_method swig_WorldProxy_methods[]= {
     { "RemoveFromWorld", _wrap_WorldProxy_RemoveFromWorld},
     { "IsInWorld", _wrap_WorldProxy_IsInWorld},
     { "GetParentObject", _wrap_WorldProxy_GetParentObject},
+    { "GetProxyID", _wrap_WorldProxy_GetProxyID},
     { "GetCreator", _wrap_WorldProxy_GetCreator},
     { "SetLocation", _wrap_WorldProxy_SetLocation},
     { "GetLocation", _wrap_WorldProxy_GetLocation},
@@ -43868,17 +43983,21 @@ static swig_lua_class _wrap_class_Generic6DofSpringConstraint = { "Generic6DofSp
 
 static int _wrap_new_GhostProxy__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::UInt32 arg1 ;
+  Mezzanine::Physics::PhysicsManager *arg2 = (Mezzanine::Physics::PhysicsManager *) 0 ;
   Mezzanine::Physics::GhostProxy *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::Physics::GhostProxy::GhostProxy",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::GhostProxy::GhostProxy",1,"Mezzanine::Physics::PhysicsManager *");
+  SWIG_check_num_args("Mezzanine::Physics::GhostProxy::GhostProxy",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::GhostProxy::GhostProxy",1,"Mezzanine::UInt32 const");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::GhostProxy::GhostProxy",2,"Mezzanine::Physics::PhysicsManager *");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  arg1 = (Mezzanine::UInt32 const)lua_tonumber(L, 1);
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
-    SWIG_fail_ptr("new_GhostProxy",1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("new_GhostProxy",2,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
   }
   
-  result = (Mezzanine::Physics::GhostProxy *)new Mezzanine::Physics::GhostProxy(arg1);
+  result = (Mezzanine::Physics::GhostProxy *)new Mezzanine::Physics::GhostProxy(arg1,arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__GhostProxy,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -43892,24 +44011,28 @@ fail:
 
 static int _wrap_new_GhostProxy__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Physics::CollisionShape *arg1 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Mezzanine::Physics::PhysicsManager *arg2 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::UInt32 arg1 ;
+  Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
+  Mezzanine::Physics::PhysicsManager *arg3 = (Mezzanine::Physics::PhysicsManager *) 0 ;
   Mezzanine::Physics::GhostProxy *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::Physics::GhostProxy::GhostProxy",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::GhostProxy::GhostProxy",1,"Mezzanine::Physics::CollisionShape *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::GhostProxy::GhostProxy",2,"Mezzanine::Physics::PhysicsManager *");
+  SWIG_check_num_args("Mezzanine::Physics::GhostProxy::GhostProxy",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::GhostProxy::GhostProxy",1,"Mezzanine::UInt32 const");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::GhostProxy::GhostProxy",2,"Mezzanine::Physics::CollisionShape *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::Physics::GhostProxy::GhostProxy",3,"Mezzanine::Physics::PhysicsManager *");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  arg1 = (Mezzanine::UInt32 const)lua_tonumber(L, 1);
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
-    SWIG_fail_ptr("new_GhostProxy",1,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
+    SWIG_fail_ptr("new_GhostProxy",2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
-    SWIG_fail_ptr("new_GhostProxy",2,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("new_GhostProxy",3,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
   }
   
-  result = (Mezzanine::Physics::GhostProxy *)new Mezzanine::Physics::GhostProxy(arg1,arg2);
+  result = (Mezzanine::Physics::GhostProxy *)new Mezzanine::Physics::GhostProxy(arg1,arg2,arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__GhostProxy,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -43954,49 +44077,11 @@ fail:
 
 static int _wrap_new_GhostProxy(lua_State* L) {
   int argc;
-  int argv[3]={
-    1,2,3
+  int argv[4]={
+    1,2,3,4
   };
   
   argc = lua_gettop(L);
-  if (argc == 1) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      return _wrap_new_GhostProxy__SWIG_0(L);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_new_GhostProxy__SWIG_1(L);
-      }
-    }
-  }
   if (argc == 2) {
     int _v;
     {
@@ -44021,11 +44106,59 @@ static int _wrap_new_GhostProxy(lua_State* L) {
       }
     }
   }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_GhostProxy__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_new_GhostProxy__SWIG_1(L);
+        }
+      }
+    }
+  }
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_GhostProxy'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::GhostProxy::GhostProxy(Mezzanine::Physics::PhysicsManager *)\n"
-    "    Mezzanine::Physics::GhostProxy::GhostProxy(Mezzanine::Physics::CollisionShape *,Mezzanine::Physics::PhysicsManager *)\n"
+    "    Mezzanine::Physics::GhostProxy::GhostProxy(Mezzanine::UInt32 const,Mezzanine::Physics::PhysicsManager *)\n"
+    "    Mezzanine::Physics::GhostProxy::GhostProxy(Mezzanine::UInt32 const,Mezzanine::Physics::CollisionShape *,Mezzanine::Physics::PhysicsManager *)\n"
     "    Mezzanine::Physics::GhostProxy::GhostProxy(XML::Node const &,Mezzanine::Physics::PhysicsManager *)\n");
   lua_error(L);return 0;
 }
@@ -50829,20 +50962,24 @@ static swig_lua_class _wrap_class_StickyData = { "StickyData", "StickyData", &SW
 
 static int _wrap_new_RigidProxy__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Physics::PhysicsManager *arg2 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::UInt32 arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Physics::PhysicsManager *arg3 = (Mezzanine::Physics::PhysicsManager *) 0 ;
   Mezzanine::Physics::RigidProxy *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::RigidProxy",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",1,"Mezzanine::Real const");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",2,"Mezzanine::Physics::PhysicsManager *");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::RigidProxy",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",1,"Mezzanine::UInt32 const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",2,"Mezzanine::Real const");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",3,"Mezzanine::Physics::PhysicsManager *");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  arg1 = (Mezzanine::UInt32 const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
-    SWIG_fail_ptr("new_RigidProxy",2,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("new_RigidProxy",3,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
   }
   
-  result = (Mezzanine::Physics::RigidProxy *)new Mezzanine::Physics::RigidProxy(arg1,arg2);
+  result = (Mezzanine::Physics::RigidProxy *)new Mezzanine::Physics::RigidProxy(arg1,arg2,arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -50856,27 +50993,31 @@ fail:
 
 static int _wrap_new_RigidProxy__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Mezzanine::Physics::PhysicsManager *arg3 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::UInt32 arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Physics::CollisionShape *arg3 = (Mezzanine::Physics::CollisionShape *) 0 ;
+  Mezzanine::Physics::PhysicsManager *arg4 = (Mezzanine::Physics::PhysicsManager *) 0 ;
   Mezzanine::Physics::RigidProxy *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::RigidProxy",3,3)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",1,"Mezzanine::Real const");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",2,"Mezzanine::Physics::CollisionShape *");
-  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",3,"Mezzanine::Physics::PhysicsManager *");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::RigidProxy",4,4)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",1,"Mezzanine::UInt32 const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",2,"Mezzanine::Real const");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",3,"Mezzanine::Physics::CollisionShape *");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RigidProxy",4,"Mezzanine::Physics::PhysicsManager *");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  arg1 = (Mezzanine::UInt32 const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
-    SWIG_fail_ptr("new_RigidProxy",2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
+    SWIG_fail_ptr("new_RigidProxy",3,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
-    SWIG_fail_ptr("new_RigidProxy",3,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("new_RigidProxy",4,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
   }
   
-  result = (Mezzanine::Physics::RigidProxy *)new Mezzanine::Physics::RigidProxy(arg1,arg2,arg3);
+  result = (Mezzanine::Physics::RigidProxy *)new Mezzanine::Physics::RigidProxy(arg1,arg2,arg3,arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -50921,8 +51062,8 @@ fail:
 
 static int _wrap_new_RigidProxy(lua_State* L) {
   int argc;
-  int argv[4]={
-    1,2,3,4
+  int argv[5]={
+    1,2,3,4,5
   };
   
   argc = lua_gettop(L);
@@ -50950,25 +51091,6 @@ static int _wrap_new_RigidProxy(lua_State* L) {
       }
     }
   }
-  if (argc == 2) {
-    int _v;
-    {
-      _v = lua_isnumber(L,argv[0]);
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_new_RigidProxy__SWIG_0(L);
-      }
-    }
-  }
   if (argc == 3) {
     int _v;
     {
@@ -50976,12 +51098,7 @@ static int _wrap_new_RigidProxy(lua_State* L) {
     }
     if (_v) {
       {
-        void *ptr;
-        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
+        _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
         {
@@ -50993,7 +51110,41 @@ static int _wrap_new_RigidProxy(lua_State* L) {
           }
         }
         if (_v) {
-          return _wrap_new_RigidProxy__SWIG_1(L);
+          return _wrap_new_RigidProxy__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          {
+            void *ptr;
+            if (SWIG_isptrtype(L,argv[3])==0 || SWIG_ConvertPtr(L,argv[3], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
+              _v = 0;
+            } else {
+              _v = 1;
+            }
+          }
+          if (_v) {
+            return _wrap_new_RigidProxy__SWIG_1(L);
+          }
         }
       }
     }
@@ -51001,8 +51152,8 @@ static int _wrap_new_RigidProxy(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_RigidProxy'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::RigidProxy::RigidProxy(Mezzanine::Real const,Mezzanine::Physics::PhysicsManager *)\n"
-    "    Mezzanine::Physics::RigidProxy::RigidProxy(Mezzanine::Real const,Mezzanine::Physics::CollisionShape *,Mezzanine::Physics::PhysicsManager *)\n"
+    "    Mezzanine::Physics::RigidProxy::RigidProxy(Mezzanine::UInt32 const,Mezzanine::Real const,Mezzanine::Physics::PhysicsManager *)\n"
+    "    Mezzanine::Physics::RigidProxy::RigidProxy(Mezzanine::UInt32 const,Mezzanine::Real const,Mezzanine::Physics::CollisionShape *,Mezzanine::Physics::PhysicsManager *)\n"
     "    Mezzanine::Physics::RigidProxy::RigidProxy(XML::Node const &,Mezzanine::Physics::PhysicsManager *)\n");
   lua_error(L);return 0;
 }
@@ -53869,20 +54020,24 @@ static swig_lua_class _wrap_class_SoftCollisionShape = { "SoftCollisionShape", "
 
 static int _wrap_new_SoftProxy__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Real arg1 ;
-  Mezzanine::Physics::PhysicsManager *arg2 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::UInt32 arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Physics::PhysicsManager *arg3 = (Mezzanine::Physics::PhysicsManager *) 0 ;
   Mezzanine::Physics::SoftProxy *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::Physics::SoftProxy::SoftProxy",2,2)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SoftProxy",1,"Mezzanine::Real const");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SoftProxy",2,"Mezzanine::Physics::PhysicsManager *");
-  arg1 = (Mezzanine::Real const)lua_tonumber(L, 1);
+  SWIG_check_num_args("Mezzanine::Physics::SoftProxy::SoftProxy",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SoftProxy",1,"Mezzanine::UInt32 const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SoftProxy",2,"Mezzanine::Real const");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SoftProxy",3,"Mezzanine::Physics::PhysicsManager *");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  arg1 = (Mezzanine::UInt32 const)lua_tonumber(L, 1);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
-    SWIG_fail_ptr("new_SoftProxy",2,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("new_SoftProxy",3,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
   }
   
-  result = (Mezzanine::Physics::SoftProxy *)new Mezzanine::Physics::SoftProxy(arg1,arg2);
+  result = (Mezzanine::Physics::SoftProxy *)new Mezzanine::Physics::SoftProxy(arg1,arg2,arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__SoftProxy,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -53927,8 +54082,8 @@ fail:
 
 static int _wrap_new_SoftProxy(lua_State* L) {
   int argc;
-  int argv[3]={
-    1,2,3
+  int argv[4]={
+    1,2,3,4
   };
   
   argc = lua_gettop(L);
@@ -53956,29 +54111,34 @@ static int _wrap_new_SoftProxy(lua_State* L) {
       }
     }
   }
-  if (argc == 2) {
+  if (argc == 3) {
     int _v;
     {
       _v = lua_isnumber(L,argv[0]);
     }
     if (_v) {
       {
-        void *ptr;
-        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
+        _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        return _wrap_new_SoftProxy__SWIG_0(L);
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_new_SoftProxy__SWIG_0(L);
+        }
       }
     }
   }
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_SoftProxy'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::SoftProxy::SoftProxy(Mezzanine::Real const,Mezzanine::Physics::PhysicsManager *)\n"
+    "    Mezzanine::Physics::SoftProxy::SoftProxy(Mezzanine::UInt32 const,Mezzanine::Real const,Mezzanine::Physics::PhysicsManager *)\n"
     "    Mezzanine::Physics::SoftProxy::SoftProxy(XML::Node const &,Mezzanine::Physics::PhysicsManager *)\n");
   lua_error(L);return 0;
 }

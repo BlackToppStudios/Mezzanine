@@ -39039,6 +39039,23 @@ fail:
 
 static int _wrap_new_RayQueryTool__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
+  Mezzanine::RayQueryTool *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::RayQueryTool::RayQueryTool",0,0)
+  result = (Mezzanine::RayQueryTool *)new Mezzanine::RayQueryTool();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RayQueryTool,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_RayQueryTool__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
   Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
   Mezzanine::RayQueryTool *result = 0 ;
   
@@ -39061,23 +39078,6 @@ fail:
 }
 
 
-static int _wrap_new_RayQueryTool__SWIG_1(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::RayQueryTool *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::RayQueryTool::RayQueryTool",0,0)
-  result = (Mezzanine::RayQueryTool *)new Mezzanine::RayQueryTool();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RayQueryTool,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_new_RayQueryTool(lua_State* L) {
   int argc;
   int argv[2]={
@@ -39086,7 +39086,7 @@ static int _wrap_new_RayQueryTool(lua_State* L) {
   
   argc = lua_gettop(L);
   if (argc == 0) {
-    return _wrap_new_RayQueryTool__SWIG_1(L);
+    return _wrap_new_RayQueryTool__SWIG_0(L);
   }
   if (argc == 1) {
     int _v;
@@ -39099,15 +39099,45 @@ static int _wrap_new_RayQueryTool(lua_State* L) {
       }
     }
     if (_v) {
-      return _wrap_new_RayQueryTool__SWIG_0(L);
+      return _wrap_new_RayQueryTool__SWIG_1(L);
     }
   }
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_RayQueryTool'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::RayQueryTool::RayQueryTool(Mezzanine::World *)\n"
-    "    Mezzanine::RayQueryTool::RayQueryTool()\n");
+    "    Mezzanine::RayQueryTool::RayQueryTool()\n"
+    "    Mezzanine::RayQueryTool::RayQueryTool(Mezzanine::World *)\n");
   lua_error(L);return 0;
+}
+
+
+static int _wrap_RayQueryTool_SetWorld(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
+  Mezzanine::World *arg2 = (Mezzanine::World *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::RayQueryTool::SetWorld",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RayQueryTool::SetWorld",1,"Mezzanine::RayQueryTool *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::RayQueryTool::SetWorld",2,"Mezzanine::World *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RayQueryTool,0))){
+    SWIG_fail_ptr("RayQueryTool_SetWorld",1,SWIGTYPE_p_Mezzanine__RayQueryTool);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("RayQueryTool_SetWorld",2,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  (arg1)->SetWorld(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
 }
 
 
@@ -39435,6 +39465,7 @@ static swig_lua_attribute swig_RayQueryTool_attributes[] = {
     {0,0,0}
 };
 static swig_lua_method swig_RayQueryTool_methods[]= {
+    { "SetWorld", _wrap_RayQueryTool_SetWorld},
     { "ClearReturns", _wrap_RayQueryTool_ClearReturns},
     { "LastQueryResultsValid", _wrap_RayQueryTool_LastQueryResultsValid},
     { "LastQueryResultsOffset", _wrap_RayQueryTool_LastQueryResultsOffset},
@@ -39643,7 +39674,24 @@ static swig_lua_class *swig_AngleLimits_bases[] = {0};
 static const char *swig_AngleLimits_base_names[] = {0};
 static swig_lua_class _wrap_class_AngleLimits = { "AngleLimits", "AngleLimits", &SWIGTYPE_p_Mezzanine__AngleLimits,_proxy__wrap_new_AngleLimits, swig_delete_AngleLimits, swig_AngleLimits_methods, swig_AngleLimits_attributes, &swig_AngleLimits_Sf_SwigStatic, swig_AngleLimits_meta, swig_AngleLimits_bases, swig_AngleLimits_base_names };
 
-static int _wrap_new_CameraController(lua_State* L) {
+static int _wrap_new_CameraController__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::CameraController *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::CameraController::CameraController",0,0)
+  result = (Mezzanine::CameraController *)new Mezzanine::CameraController();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__CameraController,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CameraController__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Graphics::CameraProxy *arg1 = (Mezzanine::Graphics::CameraProxy *) 0 ;
   Mezzanine::CameraController *result = 0 ;
@@ -39657,6 +39705,69 @@ static int _wrap_new_CameraController(lua_State* L) {
   
   result = (Mezzanine::CameraController *)new Mezzanine::CameraController(arg1);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__CameraController,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_CameraController(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_CameraController__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Graphics__CameraProxy, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_CameraController__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_CameraController'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::CameraController::CameraController()\n"
+    "    Mezzanine::CameraController::CameraController(Mezzanine::Graphics::CameraProxy *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_CameraController_SetControlledCamera(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::CameraController *arg1 = (Mezzanine::CameraController *) 0 ;
+  Mezzanine::Graphics::CameraProxy *arg2 = (Mezzanine::Graphics::CameraProxy *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::CameraController::SetControlledCamera",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::CameraController::SetControlledCamera",1,"Mezzanine::CameraController *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::CameraController::SetControlledCamera",2,"Mezzanine::Graphics::CameraProxy *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__CameraController,0))){
+    SWIG_fail_ptr("CameraController_SetControlledCamera",1,SWIGTYPE_p_Mezzanine__CameraController);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Graphics__CameraProxy,0))){
+    SWIG_fail_ptr("CameraController_SetControlledCamera",2,SWIGTYPE_p_Mezzanine__Graphics__CameraProxy);
+  }
+  
+  (arg1)->SetControlledCamera(arg2);
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -40139,6 +40250,7 @@ static swig_lua_attribute swig_CameraController_attributes[] = {
     {0,0,0}
 };
 static swig_lua_method swig_CameraController_methods[]= {
+    { "SetControlledCamera", _wrap_CameraController_SetControlledCamera},
     { "GetControlledCamera", _wrap_CameraController_GetControlledCamera},
     { "SetMovementMode", _wrap_CameraController_SetMovementMode},
     { "GetMovementMode", _wrap_CameraController_GetMovementMode},
@@ -55305,6 +55417,30 @@ fail:
 }
 
 
+static int _wrap_WorldProxy_GetProxyID(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WorldProxy *arg1 = (Mezzanine::WorldProxy *) 0 ;
+  Mezzanine::UInt32 result;
+  
+  SWIG_check_num_args("Mezzanine::WorldProxy::GetProxyID",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldProxy::GetProxyID",1,"Mezzanine::WorldProxy const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WorldProxy,0))){
+    SWIG_fail_ptr("WorldProxy_GetProxyID",1,SWIGTYPE_p_Mezzanine__WorldProxy);
+  }
+  
+  result = (Mezzanine::UInt32)((Mezzanine::WorldProxy const *)arg1)->GetProxyID();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_WorldProxy_GetCreator(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldProxy *arg1 = (Mezzanine::WorldProxy *) 0 ;
@@ -56487,6 +56623,7 @@ static swig_lua_method swig_WorldProxy_methods[]= {
     { "RemoveFromWorld", _wrap_WorldProxy_RemoveFromWorld},
     { "IsInWorld", _wrap_WorldProxy_IsInWorld},
     { "GetParentObject", _wrap_WorldProxy_GetParentObject},
+    { "GetProxyID", _wrap_WorldProxy_GetProxyID},
     { "GetCreator", _wrap_WorldProxy_GetCreator},
     { "SetLocation", _wrap_WorldProxy_SetLocation},
     { "GetLocation", _wrap_WorldProxy_GetLocation},
