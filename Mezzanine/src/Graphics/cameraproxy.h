@@ -93,9 +93,9 @@ namespace Mezzanine
             static String GenerateName();
         public:
             /// @brief Class constructor.
-            /// @param Name The name to be given to this CameraProxy.
+            /// @param ID The unique ID assigned to this CameraProxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            CameraProxy(SceneManager* Creator);
+            CameraProxy(const UInt32 ID, SceneManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

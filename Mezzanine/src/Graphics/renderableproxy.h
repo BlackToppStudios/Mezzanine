@@ -80,9 +80,13 @@ namespace Mezzanine
             /// @brief This stores whether the proxy is currently in the graphics world or not.
             Boole InWorld;
         public:
-            /// @brief Class constructor.
+            /// @brief XML-assist Constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             RenderableProxy(SceneManager* Creator);
+            /// @brief Normal Constructor.
+            /// @param ID The unique ID assigned to this proxy.
+            /// @param Creator A pointer to the manager that created this proxy.
+            RenderableProxy(const UInt32 ID, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~RenderableProxy();
 

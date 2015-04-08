@@ -283,6 +283,16 @@ namespace Mezzanine
             CollisionMask(Physics::CF_AllFilter)
             {  }
 
+        CollidableProxy::CollidableProxy(const UInt32 ID, PhysicsManager* Creator) :
+            WorldProxy(ID),
+            //BodyScale(1,1,1),
+            ProxyShape(NULL),
+            ScalerShape(NULL),
+            Manager(Creator),
+            CollisionGroup(Physics::CF_GenericFilter),
+            CollisionMask(Physics::CF_AllFilter)
+            {  }
+
         CollidableProxy::~CollidableProxy()
             {  }
 

@@ -59,9 +59,13 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            SoundProxy() {  }
+            /// @param ID The unique ID of this SoundProxy.
+            SoundProxy(const UInt32 ID) :
+                WorldProxy(ID)
+                {  }
             /// @brief Class destructor.
-            virtual ~SoundProxy() {  }
+            virtual ~SoundProxy()
+                {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility

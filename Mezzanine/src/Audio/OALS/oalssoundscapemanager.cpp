@@ -58,8 +58,9 @@
 #include "Resource/resourcemanager.h"
 
 #include "entresol.h"
-#include "stringtool.h"
 #include "exception.h"
+#include "stringtool.h"
+#include "worldobject.h"
 
 namespace Mezzanine
 {
@@ -136,8 +137,7 @@ namespace Mezzanine
                 delete BufferUpdate3DWork;
 
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
-                if(AudioMan)
-                {
+                if( AudioMan ) {
                     AudioMan->_UnregisterSoundScapeManager(this);
                 }
 
@@ -153,8 +153,7 @@ namespace Mezzanine
 
                 ALCdevice* AudioPlayback = AudioMan->_GetAudioDevice();
                 ALCcontext* NewContext = alcCreateContext(AudioPlayback,NULL);
-                if( alcMakeContextCurrent(NewContext) == false )
-                {
+                if( alcMakeContextCurrent(NewContext) == false ) {
                     alcDestroyContext(NewContext);
                     return NULL;
                 }
@@ -162,8 +161,7 @@ namespace Mezzanine
                 UInt32 ContextIndex = 0;
                 for( UInt32 Index = 0 ; Index < this->Contexts.size() ; ++Index )
                 {
-                    if( this->Contexts.at(Index) == NULL )
-                    {
+                    if( this->Contexts.at(Index) == NULL ) {
                         this->Contexts[Index] = NewContext;
                     }
                     ContextIndex++;
@@ -183,8 +181,7 @@ namespace Mezzanine
                 UInt32 ContextIndex = 0;
                 for( UInt32 Index = 0 ; Index < this->Contexts.size() ; ++Index )
                 {
-                    if( this->Contexts.at(Index) == Context )
-                    {
+                    if( this->Contexts.at(Index) == Context ) {
                         this->Contexts.erase( this->Contexts.begin() + Index );
                         break;
                     }
@@ -224,7 +221,7 @@ namespace Mezzanine
             iListener* SoundScapeManager::CreateListener()
             {
                 ALCcontext* ListenerContext = this->CreateContext();
-                OALS::Listener* NewListener = new OALS::Listener(ListenerContext,this);
+                OALS::Listener* NewListener = new OALS::Listener(this->ProxyIDGen.GenerateID(),ListenerContext,this);
                 this->Listeners.push_back(NewListener);
                 return NewListener;
             }
@@ -244,9 +241,14 @@ namespace Mezzanine
                 ALCcontext* ListenerContext = NULL;
                 for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
-                    if( (*ListIt) == ToBeDestroyed )
-                    {
+                    if( (*ListIt) == ToBeDestroyed ) {
                         ListenerContext = static_cast<OALS::Listener*>(ToBeDestroyed)->_GetListenerContext();
+
+                        WorldObject* Parent = (*ListIt)->GetParentObject();
+                        if( Parent )
+                            Parent->_NotifyProxyDestroyed( (*ListIt) );
+
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                         delete ToBeDestroyed;
                         this->Listeners.erase(ListIt);
                     }
@@ -260,6 +262,11 @@ namespace Mezzanine
             {
                 for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
+                    WorldObject* Parent = (*ListIt)->GetParentObject();
+                    if( Parent )
+                        Parent->_NotifyProxyDestroyed( (*ListIt) );
+
+                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetProxyID() );
                     delete (*ListIt);
                 }
                 this->Listeners.clear();
@@ -274,7 +281,7 @@ namespace Mezzanine
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
-                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,NULL,this->Contexts,this);
+                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),NULL,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
                 if( AddToWorld ) {
                     NewSoundProxy->AddToWorld();
@@ -293,7 +300,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
-                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts,this);
+                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),SoundDecoder,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
                 if( AddToWorld ) {
                     NewSoundProxy->AddToWorld();
@@ -312,7 +319,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
-                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts,this);
+                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),SoundDecoder,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
                 if( AddToWorld ) {
                     NewSoundProxy->AddToWorld();
@@ -401,8 +408,12 @@ namespace Mezzanine
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
-                    if( (*ProxIt) == ToBeDestroyed )
-                    {
+                    if( (*ProxIt) == ToBeDestroyed ) {
+                        WorldObject* Parent = (*ProxIt)->GetParentObject();
+                        if( Parent )
+                            Parent->_NotifyProxyDestroyed( (*ProxIt) );
+
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                         delete ToBeDestroyed;
                         this->Proxies.erase(ProxIt);
                     }
@@ -413,6 +424,11 @@ namespace Mezzanine
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
+                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    if( Parent )
+                        Parent->_NotifyProxyDestroyed( (*ProxIt) );
+
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
                     delete (*ProxIt);
                 }
                 this->Proxies.clear();
@@ -440,16 +456,15 @@ namespace Mezzanine
 
             void SoundScapeManager::Initialize()
             {
-                if( !this->Initialized )
-                {
+                if( !this->Initialized ) {
                     WorldManager::Initialize();
 
                     OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
-                    if( AudioMan == NULL )
-                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations."); }
+                    if( AudioMan == NULL ) {
+                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations.");
+                    }
 
-                    if( AudioMan->IsInitialized() == false )
-                    {
+                    if( AudioMan->IsInitialized() == false ) {
                         // Attempt to initialize
                         if( AudioMan->InitializePlaybackDevice(AudioMan->GetDefaultPlaybackDeviceName()) == false )
                             { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to initialize AudioManager prior to SoundScapeManager.  An open Audio device is required."); }
@@ -464,8 +479,7 @@ namespace Mezzanine
 
             void SoundScapeManager::Deinitialize()
             {
-                if( this->Initialized )
-                {
+                if( this->Initialized ) {
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate3DWork );
                     this->BufferUpdate3DWork->ClearDependencies();
                     this->Initialized = false;

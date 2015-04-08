@@ -117,14 +117,16 @@ namespace Mezzanine
             virtual void CreateRigidObject(const Real Mass);
         public:
             /// @brief Class Constructor.
+            /// @param ID The unique ID assigned to this proxy.
             /// @param Mass The mass of the rigid body.
             /// @param Creator A pointer to the manager that created this proxy.
-            RigidProxy(const Real Mass, PhysicsManager* Creator);
+            RigidProxy(const UInt32 ID, const Real Mass, PhysicsManager* Creator);
             /// @brief Class Constructor.
+            /// @param ID The unique ID assigned to this proxy.
             /// @param Mass The mass of the rigid body.
             /// @param Shape A pointer to the collision shape that will be applied to this proxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            RigidProxy(const Real Mass, CollisionShape* Shape, PhysicsManager* Creator);
+            RigidProxy(const UInt32 ID, const Real Mass, CollisionShape* Shape, PhysicsManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

@@ -793,14 +793,14 @@ namespace Mezzanine
 
         GhostProxy* PhysicsManager::CreateGhostProxy()
         {
-            GhostProxy* NewProxy = new GhostProxy(this);
+            GhostProxy* NewProxy = new GhostProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         GhostProxy* PhysicsManager::CreateGhostProxy(CollisionShape* Shape, const Boole AddToWorld)
         {
-            GhostProxy* NewProxy = new GhostProxy(Shape,this);
+            GhostProxy* NewProxy = new GhostProxy(this->ProxyIDGen.GenerateID(),Shape,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -817,14 +817,14 @@ namespace Mezzanine
 
         RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass)
         {
-            RigidProxy* NewProxy = new RigidProxy(Mass,this);
+            RigidProxy* NewProxy = new RigidProxy(this->ProxyIDGen.GenerateID(),Mass,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass, CollisionShape* Shape, const Boole AddToWorld)
         {
-            RigidProxy* NewProxy = new RigidProxy(Mass,Shape,this);
+            RigidProxy* NewProxy = new RigidProxy(this->ProxyIDGen.GenerateID(),Mass,Shape,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -841,7 +841,7 @@ namespace Mezzanine
 
         SoftProxy* PhysicsManager::CreateSoftProxy(const Real Mass)
         {
-            SoftProxy* NewProxy = new SoftProxy(Mass,this);
+            SoftProxy* NewProxy = new SoftProxy(this->ProxyIDGen.GenerateID(),Mass,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -885,6 +885,7 @@ namespace Mezzanine
                     if( Parent )
                         Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
+                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                     delete (*ProxIt);
                     this->Proxies.erase(ProxIt);
                     return;
@@ -900,6 +901,7 @@ namespace Mezzanine
                 if( Parent )
                     Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
+                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
                 delete (*ProxIt);
             }
             this->Proxies.clear();

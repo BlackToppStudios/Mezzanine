@@ -418,7 +418,7 @@ namespace Mezzanine
 
         BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const UInt32 InitialPoolSize, const Boole AddToWorld)
         {
-            BillboardSetProxy* NewProxy = new BillboardSetProxy(InitialPoolSize,this);
+            BillboardSetProxy* NewProxy = new BillboardSetProxy(this->ProxyIDGen.GenerateID(),InitialPoolSize,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -435,7 +435,7 @@ namespace Mezzanine
 
         CameraProxy* SceneManager::CreateCamera()
         {
-            CameraProxy* NewProxy = new CameraProxy(this);
+            CameraProxy* NewProxy = new CameraProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -449,7 +449,7 @@ namespace Mezzanine
 
         EntityProxy* SceneManager::CreateEntityProxy(const Boole AddToWorld)
         {
-            EntityProxy* NewProxy = new EntityProxy(this);
+            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -459,7 +459,7 @@ namespace Mezzanine
 
         EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh, const Boole AddToWorld)
         {
-            EntityProxy* NewProxy = new EntityProxy(TheMesh,this);
+            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),TheMesh,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -469,7 +469,7 @@ namespace Mezzanine
 
         EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName, const Boole AddToWorld)
         {
-            EntityProxy* NewProxy = new EntityProxy(MeshName,GroupName,this);
+            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),MeshName,GroupName,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -486,7 +486,7 @@ namespace Mezzanine
 
         LightProxy* SceneManager::CreateLightProxy(const Boole AddToWorld)
         {
-            LightProxy* NewProxy = new LightProxy(this);
+            LightProxy* NewProxy = new LightProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -496,7 +496,7 @@ namespace Mezzanine
 
         LightProxy* SceneManager::CreateLightProxy(const Graphics::LightType Type, const Boole AddToWorld)
         {
-            LightProxy* NewProxy = new LightProxy(Type,this);
+            LightProxy* NewProxy = new LightProxy(this->ProxyIDGen.GenerateID(),Type,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -513,7 +513,7 @@ namespace Mezzanine
 
         ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template, const Boole AddToWorld)
         {
-            ParticleSystemProxy* NewProxy = new ParticleSystemProxy(Template,this);
+            ParticleSystemProxy* NewProxy = new ParticleSystemProxy(this->ProxyIDGen.GenerateID(),Template,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -560,6 +560,7 @@ namespace Mezzanine
                     if( Parent )
                         Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
+                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                     delete (*ProxIt);
                     this->Proxies.erase(ProxIt);
                     return;
@@ -575,6 +576,7 @@ namespace Mezzanine
                 if( Parent )
                     Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
+                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
                 delete (*ProxIt);
             }
             this->Proxies.clear();

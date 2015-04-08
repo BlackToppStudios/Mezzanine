@@ -84,8 +84,8 @@ namespace Mezzanine
         }//*/
 
 
-        SoftProxy::SoftProxy(const Real Mass, PhysicsManager* Creator) :
-            CollidableProxy(Creator),
+        SoftProxy::SoftProxy(const UInt32 ID, const Real Mass, PhysicsManager* Creator) :
+            CollidableProxy(ID,Creator),
             PhysicsSoftBody(NULL)
         {
             MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");

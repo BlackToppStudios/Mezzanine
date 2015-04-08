@@ -103,17 +103,20 @@ namespace Mezzanine
             virtual void DestroyEntity();
         public:
             /// @brief Blank constructor.
+            /// @param ID The unique ID assigned to this EntityProxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            EntityProxy(SceneManager* Creator);
+            EntityProxy(const UInt32 ID, SceneManager* Creator);
             /// @brief Loaded Mesh constructor.
+            /// @param ID The unique ID assigned to this EntityProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            EntityProxy(Mesh* TheMesh, SceneManager* Creator);
+            EntityProxy(const UInt32 ID, Mesh* TheMesh, SceneManager* Creator);
             /// @brief Standard constructor.
+            /// @param ID The unique ID assigned to this EntityProxy.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
             /// @param Creator A pointer to the manager that created this proxy.
-            EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator);
+            EntityProxy(const UInt32 ID, const String& MeshName, const String& GroupName, SceneManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

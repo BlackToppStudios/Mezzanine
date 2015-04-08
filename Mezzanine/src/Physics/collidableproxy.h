@@ -91,9 +91,13 @@ namespace Mezzanine
             /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
         public:
-            /// @brief Standard Constructor.
+            /// @brief XML-assist Constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             CollidableProxy(PhysicsManager* Creator);
+            /// @brief Normal Constructor.
+            /// @param ID The unique ID assigned to this proxy.
+            /// @param Creator A pointer to the manager that created this proxy.
+            CollidableProxy(const UInt32 ID, PhysicsManager* Creator);
             /// @brief Class Destructor.
             virtual ~CollidableProxy();
 

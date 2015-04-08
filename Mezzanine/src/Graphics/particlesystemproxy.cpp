@@ -58,8 +58,8 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        ParticleSystemProxy::ParticleSystemProxy(const String& Template, SceneManager* Creator) :
-            RenderableProxy(Creator),
+        ParticleSystemProxy::ParticleSystemProxy(const UInt32 ID, const String& Template, SceneManager* Creator) :
+            RenderableProxy(ID,Creator),
             GraphicsParticleSystem(NULL),
             SpeedFactor(1.0),
             Paused(false)

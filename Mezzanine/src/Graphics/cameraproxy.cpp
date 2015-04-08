@@ -146,8 +146,8 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        CameraProxy::CameraProxy(SceneManager* Creator) :
-            RenderableProxy(Creator),
+        CameraProxy::CameraProxy(const UInt32 ID, SceneManager* Creator) :
+            RenderableProxy(ID,Creator),
             GraphicsCamera(NULL),
             CameraVP(NULL),
             UseFixedYaw(true)

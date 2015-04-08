@@ -54,15 +54,15 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        GhostProxy::GhostProxy(PhysicsManager* Creator) :
-            CollidableProxy(Creator),
+        GhostProxy::GhostProxy(const UInt32 ID, PhysicsManager* Creator) :
+            CollidableProxy(ID,Creator),
             PhysicsGhostBody(NULL)
         {
             this->CreateGhostObject();
         }
 
-        GhostProxy::GhostProxy(CollisionShape* Shape, PhysicsManager* Creator) :
-            CollidableProxy(Creator),
+        GhostProxy::GhostProxy(const UInt32 ID, CollisionShape* Shape, PhysicsManager* Creator) :
+            CollidableProxy(ID,Creator),
             PhysicsGhostBody(NULL)
         {
             this->CreateGhostObject();

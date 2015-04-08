@@ -65,9 +65,10 @@ namespace Mezzanine
             virtual void CreateSoftObject(const Real Mass);
         public:
             /// @brief Class constructor.
+            /// @param ID The unique ID assigned to this proxy.
             /// @param Mass The combined mass of the nodes in the soft body.
             /// @param Creator A pointer to the manager that created this proxy.
-            SoftProxy(const Real Mass, PhysicsManager* Creator);
+            SoftProxy(const UInt32 ID, const Real Mass, PhysicsManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

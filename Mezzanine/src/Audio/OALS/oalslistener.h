@@ -97,9 +97,10 @@ namespace Mezzanine
                 void MakeCurrent();
             public:
                 /// @brief Internal constructor.
+                /// @param ID The unique ID of this listener.
                 /// @param ListenContext The context this listener belongs to.
                 /// @param Creator A pointer to the manager that created this listener.
-                Listener(ALCcontext* ListenContext, OALS::SoundScapeManager* Creator);
+                Listener(const UInt32 ID, ALCcontext* ListenContext, OALS::SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~Listener();
 

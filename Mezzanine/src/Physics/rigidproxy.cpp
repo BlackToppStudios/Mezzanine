@@ -57,15 +57,15 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        RigidProxy::RigidProxy(const Real Mass, PhysicsManager* Creator) :
-            CollidableProxy(Creator),
+        RigidProxy::RigidProxy(const UInt32 ID, const Real Mass, PhysicsManager* Creator) :
+            CollidableProxy(ID,Creator),
             PhysicsRigidBody(NULL)
         {
             this->CreateRigidObject(Mass);
         }
 
-        RigidProxy::RigidProxy(const Real Mass, CollisionShape* Shape, PhysicsManager* Creator) :
-            CollidableProxy(Creator),
+        RigidProxy::RigidProxy(const UInt32 ID, const Real Mass, CollisionShape* Shape, PhysicsManager* Creator) :
+            CollidableProxy(ID,Creator),
             PhysicsRigidBody(NULL)
         {
             this->CreateRigidObject(Mass);

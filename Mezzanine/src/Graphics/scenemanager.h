@@ -40,12 +40,15 @@
 #ifndef _graphicsscenemanager_h
 #define _graphicsscenemanager_h
 
-#include "colourvalue.h"
-#include "worldmanager.h"
-#include "worldmanagerfactory.h"
-#include "singleton.h"
 #include "quaternion.h"
 #include "vector3.h"
+#include "colourvalue.h"
+#include "singleton.h"
+
+#include "uidgenerator.h"
+#include "worldmanager.h"
+#include "worldmanagerfactory.h"
+
 #include "Graphics/graphicsenumerations.h"
 #ifndef SWIG
     #include "XML/xml.h"
@@ -117,6 +120,9 @@ namespace Mezzanine
         protected:
             friend class TrackingNodeUpdateWorkUnit;
 
+            /// @internal
+            /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
+            UIDGenerator ProxyIDGen;
             /// @internal
             /// @brief Container storing all of the RenderableProxy instances created by this manager.
             ProxyContainer Proxies;

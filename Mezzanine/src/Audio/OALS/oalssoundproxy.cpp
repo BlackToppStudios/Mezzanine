@@ -104,7 +104,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Methods
 
-            OALS::SoundProxy::SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts, SoundScapeManager* Creator) :
+            OALS::SoundProxy::SoundProxy(const UInt16 Type, const UInt32 ID, iDecoder* Decode, const ContextContainer& Contexts, SoundScapeManager* Creator) :
+                Audio::SoundProxy(ID),
                 Manager(Creator),
                 SoundFilter(NULL),
                 SoundDecoder(Decode),

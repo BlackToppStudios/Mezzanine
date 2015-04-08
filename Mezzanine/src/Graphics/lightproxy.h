@@ -75,13 +75,15 @@ namespace Mezzanine
             virtual void DestroyLight();
         public:
             /// @brief Blank constructor.
+            /// @param ID The unique ID assigned to this LightProxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            LightProxy(SceneManager* Creator);
+            LightProxy(const UInt32 ID, SceneManager* Creator);
             /// @brief Type constructor.
             /// @remarks The type provided here can be changed later.
+            /// @param ID The unique ID assigned to this LightProxy.
             /// @param Type The type of light this light is to be constructed as.
             /// @param Creator A pointer to the manager that created this proxy.
-            LightProxy(const Graphics::LightType Type, SceneManager* Creator);
+            LightProxy(const UInt32 ID, const Graphics::LightType Type, SceneManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

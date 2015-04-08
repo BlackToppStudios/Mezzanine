@@ -89,15 +89,15 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        LightProxy::LightProxy(const Graphics::LightType Type, SceneManager* Creator) :
-            RenderableProxy(Creator),
-            GraphicsLight(NULL)
-            { this->CreateLight();  this->SetType(Type); }
-
-        LightProxy::LightProxy(SceneManager* Creator) :
+        LightProxy::LightProxy(const UInt32 ID, SceneManager* Creator) :
             RenderableProxy(Creator),
             GraphicsLight(NULL)
             { this->CreateLight(); }
+
+        LightProxy::LightProxy(const UInt32 ID, const Graphics::LightType Type, SceneManager* Creator) :
+            RenderableProxy(Creator),
+            GraphicsLight(NULL)
+            { this->CreateLight();  this->SetType(Type); }
 
         LightProxy::LightProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
             RenderableProxy(Creator),

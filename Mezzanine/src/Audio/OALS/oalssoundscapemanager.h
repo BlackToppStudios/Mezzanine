@@ -41,6 +41,7 @@
 #define _audiooalssoundscapemanager_h
 
 #include "Audio/soundscapemanager.h"
+#include "uidgenerator.h"
 
 // OALS forward declares
 #ifndef OALS_STRUCTS_DECLARED
@@ -123,6 +124,9 @@ namespace Mezzanine
             protected:
                 friend class BufferUpdate3DWorkUnit;
 
+                /// @internal
+                /// @brief Generator responsible for creating unique IDs for @ref OALS::Listener and @ref OALS::SoundProxy instances.
+                UIDGenerator ProxyIDGen;
                 /// @internal
                 /// @brief Container storing all OALS context instances.
                 ContextContainer Contexts;

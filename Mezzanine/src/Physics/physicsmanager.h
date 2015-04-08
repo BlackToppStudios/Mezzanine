@@ -59,16 +59,15 @@ typedef float btScalar;
 
 #include "datatypes.h"
 #ifndef SWIG
+    #include "uidgenerator.h"
     #include "worldmanager.h"
     #include "worldmanagerfactory.h"
     #include "singleton.h"
-#endif
-#ifndef SWIG
+
     #include "Physics/collidablepair.h"
     #include "Physics/constraint.h"
     #include "Physics/managerconstructioninfo.h"
-#endif
-#ifndef SWIG
+
     #include "Threading/workunit.h"
     #include "Threading/monopoly.h"
 #endif
@@ -287,30 +286,75 @@ namespace Mezzanine
             friend class WorldTriggerUpdateWorkUnit;
             friend class DebugDrawWorkUnit;
 
-            //Some Data Items
-            Boole SimulationPaused;
-            Integer DebugRenderMode;
-            Whole SubstepModifier;
-            Whole ThreadCount;
-            Real StepSize;
-            Real TimeMultiplier; ///< A Multiplier that adjusts how fast physics runs relative to clock time.
-
+            /// @internal
+            /// @brief A copy of the information used to initialize this manager.
             ManagerConstructionInfo WorldConstructionInfo;
 
+            /// @internal
+            /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
+            UIDGenerator ProxyIDGen;
+            /// @internal
+            /// @brief Generator responsible for creating unique IDs for Constraint instances.
+            UIDGenerator ConstraintIDGen;
+
+            /// @internal
+            /// @brief A container storing all of the proxies owned by this manager.
             ProxyContainer Proxies;
+            /// @internal
+            /// @brief A container storing all of the constraints owned by this manager.
             ConstraintContainer Constraints;
+            /// @internal
+            /// @brief A container storing all of the worldtriggers owned by this manager.
             WorldTriggerContainer Triggers;
+            /// @internal
+            /// @brief A container tracking all of the existing collisions in the physics world.
             CollisionMap Collisions;
 
-            // Some Items bullet requires
+            /// @internal
+            /// @brief The current rendering mode for the debug drawer.
+            Integer DebugRenderMode;
+            /// @internal
+            /// @brief A modifier that will determine how many substeps each frame the physics simulation should perform.
+            Whole SubstepModifier;
+            /// @internal
+            /// @brief The number of threads the internal thread providers should allocate.
+            Whole ThreadCount;
+            /// @internal
+            /// @brief The amount of time (in seconds) a single simulation step should advance.
+            Real StepSize;
+            /// @internal
+            /// @brief A Multiplier that adjusts how fast physics runs relative to clock time.
+            Real TimeMultiplier;
+            /// @internal
+            /// @brief Whether or not the physics simulation is to step each frame.
+            Boole SimulationPaused;
+
+            /// @internal
+            /// @brief A pointer to the callback that enables ghost objects internally.
             btGhostPairCallback* GhostCallback;
+            /// @internal
+            /// @brief A pointer to the thread provider for the internal constraint solver.
             btThreadSupportInterface* BulletSolverThreads;
+            /// @internal
+            /// @brief A pointer to the thread provider for the internal dispatcher (narrowphase).
             btThreadSupportInterface* BulletDispatcherThreads;
+            /// @internal
+            /// @brief A pointer to the physics broadphase of the simulation.
             btBroadphaseInterface* BulletBroadphase;
+            /// @internal
+            /// @brief A pointer to the internal collision configuration that enables certain types of objects to collide.
             btCollisionConfiguration* BulletCollisionConfiguration;
+            /// @internal
+            /// @brief A pointer to the internal dispatcher (narrowphase).
             btCollisionDispatcher* BulletDispatcher;
+            /// @internal
+            /// @brief A pointer to the internal constraint solver.
             btSequentialImpulseConstraintSolver* BulletSolver;
+            /// @internal
+            /// @brief A pointer to the internal physics world.
             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
+            /// @internal
+            /// @brief A pointer to the debug drawer for rendering the physics world.
             debug::InternalDebugDrawer* BulletDrawer;
 
             /// @internal

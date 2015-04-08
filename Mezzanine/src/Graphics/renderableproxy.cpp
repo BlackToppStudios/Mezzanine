@@ -67,6 +67,17 @@ namespace Mezzanine
             this->GraphicsNode = this->Manager->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         }
 
+        RenderableProxy::RenderableProxy(const UInt32 ID, SceneManager* Creator) :
+            WorldProxy(ID),
+            GraphicsNode(NULL),
+            Manager(Creator),
+            VisibilityMask(Ogre::MovableObject::getDefaultVisibilityFlags()),
+            QueryMask(Ogre::MovableObject::getDefaultQueryFlags()),
+            InWorld(false)
+        {
+            this->GraphicsNode = this->Manager->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        }
+
         RenderableProxy::~RenderableProxy()
         {
             this->GraphicsNode->getParentSceneNode()->removeChild(this->GraphicsNode);

@@ -65,12 +65,14 @@ namespace Mezzanine
             virtual void CreateGhostObject();
         public:
             /// @brief Class constructor.
+            /// @param ID The unique ID assigned to this proxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            GhostProxy(PhysicsManager* Creator);
+            GhostProxy(const UInt32 ID, PhysicsManager* Creator);
             /// @brief Shape constructor.
+            /// @param ID The unique ID assigned to this proxy.
             /// @param Shape A pointer to the collision shape that will be applied to this proxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            GhostProxy(CollisionShape* Shape, PhysicsManager* Creator);
+            GhostProxy(const UInt32 ID, CollisionShape* Shape, PhysicsManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

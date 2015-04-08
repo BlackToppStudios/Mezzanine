@@ -181,10 +181,11 @@ namespace Mezzanine
             public:
                 /// @brief Class constructor.
                 /// @param Type The type of sound to initialize.  See @ref Audio::SoundType enum for the basic values.
+                /// @param ID The unique ID of this SoundProxy.
                 /// @param Decode A pointer to the decoder assigned to this sound.
                 /// @param Contexts A container holding all the current 3D contexts.
                 /// @param Creator A pointer to the manager that created this proxy.
-                SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts, OALS::SoundScapeManager* Creator);
+                SoundProxy(const UInt16 Type, const UInt32 ID, iDecoder* Decode, const ContextContainer& Contexts, OALS::SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~SoundProxy();
 

@@ -57,9 +57,13 @@ namespace Mezzanine
         {
         public:
             /// @brief Class constructor.
-            iListener() {  }
+            /// @param ID The unique ID of this listener.
+            iListener(const UInt32 ID) :
+                WorldProxy(ID)
+                {  }
             /// @brief Class destructor.
-            virtual ~iListener() {  }
+            virtual ~iListener()
+                {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility

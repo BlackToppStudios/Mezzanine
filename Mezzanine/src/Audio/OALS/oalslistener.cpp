@@ -61,7 +61,8 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Listener::Listener(ALCcontext* ListenContext, SoundScapeManager* Creator) :
+            Listener::Listener(const UInt32 ID, ALCcontext* ListenContext, SoundScapeManager* Creator) :
+                iListener(ID),
                 MPU(1.0),
                 VolumeModifier(1.0),
                 Manager(Creator),
@@ -73,8 +74,7 @@ namespace Mezzanine
             }
 
             Listener::~Listener()
-            {
-            }
+                {  }
 
             void Listener::ConvertBuffer(Real* OrientationArray)
             {

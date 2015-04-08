@@ -161,8 +161,8 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        BillboardSetProxy::BillboardSetProxy(const UInt32 InitialPoolSize, SceneManager* Creator) :
-            RenderableProxy(Creator)
+        BillboardSetProxy::BillboardSetProxy(const UInt32 ID, const UInt32 InitialPoolSize, SceneManager* Creator) :
+            RenderableProxy(ID,Creator)
             { this->CreateBillboardSet(InitialPoolSize); }
 
         BillboardSetProxy::BillboardSetProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
