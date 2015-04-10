@@ -327,7 +327,9 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
 // CatchPostUIWorkUnit Methods
 
 CatchPostUIWorkUnit::CatchPostUIWorkUnit(CatchApp* Target) :
-    CatchApplication(Target) {  }
+    CatchApplication(Target),
+    RayCaster(Target->GetTheWorld())
+    {  }
 
 CatchPostUIWorkUnit::~CatchPostUIWorkUnit()
     {  }
@@ -338,10 +340,8 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     static Physics::Point2PointConstraint* Dragger = NULL;
 
-    if( SysMouse->IsButtonPressed(1) )
-    {
-        if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() )
-        {
+    if( SysMouse->IsButtonPressed(1) ) {
+        if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() ) {
             Ray MouseRay = RayQueryTool::GetMouseRay();
 
             Boole firstframe = false;
@@ -371,8 +371,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                 }
             }
 
-            if(Dragger && RayCaster.RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay))
-            {
+            if(Dragger && RayCaster.RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay)) {
                 if( !firstframe ) {
                     Dragger->SetPivotBLocation( RayCaster.LastQueryResultsOffset() );
                 }

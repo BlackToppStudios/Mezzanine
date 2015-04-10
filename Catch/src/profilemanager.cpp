@@ -233,9 +233,9 @@ void ProfileManager::ApplyProfileDataToLevelSelect(GameProfile* Profile)
     for( LevelManager::ConstGameLevelIterator LevelIt = LevelMan->BeginGameLevel() ; LevelIt != LevelMan->EndGameLevel() ; ++LevelIt )
     {
         const String& LevelName = (*LevelIt)->GetName();
-        if( LevelName != "MainMenu" ) {
-            Whole HighestScore = Profile->GetHighestScore( LevelName );
-            UI::Widget* LevelScoreWid = MainMenuScreen->GetWidget( LevelName + ".Score" );
+        Whole HighestScore = Profile->GetHighestScore( LevelName );
+        UI::Widget* LevelScoreWid = MainMenuScreen->GetWidget( LevelName + ".Score" );
+        if( LevelScoreWid != NULL ) {
             UI::MultiImageLayer* LevelScoreStars = static_cast<UI::MultiImageLayer*>( LevelScoreWid->GetRenderLayer(0,UI::RLT_MultiImage) );
 
             for( Whole ScoreTier = 0 ; ScoreTier < (*LevelIt)->GetNumScoreTiers() && ScoreTier < 5 ; ++ScoreTier )
@@ -253,27 +253,25 @@ void ProfileManager::ApplyProfileDataToLevelSelect(GameProfile* Profile)
 
 void ProfileManager::SetNewHighScore(const String& LevelName, const Whole LevelScore)
 {
-    if( LevelName != "MainMenu" ) {
-        // Get our pointers
-        LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
-        UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
+    // Get our pointers
+    LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
+    UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
 
-        GameLevel* HighScoreLevel = LevelMan->GetLevel(LevelName);
-        UI::Widget* LevelScoreWid = MainMenuScreen->GetWidget( LevelName + ".Score" );
-        UI::MultiImageLayer* LevelScoreStars = static_cast<UI::MultiImageLayer*>( LevelScoreWid->GetRenderLayer(0,UI::RLT_MultiImage) );
+    GameLevel* HighScoreLevel = LevelMan->GetLevel(LevelName);
+    UI::Widget* LevelScoreWid = MainMenuScreen->GetWidget( LevelName + ".Score" );
+    UI::MultiImageLayer* LevelScoreStars = static_cast<UI::MultiImageLayer*>( LevelScoreWid->GetRenderLayer(0,UI::RLT_MultiImage) );
 
-        for( Whole ScoreTier = 0 ; ScoreTier < HighScoreLevel->GetNumScoreTiers() && ScoreTier < 5 ; ++ScoreTier )
-        {
-            Whole Threshold = HighScoreLevel->GetScoreThreshold(ScoreTier);
-            if( LevelScore > Threshold ) {
-                LevelScoreStars->SetSprite(ScoreTier,"MMLevelScoreStarFilled");
-            }else{
-                LevelScoreStars->SetSprite(ScoreTier,"MMLevelScoreStar");
-            }
+    for( Whole ScoreTier = 0 ; ScoreTier < HighScoreLevel->GetNumScoreTiers() && ScoreTier < 5 ; ++ScoreTier )
+    {
+        Whole Threshold = HighScoreLevel->GetScoreThreshold(ScoreTier);
+        if( LevelScore > Threshold ) {
+            LevelScoreStars->SetSprite(ScoreTier,"MMLevelScoreStarFilled");
+        }else{
+            LevelScoreStars->SetSprite(ScoreTier,"MMLevelScoreStar");
         }
-
-        this->ActiveProfile->SetNewHighScore(LevelName,LevelScore);
     }
+
+    this->ActiveProfile->SetNewHighScore(LevelName,LevelScore);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

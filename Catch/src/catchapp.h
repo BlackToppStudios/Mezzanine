@@ -67,6 +67,7 @@ protected:
 
     void InitializeFromXML(const String& CatchDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile);
 
+    void CreateWorld();
     void MakeGUI();
     void CreateLoadingScreen();
     void InitMusic();

@@ -43,7 +43,8 @@ CatchApp::CatchApp() :
 
     // Initialize the engine
     this->TheEntresol = new Entresol( "Data/", Mezzanine::AT_FileSystem );
-    this->TheWorld = this->TheEntresol->CreateWorld("Catching");
+    //this->TheWorld = this->TheEntresol->CreateWorld("Catching");
+    this->CreateWorld();
 
     // Now initialize game specific stuff
     this->InitializeFromXML( "Data/", Mezzanine::AT_FileSystem, "Catch.mxi" );
@@ -104,15 +105,13 @@ void CatchApp::InitializeFromXML(const String& CatchDataPath, const Mezzanine::A
     Resource::FileStream InitStream(InitializerFile,CatchDataPath);
     XML::Document InitDoc;
     XML::ParseResult DocResult = InitDoc.Load(InitStream);
-    if( DocResult.Status != XML::StatusOk )
-    {
+    if( DocResult.Status != XML::StatusOk ) {
         StringStream ExceptionStream;
         ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
         MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
     }
     XML::Node InitRoot = InitDoc.GetChild("InitializerRoot");
-    if( InitRoot.Empty() )
-    {
+    if( InitRoot.Empty() ) {
         StringStream ExceptionStream;
         ExceptionStream << "Failed to find expected Root node in \"" << InitializerFile << "\".";
         MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
@@ -126,6 +125,16 @@ void CatchApp::InitializeFromXML(const String& CatchDataPath, const Mezzanine::A
             this->Profiles = new ProfileManager(this->TheEntresol,(*ManIt));
         }
     }
+}
+
+void CatchApp::CreateWorld()
+{
+    Physics::ManagerConstructionInfo Info;
+    Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
+
+    this->TheWorld = this->TheEntresol->CreateWorld("CatchWorld",Info,"DefaultSceneManager");
+
+    this->TheWorld->GetPhysicsManager()->SetSimulationSubstepModifier(2);
 }
 
 void CatchApp::MakeGUI()
@@ -1622,6 +1631,14 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
         return;
 
     this->SetVisibleScreens(StateToSet);
+    if( StateToSet == CatchApp::Catch_MenuScreen ) {
+        // This code block was created due to cameras being destroyed on every level unload.
+        Graphics::SceneManager* SceneMan = this->TheWorld->GetSceneManager();
+        Graphics::CameraProxy* MainCam = static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+        if( MainCam == NULL ) {
+            SceneMan->CreateCamera();
+        }
+    }
     if( StateToSet == CatchApp::Catch_ScoreScreen ) {
         this->PauseGame(true);
         Whole LevelScore = this->Scorer->PresentFinalScore();
@@ -1677,8 +1694,8 @@ Boole CatchApp::AllStartZonesEmpty()
 
 void CatchApp::UnloadLevel()
 {
-    if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
-        return;
+    //if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
+    //    return;
 
     this->LevelMan->UnloadLevel();
 
@@ -1686,8 +1703,16 @@ void CatchApp::UnloadLevel()
     this->ThrownItems.clear();
 
     this->Scorer->ResetLevelData();
-    delete this->EndTimer;
-    this->EndTimer = NULL;
+    if( this->EndTimer != NULL ) {
+        delete this->EndTimer;
+        this->EndTimer = NULL;
+    }
+
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+    UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
+    GameScreen->GetWidget("GS_LevelReport")->Hide();
+    GameScreen->GetWidget("GS_MenuRoot")->Hide();
+    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();//*/
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
@@ -1746,7 +1771,8 @@ int CatchApp::GetCatchin()
     this->RegisterTypes();
 
     // Initialize the managers.
-    this->TheEntresol->EngineInit(false);
+    this->TheEntresol->Initialize(false);
+    this->TheWorld->Initialize();
 
     this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( dynamic_cast<Scripting::Lua::Lua51ScriptingEngine*>(this->TheEntresol->GetScriptingManager()) );
     this->LuaScriptWork->AddDependency( this->TheWorld->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
@@ -1773,19 +1799,21 @@ int CatchApp::GetCatchin()
     this->Profiles->ApplyProfileDataToLevelSelect();
     this->Profiles->ApplyProfileDataToProfileList();
 
-    Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
+    this->TheEntresol->GetAudioManager()->GetMusicPlayer()->Play();
     this->LevelMan->SetNextLevel("MainMenu");
     do{
         this->ChangeState(CatchApp::Catch_Loading);
         this->PauseGame(false);
-        Graphics::GraphicsManager::GetSingletonPtr()->RenderOneFrame();
+        this->TheEntresol->GetGraphicsManager()->RenderOneFrame();
         //Actually Load the game stuff
+        this->TheEntresol->_Log( "Loading Level: " + this->GetLevelManager()->GetNextLevel()->GetName() + ".\n" );
         this->LevelMan->LoadNextLevel();
 
-        if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
-            this->ChangeState(CatchApp::Catch_MenuScreen);
-        else
-            this->ChangeState(CatchApp::Catch_GameScreen);
+        CatchApp::GameState NewState = ( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() ? CatchApp::Catch_MenuScreen : CatchApp::Catch_GameScreen );
+        this->ChangeState(NewState);
+
+        this->TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0)->SetCamera( static_cast<Graphics::CameraProxy*>( this->TheWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) ) );
+
         this->LevelTimer->Reset();
         this->LevelTimer->Start();
 

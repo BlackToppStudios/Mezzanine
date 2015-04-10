@@ -1,27 +1,17 @@
 <?xml version="1.0"?>
 <InitializerRoot>
-    <WorldSettings>
+    <CoreConfig>
         <FrameSettings TargetFrameRate="60" />
-    </WorldSettings>
+    </CoreConfig>
     <Managers>
-        <Lua51ScriptingEngine>
-        </Lua51ScriptingEngine>
-        <DefaultActorManager>
-        </DefaultActorManager>
-        <DefaultAreaEffectManager>
-        </DefaultAreaEffectManager>
         <OALSAudioManager>
             <SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
             <SettingsFiles>
                 <SettingsFile FileName="AudioSettings.mxs" />
             </SettingsFiles>
         </OALSAudioManager>
-        <DefaultCameraManager>
-        </DefaultCameraManager>
         <DefaultCollisionShapeManager>
         </DefaultCollisionShapeManager>
-        <DefaultDebrisManager>
-        </DefaultDebrisManager>
         <DefaultEventManager>
         </DefaultEventManager>
         <DefaultGraphicsManager>
@@ -34,20 +24,14 @@
         </DefaultInputManager>
         <DefaultMeshManager>
         </DefaultMeshManager>
-        <DefaultPhysicsManager>
-            <WorldSettings LimitlessWorld="true" SoftRigidWorld="true" MultiThreaded="true" />
-            <SubStepModifier Modifier="2" />
-        </DefaultPhysicsManager>
         <DefaultResourceManager>
         </DefaultResourceManager>
-        <DefaultSceneManager>
-        </DefaultSceneManager>
-    <!--<DefaultScriptingManager>
-        </DefaultScriptingManager>-->
         <DefaultTextureManager>
         </DefaultTextureManager>
         <DefaultUIManager>
         </DefaultUIManager>
+        <Lua51ScriptingEngine>
+        </Lua51ScriptingEngine>
     </Managers>
     <OtherInitializers>
         <ResourceInit FileName="Resources.mxi" />

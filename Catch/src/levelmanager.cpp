@@ -35,7 +35,7 @@ void LoadFerris()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -306,7 +306,7 @@ void LoadBigCurve()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -432,7 +432,7 @@ void LoadBlowsNotSucks()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -649,7 +649,7 @@ void LoadJustice()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -869,7 +869,7 @@ void LoadRollers()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -1012,7 +1012,7 @@ void LoadJustBounce()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = static_cast<Graphics::CameraProxy*>( CatchWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -1087,7 +1087,7 @@ void LoadJustBounce()
     // Create some throwable objects
     //ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
     ThrowableData* WoodData = ThrowableGenerator::GetThrowableData("Wood");
-    Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);// ©ShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
+    Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);// CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
     Physics::CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */
 
     RigidDebris* Rubber1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );
@@ -1506,9 +1506,6 @@ LevelManager::ConstGameLevelIterator LevelManager::EndGameLevel() const
 
 void LevelManager::LoadNextLevel()
 {
-    //if( "MainMenu" == this->LevelToLoad->GetName() )
-    //    return;
-
     /// @todo The if(Level) statements need to removed in favor of something that will parse an XML file of the level.
     if( "Ferris" == this->LevelToLoad->GetName() )
         LoadFerris();
@@ -1533,20 +1530,12 @@ void LevelManager::UnloadLevel()
     this->TheEntresol->GetWorld(0)->Clear();
 
     // Entresol Cleanup
-
     /// @todo This should be populated with the appropriate logic after the engine state refactors are done.
-    //Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
-    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = this->TheEntresol->GetCollisionShapeManager();
+    Graphics::MeshManager* MeshMan = this->TheEntresol->GetMeshManager();
 
     CShapeMan->DestroyAllShapes();
-    //ResMan->DestroyAssetGroup(LevelMan->GetCurrentLevel()->GetGroupName());
-
-    UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
-    GameScreen->GetWidget("GS_LevelReport")->Hide();
-    GameScreen->GetWidget("GS_MenuRoot")->Hide();
-    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();
+    MeshMan->UnloadAllMeshes();
 }
 
 #endif
