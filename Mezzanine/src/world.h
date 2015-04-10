@@ -57,7 +57,6 @@ namespace Mezzanine
     }
     namespace Graphics
     {
-        class CameraManager;
         class SceneManager;
     }
     namespace Physics
@@ -97,7 +96,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Unique string identifier for world.
         String Name;
-    protected:
+
         /// @internal
         /// @brief Helper function used to assist construction.
         void Construct(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType, const std::vector <WorldManager*>& ManagerToBeAdded );
@@ -212,9 +211,6 @@ namespace Mezzanine
         /// @brief This gets the SoundScapeManager from the manager list.
         /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.
         Audio::SoundScapeManager* GetSoundScapeManager();
-        /// @brief This gets the CameraManager from the manager list.
-        /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
-        Graphics::CameraManager* GetCameraManager();
         /// @brief This gets the SceneManager from the manager list.
         /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
         Graphics::SceneManager* GetSceneManager();
@@ -245,6 +241,31 @@ namespace Mezzanine
         static void DestroyAllManagerFactories();
         /// @brief Adds all the default manager factories provided by the engine.
         static void AddAllEngineDefaultManagerFactories();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        /// @brief Convert this class to an XML::Node ready for serialization.
+        /// @param ParentNode The point in the XML hierarchy that this World should be appended to.
+        virtual void ProtoSerialize(XML::Node& ParentNode) const;
+        /// @brief Convert the properties of this class to an XML::Node ready for serialization.
+        /// @param SelfRoot The root node containing all the serialized data for this instance.
+        virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+
+        /// @brief Take the data stored in an XML Node and overwrite this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+        /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+        /// @brief Gets the most derived serializable name of this World.
+        /// @note When creating a new World class verify this method has a valid return for it in order for serialization to work properly.
+        /// @return Returns the name of the XML tag from the most derived class of "this".
+        virtual String GetDerivedSerializableName() const;
+        /// @brief Get the name of the the XML tag the World class will leave behind as its instances are serialized.
+        /// @return A string containing the name of this class.
+        static String GetSerializableName();
     };//World
 }//Mezzanine
 

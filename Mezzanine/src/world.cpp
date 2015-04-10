@@ -55,7 +55,6 @@
 
 #include "Audio/soundscapemanager.h"
 #include "Graphics/scenemanager.h"
-#include "Graphics/cameramanager.h"
 #include "Physics/physicsmanager.h"
 
 // Enabled implementation includes
@@ -125,9 +124,6 @@ namespace Mezzanine
         }
         if( this->GetDebrisManager() == 0 ) {
             this->CreateManager("DefaultDebrisManager",Params,true);
-        }
-        if( this->GetCameraManager() == 0 ) {
-            this->CreateManager("DefaultCameraManager",Params,true);
         }
         if( this->GetSceneManager() == 0 ) {
             Params.push_back( std::make_pair( String("InternalManagerTypeName"),SceneType ) );
@@ -212,6 +208,9 @@ namespace Mezzanine
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
+            StringStream InitStream;
+            InitStream << "Initializing " << (*ManIter)->GetImplementationTypeName() << " as " << (*ManIter)->GetInterfaceTypeAsString() << "." << std::endl;
+            Entresol::GetSingletonPtr()->_Log( InitStream.str() );
             (*ManIter)->Initialize();
         }
     }
@@ -220,6 +219,9 @@ namespace Mezzanine
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
+            StringStream DeinitStream;
+            DeinitStream << "Deinitializing " << (*ManIter)->GetImplementationTypeName() << " as " << (*ManIter)->GetInterfaceTypeAsString() << "." << std::endl;
+            Entresol::GetSingletonPtr()->_Log( DeinitStream.str() );
             (*ManIter)->Deinitialize();
         }
     }
@@ -365,9 +367,6 @@ namespace Mezzanine
     Audio::SoundScapeManager* World::GetSoundScapeManager()
         { return static_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) ); }
 
-    Graphics::CameraManager* World::GetCameraManager()
-        { return static_cast<Graphics::CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager) ); }
-
     Graphics::SceneManager* World::GetSceneManager()
         { return static_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) ); }
 
@@ -424,9 +423,6 @@ namespace Mezzanine
         //DefaultAreaEffectManager
         ManIt = World::ManagerFactories.find("DefaultAreaEffectManager");
         if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new DefaultAreaEffectManagerFactory());
-        //DefaultCameraManager
-        ManIt = World::ManagerFactories.find("DefaultCameraManager");
-        if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new Graphics::DefaultCameraManagerFactory());
         //DefaultDebrisManager
         ManIt = World::ManagerFactories.find("DefaultDebrisManager");
         if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new DefaultDebrisManagerFactory());
@@ -446,6 +442,35 @@ namespace Mezzanine
         if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void World::ProtoSerialize(XML::Node& ParentNode) const
+    {
+
+    }
+
+    void World::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    {
+
+    }
+
+    void World::ProtoDeSerialize(const XML::Node& SelfRoot)
+    {
+
+    }
+
+    void World::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    {
+
+    }
+
+    String World::GetDerivedSerializableName() const
+        { return World::GetSerializableName(); }
+
+    String World::GetSerializableName()
+        { return "World"; }
 }//Mezzanine
 
 #endif
