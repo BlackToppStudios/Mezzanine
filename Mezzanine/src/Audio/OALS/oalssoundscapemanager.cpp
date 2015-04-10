@@ -472,6 +472,7 @@ namespace Mezzanine
 
                     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->BufferUpdate3DWork, "AudioBufferUpdate3DWork" );
                     this->BufferUpdate3DWork->AddDependency( AudioMan->GetBufferUpdate2DWork() );
+                    AudioMan->GetEffectFilterCleanWork()->AddDependency( this->BufferUpdate3DWork );
 
                     this->Initialized = true;
                 }
@@ -480,8 +481,11 @@ namespace Mezzanine
             void SoundScapeManager::Deinitialize()
             {
                 if( this->Initialized ) {
+                    OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
+
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate3DWork );
                     this->BufferUpdate3DWork->ClearDependencies();
+                    AudioMan->GetEffectFilterCleanWork()->RemoveDependency( this->BufferUpdate3DWork );
                     this->Initialized = false;
                 }
             }
