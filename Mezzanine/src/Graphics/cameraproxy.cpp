@@ -45,6 +45,7 @@
 
 #include "Graphics/cameraproxy.h"
 #include "Graphics/scenemanager.h"
+#include "Graphics/viewport.h"
 
 #include "exception.h"
 #include "serialization.h"
@@ -178,6 +179,10 @@ namespace Mezzanine
         void CameraProxy::DestroyCamera()
         {
             if( this->GraphicsCamera ) {
+                if( this->CameraVP ) {
+                    this->CameraVP->SetCamera(NULL);
+                }
+
                 this->GraphicsNode->detachObject( this->GraphicsCamera );
                 this->Manager->_GetGraphicsWorldPointer()->destroyCamera( this->GraphicsCamera );
             }
