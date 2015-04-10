@@ -345,7 +345,7 @@ int main(int argc, char **argv)
         TheEntresol = new Entresol( Info, "DefaultSceneManager", "data/common/", "EngineDemoLog.txt");
         TheEntresol->SetTargetFrameRate(60);
 
-        TheEntresol->EngineInit(false);
+        TheEntresol->Initialize(false);
 
         CreateDemoWorld();
         DestroyDemoWorld();
