@@ -382,12 +382,24 @@ namespace Mezzanine
         typedef ManagerFactoryMap::iterator                ManagerFactoryIterator;
         /// @brief Const Iterator type for manager factories stored by this class.
         typedef ManagerFactoryMap::const_iterator          ConstManagerFactoryIterator;
+        /// @brief Basic container type for normal manager storage in this class.
+        typedef std::list<EntresolManager*>                ManagerContainer;
+        /// @brief Iterator type for managers stored by this class.
+        typedef ManagerContainer::iterator                 ManagerIterator;
+        /// @brief Const Iterator type for managers stored by this class.
+        typedef ManagerContainer::const_iterator           ConstManagerIterator;
+        /// @brief Container type for passing pre-created managers into the Entresol upon creation.
+        typedef std::vector<EntresolManager*>              ManagerVec;
+        /// @brief Iterator type for containers of pre-created managers.
+        typedef ManagerVec::iterator                       ManagerVecIterator;
+        /// @brief Const Iterator type for containers of pre-created managers.
+        typedef ManagerVec::const_iterator                 ConstManagerVecIterator;
         /// @brief Basic container type for World storage.
         typedef std::vector<World*>                        WorldContainer;
         /// @brief Iterator type for Worlds stored by this class.
-        typedef WorldContainer::iterator                   WorldContainerIterator;
+        typedef WorldContainer::iterator                   WorldIterator;
         /// @brief Const Iterator type for Worlds stored by this class.
-        typedef WorldContainer::const_iterator             ConstWorldContainerIterator;
+        typedef WorldContainer::const_iterator             ConstWorldIterator;
     private:
         /// @internal
         /// @brief The core structure responsible for our multi-threaded main loop.
@@ -405,7 +417,7 @@ namespace Mezzanine
                         const String& SceneType,
                         const String& EngineDataPath,
                         const String& GraphicsLogFileName,
-                        const std::vector<EntresolManager*>& ManagersToBeAdded );
+                        const ManagerVec& ManagersToBeAdded );
 
         /// @internal
         /// @brief Used to intialize from XML
@@ -426,7 +438,7 @@ namespace Mezzanine
         ManagerFactoryMap ManagerFactories;
         /// @internal
         /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
-        std::list< EntresolManager* > ManagerList;
+        ManagerContainer ManagerList;
 
         /// @internal
         /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
@@ -512,7 +524,7 @@ namespace Mezzanine
                    const String& SceneType,
                    const String& EngineDataPath,
                    const String& LogFileName,
-                   const std::vector<EntresolManager*>& ManagersToBeAdded);
+                   const ManagerVec& ManagersToBeAdded);
         /// @brief Default constructor.
         /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a entresol which expands for 100 units from the Origin, and only allows 10 Actors.
         /// @warning Do not make a new entresol if one already exists. This can only cause problems.
@@ -573,11 +585,15 @@ namespace Mezzanine
         Whole GetLastFrameTimeMicroseconds() const;
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Initialization
+        // Initialization and Deinitialization
 
-        /// @brief This initializes all managers and worlds currently in the Entresol.
-        /// @param CallMainLoop Should the main loop be called.
-        void EngineInit(const Boole& CallMainLoop = false);
+        /// @brief This initializes all managers and Worlds currently in the Entresol.
+        /// @remarks Worlds must be initialized prior to use.  Passing in "false" should only be done in Tools, Tests, or if additional configuration needs
+        /// to be done in between Entresol managers and Worlds being initialized.
+        /// @param InitWorlds Whether or not to initialize every World stored in this manager.  If false, then only Entresol managers will be initialized.
+        void Initialize(const Boole InitWorlds);
+        /// @brief This deinitializeds all managers and Worlds currently in the Entresol.
+        void Deinitialize();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Main Loop

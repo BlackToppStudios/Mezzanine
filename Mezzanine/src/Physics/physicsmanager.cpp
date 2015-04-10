@@ -1158,8 +1158,7 @@ namespace Mezzanine
 
         void PhysicsManager::Initialize()
         {
-            if( !this->Initialized )
-            {
+            if( !this->Initialized ) {
                 WorldManager::Initialize();
 
                 // Create the debugdrawer
@@ -1203,8 +1202,7 @@ namespace Mezzanine
 
         void PhysicsManager::Deinitialize()
         {
-            if( this->Initialized )
-            {
+            if( this->Initialized ) {
                 // Destroy the debugdrawer
                 delete this->BulletDrawer;
                 this->BulletDrawer = NULL;
