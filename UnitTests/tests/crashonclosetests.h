@@ -70,7 +70,7 @@ class crashonclosetests : public UnitTestGroup
                     Mezzanine::Entresol Crasher;
                     TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
 
-                    Crasher.EngineInit(); // Cannot be optimized out because it logs so much
+                    Crasher.Initialize(false); // Cannot be optimized out because it logs so much
                 }
                 TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
