@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,86 +32,89 @@ THE SOFTWARE.
 
 namespace Ogre 
 {
-	//-----------------------------------------------------------------------
-	D3D11DriverList::D3D11DriverList( IDXGIFactory1*	pDXGIFactory ) 
-	{
-		enumerate(pDXGIFactory);
-	}
-	//-----------------------------------------------------------------------
-	D3D11DriverList::~D3D11DriverList(void)
-	{
-		for(int i=0;i<0;i++)
-		{
-			delete (mDriverList[i]);
-		}
-		mDriverList.clear();
+    //-----------------------------------------------------------------------
+    D3D11DriverList::D3D11DriverList( IDXGIFactoryN* pDXGIFactory ) 
+    {
+        mHiddenDriversCount = 0;
+        enumerate(pDXGIFactory);
+    }
+    //-----------------------------------------------------------------------
+    D3D11DriverList::~D3D11DriverList(void)
+    {
+        for(unsigned i = 0; i < mDriverList.size(); i++)
+        {
+            delete (mDriverList[i]);
+        }
+        mDriverList.clear();
 
-	}
-	//-----------------------------------------------------------------------
-	BOOL D3D11DriverList::enumerate(IDXGIFactory1*	pDXGIFactory)
-	{
-		LogManager::getSingleton().logMessage( "D3D11: Driver Detection Starts" );
-		// Create the DXGI Factory
+    }
+    //-----------------------------------------------------------------------
+    BOOL D3D11DriverList::enumerate(IDXGIFactoryN*  pDXGIFactory)
+    {
+        assert(mDriverList.empty() && mHiddenDriversCount == 0);
 
-		for( UINT iAdapter=0; ; iAdapter++ )
-		{
-			IDXGIAdapter1*					pDXGIAdapter;
-			HRESULT hr = pDXGIFactory->EnumAdapters1( iAdapter, &pDXGIAdapter );
-			if( DXGI_ERROR_NOT_FOUND == hr )
-			{
-				hr = S_OK;
-				break;
-			}
-			if( FAILED(hr) )
-			{
-				delete pDXGIAdapter;
-				return false;
-			}
+        LogManager::getSingleton().logMessage( "D3D11: Driver Detection Starts" );
 
-			// we don't want NVIDIA PerfHUD in the list - so - here we filter it out
-			DXGI_ADAPTER_DESC1 adaptDesc;
-			if ( SUCCEEDED( pDXGIAdapter->GetDesc1( &adaptDesc ) ) )
-			{
-				const bool isPerfHUD = wcscmp( adaptDesc.Description, L"NVIDIA PerfHUD" ) == 0;
+        for( UINT iAdapter=0; ; iAdapter++ )
+        {
+            IDXGIAdapterN* pDXGIAdapter = NULL;
+            HRESULT hr = pDXGIFactory->EnumAdapters1( iAdapter, &pDXGIAdapter );
+            if( DXGI_ERROR_NOT_FOUND == hr )
+            {
+                hr = S_OK;
+                break;
+            }
+            if( FAILED(hr) )
+            {
+                SAFE_RELEASE(pDXGIAdapter);
+                return false;
+            }
 
-				if (isPerfHUD)
-				{
-					continue;
-				}
-			}
+            // we don't want NVIDIA PerfHUD in the list, so place it to the hidden part of drivers list
+            D3D11Driver* driver = new D3D11Driver(iAdapter, pDXGIAdapter);
 
-			mDriverList.push_back(new D3D11Driver(iAdapter,pDXGIAdapter) );
+            const bool isHidden = wcscmp(driver->getAdapterIdentifier().Description, L"NVIDIA PerfHUD") == 0;
+            if(isHidden)
+            {
+                mDriverList.push_back(driver);
+                ++mHiddenDriversCount;
+            }
+            else
+            {
+                mDriverList.insert(mDriverList.end() - mHiddenDriversCount, driver);
+            }
 
-		}
+            SAFE_RELEASE(pDXGIAdapter);
+        }
 
-		LogManager::getSingleton().logMessage( "D3D11: Driver Detection Ends" );
+        LogManager::getSingleton().logMessage( "D3D11: Driver Detection Ends" );
 
-		return TRUE;
-	}
-	//-----------------------------------------------------------------------
-	size_t D3D11DriverList::count() const 
-	{
-		return mDriverList.size();
-	}
-	//-----------------------------------------------------------------------
-	D3D11Driver* D3D11DriverList::item( size_t index )
-	{
-		return mDriverList.at( index );
-	}
-	//-----------------------------------------------------------------------
-	D3D11Driver* D3D11DriverList::item( const String &name )
-	{
-		vector<D3D11Driver*>::type::iterator it = mDriverList.begin();
-		if (it == mDriverList.end())
-			return NULL;
+        return TRUE;
+    }
+    //-----------------------------------------------------------------------
+    size_t D3D11DriverList::count() const 
+    {
+        return mDriverList.size() - mHiddenDriversCount;
+    }
+    //-----------------------------------------------------------------------
+    D3D11Driver* D3D11DriverList::item( size_t index )
+    {
+        return mDriverList.at( index );
+    }
+    //-----------------------------------------------------------------------
+    D3D11Driver* D3D11DriverList::item( const String &name )
+    {
+        vector<D3D11Driver*>::type::iterator it = mDriverList.begin();
+        if (it == mDriverList.end())
+            return NULL;
 
-		for (;it != mDriverList.end(); ++it)
-		{
-			if ((*it)->DriverDescription() == name)
-				return (*it);
-		}
+        for (;it != mDriverList.end(); ++it)
+        {
+            if ((*it)->DriverDescription() == name)
+                return (*it);
+        }
 
-		return NULL;
-	}
-	//-----------------------------------------------------------------------
+        return NULL;
+    }
+    //-----------------------------------------------------------------------
 }

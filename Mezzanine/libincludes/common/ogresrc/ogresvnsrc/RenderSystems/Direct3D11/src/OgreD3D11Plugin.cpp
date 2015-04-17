@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,47 +30,42 @@ THE SOFTWARE.
 
 namespace Ogre 
 {
-	const String sPluginName = "D3D11 RenderSystem";
-	//---------------------------------------------------------------------
-	D3D11Plugin::D3D11Plugin()
-		: mRenderSystem(0)
-	{
+    const String sPluginName = "D3D11 RenderSystem";
+    //---------------------------------------------------------------------
+    D3D11Plugin::D3D11Plugin()
+        : mRenderSystem(0)
+    {
 
-	}
-	//---------------------------------------------------------------------
-	const String& D3D11Plugin::getName() const
-	{
-		return sPluginName;
-	}
-	//---------------------------------------------------------------------
-	void D3D11Plugin::install()
-	{
-		// Create the DirectX 10 rendering api
-#ifdef OGRE_STATIC_LIB
-		HINSTANCE hInst = GetModuleHandle( NULL );
-#else
-		HINSTANCE hInst = GetModuleHandle( "RenderSystem_Direct3D11.dll" );
-#endif
-		mRenderSystem = new D3D11RenderSystem( hInst );
-		// Register the render system
-		Root::getSingleton().addRenderSystem( mRenderSystem );
-	}
-	//---------------------------------------------------------------------
-	void D3D11Plugin::initialise()
-	{
-		// nothing to do
-	}
-	//---------------------------------------------------------------------
-	void D3D11Plugin::shutdown()
-	{
-		// nothing to do
-	}
-	//---------------------------------------------------------------------
-	void D3D11Plugin::uninstall()
-	{
-		delete mRenderSystem;
-		mRenderSystem = 0;
-	}
+    }
+    //---------------------------------------------------------------------
+    const String& D3D11Plugin::getName() const
+    {
+        return sPluginName;
+    }
+    //---------------------------------------------------------------------
+    void D3D11Plugin::install()
+    {
+        // Create the DirectX 11 rendering api
+        mRenderSystem = new D3D11RenderSystem();
+        // Register the render system
+        Root::getSingleton().addRenderSystem( mRenderSystem );
+    }
+    //---------------------------------------------------------------------
+    void D3D11Plugin::initialise()
+    {
+        // nothing to do
+    }
+    //---------------------------------------------------------------------
+    void D3D11Plugin::shutdown()
+    {
+        // nothing to do
+    }
+    //---------------------------------------------------------------------
+    void D3D11Plugin::uninstall()
+    {
+        delete mRenderSystem;
+        mRenderSystem = 0;
+    }
 
 
 }

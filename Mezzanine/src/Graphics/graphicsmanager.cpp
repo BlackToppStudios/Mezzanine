@@ -58,19 +58,22 @@
 #include <Ogre.h>
 
 #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
-#include "OgreD3D9Plugin.h"
+#include "d3d9rendersyshelper.h.cpp"
 #endif
 #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
-#include "OgreD3D11Plugin.h"
-#endif
-#ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
-#include "OgreGLES2Plugin.h"
-#endif
-#ifdef MEZZ_BUILD_OPENGLES_SUPPORT
-#include "OgreGLESPlugin.h"
+#include "d3d11rendersyshelper.h.cpp"
 #endif
 #ifdef MEZZ_BUILD_OPENGL_SUPPORT
-#include "OgreGLPlugin.h"
+#include "oglrendersyshelper.h.cpp"
+#endif
+#ifdef MEZZ_BUILD_OPENGL3PLUS_SUPPORT
+#include "ogl3plusrendersyshelper.h.cpp"
+#endif
+#ifdef MEZZ_BUILD_OPENGLES_SUPPORT
+#include "oglesrendersyshelper.h.cpp"
+#endif
+#ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
+#include "ogles2rendersyshelper.h.cpp"
 #endif
 
 #include <cstdlib>
@@ -152,6 +155,25 @@ namespace Mezzanine
             this->Deinitialize();
             this->DestroyAllGameWindows(false);
 
+            #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
+            DestroyD3D9RenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
+            DestroyD3D11RenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_OPENGL_SUPPORT
+            DestroyGLRenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_OPENGL3PLUS_SUPPORT
+            DestroyGL3PlusRenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
+            DestroyGLESRenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
+            DestroyGLES2RenderSystem();
+            #endif
+
             //UInt32 InitSDLSystems = SDL_WasInit(0);
             //if( SDL_INIT_VIDEO | InitSDLSystems ) {
             //    SDL_QuitSubSystem(SDL_INIT_VIDEO);
@@ -162,14 +184,14 @@ namespace Mezzanine
 
         void GraphicsManager::Construct()
         {
-            this->PrimaryGameWindow=0;
+            this->PrimaryGameWindow = NULL;
             this->RenderWork = new RenderWorkUnit(this);
 
             UInt32 InitSDLSystems = SDL_WasInit(0);
-            if( (SDL_INIT_VIDEO & InitSDLSystems) == 0 )
-            {
-                if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Video/Windowing, SDL Error: ") + SDL_GetError()); }
+            if( (SDL_INIT_VIDEO & InitSDLSystems) == 0 ) {
+                if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) < 0 ) {
+                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Video/Windowing, SDL Error: ") + SDL_GetError());
+                }
             }
 
             SDL_DisplayMode DeskMode;
@@ -178,50 +200,34 @@ namespace Mezzanine
             DesktopSettings.WinRes.Height = DeskMode.h;
             DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
+            #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
+            CreateD3D9RenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
+            CreateD3D11RenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_OPENGL_SUPPORT
+            CreateGLRenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_OPENGL3PLUS_SUPPORT
+            CreateGL3PlusRenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
+            CreateGLESRenderSystem();
+            #endif
+            #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
+            CreateGLES2RenderSystem();
+            #endif
         }
 
         void GraphicsManager::InitOgreRenderSystem()
         {
-            if( !this->OgreBeenInitialized )
-            {
+            if( !this->OgreBeenInitialized ) {
                 Ogre::Root* OgreCore = Ogre::Root::getSingletonPtr();
-                Ogre::Plugin* CurrentRenderSystem = 0;
-
-                #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
-                CurrentRenderSystem = new Ogre::D3D9Plugin();
-                this->RenderSystems.push_back( CurrentRenderSystem );
-                OgreCore->installPlugin( CurrentRenderSystem );
-                this->RenderSystemTypes.push_back( Graphics::RS_DirectX9 );
-                #endif
-                #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
-                CurrentRenderSystem = new Ogre::D3D11Plugin();
-                this->RenderSystems.push_back( CurrentRenderSystem );
-                OgreCore->installPlugin( CurrentRenderSystem );
-                this->RenderSystemTypes.push_back( Graphics::RS_DirectX11 );
-                #endif
-                #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
-                CurrentRenderSystem = new Ogre::GLES2Plugin();
-                this->RenderSystems.push_back( CurrentRenderSystem );
-                OgreCore->installPlugin( CurrentRenderSystem );
-                this->RenderSystemTypes.push_back( Graphics::RS_OpenGLES2 );
-                #endif
-                #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
-                CurrentRenderSystem = new Ogre::GLESPlugin();
-                this->RenderSystems.push_back( CurrentRenderSystem );
-                OgreCore->installPlugin( CurrentRenderSystem );
-                this->RenderSystemTypes.push_back( Graphics::RS_OpenGLES1 );
-                #endif
-                #ifdef MEZZ_BUILD_OPENGL_SUPPORT
-                CurrentRenderSystem = new Ogre::GLPlugin();
-                this->RenderSystems.push_back( CurrentRenderSystem );
-                OgreCore->installPlugin( CurrentRenderSystem );
-                this->RenderSystemTypes.push_back( Graphics::RS_OpenGL2 );
-                #endif
-
-                if( this->RenderSystems.size() == 1 )
-                {
+                const Ogre::RenderSystemList& RSList = OgreCore->getAvailableRenderers();
+                if( RSList.size() == 1 ) {
                     //Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->RenderSystemTypes[0] ) );
-                    OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->RenderSystemTypes[0] ) ) );
+                    OgreCore->setRenderSystem( RSList[0] );
                 }else{
                     //Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->CurrRenderSys ) );
                     OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->CurrRenderSys ) ) );
@@ -257,8 +263,7 @@ namespace Mezzanine
             for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Group->SubSetBegin() ; SubSetIt != Group->SubSetEnd() ; ++SubSetIt )
             {
                 String CurrSettingValue;
-                if( "RenderSystem" == (*SubSetIt)->GetName() )
-                {
+                if( "RenderSystem" == (*SubSetIt)->GetName() ) {
                     Graphics::RenderSystem RenderSys = Graphics::RS_OpenGL2;
                     CurrSettingValue = (*SubSetIt)->GetSettingValue("Name");
                     if( GetShortenedRenderSystemName(Graphics::RS_DirectX9) == CurrSettingValue )
@@ -274,8 +279,7 @@ namespace Mezzanine
 
                     this->CurrRenderSys = RenderSys;
 
-                    if( !this->OgreBeenInitialized )
-                    {
+                    if( !this->OgreBeenInitialized ) {
                         this->SetRenderSystem(this->CurrRenderSys,true);
                     }else{
                         /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
@@ -307,50 +311,43 @@ namespace Mezzanine
                             WinHeight = StringTools::ConvertToUInt32(CurrSettingValue);
                         // Get fullscreen.
                         CurrSettingValue = PropertiesSet->GetSettingValue("Fullscreen");
-                        if(!CurrSettingValue.empty())
-                        {
+                        if(!CurrSettingValue.empty()) {
                             if(StringTools::ConvertToBool(CurrSettingValue))
                                 WinFlags = (WinFlags | GameWindow::WF_Fullscreen);
                         }
                         // Get hidden.
                         CurrSettingValue = PropertiesSet->GetSettingValue("Hidden");
-                        if(!CurrSettingValue.empty())
-                        {
+                        if(!CurrSettingValue.empty()) {
                             if(StringTools::ConvertToBool(CurrSettingValue))
                                 WinFlags = (WinFlags | GameWindow::WF_Hidden);
                         }
                         // Get vsync.
                         CurrSettingValue = PropertiesSet->GetSettingValue("Vsync");
-                        if(!CurrSettingValue.empty())
-                        {
+                        if(!CurrSettingValue.empty()) {
                             if(StringTools::ConvertToBool(CurrSettingValue))
                                 WinFlags = (WinFlags | GameWindow::WF_VsyncEnabled);
                         }
                         // Get resizable.
                         CurrSettingValue = PropertiesSet->GetSettingValue("Resizeable");
-                        if(!CurrSettingValue.empty())
-                        {
+                        if(!CurrSettingValue.empty()) {
                             if(StringTools::ConvertToBool(CurrSettingValue))
                                 WinFlags = (WinFlags | GameWindow::WF_Resizeable);
                         }
                         // Get maximized.
                         CurrSettingValue = PropertiesSet->GetSettingValue("Maximized");
-                        if(!CurrSettingValue.empty())
-                        {
+                        if(!CurrSettingValue.empty()) {
                             if(StringTools::ConvertToBool(CurrSettingValue))
                                 WinFlags = (WinFlags | GameWindow::WF_Maximized);
                         }
                         // Get borderless.
                         CurrSettingValue = PropertiesSet->GetSettingValue("Borderless");
-                        if(!CurrSettingValue.empty())
-                        {
+                        if(!CurrSettingValue.empty()) {
                             if(StringTools::ConvertToBool(CurrSettingValue))
                                 WinFlags = (WinFlags | GameWindow::WF_Borderless);
                         }
                         // Get the FSAA level
                         CurrSettingValue = PropertiesSet->GetSettingValue("FSAA");
-                        if(!CurrSettingValue.empty())
-                        {
+                        if(!CurrSettingValue.empty()) {
                             switch( StringTools::ConvertToUInt32(CurrSettingValue) )
                             {
                                 case 2:
@@ -460,8 +457,7 @@ namespace Mezzanine
         {
             for( GameWindowIterator it = this->GameWindows.begin() ; it != this->GameWindows.end() ; it++ )
             {
-                if( ToBeDestroyed == (*it) )
-                {
+                if( ToBeDestroyed == (*it) ) {
                     delete ToBeDestroyed;
                     this->GameWindows.erase(it);
                     return;
@@ -475,8 +471,7 @@ namespace Mezzanine
                 { delete *Iter; }
             this->GameWindows.clear();
 
-            if(!ExcludePrimary)
-            {
+            if(!ExcludePrimary) {
                 delete this->PrimaryGameWindow;
                 this->PrimaryGameWindow = NULL;
             }
@@ -528,14 +523,13 @@ namespace Mezzanine
         {
             switch(RenderSys)
             {
-                case Graphics::RS_DirectX9:   return "Direct3D9 Rendering Subsystem";      break;
-                case Graphics::RS_DirectX11:  return "Direct3D11 Rendering Subsystem";     break;
-                case Graphics::RS_OpenGL2:    return "OpenGL Rendering Subsystem";         break;  /// @todo This will likely have to change when other OGL systems are implemented
-                // Case Graphics::RS_OpenGL3:  return "";                                   break;  Not yet implemented
-                // Case Graphics::RS_OpenGL4:  return "";                                   break;  Not yet implemented
-                case Graphics::RS_OpenGLES1:  return "OpenGL ES 1.x Rendering Subsystem";  break;
-                case Graphics::RS_OpenGLES2:  return "OpenGL ES 2.x Rendering Subsystem";  break;
-                default:                      return "";                                   break;
+                case Graphics::RS_DirectX9:     return "Direct3D9 Rendering Subsystem";          break;
+                case Graphics::RS_DirectX11:    return "Direct3D11 Rendering Subsystem";         break;
+                case Graphics::RS_OpenGL2:      return "OpenGL Rendering Subsystem";             break;
+                case Graphics::RS_OpenGL3Plus:  return "OpenGL 3+ Rendering Subsystem (ALPHA)";  break;
+                case Graphics::RS_OpenGLES1:    return "OpenGL ES 1.x Rendering Subsystem";      break;
+                case Graphics::RS_OpenGLES2:    return "OpenGL ES 2.x Rendering Subsystem";      break;
+                default:                        return "";                                       break;
             }
             return "";
         }
@@ -544,14 +538,13 @@ namespace Mezzanine
         {
             switch(RenderSys)
             {
-                case Graphics::RS_DirectX9:   return "Direct3D9";    break;
-                case Graphics::RS_DirectX11:  return "Direct3D11";   break;
-                case Graphics::RS_OpenGL2:    return "OpenGL";       break;  /// @todo This will likely have to change when other OGL systems are implemented
-                // Case Graphics::RS_OpenGL3:  return "";             break;  Not yet implemented
-                // Case Graphics::RS_OpenGL4:  return "";             break;  Not yet implemented
-                case Graphics::RS_OpenGLES1:  return "OpenGLES1.x";  break;
-                case Graphics::RS_OpenGLES2:  return "OpenGLES2.x";  break;
-                default:                      return "";             break;
+                case Graphics::RS_DirectX9:     return "Direct3D9";    break;
+                case Graphics::RS_DirectX11:    return "Direct3D11";   break;
+                case Graphics::RS_OpenGL2:      return "OpenGL";       break;
+                case Graphics::RS_OpenGL3Plus:  return "OpenGL3+";     break;
+                case Graphics::RS_OpenGLES1:    return "OpenGLES1.x";  break;
+                case Graphics::RS_OpenGLES2:    return "OpenGLES2.x";  break;
+                default:                        return "";             break;
             }
             return "";
         }
@@ -587,13 +580,12 @@ namespace Mezzanine
         void GraphicsManager::SwapAllBuffers(Boole WaitForVsync)
         {
             for( Whole X = 0 ; X < this->GetNumGameWindows() ; X++ )
-                this->GetGameWindow(X)->_GetOgreWindowPointer()->swapBuffers(false);
+                this->GetGameWindow(X)->_GetOgreWindowPointer()->swapBuffers();
         }
 
         void GraphicsManager::Initialize()
         {
-            if( !this->Initialized )
-            {
+            if( !this->Initialized ) {
                 this->TheEntresol->GetScheduler().AddWorkUnitMonopoly(this->RenderWork, "RenderWork");
 
                 if( !this->OgreBeenInitialized ) {
@@ -630,8 +622,7 @@ namespace Mezzanine
 
         void GraphicsManager::Deinitialize()
         {
-            if( this->Initialized )
-            {
+            if( this->Initialized ) {
                 this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( this->RenderWork );
 
                 // Textures are loaded into video memory, which we can only do with a valid and initialized rendering context.

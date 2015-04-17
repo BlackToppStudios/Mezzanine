@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,13 +33,13 @@ THE SOFTWARE.
 
 namespace Ogre {
 
-	/** \addtogroup Core
-	*  @{
-	*/
-	/** \addtogroup Resources
-	*  @{
-	*/
-	/** Abstract base class representing a high-level program (a vertex or
+    /** \addtogroup Core
+    *  @{
+    */
+    /** \addtogroup Resources
+    *  @{
+    */
+    /** Abstract base class representing a high-level program (a vertex or
         fragment program).
     @remarks
         High-level programs are vertex and fragment programs written in a high-level
@@ -67,8 +67,8 @@ namespace Ogre {
         bool mHighLevelLoaded;
         /// The underlying assembler program
         GpuProgramPtr mAssemblerProgram;
-		/// Have we built the name->index parameter map yet?
-		mutable bool mConstantDefsBuilt;
+        /// Have we built the name->index parameter map yet?
+        mutable bool mConstantDefsBuilt;
 
         /// Internal load high-level portion if not loaded
         virtual void loadHighLevel(void);
@@ -85,13 +85,13 @@ namespace Ogre {
         virtual void unloadHighLevelImpl(void) = 0;
         /// Populate the passed parameters with name->index map
         virtual void populateParameterNames(GpuProgramParametersSharedPtr params);
-		/** Build the constant definition map, must be overridden.
-		@note The implementation must fill in the (inherited) mConstantDefs field at a minimum, 
-			and if the program requires that parameters are bound using logical 
-			parameter indexes then the mFloatLogicalToPhysical and mIntLogicalToPhysical
-			maps must also be populated.
-		*/
-		virtual void buildConstantDefinitions() const = 0;
+        /** Build the constant definition map, must be overridden.
+        @note The implementation must fill in the (inherited) mConstantDefs field at a minimum, 
+            and if the program requires that parameters are bound using logical 
+            parameter indexes then the mFloatLogicalToPhysical and mIntLogicalToPhysical
+            maps must also be populated.
+        */
+        virtual void buildConstantDefinitions() const = 0;
 
         /** @copydoc Resource::loadImpl */
         void loadImpl();
@@ -112,83 +112,23 @@ namespace Ogre {
             object containing the definition of the parameters this program understands.
         */
         GpuProgramParametersSharedPtr createParameters(void);
-        /** @copydoc GpuProgram::getBindingDelegate */
+        /** @copydoc GpuProgram::_getBindingDelegate */
         GpuProgram* _getBindingDelegate(void) { return mAssemblerProgram.getPointer(); }
 
-		/** Get the full list of GpuConstantDefinition instances.
-		@note
-		Only available if this parameters object has named parameters.
-		*/
-		const GpuNamedConstants& getConstantDefinitions() const;
+        /** Get the full list of GpuConstantDefinition instances.
+        @note
+        Only available if this parameters object has named parameters.
+        */
+        const GpuNamedConstants& getConstantDefinitions() const;
 
-		/// Override GpuProgram::getNamedConstants to ensure built
-		const GpuNamedConstants& getNamedConstants() const { return getConstantDefinitions(); }
-
+        virtual size_t calculateSize(void) const;
 
 
 
 
     };
-
-    /** Specialisation of SharedPtr to allow SharedPtr to be assigned to HighLevelGpuProgramPtr 
-    @note Has to be a subclass since we need operator=.
-    We could templatise this instead of repeating per Resource subclass, 
-    except to do so requires a form VC6 does not support i.e.
-    ResourceSubclassPtr<T> : public SharedPtr<T>
-    */
-    class _OgreExport HighLevelGpuProgramPtr : public SharedPtr<HighLevelGpuProgram> 
-    {
-    public:
-        HighLevelGpuProgramPtr() : SharedPtr<HighLevelGpuProgram>() {}
-        explicit HighLevelGpuProgramPtr(HighLevelGpuProgram* rep) : SharedPtr<HighLevelGpuProgram>(rep) {}
-        HighLevelGpuProgramPtr(const HighLevelGpuProgramPtr& r) : SharedPtr<HighLevelGpuProgram>(r) {} 
-        HighLevelGpuProgramPtr(const ResourcePtr& r) : SharedPtr<HighLevelGpuProgram>()
-        {
-			// lock & copy other mutex pointer
-            OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
-            {
-			    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-			    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-                pRep = static_cast<HighLevelGpuProgram*>(r.getPointer());
-                pUseCount = r.useCountPointer();
-                if (pUseCount)
-                {
-                    ++(*pUseCount);
-                }
-            }
-        }
-
-        /// Operator used to convert a ResourcePtr to a HighLevelGpuProgramPtr
-        HighLevelGpuProgramPtr& operator=(const ResourcePtr& r)
-        {
-            if (pRep == static_cast<HighLevelGpuProgram*>(r.getPointer()))
-                return *this;
-            release();
-			// lock & copy other mutex pointer
-            OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
-            {
-                OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-			    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-                pRep = static_cast<HighLevelGpuProgram*>(r.getPointer());
-                pUseCount = r.useCountPointer();
-                if (pUseCount)
-                {
-                    ++(*pUseCount);
-                }
-            }
-			else
-			{
-				// RHS must be a null pointer
-				assert(r.isNull() && "RHS must be null if it has no mutex!");
-				setNull();
-			}
-            return *this;
-        }
-		/// Operator used to convert a GpuProgramPtr to a HighLevelGpuProgramPtr
-		HighLevelGpuProgramPtr& operator=(const GpuProgramPtr& r);
-    };
-	/** @} */
-	/** @} */
+    /** @} */
+    /** @} */
 
 }
 #endif

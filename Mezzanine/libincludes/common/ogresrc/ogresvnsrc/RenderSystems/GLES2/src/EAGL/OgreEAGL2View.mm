@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,13 +27,15 @@ THE SOFTWARE.
 
 #include "OgreEAGL2View.h"
 
-#include "OgreGLES2Prerequisites.h"
-
 #include "OgreRoot.h"
+#include "OgreCamera.h"
 #include "OgreRenderWindow.h"
 #include "OgreGLES2RenderSystem.h"
+#include "OgreViewport.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIWindow.h>
+#import <UIKit/UIDevice.h>
 
 using namespace Ogre;
 
@@ -66,6 +68,24 @@ using namespace Ogre;
 
     // Return if the orientation is not a valid interface orientation(face up, face down)
     if(!UIDeviceOrientationIsValidInterfaceOrientation(deviceOrientation))
+        return;
+
+    // Check if orientation is supported
+    NSString *rotateToOrientation = @"";
+    if(deviceOrientation == UIDeviceOrientationPortrait)
+        rotateToOrientation = @"UIInterfaceOrientationPortrait";
+    else if(deviceOrientation == UIDeviceOrientationPortraitUpsideDown)
+        rotateToOrientation = @"UIInterfaceOrientationPortraitUpsideDown";
+    else if(deviceOrientation == UIDeviceOrientationLandscapeLeft)
+        rotateToOrientation = @"UIInterfaceOrientationLandscapeLeft";
+    else if(deviceOrientation == UIDeviceOrientationLandscapeRight)
+        rotateToOrientation = @"UIInterfaceOrientationLandscapeRight";
+
+    NSArray *supportedOrientations = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UISupportedInterfaceOrientations"];
+
+    BOOL supported = [supportedOrientations containsObject:rotateToOrientation];
+
+    if (!supported)
         return;
 
     // Get the window using the name that we saved

@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,18 +30,18 @@ THE SOFTWARE.
 #define __StringInterface_H__
 
 #include "OgrePrerequisites.h"
-#include "OgreString.h"
 #include "OgreCommon.h"
+#include "Threading/OgreThreadHeaders.h"
 #include "OgreHeaderPrefix.h"
 
 namespace Ogre {
 
-	/** \addtogroup Core
-	*  @{
-	*/
-	/** \addtogroup General
-	*  @{
-	*/
+    /** \addtogroup Core
+    *  @{
+    */
+    /** \addtogroup General
+    *  @{
+    */
 
     /// List of parameter types available
     enum ParameterType
@@ -110,7 +110,7 @@ namespace Ogre {
             }
         }
 
-		const ParamCommand* getParamCommand(const String& name) const
+        const ParamCommand* getParamCommand(const String& name) const
         {
             ParamCommandMap::const_iterator i = mParamCommands.find(name);
             if (i != mParamCommands.end())
@@ -162,16 +162,16 @@ namespace Ogre {
     class _OgreExport StringInterface 
     {
     private:
-		OGRE_STATIC_MUTEX( msDictionaryMutex )
+        OGRE_STATIC_MUTEX( msDictionaryMutex );
 
         /// Dictionary of parameters
         static ParamDictionaryMap msDictionary;
 
         /// Class name for this instance to be used as a lookup (must be initialised by subclasses)
         String mParamDictName;
-		ParamDictionary* mParamDict;
+        ParamDictionary* mParamDict;
 
-	protected:
+    protected:
         /** Internal method for creating a parameter dictionary for the class, if it does not already exist.
         @remarks
             This method will check to see if a parameter dictionary exist for this class yet,
@@ -184,26 +184,26 @@ namespace Ogre {
         */
         bool createParamDictionary(const String& className)
         {
-			OGRE_LOCK_MUTEX( msDictionaryMutex )
+            OGRE_LOCK_MUTEX( msDictionaryMutex );
 
-			ParamDictionaryMap::iterator it = msDictionary.find(className);
+            ParamDictionaryMap::iterator it = msDictionary.find(className);
 
-			if ( it == msDictionary.end() )
-			{
-				mParamDict = &msDictionary.insert( std::make_pair( className, ParamDictionary() ) ).first->second;
-				mParamDictName = className;
-				return true;
-			}
-			else
-			{
-				mParamDict = &it->second;
-				mParamDictName = className;
-				return false;
-			}
+            if ( it == msDictionary.end() )
+            {
+                mParamDict = &msDictionary.insert( std::make_pair( className, ParamDictionary() ) ).first->second;
+                mParamDictName = className;
+                return true;
+            }
+            else
+            {
+                mParamDict = &it->second;
+                mParamDictName = className;
+                return false;
+            }
         }
 
     public:
-		StringInterface() : mParamDict(NULL) { }
+        StringInterface() : mParamDict(NULL) { }
 
         /** Virtual destructor, see Effective C++ */
         virtual ~StringInterface() {}
@@ -217,12 +217,12 @@ namespace Ogre {
         */
         ParamDictionary* getParamDictionary(void)
         {
-			return mParamDict;
+            return mParamDict;
         }
 
-		const ParamDictionary* getParamDictionary(void) const
+        const ParamDictionary* getParamDictionary(void) const
         {
-			return mParamDict;
+            return mParamDict;
         }
 
         /** Retrieves a list of parameters valid for this object. 
@@ -326,8 +326,8 @@ namespace Ogre {
 
     };
 
-	/** @} */
-	/** @} */
+    /** @} */
+    /** @} */
 
 
 }

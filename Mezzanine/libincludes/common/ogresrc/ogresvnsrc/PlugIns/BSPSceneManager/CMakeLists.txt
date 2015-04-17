@@ -9,32 +9,8 @@
 
 # Configure BSP SceneManager build
 
-set (HEADER_FILES
-  include/OgreBspLevel.h
-  include/OgreBspNode.h
-  include/OgreBspPrerequisites.h
-  include/OgreBspResourceManager.h
-  include/OgreBspSceneManager.h
-  include/OgreBspSceneManagerPlugin.h
-  include/OgreBspSceneNode.h
-  include/OgreQuake3Level.h
-  include/OgreQuake3Shader.h
-  include/OgreQuake3ShaderManager.h
-  include/OgreQuake3Types.h
-)
-
-set (SOURCE_FILES
-  src/OgreBspLevel.cpp
-  src/OgreBspNode.cpp
-  src/OgreBspResourceManager.cpp
-  src/OgreBspSceneManager.cpp
-  src/OgreBspSceneManagerDll.cpp
-  src/OgreBspSceneManagerPlugin.cpp
-  src/OgreBspSceneNode.cpp
-  src/OgreQuake3Level.cpp
-  src/OgreQuake3Shader.cpp
-  src/OgreQuake3ShaderManager.cpp
-)
+file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_definitions(-D_USRDLL)
@@ -47,18 +23,7 @@ if (NOT OGRE_STATIC)
   ) 
 endif ()
 
-if (APPLE AND NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
-    # Set the INSTALL_PATH so that Plugins can be installed in the application package
-    set_target_properties(Plugin_BSPSceneManager
-       PROPERTIES BUILD_WITH_INSTALL_RPATH 1
-       INSTALL_NAME_DIR "@executable_path/../Plugins"
-    )
-
-	# Copy headers into the main Ogre framework
-	add_custom_command(TARGET Plugin_BSPSceneManager POST_BUILD
-	  COMMAND ditto ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h ${OGRE_BINARY_DIR}/lib/$(CONFIGURATION)/Ogre.framework/Headers/
-	)
-endif()
+ogre_config_framework(Plugin_BSPSceneManager)
 
 install(FILES ${HEADER_FILES} DESTINATION include/OGRE/Plugins/BSPSceneManager)
 

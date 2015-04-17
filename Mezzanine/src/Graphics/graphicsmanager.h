@@ -131,8 +131,6 @@ namespace Mezzanine
             typedef ResolutionContainer::iterator         ResolutionIterator;
             /// @brief Const Iterator type for stored supported resolutions.
             typedef ResolutionContainer::const_iterator   ConstResolutionIterator;
-            /// @brief Basic container type for internal plugin storage by this class.
-            typedef std::vector<Ogre::Plugin*>            InternalPluginContainer;
             /// @brief Basic container type for registered rendersystem type storage by this class.
             typedef std::vector<RenderSystem>             RenderSystemTypeContainer;
 
@@ -144,12 +142,6 @@ namespace Mezzanine
             /// @internal
             /// @brief The RenderWorkUnit really is an extension of the GraphicsManager, it just exists as a Functor for the sake of simplicity.
             friend class RenderWorkUnit;
-            /// @internal
-            /// @brief Track all statically linked Ogre render systems, usually only one, but could be many.
-            InternalPluginContainer RenderSystems;
-            /// @internal
-            /// @brief A listing of the types of rendersystems Types that correspond to the entry in @ref RenderSystems.
-            RenderSystemTypeContainer RenderSystemTypes;
             /// @internal
             /// @brief A container storing all the game windows created by this manager.
             GameWindowContainer GameWindows;

@@ -4,7 +4,7 @@
  (Object-oriented Graphics Rendering Engine)
  For the latest info, see http://www.ogre3d.org/
  
- Copyright (c) 2000-2013 Torus Knot Software Ltd
+ Copyright (c) 2000-2014 Torus Knot Software Ltd
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -40,8 +40,12 @@
 #define USE_DISPLAYLINK 0
 
 #import "OgreOSXCocoaWindow.h"
-#import <Cocoa/Cocoa.h>
 #import <QuartzCore/CVDisplayLink.h>
+#include <iostream>
+
+#include "SampleBrowser.h"
+
+using namespace Ogre;
 
 // All this does is suppress some messages in the run log.  NSApplication does not
 // implement buttonPressed and apps without a NIB have no target for the action.
@@ -70,7 +74,7 @@
 - (void)renderOneFrame:(id)sender;
 - (void)shutdown;
 
-@property (retain) NSTimer *mTimer;
+@property (retain, atomic) NSTimer *mTimer;
 @property (nonatomic) NSTimeInterval mLastFrameTime;
 
 @end
@@ -91,11 +95,19 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
     {
         NSOpenGLContext *ctx = static_cast<OSXCocoaWindow *>(sb.mWindow)->nsopenGLContext();
         CGLContextObj cglContext = (CGLContextObj)[ctx CGLContextObj];
-        CGLLockContext(cglContext); 
+
+        // Lock the context before we render into it.
+        CGLLockContext(cglContext);
+
+        // Calculate the time since we last rendered.
         Real deltaTime = 1.0 / (outputTime->rateScalar * (Real)outputTime->videoTimeScale / (Real)outputTime->videoRefreshPeriod);
 
+        // Make the context current and dispatch the render.
         [ctx makeCurrentContext];
-        Ogre::Root::getSingleton().renderOneFrame(deltaTime);
+        dispatch_async(dispatch_get_main_queue(), ^(void)
+                       {
+                           Ogre::Root::getSingleton().renderOneFrame(deltaTime);
+                       });
 
         CGLUnlockContext(cglContext); 
     }
@@ -140,38 +152,35 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
 
     try {
         sb.go();
-#if __LP64__ && USE_DISPLAYLINK
-        CVReturn ret = kCVReturnSuccess;
-        // Create a display link capable of being used with all active displays
-        ret = CVDisplayLinkCreateWithActiveCGDisplays(&mDisplayLink);
-        
-        // Set the renderer output callback function
-        ret = CVDisplayLinkSetOutputCallback(mDisplayLink, &MyDisplayLinkCallback, self);
-        
-        // Set the display link for the current renderer
-        NSOpenGLContext *ctx = static_cast<OSXCocoaWindow *>(sb.mWindow)->nsopenGLContext();
-        NSOpenGLPixelFormat *fmt = static_cast<OSXCocoaWindow *>(sb.mWindow)->nsopenGLPixelFormat();
-        CGLContextObj cglContext = (CGLContextObj)[ctx CGLContextObj];
-        CGLPixelFormatObj cglPixelFormat = (CGLPixelFormatObj)[fmt CGLPixelFormatObj];
-        ret = CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(mDisplayLink, cglContext, cglPixelFormat);
-        
-        // Activate the display link
-        ret = CVDisplayLinkStart(mDisplayLink);
-#endif
         Ogre::Root::getSingleton().getRenderSystem()->_initRenderTargets();
-        
+
         // Clear event times
-		Ogre::Root::getSingleton().clearEventTimes();
+        Ogre::Root::getSingleton().clearEventTimes();
     } catch( Ogre::Exception& e ) {
         std::cerr << "An exception has occurred: " <<
         e.getFullDescription().c_str() << std::endl;
     }
-#if !USE_DISPLAYLINK
-    mTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)(1.0f / 60.0f) * mLastFrameTime
-                                              target:self
-                                            selector:@selector(renderOneFrame:)
-                                            userInfo:nil
-                                             repeats:YES];
+#if __LP64__ && USE_DISPLAYLINK
+    CVReturn ret = kCVReturnSuccess;
+    // Create a display link capable of being used with all active displays
+    ret = CVDisplayLinkCreateWithActiveCGDisplays(&mDisplayLink);
+
+    // Set the renderer output callback function
+    ret = CVDisplayLinkSetOutputCallback(mDisplayLink, &MyDisplayLinkCallback, self);
+
+    // Set the display link for the current renderer
+    NSOpenGLContext *ctx = static_cast<OSXCocoaWindow *>(sb.mWindow)->nsopenGLContext();
+    NSOpenGLPixelFormat *fmt = static_cast<OSXCocoaWindow *>(sb.mWindow)->nsopenGLPixelFormat();
+    CGLContextObj cglContext = (CGLContextObj)[ctx CGLContextObj];
+    CGLPixelFormatObj cglPixelFormat = (CGLPixelFormatObj)[fmt CGLPixelFormatObj];
+    ret = CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(mDisplayLink, cglContext, cglPixelFormat);
+
+    // Activate the display link
+    ret = CVDisplayLinkStart(mDisplayLink);
+#else
+    mTimer = [[NSTimer timerWithTimeInterval: 0.001 target:self selector:@selector(renderOneFrame:) userInfo:self repeats:true] retain];
+    [[NSRunLoop currentRunLoop] addTimer:mTimer forMode: NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop] addTimer:mTimer forMode: NSEventTrackingRunLoopMode]; // Ensure timer fires during resize
 #endif
     [pool release];
 }
@@ -196,11 +205,12 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
 
 - (void)renderOneFrame:(id)sender
 {
-    if(!sb.mIsShuttingDown && Ogre::Root::getSingletonPtr() && Ogre::Root::getSingleton().isInitialised())
+    if(!sb.mIsShuttingDown && Ogre::Root::getSingletonPtr() &&
+       Ogre::Root::getSingleton().isInitialised() && !Ogre::Root::getSingleton().endRenderingQueued())
     {
-        Ogre::Root::getSingleton().renderOneFrame((Ogre::Real)[mTimer timeInterval]);
+        Ogre::Root::getSingleton().renderOneFrame();
     }
-    else
+    else if(sb.mIsShuttingDown)
     {
         if(mTimer)
         {
@@ -209,6 +219,16 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
         }
 
         [NSApp performSelector:@selector(terminate:) withObject:nil afterDelay:0.0];
+    }
+    else if(!sb.isLastRun() && sb.isFirstRun())
+    {
+        sb.closeApp();
+
+        sb.setFirstRun(false);
+
+        sb.initApp();
+        sb.loadStartUpSample();
+        sb.setFirstRun(true);
     }
 }
 

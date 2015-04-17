@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,12 +33,12 @@ THE SOFTWARE.
 
 namespace Ogre  {
 
-	/** \addtogroup Core
-	*  @{
-	*/
-	/** \addtogroup Effects
-	*  @{
-	*/
+    /** \addtogroup Core
+    *  @{
+    */
+    /** \addtogroup Effects
+    *  @{
+    */
 
     namespace EmitterCommands {
         /// Command object for ParticleEmitter  - see ParamCommand 
@@ -81,6 +81,14 @@ namespace Ogre  {
         
         /// Command object for particle emitter  - see ParamCommand 
         class _OgreExport CmdUp : public ParamCommand
+        {
+        public:
+            String doGet(const void* target) const;
+            void doSet(void* target, const String& val);
+        };
+
+        /// Command object for particle emitter  - see ParamCommand 
+        class _OgreExport CmdDirPositionRef : public ParamCommand
         {
         public:
             String doGet(const void* target) const;
@@ -185,7 +193,7 @@ namespace Ogre  {
             String doGet(const void* target) const;
             void doSet(void* target, const String& val);
         };
-		/// Command object for particle emitter  - see ParamCommand
+        /// Command object for particle emitter  - see ParamCommand
         class _OgreExport CmdName : public ParamCommand
         {
         public:
@@ -193,7 +201,7 @@ namespace Ogre  {
             void doSet(void* target, const String& val);
         };
 
-		/// Command object for particle emitter  - see ParamCommand 
+        /// Command object for particle emitter  - see ParamCommand 
         class _OgreExport CmdEmittedEmitter : public ParamCommand
         {
         public:
@@ -202,8 +210,8 @@ namespace Ogre  {
         };
 
     }
-	/** @} */
-	/** @} */
+    /** @} */
+    /** @} */
 
 }
 

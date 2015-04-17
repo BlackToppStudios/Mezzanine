@@ -401,7 +401,7 @@ set(OgreLibraryAllNames ${OgreLinkName} Plugin_ParticleFX)
 set(Ogre_Arguments "")
 set(OgreHeaderIncludeDir "")
 
-# Detect available RenderSystems by abusing Ogre internal CMake variables
+# Setup rendersystem options
 option (Mezz_BuildRenderSystemDirectX9 "Include Support for DirectX 9" OFF)
 set(OGRE_BUILD_RENDERSYSTEM_D3D9 ${Mezz_BuildRenderSystemDirectX9} CACHE BOOL "Forcing Ogre option to match Mezzanine." FORCE)
 if(${OGRE_BUILD_RENDERSYSTEM_D3D9})
@@ -437,6 +437,18 @@ else(${OGRE_BUILD_RENDERSYSTEM_GL})
     message ( STATUS "${PROJECT_NAME} - Disabling OpenGL Rendering Support")
     set(Ogre_Arguments "${Ogre_Arguments} ${D}MEZZ_BUILD_OPENGL_SUPPORT_undefined")
 endif(${OGRE_BUILD_RENDERSYSTEM_GL})
+
+option (Mezz_BuildRenderSystemOpenGL3Plus "Include Support for OpenGL3+" ON)
+set(OGRE_BUILD_RENDERSYSTEM_GL3PLUS ${Mezz_BuildRenderSystemOpenGL3Plus} CACHE BOOL "Forcing Ogre option to match Mezzanine." FORCE)
+if(${OGRE_BUILD_RENDERSYSTEM_GL3PLUS})
+    message ( STATUS "${PROJECT_NAME} - Enabling OpenGL3+ Rendering Support")
+    set(Ogre_Arguments ${Ogre_Arguments} "${D}MEZZ_BUILD_OPENGL3PLUS_SUPPORT")
+    set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/GL3Plus/include")
+    set(OgreLibraryAllNames ${OgreLibraryAllNames} RenderSystem_GL3Plus)
+else(${OGRE_BUILD_RENDERSYSTEM_GL3PLUS})
+    message ( STATUS "${PROJECT_NAME} - Disabling OpenGL3+ Rendering Support")
+    set(Ogre_Arguments "${Ogre_Arguments} ${D}MEZZ_BUILD_OPENGL3PLUS_SUPPORT_undefined")
+endif(${OGRE_BUILD_RENDERSYSTEM_GL3PLUS})
 
 option (Mezz_BuildRenderSystemOpenGLES "Include Support for OpenGLES" OFF)
 set(OGRE_BUILD_RENDERSYSTEM_GLES ${Mezz_BuildRenderSystemOpenGLES} CACHE BOOL "Forcing Ogre option to match Mezzanine." FORCE)
@@ -475,7 +487,7 @@ else(${Mezz_BuildTypeDebug})
 endif(${Mezz_BuildTypeDebug})
 
 #This must be set manually each time ogre is upgraded.
-set(Mezz_UseOgreVersion 1.8.1 CACHE STRING "The version of the ogre libraries to link against")
+set(Mezz_UseOgreVersion 1.10 CACHE STRING "The version of the ogre libraries to link against")
 set(OgreDepName Ogre)
 set(OgreLibFileName ${StaticLibPrefix}${OgreLinkName}${StaticLibSuffix})
 set(OgreLinuxSoName ${OgreLibFileName}.${Mezz_UseOgreVersion})                #This value is gibberish on non-Linux platforms
@@ -635,7 +647,6 @@ mark_as_advanced( FORCE
     ARTS_CONFIG D_NAS_LIB XCURSOR_LIB XEXT_LIB XI_LIB XINERAMA_LIB XRANDR_LIB XRENDER_LIB XSS_LIB XXF86VM_LIB X11_LIB
 
     # Bullet options
-
     USE_DOUBLE_PRECISION
     USE_MSVC_RUNTIME_LIBRARY_DLL
     USE_MSVC_INCREMENTAL_LINKING
@@ -668,43 +679,6 @@ mark_as_advanced( FORCE
     INSTALL_LIBS
     INSTALL_EXTRA_LIBS
     BUILD_UNIT_TESTS
-
-    # Ogre indirect
-    Boost_DIR Boost_LIB_DIAGNOSTIC_DEFINITIONS OGRE_SET_USE_BOOST BOOST_THREAD_LIBRARY
-    DirectX_DINPUT8_LIBRARY
-    Cg_LIBRARY_REL Cg_LIBRARY_DBG Cg_INCLUDE_DIR
-
-    # Ogre
-    OGRE_STATIC
-    OGRE_BUILD_RENDERSYSTEM_D3D9
-    OGRE_BUILD_RENDERSYSTEM_D3D11
-    OGRE_BUILD_RENDERSYSTEM_GL
-    OGRE_BUILD_RENDERSYSTEM_GLES
-    OGRE_BUILD_RENDERSYSTEM_GLES2
-    OGRE_BUILD_PLATFORM_APPLE_IOS
-    OGRE_BUILD_PLATFORM_NACL
-    OGRE_BUILD_PLUGIN_BSP
-    OGRE_BUILD_PLUGIN_OCTREE
-    OGRE_BUILD_PLUGIN_PFX
-    OGRE_BUILD_PLUGIN_PCZ
-    OGRE_BUILD_COMPONENT_PAGING
-    OGRE_BUILD_COMPONENT_TERRAIN
-    OGRE_BUILD_COMPONENT_PROPERTY
-    OGREDEPS_BUILD_CG
-    OGRE_BUILD_PLUGIN_CG
-    OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
-    OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS
-    OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS
-    OGRE_BUILD_SAMPLES
-    OGRE_BUILD_TOOLS
-    OGRE_BUILD_XSIEXPORTER
-    OGRE_BUILD_TESTS
-    OGRE_CONFIG_DOUBLE
-    OGRE_COPY_DEPENDENCIES OGRE_INSTALL_DEPENDENCIES
-    OGRE_DEPENDENCIES_DIR
-    OGRE_CONFIG_THREADS OGRE_CONFIG_THREAD_PROVIDER
-    OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_STRING_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_MEMTRACK_DEBUG OGRE_CONFIG_MEMTRACK_RELEASE
-    OGRE_UNITY_BUILD OGRE_UNITY_FILES_PER_UNIT
 
     WINDRES WINE
 

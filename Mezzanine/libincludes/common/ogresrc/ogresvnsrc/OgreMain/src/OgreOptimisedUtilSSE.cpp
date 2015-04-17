@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -100,9 +100,9 @@ namespace Ogre {
             Real t,
             const float *srcPos1, const float *srcPos2,
             float *dstPos,
-			size_t pos1VSize, size_t pos2VSize, size_t dstVSize, 
+            size_t pos1VSize, size_t pos2VSize, size_t dstVSize, 
             size_t numVertices,
-			bool morphNormals);
+            bool morphNormals);
 
         /// @copydoc OptimisedUtil::concatenateAffineMatrices
         virtual void __OGRE_SIMD_ALIGN_ATTRIBUTE concatenateAffineMatrices(
@@ -191,9 +191,9 @@ namespace Ogre {
             Real t,
             const float *srcPos1, const float *srcPos2,
             float *dstPos,
-			size_t pos1VSize, size_t pos2VSize, size_t dstVSize, 
+            size_t pos1VSize, size_t pos2VSize, size_t dstVSize, 
             size_t numVertices,
-			bool morphNormals)
+            bool morphNormals)
         {
             __OGRE_SIMD_ALIGN_STACK();
 
@@ -201,9 +201,9 @@ namespace Ogre {
                 t,
                 srcPos1, srcPos2,
                 dstPos,
-				pos1VSize, pos2VSize, dstVSize, 
+                pos1VSize, pos2VSize, dstVSize, 
                 numVertices,
-				morphNormals);
+                morphNormals);
         }
 
         /// @copydoc OptimisedUtil::concatenateAffineMatrices
@@ -512,7 +512,6 @@ namespace Ogre {
             break;                                                              \
         }                                                                       \
     }
-
 
 
     //---------------------------------------------------------------------
@@ -897,7 +896,7 @@ namespace Ogre {
     {
         assert(_isAlignedForSSE(pSrcPos));
 
-        // Instantiating two version only, since other alignement combination not that important.
+        // Instantiating two version only, since other alignment combination not that important.
         if (_isAlignedForSSE(pSrcNorm) && _isAlignedForSSE(pDestPos) && _isAlignedForSSE(pDestNorm))
         {
             SoftwareVertexSkinning_SSE_PosNorm_Separated_Packed<true, true, true, true>::apply(
@@ -1015,7 +1014,7 @@ namespace Ogre {
     {
         assert(_isAlignedForSSE(pSrcPos));
 
-        // Instantiating two version only, since other alignement combination not that important.
+        // Instantiating two version only, since other alignment combination not that important.
         if (_isAlignedForSSE(pDestPos))
         {
             SoftwareVertexSkinning_SSE_PosOnly_Packed<true, true>::apply(
@@ -1049,7 +1048,7 @@ namespace Ogre {
         // slight performance loss than general version.
         //
 
-		if (PlatformInformation::getCpuIdentifier().find("AuthenticAMD") != String::npos)
+        if (PlatformInformation::getCpuIdentifier().find("AuthenticAMD") != String::npos)
         {
             // How can I check it's an Athlon XP but not Althon 64?
             // Ok, just test whether supports SSE2/SSE3 or not, if not,
@@ -1287,10 +1286,10 @@ namespace Ogre {
         Real t,
         const float *pSrc1, const float *pSrc2,
         float *pDst,
-		size_t pos1VSize, size_t pos2VSize, size_t dstVSize, 
+        size_t pos1VSize, size_t pos2VSize, size_t dstVSize, 
         size_t numVertices,
-		bool morphNormals)
-    {	
+        bool morphNormals)
+    {   
         __OGRE_CHECK_STACK_ALIGNED_FOR_SSE();
 
         __m128 src01, src02, src11, src12, src21, src22;
@@ -1299,18 +1298,18 @@ namespace Ogre {
         __m128 t4 = _mm_load_ps1(&t);
 
 
-		// If we're morphing normals, we have twice the number of floats to process
-		// Positions are interleaved with normals, so we'll have to separately
-		// normalise just the normals later; we'll just lerp in the first pass
-		// We can't normalise as we go because normals & positions are only 3 floats
-		// each so are not aligned for SSE, we'd mix the data up
-		size_t normalsMultiplier = morphNormals ? 2 : 1;
+        // If we're morphing normals, we have twice the number of floats to process
+        // Positions are interleaved with normals, so we'll have to separately
+        // normalise just the normals later; we'll just lerp in the first pass
+        // We can't normalise as we go because normals & positions are only 3 floats
+        // each so are not aligned for SSE, we'd mix the data up
+        size_t normalsMultiplier = morphNormals ? 2 : 1;
         size_t numIterations = (numVertices*normalsMultiplier) / 4;
-		size_t numVerticesRemainder = (numVertices*normalsMultiplier) & 3;
-		
-		// Save for later
-		float *pStartDst = pDst;
-						
+        size_t numVerticesRemainder = (numVertices*normalsMultiplier) & 3;
+        
+        // Save for later
+        float *pStartDst = pDst;
+                        
         // Never use meta-function technique to accessing memory because looks like
         // VC7.1 generate a bit inefficient binary code when put following code into
         // inline function.
@@ -1369,8 +1368,8 @@ namespace Ogre {
                 // 6 floating-point values
                 src01 = __MM_LOAD_PS(pSrc1 + 0);
                 src02 = __MM_LOAD_PS(pSrc2 + 0);
-                src11 = _mm_loadl_pi(t4, (__m64*)(pSrc1 + 4));  // t4 is meaningless here
-                src12 = _mm_loadl_pi(t4, (__m64*)(pSrc2 + 4));  // t4 is meaningless here
+                src11 = _mm_loadl_pi(t4, (const __m64*)(pSrc1 + 4));  // t4 is meaningless here
+                src12 = _mm_loadl_pi(t4, (const __m64*)(pSrc2 + 4));  // t4 is meaningless here
 
                 dst0 = __MM_LERP_PS(t4, src01, src02);
                 dst1 = __MM_LERP_PS(t4, src11, src12);
@@ -1383,8 +1382,8 @@ namespace Ogre {
                 // 3 floating-point values
                 src01 = _mm_load_ss(pSrc1 + 2);
                 src02 = _mm_load_ss(pSrc2 + 2);
-                src01 = _mm_loadh_pi(src01, (__m64*)(pSrc1 + 0));
-                src02 = _mm_loadh_pi(src02, (__m64*)(pSrc2 + 0));
+                src01 = _mm_loadh_pi(src01, (const __m64*)(pSrc1 + 0));
+                src02 = _mm_loadh_pi(src02, (const __m64*)(pSrc2 + 0));
 
                 dst0 = __MM_LERP_PS(t4, src01, src02);
 
@@ -1420,7 +1419,7 @@ namespace Ogre {
                 _mm_storeu_ps(pDst + 4, dst1);
                 _mm_storeu_ps(pDst + 8, dst2);
                 pDst += 12;
-				
+                
             }
 
             // Morph remaining vertices
@@ -1448,8 +1447,8 @@ namespace Ogre {
                 // 6 floating-point values
                 src01 = _mm_loadu_ps(pSrc1 + 0);
                 src02 = _mm_loadu_ps(pSrc2 + 0);
-                src11 = _mm_loadl_pi(t4, (__m64*)(pSrc1 + 4));  // t4 is meaningless here
-                src12 = _mm_loadl_pi(t4, (__m64*)(pSrc2 + 4));  // t4 is meaningless here
+                src11 = _mm_loadl_pi(t4, (const __m64*)(pSrc1 + 4));  // t4 is meaningless here
+                src12 = _mm_loadl_pi(t4, (const __m64*)(pSrc2 + 4));  // t4 is meaningless here
 
                 dst0 = __MM_LERP_PS(t4, src01, src02);
                 dst1 = __MM_LERP_PS(t4, src11, src12);
@@ -1462,8 +1461,8 @@ namespace Ogre {
                 // 3 floating-point values
                 src01 = _mm_load_ss(pSrc1 + 2);
                 src02 = _mm_load_ss(pSrc2 + 2);
-                src01 = _mm_loadh_pi(src01, (__m64*)(pSrc1 + 0));
-                src02 = _mm_loadh_pi(src02, (__m64*)(pSrc2 + 0));
+                src01 = _mm_loadh_pi(src01, (const __m64*)(pSrc1 + 0));
+                src02 = _mm_loadh_pi(src02, (const __m64*)(pSrc2 + 0));
 
                 dst0 = __MM_LERP_PS(t4, src01, src02);
 
@@ -1471,59 +1470,59 @@ namespace Ogre {
                 _mm_store_ss(pDst + 2, dst0);
                 break;
             }
-			
+            
         }
-		
-		if (morphNormals)
-		{
-			
-			// Now we need to do and unaligned normalise on the normals data we just
-			// lerped; because normals are 3 elements each they're always unaligned
-			float *pNorm = pStartDst;
-			
-			// Offset past first position
-			pNorm += 3;
-			
-			// We'll do one normal each iteration, but still use SSE
-			for (size_t n = 0; n < numVertices; ++n)
-			{
-				// normalise function
-				__m128 norm;
-				
-				// load 3 floating-point normal values
-				// This loads into [0] and clears the rest
+        
+        if (morphNormals)
+        {
+            
+            // Now we need to do and unaligned normalise on the normals data we just
+            // lerped; because normals are 3 elements each they're always unaligned
+            float *pNorm = pStartDst;
+            
+            // Offset past first position
+            pNorm += 3;
+            
+            // We'll do one normal each iteration, but still use SSE
+            for (size_t n = 0; n < numVertices; ++n)
+            {
+                // normalise function
+                __m128 norm;
+                
+                // load 3 floating-point normal values
+                // This loads into [0] and clears the rest
                 norm = _mm_load_ss(pNorm + 2);
-				// This loads into [2,3]. [1] is unused
+                // This loads into [2,3]. [1] is unused
                 norm = _mm_loadh_pi(norm, (__m64*)(pNorm + 0));
-				
-				// Fill a 4-vec with vector length
-				// square
-				__m128 tmp = _mm_mul_ps(norm, norm);
-				// Add - for this we want this effect:
-				// orig   3 | 2 | 1 | 0
-				// add1   0 | 0 | 0 | 2
-				// add2   2 | 3 | 0 | 3
-				// This way elements 0, 2 and 3 have the sum of all entries (except 1 which is unused)
-				
-				tmp = _mm_add_ps(tmp, _mm_shuffle_ps(tmp, tmp, _MM_SHUFFLE(0,0,0,2)));
-				// Add final combination & sqrt 
-				// bottom 3 elements of l will have length, we don't care about 4
-				tmp = _mm_add_ps(tmp, _mm_shuffle_ps(tmp, tmp, _MM_SHUFFLE(2,3,0,3)));
-				// Then divide to normalise
-				norm = _mm_div_ps(norm, _mm_sqrt_ps(tmp));
-				
-				// Store back in the same place
-				_mm_storeh_pi((__m64*)(pNorm + 0), norm);
+                
+                // Fill a 4-vec with vector length
+                // square
+                __m128 tmp = _mm_mul_ps(norm, norm);
+                // Add - for this we want this effect:
+                // orig   3 | 2 | 1 | 0
+                // add1   0 | 0 | 0 | 2
+                // add2   2 | 3 | 0 | 3
+                // This way elements 0, 2 and 3 have the sum of all entries (except 1 which is unused)
+                
+                tmp = _mm_add_ps(tmp, _mm_shuffle_ps(tmp, tmp, _MM_SHUFFLE(0,0,0,2)));
+                // Add final combination & sqrt 
+                // bottom 3 elements of l will have length, we don't care about 4
+                tmp = _mm_add_ps(tmp, _mm_shuffle_ps(tmp, tmp, _MM_SHUFFLE(2,3,0,3)));
+                // Then divide to normalise
+                norm = _mm_div_ps(norm, _mm_sqrt_ps(tmp));
+                
+                // Store back in the same place
+                _mm_storeh_pi((__m64*)(pNorm + 0), norm);
                 _mm_store_ss(pNorm + 2, norm);
-				
-				// Skip to next vertex (3x normal components, 3x position components)
-				pNorm += 6;
+                
+                // Skip to next vertex (3x normal components, 3x position components)
+                pNorm += 6;
 
-				
-			}
-			
+                
+            }
+            
 
-		}
+        }
     }
     //---------------------------------------------------------------------
     void OptimisedUtilSSE::concatenateAffineMatrices(
@@ -1595,7 +1594,7 @@ namespace Ogre {
         assert(_isAlignedForSSE(faceNormals));
 
 // Load Vector3 as: (x, 0, y, z)
-#define __LOAD_VECTOR3(p)   _mm_loadh_pi(_mm_load_ss(p), (__m64*)((p)+1))
+#define __LOAD_VECTOR3(p)   _mm_loadh_pi(_mm_load_ss(p), (const __m64*)((p)+1))
 
         // Mask used to changes sign of single precision floating point values.
         OGRE_SIMD_ALIGNED_DECL(static const uint32, msSignMask[4]) =
@@ -1796,8 +1795,13 @@ namespace Ogre {
             bitmask = _mm_movemask_ps(_mm_cmpnle_ps(dp, zero));
 
             // Convert 4-bits mask to 4 bytes, and store results.
+            /*
             *reinterpret_cast<uint32*>(lightFacings) =
                 *reinterpret_cast<const uint32*>(msMaskMapping[bitmask]);
+                */
+            memcpy(lightFacings, msMaskMapping[bitmask], sizeof(uint32));
+            
+            
             lightFacings += 4;
         }
 
@@ -1949,7 +1953,7 @@ namespace Ogre {
             case 2:
                 // 6 floating-point values
                 s0 = SrcAccessor::load(pSrcPos + 0);
-                s1 = _mm_loadl_pi(dir1, (__m64*)(pSrcPos + 4)); // dir1 is meaningless here
+                s1 = _mm_loadl_pi(dir1, (const __m64*)(pSrcPos + 4)); // dir1 is meaningless here
 
                 // The extrusion direction is inverted, use subtract instruction here
                 d0 = _mm_sub_ps(s0, dir0);                      // X0 Y0 Z0 X1
@@ -1961,7 +1965,7 @@ namespace Ogre {
 
             case 1:
                 // 3 floating-point values
-                s0 = _mm_loadl_pi(dir0, (__m64*)(pSrcPos + 0)); // dir0 is meaningless here
+                s0 = _mm_loadl_pi(dir0, (const __m64*)(pSrcPos + 0)); // dir0 is meaningless here
                 s1 = _mm_load_ss(pSrcPos + 2);
 
                 // The extrusion direction is inverted, use subtract instruction here
@@ -2043,7 +2047,7 @@ namespace Ogre {
             for (size_t j = 0; j  < numVertices; ++j)
             {
                 // Load source position
-                __m128 src = _mm_loadh_pi(_mm_load_ss(pSrcPos + 0), (__m64*)(pSrcPos + 1)); // x 0 y z
+                __m128 src = _mm_loadh_pi(_mm_load_ss(pSrcPos + 0), (const __m64*)(pSrcPos + 1)); // x 0 y z
                 pSrcPos += 3;
 
                 // Calculate unnormalised extrusion direction

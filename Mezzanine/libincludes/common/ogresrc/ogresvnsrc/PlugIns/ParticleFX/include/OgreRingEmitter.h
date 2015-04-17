@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,7 @@ namespace Ogre {
     class _OgreParticleFXExport RingEmitter : public AreaEmitter
     {
     public:
-        // See AreaEmitter
+        /// @see AreaEmitter
         /** Command object for inner size (see ParamCommand).*/
         class CmdInnerX : public ParamCommand
         {
@@ -65,11 +65,11 @@ namespace Ogre {
 
         RingEmitter(ParticleSystem* psys);
 
-        /** See ParticleEmitter. */
+        /// @see ParticleEmitter
         void _initParticle(Particle* pParticle);
 
         /** Sets the size of the clear space inside the area from where NO particles are emitted.
-        @param x,y,z
+        @param x, y
             Parametric values describing the proportion of the shape which is hollow in each direction.
             E.g. 0 is solid, 0.5 is half-hollow etc
         */
@@ -93,7 +93,7 @@ namespace Ogre {
         Real getInnerSizeY(void) const;
 
     protected:
-        // See ParticleEmitter
+        /// @see ParticleEmitter
         static CmdInnerX msCmdInnerX;
         static CmdInnerY msCmdInnerY;
 

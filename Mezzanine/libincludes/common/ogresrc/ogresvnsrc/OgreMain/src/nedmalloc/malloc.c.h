@@ -497,7 +497,9 @@ MAX_RELEASE_CHECK_RATE   default: 4095 unless not HAVE_MMAP
 #endif  /* WIN32 */
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
+#if (_WIN32_WINNT < 0x403)
 #define _WIN32_WINNT 0x403
+#endif
 #include <windows.h>
 #define HAVE_MMAP 1
 #define HAVE_MORECORE 0
@@ -692,6 +694,9 @@ MAX_RELEASE_CHECK_RATE   default: 4095 unless not HAVE_MMAP
 
 #ifdef HAVE_USR_INCLUDE_MALLOC_H
 #include "/usr/include/malloc.h"
+#elif defined(__ANDROID__) || defined(ANDROID)
+#include <malloc.h>
+#define STRUCT_MALLINFO_DECLARED 1
 #else /* HAVE_USR_INCLUDE_MALLOC_H */
 #ifndef STRUCT_MALLINFO_DECLARED
 #define STRUCT_MALLINFO_DECLARED 1
@@ -1358,7 +1363,7 @@ LONG __cdecl _InterlockedExchange(LONG volatile *Target, LONG Value);
 
 /* Declarations for bit scanning on win32 */
 #if defined(_MSC_VER) && _MSC_VER>=1300
-#ifndef BitScanForward	/* Try to avoid pulling in WinNT.h */
+#ifndef BitScanForward  /* Try to avoid pulling in WinNT.h */
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
@@ -1783,7 +1788,7 @@ static FORCEINLINE int win32_acquire_lock (MLOCK_T *sl) {
     else {
       if (!interlockedexchange(&sl->l, 1)) {
         assert(!sl->threadid);
-		sl->c=CURRENT_THREAD;
+        sl->c=CURRENT_THREAD;
         sl->threadid = CURRENT_THREAD;
         sl->c = 1;
         return 0;
@@ -1841,7 +1846,7 @@ static MLOCK_T malloc_global_mutex = PTHREAD_MUTEX_INITIALIZER;
 #ifdef linux
 #if !defined (PTHREAD_MUTEX_RECURSIVE) && defined (PTHREAD_MUTEX_RECURSIVE_NP)
 extern int pthread_mutexattr_setkind_np __P ((pthread_mutexattr_t *__attr,
-					   int __kind));
+                       int __kind));
 #define PTHREAD_MUTEX_RECURSIVE PTHREAD_MUTEX_RECURSIVE_NP
 #define pthread_mutexattr_settype(x,y) pthread_mutexattr_setkind_np(x,y)
 #endif

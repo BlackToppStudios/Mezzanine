@@ -49,6 +49,7 @@
 
 #include <OgreTexture.h>
 #include <OgreMaterial.h>
+#include <OgreTechnique.h>
 #include <OgrePass.h>
 #include <OgreGpuProgram.h>
 #include <OgreMaterialManager.h>

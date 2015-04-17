@@ -46,7 +46,8 @@
 namespace Ogre
 {
     class Material;
-    class MaterialPtr;
+    template<typename T> class SharedPtr;
+    typedef SharedPtr<Material> MaterialPtr;
 }//Ogre
 
 namespace Mezzanine

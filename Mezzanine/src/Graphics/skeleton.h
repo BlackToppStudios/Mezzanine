@@ -46,7 +46,8 @@ namespace Ogre
 {
     class Bone;
     class Skeleton;
-    class SkeletonPtr;
+    template<typename T> class SharedPtr;
+    typedef SharedPtr<Skeleton> SkeletonPtr;
 }
 
 namespace Mezzanine

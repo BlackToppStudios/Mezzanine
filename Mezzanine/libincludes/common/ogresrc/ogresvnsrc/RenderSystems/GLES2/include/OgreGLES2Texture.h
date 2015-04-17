@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,9 +35,10 @@ THE SOFTWARE.
 #include "OgreRenderTexture.h"
 #include "OgreTexture.h"
 #include "OgreHardwarePixelBuffer.h"
+#include "OgreGLES2ManagedResource.h"
 
 namespace Ogre {
-    class _OgreGLES2Export GLES2Texture : public Texture
+    class _OgreGLES2Export GLES2Texture : public Texture MANAGED_RESOURCE
     {
         public:
             // Constructor
@@ -58,6 +59,8 @@ namespace Ogre {
             {
                 return mTextureID;
             }
+            
+            void getCustomAttribute(const String& name, void* pData);
 
         protected:
             /// @copydoc Texture::createInternalResourcesImpl
@@ -68,7 +71,7 @@ namespace Ogre {
             void unprepareImpl(void);
             /// @copydoc Resource::loadImpl
             void loadImpl(void);
-            /// @copydoc Resource::freeInternalResourcesImpl
+            /// @copydoc Texture::freeInternalResourcesImpl
             void freeInternalResourcesImpl(void);
 
             /** Internal method, create GLHardwarePixelBuffers for every face and
@@ -87,6 +90,16 @@ namespace Ogre {
              */
             LoadedImages mLoadedImages;
 
+            /// Create gl texture
+            void _createGLTexResource();
+        
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_EMSCRIPTEN
+            /** See AndroidResource. */
+            virtual void notifyOnContextLost();
+        
+            /** See AndroidResource. */
+            virtual void notifyOnContextReset();
+#endif
 
         private:
             GLuint mTextureID;
@@ -96,97 +109,6 @@ namespace Ogre {
             typedef vector<HardwarePixelBufferSharedPtr>::type SurfaceList;
             SurfaceList mSurfaceList;
 
-    };
-
-    /** Specialisation of SharedPtr to allow SharedPtr to be assigned to GLES2TexturePtr
-    @note Has to be a subclass since we need operator=.
-    We could templatise this instead of repeating per Resource subclass,
-    except to do so requires a form VC6 does not support i.e.
-    ResourceSubclassPtr<T> : public SharedPtr<T>
-    */
-    class _OgreGLES2Export GLES2TexturePtr : public SharedPtr<GLES2Texture>
-    {
-        public:
-            GLES2TexturePtr() : SharedPtr<GLES2Texture>() {}
-            explicit GLES2TexturePtr(GLES2Texture* rep) : SharedPtr<GLES2Texture>(rep) {}
-            GLES2TexturePtr(const GLES2TexturePtr& r) : SharedPtr<GLES2Texture>(r) {}
-
-            GLES2TexturePtr(const ResourcePtr& r) : SharedPtr<GLES2Texture>()
-            {
-                // lock & copy other mutex pointer
-                OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
-                {
-                    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-                    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-                    pRep = static_cast<GLES2Texture*>(r.getPointer());
-                    pUseCount = r.useCountPointer();
-                    if (pUseCount)
-                    {
-                        ++(*pUseCount);
-                    }
-                }
-            }
-
-            GLES2TexturePtr(const TexturePtr& r) : SharedPtr<GLES2Texture>()
-            {
-                *this = r;
-            }
-
-            /// Operator used to convert a ResourcePtr to a GLESTexturePtr
-            GLES2TexturePtr& operator=(const ResourcePtr& r)
-            {
-                if (pRep == static_cast<GLES2Texture*>(r.getPointer()))
-                {
-                    return *this;
-                }
-                release();
-                // lock & copy other mutex pointer
-                OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
-                {
-                    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-                    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-                    pRep = static_cast<GLES2Texture*>(r.getPointer());
-                    pUseCount = r.useCountPointer();
-                    if (pUseCount)
-                    {
-                        ++(*pUseCount);
-                    }
-                }
-                else
-                {
-                    // RHS must be a null pointer
-                    assert(r.isNull() && "RHS must be null if it has no mutex!");
-                    setNull();
-                }
-                return *this;
-            }
-
-            /// Operator used to convert a TexturePtr to a GLESTexturePtr
-            GLES2TexturePtr& operator=(const TexturePtr& r)
-            {
-                if (pRep == static_cast<GLES2Texture*>(r.getPointer()))
-                    return *this;
-                release();
-                // lock & copy other mutex pointer
-                OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
-                {
-                    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-                    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-                    pRep = static_cast<GLES2Texture*>(r.getPointer());
-                    pUseCount = r.useCountPointer();
-                    if (pUseCount)
-                    {
-                        ++(*pUseCount);
-                    }
-                }
-                else
-                {
-                    // RHS must be a null pointer
-                    assert(r.isNull() && "RHS must be null if it has no mutex!");
-                    setNull();
-                }
-                return *this;
-            }
     };
 }
 

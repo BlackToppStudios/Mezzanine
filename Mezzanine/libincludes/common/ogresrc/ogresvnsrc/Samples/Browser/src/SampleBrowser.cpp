@@ -4,7 +4,7 @@
  (Object-oriented Graphics Rendering Engine)
  For the latest info, see http://www.ogre3d.org/
  
- Copyright (c) 2000-2013 Torus Knot Software Ltd
+ Copyright (c) 2000-2014 Torus Knot Software Ltd
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,10 @@
  */
 #include "OgrePlatform.h"
 
-#include "SampleBrowser.h"
+// Sadly we needed to add this #if to solve a NACL compiler bug...
+#if (OGRE_PLATFORM == OGRE_PLATFORM_NACL) 
+#include "ppapi/utility/completion_callback_factory.h"
+#endif
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -39,58 +42,90 @@
 #include "SampleBrowser_iOS.h"
 #elif OGRE_PLATFORM == OGRE_PLATFORM_NACL
 #include "SampleBrowser_NaCl.h"
+#elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#include "SampleBrowser_Android.h"
+
+SampleBrowser* OgreAndroidBridge::mBrowser = NULL;
+AndroidInputInjector* OgreAndroidBridge::mInputInjector = NULL;
+AndroidMultiTouch* OgreAndroidBridge::mTouch = NULL;
+AndroidKeyboard* OgreAndroidBridge::mKeyboard = NULL;
+Ogre::RenderWindow* OgreAndroidBridge::mRenderWnd = NULL;
+Ogre::Root* OgreAndroidBridge::mRoot = NULL;
+bool OgreAndroidBridge::mInit = false;
+
+#   ifdef OGRE_STATIC_LIB
+StaticPluginLoader* OgreAndroidBridge::mStaticPluginLoader = NULL;
+#   endif
+
 #endif
+
+#include "SampleBrowser.h"
+#include <iostream>
 
 #if OGRE_PLATFORM != OGRE_PLATFORM_NACL
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT)
+INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT) {
+    int argc = __argc;
+    char** argv = __argv;
+#elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+void android_main(struct android_app* state) {
 #else
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) {
 #endif
-{
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	int retVal = UIApplicationMain(argc, argv, @"UIApplication", @"AppDelegate");
-	[pool release];
-	return retVal;
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    int retVal = UIApplicationMain(argc, argv, @"UIApplication", @"AppDelegate");
+    [pool release];
+    return retVal;
 #elif (OGRE_PLATFORM == OGRE_PLATFORM_APPLE) && __LP64__
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
     mAppDelegate = [[AppDelegate alloc] init];
     [[NSApplication sharedApplication] setDelegate:mAppDelegate];
-	int retVal = NSApplicationMain(argc, (const char **) argv);
+    int retVal = NSApplicationMain(argc, (const char **) argv);
 
-	[pool release];
+    [pool release];
 
-	return retVal;
+    return retVal;
+#elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    // Make sure glue isn't stripped.
+    app_dummy();
+    
+    OgreAndroidBridge::init(state);
+    OgreAndroidBridge::go(state);
 #else
 
-	try
-	{
+    try
+    {
         bool nograb = false;
-#if OGRE_PLATFORM != OGRE_PLATFORM_WIN32
         if (argc >= 2 && Ogre::String(argv[1]) == "nograb")
             nograb = true;
-#else
-        // somewhat hacky, but much simpler than other solutions
-        if (Ogre::String(cmdLine).find("nograb") != Ogre::String::npos)
-            nograb = true;
-#endif
-		OgreBites::SampleBrowser brows (nograb);
-		brows.go();
-	}
-	catch (Ogre::Exception& e)
-	{
-#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-		MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred!", MB_ICONERROR | MB_TASKMODAL);
-#else
-		std::cerr << "An exception has occurred: " << e.getFullDescription().c_str() << std::endl;
-#endif
-	}
 
+        int startUpSampleIdx = -1;
+        if (argc >= 3)
+        {
+            startUpSampleIdx = Ogre::StringConverter::parseInt(Ogre::String(argv[2]), -1);
+        }
+        else if (argc >= 2)
+        {
+            // first parameter can be either nograb or index. in the former case, we'll just
+            // get -1, which is fine.
+            startUpSampleIdx = Ogre::StringConverter::parseInt(Ogre::String(argv[1]), -1);
+        }
+        OgreBites::SampleBrowser brows (nograb, startUpSampleIdx);
+        brows.go();
+    }
+    catch (Ogre::Exception& e)
+    {
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+        MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occurred!", MB_ICONERROR | MB_TASKMODAL);
+#else
+        std::cerr << "An exception has occurred: " << e.getFullDescription().c_str() << std::endl;
 #endif
-	return 0;
+    }
+    return 0;
+#endif
 }
 
 #endif    

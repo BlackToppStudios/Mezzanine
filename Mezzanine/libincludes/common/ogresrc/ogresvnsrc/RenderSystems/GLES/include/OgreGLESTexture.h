@@ -5,7 +5,7 @@ This source file is part of OGRE
 For the latest info, see http://www.ogre3d.org/
 
 Copyright (c) 2008 Renato Araujo Oliveira Filho <renatox@gmail.com>
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,9 +36,10 @@ THE SOFTWARE.
 #include "OgreRenderTexture.h"
 #include "OgreTexture.h"
 #include "OgreHardwarePixelBuffer.h"
+#include "OgreGLESManagedResource.h"
 
 namespace Ogre {
-    class _OgreGLESExport GLESTexture : public Texture
+    class _OgreGLESExport GLESTexture : public Texture MANAGED_RESOURCE
     {
         public:
             // Constructor
@@ -60,6 +61,8 @@ namespace Ogre {
                 return mTextureID;
             }
             
+            void getCustomAttribute(const String& name, void* pData);
+
         protected:
             /// @copydoc Texture::createInternalResourcesImpl
             void createInternalResourcesImpl(void);
@@ -69,7 +72,7 @@ namespace Ogre {
             void unprepareImpl(void);
             /// @copydoc Resource::loadImpl
             void loadImpl(void);
-            /// @copydoc Resource::freeInternalResourcesImpl
+            /// @copydoc Texture::freeInternalResourcesImpl
             void freeInternalResourcesImpl(void);
             
             /** Internal method, create GLHardwarePixelBuffers for every face and
@@ -78,7 +81,7 @@ namespace Ogre {
              actually allocate the buffer
              */
             void _createSurfaceList();
-            
+        
             /// Used to hold images between calls to prepare and load.
             typedef SharedPtr<std::vector<Image> > LoadedImages;
             
@@ -88,6 +91,17 @@ namespace Ogre {
              */
             LoadedImages mLoadedImages;
 
+            /// Create gl texture
+            void _createGLTexResource();
+        
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+            /** See AndroidResource. */
+            virtual void notifyOnContextLost();
+        
+            /** See AndroidResource. */
+            virtual void notifyOnContextReset();
+#endif
+
         private:
             GLuint mTextureID;
             GLESSupport& mGLSupport;
@@ -95,99 +109,8 @@ namespace Ogre {
             /// Vector of pointers to subsurfaces
             typedef std::vector<HardwarePixelBufferSharedPtr> SurfaceList;
             SurfaceList mSurfaceList;
-
     };
 
-    /** Specialisation of SharedPtr to allow SharedPtr to be assigned to GLESTexturePtr
-    @note Has to be a subclass since we need operator=.
-    We could templatise this instead of repeating per Resource subclass,
-    except to do so requires a form VC6 does not support i.e.
-    ResourceSubclassPtr<T> : public SharedPtr<T>
-    */
-    class _OgreGLESExport GLESTexturePtr : public SharedPtr<GLESTexture>
-    {
-        public:
-            GLESTexturePtr() : SharedPtr<GLESTexture>() {}
-            explicit GLESTexturePtr(GLESTexture* rep) : SharedPtr<GLESTexture>(rep) {}
-            GLESTexturePtr(const GLESTexturePtr& r) : SharedPtr<GLESTexture>(r) {}
-
-            GLESTexturePtr(const ResourcePtr& r) : SharedPtr<GLESTexture>()
-            {
-                // lock & copy other mutex pointer
-                OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
-                {
-                    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-                    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-                    pRep = static_cast<GLESTexture*>(r.getPointer());
-                    pUseCount = r.useCountPointer();
-                    if (pUseCount)
-                    {
-                        ++(*pUseCount);
-                    }
-                }
-            }
-
-            GLESTexturePtr(const TexturePtr& r) : SharedPtr<GLESTexture>()
-            {
-                *this = r;
-            }
-
-            /// Operator used to convert a ResourcePtr to a GLESTexturePtr
-            GLESTexturePtr& operator=(const ResourcePtr& r)
-            {
-                if (pRep == static_cast<GLESTexture*>(r.getPointer()))
-                {
-                    return *this;
-                }
-                release();
-                // lock & copy other mutex pointer
-                OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
-                {
-                    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-                    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-                    pRep = static_cast<GLESTexture*>(r.getPointer());
-                    pUseCount = r.useCountPointer();
-                    if (pUseCount)
-                    {
-                        ++(*pUseCount);
-                    }
-                }
-                else
-                {
-                    // RHS must be a null pointer
-                    assert(r.isNull() && "RHS must be null if it has no mutex!");
-                    setNull();
-                }
-                return *this;
-            }
-
-            /// Operator used to convert a TexturePtr to a GLESTexturePtr
-            GLESTexturePtr& operator=(const TexturePtr& r)
-            {
-                if (pRep == static_cast<GLESTexture*>(r.getPointer()))
-                    return *this;
-                release();
-                // lock & copy other mutex pointer
-                OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
-                {
-                    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-                    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-                    pRep = static_cast<GLESTexture*>(r.getPointer());
-                    pUseCount = r.useCountPointer();
-                    if (pUseCount)
-                    {
-                        ++(*pUseCount);
-                    }
-                }
-                else
-                {
-                    // RHS must be a null pointer
-                    assert(r.isNull() && "RHS must be null if it has no mutex!");
-                    setNull();
-                }
-                return *this;
-            }
-    };
 }
 
 #endif

@@ -12,7 +12,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,8 +39,6 @@ THE SOFTWARE.
 
 #include "OgreOctreePrerequisites.h"
 #include "OgreSceneManager.h"
-#include "OgreRenderOperation.h"
-#include "OgreSphere.h"
 
 #include <list>
 #include <algorithm>
@@ -52,22 +50,12 @@ namespace Ogre
 {
 
 class OctreeNode;
-
 class OctreeCamera;
-class OctreeIntersectionSceneQuery;
-class OctreeRaySceneQuery;
-class OctreeSphereSceneQuery;
-class OctreeAxisAlignedBoxSceneQuery;
-class OctreePlaneBoundedVolumeListSceneQuery;
-
 
 typedef list< WireBoundingBox * >::type BoxList;
 typedef list< unsigned long >::type ColorList;
-//typedef list< SceneNode * >::type SceneNodeList;
-
 
 /** Specialized SceneManager that divides the geometry into an octree in order to facilitate spatial queries.
-@remarks
 */
 
 class _OgreOctreePluginExport OctreeSceneManager : public SceneManager
@@ -87,8 +75,8 @@ public:
     /** Standard destructor */
     ~OctreeSceneManager();
 
-	/// @copydoc SceneManager::getTypeName
-	const String& getTypeName(void) const;
+    /// @copydoc SceneManager::getTypeName
+    const String& getTypeName(void) const;
 
     /** Initializes the manager to the given box and depth.
     */
@@ -110,7 +98,7 @@ public:
     virtual void _updateSceneGraph( Camera * cam );
     /** Recurses through the octree determining which nodes are visible. */
     virtual void _findVisibleObjects ( Camera * cam, 
-		VisibleObjectsBoundsInfo* visibleBounds, bool onlyShadowCasters );
+        VisibleObjectsBoundsInfo* visibleBounds, bool onlyShadowCasters );
 
     /** Alerts each unculled object, notifying it that it will be drawn.
      * Useful for doing calculations only on nodes that will be drawn, prior
@@ -124,8 +112,8 @@ public:
     all subchildren are automatically added with no visibility tests.
     */
     void walkOctree( OctreeCamera *, RenderQueue *, Octree *, 
-		VisibleObjectsBoundsInfo* visibleBounds, bool foundvisible, 
-		bool onlyShadowCasters);
+        VisibleObjectsBoundsInfo* visibleBounds, bool foundvisible, 
+        bool onlyShadowCasters);
 
     /** Checks the given OctreeNode, and determines if it needs to be moved
     * to a different octant.
@@ -163,12 +151,6 @@ public:
         mShowBoxes = b;
     };
 
-    void setLooseOctree( bool b )
-    {
-        mLoose = b;
-    };
-
-
     /** Resizes the octree to the given size */
     void resize( const AxisAlignedBox &box );
 
@@ -192,16 +174,16 @@ public:
     /** Overridden from SceneManager */
     void clearScene(void);
 
-    AxisAlignedBoxSceneQuery* createAABBQuery(const AxisAlignedBox& box, unsigned long mask);
-    SphereSceneQuery* createSphereQuery(const Sphere& sphere, unsigned long mask);
-    PlaneBoundedVolumeListSceneQuery* createPlaneBoundedVolumeQuery(const PlaneBoundedVolumeList& volumes, unsigned long mask);
-    RaySceneQuery* createRayQuery(const Ray& ray, unsigned long mask);
-    IntersectionSceneQuery* createIntersectionQuery(unsigned long mask);
+    AxisAlignedBoxSceneQuery* createAABBQuery(const AxisAlignedBox& box, uint32 mask);
+    SphereSceneQuery* createSphereQuery(const Sphere& sphere, uint32 mask);
+    PlaneBoundedVolumeListSceneQuery* createPlaneBoundedVolumeQuery(const PlaneBoundedVolumeList& volumes, uint32 mask);
+    RaySceneQuery* createRayQuery(const Ray& ray, uint32 mask);
+    IntersectionSceneQuery* createIntersectionQuery(uint32 mask);
 
 protected:
 
 
-	Octree::NodeList mVisible;
+    Octree::NodeList mVisible;
 
     /// The root octree
     Octree *mOctree;
@@ -220,9 +202,6 @@ protected:
     /// Boxes visibility flag
     bool mShowBoxes;
 
-
-    bool mLoose;
-
     Real mCorners[ 24 ];
     static unsigned long mColors[ 8 ];
     static unsigned short mIndexes[ 24 ];
@@ -235,14 +214,14 @@ protected:
 class OctreeSceneManagerFactory : public SceneManagerFactory
 {
 protected:
-	void initMetaData(void) const;
+    void initMetaData(void) const;
 public:
-	OctreeSceneManagerFactory() {}
-	~OctreeSceneManagerFactory() {}
-	/// Factory type name
-	static const String FACTORY_TYPE_NAME;
-	SceneManager* createInstance(const String& instanceName);
-	void destroyInstance(SceneManager* instance);
+    OctreeSceneManagerFactory() {}
+    ~OctreeSceneManagerFactory() {}
+    /// Factory type name
+    static const String FACTORY_TYPE_NAME;
+    SceneManager* createInstance(const String& instanceName);
+    void destroyInstance(SceneManager* instance);
 };
 
 

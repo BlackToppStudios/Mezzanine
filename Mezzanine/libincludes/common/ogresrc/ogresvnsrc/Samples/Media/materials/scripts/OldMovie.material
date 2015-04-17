@@ -2,7 +2,14 @@ fragment_program Ogre/Compositor/OldMovie_Cg_FP cg
 {
 	source OldMovieFP.cg
 	entry_point OldMovie_ps
-	profiles ps_4_0 ps_2_0 arbfp1
+	profiles ps_2_0 arbfp1
+}
+
+fragment_program Ogre/Compositor/OldMovie_HLSL_FP hlsl
+{
+	source OldMovie.hlsl
+	entry_point OldMovie_ps
+	target ps_4_0 ps_4_0_level_9_1 ps_4_0_level_9_3
 }
 
 fragment_program Ogre/Compositor/OldMovie_GLSLES_FP glsles
@@ -17,9 +24,24 @@ fragment_program Ogre/Compositor/OldMovie_GLSLES_FP glsles
    	}
 }
 
+fragment_program Ogre/Compositor/OldMovie_GLSL_FP glsl
+{
+	source OldMovieFP.glsl
+	syntax glsl150
+   	default_params
+   	{
+   		param_named RT int 0
+   		param_named SplotchesTx int 1
+	   	param_named Texture2 int 2
+	   	param_named SepiaTx int 3
+   	}
+}
+
 fragment_program Ogre/Compositor/OldMovieFP unified
 {
+	delegate Ogre/Compositor/OldMovie_GLSL_FP
 	delegate Ogre/Compositor/OldMovie_GLSLES_FP
+	delegate Ogre/Compositor/OldMovie_HLSL_FP
 	delegate Ogre/Compositor/OldMovie_Cg_FP
 }
 
@@ -33,6 +55,7 @@ material Ogre/Compositor/OldMovie
 			cull_hardware none
 			cull_software none
 			depth_func always_pass
+            polygon_mode_overrideable false
 
 			vertex_program_ref Ogre/Compositor/StdQuad_Tex2a_vp
 			{

@@ -5,7 +5,7 @@ This source file is part of OGRE
 For the latest info, see http://www.ogre3d.org/
 
 Copyright (c) 2008 Renato Araujo Oliveira Filho <renatox@gmail.com>
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -92,7 +92,7 @@ namespace Ogre {
         }
     }
 
-    PixelBox GLESHardwarePixelBuffer::lockImpl(const Image::Box lockBox,  LockOptions options)
+    PixelBox GLESHardwarePixelBuffer::lockImpl(const Image::Box &lockBox,  LockOptions options)
     {
         allocateBuffer();
         if (options != HardwareBuffer::HBL_DISCARD &&
@@ -137,7 +137,12 @@ namespace Ogre {
             scaled = mBuffer.getSubVolume(dstBox);
             Image::scale(src, scaled, Image::FILTER_BILINEAR);
         }
+#if OGRE_PLATFORM != OGRE_PLATFORM_APPLE_IOS
+        else if ((src.format != mFormat) ||
+                 ((GLESPixelUtil::getGLOriginFormat(src.format) == 0) && (src.format != PF_R8G8B8)))
+#else
         else if (GLESPixelUtil::getGLOriginFormat(src.format) == 0)
+#endif
         {
             // Extents match, but format is not accepted as valid source format for GL
             // do conversion in temporary buffer
@@ -234,7 +239,7 @@ namespace Ogre {
         mTarget(target), mTextureID(id), mFace(face), mLevel(level), mSoftwareMipmap(crappyCard)
     {
         GL_CHECK_ERROR;
-        glBindTexture(GL_TEXTURE_2D, mTextureID);
+        glBindTexture(mTarget, mTextureID);
         GL_CHECK_ERROR;
 
         // Get face identifier
@@ -305,6 +310,13 @@ namespace Ogre {
         }
     }
 
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    void GLESTextureBuffer::updateTextureId(GLuint textureID)
+    {
+        mTextureID = textureID;
+    }
+#endif
+    
     void GLESTextureBuffer::upload(const PixelBox &data, const Image::Box &dest)
     {
         glBindTexture(mTarget, mTextureID);
@@ -322,7 +334,7 @@ namespace Ogre {
             // for compressed formats
             if (dest.left == 0 && dest.top == 0)
             {
-                glCompressedTexImage2D(GL_TEXTURE_2D, mLevel,
+                glCompressedTexImage2D(mFaceTarget, mLevel,
                                        format,
                                        dest.getWidth(),
                                        dest.getHeight(),
@@ -333,7 +345,7 @@ namespace Ogre {
             }
             else
             {
-                glCompressedTexSubImage2D(GL_TEXTURE_2D, mLevel,
+                glCompressedTexSubImage2D(mFaceTarget, mLevel,
                                           dest.left, dest.top,
                                           dest.getWidth(), dest.getHeight(),
                                           format, data.getConsecutiveSize(),
@@ -425,9 +437,9 @@ namespace Ogre {
     
     void GLESTextureBuffer::copyFromFramebuffer(size_t zoffset)
     {
-        glBindTexture(GL_TEXTURE_2D, mTextureID);
+        glBindTexture(mFaceTarget, mTextureID);
         GL_CHECK_ERROR;
-        glCopyTexSubImage2D(GL_TEXTURE_2D, mLevel, 0, 0, 0, 0, mWidth, mHeight);
+        glCopyTexSubImage2D(mFaceTarget, mLevel, 0, 0, 0, 0, mWidth, mHeight);
         GL_CHECK_ERROR;
     }
 
@@ -457,12 +469,12 @@ namespace Ogre {
     // @author W.J. van der Laan
     void GLESTextureBuffer::blitFromTexture(GLESTextureBuffer *src, const Image::Box &srcBox, const Image::Box &dstBox)
     {
-		if(Root::getSingleton().getRenderSystem()->getCapabilities()->hasCapability(RSC_FBO) == false)
-		{
-			// the following code depends on FBO support, it crashes if FBO is not supported.
-			// TODO - write PBUFFER version of this function or a version that doesn't require FBO
-			return; // for now - do nothing.
-		}
+        if(Root::getSingleton().getRenderSystem()->getCapabilities()->hasCapability(RSC_FBO) == false)
+        {
+            // the following code depends on FBO support, it crashes if FBO is not supported.
+            // TODO - write PBUFFER version of this function or a version that doesn't require FBO
+            return; // for now - do nothing.
+        }
 
 //        std::cerr << "GLESTextureBuffer::blitFromTexture " <<
 //        src->mTextureID << ":" << srcBox.left << "," << srcBox.top << "," << srcBox.right << "," << srcBox.bottom << " " << 
@@ -600,6 +612,9 @@ namespace Ogre {
                 switch(mTarget)
                 {
                     case GL_TEXTURE_2D:
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+                    case GL_TEXTURE_CUBE_MAP_OES:
+#endif
                         glCopyTexSubImage2D(mFaceTarget, mLevel, 
                                             dstBox.left, dstBox.top, 
                                             0, 0, dstBox.getWidth(), dstBox.getHeight());
@@ -707,7 +722,7 @@ namespace Ogre {
         GL_CHECK_ERROR;
 
         // GL texture buffer
-        GLESTextureBuffer tex(StringUtil::BLANK, target, id, width, height, format, src.format,
+        GLESTextureBuffer tex(BLANKSTRING, target, id, width, height, format, src.format,
                               0, 0, (Usage)(TU_AUTOMIPMAP|HBU_STATIC_WRITE_ONLY), false, false, 0);
         
         // Upload data to 0,0,0 in temporary texture
@@ -757,7 +772,7 @@ namespace Ogre {
             GLenum glFormat = GLESPixelUtil::getGLOriginFormat(scaled.format);
             GLenum dataType = GLESPixelUtil::getGLOriginDataType(scaled.format);
 
-            glTexImage2D(GL_TEXTURE_2D,
+            glTexImage2D(mFaceTarget,
                          mip,
                          glFormat,
                          width, height,

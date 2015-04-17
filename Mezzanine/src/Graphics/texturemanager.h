@@ -47,7 +47,9 @@
 
 namespace Ogre
 {
-    class TexturePtr;
+    class Texture;
+    template<typename T> class SharedPtr;
+    typedef SharedPtr<Texture> TexturePtr;
     class TextureManager;
 }
 

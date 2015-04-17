@@ -5,7 +5,7 @@ This source file is part of OGRE
 For the latest info, see http://www.ogre3d.org
 
 Copyright (c) 2008 Renato Araujo Oliveira Filho <renatox@gmail.com>
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,13 +39,20 @@ THE SOFTWARE.
 #include "OgreGLESUtil.h"
 #include "OgreGLESPBRenderTexture.h"
 #include "OgreGLESFBORenderTexture.h"
+#include "OgreLogManager.h"
+#include "OgreViewport.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS
 #   include "OgreEAGLWindow.h"
+#elif OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+#   include "OgreAndroidEGLWindow.h"
+#   include "OgreAndroidEGLContext.h"
+#   include "OgreAndroidResourceManager.h"
+Ogre::AndroidResourceManager* Ogre::GLESRenderSystem::mResourceManager = NULL;
 #else
 #   include "OgreEGLWindow.h"
 
-#	ifndef GL_GLEXT_PROTOTYPES
+#   ifndef GL_GLEXT_PROTOTYPES
     // Function pointers for FBO extension
     PFNGLISRENDERBUFFEROESPROC glIsRenderbufferOES;
     PFNGLBINDRENDERBUFFEROESPROC glBindRenderbufferOES;
@@ -62,32 +69,28 @@ THE SOFTWARE.
     PFNGLFRAMEBUFFERTEXTURE2DOESPROC glFramebufferTexture2DOES;
     PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVOESPROC glGetFramebufferAttachmentParameterivOES;
     PFNGLGENERATEMIPMAPOESPROC glGenerateMipmapOES;
-	PFNGLBLENDEQUATIONOESPROC glBlendEquationOES;
-	PFNGLBLENDFUNCSEPARATEOESPROC glBlendFuncSeparateOES;
-	PFNGLBLENDEQUATIONSEPARATEOESPROC glBlendEquationSeparateOES;
+    PFNGLBLENDEQUATIONOESPROC glBlendEquationOES;
+    PFNGLBLENDFUNCSEPARATEOESPROC glBlendFuncSeparateOES;
+    PFNGLBLENDEQUATIONSEPARATEOESPROC glBlendEquationSeparateOES;
     PFNGLMAPBUFFEROESPROC glMapBufferOES;
     PFNGLUNMAPBUFFEROESPROC glUnmapBufferOES;
-#	endif
+#   endif
 
 #endif
 
 #include "OgreCamera.h"
 #include "OgreLight.h"
+#include "OgreGLESStateCacheManager.h"
 
 // Convenience macro from ARB_vertex_buffer_object spec
 #define VBO_BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-// Copy this definition from desktop GL.  Used for polygon modes.
-#define GL_FILL    0x1B02
-
 namespace Ogre {
     GLESRenderSystem::GLESRenderSystem()
-        : mDepthWrite(true),
-          mStencilMask(0xFFFFFFFF),
-          mGpuProgramManager(0),
+        : mGpuProgramManager(0),
           mHardwareBufferManager(0),
           mRTTManager(0),
-          mActiveTextureUnit(0)
+          mCurTexMipCount(0)
     {
             // Get function pointers on platforms that doesn't have prototypes
 #ifndef GL_GLEXT_PROTOTYPES
@@ -106,33 +109,35 @@ namespace Ogre {
             ::glFramebufferTexture2DOES = (PFNGLFRAMEBUFFERTEXTURE2DOESPROC)eglGetProcAddress("glFramebufferTexture2DOES");
             ::glGetFramebufferAttachmentParameterivOES = (PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVOESPROC)eglGetProcAddress("glGetFramebufferAttachmentParameterivOES");
             ::glGenerateMipmapOES = (PFNGLGENERATEMIPMAPOESPROC)eglGetProcAddress("glGenerateMipmapOES");
-			::glBlendEquationOES = (PFNGLBLENDEQUATIONOESPROC)eglGetProcAddress("glBlendEquationOES");
-			::glBlendFuncSeparateOES = (PFNGLBLENDFUNCSEPARATEOESPROC)eglGetProcAddress("glBlendFuncSeparateOES");
-			::glBlendEquationSeparateOES = (PFNGLBLENDEQUATIONSEPARATEOESPROC)eglGetProcAddress("glBlendEquationSeparateOES");
+            ::glBlendEquationOES = (PFNGLBLENDEQUATIONOESPROC)eglGetProcAddress("glBlendEquationOES");
+            ::glBlendFuncSeparateOES = (PFNGLBLENDFUNCSEPARATEOESPROC)eglGetProcAddress("glBlendFuncSeparateOES");
+            ::glBlendEquationSeparateOES = (PFNGLBLENDEQUATIONSEPARATEOESPROC)eglGetProcAddress("glBlendEquationSeparateOES");
             ::glMapBufferOES = (PFNGLMAPBUFFEROESPROC)eglGetProcAddress("glMapBufferOES");
             ::glUnmapBufferOES = (PFNGLUNMAPBUFFEROESPROC)eglGetProcAddress("glUnmapBufferOES");
 #endif
         GL_CHECK_ERROR;
-        size_t i;
+        LogManager::getSingleton().logMessage(getName() + " created.");
 
-		LogManager::getSingleton().logMessage(getName() + " created.");
-
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+        mResourceManager = OGRE_NEW AndroidResourceManager();
+#endif
+      
+        mStateCacheManager = new GLESStateCacheManager();
         mGLSupport = getGLSupport();
-
-        for (i = 0; i < MAX_LIGHTS; i++)
+        mGLSupport->setStateCacheManager(mStateCacheManager);
+        
+        for (size_t i = 0; i < MAX_LIGHTS; i++)
+        {
             mLights[i] = NULL;
+        }
 
         mWorldMatrix = Matrix4::IDENTITY;
         mViewMatrix = Matrix4::IDENTITY;
-
         mGLSupport->addConfig();
 
-        mColourWrite[0] = mColourWrite[1] = mColourWrite[2] = mColourWrite[3] = true;
-
-        for (i = 0; i < OGRE_MAX_TEXTURE_LAYERS; i++)
+        for (size_t i = 0; i < OGRE_MAX_TEXTURE_LAYERS; i++)
         {
-            // Dummy value
-            mTextureCoordIndex[i] = 99;
+            mTextureCoordIndex[i] = 99; // Dummy value
         }
 
         mTextureCount = 0;
@@ -143,14 +148,13 @@ namespace Ogre {
         mCurrentLights = 0;
         mMinFilter = FO_LINEAR;
         mMipFilter = FO_POINT;
-        mPolygonMode = GL_FILL;
     }
 
     GLESRenderSystem::~GLESRenderSystem()
     {
         shutdown();
 
-		// Destroy render windows
+        // Destroy render windows
         RenderTargetMap::iterator i;
         for (i = mRenderTargets.begin(); i != mRenderTargets.end(); ++i)
         {
@@ -159,11 +163,26 @@ namespace Ogre {
 
         mRenderTargets.clear();
         OGRE_DELETE mGLSupport;
+        OGRE_DELETE mStateCacheManager;
+        
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+        if (mResourceManager != NULL)
+        {
+            OGRE_DELETE mResourceManager;
+            mResourceManager = NULL;
+        }
+#endif
     }
 
     const String& GLESRenderSystem::getName(void) const
     {
         static String strName("OpenGL ES 1.x Rendering Subsystem");
+        return strName;
+    }
+
+    const String& GLESRenderSystem::getFriendlyName(void) const
+    {
+        static String strName("OpenGL ES 1.x");
         return strName;
     }
 
@@ -179,17 +198,17 @@ namespace Ogre {
 
     String GLESRenderSystem::validateConfigOptions(void)
     {
-		// XXX Return an error string if something is invalid
+        // XXX Return an error string if something is invalid
         return mGLSupport->validateConfig();
     }
 
     RenderWindow* GLESRenderSystem::_initialise(bool autoCreateWindow,
                                                 const String& windowTitle)
     {
-		mGLSupport->start();
+        mGLSupport->start();
 
         // Create the texture manager        
-		mTextureManager = OGRE_NEW GLESTextureManager(*mGLSupport); 
+        mTextureManager = OGRE_NEW GLESTextureManager(*mGLSupport); 
 
         RenderWindow *autoWindow = mGLSupport->createWindow(autoCreateWindow,
                                                             this, windowTitle);
@@ -205,7 +224,7 @@ namespace Ogre {
         rsc->setDriverVersion(mDriverVersion);
 
         const char* deviceName = (const char*)glGetString(GL_RENDERER);
-		const char* vendorName = (const char*)glGetString(GL_VENDOR);        
+        const char* vendorName = (const char*)glGetString(GL_VENDOR);        
         if (deviceName)
         {
             rsc->setDeviceName(deviceName);
@@ -213,15 +232,15 @@ namespace Ogre {
 
         rsc->setRenderSystemName(getName());
 
-		// Determine vendor
-		if (strstr(vendorName, "Imagination Technologies"))
-			rsc->setVendor(GPU_IMAGINATION_TECHNOLOGIES);
-		else if (strstr(vendorName, "Apple Computer, Inc."))
-			rsc->setVendor(GPU_APPLE);  // iOS Simulator
-		else if (strstr(vendorName, "NVIDIA"))
-			rsc->setVendor(GPU_NVIDIA);
-		else if (strstr(vendorName, "Nokia"))
-			rsc->setVendor(GPU_NOKIA);
+        // Determine vendor
+        if (strstr(vendorName, "Imagination Technologies"))
+            rsc->setVendor(GPU_IMAGINATION_TECHNOLOGIES);
+        else if (strstr(vendorName, "Apple Computer, Inc."))
+            rsc->setVendor(GPU_APPLE);  // iOS Simulator
+        else if (strstr(vendorName, "NVIDIA"))
+            rsc->setVendor(GPU_NVIDIA);
+        else if (strstr(vendorName, "Nokia"))
+            rsc->setVendor(GPU_NOKIA);
         else
             rsc->setVendor(GPU_UNKNOWN);
 
@@ -231,7 +250,7 @@ namespace Ogre {
         // Multitexturing support and set number of texture units
         GLint units;
         glGetIntegerv(GL_MAX_TEXTURE_UNITS, &units);
-        rsc->setNumTextureUnits(units);
+        rsc->setNumTextureUnits(std::min<ushort>(16, units));
 
         // Check for hardware stencil support and set bit depth
         GLint stencil;
@@ -249,21 +268,34 @@ namespace Ogre {
 
         // Vertex Buffer Objects are always supported by OpenGL ES
         rsc->setCapability(RSC_VBO);
+        if(mGLSupport->checkExtension("GL_OES_element_index_uint"))
+            rsc->setCapability(RSC_32BIT_INDEX);
 
         // OpenGL ES - Check for these extensions too
         // For 1.1, http://www.khronos.org/registry/gles/api/1.1/glext.h
 
         if (mGLSupport->checkExtension("GL_IMG_texture_compression_pvrtc") ||
-            mGLSupport->checkExtension("GL_AMD_compressed_3DC_texture") ||
-            mGLSupport->checkExtension("GL_AMD_compressed_ATC_texture") ||
+            mGLSupport->checkExtension("GL_EXT_texture_compression_dxt1") ||
+            mGLSupport->checkExtension("GL_EXT_texture_compression_s3tc") ||
             mGLSupport->checkExtension("GL_OES_compressed_ETC1_RGB8_texture") ||
+            mGLSupport->checkExtension("GL_AMD_compressed_ATC_texture") ||
             mGLSupport->checkExtension("GL_OES_compressed_paletted_texture"))
         {
-            // TODO: Add support for compression types other than pvrtc
             rsc->setCapability(RSC_TEXTURE_COMPRESSION);
-
-            if(mGLSupport->checkExtension("GL_IMG_texture_compression_pvrtc"))
+            
+            if(mGLSupport->checkExtension("GL_IMG_texture_compression_pvrtc") ||
+               mGLSupport->checkExtension("GL_IMG_texture_compression_pvrtc2"))
                 rsc->setCapability(RSC_TEXTURE_COMPRESSION_PVRTC);
+                
+            if(mGLSupport->checkExtension("GL_EXT_texture_compression_dxt1") && 
+               mGLSupport->checkExtension("GL_EXT_texture_compression_s3tc"))
+                rsc->setCapability(RSC_TEXTURE_COMPRESSION_DXT);
+
+            if(mGLSupport->checkExtension("GL_OES_compressed_ETC1_RGB8_texture"))
+                rsc->setCapability(RSC_TEXTURE_COMPRESSION_ETC1);
+                
+            if(mGLSupport->checkExtension("GL_AMD_compressed_ATC_texture"))
+                rsc->setCapability(RSC_TEXTURE_COMPRESSION_ATC);
         }
 
         if (mGLSupport->checkExtension("GL_EXT_texture_filter_anisotropic"))
@@ -293,6 +325,8 @@ namespace Ogre {
 
 //        if (mGLSupport->checkExtension("GL_IMG_user_clip_plane"))
             rsc->setCapability(RSC_USER_CLIP_PLANES);
+
+        rsc->setCapability(RSC_TEXTURE_1D);         
 
         if (mGLSupport->checkExtension("GL_OES_texture3D"))
             rsc->setCapability(RSC_TEXTURE_3D);
@@ -360,39 +394,39 @@ namespace Ogre {
         }
 
         // Check for framebuffer object extension
-		if(caps->hasCapability(RSC_FBO))
-		{
-			if(caps->hasCapability(RSC_HWRENDER_TO_TEXTURE))
-			{
-				// Create FBO manager
-				LogManager::getSingleton().logMessage("GL ES: Using GL_OES_framebuffer_object for rendering to textures (best)");
-				mRTTManager = new GLESFBOManager();
-				caps->setCapability(RSC_RTT_SEPARATE_DEPTHBUFFER);
-			}
-		}
-		else
-		{
-			// Check GLSupport for PBuffer support
-			if(caps->hasCapability(RSC_PBUFFER))
-			{
-				if(caps->hasCapability(RSC_HWRENDER_TO_TEXTURE))
-				{
-					// Use PBuffers
-					mRTTManager = new GLESPBRTTManager(mGLSupport, primary);
-					LogManager::getSingleton().logMessage("GL ES: Using PBuffers for rendering to textures");
-				}
-			}
+        if(caps->hasCapability(RSC_FBO))
+        {
+            if(caps->hasCapability(RSC_HWRENDER_TO_TEXTURE))
+            {
+                // Create FBO manager
+                LogManager::getSingleton().logMessage("GL ES: Using GL_OES_framebuffer_object for rendering to textures (best)");
+                mRTTManager = new GLESFBOManager();
+                caps->setCapability(RSC_RTT_SEPARATE_DEPTHBUFFER);
+            }
+        }
+        else
+        {
+            // Check GLSupport for PBuffer support
+            if(caps->hasCapability(RSC_PBUFFER))
+            {
+                if(caps->hasCapability(RSC_HWRENDER_TO_TEXTURE))
+                {
+                    // Use PBuffers
+                    mRTTManager = new GLESPBRTTManager(mGLSupport, primary);
+                    LogManager::getSingleton().logMessage("GL ES: Using PBuffers for rendering to textures");
+                }
+            }
             
-			// Downgrade number of simultaneous targets
-			caps->setNumMultiRenderTargets(1);
-		}
+            // Downgrade number of simultaneous targets
+            caps->setNumMultiRenderTargets(1);
+        }
         
         
-		Log* defaultLog = LogManager::getSingleton().getDefaultLog();
-		if (defaultLog)
-		{
-			caps->log(defaultLog);
-		}
+        Log* defaultLog = LogManager::getSingleton().getDefaultLog();
+        if (defaultLog)
+        {
+            caps->log(defaultLog);
+        }
 
         GL_CHECK_ERROR;
         mGLInitialised = true;
@@ -471,7 +505,7 @@ namespace Ogre {
                         "GLESRenderSystem::_createRenderWindow");
         }
 
-		// Log a message
+        // Log a message
         StringStream ss;
         ss << "GLESRenderSystem::_createRenderWindow \"" << name << "\", " <<
             width << "x" << height << " ";
@@ -492,7 +526,7 @@ namespace Ogre {
             LogManager::getSingleton().logMessage(ss.str());
         }
 
-		// Create the window
+        // Create the window
         RenderWindow* win = mGLSupport->newWindow(name, width, height, fullScreen, miscParams);
         attachRenderTarget((Ogre::RenderTarget&) *win);
 
@@ -510,11 +544,11 @@ namespace Ogre {
                     mDriverVersion.release = StringConverter::parseInt(tokens[2]);
             }
             mDriverVersion.build = 0;
-			// Initialise GL after the first window has been created
-			// TODO: fire this from emulation options, and don't duplicate Real and Current capabilities
+            // Initialise GL after the first window has been created
+            // TODO: fire this from emulation options, and don't duplicate Real and Current capabilities
             mRealCapabilities = createRenderSystemCapabilities();
 
-			// use real capabilities if custom capabilities are not available
+            // use real capabilities if custom capabilities are not available
             if (!mUseCustomCapabilities)
                 mCurrentCapabilities = mRealCapabilities;
 
@@ -522,76 +556,76 @@ namespace Ogre {
 
             initialiseFromRenderSystemCapabilities(mCurrentCapabilities, (RenderTarget *) win);
 
-			// Initialise the main context
+            // Initialise the main context
             _oneTimeContextInitialization();
             if (mCurrentContext)
                 mCurrentContext->setInitialized();
         }
 
         if( win->getDepthBufferPool() != DepthBuffer::POOL_NO_DEPTH )
-		{
-			//Unlike D3D9, OGL doesn't allow sharing the main depth buffer, so keep them separate.
-			//Only Copy does, but Copy means only one depth buffer...
-			GLESDepthBuffer *depthBuffer = OGRE_NEW GLESDepthBuffer( DepthBuffer::POOL_DEFAULT, this,
-															mCurrentContext, 0, 0,
-															win->getWidth(), win->getHeight(),
-															win->getFSAA(), 0, true );
+        {
+            //Unlike D3D9, OGL doesn't allow sharing the main depth buffer, so keep them separate.
+            //Only Copy does, but Copy means only one depth buffer...
+            GLESDepthBuffer *depthBuffer = OGRE_NEW GLESDepthBuffer( DepthBuffer::POOL_DEFAULT, this,
+                                                            mCurrentContext, 0, 0,
+                                                            win->getWidth(), win->getHeight(),
+                                                            win->getFSAA(), 0, true );
 
-			mDepthBufferPool[depthBuffer->getPoolId()].push_back( depthBuffer );
+            mDepthBufferPool[depthBuffer->getPoolId()].push_back( depthBuffer );
 
-			win->attachDepthBuffer( depthBuffer );
-		}
+            win->attachDepthBuffer( depthBuffer );
+        }
 
         return win;
     }
 
-	//---------------------------------------------------------------------
-	DepthBuffer* GLESRenderSystem::_createDepthBufferFor( RenderTarget *renderTarget )
-	{
-		GLESDepthBuffer *retVal = 0;
+    //---------------------------------------------------------------------
+    DepthBuffer* GLESRenderSystem::_createDepthBufferFor( RenderTarget *renderTarget )
+    {
+        GLESDepthBuffer *retVal = 0;
 
-		// Only FBO & pbuffer support different depth buffers, so everything
-		// else creates dummy (empty) containers
-		// retVal = mRTTManager->_createDepthBufferFor( renderTarget );
-		GLESFrameBufferObject *fbo = 0;
+        // Only FBO & pbuffer support different depth buffers, so everything
+        // else creates dummy (empty) containers
+        // retVal = mRTTManager->_createDepthBufferFor( renderTarget );
+        GLESFrameBufferObject *fbo = 0;
         renderTarget->getCustomAttribute("FBO", &fbo);
 
-		if( fbo )
-		{
-			// Presence of an FBO means the manager is an FBO Manager, that's why it's safe to downcast
-			// Find best depth & stencil format suited for the RT's format
-			GLuint depthFormat, stencilFormat;
-			static_cast<GLESFBOManager*>(mRTTManager)->getBestDepthStencil( fbo->getFormat(),
-																		&depthFormat, &stencilFormat );
+        if( fbo )
+        {
+            // Presence of an FBO means the manager is an FBO Manager, that's why it's safe to downcast
+            // Find best depth & stencil format suited for the RT's format
+            GLuint depthFormat, stencilFormat;
+            static_cast<GLESFBOManager*>(mRTTManager)->getBestDepthStencil( fbo->getFormat(),
+                                                                        &depthFormat, &stencilFormat );
 
-			GLESRenderBuffer *depthBuffer = OGRE_NEW GLESRenderBuffer( depthFormat, fbo->getWidth(),
-																fbo->getHeight(), fbo->getFSAA() );
+            GLESRenderBuffer *depthBuffer = OGRE_NEW GLESRenderBuffer( depthFormat, fbo->getWidth(),
+                                                                fbo->getHeight(), fbo->getFSAA() );
 
-			GLESRenderBuffer *stencilBuffer = depthBuffer;
-			if( 
+            GLESRenderBuffer *stencilBuffer = depthBuffer;
+            if( 
                // not supported on AMD emulation for now...
 #ifdef GL_DEPTH24_STENCIL8_OES
                depthFormat != GL_DEPTH24_STENCIL8_OES && 
 #endif
-               stencilBuffer )
-			{
-				stencilBuffer = OGRE_NEW GLESRenderBuffer( stencilFormat, fbo->getWidth(),
-													fbo->getHeight(), fbo->getFSAA() );
-			}
+               stencilFormat )
+            {
+                stencilBuffer = OGRE_NEW GLESRenderBuffer( stencilFormat, fbo->getWidth(),
+                                                    fbo->getHeight(), fbo->getFSAA() );
+            }
 
-			//No "custom-quality" multisample for now in GL
-			retVal = OGRE_NEW GLESDepthBuffer( 0, this, mCurrentContext, depthBuffer, stencilBuffer,
-										fbo->getWidth(), fbo->getHeight(), fbo->getFSAA(), 0, false );
-		}
+            //No "custom-quality" multisample for now in GL
+            retVal = OGRE_NEW GLESDepthBuffer( 0, this, mCurrentContext, depthBuffer, stencilBuffer,
+                                        fbo->getWidth(), fbo->getHeight(), fbo->getFSAA(), 0, false );
+        }
 
-		return retVal;
-	}
-	//---------------------------------------------------------------------
-	void GLESRenderSystem::_getDepthStencilFormatFor( GLenum internalColourFormat, GLenum *depthFormat,
-													GLenum *stencilFormat )
-	{
-		mRTTManager->getBestDepthStencil( internalColourFormat, depthFormat, stencilFormat );
-	}
+        return retVal;
+    }
+    //---------------------------------------------------------------------
+    void GLESRenderSystem::_getDepthStencilFormatFor( GLenum internalColourFormat, GLenum *depthFormat,
+                                                    GLenum *stencilFormat )
+    {
+        mRTTManager->getBestDepthStencil( internalColourFormat, depthFormat, stencilFormat );
+    }
 
     MultiRenderTarget* GLESRenderSystem::createMultiRenderTarget(const String & name)
     {
@@ -602,51 +636,14 @@ namespace Ogre {
 
     void GLESRenderSystem::destroyRenderWindow(RenderWindow* pWin)
     {
-		// Find it to remove from list
+        // Find it to remove from list
         RenderTargetMap::iterator i = mRenderTargets.begin();
 
         while (i != mRenderTargets.end())
         {
             if (i->second == pWin)
             {
-				GLESContext *windowContext;
-				pWin->getCustomAttribute("GLCONTEXT", &windowContext);
-
-				//1 Window <-> 1 Context, should be always true
-				assert( windowContext );
-
-				bool bFound = false;
-				//Find the depth buffer from this window and remove it.
-				DepthBufferMap::iterator itMap = mDepthBufferPool.begin();
-				DepthBufferMap::iterator enMap = mDepthBufferPool.end();
-
-				while( itMap != enMap && !bFound )
-				{
-					DepthBufferVec::iterator itor = itMap->second.begin();
-					DepthBufferVec::iterator end  = itMap->second.end();
-
-					while( itor != end )
-					{
-						// A DepthBuffer with no depth & stencil pointers is a dummy one,
-						// look for the one that matches the same GL context
-						GLESDepthBuffer *depthBuffer = static_cast<GLESDepthBuffer*>(*itor);
-						GLESContext *glContext = depthBuffer->getGLContext();
-
-						if( glContext == windowContext &&
-							(depthBuffer->getDepthBuffer() || depthBuffer->getStencilBuffer()) )
-						{
-							bFound = true;
-
-							delete *itor;
-							itMap->second.erase( itor );
-							break;
-						}
-						++itor;
-					}
-
-					++itMap;
-				}
-
+                _destroyDepthBuffer(pWin);
                 mRenderTargets.erase(i);
                 OGRE_DELETE pWin;
                 break;
@@ -654,13 +651,54 @@ namespace Ogre {
         }
     }
 
+    void GLESRenderSystem::_destroyDepthBuffer(RenderWindow* pWin)
+    {
+        GLESContext *windowContext = 0;
+        pWin->getCustomAttribute("GLCONTEXT", &windowContext);
+        
+        //1 Window <-> 1 Context, should be always true
+        assert( windowContext );
+        
+        bool bFound = false;
+        //Find the depth buffer from this window and remove it.
+        DepthBufferMap::iterator itMap = mDepthBufferPool.begin();
+        DepthBufferMap::iterator enMap = mDepthBufferPool.end();
+        
+        while( itMap != enMap && !bFound )
+        {
+            DepthBufferVec::iterator itor = itMap->second.begin();
+            DepthBufferVec::iterator end  = itMap->second.end();
+            
+            while( itor != end )
+            {
+                // A DepthBuffer with no depth & stencil pointers is a dummy one,
+                // look for the one that matches the same GL context
+                GLESDepthBuffer *depthBuffer = static_cast<GLESDepthBuffer*>(*itor);
+                GLESContext *glContext = depthBuffer->getGLContext();
+                
+                if( glContext == windowContext &&
+                   (depthBuffer->getDepthBuffer() || depthBuffer->getStencilBuffer()) )
+                {
+                    bFound = true;
+                    
+                    delete *itor;
+                    itMap->second.erase( itor );
+                    break;
+                }
+                ++itor;
+            }
+            
+            ++itMap;
+        }
+    }
+    
     String GLESRenderSystem::getErrorDescription(long errorNumber) const
     {
         // TODO find a way to get error string
 //        const GLubyte *errString = gluErrorString (errCode);
-//        return (errString != 0) ? String((const char*) errString) : StringUtil::BLANK;
+//        return (errString != 0) ? String((const char*) errString) : BLANKSTRING;
 
-        return StringUtil::BLANK;
+        return BLANKSTRING;
     }
 
     VertexElementType GLESRenderSystem::getColourVertexElementType(void) const
@@ -671,11 +709,9 @@ namespace Ogre {
     void GLESRenderSystem::setNormaliseNormals(bool normalise)
     {
         if (normalise)
-            glEnable(GL_NORMALIZE);
+            mStateCacheManager->setEnabled(GL_NORMALIZE);
         else
-            glDisable(GL_NORMALIZE);
-
-        GL_CHECK_ERROR;
+            mStateCacheManager->setDisabled(GL_NORMALIZE);
     }
 
     void GLESRenderSystem::_useLights(const LightList& lights, unsigned short limit)
@@ -750,7 +786,7 @@ namespace Ogre {
         makeGLMatrix(mat, m);
         if (mActiveRenderTarget->requiresTextureFlipping())
         {
-			// Invert transformed y
+            // Invert transformed y
             mat[1] = -mat[1];
             mat[5] = -mat[5];
             mat[9] = -mat[9];
@@ -806,14 +842,12 @@ namespace Ogre {
             {
                 gt = GL_EMISSION;
             }
-            glEnable(gt);
-            GL_CHECK_ERROR;
-            glEnable(GL_COLOR_MATERIAL);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setEnabled(gt);
+            mStateCacheManager->setEnabled(GL_COLOR_MATERIAL);
         }
         else
         {
-             glDisable(GL_COLOR_MATERIAL);
+             mStateCacheManager->setDisabled(GL_COLOR_MATERIAL);
         }
 
         // XXX Cache previous values?
@@ -876,8 +910,8 @@ namespace Ogre {
             // Equations are supposedly the same once you factor in vp height
             Real correction = 0.005;
             // scaling required
-            float val[4] = { constant, linear * correction,
-                             quadratic * correction, 1};
+            float val[4] = { static_cast<float>(constant), static_cast<float>(linear * correction),
+                             static_cast<float>(quadratic * correction), 1};
             glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, val);
             GL_CHECK_ERROR;
             glPointParameterf(GL_POINT_SIZE_MIN, adjMinSize);
@@ -911,62 +945,58 @@ namespace Ogre {
 
     void GLESRenderSystem::_setPointSpritesEnabled(bool enabled)
     {
-		if (!getCapabilities()->hasCapability(RSC_POINT_SPRITES))
-			return;
+        if (!getCapabilities()->hasCapability(RSC_POINT_SPRITES))
+            return;
 
         GL_CHECK_ERROR;
         if (enabled)
         {
-            glEnable(GL_POINT_SPRITE_OES);
+            mStateCacheManager->setEnabled(GL_POINT_SPRITE_OES);
             GL_CHECK_ERROR;
         }
         else
         {
-            glDisable(GL_POINT_SPRITE_OES);
+            mStateCacheManager->setDisabled(GL_POINT_SPRITE_OES);
             GL_CHECK_ERROR;
         }
 
-		// Set sprite texture coord generation
-		// Don't offer this as an option since D3D links it to sprite enabled
-		for (ushort i = 0; i < mFixedFunctionTextureUnits; ++i)
-		{
-			activateGLTextureUnit(i);
-			glTexEnvi(GL_POINT_SPRITE_OES, GL_COORD_REPLACE_OES, 
+        // Set sprite texture coord generation
+        // Don't offer this as an option since D3D links it to sprite enabled
+        for (ushort i = 0; i < mFixedFunctionTextureUnits; ++i)
+        {
+            mStateCacheManager->activateGLTextureUnit(i);
+            glTexEnvi(GL_POINT_SPRITE_OES, GL_COORD_REPLACE_OES, 
                       enabled ? GL_TRUE : GL_FALSE);
-		}
-		activateGLTextureUnit(0);
+        }
+        mStateCacheManager->activateGLTextureUnit(0);
     }
 
     void GLESRenderSystem::_setTexture(size_t stage, bool enabled, const TexturePtr &texPtr)
     {
-        GL_CHECK_ERROR;
+        GLESTexturePtr tex = texPtr.staticCast<GLESTexture>();
 
-        // TODO We need control texture types?????
-        GLESTexturePtr tex = texPtr;
-
-        if (!activateGLTextureUnit(stage))
-			return;
+        if (!mStateCacheManager->activateGLTextureUnit(stage))
+            return;
 
         if (enabled)
         {
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+            mCurTexMipCount = 0;
+#endif
             if (!tex.isNull())
             {
                 // Note used
                 tex->touch();
-            }
-
-            glEnable(GL_TEXTURE_2D);
-            GL_CHECK_ERROR;
-            
-            if (!tex.isNull())
-            {
-                glBindTexture(GL_TEXTURE_2D, tex->getGLID());
-                GL_CHECK_ERROR;
+                glEnable(tex->getGLESTextureTarget());
+                mStateCacheManager->bindGLTexture(tex->getGLESTextureTarget(), tex->getGLID());
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+                mCurTexMipCount = tex->getNumMipmaps();
+#endif
             }
             else
             {
-                glBindTexture(GL_TEXTURE_2D, static_cast<GLESTextureManager*>(mTextureManager)->getWarningTextureID());
-                GL_CHECK_ERROR;
+                glEnable(GL_TEXTURE_2D);
+                mStateCacheManager->bindGLTexture(GL_TEXTURE_2D, static_cast<GLESTextureManager*>(mTextureManager)->getWarningTextureID());
             }
         }
         else
@@ -980,10 +1010,9 @@ namespace Ogre {
 
             // bind zero texture
             glBindTexture(GL_TEXTURE_2D, 0);
-            GL_CHECK_ERROR;
         }
 
-        activateGLTextureUnit(0);
+        mStateCacheManager->activateGLTextureUnit(0);
     }
 
     void GLESRenderSystem::_setTextureCoordSet(size_t stage, size_t index)
@@ -1007,14 +1036,33 @@ namespace Ogre {
         // Default to no extra auto texture matrix
         mUseAutoTextureMatrix = false;
 
-        if (!activateGLTextureUnit(stage))
+        if (!mStateCacheManager->activateGLTextureUnit(stage))
             return;
+        
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+        bool hasCubeMapExt = mCurrentCapabilities->hasCapability(RSC_CUBEMAPPING);
+#endif
+        
         switch(m)
         {
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
             case TEXCALC_NONE:
+                if(hasCubeMapExt)
+                {
+                    glDisable(GL_TEXTURE_GEN_STR_OES);
+                    GL_CHECK_ERROR
+                }
                 break;
-
+#endif
             case TEXCALC_ENVIRONMENT_MAP:
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+                if(hasCubeMapExt)
+                {
+                    glEnable(GL_TEXTURE_GEN_STR_OES);
+                    glTexGeniOES( GL_TEXTURE_GEN_STR_OES, GL_TEXTURE_GEN_MODE_OES, GL_REFLECTION_MAP_OES );
+                    GL_CHECK_ERROR
+                }
+#endif
                 mUseAutoTextureMatrix = true;
                 memset(mAutoTextureMatrix, 0, sizeof(GLfloat)*16);
                 mAutoTextureMatrix[0] = mAutoTextureMatrix[10] = mAutoTextureMatrix[15] = 1.0f;
@@ -1022,10 +1070,17 @@ namespace Ogre {
                 break;
 
             case TEXCALC_ENVIRONMENT_MAP_PLANAR:
-                // TODO not implemented
                 break;
 
             case TEXCALC_ENVIRONMENT_MAP_REFLECTION:
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+                if(hasCubeMapExt)
+                {
+                    glEnable(GL_TEXTURE_GEN_STR_OES);
+                    glTexGeniOES( GL_TEXTURE_GEN_STR_OES, GL_TEXTURE_GEN_MODE_OES, GL_REFLECTION_MAP_OES );
+                    GL_CHECK_ERROR
+                }
+#endif
                 // We need an extra texture matrix here
                 // This sets the texture matrix to be the inverse of the view matrix
                 mUseAutoTextureMatrix = true;
@@ -1042,9 +1097,17 @@ namespace Ogre {
                 mAutoTextureMatrix[15] = 1.0f;
                 break;
 
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
             case TEXCALC_ENVIRONMENT_MAP_NORMAL:
+                if(hasCubeMapExt)
+                {
+                    glEnable(GL_TEXTURE_GEN_STR_OES);
+                    glTexGeniOES( GL_TEXTURE_GEN_STR_OES, GL_TEXTURE_GEN_MODE_OES, GL_NORMAL_MAP_OES );
+                    GL_CHECK_ERROR
+                }
                 break;
-
+#endif
+                
             case TEXCALC_PROJECTIVE_TEXTURE:
                 mUseAutoTextureMatrix = true;
 
@@ -1061,8 +1124,7 @@ namespace Ogre {
             default:
                 break;
         }
-
-		activateGLTextureUnit(0);
+        mStateCacheManager->activateGLTextureUnit(0);
     }
 
     void GLESRenderSystem::_setTextureBlendMode(size_t stage, const LayerBlendModeEx& bm)
@@ -1202,8 +1264,8 @@ namespace Ogre {
                 cmd = 0;
         }
 
-		if (!activateGLTextureUnit(stage))
-			return;
+        if (!mStateCacheManager->activateGLTextureUnit(stage))
+            return;
         glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
         GL_CHECK_ERROR;
 
@@ -1230,7 +1292,7 @@ namespace Ogre {
             GL_CHECK_ERROR;
         }
 
-        float blendValue[4] = {0, 0, 0, bm.factor};
+        float blendValue[4] = {0, 0, 0, static_cast<float>(bm.factor)};
         switch (bm.operation)
         {
             case LBX_BLEND_DIFFUSE_COLOUR:
@@ -1314,7 +1376,7 @@ namespace Ogre {
         if (bm.source2 == LBS_MANUAL)
             glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, cv2);
 
-		activateGLTextureUnit(0);
+        mStateCacheManager->activateGLTextureUnit(0);
     }
 
     GLint GLESRenderSystem::getTextureAddressingMode(TextureUnitState::TextureAddressingMode tam) const
@@ -1336,15 +1398,13 @@ namespace Ogre {
 
     void GLESRenderSystem::_setTextureAddressingMode(size_t stage, const TextureUnitState::UVWAddressingMode& uvw)
     {
-		if (!activateGLTextureUnit(stage))
-			return;
-        glTexParameteri(GL_TEXTURE_2D,
-                        GL_TEXTURE_WRAP_S, getTextureAddressingMode(uvw.u));
-        GL_CHECK_ERROR;
-        glTexParameteri(GL_TEXTURE_2D,
-                        GL_TEXTURE_WRAP_T, getTextureAddressingMode(uvw.v));
-        GL_CHECK_ERROR;
-		activateGLTextureUnit(0);
+        if (!mStateCacheManager->activateGLTextureUnit(stage))
+            return;
+        mStateCacheManager->setTexParameteri(GL_TEXTURE_2D,
+                                             GL_TEXTURE_WRAP_S, getTextureAddressingMode(uvw.u));
+        mStateCacheManager->setTexParameteri(GL_TEXTURE_2D,
+                                             GL_TEXTURE_WRAP_T, getTextureAddressingMode(uvw.v));
+        mStateCacheManager->activateGLTextureUnit(0);
     }
 
     void GLESRenderSystem::_setTextureBorderColour(size_t stage, const ColourValue& colour)
@@ -1356,11 +1416,11 @@ namespace Ogre {
     {
         if (mCurrentCapabilities->hasCapability(RSC_MIPMAP_LOD_BIAS))
         {
-#if GL_EXT_texture_lod_bias	// This extension only seems to be supported on iOS OS, block it out to fix Linux build
-            if (activateGLTextureUnit(unit))
+#if GL_EXT_texture_lod_bias // This extension only seems to be supported on iOS OS, block it out to fix Linux build
+            if (mStateCacheManager->activateGLTextureUnit(unit))
             {
                 glTexEnvf(GL_TEXTURE_FILTER_CONTROL_EXT, GL_TEXTURE_LOD_BIAS_EXT, bias);
-                    activateGLTextureUnit(0);
+                    mStateCacheManager->activateGLTextureUnit(0);
             }
 #endif
         }
@@ -1374,8 +1434,8 @@ namespace Ogre {
             return;
         }
 
-		if (!activateGLTextureUnit(stage))
-			return;
+        if (!mStateCacheManager->activateGLTextureUnit(stage))
+            return;
 
         GLfloat mat[16];
         makeGLMatrix(mat, xform);
@@ -1395,7 +1455,7 @@ namespace Ogre {
 
         glMatrixMode(GL_MODELVIEW);
         GL_CHECK_ERROR;
-		activateGLTextureUnit(0);
+        mStateCacheManager->activateGLTextureUnit(0);
     }
 
     GLint GLESRenderSystem::getBlendMode(SceneBlendFactor ogreBlend) const
@@ -1428,64 +1488,60 @@ namespace Ogre {
         return GL_ONE;
     }
 
-	void GLESRenderSystem::_setSceneBlending(SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendOperation op)
-	{
+    void GLESRenderSystem::_setSceneBlending(SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendOperation op)
+    {
         GL_CHECK_ERROR;
-		GLenum sourceBlend = getBlendMode(sourceFactor);
-		GLenum destBlend = getBlendMode(destFactor);
-		if(sourceFactor == SBF_ONE && destFactor == SBF_ZERO)
-		{
-			glDisable(GL_BLEND);
-			GL_CHECK_ERROR;
-		}
-		else
-		{
-			// SBF_SOURCE_COLOUR - not allowed for source - http://www.khronos.org/opengles/sdk/1.1/docs/man/
-			if(sourceFactor == SBF_SOURCE_COLOUR)
-			{
-				sourceBlend = getBlendMode(SBF_SOURCE_ALPHA);
-			}
-			glEnable(GL_BLEND);
-			GL_CHECK_ERROR;
-			glBlendFunc(sourceBlend, destBlend);
-			GL_CHECK_ERROR;
-		}
+        GLenum sourceBlend = getBlendMode(sourceFactor);
+        GLenum destBlend = getBlendMode(destFactor);
+        if(sourceFactor == SBF_ONE && destFactor == SBF_ZERO)
+        {
+            mStateCacheManager->setDisabled(GL_BLEND);
+        }
+        else
+        {
+            // SBF_SOURCE_COLOUR - not allowed for source - http://www.khronos.org/opengles/sdk/1.1/docs/man/
+            if(sourceFactor == SBF_SOURCE_COLOUR)
+            {
+                sourceBlend = getBlendMode(SBF_SOURCE_ALPHA);
+            }
+            mStateCacheManager->setEnabled(GL_BLEND);
+            mStateCacheManager->setBlendFunc(sourceBlend, destBlend);
+        }
         
 #if GL_OES_blend_subtract
         GLint func = GL_FUNC_ADD_OES;
-		switch(op)
-		{
-		case SBO_ADD:
-			func = GL_FUNC_ADD_OES;
-			break;
-		case SBO_SUBTRACT:
-			func = GL_FUNC_SUBTRACT_OES;
-			break;
-		case SBO_REVERSE_SUBTRACT:
-			func = GL_FUNC_REVERSE_SUBTRACT_OES;
-			break;
-		case SBO_MIN:
+        switch(op)
+        {
+        case SBO_ADD:
+            func = GL_FUNC_ADD_OES;
+            break;
+        case SBO_SUBTRACT:
+            func = GL_FUNC_SUBTRACT_OES;
+            break;
+        case SBO_REVERSE_SUBTRACT:
+            func = GL_FUNC_REVERSE_SUBTRACT_OES;
+            break;
+        case SBO_MIN:
 #if GL_EXT_blend_minmax
             func = GL_MIN_EXT;
 #endif
             break;
-		case SBO_MAX:
+        case SBO_MAX:
 #if GL_EXT_blend_minmax
             func = GL_MAX_EXT;
 #endif
-			break;
-		}
-		if (glBlendEquationOES)
-			glBlendEquationOES(func);
-        GL_CHECK_ERROR;
+            break;
+        }
+        
+        mStateCacheManager->setBlendEquation(func);
 #endif
-	}
+    }
 
-	void GLESRenderSystem::_setSeparateSceneBlending(
+    void GLESRenderSystem::_setSeparateSceneBlending(
         SceneBlendFactor sourceFactor, SceneBlendFactor destFactor,
         SceneBlendFactor sourceFactorAlpha, SceneBlendFactor destFactorAlpha,
         SceneBlendOperation op, SceneBlendOperation alphaOp )
-	{
+    {
         // Kinda hacky way to prevent this from compiling if the extensions aren't available
 #if defined(GL_OES_blend_func_separate) && defined(GL_OES_blend_equation_separate) && defined(GL_EXT_blend_minmax)
         if (mGLSupport->checkExtension("GL_OES_blend_equation_separate") &&
@@ -1499,12 +1555,12 @@ namespace Ogre {
             if(sourceFactor == SBF_ONE && destFactor == SBF_ZERO && 
                sourceFactorAlpha == SBF_ONE && destFactorAlpha == SBF_ZERO)
             {
-                glDisable(GL_BLEND);
+                mStateCacheManager->setDisabled(GL_BLEND);
             }
             else
             {
-                glEnable(GL_BLEND);
-                GL_CHECK_ERROR;
+                mStateCacheManager->setEnabled(GL_BLEND);
+                
                 glBlendFuncSeparateOES(sourceBlend, destBlend, sourceBlendAlpha, destBlendAlpha);
                 GL_CHECK_ERROR;
             }
@@ -1553,49 +1609,45 @@ namespace Ogre {
             GL_CHECK_ERROR;
         }
 #endif
-	}
+    }
 
     void GLESRenderSystem::_setAlphaRejectSettings(CompareFunction func, unsigned char value, bool alphaToCoverage)
     {
-		bool a2c = false;
-		static bool lasta2c = false;
-		if (func == CMPF_ALWAYS_PASS)
-		{
-			glDisable(GL_ALPHA_TEST);
-			GL_CHECK_ERROR;
-		}
-		else
-		{
-			glEnable(GL_ALPHA_TEST);
-			GL_CHECK_ERROR;
+        bool a2c = false;
+        static bool lasta2c = false;
+        if (func == CMPF_ALWAYS_PASS)
+        {
+            mStateCacheManager->setDisabled(GL_ALPHA_TEST);
+        }
+        else
+        {
+            mStateCacheManager->setEnabled(GL_ALPHA_TEST);
 
-			a2c = alphaToCoverage;
+            a2c = alphaToCoverage;
 
-			glAlphaFunc(convertCompareFunction(func), value / 255.0f);
-			GL_CHECK_ERROR;
-		}
-		if (a2c != lasta2c && getCapabilities()->hasCapability(RSC_ALPHA_TO_COVERAGE))
-		{
-			if (a2c)
-				glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
-			else
-				glDisable(GL_SAMPLE_ALPHA_TO_COVERAGE);
+            glAlphaFunc(convertCompareFunction(func), value / 255.0f);
+            GL_CHECK_ERROR;
+        }
+        if (a2c != lasta2c && getCapabilities()->hasCapability(RSC_ALPHA_TO_COVERAGE))
+        {
+            if (a2c)
+                mStateCacheManager->setEnabled(GL_SAMPLE_ALPHA_TO_COVERAGE);
+            else
+                mStateCacheManager->setDisabled(GL_SAMPLE_ALPHA_TO_COVERAGE);
 
-			GL_CHECK_ERROR;
-
-			lasta2c = a2c;
-		} 
-	}
+            lasta2c = a2c;
+        } 
+    }
 
     void GLESRenderSystem::_setViewport(Viewport *vp)
     {
-		// Check if viewport is different
-		if (!vp)
-		{
-			mActiveViewport = NULL;
-			_setRenderTarget(NULL);
-		}
-		else if (vp != mActiveViewport || vp->_isUpdated())
+        // Check if viewport is different
+        if (!vp)
+        {
+            mActiveViewport = NULL;
+            _setRenderTarget(NULL);
+        }
+        else if (vp != mActiveViewport || vp->_isUpdated())
         {
             RenderTarget* target;
 
@@ -1605,7 +1657,7 @@ namespace Ogre {
 
             GLsizei x, y, w, h;
 
-			// Calculate the "lower-left" corner of the viewport
+            // Calculate the "lower-left" corner of the viewport
             w = vp->getActualWidth();
             h = vp->getActualHeight();
             x = vp->getActualLeft();
@@ -1628,20 +1680,20 @@ namespace Ogre {
                 
                 if (pos != String::npos)
                 {
-					// Convert x,y since glViewport is expecting the x,y to be lower-left of the portrait orientation
-					if (val.find("Left") != String::npos)
-					{
-						GLsizei temp = x;
-						x = y;
-						y = target->getWidth() - w - temp;
-					}
-					else
-					{
-						GLsizei temp = x;
-						x = target->getHeight() - h - y;
-						y = temp;
-					}
-					
+                    // Convert x,y since glViewport is expecting the x,y to be lower-left of the portrait orientation
+                    if (val.find("Left") != String::npos)
+                    {
+                        GLsizei temp = x;
+                        x = y;
+                        y = target->getWidth() - w - temp;
+                    }
+                    else
+                    {
+                        GLsizei temp = x;
+                        x = target->getHeight() - h - y;
+                        y = temp;
+                    }
+                    
                     GLsizei temp = h;
                     h = w;
                     w = temp;
@@ -1651,7 +1703,7 @@ namespace Ogre {
             glViewport(x, y, w, h);
             GL_CHECK_ERROR;
 
-			// Configure the viewport clipping
+            // Configure the viewport clipping
             glScissor(x, y, w, h);
             GL_CHECK_ERROR;
 
@@ -1695,8 +1747,7 @@ namespace Ogre {
         switch( mode )
         {
             case CULL_NONE:
-                glDisable(GL_CULL_FACE);
-                GL_CHECK_ERROR;
+                mStateCacheManager->setDisabled(GL_CULL_FACE);
                 return;
 
             default:
@@ -1726,10 +1777,8 @@ namespace Ogre {
                 break;
         }
 
-        glEnable(GL_CULL_FACE);
-        GL_CHECK_ERROR;
-        glCullFace(cullMode);
-        GL_CHECK_ERROR;
+        mStateCacheManager->setEnabled(GL_CULL_FACE);
+        mStateCacheManager->setCullFace(cullMode);
     }
 
     void GLESRenderSystem::_setDepthBufferParams(bool depthTest, bool depthWrite, CompareFunction depthFunction)
@@ -1743,60 +1792,42 @@ namespace Ogre {
     {
         if (enabled)
         {
-            glClearDepthf(1.0f);
-            GL_CHECK_ERROR;
-            glEnable(GL_DEPTH_TEST);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setClearDepth(1.0f);
+            mStateCacheManager->setEnabled(GL_DEPTH_TEST);
         }
         else
         {
-            glDisable(GL_DEPTH_TEST);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setDisabled(GL_DEPTH_TEST);
         }
     }
 
     void GLESRenderSystem::_setDepthBufferWriteEnabled(bool enabled)
     {
-        GLboolean flag = enabled ? GL_TRUE : GL_FALSE;
-        glDepthMask(flag);
-        GL_CHECK_ERROR;
-
-        // Store for reference in _beginFrame
-        mDepthWrite = enabled;
+        mStateCacheManager->setDepthMask(enabled ? GL_TRUE : GL_FALSE);
     }
 
     void GLESRenderSystem::_setDepthBufferFunction(CompareFunction func)
     {
-        glDepthFunc(convertCompareFunction(func));
-        GL_CHECK_ERROR;
+        mStateCacheManager->setDepthFunc(convertCompareFunction(func));
     }
 
     void GLESRenderSystem::_setDepthBias(float constantBias, float slopeScaleBias)
     {
         if (constantBias != 0 || slopeScaleBias != 0)
         {
-            glEnable(GL_POLYGON_OFFSET_FILL);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setEnabled(GL_POLYGON_OFFSET_FILL);
             glPolygonOffset(-slopeScaleBias, -constantBias);
             GL_CHECK_ERROR;
         }
         else
         {
-            glDisable(GL_POLYGON_OFFSET_FILL);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setDisabled(GL_POLYGON_OFFSET_FILL);
         }
     }
 
     void GLESRenderSystem::_setColourBufferWriteEnabled(bool red, bool green, bool blue, bool alpha)
     {
-        glColorMask(red, green, blue, alpha);
-        GL_CHECK_ERROR;
-
-        // record this
-        mColourWrite[0] = red;
-        mColourWrite[1] = blue;
-        mColourWrite[2] = green;
-        mColourWrite[3] = alpha;
+        mStateCacheManager->setColourMask(red, green, blue, alpha);
     }
 
     void GLESRenderSystem::_setFog(FogMode mode, const ColourValue& colour, Real density, Real start, Real end)
@@ -1815,13 +1846,11 @@ namespace Ogre {
                 break;
             default:
                 // Give up on it
-                glDisable(GL_FOG);
-                GL_CHECK_ERROR;
+                mStateCacheManager->setDisabled(GL_FOG);
                 return;
         }
 
-        glEnable(GL_FOG);
-        GL_CHECK_ERROR;
+        mStateCacheManager->setEnabled(GL_FOG);
         glFogf(GL_FOG_MODE, fogMode);
         GLfloat fogColor[4] = { colour.r, colour.g, colour.b, colour.a };
         glFogfv(GL_FOG_COLOR, fogColor);
@@ -1838,7 +1867,7 @@ namespace Ogre {
                                                   Matrix4& dest,
                                                   bool forGpuProgram)
     {
-		// no any conversion request for OpenGL
+        // no any conversion request for OpenGL
         dest = matrix;
     }
 
@@ -1849,13 +1878,13 @@ namespace Ogre {
         Radian thetaY(fovy / 2.0f);
         Real tanThetaY = Math::Tan(thetaY);
 
-		// Calc matrix elements
+        // Calc matrix elements
         Real w = (1.0f / tanThetaY) / aspect;
         Real h = 1.0f / tanThetaY;
         Real q, qn;
         if (farPlane == 0)
         {
-			// Infinite far plane
+            // Infinite far plane
             q = Frustum::INFINITE_FAR_PLANE_ADJUST - 1;
             qn = nearPlane * (Frustum::INFINITE_FAR_PLANE_ADJUST - 2);
         }
@@ -1865,12 +1894,12 @@ namespace Ogre {
             qn = -2 * (farPlane * nearPlane) / (farPlane - nearPlane);
         }
 
-		// NB This creates Z in range [-1,1]
-		//
-		// [ w   0   0   0  ]
-		// [ 0   h   0   0  ]
-		// [ 0   0   q   qn ]
-		// [ 0   0   -1  0  ]
+        // NB This creates Z in range [-1,1]
+        //
+        // [ w   0   0   0  ]
+        // [ 0   h   0   0  ]
+        // [ 0   0   q   qn ]
+        // [ 0   0   -1  0  ]
 
         dest = Matrix4::ZERO;
         dest[0][0] = w;
@@ -1890,7 +1919,7 @@ namespace Ogre {
         Real q, qn;
         if (farPlane == 0)
         {
-			// Infinite far plane
+            // Infinite far plane
             q = Frustum::INFINITE_FAR_PLANE_ADJUST - 1;
             qn = nearPlane * (Frustum::INFINITE_FAR_PLANE_ADJUST - 2);
         }
@@ -1944,12 +1973,12 @@ namespace Ogre {
                                                       const Plane& plane,
                                                       bool forGpuProgram)
     {
-		// Thanks to Eric Lenyel for posting this calculation at www.terathon.com
+        // Thanks to Eric Lenyel for posting this calculation at www.terathon.com
         
-		// Calculate the clip-space corner point opposite the clipping plane
-		// as (sgn(clipPlane.x), sgn(clipPlane.y), 1, 1) and
-		// transform it into camera space by multiplying it
-		// by the inverse of the projection matrix
+        // Calculate the clip-space corner point opposite the clipping plane
+        // as (sgn(clipPlane.x), sgn(clipPlane.y), 1, 1) and
+        // transform it into camera space by multiplying it
+        // by the inverse of the projection matrix
 
         Vector4 q;
         q.x = (Math::Sign(plane.normal.x) + matrix[0][2]) / matrix[0][0];
@@ -1973,14 +2002,14 @@ namespace Ogre {
         switch(level)
         {
         case PM_POINTS:
-            mPolygonMode = GL_POINTS;
+            mStateCacheManager->setPolygonMode(GL_POINTS);
             break;
         case PM_WIREFRAME:
-            mPolygonMode = GL_LINE_STRIP;
+            mStateCacheManager->setPolygonMode(GL_LINE_STRIP);
             break;
         default:
         case PM_SOLID:
-            mPolygonMode = GL_FILL;
+            mStateCacheManager->setPolygonMode(GL_FILL);
             break;
         }
     }
@@ -1989,25 +2018,24 @@ namespace Ogre {
     {
         if (enabled)
         {
-            glEnable(GL_STENCIL_TEST);
+            mStateCacheManager->setEnabled(GL_STENCIL_TEST);
         }
         else
         {
-            glDisable(GL_STENCIL_TEST);
+            mStateCacheManager->setDisabled(GL_STENCIL_TEST);
         }
     }
 
     void GLESRenderSystem::setStencilBufferParams(CompareFunction func,
-                                                uint32 refValue, uint32 mask,
+                                                uint32 refValue, uint32 compareMask, uint32 writeMask, 
                                                 StencilOperation stencilFailOp,
                                                 StencilOperation depthFailOp,
                                                 StencilOperation passOp,
-                                                bool twoSidedOperation)
+                                                bool twoSidedOperation,
+                                                bool readBackAsTexture)
     {
-		mStencilMask = mask;
-
-        glStencilMask(mask);
-        glStencilFunc(convertCompareFunction(func), refValue, mask);
+        mStateCacheManager->setStencilMask(writeMask);
+        glStencilFunc(convertCompareFunction(func), refValue, compareMask);
         glStencilOp(
             convertStencilOp(stencilFailOp, false),
             convertStencilOp(depthFailOp, false), 
@@ -2056,10 +2084,24 @@ namespace Ogre {
         return 0;
     }
 
+    void GLESRenderSystem::_setTextureUnitFiltering(size_t unit, FilterOptions minFilter,
+                FilterOptions magFilter, FilterOptions mipFilter)
+    {       
+        mMipFilter = mipFilter;
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+        if(mCurTexMipCount == 0 && mMipFilter != FO_NONE)
+        {
+            mMipFilter = FO_NONE;           
+        }
+#endif
+        _setTextureUnitFiltering(unit, FT_MAG, magFilter);
+        _setTextureUnitFiltering(unit, FT_MIN, minFilter);
+    }
+    
     void GLESRenderSystem::_setTextureUnitFiltering(size_t unit, FilterType ftype, FilterOptions fo)
     {
-		if (!activateGLTextureUnit(unit))
-			return;
+        if (!mStateCacheManager->activateGLTextureUnit(unit))
+            return;
 
         switch (ftype)
         {
@@ -2067,10 +2109,9 @@ namespace Ogre {
                 mMinFilter = fo;
 
                 // Combine with existing mip filter
-                glTexParameteri(GL_TEXTURE_2D,
-                                GL_TEXTURE_MIN_FILTER,
-                                getCombinedMinMipFilter());
-                GL_CHECK_ERROR;
+                mStateCacheManager->setTexParameteri(GL_TEXTURE_2D,
+                                                     GL_TEXTURE_MIN_FILTER,
+                                                     getCombinedMinMipFilter());
                 break;
 
             case FT_MAG:
@@ -2078,59 +2119,51 @@ namespace Ogre {
                 {
                     case FO_ANISOTROPIC: // GL treats linear and aniso the same
                     case FO_LINEAR:
-                        glTexParameteri(GL_TEXTURE_2D,
-                                        GL_TEXTURE_MAG_FILTER,
-                                        GL_LINEAR);
-                        GL_CHECK_ERROR;
+                        mStateCacheManager->setTexParameteri(GL_TEXTURE_2D,
+                                                             GL_TEXTURE_MAG_FILTER,
+                                                             GL_LINEAR);
                         break;
                     case FO_POINT:
                     case FO_NONE:
-                        glTexParameteri(GL_TEXTURE_2D,
-                                        GL_TEXTURE_MAG_FILTER,
-                                        GL_NEAREST);
-                        GL_CHECK_ERROR;
+                        mStateCacheManager->setTexParameteri(GL_TEXTURE_2D,
+                                                             GL_TEXTURE_MAG_FILTER,
+                                                             GL_NEAREST);
                         break;
                 }
                 break;
             case FT_MIP:
                 mMipFilter = fo;
-
-                // Combine with existing min filter
-                glTexParameteri(GL_TEXTURE_2D,
-                                GL_TEXTURE_MIN_FILTER,
-                                getCombinedMinMipFilter());
-                GL_CHECK_ERROR;
                 break;
         }
 
-		activateGLTextureUnit(0);
+        mStateCacheManager->activateGLTextureUnit(0);
     }
 
     GLfloat GLESRenderSystem::_getCurrentAnisotropy(size_t unit)
-	{
-		GLfloat curAniso = 0;
-		glGetTexParameterfv(GL_TEXTURE_2D, 
+    {
+        GLfloat curAniso = 0;
+        glGetTexParameterfv(GL_TEXTURE_2D, 
                             GL_TEXTURE_MAX_ANISOTROPY_EXT, &curAniso);
-		return curAniso ? curAniso : 1;
-	}
+        return curAniso ? curAniso : 1;
+    }
     
     void GLESRenderSystem::_setTextureLayerAnisotropy(size_t unit, unsigned int maxAnisotropy)
     {
-		if (!mCurrentCapabilities->hasCapability(RSC_ANISOTROPY))
-			return;
+        if (!mCurrentCapabilities->hasCapability(RSC_ANISOTROPY))
+            return;
 
-		if (!activateGLTextureUnit(unit))
-			return;
+        if (!mStateCacheManager->activateGLTextureUnit(unit))
+            return;
 
-		GLfloat largest_supported_anisotropy = 0;
-		glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &largest_supported_anisotropy);
-		if (maxAnisotropy > largest_supported_anisotropy)
-			maxAnisotropy = largest_supported_anisotropy ? 
-			static_cast<uint>(largest_supported_anisotropy) : 1;
-		if (_getCurrentAnisotropy(unit) != maxAnisotropy)
-			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);
+        GLfloat largest_supported_anisotropy = 0;
+        glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &largest_supported_anisotropy);
+        if (maxAnisotropy > largest_supported_anisotropy)
+            maxAnisotropy = largest_supported_anisotropy ? 
+            static_cast<uint>(largest_supported_anisotropy) : 1;
+        if (_getCurrentAnisotropy(unit) != maxAnisotropy)
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);
 
-		activateGLTextureUnit(0);
+        mStateCacheManager->activateGLTextureUnit(0);
     }
 
     void GLESRenderSystem::setVertexDeclaration(VertexDeclaration* decl)
@@ -2148,7 +2181,7 @@ namespace Ogre {
         RenderSystem::_render(op);
 
         void* pBufferData = 0;
-		bool multitexturing = (getCapabilities()->getNumTextureUnits() > 1);
+        bool multitexturing = (getCapabilities()->getNumTextureUnits() > 1);
 
         const VertexDeclaration::VertexElementList& decl =
             op.vertexData->vertexDeclaration->getElements();
@@ -2167,9 +2200,8 @@ namespace Ogre {
                 op.vertexData->vertexBufferBinding->getBuffer(elem->getSource());
             if (mCurrentCapabilities->hasCapability(RSC_VBO))
             {
-                glBindBuffer(GL_ARRAY_BUFFER,
-                    static_cast<const GLESHardwareVertexBuffer*>(vertexBuffer.get())->getGLBufferId());
-                GL_CHECK_ERROR;
+                mStateCacheManager->bindGLBuffer(GL_ARRAY_BUFFER,
+                    static_cast<const GLESHardwareVertexBuffer*>(vertexBuffer.get())->getGLBufferId(), true);
                 pBufferData = VBO_BUFFER_OFFSET(elem->getOffset());
             }
             else
@@ -2183,7 +2215,6 @@ namespace Ogre {
             }
 
             VertexElementSemantic sem = elem->getSemantic();
-
             {
                 GL_CHECK_ERROR;
                 // fixed-function & builtin attribute support
@@ -2246,7 +2277,7 @@ namespace Ogre {
             }
         }
 
-		if (multitexturing)
+        if (multitexturing)
             glClientActiveTexture(GL_TEXTURE0);
         GL_CHECK_ERROR;
 
@@ -2275,14 +2306,14 @@ namespace Ogre {
                 break;
         }
 
+        GLenum polyMode = mStateCacheManager->getPolygonMode();
         if (op.useIndexes)
         {
             if(mCurrentCapabilities->hasCapability(RSC_VBO))
             {
-                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,
-                             static_cast<GLESHardwareIndexBuffer*>(op.indexData->indexBuffer.get())->getGLBufferId());
+                mStateCacheManager->bindGLBuffer(GL_ELEMENT_ARRAY_BUFFER,
+                             static_cast<GLESHardwareIndexBuffer*>(op.indexData->indexBuffer.get())->getGLBufferId(), true);
 
-                GL_CHECK_ERROR;
                 pBufferData = VBO_BUFFER_OFFSET(op.indexData->indexStart *
                                                 op.indexData->indexBuffer->getIndexSize());
             }
@@ -2304,8 +2335,9 @@ namespace Ogre {
                                   mDerivedDepthBiasMultiplier * mCurrentPassIterationNum,
                                   mDerivedDepthBiasSlopeScale);
                 }
-				GL_CHECK_ERROR;
-                glDrawElements((_getPolygonMode() == GL_FILL) ? primType : _getPolygonMode(), op.indexData->indexCount, indexType, pBufferData);
+                
+                
+                glDrawElements((polyMode == GL_FILL) ? primType : polyMode, op.indexData->indexCount, indexType, pBufferData);
                 GL_CHECK_ERROR;
             } while (updatePassIterationRenderState());
         }
@@ -2320,7 +2352,7 @@ namespace Ogre {
                                   mDerivedDepthBiasMultiplier * mCurrentPassIterationNum,
                                   mDerivedDepthBiasSlopeScale);
                 }
-                glDrawArrays((_getPolygonMode() == GL_FILL) ? primType : _getPolygonMode(), 0, op.vertexData->vertexCount);
+                glDrawArrays((polyMode == GL_FILL) ? primType : polyMode, 0, op.vertexData->vertexCount);
                 GL_CHECK_ERROR;
             } while (updatePassIterationRenderState());
         }
@@ -2328,8 +2360,8 @@ namespace Ogre {
         glDisableClientState(GL_VERTEX_ARRAY);
         GL_CHECK_ERROR;
 
-		// Only valid up to GL_MAX_TEXTURE_UNITS, which is recorded in mFixedFunctionTextureUnits
-		if (multitexturing)
+        // Only valid up to GL_MAX_TEXTURE_UNITS, which is recorded in mFixedFunctionTextureUnits
+        if (multitexturing)
         {
             for (int i = 0; i < mFixedFunctionTextureUnits; i++)
             {
@@ -2365,7 +2397,7 @@ namespace Ogre {
 
         if (enabled)
         {
-            glEnable(GL_SCISSOR_TEST);
+            mStateCacheManager->setEnabled(GL_SCISSOR_TEST);
             // NB GL uses width / height rather than right / bottom
             x = left;
             if (flipping)
@@ -2378,7 +2410,7 @@ namespace Ogre {
         }
         else
         {
-            glDisable(GL_SCISSOR_TEST);
+            mStateCacheManager->setDisabled(GL_SCISSOR_TEST);
             // GL requires you to reset the scissor when disabling
             w = mActiveViewport->getActualWidth();
             h = mActiveViewport->getActualHeight();
@@ -2395,55 +2427,46 @@ namespace Ogre {
                                             const ColourValue& colour,
                                             Real depth, unsigned short stencil)
     {
-        bool colourMask = !mColourWrite[0] || !mColourWrite[1] ||
-                          !mColourWrite[2] || !mColourWrite[3];
+        GLboolean* colourWrite = &mStateCacheManager->getColourMask()[0];
+        bool colourMask = !colourWrite[0] || !colourWrite[1] ||
+                          !colourWrite[2] || !colourWrite[3];
+        GLuint stencilMask = mStateCacheManager->getStencilMask();
 
         GLbitfield flags = 0;
         if (buffers & FBT_COLOUR)
         {
             flags |= GL_COLOR_BUFFER_BIT;
-			// Enable buffer for writing if it isn't
+            // Enable buffer for writing if it isn't
             if (colourMask)
             {
-                glColorMask(true, true, true, true);
-                GL_CHECK_ERROR;
+                mStateCacheManager->setColourMask(true, true, true, true);
             }
-            glClearColor(colour.r, colour.g, colour.b, colour.a);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setClearColour(colour.r, colour.g, colour.b, colour.a);
         }
         if (buffers & FBT_DEPTH)
         {
             flags |= GL_DEPTH_BUFFER_BIT;
-			// Enable buffer for writing if it isn't
-            if (!mDepthWrite)
+            // Enable buffer for writing if it isn't
+            if (!mStateCacheManager->getDepthMask())
             {
-                glDepthMask(GL_TRUE);
-                GL_CHECK_ERROR;
+                mStateCacheManager->setDepthMask(GL_TRUE);
             }
-            glClearDepthf(depth);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setClearDepth(depth);
         }
         if (buffers & FBT_STENCIL)
         {
             flags |= GL_STENCIL_BUFFER_BIT;
-			// Enable buffer for writing if it isn't
-            glStencilMask(0xFFFFFFFF);
-            GL_CHECK_ERROR;
+            // Enable buffer for writing if it isn't
+            mStateCacheManager->setStencilMask(0xFFFFFFFF);
             glClearStencil(stencil);
             GL_CHECK_ERROR;
         }
 
-		// Should be enable scissor test due the clear region is
-		// relied on scissor box bounds.
-        GLboolean scissorTestEnabled = glIsEnabled(GL_SCISSOR_TEST);
-        GL_CHECK_ERROR;
-        if (!scissorTestEnabled)
-        {
-            glEnable(GL_SCISSOR_TEST);
-            GL_CHECK_ERROR;
-        }
+        // Should be enable scissor test due the clear region is
+        // relied on scissor box bounds.
+        mStateCacheManager->setEnabled(GL_SCISSOR_TEST);
 
-		// Sets the scissor box as same as viewport
+        // Sets the scissor box as same as viewport
         GLint viewport[4], scissor[4];
         glGetIntegerv(GL_VIEWPORT, viewport);
         GL_CHECK_ERROR;
@@ -2458,9 +2481,9 @@ namespace Ogre {
             GL_CHECK_ERROR;
         }
 
-        _setDiscardBuffers(buffers);
+        mStateCacheManager->setDiscardBuffers(buffers);
 
-		// Clear buffers
+        // Clear buffers
         glClear(flags);
         GL_CHECK_ERROR;
 
@@ -2472,29 +2495,22 @@ namespace Ogre {
         }
 
         // Restore scissor test
-        if (!scissorTestEnabled)
-        {
-            glDisable(GL_SCISSOR_TEST);
-            GL_CHECK_ERROR;
-        }
+        mStateCacheManager->setDisabled(GL_SCISSOR_TEST);
 
         // Reset buffer write state
-        if (!mDepthWrite && (buffers & FBT_DEPTH))
+        if (!mStateCacheManager->getDepthMask() && (buffers & FBT_DEPTH))
         {
-            glDepthMask(GL_FALSE);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setDepthMask(GL_FALSE);
         }
 
         if (colourMask && (buffers & FBT_COLOUR))
         {
-            glColorMask(mColourWrite[0], mColourWrite[1], mColourWrite[2], mColourWrite[3]);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setColourMask(colourWrite[0], colourWrite[1], colourWrite[2], colourWrite[3]);
         }
 
         if (buffers & FBT_STENCIL)
         {
-            glStencilMask(mStencilMask);
-            GL_CHECK_ERROR;
+            mStateCacheManager->setStencilMask(stencilMask);
         }
     }
 
@@ -2506,25 +2522,25 @@ namespace Ogre {
 
     Real GLESRenderSystem::getHorizontalTexelOffset(void)
     {
-		// No offset in GL
+        // No offset in GL
         return 0.0;
     }
 
     Real GLESRenderSystem::getVerticalTexelOffset(void)
     {
-		// No offset in GL
+        // No offset in GL
         return 0.0;
     }
 
     Real GLESRenderSystem::getMinimumDepthInputValue(void)
     {
-		// Range [-1.0f, 1.0f]
+        // Range [-1.0f, 1.0f]
         return -1.0f;
     }
 
     Real GLESRenderSystem::getMaximumDepthInputValue(void)
     {
-		// Range [-1.0f, 1.0f]
+        // Range [-1.0f, 1.0f]
         return 1.0f;
     }
 
@@ -2614,15 +2630,15 @@ namespace Ogre {
     void GLESRenderSystem::_switchContext(GLESContext *context)
     {
         // Disable lights
-		for (unsigned short i = 0; i < mCurrentLights; ++i)
-		{
-			setGLLight(i, NULL);
-			mLights[i] = NULL;
-		}
-		mCurrentLights = 0;
+        for (unsigned short i = 0; i < mCurrentLights; ++i)
+        {
+            setGLLight(i, NULL);
+            mLights[i] = NULL;
+        }
+        mCurrentLights = 0;
 
-		// Disable textures
-		_disableTextureUnitsFrom(0);
+        // Disable textures
+        _disableTextureUnitsFrom(0);
 
         // It's ready for switching
         if(mCurrentContext)
@@ -2640,25 +2656,26 @@ namespace Ogre {
         // Must reset depth/colour write mask to according with user desired, otherwise,
         // clearFrameBuffer would be wrong because the value we are recorded may be
         // difference with the really state stored in GL context.
-        glDepthMask(mDepthWrite);
-        glColorMask(mColourWrite[0], mColourWrite[1], mColourWrite[2], mColourWrite[3]);
-        glStencilMask(mStencilMask);
+        glDepthMask(mStateCacheManager->getDepthMask());
+        GLboolean* colourWrite = &mStateCacheManager->getColourMask()[0];
+        glColorMask(colourWrite[0], colourWrite[1], colourWrite[2], colourWrite[3]);
+        glStencilMask(mStateCacheManager->getStencilMask());
     }
 
     void GLESRenderSystem::_unregisterContext(GLESContext *context)
     {
         if (mCurrentContext == context)
         {
-			// Change the context to something else so that a valid context
-			// remains active. When this is the main context being unregistered,
-			// we set the main context to 0.
+            // Change the context to something else so that a valid context
+            // remains active. When this is the main context being unregistered,
+            // we set the main context to 0.
             if (mCurrentContext != mMainContext)
             {
                 _switchContext(mMainContext);
             }
             else
             {
-				/// No contexts remain
+                /// No contexts remain
                 mCurrentContext->endCurrent();
                 mCurrentContext = 0;
                 mMainContext = 0;
@@ -2668,8 +2685,8 @@ namespace Ogre {
 
     void GLESRenderSystem::_oneTimeContextInitialization()
     {
-        glDisable(GL_DITHER);
-        GL_CHECK_ERROR;
+        mStateCacheManager->initializeCache();
+        mStateCacheManager->setDisabled(GL_DITHER);
 
         int fsaa_active = false;
         glGetIntegerv(GL_SAMPLE_BUFFERS,(GLint*)&fsaa_active);
@@ -2686,16 +2703,16 @@ namespace Ogre {
 
     void GLESRenderSystem::initialiseContext(RenderWindow* primary)
     {
-		// Set main and current context
+        // Set main and current context
         mMainContext = 0;
         primary->getCustomAttribute("GLCONTEXT", &mMainContext);
         mCurrentContext = mMainContext;
 
-		// Set primary context as active
+        // Set primary context as active
         if (mCurrentContext)
             mCurrentContext->setCurrent();
 
-		// Setup GLSupport
+        // Setup GLSupport
         mGLSupport->initialiseExtensions();
 
         LogManager::getSingleton().logMessage("**************************************");
@@ -2710,30 +2727,30 @@ namespace Ogre {
             mRTTManager->unbind(mActiveRenderTarget);
 
         mActiveRenderTarget = target;
-		if (target)
-		{
-			// Switch context if different from current one
-			GLESContext *newContext = 0;
-			target->getCustomAttribute("GLCONTEXT", &newContext);
-			if (newContext && mCurrentContext != newContext)
-			{
-				_switchContext(newContext);
-			}
+        if (target)
+        {
+            // Switch context if different from current one
+            GLESContext *newContext = 0;
+            target->getCustomAttribute("GLCONTEXT", &newContext);
+            if (newContext && mCurrentContext != newContext)
+            {
+                _switchContext(newContext);
+            }
 
-			// Check the FBO's depth buffer status
-			GLESDepthBuffer *depthBuffer = static_cast<GLESDepthBuffer*>(target->getDepthBuffer());
+            // Check the FBO's depth buffer status
+            GLESDepthBuffer *depthBuffer = static_cast<GLESDepthBuffer*>(target->getDepthBuffer());
 
-			if( target->getDepthBufferPool() != DepthBuffer::POOL_NO_DEPTH &&
-				(!depthBuffer || depthBuffer->getGLContext() != mCurrentContext ) )
-			{
-				// Depth is automatically managed and there is no depth buffer attached to this RT
-				// or the Current context doesn't match the one this Depth buffer was created with
-				setDepthBufferFor( target );
-			}
+            if( target->getDepthBufferPool() != DepthBuffer::POOL_NO_DEPTH &&
+                (!depthBuffer || depthBuffer->getGLContext() != mCurrentContext ) )
+            {
+                // Depth is automatically managed and there is no depth buffer attached to this RT
+                // or the Current context doesn't match the one this Depth buffer was created with
+                setDepthBufferFor( target );
+            }
 
-			// Bind frame buffer object
-			mRTTManager->bind(target);
-		}
+            // Bind frame buffer object
+            mRTTManager->bind(target);
+        }
     }
 
     void GLESRenderSystem::makeGLMatrix(GLfloat gl_matrix[16], const Matrix4& m)
@@ -2775,28 +2792,28 @@ namespace Ogre {
         return GL_ALWAYS;
     }
 
-	GLint GLESRenderSystem::convertStencilOp(StencilOperation op, bool invert) const
-	{
-		switch(op)
-		{
-		case SOP_KEEP:
-			return GL_KEEP;
-		case SOP_ZERO:
-			return GL_ZERO;
-		case SOP_REPLACE:
-			return GL_REPLACE;
-		case SOP_INCREMENT_WRAP:
+    GLint GLESRenderSystem::convertStencilOp(StencilOperation op, bool invert) const
+    {
+        switch(op)
+        {
+        case SOP_KEEP:
+            return GL_KEEP;
+        case SOP_ZERO:
+            return GL_ZERO;
+        case SOP_REPLACE:
+            return GL_REPLACE;
+        case SOP_INCREMENT_WRAP:
         case SOP_INCREMENT:
-			return invert ? GL_DECR : GL_INCR;
-		case SOP_DECREMENT_WRAP:
-		case SOP_DECREMENT:
-			return invert ? GL_INCR : GL_DECR;
-		case SOP_INVERT:
-			return GL_INVERT;
-		};
-		// to keep compiler happy
-		return SOP_KEEP;
-	}
+            return invert ? GL_DECR : GL_INCR;
+        case SOP_DECREMENT_WRAP:
+        case SOP_DECREMENT:
+            return invert ? GL_INCR : GL_DECR;
+        case SOP_INVERT:
+            return GL_INVERT;
+        };
+        // to keep compiler happy
+        return SOP_KEEP;
+    }
     
     void GLESRenderSystem::setLights()
     {
@@ -2818,23 +2835,23 @@ namespace Ogre {
         vec = lt->getAs4DVector();
 
 #if OGRE_DOUBLE_PRECISION
-		// Must convert to float*
-		float tmp[4] = {vec.x, vec.y, vec.z, vec.w};
-		glLightfv(lightindex, GL_POSITION, tmp);
+        // Must convert to float*
+        float tmp[4] = {static_cast<float>(vec.x), static_cast<float>(vec.y), static_cast<float>(vec.z), static_cast<float>(vec.w)};
+        glLightfv(lightindex, GL_POSITION, tmp);
 #else
-		glLightfv(lightindex, GL_POSITION, vec.ptr());
+        glLightfv(lightindex, GL_POSITION, vec.ptr());
 #endif
-		// Set spotlight direction
-		if (lt->getType() == Light::LT_SPOTLIGHT)
-		{
-			vec = lt->getDerivedDirection();
-			vec.w = 0.0; 
+        // Set spotlight direction
+        if (lt->getType() == Light::LT_SPOTLIGHT)
+        {
+            vec = lt->getDerivedDirection();
+            vec.w = 0.0; 
 #if OGRE_DOUBLE_PRECISION
-			// Must convert to float*
-			float tmp2[4] = {vec.x, vec.y, vec.z, vec.w};
-			glLightfv(lightindex, GL_SPOT_DIRECTION, tmp2);
+            // Must convert to float*
+            float tmp2[4] = {static_cast<float>(vec.x), static_cast<float>(vec.y), static_cast<float>(vec.z), static_cast<float>(vec.w)};
+            glLightfv(lightindex, GL_SPOT_DIRECTION, tmp2);
 #else
-			glLightfv(lightindex, GL_SPOT_DIRECTION, vec.ptr());
+            glLightfv(lightindex, GL_SPOT_DIRECTION, vec.ptr());
 #endif
         }
     }
@@ -2925,35 +2942,57 @@ namespace Ogre {
         // Not implemented
     }
 
-	unsigned int GLESRenderSystem::getDisplayMonitorCount() const
-	{
-		return 1;
-	}
+    unsigned int GLESRenderSystem::getDisplayMonitorCount() const
+    {
+        return 1;
+    }
     
-    bool GLESRenderSystem::activateGLTextureUnit(size_t unit)
-	{
-		if (mActiveTextureUnit != unit)
-		{
-			if (unit < getCapabilities()->getNumTextureUnits())
-			{
-				glActiveTexture(GL_TEXTURE0 + unit);
-                GL_CHECK_ERROR;
-				mActiveTextureUnit = unit;
-				return true;
-			}
-			else if (!unit)
-			{
-				// always ok to use the first unit
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-		else
-		{
-			return true;
-		}
-	}
+    //---------------------------------------------------------------------
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+    void GLESRenderSystem::resetRenderer(RenderWindow* win)
+    {
+        LogManager::getSingleton().logMessage("********************************************");
+        LogManager::getSingleton().logMessage("*** OpenGL ES 1.x Reset Renderer Started ***");
+        LogManager::getSingleton().logMessage("********************************************");        
+        
+        initialiseContext(win);
+        
+        mGLSupport->initialiseExtensions();
+        
+        static_cast<GLESFBOManager*>(mRTTManager)->_reload();
+        
+        _destroyDepthBuffer(win);
+        
+        GLESDepthBuffer *depthBuffer = OGRE_NEW GLESDepthBuffer( DepthBuffer::POOL_DEFAULT, this,
+                                                                  mMainContext, 0, 0,
+                                                                  win->getWidth(), win->getHeight(),
+                                                                  win->getFSAA(), 0, true );
+        
+        mDepthBufferPool[depthBuffer->getPoolId()].push_back( depthBuffer );
+        win->attachDepthBuffer( depthBuffer );
+        
+        GLESRenderSystem::mResourceManager->notifyOnContextReset();
+        
+        mStateCacheManager->clearCache();
+        _setViewport(NULL);
+        _setRenderTarget(win);
+    }
+    
+    AndroidResourceManager* GLESRenderSystem::getResourceManager()
+    {
+        return GLESRenderSystem::mResourceManager;
+    }
+#endif
+
+    //---------------------------------------------------------------------
+    void GLESRenderSystem::_setTextureUnitCompareFunction(size_t unit, CompareFunction function)
+    {
+        //no effect in GLES rendersystem
+    }
+    //---------------------------------------------------------------------
+    void GLESRenderSystem::_setTextureUnitCompareEnabled(size_t unit, bool compare)
+    {
+        //no effect in GLES rendersystem
+    }
+    //---------------------------------------------------------------------
 }

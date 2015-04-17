@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -86,12 +86,12 @@ THE SOFTWARE.
 
 
 namespace Ogre {
-	/** \addtogroup Core
-	*  @{
-	*/
-	/** \addtogroup Math
-	*  @{
-	*/
+    /** \addtogroup Core
+    *  @{
+    */
+    /** \addtogroup Math
+    *  @{
+    */
 
 #if __OGRE_HAVE_SSE
 
@@ -238,7 +238,7 @@ namespace Ogre {
 
 /// Same as _mm_load_ps, but can help VC generate more optimised code.
 #define __MM_LOAD_PS(p)                                                             \
-    (*(__m128*)(p))
+    (*(const __m128*)(p))
 
 /// Same as _mm_store_ps, but can help VC generate more optimised code.
 #define __MM_STORE_PS(p, v)                                                         \
@@ -307,8 +307,8 @@ namespace Ogre {
 
 
 #endif  // __OGRE_HAVE_SSE
-	/** @} */
-	/** @} */
+    /** @} */
+    /** @} */
 
 }
 

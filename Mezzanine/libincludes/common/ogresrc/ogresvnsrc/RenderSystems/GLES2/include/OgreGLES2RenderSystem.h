@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,20 +41,22 @@ namespace Ogre {
     class GLES2RTTManager;
     class GLES2GpuProgramManager;
     class GLSLESProgramFactory;
+    class GLES2StateCacheManager;
 #if !OGRE_NO_GLES2_CG_SUPPORT
     class GLSLESCgProgramFactory;
 #endif
     class GLSLESGpuProgram;
     class HardwareBufferManager;
-
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_EMSCRIPTEN
+    class GLES2ManagedResourceManager;
+#endif
+    
     /**
       Implementation of GL ES 2.x as a rendering system.
      */
     class _OgreGLES2Export GLES2RenderSystem : public RenderSystem
     {
         private:
-            typedef HashMap<GLenum, GLuint>  BindBufferMap;
-
             /// View matrix to set world against
             Matrix4 mViewMatrix;
             Matrix4 mWorldMatrix;
@@ -73,15 +75,6 @@ namespace Ogre {
             /// Number of fixed-function texture units
             unsigned short mFixedFunctionTextureUnits;
 
-            /// Store last colour write state
-            bool mColourWrite[4];
-
-            /// Store last depth write state
-            bool mDepthWrite;
-
-            /// Store last stencil mask state
-            uint32 mStencilMask;
-
             GLfloat mAutoTextureMatrix[16];
 
             bool mUseAutoTextureMatrix;
@@ -89,11 +82,19 @@ namespace Ogre {
             /// GL support class, used for creating windows etc.
             GLES2Support *mGLSupport;
 
+            /// State cache manager which responsible to reduce redundant state changes
+            GLES2StateCacheManager* mStateCacheManager;
+            
             /* The main GL context - main thread only */
             GLES2Context *mMainContext;
 
             /* The current GL context  - main thread only */
             GLES2Context *mCurrentContext;
+
+            typedef list<GLES2Context*>::type GLES2ContextList;
+            /// List of background thread contexts
+            GLES2ContextList mBackgroundContextList;
+
             GLES2GpuProgramManager *mGpuProgramManager;
             GLSLESProgramFactory* mGLSLESProgramFactory;
 #if !OGRE_NO_GLES2_CG_SUPPORT
@@ -108,27 +109,13 @@ namespace Ogre {
               */
             GLES2RTTManager *mRTTManager;
 
-            /** These variables are used for caching RenderSystem state.
-                They are cached because OpenGL state changes can be quite expensive,
-                which is especially important on mobile or embedded systems.
-             */
-            GLenum mActiveTextureUnit;
-            BindBufferMap mActiveBufferMap;
-
             /// Check if the GL system has already been initialised
             bool mGLInitialised;
-
-            /// Mask of buffers who contents can be discarded if GL_EXT_discard_framebuffer is supported
-            unsigned int mDiscardBuffers;
-
-            /** OpenGL ES doesn't support setting the PolygonMode like desktop GL
-                So we will cache the value and set it manually
-             */
-            GLenum mPolygonMode;
 
             // local data member of _render that were moved here to improve performance
             // (save allocations)
             vector<GLuint>::type mRenderAttribsBound;
+            vector<GLuint>::type mRenderInstanceAttribsBound;
 
             GLint getCombinedMinMipFilter(void) const;
 
@@ -137,8 +124,16 @@ namespace Ogre {
 
             GLint getTextureAddressingMode(TextureUnitState::TextureAddressingMode tam) const;
             GLenum getBlendMode(SceneBlendFactor ogreBlend) const;
+            void bindVertexElementToGpu( const VertexElement &elem, HardwareVertexBufferSharedPtr vertexBuffer,
+                                        const size_t vertexStart,
+                                        vector<GLuint>::type &attribsBound,
+                                        vector<GLuint>::type &instanceAttribsBound,
+                                        bool updateVAO);
 
-            bool activateGLTextureUnit(size_t unit);
+            // Mipmap count of the actual bounded texture
+            size_t mCurTexMipCount;
+            GLint mViewport[4];
+            GLint mScissor[4];
 
         public:
             // Default constructor / destructor
@@ -154,6 +149,10 @@ namespace Ogre {
               RenderSystem
              */
             const String& getName(void) const;
+            /** See
+              RenderSystem
+             */
+            const String& getFriendlyName(void) const;
             /** See
               RenderSystem
              */
@@ -391,11 +390,25 @@ namespace Ogre {
              RenderSystem
              */
             void setStencilBufferParams(CompareFunction func = CMPF_ALWAYS_PASS, 
-                    uint32 refValue = 0, uint32 mask = 0xFFFFFFFF,
+                    uint32 refValue = 0, uint32 compareMask = 0xFFFFFFFF, uint32 writeMask = 0xFFFFFFFF,
                     StencilOperation stencilFailOp = SOP_KEEP,
                     StencilOperation depthFailOp = SOP_KEEP,
                     StencilOperation passOp = SOP_KEEP,
-                    bool twoSidedOperation = false);
+                    bool twoSidedOperation = false,
+                    bool readBackAsTexture = false);
+             /** See
+              RenderSystem
+             */
+            void _setTextureUnitCompareFunction(size_t unit, CompareFunction function);
+             /** See
+              RenderSystem
+             */
+            void _setTextureUnitCompareEnabled(size_t unit, bool compare);          
+            /** See
+             RenderSystem
+             */
+            virtual void _setTextureUnitFiltering(size_t unit, FilterOptions minFilter,
+                FilterOptions magFilter, FilterOptions mipFilter);              
             /** See
              RenderSystem
              */
@@ -407,7 +420,15 @@ namespace Ogre {
             /** See
              RenderSystem
              */
-            void setVertexDeclaration(VertexDeclaration* decl) {}
+            virtual bool hasAnisotropicMipMapFilter() const { return false; }   
+            /** See
+             RenderSystem
+             */
+            void setVertexDeclaration(VertexDeclaration* decl);
+            /** See
+             RenderSystem
+             */
+            void setVertexDeclaration(VertexDeclaration* decl, VertexBufferBinding* binding);
             /** See
              RenderSystem
              */
@@ -420,9 +441,6 @@ namespace Ogre {
              RenderSystem
              */
             void setScissorTest(bool enabled, size_t left = 0, size_t top = 0, size_t right = 800, size_t bottom = 600);
-        
-            void _setDiscardBuffers(unsigned int flags) { mDiscardBuffers = flags; }
-            unsigned int getDiscardBuffers(void) { return mDiscardBuffers; }
 
             void clearFrameBuffer(unsigned int buffers,
                 const ColourValue& colour = ColourValue::Black,
@@ -432,11 +450,13 @@ namespace Ogre {
             Real getVerticalTexelOffset(void) { return 0.0; }                 // No offset in GL
             Real getMinimumDepthInputValue(void) { return -1.0f; }            // Range [-1.0f, 1.0f]
             Real getMaximumDepthInputValue(void) { return 1.0f; }             // Range [-1.0f, 1.0f]
-            void registerThread() {}
-            void unregisterThread() {}
-            void preExtraThreadsStarted() {}
-            void postExtraThreadsStarted() {}
+            OGRE_MUTEX(mThreadInitMutex);
+            void registerThread();
+            void unregisterThread();
+            void preExtraThreadsStarted();
+            void postExtraThreadsStarted();
             void setClipPlanesImpl(const Ogre::PlaneList& planeList) {}
+            GLES2Support* getGLSupportRef() { return mGLSupport; }
 
             // ----------------------------------
             // GLES2RenderSystem specific members
@@ -473,26 +493,25 @@ namespace Ogre {
             void bindGpuProgramParameters(GpuProgramType gptype, GpuProgramParametersSharedPtr params, uint16 mask);
             void bindGpuProgramPassIterationParameters(GpuProgramType gptype);
 
-			/// @copydoc RenderSystem::_setSceneBlending
-			void _setSceneBlending( SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendOperation op );
-			/// @copydoc RenderSystem::_setSeparateSceneBlending
-			void _setSeparateSceneBlending( SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendFactor sourceFactorAlpha, SceneBlendFactor destFactorAlpha, SceneBlendOperation op, SceneBlendOperation alphaOp );
-			/// @copydoc RenderSystem::_setAlphaRejectSettings
-			void _setAlphaRejectSettings( CompareFunction func, unsigned char value, bool alphaToCoverage );
-			/// @copydoc RenderSystem::getDisplayMonitorCount
-			unsigned int getDisplayMonitorCount() const;
+            /// @copydoc RenderSystem::_setSceneBlending
+            void _setSceneBlending( SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendOperation op );
+            /// @copydoc RenderSystem::_setSeparateSceneBlending
+            void _setSeparateSceneBlending( SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendFactor sourceFactorAlpha, SceneBlendFactor destFactorAlpha, SceneBlendOperation op, SceneBlendOperation alphaOp );
+            /// @copydoc RenderSystem::_setAlphaRejectSettings
+            void _setAlphaRejectSettings( CompareFunction func, unsigned char value, bool alphaToCoverage );
+            /// @copydoc RenderSystem::getDisplayMonitorCount
+            unsigned int getDisplayMonitorCount() const;
 
             /// Internal method for anisotropy validation
             GLfloat _getCurrentAnisotropy(size_t unit);
 
-            GLenum _getPolygonMode(void) { return mPolygonMode; }
-
             void _setSceneBlendingOperation(SceneBlendOperation op);
             void _setSeparateSceneBlendingOperation(SceneBlendOperation op, SceneBlendOperation alphaOp);
 
-            void _bindGLBuffer(GLenum target, GLuint buffer);
-            void _deleteGLBuffer(GLenum target, GLuint buffer);
+            unsigned int getDiscardBuffers(void);
 
+            void _destroyDepthBuffer(RenderWindow* pRenderWnd);
+        
             /// @copydoc RenderSystem::beginProfileEvent
             virtual void beginProfileEvent( const String &eventName );
             
@@ -501,6 +520,14 @@ namespace Ogre {
             
             /// @copydoc RenderSystem::markProfileEvent
             virtual void markProfileEvent( const String &eventName );
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_EMSCRIPTEN
+            void resetRenderer(RenderWindow* pRenderWnd);
+        
+            static GLES2ManagedResourceManager* getResourceManager();
+    private:
+            static GLES2ManagedResourceManager* mResourceManager;
+#endif
     };
 }
 

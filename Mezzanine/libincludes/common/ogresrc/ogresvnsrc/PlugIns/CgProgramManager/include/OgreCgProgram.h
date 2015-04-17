@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -75,8 +75,6 @@ namespace Ogre {
 
         /// The CG context to use, passed in by factory
         CGcontext mCgContext;
-        /// Program handle
-        CGprogram mCgProgram;
         /** Internal load implementation, must be implemented by subclasses.
         */
         void loadFromSource(void);
@@ -88,24 +86,29 @@ namespace Ogre {
         /// Populate the passed parameters with name->index map, must be overridden
         void buildConstantDefinitions() const;
 
-		/// Recurse down structures getting data on parameters
-		void recurseParams(CGparameter param, size_t contextArraySize = 1);
-		/// Turn a Cg type into a GpuConstantType and number of elements
-		void mapTypeAndElementSize(CGtype cgType, bool isRegisterCombiner, GpuConstantDefinition& def) const;
+        /// Load the high-level part in a thread-safe way, required for delegate functionality
+        void loadHighLevelSafe();
+
+        /// Recurse down structures getting data on parameters
+        void recurseParams(CGparameter param, size_t contextArraySize = 1);
+        /// Turn a Cg type into a GpuConstantType and number of elements
+        void mapTypeAndElementSize(CGtype cgType, bool isRegisterCombiner, GpuConstantDefinition& def) const;
 
         StringVector mProfiles;
         String mEntryPoint;
         String mSelectedProfile;
-		String mProgramString;
+        String mProgramString;
         CGprofile mSelectedCgProfile;
         String mCompileArgs;
         // Unfortunately Cg uses char** for arguments - bleh
         // This is a null-terminated list of char* (each null terminated)
         char** mCgArguments;
-		
-		GpuConstantDefinitionMap mParametersMap;
-		size_t mParametersMapSizeAsBuffer;
-		
+        
+        GpuConstantDefinitionMap mParametersMap;
+        size_t mParametersMapSizeAsBuffer;
+        map<String,int>::type mSamplerRegisterMap;
+        CGenum mInputOp, mOutputOp;
+        
         /// Internal method which works out which profile to use for this program
         void selectProfile(void);
         /// Internal method which merges manual and automatic compile arguments
@@ -113,9 +116,17 @@ namespace Ogre {
         /// Releases memory for the horrible Cg char**
         void freeCgArgs(void);
 
-		void getMicrocodeFromCache(void);
-		void compileMicrocode(void);
-		void addMicrocodeToCache();
+        void getMicrocodeFromCache(void);
+        void compileMicrocode(void);
+        void addMicrocodeToCache();
+
+    private:
+        HighLevelGpuProgramPtr mDelegate;
+        String getHighLevelLanguage() const;
+        String getHighLevelTarget() const;
+        void fixHighLevelOutput(String& hlSource);
+
+
     public:
         CgProgram(ResourceManager* creator, const String& name, ResourceHandle handle,
             const String& group, bool isManual, ManualResourceLoader* loader, 
@@ -137,12 +148,27 @@ namespace Ogre {
         /// Overridden from GpuProgram
         bool isSupported(void) const;
         /// Overridden from GpuProgram
-		bool getPassTransformStates(void) const { return true; /* CG uses MVP matrix when -posinv argument passed */ }
-        /// Overridden from GpuProgram
         const String& getLanguage(void) const;
 
-		/// Scan the file for #include and replace with source from the OGRE resources
-		static String resolveCgIncludes(const String& source, Resource* resourceBeingLoaded, const String& fileName);
+        GpuProgramParametersSharedPtr createParameters();
+        GpuProgram* _getBindingDelegate();
+
+        bool isSkeletalAnimationIncluded(void) const;
+        bool isMorphAnimationIncluded(void) const;
+        bool isPoseAnimationIncluded(void) const;
+        bool isVertexTextureFetchRequired(void) const;
+        GpuProgramParametersSharedPtr getDefaultParameters(void);
+        bool hasDefaultParameters(void) const;
+        bool getPassSurfaceAndLightStates(void) const;
+        bool getPassFogStates(void) const;
+        bool getPassTransformStates(void) const;
+        bool hasCompileError(void) const;
+        void resetCompileError(void);
+        size_t getSize(void) const;
+        void touch(void);
+
+        /// Scan the file for #include and replace with source from the OGRE resources
+        static String resolveCgIncludes(const String& source, Resource* resourceBeingLoaded, const String& fileName);
     };
 }
 

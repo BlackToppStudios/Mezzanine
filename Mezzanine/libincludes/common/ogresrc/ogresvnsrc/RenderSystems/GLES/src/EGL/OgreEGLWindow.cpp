@@ -5,7 +5,7 @@ This source file is part of OGRE
 For the latest info, see http://www.ogre3d.org/
 
 Copyright (c) 2008 Renato Araujo Oliveira Filho <renatox@gmail.com>
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,18 +48,18 @@ namespace Ogre {
     EGLWindow::EGLWindow(EGLSupport *glsupport)
         : mGLSupport(glsupport),
           mContext(0),
-		  mEglConfig(0),
-		  mEglSurface(0),
-		  mWindow(0),
-		  mNativeDisplay(0),
-		  mEglDisplay(EGL_NO_DISPLAY)
+          mEglConfig(0),
+          mEglSurface(0),
+          mWindow(0),
+          mNativeDisplay(0),
+          mEglDisplay(EGL_NO_DISPLAY)
     {
         mIsTopLevel = false;
         mIsFullScreen = false;
         mClosed = false;
         mActive = true;//todo
         mIsExternalGLControl = false;
-		mVisible = false;
+        mVisible = false;
     }
 
     EGLWindow::~EGLWindow()
@@ -74,7 +74,7 @@ namespace Ogre {
         mContext = 0;
     }
 
-//	Moved EGLWindow::create to native source because it has native calls in it
+//  Moved EGLWindow::create to native source because it has native calls in it
 /*    void EGLWindow::create(const String& name, uint width, uint height,
                            bool fullScreen, const NameValuePairList *miscParams)
     {
@@ -84,10 +84,10 @@ namespace Ogre {
         short frequency = 0;
         bool vsync = false;
         ::EGLContext eglContext = 0;
-		int left = 0;
-		int top  = 0;
+        int left = 0;
+        int top  = 0;
 
-		getLeftAndTopFromNativeWindow(left, top, width, height);
+        getLeftAndTopFromNativeWindow(left, top, width, height);
 
         mIsFullScreen = fullScreen;
 
@@ -151,9 +151,9 @@ namespace Ogre {
             {
                 mIsExternalGLControl = StringConverter::parseBool(opt->second);
             }
-		}
+        }
 
-		initNativeCreatedWindow(miscParams);
+        initNativeCreatedWindow(miscParams);
 
         if (mEglSurface)
         {
@@ -207,12 +207,12 @@ namespace Ogre {
             mGLSupport->switchMode (width, height, frequency);
         }
 
-		if (!mIsExternal)
+        if (!mIsExternal)
         {
-			createNativeWindow(left, top, width, height, title);
-		}
+            createNativeWindow(left, top, width, height, title);
+        }
 
-		mContext = createEGLContext();
+        mContext = createEGLContext();
 
         ::EGLSurface oldDrawableDraw = eglGetCurrentSurface(EGL_DRAW);
         ::EGLSurface oldDrawableRead = eglGetCurrentSurface(EGL_READ);
@@ -229,10 +229,10 @@ namespace Ogre {
         mLeft = left;
         mTop = top;
         mActive = true;
-		mVisible = true;
+        mVisible = true;
 
         mClosed = false;
-	}*/
+    }*/
 
     void EGLWindow::destroy(void)
     {
@@ -269,7 +269,7 @@ namespace Ogre {
         {
             return;
         }
-		if (fullscreen)
+        if (fullscreen)
         {
             mGLSupport->switchMode(width, height, frequency);
         }
@@ -307,7 +307,7 @@ namespace Ogre {
 
   
 
-    void EGLWindow::swapBuffers(bool waitForVSync)
+    void EGLWindow::swapBuffers()
     {
         if (mClosed || mIsExternalGLControl)
         {
@@ -317,6 +317,7 @@ namespace Ogre {
         glFlush();
         if (eglSwapBuffers(mEglDisplay, mEglSurface) == EGL_FALSE)
         {
+            EGL_CHECK_ERROR
             OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR,
                         "Fail to SwapBuffers",
                         __FUNCTION__);
@@ -340,82 +341,70 @@ namespace Ogre {
             *static_cast<EGLContext**>(pData) = mContext;
             return;
         } 
-		else if (name == "WINDOW")
-		{
-			*static_cast<NativeWindowType*>(pData) = mWindow;
-			return;
-		} 
-	}
+        else if (name == "WINDOW")
+        {
+            *static_cast<NativeWindowType*>(pData) = mWindow;
+            return;
+        } 
+    }
 
     void EGLWindow::copyContentsToMemory(const PixelBox &dst, FrameBuffer buffer)
     {
-		if ((dst.left < 0) || (dst.right > mWidth) ||
-			(dst.top < 0) || (dst.bottom > mHeight) ||
-			(dst.front != 0) || (dst.back != 1))
-		{
-			OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
-				"Invalid box.",
-				"Win32Window::copyContentsToMemory" );
-		}
+        if (dst.getWidth() > mWidth ||
+            dst.getHeight() > mHeight ||
+            dst.front != 0 || dst.back != 1)
+        {
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
+                "Invalid box.",
+                "Win32Window::copyContentsToMemory" );
+        }
 
-		if (buffer == FB_AUTO)
-		{
-			buffer = mIsFullScreen? FB_FRONT : FB_BACK;
-		}
+        if (buffer == FB_AUTO)
+        {
+            buffer = mIsFullScreen? FB_FRONT : FB_BACK;
+        }
 
-		GLenum format = GLESPixelUtil::getGLOriginFormat(dst.format);
-		GLenum type = GLESPixelUtil::getGLOriginDataType(dst.format);
+        GLenum format = GLESPixelUtil::getGLOriginFormat(dst.format);
+        GLenum type = GLESPixelUtil::getGLOriginDataType(dst.format);
 
-		if ((format == 0) || (type == 0))
-		{
-			OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
-				"Unsupported format.",
-				"GtkEGLWindow::copyContentsToMemory" );
-		}
+        if ((format == 0) || (type == 0))
+        {
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
+                "Unsupported format.",
+                "GtkEGLWindow::copyContentsToMemory" );
+        }
 
 
-		// Switch context if different from current one
-		RenderSystem* rsys = Root::getSingleton().getRenderSystem();
-		rsys->_setViewport(this->getViewport(0));
+        // Switch context if different from current one
+        RenderSystem* rsys = Root::getSingleton().getRenderSystem();
+        rsys->_setViewport(this->getViewport(0));
 
-		// Must change the packing to ensure no overruns!
-		glPixelStorei(GL_PACK_ALIGNMENT, 1);
+#if OGRE_NO_GLES3_SUPPORT == 0
+        if(dst.getWidth() != dst.rowPitch)
+            glPixelStorei(GL_PACK_ROW_LENGTH, dst.rowPitch);
+#endif
+        // Must change the packing to ensure no overruns!
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
 
-		//glReadBuffer((buffer == FB_FRONT)? GL_FRONT : GL_BACK);
-		glReadPixels((GLint)dst.left, (GLint)dst.top,
-			(GLsizei)dst.getWidth(), (GLsizei)dst.getHeight(),
-			format, type, dst.data);
+        //glReadBuffer((buffer == FB_FRONT)? GL_FRONT : GL_BACK);
+        glReadPixels((GLint)0, (GLint)(mHeight - dst.getHeight()),
+                     (GLsizei)dst.getWidth(), (GLsizei)dst.getHeight(),
+                     format, type, dst.getTopLeftFrontPixelPtr());
 
-		// restore default alignment
-		glPixelStorei(GL_PACK_ALIGNMENT, 4);
-
-		//vertical flip
-		{
-			size_t rowSpan = dst.getWidth() * PixelUtil::getNumElemBytes(dst.format);
-			size_t height = dst.getHeight();
-			uchar *tmpData = new uchar[rowSpan * height];
-			uchar *srcRow = (uchar *)dst.data, *tmpRow = tmpData + (height - 1) * rowSpan;
-
-			while (tmpRow >= tmpData)
-			{
-				memcpy(tmpRow, srcRow, rowSpan);
-				srcRow += rowSpan;
-				tmpRow -= rowSpan;
-			}
-			memcpy(dst.data, tmpData, rowSpan * height);
-
-			delete [] tmpData;
-		}
-
+        // restore default alignment
+        glPixelStorei(GL_PACK_ALIGNMENT, 4);
+#if OGRE_NO_GLES3_SUPPORT == 0
+        glPixelStorei(GL_PACK_ROW_LENGTH, 0);
+#endif
+        
+        PixelUtil::bulkPixelVerticalFlip(dst);
     }
 
 
     ::EGLSurface EGLWindow::createSurfaceFromWindow(::EGLDisplay display,
                                                     NativeWindowType win)
     {
-        ::EGLSurface surface;
-
-        surface = eglCreateWindowSurface(display, mEglConfig, win, NULL);
+        ::EGLSurface surface = eglCreateWindowSurface(display, mEglConfig, win, NULL);
 
         if (surface == EGL_NO_SURFACE)
         {
@@ -426,9 +415,9 @@ namespace Ogre {
         return surface;
     }
 
-	bool EGLWindow::requiresTextureFlipping() const
-	{
-		return false;
-	}
+    bool EGLWindow::requiresTextureFlipping() const
+    {
+        return false;
+    }
 
 }
