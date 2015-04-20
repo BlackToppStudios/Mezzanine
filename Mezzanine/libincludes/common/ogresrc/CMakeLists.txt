@@ -89,6 +89,9 @@ set(OGREDEPS_BUILD_ZLIB TRUE CACHE BOOL "Enabling enhanced resource reading for 
 set(OGREDEPS_BUILD_ZZIPLIB TRUE CACHE BOOL "Enabling enhanced resource reading for Ogre." FORCE)
 set(OGREDEPS_INSTALL_DEV FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 
+set(FREETYPE_FT2BUILD_INCLUDE_DIR "" CACHE PATH "Forcing empty include path to avoid CMake errors." FORCE)
+set(FREETYPE_INCLUDE_DIR "" CACHE PATH "Forcing empty include path to avoid CMake errors." FORCE)
+
 # Ogre Extras
 set(OGRE_INSTALL_DOCS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_INSTALL_SAMPLES FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
