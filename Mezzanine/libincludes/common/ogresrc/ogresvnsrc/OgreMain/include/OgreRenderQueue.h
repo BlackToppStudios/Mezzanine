@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,27 +28,27 @@ THE SOFTWARE.
 #ifndef __RenderQueue_H__
 #define __RenderQueue_H__
 
-#include "OgreHeaderPrefix.h"
 #include "OgrePrerequisites.h"
+#include "OgreHeaderPrefix.h"
 #include "OgreIteratorWrappers.h"
 
 namespace Ogre {
 
-	class Camera;
-	class MovableObject;
-	struct VisibleObjectsBoundsInfo;
+    class Camera;
+    class MovableObject;
+    struct VisibleObjectsBoundsInfo;
 
-	/** \addtogroup Core
-	*  @{
-	*/
-	/** \addtogroup RenderSystem
-	*  @{
-	*/
-	/** Enumeration of queue groups, by which the application may group queued renderables
+    /** \addtogroup Core
+    *  @{
+    */
+    /** \addtogroup RenderSystem
+    *  @{
+    */
+    /** Enumeration of queue groups, by which the application may group queued renderables
         so that they are rendered together with events in between
-	@remarks
-		When passed into methods these are actually passed as a uint8 to allow you
-		to use values in between if you want to.
+    @remarks
+        When passed into methods these are actually passed as a uint8 to allow you
+        to use values in between if you want to.
     */
     enum RenderQueueGroupID
     {
@@ -58,22 +58,22 @@ namespace Ogre {
         RENDER_QUEUE_SKIES_EARLY = 5,
         RENDER_QUEUE_1 = 10,
         RENDER_QUEUE_2 = 20,
-		RENDER_QUEUE_WORLD_GEOMETRY_1 = 25,
+        RENDER_QUEUE_WORLD_GEOMETRY_1 = 25,
         RENDER_QUEUE_3 = 30,
         RENDER_QUEUE_4 = 40,
-		/// The default render queue
+        /// The default render queue
         RENDER_QUEUE_MAIN = 50,
         RENDER_QUEUE_6 = 60,
         RENDER_QUEUE_7 = 70,
-		RENDER_QUEUE_WORLD_GEOMETRY_2 = 75,
+        RENDER_QUEUE_WORLD_GEOMETRY_2 = 75,
         RENDER_QUEUE_8 = 80,
         RENDER_QUEUE_9 = 90,
         /// Penultimate queue(before overlays), used for skyboxes if rendered last
         RENDER_QUEUE_SKIES_LATE = 95,
         /// Use this queue for objects which must be rendered last e.g. overlays
         RENDER_QUEUE_OVERLAY = 100, 
-		/// Final possible render queue, don't exceed this
-		RENDER_QUEUE_MAX = 105
+        /// Final possible render queue, don't exceed this
+        RENDER_QUEUE_MAX = 105
     };
 
     #define OGRE_RENDERABLE_DEFAULT_PRIORITY  100
@@ -93,250 +93,44 @@ namespace Ogre {
     {
     public:
 
-		class RenderQueueGroupMap
-		{
-		public:
-			class value_type
-			{
-			public:
-				value_type(uint8 _f, RenderQueueGroup* _g) : first(_f), second(_g)
-				{
+        typedef map< uint8, RenderQueueGroup* >::type RenderQueueGroupMap;
+        /// Iterator over queue groups
+        typedef MapIterator<RenderQueueGroupMap> QueueGroupIterator;
+        typedef ConstMapIterator<RenderQueueGroupMap> ConstQueueGroupIterator;
 
-				}
-				value_type() : first(0), second(0)
-				{
+        /** Class to listen in on items being added to the render queue. 
+        @remarks
+            Use RenderQueue::setRenderableListener to get callbacks when an item
+            is added to the render queue.
+        */
+        class _OgreExport RenderableListener
+        {
+        public:
+            RenderableListener() {}
+            virtual ~RenderableListener() {}
 
-				}
-				uint8 first;
-				RenderQueueGroup* second;
-			};
-
-			typedef uint8 key_type;
-			typedef RenderQueueGroup* mapped_type;
-			typedef value_type& reference;
-			typedef value_type* pointer;
-			typedef const value_type& const_reference;
-			typedef const value_type* const_pointer;
-			typedef vector<value_type >::type GroupVector;
-
-			class iterator
-			{
-				friend class RenderQueueGroupMap;
-			public:
-
-				iterator() : mRenderQueueGroupMap(0), mIndex(RENDER_QUEUE_MAX)
-				{
-				}
-
-				iterator(const RenderQueueGroupMap* _mRenderQueueGroupMap, uint8 _index) : mRenderQueueGroupMap(_mRenderQueueGroupMap), mIndex(_index)
-				{
-				}
-
-				const_reference operator*() const
-				{	
-					assert(this->mRenderQueueGroupMap);
-
-					return mRenderQueueGroupMap->mGroupVector[mIndex];
-				}
-
-				const_pointer operator->() const
-				{
-					assert(this->mRenderQueueGroupMap);
-
-					return &(mRenderQueueGroupMap->mGroupVector[mIndex]);
-				}
-
-				iterator& operator++()
-				{
-					assert(this->mRenderQueueGroupMap);
-
-					while(mIndex < mRenderQueueGroupMap->mMaxID)
-					{
-						++mIndex;
-						if(mRenderQueueGroupMap->mGroupVector[mIndex].second != 0)
-						{
-							break;
-						}
-					}
-					return (*this);
-				}
-
-				const iterator& operator++()const
-				{
-					assert(this->mRenderQueueGroupMap);
-
-					while(mIndex < mRenderQueueGroupMap->mMaxID)
-					{
-						++mIndex;
-						if(mRenderQueueGroupMap->mGroupVector[mIndex].second != 0)
-						{
-							break;
-						}
-					}
-					return (*this);
-				}
-
-				iterator operator++(int)
-				{
-					assert(this->mRenderQueueGroupMap);
-
-					iterator temp = *this;
-					while(mIndex < mRenderQueueGroupMap->mMaxID)
-					{
-						++mIndex;
-						if(mRenderQueueGroupMap->mGroupVector[mIndex].second != 0)
-						{
-							break;
-						}
-					}
-					return (temp);
-				}
-
-				const iterator operator++(int)const
-				{
-					assert(this->mRenderQueueGroupMap);
-
-					const_iterator temp = *this;
-					while(mIndex < mRenderQueueGroupMap->mMaxID)
-					{
-						++mIndex;
-						if(mRenderQueueGroupMap->mGroupVector[mIndex].second != 0)
-						{
-							break;
-						}
-					}
-					return (temp);
-				}
-
-				bool operator !=(const iterator& o)const
-				{
-					assert(mRenderQueueGroupMap);
-					assert(o.mRenderQueueGroupMap);
-					assert(o.mRenderQueueGroupMap == this->mRenderQueueGroupMap);
-					if( o.mIndex != this->mIndex)
-						return true;
-					return false;
-				}
-
-				bool operator ==(const iterator& o)const
-				{
-					assert(this->mRenderQueueGroupMap);
-					assert(o.mRenderQueueGroupMap);
-					assert(o.mRenderQueueGroupMap == this->mRenderQueueGroupMap);
-					if(o.mIndex == this->mIndex)
-					{
-						return true;
-					}
-					return false;
-				}
-			protected:
-				const RenderQueueGroupMap* mRenderQueueGroupMap;
-				mutable uint8 mIndex;
-			};
-
-			typedef const iterator const_iterator;
-			
-			RenderQueueGroupMap() : mMinID(RENDER_QUEUE_MAX), mMaxID(RENDER_QUEUE_MAX)
-			{
-				mGroupVector.resize(RENDER_QUEUE_MAX + 2);
-			}
-
-			void insert(value_type v)
-			{
-				mGroupVector[v.first] = v;
-				if(v.first < mMinID)
-				{
-					mMinID = v.first;
-				}
-
-				if(v.first >= mMaxID || mMaxID == RENDER_QUEUE_MAX)
-				{
-					mMaxID = v.first + 1;
-				}
-			}
-
-			iterator find(uint8 key)
-			{
-				if(mGroupVector[key].second == 0)
-				{
-					return iterator(this, mMaxID);
-				}
-				else
-				{
-					return iterator(this, key);
-				}
-			}
-
-			iterator begin()
-			{
-				return iterator(this, mMinID);
-			}
-
-			iterator end()
-			{
-				return iterator(this, mMaxID);
-			}
-
-			const_iterator begin() const
-			{
-				return iterator(this, mMinID);
-			}
-
-			const_iterator end() const
-			{
-				return iterator(this, mMaxID);
-			}
-			
-			void clear()
-			{
-				mGroupVector.reserve(RENDER_QUEUE_MAX + 2);
-				mGroupVector.clear();
-				mGroupVector.resize(RENDER_QUEUE_MAX + 2);
-				mMinID = RENDER_QUEUE_MAX;
-				mMaxID = RENDER_QUEUE_MAX;
-			}
-		protected:
-			uint8 mMinID;
-			uint8 mMaxID;
-			GroupVector mGroupVector;
-		};
-
-		typedef MapIterator<RenderQueueGroupMap> QueueGroupIterator;
-		typedef ConstMapIterator<RenderQueueGroupMap> ConstQueueGroupIterator;
-
-		/** Class to listen in on items being added to the render queue. 
-		@remarks
-			Use RenderQueue::setRenderableListener to get callbacks when an item
-			is added to the render queue.
-		*/
-		class _OgreExport RenderableListener
-		{
-		public:
-			RenderableListener() {}
-			virtual ~RenderableListener() {}
-
-			/** Method called when a Renderable is added to the queue.
-			@remarks
-				You can use this event hook to alter the Technique used to
-				render a Renderable as the item is added to the queue. This is
-				a low-level way to override the material settings for a given
-				Renderable on the fly.
-			@param rend The Renderable being added to the queue
-			@param groupID The render queue group this Renderable is being added to
-			@param priority The priority the Renderable has been given
-			@param ppTech A pointer to the pointer to the Technique that is 
-				intended to be used; you can alter this to an alternate Technique
-				if you so wish (the Technique doesn't have to be from the same
-				Material either).
-			@param pQueue Pointer to the render queue that this object is being
-				added to. You can for example call this back to duplicate the 
-				object with a different technique
-			@return true to allow the Renderable to be added to the queue, 
-				false if you want to prevent it being added
-			*/
-			virtual bool renderableQueued(Renderable* rend, uint8 groupID, 
-				ushort priority, Technique** ppTech, RenderQueue* pQueue) = 0;
-		};
+            /** Method called when a Renderable is added to the queue.
+            @remarks
+                You can use this event hook to alter the Technique used to
+                render a Renderable as the item is added to the queue. This is
+                a low-level way to override the material settings for a given
+                Renderable on the fly.
+            @param rend The Renderable being added to the queue
+            @param groupID The render queue group this Renderable is being added to
+            @param priority The priority the Renderable has been given
+            @param ppTech A pointer to the pointer to the Technique that is 
+                intended to be used; you can alter this to an alternate Technique
+                if you so wish (the Technique doesn't have to be from the same
+                Material either).
+            @param pQueue Pointer to the render queue that this object is being
+                added to. You can for example call this back to duplicate the 
+                object with a different technique
+            @return true to allow the Renderable to be added to the queue, 
+                false if you want to prevent it being added
+            */
+            virtual bool renderableQueued(Renderable* rend, uint8 groupID, 
+                ushort priority, Technique** ppTech, RenderQueue* pQueue) = 0;
+        };
     protected:
         RenderQueueGroupMap mGroups;
         /// The current default queue group
@@ -346,25 +140,25 @@ namespace Ogre {
 
         bool mSplitPassesByLightingType;
         bool mSplitNoShadowPasses;
-		bool mShadowCastersCannotBeReceivers;
+        bool mShadowCastersCannotBeReceivers;
 
-		RenderableListener* mRenderableListener;
+        RenderableListener* mRenderableListener;
     public:
         RenderQueue();
         virtual ~RenderQueue();
 
         /** Empty the queue - should only be called by SceneManagers.
-		@param destroyPassMaps Set to true to destroy all pass maps so that
-			the queue is completely clean (useful when switching scene managers)
+        @param destroyPassMaps Set to true to destroy all pass maps so that
+            the queue is completely clean (useful when switching scene managers)
         */
         void clear(bool destroyPassMaps = false);
 
-		/** Get a render queue group.
-		@remarks
-			OGRE registers new queue groups as they are requested, 
-			therefore this method will always return a valid group.
-		*/
-		RenderQueueGroup* getQueueGroup(uint8 qid);
+        /** Get a render queue group.
+        @remarks
+            OGRE registers new queue groups as they are requested, 
+            therefore this method will always return a valid group.
+        */
+        RenderQueueGroup* getQueueGroup(uint8 qid);
 
         /** Add a renderable object to the queue.
         @remarks
@@ -398,10 +192,10 @@ namespace Ogre {
             current default (see setDefaultRenderablePriority).
         @note
             Called by implementation of MovableObject::_updateRenderQueue.
-        @param
-            pRend Pointer to the Renderable to be added to the queue
-		@param
-            groupID The group the renderable is to be added to. This
+        @param pRend
+            Pointer to the Renderable to be added to the queue
+        @param groupId
+            The group the renderable is to be added to. This
             can be used to schedule renderable objects in separate groups such that the SceneManager
             respects the divisions between the groupings and does not reorder them outside these
             boundaries. This can be handy for overlays where no matter what you want the overlay to 
@@ -441,7 +235,7 @@ namespace Ogre {
 
         /** Sets the current default queue group, which will be used for all renderable which do not
             specify which group they wish to be on. See the enum RenderQueueGroupID for what kind of
-			values can be used here.
+            values can be used here.
         */
         void setDefaultQueueGroup(uint8 grp);
         
@@ -471,46 +265,47 @@ namespace Ogre {
         */
         bool getSplitNoShadowPasses(void) const;
 
-		/** Sets whether or not objects which cast shadows should be treated as
-		never receiving shadows. 
-		*/
-		void setShadowCastersCannotBeReceivers(bool ind);
+        /** Sets whether or not objects which cast shadows should be treated as
+        never receiving shadows. 
+        */
+        void setShadowCastersCannotBeReceivers(bool ind);
 
-		/** Gets whether or not objects which cast shadows should be treated as
-		never receiving shadows. 
-		*/
-		bool getShadowCastersCannotBeReceivers(void) const;
+        /** Gets whether or not objects which cast shadows should be treated as
+        never receiving shadows. 
+        */
+        bool getShadowCastersCannotBeReceivers(void) const;
 
-		/** Set a renderable listener on the queue.
-		@remarks
-			There can only be a single renderable listener on the queue, since
-			that listener has complete control over the techniques in use.
-		*/
-		void setRenderableListener(RenderableListener* listener)
-		{ mRenderableListener = listener; }
+        /** Set a renderable listener on the queue.
+        @remarks
+            There can only be a single renderable listener on the queue, since
+            that listener has complete control over the techniques in use.
+        */
+        void setRenderableListener(RenderableListener* listener)
+        { mRenderableListener = listener; }
 
-		RenderableListener* getRenderableListener(void) const
-		{ return mRenderableListener; }
+        RenderableListener* getRenderableListener(void) const
+        { return mRenderableListener; }
 
-		/** Merge render queue.
-		*/
-		void merge( const RenderQueue* rhs );
-		/** Utility method to perform the standard actions associated with 
-			getting a visible object to add itself to the queue. This is 
-			a replacement for SceneManager implementations of the associated
-			tasks related to calling MovableObject::_updateRenderQueue.
-		*/
-		void processVisibleObject(MovableObject* mo, 
-			Camera* cam, 
-			bool onlyShadowCasters, 
-			VisibleObjectsBoundsInfo* visibleBounds);
+        /** Merge render queue.
+        */
+        void merge( const RenderQueue* rhs );
+        /** Utility method to perform the standard actions associated with 
+            getting a visible object to add itself to the queue. This is 
+            a replacement for SceneManager implementations of the associated
+            tasks related to calling MovableObject::_updateRenderQueue.
+        */
+        void processVisibleObject(MovableObject* mo, 
+            Camera* cam, 
+            bool onlyShadowCasters, 
+            VisibleObjectsBoundsInfo* visibleBounds);
 
     };
 
-	/** @} */
-	/** @} */
+    /** @} */
+    /** @} */
 
 }
 
 #include "OgreHeaderSuffix.h"
+
 #endif

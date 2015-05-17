@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,10 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
-#include "OgreLogManager.h"
-#include "OgreConfigDialog.h"
+#import "OgreLogManager.h"
+#import "OgreConfigDialog.h"
+
+using namespace Ogre;
 
 namespace Ogre {
 
@@ -51,13 +53,20 @@ namespace Ogre {
             OGRE_EXCEPT (Exception::ERR_INTERNAL_ERROR, "Could not load config dialog",
                          "ConfigDialog::initialise");
 
-        NSArray *keys = [[NSArray alloc] initWithObjects:@"Full Screen", @"FSAA", @"Colour Depth", @"RTT Preferred Mode", @"Video Mode", @"sRGB Gamma Conversion", @"macAPI", nil];
+#if OGRE_NO_QUAD_BUFFER_STEREO == 0
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"Stereo Mode", @"Full Screen", @"FSAA", @"Colour Depth", @"RTT Preferred Mode", @"Video Mode", @"sRGB Gamma Conversion", @"macAPI", @"Content Scaling Factor", nil];
+        NSArray *stereoModeOptions = [[NSArray alloc] initWithObjects:@"None", @"Frame Sequential", nil];
+#else
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"Full Screen", @"FSAA", @"Colour Depth", @"RTT Preferred Mode", @"Video Mode", @"sRGB Gamma Conversion", @"macAPI", @"Content Scaling Factor", nil];
+#endif
+        
         NSArray *fullScreenOptions = [[NSArray alloc] initWithObjects:@"Yes", @"No", nil];
         NSArray *colourDepthOptions = [[NSArray alloc] initWithObjects:@"32", @"16", nil];
         NSArray *rttOptions = [[NSArray alloc] initWithObjects:@"FBO", @"PBuffer", @"Copy", nil];
         NSMutableArray *videoModeOptions = [[NSMutableArray alloc] initWithCapacity:1];
         NSMutableArray *fsaaOptions = [[NSMutableArray alloc] initWithCapacity:1];
         NSArray *sRGBOptions = [[NSArray alloc] initWithObjects:@"Yes", @"No", nil];
+        NSArray *contentScaleOptions = [[NSArray alloc] initWithObjects:@"2.0", @"1.5", @"1.33", @"1.0", nil];
 #ifdef __LP64__
         NSArray *macAPIOptions = [[NSArray alloc] initWithObjects:@"cocoa", nil];
 #else
@@ -77,12 +86,17 @@ namespace Ogre {
 			rs->setConfigOption("Full Screen", "No");
 			rs->setConfigOption("RTT Preferred Mode", "FBO");
 			rs->setConfigOption("sRGB Gamma Conversion", "No");
+			rs->setConfigOption("Content Scaling Factor", "1.0");
 #ifdef __LP64__
 			rs->setConfigOption("macAPI", "cocoa");
 #else
 			rs->setConfigOption("macAPI", "carbon");
 #endif
             
+#if OGRE_NO_QUAD_BUFFER_STEREO == 0
+			rs->setConfigOption("Stereo Mode", "None");
+#endif
+
             // Add to the drop down
             NSString *renderSystemName = [[NSString alloc] initWithCString:rs->getName().c_str() encoding:NSASCIIStringEncoding];
             [[mWindowDelegate getRenderSystemsPopUp] addItemWithTitle:renderSystemName];
@@ -121,11 +135,19 @@ namespace Ogre {
             }
         }
 
+#if OGRE_NO_QUAD_BUFFER_STEREO == 0
+		NSArray *objects = [[NSArray alloc] initWithObjects:stereoModeOptions, fullScreenOptions, fsaaOptions,
+			 colourDepthOptions, rttOptions, videoModeOptions, sRGBOptions, macAPIOptions, contentScaleOptions, nil];
+#else
         NSArray *objects = [[NSArray alloc] initWithObjects:fullScreenOptions, fsaaOptions,
-                            colourDepthOptions, rttOptions, videoModeOptions, sRGBOptions, macAPIOptions, nil];
-        [mWindowDelegate setOptions:[NSDictionary dictionaryWithObjects:objects forKeys:keys]];
+                            colourDepthOptions, rttOptions, videoModeOptions, sRGBOptions, macAPIOptions, contentScaleOptions, nil];
+#endif
+		[mWindowDelegate setOptions:[NSDictionary dictionaryWithObjects:objects forKeys:keys]];
 
         // Clean up all those arrays
+#if OGRE_NO_QUAD_BUFFER_STEREO == 0
+		[stereoModeOptions release];
+#endif
         [fullScreenOptions release];
         [fsaaOptions release];
         [colourDepthOptions release];
@@ -133,6 +155,7 @@ namespace Ogre {
         [videoModeOptions release];
         [sRGBOptions release];
         [macAPIOptions release];
+        [contentScaleOptions release];
         [keys release];
         [objects release];
 
@@ -160,8 +183,8 @@ namespace Ogre {
         [NSApp endModalSession:modalSession];
 
         // Set the rendersystem
-        Ogre::String selectedRenderSystemName = Ogre::String([[[[mWindowDelegate getRenderSystemsPopUp] selectedItem] title] UTF8String]);
-        RenderSystem *rs = Ogre::Root::getSingleton().getRenderSystemByName(selectedRenderSystemName);
+        String selectedRenderSystemName = String([[[[mWindowDelegate getRenderSystemsPopUp] selectedItem] title] UTF8String]);
+        RenderSystem *rs = Root::getSingleton().getRenderSystemByName(selectedRenderSystemName);
         Root::getSingleton().setRenderSystem(rs);
         
         // Relinquish control of the table
@@ -209,6 +232,7 @@ namespace Ogre {
         [mCancelButton setBezelStyle:NSRoundedBezelStyle];
         [mCancelButton setAction:@selector(cancelButtonPressed:)];
         [mCancelButton setTarget:self];
+        [mCancelButton setKeyEquivalent:@"\e"];
         [mCancelButton setTitle:NSLocalizedString(@"Cancel", @"cancelButtonString")];
         [[mConfigWindow contentView] addSubview:mCancelButton];
 
@@ -310,16 +334,16 @@ namespace Ogre {
 - (void)popUpValueChanged:(id)sender
 {
 #pragma unused(sender)
-    // Grab a copy of the selected RenderSystem name in Ogre::String format
-    Ogre::String selectedRenderSystemName = Ogre::String([[[mRenderSystemsPopUp selectedItem] title] UTF8String]);
+    // Grab a copy of the selected RenderSystem name in String format
+    String selectedRenderSystemName = String([[[mRenderSystemsPopUp selectedItem] title] UTF8String]);
     
     // Save the current config value
     if((0 <= [mOptionsTable selectedRow]) && [mOptionsPopUp selectedItem])
     {
-        Ogre::String value = Ogre::String([[[mOptionsPopUp selectedItem] title] UTF8String]);
-        Ogre::String name = Ogre::String([[[[mOptions keyEnumerator] allObjects] objectAtIndex:[mOptionsTable selectedRow]] UTF8String]);
+        String value = String([[[mOptionsPopUp selectedItem] title] UTF8String]);
+        String name = String([[[[mOptions keyEnumerator] allObjects] objectAtIndex:[mOptionsTable selectedRow]] UTF8String]);
         
-        Ogre::Root::getSingleton().getRenderSystemByName(selectedRenderSystemName)->setConfigOption(name, value);
+        Root::getSingleton().getRenderSystemByName(selectedRenderSystemName)->setConfigOption(name, value);
     }
 }
 
@@ -341,6 +365,7 @@ namespace Ogre {
     [mConfigWindow orderOut:nil];
 
     [NSApp abortModal];
+    [NSApp terminate:nil];
 }
 
 - (void)okButtonPressed:(id)sender
@@ -390,21 +415,28 @@ namespace Ogre {
     // Add the available options
     [mOptionsPopUp addItemsWithTitles:[mOptions objectForKey:key]];
     
-    // Grab a copy of the selected RenderSystem name in Ogre::String format
-    Ogre::String selectedRenderSystemName = Ogre::String([[[mRenderSystemsPopUp selectedItem] title] UTF8String]);
-    const Ogre::ConfigOptionMap& opts = Ogre::Root::getSingleton().getRenderSystemByName(selectedRenderSystemName)->getConfigOptions();
+    // Grab a copy of the selected RenderSystem name in String format
+    if([mRenderSystemsPopUp numberOfItems] > 0)
+    {
+        String selectedRenderSystemName = String([[[mRenderSystemsPopUp selectedItem] title] UTF8String]);
+        const ConfigOptionMap& opts = Root::getSingleton().getRenderSystemByName(selectedRenderSystemName)->getConfigOptions();
 
-    // Select the item that is the current config option, if there is no current setting, just pick the top of the list
-    Ogre::ConfigOptionMap::const_iterator it = opts.find([key UTF8String]);
-    if (it != opts.end())
-        [mOptionsPopUp selectItemWithTitle:[NSString stringWithCString:it->second.currentValue.c_str()
-                                 encoding:NSASCIIStringEncoding]];
+        // Select the item that is the current config option, if there is no current setting, just pick the top of the list
+        ConfigOptionMap::const_iterator it = opts.find([key UTF8String]);
+        if (it != opts.end())
+            [mOptionsPopUp selectItemWithTitle:[NSString stringWithCString:it->second.currentValue.c_str()
+                                     encoding:NSASCIIStringEncoding]];
 
-    if([mOptionsPopUp indexOfSelectedItem] < 0)
-        [mOptionsPopUp selectItemAtIndex:0];
+        if([mOptionsPopUp indexOfSelectedItem] < 0)
+            [mOptionsPopUp selectItemAtIndex:0];
 
-    // Always allow the new selection
-    return YES;
+        // Always allow the new selection
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 #pragma mark Getters and Setters

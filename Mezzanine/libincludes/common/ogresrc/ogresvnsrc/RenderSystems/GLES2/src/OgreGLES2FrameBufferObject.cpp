@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,9 @@ THE SOFTWARE.
 #include "OgreGLES2HardwarePixelBuffer.h"
 #include "OgreGLES2FBORenderTexture.h"
 #include "OgreGLES2DepthBuffer.h"
+#include "OgreGLES2Util.h"
 #include "OgreRoot.h"
+#include "OgreGLES2RenderSystem.h"
 
 namespace Ogre {
 
@@ -38,32 +40,48 @@ namespace Ogre {
     GLES2FrameBufferObject::GLES2FrameBufferObject(GLES2FBOManager *manager, uint fsaa):
         mManager(manager), mNumSamples(fsaa)
     {
-        /// Generate framebuffer object
-        glGenFramebuffers(1, &mFB);
-        GL_CHECK_ERROR;
+        // Generate framebuffer object
+        OGRE_CHECK_GL_ERROR(glGenFramebuffers(1, &mFB));
+
+        if(getGLES2SupportRef()->checkExtension("GL_EXT_debug_label"))
+        {
+            OGRE_IF_IOS_VERSION_IS_GREATER_THAN(5.0)
+            OGRE_CHECK_GL_ERROR(glLabelObjectEXT(GL_BUFFER_OBJECT_EXT, mFB, 0, ("FBO #" + StringConverter::toString(mFB)).c_str()));
+        }
 
         mNumSamples = 0;
         mMultisampleFB = 0;
 
         // Check multisampling if supported
-#if GL_APPLE_framebuffer_multisample && OGRE_PLATFORM != OGRE_PLATFORM_NACL && OGRE_PLATFORM != OGRE_PLATFORM_WIN32
-        // Check samples supported
-        glBindFramebuffer(GL_FRAMEBUFFER, mFB);
-        GLint maxSamples;
-        glGetIntegerv(GL_MAX_SAMPLES_APPLE, &maxSamples);
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        mNumSamples = std::min(mNumSamples, (GLsizei)maxSamples);
-#endif
-		// Will we need a second FBO to do multisampling?
-		if (mNumSamples)
-		{
-			glGenFramebuffers(1, &mMultisampleFB);
-		}
-        
-        /// Initialise state
-        mDepth.buffer=0;
-        mStencil.buffer=0;
-        for(size_t x=0; x<OGRE_MAX_MULTIPLE_RENDER_TARGETS; ++x)
+        if(gleswIsSupported(3, 0))
+        {
+            // Check samples supported
+            OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mFB));
+            GLint maxSamples;
+            OGRE_CHECK_GL_ERROR(glGetIntegerv(GL_MAX_SAMPLES_APPLE, &maxSamples));
+            OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+            mNumSamples = std::min(mNumSamples, (GLsizei)maxSamples);
+        }
+
+        // Will we need a second FBO to do multisampling?
+        if (mNumSamples)
+        {
+            OGRE_CHECK_GL_ERROR(glGenFramebuffers(1, &mMultisampleFB));
+            if(getGLES2SupportRef()->checkExtension("GL_EXT_debug_label"))
+            {
+                OGRE_IF_IOS_VERSION_IS_GREATER_THAN(5.0)
+                OGRE_CHECK_GL_ERROR(glLabelObjectEXT(GL_BUFFER_OBJECT_EXT, mMultisampleFB, 0, ("MSAA FBO #" + StringConverter::toString(mMultisampleFB)).c_str()));
+            }
+        }
+        else
+        {
+            mMultisampleFB = 0;
+        }
+
+        // Initialise state
+        mDepth.buffer = 0;
+        mStencil.buffer = 0;
+        for(size_t x = 0; x < OGRE_MAX_MULTIPLE_RENDER_TARGETS; ++x)
         {
             mColour[x].buffer=0;
         }
@@ -73,42 +91,64 @@ namespace Ogre {
     {
         mManager->releaseRenderBuffer(mDepth);
         mManager->releaseRenderBuffer(mStencil);
-		mManager->releaseRenderBuffer(mMultisampleColourBuffer);
-        /// Delete framebuffer object
-        glDeleteFramebuffers(1, &mFB);
-        GL_CHECK_ERROR;
-
-		if (mMultisampleFB)
-			glDeleteFramebuffers(1, &mMultisampleFB);
-
-        GL_CHECK_ERROR;
+        mManager->releaseRenderBuffer(mMultisampleColourBuffer);
+        // Delete framebuffer object
+        OGRE_CHECK_GL_ERROR(glDeleteFramebuffers(1, &mFB));
+        
+        if (mMultisampleFB)
+            OGRE_CHECK_GL_ERROR(glDeleteFramebuffers(1, &mMultisampleFB));
     }
+    
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_EMSCRIPTEN
+    void GLES2FrameBufferObject::notifyOnContextLost()
+    {
+        mManager->releaseRenderBuffer(mDepth);
+        mManager->releaseRenderBuffer(mStencil);
+        mManager->releaseRenderBuffer(mMultisampleColourBuffer);
+        
+        OGRE_CHECK_GL_ERROR(glDeleteFramebuffers(1, &mFB));
+        
+        if (mMultisampleFB)
+            OGRE_CHECK_GL_ERROR(glDeleteFramebuffers(1, &mMultisampleFB));
+    }
+    
+    void GLES2FrameBufferObject::notifyOnContextReset(const GLES2SurfaceDesc &target)
+    {
+        // Generate framebuffer object
+        OGRE_CHECK_GL_ERROR(glGenFramebuffers(1, &mFB));
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mFB));
+
+        // Bind target to surface 0 and initialise
+        bindSurface(0, target);
+    }
+#endif
+    
     
     void GLES2FrameBufferObject::bindSurface(size_t attachment, const GLES2SurfaceDesc &target)
     {
         assert(attachment < OGRE_MAX_MULTIPLE_RENDER_TARGETS);
         mColour[attachment] = target;
-		// Re-initialise
-		if(mColour[0].buffer)
-			initialise();
+        // Re-initialise
+        if(mColour[0].buffer)
+            initialise();
     }
     
     void GLES2FrameBufferObject::unbindSurface(size_t attachment)
     {
         assert(attachment < OGRE_MAX_MULTIPLE_RENDER_TARGETS);
         mColour[attachment].buffer = 0;
-		// Re-initialise if buffer 0 still bound
-		if(mColour[0].buffer)
-			initialise();
+        // Re-initialise if buffer 0 still bound
+        if(mColour[0].buffer)
+            initialise();
     }
     
     void GLES2FrameBufferObject::initialise()
     {
-		// Release depth and stencil, if they were bound
+        // Release depth and stencil, if they were bound
         mManager->releaseRenderBuffer(mDepth);
         mManager->releaseRenderBuffer(mStencil);
-		mManager->releaseRenderBuffer(mMultisampleColourBuffer);
-        /// First buffer must be bound
+        mManager->releaseRenderBuffer(mMultisampleColourBuffer);
+        // First buffer must be bound
         if(!mColour[0].buffer)
         {
             OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, 
@@ -116,24 +156,22 @@ namespace Ogre {
                 "GLES2FrameBufferObject::initialise");
         }
 
-		// If we're doing multisampling, then we need another FBO which contains a
-		// renderbuffer which is set up to multisample, and we'll blit it to the final 
-		// FBO afterwards to perform the multisample resolve. In that case, the 
-		// mMultisampleFB is bound during rendering and is the one with a depth/stencil
+        // If we're doing multisampling, then we need another FBO which contains a
+        // renderbuffer which is set up to multisample, and we'll blit it to the final 
+        // FBO afterwards to perform the multisample resolve. In that case, the 
+        // mMultisampleFB is bound during rendering and is the one with a depth/stencil
 
+        // Store basic stats
+        uint32 width = mColour[0].buffer->getWidth();
+        uint32 height = mColour[0].buffer->getHeight();
+        GLuint format = mColour[0].buffer->getGLFormat();
         ushort maxSupportedMRTs = Root::getSingleton().getRenderSystem()->getCapabilities()->getNumMultiRenderTargets();
 
-        /// Store basic stats
-        size_t width = mColour[0].buffer->getWidth();
-        size_t height = mColour[0].buffer->getHeight();
-        GLuint format = mColour[0].buffer->getGLFormat();
+        // Bind simple buffer to add colour attachments
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mFB));
 
-		// Bind simple buffer to add colour attachments
-		glBindFramebuffer(GL_FRAMEBUFFER, mFB);
-        GL_CHECK_ERROR;
-
-        /// Bind all attachment points to frame buffer
-        for(size_t x=0; x<maxSupportedMRTs; ++x)
+        // Bind all attachment points to frame buffer
+        for(unsigned int x = 0; x < maxSupportedMRTs; ++x)
         {
             if(mColour[x].buffer)
             {
@@ -153,67 +191,87 @@ namespace Ogre {
                     ss << "Attachment " << x << " has incompatible format.";
                     OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, ss.str(), "GLES2FrameBufferObject::initialise");
                 }
-	            mColour[x].buffer->bindToFramebuffer(GL_COLOR_ATTACHMENT0+x, mColour[x].zoffset);
+                if(getFormat() == PF_DEPTH)
+                    mColour[x].buffer->bindToFramebuffer(GL_DEPTH_ATTACHMENT, mColour[x].zoffset);
+                else
+                    mColour[x].buffer->bindToFramebuffer(GL_COLOR_ATTACHMENT0+x, mColour[x].zoffset);
             }
             else
             {
                 // Detach
-                glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0+x, GL_RENDERBUFFER, 0);
-                GL_CHECK_ERROR;
+                OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer(GL_FRAMEBUFFER, static_cast<GLenum>(GL_COLOR_ATTACHMENT0+x), GL_RENDERBUFFER, 0));
             }
         }
 
-		// Now deal with depth / stencil
-		if (mMultisampleFB)
-		{
-			// Bind multisample buffer
-			glBindFramebuffer(GL_FRAMEBUFFER, mMultisampleFB);
-            GL_CHECK_ERROR;
+        // Now deal with depth / stencil
+        if (mMultisampleFB)
+        {
+            // Bind multisample buffer
+            OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mMultisampleFB));
 
-			// Create AA render buffer (colour)
-			// note, this can be shared too because we blit it to the final FBO
-			// right after the render is finished
-			mMultisampleColourBuffer = mManager->requestRenderBuffer(format, width, height, mNumSamples);
+            // Create AA render buffer (colour)
+            // note, this can be shared too because we blit it to the final FBO
+            // right after the render is finished
+            mMultisampleColourBuffer = mManager->requestRenderBuffer(format, width, height, mNumSamples);
 
-			// Attach it, because we won't be attaching below and non-multisample has
-			// actually been attached to other FBO
-			mMultisampleColourBuffer.buffer->bindToFramebuffer(GL_COLOR_ATTACHMENT0, 
-				mMultisampleColourBuffer.zoffset);
+            // Attach it, because we won't be attaching below and non-multisample has
+            // actually been attached to other FBO
+            mMultisampleColourBuffer.buffer->bindToFramebuffer(GL_COLOR_ATTACHMENT0, 
+                mMultisampleColourBuffer.zoffset);
 
-			// depth & stencil will be dealt with below
-		}
-        GL_CHECK_ERROR;
+            // depth & stencil will be dealt with below
+        }
 
-        /// Depth buffer is not handled here anymore.
-		/// See GLES2FrameBufferObject::attachDepthBuffer() & RenderSystem::setDepthBufferFor()
+        // Depth buffer is not handled here anymore.
+        // See GLES2FrameBufferObject::attachDepthBuffer() & RenderSystem::setDepthBufferFor()
 
         GLenum bufs[OGRE_MAX_MULTIPLE_RENDER_TARGETS];
-		for(size_t x=0; x<OGRE_MAX_MULTIPLE_RENDER_TARGETS; ++x)
-		{
-			// Fill attached colour buffers
-			if(mColour[x].buffer)
-			{
-				bufs[x] = GL_COLOR_ATTACHMENT0 + x;
-			}
-			else
-			{
-				bufs[x] = GL_NONE;
-			}
-		}
-        
-        /// Check status
-        GLuint status;
-        status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-        GL_CHECK_ERROR;
+        GLsizei n=0;
+        for(unsigned int x=0; x<maxSupportedMRTs; ++x)
+        {
+            // Fill attached colour buffers
+            if(mColour[x].buffer)
+            {
+                if(getFormat() == PF_DEPTH)
+                    bufs[x] = GL_DEPTH_ATTACHMENT;
+                else
+                    bufs[x] = GL_COLOR_ATTACHMENT0 + x;
+                // Keep highest used buffer + 1
+                n = x+1;
+            }
+            else
+            {
+                bufs[x] = GL_NONE;
+            }
+        }
 
-        /// Bind main buffer
+#if OGRE_NO_GLES3_SUPPORT == 0
+        // Drawbuffer extension supported, use it
+        if(getFormat() != PF_DEPTH)
+            OGRE_CHECK_GL_ERROR(glDrawBuffers(n, bufs));
+
+        if (mMultisampleFB)
+        {
+            // we need a read buffer because we'll be blitting to mFB
+            OGRE_CHECK_GL_ERROR(glReadBuffer(bufs[0]));
+        }
+        else
+        {
+            // No read buffer, by default, if we want to read anyway we must not forget to set this.
+            OGRE_CHECK_GL_ERROR(glReadBuffer(GL_NONE));
+        }
+#endif
+        // Check status
+        GLuint status;
+        OGRE_CHECK_GL_ERROR(status = glCheckFramebufferStatus(GL_FRAMEBUFFER));
+
+        // Bind main buffer
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS
         // The screen buffer is 1 on iOS
-        glBindFramebuffer(GL_FRAMEBUFFER, 1);
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, 1));
 #else
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 #endif
-        GL_CHECK_ERROR;
 
         switch(status)
         {
@@ -234,74 +292,72 @@ namespace Ogre {
     
     void GLES2FrameBufferObject::bind()
     {
-        /// Bind it to FBO
-		const GLuint fb = mMultisampleFB ? mMultisampleFB : mFB;
-		glBindFramebuffer(GL_FRAMEBUFFER, fb);
-        GL_CHECK_ERROR;
+        // Bind it to FBO
+        const GLuint fb = mMultisampleFB ? mMultisampleFB : mFB;
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, fb));
     }
 
-	void GLES2FrameBufferObject::swapBuffers()
-	{
-		if (mMultisampleFB)
-		{
-#if GL_APPLE_framebuffer_multisample && OGRE_PLATFORM != OGRE_PLATFORM_NACL && OGRE_PLATFORM != OGRE_PLATFORM_WIN32
-			// Blit from multisample buffer to final buffer, triggers resolve
-//			size_t width = mColour[0].buffer->getWidth();
-//			size_t height = mColour[0].buffer->getHeight();
-			glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, mMultisampleFB);
-			glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, mFB);
-//			glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+    void GLES2FrameBufferObject::swapBuffers()
+    {
+        if (mMultisampleFB)
+        {
+#if OGRE_NO_GLES3_SUPPORT == 0
+            GLint oldfb = 0;
+            OGRE_CHECK_GL_ERROR(glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldfb));
+
+            // Blit from multisample buffer to final buffer, triggers resolve
+            uint32 width = mColour[0].buffer->getWidth();
+            uint32 height = mColour[0].buffer->getHeight();
+            OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_READ_FRAMEBUFFER, mMultisampleFB));
+            OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, mFB));
+            OGRE_CHECK_GL_ERROR(glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST));
+            // Unbind
+            OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, oldfb));
 #endif
-		}
-	}
+        }
+    }
 
-	void GLES2FrameBufferObject::attachDepthBuffer( DepthBuffer *depthBuffer )
-	{
-		GLES2DepthBuffer *glDepthBuffer = static_cast<GLES2DepthBuffer*>(depthBuffer);
-		glBindFramebuffer(GL_FRAMEBUFFER, mMultisampleFB ? mMultisampleFB : mFB );
-        GL_CHECK_ERROR;
+    void GLES2FrameBufferObject::attachDepthBuffer( DepthBuffer *depthBuffer )
+    {
+        GLES2DepthBuffer *glDepthBuffer = static_cast<GLES2DepthBuffer*>(depthBuffer);
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mMultisampleFB ? mMultisampleFB : mFB ));
 
-		if( glDepthBuffer )
-		{
-			GLES2RenderBuffer *depthBuf   = glDepthBuffer->getDepthBuffer();
-			GLES2RenderBuffer *stencilBuf = glDepthBuffer->getStencilBuffer();
+        if( glDepthBuffer )
+        {
+            GLES2RenderBuffer *depthBuf   = glDepthBuffer->getDepthBuffer();
+            GLES2RenderBuffer *stencilBuf = glDepthBuffer->getStencilBuffer();
 
-			//Attach depth buffer, if it has one.
-			if( depthBuf )
-				depthBuf->bindToFramebuffer( GL_DEPTH_ATTACHMENT, 0 );
+            //Attach depth buffer, if it has one.
+            if( depthBuf )
+                depthBuf->bindToFramebuffer( GL_DEPTH_ATTACHMENT, 0 );
 
-			//Attach stencil buffer, if it has one.
-			if( stencilBuf )
-				stencilBuf->bindToFramebuffer( GL_STENCIL_ATTACHMENT, 0 );
-		}
-		else
-		{
-			glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
-										  GL_RENDERBUFFER, 0);
-            GL_CHECK_ERROR;
-			glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT,
-										  GL_RENDERBUFFER, 0);
-            GL_CHECK_ERROR;
-		}
-	}
-	//-----------------------------------------------------------------------------
-	void GLES2FrameBufferObject::detachDepthBuffer()
-	{
-		glBindFramebuffer(GL_FRAMEBUFFER, mMultisampleFB ? mMultisampleFB : mFB );
-        GL_CHECK_ERROR;
-		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, 0 );
-        GL_CHECK_ERROR;
-		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT,
-									  GL_RENDERBUFFER, 0 );
-        GL_CHECK_ERROR;
-	}
+            //Attach stencil buffer, if it has one.
+            if( stencilBuf )
+                stencilBuf->bindToFramebuffer( GL_STENCIL_ATTACHMENT, 0 );
+        }
+        else
+        {
+            OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
+                                                          GL_RENDERBUFFER, 0));
+            OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT,
+                                                          GL_RENDERBUFFER, 0));
+        }
+    }
+    //-----------------------------------------------------------------------------
+    void GLES2FrameBufferObject::detachDepthBuffer()
+    {
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mMultisampleFB ? mMultisampleFB : mFB ));
+        OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, 0 ));
+        OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT,
+                                                      GL_RENDERBUFFER, 0 ));
+    }
 
-    size_t GLES2FrameBufferObject::getWidth()
+    uint32 GLES2FrameBufferObject::getWidth()
     {
         assert(mColour[0].buffer);
         return mColour[0].buffer->getWidth();
     }
-    size_t GLES2FrameBufferObject::getHeight()
+    uint32 GLES2FrameBufferObject::getHeight()
     {
         assert(mColour[0].buffer);
         return mColour[0].buffer->getHeight();
@@ -311,7 +367,7 @@ namespace Ogre {
         assert(mColour[0].buffer);
         return mColour[0].buffer->getFormat();
     }
-	GLsizei GLES2FrameBufferObject::getFSAA()
+    GLsizei GLES2FrameBufferObject::getFSAA()
     {
         return mNumSamples;
     }

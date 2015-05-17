@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,24 +29,23 @@ PCZLight.h  -  description
 begin                : Wed May 23 2007
 author               : Eric Cha
 email                : ericc@xenopi.com
-Code Style Update	 :
+Code Style Update    :
 -----------------------------------------------------------------------------
 */
 
 #ifndef PCZLIGHT_H
 #define PCZLIGHT_H
 
-#include <OgreLight.h>
+#include "OgreLight.h"
 #include "OgrePCZPrerequisites.h"
-#include "OgrePCZone.h"
 
 namespace Ogre
 {
+    class PCZone;
 
     typedef list<PCZone*>::type ZoneList;
 
     /** Specialized version of Ogre::Light which caches which zones the light affects
-    @remarks
     */
 
     class _OgrePCZPluginExport PCZLight : public Light
@@ -75,35 +74,36 @@ namespace Ogre
         */
         void addZoneToAffectedZonesList(PCZone * zone);
 
-        /** check if a zone is in the list of zones affected by the light 
+        /** Check if a zone is in the list of zones affected by the light
         */
         bool affectsZone(PCZone * zone);
 
-        /** returns flag indicating if the light affects a zone which is visible
+        /** @return Flag indicating if the light affects a zone which is visible
         *   in the current frame
         */
         bool affectsVisibleZone(void) {return mAffectsVisibleZone;}
 
-		/** Marks a light as affecting a visible zone */
-		void setAffectsVisibleZone(bool affects) { mAffectsVisibleZone = affects; }
+        /** Marks a light as affecting a visible zone */
+        void setAffectsVisibleZone(bool affects) { mAffectsVisibleZone = affects; }
 
         /** Update the list of zones the light affects 
         */
         void updateZones(PCZone * defaultZone, unsigned long frameCount);
 
-		void removeZoneFromAffectedZonesList(PCZone * zone); // manually remove a zone from the affected list
+        /// Manually remove a zone from the affected list
+        void removeZoneFromAffectedZonesList(PCZone * zone);
 
-		// MovableObject notified when SceneNode changes
-		virtual void _notifyMoved(void);   
+        /// MovableObject notified when SceneNode changes
+        virtual void _notifyMoved(void);   
 
-		// clear update flag
-		void clearNeedsUpdate(void)   { mNeedsUpdate = false; } 
+        /// Clear update flag
+        void clearNeedsUpdate(void)   { mNeedsUpdate = false; } 
 
-		// get status of need for update. this checks all affected zones
-		bool getNeedsUpdate(void);   
+        /// Get status of need for update. this checks all affected zones
+        bool getNeedsUpdate(void);   
 
     protected:
-        /** flag indicating if any of the zones in the affectedZonesList is 
+        /** Flag indicating if any of the zones in the affectedZonesList is 
         *   visible in the current frame
         */
         bool mAffectsVisibleZone;
@@ -112,25 +112,25 @@ namespace Ogre
         */
         ZoneList affectedZonesList;
 
-		// flag recording if light has moved, therefore affected list needs updating 
-		bool mNeedsUpdate;   
-	};
+        /// Flag recording if light has moved, therefore affected list needs updating
+        bool mNeedsUpdate;   
+    };
 
-	/** Factory object for creating PCZLight instances */
-	class _OgrePCZPluginExport PCZLightFactory : public MovableObjectFactory
-	{
-	protected:
-		MovableObject* createInstanceImpl( const String& name, const NameValuePairList* params);
-	public:
-		PCZLightFactory() {}
-		~PCZLightFactory() {}
+    /** Factory object for creating PCZLight instances */
+    class _OgrePCZPluginExport PCZLightFactory : public MovableObjectFactory
+    {
+    protected:
+        MovableObject* createInstanceImpl( const String& name, const NameValuePairList* params);
+    public:
+        PCZLightFactory() {}
+        ~PCZLightFactory() {}
 
-		static String FACTORY_TYPE_NAME;
+        static String FACTORY_TYPE_NAME;
 
-		const String& getType(void) const;
-		void destroyInstance( MovableObject* obj);  
+        const String& getType(void) const;
+        void destroyInstance( MovableObject* obj);  
 
-	};
+    };
 
 
 } // Namespace

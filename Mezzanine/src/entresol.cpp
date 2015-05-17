@@ -77,9 +77,6 @@
 #include <string>
 #include <cassert>
 
-#include "world.h"
-#include "worldmanager.h"
-
 using namespace std;
 
 namespace Mezzanine

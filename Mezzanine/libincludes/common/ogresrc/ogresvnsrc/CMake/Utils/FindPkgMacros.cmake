@@ -44,6 +44,9 @@ macro(create_search_paths PREFIX)
     set(${PREFIX}_BIN_SEARCH_PATH ${${PREFIX}_BIN_SEARCH_PATH}
       ${dir}/bin)
   endforeach(dir)
+  if(ANDROID)
+	set(${PREFIX}_LIB_SEARCH_PATH ${${PREFIX}_LIB_SEARCH_PATH} ${OGRE_DEPENDENCIES_DIR}/lib/${ANDROID_ABI})
+  endif()
   set(${PREFIX}_FRAMEWORK_SEARCH_PATH ${${PREFIX}_PREFIX_PATH})
 endmacro(create_search_paths)
 
@@ -66,10 +69,12 @@ endmacro(clear_if_changed)
 
 # Try to get some hints from pkg-config, if available
 macro(use_pkgconfig PREFIX PKGNAME)
-  find_package(PkgConfig)
-  if (PKG_CONFIG_FOUND)
-    pkg_check_modules(${PREFIX} ${PKGNAME})
-  endif ()
+  if(NOT ANDROID)
+    find_package(PkgConfig)
+    if (PKG_CONFIG_FOUND)
+      pkg_check_modules(${PREFIX} ${PKGNAME})
+    endif ()
+  endif()
 endmacro (use_pkgconfig)
 
 # Couple a set of release AND debug libraries (or frameworks)
@@ -133,16 +138,16 @@ macro(findpkg_framework fwk)
       /Library/Frameworks
       /System/Library/Frameworks
       /Network/Library/Frameworks
-      ${CMAKE_CURRENT_SOURCE_DIR}/lib/Release
-      ${CMAKE_CURRENT_SOURCE_DIR}/lib/Debug
+      ${CMAKE_CURRENT_SOURCE_DIR}/lib/macosx/Release
+      ${CMAKE_CURRENT_SOURCE_DIR}/lib/macosx/Debug
     )
     # These could be arrays of paths, add each individually to the search paths
     foreach(i ${OGRE_PREFIX_PATH})
-      set(${fwk}_FRAMEWORK_PATH ${${fwk}_FRAMEWORK_PATH} ${i}/lib/Release ${i}/lib/Debug)
+      set(${fwk}_FRAMEWORK_PATH ${${fwk}_FRAMEWORK_PATH} ${i}/lib/macosx/Release ${i}/lib/macosx/Debug)
     endforeach(i)
 
     foreach(i ${OGRE_PREFIX_BUILD})
-      set(${fwk}_FRAMEWORK_PATH ${${fwk}_FRAMEWORK_PATH} ${i}/lib/Release ${i}/lib/Debug)
+      set(${fwk}_FRAMEWORK_PATH ${${fwk}_FRAMEWORK_PATH} ${i}/lib/macosx/Release ${i}/lib/macosx/Debug)
     endforeach(i)
 
     foreach(dir ${${fwk}_FRAMEWORK_PATH})

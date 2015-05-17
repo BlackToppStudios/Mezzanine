@@ -9,76 +9,31 @@
 
 # Configure Direct3D11 RenderSystem build
 
-set (HEADER_FILES
-  include/OgreD3D11DepthBuffer.h
-  include/OgreD3D11Device.h
-  include/OgreD3D11Driver.h
-  include/OgreD3D11DriverList.h
-  include/OgreD3D11GpuProgram.h
-  include/OgreD3D11GpuProgramManager.h
-  include/OgreD3D11HardwareBuffer.h
-  include/OgreD3D11HardwareBufferManager.h
-  include/OgreD3D11HardwareIndexBuffer.h
-  include/OgreD3D11HardwareOcclusionQuery.h
-  include/OgreD3D11HardwarePixelBuffer.h
-  include/OgreD3D11HardwareVertexBuffer.h
-  include/OgreD3D11HLSLProgram.h
-  include/OgreD3D11HLSLProgramFactory.h
-  include/OgreD3D11Mappings.h
-  include/OgreD3D11MultiRenderTarget.h
-  include/OgreD3D11Plugin.h
-  include/OgreD3D11Prerequisites.h
-  include/OgreD3D11RenderSystem.h
-  include/OgreD3D11RenderToVertexBuffer.h
-  include/OgreD3D11RenderWindow.h
-  include/OgreD3D11Texture.h
-  include/OgreD3D11TextureManager.h
-  include/OgreD3D11VertexDeclaration.h
-  include/OgreD3D11VideoMode.h
-  include/OgreD3D11VideoModeList.h
-)
+file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-set (SOURCE_FILES
-  src/OgreD3D11DepthBuffer.cpp
-  src/OgreD3D11Device.cpp
-  src/OgreD3D11Driver.cpp
-  src/OgreD3D11DriverList.cpp
-  src/OgreD3D11EngineDll.cpp
-  src/OgreD3D11GpuProgram.cpp
-  src/OgreD3D11GpuProgramManager.cpp
-  src/OgreD3D11HardwareBuffer.cpp
-  src/OgreD3D11HardwareBufferManager.cpp
-  src/OgreD3D11HardwareIndexBuffer.cpp
-  src/OgreD3D11HardwareOcclusionQuery.cpp
-  src/OgreD3D11HardwarePixelBuffer.cpp
-  src/OgreD3D11HardwareVertexBuffer.cpp
-  src/OgreD3D11HLSLProgram.cpp
-  src/OgreD3D11HLSLProgramFactory.cpp
-  src/OgreD3D11Mappings.cpp
-  src/OgreD3D11MultiRenderTarget.cpp
-  src/OgreD3D11Plugin.cpp
-  src/OgreD3D11RenderSystem.cpp
-  src/OgreD3D11RenderToVertexBuffer.cpp
-  src/OgreD3D11RenderWindow.cpp
-  src/OgreD3D11Texture.cpp
-  src/OgreD3D11TextureManager.cpp
-  src/OgreD3D11VertexDeclaration.cpp
-  src/OgreD3D11VideoMode.cpp
-  src/OgreD3D11VideoModeList.cpp
-)
+if(OGRE_CONFIG_ENABLE_QUAD_BUFFER_STEREO)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${DirectX11_INCLUDE_DIR} ${AMDQBS_INCLUDE_DIR} ${NVAPI_INCLUDE_DIR})
+  link_directories(${DirectX11_LIBRARY_DIR} ${NVAPI_LIBRARY_DIR})
+else()
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${DirectX11_INCLUDE_DIR})
+  link_directories(${DirectX11_LIBRARY_DIR})
+endif()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${DirectX_INCLUDE_DIR})
-link_directories(${DirectX_LIBRARY_DIR})
 add_definitions(-D_USRDLL)
 
 ogre_add_library(RenderSystem_Direct3D11 ${OGRE_LIB_TYPE} ${HEADER_FILES} ${SOURCE_FILES})
 target_link_libraries(RenderSystem_Direct3D11
   OgreMain
-  ${DirectX_D3D11_LIBRARIES}
+  ${DirectX11_LIBRARIES}
 )
 
-if(OGRE_PROFILING)
-  target_link_libraries(RenderSystem_Direct3D11 ${DirectX_LIBRARY})
+if(OGRE_PROFILING AND DirectX9_FOUND)
+  target_link_libraries(RenderSystem_Direct3D11 ${DirectX9_LIBRARY})
+endif()
+
+if(WINDOWS_STORE OR WINDOWS_PHONE)
+  set_target_properties(RenderSystem_Direct3D11 PROPERTIES VS_WINRT_COMPONENT "true")
 endif()
 
 if (NOT OGRE_STATIC)
@@ -87,8 +42,11 @@ if (NOT OGRE_STATIC)
   )
 endif ()
 if (OGRE_CONFIG_THREADS)
-  target_link_libraries(RenderSystem_Direct3D11 ${Boost_LIBRARIES})
+  target_link_libraries(RenderSystem_Direct3D11 ${OGRE_THREAD_LIBRARIES})
 endif ()
+if(OGRE_CONFIG_ENABLE_QUAD_BUFFER_STEREO)
+  target_link_libraries(RenderSystem_Direct3D11 ${NVAPI_LIBRARIES})
+endif()
 
 ogre_config_plugin(RenderSystem_Direct3D11)
 install(FILES ${HEADER_FILES} DESTINATION include/OGRE/RenderSystems/Direct3D11)

@@ -16,7 +16,18 @@
 set(OGRE_DEPENDENCIES_DIR "" CACHE PATH "Path to prebuilt OGRE dependencies")
 include(FindPkgMacros)
 getenv_path(OGRE_DEPENDENCIES_DIR)
-if(OGRE_BUILD_PLATFORM_APPLE_IOS)
+if(OGRE_BUILD_PLATFORM_EMSCRIPTEN)
+  set(OGRE_DEP_SEARCH_PATH 
+    ${OGRE_DEPENDENCIES_DIR}
+    ${EMSCRIPTEN_ROOT_PATH}/system
+    ${ENV_OGRE_DEPENDENCIES_DIR}
+    "${OGRE_BINARY_DIR}/EmscriptenDependencies"
+    "${OGRE_SOURCE_DIR}/EmscriptenDependencies"
+    "${OGRE_BINARY_DIR}/../EmscriptenDependencies"
+    "${OGRE_SOURCE_DIR}/../EmscriptenDependencies"
+  )
+  set(CMAKE_FIND_ROOT_PATH ${CMAKE_FIND_ROOT_PATH} ${OGRE_DEP_SEARCH_PATH})
+elseif(OGRE_BUILD_PLATFORM_APPLE_IOS)
   set(OGRE_DEP_SEARCH_PATH 
     ${OGRE_DEPENDENCIES_DIR}
     ${ENV_OGRE_DEPENDENCIES_DIR}
@@ -24,6 +35,15 @@ if(OGRE_BUILD_PLATFORM_APPLE_IOS)
     "${OGRE_SOURCE_DIR}/iOSDependencies"
     "${OGRE_BINARY_DIR}/../iOSDependencies"
     "${OGRE_SOURCE_DIR}/../iOSDependencies"
+  )
+elseif(OGRE_BUILD_PLATFORM_ANDROID)
+  set(OGRE_DEP_SEARCH_PATH 
+    ${OGRE_DEPENDENCIES_DIR}
+    ${ENV_OGRE_DEPENDENCIES_DIR}
+    "${OGRE_BINARY_DIR}/AndroidDependencies"
+    "${OGRE_SOURCE_DIR}/AndroidDependencies"
+    "${OGRE_BINARY_DIR}/../AndroidDependencies"
+    "${OGRE_SOURCE_DIR}/../AndroidDependencies"
   )
 else()
   set(OGRE_DEP_SEARCH_PATH 
@@ -39,7 +59,7 @@ endif()
 message(STATUS "Search path: ${OGRE_DEP_SEARCH_PATH}")
 
 # Set hardcoded path guesses for various platforms
-if (UNIX)
+if (UNIX AND NOT EMSCRIPTEN)
   set(OGRE_DEP_SEARCH_PATH ${OGRE_DEP_SEARCH_PATH} /usr/local)
   # Ubuntu 11.10 has an inconvenient path to OpenGL libraries
   set(OGRE_DEP_SEARCH_PATH ${OGRE_DEP_SEARCH_PATH} /usr/lib/${CMAKE_SYSTEM_PROCESSOR}-linux-gnu)
@@ -54,25 +74,25 @@ set(CMAKE_FRAMEWORK_PATH ${OGRE_DEP_SEARCH_PATH} ${CMAKE_FRAMEWORK_PATH})
 #######################################################################
 
 # Find zlib
-#find_package(ZLIB)
-#macro_log_feature(ZLIB_FOUND "zlib" "Simple data compression library" "http://www.zlib.net" FALSE "" "")
+find_package(ZLIB)
+macro_log_feature(ZLIB_FOUND "zlib" "Simple data compression library" "http://www.zlib.net" FALSE "" "")
 
-#if (ZLIB_FOUND)
+if (ZLIB_FOUND)
   # Find zziplib
-#  find_package(ZZip)
-#  macro_log_feature(ZZip_FOUND "zziplib" "Extract data from zip archives" "http://zziplib.sourceforge.net" FALSE "" "")
-#endif ()
+  find_package(ZZip)
+  macro_log_feature(ZZip_FOUND "zziplib" "Extract data from zip archives" "http://zziplib.sourceforge.net" FALSE "" "")
+endif ()
 
 # Find FreeImage
-#find_package(FreeImage)
-#macro_log_feature(FreeImage_FOUND "freeimage" "Support for commonly used graphics image formats" "http://freeimage.sourceforge.net" FALSE "" "")
+find_package(FreeImage)
+macro_log_feature(FreeImage_FOUND "freeimage" "Support for commonly used graphics image formats" "http://freeimage.sourceforge.net" FALSE "" "")
 
 # Find FreeType
-#find_package(Freetype)
-#macro_log_feature(FREETYPE_FOUND "freetype" "Portable font engine" "http://www.freetype.org" TRUE "" "")
+find_package(Freetype)
+macro_log_feature(FREETYPE_FOUND "freetype" "Portable font engine" "http://www.freetype.org" FALSE "" "")
 
 # Find X11
-if (UNIX AND NOT APPLE) #OGRE_BUILD_PLATFORM_APPLE_IOS)
+if (UNIX AND NOT APPLE AND NOT ANDROID AND NOT EMSCRIPTEN)
   find_package(X11)
   macro_log_feature(X11_FOUND "X11" "X Window system" "http://www.x.org" TRUE "" "")
   macro_log_feature(X11_Xt_FOUND "Xt" "X Toolkit" "http://www.x.org" TRUE "" "")
@@ -87,8 +107,14 @@ endif ()
 #######################################################################
 
 # Find OpenGL
+if(NOT ANDROID AND NOT EMSCRIPTEN)
+  find_package(OpenGL)
+  macro_log_feature(OPENGL_FOUND "OpenGL" "Support for the OpenGL render system" "http://www.opengl.org/" FALSE "" "")
+endif()
+
+# Find OpenGL 3+
 find_package(OpenGL)
-macro_log_feature(OPENGL_FOUND "OpenGL" "Support for the OpenGL render system" "http://www.opengl.org/" FALSE "" "")
+macro_log_feature(OPENGL_FOUND "OpenGL 3+" "Support for the OpenGL 3+ render system" "http://www.opengl.org/" FALSE "" "")
 
 # Find OpenGL ES 1.x
 find_package(OpenGLES)
@@ -98,10 +124,26 @@ macro_log_feature(OPENGLES_FOUND "OpenGL ES 1.x" "Support for the OpenGL ES 1.x 
 find_package(OpenGLES2)
 macro_log_feature(OPENGLES2_FOUND "OpenGL ES 2.x" "Support for the OpenGL ES 2.x render system" "http://www.khronos.org/opengles/" FALSE "" "")
 
+# Find OpenGL ES 3.x
+find_package(OpenGLES3)
+macro_log_feature(OPENGLES3_FOUND "OpenGL ES 3.x" "Support for the OpenGL ES 2.x render system with OpenGL ES 3 support" "http://www.khronos.org/opengles/" FALSE "" "")
+
 # Find DirectX
 if(WIN32)
 	find_package(DirectX)
-	macro_log_feature(DirectX_FOUND "DirectX" "Support for the DirectX render system" "http://msdn.microsoft.com/en-us/directx/" FALSE "" "")
+	macro_log_feature(DirectX9_FOUND "DirectX9" "Support for the DirectX render system" "http://msdn.microsoft.com/en-us/directx/" FALSE "" "")
+	
+	find_package(DirectX11)
+	macro_log_feature(DirectX11_FOUND "DirectX11" "Support for the DirectX11 render system" "http://msdn.microsoft.com/en-us/directx/" FALSE "" "")
+
+	if(OGRE_CONFIG_ENABLE_QUAD_BUFFER_STEREO)
+		# Find DirectX Stereo Driver Libraries
+		find_package(NVAPI)
+		macro_log_feature(NVAPI_FOUND "NVAPI" "Support NVIDIA stereo with the DirectX render system" "https://developer.nvidia.com/nvapi" FALSE "" "")
+
+		find_package(AMDQBS)
+		macro_log_feature(AMDQBS_FOUND "AMDQBS" "Support AMD stereo with the DirectX render system" "http://developer.amd.com/tools-and-sdks/graphics-development/amd-quad-buffer-sdk/" FALSE "" "")
+	endif()
 endif()
 
 #######################################################################
@@ -109,10 +151,10 @@ endif()
 #######################################################################
 
 # Find Cg
-if (NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
+if (NOT (OGRE_BUILD_PLATFORM_APPLE_IOS OR WINDOWS_STORE OR WINDOWS_PHONE OR ANDROID OR EMSCRIPTEN))
   find_package(Cg)
   macro_log_feature(Cg_FOUND "cg" "C for graphics shader language" "http://developer.nvidia.com/object/cg_toolkit.html" FALSE "" "")
-endif (NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
+endif ()
 
 # Find Boost
 # Prefer static linking in all cases
@@ -125,22 +167,42 @@ endif ()
 if (APPLE AND OGRE_BUILD_PLATFORM_APPLE_IOS)
     set(Boost_USE_MULTITHREADED OFF)
 endif()
-set(Boost_ADDITIONAL_VERSIONS "1.53" "1.53.0" "1.52" "1.52.0" "1.51" "1.51.0" "1.50" "1.50.0" "1.49" "1.49.0" "1.48" "1.48.0" "1.47" "1.47.0" "1.46" "1.46.0" "1.45" "1.45.0" "1.44" "1.44.0" "1.42" "1.42.0" "1.41.0" "1.41" "1.40.0" "1.40")
+
+if(ANDROID)
+    # FindBoost needs extra hint on android 
+    set(Boost_COMPILER -gcc)
+endif()
+
+set(Boost_ADDITIONAL_VERSIONS "1.57" "1.57.0" "1.56" "1.56.0" "1.55" "1.55.0" "1.54" "1.54.0" "1.53" "1.53.0" "1.52" "1.52.0" "1.51" "1.51.0" "1.50" "1.50.0" "1.49" "1.49.0" "1.48" "1.48.0" "1.47" "1.47.0" "1.46" "1.46.0" "1.45" "1.45.0" "1.44" "1.44.0" "1.42" "1.42.0" "1.41.0" "1.41" "1.40.0" "1.40")
 # Components that need linking (NB does not include header-only components like bind)
 set(OGRE_BOOST_COMPONENTS thread date_time)
 find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
 if (NOT Boost_FOUND)
-        if(Boost_USE_STATIC_LIBS)
-                set(Boost_USE_STATIC_LIBS OFF)
-        else()
-                set(Boost_USE_STATIC_LIBS ON)
-        endif()
-        find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
+	# Try again with the other type of libs
+	if(Boost_USE_STATIC_LIBS)
+		set(Boost_USE_STATIC_LIBS OFF)
+	else()
+		set(Boost_USE_STATIC_LIBS ON)
+	endif()
+	find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
 endif()
 
 if(Boost_FOUND AND Boost_VERSION GREATER 104900)
+    if(Boost_VERSION GREATER 105300)
+        set(OGRE_BOOST_COMPONENTS thread date_time system atomic chrono)
+    else()
         set(OGRE_BOOST_COMPONENTS thread date_time system chrono)
-        find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
+    endif()
+    find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
+endif()
+
+if(Boost_VERSION GREATER 105200)
+	# Use boost threading version 4 for boost 1.53 and above
+	add_definitions( -DBOOST_THREAD_VERSION=4 )
+endif()
+
+if(Boost_FOUND AND NOT WIN32)
+  list(REMOVE_DUPLICATES Boost_LIBRARIES)
 endif()
 
 # Optional Boost libs (Boost_${COMPONENT}_FOUND
@@ -150,6 +212,9 @@ macro_log_feature(Boost_DATE_TIME_FOUND "boost-date_time" "Used for threading su
 if(Boost_VERSION GREATER 104900)
     macro_log_feature(Boost_SYSTEM_FOUND "boost-system" "Used for threading support" "http://boost.org" FALSE "" "")
     macro_log_feature(Boost_CHRONO_FOUND "boost-chrono" "Used for threading support" "http://boost.org" FALSE "" "")
+	if(Boost_VERSION GREATER 105300)
+		macro_log_feature(Boost_ATOMIC_FOUND "boost-atomic" "Used for threading support" "http://boost.org" FALSE "" "")
+	endif()
 endif()
 
 # POCO
@@ -168,14 +233,27 @@ macro_log_feature(GLSL_Optimizer_FOUND "GLSL Optimizer" "GLSL Optimizer" "http:/
 find_package(HLSL2GLSL)
 macro_log_feature(HLSL2GLSL_FOUND "HLSL2GLSL" "HLSL2GLSL" "http://hlsl2glslfork.googlecode.com/" FALSE "" "")
 
+# Python
+if (EMSCRIPTEN)
+  find_package(PythonInterp)
+  macro_log_feature(PYTHONINTERP_FOUND "Python" "Used to generate indices for dynamic file loading" "http://www.python.org/" FALSE "" "")
+endif()
 
 #######################################################################
 # Samples dependencies
 #######################################################################
 
 # Find OIS
-#find_package(OIS)
-#macro_log_feature(OIS_FOUND "OIS" "Input library needed for the samples" "http://sourceforge.net/projects/wgois" FALSE "" "")
+if (WINDOWS_STORE OR WINDOWS_PHONE)
+	# for WinRT we need only includes
+	set(OIS_FIND_QUIETLY TRUE)
+        find_package(OIS)
+	set(OIS_INCLUDE_DIRS ${OIS_INCLUDE_DIR})
+	macro_log_feature(OIS_INCLUDE_DIRS "OIS" "Input library needed for the samples" "http://sourceforge.net/projects/wgois" FALSE "" "")
+else ()
+	find_package(OIS)
+	macro_log_feature(OIS_FOUND "OIS" "Input library needed for the samples" "http://sourceforge.net/projects/wgois" FALSE "" "")
+endif ()
 
 #######################################################################
 # Tools
@@ -188,32 +266,15 @@ macro_log_feature(DOXYGEN_FOUND "Doxygen" "Tool for building API documentation" 
 find_package(Softimage)
 macro_log_feature(Softimage_FOUND "Softimage" "Softimage SDK needed for building XSIExporter" FALSE "6.0" "")
 
+find_package(TinyXML)
+macro_log_feature(TINYXML_FOUND "TinyXML" "TinyXML needed for building OgreXMLConverter" FALSE "" "")
+
 #######################################################################
 # Tests
 #######################################################################
 
 find_package(CppUnit)
-macro_log_feature(CppUnit_FOUND "CppUnit" "Library for performing unit tests" "http:// ©ppunit.sourceforge.net" FALSE "" "")
-
-#######################################################################
-# Apple-specific
-#######################################################################
-if (APPLE)  
-  if (NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
-    find_package(Carbon)
-    macro_log_feature(Carbon_FOUND "Carbon" "Carbon" "http://developer.apple.com/mac" TRUE "" "")
-
-    find_package(Cocoa)
-    macro_log_feature(Cocoa_FOUND "Cocoa" "Cocoa" "http://developer.apple.com/mac" TRUE "" "")
-
-    find_package(IOKit)
-    macro_log_feature(IOKit_FOUND "IOKit" "IOKit HID framework needed by the samples" "http://developer.apple.com/mac" FALSE "" "")
-
-    find_package(CoreVideo)
-    macro_log_feature(CoreVideo_FOUND "CoreVideo" "CoreVideo" "http://developer.apple.com/mac" TRUE "" "")
-  endif (NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
-endif(APPLE)
-
+macro_log_feature(CppUnit_FOUND "CppUnit" "Library for performing unit tests" "http://cppunit.sourceforge.net" FALSE "" "")
 
 # now see if we have a buildable Dependencies package in
 # the source tree. If so, include that, and it will take care of
@@ -239,14 +300,12 @@ include_directories(
   ${OPENGL_INCLUDE_DIRS}
   ${OPENGLES_INCLUDE_DIRS}
   ${OPENGLES2_INCLUDE_DIRS}
+  ${OPENGLES3_INCLUDE_DIRS}
   ${OIS_INCLUDE_DIRS}
   ${Cg_INCLUDE_DIRS}
   ${X11_INCLUDE_DIR}
   ${DirectX_INCLUDE_DIRS}
   ${CppUnit_INCLUDE_DIRS}
-  ${Carbon_INCLUDE_DIRS}
-  ${Cocoa_INCLUDE_DIRS}
-  ${CoreVideo_INCLUDE_DIRS}
   ${GLSL_Optimizer_INCLUDE_DIRS}
   ${HLSL2GLSL_INCLUDE_DIRS}
 )
@@ -255,6 +314,7 @@ link_directories(
   ${OPENGL_LIBRARY_DIRS}
   ${OPENGLES_LIBRARY_DIRS}
   ${OPENGLES2_LIBRARY_DIRS}
+  ${OPENGLES3_LIBRARY_DIRS}
   ${Cg_LIBRARY_DIRS}
   ${X11_LIBRARY_DIRS}
   ${DirectX_LIBRARY_DIRS}

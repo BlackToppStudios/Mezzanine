@@ -2,7 +2,7 @@ vertex_program Ogre/ParticleGS/GenerateVScg cg
 {
 	source ParticleGS.cg
 	entry_point GenerateParticles_VS
-	profiles vs_1_1 arbvp1
+	profiles  arbvp1
 }
 
 geometry_program Ogre/ParticleGS/GenerateGScg cg
@@ -16,7 +16,7 @@ vertex_program Ogre/ParticleGS/DisplayVScg cg
 {
 	source ParticleGS.cg
 	entry_point DisplayParticles_VS
-	profiles vs_1_1 arbvp1
+	profiles  arbvp1
 }
 
 geometry_program Ogre/ParticleGS/DisplayGScg cg
@@ -30,7 +30,7 @@ fragment_program Ogre/ParticleGS/DisplayPScg cg
 {
 	source ParticleGS.cg
 	entry_point DisplayParticles_PS
-	profiles ps_2_0 arbfp1
+	profiles  arbfp1
 }
 
 vertex_program Ogre/ParticleGS/GenerateVShlsl4 hlsl
@@ -38,7 +38,7 @@ vertex_program Ogre/ParticleGS/GenerateVShlsl4 hlsl
 	source ParticleGS.hlsl
 	entry_point GenerateParticles_VS
 	enable_backwards_compatibility no
-	target vs_4_0
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
 }
 
 geometry_program Ogre/ParticleGS/GenerateGShlsl4 hlsl
@@ -54,7 +54,7 @@ vertex_program Ogre/ParticleGS/DisplayVShlsl4 hlsl
 	source ParticleGS.hlsl
 	entry_point DisplayParticles_VS
 	enable_backwards_compatibility no
-	target vs_4_0
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
 }
 
 geometry_program Ogre/ParticleGS/DisplayGShlsl4 hlsl
@@ -70,10 +70,40 @@ fragment_program Ogre/ParticleGS/DisplayPShlsl4 hlsl
 	source ParticleGS.hlsl
 	entry_point DisplayParticles_PS
 	enable_backwards_compatibility no
-	target ps_4_0
+	target ps_4_0 ps_4_0_level_9_1 ps_4_0_level_9_3
 }
 
-//The material used to generate the particle system geometry
+vertex_program Ogre/ParticleGS/GenerateVSglsl glsl
+{
+	source ParticleGS_GenerateVS.glsl
+	syntax glsl150
+}
+
+geometry_program Ogre/ParticleGS/GenerateGSglsl glsl
+{
+	source ParticleGS_GenerateGS.glsl
+	syntax glsl150
+}
+
+vertex_program Ogre/ParticleGS/DisplayVSglsl glsl
+{
+	source ParticleGS_DisplayVS.glsl
+	syntax glsl150
+}
+
+geometry_program Ogre/ParticleGS/DisplayGSglsl glsl
+{
+	source ParticleGS_DisplayGS.glsl
+	syntax glsl150
+}
+
+fragment_program Ogre/ParticleGS/DisplayPSglsl glsl
+{
+	source ParticleGS_DisplayFS.glsl
+	syntax glsl150
+}
+
+// Generate the particle system geometry.
 material Ogre/ParticleGS/Generate
 {
 	technique cg
@@ -124,14 +154,39 @@ material Ogre/ParticleGS/Generate
 				tex_address_mode wrap
 				filtering none
 			}
-			// This is needed if you render to a stream out buffer, otherwise, atleast DX 11 complains
+			// This is needed if you render to a stream out buffer, otherwise DX 11 complains
 			depth_write off
 			depth_check off
 		}
 	}
+	technique glsl
+	{
+		pass
+		{
+			vertex_program_ref Ogre/ParticleGS/GenerateVSglsl
+			{
+				
+			}
+			
+			geometry_program_ref Ogre/ParticleGS/GenerateGSglsl
+			{
+			    param_named frameGravity float3 0 -0.1 0
+			    param_named globalTime float 0.0
+			    param_named elapsedTime float 0.1
+			    param_named secondsPerFirework float 0.3
+			}
+			
+			// This texture unit will be filled at runtime.
+			texture_unit randomTexture
+			{
+		            tex_address_mode wrap
+			    filtering none
+			}
+		}
+	}
 }
 
-//The material used to display the generated particle system geometry
+// Display the generated particle system geometry.
 material Ogre/ParticleGS/Display
 {
 	technique cg
@@ -191,6 +246,37 @@ material Ogre/ParticleGS/Display
 			{
 				tex_coord_set 0
 				texture particle.dds
+			}
+			
+			scene_blend alpha_blend
+		}
+	}
+	technique glsl
+	{
+		pass
+		{
+			depth_write off
+			
+			vertex_program_ref Ogre/ParticleGS/DisplayVSglsl
+			{
+				
+			}
+			
+			geometry_program_ref Ogre/ParticleGS/DisplayGSglsl
+			{
+			    param_named_auto inverseView inverse_view_matrix
+			    param_named_auto worldViewProj worldviewproj_matrix
+			}
+			
+			fragment_program_ref Ogre/ParticleGS/DisplayPSglsl
+			{
+				
+			}
+			
+			texture_unit
+			{
+			    tex_coord_set 0
+			    texture particle.dds
 			}
 			
 			scene_blend alpha_blend

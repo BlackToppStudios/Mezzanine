@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,32 +31,32 @@ THE SOFTWARE.
 #include "OgrePrerequisites.h"
 
 #include "OgreMesh.h"
+#include "OgreMaterial.h"
 
-#include "OgreMovableObject.h"
-#include "OgreCamera.h"
+#include "OgreHeaderPrefix.h"
 
 namespace Ogre {
 
-	/** \addtogroup Core
-	*  @{
-	*/
-	/** \addtogroup LOD
-	*  @{
-	*/
-	/** Strategy for determining level of detail.
+    /** \addtogroup Core
+    *  @{
+    */
+    /** \addtogroup LOD
+    *  @{
+    */
+    /** Strategy for determining level of detail.
     @remarks
-        Generally, to create a new lod strategy, all of the following will
+        Generally, to create a new LOD strategy, all of the following will
         need to be implemented: getValueImpl, getBaseValue, transformBias,
         getIndex, sort, and isSorted.
         In addition, transformUserValue may be overridden.
     */
-	class _OgreExport LodStrategy : public LodAlloc
+    class _OgreExport LodStrategy : public LodAlloc
     {
     protected:
         /** Name of this strategy. */
         String mName;
 
-        /** Compute the lod value for a given movable object relative to a given camera. */
+        /** Compute the LOD value for a given movable object relative to a given camera. */
         virtual Real getValueImpl(const MovableObject *movableObject, const Camera *camera) const = 0;
 
     public:
@@ -69,34 +69,34 @@ namespace Ogre {
         /** Get the value of the first (highest) level of detail. */
         virtual Real getBaseValue() const = 0;
 
-        /** Transform lod bias so it only needs to be multiplied by the lod value. */
+        /** Transform LOD bias so it only needs to be multiplied by the LOD value. */
         virtual Real transformBias(Real factor) const = 0;
 
-        /** Transforum user supplied value to internal value.
+        /** Transform user supplied value to internal value.
         @remarks
             By default, performs no transformation.
         @remarks
-            Do not throw exceptions for invalid values here, as the lod strategy
+            Do not throw exceptions for invalid values here, as the LOD strategy
             may be changed such that the values become valid.
         */
         virtual Real transformUserValue(Real userValue) const;
 
-        /** Compute the lod value for a given movable object relative to a given camera. */
+        /** Compute the LOD value for a given movable object relative to a given camera. */
         Real getValue(const MovableObject *movableObject, const Camera *camera) const;
 
-        /** Get the index of the lod usage which applies to a given value. */
+        /** Get the index of the LOD usage which applies to a given value. */
         virtual ushort getIndex(Real value, const Mesh::MeshLodUsageList& meshLodUsageList) const = 0;
 
-        /** Get the index of the lod usage which applies to a given value. */
+        /** Get the index of the LOD usage which applies to a given value. */
         virtual ushort getIndex(Real value, const Material::LodValueList& materialLodValueList) const = 0;
 
-        /** Sort mesh lod usage list from greatest to least detail */
+        /** Sort mesh LOD usage list from greatest to least detail */
         virtual void sort(Mesh::MeshLodUsageList& meshLodUsageList) const = 0;
 
-        /** Determine if the lod values are sorted from greatest detail to least detail. */
+        /** Determine if the LOD values are sorted from greatest detail to least detail. */
         virtual bool isSorted(const Mesh::LodValueList& values) const = 0;
 
-        /** Assert that the lod values are sorted from greatest detail to least detail. */
+        /** Assert that the LOD values are sorted from greatest detail to least detail. */
         void assertSorted(const Mesh::LodValueList& values) const;
 
         /** Get the name of this strategy. */
@@ -124,9 +124,11 @@ namespace Ogre {
         static ushort getIndexDescending(Real value, const Material::LodValueList& materialLodValueList);
 
     };
-	/** @} */
-	/** @} */
+    /** @} */
+    /** @} */
 
 } // namespace
+
+#include "OgreHeaderSuffix.h"
 
 #endif

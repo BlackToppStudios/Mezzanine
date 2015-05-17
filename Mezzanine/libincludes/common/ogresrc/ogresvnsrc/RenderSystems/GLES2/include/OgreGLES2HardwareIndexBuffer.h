@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,25 +31,32 @@ THE SOFTWARE.
 
 #include "OgreGLES2Prerequisites.h"
 #include "OgreHardwareIndexBuffer.h"
+#include "OgreGLES2ManagedResource.h"
 
 namespace Ogre {
-    class _OgreGLES2Export GLES2HardwareIndexBuffer : public HardwareIndexBuffer
+    class _OgreGLES2Export GLES2HardwareIndexBuffer : public HardwareIndexBuffer MANAGED_RESOURCE
     {
         private:
             GLuint mBufferId;
-            // Scratch buffer handling
-            bool mLockedToScratch;
-            size_t mScratchOffset;
-            size_t mScratchSize;
-            void* mScratchPtr;
-            bool mScratchUploadOnUnlock;
-
+        
         protected:
             /** See HardwareBuffer. */
             void* lockImpl(size_t offset, size_t length, LockOptions options);
             /** See HardwareBuffer. */
             void unlockImpl(void);
+        
+            void createBuffer();
+        
+            void destroyBuffer();
 
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_EMSCRIPTEN
+            /** See AndroidResource. */
+            virtual void notifyOnContextLost();
+        
+            /** See AndroidResource. */
+            virtual void notifyOnContextReset();
+#endif
+        
         public:
             GLES2HardwareIndexBuffer(HardwareBufferManagerBase* mgr, IndexType idxType, size_t numIndexes,
                                   HardwareBuffer::Usage usage,
@@ -60,6 +67,11 @@ namespace Ogre {
             /** See HardwareBuffer. */
             void writeData(size_t offset, size_t length, 
                 const void* pSource, bool discardWholeBuffer = false);
+#if OGRE_NO_GLES3_SUPPORT == 0
+            /** See HardwareBuffer. */
+            void copyData(HardwareBuffer& srcBuffer, size_t srcOffset,
+                      size_t dstOffset, size_t length, bool discardWholeBuffer = false);
+#endif
             /** See HardwareBuffer. */
             void _updateFromShadow(void);
 

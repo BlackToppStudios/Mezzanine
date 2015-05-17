@@ -21,13 +21,51 @@ vertex_program Ogre/Instancing/HWBasic/shadow_caster_glsl_vs glsl
 }
 
 //--------------------------------------------------------------
+// hlsl Programs
+//--------------------------------------------------------------
+vertex_program Ogre/Instancing/HWBasic_hlsl_vs hlsl
+{
+	source HWBasicInstancing.hlsl
+	entry_point main_vs
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
+	
+	preprocessor_defines DEPTH_SHADOWRECEIVER
+}
+
+vertex_program Ogre/Instancing/HWBasic/shadow_caster_hlsl_vs hlsl
+{
+	source HWBasicInstancing.hlsl
+	entry_point main_vs
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
+	
+	preprocessor_defines DEPTH_SHADOWCASTER
+}
+
+//--------------------------------------------------------------
+// GLSL ES Programs
+//--------------------------------------------------------------
+vertex_program Ogre/Instancing/HWBasic_glsles_vs glsles
+{
+	source HWBasicInstancing.vert
+
+	preprocessor_defines DEPTH_SHADOWRECEIVER=1
+}
+
+vertex_program Ogre/Instancing/HWBasic/shadow_caster_glsles_vs glsles
+{
+	source HWBasicInstancing.vert
+
+	preprocessor_defines DEPTH_SHADOWCASTER=1
+}
+
+//--------------------------------------------------------------
 // CG Programs
 //--------------------------------------------------------------
 vertex_program Ogre/Instancing/HWBasic_cg_vs cg
 {
 	source HWBasicInstancing.cg
 	entry_point main_vs
-	profiles vs_3_0 vp40
+	profiles  vs_3_0 vp40
 	
 	compile_arguments -DDEPTH_SHADOWRECEIVER
 }
@@ -36,7 +74,7 @@ vertex_program Ogre/Instancing/HWBasic/shadow_caster_cg_vs cg
 {
 	source HWBasicInstancing.cg
 	entry_point main_vs
-	profiles vs_3_0 vp40
+	profiles  vs_3_0 vp40
 	
 	compile_arguments -DDEPTH_SHADOWCASTER
 }
@@ -47,6 +85,8 @@ vertex_program Ogre/Instancing/HWBasic/shadow_caster_cg_vs cg
 vertex_program Ogre/Instancing/HWBasic_vs unified
 {
 	delegate Ogre/Instancing/HWBasic_glsl_vs
+	delegate Ogre/Instancing/HWBasic_glsles_vs
+	delegate Ogre/Instancing/HWBasic_hlsl_vs
 	delegate Ogre/Instancing/HWBasic_cg_vs
 
 	default_params
@@ -61,6 +101,8 @@ vertex_program Ogre/Instancing/HWBasic_vs unified
 vertex_program Ogre/Instancing/HWBasic/shadow_caster_vs unified
 {
 	delegate Ogre/Instancing/HWBasic/shadow_caster_glsl_vs
+	delegate Ogre/Instancing/HWBasic/shadow_caster_glsles_vs
+	delegate Ogre/Instancing/HWBasic/shadow_caster_hlsl_vs
 	delegate Ogre/Instancing/HWBasic/shadow_caster_cg_vs
 
 	default_params

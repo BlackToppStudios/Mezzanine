@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@ THE SOFTWARE.
 #define __ParticleEmitter_H__
 
 #include "OgrePrerequisites.h"
-#include "OgreString.h"
 #include "OgreVector3.h"
 #include "OgreColourValue.h"
 #include "OgreStringInterface.h"
@@ -41,13 +40,13 @@ THE SOFTWARE.
 namespace Ogre {
 
 
-	/** \addtogroup Core
-	*  @{
-	*/
-	/** \addtogroup Effects
-	*  @{
-	*/
-	/** Abstract class defining the interface to be implemented by particle emitters.
+    /** \addtogroup Core
+    *  @{
+    */
+    /** \addtogroup Effects
+    *  @{
+    */
+    /** Abstract class defining the interface to be implemented by particle emitters.
     @remarks
         Particle emitters are the sources of particles in a particle system. 
         This class defines the ParticleEmitter interface, and provides a basic implementation 
@@ -80,6 +79,7 @@ namespace Ogre {
         static EmitterCommands::CmdColourRangeEnd msColourRangeEndCmd;
         static EmitterCommands::CmdDirection msDirectionCmd;
         static EmitterCommands::CmdUp msUpCmd;
+        static EmitterCommands::CmdDirPositionRef msDirPositionRefCmd;
         static EmitterCommands::CmdEmissionRate msEmissionRateCmd;
         static EmitterCommands::CmdMaxTTL msMaxTTLCmd;
         static EmitterCommands::CmdMaxVelocity msMaxVelocityCmd;
@@ -94,8 +94,8 @@ namespace Ogre {
         static EmitterCommands::CmdRepeatDelay msRepeatDelayCmd;
         static EmitterCommands::CmdMinRepeatDelay msMinRepeatDelayCmd;
         static EmitterCommands::CmdMaxRepeatDelay msMaxRepeatDelayCmd;
-		static EmitterCommands::CmdName msNameCmd;
-		static EmitterCommands::CmdEmittedEmitter msEmittedEmitterCmd;
+        static EmitterCommands::CmdName msNameCmd;
+        static EmitterCommands::CmdEmittedEmitter msEmittedEmitterCmd;
 
 
         /// Parent particle system
@@ -108,8 +108,13 @@ namespace Ogre {
         String mType;
         /// Base direction of the emitter, may not be used by some emitters
         Vector3 mDirection;
-        // Notional up vector, used to speed up generation of variant directions, and also to orient some emitters.
+        /// Notional up vector, used to speed up generation of variant directions, and also to orient some emitters.
         Vector3 mUp;
+        /// When true, mDirPositionRef is used instead of mDirection to generate particles
+        bool mUseDirPositionRef;
+        /* Center position to tell in which direction will particles be emitted according to their position,
+            useful for explosions & implosions, some emitters (i.e. point emitter) may not need it. */
+        Vector3 mDirPositionRef;
         /// Angle around direction which particles may be emitted, internally radians but angleunits for interface
         Radian mAngle;
         /// Min speed of particles
@@ -143,26 +148,26 @@ namespace Ogre {
         /// Repeat delay left
         Real mRepeatDelayRemain;
 
-		// Fractions of particles wanted to be emitted last time
-		Real mRemainder;
+        // Fractions of particles wanted to be emitted last time
+        Real mRemainder;
 
         /// The name of the emitter. The name is optional unless it is used as an emitter that is emitted itself.
         String mName;
 
-		/// The name of the emitter to be emitted (optional)
+        /// The name of the emitter to be emitted (optional)
         String mEmittedEmitter;
 
-		// If 'true', this emitter is emitted by another emitter.
-		// NB. That doesn't imply that the emitter itself emits other emitters (that could or could not be the case)
-		bool mEmitted;
+        // If 'true', this emitter is emitted by another emitter.
+        // NB. That doesn't imply that the emitter itself emits other emitters (that could or could not be the case)
+        bool mEmitted;
 
-		// NB Method below here are to help out people implementing emitters by providing the
+        // NB Method below here are to help out people implementing emitters by providing the
         // most commonly used approaches as piecemeal methods
 
         /** Internal utility method for generating particle exit direction
         @param destVector Reference to vector to complete with new direction (normalised)
         */
-        virtual void genEmissionDirection(Vector3& destVector);
+        virtual void genEmissionDirection( const Vector3 &particlePos, Vector3& destVector );
 
         /** Internal utility method to apply velocity to a particle direction.
         @param destVector The vector to scale by a randomly generated scale between min and max speed.
@@ -198,7 +203,7 @@ namespace Ogre {
         /** Virtual destructor essential. */
         virtual ~ParticleEmitter();
 
-		/** Sets the position of this emitter relative to the particle system center. */
+        /** Sets the position of this emitter relative to the particle system center. */
         virtual void setPosition(const Vector3& pos);
 
         /** Returns the position of this emitter relative to the center of the particle system. */
@@ -211,7 +216,7 @@ namespace Ogre {
             vector for every particle, many will introduce a random scatter around this vector using 
             the angle property.
         @note 
-			This resets the up vector.
+            This resets the up vector.
         @param direction
             The base direction for particles emitted.
         */
@@ -222,9 +227,9 @@ namespace Ogre {
 
         /** Sets the notional up vector of the emitter
         @remarks
-			Many emitters emit particles from within a region, and for some that region is not
-			circularly symmetric about the emitter direction. The up vector allows such emitters
-			to be orientated about the direction vector.
+            Many emitters emit particles from within a region, and for some that region is not
+            circularly symmetric about the emitter direction. The up vector allows such emitters
+            to be orientated about the direction vector.
         @param up
             The base direction for particles emitted. It must be perpendicular to the direction vector.
         */
@@ -233,6 +238,27 @@ namespace Ogre {
         /** Returns the up vector of the emitter. */
         virtual const Vector3& getUp(void) const;
 
+        /** Sets the direction of the emitter.
+            Some particle effects need to emit particles in many random directions, but still
+            following some rules; like not having them collide against each other. Very useful
+            for explosions and implosions (when velocity is negative)
+        @note
+            Although once enabled mDirPositionRef will supersede mDirection; calling setDirection()
+            may still be needed to setup a custom up vector.
+        @param position
+            The reference position in which the direction of the particles will be calculated from,
+            also taking into account the particle's position at the time of emission.
+        @param enable
+            True to use mDirPositionRef, false to use the default behaviour with mDirection
+        */
+        virtual void setDirPositionReference( const Vector3& position, bool enable );
+
+        /** Returns the position reference to generate direction of emitted particles */
+        virtual const Vector3& getDirPositionReference() const;
+
+        /** Returns whether direction or position reference is used */
+        virtual bool getDirPositionReferenceEnabled() const;
+
         /** Sets the maximum angle away from the emitter direction which particle will be emitted.
         @remarks
             Whilst the direction property defines the general direction of emission for particles, 
@@ -240,7 +266,7 @@ namespace Ogre {
             This allows you to create a scatter effect - if set to 0, all particles will be emitted
             exactly along the emitters direction vector, whereas if you set it to 180 degrees or more,
             particles will be emitted in a sphere, i.e. in all directions.
-        @param degrees
+        @param angle
             Maximum angle which initial particle direction can deviate from the emitter base direction vector.
         */
         virtual void setAngle(const Radian& angle);
@@ -320,14 +346,14 @@ namespace Ogre {
         @par
             Also see the alternate version of this method which takes a single TTL in order to 
             set a constant TTL for all particles.
-        @param minTtl The minimum number of seconds each particle will live for.
-        @param maxTtl The maximum number of seconds each particle will live for.
+        @param minTtl The minimum number of seconds each particle will live for. Must be non-negative!
+        @param maxTtl The maximum number of seconds each particle will live for. Must be non-negative!
         */
         virtual void setTimeToLive(Real minTtl, Real maxTtl);
 
-        /** Sets the minimum time each particle will live for. */
+        /** Sets the minimum time each particle will live for. Must be non-negative! */
         virtual void setMinTimeToLive(Real min);
-        /** Sets the maximum time each particle will live for. */
+        /** Sets the maximum time each particle will live for. Must be non-negative! */
         virtual void setMaxTimeToLive(Real max);
         
         /** Gets the time each particle will live for. */
@@ -495,28 +521,28 @@ namespace Ogre {
         /** Gets the maximum duration of this emitter in seconds (see setRepeatDelay for more details) */
         virtual Real getMaxRepeatDelay(void) const;
 
-		/** Returns the name of the emitter */
-		const String &getName(void) const;
+        /** Returns the name of the emitter */
+        const String &getName(void) const;
 
-		/** Sets the name of the emitter */
-		virtual void setName(const String& newName);
+        /** Sets the name of the emitter */
+        virtual void setName(const String& newName);
 
-		/** Returns the name of the emitter to be emitted */
-		const String &getEmittedEmitter(void) const;
+        /** Returns the name of the emitter to be emitted */
+        const String &getEmittedEmitter(void) const;
 
-		/** Sets the name of the emitter to be emitted*/
-		virtual void setEmittedEmitter(const String& emittedEmitter);
+        /** Sets the name of the emitter to be emitted*/
+        virtual void setEmittedEmitter(const String& emittedEmitter);
 
-		/** Return true if the emitter is emitted by another emitter */
-		virtual bool isEmitted(void) const;
+        /** Return true if the emitter is emitted by another emitter */
+        virtual bool isEmitted(void) const;
 
-		/** Set the indication (true/false) to indicate that the emitter is emitted by another emitter */
-		virtual void setEmitted(bool emitted);
+        /** Set the indication (true/false) to indicate that the emitter is emitted by another emitter */
+        virtual void setEmitted(bool emitted);
 
 
     };
-	/** @} */
-	/** @} */
+    /** @} */
+    /** @} */
 
 }
 

@@ -48,7 +48,9 @@
 
 namespace Ogre
 {
-    class MeshPtr;
+    class Mesh;
+    template<typename T> class SharedPtr;
+    typedef SharedPtr<Mesh> MeshPtr;
     class MeshManager;
 }
 

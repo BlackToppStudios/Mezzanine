@@ -1046,7 +1046,7 @@ if(NOT AudioProviderSet)
 endif(NOT AudioProviderSet)
 
 ###############################################################################
-# Encoding support configuration
+# Audio Encoding support configuration
 
 set(Mezz_Audio_Encodings "")
 
@@ -1095,6 +1095,51 @@ endif(Mezz_Audio_EnableOpusEncoding)
 add_definitions( ${Mezz_Audio_Encodings} )
 
 ###############################################################################
+# Graphics Rendersystem configuration
+
+if(${Mezz_BuildRenderSystemDirectX9})
+    set(Mezzanine_sources ${Mezzanine_sources}
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/d3d9rendersyshelper.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/d3d9rendersyshelper.cpp"
+    )
+endif(${Mezz_BuildRenderSystemDirectX9})
+
+if(${Mezz_BuildRenderSystemDirectX11})
+    set(Mezzanine_sources ${Mezzanine_sources}
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/d3d11rendersyshelper.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/d3d11rendersyshelper.cpp"
+    )
+endif(${Mezz_BuildRenderSystemDirectX11})
+
+if(${Mezz_BuildRenderSystemOpenGL})
+    set(Mezzanine_sources ${Mezzanine_sources}
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/oglrendersyshelper.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/oglrendersyshelper.cpp"
+    )
+endif(${Mezz_BuildRenderSystemOpenGL})
+
+if(${Mezz_BuildRenderSystemOpenGL3Plus})
+    set(Mezzanine_sources ${Mezzanine_sources}
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/ogl3plusrendersyshelper.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/ogl3plusrendersyshelper.cpp"
+    )
+endif(${Mezz_BuildRenderSystemOpenGL3Plus})
+
+if(${Mezz_BuildRenderSystemOpenGLES})
+    set(Mezzanine_sources ${Mezzanine_sources}
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/oglesrendersyshelper.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/oglesrendersyshelper.cpp"
+    )
+endif(${Mezz_BuildRenderSystemOpenGLES})
+
+if(${Mezz_BuildRenderSystemOpenGLES2})
+    set(Mezzanine_sources ${Mezzanine_sources}
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/ogles2rendersyshelper.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/ogles2rendersyshelper.cpp"
+    )
+endif(${Mezz_BuildRenderSystemOpenGLES2})
+
+###############################################################################
 # Functions for Later use
 
 #Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
@@ -1118,14 +1163,6 @@ endfunction(CopyFilesDuringBuild)
 
 set(LIBTYPE "STATIC") # OpenAL
 file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL build process
-set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
-set(OGRE_SET_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
-set(OGRE_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
-set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build." FORCE)
-set(OGRE_CONFIG_THREAD_PROVIDER "" CACHE STRING "Forcing minimal build for Mezzanine build." FORCE)
-set(OGRE_BUILD_PLUGIN_CG FALSE CACHE BOOL "Forcing Ogre to disable CG, because it is disgusting." FORCE)
-set(OGRE_CONFIG_ALLOCATOR 1 CACHE STRING "Forcing static build for Mezzanine build." FORCE)
-
 
 # Bullet related values
 set(BUILD_AMD_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)

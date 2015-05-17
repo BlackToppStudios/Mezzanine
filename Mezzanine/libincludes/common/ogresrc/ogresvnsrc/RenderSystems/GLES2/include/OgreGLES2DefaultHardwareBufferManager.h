@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@ THE SOFTWARE.
 #include "OgreGLES2Prerequisites.h"
 #include "OgreHardwareBufferManager.h"
 #include "OgreHardwareVertexBuffer.h"
+#include "OgreHardwareUniformBuffer.h"
 #include "OgreHardwareIndexBuffer.h"
 
 namespace Ogre {
@@ -57,7 +58,7 @@ namespace Ogre {
             void writeData(size_t offset, size_t length, const void* pSource,
                            bool discardWholeBuffer = false);
             /** Override HardwareBuffer to turn off all shadowing. */
-            void* lock(size_t offset, size_t length, LockOptions options);
+            void* lock(size_t offset, size_t length, LockOptions options, UploadOptions uploadOpt = HBU_DEFAULT);
             /** Override HardwareBuffer to turn off all shadowing. */
             void unlock(void);
 
@@ -83,11 +84,39 @@ namespace Ogre {
             void writeData(size_t offset, size_t length, const void* pSource,
                     bool discardWholeBuffer = false);
             /** Override HardwareBuffer to turn off all shadowing. */
-            void* lock(size_t offset, size_t length, LockOptions options);
+            void* lock(size_t offset, size_t length, LockOptions options, UploadOptions uploadOpt = HBU_DEFAULT);
             /** Override HardwareBuffer to turn off all shadowing. */
             void unlock(void);
 
             void* getDataPtr(size_t offset) const { return (void*)(mData + offset); }
+    };
+
+    /// Specialisation of HardwareUniformBuffer for emulation
+    class _OgreGLES2Export GLES2DefaultHardwareUniformBuffer : public HardwareUniformBuffer
+    {
+    protected:
+        unsigned char* mData;
+        /// @copydoc HardwareBuffer::lock
+        void* lockImpl(size_t offset, size_t length, LockOptions options);
+        /// @copydoc HardwareBuffer::unlock
+        void unlockImpl(void);
+
+    public:
+        GLES2DefaultHardwareUniformBuffer(size_t bufferSize, HardwareBuffer::Usage usage, bool useShadowBuffer, const String& name);
+        GLES2DefaultHardwareUniformBuffer(HardwareBufferManagerBase* mgr, size_t bufferSize,
+                                            HardwareBuffer::Usage usage, bool useShadowBuffer, const String& name);
+        ~GLES2DefaultHardwareUniformBuffer();
+        /// @copydoc HardwareBuffer::readData
+        void readData(size_t offset, size_t length, void* pDest);
+        /// @copydoc HardwareBuffer::writeData
+        void writeData(size_t offset, size_t length, const void* pSource,
+                       bool discardWholeBuffer = false);
+        /** Override HardwareBuffer to turn off all shadowing. */
+        void* lock(size_t offset, size_t length, LockOptions options, UploadOptions uploadOpt = HBU_DEFAULT);
+        /** Override HardwareBuffer to turn off all shadowing. */
+        void unlock(void);
+
+        void* getDataPtr(size_t offset) const { return (void*)(mData + offset); }
     };
 
     /** Specialisation of HardwareBufferManager to emulate hardware buffers.
@@ -111,23 +140,42 @@ namespace Ogre {
                 createIndexBuffer(HardwareIndexBuffer::IndexType itype, size_t numIndexes,
                     HardwareBuffer::Usage usage, bool useShadowBuffer = false);
             /// Create a render to vertex buffer
-	    RenderToVertexBufferSharedPtr createRenderToVertexBuffer(void);
+            RenderToVertexBufferSharedPtr createRenderToVertexBuffer(void);
+
+        HardwareUniformBufferSharedPtr
+            createUniformBuffer(size_t sizeBytes, HardwareBuffer::Usage usage,bool useShadowBuffer, const String& name = "");
+
+        HardwareCounterBufferSharedPtr createCounterBuffer(size_t sizeBytes,
+                                                           HardwareBuffer::Usage usage = HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+                                                           bool useShadowBuffer = false, const String& name = "")
+        {
+            OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR,
+                        "GLES2 does not support atomic counter buffers",
+                        "GLES2DefaultHardwareBufferManagerBase::createCounterBuffer");
+        }
     };
 
-	/// GLES2DefaultHardwareBufferManagerBase as a Singleton
-	class _OgreGLES2Export GLES2DefaultHardwareBufferManager : public HardwareBufferManager
-	{
-	public:
-		GLES2DefaultHardwareBufferManager()
-			: HardwareBufferManager(OGRE_NEW GLES2DefaultHardwareBufferManagerBase()) 
-		{
+    /// GLES2DefaultHardwareBufferManagerBase as a Singleton
+    class _OgreGLES2Export GLES2DefaultHardwareBufferManager : public HardwareBufferManager
+    {
+    public:
+        GLES2DefaultHardwareBufferManager()
+            : HardwareBufferManager(OGRE_NEW GLES2DefaultHardwareBufferManagerBase()) 
+        {
 
-		}
-		~GLES2DefaultHardwareBufferManager()
-		{
-			OGRE_DELETE mImpl;
-		}
-	};
+        }
+        ~GLES2DefaultHardwareBufferManager()
+        {
+            OGRE_DELETE mImpl;
+        }
+        HardwareUniformBufferSharedPtr
+        createUniformBuffer(size_t sizeBytes, HardwareBuffer::Usage usage,bool useShadowBuffer, const String& name = "")
+        {
+            OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR,
+                        "GLES does not support render to vertex buffer objects",
+                        "GLES2DefaultHardwareBufferManager::createUniformBuffer");
+        }
+    };
 }
 
 #endif

@@ -4,7 +4,7 @@ This source file is a part of OGRE
 
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -52,8 +52,9 @@ THE SOFTWARE
 #define OGRE_THREAD_POINTER_VAR(T, var) T* var = 0
 #define OGRE_THREAD_POINTER_SET(var, expr) var = expr
 #define OGRE_THREAD_POINTER_GET(var) var
-#define OGRE_THREAD_POINTER_DELETE(var) { OGRE_DELETE var; var = 0; }
+#define OGRE_THREAD_POINTER_DELETE(var) do { OGRE_DELETE var; var = 0; } while (0)
 #define OGRE_THREAD_SLEEP(ms)
 #define OGRE_THREAD_WORKER_INHERIT
+#define OGRE_THREAD_YIELD
 
 #endif

@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,7 @@ THE SOFTWARE.
 #include "OgreGLES2RenderTexture.h"
 #include "OgreGLES2Context.h"
 #include "OgreGLES2FrameBufferObject.h"
+#include "OgreGLES2ManagedResource.h"
 
 namespace Ogre {
     class GLES2FBOManager;
@@ -38,31 +39,39 @@ namespace Ogre {
 
     /** RenderTexture for GL ES 2 FBO
     */
-    class _OgreGLES2Export GLES2FBORenderTexture: public GLES2RenderTexture
+    class _OgreGLES2Export GLES2FBORenderTexture: public GLES2RenderTexture MANAGED_RESOURCE
     {
     public:
         GLES2FBORenderTexture(GLES2FBOManager *manager, const String &name, const GLES2SurfaceDesc &target, bool writeGamma, uint fsaa);
-
+        
         virtual void getCustomAttribute(const String& name, void* pData);
 
-		/// Override needed to deal with multisample buffers
-		virtual void swapBuffers(bool waitForVSync = true);
+        /// Override needed to deal with multisample buffers
+        virtual void swapBuffers();
 
-		/// Override so we can attach the depth buffer to the FBO
-		virtual bool attachDepthBuffer( DepthBuffer *depthBuffer );
-		virtual void detachDepthBuffer();
-		virtual void _detachDepthBuffer();
+        /// Override so we can attach the depth buffer to the FBO
+        virtual bool attachDepthBuffer( DepthBuffer *depthBuffer );
+        virtual void detachDepthBuffer();
+        virtual void _detachDepthBuffer();
     protected:
         GLES2FrameBufferObject mFB;
+        
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_EMSCRIPTEN
+        /** See AndroidResource. */
+        virtual void notifyOnContextLost();
+        
+        /** See AndroidResource. */
+        virtual void notifyOnContextReset();
+#endif
     };
     
     /** Factory for GL ES 2 Frame Buffer Objects, and related things.
     */
-    class _OgreGLES2Export GLES2FBOManager: public GLES2RTTManager
+    class _OgreGLES2Export GLES2FBOManager: public GLES2RTTManager 
     {
     public:
         GLES2FBOManager();
-		~GLES2FBOManager();
+        ~GLES2FBOManager();
         
         /** Bind a certain render target if it is a FBO. If it is not a FBO, bind the
             main frame buffer.
@@ -80,15 +89,15 @@ namespace Ogre {
         /** Create a texture rendertarget object
         */
         virtual GLES2FBORenderTexture *createRenderTexture(const String &name, 
-			const GLES2SurfaceDesc &target, bool writeGamma, uint fsaa);
+            const GLES2SurfaceDesc &target, bool writeGamma, uint fsaa);
 
-		/** Create a multi render target 
-		*/
-		virtual MultiRenderTarget* createMultiRenderTarget(const String & name);
+        /** Create a multi render target 
+        */
+        virtual MultiRenderTarget* createMultiRenderTarget(const String & name);
         
         /** Request a render buffer. If format is GL_NONE, return a zero buffer.
         */
-        GLES2SurfaceDesc requestRenderBuffer(GLenum format, size_t width, size_t height, uint fsaa);
+        GLES2SurfaceDesc requestRenderBuffer(GLenum format, uint32 width, uint32 height, uint fsaa);
         /** Request the specify render buffer in case shared somewhere. Ignore
             silently if surface.buffer is 0.
         */
@@ -104,6 +113,10 @@ namespace Ogre {
         /** Get a FBO without depth/stencil for temporary use, like blitting between textures.
         */
         GLuint getTemporaryFBO() { return mTempFBO; }
+        
+        /** Detects all supported fbo's and recreates the tempory fbo */
+        void _reload();
+        
     private:
         /** Frame Buffer Object properties for a certain texture format.
         */
@@ -137,7 +150,7 @@ namespace Ogre {
             GLenum format;
             size_t width;
             size_t height;
-			uint samples;
+            uint samples;
             // Overloaded comparison operator for usage in map
             bool operator < (const RBFormat &other) const
             {
@@ -155,11 +168,11 @@ namespace Ogre {
                     {
                         if(height < other.height)
                             return true;
-						else if (height == other.height)
-						{
-							if (samples < other.samples)
-								return true;
-						}
+                        else if (height == other.height)
+                        {
+                            if (samples < other.samples)
+                                return true;
+                        }
                     }
                 }
                 return false;
@@ -186,6 +199,7 @@ namespace Ogre {
         void detectFBOFormats();
         GLuint _tryFormat(GLenum depthFormat, GLenum stencilFormat);
         bool _tryPackedFormat(GLenum packedFormat);
+        void _createTempFramebuffer(PixelFormat pixFmt, GLuint internalFormat, GLuint fmt, GLenum dataType, GLuint &fb, GLuint &tid);
     };
 }
 
