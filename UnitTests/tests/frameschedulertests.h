@@ -61,7 +61,6 @@ using namespace Mezzanine::Threading;
 const String CrashDoesNotWorkUnitName("PausesWorkUnit");
 
 /// @brief A samplework unit that that just block the thread it is in
-/// @details Used in @ref FrameSchedulerGetNext and other tests
 /// @warning Everything on these samples has a public access specifier, for production code that is poor form, encapsulate your stuff.
 class PausesWorkUnit : public DefaultWorkUnit
 {
@@ -259,7 +258,7 @@ class CrashDivZeroWorkUnit : public CrashesWorkUnit
 };
 
 /// @brief A String to represent the CrashDivZeroWorkUnit
-const String CrashMezzExceptionWorkUnitName("MezzExceptionWorkUni");
+const String CrashMezzExceptionWorkUnitName("MezzExceptionWorkUnit");
 /// @brief A workunit that reliably crashes By throwing plain old data without catching it.
 class CrashMezzExceptionWorkUnit : public CrashesWorkUnit
 {
@@ -278,6 +277,40 @@ class CrashMezzExceptionWorkUnit : public CrashesWorkUnit
         }
 
 };
+
+/// @brief A samplework unit that that just logs some unique message
+/// @warning Everything on these samples has a public access specifier, for production code that is poor form, encapsulate your stuff.
+class UniqueLogMessagesWorkUnit : public DefaultWorkUnit
+{
+    public:
+        /// @brief Name used for clarifying output and enhancing logging.
+        Mezzanine::String Name;
+
+        /// @brief This value is emitted and incremented to insure unique log messages
+        Mezzanine::MaxInt Counter;
+
+        /// @brief Create one of these workunit
+        /// @param Counter_ Defaults to 0 and is the number of Milliseconds to wait
+        /// @param Name Is passedby test to insure acceptable uniqueness.
+        UniqueLogMessagesWorkUnit(Mezzanine::String Name_, Mezzanine::Whole Counter_ = 0)
+            : Name(Name_), Counter(Counter_)
+            { }
+
+        /// @brief Empty Virtual Deconstructor
+        virtual ~UniqueLogMessagesWorkUnit()
+            { }
+
+        /// @brief Wait and log it.
+        /// @param CurrentThreadStorage used to retrieve a valid logger.
+        /// @brief CurrentFrameScheduler ignored
+        virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            DoubleBufferedLogger& CurrentLogger = CurrentThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger);
+            CurrentLogger.GetUsable() << "<Pause PauseLength=\"" << Counter++ << "\" WorkUnitName=\"" << Name << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << endl;
+        }
+};
+
+
 
 /// @brief Tests for the Framescheduler class
 class frameschedulertests : public UnitTestGroup
@@ -312,6 +345,30 @@ class frameschedulertests : public UnitTestGroup
             TestOutput << endl << endl;
             TEST(WorkUnitCount_==Results.size(),TestName+"::NameCount");
 
+        }
+
+        //DeconstructionCheckSchedulerLog(LogCache,1,1,"DeconstructionSanityWithLateLogging",true,"Extra Log message");
+        void DeconstructionCheckSchedulerLog(Mezzanine::Logger& Log, Whole ExpectedWorkUnitCount, Whole ExpectedIterationCount, String TestName, Boole HasTrailing = false, String TrailingExpected="")
+        {
+            String LogString(Log.str());
+            pugi::xml_document Doc;
+            Doc.load(Log);
+            pugi::xml_node TestFrame = Doc.child("MezzanineLog");
+            TEST(TestFrame, TestName+"::TestLog");
+
+            Whole ActualIterationCount = Doc.select_nodes("//MezzanineLog/FrameTimes").size();
+            TestOutput << "Found " << ActualIterationCount << " frames expected " << ExpectedIterationCount << "." << endl;
+            TEST(ExpectedIterationCount == ActualIterationCount,TestName+"WorkUnitCount");
+
+            Whole ActualWorkUnitCount = Doc.select_nodes("//MezzanineLog/WorkUnitMainInsertion").size();
+            TestOutput << "Found " << ActualWorkUnitCount << " frames expected " << ExpectedWorkUnitCount << "." << endl;
+            TEST(ExpectedWorkUnitCount == ActualWorkUnitCount,TestName+"WorkUnitCount");
+
+            if(HasTrailing)
+            {
+                TestOutput << "Checking if log contains \"" << TrailingExpected << "\"." << endl;
+                TEST(String::npos!=LogString.find(TrailingExpected), TestName+"IncludesExpectedText");
+            }
         }
 
         /// @brief Converts anything streamable to a Mezzanine::String
@@ -1124,7 +1181,7 @@ class frameschedulertests : public UnitTestGroup
                 TEST((3==PrepCount),"RemoveAffinity::MainCleanup");
 
                 delete EraseA; delete EraseB; delete EraseC; delete EraseE; delete EraseF;
-            }// \ Removal Affinity
+            } // \Removal Affinity
 
             { // Removal Monopoly
                 stringstream LogCache;
@@ -1223,7 +1280,7 @@ class frameschedulertests : public UnitTestGroup
                      ,"GetThreadUsableLogger");
             }
 
-            {
+            { // Timing accuracy
                 stringstream LogCache;
                 FrameScheduler Scheduler1(&LogCache);
                 MaxInt FrameLength=10000;
@@ -1249,13 +1306,44 @@ class frameschedulertests : public UnitTestGroup
                 TEST( (0<=PauseLength) && (PauseLength<=FrameLength+1),"LastPauseData" );
             }
 
-            {
+            { // Crash Tests
                 CrashTest(CrashDoesNotWorkUnitName, 3);         // Not a problem
                 CrashTest(CrashUnhandledThrowWorkUnitName, 2);  // Log everyting aftercrash
                 CrashTest(CrashDivZeroWorkUnitName, 0);         // Cannot recover from hardware traps so buffered logs are lost
                 CrashTest(CrashMezzExceptionWorkUnitName, 2);   // Unhandled exception using standard mezzanine exception generation techniques
+            }
 
+            { // Logs during deconstruction
+                stringstream LogCache;
+                {
+                    FrameScheduler Scheduler1(&LogCache);
+                    Scheduler1.SetFrameLength(0);
+                    Scheduler1.SetThreadCount(1);
+                    UniqueLogMessagesWorkUnit* Loggee = new UniqueLogMessagesWorkUnit("Loggee");
+                    Scheduler1.AddWorkUnitMain(Loggee,"Loggee");
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.DoOneFrame();
+                }
+                cout << std::endl << "Deconstruction Log Tests: " << std::endl << LogCache.str() << std::endl;
+                DeconstructionCheckSchedulerLog(LogCache,1,3,"DeconstructionSanity");
+            }
 
+            { // Logs during deconstruction with external additions
+                stringstream LogCache;
+                {
+                    FrameScheduler Scheduler1(&LogCache);
+                    Scheduler1.SetFrameLength(0);
+                    Scheduler1.SetThreadCount(1);
+                    UniqueLogMessagesWorkUnit* Loggee = new UniqueLogMessagesWorkUnit("Loggee");
+                    Scheduler1.AddWorkUnitMain(Loggee,"Loggee");
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.GetLog() << "Extra Log message" << std::endl;
+                }
+                cout << std::endl << "Deconstruction Log Tests: " << std::endl << LogCache.str() << std::endl;
+                DeconstructionCheckSchedulerLog(LogCache,1,3,"DeconstructionSanityWithLateLogging",true,"Extra Log message");
             }
 
         }

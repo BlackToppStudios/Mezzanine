@@ -550,7 +550,6 @@ namespace Mezzanine
 
         void FrameScheduler::RunMainThreadWork()
         {
-            //Resources[0]->SwapAllBufferedResources();
             LogDependencies();
             LogResources.Unlock();
             ThreadWorkAffinity(Resources[0]); // Do work in this thread and get the units with affinity
@@ -696,8 +695,6 @@ namespace Mezzanine
 
         std::ostream& FrameScheduler::GetLog()
             { return *LogDestination; }
-
-
 
         void FrameScheduler::ChangeLogTarget(std::ostream* LogTarget)
         {
