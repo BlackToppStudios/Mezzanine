@@ -86,11 +86,23 @@ namespace Mezzanine
         class CollisionDispatcher;
         class ParallelCollisionDispatcher;
         class PhysicsManager;
+
         class CollidableProxy;
         class CollisionShape;
+
         class GhostProxy;
         class RigidProxy;
         class SoftProxy;
+
+        class ConeTwistConstraint;
+        class GearConstraint;
+        class Generic6DofConstraint;
+        class Generic6DofSpringConstraint;
+        class HingeConstraint;
+        class Hinge2Constraint;
+        class Point2PointConstraint;
+        class SliderConstraint;
+        class UniversalConstraint;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the single threaded processing of physics simulations.
@@ -491,6 +503,10 @@ namespace Mezzanine
             /// @param Which Which proxy of the specified type to retrieve.
             /// @return Returns a pointer to the specified proxy, or NULL if there is no n-th proxy.
             CollidableProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
+            /// @brief Gets the CollidableProxy via its ID.
+            /// @param ID The unique identifier belonging to the Proxy.
+            /// @return Returns a pointer to the CollidableProxy with the specified ID.
+            CollidableProxy* GetProxyByID(const UInt32 ID) const;
             /// @brief Gets the number of CollidableProxy instances in this manager.
             /// @return Returns a UInt32 representing the number of CollidableProxy instances contained in this manager.
             UInt32 GetNumProxies() const;
@@ -516,26 +532,195 @@ namespace Mezzanine
             #endif
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Constraint Creation
+
+            /// @brief Creates a new ConeTwistConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param TransA The transform in ProxyA's local space to attach this constraint to.
+            /// @param TransB The transform in ProxyB's local space to attach this constraint to.
+            /// @return Returns a pointer to the created constraint.
+            ConeTwistConstraint* CreateConeTwistConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new ConeTwistConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param TransA The transform in ProxyA's local space to attach this constraint to.
+            /// @return Returns a pointer to the created constraint.
+            ConeTwistConstraint* CreateConeTwistConstraint(RigidProxy* ProxyA, const Transform& TransA);
+            /// @brief Creates a new ConeTwistConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            ConeTwistConstraint* CreateConeTwistConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new GearConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The axis in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The axis in ProxyB's local space to apply the constraint to.
+            /// @return Returns a pointer to the created constraint.
+            GearConstraint* CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB);
+            /// @brief Creates a new GearConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The axis in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The axis in ProxyB's local space to apply the constraint to.
+            /// @param Ratio The amount the rotation from ProxyA that shall be used to be applied to ProxyB.
+            /// @return Returns a pointer to the created constraint.
+            GearConstraint* CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio);
+            /// @brief Creates a new GearConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            GearConstraint* CreateGearConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new Generic6DofConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofConstraint* CreateGeneric6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new Generic6DofConstraint.
+            /// @param ProxyB The proxy to be bound to the world.
+            /// @param TransB The offset and rotation for the ProxyB pivot/hinge/joint.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofConstraint* CreateGeneric6DofConstraint(RigidProxy* ProxyB, const Transform& TransB);
+            /// @brief Creates a new Generic6DofConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofConstraint* CreateGeneric6DofConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new Generic6DofSpringConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofSpringConstraint* CreateGeneric6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new Generic6DofSpringConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofSpringConstraint* CreateGeneric6DofSpringConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new HingeConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The location in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The location in ProxyB's local space to apply the constraint to.
+            /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param AxisInB The axis(for ProxyB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB);
+            /// @brief Creates a new HingeConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new HingeConstraint.
+            /// @param ProxyA The proxy to apply this constraint to.
+            /// @param PivotInA The point in the objects(ProxyA) local space where the constraint is to be attached to world space.
+            /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA);
+            /// @brief Creates a new HingeConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param TransB The offset and rotation from ProxyAs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, const Transform& TransA);
+            /// @brief Creates a new HingeConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new Hinge2Constraint.
+            /// @remarks All axes passed in should be in world coordinates.
+            /// @param ProxyA A pointer to the first proxy that will be constrained.
+            /// @param ProxyB A pointer to the second proxy that will be constrained.
+            /// @param Anchor The point in world cocrdinates where the "axel" and "suspension" meet.
+            /// @param Axis1 The axis on which the child object should rotate about the parent object(aka turning).  Must be orthogonal to Axis2.
+            /// @param Axis2 The axis on which the child object will rotate on it's own(aka spinning).
+            /// @return Returns a pointer to the created constraint.
+            Hinge2Constraint* CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            /// @brief Creates a new Hinge2Constraint.
+            /// @param ProxyA A pointer to the first proxy that will be constrained.
+            /// @param ProxyB A pointer to the second proxy that will be constrained.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            Hinge2Constraint* CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new Hinge2Constraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            Hinge2Constraint* CreateHinge2Constraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new Point2PointConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The location in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The location in ProxyB's local space to apply the constraint to.
+            /// @return Returns a pointer to the created constraint.
+            Point2PointConstraint* CreatePoint2PointConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotA, const Vector3& PivotB);
+            /// @brief Creates a new Point2PointConstraint.
+            /// @param ProxyA The proxy to apply this constraint to.
+            /// @param PivotA The position relative to ProxyA's center of gravity to "Pin" to the world.
+            /// @return Returns a pointer to the created constraint.
+            Point2PointConstraint* CreatePoint2PointConstraint(RigidProxy* ProxyA, const Vector3& PivotA);
+            /// @brief Creates a new Point2PointConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            Point2PointConstraint* CreatePoint2PointConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new SliderConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyA's center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyB's center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            SliderConstraint* CreateSliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new SliderConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyA's center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            SliderConstraint* CreateSliderConstraint(RigidProxy* ProxyA, const Transform& TransA);
+            /// @brief Creates a new SliderConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            SliderConstraint* CreateSliderConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new UniversalConstraint.
+            /// @param ProxyA A pointer to the first proxy that will be constrained.
+            /// @param ProxyB A pointer to the second proxy that will be constrained.
+            /// @param Anchor The central point around both Axis1 and Axis 2 will connect and spin.
+            /// @param Axis1 An axis perpendicular to the axis you wish to have the ProxyA spin.
+            /// @param Axis2 An axis perpendicular to the axis you wish to have the ProxyB spin.
+            /// @return Returns a pointer to the created constraint.
+            UniversalConstraint* CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            /// @brief Creates a new UniversalConstraint.
+            /// @param ProxyA A pointer to the first proxy that will be constrained.
+            /// @param ProxyB A pointer to the second proxy that will be constrained.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            UniversalConstraint* CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new UniversalConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            UniversalConstraint* CreateUniversalConstraint(const XML::Node& SelfRoot);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Constraint Management
 
-            /// @brief Adds a constraint to the world.
-            /// @details Adds the constraint to the world so that it can/will take effect.
-            /// @param Con The constraint to be added.
-            /// @param DisableCollisions Sets whether or not the linked bodies collide with each other.
-            void AddConstraint(Physics::Constraint* Con, Boole DisableCollisions = false);
             /// @brief Gets a constraint by index.
             /// @param Index The index of the constraint you want.
             /// @return Returns a pointer to the specified constraint.
-            Physics::Constraint* GetConstraint(const Whole& Index);
+            Constraint* GetConstraint(const Whole& Index);
             /// @brief Gets the number of constraints currently in the world.
             /// @return Returns a whole representing the number of constraints in the world.
             Whole GetNumConstraints();
-            /// @brief Removes a constraint from the world.
-            /// @details Removes a constraint from the world so that it will have no effect.
-            /// @param Con The constraint to be removed.
-            void RemoveConstraint(Physics::Constraint* Con);
+            /// @brief Removes a constraint from the world and destroys it.
+            /// @param Con The constraint to be destroyed.
+            void DestroyConstraint(Constraint* Con);
             /// @brief Destroys all constraints currently in the manager.
-            /// @details In phashedstringractice it is cleaner to remove constraints from the world before removing any constrained actors.
             void DestroyAllConstraints();
 
             ///////////////////////////////////////////////////////////////////////////////

@@ -50,143 +50,139 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class HingeConstraint
-        /// @headerfile constraint.h
         /// @brief This is a constraint to be used to restrict the movement between two objects to angular rotation on a single axis.
         /// @details As the name suggests, this constraint essentially works like a door Hinge.
         ///////////////////////////////////////
         class MEZZ_LIB HingeConstraint : public DualTransformConstraint
         {
         protected:
+            /// @internal
             /// @brief Bullet constraint that this class encapsulates.
             btHingeConstraint* Hinge;
-        public:
-            ////////////////////////////////////////////////////////////////////////////////
-            // HingeConstraint Construction and Destruction
 
-            /// @brief Creates a Hinge constraint that will connect two proxies together by their offsets.
+            /// @copydoc DualTransformConstraint::CreateConstraint(RigidProxy*, RigidProxy*, const Transform&, const Transform&)
+            virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB);
+            /// @internal
+            /// @brief Creates the internal constraint.
+            /// @param RigidA The first proxy to apply this constraint to.
+            /// @param RigidB The second proxy to apply this constraint to.
+            /// @param PivotA The location in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The location in ProxyB's local space to apply the constraint to.
+            /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param AxisInB The axis(for ProxyB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB);
+            /// @copydoc DualTransformConstraint::DestroyConstraint()
+            virtual void DestroyConstraint();
+        public:
+            /// @brief Convenience axis constructor.
+            /// @param ID The unique identifier assigned to this constraint.
             /// @param ProxyA The first proxy to apply this constraint to.
             /// @param ProxyB The second proxy to apply this constraint to.
             /// @param PivotA The location in ProxyA's local space to apply the constraint to.
             /// @param PivotB The location in ProxyB's local space to apply the constraint to.
             /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param AxisInB The axis(for ProxyB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
-            /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyA's local space instead.
-            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, Boole UseReferenceFrameA=false);
-            /// @brief Creates a Hinge constraint that will attach an proxy to a point in world space.
+            /// @param Creator A pointer to the manager that created this constraint.
+            HingeConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, PhysicsManager* Creator);
+            /// @brief Transform constructor.
+            /// @param ID The unique identifier assigned to this constraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @param Creator A pointer to the manager that created this constraint.
+            HingeConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator);
+            /// @brief Single body axis constructor.
+            /// @param ID The unique identifier assigned to this constraint.
             /// @param ProxyA The proxy to apply this constraint to.
             /// @param PivotInA The point in the objects(ProxyA) local space where the constraint is to be attached to world space.
             /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
-            /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyA's local space instead.
-            HingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, Boole UseReferenceFrameA=false);
-            /// @brief Create a Hinge with components of a tranform
+            /// @param Creator A pointer to the manager that created this constraint.
+            HingeConstraint(const UInt32 ID, RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, PhysicsManager* Creator);
+            /// @brief Single body transform constructor.
+            /// @param ID The unique identifier assigned to this constraint.
             /// @param ProxyA The first proxy to apply this constraint to.
-            /// @param ProxyB The second proxy to apply this constraint to.
-            /// @param VectorA The location component of Transform A
-            /// @param VectorB The location component of Transform B
-            /// @param QuaternionA The rotation component of Transform A
-            /// @param QuaternionB The rotation component of Transform B
-            /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyAs local space instead.
-            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boole UseReferenceFrameA=false);
-            /// @brief Create a Hinge with components of a tranform
-            /// @param ProxyA The first proxy to apply this constraint to.
-            /// @param ProxyB The second proxy to apply this constraint to.
-            /// @param TransformA The location component of Transform A
-            /// @param TransformB The location component of Transform B
-            /// @param UseReferenceFrameA By default, this constraint uses ProxyBs local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyAs local space instead.
-            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boole UseReferenceFrameA=false);
+            /// @param TransB The offset and rotation from ProxyAs center of gravity.
+            /// @param Creator A pointer to the manager that created this constraint.
+            HingeConstraint(const UInt32 ID, RigidProxy* ProxyA, const Transform& TransA, PhysicsManager* Creator);
+            /// @brief XML constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param Creator A pointer to the manager that created this constraint.
+            HingeConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.
             virtual ~HingeConstraint();
 
             ////////////////////////////////////////////////////////////////////////////////
-            // HingeConstraint Position and Orientation
+            // Position and Orientation
 
-            /// @brief Set The relative location of the hinge pivot from ActorA's Center of gravity.
-            /// @param Location The New value for PivotA
-            /// @details Ultimately this information winds up being stored in the TransformA. This implements
-            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
-            virtual void SetPivotALocation(const Vector3& Location);
-            /// @brief Set The relative location of the hinge pivot from ActorB's Center of gravity.
-            /// @param Location The New value for PivotB
-            /// @details Ultimately this information winds up being stored in the TransformB. This implements
-            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
-            virtual void SetPivotBLocation(const Vector3& Location);
-            /// @brief Get the location of the hinge pivot relative to ActorA's Center of gravity
-            /// @return A Vector3 with the pivot location.
-            /// @details This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
-            virtual Vector3 GetPivotALocation() const;
-            /// @brief Get the location of the hinge pivot relative to ActorB's Center of gravity
-            /// @return A Vector3 with the pivot location.
-            /// @details This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
-            virtual Vector3 GetPivotBLocation() const;
-
-            /// @brief Set The relative rotation of ActorA
-            /// @param Rotation The new rotation amount for A
-            /// @details Ultimately this information winds up being stored in the TransformA. This implements
-            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
-            virtual void SetAPivotRotation(const Quaternion& Rotation);
-            /// @brief Set The relative rotation of ActorB
-            /// @param otation The new rotation amount for B
-            /// @details Ultimately this information winds up being stored in the TransformB. This implements
-            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
-            virtual void SetBPivotRotation(const Quaternion& Rotation);
-            /// @brief Get the relative rotation for ActorA
-            /// @return A Quaternion that has the rotation
-            /// @details This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
-            virtual Quaternion GetAPivotRotation() const;
-            /// @brief Get the relative rotation for ActorB
-            /// @return A Quaternion that has the rotation
-            /// @details This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
-            virtual Quaternion GetBPivotRotation() const;
-
+            /// @copydoc DualTransformConstraint::SetPivotTransforms(const Transform&, const Transform&)
+            /// @remarks This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetPivotTransforms(const Transform& TransA, const Transform& TransB);
             /// @copydoc DualTransformConstraint::SetTransformA
-            virtual void SetPivotATransform(const Transform& TranA);
+            virtual void SetPivotATransform(const Transform& TransA);
             /// @copydoc DualTransformConstraint::SetTransformB
-            virtual void SetPivotBTransform(const Transform& TranB);
+            virtual void SetPivotBTransform(const Transform& TransB);
             /// @copydoc DualTransformConstraint::GetTransformA
             virtual Transform GetPivotATransform() const;
             /// @copydoc DualTransformConstraint::GetTransformB
             virtual Transform GetPivotBTransform() const;
 
-            ////////////////////////////////////////////////////////////////////////////////
-            // HingeConstraint Angular Motor
+            /// @copydoc DualTransformConstraint::SetPivotALocation(const Vector3&)
+            /// @remarks Ultimately this information winds up being stored in the TransformA. This implements
+            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetPivotALocation(const Vector3& Location);
+            /// @copydoc DualTransformConstraint::SetPivotBLocation(const Vector3&)
+            /// @remarks Ultimately this information winds up being stored in the TransformB. This implements
+            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetPivotBLocation(const Vector3& Location);
+            /// @copydoc DualTransformConstraint::GetPivotALocation() const
+            /// @remarks This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual Vector3 GetPivotALocation() const;
+            /// @copydoc DualTransformConstraint::GetPivotBLocation() const
+            /// @remarks This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual Vector3 GetPivotBLocation() const;
 
-            /// @brief Enables(or Disables) the motor on the hinge and sets it's parameters.
-            /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
-            /// @param TargetVelocity The desired velocity of rotation the motor will have.  This may or may not be achieved based on obstructions in the simulation.
-            /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
-            virtual void EnableMotor(Boole EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
-            /// @brief Enables(or Disables) the motor on the hinge.
-            /// @warning Be sure to set values for the Motor max impulse and/or velocity before enabling the motor, or else you may get a crash.
-            /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
-            virtual void EnableMotor(Boole EnableMotor);
-            /// @brief Is this motor on this hinge enabled?
-            /// @return True if it is, false otherwise.
-            virtual Boole GetMotorEnabled() const;
-            /// @brief Sets the maximum amount of force the motor is to apply.
-            /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
-            virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
-            /// @brief Retrieve the maximimum value that the acceleration of the motor can be increased.
-            /// @return A real containing the maximum impulse.
-            virtual Real GetMaxMotorImpulse() const;
-            /// @brief Sets a Target Velocity, indirectly using the angle stored in a quaternion.
-            /// @details Is implemented in terms of SetMotorTarget(Real, Real);
-            /// @param QuatAInB The angle a quaternion relative to the two objects in the constraint.
-            /// @param Dt The Desired Time steps that the target rotational velocity should be reached in.
-            virtual void SetMotorTarget(const Quaternion& QuatAInB, Real Dt);
-            /// @brief Set the Rotational velocity in a more direct fashion
-            /// @param TargetAngle The desired angle in radians.
-            /// @param Dt The Desired Time steps that the target rotational velocity should be reached in.
-            virtual void SetMotorTarget(Real TargetAngle, Real Dt);
-            /// @brief Desired angular velocity of the motor
-            /// @param TargetVelocity The Desired velocity
-            /// @warning Causes segfaults in some tests.
-            virtual void SetMotorTargetVelocity(Real TargetVelocity);
-            /// @brief Get the Target Velocity.
-            /// @return the target valocity as a real.
-            virtual Real GetMotorTargetVelocity() const;
+            /// @copydoc DualTransformConstraint::SetAPivotRotation(const Quaternion&)
+            /// @remarks Ultimately this information winds up being stored in the TransformA. This implements
+            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetAPivotRotation(const Quaternion& Rotation);
+            /// @copydoc DualTransformConstraint::SetBPivotRotation(const Quaternion&)
+            /// @remarks Ultimately this information winds up being stored in the TransformB. This implements
+            /// a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual void SetBPivotRotation(const Quaternion& Rotation);
+            /// @copydoc DualTransformConstraint::GetAPivotRotation() const
+            /// @remarks This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual Quaternion GetAPivotRotation() const;
+            /// @copydoc DualTransformConstraint::GetBPivotRotation() const
+            /// @remarks This implements a more Hinge specific version of the logic than DualTransformConstraint for efficiency reasons.
+            virtual Quaternion GetBPivotRotation() const;
 
             ////////////////////////////////////////////////////////////////////////////////
-            // HingeConstraint Limits
+            // Utility
+
+            /// @brief Sets the axis on which this constraint acts.
+            /// @param AxisInA A vector3 representing the axis to be used with this constraint.
+            virtual void SetAxis(const Vector3& AxisInA);
+            /// @brief Gets the current angle of the hinge.
+            /// @return Gets the amount of rotation this hinge is off from it's origin in radians.
+            virtual Real GetHingeAngle();
+
+            /// @brief Sets whether or not an offset of the constraint frame should be used to calculate internal data.
+            /// @param FrameOffset The full effect of this being true or false is uknown, but internal documentation suggests "true" provides more stable results.
+            virtual void SetUseFrameOffset(const Boole FrameOffset);
+            /// @brief Gets whether or not an offset of the constraint frame should be used to calculate internal data.
+            /// @return Returns whether or not an offset in the constraint frame is being used by the internal constraint.
+            virtual Boole GetUseFrameOffset() const;
+
+            /// @brief Sets whether or not to perform linear math from ProxyA's perspective.
+            /// @param UseRefFrameA True to perform math from ProxyA's perspective, false to perform math from ProxyB's perspective.  Initial Value: false.
+            virtual void SetUseReferenceFrameA(const Boole UseRefFrameA);
+            /// @brief Gets whether or not to perform linear math from ProxyA's perspective.
+            /// @return Returns true if math is being done from ProxyA's perspective, false if math is being done from ProxyB's perspective.
+            virtual Boole GetUseReferenceFrameA() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Limits
 
             /// @brief Sets the angle limits of the constraint in radians.
             /// @param Low The minimum angle limit for the constraint in radians.
@@ -194,7 +190,7 @@ namespace Mezzanine
             /// @param Softness Not currently used internally.
             /// @param BiasFactor Multiplier for the constraint error, constraint appears more "soft" when closer to zero.
             /// @param RelaxationFactor The amount of bounce to apply when the constraint reaches it's limit.  Range: 0.0-1.0.
-            virtual void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
+            virtual void SetLimits(const Real Low, const Real High, const Real Softness = 0.9, const Real BiasFactor = 0.3, const Real RelaxationFactor = 1.0);
             /// @brief Return the Lower Limit of the hinge
             /// @return A real containing the Lower Limit
             virtual Real GetLimitLow() const;
@@ -212,51 +208,76 @@ namespace Mezzanine
             virtual Real GetLimitRelaxationFactor() const;
 
             ////////////////////////////////////////////////////////////////////////////////
-            // HingeConstraint Details
+            // Angular Motor
 
-            /// @brief Sets the axis on which this constraint acts.
-            /// @param AxisInA A vector3 representing the axis to be used with this constraint.
-            virtual void SetAxis(const Vector3& AxisInA);
-            /// @brief Gets the current angle of the hinge.
-            /// @return Gets the amount of rotation this hinge is off from it's origin in radians.
-            virtual Real GetHingeAngle();
-            /// @copydoc Constraint::ValidParamOnAxis(int) const
-            virtual Constraint::ParamList ValidParamOnAxis(int Axis) const;
-            /// @copydoc Constraint::ValidLinearAxis() const
-            virtual Constraint::AxisList ValidLinearAxis() const;
-            /// @copydoc Constraint::ValidAngularAxis() const
-            virtual Constraint::AxisList ValidAngularAxis() const;
-            /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
-            virtual Boole HasParamBeenSet(ConstraintParam Param, int Axis) const;
-            /// @brief Retrieve the stored value from the physics subsystem(bullet)
-            /// @return a True or false.
-            virtual Boole GetUseFrameOffset() const;
-            /// @brief Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet)
-            /// @param FrameOffset The new desired value.
-            virtual void SetUseFrameOffset(Boole FrameOffset);
-            /// @brief Is this Using Reference Frame A
-            /// @return A the value UseReferenceFrameA is set to internally.
-            virtual Boole GetUseReferenceFrameA() const;
-            /// @brief Change whether this is Using Reference Frame A or not
-            /// @param UseReferenceFrameA Whether certain math be performed from the perspective of Actor A or Actor B (we think this is the case, but we have not test thoroughly)
-            virtual void SetUseReferenceFrameA(Boole UseReferenceFrameA=false);
+            /// @brief Enables(or Disables) the motor on the hinge and sets it's parameters.
+            /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
+            /// @param TargetVelocity The desired velocity of rotation the motor will have.  This may or may not be achieved based on obstructions in the simulation.
+            /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
+            virtual void EnableMotor(const Boole EnableMotor, const Real TargetVelocity, const Real MaxMotorImpulse);
+            /// @brief Enables(or Disables) the motor on the hinge.
+            /// @warning Be sure to set values for the Motor max impulse and/or velocity before enabling the motor, or else you may get a crash.
+            /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
+            virtual void SetMotorEnabled(const Boole EnableMotor);
+            /// @brief Is this motor on this hinge enabled?
+            /// @return True if it is, false otherwise.
+            virtual Boole GetMotorEnabled() const;
 
-            /// @copydoc Constraint::GetConstraintBase() const
-            virtual btTypedConstraint* GetConstraintBase() const;
+            /// @brief Sets the maximum amount of force the motor is to apply.
+            /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
+            virtual void SetMaxMotorImpulse(const Real MaxMotorImpulse);
+            /// @brief Retrieve the maximimum value that the acceleration of the motor can be increased.
+            /// @return A real containing the maximum impulse.
+            virtual Real GetMaxMotorImpulse() const;
+
+            /// @brief Desired angular velocity of the motor
+            /// @param TargetVelocity The Desired velocity
+            /// @warning Causes segfaults in some tests.
+            virtual void SetMotorTargetVelocity(const Real TargetVelocity);
+            /// @brief Get the Target Velocity.
+            /// @return the target valocity as a real.
+            virtual Real GetMotorTargetVelocity() const;
+
+            /// @brief Sets a Target Velocity, indirectly using the angle stored in a quaternion.
+            /// @param QuatAInB The angle a quaternion relative to the two objects in the constraint.
+            /// @param Delta The Desired Time steps that the target rotational velocity should be reached in.
+            virtual void SetMotorTarget(const Quaternion& QuatAInB, const Real Delta);
+            /// @brief Set the Rotational velocity in a more direct fashion
+            /// @param TargetAngle The desired angle in radians.
+            /// @param Delta The Desired Time steps that the target rotational velocity should be reached in.
+            virtual void SetMotorTarget(const Real TargetAngle, const Real Delta);
 
             ////////////////////////////////////////////////////////////////////////////////
-            // HingeConstraint Serialization
+            // Parameter Configuration
 
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "HingeConstraint"
-            static String SerializableName();
+            /// @copydoc Constraint::GetValidParamsOnAxis(int) const
+            virtual Constraint::ParamList GetValidParamsOnAxis(int Axis) const;
+            /// @copydoc Constraint::GetValidLinearAxes() const
+            virtual Constraint::AxisList GetValidLinearAxes() const;
+            /// @copydoc Constraint::GetValidAngularAxes() const
+            virtual Constraint::AxisList GetValidAngularAxes() const;
+            /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
+            virtual Boole HasParamBeenSet(ConstraintParam Param, int Axis) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc Constraint::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc Constraint::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc Constraint::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Internal
+
+            /// @copydoc Constraint::_GetConstraintBase() const
+            virtual btTypedConstraint* _GetConstraintBase() const;
         };//HingeConstraint
     }//Physics
 }//Mezzanine

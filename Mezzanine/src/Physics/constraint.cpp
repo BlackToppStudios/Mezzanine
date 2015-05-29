@@ -42,15 +42,18 @@
 
 #include "Physics/constraint.h"
 #include "Physics/physicsenumerations.h"
+#include "Physics/physicsmanager.h"
 #include "Physics/rigidproxy.h"
 
 #include "actormanager.h"
 #include "entresol.h"
 
 #include "stringtool.h"
+#include "exception.h"
 #include "serialization.h"
 
 #include <btBulletDynamicsCommon.h>
+#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 
 /// @cond DontDocumentInternal
 
@@ -134,167 +137,290 @@ namespace Mezzanine
         ////////////////////////////////////////////////////////////////////////////////
         // Constraint Protected Methods
 
-        Constraint::Constraint()
-            { }
+        Constraint::Constraint(const UInt32 ID, PhysicsManager* Creator) :
+            ProxA(NULL),
+            ProxB(NULL),
+            Manager(Creator),
+            ConstraintID(ID),
+            AllowCollisions(true),
+            Enabled(false)
+            {  }
 
-        void Constraint::SetBodies(RigidProxy* Prox1, RigidProxy* Prox2)
+        Constraint::Constraint(const UInt32 ID, RigidProxy* Prox1, PhysicsManager* Creator) :
+            ProxA(Prox1),
+            ProxB(NULL),
+            Manager(Creator),
+            ConstraintID(ID),
+            AllowCollisions(true),
+            Enabled(false)
         {
-            this->ProxA = Prox1;
-            this->ProxB = Prox2;
-            this->ProxA->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-            this->ProxB->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+            if( this->ProxA ) {
+                this->ProxA->SetActivationState(Physics::AS_DisableDeactivation);
+            }
         }
 
-        void Constraint::SetBodies(RigidProxy* Prox1)
+        Constraint::Constraint(const UInt32 ID, RigidProxy* Prox1, RigidProxy* Prox2, PhysicsManager* Creator) :
+            ProxA(Prox1),
+            ProxB(Prox2),
+            Manager(Creator),
+            ConstraintID(ID),
+            AllowCollisions(true),
+            Enabled(false)
         {
-            this->ProxA = Prox1;
-            this->ProxB = NULL;
-            this->ProxA->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+            if( this->ProxA ) {
+                this->ProxA->SetActivationState(Physics::AS_DisableDeactivation);
+            }
+            if( this->ProxB ) {
+                this->ProxB->SetActivationState(Physics::AS_DisableDeactivation);
+            }
         }
-
-        ////////////////////////////////////////////////////////////////////////////////
-        // Constraint Core Functionality
 
         Constraint::~Constraint()
-            { }
+            {  }
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        UInt32 Constraint::GetConstraintID() const
+            { return this->ConstraintID; }
+
+        void Constraint::EnableConstraint(const Boole Enable)
+        {
+            if( Enable != this->Enabled ) {
+                if( Enable ) {
+                    this->Manager->_GetPhysicsWorldPointer()->addConstraint(this->_GetConstraintBase(),!this->AllowCollisions);
+                }else{
+                    this->Manager->_GetPhysicsWorldPointer()->removeConstraint(this->_GetConstraintBase());
+                }
+                this->Enabled = Enable;
+            }
+        }
+
+        Boole Constraint::IsConstraintEnabled() const
+            { return this->Enabled; }
+
+        void Constraint::SetAllowCollisions(const Boole Allow)
+            { this->AllowCollisions = Allow; }
+
+        Boole Constraint::GetAllowCollisions() const
+            { return this->AllowCollisions; }
 
         RigidProxy* Constraint::GetProxyA() const
-            { return ProxA; }
+            { return this->ProxA; }
 
         RigidProxy* Constraint::GetProxyB() const
-            { return ProxB; }
+            { return this->ProxB; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Constraint Parameters
 
-        void Constraint::SetParam(ConstraintParam Param, Real Value, int Axis)
-            { this->GetConstraintBase()->setParam(Param, Value, Axis); }
-
-        Real Constraint::GetParam(ConstraintParam Param, int Axis) const
-            { return this->GetConstraintBase()->getParam(Param, Axis); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Constraint Serialization
-
-        void Constraint::ProtoSerialize(XML::Node& CurrentRoot) const
+        Constraint::AxisList Constraint::GetValidAxes() const
         {
-            XML::Node ConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
-            if (!ConstraintNode)
-                { SerializeError("Create ConstraintNode", SerializableName()); }
+            AxisList Ang = this->GetValidAngularAxes();
+            AxisList Lin = this->GetValidLinearAxes();
+            Lin.insert(Lin.end(),Ang.begin(),Ang.end());              // just kinda stick the two together and return that, no checking is performed for uniqueness.
+            std::sort(Lin.begin(),Lin.end());                         // Usually the Linear axis are 0,1,2 and the angular are 3,4,5 so hopefully, this will hardly ever need to do work.
+            return Lin;
+        }
 
-            XML::Attribute Version = ConstraintNode.AppendAttribute("Version");
-            XML::Attribute ActorNameA = ConstraintNode.AppendAttribute("ActorNameA");
-            XML::Attribute ActorNameB = ConstraintNode.AppendAttribute("ActorNameB");
-
-            if (Version && ActorNameA && ActorNameB)
-            {
-                Version.SetValue(1);
-                /*ActorNameA.SetValue( this->GetActorA()->GetName() );
-                ActorNameB.SetValue( this->GetActorB()->GetName() );//*/
+        Boole Constraint::IsParamValidOnAxis(ConstraintParam Param, int Axis) const
+        {
+            ParamList Supported = GetValidParamsOnAxis(Axis);
+            if( size_t(ConstraintParamCount) == Supported.size() ) {                         // no need to check deeper, because everything is supported
+                return true;
             }else{
-                SerializeError("Create Attributes on ConstraintNode", SerializableName());
+                if( Supported.size() ) {
+                    return ( std::find(Supported.begin(),Supported.end(),Param) != Supported.end() );     // should return true if found
+                }else{
+                    return false;                                                   // size is 0 of course it is not supported
+                }
             }
+        }
 
-            String CurrentAxisName;
-            AxisList AllAxis = this->ValidAxis();
-            for(AxisList::iterator AxisIter=AllAxis.begin(); AllAxis.end()!=AxisIter; ++AxisIter)
-            {
-                XML::Node OneAxisNode;
-                CurrentAxisName = String("Axis")+StringTools::ConvertToString(*AxisIter);                        // Should result in "Axis-1", "Axis0", "Axis1" ...
-                ParamList AxisParams = ValidParamOnAxis(*AxisIter);
-                for(ParamList::iterator ParamIter=AxisParams.begin(); AxisParams.end()!=ParamIter; ++ParamIter)
-                {
-                    if(HasParamBeenSet(*ParamIter,*AxisIter))                                           // No need to create a node if no attributes exist for it, so we will create one for the first attribute that does exist and
-                    {                                                                                   // reuse it until we move onto the next Axis
-                        if (!OneAxisNode)
+        Constraint::ParamList Constraint::GetValidParams() const
+        {
+            AxisList AllAxis = this->GetValidAxes();
+            ParamList Results;
+            if( AllAxis.size() ) {                                            //If we have no Axis, the we have no valid Parameters.
+                Results = this->GetValidParamsOnAxis( *(AllAxis.begin()) );       // Let's start off with whatever the first Axis Support, then we will trim from here.
+
+                if( AllAxis.size() > 1 ) {                                      //if the constraint only support one axis then we already have our answer, and we don't want to run of the end of the Paramlist
+                    for( AxisList::iterator AxisIter = AllAxis.begin() + 1 ; AllAxis.end() != AxisIter; ++AxisIter )       //For each axis after the first
+                    {
+                        for( int ParamID = Results.size() ; ParamID <= 0 ; --ParamID )        // We start at the back and work by index because reverse erase does no accept rever iterators, and
                         {
-                            OneAxisNode = ConstraintNode.AppendChild(CurrentAxisName);
-                            if (!OneAxisNode)
-                                { SerializeError( String("Create ") + CurrentAxisName + " Node", SerializableName()); }
+                            if( !this->IsParamValidOnAxis(Results.at(ParamID),*AxisIter) ) {   // if an Item is erase near the beginning, it changes all the items after, making forward iteration logic that
+                                Results.erase( Results.begin()+ParamID );                      // erases needlessly complicated, and potentially expensive depending on the Vector implementation
+                            }
                         }
-
-                        XML::Attribute CurrenParamAttribute = OneAxisNode.AppendAttribute( ConstraintParamAsString(*ParamIter) );
-                        if (!CurrenParamAttribute)
-                            { SerializeError(String("Create ") + ConstraintParamAsString(*ParamIter) + " Attribute in " + CurrentAxisName + " Node", SerializableName()); }
-                        CurrenParamAttribute.SetValue( this->GetParam(*ParamIter,*AxisIter));
                     }
                 }
             }
+            sort(Results.begin(),Results.end());
+            return Results;
         }
 
-        void Constraint::ProtoDeSerialize(const XML::Node& OneNode)
+        void Constraint::SetParam(ConstraintParam Param, Real Value, int Axis)
+            { this->_GetConstraintBase()->setParam(Param, Value, Axis); }
+
+        Real Constraint::GetParam(ConstraintParam Param, int Axis) const
+            { return this->_GetConstraintBase()->getParam(Param, Axis); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void Constraint::ProtoSerialize(XML::Node& ParentNode) const
         {
-            if ( Mezzanine::String(OneNode.Name())==this->Constraint::SerializableName() )
+            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+
+            this->ProtoSerializeInitData(SelfRoot);
+            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeGlobalOverrides(SelfRoot);
+        }
+
+        void Constraint::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            XML::Node PropertiesNode = SelfRoot.AppendChild( Constraint::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("ID").SetValue( this->ConstraintID ) &&
+                PropertiesNode.AppendAttribute("Enabled").SetValue( this->IsConstraintEnabled() ) &&
+                PropertiesNode.AppendAttribute("AllowCollisions").SetValue( this->GetAllowCollisions() ) )
             {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    /*String ActorNameA(OneNode.GetAttribute("ActorNameA").AsString());                                                           // get Actors from the XML
-                    String ActorNameB(OneNode.GetAttribute("ActorNameB").AsString());
-                    if (""!=ActorNameA)                                                                                                         //Figure out if the actors are fine
-                    {
-                        ActorRigid* FutureA = dynamic_cast<ActorRigid*>(Entresol::GetSingletonPtr()->GetActorManager()->GetActor(ActorNameA));     // get ActorA from the Actormanager
-                        if (0==FutureA)
-                            { DeSerializeError("find an ActorRigid named "+ActorNameA+" in the ActorManager", SerializableName()); }
-
-                        if (""!=ActorNameB)
-                        {
-                            ActorRigid* FutureB = dynamic_cast<ActorRigid*>(Entresol::GetSingletonPtr()->GetActorManager()->GetActor(ActorNameB)); // get ActorB from the Actormanager
-                            if (0==FutureB)
-                                { DeSerializeError("find an ActorRigid named "+ActorNameB+" in the ActorManager", SerializableName()); }
-                            this->SetBodies(FutureA,FutureB);
-                        }else{
-                            this->SetBodies(FutureA);
-                        }
-                    }else{
-                        DeSerializeError("retrieve ActorNameA",SerializableName());
-                    }//*/
-
-                    XML::Node TheAxis = OneNode.GetFirstChild();
-                    while(TheAxis)
-                    {
-                        String EnemyName(TheAxis.Name());                            //WWII country are we dealing with.
-                        if(4>EnemyName.size())                                       //No country on the axis side WWII had fewer than 4 letters in its name. if USA somehow lands on this list it is an error
-                            { DeSerializeError("find valid axis name, name is too short",SerializableName()); }
-                        int AxisValue;
-
-                        AxisValue=char4ToAxis(EnemyName[4]);
-
-                        XML::Attribute AxisAttribute = TheAxis.GetFirstAttribute();
-                        while(AxisAttribute)
-                        {
-                            this->SetParam(StringAsConstraintParam(AxisAttribute.Name()),AxisAttribute.AsReal(),AxisValue);
-                            AxisAttribute = AxisAttribute.GetNextAttribute();
-                        }
-
-                        TheAxis = TheAxis.GetNextSibling();
-                    }// /While(TheAxis)
-
-                }else{
-                    DeSerializeError("Incompatible XML Version for "+SerializableName(),SerializableName());
-                }
+                return;
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name()+",",SerializableName());
+                SerializeError("Create XML Attribute Values",Constraint::GetSerializableName() + "Properties",true);
             }
         }
 
-        String Constraint::SerializableName()
-            { return String("Constraint"); }
+        void Constraint::ProtoSerializeGlobalOverrides(XML::Node& SelfRoot) const
+        {
+            XML::Node GlobalOverridesNode = SelfRoot.AppendChild( Constraint::GetSerializableName() + "GlobalOverrides" );
+
+            String CurrentAxisName;
+            AxisList AllAxis = this->GetValidAxes();
+            for( AxisList::iterator AxisIter = AllAxis.begin() ; AllAxis.end() != AxisIter ; ++AxisIter )
+            {
+                XML::Node OverrideNode = GlobalOverridesNode.AppendChild("ParamOverride");
+
+                ParamList AxisParams = this->GetValidParamsOnAxis(*AxisIter);
+                for( ParamList::iterator ParamIter = AxisParams.begin() ; AxisParams.end() != ParamIter; ++ParamIter )
+                {
+                    if( this->HasParamBeenSet(*ParamIter,*AxisIter) ) {
+                        if( OverrideNode.AppendAttribute("Version").SetValue("1") &&
+                            OverrideNode.AppendAttribute("Axis").SetValue( *AxisIter ) &&
+                            OverrideNode.AppendAttribute("Param").SetValue( ConstraintParamAsString(*ParamIter) ) &&
+                            OverrideNode.AppendAttribute("Value").SetValue( this->GetParam(*ParamIter,*AxisIter) ) )
+                        {
+                            continue;
+                        }else{
+                            SerializeError(String("Create ") + ConstraintParamAsString(*ParamIter) + " Attribute in " + CurrentAxisName + " Node.",this->GetSerializableName());
+                        }
+                    }// If the parameter has already been set
+                }// For each param
+            }// For each axis
+        }
+
+        void Constraint::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeInitData(SelfRoot);
+            this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeGlobalOverrides(SelfRoot);
+        }
+
+        void Constraint::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( Constraint::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("ID");
+                    if( !CurrAttrib.Empty() )
+                        this->ConstraintID = static_cast<UInt32>( CurrAttrib.AsUint() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AllowCollisions");
+                    if( !CurrAttrib.Empty() )
+                        this->SetAllowCollisions( CurrAttrib.AsBool(true) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("Enabled");
+                    if( !CurrAttrib.Empty() )
+                        this->EnableConstraint( CurrAttrib.AsBool(false) );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( Constraint::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Constraint::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        void Constraint::ProtoDeSerializeGlobalOverrides(const XML::Node& SelfRoot)
+        {
+            XML::Attribute CurrAttrib;
+            XML::Node OverridesNode = SelfRoot.GetChild( Constraint::GetSerializableName() + "GlobalOverrides" );
+
+            if( !OverridesNode.Empty() ) {
+                if( OverridesNode.GetAttribute("Version").AsInt() == 1 ) {
+                    for( XML::NodeIterator OverrideNodeIt = OverridesNode.begin() ; OverrideNodeIt != OverridesNode.end() ; ++OverrideNodeIt )
+                    {
+                        if( (*OverrideNodeIt).GetAttribute("Version").AsInt() == 1 ) {
+                            Integer Axis = -99;       // Known invalid axis just about everywhere
+                            Integer Param = 0;        // Known invalid param
+                            Real OverrideValue = 0.0;
+
+                            CurrAttrib = (*OverrideNodeIt).GetAttribute("Axis");
+                            if( !CurrAttrib.Empty() )
+                                Axis = CurrAttrib.AsInt();
+
+                            CurrAttrib = (*OverrideNodeIt).GetAttribute("Param");
+                            if( !CurrAttrib.Empty() )
+                                Param = CurrAttrib.AsUint();
+
+                            CurrAttrib = (*OverrideNodeIt).GetAttribute("Value");
+                            if( !CurrAttrib.Empty() )
+                                OverrideValue = CurrAttrib.AsReal();
+
+                            if( this->IsParamValidOnAxis(static_cast<ConstraintParam>(Param),Axis) ) {
+                                this->SetParam(static_cast<ConstraintParam>(Param),OverrideValue,Axis);
+                            }
+                        }else{
+                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("ParamOverride") + ": Not Version 1.");
+                        }
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( Constraint::GetSerializableName() + "GlobalOverrides" ) + ": Not Version 1.");
+                }
+            }
+        }
+
+        String Constraint::GetSerializableName()
+            { return "Constraint"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
     }//Physics
 }//Mezzanine
 
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
+std::ostream& MEZZ_LIB operator<< (std::ostream& Stream, const Mezzanine::Physics::Constraint* Con)
 {
-    Mezzanine::Serialize(stream,x);
-    return stream;
+    Mezzanine::Serialize(Stream,*Con);
+    return Stream;
 }
 
-std::istream& operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
-    { return Mezzanine::DeSerialize(stream, x); }
+std::istream& MEZZ_LIB operator>> (std::istream& Stream, Mezzanine::Physics::Constraint* Con)
+{
+    return Mezzanine::DeSerialize(Stream,*Con);
+}
 
-void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
-    { x.ProtoDeSerialize(OneNode); }
+void MEZZ_LIB operator<< (Mezzanine::XML::Node& OneNode, const Mezzanine::Physics::Constraint* Con)
+{
+    Con->ProtoSerialize(OneNode);
+}
+
+void MEZZ_LIB operator>> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint* Con)
+{
+    Con->ProtoDeSerialize(OneNode);
+}
 
 /// @endcond
 

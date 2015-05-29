@@ -52,32 +52,65 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        /////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
         // UniversalConstraint Constraint Functions
 
-        UniversalConstraint::UniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
-        {
-            this->SetBodies(ProxyA,ProxyB);
+        UniversalConstraint::UniversalConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2, PhysicsManager* Creator) :
+            Generic6DofConstraint(ID,ProxyA,ProxyB,Creator)
+            { this->CreateConstraint(ProxyA,ProxyB,Anchor,Axis1,Axis2); }
 
-            btVector3 temp1(Anchor.GetBulletVector3());
-            btVector3 temp2(Axis1.GetBulletVector3());
-            btVector3 temp3(Axis2.GetBulletVector3());
-            this->Universal = new btUniversalConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), temp1, temp2, temp3);
-            this->Generic6dof = this->Universal;
-        }
+        UniversalConstraint::UniversalConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator) :
+            Generic6DofConstraint(ID,ProxyA,ProxyB,Creator)
+            { this->CreateConstraint(ProxyA,ProxyB,TransA,TransB); }
+
+        UniversalConstraint::UniversalConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator) :
+            Generic6DofConstraint(0,NULL,Creator)
+            { this->ProtoDeSerialize(SelfRoot); }
 
         UniversalConstraint::~UniversalConstraint()
+            { /* Generic6Dof class will handle the cleanup */ }
+
+        btUniversalConstraint* UniversalConstraint::Universal() const
+            { return static_cast<btUniversalConstraint*>( this->Generic6dof ); }
+
+        void UniversalConstraint::CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB)
         {
-            delete this->Universal;
-            this->Universal = NULL;
-            this->Generic6dof = NULL;
+            if( this->Generic6dof == NULL ) {
+                btVector3 TempOrigin(0,0,0);
+                btVector3 TempAxis1(0,1,0);
+                btVector3 TempAxis2(1,0,0);
+                this->Generic6dof = new btUniversalConstraint(*(ProxA->_GetPhysicsObject()),*(ProxB->_GetPhysicsObject()),TempOrigin,TempAxis1,TempAxis2);
+                this->Generic6dof->setFrames(TransA.GetBulletTransform(),TransB.GetBulletTransform());
+            }
         }
 
-        void UniversalConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)
-            { this->Universal->setUpperLimit(Ang1Max, Ang2Max); }
+        void UniversalConstraint::CreateConstraint(RigidProxy* ProxA, RigidProxy* ProxB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        {
+            if( this->Generic6dof == NULL ) {
+                btVector3 TempOrigin = Anchor.GetBulletVector3();
+                btVector3 TempAxis1 = Axis1.GetBulletVector3();
+                btVector3 TempAxis2 = Axis2.GetBulletVector3();
+                this->Generic6dof = new btUniversalConstraint(*(ProxA->_GetPhysicsObject()),*(ProxB->_GetPhysicsObject()),TempOrigin,TempAxis1,TempAxis2);
+            }
+        }
 
-        void UniversalConstraint::SetLowerLimit(Real Ang1Min, Real Ang2Min)
-            { this->Universal->setLowerLimit(Ang1Min, Ang2Min); }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Limits
+
+        void UniversalConstraint::SetUpperLimit(const Real Ang1Max, const Real Ang2Max)
+            { this->Universal()->setUpperLimit(Ang1Max,Ang2Max); }
+
+        void UniversalConstraint::SetLowerLimit(const Real Ang1Min, const Real Ang2Min)
+            { this->Universal()->setLowerLimit(Ang1Min,Ang2Min); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        String UniversalConstraint::GetDerivedSerializableName() const
+            { return UniversalConstraint::GetSerializableName(); }
+
+        String UniversalConstraint::GetSerializableName()
+            { return "UniversalConstraint"; }
     }//Physics
 }//Mezzanine
 

@@ -60,90 +60,96 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         class MEZZ_LIB DualTransformConstraint : public Constraint
         {
+        protected:
+            /// @internal
+            /// @brief Creates the internal constraint.
+            /// @remarks This methods exists primarily as a convenience for serialization, and shouldn't be called unless it is known to be safe.
+            /// @param RigidA A pointer to the first Proxy to be constrained.
+            /// @param RigidB A pointer to the second Proxy to be constrained.
+            /// @param TransA The offset to place the constraint in the first proxys local space.
+            /// @param TransB The offset to place the constraint in the second proxys local space.
+            virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB) = 0;
+            /// @internal
+            /// @brief Destroys the internal constraint.
+            /// @remarks This methods exists primarily as a convenience for serialization, and shouldn't be called unless it is known to be safe.
+            virtual void DestroyConstraint() = 0;
+
+            /// @internal
+            /// @brief Single body inheritance constructor.
+            /// @param ID The unique identifier assigned to this constraint.
+            /// @param Prox1 A pointer to the first/only proxy that will be constrained.
+            /// @param Creator A pointer to the manager that created this constraint.
+            DualTransformConstraint(const UInt32 ID, RigidProxy* Prox1, PhysicsManager* Creator);
+            /// @internal
+            /// @brief Dual body inheritance constructor.
+            /// @param ID The unique identifier assigned to this constraint.
+            /// @param Prox1 A pointer to the first proxy that will be constrained.
+            /// @param Prox2 A pointer to the second proxy that will be constrained.
+            /// @param Creator A pointer to the manager that created this constraint.
+            DualTransformConstraint(const UInt32 ID, RigidProxy* Prox1, RigidProxy* Prox2, PhysicsManager* Creator);
         public:
-            /// @brief Set the Position and Rotation using a Transform
-            /// @param TranA The new Position and rotation
-            virtual void SetPivotATransform(const Transform& TranA) = 0;
-            /// @brief Set the Position and Rotation using a Transform
-            /// @param TranB The new Position and rotation
-            virtual void SetPivotBTransform(const Transform& TranB) = 0;
-            /// @brief Get the current Rotation and Location of Actor A
-            /// @return This returns a Mezzanine::Transform
-            virtual Transform GetPivotATransform() const = 0;
-            /// @brief Get the current Rotation and Location of Actor B
-            /// @return This returns a Mezzanine::Transform
-            virtual Transform GetPivotBTransform() const = 0;
-
-            /// @brief Set The relative location of the  pivot from ActorA's Center of gravity.
-            /// @param Location The New value for PivotA
-            /// @details Ultimately this information winds up being stored in the TransformA.
-            virtual void SetPivotALocation(const Vector3& Location)
-                { SetPivotATransform( Transform(Location, GetPivotARotation()) ); }
-            /// @brief Set The relative location of the  pivot from ActorB's Center of gravity.
-            /// @param Location The New value for PivotB
-            /// @details Ultimately this information winds up being stored in the TransformB
-            virtual void SetPivotBLocation(const Vector3& Location)
-                { SetPivotBTransform( Transform(Location, GetPivotBRotation()) ); }
-            /// @brief Get the location of the pivot relative to ActorA's Center of gravity
-            /// @return A Vector3 with the pivot location.
-            virtual Vector3 GetPivotALocation() const
-                { return GetPivotATransform().Location; }
-            /// @brief Get the location of the pivot relative to ActorB's Center of gravity
-            /// @return A Vector3 with the pivot location.
-            virtual Vector3 GetPivotBLocation() const
-                { return GetPivotBTransform().Location; }
-
-            /// @brief Set The relative rotation of ActorA
-            /// @param Rotation The new rotation amount for A
-            /// @details Ultimately this information winds up being stored in the TransformA
-            virtual void SetPivotARotation(const Quaternion& Rotation)
-                { SetPivotATransform( Transform(GetPivotALocation(), Rotation) ); }
-            /// @brief Set The relative rotation of ActorB
-            /// @param otation The new rotation amount for B
-            /// @details Ultimately this information winds up being stored in the TransformB
-            virtual void SetPivotBRotation(const Quaternion& Rotation)
-                { SetPivotBTransform( Transform(GetPivotBLocation(), Rotation) ); }
-            /// @brief Get the relative rotation for ActorA
-            /// @return A Quaternion that has the rotation
-            virtual Quaternion GetPivotARotation() const
-                { return GetPivotATransform().Rotation; }
-            /// @brief Get the relative rotation for ActorB
-            /// @return A Quaternion that has the rotation
-            virtual Quaternion GetPivotBRotation() const
-                { return GetPivotBTransform().Rotation; }
+            /// @brief Class destructor.
+            virtual ~DualTransformConstraint();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // DualTransformConstraint Serialization
+            // Transform Methods
 
-            // Serializable
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            /// @details This stores each Actor's Transform
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @brief Sets the Position and Rotation for the first and second body using a Transform.
+            /// @param TransA The new position and rotation for ProxyA.
+            /// @param TransB The new position and rotation for ProxyB.
+            virtual void SetPivotTransforms(const Transform& TransA, const Transform& TransB);
+            /// @brief Sets the Position and Rotation for the first body using a Transform.
+            /// @param TransA The new position and rotation.
+            virtual void SetPivotATransform(const Transform& TransA) = 0;
+            /// @brief Sets the Position and Rotation for the second body using a Transform.
+            /// @param TransB The new position and rotation.
+            virtual void SetPivotBTransform(const Transform& TransB) = 0;
+            /// @brief Gets the current Rotation and Location of ProxyA.
+            /// @return This returns a Mezzanine::Transform.
+            virtual Transform GetPivotATransform() const = 0;
+            /// @brief Gets the current Rotation and Location of ProxyB.
+            /// @return This returns a Mezzanine::Transform.
+            virtual Transform GetPivotBTransform() const = 0;
 
-            // DeSerializable
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Sets The relative location of the  pivot from ProxA's Center of gravity.
+            /// @param Location The New value for PivotA.
+            virtual void SetPivotALocation(const Vector3& Location);
+            /// @brief Sets The relative location of the  pivot from ProxB's Center of gravity.
+            /// @param Location The New value for PivotB.
+            virtual void SetPivotBLocation(const Vector3& Location);
+            /// @brief Gets the location of the pivot relative to ProxA's Center of gravity.
+            /// @return A Vector3 with the pivot location.
+            virtual Vector3 GetPivotALocation() const;
+            /// @brief Gets the location of the pivot relative to ProxB's Center of gravity.
+            /// @return A Vector3 with the pivot location.
+            virtual Vector3 GetPivotBLocation() const;
 
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "DualTransformConstraint"
-            static String SerializableName();
+            /// @brief Sets The relative rotation of ProxA.
+            /// @param Rotation The new rotation amount for ProxA.
+            virtual void SetPivotARotation(const Quaternion& Rotation);
+            /// @brief Sets The relative rotation of ProxB.
+            /// @param otation The new rotation amount for ProxB.
+            virtual void SetPivotBRotation(const Quaternion& Rotation);
+            /// @brief Gets the relative rotation for ProxA.
+            /// @return A Quaternion that has the rotation.
+            virtual Quaternion GetPivotARotation() const;
+            /// @brief Gets the relative rotation for ProxB.
+            /// @return A Quaternion that has the rotation.
+            virtual Quaternion GetPivotBRotation() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc Constraint::ProtoSerializeInitData(XML::Node&) const
+            virtual void ProtoSerializeInitData(XML::Node& SelfRoot) const;
+            /// @copydoc Constraint::ProtoDeSerializeInitData(const XML::Node&)
+            virtual void ProtoDeSerializeInitData(const XML::Node& SelfRoot);
+
+            /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
         };//DualTransformConstraint
     }//Physics
 }//Mezzanine
-
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-
-#ifndef SWIG
-/// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::DualTransformConstraint& x);
-/// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::DualTransformConstraint& x);
-/// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
-void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::DualTransformConstraint& x);
-#endif
-
 
 #endif

@@ -40,14 +40,22 @@
 #ifndef _physicsphysicsmanager_cpp
 #define _physicsphysicsmanager_cpp
 
-using namespace std;
-
 #include "Physics/physicsmanager.h"
 #include "Physics/collision.h"
 
 #include "Physics/ghostproxy.h"
 #include "Physics/rigidproxy.h"
 #include "Physics/softproxy.h"
+
+#include "Physics/conetwistconstraint.h"
+#include "Physics/gearconstraint.h"
+#include "Physics/generic6dofconstraint.h"
+#include "Physics/generic6dofspringconstraint.h"
+#include "Physics/hingeconstraint.h"
+#include "Physics/hinge2constraint.h"
+#include "Physics/point2pointconstraint.h"
+#include "Physics/sliderconstraint.h"
+#include "Physics/universalconstraint.h"
 
 #include "Graphics/graphicsmanager.h"
 
@@ -811,6 +819,7 @@ namespace Mezzanine
         GhostProxy* PhysicsManager::CreateGhostProxy(const XML::Node& SelfRoot)
         {
             GhostProxy* NewProxy = new GhostProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -835,6 +844,7 @@ namespace Mezzanine
         RigidProxy* PhysicsManager::CreateRigidProxy(const XML::Node& SelfRoot)
         {
             RigidProxy* NewProxy = new RigidProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -849,6 +859,7 @@ namespace Mezzanine
         SoftProxy* PhysicsManager::CreateSoftProxy(const XML::Node& SelfRoot)
         {
             SoftProxy* NewProxy = new SoftProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -868,6 +879,17 @@ namespace Mezzanine
                         if( 0 == Which ) return (*ProxIt);
                         else --Which;
                     }
+                }
+            }
+            return NULL;
+        }
+
+        CollidableProxy* PhysicsManager::GetProxyByID(const UInt32 ID) const
+        {
+            for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( (*ProxIt)->GetProxyID() == ID ) {
+                    return (*ProxIt);
                 }
             }
             return NULL;
@@ -920,27 +942,230 @@ namespace Mezzanine
             { return this->Proxies.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Constraint Management
+        // Constraint Creation
 
-        void PhysicsManager::AddConstraint(Physics::Constraint* Con, Boole DisableCollisions)
+        ConeTwistConstraint* PhysicsManager::CreateConeTwistConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
         {
-            this->BulletDynamicsWorld->addConstraint(Con->GetConstraintBase(), DisableCollisions);
-            this->Constraints.push_back(Con);
+            ConeTwistConstraint* NewConstraint = new ConeTwistConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
         }
 
-        Physics::Constraint* PhysicsManager::GetConstraint(const Whole& Index)
+        ConeTwistConstraint* PhysicsManager::CreateConeTwistConstraint(RigidProxy* ProxyA, const Transform& TransA)
+        {
+            ConeTwistConstraint* NewConstraint = new ConeTwistConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,TransA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        ConeTwistConstraint* PhysicsManager::CreateConeTwistConstraint(const XML::Node& SelfRoot)
+        {
+            ConeTwistConstraint* NewConstraint = new ConeTwistConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        GearConstraint* PhysicsManager::CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB)
+        {
+            GearConstraint* NewConstraint = new GearConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,AxisA,AxisB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        GearConstraint* PhysicsManager::CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio)
+        {
+            GearConstraint* NewConstraint = new GearConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,AxisA,AxisB,Ratio,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        GearConstraint* PhysicsManager::CreateGearConstraint(const XML::Node& SelfRoot)
+        {
+            GearConstraint* NewConstraint = new GearConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofConstraint* PhysicsManager::CreateGeneric6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            Generic6DofConstraint* NewConstraint = new Generic6DofConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofConstraint* PhysicsManager::CreateGeneric6DofConstraint(RigidProxy* ProxyB, const Transform& TransB)
+        {
+            Generic6DofConstraint* NewConstraint = new Generic6DofConstraint(this->ConstraintIDGen.GenerateID(),ProxyB,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofConstraint* PhysicsManager::CreateGeneric6DofConstraint(const XML::Node& SelfRoot)
+        {
+            Generic6DofConstraint* NewConstraint = new Generic6DofConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofSpringConstraint* PhysicsManager::CreateGeneric6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            Generic6DofSpringConstraint* NewConstraint = new Generic6DofSpringConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofSpringConstraint* PhysicsManager::CreateGeneric6DofSpringConstraint(const XML::Node& SelfRoot)
+        {
+            Generic6DofSpringConstraint* NewConstraint = new Generic6DofSpringConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,PivotInA,PivotInB,AxisInA,AxisInB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,PivotInA,AxisInA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(RigidProxy* ProxyA, const Transform& TransA)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,TransA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(const XML::Node& SelfRoot)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Hinge2Constraint* PhysicsManager::CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        {
+            Hinge2Constraint* NewConstraint = new Hinge2Constraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,Anchor,Axis1,Axis2,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Hinge2Constraint* PhysicsManager::CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            Hinge2Constraint* NewConstraint = new Hinge2Constraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Hinge2Constraint* PhysicsManager::CreateHinge2Constraint(const XML::Node& SelfRoot)
+        {
+            Hinge2Constraint* NewConstraint = new Hinge2Constraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Point2PointConstraint* PhysicsManager::CreatePoint2PointConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotA, const Vector3& PivotB)
+        {
+            Point2PointConstraint* NewConstraint = new Point2PointConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,PivotA,PivotB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Point2PointConstraint* PhysicsManager::CreatePoint2PointConstraint(RigidProxy* ProxyA, const Vector3& PivotA)
+        {
+            Point2PointConstraint* NewConstraint = new Point2PointConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,PivotA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Point2PointConstraint* PhysicsManager::CreatePoint2PointConstraint(const XML::Node& SelfRoot)
+        {
+            Point2PointConstraint* NewConstraint = new Point2PointConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        SliderConstraint* PhysicsManager::CreateSliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            SliderConstraint* NewConstraint = new SliderConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        SliderConstraint* PhysicsManager::CreateSliderConstraint(RigidProxy* ProxyA, const Transform& TransA)
+        {
+            SliderConstraint* NewConstraint = new SliderConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,TransA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        SliderConstraint* PhysicsManager::CreateSliderConstraint(const XML::Node& SelfRoot)
+        {
+            SliderConstraint* NewConstraint = new SliderConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        UniversalConstraint* PhysicsManager::CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        {
+            UniversalConstraint* NewConstraint = new UniversalConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,Anchor,Axis1,Axis2,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        UniversalConstraint* PhysicsManager::CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            UniversalConstraint* NewConstraint = new UniversalConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        UniversalConstraint* PhysicsManager::CreateUniversalConstraint(const XML::Node& SelfRoot)
+        {
+            UniversalConstraint* NewConstraint = new UniversalConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Constraint Management
+
+        Constraint* PhysicsManager::GetConstraint(const Whole& Index)
             { return this->Constraints[Index]; }
 
         Whole PhysicsManager::GetNumConstraints()
             { return this->Constraints.size(); }
 
-        void PhysicsManager::RemoveConstraint(Physics::Constraint* Con)
+        void PhysicsManager::DestroyConstraint(Constraint* Con)
         {
-            this->BulletDynamicsWorld->removeConstraint(Con->GetConstraintBase());
             for( ConstraintIterator ConIt = this->Constraints.begin() ; ConIt < this->Constraints.end() ; ConIt++ )
             {
-                if( (*ConIt) == Con )
-                {
+                if( (*ConIt) == Con ) {
+                    (*ConIt)->EnableConstraint(false);
+                    this->ConstraintIDGen.ReleaseID((*ConIt)->GetConstraintID());
+                    delete (*ConIt);
                     this->Constraints.erase(ConIt);
                     return;
                 }
@@ -949,10 +1174,11 @@ namespace Mezzanine
 
         void PhysicsManager::DestroyAllConstraints()
         {
-            for( ConstraintIterator Con = this->Constraints.begin() ; Con != this->Constraints.end() ; Con++ )
+            for( ConstraintIterator ConIt = this->Constraints.begin() ; ConIt != this->Constraints.end() ; ConIt++ )
             {
-                this->BulletDynamicsWorld->removeConstraint((*Con)->GetConstraintBase());
-                delete (*Con);
+                (*ConIt)->EnableConstraint(false);
+                this->ConstraintIDGen.ReleaseID((*ConIt)->GetConstraintID());
+                delete (*ConIt);
             }
             this->Constraints.clear();
         }
@@ -967,8 +1193,7 @@ namespace Mezzanine
         {
             for( ConstWorldTriggerIterator Trig = this->Triggers.begin() ; Trig != this->Triggers.end() ; Trig++ )
             {
-                if( Name == (*Trig)->GetName() )
-                {
+                if( Name == (*Trig)->GetName() ) {
                     return *Trig;
                 }
             }
@@ -985,8 +1210,7 @@ namespace Mezzanine
         {
             for( WorldTriggerIterator T = this->Triggers.begin() ; T != this->Triggers.end() ; T++ )
             {
-                if( Trig == (*T) )
-                {
+                if( Trig == (*T) ) {
                     this->Triggers.erase(T);
                     return;
                 }

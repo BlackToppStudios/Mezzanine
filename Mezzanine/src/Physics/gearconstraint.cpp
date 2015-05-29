@@ -41,6 +41,7 @@
 #define _physicsgearconstraint_cpp
 
 #include "Physics/gearconstraint.h"
+#include "Physics/physicsmanager.h"
 #include "Physics/rigidproxy.h"
 
 #include "stringtool.h"
@@ -52,15 +53,38 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        GearConstraint::GearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio)
-        {
-            this->SetBodies(ProxyA,ProxyB);
+        GearConstraint::GearConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, PhysicsManager* Creator) :
+            Constraint(ID,ProxyA,ProxyB,Creator)
+            { this->CreateConstraint(ProxyA,ProxyB,AxisA,AxisB); }
 
-            this->Gear = new btGearConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), AxisA.GetBulletVector3(), AxisB.GetBulletVector3(), Ratio);
-        }
+        GearConstraint::GearConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio, PhysicsManager* Creator) :
+            Constraint(ID,ProxyA,ProxyB,Creator)
+            { this->Gear = new btGearConstraint(*(this->ProxA->_GetPhysicsObject()), *(this->ProxB->_GetPhysicsObject()), AxisA.GetBulletVector3(), AxisB.GetBulletVector3(), Ratio); }
+
+        GearConstraint::GearConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator) :
+            Constraint(0,NULL,Creator)
+            { this->ProtoDeSerialize(SelfRoot); }
 
         GearConstraint::~GearConstraint()
-            { delete this->Gear; }
+            { this->DestroyConstraint(); }
+
+        void GearConstraint::CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Vector3& AxisA, const Vector3& AxisB)
+        {
+            if( this->Gear == NULL ) {
+                this->Gear = new btGearConstraint(*(RigidA->_GetPhysicsObject()), *(RigidB->_GetPhysicsObject()), AxisA.GetBulletVector3(), AxisB.GetBulletVector3(), 0);
+            }
+        }
+
+        void GearConstraint::DestroyConstraint()
+        {
+            this->EnableConstraint(false);
+            if( this->Gear != NULL ) {
+                delete this->Gear;
+                this->Gear = NULL;
+            }
+            this->ProxA = NULL;
+            this->ProxB = NULL;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Axis configuration
@@ -89,19 +113,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Parameter Configuration
 
-        Constraint::ParamList GearConstraint::ValidParamOnAxis(int Axis) const
+        Constraint::ParamList GearConstraint::GetValidParamsOnAxis(int Axis) const
         {
             Constraint::ParamList Results;
             return Results;
         }
 
-        Constraint::AxisList GearConstraint::ValidLinearAxis() const
+        Constraint::AxisList GearConstraint::GetValidLinearAxes() const
         {
             Constraint::AxisList Results;
             return Results;
         }
 
-        Constraint::AxisList GearConstraint::ValidAngularAxis() const
+        Constraint::AxisList GearConstraint::GetValidAngularAxes() const
         {
             Constraint::AxisList Results;
             return Results;
@@ -115,74 +139,113 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void GearConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
+        void GearConstraint::ProtoSerializeInitData(XML::Node& SelfRoot) const
         {
-            XML::Node P2PNode = CurrentRoot.AppendChild(this->GearConstraint::SerializableName());                     // The base node all the base constraint stuff will go in
-            if (!P2PNode)
-                { SerializeError("Create P2PNode", SerializableName()); }
+            XML::Node InitDataNode = SelfRoot.AppendChild( GearConstraint::GetSerializableName() + "InitData" );
 
-            XML::Attribute VerAttr = P2PNode.AppendAttribute("Version");
-            XML::Attribute RatioAttr = P2PNode.AppendAttribute("Ratio");
-
-            if( VerAttr && RatioAttr )
+            if( InitDataNode.AppendAttribute("Version").SetValue("1") &&
+                ( this->ProxA != NULL ? InitDataNode.AppendAttribute("ProxyA-ID").SetValue( this->ProxA->GetProxyID() ) : false ) &&
+                ( this->ProxB != NULL ? InitDataNode.AppendAttribute("ProxyB-ID").SetValue( this->ProxB->GetProxyID() ) : false ) )
             {
-                VerAttr.SetValue(1);
-                RatioAttr.SetValue(this->GetRotationRatio());
+                if( this->ProxA != NULL ) {
+                    XML::Node AxisANode = InitDataNode.AppendChild("AxisA");
+                    this->GetAxisA().ProtoSerialize( AxisANode );
+                }
+                if( this->ProxB != NULL ) {
+                    XML::Node AxisBNode = InitDataNode.AppendChild("AxisB");
+                    this->GetAxisB().ProtoSerialize( AxisBNode );
+                }
+
+                return;
             }else{
-                SerializeError("Create P2PNode Attributes", SerializableName());
+                SerializeError("Create XML Attribute Values",GearConstraint::GetSerializableName() + "InitData",true);
             }
-
-            XML::Node ActorANode = P2PNode.AppendChild("ActorA");
-            if (!ActorANode)
-                { SerializeError("Create ActorANode", SerializableName()); }
-            this->GetAxisA().ProtoSerialize(ActorANode);
-
-            XML::Node ActorBNode = P2PNode.AppendChild("ActorB");
-            if (!ActorBNode)
-                { SerializeError("Create ActorBNode", SerializableName()); }
-            this->GetAxisB().ProtoSerialize(ActorBNode);
-
-            this->Constraint::ProtoSerialize(P2PNode);
         }
 
-        void GearConstraint::ProtoDeSerialize(const XML::Node& OneNode)
+        void GearConstraint::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            if ( Mezzanine::String(OneNode.Name())==this->GearConstraint::SerializableName() )
+            this->Constraint::ProtoSerializeProperties(SelfRoot);
+
+            XML::Node PropertiesNode = SelfRoot.AppendChild( GearConstraint::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("RotationRatio").SetValue( this->GetRotationRatio() ) )
             {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    this->Constraint::ProtoDeSerialize(OneNode.GetChild("Constraint"));
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",GearConstraint::GetSerializableName() + "Properties",true);
+            }
+        }
 
-                    this->SetRotationRatio(OneNode.GetAttribute("Ratio").AsReal());
+        void GearConstraint::ProtoDeSerializeInitData(const XML::Node& SelfRoot)
+        {
+            this->DestroyConstraint();
 
-                    XML::Node ActorANode = OneNode.GetChild("ActorA");
-                    if(!ActorANode)
-                        { DeSerializeError("Could not find ActorA axis",SerializableName()); }
+            XML::Attribute CurrAttrib;
+            XML::Node InitDataNode = SelfRoot.GetChild( GearConstraint::GetSerializableName() + "InitData" );
 
-                    XML::Node ActorBNode = OneNode.GetChild("ActorB");
-                    if(!ActorBNode)
-                        { DeSerializeError("Could not find ActorB axis",SerializableName()); }
+            if( !InitDataNode.Empty() ) {
+                if(InitDataNode.GetAttribute("Version").AsInt() == 1) {
+                    Vector3 AxisA;
+                    Vector3 AxisB;
 
-                    Vector3 temp;
-                    temp.ProtoDeSerialize(ActorANode.GetFirstChild());
-                    this->SetAxisA(temp);
-                    temp.ProtoDeSerialize(ActorBNode.GetFirstChild());
-                    this->SetAxisB(temp);
+                    CurrAttrib = InitDataNode.GetAttribute("ProxyA-ID");
+                    if( !CurrAttrib.Empty() )
+                        this->ProxA = static_cast<RigidProxy*>( this->Manager->GetProxyByID( CurrAttrib.AsUint() ) );
+
+                    CurrAttrib = InitDataNode.GetAttribute("ProxyB-ID");
+                    if( !CurrAttrib.Empty() )
+                        this->ProxB = static_cast<RigidProxy*>( this->Manager->GetProxyByID( CurrAttrib.AsUint() ) );
+
+                    XML::Node AxisANode = InitDataNode.GetChild("AxisA").GetFirstChild();
+                    if( !AxisANode.Empty() ) {
+                        AxisA.ProtoDeSerialize(AxisANode);
+                    }
+
+                    XML::Node AxisBNode = InitDataNode.GetChild("AxisB").GetFirstChild();
+                    if( !AxisBNode.Empty() ) {
+                        AxisB.ProtoDeSerialize(AxisBNode);
+                    }
+
+                    this->CreateConstraint(this->ProxA,this->ProxB,AxisA,AxisB);
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( GearConstraint::GetSerializableName() + "InitData" ) + ": Not Version 1.");
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GearConstraint::GetSerializableName() + "InitData" + " was not found in the provided XML node, which was expected.");
             }
         }
 
-        String GearConstraint::SerializableName()
+        void GearConstraint::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->Constraint::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( GearConstraint::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("RotationRatio");
+                    if( !CurrAttrib.Empty() )
+                        this->SetRotationRatio( CurrAttrib.AsReal() );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( GearConstraint::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GearConstraint::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String GearConstraint::GetDerivedSerializableName() const
+            { return GearConstraint::GetSerializableName(); }
+
+        String GearConstraint::GetSerializableName()
             { return "GearConstraint"; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        btTypedConstraint* GearConstraint::GetConstraintBase() const
+        btTypedConstraint* GearConstraint::_GetConstraintBase() const
             { return this->Gear; }
     }//Physics
 }//Mezzanine

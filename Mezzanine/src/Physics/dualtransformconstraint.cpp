@@ -40,7 +40,10 @@
 #ifndef _physicsdualtransformconstraint_cpp
 #define _physicsdualtransformconstraint_cpp
 
-#include "dualtransformconstraint.h"
+#include "Physics/dualtransformconstraint.h"
+#include "Physics/physicsmanager.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -48,87 +51,115 @@ namespace Mezzanine
 {
     namespace Physics
     {
+        DualTransformConstraint::DualTransformConstraint(const UInt32 ID, RigidProxy* Prox1, PhysicsManager* Creator) :
+            Constraint(ID,Prox1,Creator)
+            {  }
+
+        DualTransformConstraint::DualTransformConstraint(const UInt32 ID, RigidProxy* Prox1, RigidProxy* Prox2, PhysicsManager* Creator) :
+            Constraint(ID,Prox1,Prox2,Creator)
+            {  }
+
+        DualTransformConstraint::~DualTransformConstraint()
+            {  }
+
         ///////////////////////////////////////////////////////////////////////////////
-        // DualTransformConstraint Serialization
+        // Transform Methods
 
-        // Serializable
-        void DualTransformConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
+        void DualTransformConstraint::SetPivotTransforms(const Transform& TransA, const Transform& TransB)
+            { this->SetPivotATransform( TransA );  this->SetPivotBTransform( TransB ); }
+
+        void DualTransformConstraint::SetPivotALocation(const Vector3& Location)
+            { this->SetPivotATransform( Transform(Location,this->GetPivotARotation()) ); }
+
+        void DualTransformConstraint::SetPivotBLocation(const Vector3& Location)
+            { this->SetPivotBTransform( Transform(Location,this->GetPivotBRotation()) ); }
+
+        Vector3 DualTransformConstraint::GetPivotALocation() const
+            { return this->GetPivotATransform().Location; }
+
+        Vector3 DualTransformConstraint::GetPivotBLocation() const
+            { return this->GetPivotBTransform().Location; }
+
+        void DualTransformConstraint::SetPivotARotation(const Quaternion& Rotation)
+            { this->SetPivotATransform( Transform(this->GetPivotALocation(),Rotation) ); }
+
+        void DualTransformConstraint::SetPivotBRotation(const Quaternion& Rotation)
+            { this->SetPivotBTransform( Transform(this->GetPivotBLocation(),Rotation) ); }
+
+        Quaternion DualTransformConstraint::GetPivotARotation() const
+            { return this->GetPivotATransform().Rotation; }
+
+        Quaternion DualTransformConstraint::GetPivotBRotation() const
+            { return this->GetPivotBTransform().Rotation; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void DualTransformConstraint::ProtoSerializeInitData(XML::Node& SelfRoot) const
         {
-            XML::Node DualTransformConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
-            if (!DualTransformConstraintNode)
-                { SerializeError("Create DualTransformConstraintNode", SerializableName()); }
+            XML::Node InitDataNode = SelfRoot.AppendChild( DualTransformConstraint::GetSerializableName() + "InitData" );
 
-            XML::Attribute Version = DualTransformConstraintNode.AppendAttribute("Version");
-            if (Version)
+            if( InitDataNode.AppendAttribute("Version").SetValue("1") &&
+                ( this->ProxA != NULL ? InitDataNode.AppendAttribute("ProxyA-ID").SetValue( this->ProxA->GetProxyID() ) : false ) &&
+                ( this->ProxB != NULL ? InitDataNode.AppendAttribute("ProxyB-ID").SetValue( this->ProxB->GetProxyID() ) : false ) )
             {
-                Version.SetValue(1);
+                if( this->ProxA != NULL ) {
+                    XML::Node PivotATransNode = InitDataNode.AppendChild("PivotATransform");
+                    this->GetPivotATransform().ProtoSerialize( PivotATransNode );
+                }
+                if( this->ProxB != NULL ) {
+                    XML::Node PivotBTransNode = InitDataNode.AppendChild("PivotBTransform");
+                    this->GetPivotBTransform().ProtoSerialize( PivotBTransNode );
+                }
+
+                return;
             }else{
-                SerializeError("Create Attributes on DualTransformConstraintNode", SerializableName());
+                SerializeError("Create XML Attribute Values",DualTransformConstraint::GetSerializableName() + "InitData",true);
             }
-
-            XML::Node ActorANode = DualTransformConstraintNode.AppendChild("ActorA");                     // Get everything we need about ActorA
-            if (!ActorANode)
-                { SerializeError("Create ActorANode", SerializableName()); }
-            this->GetPivotATransform().ProtoSerialize(ActorANode);
-
-            XML::Node ActorBNode = DualTransformConstraintNode.AppendChild("ActorB");                     // Get everything we need about ActorB
-            if (!ActorBNode)
-                { SerializeError("Create ActorBNode", SerializableName()); }
-            this->GetPivotBTransform().ProtoSerialize(ActorBNode);
-
-            this->Constraint::ProtoSerialize(DualTransformConstraintNode);
         }
 
-        // DeSerializable
-        void DualTransformConstraint::ProtoDeSerialize(const XML::Node& OneNode)
+        void DualTransformConstraint::ProtoDeSerializeInitData(const XML::Node& SelfRoot)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->DualTransformConstraint::SerializableName() )
-            {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    XML::Node ConstraintNode = OneNode.GetChild("Constraint");
-                    if(!ConstraintNode)
-                        { DeSerializeError("locate Constraint node",SerializableName()); }
-                    this->Constraint::ProtoDeSerialize(ConstraintNode);
+            this->DestroyConstraint();
 
-                    XML::Node TransformA = OneNode.GetChild("ActorA").GetFirstChild();
-                    if (!TransformA)
-                        { DeSerializeError("locate transform for ActorA",SerializableName()); }
-                    Transform temp;
-                    temp.ProtoDeSerialize(TransformA);
-                    this->SetPivotATransform(temp);
+            XML::Attribute CurrAttrib;
+            XML::Node InitDataNode = SelfRoot.GetChild( DualTransformConstraint::GetSerializableName() + "InitData" );
 
-                    XML::Node TransformB = OneNode.GetChild("ActorB").GetFirstChild();
-                    if (!TransformB)
-                        { DeSerializeError("locate transform for ActorB",SerializableName()); }
-                    temp.ProtoDeSerialize(TransformB);
-                    this->SetPivotBTransform(temp);
+            if( !InitDataNode.Empty() ) {
+                if(InitDataNode.GetAttribute("Version").AsInt() == 1) {
+                    Transform PivotA;
+                    Transform PivotB;
+
+                    CurrAttrib = InitDataNode.GetAttribute("ProxyA-ID");
+                    if( !CurrAttrib.Empty() )
+                        this->ProxA = static_cast<RigidProxy*>( this->Manager->GetProxyByID( CurrAttrib.AsUint() ) );
+
+                    CurrAttrib = InitDataNode.GetAttribute("ProxyB-ID");
+                    if( !CurrAttrib.Empty() )
+                        this->ProxB = static_cast<RigidProxy*>( this->Manager->GetProxyByID( CurrAttrib.AsUint() ) );
+
+                    XML::Node PivotANode = InitDataNode.GetChild("PivotATransform").GetFirstChild();
+                    if( !PivotANode.Empty() ) {
+                        PivotA.ProtoDeSerialize(PivotANode);
+                    }
+
+                    XML::Node PivotBNode = InitDataNode.GetChild("PivotBTransform").GetFirstChild();
+                    if( !PivotBNode.Empty() ) {
+                        PivotB.ProtoDeSerialize(PivotBNode);
+                    }
+
+                    this->CreateConstraint(this->ProxA,this->ProxB,PivotA,PivotB);
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( DualTransformConstraint::GetSerializableName() + "InitData" ) + ": Not Version 1.");
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,DualTransformConstraint::GetSerializableName() + "InitData" + " was not found in the provided XML node, which was expected.");
             }
         }
 
-        String DualTransformConstraint::SerializableName()
-            { return String("DualTransformConstraint"); }
+        String DualTransformConstraint::GetSerializableName()
+            { return "DualTransformConstraint"; }
     }//Physics
 }//Mezzanine
-
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-
-std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::DualTransformConstraint& x)
-{
-    Mezzanine::Serialize(stream,x);
-    return stream;
-}
-
-std::istream& operator >> (std::istream& stream, Mezzanine::Physics::DualTransformConstraint& x)
-    { return Mezzanine::DeSerialize(stream, x); }
-
-void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::DualTransformConstraint& x)
-    { x.ProtoDeSerialize(OneNode); }
 
 #endif
