@@ -141,26 +141,35 @@ void LoadFerris()
     Tray8->AddToWorld();// */
 
     // Create world anchor for the wheel, which will allow it to spin.
-    Physics::HingeConstraint* WheelAnchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1),true);
-    PhysMan->AddConstraint(WheelAnchor,false);// */
+    Physics::HingeConstraint* WheelAnchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1));
+    WheelAnchor->SetAllowCollisions(false);
+    WheelAnchor->EnableConstraint(true);// */
 
     // Create the series of hinges for connecting the 8 trays to the wheel
-    Physics::HingeConstraint* Tray1Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(-69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray1Anchor,true);
-    Physics::HingeConstraint* Tray2Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray2Anchor,true);
-    Physics::HingeConstraint* Tray3Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray3->GetRigidProxy(),Vector3(-69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray3Anchor,true);
-    Physics::HingeConstraint* Tray4Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray4->GetRigidProxy(),Vector3(69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray4Anchor,true);
-    Physics::HingeConstraint* Tray5Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray5->GetRigidProxy(),Vector3(-28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray5Anchor,true);
-    Physics::HingeConstraint* Tray6Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray6->GetRigidProxy(),Vector3(28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray6Anchor,true);
-    Physics::HingeConstraint* Tray7Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray7->GetRigidProxy(),Vector3(-28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray7Anchor,true);
-    Physics::HingeConstraint* Tray8Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray8->GetRigidProxy(),Vector3(28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray8Anchor,true);// */
+    Physics::HingeConstraint* Tray1Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(-69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray1Anchor->SetAllowCollisions(false);
+    Tray1Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray2Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray2Anchor->SetAllowCollisions(false);
+    Tray2Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray3Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray3->GetRigidProxy(),Vector3(-69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray3Anchor->SetAllowCollisions(false);
+    Tray3Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray4Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray4->GetRigidProxy(),Vector3(69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray4Anchor->SetAllowCollisions(false);
+    Tray4Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray5Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray5->GetRigidProxy(),Vector3(-28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray5Anchor->SetAllowCollisions(false);
+    Tray5Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray6Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray6->GetRigidProxy(),Vector3(28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray6Anchor->SetAllowCollisions(false);
+    Tray6Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray7Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray7->GetRigidProxy(),Vector3(-28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray7Anchor->SetAllowCollisions(false);
+    Tray7Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray8Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray8->GetRigidProxy(),Vector3(28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray8Anchor->SetAllowCollisions(false);
+    Tray8Anchor->EnableConstraint(true);// */
 
     // Create some throwable objects
     ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
@@ -497,11 +506,12 @@ void LoadBlowsNotSucks()
     FanButton->AddToWorld();
 
     // Create the series of constraints for assembling the fan
-    Physics::HingeConstraint* FanToBody = new Physics::HingeConstraint(FanBody->GetRigidProxy(),Fan->GetRigidProxy(),Vector3(-12,-6,-17.5),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0),false);
-    PhysMan->AddConstraint(FanToBody,true);
-    FanToBody->SetLimit(1.0,-1.0);
+    Physics::HingeConstraint* FanToBody = PhysMan->CreateHingeConstraint(FanBody->GetRigidProxy(),Fan->GetRigidProxy(),Vector3(-12,-6,-17.5),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0));
+    FanToBody->SetLimits(1.0,-1.0);
+    FanToBody->SetAllowCollisions(false);
+    FanToBody->EnableConstraint(true);
 
-    Physics::Generic6DofSpringConstraint* ButtonToBody = new Physics::Generic6DofSpringConstraint(FanBody->GetRigidProxy(),FanButton->GetRigidProxy(),Vector3(-143,-52,-25.5),Vector3(0,0,0),Quaternion(0,0,0,1),Quaternion(0,0,0,1),true);
+    Physics::Generic6DofSpringConstraint* ButtonToBody = PhysMan->CreateGeneric6DofSpringConstraint(FanBody->GetRigidProxy(),FanButton->GetRigidProxy(),Transform(Vector3(-143,-52,-25.5),Quaternion(0,0,0,1)),Transform(Vector3(0,0,0),Quaternion(0,0,0,1)));
     ButtonToBody->SetLinearLimitUpper(Vector3(0,15,0));
     ButtonToBody->SetLinearLimitLower(Vector3(0,0,0));
     ButtonToBody->SetAngularLimitUpper(Vector3(0,0,0));
@@ -509,7 +519,8 @@ void LoadBlowsNotSucks()
     ButtonToBody->SetSpringEnabled(1,true);
     ButtonToBody->SetSpringStiffness(1,500.f);
     ButtonToBody->CalculateSpringEquilibriumPoint(1);
-    PhysMan->AddConstraint(ButtonToBody,true);
+    ButtonToBody->SetAllowCollisions(false);
+    ButtonToBody->EnableConstraint(true);
 
     // Create the field of force for the wind generated by the fan
     Vector3 FanWindSize(60,115,60);
@@ -600,7 +611,7 @@ void LoadBlowsNotSucks()
     ScoreZone1Params["SizeY"] = StringTools::ConvertToString(Score1Size.Y);
     ScoreZone1Params["SizeZ"] = StringTools::ConvertToString(Score1Size.Z);
     Physics::CollisionShape* ScoreArea1Shape = new Physics::BoxCollisionShape("ScoreArea1Shape",Score1Size);
-    Graphics::Mesh* ScoreArea1Mesh = Graphics::Procedural::BoxCornerGenerator(Score1Size,4.0).GenerateMesh("ScoreAreaMesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
+    Graphics::Mesh* ScoreArea1Mesh = Graphics::Procedural::BoxCornerGenerator(Score1Size,4.0).GenerateMesh("ScoreArea1Mesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
 
     ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZone1Params,false) );
     ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreArea1Shape);
@@ -614,7 +625,7 @@ void LoadBlowsNotSucks()
     ScoreZone2Params["SizeY"] = StringTools::ConvertToString(Score2Size.Y);
     ScoreZone2Params["SizeZ"] = StringTools::ConvertToString(Score2Size.Z);
     Physics::CollisionShape* ScoreArea2Shape = new Physics::BoxCollisionShape("ScoreArea2Shape",Score2Size);
-    Graphics::Mesh* ScoreArea2Mesh = Graphics::Procedural::BoxCornerGenerator(Score2Size,4.0).GenerateMesh("ScoreAreaMesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
+    Graphics::Mesh* ScoreArea2Mesh = Graphics::Procedural::BoxCornerGenerator(Score2Size,4.0).GenerateMesh("ScoreArea2Mesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
 
     ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea2",ScoreZone2Params,false) );
     ScoreZone2->GetGhostProxy()->SetCollisionShape(ScoreArea2Shape);
@@ -755,30 +766,39 @@ void LoadJustice()
 
     // Create the series of constraints for connecting all the pieces of the scale together
     // Starting with creating the anchor for the scale
-    Physics::HingeConstraint* ScaleAnchor = new Physics::HingeConstraint(LadyJustice->GetRigidProxy(),JusticeScale->GetRigidProxy(),Vector3(-12,127.4,103.35),Vector3(0,30,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    ScaleAnchor->SetLimit( -(MathTools::GetPi() * 0.20),(MathTools::GetPi() * 0.20) );
-    PhysMan->AddConstraint(ScaleAnchor,true);
+    Physics::HingeConstraint* ScaleAnchor = PhysMan->CreateHingeConstraint(LadyJustice->GetRigidProxy(),JusticeScale->GetRigidProxy(),Vector3(-12,127.4,103.35),Vector3(0,30,0),Vector3(0,0,1),Vector3(0,0,1));
+    ScaleAnchor->SetLimits( -(MathTools::GetPi() * 0.20),(MathTools::GetPi() * 0.20) );
+    ScaleAnchor->SetAllowCollisions(false);
+    ScaleAnchor->EnableConstraint(true);
 
     // Original X distance from pivot on scale is 112.7, but space was needed to prevent collsions.
     // Create the scale-to-union constraints
-    Physics::Point2PointConstraint* U1S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union1->GetRigidProxy(),Vector3(-112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,-16.4
-    PhysMan->AddConstraint(U1S,true);
-    Physics::Point2PointConstraint* U2S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union2->GetRigidProxy(),Vector3(-112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,16.4
-    PhysMan->AddConstraint(U2S,true);
-    Physics::Point2PointConstraint* U3S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union3->GetRigidProxy(),Vector3(112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,-16.4
-    PhysMan->AddConstraint(U3S,true);
-    Physics::Point2PointConstraint* U4S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union4->GetRigidProxy(),Vector3(112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,16.4
-    PhysMan->AddConstraint(U4S,true);
+    Physics::Point2PointConstraint* U1S = PhysMan->CreatePoint2PointConstraint(JusticeScale->GetRigidProxy(),Union1->GetRigidProxy(),Vector3(-112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,-16.4
+    U1S->SetAllowCollisions(false);
+    U1S->EnableConstraint(true);
+    Physics::Point2PointConstraint* U2S = PhysMan->CreatePoint2PointConstraint(JusticeScale->GetRigidProxy(),Union2->GetRigidProxy(),Vector3(-112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,16.4
+    U2S->SetAllowCollisions(false);
+    U2S->EnableConstraint(true);
+    Physics::Point2PointConstraint* U3S = PhysMan->CreatePoint2PointConstraint(JusticeScale->GetRigidProxy(),Union3->GetRigidProxy(),Vector3(112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,-16.4
+    U3S->SetAllowCollisions(false);
+    U3S->EnableConstraint(true);
+    Physics::Point2PointConstraint* U4S = PhysMan->CreatePoint2PointConstraint(JusticeScale->GetRigidProxy(),Union4->GetRigidProxy(),Vector3(112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,16.4
+    U4S->SetAllowCollisions(false);
+    U4S->EnableConstraint(true);
 
     // Create the union-to-tray constraints
-    Physics::Point2PointConstraint* U1T = new Physics::Point2PointConstraint(Union1->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// -54,10.2,-16.4 // -54,-25,0
-    PhysMan->AddConstraint(U1T,true);
-    Physics::Point2PointConstraint* U2T = new Physics::Point2PointConstraint(Union2->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// -54,10.2,16.4 // -54,-25,0
-    PhysMan->AddConstraint(U2T,true);
-    Physics::Point2PointConstraint* U3T = new Physics::Point2PointConstraint(Union3->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// 170,10.2,-16.4 // 170,-25,0
-    PhysMan->AddConstraint(U3T,true);
-    Physics::Point2PointConstraint* U4T = new Physics::Point2PointConstraint(Union4->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// 170,10.2,16.4 // 170,-25,0
-    PhysMan->AddConstraint(U4T,true);
+    Physics::Point2PointConstraint* U1T = PhysMan->CreatePoint2PointConstraint(Union1->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// -54,10.2,-16.4 // -54,-25,0
+    U1T->SetAllowCollisions(false);
+    U1T->EnableConstraint(true);
+    Physics::Point2PointConstraint* U2T = PhysMan->CreatePoint2PointConstraint(Union2->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// -54,10.2,16.4 // -54,-25,0
+    U2T->SetAllowCollisions(false);
+    U2T->EnableConstraint(true);
+    Physics::Point2PointConstraint* U3T = PhysMan->CreatePoint2PointConstraint(Union3->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// 170,10.2,-16.4 // 170,-25,0
+    U3T->SetAllowCollisions(false);
+    U3T->EnableConstraint(true);
+    Physics::Point2PointConstraint* U4T = PhysMan->CreatePoint2PointConstraint(Union4->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// 170,10.2,16.4 // 170,-25,0
+    U4T->SetAllowCollisions(false);
+    U4T->EnableConstraint(true);
 
     // Create some throwable objects
     //ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
@@ -910,7 +930,7 @@ void LoadRollers()
     for( Whole X = 0 ; X < 7 ; ++X )
     {
         Vector3 Location(112.4+(XStride*X),-20,0);
-        std::stringstream Namestream;
+        StringStream Namestream;
         Namestream << "Roller" << (X+1);
         RigidDebris* Roller = DebrisMan->CreateRigidDebris(Namestream.str(),10,false);
         Roller->GetRigidProxy()->SetCollisionShape(RollerShape);
@@ -919,11 +939,11 @@ void LoadRollers()
         Roller->SetLocation(Location);
         Roller->AddToWorld();
 
-        Physics::HingeConstraint* RollerAnchor = new Physics::HingeConstraint(Roller->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1),true);
-        RollerAnchor->SetLimit(1.0,-1.0);
+        Physics::HingeConstraint* RollerAnchor = PhysMan->CreateHingeConstraint(Roller->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1));
+        RollerAnchor->SetLimits(1.0,-1.0);
         RollerAnchor->SetMaxMotorImpulse(1500.0);
-        RollerAnchor->EnableMotor(true);
-        PhysMan->AddConstraint(RollerAnchor,false);
+        RollerAnchor->SetMotorEnabled(true);
+        RollerAnchor->EnableConstraint(true);
 
         TheRollers.push_back(RollerAnchor);
     }
