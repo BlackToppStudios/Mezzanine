@@ -19859,7 +19859,7 @@ _wrap_Vector3_serializable_name(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  result = Mezzanine::Vector3::SerializableName();
+  result = Mezzanine::Vector3::GetSerializableName();
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:
@@ -22158,7 +22158,7 @@ _wrap_Quaternion_serializable_name(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  result = Mezzanine::Quaternion::SerializableName();
+  result = Mezzanine::Quaternion::GetSerializableName();
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:
@@ -25450,7 +25450,7 @@ _wrap_Transform_serializable_name(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  result = Mezzanine::Transform::SerializableName();
+  result = Mezzanine::Transform::GetSerializableName();
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:
@@ -32290,7 +32290,7 @@ _wrap_ColourValue_serializable_name(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  result = Mezzanine::ColourValue::SerializableName();
+  result = Mezzanine::ColourValue::GetSerializableName();
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:
@@ -38379,7 +38379,7 @@ _wrap_RayQueryTool_serializable_name(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  result = Mezzanine::RayQueryTool::SerializableName();
+  result = Mezzanine::RayQueryTool::GetSerializableName();
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:
@@ -44014,7 +44014,7 @@ _wrap_Vector2_serializable_name(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  result = Mezzanine::Vector2::SerializableName();
+  result = Mezzanine::Vector2::GetSerializableName();
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:

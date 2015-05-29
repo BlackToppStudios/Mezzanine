@@ -4801,12 +4801,12 @@ fail:
 }
 
 
-static int _wrap_Vector2_SerializableName(lua_State* L) {
+static int _wrap_Vector2_GetSerializableName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String result;
   
-  SWIG_check_num_args("Mezzanine::Vector2::SerializableName",0,0)
-  result = Mezzanine::Vector2::SerializableName();
+  SWIG_check_num_args("Mezzanine::Vector2::GetSerializableName",0,0)
+  result = Mezzanine::Vector2::GetSerializableName();
   lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
@@ -4886,7 +4886,7 @@ static swig_lua_method swig_Vector2_Sf_SwigStatic_methods[]= {
     { "Unit_Y", _wrap_Vector2_Unit_Y},
     { "Neg_Unit_X", _wrap_Vector2_Neg_Unit_X},
     { "Neg_Unit_Y", _wrap_Vector2_Neg_Unit_Y},
-    { "SerializableName", _wrap_Vector2_SerializableName},
+    { "GetSerializableName", _wrap_Vector2_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_Vector2_Sf_SwigStatic_classes[]= {
@@ -18010,12 +18010,12 @@ fail:
 }
 
 
-static int _wrap_Vector3_SerializableName(lua_State* L) {
+static int _wrap_Vector3_GetSerializableName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String result;
   
-  SWIG_check_num_args("Mezzanine::Vector3::SerializableName",0,0)
-  result = Mezzanine::Vector3::SerializableName();
+  SWIG_check_num_args("Mezzanine::Vector3::GetSerializableName",0,0)
+  result = Mezzanine::Vector3::GetSerializableName();
   lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
@@ -18139,7 +18139,7 @@ static swig_lua_method swig_Vector3_Sf_SwigStatic_methods[]= {
     { "Neg_Unit_Y", _wrap_Vector3_Neg_Unit_Y},
     { "Neg_Unit_Z", _wrap_Vector3_Neg_Unit_Z},
     { "UnitOnAxis", _wrap_Vector3_UnitOnAxis},
-    { "SerializableName", _wrap_Vector3_SerializableName},
+    { "GetSerializableName", _wrap_Vector3_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_Vector3_Sf_SwigStatic_classes[]= {
@@ -22406,7 +22406,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "Vector2_Unit_Y", _wrap_Vector2_Unit_Y},
     { "Vector2_Neg_Unit_X", _wrap_Vector2_Neg_Unit_X},
     { "Vector2_Neg_Unit_Y", _wrap_Vector2_Neg_Unit_Y},
-    { "Vector2_SerializableName", _wrap_Vector2_SerializableName},
+    { "Vector2_GetSerializableName", _wrap_Vector2_GetSerializableName},
     { "SerializeError", _wrap_SerializeError},
     { "DeSerializeError", _wrap_DeSerializeError},
     { "Vector3_Unit_X", _wrap_Vector3_Unit_X},
@@ -22416,7 +22416,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "Vector3_Neg_Unit_Y", _wrap_Vector3_Neg_Unit_Y},
     { "Vector3_Neg_Unit_Z", _wrap_Vector3_Neg_Unit_Z},
     { "Vector3_UnitOnAxis", _wrap_Vector3_UnitOnAxis},
-    { "Vector3_SerializableName", _wrap_Vector3_SerializableName},
+    { "Vector3_GetSerializableName", _wrap_Vector3_GetSerializableName},
     { "__add", _wrap___add},
     { "__sub", _wrap___sub},
     { "__mul", _wrap___mul},

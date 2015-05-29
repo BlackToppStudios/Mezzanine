@@ -16228,12 +16228,12 @@ fail:
 }
 
 
-static int _wrap_Vector3_SerializableName(lua_State* L) {
+static int _wrap_Vector3_GetSerializableName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String result;
   
-  SWIG_check_num_args("Mezzanine::Vector3::SerializableName",0,0)
-  result = Mezzanine::Vector3::SerializableName();
+  SWIG_check_num_args("Mezzanine::Vector3::GetSerializableName",0,0)
+  result = Mezzanine::Vector3::GetSerializableName();
   lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
@@ -16357,7 +16357,7 @@ static swig_lua_method swig_Vector3_Sf_SwigStatic_methods[]= {
     { "Neg_Unit_Y", _wrap_Vector3_Neg_Unit_Y},
     { "Neg_Unit_Z", _wrap_Vector3_Neg_Unit_Z},
     { "UnitOnAxis", _wrap_Vector3_UnitOnAxis},
-    { "SerializableName", _wrap_Vector3_SerializableName},
+    { "GetSerializableName", _wrap_Vector3_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_Vector3_Sf_SwigStatic_classes[]= {
@@ -19333,12 +19333,12 @@ fail:
 }
 
 
-static int _wrap_Quaternion_SerializableName(lua_State* L) {
+static int _wrap_Quaternion_GetSerializableName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String result;
   
-  SWIG_check_num_args("Mezzanine::Quaternion::SerializableName",0,0)
-  result = Mezzanine::Quaternion::SerializableName();
+  SWIG_check_num_args("Mezzanine::Quaternion::GetSerializableName",0,0)
+  result = Mezzanine::Quaternion::GetSerializableName();
   lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
@@ -19414,7 +19414,7 @@ static swig_lua_const_info swig_Quaternion_Sf_SwigStatic_constants[]= {
     {0,0,0,0,0,0}
 };
 static swig_lua_method swig_Quaternion_Sf_SwigStatic_methods[]= {
-    { "SerializableName", _wrap_Quaternion_SerializableName},
+    { "GetSerializableName", _wrap_Quaternion_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_Quaternion_Sf_SwigStatic_classes[]= {
@@ -22696,12 +22696,12 @@ fail:
 }
 
 
-static int _wrap_Transform_SerializableName(lua_State* L) {
+static int _wrap_Transform_GetSerializableName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String result;
   
-  SWIG_check_num_args("Mezzanine::Transform::SerializableName",0,0)
-  result = Mezzanine::Transform::SerializableName();
+  SWIG_check_num_args("Mezzanine::Transform::GetSerializableName",0,0)
+  result = Mezzanine::Transform::GetSerializableName();
   lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
@@ -22918,7 +22918,7 @@ static swig_lua_const_info swig_Transform_Sf_SwigStatic_constants[]= {
     {0,0,0,0,0,0}
 };
 static swig_lua_method swig_Transform_Sf_SwigStatic_methods[]= {
-    { "SerializableName", _wrap_Transform_SerializableName},
+    { "GetSerializableName", _wrap_Transform_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_Transform_Sf_SwigStatic_classes[]= {
@@ -30914,12 +30914,12 @@ fail:
 }
 
 
-static int _wrap_ColourValue_SerializableName(lua_State* L) {
+static int _wrap_ColourValue_GetSerializableName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String result;
   
-  SWIG_check_num_args("Mezzanine::ColourValue::SerializableName",0,0)
-  result = Mezzanine::ColourValue::SerializableName();
+  SWIG_check_num_args("Mezzanine::ColourValue::GetSerializableName",0,0)
+  result = Mezzanine::ColourValue::GetSerializableName();
   lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
@@ -31122,7 +31122,7 @@ static swig_lua_method swig_ColourValue_Sf_SwigStatic_methods[]= {
     { "WhiteSmoke", _wrap_ColourValue_WhiteSmoke},
     { "Yellow", _wrap_ColourValue_Yellow},
     { "YellowGreen", _wrap_ColourValue_YellowGreen},
-    { "SerializableName", _wrap_ColourValue_SerializableName},
+    { "GetSerializableName", _wrap_ColourValue_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_ColourValue_Sf_SwigStatic_classes[]= {
@@ -39432,12 +39432,12 @@ fail:
 }
 
 
-static int _wrap_RayQueryTool_SerializableName(lua_State* L) {
+static int _wrap_RayQueryTool_GetSerializableName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String result;
   
-  SWIG_check_num_args("Mezzanine::RayQueryTool::SerializableName",0,0)
-  result = Mezzanine::RayQueryTool::SerializableName();
+  SWIG_check_num_args("Mezzanine::RayQueryTool::GetSerializableName",0,0)
+  result = Mezzanine::RayQueryTool::GetSerializableName();
   lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
@@ -39489,7 +39489,7 @@ static swig_lua_const_info swig_RayQueryTool_Sf_SwigStatic_constants[]= {
 };
 static swig_lua_method swig_RayQueryTool_Sf_SwigStatic_methods[]= {
     { "GetMouseRay", _wrap_RayQueryTool_GetMouseRay},
-    { "SerializableName", _wrap_RayQueryTool_SerializableName},
+    { "GetSerializableName", _wrap_RayQueryTool_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_RayQueryTool_Sf_SwigStatic_classes[]= {
@@ -41667,12 +41667,12 @@ fail:
 }
 
 
-static int _wrap_Vector2_SerializableName(lua_State* L) {
+static int _wrap_Vector2_GetSerializableName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String result;
   
-  SWIG_check_num_args("Mezzanine::Vector2::SerializableName",0,0)
-  result = Mezzanine::Vector2::SerializableName();
+  SWIG_check_num_args("Mezzanine::Vector2::GetSerializableName",0,0)
+  result = Mezzanine::Vector2::GetSerializableName();
   lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
   return SWIG_arg;
   
@@ -41752,7 +41752,7 @@ static swig_lua_method swig_Vector2_Sf_SwigStatic_methods[]= {
     { "Unit_Y", _wrap_Vector2_Unit_Y},
     { "Neg_Unit_X", _wrap_Vector2_Neg_Unit_X},
     { "Neg_Unit_Y", _wrap_Vector2_Neg_Unit_Y},
-    { "SerializableName", _wrap_Vector2_SerializableName},
+    { "GetSerializableName", _wrap_Vector2_GetSerializableName},
     {0,0}
 };
 static swig_lua_class* swig_Vector2_Sf_SwigStatic_classes[]= {
@@ -57012,13 +57012,13 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "Vector3_Neg_Unit_Y", _wrap_Vector3_Neg_Unit_Y},
     { "Vector3_Neg_Unit_Z", _wrap_Vector3_Neg_Unit_Z},
     { "Vector3_UnitOnAxis", _wrap_Vector3_UnitOnAxis},
-    { "Vector3_SerializableName", _wrap_Vector3_SerializableName},
+    { "Vector3_GetSerializableName", _wrap_Vector3_GetSerializableName},
     { "__add", _wrap___add},
     { "__sub", _wrap___sub},
     { "__mul", _wrap___mul},
     { "__div", _wrap___div},
-    { "Quaternion_SerializableName", _wrap_Quaternion_SerializableName},
-    { "Transform_SerializableName", _wrap_Transform_SerializableName},
+    { "Quaternion_GetSerializableName", _wrap_Quaternion_GetSerializableName},
+    { "Transform_GetSerializableName", _wrap_Transform_GetSerializableName},
     { "WorldObject_GetSerializableName", _wrap_WorldObject_GetSerializableName},
     { "ManagerBase_GetTypeAsString", _wrap_ManagerBase_GetTypeAsString},
     { "ManagerBase_GetTypeFromString", _wrap_ManagerBase_GetTypeFromString},
@@ -57163,7 +57163,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "ColourValue_WhiteSmoke", _wrap_ColourValue_WhiteSmoke},
     { "ColourValue_Yellow", _wrap_ColourValue_Yellow},
     { "ColourValue_YellowGreen", _wrap_ColourValue_YellowGreen},
-    { "ColourValue_SerializableName", _wrap_ColourValue_SerializableName},
+    { "ColourValue_GetSerializableName", _wrap_ColourValue_GetSerializableName},
     { "AreaEffect_GetSerializableName", _wrap_AreaEffect_GetSerializableName},
     { "Plane_GetSerializableName", _wrap_Plane_GetSerializableName},
     { "AxisAlignedBox_GetSerializableName", _wrap_AxisAlignedBox_GetSerializableName},
@@ -57173,12 +57173,12 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "PredictBinarySizeFromBase64String", _wrap_PredictBinarySizeFromBase64String},
     { "PredictBase64StringSizeFromBinarySize", _wrap_PredictBase64StringSizeFromBinarySize},
     { "RayQueryTool_GetMouseRay", _wrap_RayQueryTool_GetMouseRay},
-    { "RayQueryTool_SerializableName", _wrap_RayQueryTool_SerializableName},
+    { "RayQueryTool_GetSerializableName", _wrap_RayQueryTool_GetSerializableName},
     { "Vector2_Unit_X", _wrap_Vector2_Unit_X},
     { "Vector2_Unit_Y", _wrap_Vector2_Unit_Y},
     { "Vector2_Neg_Unit_X", _wrap_Vector2_Neg_Unit_X},
     { "Vector2_Neg_Unit_Y", _wrap_Vector2_Neg_Unit_Y},
-    { "Vector2_SerializableName", _wrap_Vector2_SerializableName},
+    { "Vector2_GetSerializableName", _wrap_Vector2_GetSerializableName},
     { "GetPlatform", _wrap_GetPlatform},
     { "GetTimeStamp", _wrap_GetTimeStamp},
     { "Debris_GetSerializableName", _wrap_Debris_GetSerializableName},
