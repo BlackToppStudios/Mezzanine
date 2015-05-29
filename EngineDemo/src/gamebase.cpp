@@ -178,7 +178,7 @@ public:
         }
 
         // Make a declaration for a static constrain so it survives the function lifetime
-        static Physics::Point2PointConstraint* Dragger=NULL;
+        static Physics::Point2PointConstraint* Dragger = NULL;
 
         if( SysMouse->IsButtonPressed(1) ) {
             UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
@@ -214,9 +214,9 @@ public:
                                 RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
                                 rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
                                 //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                                Dragger = new Physics::Point2PointConstraint(rigid->GetRigidProxy(), LocalPivot);
+                                Dragger = DemoWorld->GetPhysicsManager()->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
                                 Dragger->SetTAU(0.001);
-                                OneWorld->GetPhysicsManager()->AddConstraint(Dragger);
+                                Dragger->EnableConstraint(true);
                                 Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
                                 Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
                                 firstframe=true;
@@ -236,15 +236,14 @@ public:
                 // This chunk of code calculates the 3d point that the actor needs to be dragged to
                 if( RayCaster.RayPlaneIntersection(MouseRay, PlaneOfPlay) ) {
                     if(Dragger&&!firstframe)
-                        { Dragger->SetPivotBLocation(RayCaster.LastQueryResultsOffset()); }
+                        { Dragger->SetPivotB(RayCaster.LastQueryResultsOffset()); }
                 }
             }
 
         }else{  //Since we are no longer clicking we need to setup for the next clicking
             if( Dragger ) {
                 Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                OneWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
-                delete Dragger;
+                OneWorld->GetPhysicsManager()->DestroyConstraint(Dragger);
                 Dragger = NULL;
                 Prox->SetActivationState(Physics::AS_Active);
             }
