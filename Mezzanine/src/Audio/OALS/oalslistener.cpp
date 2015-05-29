@@ -311,10 +311,10 @@ namespace Mezzanine
 
             String Listener::GetDerivedSerializableName() const
             {
-                return this->Listener::SerializableName();
+                return this->Listener::GetSerializableName();
             }
 
-            String Listener::SerializableName()
+            String Listener::GetSerializableName()
             {
                 return "OALSListener";
             }

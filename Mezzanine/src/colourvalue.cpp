@@ -608,8 +608,8 @@ namespace Mezzanine
 
     void ColourValue::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(this->ColourValue::SerializableName());
-        VecNode.SetName(this->ColourValue::SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(this->ColourValue::GetSerializableName());
+        VecNode.SetName(this->ColourValue::GetSerializableName());
 
         Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
         Mezzanine::XML::Attribute RAttr = VecNode.AppendAttribute("Red");
@@ -622,17 +622,17 @@ namespace Mezzanine
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values", this->ColourValue::SerializableName(),true);
+                SerializeError("Create XML Attribute Values", this->ColourValue::GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Attributes", this->ColourValue::SerializableName(),true);
+            SerializeError("Create XML Attributes", this->ColourValue::GetSerializableName(),true);
         }
     }
 
     // DeSerializable
     void ColourValue::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if( Mezzanine::String(OneNode.Name())==this->ColourValue::SerializableName() )
+        if( Mezzanine::String(OneNode.Name())==this->ColourValue::GetSerializableName() )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
@@ -641,14 +641,14 @@ namespace Mezzanine
                 this->BlueChannel=OneNode.GetAttribute("Blue").AsReal();
                 this->AlphaChannel=OneNode.GetAttribute("Alpha").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->ColourValue::SerializableName()) + ": Not Version 1");
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->ColourValue::GetSerializableName()) + ": Not Version 1");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->ColourValue::SerializableName()) + ", found a " + OneNode.Name());
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->ColourValue::GetSerializableName()) + ", found a " + OneNode.Name());
         }
     }
 
-    String ColourValue::SerializableName()
+    String ColourValue::GetSerializableName()
         { return String("ColourValue"); }
 }//Mezzanine
 

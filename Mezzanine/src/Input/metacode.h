@@ -343,7 +343,7 @@ namespace Mezzanine
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Vector3".
-            String SerializableName() const;
+            String GetSerializableName() const;
         };//MetaCode
     }//Input
 

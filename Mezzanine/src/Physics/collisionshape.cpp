@@ -113,33 +113,33 @@ namespace Mezzanine
 
         void CollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node CollisionNode = CurrentRoot.AppendChild(this->CollisionShape::SerializableName());
-            if (!CollisionNode) { SerializeError("create CollisionNode",this->CollisionShape::SerializableName());}
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->CollisionShape::GetSerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->CollisionShape::GetSerializableName());}
 
             XML::Attribute Version = CollisionNode.AppendAttribute("Version");
             if (Version)
                 { Version.SetValue(1); }
             else
-                { SerializeError("Create Version Attribute", SerializableName()); }
+                { SerializeError("Create Version Attribute", GetSerializableName()); }
 
             XML::Attribute NameAttr = CollisionNode.AppendAttribute("Name");
             if(!NameAttr)
-                { SerializeError("Create Name Attribute", SerializableName()); }
+                { SerializeError("Create Name Attribute", GetSerializableName()); }
             NameAttr.SetValue(this->GetName());
 
             XML::Attribute MarginAttr = CollisionNode.AppendAttribute("Margin");
             if(!MarginAttr)
-                { SerializeError("Create Margin Attribute", SerializableName()); }
+                { SerializeError("Create Margin Attribute", GetSerializableName()); }
             MarginAttr.SetValue(this->GetMargin());
 
             XML::Node ScalingNode = CollisionNode.AppendChild("Scaling");
-            if (!ScalingNode) { SerializeError("Create Name Attribute", SerializableName()); }
+            if (!ScalingNode) { SerializeError("Create Name Attribute", GetSerializableName()); }
             this->GetScaling().ProtoSerialize(ScalingNode);
         }
 
         void CollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->CollisionShape::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->CollisionShape::GetSerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
@@ -149,17 +149,17 @@ namespace Mezzanine
 
                     XML::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
                     if(!ScalingNode)
-                        { DeSerializeError("locate Scaling node",SerializableName()); }
+                        { DeSerializeError("locate Scaling node",GetSerializableName()); }
                     this->SetScaling(Vector3(ScalingNode));
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    DeSerializeError("find usable serialization version",GetSerializableName());
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),GetSerializableName());
             }
         }
 
-        String CollisionShape::SerializableName()
+        String CollisionShape::GetSerializableName()
             { return String("CollisionShape"); }
 
         ///////////////////////////////////////////////////////////////////////////////

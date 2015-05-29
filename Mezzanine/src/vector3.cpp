@@ -587,7 +587,7 @@ namespace Mezzanine
 
     void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(GetSerializableName());
 
         if(VecNode)
         {
@@ -601,19 +601,19 @@ namespace Mezzanine
                 {
                     return;
                 }else{
-                    SerializeError("Create XML Attribute Values", SerializableName(),true);
+                    SerializeError("Create XML Attribute Values", GetSerializableName(),true);
                 }
             }else{
-                SerializeError("Create XML Attributes", SerializableName(),true);
+                SerializeError("Create XML Attributes", GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Serialization Node", SerializableName(),true);
+            SerializeError("Create XML Serialization Node", GetSerializableName(),true);
         }
     }
 
     void Vector3::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(GetSerializableName()) )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
@@ -621,14 +621,14 @@ namespace Mezzanine
                 this->Y=OneNode.GetAttribute("Y").AsReal();
                 this->Z=OneNode.GetAttribute("Z").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 
-    String Vector3::SerializableName()
+    String Vector3::GetSerializableName()
         { return String("Vector3"); }
 
     const char* Vector3::__str__()

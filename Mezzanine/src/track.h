@@ -306,12 +306,12 @@ namespace Mezzanine
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
                         Mezzanine::XML::Node InterpolatorNode = OneNode.GetChild("Interpolator").GetFirstChild();
-                        if(InterpolatorNode.Name() == InterpolatorType::SerializableName())
+                        if(InterpolatorNode.Name() == InterpolatorType::GetSerializableName())
                         {
                             InterpolatorType::ProtoDeSerialize(InterpolatorNode);
                         }else{
                             //DeSerializeError(); // Maybe use this instead?
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + DerivedSerializableName() + ": Not " + InterpolatorType::SerializableName());
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + DerivedSerializableName() + ": Not " + InterpolatorType::GetSerializableName());
                         }
 
                         SetTrackNameUnique(OneNode.GetAttribute("Name").AsString());
@@ -339,11 +339,11 @@ namespace Mezzanine
             /// @Polymorphicaly get the classnae at runtime
             /// @return A String Containing a class name,likely"Track" or "TrackLooped"
             virtual String DerivedSerializableName() const
-                { return Track::SerializableName(); }
+                { return Track::GetSerializableName(); }
 
             /// @brief Get the name of this class "Track"
             /// @return A string containing "Track"
-            static String SerializableName()
+            static String GetSerializableName()
                 { return String("Track"); }
 
 
@@ -416,11 +416,11 @@ namespace Mezzanine
             /// @Polymorphicaly get the classnae at runtime
             /// @return A String Containing a class name,likely"Track" or "TrackLooped"
             virtual String DerivedSerializableName() const
-                { return TrackLooped::SerializableName(); }
+                { return TrackLooped::GetSerializableName(); }
 
             /// @brief Get the name of this class "TrackLooped"
             /// @return A string containing "TrackLooped"
-            static String SerializableName()
+            static String GetSerializableName()
                 { return String("TrackLooped"); }
     };
 

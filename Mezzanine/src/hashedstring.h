@@ -148,7 +148,7 @@ namespace Mezzanine
             void ProtoDeSerialize(const XML::Node& OneNode);
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "HashedString32"
-            static String SerializableName();
+            static String GetSerializableName();
     }; // HashedString32
 
     ///////////////////////////////////////////////////////////////////////////////

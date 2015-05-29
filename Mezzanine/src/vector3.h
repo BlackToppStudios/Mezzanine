@@ -501,7 +501,7 @@ namespace Mezzanine
         // Serialization
 
         // void DeSerializableClass::ProtoDeSerialize(const XML::Node&);
-        // static String DeSerializableClass::SerializableName();
+        // static String DeSerializableClass::GetSerializableName();
         /// @brief Convert this class to an XML::Node ready for serialization
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
         void ProtoSerialize(XML::Node& CurrentRoot) const;
@@ -510,7 +510,7 @@ namespace Mezzanine
         void ProtoDeSerialize(const XML::Node& OneNode);
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "Vector3"
-        static String SerializableName();
+        static String GetSerializableName();
 
         /// @brief
         const char* __str__();

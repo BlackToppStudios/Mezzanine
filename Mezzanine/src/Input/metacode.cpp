@@ -415,7 +415,7 @@ namespace Mezzanine
 
         void MetaCode::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node SelfNode = CurrentRoot.AppendChild( MetaCode::SerializableName() );
+            XML::Node SelfNode = CurrentRoot.AppendChild( MetaCode::GetSerializableName() );
 
             if( SelfNode.AppendAttribute("Version").SetValue("1") &&
                 SelfNode.AppendAttribute("MetaValue").SetValue( this->MetaValue ) &&
@@ -424,7 +424,7 @@ namespace Mezzanine
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values",MetaCode::SerializableName(),true);
+                SerializeError("Create XML Attribute Values",MetaCode::GetSerializableName(),true);
             }
         }
 
@@ -432,7 +432,7 @@ namespace Mezzanine
         {
             XML::Attribute CurrAttrib;
 
-            if( String(OneNode.Name()) == MetaCode::SerializableName() ) {
+            if( String(OneNode.Name()) == MetaCode::GetSerializableName() ) {
                 if(OneNode.GetAttribute("Version").AsInt() == 1) {
                     CurrAttrib = OneNode.GetAttribute("MetaValue");
                     if( !CurrAttrib.Empty() )
@@ -446,14 +446,14 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->Code = static_cast<Input::InputCode>( CurrAttrib.AsUint() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + MetaCode::SerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + MetaCode::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,MetaCode::SerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,MetaCode::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 
-        String MetaCode::SerializableName() const
+        String MetaCode::GetSerializableName() const
             { return "MetaCode"; }
     }//Input
 }//Mezzanine

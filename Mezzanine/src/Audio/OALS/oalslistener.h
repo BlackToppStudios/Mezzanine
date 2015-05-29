@@ -187,7 +187,7 @@ namespace Mezzanine
                 virtual String GetDerivedSerializableName() const;
                 /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
                 /// @return A string containing the name of this class.
-                static String SerializableName();
+                static String GetSerializableName();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

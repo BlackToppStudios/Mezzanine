@@ -187,7 +187,7 @@ namespace Mezzanine
             /// @param CurrentRoot A node to act as the parent for the serialized version of this one
             static void ProtoSerialize(XML::Node& CurrentRoot)
             {
-                Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
+                Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(GetSerializableName());
 
                 if(LinearInterpolaterNode)
                 {
@@ -195,17 +195,17 @@ namespace Mezzanine
                     Mezzanine::XML::Attribute TypeAttr = LinearInterpolaterNode.AppendAttribute("InterpolatableType");
                     if( VersionAttr  )
                     {
-                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::SerializableName()) )
+                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::GetSerializableName()) )
                         {
                             return;
                         }else{
-                            SerializeError("Create XML Attribute Values", SerializableName(),true);
+                            SerializeError("Create XML Attribute Values", GetSerializableName(),true);
                         }
                     }else{
-                        SerializeError("Create XML Attributes", SerializableName(),true);
+                        SerializeError("Create XML Attributes", GetSerializableName(),true);
                     }
                 }else{
-                    SerializeError("Create XML Serialization Node", SerializableName(),true);
+                    SerializeError("Create XML Serialization Node", GetSerializableName(),true);
                 }
             }
 
@@ -213,28 +213,28 @@ namespace Mezzanine
             /// @param The node to read serialized data from.
             static void ProtoDeSerialize(const XML::Node& OneNode)
             {
-                if ( String(OneNode.Name())==String(SerializableName()) )
+                if ( String(OneNode.Name())==String(GetSerializableName()) )
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::SerializableName())
+                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::GetSerializableName())
                         {
                             return; // Class currently stores no data.
                         }else{
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + SerializableName() + ": Not " + InterpolatableType::SerializableName());
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + GetSerializableName() + ": Not " + InterpolatableType::GetSerializableName());
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }
 
             /// @brief get the name of this class for serialization purposes
             /// @return A String containing "BezierInterpolator"
-            static String SerializableName()
+            static String GetSerializableName()
                 { return String("LinearInterpolator"); }
     };
 
@@ -291,7 +291,7 @@ namespace Mezzanine
             /// @param CurrentRoot A node to act as the parent for the serialized version of this one
             static void ProtoSerialize(XML::Node& CurrentRoot)
             {
-                Mezzanine::XML::Node BezierInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
+                Mezzanine::XML::Node BezierInterpolaterNode = CurrentRoot.AppendChild(GetSerializableName());
 
                 if(BezierInterpolaterNode)
                 {
@@ -299,17 +299,17 @@ namespace Mezzanine
                     Mezzanine::XML::Attribute TypeAttr = BezierInterpolaterNode.AppendAttribute("InterpolatableType");
                     if( VersionAttr  )
                     {
-                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::SerializableName()) )
+                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::GetSerializableName()) )
                         {
                             return;
                         }else{
-                            SerializeError("Create XML Attribute Values", SerializableName(),true);
+                            SerializeError("Create XML Attribute Values", GetSerializableName(),true);
                         }
                     }else{
-                        SerializeError("Create XML Attributes", SerializableName(),true);
+                        SerializeError("Create XML Attributes", GetSerializableName(),true);
                     }
                 }else{
-                    SerializeError("Create XML Serialization Node", SerializableName(),true);
+                    SerializeError("Create XML Serialization Node", GetSerializableName(),true);
                 }
             }
 
@@ -317,28 +317,28 @@ namespace Mezzanine
             /// @param The node to read serialized data from.
             static void ProtoDeSerialize(const XML::Node& OneNode)
             {
-                if ( String(OneNode.Name())==String(SerializableName()) )
+                if ( String(OneNode.Name())==String(GetSerializableName()) )
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::SerializableName())
+                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::GetSerializableName())
                         {
                             return; // Class currently stores no data.
                         }else{
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + SerializableName() + ": Not " + InterpolatableType::SerializableName());
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + GetSerializableName() + ": Not " + InterpolatableType::GetSerializableName());
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }
 
             /// @brief get the name of this class for serialization purposes
             /// @return A String containing "BezierInterpolator"
-            static String SerializableName()
+            static String GetSerializableName()
                 { return String("BezierInterpolator"); }
     };
 

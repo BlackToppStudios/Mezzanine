@@ -313,8 +313,8 @@ namespace Mezzanine
 
     void Vector2::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
-        VecNode.SetName(SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(GetSerializableName());
+        VecNode.SetName(GetSerializableName());
 
         Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
         Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
@@ -325,30 +325,30 @@ namespace Mezzanine
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values", SerializableName(),true);
+                SerializeError("Create XML Attribute Values", GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Attributes", SerializableName(),true);
+            SerializeError("Create XML Attributes", GetSerializableName(),true);
         }
     }
 
     void Vector2::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(GetSerializableName()) )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 this->X=OneNode.GetAttribute("X").AsReal();
                 this->Y=OneNode.GetAttribute("Y").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 
-    String Vector2::SerializableName()
+    String Vector2::GetSerializableName()
         { return String("Vector2"); }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -115,7 +115,7 @@ namespace Mezzanine
 
     void HashedString32::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node Hash32Node = CurrentRoot.AppendChild(SerializableName());
+        Mezzanine::XML::Node Hash32Node = CurrentRoot.AppendChild(GetSerializableName());
 
         if(Hash32Node)
         {
@@ -129,33 +129,33 @@ namespace Mezzanine
                 {
                     return;
                 }else{
-                    SerializeError("Create XML Attribute Values", SerializableName(),true);
+                    SerializeError("Create XML Attribute Values", GetSerializableName(),true);
                 }
             }else{
-                SerializeError("Create XML Attributes", SerializableName(),true);
+                SerializeError("Create XML Attributes", GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Serialization Node", SerializableName(),true);
+            SerializeError("Create XML Serialization Node", GetSerializableName(),true);
         }
     }
 
     void HashedString32::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(GetSerializableName()) )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 Hash=OneNode.GetAttribute("Hash").AsInteger();
                 TheString=OneNode.GetAttribute("String").AsString();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 
-    String HashedString32::SerializableName()
+    String HashedString32::GetSerializableName()
         { return String("HashedString32"); }
 
     ///////////////////////////////////////////////////////////////////////////////

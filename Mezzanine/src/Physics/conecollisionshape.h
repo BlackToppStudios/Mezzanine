@@ -134,7 +134,7 @@ namespace Mezzanine
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ConeCollisionShape"
-            static String SerializableName();
+            static String GetSerializableName();
         };//ConeCollisionShape
     }//Physics
 }//Mezzanine

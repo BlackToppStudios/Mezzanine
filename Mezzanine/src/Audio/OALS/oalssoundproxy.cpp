@@ -1096,9 +1096,9 @@ namespace Mezzanine
             }
 
             String OALS::SoundProxy::GetDerivedSerializableName() const
-                { return this->OALS::SoundProxy::SerializableName(); }
+                { return this->OALS::SoundProxy::GetSerializableName(); }
 
-            String OALS::SoundProxy::SerializableName()
+            String OALS::SoundProxy::GetSerializableName()
                 { return "OALSSoundProxy"; }
 
             ///////////////////////////////////////////////////////////////////////////////

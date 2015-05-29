@@ -101,13 +101,13 @@ namespace Mezzanine
 
     void Transform::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        XML::Node TransformNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        XML::Node TransformNode = CurrentRoot.AppendChild(GetSerializableName());                     // The base node all the base constraint stuff will go in
         if (!TransformNode)
-            { SerializeError("Create TransformNode", SerializableName()); }
+            { SerializeError("Create TransformNode", GetSerializableName()); }
 
         Mezzanine::XML::Attribute Version = TransformNode.AppendAttribute("Version");                            // Version
         if (!Version)
-            { SerializeError("Create Version", SerializableName()); }
+            { SerializeError("Create Version", GetSerializableName()); }
         Version.SetValue(1);
 
         this->Location.ProtoSerialize(TransformNode);
@@ -116,21 +116,21 @@ namespace Mezzanine
 
     void Transform::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(GetSerializableName()) )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 this->Location.ProtoDeSerialize(OneNode.GetChild("Vector3"));
                 this->Rotation.ProtoDeSerialize(OneNode.GetChild("Quaternion"));
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()));
         }
     }
 
-    String Transform::SerializableName()
+    String Transform::GetSerializableName()
         { return String("Transform"); }
 
     Transform Transform::operator- (const Transform& rhs) const

@@ -79,12 +79,12 @@ namespace Mezzanine
                 String Name_(OneName.AsString());
 
                 XML::Attribute Axis = OneNode.GetAttribute("Axis");
-                if (!Axis) { DeSerializeError("find Axis Attribute",CapsuleCollisionShape::SerializableName()); }
+                if (!Axis) { DeSerializeError("find Axis Attribute",CapsuleCollisionShape::GetSerializableName()); }
                 /*
                 XML::Attribute Radius = OneNode.GetAttribute("Radius");
-                if (!Radius) { DeSerializeError("find Radius Attribute",CapsuleCollisionShape::SerializableName()); }
+                if (!Radius) { DeSerializeError("find Radius Attribute",CapsuleCollisionShape::GetSerializableName()); }
                 XML::Attribute Height = OneNode.GetAttribute("Height");
-                if (!Height) { DeSerializeError("find Height Attribute",CapsuleCollisionShape::SerializableName()); }
+                if (!Height) { DeSerializeError("find Height Attribute",CapsuleCollisionShape::GetSerializableName()); }
                 //SetPointers(new CapsuleCollisionShape(Name_,Radius.AsReal(),Height.AsReal(), (StandardAxis)Axis.AsInteger());  // make and deserialize the shape
                 this->Construct(Name_,Radius.AsReal(),Height.AsReal(),(StandardAxis)Axis.AsInteger());
                 */
@@ -93,7 +93,7 @@ namespace Mezzanine
                 this->ProtoDeSerialize(OneNode);
 
             }else{
-                DeSerializeError("find usable serialization version",CapsuleCollisionShape::SerializableName());
+                DeSerializeError("find usable serialization version",CapsuleCollisionShape::GetSerializableName());
             }
         }
 
@@ -138,55 +138,55 @@ namespace Mezzanine
 
         void CapsuleCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node CollisionNode = CurrentRoot.AppendChild(this->CapsuleCollisionShape::SerializableName());
-            if (!CollisionNode) { SerializeError("create CollisionNode",this->CapsuleCollisionShape::SerializableName());}
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->CapsuleCollisionShape::GetSerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->CapsuleCollisionShape::GetSerializableName());}
 
             XML::Attribute Version = CollisionNode.AppendAttribute("Version");
             if (Version)
                 { Version.SetValue(1); }
             else
-                { SerializeError("Create Version Attribute", SerializableName()); }
+                { SerializeError("Create Version Attribute", GetSerializableName()); }
 /*
             XML::Attribute RadiusAttr = CollisionNode.AppendAttribute("Radius");
             if (RadiusAttr)
                 { RadiusAttr.SetValue(this->GetCleanRadius()); }
             else
-                { SerializeError("Create RadiusAttr Attribute", SerializableName()); }
+                { SerializeError("Create RadiusAttr Attribute", GetSerializableName()); }
 
             XML::Attribute HeightAttr = CollisionNode.AppendAttribute("Height");
             if (HeightAttr)
                 { HeightAttr.SetValue(this->GetCleanHeight()); }
             else
-                { SerializeError("Create HeightAttr Attribute", SerializableName()); }
+                { SerializeError("Create HeightAttr Attribute", GetSerializableName()); }
 */
             XML::Attribute AxisAttr = CollisionNode.AppendAttribute("Axis");
             if (AxisAttr)
                 { AxisAttr.SetValue(this->GetUpStandardAxis()); }
             else
-                { SerializeError("Create AxisAttr Attribute", SerializableName()); }
+                { SerializeError("Create AxisAttr Attribute", GetSerializableName()); }
 
             this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
         }
 
         void CapsuleCollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->CapsuleCollisionShape::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->CapsuleCollisionShape::GetSerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    XML::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                    XML::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::GetSerializableName());
                     if(!CollisionNode)
-                        { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                        { DeSerializeError("locate PrimitiveCollisionShape node",GetSerializableName()); }
                     this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    DeSerializeError("find usable serialization version",GetSerializableName());
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),GetSerializableName());
             }
         }
 
-        String CapsuleCollisionShape::SerializableName()
+        String CapsuleCollisionShape::GetSerializableName()
             {   return String("CapsuleCollisionShape"); }
     }//Physics
 }//Mezzanine

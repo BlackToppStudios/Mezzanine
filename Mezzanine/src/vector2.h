@@ -278,7 +278,7 @@ namespace Mezzanine
 
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "Vector2"
-        static String SerializableName();
+        static String GetSerializableName();
     };//Vector2
 
     ///////////////////////////////////////////////////////////////////////////////

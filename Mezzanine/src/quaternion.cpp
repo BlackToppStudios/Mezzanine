@@ -501,8 +501,8 @@ namespace Mezzanine
     // Serializable
     void Quaternion::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
-        VecNode.SetName(SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(GetSerializableName());
+        VecNode.SetName(GetSerializableName());
 
         Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
         Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
@@ -515,17 +515,17 @@ namespace Mezzanine
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values", SerializableName(),true);
+                SerializeError("Create XML Attribute Values", GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Attributes", SerializableName(),true);
+            SerializeError("Create XML Attributes", GetSerializableName(),true);
         }
     }
 
     // DeSerializable
     void Quaternion::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(GetSerializableName()) )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
@@ -534,14 +534,14 @@ namespace Mezzanine
                 this->Z=OneNode.GetAttribute("Z").AsReal();
                 this->W=OneNode.GetAttribute("W").AsReal();
             }else{
-                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
+            MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
         }
     }
 
-    String Quaternion::SerializableName()
+    String Quaternion::GetSerializableName()
         { return String("Quaternion"); }
 
 }
