@@ -293,7 +293,6 @@ namespace Mezzanine
     class AreaEffectManager;
     class DebrisManager;
     class EventManager;
-    class NetworkManager;
     class EntresolManager;
     class EntresolManagerFactory;
     class World;
@@ -313,6 +312,10 @@ namespace Mezzanine
     namespace Input
     {
         class InputManager;
+    }
+    namespace Network
+    {
+        class NetworkManager;
     }
     namespace Physics
     {
@@ -363,7 +366,6 @@ namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Entresol
-    /// @headerfile entresol.h
     /// @brief This is the main entry point for the entire library.
     /// @details The entresol coordinates and integrates all the underlying subsystems,
     /// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and
@@ -713,7 +715,7 @@ namespace Mezzanine
         /// @brief This gets the NetworkManager from the manager list.
         /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.
         /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
-        NetworkManager* GetNetworkManager(const UInt16 WhichOne = 0);
+        Network::NetworkManager* GetNetworkManager(const UInt16 WhichOne = 0);
 #endif
         /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
         /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.

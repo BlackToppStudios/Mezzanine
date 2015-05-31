@@ -123,8 +123,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}matrix4x4.h"
         "${${PROJECT_NAME}_SRC_DIR}meshterrain.h"
         "${${PROJECT_NAME}_SRC_DIR}mezzanine.h"
-        "${${PROJECT_NAME}_SRC_DIR}network.h" # Should be moved to Network
-        "${${PROJECT_NAME}_SRC_DIR}networkmanager.h" # Should be moved to Network
         "${${PROJECT_NAME}_SRC_DIR}objectsettings.h"
         "${${PROJECT_NAME}_SRC_DIR}plane.h"
         "${${PROJECT_NAME}_SRC_DIR}pstdint.h"
@@ -330,6 +328,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}MathTools/randomnumber.h"
         "${${PROJECT_NAME}_SRC_DIR}MathTools/trigonometry.h"
         # Network Items
+        "${${PROJECT_NAME}_SRC_DIR}Network/network.h"
+        "${${PROJECT_NAME}_SRC_DIR}Network/networkmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/ipaddress.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/packet.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/socket.h"
@@ -596,7 +596,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}matrix3x3.cpp"
         "${${PROJECT_NAME}_SRC_DIR}matrix4x4.cpp"
         "${${PROJECT_NAME}_SRC_DIR}meshterrain.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}networkmanager.cpp" # Should be moved to Network
         "${${PROJECT_NAME}_SRC_DIR}objectsettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}plane.cpp"
         "${${PROJECT_NAME}_SRC_DIR}quaternion.cpp"
@@ -768,6 +767,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}MathTools/randomnumber.cpp"
         "${${PROJECT_NAME}_SRC_DIR}MathTools/trigonometry.cpp"
         # Network Items
+        "${${PROJECT_NAME}_SRC_DIR}Network/networkmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/ipaddress.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/packet.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/socket.cpp"

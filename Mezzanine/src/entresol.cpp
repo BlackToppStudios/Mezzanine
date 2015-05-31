@@ -733,9 +733,6 @@ namespace Mezzanine
         //DefaultMeshManager
         ManIt = this->ManagerFactories.find("DefaultMeshManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultMeshManagerFactory());
-        //DefaultNetworkManager
-        ManIt = this->ManagerFactories.find("DefaultNetworkManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultNetworkManagerFactory());
         //DefaultResourceManager
         ManIt = this->ManagerFactories.find("DefaultResourceManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Resource::DefaultResourceManagerFactory());
@@ -752,11 +749,16 @@ namespace Mezzanine
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Audio::OALS::OALSAudioManagerFactory());
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
+        #ifdef MEZZNETWORK
+        //DefaultNetworkManager
+        ManIt = this->ManagerFactories.find("DefaultNetworkManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Network::DefaultNetworkManagerFactory());
+        #endif //MEZZNETWORK
+
         #ifdef MEZZLUA51
         ManIt = this->ManagerFactories.find("Lua51ScriptingEngine");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Scripting::Lua::Lua51ScriptingEngineFactory());
-        #endif
-
+        #endif //MEZZLUA51
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -914,12 +916,11 @@ namespace Mezzanine
         return dynamic_cast<Graphics::MeshManager*>( this->GetManager(ManagerBase::MT_MeshManager, WhichOne) );
     }
     #ifdef MEZZNETWORK
-    NetworkManager* Entresol::GetNetworkManager(const UInt16 WhichOne)
+    Network::NetworkManager* Entresol::GetNetworkManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<NetworkManager*>( this->GetManager(ManagerBase::MT_NetworkManager, WhichOne) );
+        return dynamic_cast<Network::NetworkManager*>( this->GetManager(ManagerBase::MT_NetworkManager, WhichOne) );
     }
     #endif
-
     Resource::ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
     {
         return dynamic_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager, WhichOne) );

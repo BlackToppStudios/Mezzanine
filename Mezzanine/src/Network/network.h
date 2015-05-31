@@ -55,7 +55,8 @@ namespace Mezzanine
     }
 }
 
-//#include "networkenumerations.h"
+//#include "Network/networkenumerations.h"
+#include "Network/networkmanager.h"
 
 #include "Network/ipaddress.h"
 #include "Network/packet.h"
