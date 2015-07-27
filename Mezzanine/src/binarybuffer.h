@@ -210,7 +210,7 @@ namespace Mezzanine
         /// @return This returns the exact length of the result once it is encoded. The Base64 is about 133% of the binary size, but that can be off by just enough to make memory allocation an issue if not calcualated carefully.
         Whole MEZZ_LIB PredictBase64StringSizeFromBinarySize(Whole Length);
 
-    } //stringtool
+    } //binarytools
 }//Mezzanine
 
 #endif
