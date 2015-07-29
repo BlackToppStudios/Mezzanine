@@ -511,12 +511,21 @@ option (Mezz_Doc "Refresh Doxygen documentation during a build" OFF)
 
 if(Mezz_Doc)
     Message(STATUS "Starting Doxygen Configuration.")
+    if(${WIN32})
+        set(CatCommand "type")
+    else(${WIN32})
+        set(CatCommand "cat")
+    endif(${WIN32})
+
     find_package(Doxygen)
     if(DOXYGEN_FOUND)
         add_custom_target(MezzanineDocumentation ALL
-            ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+            COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+            COMMAND ${CatCommand} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt 1>&2
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
             COMMENT "Generating API documentation with Doxygen" VERBATIM
+            SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt
         )
     else(DOXYGEN_FOUND)
         Message(STATUS "Doxygen not found.")
