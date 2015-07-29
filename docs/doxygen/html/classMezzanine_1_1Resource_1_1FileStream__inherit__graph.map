@@ -1,3 +1,6 @@
 <map id="Mezzanine::Resource::FileStream" name="Mezzanine::Resource::FileStream">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1DataStream.html" title="This represents a stream to a piece of data, usually a file. " alt="" coords="5,6,155,53"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1IOStream.html" title="Base class for streams that support both read and write operations. " alt="" coords="207,184,299,211"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Resource_1_1iIStream.html" title="Interface class for input (read) streams. " alt="" coords="5,95,155,136"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Resource_1_1iStreamBase.html" title="Base class interface for resource streams. " alt="" coords="92,5,241,47"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Resource_1_1iOStream.html" title="Interface class for output (write) streams. " alt="" coords="179,95,328,136"/>
 </map>

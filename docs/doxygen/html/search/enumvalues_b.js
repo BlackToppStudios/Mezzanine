@@ -2,6 +2,8 @@ var searchData=
 [
   ['mathlib',['MathLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0a80265df8f1a6f166559200b6a468b4e7',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
   ['mezzlib',['MezzLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0ae981da8e123667aa6416431ae74c83ae',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
+  ['mezzmathtoolslib',['MezzMathToolsLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0ab038577bfe39c4319a7acaa8d5473bc6',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
+  ['mezzmathtoolssafelib',['MezzMathToolsSafeLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0ac6528e863a021b590bd9acd96f2d6d25',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
   ['mezzphysicslib',['MezzPhysicsLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0a41ab668cfaee107c75c8eb0bf03a2f31',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
   ['mezzphysicssafelib',['MezzPhysicsSafeLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0a3788b0c02b40bd0c41dabd1eddce2c7a',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
   ['mezzsafelib',['MezzSafeLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0a9c3a0272b5457c2dfbaec6ccc03b0412',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],

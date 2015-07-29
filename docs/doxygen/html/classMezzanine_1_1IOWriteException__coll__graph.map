@@ -1,5 +1,5 @@
 <map id="Mezzanine::IOWriteException" name="Mezzanine::IOWriteException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="20,160,185,189"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="28,83,177,112"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="51,5,155,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="21,155,186,181"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="28,80,179,107"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="51,5,155,32"/>
 </map>

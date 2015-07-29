@@ -6,5 +6,5 @@ var searchData=
   ['uint8',['UInt8',['../namespaceMezzanine.html#aa5f38583d9025e05fa33d6e32e97b457',1,'Mezzanine']]],
   ['unnamedassetcontainer',['UnnamedAssetContainer',['../classMezzanine_1_1Resource_1_1AssetGroup.html#aa3f311efde0d4ad10027e14154389ca2',1,'Mezzanine::Resource::AssetGroup']]],
   ['unnamedassetiterator',['UnnamedAssetIterator',['../classMezzanine_1_1Resource_1_1AssetGroup.html#a77f7e6d1424da95caff81551a0f428b7',1,'Mezzanine::Resource::AssetGroup']]],
-  ['unspecified_5fbool_5ftype',['unspecified_bool_type',['../classMezzanine_1_1XML_1_1Node.html#ab27e92b7cbb929588c815d054861664d',1,'Mezzanine::XML::Node']]]
+  ['unspecified_5fbool_5ftype',['unspecified_bool_type',['../classMezzanine_1_1XML_1_1Node.html#a35849095038d380fbacdb0707980cd0c',1,'Mezzanine::XML::Node']]]
 ];

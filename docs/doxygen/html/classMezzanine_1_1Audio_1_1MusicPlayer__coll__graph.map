@@ -1,5 +1,5 @@
 <map id="Mezzanine::Audio::MusicPlayer" name="Mezzanine::Audio::MusicPlayer">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Audio_1_1Playlist.html" title="This class is a list of sounds with common playlist features. " alt="" coords="7,181,183,211"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="5,101,184,131"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Audio_1_1iSound.html" title="This is an interface class for a non&#45;spacialized sound. " alt="" coords="207,181,380,211"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Audio_1_1Playlist.html" title="This class is a list of sounds with common playlist features. " alt="" coords="6,171,183,197"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="5,95,184,121"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Audio_1_1iSound.html" title="This is an interface class for a non&#45;spacialized sound. " alt="" coords="207,171,382,197"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="Mezzanine::UI::ImageLayer" name="Mezzanine::UI::ImageLayer">
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1MultiImageLayer.html" title="This is an image layer that supports rendering of multiple images within it&#39;s space. " alt="" coords="5,315,184,362"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1SingleImageLayer.html" title="This is an image layer that supports rendering only a single image/sprite. " alt="" coords="208,315,395,362"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ..." alt="" coords="103,160,292,189"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="99,83,296,112"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with. " alt="" coords="93,5,301,35"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1MultiImageLayer.html" title="This is an image layer that supports rendering of multiple images within it&#39;s space. " alt="" coords="5,304,184,345"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1SingleImageLayer.html" title="This is an image layer that supports rendering only a single image/sprite. " alt="" coords="208,304,395,345"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ..." alt="" coords="103,155,292,181"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="98,80,297,107"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with. " alt="" coords="93,5,301,32"/>
 </map>

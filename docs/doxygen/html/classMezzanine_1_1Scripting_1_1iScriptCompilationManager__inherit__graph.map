@@ -1,5 +1,6 @@
 <map id="Mezzanine::Scripting::iScriptCompilationManager" name="Mezzanine::Scripting::iScriptCompilationManager">
-<area shape="rect" id="node7" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html" title="The workhorse of the Lua scripting system. All scripts come here to be executed. " alt="" coords="7,275,191,322"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScriptingManager.html" title="What a scripting manager should look like. " alt="" coords="27,83,171,130"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="12,5,185,35"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html" title="The workhorse of the Lua scripting system. All scripts come here to be executed. " alt="" coords="8,333,193,375"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScriptingManager.html" title="What a scripting manager should look like. " alt="" coords="29,155,173,196"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1EntresolManager.html" title="This is the base class for all managers that do no describe properties of a single world..." alt="" coords="5,80,196,107"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="14,5,187,32"/>
 </map>

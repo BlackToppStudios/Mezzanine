@@ -1,8 +1,8 @@
 <map id="Mezzanine::ObjectSettingsHandler" name="Mezzanine::ObjectSettingsHandler">
-<area shape="rect" id="node4" href="$classMezzanine_1_1ObjectSettingFile.html" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s. " alt="" coords="409,177,601,207"/>
-<area shape="rect" id="node12" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together. " alt="" coords="773,222,944,269"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="184,244,264,273"/>
-<area shape="rect" id="node14" href="$classMezzanine_1_1ObjectSettingSetContainer.html" title="A base class for other classes that store ObjectSettingSet&#39;s. " alt="" coords="420,347,591,394"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="7,235,132,282"/>
-<area shape="rect" id="node18" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object. " alt="" coords="763,428,955,457"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ObjectSettingFile.html" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s. " alt="" coords="405,167,599,193"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together. " alt="" coords="769,213,941,254"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="181,231,261,257"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1ObjectSettingSetContainer.html" title="A base class for other classes that store ObjectSettingSet&#39;s. " alt="" coords="416,335,588,377"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="5,223,132,265"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object. " alt="" coords="759,408,951,435"/>
 </map>

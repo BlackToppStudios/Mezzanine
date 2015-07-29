@@ -1,22 +1,22 @@
 <map id="Mezzanine::IOException" name="Mezzanine::IOException">
-<area shape="rect" id="node7" href="$classMezzanine_1_1DirectoryException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="572,152,775,181"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1FileException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="588,375,759,404"/>
-<area shape="rect" id="node27" href="$classMezzanine_1_1IOReadException.html" title="Thrown when a read is happening but something has prevented the underlying code from knowing what was..." alt="" coords="576,428,771,457"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1IOWriteException.html" title="Thrown when a write is happening but something has prevented the underlying code from knowing what wa..." alt="" coords="576,481,771,511"/>
-<area shape="rect" id="node31" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail. " alt="" coords="573,620,773,649"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="159,428,308,457"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="5,428,109,457"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1DirectoryNotFoundException.html" title="Thrown when a directory was expected to be there, but was not. " alt="" coords="839,5,1041,51"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1DirectoryPermissionException.html" title="Thrown when permission is denied to a directory. " alt="" coords="835,74,1045,121"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1DirectoryReadException.html" title="Thrown when a directory could be read and it wasn&#39;t a permission issue. " alt="" coords="852,143,1028,190"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1DirectoryWriteException.html" title="Thrown when a directory could be written to and it wasn&#39;t a permission issue. " alt="" coords="852,213,1028,259"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1FileNotFoundException.html" title="Thrown when a file was expected to be there, but was not. " alt="" coords="825,283,1055,312"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1FilePermissionException.html" title="Thrown when permission was denied to a file. " alt="" coords="851,335,1029,382"/>
-<area shape="rect" id="node23" href="$classMezzanine_1_1FileReadException.html" title="Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware iss..." alt="" coords="839,405,1041,435"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1FileWriteException.html" title="Thrown when a file could not be written and perimssions seem not to be an issue. " alt="" coords="839,459,1041,488"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1NetworkNotFoundException.html" title="Thrown when no network connection is available. " alt="" coords="841,511,1039,558"/>
-<area shape="rect" id="node35" href="$classMezzanine_1_1NetworkPermissionException.html" title="Thrown when permision was denied to a network interface or network resource. " alt="" coords="837,581,1043,627"/>
-<area shape="rect" id="node37" href="$classMezzanine_1_1NetworkReadException.html" title="Thrown when data could not be read from the network (downloads). " alt="" coords="825,651,1055,680"/>
-<area shape="rect" id="node39" href="$classMezzanine_1_1NetworkURLException.html" title="Thrown when an address is invalid or could not be found. " alt="" coords="827,704,1053,733"/>
-<area shape="rect" id="node41" href="$classMezzanine_1_1NetworkWriteException.html" title="Thrown when data could not be read from the network (iloads). " alt="" coords="825,757,1055,787"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1DirectoryException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="569,143,773,170"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1FileException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="585,355,757,382"/>
+<area shape="rect" id="node14" href="$classMezzanine_1_1IOReadException.html" title="Thrown when a read is happening but something has prevented the underlying code from knowing what was..." alt="" coords="573,406,769,433"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1IOWriteException.html" title="Thrown when a write is happening but something has prevented the underlying code from knowing what wa..." alt="" coords="573,457,769,483"/>
+<area shape="rect" id="node16" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail. " alt="" coords="571,589,771,615"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="157,406,308,433"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="5,406,109,433"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1DirectoryNotFoundException.html" title="Thrown when a directory was expected to be there, but was not. " alt="" coords="835,5,1038,47"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1DirectoryPermissionException.html" title="Thrown when permission is denied to a directory. " alt="" coords="831,71,1042,112"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1DirectoryReadException.html" title="Thrown when a directory could be read and it wasn&#39;t a permission issue. " alt="" coords="848,136,1025,177"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1DirectoryWriteException.html" title="Thrown when a directory could be written to and it wasn&#39;t a permission issue. " alt="" coords="848,201,1025,243"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1FileNotFoundException.html" title="Thrown when a file was expected to be there, but was not. " alt="" coords="822,267,1051,294"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1FilePermissionException.html" title="Thrown when permission was denied to a file. " alt="" coords="847,319,1026,360"/>
+<area shape="rect" id="node12" href="$classMezzanine_1_1FileReadException.html" title="Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware iss..." alt="" coords="835,385,1038,411"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1FileWriteException.html" title="Thrown when a file could not be written and perimssions seem not to be an issue. " alt="" coords="835,435,1038,462"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1NetworkNotFoundException.html" title="Thrown when no network connection is available. " alt="" coords="837,487,1036,528"/>
+<area shape="rect" id="node18" href="$classMezzanine_1_1NetworkPermissionException.html" title="Thrown when permision was denied to a network interface or network resource. " alt="" coords="833,552,1040,593"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1NetworkReadException.html" title="Thrown when data could not be read from the network (downloads). " alt="" coords="821,618,1052,645"/>
+<area shape="rect" id="node20" href="$classMezzanine_1_1NetworkURLException.html" title="Thrown when an address is invalid or could not be found. " alt="" coords="823,669,1050,695"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1NetworkWriteException.html" title="Thrown when data could not be read from the network (iloads). " alt="" coords="821,719,1052,746"/>
 </map>

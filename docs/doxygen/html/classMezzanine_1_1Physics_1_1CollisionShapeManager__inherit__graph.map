@@ -1,4 +1,5 @@
 <map id="Mezzanine::Physics::CollisionShapeManager" name="Mezzanine::Physics::CollisionShapeManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="5,15,179,44"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;" alt="" coords="203,6,384,53"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EntresolManager.html" title="This is the base class for all managers that do no describe properties of a single world..." alt="" coords="5,87,196,114"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="14,5,187,32"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;" alt="" coords="220,80,403,121"/>
 </map>

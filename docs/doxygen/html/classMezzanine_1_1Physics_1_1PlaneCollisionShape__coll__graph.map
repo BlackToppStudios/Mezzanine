@@ -1,6 +1,6 @@
 <map id="Mezzanine::Physics::PlaneCollisionShape" name="Mezzanine::Physics::PlaneCollisionShape">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes. " alt="" coords="8,299,152,346"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="11,201,149,247"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="40,104,120,133"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="17,6,143,53"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes. " alt="" coords="8,276,153,317"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="11,185,151,227"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="41,96,121,123"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="17,5,144,47"/>
 </map>

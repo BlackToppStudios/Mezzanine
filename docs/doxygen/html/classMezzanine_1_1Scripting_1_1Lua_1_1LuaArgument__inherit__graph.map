@@ -1,8 +1,8 @@
 <map id="Mezzanine::Scripting::Lua::LuaArgument" name="Mezzanine::Scripting::Lua::LuaArgument">
-<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51BoolArgument.html" title="No special care is required for Bool Lua Arguments, so a simple typedef is used. " alt="" coords="205,5,381,51"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51IntegerArgument.html" title="The implementations in the ScriptArgumentGeneric&lt;Integer&gt; will cover most of what this needs..." alt="" coords="199,74,388,121"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51NilArgument.html" title="Represents not much of anything but will insert and retrieves Nils from Lua51. " alt="" coords="211,143,376,190"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51RealArgument.html" title="A Real that can readily be passed into lua scripts. " alt="" coords="205,213,381,259"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51StringArgument.html" title="No special care is required for String Lua Arguments, so a simple typedef is used. " alt="" coords="201,282,385,329"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51WholeArgument.html" title="No special care is required for Whole number Lua Arguments, so a simple typedef is used..." alt="" coords="200,351,387,398"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51BoolArgument.html" title="No special care is required for Bool Lua Arguments, so a simple typedef is used. " alt="" coords="205,5,381,47"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51IntegerArgument.html" title="The implementations in the ScriptArgumentGeneric&lt;Integer&gt; will cover most of what this needs..." alt="" coords="197,71,388,112"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51NilArgument.html" title="Represents not much of anything but will insert and retrieves Nils from Lua51. " alt="" coords="209,136,376,177"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51RealArgument.html" title="A Real that can readily be passed into lua scripts. " alt="" coords="204,201,381,243"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51StringArgument.html" title="No special care is required for String Lua Arguments, so a simple typedef is used. " alt="" coords="201,267,385,308"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51WholeArgument.html" title="No special care is required for Whole number Lua Arguments, so a simple typedef is used..." alt="" coords="199,332,386,373"/>
 </map>

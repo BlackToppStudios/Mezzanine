@@ -7,6 +7,5 @@ var searchData=
   ['mezz_5fframestotrack',['MEZZ_FRAMESTOTRACK',['../crossplatformexport_8h.html#ac384449f00498b42a495646c6aecfb8f',1,'crossplatformexport.h']]],
   ['mezz_5flib',['MEZZ_LIB',['../crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc',1,'crossplatformexport.h']]],
   ['mezz_5fuseatomicstodecachecompletework',['MEZZ_USEATOMICSTODECACHECOMPLETEWORK',['../crossplatformexport_8h.html#a491f7cf4e0e45f1f6e9a0098eff815a0',1,'crossplatformexport.h']]],
-  ['mezz_5fusebarrierseachframe',['MEZZ_USEBARRIERSEACHFRAME',['../crossplatformexport_8h.html#a922f06bad05fd18425c1c933801686d3',1,'crossplatformexport.h']]],
   ['mezzanine_5fcore',['MEZZANINE_CORE',['../datatypes_8h.html#a58db5a0caf6e8c4282a42447a735cca2',1,'datatypes.h']]]
 ];

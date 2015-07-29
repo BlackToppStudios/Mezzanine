@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['datastream',['DataStream',['../classMezzanine_1_1Resource_1_1DataStream.html',1,'Mezzanine::Resource']]],
   ['debris',['Debris',['../classMezzanine_1_1Debris.html',1,'Mezzanine']]],
   ['debrisfactory',['DebrisFactory',['../classMezzanine_1_1DebrisFactory.html',1,'Mezzanine']]],
   ['debrismanager',['DebrisManager',['../classMezzanine_1_1DebrisManager.html',1,'Mezzanine']]],
@@ -8,7 +7,6 @@ var searchData=
   ['debugdrawworkunit',['DebugDrawWorkUnit',['../classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html',1,'Mezzanine::Physics']]],
   ['defaultactormanagerfactory',['DefaultActorManagerFactory',['../classMezzanine_1_1DefaultActorManagerFactory.html',1,'Mezzanine']]],
   ['defaultareaeffectmanagerfactory',['DefaultAreaEffectManagerFactory',['../classMezzanine_1_1DefaultAreaEffectManagerFactory.html',1,'Mezzanine']]],
-  ['defaultcameramanagerfactory',['DefaultCameraManagerFactory',['../classMezzanine_1_1Graphics_1_1DefaultCameraManagerFactory.html',1,'Mezzanine::Graphics']]],
   ['defaultcollisionshapemanagerfactory',['DefaultCollisionShapeManagerFactory',['../classMezzanine_1_1Physics_1_1DefaultCollisionShapeManagerFactory.html',1,'Mezzanine::Physics']]],
   ['defaultcolourtag',['DefaultColourTag',['../classMezzanine_1_1UI_1_1DefaultColourTag.html',1,'Mezzanine::UI']]],
   ['defaultdebrismanagerfactory',['DefaultDebrisManagerFactory',['../classMezzanine_1_1DefaultDebrisManagerFactory.html',1,'Mezzanine']]],
@@ -25,6 +23,7 @@ var searchData=
   ['defaultscenemanagerfactory',['DefaultSceneManagerFactory',['../classMezzanine_1_1Graphics_1_1DefaultSceneManagerFactory.html',1,'Mezzanine::Graphics']]],
   ['defaultspritetag',['DefaultSpriteTag',['../classMezzanine_1_1UI_1_1DefaultSpriteTag.html',1,'Mezzanine::UI']]],
   ['defaultterrainmanagerfactory',['DefaultTerrainManagerFactory',['../classMezzanine_1_1DefaultTerrainManagerFactory.html',1,'Mezzanine']]],
+  ['defaulttexturemanagerfactory',['DefaultTextureManagerFactory',['../classMezzanine_1_1Graphics_1_1DefaultTextureManagerFactory.html',1,'Mezzanine::Graphics']]],
   ['defaultthreadspecificstorage',['DefaultThreadSpecificStorage',['../structMezzanine_1_1Threading_1_1DefaultThreadSpecificStorage.html',1,'Mezzanine::Threading']]],
   ['defaultuimanagerfactory',['DefaultUIManagerFactory',['../classMezzanine_1_1UI_1_1DefaultUIManagerFactory.html',1,'Mezzanine::UI']]],
   ['defaultworkunit',['DefaultWorkUnit',['../classMezzanine_1_1Threading_1_1DefaultWorkUnit.html',1,'Mezzanine::Threading']]],

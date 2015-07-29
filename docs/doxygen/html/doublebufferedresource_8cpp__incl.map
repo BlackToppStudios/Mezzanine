@@ -1,14 +1,14 @@
-<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/doublebufferedresource.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/doublebufferedresource.cpp">
-<area shape="rect" id="node2" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="763,408,853,435"/>
+<map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/doublebufferedresource.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/doublebufferedresource.cpp">
+<area shape="rect" id="node2" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="763,408,854,435"/>
 <area shape="rect" id="node20" href="$doublebufferedresource_8h.html" title="This file defines the template double buffered resources that can be attached to a thread..." alt="" coords="547,184,715,211"/>
-<area shape="rect" id="node21" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class. " alt="" coords="777,109,900,136"/>
-<area shape="rect" id="node3" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,483,152,509"/>
-<area shape="rect" id="node19" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1455,483,1515,509"/>
-<area shape="rect" id="node22" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="840,184,909,211"/>
-<area shape="rect" id="node23" href="$systemcalls_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="743,259,845,285"/>
-<area shape="rect" id="node26" href="$workunitkey_8h.html" title="This file defines the metadata used to sort workunits. " alt="" coords="950,333,1052,360"/>
-<area shape="rect" id="node27" href="$spinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. " alt="" coords="1033,259,1113,285"/>
-<area shape="rect" id="node28" href="$rollingaverage_8h.html" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. " alt="" coords="1129,333,1241,360"/>
-<area shape="rect" id="node24" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. " alt="" coords="871,259,940,285"/>
-<area shape="rect" id="node25" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically. " alt="" coords="794,333,925,360"/>
+<area shape="rect" id="node21" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class. " alt="" coords="778,109,901,136"/>
+<area shape="rect" id="node3" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,483,153,509"/>
+<area shape="rect" id="node19" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1456,483,1516,509"/>
+<area shape="rect" id="node22" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="841,184,910,211"/>
+<area shape="rect" id="node23" href="$systemcalls_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="744,259,847,285"/>
+<area shape="rect" id="node26" href="$workunitkey_8h.html" title="This file defines the metadata used to sort workunits. " alt="" coords="951,333,1053,360"/>
+<area shape="rect" id="node27" href="$spinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. " alt="" coords="1033,259,1115,285"/>
+<area shape="rect" id="node28" href="$rollingaverage_8h.html" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. " alt="" coords="1129,333,1243,360"/>
+<area shape="rect" id="node24" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. " alt="" coords="871,259,941,285"/>
+<area shape="rect" id="node25" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically. " alt="" coords="795,333,927,360"/>
 </map>

@@ -1,5 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1ObjectSettingSetContainer.html" title="A base class for other classes that store ObjectSettingSet&#39;s. " alt="" coords="6,34,178,75"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together. " alt="" coords="237,5,409,46"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object. " alt="" coords="227,71,419,97"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1NodeItem.html" title="Mezzanine::NodeItem\l\&lt; T, V, Cmp, Items \&gt;" alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EndNodeItem.html" title="Mezzanine::EndNodeItem\l\&lt; T, V, Cmp, Items \&gt;" alt="" coords="204,5,377,47"/>
 </map>
