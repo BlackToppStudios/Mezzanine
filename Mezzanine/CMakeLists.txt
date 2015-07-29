@@ -1297,20 +1297,24 @@ if(${Mezz_SWIG})
     #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
 
     set(SWIG_PROJECT "SWIG_${PROJECT_NAME}")
-    add_library(${SWIG_PROJECT} SHARED "${${PROJECT_NAME}_SRC_DIR}blank.cpp" )
+    #add_library(${SWIG_PROJECT} SHARED "${${PROJECT_NAME}_SRC_DIR}blank.cpp" )
+
+    # Exists solely to Aggregate other projects
+    add_custom_target(
+        ${SWIG_PROJECT}
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine with Swig"
+    )
 
     if(${Mezz_Lua51})
-        # mezzanine.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_MainLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Main library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
+        add_custom_target(
+            ${SWIG_PROJECT}_MainLua51Unsafe
             PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Main library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h
@@ -1318,114 +1322,125 @@ if(${Mezz_SWIG})
             VERBATIM
         )
         # XML/xml.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_XMLLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine XML library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_XMLLua51Unsafe
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # Threading/dagframescheduler.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_ThreadingLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Threading library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_ThreadingLua51Unsafe
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # Physics/physics.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_PhysicsLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Physics library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -o Scripting/Lua51/scriptbindingphysicslua51.cpp Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_PhysicsLua51Unsafe
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # MathTools/mathtools.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_MathToolsLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine MathTools library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MATHTOOLS -o Scripting/Lua51/scriptbindingmathtoolslua51.cpp MathTools/mathtools.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_MathToolsLua51Unsafe
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine MathTools library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MATHTOOLS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmathtoolslua51unsafe.cpp MathTools/mathtools.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
+
+        add_dependencies(${SWIG_PROJECT}
+            ${SWIG_PROJECT}_MainLua51           ${SWIG_PROJECT}_MainLua51Unsafe
+            ${SWIG_PROJECT}_XMLLua51            ${SWIG_PROJECT}_XMLLua51Unsafe
+            ${SWIG_PROJECT}_ThreadingLua51      ${SWIG_PROJECT}_ThreadingLua51Unsafe
+            ${SWIG_PROJECT}_PhysicsLua51        ${SWIG_PROJECT}_PhysicsLua51Unsafe
+            ${SWIG_PROJECT}_MathToolsLua51      ${SWIG_PROJECT}_MathToolsLua51Unsafe
+        )
     endif(${Mezz_Lua51})
 
     if(${Mezz_Ruby})
         # mezzanine.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_MainRuby
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Main library for Ruby."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingmainrubyunsafe.cpp mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # XML/xml.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_XMLRuby
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library for Ruby."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingxmlrubyunsafe.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # Threading/dagframescheduler.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_ThreadingRuby
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading library for Ruby."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingthreadingrubyunsafe.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # Physics/physics.h
-        add_custom_command(
-            TARGET ${SWIG_PROJECT}
-            PRE_BUILD
+        add_custom_target(
+            ${SWIG_PROJECT}_PhysicsRuby
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Ruby."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingphysicsrubyunsafe.cpp Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
+        # MathTools/mathtools.h
+        add_custom_target(
+            ${SWIG_PROJECT}_MathToolsRuby
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingphysicsrubyunsafe.cpp MathTools/mathtools.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        add_dependencies(${SWIG_PROJECT}
+            ${SWIG_PROJECT}_MainRuby
+            ${SWIG_PROJECT}_XMLRuby
+            ${SWIG_PROJECT}_ThreadingRuby
+            ${SWIG_PROJECT}_PhysicsRuby
+            ${SWIG_PROJECT}_MathToolsRuby
+        )
     endif(${Mezz_Ruby})
-    # Add support for other languagews here
+    # Add support for other languages here
 endif(${Mezz_SWIG})
 
 #######################################
