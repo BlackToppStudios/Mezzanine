@@ -526,12 +526,50 @@ if(Mezz_Doc)
             COMMENT "Generating API documentation with Doxygen" VERBATIM
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/index.html
         )
     else(DOXYGEN_FOUND)
         Message(STATUS "Doxygen not found.")
     endif(DOXYGEN_FOUND)
     Message(STATUS "Finishing Doxygen Configuration.")
 endif(Mezz_Doc)
+
+###############################################################################
+# Doxygen options
+option (Mezz_Exception "Refresh exceptions on build" OFF)
+
+if(Mezz_Exception)
+#    Message(STATUS "Starting Doxygen Configuration.")
+#    if(${WIN32})
+#        set(CatCommand "type")
+#    else(${WIN32})
+#        set(CatCommand "cat")
+#    endif(${WIN32})
+
+#    find_package(Doxygen)
+#    if(DOXYGEN_FOUND)
+#        add_custom_target(MezzanineDocumentation ALL
+#            COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+#            COMMAND ${CatCommand} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt 1>&2
+#            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
+#            COMMENT "Generating API documentation with Doxygen" VERBATIM
+#            SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+#                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt
+#                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/index.html
+#        )
+#    else(DOXYGEN_FOUND)
+#        Message(STATUS "Doxygen not found.")
+#    endif(DOXYGEN_FOUND)
+#    Message(STATUS "Finishing Doxygen Configuration.")
+else(Mezz_Exception)
+    add_custom_target(MezzanineException ALL
+        COMMAND ${CMAKE_COMMAND} -E echo "Generating Exceptions and Exception factory"
+        COMMAND lua docs/ToolsExceptions/CppExceptionCreator.lua > GenExceptions.h
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/docs/ToolsExceptions/CppExceptionCreator.lua
+                ${CMAKE_CURRENT_SOURCE_DIR}/docs/ToolsExceptions/ExceptionDefinition.txt
+    )
+endif(Mezz_Exception)
 
 ###############################################################################
 # Network Library Define
