@@ -84,6 +84,9 @@ namespace Mezzanine
     const Whole& Exception::GetLine() const throw()
         { return Line; }
 
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Error Messages
     String Exception::GetCompleteMessage() const throw()
     {
         StringStream ErrorStream;
@@ -94,8 +97,6 @@ namespace Mezzanine
         return ErrorStream.str();
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Error Checking
     String Exception::what() throw()
         { return GetCompleteMessage(); }
 }//Mezzanine
