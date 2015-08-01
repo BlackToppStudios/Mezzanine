@@ -1,7 +1,7 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.cpp">
 <area shape="rect" id="node2" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="1189,781,1280,808"/>
 <area shape="rect" id="node20" href="$lua51script_8h.html" title="This file has the interface for the Lua scripts. " alt="" coords="664,109,760,136"/>
-<area shape="rect" id="node51" href="$exception_8h_source.html" title="exception.h" alt="" coords="207,333,297,360"/>
+<area shape="rect" id="node51" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="207,333,297,360"/>
 <area shape="rect" id="node52" href="$lua51scriptargument_8h.html" title="This file has the definition of the Script Arguments for Lua 51. " alt="" coords="785,109,935,136"/>
 <area shape="rect" id="node53" href="$lua51scriptingengine_8h.html" title="This file has the interface for the Lua based implementation of the Scripting system. " alt="" coords="471,109,622,136"/>
 <area shape="rect" id="node3" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="2407,856,2555,883"/>

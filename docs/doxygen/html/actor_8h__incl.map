@@ -12,7 +12,7 @@
 <area shape="rect" id="node56" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="2537,319,2631,345"/>
 <area shape="rect" id="node26" href="$interpolator_8h.html" title="Helper classes to assist in generating data points between two other data points. ..." alt="" coords="2111,393,2209,420"/>
 <area shape="rect" id="node31" href="$xml_8h_source.html" title="XML/xml.h" alt="" coords="1175,543,1260,569"/>
-<area shape="rect" id="node27" href="$exception_8h_source.html" title="exception.h" alt="" coords="2283,543,2373,569"/>
+<area shape="rect" id="node27" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="2283,543,2373,569"/>
 <area shape="rect" id="node28" href="$cubicspline_8h.html" title="cubicspline.h" alt="" coords="2397,543,2496,569"/>
 <area shape="rect" id="node29" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="1442,468,1545,495"/>
 <area shape="rect" id="node30" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="1998,841,2093,868"/>

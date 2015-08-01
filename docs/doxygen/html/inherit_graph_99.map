@@ -1,3 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorLuaException_1_1ExceptionCode_01_4.html" title="A template metaprogramming construct used to ensure that all required SyntaxErrorLuaException can be ..." alt="" coords="5,5,200,61"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1EventArguments.html" title="This is a common class to represent all possible arguments for a given event that is fired..." alt="" coords="5,46,196,73"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1ActionEventArguments.html" title="This is the base class for action specific event arguments. " alt="" coords="246,5,433,47"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1WidgetEventArguments.html" title="This is the base class for widget specific event arguments. " alt="" coords="244,71,435,112"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1ChildSelectedArguments.html" title="This is the EventArguments class for when a child of a paged container is selected. " alt="" coords="483,5,679,47"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1ScrollbarValueChangedArguments.html" title="This is the EventArguments class for when the scrollvalue of a scrollbar is updated. " alt="" coords="495,71,666,112"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1SpinnerValueChangedArguments.html" title="This is the EventArguments class for when the spinvalue of a Spinner is updated. " alt="" coords="485,136,677,177"/>
 </map>

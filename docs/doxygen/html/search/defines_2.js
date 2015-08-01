@@ -4,6 +4,7 @@ var searchData=
   ['mezz_5fdagframescheduler_5fminor_5fversion',['MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION',['../Mezzanine_2src_2Threading_2dagframescheduler_8h.html#ad10fe0ebc78e77428ec9a489a0235e60',1,'dagframescheduler.h']]],
   ['mezz_5fdagframescheduler_5frevision_5fversion',['MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION',['../Mezzanine_2src_2Threading_2dagframescheduler_8h.html#a999f430c652e796f2eca639234bcd7dc',1,'dagframescheduler.h']]],
   ['mezz_5fdeprecated',['MEZZ_DEPRECATED',['../crossplatformexport_8h.html#a14a9b1d6925edc7dfe269635bf2c861b',1,'crossplatformexport.h']]],
+  ['mezz_5fexception',['MEZZ_EXCEPTION',['../exception_8h.html#a141ef89c2aceb3978232b03f6e63d6c3',1,'exception.h']]],
   ['mezz_5fframestotrack',['MEZZ_FRAMESTOTRACK',['../crossplatformexport_8h.html#ac384449f00498b42a495646c6aecfb8f',1,'crossplatformexport.h']]],
   ['mezz_5flib',['MEZZ_LIB',['../crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc',1,'crossplatformexport.h']]],
   ['mezz_5fuseatomicstodecachecompletework',['MEZZ_USEATOMICSTODECACHECOMPLETEWORK',['../crossplatformexport_8h.html#a491f7cf4e0e45f1f6e9a0098eff815a0',1,'crossplatformexport.h']]],

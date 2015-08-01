@@ -1,7 +1,7 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/XML/xmlstring.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/XML/xmlstring.cpp">
 <area shape="rect" id="node2" href="$document_8h.html" title="The definition of the XML::Document Class. " alt="" coords="765,109,887,136"/>
 <area shape="rect" id="node30" href="$xmlstring_8h.html" title="A few functions to help the XML system perform conversions between UTF8 and the native wide character..." alt="" coords="1129,184,1246,211"/>
-<area shape="rect" id="node31" href="$exception_8h_source.html" title="exception.h" alt="" coords="1232,109,1321,136"/>
+<area shape="rect" id="node31" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="1232,109,1321,136"/>
 <area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="763,408,854,435"/>
 <area shape="rect" id="node21" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="982,333,1145,360"/>
 <area shape="rect" id="node22" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="999,259,1127,285"/>

@@ -31,5 +31,5 @@
 <area shape="rect" id="node32" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="1833,557,1992,584"/>
 <area shape="rect" id="node33" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="2169,632,2264,659"/>
 <area shape="rect" id="node48" href="$binarybuffer_8h_source.html" title="binarybuffer.h" alt="" coords="2289,632,2390,659"/>
-<area shape="rect" id="node50" href="$exception_8h_source.html" title="exception.h" alt="" coords="2421,333,2511,360"/>
+<area shape="rect" id="node50" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="2421,333,2511,360"/>
 </map>

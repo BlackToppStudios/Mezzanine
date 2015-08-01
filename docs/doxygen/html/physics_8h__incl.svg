@@ -863,7 +863,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node24 -->
 <g id="node24" class="node"><title>Node24</title>
-<g id="a_node24"><a xlink:href="exception_8h_source.html" target="_top" xlink:title="exception.h">
+<g id="a_node24"><a xlink:href="exception_8h.html" target="_top" xlink:title="This implements the exception hiearchy for Mezzanine. ">
 <polygon fill="white" stroke="black" points="861,-392.5 861,-411.5 928,-411.5 928,-392.5 861,-392.5"/>
 <text text-anchor="middle" x="894.5" y="-399.5" font-family="Helvetica,sans-Serif" font-size="10.00">exception.h</text>
 </a>

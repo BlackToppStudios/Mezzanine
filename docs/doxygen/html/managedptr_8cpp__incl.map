@@ -1,7 +1,7 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managedptr.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managedptr.cpp">
 <area shape="rect" id="node2" href="$managedptr_8h.html" title="The interface for a class useful for applying RAII when it should have been used but wasn&#39;t..." alt="" coords="758,95,859,121"/>
 <area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="763,244,854,271"/>
-<area shape="rect" id="node21" href="$exception_8h_source.html" title="exception.h" alt="" coords="805,169,895,196"/>
+<area shape="rect" id="node21" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="805,169,895,196"/>
 <area shape="rect" id="node4" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,319,153,345"/>
 <area shape="rect" id="node20" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1456,319,1516,345"/>
 </map>

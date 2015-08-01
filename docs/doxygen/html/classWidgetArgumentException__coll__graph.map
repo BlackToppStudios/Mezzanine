@@ -1,0 +1,5 @@
+<map id="WidgetArgumentException" name="WidgetArgumentException">
+<area shape="rect" id="node2" href="$classArgumentException.html" title="Thrown when something invalid is passed into a method. " alt="" coords="26,155,162,181"/>
+<area shape="rect" id="node3" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="39,80,149,107"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="42,5,146,32"/>
+</map>

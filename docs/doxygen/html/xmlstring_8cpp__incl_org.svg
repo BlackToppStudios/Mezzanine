@@ -44,7 +44,7 @@
 </g>
 <!-- Node31 -->
 <g id="node31" class="node"><title>Node31</title>
-<g id="a_node31"><a xlink:href="exception_8h_source.html" target="_top" xlink:title="exception.h">
+<g id="a_node31"><a xlink:href="exception_8h.html" target="_top" xlink:title="This implements the exception hiearchy for Mezzanine. ">
 <polygon fill="white" stroke="black" points="920,-280.5 920,-299.5 987,-299.5 987,-280.5 920,-280.5"/>
 <text text-anchor="middle" x="953.5" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">exception.h</text>
 </a>

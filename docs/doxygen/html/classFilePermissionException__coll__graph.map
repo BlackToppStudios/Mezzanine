@@ -1,0 +1,6 @@
+<map id="FilePermissionException" name="FilePermissionException">
+<area shape="rect" id="node2" href="$classFileException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="38,229,139,256"/>
+<area shape="rect" id="node3" href="$classIOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="41,155,136,181"/>
+<area shape="rect" id="node4" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="33,80,144,107"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="37,5,141,32"/>
+</map>

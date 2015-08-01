@@ -1,7 +1,7 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.cpp">
 <area shape="rect" id="node2" href="$renderableproxy_8h.html" title="This file contains the declaration for the base class from which graphics proxies inherit..." alt="" coords="2932,109,3113,136"/>
 <area shape="rect" id="node5" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here. " alt="" coords="3109,408,3219,435"/>
-<area shape="rect" id="node28" href="$exception_8h_source.html" title="exception.h" alt="" coords="761,483,850,509"/>
+<area shape="rect" id="node28" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="761,483,850,509"/>
 <area shape="rect" id="node30" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="2437,483,2539,509"/>
 <area shape="rect" id="node60" href="$scenemanager_8h_source.html" title="Graphics/scenemanager.h" alt="" coords="2401,259,2575,285"/>
 <area shape="rect" id="node81" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="3265,259,3351,285"/>

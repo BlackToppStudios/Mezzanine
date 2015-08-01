@@ -47,7 +47,7 @@
 <area shape="rect" id="node79" href="$monopoly_8h.html" title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread. " alt="" coords="341,707,492,733"/>
 <area shape="rect" id="node6" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="4245,1229,4393,1256"/>
 <area shape="rect" id="node23" href="$interval_8h_source.html" title="interval.h" alt="" coords="954,632,1029,659"/>
-<area shape="rect" id="node24" href="$exception_8h_source.html" title="exception.h" alt="" coords="1153,707,1243,733"/>
+<area shape="rect" id="node24" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="1153,707,1243,733"/>
 <area shape="rect" id="node25" href="$xml_8h_source.html" title="XML/xml.h" alt="" coords="2571,781,2657,808"/>
 <area shape="rect" id="node26" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="2341,1080,2471,1107"/>
 <area shape="rect" id="node27" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="2597,1080,2708,1107"/>

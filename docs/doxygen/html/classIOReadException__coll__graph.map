@@ -1,0 +1,5 @@
+<map id="IOReadException" name="IOReadException">
+<area shape="rect" id="node2" href="$classIOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="21,155,115,181"/>
+<area shape="rect" id="node3" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="13,80,123,107"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="16,5,120,32"/>
+</map>

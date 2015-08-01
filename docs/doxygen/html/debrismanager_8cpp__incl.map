@@ -55,7 +55,7 @@
 <area shape="rect" id="node65" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="2789,468,2865,495"/>
 <area shape="rect" id="node74" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="2581,468,2675,495"/>
 <area shape="rect" id="node67" href="$interpolator_8h.html" title="Helper classes to assist in generating data points between two other data points. ..." alt="" coords="3061,543,3158,569"/>
-<area shape="rect" id="node68" href="$exception_8h_source.html" title="exception.h" alt="" coords="4599,617,4689,644"/>
+<area shape="rect" id="node68" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="4599,617,4689,644"/>
 <area shape="rect" id="node69" href="$cubicspline_8h.html" title="cubicspline.h" alt="" coords="4517,692,4616,719"/>
 <area shape="rect" id="node70" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="2523,617,2626,644"/>
 <area shape="rect" id="node76" href="$transform_8h.html" title="The defintion of the transform is stored in this file. " alt="" coords="2783,393,2871,420"/>

@@ -1,0 +1,6 @@
+<map id="FileWriteException" name="FileWriteException">
+<area shape="rect" id="node2" href="$classFileException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="21,229,122,256"/>
+<area shape="rect" id="node3" href="$classIOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="24,155,119,181"/>
+<area shape="rect" id="node4" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="16,80,127,107"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="19,5,123,32"/>
+</map>

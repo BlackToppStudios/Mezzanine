@@ -15,7 +15,7 @@
 <area shape="rect" id="node25" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="1790,393,1866,420"/>
 <area shape="rect" id="node57" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="1613,543,1707,569"/>
 <area shape="rect" id="node27" href="$interpolator_8h.html" title="Helper classes to assist in generating data points between two other data points. ..." alt="" coords="1942,468,2039,495"/>
-<area shape="rect" id="node28" href="$exception_8h_source.html" title="exception.h" alt="" coords="4926,543,5015,569"/>
+<area shape="rect" id="node28" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="4926,543,5015,569"/>
 <area shape="rect" id="node29" href="$cubicspline_8h.html" title="cubicspline.h" alt="" coords="2103,617,2201,644"/>
 <area shape="rect" id="node31" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="2181,916,2275,943"/>
 <area shape="rect" id="node33" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="1020,916,1151,943"/>

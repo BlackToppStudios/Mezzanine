@@ -1,6 +1,6 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/lightproxy.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/lightproxy.cpp">
 <area shape="rect" id="node2" href="$lightproxy_8h.html" title="This file contains the declaration for the World proxy wrapping light functionality. " alt="" coords="1679,109,1825,136"/>
-<area shape="rect" id="node29" href="$exception_8h_source.html" title="exception.h" alt="" coords="3097,557,3186,584"/>
+<area shape="rect" id="node29" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="3097,557,3186,584"/>
 <area shape="rect" id="node31" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="2715,557,2818,584"/>
 <area shape="rect" id="node63" href="$scenemanager_8h_source.html" title="Graphics/scenemanager.h" alt="" coords="2147,333,2322,360"/>
 <area shape="rect" id="node82" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="805,333,891,360"/>

@@ -15,6 +15,7 @@ var searchData=
   ['areaeffectfactory',['AreaEffectFactory',['../classMezzanine_1_1AreaEffectFactory.html',1,'Mezzanine']]],
   ['areaeffectmanager',['AreaEffectManager',['../classMezzanine_1_1AreaEffectManager.html',1,'Mezzanine']]],
   ['areaeffectupdateworkunit',['AreaEffectUpdateWorkUnit',['../classMezzanine_1_1AreaEffectUpdateWorkUnit.html',1,'Mezzanine']]],
+  ['arithmeticexception',['ArithmeticException',['../classArithmeticException.html',1,'']]],
   ['arithmeticexception',['ArithmeticException',['../classMezzanine_1_1ArithmeticException.html',1,'Mezzanine']]],
   ['asset',['Asset',['../classMezzanine_1_1Resource_1_1Asset.html',1,'Mezzanine::Resource']]],
   ['assetgroup',['AssetGroup',['../classMezzanine_1_1Resource_1_1AssetGroup.html',1,'Mezzanine::Resource']]],

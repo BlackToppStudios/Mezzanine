@@ -1,0 +1,10 @@
+<map id="NetworkException" name="NetworkException">
+<area shape="rect" id="node5" href="$classNetworkNotFoundException.html" title="Thrown when no network connection is available. " alt="" coords="640,5,827,32"/>
+<area shape="rect" id="node6" href="$classNetworkPermissionException.html" title="Thrown when permision was denied to a network interface or network resource. " alt="" coords="636,56,831,83"/>
+<area shape="rect" id="node7" href="$classNetworkReadException.html" title="Thrown when data could not be read from the network (downloads) " alt="" coords="653,107,813,133"/>
+<area shape="rect" id="node8" href="$classNetworkURLException.html" title="Thrown when an address is invalid or could not be found. " alt="" coords="655,157,811,184"/>
+<area shape="rect" id="node9" href="$classNetworkWriteException.html" title="Thrown when data could not be read from the network (iloads) " alt="" coords="653,208,813,235"/>
+<area shape="rect" id="node2" href="$classIOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="316,107,411,133"/>
+<area shape="rect" id="node3" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,107,268,133"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="5,107,109,133"/>
+</map>

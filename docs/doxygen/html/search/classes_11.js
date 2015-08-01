@@ -42,6 +42,7 @@ var searchData=
   ['renderable',['Renderable',['../classMezzanine_1_1UI_1_1Renderable.html',1,'Mezzanine::UI']]],
   ['renderableproxy',['RenderableProxy',['../classMezzanine_1_1Graphics_1_1RenderableProxy.html',1,'Mezzanine::Graphics']]],
   ['renderingapiexception',['RenderingAPIException',['../classMezzanine_1_1RenderingAPIException.html',1,'Mezzanine']]],
+  ['renderingapiexception',['RenderingAPIException',['../classRenderingAPIException.html',1,'']]],
   ['renderlayer',['RenderLayer',['../classMezzanine_1_1UI_1_1RenderLayer.html',1,'Mezzanine::UI']]],
   ['renderlayergroup',['RenderLayerGroup',['../classMezzanine_1_1UI_1_1RenderLayerGroup.html',1,'Mezzanine::UI']]],
   ['renderworkunit',['RenderWorkUnit',['../classMezzanine_1_1Graphics_1_1RenderWorkUnit.html',1,'Mezzanine::Graphics']]],
@@ -54,5 +55,6 @@ var searchData=
   ['rigidproxy',['RigidProxy',['../classMezzanine_1_1Physics_1_1RigidProxy.html',1,'Mezzanine::Physics']]],
   ['ringmodulatorparameters',['RingModulatorParameters',['../structMezzanine_1_1Audio_1_1RingModulatorParameters.html',1,'Mezzanine::Audio']]],
   ['rollingaverage',['RollingAverage',['../classMezzanine_1_1RollingAverage.html',1,'Mezzanine']]],
+  ['runtimeassertionexception',['RuntimeAssertionException',['../classRuntimeAssertionException.html',1,'']]],
   ['runtimeassertionexception',['RuntimeAssertionException',['../classMezzanine_1_1RuntimeAssertionException.html',1,'Mezzanine']]]
 ];

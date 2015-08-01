@@ -34,7 +34,7 @@
 <area shape="rect" id="node48" href="$xpathvariableset_8h.html" title="The definition of the Mezzanine::XML::XPathVariableSet. " alt="" coords="1676,632,1835,659"/>
 <area shape="rect" id="node49" href="$xpathquery_8h.html" title="The definition of the Mezzanine::XML::XPathQuery . " alt="" coords="789,483,917,509"/>
 <area shape="rect" id="node37" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="1859,632,2017,659"/>
-<area shape="rect" id="node51" href="$exception_8h_source.html" title="exception.h" alt="" coords="2260,333,2349,360"/>
+<area shape="rect" id="node51" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="2260,333,2349,360"/>
 <area shape="rect" id="node54" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class. " alt="" coords="2834,483,2957,509"/>
 <area shape="rect" id="node56" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="2683,557,2753,584"/>
 <area shape="rect" id="node58" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. " alt="" coords="2606,632,2675,659"/>

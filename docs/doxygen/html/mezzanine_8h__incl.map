@@ -9,7 +9,7 @@
 <area shape="rect" id="node35" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="11491,1229,11586,1256"/>
 <area shape="rect" id="node48" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="2764,781,2887,808"/>
 <area shape="rect" id="node49" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="6976,707,7061,733"/>
-<area shape="rect" id="node50" href="$exception_8h_source.html" title="exception.h" alt="" coords="14974,856,15063,883"/>
+<area shape="rect" id="node50" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="14974,856,15063,883"/>
 <area shape="rect" id="node51" href="$objectsettings_8h_source.html" title="objectsettings.h" alt="" coords="4824,632,4939,659"/>
 <area shape="rect" id="node52" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="12329,781,12405,808"/>
 <area shape="rect" id="node54" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="8318,707,8394,733"/>

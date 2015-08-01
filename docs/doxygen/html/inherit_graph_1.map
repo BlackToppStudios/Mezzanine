@@ -1,3 +1,29 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1ActorFactory.html" title="A base factory type for the creation of Actor objects. " alt="" coords="5,5,173,32"/>
+<area shape="rect" id="node2" href="$classArithmeticException.html" title="Thrown when Math has failed. " alt="" coords="165,21,304,47"/>
+<area shape="rect" id="node3" href="$classInstanceIdentityException.html" title="Thrown when an unknown error with using an Identifier and it is invalid. " alt="" coords="148,71,321,98"/>
+<area shape="rect" id="node7" href="$classInternalException.html" title="Thrown when an unknown internal error occurred. " alt="" coords="173,122,296,149"/>
+<area shape="rect" id="node8" href="$classInvalidAssignment.html" title="Thrown when a complex class is assigned to itself or other invalid assignments occur. " alt="" coords="170,173,299,199"/>
+<area shape="rect" id="node9" href="$classInvalidStateException.html" title="Thrown when the available information should have worked but failed for unknown reasons. " alt="" coords="160,223,309,250"/>
+<area shape="rect" id="node10" href="$classInvalidVersionException.html" title="Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing..." alt="" coords="153,274,316,301"/>
+<area shape="rect" id="node11" href="$classMemoryManagementException.html" title="Thrown when an unknown memory management exception occurs. " alt="" coords="133,325,336,351"/>
+<area shape="rect" id="node14" href="$classNotImplementedException.html" title="Thrown when we just have not coded a thing yet, but we knew what the API should look like..." alt="" coords="147,375,323,402"/>
+<area shape="rect" id="node15" href="$classParametersException.html" title="Thrown when parameters are checked at runtime and found invalid. " alt="" coords="161,426,308,453"/>
+<area shape="rect" id="node18" href="$classRenderingAPIException.html" title="Thrown when the graphics card/DirectX/OpenGL fail. " alt="" coords="154,477,315,503"/>
+<area shape="rect" id="node19" href="$classRuntimeAssertionException.html" title="Thrown when a rutime assertion could have been Thrown. " alt="" coords="143,527,327,554"/>
+<area shape="rect" id="node20" href="$classScriptException.html" title="Thrown when an unknown error happens with a script. " alt="" coords="177,578,292,605"/>
+<area shape="rect" id="node25" href="$classSyntaxErrorException.html" title="Thrown when some kind of syntax exception. " alt="" coords="160,654,309,681"/>
+<area shape="rect" id="node4" href="$classInstanceIdentityDuplicateException.html" title="Thrown when duplicates of teh same identity string exist. " alt="" coords="404,5,575,47"/>
+<area shape="rect" id="node5" href="$classInstanceIdentityInvalidException.html" title="Thrown when the identity string wasn&#39;t valid at all. " alt="" coords="384,71,595,98"/>
+<area shape="rect" id="node6" href="$classInstanceIdentityNotFoundException.html" title="Thrown when the requested identity could not be found. " alt="" coords="403,123,575,164"/>
+<area shape="rect" id="node12" href="$classMemoryOutOfBoundsException.html" title="Thrown when attempted to access something that really should note be accessed. " alt="" coords="386,286,593,313"/>
+<area shape="rect" id="node13" href="$classOutOfMemoryException.html" title="Thrown when A memory allocation was attempted and failed. " alt="" coords="408,337,571,363"/>
+<area shape="rect" id="node16" href="$classParametersCastException.html" title="Thrown when a pointer parameter is checked at runtime and cannot be cast as expected. " alt="" coords="402,401,577,427"/>
+<area shape="rect" id="node17" href="$classParametersRangeException.html" title="Thrown when a passed parameter is checked at runtime and not in the expected range. " alt="" coords="397,451,582,478"/>
+<area shape="rect" id="node21" href="$classScriptLuaException.html" title="Thrown when an unknown error happens in a Lua script. " alt="" coords="422,565,557,591"/>
+<area shape="rect" id="node22" href="$classScriptLuaErrErrException.html" title="Thrown when Lua has an error handling an error. " alt="" coords="650,514,819,541"/>
+<area shape="rect" id="node23" href="$classScriptLuaRuntimeException.html" title="Thrown when a Lua script has a runtime error. " alt="" coords="643,565,827,591"/>
+<area shape="rect" id="node24" href="$classScriptLuaYieldException.html" title="Thrown when Lua returns a yield and it should not have. " alt="" coords="653,615,817,642"/>
+<area shape="rect" id="node26" href="$classSyntaxErrorLuaException.html" title="Thrown when lua code in incorrect. " alt="" coords="404,615,575,642"/>
+<area shape="rect" id="node27" href="$classSyntaxErrorXMLException.html" title="Thrown when and XML document is being parsed but is invalid. " alt="" coords="401,666,577,693"/>
+<area shape="rect" id="node28" href="$classSyntaxErrorXPathException.html" title="Thrown when an XPath query is being parsed but is invalid. " alt="" coords="397,717,582,743"/>
 </map>

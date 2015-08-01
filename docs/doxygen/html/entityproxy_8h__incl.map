@@ -12,7 +12,7 @@
 <area shape="rect" id="node24" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="202,1005,262,1032"/>
 <area shape="rect" id="node27" href="$interpolator_8h.html" title="Helper classes to assist in generating data points between two other data points. ..." alt="" coords="2249,408,2346,435"/>
 <area shape="rect" id="node32" href="$xml_8h_source.html" title="XML/xml.h" alt="" coords="1227,557,1312,584"/>
-<area shape="rect" id="node28" href="$exception_8h_source.html" title="exception.h" alt="" coords="2326,557,2415,584"/>
+<area shape="rect" id="node28" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="2326,557,2415,584"/>
 <area shape="rect" id="node29" href="$cubicspline_8h.html" title="cubicspline.h" alt="" coords="2440,557,2539,584"/>
 <area shape="rect" id="node30" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="2070,483,2173,509"/>
 <area shape="rect" id="node31" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="2187,856,2282,883"/>

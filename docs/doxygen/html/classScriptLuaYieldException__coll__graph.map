@@ -1,0 +1,4 @@
+<map id="ScriptLuaYieldException" name="ScriptLuaYieldException">
+<area shape="rect" id="node2" href="$classScriptLuaException.html" title="Thrown when an unknown error happens in a Lua script. " alt="" coords="20,155,155,181"/>
+<area shape="rect" id="node3" href="$classScriptException.html" title="Thrown when an unknown error happens with a script. " alt="" coords="30,80,145,107"/>
+</map>

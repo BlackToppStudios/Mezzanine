@@ -1,6 +1,6 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/sphere.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/sphere.cpp">
 <area shape="rect" id="node2" href="$sphere_8h.html" title="This file contains a generic Sphere class for math and spacial query. " alt="" coords="2332,169,2404,196"/>
-<area shape="rect" id="node26" href="$exception_8h_source.html" title="exception.h" alt="" coords="113,393,202,420"/>
+<area shape="rect" id="node26" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="113,393,202,420"/>
 <area shape="rect" id="node28" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="2301,393,2403,420"/>
 <area shape="rect" id="node56" href="$axisalignedbox_8h.html" title="This file contains the AxisAlignedBox class for representing AABB&#39;s of objects in the world..." alt="" coords="2263,95,2382,121"/>
 <area shape="rect" id="node57" href="$plane_8h_source.html" title="plane.h" alt="" coords="2193,169,2257,196"/>

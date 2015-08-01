@@ -1,0 +1,4 @@
+<map id="ParametersException" name="ParametersException">
+<area shape="rect" id="node3" href="$classParametersCastException.html" title="Thrown when a pointer parameter is checked at runtime and cannot be cast as expected. " alt="" coords="5,155,180,181"/>
+<area shape="rect" id="node4" href="$classParametersRangeException.html" title="Thrown when a passed parameter is checked at runtime and not in the expected range. " alt="" coords="204,155,389,181"/>
+</map>

@@ -1,6 +1,6 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/axisalignedbox.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/axisalignedbox.cpp">
 <area shape="rect" id="node2" href="$axisalignedbox_8h.html" title="This file contains the AxisAlignedBox class for representing AABB&#39;s of objects in the world..." alt="" coords="2417,95,2535,121"/>
-<area shape="rect" id="node26" href="$exception_8h_source.html" title="exception.h" alt="" coords="2391,393,2481,420"/>
+<area shape="rect" id="node26" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="2391,393,2481,420"/>
 <area shape="rect" id="node28" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="779,393,882,420"/>
 <area shape="rect" id="node55" href="$plane_8h_source.html" title="plane.h" alt="" coords="2347,169,2411,196"/>
 <area shape="rect" id="node65" href="$ray_8h_source.html" title="ray.h" alt="" coords="2676,95,2727,121"/>

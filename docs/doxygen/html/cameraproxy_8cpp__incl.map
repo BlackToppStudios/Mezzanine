@@ -1,6 +1,6 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/cameraproxy.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/cameraproxy.cpp">
 <area shape="rect" id="node2" href="$cameraproxy_8h.html" title="This file contains the declaration for the World proxy wrapping camera functionality. " alt="" coords="1359,109,1523,136"/>
-<area shape="rect" id="node29" href="$exception_8h_source.html" title="exception.h" alt="" coords="3381,557,3470,584"/>
+<area shape="rect" id="node29" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="3381,557,3470,584"/>
 <area shape="rect" id="node31" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="3095,557,3198,584"/>
 <area shape="rect" id="node65" href="$scenemanager_8h_source.html" title="Graphics/scenemanager.h" alt="" coords="2370,333,2545,360"/>
 <area shape="rect" id="node84" href="$viewport_8h_source.html" title="Graphics/viewport.h" alt="" coords="1643,408,1781,435"/>
