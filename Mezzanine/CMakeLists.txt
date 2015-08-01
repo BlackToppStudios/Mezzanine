@@ -1445,7 +1445,13 @@ endif(${Mezz_SWIG})
 
 #######################################
 # Library Link Dependencies
-add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${RubyProject} ${SDLLibraryNames} ${SoundLibraryNames} ${SWIG_PROJECT} )
+add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames}  ${SDLLibraryNames} ${SoundLibraryNames} ${LuaProject} ${RubyProject} ${SWIG_PROJECT} ${ExceptionProject})
+
+if(${Mezz_SWIG})
+    add_dependencies(${LuaProject} ${SWIG_PROJECT})
+    add_dependencies(${RubyProject} ${SWIG_PROJECT})
+    add_dependencies(${SWIG_PROJECT} ${ExceptionProject})
+endif(${Mezz_SWIG})
 
 find_package(Threads)
 
@@ -1494,6 +1500,40 @@ CopyFilesDuringBuild( common/cAudio-ZLIBLicense.txt data/common/cAudio-ZLIBLicen
 #CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/${BuildPlatform}/plugins.cfg )
 
 # We should use the new variables to copy the ogre files and Mezzanine library in the common code.
+
+###############################################################################
+# Exception Generation Configuration
+option (Mezz_Exception "Refresh exceptions on build" OFF)
+
+if(Mezz_Exception)
+# This names are likely the new style, but this is still poorly integrated.
+set(ExceptionProject "Exception_${PROJECT_NAME}")
+set(ExceptionProjectFolder "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/exceptions/")
+set(ExceptionWorkingDirectory "${${PROJECT_NAME}_BINARY_DIR}ExceptionGeneration/")
+set(ExceptionResults "${${PROJECT_NAME}_SRC_DIR}exception.h")
+
+
+file(MAKE_DIRECTORY ${ExceptionWorkingDirectory})
+
+add_custom_target(
+    ${ExceptionProject}
+    COMMAND ${CMAKE_COMMAND} -E echo "Generating Exception Hiearchy from configuration."
+    #COMMAND ${CMAKE_COMMAND} -E remove ${ExceptionResults}
+    #COMMAND ${CMAKE_COMMAND} -E touch ${ExceptionResults}
+
+    COMMAND ${CMAKE_COMMAND} ${ExceptionWorkingDirectory} ${ExceptionProjectFolder}
+    COMMAND ${CMAKE_COMMAND} -E echo "Storing Exceptions at ${ExceptionResults}."
+    COMMAND ${CMAKE_COMMAND} -E copy ${ExceptionWorkingDirectory}GeneratedExceptions.h ${ExceptionResults}
+    WORKING_DIRECTORY ${ExceptionWorkingDirectory}
+    VERBATIM
+    SOURCES ${ExceptionProjectFolder}CMakeLists.txt
+            ${ExceptionProjectFolder}enum.in
+            ${ExceptionProjectFolder}enumlast.in
+            ${ExceptionProjectFolder}exception.in
+            ${ExceptionProjectFolder}exceptionfile.in
+            ${ExceptionResults}
+)
+endif(Mezz_Exception)
 
 #######################################
 # Windows File Copy Specific Items

@@ -7,7 +7,7 @@ class  @ExceptionClass@ : public @ExceptionParent@
 {
     public:
         /// @brief @BriefDox@
-        static const Int32 ExceptionCode = @ExceptionParent@::@EnumName@;
+        static const Mezzanine::Whole ExceptionCode = @ExceptionParent@::@EnumName@;
 
         /// @brief @ExceptionClass@ Name overwriting constructor.
         /// @param TypeName The name of this class.
@@ -18,12 +18,12 @@ class  @ExceptionClass@ : public @ExceptionParent@
         /// @param FileLine The line on the named file from which this originated.
         /// @warning This probably shouldn't be called directly. Use @ref MEZZ_EXCEPTION if possible.
         @ExceptionClass@(
-                const String& TypeName,
-                const String& JavaTypeName,
-                const String& Message,
-                const String& SrcFunction,
-                const String& SrcFile,
-                const Int32& FileLine)
+                const Mezzanine::String& TypeName,
+                const Mezzanine::String& JavaTypeName,
+                const Mezzanine::String& Message,
+                const Mezzanine::String& SrcFunction,
+                const Mezzanine::String& SrcFile,
+                const Mezzanine::Whole& FileLine)
             : @ExceptionParent@(TypeName, JavaTypeName, Message, SrcFunction, SrcFile, FileLine)
             {}
 
@@ -33,7 +33,10 @@ class  @ExceptionClass@ : public @ExceptionParent@
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         /// @warning This probably shouldn't be called directly. Use @ref MEZZ_EXCEPTION if possible.
-        @ExceptionClass@(const String& Message, const String& SrcFunction, const String& SrcFile, const Int32& FileLine)
+        @ExceptionClass@(   const Mezzanine::String& Message,
+                            const Mezzanine::String& SrcFunction,
+                            const Mezzanine::String& SrcFile,
+                            const Mezzanine::Whole& FileLine)
             :  @ExceptionParent@("@ExceptionClass@", "@JavaException@", Message, SrcFunction, SrcFile, FileLine)
             {}
 
@@ -41,7 +44,7 @@ class  @ExceptionClass@ : public @ExceptionParent@
         virtual ~@ExceptionClass@() throw() {}
 
         /// @copydoc ExceptionBase::GetExceptionCode()
-        virtual Int32 GetExceptionCode() const throw()
+        virtual Mezzanine::Whole GetExceptionCode() const throw()
             { return @ExceptionClass@::ExceptionCode; }
 //
 }; // \ @ExceptionClass@

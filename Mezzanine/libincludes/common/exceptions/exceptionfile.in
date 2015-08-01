@@ -72,23 +72,23 @@ class ExceptionBase : public std::exception
 
     private:
         /// @internal
-        /// @brief This stores the exception type as a string.
-        const String ExceptionTypeName;
+        /// @brief This stores the exception type as a Mezzanine::String.
+        const Mezzanine::String ExceptionTypeName;
         /// @internal
         /// @brief When converting to Java types this is the kind of exception this becomes.
-        const String ExceptionJavaTypeName;
+        const Mezzanine::String ExceptionJavaTypeName;
         /// @internal
         /// @brief This stores the Error Message
-        const String ErrorMessage;
+        const Mezzanine::String ErrorMessage;
         /// @internal
         /// @brief This stores the function name where the exception originated.
-        const String Function;
+        const Mezzanine::String Function;
         /// @internal
         /// @brief This stores the file where the exception originated.
-        const String File;
+        const Mezzanine::String File;
         /// @internal
         /// @brief This stores the line number where the exception originated.
-        const Int32 Line;
+        const Mezzanine::Whole Line;
     public:
         /// @brief Simple Constructor.
         /// @param TypeName The name of the type of exception being thrown.
@@ -99,12 +99,12 @@ class ExceptionBase : public std::exception
         /// @param FileLine The line on the named file from which this originated.
         /// @details Don't call this, use @ref MEZZ_EXCEPTION to throw these, it is much simpler.
         /// This constructor might change with time to include more data.
-        ExceptionBase(const String& TypeName,
-                      const String& JavaTypeName,
-                      const String& Message,
-                      const String& SrcFunction,
-                      const String& SrcFile,
-                      const Int32& FileLine);
+        ExceptionBase(const Mezzanine::String& TypeName,
+                      const Mezzanine::String& JavaTypeName,
+                      const Mezzanine::String& Message,
+                      const Mezzanine::String& SrcFunction,
+                      const Mezzanine::String& SrcFile,
+                      const Mezzanine::Whole& FileLine);
         /// @brief Class destructor.
         virtual ~ExceptionBase() throw();
 
@@ -112,35 +112,35 @@ class ExceptionBase : public std::exception
         // Error Information
         /// @brief Gets the exception code for this exception.
         /// @return Returns the exception code for this exception.
-        virtual Int32 GetExceptionCode() const throw() = 0;
+        virtual Mezzanine::Whole GetExceptionCode() const throw() = 0;
 
         /// @brief Gets the function of the exception.
-        /// @return Returns a const string reference
-        const String& GetFunction() const throw();
+        /// @return Returns a const Mezzanine::String reference
+        const Mezzanine::String& GetFunction() const throw();
         /// @brief Gets the file of the exception.
         /// @return Returns the name of the file this exception is being thrown from.
-        const String& GetFile() const throw();
+        const Mezzanine::String& GetFile() const throw();
         /// @brief Gets the line number of the exception.
         /// @return Returns the line in the file this exception is being thrown from.
-        const Int32& GetLine() const throw();
+        const Mezzanine::Whole& GetLine() const throw();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Class MetaData
         /// @brief Gets the name of the exception type.
-        /// @return Returns the exception type as a string.
-        const String& GetExceptionTypeName() const throw();
+        /// @return Returns the exception type as a Mezzanine::String.
+        const Mezzanine::String& GetExceptionTypeName() const throw();
         /// @brief Gets the name of the exception type.
-        /// @return Returns the exception type as a string.
-        const String& GetExceptionJavaTypeName() const throw();
+        /// @return Returns the exception type as a Mezzanine::String.
+        const Mezzanine::String& GetExceptionJavaTypeName() const throw();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Error Messages
         /// @brief Constructs the complete message from all the information provided about the exception.
-        /// @return Returns a string with the complete error.
-        String GetCompleteMessage() const;
+        /// @return Returns a Mezzanine::String with the complete error.
+        Mezzanine::String GetCompleteMessage() const;
         /// @brief Retrieves the error message.
-        /// @return This returns a string that is the stored error message.
-        virtual String what() throw();
+        /// @return This returns a Mezzanine::String that is the stored error message.
+        virtual Mezzanine::String what() throw();
 };//Exception
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ class ExceptionBase : public std::exception
 /// extended with additional exceptions wherever desired. Attempting to create an unknown exception
 /// simply won't compile because the base exception class being abstract.
 ///////////////////////////////////////////////////////////////////////////////
-template <Int32 N>
+template <Mezzanine::Whole N>
 struct ExceptionFactory
 {
     /// @brief This allows parameterized uses of this type when, so exception can be throw without directly using the type system
@@ -182,7 +182,7 @@ struct ExceptionFactory
 /// is first loaded so there will be no allocations when this is called, and the type is controlled
 /// by the error number parameter.
 /// @n @n
-/// As long as the automation developer provides a unique string for each failure, then any messages
+/// As long as the automation developer provides a unique Mezzanine::String for each failure, then any messages
 /// logged or presented to the user or log will uniquely identify that specific problem. This
 /// allows the user to perform very specific web searches and potentially allows
 /// troubleshooters/technicians to skip lengthy diagnostics steps.
