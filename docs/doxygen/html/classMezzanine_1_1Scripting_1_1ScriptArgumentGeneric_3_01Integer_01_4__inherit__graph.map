@@ -1,5 +1,5 @@
 <map id="Mezzanine::Scripting::ScriptArgumentGeneric&lt; Integer &gt;" name="Mezzanine::Scripting::ScriptArgumentGeneric&lt; Integer &gt;">
-<area shape="rect" id="node7" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51IntegerArgument.html" title="The implementations in the ScriptArgumentGeneric&lt;Integer&gt; will cover most of what this needs..." alt="" coords="9,291,199,338"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScriptArgument.html" title="The interface for a script argument. " alt="" coords="32,83,176,130"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1IntrusiveRefCount.html" title="A sample class that implements a minimal intrusive reference counting scheme. " alt="" coords="5,5,203,35"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51IntegerArgument.html" title="The implementations in the ScriptArgumentGeneric&lt;Integer&gt; will cover most of what this needs..." alt="" coords="9,273,200,315"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScriptArgument.html" title="The interface for a script argument. " alt="" coords="33,80,177,121"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1IntrusiveRefCount.html" title="A sample class that implements a minimal intrusive reference counting scheme. " alt="" coords="5,5,204,32"/>
 </map>

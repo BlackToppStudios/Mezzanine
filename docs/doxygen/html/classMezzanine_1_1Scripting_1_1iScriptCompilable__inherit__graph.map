@@ -1,4 +1,4 @@
 <map id="Mezzanine::Scripting::iScriptCompilable" name="Mezzanine::Scripting::iScriptCompilable">
-<area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html" title="This class is used to store a Lua script and in its source and compiled state. " alt="" coords="5,198,149,245"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script. " alt="" coords="5,6,149,53"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51Script.html" title="This class is used to store a Lua script and in its source and compiled state. " alt="" coords="5,184,149,225"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script. " alt="" coords="5,5,149,47"/>
 </map>

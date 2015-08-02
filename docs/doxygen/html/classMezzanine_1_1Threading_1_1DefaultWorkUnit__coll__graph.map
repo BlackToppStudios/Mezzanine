@@ -1,4 +1,4 @@
 <map id="Mezzanine::Threading::DefaultWorkUnit" name="Mezzanine::Threading::DefaultWorkUnit">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="7,5,156,51"/>
-<area shape="rect" id="node7" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="265,110,439,157"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node4" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="261,105,436,147"/>
 </map>

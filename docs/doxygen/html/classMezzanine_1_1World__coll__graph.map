@@ -1,8 +1,9 @@
 <map id="Mezzanine::World" name="Mezzanine::World">
-<area shape="rect" id="node4" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="212,315,388,344"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="5,209,179,239"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="127,104,268,133"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="203,201,349,247"/>
-<area shape="rect" id="node14" title="STL class. " alt="" coords="396,104,476,133"/>
-<area shape="rect" id="node16" title="STL class. " alt="" coords="373,6,499,53"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="211,303,389,329"/>
+<area shape="rect" id="node2" title="STL class. " alt="" coords="333,109,456,136"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="5,206,179,233"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="127,109,268,136"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="203,199,349,240"/>
+<area shape="rect" id="node10" title="STL class. " alt="" coords="495,109,575,136"/>
+<area shape="rect" id="node11" title="STL class. " alt="" coords="471,5,598,47"/>
 </map>

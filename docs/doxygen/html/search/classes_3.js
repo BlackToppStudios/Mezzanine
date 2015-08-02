@@ -1,7 +1,6 @@
 var searchData=
 [
   ['cameracontroller',['CameraController',['../classMezzanine_1_1CameraController.html',1,'Mezzanine']]],
-  ['cameramanager',['CameraManager',['../classMezzanine_1_1Graphics_1_1CameraManager.html',1,'Mezzanine::Graphics']]],
   ['cameraproxy',['CameraProxy',['../classMezzanine_1_1Graphics_1_1CameraProxy.html',1,'Mezzanine::Graphics']]],
   ['capsulecollisionshape',['CapsuleCollisionShape',['../classMezzanine_1_1Physics_1_1CapsuleCollisionShape.html',1,'Mezzanine::Physics']]],
   ['cfunctionsubscriberslot',['CFunctionSubscriberSlot',['../classMezzanine_1_1CFunctionSubscriberSlot.html',1,'Mezzanine']]],
@@ -11,6 +10,7 @@ var searchData=
   ['checkboxfactory',['CheckBoxFactory',['../classMezzanine_1_1UI_1_1CheckBoxFactory.html',1,'Mezzanine::UI']]],
   ['childselectedarguments',['ChildSelectedArguments',['../classMezzanine_1_1UI_1_1ChildSelectedArguments.html',1,'Mezzanine::UI']]],
   ['chorusparameters',['ChorusParameters',['../structMezzanine_1_1Audio_1_1ChorusParameters.html',1,'Mezzanine::Audio']]],
+  ['circle',['Circle',['../classMezzanine_1_1Circle.html',1,'Mezzanine']]],
   ['collidablepair',['CollidablePair',['../classMezzanine_1_1Physics_1_1CollidablePair.html',1,'Mezzanine::Physics']]],
   ['collidableproxy',['CollidableProxy',['../classMezzanine_1_1Physics_1_1CollidableProxy.html',1,'Mezzanine::Physics']]],
   ['collision',['Collision',['../classMezzanine_1_1Physics_1_1Collision.html',1,'Mezzanine::Physics']]],

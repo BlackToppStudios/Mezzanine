@@ -1,12 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with. " alt="" coords="5,85,213,112"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1LineListRenderer.html" title="Mezzanine::UI::LineListRenderer" alt="" coords="261,60,475,87"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="269,111,467,137"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ..." alt="" coords="523,111,712,137"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1ImageLayer.html" title="This layer is for placing images and basic colours in it&#39;s parents&#39; quad space. " alt="" coords="761,77,943,104"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1UI_1_1TextLayer.html" title="This is a base class for render layers that render text. " alt="" coords="765,143,939,169"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1MultiImageLayer.html" title="This is an image layer that supports rendering of multiple images within it&#39;s space. " alt="" coords="996,5,1175,46"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1SingleImageLayer.html" title="This is an image layer that supports rendering only a single image/sprite. " alt="" coords="992,70,1179,111"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1MultiLineTextLayer.html" title="This is a render layer specializing in multi&#45;line text. " alt="" coords="1002,135,1169,177"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1UI_1_1SingleLineTextLayer.html" title="This is a render layer specializing in single&#45;line text. " alt="" coords="998,201,1173,242"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1PositioningInfo.html" title="This is a helper class designed to describe the behaviors of a quad when it needs to be repositioned..." alt="" coords="5,5,207,32"/>
 </map>

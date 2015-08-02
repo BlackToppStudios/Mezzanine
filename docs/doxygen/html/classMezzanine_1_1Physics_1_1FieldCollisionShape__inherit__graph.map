@@ -1,5 +1,5 @@
 <map id="Mezzanine::Physics::FieldCollisionShape" name="Mezzanine::Physics::FieldCollisionShape">
-<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion. " alt="" coords="389,5,568,51"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size. " alt="" coords="404,74,553,121"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="7,39,145,86"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Physics_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion. " alt="" coords="387,5,565,47"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size. " alt="" coords="401,71,551,112"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="5,39,145,80"/>
 </map>

@@ -1,4 +1,4 @@
-﻿// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+﻿// © Copyright 2010 - 2015 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -63,7 +63,7 @@
 /// script class compilation
 ///
 /// This attempts to create "safe" and "open" version Lua binding to the Mezzanine. The safe version should be suitable
-/// for scripts that can be trusted with the state of the simulation, but not the state of of the calling system. Said
+/// for scripts that can be trusted with the state of the simulation, but not the state of the calling system. Said
 /// another way, script run against the "safe" version of the runtime cannot call function or create objects that load
 /// modules, read files, write files, access a system shell or access any Mezzanine facility that can indirectly grant
 /// access to features like these (the LuaScriptingEngine for example.)
@@ -94,7 +94,7 @@ namespace Mezzanine
                 lua_State *State;
 
             protected:
-                /// @brief This will do nothing if the past integer
+                /// @brief This will throw an exception.
                 /// @param LuaReturn The return code from a Lua Compile or execution call
                 /// @throws This Throws ScriptLuaYieldException, ScriptLuaRuntimeException, ScriptLuaRuntimeException, ScriptLuaErrErrException, SyntaxErrorLuaException, OutOfMemoryException, FileException, ScriptLuaException with as much precision as possible when thrown.
                 virtual void ThrowFromLuaErrorCode(int LuaReturn);

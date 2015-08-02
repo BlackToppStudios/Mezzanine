@@ -1,5 +1,13 @@
 <map id="Mezzanine::Internal::Line3D" name="Mezzanine::Internal::Line3D">
-<area shape="rect" id="node6" href="$structMezzanine_1_1Internal_1_1LineVertex.html" title="A small declaration of what our vertexs look like for when we write to the buffers. " alt="" coords="203,102,339,149"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="103,5,265,35"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="289,5,428,35"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="597,152,723,179"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="872,213,1049,240"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="284,191,407,217"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="573,231,747,257"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="275,276,416,303"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="587,297,733,338"/>
+<area shape="rect" id="node12" title="STL class. " alt="" coords="305,132,385,159"/>
+<area shape="rect" id="node13" title="STL class. " alt="" coords="24,125,151,166"/>
+<area shape="rect" id="node15" href="$structMezzanine_1_1Internal_1_1LineVertex.html" title="A small declaration of what our vertexs look like for when we write to the buffers. " alt="" coords="277,57,413,98"/>
+<area shape="rect" id="node16" href="$classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="5,73,169,100"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="18,23,157,49"/>
 </map>

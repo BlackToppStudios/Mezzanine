@@ -1,7 +1,9 @@
 var searchData=
 [
   ['vector2',['Vector2',['../classMezzanine_1_1Vector2.html',1,'Mezzanine']]],
+  ['vector2lengthcompare',['Vector2LengthCompare',['../classMezzanine_1_1Vector2LengthCompare.html',1,'Mezzanine']]],
   ['vector3',['Vector3',['../classMezzanine_1_1Vector3.html',1,'Mezzanine']]],
+  ['vector3lengthcompare',['Vector3LengthCompare',['../classMezzanine_1_1Vector3LengthCompare.html',1,'Mezzanine']]],
   ['vectoritems',['VectorItems',['../classMezzanine_1_1VectorItems.html',1,'Mezzanine']]],
   ['vertex',['Vertex',['../structMezzanine_1_1UI_1_1Vertex.html',1,'Mezzanine::UI']]],
   ['vertexcollectfunctor',['VertexCollectFunctor',['../classMezzanine_1_1UI_1_1VertexCollectFunctor.html',1,'Mezzanine::UI']]],

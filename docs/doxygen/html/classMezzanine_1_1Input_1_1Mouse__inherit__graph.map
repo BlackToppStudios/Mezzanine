@@ -1,4 +1,4 @@
 <map id="Mezzanine::Input::Mouse" name="Mezzanine::Input::Mouse">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons. " alt="" coords="7,83,175,130"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="5,5,176,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons. " alt="" coords="7,80,175,121"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="5,5,176,32"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="Mezzanine::Timer" name="Mezzanine::Timer">
-<area shape="rect" id="node3" href="$classMezzanine_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time. " alt="" coords="5,83,187,112"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="211,83,363,112"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1AlarmTimer.html" title="This is a timer class that increments normally to a specified time. " alt="" coords="107,160,267,189"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time. " alt="" coords="291,160,480,189"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time. " alt="" coords="5,80,187,107"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="211,80,365,107"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1AlarmTimer.html" title="This is a timer class that increments normally to a specified time. " alt="" coords="108,155,268,181"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time. " alt="" coords="293,155,483,181"/>
 </map>

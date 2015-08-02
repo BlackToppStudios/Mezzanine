@@ -13,6 +13,7 @@ var searchData=
   ['workunitsaffinity',['WorkUnitsAffinity',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#a83bf2421d69556aa4d1a2efc6f88290d',1,'Mezzanine::Threading::FrameScheduler::WorkUnitsAffinity()'],['../classMezzanine_1_1Threading_1_1WorkSorter.html#a5375cc0c8ff1a3a398e7dc028615e5e6',1,'Mezzanine::Threading::WorkSorter::WorkUnitsAffinity()']]],
   ['workunitsmain',['WorkUnitsMain',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#af5c99359d324eb79b9080464b32be098',1,'Mezzanine::Threading::FrameScheduler::WorkUnitsMain()'],['../classMezzanine_1_1Threading_1_1WorkSorter.html#a1bd07f88328e5f907ca4078d17ec4515',1,'Mezzanine::Threading::WorkSorter::WorkUnitsMain()']]],
   ['workunitsmonopolies',['WorkUnitsMonopolies',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#a0f5ea9d90f2b85d1b21b4669878ec7d7',1,'Mezzanine::Threading::FrameScheduler']]],
+  ['worldconstructioninfo',['WorldConstructionInfo',['../classMezzanine_1_1Physics_1_1PhysicsManager.html#ac70c73cfcdb88b2a3e62575665a9a280',1,'Mezzanine::Physics::PhysicsManager']]],
   ['worldmanagers',['WorldManagers',['../classMezzanine_1_1World.html#a77614417ca5952be2d5c6a797dea66f6',1,'Mezzanine::World']]],
   ['worldtriggerupdatework',['WorldTriggerUpdateWork',['../classMezzanine_1_1Physics_1_1PhysicsManager.html#a954df56f8c13a944a03eeca5360c8181',1,'Mezzanine::Physics::PhysicsManager']]],
   ['wrappedstream',['WrappedStream',['../classMezzanine_1_1XML_1_1XMLStreamWrapper.html#a67030e5b5a4114ac2b1a1100c1b1ff88',1,'Mezzanine::XML::XMLStreamWrapper']]]

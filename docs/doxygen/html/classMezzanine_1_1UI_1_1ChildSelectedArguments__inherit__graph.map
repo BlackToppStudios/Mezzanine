@@ -1,4 +1,4 @@
 <map id="Mezzanine::UI::ChildSelectedArguments" name="Mezzanine::UI::ChildSelectedArguments">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1WidgetEventArguments.html" title="This is the base class for widget specific event arguments. " alt="" coords="8,83,197,130"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1EventArguments.html" title="This is a common class to represent all possible arguments for a given event that is fired..." alt="" coords="8,5,197,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1WidgetEventArguments.html" title="This is the base class for widget specific event arguments. " alt="" coords="8,80,199,121"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1EventArguments.html" title="This is a common class to represent all possible arguments for a given event that is fired..." alt="" coords="8,5,199,32"/>
 </map>

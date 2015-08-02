@@ -1,6 +1,6 @@
 <map id="Mezzanine::UI::WidgetEventArguments" name="Mezzanine::UI::WidgetEventArguments">
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1ChildSelectedArguments.html" title="This is the EventArguments class for when a child of a paged container is selected. " alt="" coords="487,5,681,51"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1ScrollbarValueChangedArguments.html" title="This is the EventArguments class for when the scrollvalue of a scrollbar is updated. " alt="" coords="499,74,669,121"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1SpinnerValueChangedArguments.html" title="This is the EventArguments class for when the spinvalue of a Spinner is updated. " alt="" coords="488,143,680,190"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1EventArguments.html" title="This is a common class to represent all possible arguments for a given event that is fired..." alt="" coords="7,83,196,112"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1ChildSelectedArguments.html" title="This is the EventArguments class for when a child of a paged container is selected. " alt="" coords="483,5,679,47"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1ScrollbarValueChangedArguments.html" title="This is the EventArguments class for when the scrollvalue of a scrollbar is updated. " alt="" coords="495,71,666,112"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1SpinnerValueChangedArguments.html" title="This is the EventArguments class for when the spinvalue of a Spinner is updated. " alt="" coords="485,136,677,177"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EventArguments.html" title="This is a common class to represent all possible arguments for a given event that is fired..." alt="" coords="5,78,196,105"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="Mezzanine::EventBase" name="Mezzanine::EventBase">
-<area shape="rect" id="node3" href="$classMezzanine_1_1EventGameWindow.html" title="Convey the message that Something happened to a game window. " alt="" coords="5,83,213,112"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen. " alt="" coords="237,83,387,112"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the EventManager. " alt="" coords="411,83,595,112"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EventGameWindow.html" title="Convey the message that Something happened to a game window. " alt="" coords="5,80,215,107"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen. " alt="" coords="239,80,389,107"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the EventManager. " alt="" coords="414,80,598,107"/>
 </map>

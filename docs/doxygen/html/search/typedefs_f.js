@@ -5,6 +5,7 @@ var searchData=
   ['screencontainer',['ScreenContainer',['../classMezzanine_1_1UI_1_1UIManager.html#a32ae815582e660813eec23e45a1d5b26',1,'Mezzanine::UI::UIManager']]],
   ['screeniterator',['ScreenIterator',['../classMezzanine_1_1UI_1_1UIManager.html#ac96a2aa5e7e55476d0ad728833833063',1,'Mezzanine::UI::UIManager']]],
   ['scrollbarvaluechangedargumentsptr',['ScrollbarValueChangedArgumentsPtr',['../namespaceMezzanine_1_1UI.html#ac939bc1474615982ffb3dbdd0a544750',1,'Mezzanine::UI']]],
+  ['selftype',['SelfType',['../classMezzanine_1_1Interval.html#a8d05be7e47d031c768676fc91458b922',1,'Mezzanine::Interval::SelfType()'],['../classMezzanine_1_1RectBase.html#adfbbb3ccdccc153684f156abf8a62023',1,'Mezzanine::RectBase::SelfType()']]],
   ['settingfilescontainer',['SettingFilesContainer',['../classMezzanine_1_1ObjectSettingsHandler.html#a420ddc459c9dafef74035e31c70a3d70',1,'Mezzanine::ObjectSettingsHandler']]],
   ['settingfilesiterator',['SettingFilesIterator',['../classMezzanine_1_1ObjectSettingsHandler.html#a1611ffa0f680b3eb55c1f77a76865822',1,'Mezzanine::ObjectSettingsHandler']]],
   ['settinggroupcontainer',['SettingGroupContainer',['../classMezzanine_1_1ObjectSettingsHandler.html#aacc2c8cdb0e69c6879ac61af893064cd',1,'Mezzanine::ObjectSettingsHandler']]],
@@ -31,7 +32,7 @@ var searchData=
   ['stringset',['StringSet',['../namespaceMezzanine.html#a1055975ce37fe9d65089bb2db3d2952b',1,'Mezzanine']]],
   ['stringstream',['StringStream',['../namespaceMezzanine.html#ae5375d2a6e7c5ee59a4459fd735042ac',1,'Mezzanine']]],
   ['stringvector',['StringVector',['../namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6',1,'Mezzanine']]],
-  ['subscriberfunction',['SubscriberFunction',['../classMezzanine_1_1CFunctionSubscriberSlot.html#a6a9ddd351e2b45bb7695b8504b09eaa0',1,'Mezzanine::CFunctionSubscriberSlot']]],
+  ['subscriberfunction',['SubscriberFunction',['../classMezzanine_1_1CFunctionSubscriberSlot.html#aecc4d71be59a44be5947ac161a7ad3f4',1,'Mezzanine::CFunctionSubscriberSlot']]],
   ['subsetiterator',['SubSetIterator',['../classMezzanine_1_1ObjectSettingSetContainer.html#a0cb597878c19c386c154f720f929733d',1,'Mezzanine::ObjectSettingSetContainer']]],
   ['subsetvector',['SubSetVector',['../classMezzanine_1_1ObjectSettingSetContainer.html#ac552f83099e245ce1af45241c178cbdc',1,'Mezzanine::ObjectSettingSetContainer']]]
 ];

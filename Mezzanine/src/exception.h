@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2015 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -185,10 +185,6 @@ namespace Mezzanine
     {
         typedef Exception Type;
     };//ExceptionFactory
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Exception code class definitions.
 
     ///////////////////////////////////////////////////////////////////////////////
     // Exception code class definitions.
@@ -2131,24 +2127,28 @@ namespace Mezzanine
 
     #ifndef MEZZ_EXCEPTION
     /// @brief An easy way to throw exception with rich information.
-    /// @details An important part of troubleshooting errors from the users perspective is being able to
-    /// tie a specific 'fix' to a specific error message. An important part of ensuring correct exceptional
-    /// is catching the right exceptions at the right time. It is also important to not allocate more
-    /// memory or other resources while creating an exception.
+    /// @details An important part of troubleshooting errors from perspectives oustide of software
+    /// development is being able totie a specific 'fix' to a specific error message. An important
+    /// part of ensuring correctness is exceptions and catching the right exceptions at the right
+    /// time. It is also important to not allocate more memory or other resources while creating an
+    /// exception, otherwise the act of creating one exception could create another.
     /// @n @n
-    /// This macro makes doing all of these easy. Every exception thrown by this macro with provide the Function name,
-    /// the file name and the line in the file from which it was thrown. That provides all the information the developer
-    /// needs to identify the issue. This uses some specific template machinery to generate specifically typed exceptions
-    /// static instances at compile to insure the behaviors a programmer needs. Since these are allocated when the
-    /// program is first loaded so there will be no allocations when this is called, and the type is controlled by the
-    /// error number parameter.
+    /// This macro makes doing all of these easy. Every exception thrown by this macro will provide
+    /// the Function name, the file name, and the line number in the file from which it was thrown.
+    /// That provides all the information the developer needs to identify the issue (except maybe
+    /// for a stack trace. This uses some specific template machinery to generate specifically typed
+    /// exceptions static instances at compile to insure the behavior a programmer needs. Since
+    /// these are allocated (Allocation was optimized away) when the program is compiled so there
+    /// will be no allocations when this is called, and the type is controlled by the error number
+    /// parameter.
     /// @n @n
-    /// As long as the game developer provides a unique string for each failure, then any messages logged or presented
-    /// to the game player will uniquely identify that specific problem. This allows the user to perform very specific
-    /// web searches and potentially allows troubleshooters/technicians to skip length diagnostics steps.
+    /// As long as the game developer provides a unique string for each failure in a specific class
+    /// of exception, then any messages logged or presented to the game player will uniquely
+    /// identify that specific problem. This allows the user to perform very specific web searches
+    /// and potentially allows troubleshooters/technicians to skip lengthy diagnostics steps.
     /// @param num A specific code from the @ref Exception::ExceptionCodes enum will control the type of exception produced.
     /// @param desc
-    /// @todo Get the verion of the Mezzanine in here so that this can pin down errors with extreme specificty across time. (aybe Compilaiton date too)
+    /// @todo Get the verion of the Mezzanine in here so that this can pin down errors with extreme specificity across time. (maybe Compilaiton date too)
     #define MEZZ_EXCEPTION(num, desc) throw Mezzanine::ExceptionFactory<num>::Type(desc, __func__, __FILE__, __LINE__ );
     #endif
 }//Mezzanine

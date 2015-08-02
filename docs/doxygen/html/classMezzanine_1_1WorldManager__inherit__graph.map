@@ -1,11 +1,10 @@
 <map id="Mezzanine::WorldManager" name="Mezzanine::WorldManager">
-<area shape="rect" id="node5" href="$classMezzanine_1_1ActorManager.html" title="A manager responsible for the storage and management of all actors that exist in a world..." alt="" coords="471,5,644,35"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1AreaEffectManager.html" title="A manager responsible for the storage and management of all areaeffects in use. " alt="" coords="455,59,660,88"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1Audio_1_1SoundScapeManager.html" title="This is the base manager class for audio being played in a 3D environment. " alt="" coords="453,111,661,158"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1DebrisManager.html" title="A manager responsible for the storage and management of all Debris that exist in a world..." alt="" coords="467,181,648,211"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Graphics_1_1CameraManager.html" title="This is the manager class for all camera functions. " alt="" coords="485,234,629,281"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1Graphics_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="485,303,629,350"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1Physics_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions. " alt="" coords="488,373,627,419"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1TerrainManager.html" title="This is manager for terrains and their functions. " alt="" coords="467,443,648,472"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="5,212,179,241"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ActorManager.html" title="A manager responsible for the storage and management of all actors that exist in a world..." alt="" coords="469,5,643,32"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1AreaEffectManager.html" title="A manager responsible for the storage and management of all areaeffects in use. " alt="" coords="453,56,659,83"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Audio_1_1SoundScapeManager.html" title="This is the base manager class for audio being played in a 3D environment. " alt="" coords="452,107,660,149"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1DebrisManager.html" title="A manager responsible for the storage and management of all Debris that exist in a world..." alt="" coords="465,173,647,200"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Graphics_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="483,225,629,266"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Physics_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions. " alt="" coords="486,290,626,331"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1TerrainManager.html" title="This is manager for terrains and their functions. " alt="" coords="465,356,647,383"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="5,173,179,200"/>
 </map>

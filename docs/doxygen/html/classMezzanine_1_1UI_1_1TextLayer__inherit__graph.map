@@ -1,7 +1,7 @@
 <map id="Mezzanine::UI::TextLayer" name="Mezzanine::UI::TextLayer">
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1MultiLineTextLayer.html" title="This is a render layer specializing in multi&#45;line text. " alt="" coords="5,315,171,362"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1SingleLineTextLayer.html" title="This is a render layer specializing in single&#45;line text. " alt="" coords="195,315,368,362"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ..." alt="" coords="89,160,279,189"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="85,83,283,112"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with. " alt="" coords="80,5,288,35"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1MultiLineTextLayer.html" title="This is a render layer specializing in multi&#45;line text. " alt="" coords="5,304,172,345"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1SingleLineTextLayer.html" title="This is a render layer specializing in single&#45;line text. " alt="" coords="196,304,371,345"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ..." alt="" coords="91,155,281,181"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="87,80,285,107"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with. " alt="" coords="82,5,290,32"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="pugi::xml_document" name="pugi::xml_document">
-<area shape="rect" id="node2" href="$classpugi_1_1xml__node.html" title="pugi::xml_node" alt="" coords="25,235,135,261"/>
-<area shape="rect" id="node3" href="$structpugi_1_1xml__node__struct.html" title="An XML document tree node. " alt="" coords="5,128,155,155"/>
-<area shape="rect" id="node4" href="$structpugi_1_1xml__attribute__struct.html" title="A &#39;name=value&#39; XML attribute structure. " alt="" coords="15,6,144,47"/>
+<area shape="rect" id="node2" href="$classpugi_1_1xml__node.html" title="pugi::xml_node" alt="" coords="25,231,136,257"/>
+<area shape="rect" id="node3" href="$structpugi_1_1xml__node__struct.html" title="An XML document tree node. " alt="" coords="5,125,156,152"/>
+<area shape="rect" id="node4" href="$structpugi_1_1xml__attribute__struct.html" title="A &#39;name=value&#39; XML attribute structure. " alt="" coords="16,5,145,47"/>
 </map>

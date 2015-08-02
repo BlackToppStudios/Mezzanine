@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2015 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -151,7 +151,6 @@ namespace Mezzanine
         TT_Bezier = 3
     };
 
-    /// @enum TransformSpace
     /// @brief Used to define what frame of reference is to be used when positioning or rotating objects.
     enum TransformSpace
     {
@@ -160,7 +159,6 @@ namespace Mezzanine
         TS_World  = 2     ///< World space
     };
 
-    /// @enum WorldAndSceneObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This enum can be used to express any object which could be considered "insertable" into the game world.
     enum WorldObjectType

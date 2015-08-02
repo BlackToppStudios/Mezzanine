@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2015 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -84,6 +84,9 @@ namespace Mezzanine
     const Whole& Exception::GetLine() const throw()
         { return Line; }
 
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Error Messages
     String Exception::GetCompleteMessage() const throw()
     {
         StringStream ErrorStream;
@@ -94,8 +97,6 @@ namespace Mezzanine
         return ErrorStream.str();
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Error Checking
     String Exception::what() throw()
         { return GetCompleteMessage(); }
 }//Mezzanine
