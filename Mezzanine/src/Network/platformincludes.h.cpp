@@ -40,40 +40,35 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _network_h
-#define _network_h
+#ifndef _networkplatformincludes_h_cpp
+#define _networkplatformincludes_h_cpp
 
-namespace Mezzanine
-{
-    /// @namespace Mezzanine::Network
-    /// @brief This namespace is for all the classes belonging to the Network Subsystem.
-    /// @details Our Network subsystem is based a wrapper/extension on top of berkely sockets on Unix systems,
-    /// and winsock on windows systems.
-    namespace Network
-    {
+#ifdef MEZZ_WINDOWS
 
-    }
-}
+#define WIN32_LEAN_AND_MEAN
 
-#include "Network/networkenumerations.h"
-#include "Network/networkutilities.h"
-#include "Network/networkmanager.h"
+#include <w32api.h>
+#define _WIN32_WINNT _WIN32_WINNT_VISTA
+// Winsock 2
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <basetsd.h>
 
-#include "Network/ipaddress.h"
-#include "Network/ipv4socket.h"
-#include "Network/ipv6socket.h"
-#include "Network/packet.h"
-#include "Network/socket.h"
-#include "Network/socketdescription.h"
-#include "Network/systemaddress.h"
-#include "Network/tcpsocket.h"
-#include "Network/tcpv4socket.h"
-#include "Network/tcpv6socket.h"
-#include "Network/udpsocket.h"
-#include "Network/udpv4socket.h"
-#include "Network/udpv6socket.h"
+#elif MEZZ_MACOSX || MEZZ_LINUX
+
+// Berkeley Sockets
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+
+#endif //Platforms
 
 #endif
 
 #endif //MEZZNETWORK
-

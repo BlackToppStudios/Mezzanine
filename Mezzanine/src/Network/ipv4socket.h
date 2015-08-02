@@ -40,63 +40,43 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _networkpacket_cpp
-#define _networkpacket_cpp
+#ifndef _networkipv4socket_h
+#define _networkipv4socket_h
 
-#include "Network/platformincludes.h.cpp"
-
-#include "Network/packet.h"
-
-namespace
-{
-    enum MTUValues
-    {
-        SmallestIPv4MTU = 576,
-        IPv4HeaderBaseSize = 20,
-        IPv4HeaderOptionsMaxSize = 40,
-
-        SmallestIPv6MTU = 1500,
-        IPv6HeaderBaseSize = 40,
-        IPv6HeaderOptionsEstSize = 40,
-
-        TCPHeaderBaseSize = 40,
-        TCPHeaderOptionsMaxSize = 40,
-
-        UDPHeaderSize = 8
-    };
-}
+#include "Network/socket.h"
 
 namespace Mezzanine
 {
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        // Packet Static Member Data
+        /// @class IPv4Socket
+        /// @brief A socket class using the IP version 4 protocol.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB IPv4Socket : virtual public Socket
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            IPv4Socket();
+            /// @brief Class destructor.
+            virtual ~IPv4Socket();
 
-        const Whole Packet::DefaultIPv4MTU = SmallestIPv4MTU;
-        const Whole Packet::DefaultIPv6MTU = SmallestIPv6MTU;
-        const Whole Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-        const Whole Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Methods
+            /// @copydoc Socket::GetNetworkLayerProtocol() const
+            virtual NetworkLayerProtocol GetNetworkLayerProtocol() const;
 
-        Packet::Packet()
-            {  }
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
 
-        Packet::~Packet()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        Boole Packet::IsExpectedSize() const
-            { return this->GetExpectedSize() == this->GetSize(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Buffer Management
+            /// @copydoc Socket::SetNumUnicastHops(const Integer)
+            void SetNumUnicastHops(const Integer Hops);
+            /// @copydoc Socket::GetNumUnicastHops() const
+            Integer GetNumUnicastHops() const;
+        };//IPv4Socket
     }//Network
 }//Mezzanine
 

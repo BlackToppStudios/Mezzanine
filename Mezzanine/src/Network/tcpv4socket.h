@@ -40,63 +40,36 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _networkpacket_cpp
-#define _networkpacket_cpp
+#ifndef _networktcpv4socket_h
+#define _networktcpv4socket_h
 
-#include "Network/platformincludes.h.cpp"
-
-#include "Network/packet.h"
-
-namespace
-{
-    enum MTUValues
-    {
-        SmallestIPv4MTU = 576,
-        IPv4HeaderBaseSize = 20,
-        IPv4HeaderOptionsMaxSize = 40,
-
-        SmallestIPv6MTU = 1500,
-        IPv6HeaderBaseSize = 40,
-        IPv6HeaderOptionsEstSize = 40,
-
-        TCPHeaderBaseSize = 40,
-        TCPHeaderOptionsMaxSize = 40,
-
-        UDPHeaderSize = 8
-    };
-}
+#include "Network/tcpsocket.h"
+#include "Network/ipv4socket.h"
 
 namespace Mezzanine
 {
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        // Packet Static Member Data
-
-        const Whole Packet::DefaultIPv4MTU = SmallestIPv4MTU;
-        const Whole Packet::DefaultIPv6MTU = SmallestIPv6MTU;
-        const Whole Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-        const Whole Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Methods
-
-        Packet::Packet()
-            {  }
-
-        Packet::~Packet()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        Boole Packet::IsExpectedSize() const
-            { return this->GetExpectedSize() == this->GetSize(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Buffer Management
+        /// @class TCPv4Socket
+        /// @brief A TCP socket that uses IPv4 internet addresses for connections.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB TCPv4Socket : public IPv4Socket, public TCPSocket
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            TCPv4Socket();
+            /// @brief Internal constructor.
+            /// @param A pointer to the internal socket to wrap.
+            TCPv4Socket(PlatformSocket* InternalSock);
+            /// @brief Binding constructor.
+            /// @param Port The port number to bind this socket to.
+            TCPv4Socket(const UInt16 Port);
+            /// @brief Class destructor.
+            virtual ~TCPv4Socket();
+        };//TCPv4Socket
     }//Network
 }//Mezzanine
 

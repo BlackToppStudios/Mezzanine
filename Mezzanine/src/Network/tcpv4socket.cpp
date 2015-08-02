@@ -40,63 +40,31 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _networkpacket_cpp
-#define _networkpacket_cpp
+#ifndef _networktcpv4socket_cpp
+#define _networktcpv4socket_cpp
 
-#include "Network/platformincludes.h.cpp"
+#include "Network/platformsocket.h.cpp"
 
-#include "Network/packet.h"
-
-namespace
-{
-    enum MTUValues
-    {
-        SmallestIPv4MTU = 576,
-        IPv4HeaderBaseSize = 20,
-        IPv4HeaderOptionsMaxSize = 40,
-
-        SmallestIPv6MTU = 1500,
-        IPv6HeaderBaseSize = 40,
-        IPv6HeaderOptionsEstSize = 40,
-
-        TCPHeaderBaseSize = 40,
-        TCPHeaderOptionsMaxSize = 40,
-
-        UDPHeaderSize = 8
-    };
-}
+#include "Network/tcpv4socket.h"
 
 namespace Mezzanine
 {
     namespace Network
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Static Member Data
+        TCPv4Socket::TCPv4Socket()
+            { this->InternalSocket = new PlatformSocket(PF_INET,SOCK_STREAM,0); }
 
-        const Whole Packet::DefaultIPv4MTU = SmallestIPv4MTU;
-        const Whole Packet::DefaultIPv6MTU = SmallestIPv6MTU;
-        const Whole Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-        const Whole Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
+        TCPv4Socket::TCPv4Socket(PlatformSocket* InternalSock)
+            { this->InternalSocket = InternalSock; }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Methods
+        TCPv4Socket::TCPv4Socket(const UInt16 Port)
+            { this->InternalSocket = new PlatformSocket(PF_INET,SOCK_STREAM,0,Port); }
 
-        Packet::Packet()
-            {  }
-
-        Packet::~Packet()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        Boole Packet::IsExpectedSize() const
-            { return this->GetExpectedSize() == this->GetSize(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Buffer Management
+        TCPv4Socket::~TCPv4Socket()
+        {
+            delete this->InternalSocket;
+            this->InternalSocket = NULL;
+        }
     }//Network
 }//Mezzanine
 

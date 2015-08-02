@@ -40,63 +40,67 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _networkpacket_cpp
-#define _networkpacket_cpp
+#ifndef _networkipv6socket_cpp
+#define _networkipv6socket_cpp
 
-#include "Network/platformincludes.h.cpp"
+#include "Network/platformsocket.h.cpp"
 
-#include "Network/packet.h"
-
-namespace
-{
-    enum MTUValues
-    {
-        SmallestIPv4MTU = 576,
-        IPv4HeaderBaseSize = 20,
-        IPv4HeaderOptionsMaxSize = 40,
-
-        SmallestIPv6MTU = 1500,
-        IPv6HeaderBaseSize = 40,
-        IPv6HeaderOptionsEstSize = 40,
-
-        TCPHeaderBaseSize = 40,
-        TCPHeaderOptionsMaxSize = 40,
-
-        UDPHeaderSize = 8
-    };
-}
+#include "Network/ipv6socket.h"
 
 namespace Mezzanine
 {
     namespace Network
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Static Member Data
-
-        const Whole Packet::DefaultIPv4MTU = SmallestIPv4MTU;
-        const Whole Packet::DefaultIPv6MTU = SmallestIPv6MTU;
-        const Whole Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-        const Whole Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Methods
-
-        Packet::Packet()
+        IPv6Socket::IPv6Socket()
             {  }
 
-        Packet::~Packet()
+        IPv6Socket::~IPv6Socket()
             {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Boole Packet::IsExpectedSize() const
-            { return this->GetExpectedSize() == this->GetSize(); }
+        NetworkLayerProtocol IPv6Socket::GetNetworkLayerProtocol() const
+            { return Network::NLP_IPv6; }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Buffer Management
+        // Configuration
+
+        void IPv6Socket::SetNumUnicastHops(const Integer Hops)
+        {
+            #if defined(MEZZ_WINDOWS)
+            DWORD Value = ( Hops < 0 ? 0 : Hops );
+            this->InternalSocket->SetSocketOption(Network::SOL_IPv6,Network::IPv6Opts_UnicastHops,(char*)&Value,sizeof(Value));
+            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            this->InternalSocket->SetSocketOption(Network::SOL_IPv6,Network::IPv6Opts_UnicastHops,(char*)&Hops,sizeof(Hops));
+            #endif
+        }
+
+        Integer IPv6Socket::GetNumUnicastHops() const
+        {
+            #if defined(MEZZ_WINDOWS)
+            DWORD Value = 0;
+            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            int Value = 0;
+            #endif
+            AddrLen Size;
+            this->InternalSocket->GetSocketOption(Network::SOL_IPv6,Network::IPv6Opts_UnicastHops,(char*)&Value,&Size);
+            return static_cast<Integer>(Value);
+        }
+
+        void IPv6Socket::SetV6Only(const Boole V6Only)
+        {
+            int Value = ( V6Only ? 1 : 0 );
+            this->InternalSocket->SetSocketOption(Network::SOL_IPv6,Network::IPv6Opts_V6Only,(char*)&Value,sizeof(Value));
+        }
+
+        Boole IPv6Socket::GetV6Only() const
+        {
+            int Value = 0;
+            AddrLen Size;
+            this->InternalSocket->GetSocketOption(Network::SOL_IPv6,Network::IPv6Opts_V6Only,(char*)&Value,&Size);
+            return ( Value != 0 );
+        }
     }//Network
 }//Mezzanine
 

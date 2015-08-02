@@ -40,63 +40,52 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _networkpacket_cpp
-#define _networkpacket_cpp
+#ifndef _networkipv6socket_h
+#define _networkipv6socket_h
 
-#include "Network/platformincludes.h.cpp"
-
-#include "Network/packet.h"
-
-namespace
-{
-    enum MTUValues
-    {
-        SmallestIPv4MTU = 576,
-        IPv4HeaderBaseSize = 20,
-        IPv4HeaderOptionsMaxSize = 40,
-
-        SmallestIPv6MTU = 1500,
-        IPv6HeaderBaseSize = 40,
-        IPv6HeaderOptionsEstSize = 40,
-
-        TCPHeaderBaseSize = 40,
-        TCPHeaderOptionsMaxSize = 40,
-
-        UDPHeaderSize = 8
-    };
-}
+#include "Network/socket.h"
 
 namespace Mezzanine
 {
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        // Packet Static Member Data
+        /// @class IPv6Socket
+        /// @brief A socket class using the IP version 6 protocol.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB IPv6Socket : virtual public Socket
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            IPv6Socket();
+            /// @brief Class destructor.
+            virtual ~IPv6Socket();
 
-        const Whole Packet::DefaultIPv4MTU = SmallestIPv4MTU;
-        const Whole Packet::DefaultIPv6MTU = SmallestIPv6MTU;
-        const Whole Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-        const Whole Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Methods
+            /// @copydoc Socket::GetNetworkLayerProtocol() const
+            virtual NetworkLayerProtocol GetNetworkLayerProtocol() const;
 
-        Packet::Packet()
-            {  }
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
 
-        Packet::~Packet()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        Boole Packet::IsExpectedSize() const
-            { return this->GetExpectedSize() == this->GetSize(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Buffer Management
+            /// @copydoc Socket::SetNumUnicastHops(const Integer)
+            void SetNumUnicastHops(const Integer Hops);
+            /// @copydoc Socket::GetNumUnicastHops() const
+            Integer GetNumUnicastHops() const;
+            /// @brief Sets whether this socket is allowed to send or receive IPv4 messages.
+            /// @remarks By default IPv6 supports IPv4 addresses mapped onto it, and thus you can communicate with IPv4 hosts even with an IPv6 socket.  This
+            /// option forces IPv6 traffic on the socket.  Doing so also allows you to reuse the port the socket is operating on if it is reused by an IPv4
+            /// socket.
+            /// @param V6Only Whether or not to permit IPv4 addresses on send and/or accept IPv4 messages from remote hosts.
+            void SetV6Only(const Boole V6Only);
+            /// @brief Gets whether this socket is allowed to send or receive IPv4 messages.
+            /// @return Returns true if this socket is only allowed to send and receive IPv6 message, false if it will accept either IPv4 or IPv6.
+            Boole GetV6Only() const;
+        };//IPv6Socket
     }//Network
 }//Mezzanine
 

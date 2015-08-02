@@ -40,63 +40,53 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _networkpacket_cpp
-#define _networkpacket_cpp
-
-#include "Network/platformincludes.h.cpp"
-
-#include "Network/packet.h"
-
-namespace
-{
-    enum MTUValues
-    {
-        SmallestIPv4MTU = 576,
-        IPv4HeaderBaseSize = 20,
-        IPv4HeaderOptionsMaxSize = 40,
-
-        SmallestIPv6MTU = 1500,
-        IPv6HeaderBaseSize = 40,
-        IPv6HeaderOptionsEstSize = 40,
-
-        TCPHeaderBaseSize = 40,
-        TCPHeaderOptionsMaxSize = 40,
-
-        UDPHeaderSize = 8
-    };
-}
+#ifndef _networkenumerations_h
+#define _networkenumerations_h
 
 namespace Mezzanine
 {
     namespace Network
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Static Member Data
+        /// @enum HighLevelProtocol
+        /// @brief This is an enum listing for protocols used and recognized by software.
+        enum HighLevelProtocol
+        {
+            HLP_Invalid = 0,
+            HLP_FTP     = 1,
+            HLP_HTTP    = 2,
+            HLP_SMTP    = 4
+        };
 
-        const Whole Packet::DefaultIPv4MTU = SmallestIPv4MTU;
-        const Whole Packet::DefaultIPv6MTU = SmallestIPv6MTU;
-        const Whole Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-        const Whole Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
+        /// @enum NetworkLayerProtocol
+        /// @brief This is an enum listing for recognized protocols on Layer 3 of the OSI model.
+        enum NetworkLayerProtocol
+        {
+            NLP_Invalid = 0,
+            NLP_ICMP    = 1,
+            NLP_ICMPv6  = 2,
+            NLP_IGMP    = 4,
+            NLP_IPv4    = 8,
+            NLP_IPv6    = 16
+        };
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Methods
+        /// @enum SocketShutdown
+        /// @brief This is a small enum used for socket shutdown parameters.
+        enum SocketShutdown
+        {
+            SS_DontReceive       = 0,
+            SS_DontSend          = 1,
+            SS_DontSendOrReceive = 2
+        };
 
-        Packet::Packet()
-            {  }
-
-        Packet::~Packet()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        Boole Packet::IsExpectedSize() const
-            { return this->GetExpectedSize() == this->GetSize(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Buffer Management
+        /// @enum TransportLayerProtocol
+        /// @brief This is an enum listing for recognized protocols on Layer 4 of the OSI model.
+        enum TransportLayerProtocol
+        {
+            TLP_Invalid = 0,
+            TLP_SCTP    = 1,
+            TLP_TCP     = 2,
+            TLP_UDP     = 4
+        };
     }//Network
 }//Mezzanine
 

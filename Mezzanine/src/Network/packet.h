@@ -51,166 +51,125 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Packet
-        /// @headerfile networkpacket.h
-        /// @brief SFML style packet for encapsulating data for transmission across a network.
-        /// @details
+        /// @brief A base class for packing information to be transferred over the network.
+        /// @remarks Notes about Packets and Fragmentation: @n
+        /// When creating packets for any application there should be size considerations.  Routers are permitted to fragment
+        /// any packet that it cannot send along to the destination host due to hardware limitations that exist along the path
+        /// the packet is taking.  There are some exceptions to this.  In the IPv4 options a flag can be set to disable
+        /// fragmentation performed by routers.  In the event that a packet would be fragmented with the flag present the packet
+        /// will be dropped and an error sent back saying it couldn't be delivered.  In IPv6 fragmentation simply cannot happen;
+        /// it is disabled as per the IPv6 specification and packets are dropped and an error sent back just like with the IPv4
+        /// flag.  The error sent back in both cases is often manifested as "Destination Unreachable". @n
+        /// So it is important to know how big of a transmission is supported between the local host and the remote host to
+        /// facilitate error-free and IP agnostic transmissions, or to just avoid fragmentation altogether that could generate
+        /// odd errors if one fragment goes missing.  This is primarily a concern for UDP, which is a "fire-and-forget" protocol
+        /// without any redundancy.  However it can still be useful to know for TCP for making some optimizations.  The big terms
+        /// in relation to all of this are MTU(Maximum Transmission Unit) and MSS(Maximum Segment Size).  MTU is the maximum total
+        /// size of a packet without fragmentation that exists between two hosts.  MSS is very closely related to the MTU and
+        /// relates specifically to TCP; it is the maximum size of a single segment of a TCP stream. @n
+        /// I mentioned hardware limitations earlier.  Each piece of internetworking equipment can and likely will implement their
+        /// own MTU.  So the MTU is highly variable, even when connecting to the same host if it happens to choose a different
+        /// path(which can happen even for something simple as the return trip on the same connection).  The more internetworking
+        /// devices you encounter the most likely you are to encounter a device with a low MTU.  This is double true for devices
+        /// that exist on networks you can't control (I.E. the internet).  Fortunately there are some standards in place that help
+        /// us out. @n
+        /// There are two things to keep in mind regarding standards relating to MTU, on is the standards relating to the actual
+        /// MTU to be set, and the "minimum maximum reassembly buffer size" that must be set that determines the ideal MTU for a
+        /// given device.  IETF RFC 1122 states the minimum MTU for IPv4 must be 68.  Likewise, IETF RFC 1122 states the minimum
+        /// MTU for IPv6 is 1280.  Both of these standards go on to specify their reassembly buffer sizes to be at least 576 and
+        /// 1500, respectively.  These numbers are the recommended minimums for MTU on any connected device.  While these numbers
+        /// may be low, they are also the highest that can be expected among devices encountered on the internet.  Real world MTU
+        /// can be higher and likely will be in some cases, but there is no hard and fast rules for that.  So the numbers for the
+        /// IPv4 and IPv6 reassembly buffers will be our sane defaults prior to any actual detection along a path between
+        /// connected hosts. @n
+        /// So we have the total size of a transmission, but we're not quite set just yet.  There are headers created by the OS
+        /// upon transmission of any given message that take up space in the packet.  So we must take the size of the headers and
+        /// subtract that from the values mentioned above.  Both layer 3 and layer 4 protocols have packet headers that count
+        /// against us here.  Most of them also have options so their headers are somewhat of a variable length.  The UDP is the
+        /// most straightforward, with an 8 byte header and no available options.  TCP is a bit more complicated with a 40 byte
+        /// header and depending on options can be up to an additional 40 bytes.  In other words the bulkiest TCP header is 10
+        /// times the size of any UDP header!  But still 80 bytes isn't too bad, especially not when you are working with a
+        /// reliable protocol such as TCP.  IPv4 and IPv6 is where things get a little weirder.  IPv4 has a simple 20 byte header
+        /// and it's options can by up to 40 bytes on top of that, tripling it's size.  The IPv6 header is 40 bytes large, and it's
+        /// options are...complicated.  IPv6 changed the packet format so in the core header it defines the next header, which
+        /// could be a higher protocol header (such as TCP or UDP) or one of it's options.  Each option header has an identical
+        /// field with information on it's offsets.  So options don't have a fixed layout, or really a fixed size, and can be
+        /// chained for quite some length.  Unlike the other options values, using the max is just too large and too unrealistic
+        /// to factor in.  Instead 40 bytes of space for possible options is a sane value to set aside. @n
+        /// The static members that exist on the Packet class exist to help facilitate this math and provide constants to compare
+        /// to when creating a message to be packed into a packet.  These values are meant to represent sane defaults to keep your
+        /// packets under (in size) in order to avoid delivery complications for transmissions.  It is entirely possible, even
+        /// common, for you to be able to sent packets larger than these sizes without experiencing any issues.  This could be
+        /// as simple as the options fields for the packets sent aren't used, or the MTU between you and the remote host is much
+        /// larger than what is expected here.  In situations where you need to send a transmission larger than the static values
+        /// given in those constants, then the MTU should be tested before arbitrarily packing more data into your packets.  Also
+        /// keep in mind that these values are intended for internet transmissions, and transmissions over LAN can and will have a
+        /// much large MTU in nearly all cases.  Regardless, testing is valuable.
+        /// @todo Update this with information on how to manually detect the MTU between local and remote hosts.
         ///////////////////////////////////////
         class MEZZ_LIB Packet
         {
-            protected:
-                std::vector<char> RawData;
-                size_t ReadPos;
-                /// @internal
-                /// @brief Verifies the remaining length of the packet for extraction.
-                Boole VerifySize(const size_t& Bytes) const;
-            public:
-                /// @brief Class constructor.
-                Packet();
-                /// @brief Class destructor.
-                virtual ~Packet();
-                /// @brief Adds data to this packet.
-                /// @param Data Pointer to an array of raw data.
-                /// @param Bytes The amount of bytes contained in Data.
-                /// @warning This will blindly append data without checks as to what it is.  Nor
-                /// will this check for endianess.  Use with caution.
-                virtual void Append(const void* Data, size_t Bytes);
-                /// @brief Clears this packet of all data.
-                virtual void Clear();
-                /// @brief Gets the size of this packet.
-                /// @remarks This is also the size of the Data vector being stored by this class.
-                /// @return Returns a size_t indicating the size of this packet in bytes.
-                virtual size_t GetPacketSize() const;
-                /// @brief Gets whether or not the reading of this packet has reached the end.
-                /// @return Returns a Boole indicating if the read position has reached the end.
-                virtual Boole EndOfPacket() const;
-                /// @brief Gets the vector storing the raw data contained in this packet.
-                /// @return Returns a const reference to the vector storing the data of this packet.
-                virtual const std::vector<char>& GetRawData() const;
-                //streaming operators
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(Boole& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(Int8& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(UInt8& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(Int16& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(UInt16& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(Int32& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(UInt32& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(float& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(double& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                /// @warning To assure proper array size, this function will create a char array of it's own.
-                /// After this function is complete, it is up to the user to clean up the array when they are done.
-                Packet& operator >>(char* Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(String& Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                /// @warning To assure proper array size, this function will create a char array of it's own.
-                /// After this function is complete, it is up to the user to clean up the array when they are done.
-                Packet& operator >>(wchar_t* Data);
-                /// @brief
-                /// @param Data
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(WideString& Data);
-                /*/// @brief Streams a 16-bit unicode string out of the packet.
-                /// @param Data The string to be streamed to.
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(const UTF16String& Data);
-                /// @brief Streams a 32-bit unicode string out of the packet.
-                /// @param Data The string to be streamed to.
-                /// @return Returns a reference to this packet.
-                Packet& operator >>(const UTF32String& Data);*/
-                /// @brief Streams a Boole into the packet.
-                /// @param Data The Boole to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const Boole Data);
-                /// @brief Streams a 8-bit int into the packet.
-                /// @param Data The 8-bit int to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const Int8 Data);
-                /// @brief Streams a 8-bit unsigned int into the packet.
-                /// @param Data The 8-bit unsigned int to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const UInt8 Data);
-                /// @brief Streams a 16-bit int into the packet.
-                /// @param Data The 16-bit int to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(Int16 Data);
-                /// @brief Streams a 16-bit unsigned int into the packet.
-                /// @param Data The 16-bit unsigned int to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(UInt16 Data);
-                /// @brief Streams a 32-bit int into the packet.
-                /// @param Data The 32-bit int to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(Int32 Data);
-                /// @brief Streams a 32-bit unsigned int into the packet.
-                /// @param Data The 32-bit unsigned int to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(UInt32 Data);
-                /// @brief Streams a float into the packet.
-                /// @param Data The float to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const float Data);
-                /// @brief Streams a double into the packet.
-                /// @param Data The double-precision float to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const double Data);
-                /// @brief Streams a character array into the packet.
-                /// @param Data The char array to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const char* Data);
-                /// @brief Streams a String into the packet.
-                /// @param Data The string to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const String& Data);
-                /// @brief Streams a wide character array into the packet.
-                /// @param Data The char array to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const wchar_t* Data);
-                /// @brief Streams a wide String into the packet.
-                /// @param Data The string to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const WideString& Data);
-                /*/// @brief Streams a 16-bit unicode string into the packet.
-                /// @param Data The string to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const UTF16String& Data);
-                /// @brief Streams a 32-bit unicode string into the packet.
-                /// @param Data The string to be streamed.
-                /// @return Returns a reference to this packet.
-                Packet& operator <<(const UTF32String& Data);*/
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Static Data Members
+
+            /// @brief The maximum size an entire single transmission can be without fragmenting/rejection over IPv4.
+            static const Whole DefaultIPv4MTU;
+            /// @brief The maximum size an entire single transmission can be without fragmenting/rejection over IPv6.
+            static const Whole DefaultIPv6MTU;
+            /// @brief The maximum size the message portion of a UDP packet can be without fragmenting/rejection with IPv4.
+            static const Whole DefaultUDPv4MsgSize;
+            /// @brief The maximum size the message portion of a UDP packet can be without being rejected with IPv6.
+            static const Whole DefaultUDPv6MsgSize;
+            /// @brief The maximum size the message portion of a TCP packet can be without segmenting with IPv4.
+            static const Whole DefaultTCPv4MsgSize;
+            /// @brief The maximum size the message portion of a TCP packet can be without segmenting with IPv6.
+            static const Whole DefaultTCPv6MsgSize;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Class constructor.
+            Packet();
+            /// @brief Class destructor.
+            virtual ~Packet();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Gets the type of packet.
+            /// @return Returns a UInt15 that is the type ID of this packet.
+            virtual UInt16 GetPacketType() const = 0;
+            /// @brief Gets the size this packet should be according to it's type.
+            /// @return Returns the size this packet should be based on it's type ID in bytes.
+            virtual Whole GetExpectedSize() const = 0;
+
+            /// @brief Gets the actual size of this packet.
+            /// @return Returns the current size of the buffer in this packet.
+            virtual Whole GetSize() const = 0;
+            /// @brief Gets whether or not this packet is the size it should be.
+            /// @return Returns true if this packet is the size that is expected for it's type, false otherwise.
+            Boole IsExpectedSize() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Buffer Management
+
+            /// @brief Sets the raw data in this packet.
+            /// @param Buffer The data to be set.
+            /// @param BufSize The size of the buffer being set.
+            virtual void SetData(const void* Buffer, const Whole BufSize) = 0;
+            /// @brief Appends additional content onto this packet.
+            /// @param Buffer The data to be appended.
+            /// @param BufSize The size of the buffer being appended.
+            virtual void AppendData(const void* Buffer, const Whole BufSize) = 0;
+            /// @brief Gets the raw data of this packet.
+            /// @return Returns a void pointer to the internal buffer for this packet.
+            virtual void* GetData() = 0;
+            /// @brief Gets the raw data of this packet.
+            /// @return Returns a void pointer to the internal buffer for this packet.
+            virtual const void* GetData() const = 0;
+            /// @brief Clears or resets the contents of this packet.
+            virtual void ClearData() = 0;
         };//Packet
     }//Network
 }//Mezzanine

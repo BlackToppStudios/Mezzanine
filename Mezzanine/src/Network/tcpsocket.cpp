@@ -40,63 +40,80 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _networkpacket_cpp
-#define _networkpacket_cpp
+#ifndef _networktcpsocket_cpp
+#define _networktcpsocket_cpp
 
-#include "Network/platformincludes.h.cpp"
+#include "Network/platformsocket.h.cpp"
 
-#include "Network/packet.h"
-
-namespace
-{
-    enum MTUValues
-    {
-        SmallestIPv4MTU = 576,
-        IPv4HeaderBaseSize = 20,
-        IPv4HeaderOptionsMaxSize = 40,
-
-        SmallestIPv6MTU = 1500,
-        IPv6HeaderBaseSize = 40,
-        IPv6HeaderOptionsEstSize = 40,
-
-        TCPHeaderBaseSize = 40,
-        TCPHeaderOptionsMaxSize = 40,
-
-        UDPHeaderSize = 8
-    };
-}
+#include "Network/tcpsocket.h"
+#include "Network/tcpv4socket.h"
+#include "Network/tcpv6socket.h"
 
 namespace Mezzanine
 {
     namespace Network
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Static Member Data
-
-        const Whole Packet::DefaultIPv4MTU = SmallestIPv4MTU;
-        const Whole Packet::DefaultIPv6MTU = SmallestIPv6MTU;
-        const Whole Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-        const Whole Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Methods
-
-        Packet::Packet()
+        TCPSocket::TCPSocket()
             {  }
 
-        Packet::~Packet()
+        TCPSocket::~TCPSocket()
             {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Boole Packet::IsExpectedSize() const
-            { return this->GetExpectedSize() == this->GetSize(); }
+        TransportLayerProtocol TCPSocket::GetTransportLayerProtocol() const
+            { return Network::TLP_TCP; }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Buffer Management
+        // Core Operations
+
+        Boole TCPSocket::Listen(const Integer Backlog)
+            { return this->InternalSocket->Listen(Backlog); }
+
+        TCPSocket* TCPSocket::Accept(SystemAddress& Address)
+        {
+            PlatformSocket* SockPtr = this->InternalSocket->Accept(Address);
+            if( SockPtr != NULL ) {
+                if( this->GetNetworkLayerProtocol() == Network::NLP_IPv4 ) {
+                    return new TCPv4Socket( SockPtr );
+                }else if( this->GetNetworkLayerProtocol() == Network::NLP_IPv6 ) {
+                    return new TCPv6Socket( SockPtr );
+                }
+            }
+            return NULL;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Configuration
+
+        void TCPSocket::SetKeepAlive(const Boole Alive)
+        {
+            int Value = ( Alive ? 1 : 0 );
+            this->InternalSocket->SetSocketOption(Network::SOL_Socket,Network::SockOpts_KeepAlive,(char*)&Value,sizeof(Value));
+        }
+
+        Boole TCPSocket::GetKeepAlive() const
+        {
+            int Value = 0;
+            AddrLen Size;
+            this->InternalSocket->GetSocketOption(Network::SOL_Socket,Network::SockOpts_KeepAlive,(char*)&Value,&Size);
+            return ( Value != 0 );
+        }
+
+        void TCPSocket::SetNoDelay(const Boole NoDelay)
+        {
+            int Value = ( NoDelay ? 1 : 0 );
+            this->InternalSocket->SetSocketOption(Network::SOL_TCP,Network::TCPOpts_NoDelay,(char*)&Value,sizeof(Value));
+        }
+
+        Boole TCPSocket::GetNoDelay() const
+        {
+            int Value = 0;
+            AddrLen Size;
+            this->InternalSocket->GetSocketOption(Network::SOL_TCP,Network::TCPOpts_NoDelay,(char*)&Value,&Size);
+            return ( Value != 0 );
+        }
     }//Network
 }//Mezzanine
 

@@ -40,63 +40,48 @@
 
 #ifdef MEZZNETWORK
 
-#ifndef _networkpacket_cpp
-#define _networkpacket_cpp
+#ifndef _networkudpv6socket_h
+#define _networkudpv6socket_h
 
-#include "Network/platformincludes.h.cpp"
-
-#include "Network/packet.h"
-
-namespace
-{
-    enum MTUValues
-    {
-        SmallestIPv4MTU = 576,
-        IPv4HeaderBaseSize = 20,
-        IPv4HeaderOptionsMaxSize = 40,
-
-        SmallestIPv6MTU = 1500,
-        IPv6HeaderBaseSize = 40,
-        IPv6HeaderOptionsEstSize = 40,
-
-        TCPHeaderBaseSize = 40,
-        TCPHeaderOptionsMaxSize = 40,
-
-        UDPHeaderSize = 8
-    };
-}
+#include "Network/udpsocket.h"
+#include "Network/ipv6socket.h"
 
 namespace Mezzanine
 {
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        // Packet Static Member Data
+        /// @class UDPv6Socket
+        /// @brief A UDP socket that uses IPv6 internet addresses for transmissions.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB UDPv6Socket : public IPv6Socket, public UDPSocket
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            UDPv6Socket();
+            /// @brief Internal constructor.
+            /// @param A pointer to the internal socket to wrap.
+            UDPv6Socket(PlatformSocket* InternalSock);
+            /// @brief Binding constructor.
+            /// @param Port The port number to bind this socket to.
+            UDPv6Socket(const UInt16 Port);
+            /// @brief Class destructor.
+            virtual ~UDPv6Socket();
 
-        const Whole Packet::DefaultIPv4MTU = SmallestIPv4MTU;
-        const Whole Packet::DefaultIPv6MTU = SmallestIPv6MTU;
-        const Whole Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );
-        const Whole Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
-        const Whole Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Packet Methods
-
-        Packet::Packet()
-            {  }
-
-        Packet::~Packet()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        Boole Packet::IsExpectedSize() const
-            { return this->GetExpectedSize() == this->GetSize(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Buffer Management
+            /// @copydoc UDPSocket::SetNumMulticastHops(const Integer)
+            void SetNumMulticastHops(const Integer Hops);
+            /// @copydoc UDPSocket::GetNumMulticastHops() const
+            Integer GetNumMulticastHops() const;
+            /// @copydoc UDPSocket::SetMulticastLoop(const Boole)
+            void SetMulticastLoop(const Boole Loop);
+            /// @copydoc UDPSocket::GetMulticastLoop() const
+            Boole GetMulticastLoop() const;
+        };//UDPv6Socket
     }//Network
 }//Mezzanine
 
