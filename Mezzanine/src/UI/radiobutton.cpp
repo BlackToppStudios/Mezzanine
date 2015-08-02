@@ -198,7 +198,7 @@ namespace Mezzanine
                 if( OtherGroup == NULL ) {
                     this->ButtonGroup->AddButtonToGroup(ToAdd);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to add RadioButton to another group when it already has one.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to add RadioButton to another group when it already has one.");
                 }
             }else{
                 if( OtherGroup != NULL ) {
@@ -281,15 +281,15 @@ namespace Mezzanine
                                 }else{
                                     StringStream ExceptionStream;
                                     ExceptionStream << "Named Widget \"" << GroupButtonName << "\" not found or not a RadioButton when deserializing Widget named \"" << this->GetName() << "\".";
-                                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
+                                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
                                 }
                             }
                         }else{
-                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("GroupButtons") + ": Not Version 1.");
+                            MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("GroupButtons") + ": Not Version 1.");
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("GroupButtons") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("GroupButtons") + ": Not Version 1.");
                 }
             }
         }
@@ -307,10 +307,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SelectLock = StringTools::ConvertToBool( CurrAttrib.AsString() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RadioButton::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RadioButton::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,RadioButton::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,RadioButton::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

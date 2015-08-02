@@ -283,10 +283,10 @@ namespace Mezzanine
                         if( !CurrAttrib.Empty() )
                             this->Abs = CurrAttrib.AsReal();
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + UnifiedDim::GetSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + UnifiedDim::GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,UnifiedDim::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,UnifiedDim::GetSerializableName() + " was not found in the provided XML node, which was expected.");
                 }
             }
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
@@ -638,10 +638,10 @@ namespace Mezzanine
                         if( !CurrAttrib.Empty() )
                             this->Y.Abs = CurrAttrib.AsReal();
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + UnifiedVec2::GetSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + UnifiedVec2::GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,UnifiedVec2::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,UnifiedVec2::GetSerializableName() + " was not found in the provided XML node, which was expected.");
                 }
             }
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
@@ -868,10 +868,10 @@ namespace Mezzanine
                         if( !CurrAttrib.Empty() )
                             this->Size.Y.Abs = CurrAttrib.AsReal();
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + UnifiedRect::GetSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + UnifiedRect::GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,UnifiedRect::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,UnifiedRect::GetSerializableName() + " was not found in the provided XML node, which was expected.");
                 }
             }
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.

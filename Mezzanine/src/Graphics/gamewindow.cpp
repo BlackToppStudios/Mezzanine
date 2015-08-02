@@ -544,10 +544,10 @@ namespace Mezzanine
 
                     this->CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GameWindow::GetSerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GameWindow::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GameWindow::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,GameWindow::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -566,7 +566,7 @@ namespace Mezzanine
                         this->AddViewport(NewViewport);
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for RenderLayers: Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for RenderLayers: Not Version 1.");
                 }
             }
         }

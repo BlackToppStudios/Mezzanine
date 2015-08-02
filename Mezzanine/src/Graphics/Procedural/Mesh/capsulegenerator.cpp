@@ -199,7 +199,7 @@ namespace Mezzanine
             CapsuleGenerator& CapsuleGenerator::SetRadius(const Real Radius)
             {
                 if( Radius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated capsule mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for a generated capsule mesh must be greater than zero.");
 
                 this->CapsuleRadius = Radius;
                 return *this;
@@ -208,7 +208,7 @@ namespace Mezzanine
             CapsuleGenerator& CapsuleGenerator::SetHeight(const Real Height)
             {
                 if( Height <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Height for a generated capsule mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Height for a generated capsule mesh must be greater than zero.");
                 this->CapsuleHeight = Height;
                 return *this;
             }
@@ -216,7 +216,7 @@ namespace Mezzanine
             CapsuleGenerator& CapsuleGenerator::SetNumRings(const Whole Rings)
             {
                 if( Rings == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of rings for generated capsule mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of rings for generated capsule mesh must be greater than zero.");
 
                 this->NumRings = Rings;
                 return *this;
@@ -225,7 +225,7 @@ namespace Mezzanine
             CapsuleGenerator& CapsuleGenerator::SetNumSegCircle(const Whole SegCircle)
             {
                 if( SegCircle == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated capsule mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated capsule mesh must be greater than zero.");
 
                 this->NumSegCircle = SegCircle;
                 return *this;
@@ -234,7 +234,7 @@ namespace Mezzanine
             CapsuleGenerator& CapsuleGenerator::SetNumSegHeight(const Whole SegHeight)
             {
                 if( SegHeight == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated capsule mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated capsule mesh must be greater than zero.");
 
                 this->NumSegHeight = SegHeight;
                 return *this;

@@ -94,10 +94,10 @@ namespace Mezzanine
                 const Whole TargetWidth = Buffer.GetWidth();
                 const Whole TargetHeight = Buffer.GetHeight();
                 if( TargetWidth > this->FirstTexture->GetWidth() || TargetHeight > this->FirstTexture->GetHeight() ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The FirstTexture provided for LERP is not large enough to lerp onto the target texture.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The FirstTexture provided for LERP is not large enough to lerp onto the target texture.");
                 }
                 if( TargetWidth > this->SecondTexture->GetWidth() || TargetHeight > this->SecondTexture->GetHeight() ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The SecondTexture provided for LERP is not large enough to lerp onto the target texture.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The SecondTexture provided for LERP is not large enough to lerp onto the target texture.");
                 }
 
                 for( Whole Y = 0 ; Y < TargetHeight ; ++Y )

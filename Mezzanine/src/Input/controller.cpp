@@ -105,7 +105,7 @@ namespace Mezzanine
             for( ConstMetaCodeIterator MCIt = Sequence.begin() ; MCIt != Sequence.end() ; ++MCIt )
             {
                 if( !MCIt->IsControllerEvent() )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-Controller MetaCode detected when attempting to insert an Input Sequence into Controller input device.") }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Non-Controller MetaCode detected when attempting to insert an Input Sequence into Controller input device.") }
             }
         }
 
@@ -168,7 +168,7 @@ namespace Mezzanine
             }else if( Input::CONTROLLERBALL_2_VERTICAL == Trackball ){
                 return this->Trackballs.at(1).Y;
             }else{
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid Trackball parameter.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid Trackball parameter.");
             }
         }
 

@@ -239,7 +239,7 @@ void CatchPreInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
     while(0 != OneInput)
     {
         if(OneInput->GetType()!=EventBase::UserInput)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
+            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
         //we check each MetaCode in each Event
         /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
@@ -257,11 +257,11 @@ void CatchPreInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
     while(0 != OneWindowEvent)
     {
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
+            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
         if(!OneWindowEvent->IsEventIDValid())
         {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
         }
 
         delete OneWindowEvent;

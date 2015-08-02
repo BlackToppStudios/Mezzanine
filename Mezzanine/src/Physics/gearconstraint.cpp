@@ -209,10 +209,10 @@ namespace Mezzanine
 
                     this->CreateConstraint(this->ProxA,this->ProxB,AxisA,AxisB);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( GearConstraint::GetSerializableName() + "InitData" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( GearConstraint::GetSerializableName() + "InitData" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GearConstraint::GetSerializableName() + "InitData" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,GearConstraint::GetSerializableName() + "InitData" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -229,10 +229,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetRotationRatio( CurrAttrib.AsReal() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( GearConstraint::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( GearConstraint::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GearConstraint::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,GearConstraint::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

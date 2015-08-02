@@ -233,7 +233,7 @@ namespace Mezzanine
     {
         ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ManagerImplName);
         if( FactoryIt == World::ManagerFactories.end() ) {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
         WorldManager* NewMan = (*FactoryIt).second->CreateManager(this,Params);
         if(AddToWorld) {
@@ -246,7 +246,7 @@ namespace Mezzanine
     {
         ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ManagerImplName);
         if( FactoryIt == World::ManagerFactories.end() ) {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
         WorldManager* NewMan = (*FactoryIt).second->CreateManager(this,XMLNode);
         if(AddToWorld) {
@@ -260,7 +260,7 @@ namespace Mezzanine
         String ImplName = ToBeDestroyed->GetImplementationTypeName();
         ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ImplName);
         if( FactoryIt == World::ManagerFactories.end() ) {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ImplName + "\", which has no factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ImplName + "\", which has no factory registered.");
         }
         this->RemoveManager(ToBeDestroyed);
         (*FactoryIt).second->DestroyManager(ToBeDestroyed);
@@ -276,7 +276,7 @@ namespace Mezzanine
             WorldManager* Current = WorldManagerList.front();
             ManagerFactoryIterator FactoryIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
             if( FactoryIt == this->ManagerFactories.end() ) {
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
             }else{
                 (*FactoryIt).second->DestroyManager(Current);
             }
@@ -287,7 +287,7 @@ namespace Mezzanine
             String ImplName = (*WorldManIt)->GetImplementationTypeName();
             ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ImplName);
             if( FactoryIt == World::ManagerFactories.end() ) {
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ImplName + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ImplName + "\", which has no factory registered.");
             }else{
                 (*FactoryIt).second->DestroyManager( (*WorldManIt) );
             }

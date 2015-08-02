@@ -78,7 +78,7 @@ namespace Mezzanine
             //if( ProxType != Mezzanine::PT_Physics_RigidProxy || ProxType != Mezzanine::PT_Physics_SoftProxy ) {
                 this->SyncObject = TO;
             //}else{
-            //    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to create motionstate sync object between two physics objects that do not support this configuration.");
+            //    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to create motionstate sync object between two physics objects that do not support this configuration.");
             //}
         }
 

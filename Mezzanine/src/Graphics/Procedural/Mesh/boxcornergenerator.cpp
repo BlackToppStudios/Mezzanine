@@ -299,7 +299,7 @@ namespace Mezzanine
             BoxCornerGenerator& BoxCornerGenerator::SetHalfSizeX(const Real HalfSizeX)
             {
                 if( HalfSizeX <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated box-corner mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated box-corner mesh must be greater than zero.");
 
                 this->BoxHalf.X = HalfSizeX;
                 return *this;
@@ -308,7 +308,7 @@ namespace Mezzanine
             BoxCornerGenerator& BoxCornerGenerator::SetHalfSizeY(const Real HalfSizeY)
             {
                 if( HalfSizeY <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated box-corner mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated box-corner mesh must be greater than zero.");
 
                 this->BoxHalf.Y = HalfSizeY;
                 return *this;
@@ -317,7 +317,7 @@ namespace Mezzanine
             BoxCornerGenerator& BoxCornerGenerator::SetHalfSizeZ(const Real HalfSizeZ)
             {
                 if( HalfSizeZ <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated box-corner mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated box-corner mesh must be greater than zero.");
 
                 this->BoxHalf.Z = HalfSizeZ;
                 return *this;
@@ -334,7 +334,7 @@ namespace Mezzanine
             BoxCornerGenerator& BoxCornerGenerator::SetCornerThickness(const Real CornerThickness)
             {
                 if( CornerThickness == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated box-corner mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated box-corner mesh must be greater than zero.");
 
                 this->BoxThick = CornerThickness;
                 return *this;

@@ -302,7 +302,7 @@ namespace Mezzanine
                 }
                 default:
                 {
-                    MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to load an unsupported/unwrapped Collision Shape in CompoundShapeManager::LoadAllShapesFromFile.");
+                    MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to load an unsupported/unwrapped Collision Shape in CompoundShapeManager::LoadAllShapesFromFile.");
                 }//default
             }
         }
@@ -315,7 +315,7 @@ namespace Mezzanine
             ShapeMapIterator CS = this->CollisionShapes.find(Shape->GetName());
             if(CS != this->CollisionShapes.end()) {
                 if((*CS).second != Shape) {
-                    MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Name of Collision Shape already exists on another object.  Names should be Unique.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Name of Collision Shape already exists on another object.  Names should be Unique.");
                 }
             }else{
                 this->CollisionShapes[Shape->GetName()] = Shape;
@@ -586,11 +586,11 @@ namespace Mezzanine
             XML::Document ShapesDoc;
             XML::ParseResult DocResult = ShapesDoc.Load(ShapesStream);
             if( DocResult.Status != XML::StatusOk ) {
-                MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,"Failed to parse XML file \"" + FileName + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,"Failed to parse XML file \"" + FileName + "\".");
             }
             XML::Node ShapesRoot = ShapesDoc.GetChild("InitializerRoot");
             if( ShapesRoot.Empty() ) {
-                MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,"Failed to find expected Root node in \"" + FileName + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,"Failed to find expected Root node in \"" + FileName + "\".");
             }
 
             for( XML::NodeIterator ShapeIt = ShapesRoot.begin() ; ShapeIt != ShapesRoot.end() ; ++ShapeIt )
@@ -617,7 +617,7 @@ namespace Mezzanine
                 Resource::FileStream SettingsStream(FileName,".",Resource::SF_Truncate | Resource::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
             }
         }
 
@@ -638,7 +638,7 @@ namespace Mezzanine
                 Resource::FileStream SettingsStream(FileName,".",Resource::SF_Truncate | Resource::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
             }
         }
 
@@ -650,7 +650,7 @@ namespace Mezzanine
             Stream->read((void*)buffer, Stream->size());
             if(!Importer.loadFileFromMemory(buffer, Stream->size()))
             {
-                MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION,"Failed to load file: " + FileName + ".")
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_EXCEPTION,"Failed to load file: " + FileName + ".")
             }
             delete[] buffer;
             for( Whole X = 0 ; X < Importer.getNumCollisionShapes() ; ++X )
@@ -734,7 +734,7 @@ namespace Mezzanine
 
             ShapeMapIterator NaIt = this->CollisionShapes.find(NewName);
             if(NaIt != this->CollisionShapes.end()) {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Attempting to assign non-unique name to an unnamed Collision Shape.");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Attempting to assign non-unique name to an unnamed Collision Shape.");
             }
 
             Shape->_SetShapeName(NewName);

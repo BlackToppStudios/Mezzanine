@@ -137,10 +137,10 @@ namespace Mezzanine
             MultiShape Shape::_BooleanOperation(const Shape& Other, const Procedural::BooleanOperation OpType) const
             {
                 if( !this->Closed || this->Points.size() < 2 ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"2D shapes must be closed and must contain at least 2 points.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"2D shapes must be closed and must contain at least 2 points.");
                 }
                 if( !Other.Closed || Other.Points.size() < 2 ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"2D shapes must be closed and must contain at least 2 points.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"2D shapes must be closed and must contain at least 2 points.");
                 }
 
                 // Compute the intersection between the 2 shapes
@@ -530,9 +530,9 @@ namespace Mezzanine
             Vector2 Shape::GetPosition(const Whole Index, const Real Coord) const
             {
                 if( !this->Closed || Index >= this->Points.size() )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Specified point index is out of bounds.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Specified point index is out of bounds.");
                 if( Coord < 0.0 || Coord > 1.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Coord must be between 0 and 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Coord must be between 0 and 1.");
                 Vector2 A = this->GetPoint( Index );
                 Vector2 B = this->GetPoint( Index + 1 );
                 return A + ( ( B - A ) * Coord );
@@ -541,7 +541,7 @@ namespace Mezzanine
             Vector2 Shape::GetPosition(Real Coord) const
             {
                 if( this->Points.size() < 2 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "The shape must contain at least 2 points.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "The shape must contain at least 2 points.");
                 Whole Index = 0;
                 while( true )
                 {

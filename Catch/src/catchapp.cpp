@@ -108,13 +108,13 @@ void CatchApp::InitializeFromXML(const String& CatchDataPath, const Mezzanine::A
     if( DocResult.Status != XML::StatusOk ) {
         StringStream ExceptionStream;
         ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
-        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+        MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
     }
     XML::Node InitRoot = InitDoc.GetChild("InitializerRoot");
     if( InitRoot.Empty() ) {
         StringStream ExceptionStream;
         ExceptionStream << "Failed to find expected Root node in \"" << InitializerFile << "\".";
-        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+        MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
     }
 
     // Create the requested managers and set their necessary values.

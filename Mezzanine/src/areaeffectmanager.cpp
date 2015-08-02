@@ -139,7 +139,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
         }
     }
 
@@ -154,7 +154,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
         }
     }
 
@@ -166,7 +166,7 @@ namespace Mezzanine
             this->AreaEffects.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
         }
     }
 
@@ -181,7 +181,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
         }
     }
 
@@ -196,7 +196,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
         }
     }
 
@@ -208,7 +208,7 @@ namespace Mezzanine
             this->AreaEffects.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
         }
     }
 
@@ -223,7 +223,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
         }
     }
 
@@ -238,7 +238,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
         }
     }
 
@@ -250,7 +250,7 @@ namespace Mezzanine
             this->AreaEffects.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
         }
     }
 
@@ -268,7 +268,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
         }
     }
 
@@ -280,7 +280,7 @@ namespace Mezzanine
             this->AreaEffects.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
         }
     }
 
@@ -313,7 +313,7 @@ namespace Mezzanine
             if( AEFactIt != this->AreaEffectFactories.end() ) {
                 (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
             }
 
             this->AreaEffects.erase(AEIt);
@@ -329,7 +329,7 @@ namespace Mezzanine
             if( AEFactIt != this->AreaEffectFactories.end() ) {
                 (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
             }
 
             this->AreaEffects.erase(AEIt);
@@ -344,7 +344,7 @@ namespace Mezzanine
             if( AEFactIt != this->AreaEffectFactories.end() ) {
                 (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
             }
         }
         this->AreaEffects.clear();

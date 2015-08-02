@@ -74,7 +74,7 @@ namespace Mezzanine
             if( TextureIt == this->Textures.end() ) {
                 this->Textures.insert( std::pair<String,Texture*>(TextureName,ToAdd) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Textures must have unique names when loaded!");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Textures must have unique names when loaded!");
             }
         }
 

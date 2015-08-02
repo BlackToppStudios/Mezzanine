@@ -55,7 +55,7 @@ void REPLLineNoise::PopulateCommmandTrie()
     {
         PossibleCommands.clear();
         Doer.LuaEngine.PopulateTabCompletionTrie(PossibleCommands);
-    } catch (Exception& e) {
+    } catch (Mezzanine::ExceptionBase& e) {
         PossibleCommands.clear();
         cout << "\r\n" << e.what() << "\r\n";
     }

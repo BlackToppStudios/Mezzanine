@@ -126,10 +126,10 @@ namespace Mezzanine
                     if( !BottomRightFillNode.Empty() )
                         this->FillColours[UI::QC_BottomRight].ProtoDeSerialize(BottomRightFillNode);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + MultiImageData::GetSerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + MultiImageData::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,MultiImageData::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,MultiImageData::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -420,7 +420,7 @@ namespace Mezzanine
                         String SpriteName, SpriteAtlas;
 
                         if( ImageIt == this->LayerImages.end() ) {
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Seriailzed value for \"NumImages\" is smaller than number of nodes to deserialize.  Verify serialized XML.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Seriailzed value for \"NumImages\" is smaller than number of nodes to deserialize.  Verify serialized XML.");
                         }
 
                         CurrAttrib = (*ImageNodeIt).GetAttribute("SpriteName");
@@ -457,10 +457,10 @@ namespace Mezzanine
                         ++ImageIt;
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (String("MultiImageData") + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (String("MultiImageData") + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,String("MultiImageData") + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,String("MultiImageData") + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

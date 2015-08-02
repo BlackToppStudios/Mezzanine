@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -173,7 +173,7 @@ namespace Mezzanine
                 const ModuleBase& GetXDisplaceModule() const
                 {
                     if( this->m_pSourceModule == NULL || this->m_pSourceModule[1] == NULL ) {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to retrieve displace module that does not exist.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to retrieve displace module that does not exist.");
                     }
                     return *(this->m_pSourceModule[1]);
                 }
@@ -217,7 +217,7 @@ namespace Mezzanine
                 const ModuleBase& GetYDisplaceModule() const
                 {
                     if( this->m_pSourceModule == NULL || this->m_pSourceModule[2] == NULL ) {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to retrieve displace module that does not exist.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to retrieve displace module that does not exist.");
                     }
                     return *(this->m_pSourceModule[2]);
                 }
@@ -261,7 +261,7 @@ namespace Mezzanine
                 const ModuleBase& GetZDisplaceModule() const
                 {
                     if( this->m_pSourceModule == NULL || this->m_pSourceModule[3] == NULL ) {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to retrieve displace module that does not exist.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to retrieve displace module that does not exist.");
                     }
                     return *(this->m_pSourceModule[3]);
                 }

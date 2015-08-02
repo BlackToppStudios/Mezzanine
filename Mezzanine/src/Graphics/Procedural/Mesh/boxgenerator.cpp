@@ -167,7 +167,7 @@ namespace Mezzanine
             BoxGenerator& BoxGenerator::SetHalfSizeX(const Real HalfSizeX)
             {
                 if( HalfSizeX <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
 
                 this->BoxHalf.X = HalfSizeX;
                 return *this;
@@ -176,7 +176,7 @@ namespace Mezzanine
             BoxGenerator& BoxGenerator::SetHalfSizeY(const Real HalfSizeY)
             {
                 if( HalfSizeY <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
 
                 this->BoxHalf.Y = HalfSizeY;
                 return *this;
@@ -185,7 +185,7 @@ namespace Mezzanine
             BoxGenerator& BoxGenerator::SetHalfSizeZ(const Real HalfSizeZ)
             {
                 if( HalfSizeZ <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
 
                 this->BoxHalf.Z = HalfSizeZ;
                 return *this;
@@ -202,7 +202,7 @@ namespace Mezzanine
             BoxGenerator& BoxGenerator::SetNumSegX(const Whole SegX)
             {
                 if( SegX == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated box mesh must be greater than zero.");
 
                 this->NumSegX = SegX;
                 return *this;
@@ -211,7 +211,7 @@ namespace Mezzanine
             BoxGenerator& BoxGenerator::SetNumSegY(const Whole SegY)
             {
                 if( SegY == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated box mesh must be greater than zero.");
 
                 this->NumSegY = SegY;
                 return *this;
@@ -220,7 +220,7 @@ namespace Mezzanine
             BoxGenerator& BoxGenerator::SetNumSegZ(const Whole SegZ)
             {
                 if( SegZ == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated box mesh must be greater than zero.");
 
                 this->NumSegZ = SegZ;
                 return *this;

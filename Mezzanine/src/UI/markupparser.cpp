@@ -152,14 +152,14 @@ namespace Mezzanine
             {
                 Int32 GlyphID = Unicode::GetIntFromCharacter(BytesAdvance,StrBuf + Position);
                 if( GlyphID == -1 ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to parse non-UTF8 encoded markup text.  Encode in UTF8 and try again.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to parse non-UTF8 encoded markup text.  Encode in UTF8 and try again.");
                 }
 
                 Glyph* TheGlyph = Traits.CharFont->GetGlyph(static_cast<UInt32>(GlyphID));
                 if( TheGlyph == NULL ) {
                     StringStream ExceptionStream;
                     ExceptionStream << "Attempting to parse unknown Glyph ID: " << GlyphID << ".  Provided font (" << Traits.CharFont->GetName() << ") does not contain that Glyph.";
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
                 }
                 /// @todo As the CharacterTraits class expands, so does this logic.
                 Character* NewChar = new Character(TheGlyph,Layer);

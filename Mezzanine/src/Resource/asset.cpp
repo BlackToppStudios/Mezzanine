@@ -63,10 +63,10 @@ namespace Mezzanine
         {
             ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
             if( ResourceMan == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to perform IO with AssetGroups when the resource system has not been created/initialized.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to perform IO with AssetGroups when the resource system has not been created/initialized.");
             }
             // We should fetch the stream via the singleton pointer here, however may need to rethink how this is approached for large files or slow IO where loading may need to be split up between multiple frames.
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Loading via asset groups is not supported yet.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Loading via asset groups is not supported yet.");
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -76,10 +76,10 @@ namespace Mezzanine
         {
             ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
             if( ResourceMan == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to perform IO with AssetGroups when the resource system has not been created/initialized.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to perform IO with AssetGroups when the resource system has not been created/initialized.");
             }
             // This is awaiting the addition of write directories to asset groups.
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Saving via asset groups is not supported yet.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Saving via asset groups is not supported yet.");
         }
 
         ///////////////////////////////////////////////////////////////////////////////

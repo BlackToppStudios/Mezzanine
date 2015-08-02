@@ -233,11 +233,11 @@ namespace Mezzanine
             // Check for configurations that are just not doable
             if( ( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis || ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis_Unified) &&
                 ( ChildSizing.VerticalRules == UI::SR_Match_Other_Axis || ChildSizing.VerticalRules == UI::SR_Match_Other_Axis_Unified ) )
-                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Both axes of a SizingPolicy cannot attempt to match the other axis.  This creates a circular dependency."); }
+                { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Both axes of a SizingPolicy cannot attempt to match the other axis.  This creates a circular dependency."); }
             if( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis && ChildSizing.VerticalRules == UI::SR_Size_For_Text )
-                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot attempt to match vertical axis when it is sizing for text.  This creates a circular dependency."); }
+                { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot attempt to match vertical axis when it is sizing for text.  This creates a circular dependency."); }
             if( ChildSizing.HorizontalRules == UI::SR_Size_For_Text )
-                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot size for text on the horizontal axis."); }
+                { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot size for text on the horizontal axis."); }
 
             // In general, process the vertical dimension first.  This is because vertical resizing is likely to be less extreme compared to horizontal
             // in the case of transitioning from widescreen to standard viewing formats.  In general, horizontal is more likely to be the dependent axis.

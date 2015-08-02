@@ -128,7 +128,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
         }
     }
 
@@ -143,7 +143,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
         }
     }
 
@@ -155,7 +155,7 @@ namespace Mezzanine
             this->Debriss.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
         }
     }
 
@@ -170,7 +170,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
         }
     }
 
@@ -182,7 +182,7 @@ namespace Mezzanine
             this->Debriss.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
         }
     }
 
@@ -200,7 +200,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an Debris of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an Debris of unknown type.");
         }
     }
 
@@ -212,7 +212,7 @@ namespace Mezzanine
             this->Debriss.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a Debris of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a Debris of unknown type.");
         }
     }
 
@@ -245,7 +245,7 @@ namespace Mezzanine
             if( DebFactIt != this->DebrisFactories.end() ) {
                 (*DebFactIt).second->DestroyDebris( (*DebIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
             }
 
             this->Debriss.erase(DebIt);
@@ -261,7 +261,7 @@ namespace Mezzanine
             if( DebFactIt != this->DebrisFactories.end() ) {
                 (*DebFactIt).second->DestroyDebris( (*DebIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
             }
 
             this->Debriss.erase(DebIt);
@@ -276,7 +276,7 @@ namespace Mezzanine
             if( DebFactIt != this->DebrisFactories.end() ) {
                 (*DebFactIt).second->DestroyDebris( (*DebIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
             }
         }
         this->Debriss.clear();

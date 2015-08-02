@@ -190,7 +190,7 @@ namespace Mezzanine
             UInt32 InitSDLSystems = SDL_WasInit(0);
             if( (SDL_INIT_VIDEO & InitSDLSystems) == 0 ) {
                 if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) < 0 ) {
-                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Video/Windowing, SDL Error: ") + SDL_GetError());
+                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Video/Windowing, SDL Error: ") + SDL_GetError());
                 }
             }
 
@@ -508,7 +508,7 @@ namespace Mezzanine
         void GraphicsManager::SetRenderSystem(const Graphics::RenderSystem& RenderSys, Boole InitializeRenderSystem)
         {
             if(!this->OgreBeenInitialized) this->CurrRenderSys = RenderSys;
-            else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to set RenderSystem after graphics has been initialized.  This is not supported."); }
+            else { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to set RenderSystem after graphics has been initialized.  This is not supported."); }
 
             if( InitializeRenderSystem )
                 this->InitOgreRenderSystem();

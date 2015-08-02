@@ -71,7 +71,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -85,7 +85,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -153,7 +153,7 @@ namespace Mezzanine
             case 0: return Vector3::Unit_X();
             case 1: return Vector3::Unit_Y();
             case 2: return Vector3::Unit_Z();
-            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
         }
     }
 
@@ -171,7 +171,7 @@ namespace Mezzanine
             }
         }
         return Axis_Invalid;
-        //MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot convert Vector3 to StandardAxis, Vector3 may not be Axis Aligned or may not be Unit Length.");
+        //MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot convert Vector3 to StandardAxis, Vector3 may not be Axis Aligned or may not be Unit Length.");
     }
 
 
@@ -355,7 +355,7 @@ namespace Mezzanine
         if( 0 != TempLength ) {
              (*this) /= TempLength;
         }else{
-            MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Normalize Vector3(0,0,0).");
+            MEZZ_EXCEPTION(ExceptionBase::ARITHMETIC_EXCEPTION,"Cannot Normalize Vector3(0,0,0).");
         }
         return *this;
     }
@@ -366,7 +366,7 @@ namespace Mezzanine
         if( 0 != TempLength ) {
             return (*this) / TempLength;
         }else{
-            MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Get the Normal of Vector3(0,0,0).");
+            MEZZ_EXCEPTION(ExceptionBase::ARITHMETIC_EXCEPTION,"Cannot Get the Normal of Vector3(0,0,0).");
         }
     }
 
@@ -621,10 +621,10 @@ namespace Mezzanine
                 this->Y=OneNode.GetAttribute("Y").AsReal();
                 this->Z=OneNode.GetAttribute("Z").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 

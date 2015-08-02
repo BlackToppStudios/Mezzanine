@@ -64,7 +64,7 @@ namespace Mezzanine
                 RSPlugin = new Ogre::GL3PlusPlugin();
                 Ogre::Root::getSingletonPtr()->installPlugin( RSPlugin );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"The OpenGL3+ render system has already been created.")
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"The OpenGL3+ render system has already been created.")
             }
         }
 

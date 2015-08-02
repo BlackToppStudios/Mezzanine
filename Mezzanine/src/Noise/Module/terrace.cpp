@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -97,7 +97,7 @@ namespace Mezzanine
                     }else if( Value == this->m_pControlPoints[insertionPos] ) {
                         // Each control point is required to contain a unique value, so throw
                         // an exception.
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The input value of a terrace provided already exists.");
+                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"The input value of a terrace provided already exists.");
                     }
                 }
                 return insertionPos;
@@ -146,7 +146,7 @@ namespace Mezzanine
             void Terrace::MakeControlPoints(const Integer ControlPointCount)
             {
                 if( ControlPointCount < 2 ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Requesting fewer than 2 control points for a Terrace.  The minimum allowed is 2.");
+                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"Requesting fewer than 2 control points for a Terrace.  The minimum allowed is 2.");
                 }
 
                 this->ClearAllControlPoints();

@@ -243,7 +243,7 @@ namespace Mezzanine
                 Whole NumSegmentsInShape = CurrShape.GetSegCount();
 
                 if( NumSegmentsToExtrude == 0 || NumSegmentsInShape == 0 ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"The shape and path provided must contain at least 2 points to extrude.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"The shape and path provided must contain at least 2 points to extrude.");
                 }
 
                 // Lineic Position variables
@@ -376,7 +376,7 @@ namespace Mezzanine
             void Extruder::AddToTriangleBuffer(TriangleBuffer& Buffer) const
             {
                 if( this->ShapesToExtrude.GetNumShapes() == 0 ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"At least one shape must be defined to perform an Extrude.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"At least one shape must be defined to perform an Extrude.");
                 }
 
                 TriangleBuffer ExtrudeBuffer;

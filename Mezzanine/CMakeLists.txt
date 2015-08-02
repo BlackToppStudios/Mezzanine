@@ -1309,14 +1309,15 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_MainLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Main library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_target(
             ${SWIG_PROJECT}_MainLua51Unsafe
-            PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Main library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
@@ -1325,6 +1326,7 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_XMLLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine XML library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
@@ -1332,6 +1334,7 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_XMLLua51Unsafe
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
@@ -1340,6 +1343,7 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_ThreadingLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Threading library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
@@ -1347,6 +1351,7 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_ThreadingLua51Unsafe
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
@@ -1355,6 +1360,7 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_PhysicsLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Physics library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -o Scripting/Lua51/scriptbindingphysicslua51.cpp Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
@@ -1362,6 +1368,7 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_PhysicsLua51Unsafe
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
@@ -1370,6 +1377,7 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_MathToolsLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine MathTools library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MATHTOOLS -o Scripting/Lua51/scriptbindingmathtoolslua51.cpp MathTools/mathtools.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
@@ -1377,11 +1385,23 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_MathToolsLua51Unsafe
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine MathTools library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MATHTOOLS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmathtoolslua51unsafe.cpp MathTools/mathtools.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
 
+#        add_dependencies(${SWIG_PROJECT}
+#                            ${SWIG_PROJECT}_MainLua51
+#                            ${SWIG_PROJECT}_XMLLua51
+#                            ${SWIG_PROJECT}_ThreadingLua51
+#                            ${SWIG_PROJECT}_PhysicsLua51
+#                            ${SWIG_PROJECT}_MathToolsLua51
+
+#                            ${SWIG_PROJECT}_MainLua51Unsafe
+#                            ${SWIG_PROJECT}_XMLLua51Unsafe
+#                        )
+#        #add_dependencies(${SWIG_PROJECT}_MainLua51 ${SWIG_PROJECT}_MainLua51Unsafe)
         add_dependencies(${SWIG_PROJECT}
             ${SWIG_PROJECT}_MainLua51           ${SWIG_PROJECT}_MainLua51Unsafe
             ${SWIG_PROJECT}_XMLLua51            ${SWIG_PROJECT}_XMLLua51Unsafe
@@ -1444,12 +1464,52 @@ if(${Mezz_SWIG})
 endif(${Mezz_SWIG})
 
 #######################################
+# Exception Generation Configuration
+option (Mezz_Exception "Refresh exceptions on build" OFF)
+
+
+message(STATUS "Will exceptions be GENERATED: ${Mezz_Exception}")
+if(${Mezz_Exception})
+    # This names are likely the new style, but this is still poorly integrated.
+    set(ExceptionProject "Exception_${PROJECT_NAME}")
+    set(ExceptionProjectFolder "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/exceptions/")
+    set(ExceptionWorkingDirectory "${${PROJECT_NAME}_BINARY_DIR}ExceptionGeneration/")
+    set(ExceptionResults "${${PROJECT_NAME}_SRC_DIR}exception.h")
+
+
+    file(MAKE_DIRECTORY ${ExceptionWorkingDirectory})
+
+    add_custom_target(
+        ${ExceptionProject}
+        COMMAND ${CMAKE_COMMAND} -E echo "Generating Exception Hiearchy from configuration."
+        #COMMAND ${CMAKE_COMMAND} -E remove ${ExceptionResults}
+        #COMMAND ${CMAKE_COMMAND} -E touch ${ExceptionResults}
+
+        COMMAND ${CMAKE_COMMAND} ${ExceptionWorkingDirectory} ${ExceptionProjectFolder}
+        COMMAND ${CMAKE_COMMAND} -E echo "Storing Exceptions at ${ExceptionResults}."
+        COMMAND ${CMAKE_COMMAND} -E copy ${ExceptionWorkingDirectory}GeneratedExceptions.h ${ExceptionResults}
+        WORKING_DIRECTORY ${ExceptionWorkingDirectory}
+        VERBATIM
+        SOURCES ${ExceptionProjectFolder}CMakeLists.txt
+                ${ExceptionProjectFolder}enum.in
+                ${ExceptionProjectFolder}enumlast.in
+                ${ExceptionProjectFolder}exception.in
+                ${ExceptionProjectFolder}exceptionfile.in
+                ${ExceptionResults}
+    )
+endif(${Mezz_Exception})
+
+#######################################
 # Library Link Dependencies
-add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames}  ${SDLLibraryNames} ${SoundLibraryNames} ${LuaProject} ${RubyProject} ${SWIG_PROJECT} ${ExceptionProject})
+add_dependencies( ${PROJECT_NAME} ${Bullet_LibraryNames}  ${SDLLibraryNames} ${SoundLibraryNames} "lua" ${SWIG_PROJECT} ${ExceptionProject})
+
+if(${Mezz_Exception})
+    add_dependencies( ${PROJECT_NAME} ${ExceptionProject})
+endif(${Mezz_Exception})
 
 if(${Mezz_SWIG})
-    add_dependencies(${LuaProject} ${SWIG_PROJECT})
-    add_dependencies(${RubyProject} ${SWIG_PROJECT})
+    add_dependencies("lua" ${SWIG_PROJECT})
+    #add_dependencies(${RubyProject} ${SWIG_PROJECT})
     add_dependencies(${SWIG_PROJECT} ${ExceptionProject})
 endif(${Mezz_SWIG})
 
@@ -1500,40 +1560,6 @@ CopyFilesDuringBuild( common/cAudio-ZLIBLicense.txt data/common/cAudio-ZLIBLicen
 #CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/${BuildPlatform}/plugins.cfg )
 
 # We should use the new variables to copy the ogre files and Mezzanine library in the common code.
-
-###############################################################################
-# Exception Generation Configuration
-option (Mezz_Exception "Refresh exceptions on build" OFF)
-
-if(Mezz_Exception)
-# This names are likely the new style, but this is still poorly integrated.
-set(ExceptionProject "Exception_${PROJECT_NAME}")
-set(ExceptionProjectFolder "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/exceptions/")
-set(ExceptionWorkingDirectory "${${PROJECT_NAME}_BINARY_DIR}ExceptionGeneration/")
-set(ExceptionResults "${${PROJECT_NAME}_SRC_DIR}exception.h")
-
-
-file(MAKE_DIRECTORY ${ExceptionWorkingDirectory})
-
-add_custom_target(
-    ${ExceptionProject}
-    COMMAND ${CMAKE_COMMAND} -E echo "Generating Exception Hiearchy from configuration."
-    #COMMAND ${CMAKE_COMMAND} -E remove ${ExceptionResults}
-    #COMMAND ${CMAKE_COMMAND} -E touch ${ExceptionResults}
-
-    COMMAND ${CMAKE_COMMAND} ${ExceptionWorkingDirectory} ${ExceptionProjectFolder}
-    COMMAND ${CMAKE_COMMAND} -E echo "Storing Exceptions at ${ExceptionResults}."
-    COMMAND ${CMAKE_COMMAND} -E copy ${ExceptionWorkingDirectory}GeneratedExceptions.h ${ExceptionResults}
-    WORKING_DIRECTORY ${ExceptionWorkingDirectory}
-    VERBATIM
-    SOURCES ${ExceptionProjectFolder}CMakeLists.txt
-            ${ExceptionProjectFolder}enum.in
-            ${ExceptionProjectFolder}enumlast.in
-            ${ExceptionProjectFolder}exception.in
-            ${ExceptionProjectFolder}exceptionfile.in
-            ${ExceptionResults}
-)
-endif(Mezz_Exception)
 
 #######################################
 # Windows File Copy Specific Items

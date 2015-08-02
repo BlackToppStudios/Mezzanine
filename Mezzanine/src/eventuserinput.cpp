@@ -163,7 +163,7 @@ namespace Mezzanine
 
         if( Input::CONTROLLERHAT_FIRST > Hat || Input::CONTROLLERHAT_LAST < Hat )
         {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Unsupported Controller Hat Event");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Unsupported Controller Hat Event");
         }
 
         Results.push_back(this->AddCode( RawEvent_.jhat.value, Hat, RawEvent_.jhat.which ));
@@ -186,7 +186,7 @@ namespace Mezzanine
             if( RawEvent_.jball.xrel != 0 )
                 { Results.push_back(this->AddCode(RawEvent_.jball.xrel, Input::CONTROLLERBALL_2_HORIZONTAL, RawEvent_.jball.which)); }
         }else{
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"More then 2 trackballs is currently not supported.  Perhaps we should expand our enum.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"More then 2 trackballs is currently not supported.  Perhaps we should expand our enum.");
         }
 
         return Results;
@@ -236,10 +236,10 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventUserInput
             }
 
         }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventUserInput: Not Version 1.");
+            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventUserInput: Not Version 1.");
         }
     }else{
-        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventUserInput, found a " + Mezzanine::String(OneNode.Name()));
+        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventUserInput, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
 

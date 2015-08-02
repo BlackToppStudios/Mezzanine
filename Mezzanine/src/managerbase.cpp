@@ -258,7 +258,7 @@ namespace Mezzanine
         }
 
         //If we got this far, there was a problem with the string provided.
-        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to get ManagerType from string, but no match was found.  Is the string valid?");
+        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to get ManagerType from string, but no match was found.  Is the string valid?");
     }
 }//Mezzanine
 

@@ -145,7 +145,7 @@ namespace Mezzanine
                 if( RayQuery->execute().size() <= 0 ) return false;//Did we hit anything
                 else return true;
             }else{                          // Something Failed
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
             }
             return false;
         }
@@ -259,7 +259,7 @@ namespace Mezzanine
                     } // \if WSO_ActorRigid
                 }catch(...){
                     ClearReturns();
-                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed during cast in object raycast.");
+                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,"Failed during cast in object raycast.");
                 }
             } // \if entity
         } // \if qr_idx
@@ -443,10 +443,10 @@ namespace Mezzanine
                     IntersectedObject = NULL;
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 

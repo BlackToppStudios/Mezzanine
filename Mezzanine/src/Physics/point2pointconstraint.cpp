@@ -247,10 +247,10 @@ namespace Mezzanine
 
                     this->CreateConstraint(this->ProxA,this->ProxB,PivotA,PivotB);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( Point2PointConstraint::GetSerializableName() + "InitData" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( Point2PointConstraint::GetSerializableName() + "InitData" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Point2PointConstraint::GetSerializableName() + "InitData" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Point2PointConstraint::GetSerializableName() + "InitData" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -275,10 +275,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetTAU( CurrAttrib.AsReal() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( Point2PointConstraint::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( Point2PointConstraint::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Point2PointConstraint::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Point2PointConstraint::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

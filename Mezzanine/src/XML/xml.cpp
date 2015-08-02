@@ -9738,7 +9738,7 @@ namespace XML
 
             String ErrorMessage(String(res.Description()) + "\nError:" + res.error + "\nAt Offset: " + ToString(res.Offset));
 
-            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XPATH,(ErrorMessage.c_str()));
+            MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XPATH,(ErrorMessage.c_str()));
         }
 
         internal::XPathContext c(n, 1, 1);

@@ -93,9 +93,9 @@ namespace Mezzanine
             void CylinderUVModifier::Modify(TriangleBuffer& Buffer)
             {
                 if( this->CylinderHeight <= 0 )
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cylinder height must be positive.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cylinder height must be positive.");
                 if( this->CylinderRadius <= 0 )
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cylinder radius must be positive.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cylinder radius must be positive.");
 
                 Real AngleThreshold = MathTools::ATan( this->CylinderHeight / this->CylinderRadius );
                 for( VertexIterator VertIt = Buffer.GetVertices().begin() ; VertIt != Buffer.GetVertices().end() ; ++VertIt )

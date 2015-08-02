@@ -78,7 +78,7 @@ namespace Mezzanine
         namespace Procedural
         {
             TextTextureModifier::TextTextureModifier()
-                { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Text requires operational vector font to operate which currently doesn't exist in the Mezzanine."); }
+                { MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Text requires operational vector font to operate which currently doesn't exist in the Mezzanine."); }
 
             TextTextureModifier::~TextTextureModifier()
                 {  }

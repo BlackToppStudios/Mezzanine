@@ -300,13 +300,13 @@ namespace Mezzanine
             void Listener::ProtoSerialize(XML::Node& ParentNode) const
             {
                 /// @todo Implement this.
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
             }
 
             void Listener::ProtoDeSerialize(const XML::Node& SelfRoot)
             {
                 /// @todo Implement this.
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
             }
 
             String Listener::GetDerivedSerializableName() const

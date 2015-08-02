@@ -123,7 +123,7 @@ namespace Mezzanine
             this->Actors.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an Actor of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an Actor of unknown type.");
         }
     }
 
@@ -135,7 +135,7 @@ namespace Mezzanine
             this->Actors.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a Actor of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a Actor of unknown type.");
         }
     }
 
@@ -168,7 +168,7 @@ namespace Mezzanine
             if( ActFactIt != this->ActorFactories.end() ) {
                 (*ActFactIt).second->DestroyActor( (*ActIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
             }
 
             this->Actors.erase(ActIt);
@@ -184,7 +184,7 @@ namespace Mezzanine
             if( ActFactIt != this->ActorFactories.end() ) {
                 (*ActFactIt).second->DestroyActor( (*ActIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
             }
 
             this->Actors.erase(ActIt);
@@ -199,7 +199,7 @@ namespace Mezzanine
             if( ActFactIt != this->ActorFactories.end() ) {
                 (*ActFactIt).second->DestroyActor( (*ActIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
             }
         }
         this->Actors.clear();

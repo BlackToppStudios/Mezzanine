@@ -123,7 +123,7 @@ namespace Mezzanine
         btManifoldPoint& Collision::GetManifoldPoint(const Whole& Index)
         {
             if( static_cast<Integer>( Index ) >= this->InternalData->Manifolds.size() )
-                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to access invalid index in Collision.");
+                MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to access invalid index in Collision.");
 
             if( Index > 3 ) {
                 Whole SuperIndex = Index/4;

@@ -133,7 +133,7 @@ namespace Mezzanine
             TorusGenerator& TorusGenerator::SetPoloidalRadius(const Real PoloidalRadius)
             {
                 if( PoloidalRadius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for Poloidal ring of a generated torus mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for Poloidal ring of a generated torus mesh must be greater than zero.");
 
                 this->TorusPoloidalRadius = PoloidalRadius;
                 return *this;
@@ -142,7 +142,7 @@ namespace Mezzanine
             TorusGenerator& TorusGenerator::SetToroidalRadius(const Real ToroidalRadius)
             {
                 if( ToroidalRadius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for Toroidal ring of a generated torus mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for Toroidal ring of a generated torus mesh must be greater than zero.");
 
                 this->TorusToroidalRadius = ToroidalRadius;
                 return *this;
@@ -151,7 +151,7 @@ namespace Mezzanine
             TorusGenerator& TorusGenerator::SetNumPoloidalSeg(const Whole PoloidalSeg)
             {
                 if( PoloidalSeg < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for Poloidal ring of generated torus mesh must be greater than two.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for Poloidal ring of generated torus mesh must be greater than two.");
 
                 this->NumPoloidalSeg = PoloidalSeg;
                 return *this;
@@ -160,7 +160,7 @@ namespace Mezzanine
             TorusGenerator& TorusGenerator::SetNumToroidalSeg(const Whole ToroidalSeg)
             {
                 if( ToroidalSeg < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for Toroidal ring of generated torus mesh must be greater than two.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for Toroidal ring of generated torus mesh must be greater than two.");
 
                 this->NumToroidalSeg = ToroidalSeg;
                 return *this;

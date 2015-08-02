@@ -363,13 +363,13 @@ namespace Mezzanine
             // Assign the ScrollBack
             this->ScrollBack = static_cast<Button*>( this->GetChild(this->Name+".ScrollBack") );
             if( this->ScrollBack == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"ScrollBack button not found after HorizontalScrollbar deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"ScrollBack button not found after HorizontalScrollbar deserialization.");
             }
 
             // Assign the Scroller
             this->Scroller = static_cast<Button*>( this->GetChild(this->Name+".Scroller") );
             if( this->Scroller == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Scroller button not found after HorizontalScrollbar deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Scroller button not found after HorizontalScrollbar deserialization.");
             }
 
             if( this->GetNumChildren() > 2 )
@@ -377,13 +377,13 @@ namespace Mezzanine
                 // Assign the LeftButton
                 this->UpLeftButton = static_cast<Button*>( this->GetChild(this->Name+".LeftButton") );
                 if( this->UpLeftButton == NULL ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"LeftButton button not found after HorizontalScrollbar deserialization.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"LeftButton button not found after HorizontalScrollbar deserialization.");
                 }
 
                 // Assign the RightButton
                 this->DownRightButton = static_cast<Button*>( this->GetChild(this->Name+".RightButton") );
                 if( this->DownRightButton == NULL ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"RightButton button not found after HorizontalScrollbar deserialization.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"RightButton button not found after HorizontalScrollbar deserialization.");
                 }
             }
 

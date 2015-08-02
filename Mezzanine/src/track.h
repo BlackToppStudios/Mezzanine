@@ -197,7 +197,7 @@ namespace Mezzanine
                     std::advance( RangeEnd, Index + 2 );
                     return InterpolatorType::Interpolate(RangeBegin,RangeEnd,Percentage);
                 }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Attempting to get the interpolated value of a datapoint that is not in the valid range.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Attempting to get the interpolated value of a datapoint that is not in the valid range.");
                 }
             }
 
@@ -311,7 +311,7 @@ namespace Mezzanine
                             InterpolatorType::ProtoDeSerialize(InterpolatorNode);
                         }else{
                             //DeSerializeError(); // Maybe use this instead?
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + DerivedSerializableName() + ": Not " + InterpolatorType::GetSerializableName());
+                            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + DerivedSerializableName() + ": Not " + InterpolatorType::GetSerializableName());
                         }
 
                         SetTrackNameUnique(OneNode.GetAttribute("Name").AsString());
@@ -328,10 +328,10 @@ namespace Mezzanine
                             }
                         }// No else the track could be empty
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + DerivedSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + DerivedSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + DerivedSerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + DerivedSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }

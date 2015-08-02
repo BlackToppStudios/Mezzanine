@@ -160,7 +160,7 @@ namespace Mezzanine
                     return 0;
                 if( ( Index0 == this->Indexes[2] && Index1 == this->Indexes[0] ) || ( Index0 == this->Indexes[0] && Index1 == this->Indexes[2] ) )
                     return 1;
-                MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Specified segment was not found.  If the algorithm is working properly, you should never see this message.");
+                MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,"Specified segment was not found.  If the algorithm is working properly, you should never see this message.");
                 return -1;
             }
 
@@ -616,7 +616,7 @@ namespace Mezzanine
             void Triangulator::Triangulate(IndexContainer& Indexes, Point2DContainer& Vertices) const
             {
                 if( this->ShapeToTriangulate == NULL && this->MultiShapeToTriangulate == NULL && this->SegmentListToTriangulate == NULL )
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A Shape, MultiShape, or SegmentList to triangulate must be set.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"A Shape, MultiShape, or SegmentList to triangulate must be set.");
 
                 DelaunayTriangleBuffer DelaunayTriBuf;
                 // Do the Delaunay triangulation

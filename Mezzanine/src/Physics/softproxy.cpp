@@ -88,7 +88,7 @@ namespace Mezzanine
             CollidableProxy(ID,Creator),
             PhysicsSoftBody(NULL)
         {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
             this->CreateSoftObject(Mass);
         }
 
@@ -96,7 +96,7 @@ namespace Mezzanine
             CollidableProxy(Creator),
             PhysicsSoftBody(NULL)
         {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
             this->CreateSoftObject(1);
             this->ProtoDeSerialize(SelfRoot);
         }

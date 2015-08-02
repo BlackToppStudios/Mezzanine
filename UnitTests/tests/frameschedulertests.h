@@ -273,7 +273,7 @@ class CrashMezzExceptionWorkUnit : public CrashesWorkUnit
 
         virtual void Crash()
         {
-            MEZZ_EXCEPTION(Mezzanine::Exception::INTERNAL_EXCEPTION,"This test must crash!!!!!");
+            MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,"This test must crash!!!!!");
         }
 
 };

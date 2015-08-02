@@ -230,10 +230,10 @@ namespace Mezzanine
                         Converter >> this->LowerBound;
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Interval::GetSerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Interval::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Interval::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Interval::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
         /// @brief Get the name of the the XML tag the Interval class will leave behind as its instances are serialized.

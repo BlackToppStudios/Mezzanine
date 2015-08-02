@@ -90,7 +90,7 @@ namespace Mezzanine
             void SpherifyModifier::Modify(TriangleBuffer& Buffer)
             {
                 if( this->SphereRadius <= 0 ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"The sphere radius must be larger than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"The sphere radius must be larger than zero.");
                 }
 
                 for( VertexIterator VertIt = Buffer.GetVertices().begin() ; VertIt != Buffer.GetVertices().end() ; ++VertIt )

@@ -101,7 +101,7 @@ namespace Mezzanine
         if(Target->Parent)
         {
             if(Target->Parent == this) return;
-            else MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot attach object to multiple AttachableParent instances.");
+            else MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot attach object to multiple AttachableParent instances.");
         }
 
         Attached.push_back(Target);

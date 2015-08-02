@@ -56,7 +56,7 @@ namespace Mezzanine
         void MultiSphereCollisionShape::Construct(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii)
         {
             if(Locations.size() != Radii.size())
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Vector size mismatch between Locations and Radii in MultiSphereCollisionShape constructor."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Vector size mismatch between Locations and Radii in MultiSphereCollisionShape constructor."); }
             Whole Spheres = Locations.size();
             btVector3* BulletLocs = new btVector3[Spheres];
             btScalar* BulletRadii = new btScalar[Spheres];
@@ -96,7 +96,7 @@ namespace Mezzanine
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-                if(!OneName) { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
+                if(!OneName) { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
 
                 XML::Node Spheres = OneNode.GetChild("Spheres");
                 if(!Spheres)

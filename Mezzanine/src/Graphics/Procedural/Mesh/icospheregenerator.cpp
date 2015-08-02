@@ -265,7 +265,7 @@ namespace Mezzanine
             IcoSphereGenerator& IcoSphereGenerator::SetRadius(const Real Radius)
             {
                 if( Radius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated ico-sphere mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for a generated ico-sphere mesh must be greater than zero.");
 
                 this->SphereRadius = Radius;
                 return *this;
@@ -274,7 +274,7 @@ namespace Mezzanine
             IcoSphereGenerator& IcoSphereGenerator::SetNumIterations(const Whole Iterations)
             {
                 if( Iterations == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of Iterations for generating ico-sphere mesh much be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of Iterations for generating ico-sphere mesh much be greater than zero.");
 
                 this->NumIterations = Iterations;
                 return *this;

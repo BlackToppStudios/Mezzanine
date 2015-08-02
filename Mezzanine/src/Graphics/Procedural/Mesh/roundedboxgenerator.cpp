@@ -289,7 +289,7 @@ namespace Mezzanine
             RoundedBoxGenerator& RoundedBoxGenerator::SetSizeX(const Real SizeX)
             {
                 if( SizeX <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
 
                 this->BoxSize.X = SizeX;
                 return *this;
@@ -298,7 +298,7 @@ namespace Mezzanine
             RoundedBoxGenerator& RoundedBoxGenerator::SetSizeY(const Real SizeY)
             {
                 if( SizeY <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated box mesh must be greater than zero.");
 
                 this->BoxSize.Y = SizeY;
                 return *this;
@@ -307,7 +307,7 @@ namespace Mezzanine
             RoundedBoxGenerator& RoundedBoxGenerator::SetSizeZ(const Real SizeZ)
             {
                 if( SizeZ <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated rounded box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated rounded box mesh must be greater than zero.");
 
                 this->BoxSize.Z = SizeZ;
                 return *this;
@@ -324,7 +324,7 @@ namespace Mezzanine
             RoundedBoxGenerator& RoundedBoxGenerator::SetChamferSize(const Real ChamferSize)
             {
                 if( ChamferSize <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size for radius of rounded edge on a generated rounded box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size for radius of rounded edge on a generated rounded box mesh must be greater than zero.");
 
                 this->BoxChamferSize = ChamferSize;
                 return *this;
@@ -333,7 +333,7 @@ namespace Mezzanine
             RoundedBoxGenerator& RoundedBoxGenerator::SetNumSegX(const Whole SegX)
             {
                 if( SegX == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated rounded box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated rounded box mesh must be greater than zero.");
 
                 this->NumSegX = SegX;
                 return *this;
@@ -342,7 +342,7 @@ namespace Mezzanine
             RoundedBoxGenerator& RoundedBoxGenerator::SetNumSegY(const Whole SegY)
             {
                 if( SegY == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated rounded box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated rounded box mesh must be greater than zero.");
 
                 this->NumSegY = SegY;
                 return *this;
@@ -351,7 +351,7 @@ namespace Mezzanine
             RoundedBoxGenerator& RoundedBoxGenerator::SetNumSegZ(const Whole SegZ)
             {
                 if( SegZ == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated rounded box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated rounded box mesh must be greater than zero.");
 
                 this->NumSegZ = SegZ;
                 return *this;
@@ -360,7 +360,7 @@ namespace Mezzanine
             RoundedBoxGenerator& RoundedBoxGenerator::SetNumChamferSeg(const Whole ChamferSeg)
             {
                 if( ChamferSeg == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated rounded box mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated rounded box mesh must be greater than zero.");
 
                 this->NumChamferSeg = ChamferSeg;
                 return *this;

@@ -103,7 +103,7 @@ namespace Mezzanine
             if( !NameAttrib.Empty() ) {
                 this->AtlasName = NameAttrib.AsString();
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Empty string being used to set name of Texture Atlas being parsed from XML.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Empty string being used to set name of Texture Atlas being parsed from XML.");
             }
 
             XML::Node TextureNode = AtlasNode.GetChild("Texture");
@@ -147,7 +147,7 @@ namespace Mezzanine
             CurrAttrib = AtlasTextureNode.GetAttribute("TexFile");
             if( !CurrAttrib.Empty() )
                 FileName = CurrAttrib.AsString();
-            else{ MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Empty string parsed for texture file name when parsing Texture Atlas from XML."); }
+            else{ MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Empty string parsed for texture file name when parsing Texture Atlas from XML."); }
 
             // Get the resource group
             CurrAttrib = AtlasTextureNode.GetAttribute("TexFileGroup");
@@ -190,7 +190,7 @@ namespace Mezzanine
                 // Now that we have the name, quickly check if this is unique before we continue to parse
                 FontDataIterator FontIt = Fonts.find(Data->GetName());
                 if( FontIt == Fonts.end() ) { Fonts[Data->GetName()] = Data; }
-                else { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Duplicate name of font:\"" + Data->GetName() + "\", found in atlas:\"" + AtlasName + "\"." ); }
+                else { MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Duplicate name of font:\"" + Data->GetName() + "\", found in atlas:\"" + AtlasName + "\"." ); }
 
                 // Get the horizontal offset if there is any
                 CurrAttrib = (*FontNode).GetAttribute("OffsetX");
@@ -415,7 +415,7 @@ namespace Mezzanine
                 }else{
                     StringStream ExceptionStream;
                     ExceptionStream << "Sprite named \"" << SpriteName << "\" already exists in Atlas: \"" << this->AtlasName << "\".";
-                    MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
                 }
             }
         }

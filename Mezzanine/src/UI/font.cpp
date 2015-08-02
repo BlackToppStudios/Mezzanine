@@ -130,7 +130,7 @@ namespace Mezzanine
             {
                 StringStream ExceptionStream;
                 ExceptionStream << "Glyph of ID: " << NewGlyph->GlyphID << " already exists in Font: \"" << this->FontName << "\".";
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
             }
         }
 

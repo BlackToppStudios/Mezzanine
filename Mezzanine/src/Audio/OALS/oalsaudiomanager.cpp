@@ -223,7 +223,7 @@ namespace Mezzanine
                 {
                     StringStream ExceptionStream;
                     ExceptionStream << "No SoundTypeHandler of Type \"" << Type << "\" found.";
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
                 }
                 else return (*TypeIt).second;
             }
@@ -378,7 +378,7 @@ namespace Mezzanine
             iSound* OALS::AudioManager::CreateSound(const UInt16 Type)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 OALS::Sound* NewSound = new OALS::Sound(Type,NULL,this->NonSpacialContext);
                 Sounds.push_back(NewSound);
@@ -388,11 +388,11 @@ namespace Mezzanine
             iSound* OALS::AudioManager::CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 iDecoderFactory* Factory = this->GetDecoderFactory(Encode);
                 if( Factory == NULL )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
                 OALS::Sound* NewSound = new OALS::Sound(Type,SoundDecoder,this->NonSpacialContext);
@@ -403,11 +403,11 @@ namespace Mezzanine
             iSound* OALS::AudioManager::CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 iDecoderFactory* Factory = this->GetDecoderFactory(Audio::Enc_RAW);
                 if( Factory == NULL )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
                 OALS::Sound* NewSound = new OALS::Sound(Type,SoundDecoder,this->NonSpacialContext);
@@ -418,7 +418,7 @@ namespace Mezzanine
             iSound* OALS::AudioManager::CreateSound(const UInt16 Type, const String& FileName, const String& Group)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 // Setup our needed parameters
                 Audio::Encoding Encode = Audio::Enc_RAW;
@@ -440,7 +440,7 @@ namespace Mezzanine
                 }else if( Extension == "opus" ) {
                     Encode = Audio::Enc_OPUS;
                 }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
                 }
 
                 return this->CreateSound(Type,SoundStream,Encode);
@@ -449,7 +449,7 @@ namespace Mezzanine
             iSound* OALS::AudioManager::CreateSound(const UInt16 Type, const String& SoundName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 // Create our stream and get on with it
                 Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(SoundName,Buffer,Length);
@@ -460,7 +460,7 @@ namespace Mezzanine
             iSound* OALS::AudioManager::CreateSound(const UInt16 Type, const String& SoundName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 // Create our stream and get on with it
                 Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(SoundName,Buffer,Length);
@@ -553,7 +553,7 @@ namespace Mezzanine
             iRecorder* OALS::AudioManager::CreateRecorder()
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new Recorder without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Recorder without an audio device being initialized."); }
 
                 OALS::Recorder* NewRecorder = new OALS::Recorder();
                 this->Recorders.push_back(NewRecorder);
@@ -741,7 +741,7 @@ namespace Mezzanine
                 {
                     if( this->InternalDevice == NULL ) {
                         if( this->InitializePlaybackDevice( this->GetDefaultPlaybackDeviceName() ) == false )
-                            { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Unable to initialize an audio device."); }
+                            { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Unable to initialize an audio device."); }
                     }
 
                     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->BufferUpdate2DWork, "AudioBufferUpdate2DWork" );

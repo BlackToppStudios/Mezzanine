@@ -156,7 +156,7 @@ namespace Mezzanine
             PlaneGenerator& PlaneGenerator::SetNormal(const Vector3& Norm)
             {
                 if( this->PlaneNormal.IsZeroLength() )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Facing direction of a plane cannot be zero length.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Facing direction of a plane cannot be zero length.");
 
                 this->PlaneNormal = Norm;
                 return *this;
@@ -165,7 +165,7 @@ namespace Mezzanine
             PlaneGenerator& PlaneGenerator::SetSizeX(const Real SizeX)
             {
                 if( SizeX <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated plane mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated plane mesh must be greater than zero.");
 
                 this->PlaneSize.X = SizeX;
                 return *this;
@@ -174,7 +174,7 @@ namespace Mezzanine
             PlaneGenerator& PlaneGenerator::SetSizeY(const Real SizeY)
             {
                 if( SizeY <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Size on an axis for a generated plane mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Size on an axis for a generated plane mesh must be greater than zero.");
 
                 this->PlaneSize.Y = SizeY;
                 return *this;
@@ -190,7 +190,7 @@ namespace Mezzanine
             PlaneGenerator& PlaneGenerator::SetNumSegX(const Whole SegX)
             {
                 if( SegX == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated plane mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated plane mesh must be greater than zero.");
 
                 this->NumSegX = SegX;
                 return *this;
@@ -199,7 +199,7 @@ namespace Mezzanine
             PlaneGenerator& PlaneGenerator::SetNumSegY(const Whole SegY)
             {
                 if( SegY == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for generated plane mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for generated plane mesh must be greater than zero.");
 
                 this->NumSegY = SegY;
                 return *this;

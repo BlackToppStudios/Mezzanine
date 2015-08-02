@@ -74,7 +74,7 @@ endfunction(add_exception)
 
 add_enum(FIRST_EXCEPTION 0x01F00F00 "To allow some inspection of the Exception system this can be use to identify the lower numbered Exception")
 
-add_exception(  IO_EXCEPTION              0x01F00F00 IOException                  ExceptionBase
+add_exception(  IO_EXCEPTION                          0x01F00F00    IOException                               ExceptionBase
                 "Thrown when there was an issue with IO but very little was known about it."
                 "java/io/IOException")
 
@@ -134,7 +134,7 @@ add_exception(	IO_READ_EXCEPTION                      0x01F09F00   IOReadExcepti
                 "Thrown when a read is happening but something has prevented the underlying code from knowing what was reading"
                 "java/lang/XXXXX")
 ##
-add_exception(	II_EXCEPTION                           0x02F00F00   InstanceIdentityException                 Exception
+add_exception(	II_EXCEPTION                           0x02F00F00   InstanceIdentityException                 ExceptionBase
                 "Thrown when an unknown error with using an Identifier and it is invalid"
                 "java/lang/XXXXX")
 add_exception(	II_IDENTITY_INVALID_EXCEPTION          0x02F01F00   InstanceIdentityInvalidException          InstanceIdentityException
@@ -147,7 +147,7 @@ add_exception(	II_DUPLICATE_IDENTITY_EXCEPTION        0x02F03F00   InstanceIdent
                 "Thrown when duplicates of teh same identity string exist"
                 "java/lang/XXXXX")
 ##
-add_exception(	MM_EXCEPTION                           0x03F00F00   MemoryManagementException                 Exception
+add_exception(	MM_EXCEPTION                           0x03F00F00   MemoryManagementException                 ExceptionBase
                 "Thrown when an unknown memory management exception occurs"
                 "java/lang/XXXXX")
 add_exception(	MM_OUT_OF_MEMORY_EXCEPTION             0x03F01F00   OutOfMemoryException                      MemoryManagementException
@@ -157,7 +157,7 @@ add_exception(	MM_OUT_OF_BOUNDS_EXCEPTION             0x03F02F00   MemoryOutOfBo
                 "Thrown when attempted to access something that really should note be accessed"
                 "java/lang/XXXXX")
 ##
-add_exception(	SYNTAX_ERROR_EXCEPTION                 0x04F00F00   SyntaxErrorException                      Exception
+add_exception(	SYNTAX_ERROR_EXCEPTION                 0x04F00F00   SyntaxErrorException                      ExceptionBase
                 "Thrown when some kind of syntax exception"
                 "java/lang/XXXXX")
 add_exception(	SYNTAX_ERROR_EXCEPTION_XML             0x04F01F00   SyntaxErrorXMLException                   SyntaxErrorException
@@ -170,7 +170,7 @@ add_exception(	SYNTAX_ERROR_EXCEPTION_LUA             0x04F03F00   SyntaxErrorLu
                 "Thrown when lua code in incorrect"
                 "java/lang/XXXXX")
 ##
-add_exception(	SCRIPT_EXCEPTION                       0x05F00F00   ScriptException                           Exception
+add_exception(	SCRIPT_EXCEPTION                       0x05F00F00   ScriptException                           ExceptionBase
                 "Thrown when an unknown error happens with a script"
                 "java/lang/XXXXX")
 add_exception(	SCRIPT_EXCEPTION_LUA                   0x05F01F00   ScriptLuaException                        ScriptException
@@ -186,7 +186,7 @@ add_exception(	SCRIPT_EXCEPTION_LUA_ERRERR            0x05F01F03   ScriptLuaErrE
                 "Thrown when Lua has an error handling an error"
                 "java/lang/XXXXX")
 ##
-add_exception(	PARAMETERS_EXCEPTION                   0x06F01F00   ParametersException                       Exception
+add_exception(	PARAMETERS_EXCEPTION                   0x06F01F00   ParametersException                       ExceptionBase
                 "Thrown when parameters are checked at runtime and found invalid"
                 "java/lang/XXXXX")
 add_exception(	PARAMETERS_CAST_EXCEPTION              0x06F01F01   ParametersCastException                   ParametersException
@@ -196,28 +196,28 @@ add_exception(	PARAMETERS_RANGE_EXCEPTION             0x06F01F02   ParametersRan
                 "Thrown when a passed parameter is checked at runtime and not in the expected range"
                 "java/lang/XXXXX")
 ##
-add_exception(	ARITHMETIC_EXCEPTION                   0x00F01F00   ArithmeticException                       Exception
+add_exception(	ARITHMETIC_EXCEPTION                   0x00F01F00   ArithmeticException                       ExceptionBase
                 "Thrown when Math has failed"
                 "java/lang/XXXXX")
-add_exception(	INVALID_VERSION_EXCEPTION              0x00F02F00   InvalidVersionException                   Exception
+add_exception(	INVALID_VERSION_EXCEPTION              0x00F02F00   InvalidVersionException                   ExceptionBase
                 "Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing"
                 "java/lang/XXXXX")
-add_exception(	INVALID_STATE_EXCEPTION                0x00F03F00   InvalidStateException                     Exception
+add_exception(	INVALID_STATE_EXCEPTION                0x00F03F00   InvalidStateException                     ExceptionBase
                 "Thrown when the available information should have worked but failed for unknown reasons"
                 "java/lang/XXXXX")
-add_exception(	RENDERINGAPI_EXCEPTION                 0x00F04F00   RenderingAPIException                     Exception
+add_exception(	RENDERINGAPI_EXCEPTION                 0x00F04F00   RenderingAPIException                     ExceptionBase
                 "Thrown when the graphics card/DirectX/OpenGL fail"
                 "java/lang/XXXXX")
-add_exception(	RT_ASSERTION_EXCEPTION                 0x00F05F00   RuntimeAssertionException                 Exception
+add_exception(	RT_ASSERTION_EXCEPTION                 0x00F05F00   RuntimeAssertionException                 ExceptionBase
                 "Thrown when a rutime assertion could have been Thrown"
                 "java/lang/XXXXX")
-add_exception(	INTERNAL_EXCEPTION                     0x00F06F00   InternalException                         Exception
+add_exception(	INTERNAL_EXCEPTION                     0x00F06F00   InternalException                         ExceptionBase
                 "Thrown when an unknown internal error occurred"
                 "java/lang/XXXXX")
-add_exception(	NOT_IMPLEMENTED_EXCEPTION              0x00F07F00   NotImplementedException                   Exception
+add_exception(	NOT_IMPLEMENTED_EXCEPTION              0x00F07F00   NotImplementedException                   ExceptionBase
                 "Thrown when we just have not coded a thing yet, but we knew what the API should look like"
                 "java/lang/XXXXX")
-add_exception(	INVALID_ASSIGNMENT                     0x00F08F00   InvalidAssignment                         Exception
+add_exception(	INVALID_ASSIGNMENT                     0x00F08F00   InvalidAssignment                         ExceptionBase
                 "Thrown when a complex class is assigned to itself or other invalid assignments occur"
                 "java/lang/XXXXX")
 

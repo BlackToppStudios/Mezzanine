@@ -86,7 +86,7 @@ ExecutionResults Executor::Do(Mezzanine::String CommandLine)
             Results.Returns.push_back( (*Iter)->GetString() );
             cout << (*Iter)->GetString() << endl;
         }
-    } catch (Exception& e) {
+    } catch (Mezzanine::ExceptionBase& e) {
         Results.Output = e.what();
     }
 

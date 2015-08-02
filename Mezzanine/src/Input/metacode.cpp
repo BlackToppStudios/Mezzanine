@@ -161,7 +161,7 @@ namespace Mezzanine
                             Ret.push_back( MetaCode(Raw.jball.xrel,Input::CONTROLLERBALL_2_HORIZONTAL,Raw.jball.which) );
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"More then 2 trackballs is currently not supported.  Perhaps we should expand our enum.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"More then 2 trackballs is currently not supported.  Perhaps we should expand our enum.");
                     }
                     break;
                 }
@@ -183,7 +183,7 @@ namespace Mezzanine
                     {
                         Int32 GlyphID = Unicode::GetIntFromCharacter(BytesAdvance,&(Raw.text.text[Position]));
                         if( GlyphID < 0 ) {
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-UTF8 encoded text generated from TextInput event.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Non-UTF8 encoded text generated from TextInput event.");
                         }
                         Ret.push_back( MetaCode(GlyphID,Input::OSTEXTINPUT) );
                         Position += BytesAdvance;
@@ -194,7 +194,7 @@ namespace Mezzanine
                 {
                     // Create a safe but gibberish default
                     Ret.push_back( MetaCode(Input::BUTTON_UP,Input::KEY_FIRST) );
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unknown User Input Inserted into Metacode");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unknown User Input Inserted into Metacode");
                     break;
                 }
             }
@@ -271,7 +271,7 @@ namespace Mezzanine
             if( Input::BUTTON_LIFTING <= this->MetaValue && Input::BUTTON_DOWN >= this->MetaValue) {
                 return (Input::ButtonState) this->MetaValue;
             }else{
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid ButtonState in MetaValue");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid ButtonState in MetaValue");
             }
         }
 
@@ -280,7 +280,7 @@ namespace Mezzanine
             if( Input::DIRECTIONALMOTION_DOWNRIGHT <= this->MetaValue && Input::DIRECTIONALMOTION_UPLEFT >= this->MetaValue) {
                 return (Input::DirectionalMotionState) this->MetaValue;
             }else{
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid DirectionalMotionState in MetaValue");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid DirectionalMotionState in MetaValue");
             }
         }
 
@@ -288,7 +288,7 @@ namespace Mezzanine
         {
             Input::InputCode Answer = (Input::InputCode)(ButtonNumber + (UInt16)Input::MOUSEBUTTON);
             if ( Input::MOUSEBUTTON_FIRST > Answer && Input::MOUSEBUTTON_LAST < Answer)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported mouse Button."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported mouse Button."); }
             return Answer;
         }
 
@@ -296,7 +296,7 @@ namespace Mezzanine
         {
             Input::InputCode Answer = (Input::InputCode)(ButtonNumber + (UInt16)Input::CONTROLLERBUTTON);
             if ( Input::CONTROLLERBUTTON_FIRST > Answer && Input::CONTROLLERBUTTON_LAST < Answer)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Controller Button."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported Controller Button."); }
             return Answer;
         }
 
@@ -304,7 +304,7 @@ namespace Mezzanine
         {
             Input::InputCode Answer = (Input::InputCode)(AxisNumber + (UInt16)Input::CONTROLLERAXIS);
             if ( Input::CONTROLLERAXIS_FIRST > Answer && Input::CONTROLLERAXIS_LAST < Answer)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Controller Axis."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported Controller Axis."); }
             return Answer;
         }
 
@@ -312,7 +312,7 @@ namespace Mezzanine
         {
             Input::InputCode Answer = (Input::InputCode)(HatNumber + (UInt16)Input::CONTROLLERHAT);
             if ( Input::CONTROLLERHAT_FIRST > Answer && Input::CONTROLLERHAT_LAST < Answer)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Controller Hat."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported Controller Hat."); }
             return Answer;
         }
 
@@ -446,10 +446,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->Code = static_cast<Input::InputCode>( CurrAttrib.AsUint() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + MetaCode::GetSerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + MetaCode::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,MetaCode::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,MetaCode::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 

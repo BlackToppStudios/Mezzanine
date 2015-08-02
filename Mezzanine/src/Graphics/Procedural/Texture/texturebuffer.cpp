@@ -133,7 +133,7 @@ namespace Mezzanine
             TextureBuffer::ColourChannelType& TextureBuffer::GetPixel(const Whole X, const Whole Y, const UInt16 Component)
             {
                 if( X >= this->Width || Y >= this->Height ) {
-                    MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Requesting pixel position in TextureBuffer that is out of bounds.");
+                    MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Requesting pixel position in TextureBuffer that is out of bounds.");
                 }
 
                 return this->Pixels[ Y * this->Width * 4 + X * 4 + Component * sizeof(ColourChannelType) ];
@@ -142,7 +142,7 @@ namespace Mezzanine
             const TextureBuffer::ColourChannelType& TextureBuffer::GetPixel(const Whole X, const Whole Y, const UInt16 Component) const
             {
                 if( X >= this->Width || Y >= this->Height ) {
-                    MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Requesting pixel position in TextureBuffer that is out of bounds.");
+                    MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Requesting pixel position in TextureBuffer that is out of bounds.");
                 }
 
                 return this->Pixels[ Y * this->Width * 4 + X * 4 + Component * sizeof(ColourChannelType) ];
@@ -231,7 +231,7 @@ namespace Mezzanine
             void TextureBuffer::SetRedReal(const Whole X, const Whole Y, const Real Red)
             {
                 if( Red > 1.0 || Red < 0.0 )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Red colour component to be set is outside the expected range [0.0-1.0]."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Red colour component to be set is outside the expected range [0.0-1.0]."); }
                 this->GetPixel(X,Y,Procedural::CCI_Red) = static_cast<ColourChannelType>( MathTools::Clamp(Red * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
@@ -247,7 +247,7 @@ namespace Mezzanine
             void TextureBuffer::SetGreenReal(const Whole X, const Whole Y, const Real Green)
             {
                 if( Green > 1.0 || Green < 0.0 )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Green colour component to be set is outside the expected range [0.0-1.0]."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Green colour component to be set is outside the expected range [0.0-1.0]."); }
                 this->GetPixel(X,Y,Procedural::CCI_Green) = static_cast<ColourChannelType>( MathTools::Clamp(Green * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
@@ -263,7 +263,7 @@ namespace Mezzanine
             void TextureBuffer::SetBlueReal(const Whole X, const Whole Y, const Real Blue)
             {
                 if( Blue > 1.0 || Blue < 0.0 )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Blue colour component to be set is outside the expected range [0.0-1.0]."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Blue colour component to be set is outside the expected range [0.0-1.0]."); }
                 this->GetPixel(X,Y,Procedural::CCI_Blue) = static_cast<ColourChannelType>( MathTools::Clamp(Blue * Real(255.0),Real(0.0),Real(255.0)) );
             }
 
@@ -279,7 +279,7 @@ namespace Mezzanine
             void TextureBuffer::SetAlphaReal(const Whole X, const Whole Y, const Real Alpha)
             {
                 if( Alpha > 1.0 || Alpha < 0.0 )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Alpha colour component to be set is outside the expected range [0.0-1.0]."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Alpha colour component to be set is outside the expected range [0.0-1.0]."); }
                 this->GetPixel(X,Y,Procedural::CCI_Alpha) = static_cast<ColourChannelType>( MathTools::Clamp(Alpha * Real(255.0),Real(0.0),Real(255.0)) );
             }
 

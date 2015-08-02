@@ -238,7 +238,7 @@ namespace Mezzanine
                 case MenuEntry::BC_PushButton:    this->SetPushButton(ConfigButton);    break;
                 case MenuEntry::BC_PopButton:     this->SetPopButton(ConfigButton);     break;
                 default:
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid config passed in while attempting to set a stack button configuration."); }  break;
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid config passed in while attempting to set a stack button configuration."); }  break;
             }
         }
 
@@ -360,7 +360,7 @@ namespace Mezzanine
                         if( UncastedButton->GetTypeName() == StackButton::TypeName ) {
                             this->SetPushButton( static_cast<StackButton*>( UncastedButton ) );
                         }else{
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Expected name of MenuButton when deserializing.  Named widget is not MenuButton.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Expected name of MenuButton when deserializing.  Named widget is not MenuButton.");
                         }
                     }
 
@@ -370,14 +370,14 @@ namespace Mezzanine
                         if( UncastedButton->GetTypeName() == StackButton::TypeName ) {
                             this->SetPopButton( static_cast<StackButton*>( UncastedButton ) );
                         }else{
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Expected name of MenuButton when deserializing.  Named widget is not MenuButton.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Expected name of MenuButton when deserializing.  Named widget is not MenuButton.");
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (MenuEntry::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (MenuEntry::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,MenuEntry::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,MenuEntry::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

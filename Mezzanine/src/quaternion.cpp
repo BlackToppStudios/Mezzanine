@@ -292,7 +292,7 @@ namespace Mezzanine
             case 2: return Z;
             case 3: return W;
             default:
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
+                { MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
         }
     }
 
@@ -305,7 +305,7 @@ namespace Mezzanine
             case 2: return Z;
             case 3: return W;
             default:
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
+                { MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
         }
     }
 
@@ -320,7 +320,7 @@ namespace Mezzanine
     Quaternion Quaternion::operator/ (const Real& Scalar) const
     {
         if( 0 == Scalar )
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Dividing by zero in 'Quaternion::operator/', Quit it."); }
+            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Dividing by zero in 'Quaternion::operator/', Quit it."); }
         return *this * ( 1.0 / Scalar );
     }
 
@@ -534,10 +534,10 @@ namespace Mezzanine
                 this->Z=OneNode.GetAttribute("Z").AsReal();
                 this->W=OneNode.GetAttribute("W").AsReal();
             }else{
-                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
         }
     }
 

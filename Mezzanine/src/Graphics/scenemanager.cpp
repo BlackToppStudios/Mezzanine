@@ -52,6 +52,7 @@
 #include "stringtool.h"
 #include "entresol.h"
 #include "world.h"
+#include "exception.h"
 
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/cameraproxy.h"
@@ -847,10 +848,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                 Child.GetFirstChild() >> AllAroundUs;
                                 Ev.SetAmbientLight(AllAroundUs);
                             }else{
-                                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"" + Name + "\".");
+                                MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"" + Name + "\".");
                             }
                         }else{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
+                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
                         }
                         break;
                     case 'S': // Sky of some kind or "ShadowColor"
@@ -867,13 +868,13 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                             Child.GetFirstChild() >> InTheShade;
                                             Ev.SetShadowColour(InTheShade);
                                         }else{
-                                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element ShadowColour-\"" + Mezzanine::String(Child.GetFirstChild().Name()) + "\".");
+                                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element ShadowColour-\"" + Mezzanine::String(Child.GetFirstChild().Name()) + "\".");
                                         }
                                     }else{
-                                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: ShadowColour has no child");
+                                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: ShadowColour has no child");
                                     }
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
+                                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
                                 }
                                 break;
                             case 'B': // SkyBox
@@ -886,7 +887,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                         {
                                             Child.GetFirstChild().GetFirstChild() >> Orientation;
                                         }else{
-                                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Orientation-\"" + Name + "\".");
+                                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Orientation-\"" + Name + "\".");
                                         }
                                         Ev.CreateSkyBox( Child.GetAttribute("MaterialName").AsString(),
                                                          Child.GetAttribute("MaterialGroupName").AsString(),
@@ -894,10 +895,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                                          Child.GetAttribute("DrawFirst").AsBool(),
                                                          Orientation);
                                     }else{
-                                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyBox: Not Version 1.");
+                                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyBox: Not Version 1.");
                                     }
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SB-\"" + Name + "\".");
+                                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SB-\"" + Name + "\".");
                                 }
                                 break;
                             case 'D': // SkyDome
@@ -910,7 +911,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                         {
                                             Child.GetFirstChild().GetFirstChild() >> Orientation;
                                         }else{
-                                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Orientation-\"" + Name + "\".");
+                                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Orientation-\"" + Name + "\".");
                                         }
                                         Ev.CreateSkyDome( Child.GetAttribute("MaterialName").AsString(),
                                                           Child.GetAttribute("MaterialGroupName").AsString(),
@@ -923,10 +924,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                                           Child.GetAttribute("YSegments").AsInt());
 
                                     }else{
-                                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyDome: Not Version 1.");
+                                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyDome: Not Version 1.");
                                     }
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SD-\"" + Name + "\".");
+                                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SD-\"" + Name + "\".");
                                 }
                                 break;
                             case 'P': // SkyPlane
@@ -947,23 +948,23 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                                             Child.GetAttribute("XSegments").AsInt(),
                                                             Child.GetAttribute("YSegments").AsInt());
                                     }else{
-                                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyPlane: Not Version 1.");
+                                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyPlane: Not Version 1.");
                                     }
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SP-\"" + Name + "\".");
+                                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SP-\"" + Name + "\".");
                                 }
                                 break;
                         }
                         break;
                         default:
-                            { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element def-\"" + Name + "\"."); }
+                            { MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element def-\"" + Name + "\"."); }
                 }
             }
         }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for SceneManager: Not Version 1.");
+            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for SceneManager: Not Version 1.");
         }
     }else{
-        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a SceneManager, found a " + Mezzanine::String(OneNode.Name()));
+        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a SceneManager, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
 

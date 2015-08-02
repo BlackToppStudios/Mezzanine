@@ -144,7 +144,7 @@ namespace Mezzanine
                     case UI::QC_BottomLeft:   return Vector2(this->Left,this->Bottom) * this->Atlas->GetTextureSize();   break;
                     case UI::QC_BottomRight:  return Vector2(this->Right,this->Bottom) * this->Atlas->GetTextureSize();  break;
                     default:
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid QuadCorner value used to query Atlas Coordinates.");  break; }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid QuadCorner value used to query Atlas Coordinates.");  break; }
                 }
             }
             /// @brief Gets the relative position on the Atlas of a corner belonging to this Sprite.
@@ -159,7 +159,7 @@ namespace Mezzanine
                     case UI::QC_BottomLeft:   return Vector2(this->Left,this->Bottom);   break;
                     case UI::QC_BottomRight:  return Vector2(this->Right,this->Bottom);  break;
                     default:
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid QuadCorner value used to query Atlas Coordinates.");  break; }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid QuadCorner value used to query Atlas Coordinates.");  break; }
                 }
             }
         };//Sprite

@@ -61,7 +61,7 @@ namespace
     Mezzanine::Real ConvertHexToColourChannel(const Mezzanine::String& Hex)
     {
         if( Hex.size() != 2 ) {
-            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Hex code requires 2 characters to express a ColourValue channel.");
+            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"Hex code requires 2 characters to express a ColourValue channel.");
         }
 
         Mezzanine::Real Ret = 0;
@@ -217,7 +217,7 @@ namespace Mezzanine
         {
             return Vector2(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)));
         }else{
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"String does not contain 2 digits when attempting to convert.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"String does not contain 2 digits when attempting to convert.");
         }
     }
 
@@ -235,7 +235,7 @@ namespace Mezzanine
         {
             return Vector3(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)));
         }else{
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"String does not contain 3 digits when attempting to convert.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"String does not contain 3 digits when attempting to convert.");
         }
     }
 
@@ -253,7 +253,7 @@ namespace Mezzanine
         {
             return Quaternion(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
         }else{
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
         }
     }
 
@@ -271,7 +271,7 @@ namespace Mezzanine
         {
             return ColourValue(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
         }else{
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
         }
     }
 
@@ -285,7 +285,7 @@ namespace Mezzanine
     ColourValue StringTools::ConvertHexToColourValue(const String& ToConvert)
     {
         if( ToConvert.size() < 6 ) {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Hex code requires a minimum of 6 characters to express a ColourValue instance.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Hex code requires a minimum of 6 characters to express a ColourValue instance.");
         }
 
         ColourValue Ret;

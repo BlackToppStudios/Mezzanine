@@ -181,11 +181,11 @@ namespace Mezzanine
             void Lathe::GenerateBody(TriangleBuffer& Buffer, const Shape* ToLathe) const
             {
                 if( ToLathe == NULL ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Invalid shape detected when performing a Lathe.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Invalid shape detected when performing a Lathe.");
                 }
                 Integer NumShapeSegments = ToLathe->GetSegCount();
                 if( this->NumSegments < 3 ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The number of segments when Lathe'ing a shape cannot be less than 3.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The number of segments when Lathe'ing a shape cannot be less than 3.");
                 }
                 Integer Offset = 0;
 
@@ -245,7 +245,7 @@ namespace Mezzanine
             void Lathe::AddToTriangleBuffer(TriangleBuffer& Buffer) const
             {
                 if( this->ShapeToLathe == NULL && this->MultiShapeToLathe == NULL ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A shape or multishape must be defined in order to perform a lathe.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"A shape or multishape must be defined in order to perform a lathe.");
                 }
 
                 // Triangulate the begin and end caps
@@ -284,7 +284,7 @@ namespace Mezzanine
             Lathe& Lathe::SetNumSegments(const Whole Segments)
             {
                 if( Segments < 3 ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The number of segments when Lathe'ing a shape cannot be less than 3.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The number of segments when Lathe'ing a shape cannot be less than 3.");
                 }
                 this->NumSegments = Segments;
                 return *this;

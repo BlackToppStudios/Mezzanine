@@ -99,7 +99,7 @@ namespace Mezzanine
             void Base64DecodeImpl(const String& EncodedString, BinaryBuffer& Results)
             {
                 if(Results.Binary==0 || Results.Size==0)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Cannot encode an empty buffer."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Cannot encode an empty buffer."); }
 
                 String::const_iterator Progress = EncodedString.begin();
                 Whole Output = 0;
@@ -118,7 +118,7 @@ namespace Mezzanine
                     // cout << *(Progress+0) << *(Progress+1) << *(Progress+2) << *(Progress+3) << endl;
                     // cout << !IsBase64(*Progress) << !IsBase64(*(Progress+1)) << !IsBase64(*(Progress+2)) << !IsBase64(*(Progress+3)) <<endl;
                     if(!IsBase64(*Progress) || !IsBase64(*(Progress+1)) || !IsBase64(*(Progress+2)) || !IsBase64(*(Progress+3)))
-                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
+                        { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
 
                     First = Base64Chars.find(*(Progress+0));
                     Second = Base64Chars.find(*(Progress+1));
@@ -126,7 +126,7 @@ namespace Mezzanine
 
                     #ifdef MEZZDEBUG
                     if(Output+1>Results.Size)
-                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
+                        { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
                     #endif
 
                     *(Results.Binary+Output+0) = (First << 2) + ((Second & 0x30) >> 4);
@@ -135,7 +135,7 @@ namespace Mezzanine
                     {
                         #ifdef MEZZDEBUG
                         if(Output+2>Results.Size)
-                            { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
+                            { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
                         #endif
                         Fourth = Base64Chars.find(*(Progress+3));
                         *(Results.Binary+Output+2) = ((Third & 0x3) << 6) + Fourth;
@@ -143,7 +143,7 @@ namespace Mezzanine
 
                     #ifdef MEZZDEBUG
                     if(Progress>EncodedString.end())
-                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Gone past the end of the input while decoding a base64 string."); }
+                        { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION, "Gone past the end of the input while decoding a base64 string."); }
                     #endif
                     Output+=3;
                     Progress+=4;
@@ -182,7 +182,7 @@ namespace Mezzanine
         BinaryBuffer& BinaryBuffer::operator= (const BinaryBuffer& RH)
         {
             if (RH.Binary == this->Binary)
-                { MEZZ_EXCEPTION(Exception::INVALID_ASSIGNMENT, "Attempted a self assignment of a BinaryBuffer"); }
+                { MEZZ_EXCEPTION(ExceptionBase::INVALID_ASSIGNMENT, "Attempted a self assignment of a BinaryBuffer"); }
             DeleteBuffer(RH.Size);
             if(RH.Size && RH.Binary)
             {
@@ -211,7 +211,7 @@ namespace Mezzanine
             {
                 this->Binary = new Byte[this->Size*sizeof(Byte)];
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Cannot create a 0 length Buffer.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION, "Cannot create a 0 length Buffer.");
             }
         }
 
@@ -219,7 +219,7 @@ namespace Mezzanine
         {
             if(!Size || !Binary)
             {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Cannot encode 0 length or missing buffer.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION, "Cannot encode 0 length or missing buffer.");
             }
             return Base64Encode((UInt8*)Binary,Size*sizeof(Byte));
         }
@@ -228,7 +228,7 @@ namespace Mezzanine
         {
             if(!Size || !Binary)
             {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Cannot construct string from 0 length or missing buffer.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION, "Cannot construct string from 0 length or missing buffer.");
             }
             return String((char*)(this->Binary),this->Size*sizeof(Byte));
         }
@@ -246,7 +246,7 @@ namespace Mezzanine
         {
             #ifdef MEZZDEBUG
             if(Index>=Size)
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION, "Attempted access beyond range of Binary Buffer"); }
+                { MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION, "Attempted access beyond range of Binary Buffer"); }
             #endif
             return *(Binary+Index);
         }
@@ -347,7 +347,7 @@ namespace Mezzanine
         Whole PredictBinarySizeFromBase64String(String const& EncodedString)
         {
             if(EncodedString.size()<4)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "It is not possible to have a base64 string less than 4 bytes in length, but one was received.") }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "It is not possible to have a base64 string less than 4 bytes in length, but one was received.") }
 
             return EncodedString.size()/4*3 - ( EncodedString.at(EncodedString.size()-2)=='=' ?1:0) - ( EncodedString.at(EncodedString.size()-1)=='=' ?1:0);
         }

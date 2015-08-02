@@ -138,7 +138,7 @@ namespace Mezzanine
             case 1:  return this->PointB;  break;
             case 2:  return this->PointC;  break;
             default:
-                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
         }
         return this->PointA;
     }
@@ -151,7 +151,7 @@ namespace Mezzanine
             case 1:  return this->PointB;  break;
             case 2:  return this->PointC;  break;
             default:
-                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
         }
         return this->PointA;
     }
@@ -293,7 +293,7 @@ namespace Mezzanine
             case 1:  return this->PointB;  break;
             case 2:  return this->PointC;  break;
             default:
-                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
         }
         return this->PointA;
     }
@@ -306,7 +306,7 @@ namespace Mezzanine
             case 1:  return this->PointB;  break;
             case 2:  return this->PointC;  break;
             default:
-                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Triangle indexes are only valid if in the range of: 0-2.");
         }
         return this->PointA;
     }

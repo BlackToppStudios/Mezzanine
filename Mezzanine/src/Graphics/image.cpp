@@ -182,7 +182,7 @@ namespace Mezzanine
 
         Image& Image::SaveImage(const String& FileName, const String& GroupName)
         {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Saving images via asset groups is not supported yet.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Saving images via asset groups is not supported yet.");
             return *this;
         }
 
@@ -211,7 +211,7 @@ namespace Mezzanine
             std::ifstream* ImageFileStream = new std::ifstream();
             ImageFileStream->open(File.c_str(),std::ifstream::in | std::ifstream::binary);
             if( ImageFileStream->fail() ) {
-                MEZZ_EXCEPTION(Exception::IO_EXCEPTION,"Unable to open the file at: \"" + File + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::IO_EXCEPTION,"Unable to open the file at: \"" + File + "\".");
             }
             Ogre::DataStreamPtr OgreStreamPtr(new Ogre::FileStreamDataStream(ImageFileStream,true));
             this->IID->GraphicsImage.load(OgreStreamPtr,File.substr(File.find_last_of('.')+1));

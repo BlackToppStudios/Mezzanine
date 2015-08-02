@@ -297,7 +297,7 @@ namespace Mezzanine
                 {
                     assert( this->m_pSourceModule != NULL );
                     if( Index >= this->GetSourceModuleCount() || Index < 0 ) {
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The requested module index is out of bounds.");
+                        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The requested module index is out of bounds.");
                     }
                     this->m_pSourceModule[Index] = &SourceModule;
                 }
@@ -331,7 +331,7 @@ namespace Mezzanine
                     //
                     //   m_pSourceModule[index] == NULL
                     if( Index >= this->GetSourceModuleCount() || Index < 0 || this->m_pSourceModule[Index] == NULL) {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to retrieve module that is out of bounds, or none exist.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to retrieve module that is out of bounds, or none exist.");
                     }
                     return *(this->m_pSourceModule[Index]);
                 }

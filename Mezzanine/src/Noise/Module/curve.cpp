@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -93,7 +93,7 @@ namespace Mezzanine
                     }else if( InputValue == this->m_pControlPoints[insertionPos].InputValue ) {
                         // Each control point is required to contain a unique input value, so
                         // throw an exception.
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The input value of a curve provided already exists.");
+                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"The input value of a curve provided already exists.");
                     }
                 }
                 return insertionPos;

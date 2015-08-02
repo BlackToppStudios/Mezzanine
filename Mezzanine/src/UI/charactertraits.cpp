@@ -132,10 +132,10 @@ namespace Mezzanine
                     if( !CharColourNode.Empty() )
                         this->CharColour.ProtoDeSerialize(CharColourNode);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->CharacterTraits::GetSerializableName()) + ": Not Version 1");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->CharacterTraits::GetSerializableName()) + ": Not Version 1");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->CharacterTraits::GetSerializableName()) + ", found a " + SelfRoot.Name());
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->CharacterTraits::GetSerializableName()) + ", found a " + SelfRoot.Name());
             }
         }
 

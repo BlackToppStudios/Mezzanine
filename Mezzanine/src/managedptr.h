@@ -185,7 +185,7 @@ namespace Mezzanine
                 if(Results)
                     { return *Results; }
                 else
-                    { MEZZ_EXCEPTION(Exception::MM_EXCEPTION,"Attempted to Dereference a NULL ManagedPtr."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::MM_EXCEPTION,"Attempted to Dereference a NULL ManagedPtr."); }
             }
 
             /// @brief The Structure dereference operator.
@@ -196,7 +196,7 @@ namespace Mezzanine
                 if(Results)
                     { return Results; }
                 else
-                    { MEZZ_EXCEPTION(Exception::MM_EXCEPTION,"Attempted to Dereference a NULL ManagedPtr."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::MM_EXCEPTION,"Attempted to Dereference a NULL ManagedPtr."); }
             }
 
             /// @brief Get the raw pointer to the managed object.

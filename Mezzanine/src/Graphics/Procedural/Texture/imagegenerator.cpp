@@ -92,11 +92,11 @@ namespace Mezzanine
             void ImageGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
             {
                 if( GenImage == NULL ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"An input image has not been set.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"An input image has not been set.");
                 }
 
                 if( GenImage->GetHeight() < Buffer.GetHeight() || GenImage->GetWidth() < Buffer.GetWidth() ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The provided buffer is too small to place the provided image.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The provided buffer is too small to place the provided image.");
                 }
 
                 for( Whole Y = 0 ; Y < Buffer.GetHeight() ; ++Y )

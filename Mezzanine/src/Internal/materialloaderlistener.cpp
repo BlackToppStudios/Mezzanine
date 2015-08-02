@@ -102,7 +102,7 @@ namespace Mezzanine
 
                         // If we're still not here, it's unsupported.
                         if( TextureCodec == NULL ) {
-                            MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Texture being loaded does not use a supported Codec.");
+                            MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,"Texture being loaded does not use a supported Codec.");
                         }
 
                         // Ok, finally lets decode.

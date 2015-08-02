@@ -450,10 +450,10 @@ namespace Mezzanine
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (PagedContainer::GetSerializableName() + "PageData") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (PagedContainer::GetSerializableName() + "PageData") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,PagedContainer::GetSerializableName() + "PageData" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,PagedContainer::GetSerializableName() + "PageData" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -469,10 +469,10 @@ namespace Mezzanine
                     XML::Node WorkAreaSizeNode = PropertiesNode.GetChild("WorkAreaSize");
                     this->WorkAreaSize.ProtoDeSerialize(WorkAreaSizeNode);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (PagedContainer::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (PagedContainer::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,PagedContainer::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,PagedContainer::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

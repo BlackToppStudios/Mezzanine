@@ -174,12 +174,12 @@ namespace Mezzanine
             if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
             {
                 if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
             }
             if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
             {
                 if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
             this->IMID = new InputManagerInternalData();
@@ -202,12 +202,12 @@ namespace Mezzanine
             if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
             {
                 if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
             }
             if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
             {
                 if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
             this->IMID = new InputManagerInternalData();

@@ -280,15 +280,15 @@ namespace Mezzanine
                                 }else{
                                     StringStream ExceptionStream;
                                     ExceptionStream << "Named StackButton \"" << ButtonName << "\" not found when deserializing Widget named \"" << this->GetName() << "\".";
-                                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
+                                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
                                 }
                             }
                         }else{
-                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("SubSetBindings") + ": Not Version 1.");
+                            MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("SubSetBindings") + ": Not Version 1.");
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("SubSetBindings") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("SubSetBindings") + ": Not Version 1.");
                 }
             }
         }

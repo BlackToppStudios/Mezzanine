@@ -413,7 +413,7 @@ namespace Mezzanine
             if( this->DefaultCharTraits.CharFont == NULL ) {
                 StringStream ExceptionStream;
                 ExceptionStream << "Attempting to set text on a TextLayer without a default font set.  Layer owned by renderable \"" << Parent->GetName() << "\".";
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,ExceptionStream.str());
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,ExceptionStream.str());
             }
 
             /// @todo Character generation and storage is a good candidate for pool allocation.
@@ -1060,10 +1060,10 @@ namespace Mezzanine
                     if( !CharScalingNode.Empty() )
                         this->ManualCharScaling.ProtoDeSerialize(CharScalingNode);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (TextLayer::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (TextLayer::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,TextLayer::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,TextLayer::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -1089,10 +1089,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetText( CurrAttrib.AsString() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (TextLayer::GetSerializableName() + "Text") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (TextLayer::GetSerializableName() + "Text") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,TextLayer::GetSerializableName() + "Text" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,TextLayer::GetSerializableName() + "Text" + " was not found in the provided XML node, which was expected.");
             }
         }
 

@@ -982,17 +982,17 @@ namespace Mezzanine
 
             void OALS::SoundProxy::ProtoSerializeDecoder(XML::Node& SelfRoot) const
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoSerializeFilter(XML::Node& SelfRoot) const
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoSerializeEffects(XML::Node& SelfRoot) const
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
@@ -1073,26 +1073,26 @@ namespace Mezzanine
                             this->SetDopplerVelocity(DopVel);
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (OALS::SoundProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (OALS::SoundProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,OALS::SoundProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,OALS::SoundProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
                 }
             }
 
             void OALS::SoundProxy::ProtoDeSerializeDecoder(const XML::Node& SelfRoot)
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoDeSerializeFilter(const XML::Node& SelfRoot)
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoDeSerializeEffects(const XML::Node& SelfRoot)
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
             }
 
             String OALS::SoundProxy::GetDerivedSerializableName() const
@@ -1192,7 +1192,7 @@ namespace Mezzanine
                     //UInt32 SourceID = this->ContextsAndSources[Index].second;
 
                     if( OldContext != NULL )
-                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to write over an existing context."); }
+                        { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to write over an existing context."); }
 
                     this->MakeCurrent(Context);
                     this->ContextsAndSources[Index].first = Context;

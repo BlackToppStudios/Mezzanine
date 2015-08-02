@@ -116,7 +116,7 @@ namespace Mezzanine
         {
             AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
             if( GroupIt != this->AssetGroups.end() ) {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"An AssetGroup with the name \"" + GroupName + "\" already exists.");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"An AssetGroup with the name \"" + GroupName + "\" already exists.");
             }
 
             AssetGroup* NewGroup = new AssetGroup(GroupName);
@@ -146,7 +146,7 @@ namespace Mezzanine
         {
             AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
             if( GroupIt == this->AssetGroups.end() ) {
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"AssetGroup named \"" + GroupName + "\" not found.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"AssetGroup named \"" + GroupName + "\" not found.");
             }
             return (*GroupIt).second;
         }
@@ -234,7 +234,7 @@ namespace Mezzanine
                 case Mezzanine::AT_Zip:
                     return String("Zip");
                 default:
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
                     return String("");
             }
         }
@@ -245,7 +245,7 @@ namespace Mezzanine
                 { return Mezzanine::AT_FileSystem; }
             if(String("Zip")==FromString)
                 { return Mezzanine::AT_Zip; }
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
             return AT_Invalid;
         }
 

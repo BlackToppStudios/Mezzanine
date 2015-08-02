@@ -183,7 +183,7 @@ namespace Mezzanine
         if(String::npos != InitializerFile.find(".mxi"))
             { this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile); }
         else
-            { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
+            { MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
 
     Entresol::Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
@@ -196,7 +196,7 @@ namespace Mezzanine
         if(String::npos != InitializerFile.find(".mxi"))
             { this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile); }
         else
-            { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
+            { MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
 
 
@@ -316,13 +316,13 @@ namespace Mezzanine
         if( DocResult.Status != XML::StatusOk ) {
             StringStream ExceptionStream;
             ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
-            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+            MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
         }
         XML::Node InitRoot = InitDoc.GetChild("InitializerRoot");
         if( InitRoot.Empty() ) {
             StringStream ExceptionStream;
             ExceptionStream << "Failed to find expected Root node in \"" << InitializerFile << "\".";
-            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+            MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
         }
 
         // Get the world settings and set them.
@@ -340,7 +340,7 @@ namespace Mezzanine
                     this->SetTargetFrameRate(CurrAttrib.AsWhole());
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,String("Unknown WorldSetting ")+SecName);
+                MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,String("Unknown WorldSetting ")+SecName);
             }
 
         }
@@ -480,11 +480,11 @@ namespace Mezzanine
         Log(sizeof(SDL_Scancode));
         Log(sizeof(int));//*/
         if(sizeof(Input::InputCode) != sizeof(SDL_Scancode)) {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
         }
 
         if(sizeof(Input::InputCode) != sizeof(int)) {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
         }
     }
 
@@ -514,7 +514,7 @@ namespace Mezzanine
                 }
                 ExceptionStream << "are not initialized.  All managers need to be initiailzed when entering the main loop.";
             }
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,ExceptionStream.str());
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,ExceptionStream.str());
             return false;
         }
     }
@@ -766,7 +766,7 @@ namespace Mezzanine
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
         if( ManIt == this->ManagerFactories.end() ) {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
         EntresolManager* NewMan = (*ManIt).second->CreateManager(Params);
         if(AddToWorld)
@@ -778,7 +778,7 @@ namespace Mezzanine
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
         if( ManIt == this->ManagerFactories.end() ) {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
         EntresolManager* NewMan = (*ManIt).second->CreateManager(XMLNode);
         if(AddToWorld)
@@ -790,7 +790,7 @@ namespace Mezzanine
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
         if( ManIt == this->ManagerFactories.end() ) {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
         }
         this->RemoveManager(ToBeDestroyed);
         (*ManIt).second->DestroyManager(ToBeDestroyed);
@@ -808,7 +808,7 @@ namespace Mezzanine
             #endif
             ManagerFactoryIterator ManIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
             if( ManIt == this->ManagerFactories.end() ) {
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
             }else{
                 (*ManIt).second->DestroyManager(Current);
             }
@@ -823,7 +823,7 @@ namespace Mezzanine
 
             ManagerFactoryIterator ManIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
             if( ManIt == this->ManagerFactories.end() ) {
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
             }else{
                 (*ManIt).second->DestroyManager(Current);
             }
@@ -1080,7 +1080,7 @@ namespace Mezzanine
         if(AlmostResults)
             { return AlmostResults->GetUsableLogger(); }
         else
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not access thread Specific Logger from invalid thread."); }
+            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION, "Could not access thread Specific Logger from invalid thread."); }
     }
 
     Threading::LogAggregator* Entresol::_GetLogAggregator()

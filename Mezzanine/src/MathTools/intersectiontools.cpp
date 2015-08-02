@@ -63,7 +63,7 @@ namespace Mezzanine
                 case Axis_Y: return Vector2(Point.X, Point.Z);
                 case Axis_Z: return Vector2(Point.X, Point.Y);
                 default:
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
             }
         }
 
@@ -75,7 +75,7 @@ namespace Mezzanine
                 case Axis_Y: return Vector3(Point.X, Missing, Point.Y);
                 case Axis_Z: return Vector3(Point.X, Point.Y, Missing);
                 default:
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION, "");
             }
         }
 
@@ -94,7 +94,7 @@ namespace Mezzanine
         {
             if( Min[PlanarAlignment] != Max[PlanarAlignment] )
             {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION, "Failed to dropped dimension from Vector3 based on Axis while creating a Vector2");
             }
         }
 

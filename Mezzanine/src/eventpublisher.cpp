@@ -110,7 +110,7 @@ namespace Mezzanine
         if( EvIt != this->Events.end() ) {
             return (*EvIt).second;
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
         }
         return NULL;
     }

@@ -64,7 +64,7 @@ namespace Mezzanine
             this->CharTraits = Traits;
 
             if( CharTraits.CharFont == NULL ) {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"A Font is not defined in CharacterTraits when it is expected to be during Character initialization.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"A Font is not defined in CharacterTraits when it is expected to be during Character initialization.");
             }
             this->CharGlyph = CharTraits.CharFont->GetGlyph(GlyphID);
         }
@@ -94,7 +94,7 @@ namespace Mezzanine
             this->CharTraits = Traits;
 
             if( CharTraits.CharFont != CharGlyph->Font ) {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Font provided in traits does not match the font defined in provided glyph during Character initialization.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Font provided in traits does not match the font defined in provided glyph during Character initialization.");
             }
         }
 

@@ -186,7 +186,7 @@ namespace Mezzanine
             CylinderGenerator& CylinderGenerator::SetRadius(const Real Radius)
             {
                 if( Radius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated cylinder mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for a generated cylinder mesh must be greater than zero.");
 
                 this->CylinderRadius = Radius;
                 return *this;
@@ -195,7 +195,7 @@ namespace Mezzanine
             CylinderGenerator& CylinderGenerator::SetHeight(const Real Height)
             {
                 if( Height <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Height for a generated cylinder mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Height for a generated cylinder mesh must be greater than zero.");
 
                 this->CylinderHeight = Height;
                 return *this;
@@ -210,7 +210,7 @@ namespace Mezzanine
             CylinderGenerator& CylinderGenerator::SetNumSegCircle(const Whole SegCircle)
             {
                 if( SegCircle < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated cylinder mesh must be greater than two.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated cylinder mesh must be greater than two.");
 
                 this->NumSegCircle = SegCircle;
                 return *this;
@@ -219,7 +219,7 @@ namespace Mezzanine
             CylinderGenerator& CylinderGenerator::SetNumSegHeight(const Whole SegHeight)
             {
                 if( SegHeight == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for length component of generated cylinder mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for length component of generated cylinder mesh must be greater than zero.");
 
                 this->NumSegHeight = SegHeight;
                 return *this;

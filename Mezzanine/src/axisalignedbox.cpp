@@ -222,10 +222,10 @@ namespace Mezzanine
                 if( !MaximumNode.Empty() )
                     this->MaxExt.ProtoDeSerialize(MaximumNode);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + AxisAlignedBox::GetSerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + AxisAlignedBox::GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,AxisAlignedBox::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,AxisAlignedBox::GetSerializableName() + " was not found in the provided XML node, which was expected.");
         }
     }
 

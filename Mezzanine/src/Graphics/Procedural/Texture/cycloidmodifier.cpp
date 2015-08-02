@@ -258,7 +258,7 @@ namespace Mezzanine
             {
                 if( this->CycloidPenSize != 0 ) {
                     if( this->Parameter_r == 0 && this->Parameter_R == 0 && this->Parameter_e == 0 && this->Parameter_d == 0 ) {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"No parameters have been set for Cycloid rendering.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"No parameters have been set for Cycloid rendering.");
                     }
 
                     Integer XPos = static_cast<Integer>( static_cast<Real>( Buffer.GetWidth() * this->CycloidCenter.X ) );

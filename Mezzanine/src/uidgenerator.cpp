@@ -154,7 +154,7 @@ namespace Mezzanine
                     // Check the lowest value of the next range
                     IDIterator NextRange = IDRangeIt + 1;
                     if( NextRange == this->FreeIDs.end() ) {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Internal state error or all possible IDs have been generated/issued.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Internal state error or all possible IDs have been generated/issued.");
                     }
                     // Check if we're in the right spot or increment and try again
                     if( (*NextRange).GetLowerBound() > ID ) {

@@ -475,7 +475,7 @@ namespace Mezzanine
         {
             MarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
             if( MarkupIt != this->MarkupParsers.end() ) {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"A MarkupParser with the name \"" + ParserName + "\" is already registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A MarkupParser with the name \"" + ParserName + "\" is already registered.");
             }else{
                 this->MarkupParsers.insert( std::pair<String,UI::MarkupParser*>(ParserName,ToAdd) );
             }
@@ -577,7 +577,7 @@ namespace Mezzanine
             TextureAtlas* TheAtlas = AtlasHandler->GetAtlas(Atlas);
             if(NULL == TheAtlas)
             {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to access TextureAtlas \"" + Atlas + "\", which does not exist or is not loaded.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to access TextureAtlas \"" + Atlas + "\", which does not exist or is not loaded.");
             }
             TextureAtlas::FontDataContainer& Fonts = TheAtlas->GetFonts();
             String LargerMatch, SmallerMatch;

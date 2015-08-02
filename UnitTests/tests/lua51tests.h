@@ -77,7 +77,7 @@ class lua51tests : public UnitTestGroup
 
                 TEST((ExpectedOutput==Returned || (Returned-Epsilon<ExpectedOutput && ExpectedOutput<Returned+Epsilon))
                      , String("SWIGWrapped::") + FeatureName);
-            } catch (Exception& Error) {
+            } catch (Mezzanine::ExceptionBase& Error) {
                 TestOutput << "Test Failed because of '" << Error.GetExceptionTypeName() << "'" << std::endl
                            << "With Message: " << Error.GetCompleteMessage() << std::endl;
                 //Error.what()
@@ -803,7 +803,7 @@ class lua51tests : public UnitTestGroup
                 TestLuaScript("function TestException(x)\n"
                               "  return MezzanineSafe.Exception_IO_EXCEPTION\n"
                               "end",
-                              "Exception", "TestException", 8, Mezzanine::Exception::IO_EXCEPTION, 0.0,
+                              "Exception", "TestException", 8, Mezzanine::ExceptionBase::IO_EXCEPTION, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestOldEventSystem(x)\n"

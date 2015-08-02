@@ -367,7 +367,7 @@ namespace Mezzanine
             this->BufferEnd = BufferStart + BufferSize;
 
             if( BufferEnd <= BufferStart ) {
-                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
+                MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
             }
         }
 
@@ -380,7 +380,7 @@ namespace Mezzanine
             this->BufferEnd = BufferStart + BufferSize;
 
             if( BufferEnd <= BufferStart ) {
-                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
+                MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
             }
         }
 
@@ -416,7 +416,7 @@ namespace Mezzanine
             }
 
             //if( RetCount > Count ) {
-            //    MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Cannot read passed end of stream");
+            //    MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Cannot read passed end of stream");
             //}
 
             std::memcpy(Buffer,this->BufferPos,RetCount);
@@ -454,7 +454,7 @@ namespace Mezzanine
         void MemoryStream::SetStreamPosition(StreamPos Position)
         {
             if( this->BufferStart + Position > this->BufferEnd || Position < 0 ) {
-                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
+                MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
             }
 
             this->BufferPos = this->BufferStart + Position;
@@ -472,7 +472,7 @@ namespace Mezzanine
                 case SO_Current:
                 {
                     if( GetStreamPosition() + Offset < 0 || GetStreamPosition() + Offset >= Size )
-                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
+                        MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
 
                     this->BufferPos = this->BufferStart + ( this->GetStreamPosition() + Offset );
                     break;
@@ -480,7 +480,7 @@ namespace Mezzanine
                 case SO_End:
                 {
                     if(Offset > 0 || Offset <= -Size)
-                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
+                        MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
 
                     this->BufferPos = this->BufferStart + ( ( Size - 1 ) + Offset );
                     break;

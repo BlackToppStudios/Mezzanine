@@ -282,9 +282,9 @@ namespace Mezzanine
             #endif
 
             if( Destination < 0)                                                            // Basic Error Checking
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Beyond Stream Bounds: Before Stream begins"); }
+                { MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Beyond Stream Bounds: Before Stream begins"); }
             if( Destination > this->OgreStream->size() && this->OgreStream->size()!=0 )
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Beyond Stream Bounds: After end of known stream"); }
+                { MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Beyond Stream Bounds: After end of known stream"); }
 
             Whole BufferSize;
             if (this->egptr() == 0 || this->egptr() == 0 || this->eback())

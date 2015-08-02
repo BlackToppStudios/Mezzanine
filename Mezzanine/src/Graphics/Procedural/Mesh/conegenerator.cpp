@@ -161,7 +161,7 @@ namespace Mezzanine
             ConeGenerator& ConeGenerator::SetRadius(const Real Radius)
             {
                 if( Radius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated cone mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for a generated cone mesh must be greater than zero.");
 
                 this->ConeRadius = Radius;
                 return *this;
@@ -170,7 +170,7 @@ namespace Mezzanine
             ConeGenerator& ConeGenerator::SetHeight(const Real Height)
             {
                 if( Height <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Height for a generated cone mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Height for a generated cone mesh must be greater than zero.");
 
                 this->ConeHeight = Height;
                 return *this;
@@ -179,7 +179,7 @@ namespace Mezzanine
             ConeGenerator& ConeGenerator::SetNumSegCircle(const Whole SegCircle)
             {
                 if( SegCircle < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated cone mesh must be greater than two.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated cone mesh must be greater than two.");
 
                 this->NumSegCircle = SegCircle;
                 return *this;
@@ -188,7 +188,7 @@ namespace Mezzanine
             ConeGenerator& ConeGenerator::SetNumSegHeight(const Whole SegHeight)
             {
                 if( SegHeight == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for length component of generated cone mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for length component of generated cone mesh must be greater than zero.");
 
                 this->NumSegHeight = SegHeight;
                 return *this;

@@ -149,7 +149,7 @@ namespace Mezzanine
             {
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                 if( AudioMan->IsInitialized() == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create 3D context prior to AudioManager initialization.  An open Audio device is required."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create 3D context prior to AudioManager initialization.  An open Audio device is required."); }
 
                 ALCdevice* AudioPlayback = AudioMan->_GetAudioDevice();
                 ALCcontext* NewContext = alcCreateContext(AudioPlayback,NULL);
@@ -279,7 +279,7 @@ namespace Mezzanine
             Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),NULL,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
@@ -292,12 +292,12 @@ namespace Mezzanine
             Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>( Audio::AudioManager::GetSingletonPtr() );
                 iDecoderFactory* Factory = AudioMan->GetDecoderFactory(Encode);
                 if( Factory == NULL )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),SoundDecoder,this->Contexts,this);
@@ -311,12 +311,12 @@ namespace Mezzanine
             Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>( Audio::AudioManager::GetSingletonPtr() );
                 iDecoderFactory* Factory = AudioMan->GetDecoderFactory(Audio::Enc_RAW);
                 if( Factory == NULL )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),SoundDecoder,this->Contexts,this);
@@ -330,7 +330,7 @@ namespace Mezzanine
             Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 // Setup our needed parameters
                 Audio::Encoding Encode = Audio::Enc_RAW;
@@ -352,7 +352,7 @@ namespace Mezzanine
                 }else if( Extension == "opus" ) {
                     Encode = Audio::Enc_OPUS;
                 }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
                 }
 
                 return this->CreateSoundProxy(Type,SoundStream,Encode,AddToWorld);
@@ -361,7 +361,7 @@ namespace Mezzanine
             Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 // Create our stream and get on with it
                 Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
@@ -372,7 +372,7 @@ namespace Mezzanine
             Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 // Create our stream and get on with it
                 Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
@@ -461,13 +461,13 @@ namespace Mezzanine
 
                     OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                     if( AudioMan == NULL ) {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations.");
                     }
 
                     if( AudioMan->IsInitialized() == false ) {
                         // Attempt to initialize
                         if( AudioMan->InitializePlaybackDevice(AudioMan->GetDefaultPlaybackDeviceName()) == false )
-                            { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to initialize AudioManager prior to SoundScapeManager.  An open Audio device is required."); }
+                            { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to initialize AudioManager prior to SoundScapeManager.  An open Audio device is required."); }
                     }
 
                     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->BufferUpdate3DWork, "AudioBufferUpdate3DWork" );

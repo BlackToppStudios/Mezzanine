@@ -139,7 +139,7 @@ namespace Mezzanine
             SphereGenerator& SphereGenerator::SetRadius(const Real Radius)
             {
                 if( Radius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated sphere mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for a generated sphere mesh must be greater than zero.");
 
                 this->SphereRadius = Radius;
                 return *this;
@@ -148,7 +148,7 @@ namespace Mezzanine
             SphereGenerator& SphereGenerator::SetNumRings(const Whole Rings)
             {
                 if( Rings == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of rings for generated sphere mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of rings for generated sphere mesh must be greater than zero.");
 
                 this->NumRings = Rings;
                 return *this;
@@ -157,7 +157,7 @@ namespace Mezzanine
             SphereGenerator& SphereGenerator::SetNumSegCircle(const Whole SegCircle)
             {
                 if( SegCircle < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated cylinder mesh must be greater than two.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated cylinder mesh must be greater than two.");
 
                 this->NumSegCircle = SegCircle;
                 return *this;

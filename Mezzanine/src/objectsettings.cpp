@@ -345,7 +345,7 @@ namespace Mezzanine
             XML::Node CurrentSettingsNode = RootNode.GetChild("Current");
             if( !RootNode.Empty() ) {
                 if( !this->CurrentSettingsSaveFile.empty() ) {
-                    MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Second file containing \"Current\" settings detected.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Second file containing \"Current\" settings detected.");
                 }
                 this->CurrentSettingsSaveFile = FileName;
             }
@@ -358,7 +358,7 @@ namespace Mezzanine
                 NewSetFile->AddGroup( (*It) );
             return RetVec;
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to parse XML which does not contain valid ObjectRootNodeName.  Searching for \"" + GetObjectRootNodeName() + "\", not found.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to parse XML which does not contain valid ObjectRootNodeName.  Searching for \"" + GetObjectRootNodeName() + "\", not found.");
         }
     }
 
@@ -377,7 +377,7 @@ namespace Mezzanine
             Resource::FileStream SettingsStream(FileName,Path,Resource::SF_Truncate | Resource::SF_Write);
             SettingsDoc.Save(SettingsStream,"\t",XML::FormatIndent);
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
         }
     }
 
@@ -420,7 +420,7 @@ namespace Mezzanine
         if( SetIt != this->SettingGroups.end() ) {
             this->ApplySettingGroupImpl( (*SetIt).second );
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Setting Group \"" + GroupName + "\" not found when attempting to apply settings.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Setting Group \"" + GroupName + "\" not found when attempting to apply settings.");
         }
     }
 
@@ -574,7 +574,7 @@ namespace Mezzanine
     {
         String FilePath = Resource::ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group);
         if( FilePath.empty() ) {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Failed to find path for file \"" + FileName + "\", in group \"" + Group + "\".");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Failed to find path for file \"" + FileName + "\", in group \"" + Group + "\".");
         }
         return this->LoadSettingsFromFile(FileName,FilePath);
     }
@@ -587,7 +587,7 @@ namespace Mezzanine
     CountedPtr<ObjectSettingsHandler::SettingGroupVector> ObjectSettingsHandler::LoadSettings(const String& FileName)
     {
         if( this->SettingsFilePath.empty() ) {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
         return this->LoadSettingsFromFile(FileName,this->SettingsFilePath);
     }
@@ -606,7 +606,7 @@ namespace Mezzanine
                 RetVec->push_back(NewGroup);
             }else{
                 if(!SetAfter) SetAfter = NewGroup;
-                else { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Multiple \"Current\" setting groups detected while loading settings."); }
+                else { MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Multiple \"Current\" setting groups detected while loading settings."); }
             }
             for( XML::NodeIterator CurrSetIt = CurrGroupNode.begin() ; CurrSetIt != CurrGroupNode.end() ; ++CurrSetIt )
             {
@@ -641,7 +641,7 @@ namespace Mezzanine
     void ObjectSettingsHandler::SaveAllSettings()
     {
         if( this->SettingsFilePath.empty() ) {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
         StringVector GroupNames;
@@ -672,7 +672,7 @@ namespace Mezzanine
 
         SettingFilesIterator SetFileIt = this->SettingFiles.find(FileName);
         if( SetFileIt == this->SettingFiles.end() ) {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
         }
 
         for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = (*SetFileIt).second->SaveGroupsBegin() ; SetGroupIt != (*SetFileIt).second->SaveGroupsEnd() ; ++SetGroupIt )
@@ -686,7 +686,7 @@ namespace Mezzanine
     void ObjectSettingsHandler::SaveSettingsByFile(const String& FileName)
     {
         if( this->SettingsFilePath.empty() ) {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
         StringVector GroupNames;
@@ -695,7 +695,7 @@ namespace Mezzanine
 
         SettingFilesIterator SetFileIt = this->SettingFiles.find(FileName);
         if( SetFileIt == this->SettingFiles.end() ) {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
         }
 
         for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = (*SetFileIt).second->SaveGroupsBegin() ; SetGroupIt != (*SetFileIt).second->SaveGroupsEnd() ; ++SetGroupIt )
@@ -714,7 +714,7 @@ namespace Mezzanine
     void ObjectSettingsHandler::SaveSettingGroups(StringVector& GroupNames, const String& FileName)
     {
         if( this->SettingsFilePath.empty() ) {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
         this->SaveSettingsToFile(GroupNames,FileName,SettingsFilePath);
@@ -743,7 +743,7 @@ namespace Mezzanine
             }else{
                 SettingGroupIterator GroupIt = this->SettingGroups.find( (*StrIt) );
                 if( GroupIt == this->SettingGroups.end() ) {
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to save setting group \"" + (*StrIt) + "\", which does not exist.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to save setting group \"" + (*StrIt) + "\", which does not exist.");
                 }
                 ObjectSettingSetContainer* SaveSet = (*GroupIt).second;
                 XML::Node GroupNode = RootSettings.AppendChild( (*GroupIt).first );

@@ -143,14 +143,14 @@ namespace Mezzanine
                         if( UncastedMenu->GetTypeName() == StackedContainer::TypeName ) {
                             static_cast<StackedContainer*>( UncastedMenu )->SetButtonConfig(ContainerConfig,this);
                         }else{
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Named Widget that was expected to be a MenuEntry is not a MenuEntry.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Named Widget that was expected to be a MenuEntry is not a MenuEntry.");
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (StackButton::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (StackButton::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,StackButton::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,StackButton::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

@@ -69,7 +69,7 @@ namespace Mezzanine
                 Actions.insert( std::pair<String,Action*>(Name,NewAction) );
                 return NewAction;
             }else{
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"An Action with the name \"" + Name + "\" already exists.");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"An Action with the name \"" + Name + "\" already exists.");
             }
         }
 

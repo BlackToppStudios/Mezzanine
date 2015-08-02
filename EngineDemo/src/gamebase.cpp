@@ -64,7 +64,7 @@ public:
         while(0 != OneInput)
         {
             if(OneInput->GetType()!=EventBase::UserInput)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
             //we check each MetaCode in each Event
             for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
@@ -82,13 +82,13 @@ public:
         while(0 != OneWindowEvent)
         {
             if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
             if(!OneWindowEvent->IsEventIDValid())
             {
                 StringStream ExceptionStream;
                 ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
             }
 
             if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)

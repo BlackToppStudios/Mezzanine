@@ -96,7 +96,7 @@ namespace Mezzanine
                     Whole TargetHeight = Buffer.GetHeight();
 
                     if( LookupWidth != TargetWidth && LookupHeight != TargetHeight ) {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"The LookupTexture size and the target texture size must be the same.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"The LookupTexture size and the target texture size must be the same.");
                     }
 
                     TextureBuffer TempBuffer( Buffer );

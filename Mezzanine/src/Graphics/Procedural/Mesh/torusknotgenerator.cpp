@@ -147,7 +147,7 @@ namespace Mezzanine
             TorusKnotGenerator& TorusKnotGenerator::SetPoloidalRadius(const Real PoloidalRadius)
             {
                 if( PoloidalRadius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for Poloidal ring of a generated torus mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for Poloidal ring of a generated torus mesh must be greater than zero.");
 
                 this->TorusPoloidalRadius = PoloidalRadius;
                 return *this;
@@ -156,7 +156,7 @@ namespace Mezzanine
             TorusKnotGenerator& TorusKnotGenerator::SetToroidalRadius(const Real ToroidalRadius)
             {
                 if( ToroidalRadius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for Toroidal ring of a generated torus mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for Toroidal ring of a generated torus mesh must be greater than zero.");
 
                 this->TorusToroidalRadius = ToroidalRadius;
                 return *this;
@@ -165,7 +165,7 @@ namespace Mezzanine
             TorusKnotGenerator& TorusKnotGenerator::SetPParameter(const Integer PParam)
             {
                 if( PParam <= 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The P Parameter of a generated torus knot mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The P Parameter of a generated torus knot mesh must be greater than zero.");
 
                 this->PParameter = PParam;
                 return *this;
@@ -174,7 +174,7 @@ namespace Mezzanine
             TorusKnotGenerator& TorusKnotGenerator::SetQParameter(const Integer QParam)
             {
                 if( QParam <= 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The Q Parameter of a generated torus knot mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The Q Parameter of a generated torus knot mesh must be greater than zero.");
 
                 this->QParameter = QParam;
                 return *this;
@@ -183,7 +183,7 @@ namespace Mezzanine
             TorusKnotGenerator& TorusKnotGenerator::SetNumPoloidalSeg(const Whole PoloidalSeg)
             {
                 if( PoloidalSeg < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for Poloidal ring of generated torus mesh must be greater than two.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for Poloidal ring of generated torus mesh must be greater than two.");
 
                 this->NumPoloidalSeg = PoloidalSeg;
                 return *this;
@@ -192,7 +192,7 @@ namespace Mezzanine
             TorusKnotGenerator& TorusKnotGenerator::SetNumToroidalSeg(const Whole ToroidalSeg)
             {
                 if( ToroidalSeg < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for Toroidal ring of generated torus mesh must be greater than two.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for Toroidal ring of generated torus mesh must be greater than two.");
 
                 this->NumToroidalSeg = ToroidalSeg;
                 return *this;

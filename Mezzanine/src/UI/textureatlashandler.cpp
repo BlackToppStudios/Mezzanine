@@ -79,13 +79,13 @@ namespace Mezzanine
                     AtlasIterator AtIt = this->Atlases.find( NewAtlas->GetName() );
                     if( AtIt != Atlases.end() )
                     {
-                        MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Texture Atlas with the name \"" + NewAtlas->GetName() + "\" already exists.");
+                        MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Texture Atlas with the name \"" + NewAtlas->GetName() + "\" already exists.");
                     }
                     // Add the unique Atlas
                     this->Atlases[NewAtlas->GetName()] = NewAtlas;
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Mezzanine Texture Atlas file \"" + Name + "\"does not contain expected \"Atlases\" root node.  File is not valid and cannot be parsed.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Mezzanine Texture Atlas file \"" + Name + "\"does not contain expected \"Atlases\" root node.  File is not valid and cannot be parsed.");
             }
         }
 
@@ -105,7 +105,7 @@ namespace Mezzanine
             if( AtlasIt != this->Atlases.end() ) {
                 return (*AtlasIt).second;
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Unabled to find Texture Atlas named \"" + AtlasName + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Unabled to find Texture Atlas named \"" + AtlasName + "\".");
             }
         }
 

@@ -70,7 +70,7 @@ namespace Mezzanine
     void WorldManager::Initialize()
     {
         if( this->ParentWorld == NULL ) {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot initialize a world manager without a valid world.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot initialize a world manager without a valid world.");
         }
     }
 }//Mezzanine

@@ -132,7 +132,7 @@ namespace Mezzanine
                 }else{
                     ExceptionStream << "Error Unknown. :(";
                 }
-                MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
             return true;
             #else
@@ -143,7 +143,7 @@ namespace Mezzanine
                 StringStream ExceptionStream;
                 ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
                 ExceptionStream << std::strerror(errno);
-                MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
             return true;
             #endif
@@ -182,7 +182,7 @@ namespace Mezzanine
             if( stat(DirectoryPath.c_str(),&st) == 0 ) {
                 return S_ISDIR(st.st_mode);
             }/*else{
-                //MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error getting directory information.");
+                //MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error getting directory information.");
                 return false;
             }//*/
             return false;
@@ -193,7 +193,7 @@ namespace Mezzanine
             if( !rmdir(DirectoryPath.c_str()) ) {
                 return;
             }else{
-                MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error removing directory.");
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error removing directory.");
             }
         }
 
@@ -212,7 +212,7 @@ namespace Mezzanine
                 closedir(Directory);
                 return Results;
             }else{
-                MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents"));
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents"));
             }
         }
 
@@ -397,7 +397,7 @@ namespace Mezzanine
             #else
             if(chdir(ChangeTo.c_str()))
             #endif
-            { MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Could not change to directory \"")+ChangeTo+"\" error: "+ToString(errno)); }
+            { MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Could not change to directory \"")+ChangeTo+"\" error: "+ToString(errno)); }
         }
 
         String GetWorkingDirectory()
@@ -425,7 +425,7 @@ namespace Mezzanine
             else if(LowerVar == "commonuserdata") return GetCommonUserDataDir();
             else
             {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
             }
         }
 
@@ -441,7 +441,7 @@ namespace Mezzanine
             if(pw) {
                 return String(pw->pw_dir);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve app data directory.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve app data directory.");
             }
 
             // might be some useful MAC OS X code
@@ -468,7 +468,7 @@ namespace Mezzanine
             if(pw) {
                 return String(pw->pw_dir);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve home directory.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve home directory.");
             }
             #endif
             return "";
@@ -486,7 +486,7 @@ namespace Mezzanine
             if(pw) {
                 return String(pw->pw_dir);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve user data directory.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve user data directory.");
             }
             #endif
             return "";
@@ -504,7 +504,7 @@ namespace Mezzanine
             if(pw) {
                 return String(pw->pw_dir);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve common data directory.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve common data directory.");
             }
             #endif
             return "";

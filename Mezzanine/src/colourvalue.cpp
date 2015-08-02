@@ -641,10 +641,10 @@ namespace Mezzanine
                 this->BlueChannel=OneNode.GetAttribute("Blue").AsReal();
                 this->AlphaChannel=OneNode.GetAttribute("Alpha").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->ColourValue::GetSerializableName()) + ": Not Version 1");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->ColourValue::GetSerializableName()) + ": Not Version 1");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->ColourValue::GetSerializableName()) + ", found a " + OneNode.Name());
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->ColourValue::GetSerializableName()) + ", found a " + OneNode.Name());
         }
     }
 

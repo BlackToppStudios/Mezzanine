@@ -210,10 +210,10 @@ namespace Mezzanine
             TubeGenerator& TubeGenerator::SetInnerRadius(const Real InnerRadius)
             {
                 if( InnerRadius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated tube mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for a generated tube mesh must be greater than zero.");
 
                 if( this->TubeOuterRadius < InnerRadius )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Outer radius must be larger than inner radius!");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Outer radius must be larger than inner radius!");
 
                 this->TubeInnerRadius = InnerRadius;
                 return *this;
@@ -222,10 +222,10 @@ namespace Mezzanine
             TubeGenerator& TubeGenerator::SetOuterRadius(const Real OuterRadius)
             {
                 if( OuterRadius <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Radius for a generated tube mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Radius for a generated tube mesh must be greater than zero.");
 
                 if( OuterRadius < this->TubeInnerRadius )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Outer radius must be larger than inner radius!");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Outer radius must be larger than inner radius!");
 
                 this->TubeOuterRadius = OuterRadius;
                 return *this;
@@ -234,7 +234,7 @@ namespace Mezzanine
             TubeGenerator& TubeGenerator::SetHeight(const Real Height)
             {
                 if( Height <= 0.0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Height for a generated cylinder mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Height for a generated cylinder mesh must be greater than zero.");
 
                 this->TubeHeight = Height;
                 return *this;
@@ -243,7 +243,7 @@ namespace Mezzanine
             TubeGenerator& TubeGenerator::SetNumSegCircle(const Whole SegCircle)
             {
                 if( SegCircle < 3 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated tube mesh must be greater than two.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for circular component of generated tube mesh must be greater than two.");
 
                 this->NumSegCircle = SegCircle;
                 return *this;
@@ -252,7 +252,7 @@ namespace Mezzanine
             TubeGenerator& TubeGenerator::SetNumSegHeight(const Whole SegHeight)
             {
                 if( SegHeight == 0 )
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Number of segments for length component of generated tube mesh must be greater than zero.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Number of segments for length component of generated tube mesh must be greater than zero.");
 
                 this->NumSegHeight = SegHeight;
                 return *this;

@@ -116,7 +116,7 @@ namespace Mezzanine
         {
             Whole TexSize = this->GetSize();
             if( BufferSize < TexSize ) {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Destination buffer is too small to fit all texture pixel data.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Destination buffer is too small to fit all texture pixel data.");
             }
 
             Ogre::HardwarePixelBufferSharedPtr PixelBuffer = this->_GetInternalTexture()->getBuffer();
@@ -138,7 +138,7 @@ namespace Mezzanine
         void Texture::_WriteToBuffer(UInt8* SrcBuffer, const Whole BufferSize, const Graphics::PixelFormat SrcFormat)
         {
             if( this->GetSize() != BufferSize ) {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Texture and write buffer are different sizes.  Sizes must match.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Texture and write buffer are different sizes.  Sizes must match.");
             }
 
             Ogre::HardwarePixelBufferSharedPtr PixelBuffer = this->_GetInternalTexture()->getBuffer();

@@ -73,7 +73,7 @@ namespace Mezzanine
                 {
                     AddScript(ScriptToStow);
                 }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51WorkUnit attempted to store a script, but it did not appear to bea Lua51 script.")
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_CAST_EXCEPTION, "Lua51WorkUnit attempted to store a script, but it did not appear to bea Lua51 script.")
                 }
             }
 
@@ -121,7 +121,7 @@ namespace Mezzanine
                 {
                     RemoveScript(ScriptToBtow);
                 }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51WorkUnit attempted to removed a script, but it did not appear to bea Lua51 script.")
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_CAST_EXCEPTION, "Lua51WorkUnit attempted to removed a script, but it did not appear to bea Lua51 script.")
                 }
             }
 

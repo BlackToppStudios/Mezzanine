@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -259,7 +259,7 @@ namespace Mezzanine
                 void SetOctaveCount(const Integer OctaveCount)
                 {
                     if( OctaveCount > Module::RIDGED_MAX_OCTAVE ) {
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The specified amount of octaves for Perlin noise is outside the valid range.");
+                        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The specified amount of octaves for Perlin noise is outside the valid range.");
                     }
                     this->m_octaveCount = OctaveCount;
                 }

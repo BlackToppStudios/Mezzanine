@@ -78,7 +78,7 @@ namespace Mezzanine
             if( MeshIt == this->Meshes.end() ) {
                 this->Meshes.insert( std::pair<String,Mesh*>(MeshName,ToAdd) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Meshes must have unique names when loaded!");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Meshes must have unique names when loaded!");
             }
         }
 

@@ -104,7 +104,7 @@ namespace Mezzanine
             else if( Extension == "xbm" ) return Graphics::IFF_Ext_xbm;
             else if( Extension == "xpm" ) return Graphics::IFF_Ext_xpm;
             else{
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert unsupported image extension as string to ImageFileFormat enum.");
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert unsupported image extension as string to ImageFileFormat enum.");
                 return Graphics::IFF_Ext_Unknown;
             }
             return Graphics::IFF_Ext_Unknown;
@@ -166,7 +166,7 @@ namespace Mezzanine
                 case Graphics::IFF_Ext_Unknown:
                 default:
                 {
-                    MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert unsupported ImageFileFormat enum value to string.");
+                    MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert unsupported ImageFileFormat enum value to string.");
                     return "";
                 }
             }

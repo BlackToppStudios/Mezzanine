@@ -97,7 +97,7 @@ namespace Mezzanine
                 Whole TargetHeight = Buffer.GetHeight();
 
                 if( MaskWidth != TargetWidth && MaskHeight != TargetHeight ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"The MaskTexture size and the target texture size must be the same.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"The MaskTexture size and the target texture size must be the same.");
                 }
 
                 for( Whole Y = 0 ; Y < TargetHeight ; ++Y )

@@ -77,7 +77,7 @@ namespace Mezzanine
             }
 
             if( !this->IsOpenToFile() ) {
-                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \"" + File + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \"" + File + "\".");
             }
 
             this->SetReadPosition(0,Resource::SO_End);
@@ -169,7 +169,7 @@ namespace Mezzanine
             this->StandardStream->open(FullPath.c_str(),Options);
 
             if( !StandardStream->is_open() ) {
-                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+FileName+"\".");
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+FileName+"\".");
             }
 
             this->StandardStream->seekg(0,std::ios_base::end);

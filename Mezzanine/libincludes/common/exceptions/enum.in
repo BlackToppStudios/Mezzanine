@@ -1,1 +1,1 @@
-            @EnumName@ = @HexValue@, ///< @BriefDox@
+                @EnumName@ = @HexValue@, ///< @BriefDox@

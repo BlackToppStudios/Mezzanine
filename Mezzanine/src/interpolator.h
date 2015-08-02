@@ -146,7 +146,7 @@ namespace Mezzanine
                 Whole LineSegmentCount = DataPointCount-1;
 
                 if(LineSegmentCount<1)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot GetPercentageThroughSegment in GenericLinearInterpolator without a data segment. There must be two or more data points."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Cannot GetPercentageThroughSegment in GenericLinearInterpolator without a data segment. There must be two or more data points."); }
                 if(1==LineSegmentCount)
                     { return InterpolateMath(*(Begin), *(Begin+1), Location); }
 
@@ -172,9 +172,9 @@ namespace Mezzanine
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
                 if(Begin==End)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 0."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 0."); }
                 if(Begin+1==End)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 1."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 1."); }
 
                 if(Begin+2==End)
                     { return InterpolateMath(*Begin, *(Begin+1), Location); }
@@ -221,13 +221,13 @@ namespace Mezzanine
                         {
                             return; // Class currently stores no data.
                         }else{
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + GetSerializableName() + ": Not " + InterpolatableType::GetSerializableName());
+                            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + GetSerializableName() + ": Not " + InterpolatableType::GetSerializableName());
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }
@@ -275,7 +275,7 @@ namespace Mezzanine
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
                 if(Begin==End || Begin+1==End)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 1 data points for bezier interpolation."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Requires at least 1 data points for bezier interpolation."); }
 
                 if(Begin+2==End)
                     { return LinearInterpolator<T>::Interpolate(Begin,End,Location); }
@@ -325,13 +325,13 @@ namespace Mezzanine
                         {
                             return; // Class currently stores no data.
                         }else{
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + GetSerializableName() + ": Not " + InterpolatableType::GetSerializableName());
+                            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + GetSerializableName() + ": Not " + InterpolatableType::GetSerializableName());
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }

@@ -257,7 +257,7 @@ namespace Mezzanine
             if( WidFactIt  != this->WidgetFactories.end() ) {
                 return (*WidFactIt).second;
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a " + WidgetTypeName + " Widget without it's factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a " + WidgetTypeName + " Widget without it's factory registered.");
             }
         }
 
@@ -266,7 +266,7 @@ namespace Mezzanine
             String WidgetName = ToInsert->GetName();
             std::pair<WidgetIterator,Boole> InsertReturn = this->Widgets.insert( std::pair<String,Widget*>(WidgetName,ToInsert) );
             if( !InsertReturn.second )
-                { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + WidgetName + "\" already exists."); }
+                { MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + WidgetName + "\" already exists."); }
             return ToInsert;
         }
 
@@ -527,7 +527,7 @@ namespace Mezzanine
             if( FactIt != this->WidgetFactories.end() ) {
                 return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(WidgetNode,this) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
             }
         }
 
@@ -537,7 +537,7 @@ namespace Mezzanine
             if( FactIt != this->WidgetFactories.end() ) {
                 return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(RendName,Params,this) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
             }
         }
 
@@ -547,7 +547,7 @@ namespace Mezzanine
             if( FactIt != this->WidgetFactories.end() ) {
                 return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(RendName,RendRect,Params,this) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
             }
         }
 
@@ -960,19 +960,19 @@ namespace Mezzanine
                                 this->InverseSize.X = 1 / this->ActDims.Size.X;
                                 this->InverseSize.Y = 1 / this->ActDims.Size.Y;
                             }else{
-                                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The Viewport specified via ZOrder was not found in the named GameWindow.");
+                                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The Viewport specified via ZOrder was not found in the named GameWindow.");
                             }
                         }else{
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The named GameWindow to be used by UI Screen was not found.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The named GameWindow to be used by UI Screen was not found.");
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"A GameWindow Title/Caption was not specified for UI Screen.");
+                        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"A GameWindow Title/Caption was not specified for UI Screen.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Screen::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Screen::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Screen::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Screen::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -1092,7 +1092,7 @@ namespace Mezzanine
             for( Whole Index = 0 ; Index < TempVertexCache.Size() ; ++Index )
             {
                 if( TempVertexCache[Index].Atlas.empty() ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Null or Empty String Atlas found when rendering UI.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Null or Empty String Atlas found when rendering UI.");
                 }
                 if( TempVertexCache[Index].Atlas != CurrentName ) {
                     if( Index != 0 ) {

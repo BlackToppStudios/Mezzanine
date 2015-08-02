@@ -148,10 +148,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->Size.Y = CurrAttrib.AsWhole();
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GridRect::GetSerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GridRect::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GridRect::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,GridRect::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -575,11 +575,11 @@ namespace Mezzanine
                                 }
                             }
                         }else{
-                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("ChildRects") + ": Not Version 1.");
+                            MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("ChildRects") + ": Not Version 1.");
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("ChildRects") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("ChildRects") + ": Not Version 1.");
                 }
             }
         }
@@ -599,10 +599,10 @@ namespace Mezzanine
                     XML::Node CellPaddingNode = PropertiesNode.GetChild("CellPadding");
                     this->CellPadding.ProtoDeSerialize(CellPaddingNode);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (GridContainer::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (GridContainer::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GridContainer::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,GridContainer::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
