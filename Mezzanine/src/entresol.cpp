@@ -146,7 +146,7 @@ namespace Mezzanine
 
     void Entresol::DestroyOgre()
     {
-        #ifdef LINUX
+        #ifdef MEZZ_LINUX
         //assert( !( SDL_WasInit(0) | SDL_INIT_VIDEO ) && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
         #endif
 
@@ -157,7 +157,7 @@ namespace Mezzanine
 
     void Entresol::DestroySDL()
     {
-        #ifdef LINUX
+        #ifdef MEZZ_LINUX
         // Fail is SDL is de-intialized before Ogre, but only if Ogre has been initialized.
         assert( NULL==OgreCore // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
                 && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );

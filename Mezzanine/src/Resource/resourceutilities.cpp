@@ -46,7 +46,7 @@
 #include "stringtool.h"
 
 #include <dirent.h>
-#ifdef WINDOWS
+#ifdef MEZZ_WINDOWS
     #include <Windows.h>
     #include <Winuser.h>
     #include <WinBase.h>
@@ -54,7 +54,7 @@
     // Below includes may not work on MSVC
     #include <direct.h> // for _getcwd
     #include <sys/stat.h>
-#elif MACOSX
+#elif MEZZ_MACOSX
     #include <CoreServices/CoreServices.h>
     #include <unistd.h>//for sleep and getcwd
     #include <errno.h>
@@ -120,7 +120,7 @@ namespace Mezzanine
 
         Boole CreateDirectory(const String& DirectoryPath)
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             if( ::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0 ) {
                 if( ERROR_ALREADY_EXISTS == ::GetLastError() ) {
                     return false;
@@ -157,7 +157,7 @@ namespace Mezzanine
             size_t StartIndex = 0;
             String PathAttempt;
             Char8 SysSlash = GetDirectorySeparator();
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
             if(FolderVec->at(0).find(':') != String::npos) {
                 PathAttempt.append( FolderVec->at(0) );
@@ -249,7 +249,7 @@ namespace Mezzanine
 
         Char8 GetDirectorySeparator()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             return '\\';
             #else
             return '/';
@@ -258,7 +258,7 @@ namespace Mezzanine
 
         Char8 GetPathSeparator()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             return ';';
             #else
             return ':';
@@ -332,7 +332,7 @@ namespace Mezzanine
         String GetExecutableDirFromSystem()
         {
             char Results[FILENAME_MAX];
-            #ifdef LINUX
+            #ifdef MEZZ_LINUX
                 MaxInt Length = ::readlink("/proc/self/exe", Results, sizeof(Results)-1);
                 if( Length != -1 ) {
                     Results[Length] = '\0';
@@ -341,11 +341,11 @@ namespace Mezzanine
                     return "";
                 }
             #endif
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
                 GetModuleFileName( NULL, Results, FILENAME_MAX );
                 return DirName(String(Results));
             #endif
-            #ifdef MACOSX
+            #ifdef MEZZ_MACOSX
                 uint32_t size = sizeof(Results);
                 if( _NSGetExecutablePath(Results, &size) == 0 ) {
                     return DirName(String(Results));
@@ -392,7 +392,7 @@ namespace Mezzanine
 
         void ChangeWorkingDirectory(const String& ChangeTo)
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             if(_chdir(ChangeTo.c_str()))
             #else
             if(chdir(ChangeTo.c_str()))
@@ -404,7 +404,7 @@ namespace Mezzanine
         {
             char cCurrentPath[FILENAME_MAX];
             // char cCurrentPath[MAXPATHLEN];
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             String Results (_getcwd(cCurrentPath,sizeof(cCurrentPath)));
             #else
             String Results (getcwd(cCurrentPath,sizeof(cCurrentPath)));
@@ -431,7 +431,7 @@ namespace Mezzanine
 
         String GetLocalAppDataDir()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             TCHAR path_local_appdata[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_local_appdata))) {
                 return path_local_appdata;
@@ -445,7 +445,7 @@ namespace Mezzanine
             }
 
             // might be some useful MAC OS X code
-            /*#elif MACOSX
+            /*#elif MEZZ_MACOSX
             FSRef ref;
             OSType folderType = kApplicationSupportFolderType;
             char path[PATH_MAX];
@@ -458,7 +458,7 @@ namespace Mezzanine
 
         String GetShareableAppDataDir()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             TCHAR path_appdata[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_appdata))) {
                 return path_appdata;
@@ -476,7 +476,7 @@ namespace Mezzanine
 
         String GetCurrentUserDataDir()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             TCHAR path_personal[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PERSONAL|CSIDL_FLAG_CREATE, NULL, 0, path_personal))) {
                 return path_personal;
@@ -494,7 +494,7 @@ namespace Mezzanine
 
         String GetCommonUserDataDir()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             TCHAR path_common_personal[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_DOCUMENTS|CSIDL_FLAG_CREATE, NULL, 0, path_common_personal))) {
                 return path_common_personal;

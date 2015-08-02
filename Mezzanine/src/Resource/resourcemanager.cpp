@@ -206,11 +206,11 @@ namespace Mezzanine
 
         String ResourceManager::GetPluginExtension() const
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             return ".dll";
-            #elif LINUX
+            #elif MEZZ_LINUX
             return ".so";
-            #elif MACOSX
+            #elif MEZZ_MACOSX
             return ".dylib";
             #endif
         }
