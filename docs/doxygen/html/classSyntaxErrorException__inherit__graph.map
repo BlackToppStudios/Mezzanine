@@ -1,5 +1,0 @@
-<map id="SyntaxErrorException" name="SyntaxErrorException">
-<area shape="rect" id="node3" href="$classSyntaxErrorLuaException.html" title="Thrown when lua code in incorrect. " alt="" coords="5,155,176,181"/>
-<area shape="rect" id="node4" href="$classSyntaxErrorXMLException.html" title="Thrown when and XML document is being parsed but is invalid. " alt="" coords="200,155,376,181"/>
-<area shape="rect" id="node5" href="$classSyntaxErrorXPathException.html" title="Thrown when an XPath query is being parsed but is invalid. " alt="" coords="401,155,586,181"/>
-</map>

@@ -8,7 +8,6 @@ var searchData=
   ['objectsettingshandler',['ObjectSettingsHandler',['../classMezzanine_1_1ObjectSettingsHandler.html',1,'Mezzanine']]],
   ['ogrevertex',['OgreVertex',['../structMezzanine_1_1UI_1_1OgreVertex.html',1,'Mezzanine::UI']]],
   ['ostream',['OStream',['../classMezzanine_1_1Resource_1_1OStream.html',1,'Mezzanine::Resource']]],
-  ['outofmemoryexception',['OutOfMemoryException',['../classOutOfMemoryException.html',1,'']]],
   ['outofmemoryexception',['OutOfMemoryException',['../classMezzanine_1_1OutOfMemoryException.html',1,'Mezzanine']]],
   ['outputcapturemanager',['OutputCaptureManager',['../classMezzanine_1_1Testing_1_1OutputCaptureManager.html',1,'Mezzanine::Testing']]]
 ];

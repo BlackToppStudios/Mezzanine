@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 785;
+var viewWidth = 808;
 var viewHeight = 137;
 var sectionId = 'dynsection-0';
 </script>
@@ -54,37 +54,42 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::ScriptException</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-133 781,-133 781,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-133 804,-133 804,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="263,-55 263,-74 402,-74 402,-55 263,-55"/>
-<text text-anchor="middle" x="332.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptException</text>
+<polygon fill="#bfbfbf" stroke="black" points="286,-55 286,-74 425,-74 425,-55 286,-55"/>
+<text text-anchor="middle" x="355.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptException</text>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classMezzanine_1_1ScriptLuaException.html" target="_top" xlink:title="Thrown when an unknown error happens in a Lua script. ">
-<polygon fill="white" stroke="black" points="438,-55 438,-74 593,-74 593,-55 438,-55"/>
-<text text-anchor="middle" x="515.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptLuaException</text>
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="classMezzanine_1_1ScriptLuaException.html" target="_top" xlink:title="Thrown when an unknown error happens in a Lua script. ">
+<polygon fill="white" stroke="black" points="461,-55 461,-74 616,-74 616,-55 461,-55"/>
+<text text-anchor="middle" x="538.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptLuaException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M412.442,-64.5C420.923,-64.5 429.542,-64.5 437.993,-64.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="412.186,-61.0001 402.186,-64.5 412.186,-68.0001 412.186,-61.0001"/>
+<!-- Node1&#45;&gt;Node5 -->
+<g id="edge5" class="edge"><title>Node1&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M435.442,-57.7992C443.923,-57.7267 452.542,-57.7343 460.993,-57.8222"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="435.142,-54.3026 425.186,-57.9274 435.229,-61.302 435.142,-54.3026"/>
+</g>
+<!-- Node1&#45;&gt;Node5 -->
+<g id="edge12" class="edge"><title>Node1&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M435.442,-71.2008C443.923,-71.2733 452.542,-71.2657 460.993,-71.1778"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="435.229,-67.698 425.186,-71.0726 435.142,-74.6974 435.229,-67.698"/>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <g id="a_node2"><a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">
-<polygon fill="white" stroke="black" points="114,-55 114,-74 227,-74 227,-55 114,-55"/>
-<text text-anchor="middle" x="170.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Exception</text>
+<polygon fill="white" stroke="black" points="125.5,-74 125.5,-93 238.5,-93 238.5,-74 125.5,-74"/>
+<text text-anchor="middle" x="182" y="-81" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Exception</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M237.192,-64.5C245.65,-64.5 254.329,-64.5 262.833,-64.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="237.011,-61.0001 227.011,-64.5 237.011,-68.0001 237.011,-61.0001"/>
+<path fill="none" stroke="midnightblue" d="M248.746,-76.2162C260.915,-74.868 273.653,-73.4568 285.904,-72.0995"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="248.235,-72.7513 238.681,-77.3312 249.006,-79.7087 248.235,-72.7513"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
@@ -96,50 +101,83 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M88.4154,-64.5C96.7137,-64.5 105.395,-64.5 113.864,-64.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="88.1539,-61.0001 78.1539,-64.5 88.1538,-68.0001 88.1539,-61.0001"/>
+<path fill="none" stroke="midnightblue" d="M88.3443,-71.0145C100.257,-72.6198 113.109,-74.3516 125.338,-75.9994"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="88.5345,-67.5086 78.1566,-69.6417 87.5996,-74.4459 88.5345,-67.5086"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classMezzanine_1_1ScriptLuaErrErrException.html" target="_top" xlink:title="Thrown when Lua has an error handling an error. ">
-<polygon fill="white" stroke="black" points="634.5,-98.5 634.5,-128.5 771.5,-128.5 771.5,-98.5 634.5,-98.5"/>
-<text text-anchor="start" x="642.5" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptLuaErrErr</text>
-<text text-anchor="middle" x="703" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
+<polygon fill="white" stroke="black" points="114,-36 114,-55 250,-55 250,-36 114,-36"/>
+<text text-anchor="middle" x="182" y="-43" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M562.646,-76.6896C587.599,-83.2808 618.632,-91.4782 645.074,-98.463"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="563.269,-73.2341 552.707,-74.064 561.481,-80.0019 563.269,-73.2341"/>
+<!-- Node3&#45;&gt;Node4 -->
+<g id="edge4" class="edge"><title>Node3&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M88.2794,-57.9943C96.4907,-56.8878 105.15,-55.7209 113.745,-54.5628"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="87.5996,-54.5541 78.1566,-59.3583 88.5345,-61.4914 87.5996,-54.5541"/>
+</g>
+<!-- Node4&#45;&gt;Node1 -->
+<g id="edge3" class="edge"><title>Node4&#45;&gt;Node1</title>
+<path fill="none" stroke="midnightblue" d="M260.28,-54.0617C268.854,-55.0115 277.541,-55.974 285.996,-56.9106"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="260.614,-50.5773 250.289,-52.9548 259.843,-57.5347 260.614,-50.5773"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classMezzanine_1_1ScriptLuaRuntimeException.html" target="_top" xlink:title="Thrown when a Lua script has a runtime error. ">
-<polygon fill="white" stroke="black" points="629,-49.5 629,-79.5 777,-79.5 777,-49.5 629,-49.5"/>
-<text text-anchor="start" x="637" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptLuaRuntime</text>
-<text text-anchor="middle" x="703" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
+<g id="a_node6"><a xlink:href="classMezzanine_1_1ScriptLuaErrErrException.html" target="_top" xlink:title="Thrown when Lua has an error handling an error. ">
+<polygon fill="white" stroke="black" points="657.5,-98.5 657.5,-128.5 794.5,-128.5 794.5,-98.5 657.5,-98.5"/>
+<text text-anchor="start" x="665.5" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptLuaErrErr</text>
+<text text-anchor="middle" x="726" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node6 -->
-<g id="edge5" class="edge"><title>Node4&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M603.11,-64.5C611.749,-64.5 620.458,-64.5 628.937,-64.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="603.021,-61.0001 593.021,-64.5 603.021,-68.0001 603.021,-61.0001"/>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge6" class="edge"><title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M609.537,-76.4337C636.554,-83.1261 666.309,-91.3489 688.847,-98.4719"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="610.271,-73.01 599.727,-74.0421 608.613,-79.8109 610.271,-73.01"/>
+</g>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge7" class="edge"><title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M569.13,-77.4307C592.805,-85.1849 626.92,-94.6711 657.202,-102.119"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="569.946,-74.0116 559.352,-74.1142 567.698,-80.6407 569.946,-74.0116"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classMezzanine_1_1ScriptLuaYieldException.html" target="_top" xlink:title="Thrown when Lua returns a yield and it should not have. ">
-<polygon fill="white" stroke="black" points="636.5,-0.5 636.5,-30.5 769.5,-30.5 769.5,-0.5 636.5,-0.5"/>
-<text text-anchor="start" x="644.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptLuaYield</text>
-<text text-anchor="middle" x="703" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
+<g id="a_node7"><a xlink:href="classMezzanine_1_1ScriptLuaRuntimeException.html" target="_top" xlink:title="Thrown when a Lua script has a runtime error. ">
+<polygon fill="white" stroke="black" points="652,-49.5 652,-79.5 800,-79.5 800,-49.5 652,-49.5"/>
+<text text-anchor="start" x="660" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptLuaRuntime</text>
+<text text-anchor="middle" x="726" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node7 -->
-<g id="edge6" class="edge"><title>Node4&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M562.646,-52.3104C587.599,-45.7192 618.632,-37.5218 645.074,-30.537"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="561.481,-48.9981 552.707,-54.936 563.269,-55.7659 561.481,-48.9981"/>
+<!-- Node5&#45;&gt;Node7 -->
+<g id="edge8" class="edge"><title>Node5&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M626.11,-57.7632C634.749,-57.7261 643.458,-57.7674 651.937,-57.887"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="625.993,-54.2639 616.021,-57.8427 626.048,-61.2637 625.993,-54.2639"/>
+</g>
+<!-- Node5&#45;&gt;Node7 -->
+<g id="edge9" class="edge"><title>Node5&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M626.11,-71.2368C634.749,-71.2739 643.458,-71.2326 651.937,-71.113"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="626.048,-67.7363 616.021,-71.1573 625.993,-74.7361 626.048,-67.7363"/>
+</g>
+<!-- Node8 -->
+<g id="node8" class="node"><title>Node8</title>
+<g id="a_node8"><a xlink:href="classMezzanine_1_1ScriptLuaYieldException.html" target="_top" xlink:title="Thrown when Lua returns a yield and it should not have. ">
+<polygon fill="white" stroke="black" points="659.5,-0.5 659.5,-30.5 792.5,-30.5 792.5,-0.5 659.5,-0.5"/>
+<text text-anchor="start" x="667.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ScriptLuaYield</text>
+<text text-anchor="middle" x="726" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node8 -->
+<g id="edge10" class="edge"><title>Node5&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M569.016,-51.6066C593.241,-43.6669 628.45,-33.9024 659.29,-26.3692"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="567.697,-48.3582 559.352,-54.8858 569.946,-54.9871 567.697,-48.3582"/>
+</g>
+<!-- Node5&#45;&gt;Node8 -->
+<g id="edge11" class="edge"><title>Node5&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M609.537,-52.5663C636.554,-45.8739 666.309,-37.6511 688.847,-30.5281"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="608.613,-49.1891 599.727,-54.9579 610.271,-55.99 608.613,-49.1891"/>
 </g>
 </g>
 </svg>

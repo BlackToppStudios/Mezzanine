@@ -92,29 +92,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ParametersException.html" title="Thrown when parameters are checked at runtime and found invalid. ">ParametersException</a> can be created at compile time if the compiler is clever.  
+<p>Template class that serves as the base for exception factories.  
  <a href="structMezzanine_1_1ExceptionFactory_3_01ParametersException_1_1ExceptionCode_01_4.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="exception_8old_8h_source.html">exception.old.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="exception_8h_source.html">exception.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:ae29722bf052585c66a6ed7356d7b9336"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae29722bf052585c66a6ed7356d7b9336"></a>
 typedef <a class="el" href="classMezzanine_1_1ParametersException.html">ParametersException</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b></td></tr>
 <tr class="separator:ae29722bf052585c66a6ed7356d7b9336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae29722bf052585c66a6ed7356d7b9336"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classMezzanine_1_1ParametersException.html">ParametersException</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01ParametersException_1_1ExceptionCode_01_4.html#ae29722bf052585c66a6ed7356d7b9336">Type</a></td></tr>
+<tr class="memdesc:ae29722bf052585c66a6ed7356d7b9336"><td class="mdescLeft">&#160;</td><td class="mdescRight">This allows parameterized uses of this type when, so exception can be throw without directly using the type system.  <a href="#ae29722bf052585c66a6ed7356d7b9336">More...</a><br /></td></tr>
+<tr class="separator:ae29722bf052585c66a6ed7356d7b9336"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;&gt;<br />
 struct Mezzanine::ExceptionFactory&lt; ParametersException::ExceptionCode &gt;</h3>
 
-<p>A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ParametersException.html" title="Thrown when parameters are checked at runtime and found invalid. ">ParametersException</a> can be created at compile time if the compiler is clever. </p>
+<p>Template class that serves as the base for exception factories. </p>
+<p>A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ParametersException.html" title="Thrown when parameters are checked at runtime and found invalid. ">ParametersException</a> can be created at compile time if the compiler is clever.</p>
+<p>Additional exceptions and their factories have to specialize from this template changing the type value to the new exception type.This allows our exception macro to find the appropriate factory at compile when template are being resolved. So this system can be extended with additional exceptions wherever desired. Attempting to create an unknown exception simply won't compile because the base exception class being abstract.</p>
+<p>Additional exceptions and their factories have to specialize from this template changing the type value to the new exception type. This allows our exception macro to find the appropriate factory and be extendable with additional exceptions. Attempting to create an unknown exception simply won't compile on account of the base exception class being abstract. </p>
 
-<p>Definition at line <a class="el" href="exception_8old_8h_source.html#l01699">1699</a> of file <a class="el" href="exception_8old_8h_source.html">exception.old.h</a>.</p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="exception_8h_source.html#l02408">2408</a> of file <a class="el" href="exception_8h_source.html">exception.h</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="ae29722bf052585c66a6ed7356d7b9336"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="classMezzanine_1_1ParametersException.html">ParametersException</a> <a class="el" href="structMezzanine_1_1ExceptionFactory.html">Mezzanine::ExceptionFactory</a>&lt; <a class="el" href="classMezzanine_1_1ParametersException.html#aa075ce985a1397b7698d535ecfe08ab8">ParametersException::ExceptionCode</a> &gt;::<a class="el" href="structMezzanine_1_1ExceptionFactory_3_01ParametersException_1_1ExceptionCode_01_4.html#ae29722bf052585c66a6ed7356d7b9336">Type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This allows parameterized uses of this type when, so exception can be throw without directly using the type system. </p>
+
+<p>Definition at line <a class="el" href="exception_8h_source.html#l02412">2412</a> of file <a class="el" href="exception_8h_source.html">exception.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/<a class="el" href="exception_8h_source.html">exception.h</a></li>
 <li>/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/<a class="el" href="exception_8old_8h_source.html">exception.old.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2015 18:03:20 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1</small></address>
+Generated on Sun Aug 2 2015 19:04:01 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1</small></address>
 </body>
 </html>

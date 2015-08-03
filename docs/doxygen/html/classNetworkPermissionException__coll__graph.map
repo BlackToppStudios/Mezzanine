@@ -1,6 +1,0 @@
-<map id="NetworkPermissionException" name="NetworkPermissionException">
-<area shape="rect" id="node2" href="$classNetworkException.html" title="Thrown when something unknown causes network IO to fail. " alt="" coords="38,229,167,256"/>
-<area shape="rect" id="node3" href="$classIOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="55,155,150,181"/>
-<area shape="rect" id="node4" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="47,80,158,107"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="51,5,155,32"/>
-</map>

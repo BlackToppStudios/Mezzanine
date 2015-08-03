@@ -90,7 +90,7 @@ namespace Mezzanine
         {
             String FullPath;
             char Check = FilePath.at(FilePath.size() - 1);
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             char SysSlash = '\\';
             #else
             char SysSlash = '/';
@@ -157,7 +157,7 @@ namespace Mezzanine
 
             String FullPath;
             char Check = Path.at(Path.size() - 1);
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             char SysSlash = '\\';
             #else
             char SysSlash = '/';

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['last_5fexception',['LAST_EXCEPTION',['../classExceptionBase.html#a2adf36aa751da5d3084a5fc4273269c8a5a87247042561d978dadda6bef22c0b5',1,'ExceptionBase']]],
+  ['last_5fexception',['LAST_EXCEPTION',['../classMezzanine_1_1ExceptionBase.html#ae5b4b8f3303a461acf0d6cf83985ef2aa03af6dd076a6b8e3763e1afe6b33ccc0',1,'Mezzanine::ExceptionBase']]],
   ['lastentry',['LastEntry',['../classMezzanine_1_1WeightedRollingAverage.html#ab96a14dc41310774a2553030b6beb5f6',1,'Mezzanine::WeightedRollingAverage']]],
   ['lastlib',['LastLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0a5d62b86869c4e973158ae113ddbbd8f8',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
   ['lastqueryresultsobjectptr',['LastQueryResultsObjectPtr',['../classMezzanine_1_1RayQueryTool.html#abaf62ca797d7fcd0619da4f10c2f2776',1,'Mezzanine::RayQueryTool']]],

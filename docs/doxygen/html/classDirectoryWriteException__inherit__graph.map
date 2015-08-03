@@ -1,6 +1,0 @@
-<map id="DirectoryWriteException" name="DirectoryWriteException">
-<area shape="rect" id="node2" href="$classDirectoryException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="21,229,154,256"/>
-<area shape="rect" id="node3" href="$classIOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="40,155,135,181"/>
-<area shape="rect" id="node4" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="32,80,143,107"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="35,5,139,32"/>
-</map>

@@ -88,7 +88,7 @@
 // This define is needed to avoid a declaration collision for uint64_t between a bullet typedef and the one in stdint.h
 #define __PHYSICS_COMMON_H__ 1
 
-#ifdef WINDOWS
+#ifdef MEZZ_WINDOWS
 #include <BulletMultiThreaded/Win32ThreadSupport.h>
 #else
 #include <BulletMultiThreaded/PosixThreadSupport.h>
@@ -543,7 +543,7 @@ namespace Mezzanine
 
             // Create the dispatcher (narrowphase)
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
-                #ifdef WINDOWS
+                #ifdef MEZZ_WINDOWS
                 Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "DispatcherThreads",
                                                                                   processCollisionTask,
                                                                                   createCollisionLocalStoreMemory,
@@ -563,7 +563,7 @@ namespace Mezzanine
 
             // Create the constraint solver
             /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
-                #ifdef WINDOWS
+                #ifdef MEZZ_WINDOWS
                 Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
                                                                                   SolverThreadFunc,
                                                                                   SolverlsMemoryFunc,

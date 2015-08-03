@@ -43,89 +43,223 @@
 #ifndef _networkipaddress_cpp
 #define _networkipaddress_cpp
 
+#include "Network/platformincludes.h.cpp"
+
 #include "Network/ipaddress.h"
+
+#include "exception.h"
+#include "serialization.h"
+
+#include <cstring>
 
 namespace Mezzanine
 {
     namespace Network
     {
+        const UInt16 IPAddress::IPv4BinaryLength = 4;
+        const UInt16 IPAddress::IPv6BinaryLength = 16;
+        const UInt16 IPAddress::IPv4StringLength = INET_ADDRSTRLEN;
+        const UInt16 IPAddress::IPv6StringLength = INET6_ADDRSTRLEN;
+
+        const String IPAddress::IPv4LoopbackAddress = "127.0.0.1";
+        const String IPAddress::IPv4BroadcastAddress = "255.255.255.255";
+        const String IPAddress::IPv6LoopbackAddress = "::1";
+
         ///////////////////////////////////////////////////////////////////////////////
-        // IPAddress member functions
+        // IPAddress Methods
 
         IPAddress::IPAddress()
-        {
-        }
+            {  }
+
+        IPAddress::IPAddress(const UInt32 Address, const Boole NBO)
+            { this->SetV4Address(Address,NBO); }
+
+        IPAddress::IPAddress(const String& Address)
+            { this->SetBinaryAddress( IPAddress::Resolve(Address) ); }
+
+        IPAddress::IPAddress(const AddressContainer& Address)
+            { this->SetBinaryAddress(Address); }
+
+        IPAddress::IPAddress(const IPAddress& Other)
+            { this->SetBinaryAddress(Other.InternalAddress); }
 
         IPAddress::~IPAddress()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Static Helpers
+
+        IPAddress::AddressContainer IPAddress::Resolve(const String& Address)
         {
+            AddressContainer Ret;
+
+            in_addr v4Test;
+            memset(&v4Test,0,sizeof(in_addr));
+            #if defined(MEZZ_WINDOWS)
+            if( InetPton( AF_INET, Address.c_str(), &v4Test ) > 0 ) {
+            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            if( inet_pton( AF_INET, Address.c_str(), &v4Test ) > 0 ) {
+            #endif
+                Ret.resize(IPv4BinaryLength,0);
+                memcpy(&Ret[0],&v4Test.s_addr,IPv4BinaryLength);
+                return Ret;
+            }
+
+            in6_addr v6Test;
+            memset(&v6Test,0,sizeof(in6_addr));
+            #if defined(MEZZ_WINDOWS)
+            if( InetPton( AF_INET6, Address.c_str(), &v6Test ) > 0 ) {
+            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            if( inet_pton( AF_INET6, Address.c_str(), &v6Test ) > 0 ) {
+            #endif
+                Ret.resize(IPv6BinaryLength,0);
+                memcpy(&Ret[0],&v6Test.s6_addr[0],IPv6BinaryLength);
+                return Ret;
+            }
+
+            return Ret;
         }
 
-        void IPAddress::SetAddress(const String& Address)
+        String IPAddress::Resolve(const IPAddress::AddressContainer& Address)
         {
-            //if(VerifyAddress(Address))
-            //    this->SocAddress = Address;
-        }
+            Network::NetworkLayerProtocol AddressProtocol = Network::NLP_Invalid;
+            switch( Address.size() )
+            {
+                case IPAddress::IPv4BinaryLength:   AddressProtocol = Network::NLP_IPv4;     break;
+                case IPAddress::IPv6BinaryLength:   AddressProtocol = Network::NLP_IPv6;     break;
+                case 0:
+                default:                            AddressProtocol = Network::NLP_Invalid;  break;
+            }
 
-        String IPAddress::GetAddressAsString() const
-        {
-            //return SocAddress;
-        }
+            if( AddressProtocol == Network::NLP_IPv4 ) {
+                char* AddStr = new char[IPv4StringLength];
+                #if defined(MEZZ_WINDOWS)
+                if( InetNtop( AF_INET, const_cast<Int8*>(&Address[0]), AddStr, IPv4StringLength ) != NULL ) {
+                #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+                if( inet_ntop( AF_INET, &Address[0], AddStr, IPv4StringLength ) != NULL ) {
+                #endif
+                    String Ret(AddStr,strlen(AddStr));
+                    delete[] AddStr;
+                    return Ret;
+                }
+            }else if( AddressProtocol == Network::NLP_IPv6 ) {
+                char* AddStr = new char[IPv6StringLength];
+                #if defined(MEZZ_WINDOWS)
+                if( InetNtop( AF_INET6, const_cast<Int8*>(&Address[0]), AddStr, IPv6StringLength ) != NULL ) {
+                #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+                if( inet_ntop( AF_INET6, &Address[0], AddStr, IPv6StringLength ) != NULL ) {
+                #endif
+                    String Ret(AddStr,strlen(AddStr));
+                    delete[] AddStr;
+                    return Ret;
+                }
+            }
 
-        char* IPAddress::GetAddressAsCString() const
-        {
-            //return SocAddress.c_str();
-        }
-
-        const String& IPAddress::GetHostName() const
-        {
-            return HostName;
+            return String();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // IPAddress_4 member functions
+        // Utility
 
-        IPAddress_4::IPAddress_4()
+        Network::NetworkLayerProtocol IPAddress::GetProtocol() const
         {
-
+            switch( this->InternalAddress.size() )
+            {
+                case IPAddress::IPv4BinaryLength:   return Network::NLP_IPv4;     break;
+                case IPAddress::IPv6BinaryLength:   return Network::NLP_IPv6;     break;
+                case 0:
+                default:                            return Network::NLP_Invalid;  break;
+            }
         }
 
-        IPAddress_4::~IPAddress_4()
-        {
+        String IPAddress::GetAsString() const
+            { return IPAddress::Resolve(this->InternalAddress); }
 
+        void IPAddress::SetBinaryAddress(const AddressContainer& Address)
+            { this->InternalAddress.assign(Address.begin(),Address.end()); }
+
+        const IPAddress::AddressContainer& IPAddress::GetBinaryAddress() const
+            { return this->InternalAddress; }
+
+        void IPAddress::SetV4Address(const UInt32 Address, const Boole NBO)
+        {
+            this->InternalAddress.resize(IPAddress::IPv4BinaryLength);
+            *reinterpret_cast<UInt32*>( &this->InternalAddress[0] ) = ( NBO ? Address : htonl(Address) );
         }
 
-        Boole IPAddress_4::VerifyAddress(const String& Addr)
+        UInt32 IPAddress::GetV4Address(const Boole NBO) const
         {
-
-        }
-
-        IPAddress::IPVersion IPAddress_4::GetVersion() const
-        {
-            return IPAddress::IP_v4;
+            if( this->InternalAddress.size() == IPAddress::IPv4BinaryLength ) {
+                UInt32 Ret = *reinterpret_cast<const UInt32*>( &this->InternalAddress[0] );
+                if( NBO ) {
+                    return Ret;
+                }else{
+                    return ntohl(Ret);
+                }
+            }
+            return 0;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // IPAddress_6 member functions
+        // Operators
 
-        IPAddress_6::IPAddress_6()
+        void IPAddress::operator=(const IPAddress& Other)
+            { this->SetBinaryAddress( Other.InternalAddress ); }
+
+        Boole IPAddress::operator==(const IPAddress& Other) const
         {
-
+            if( this->InternalAddress.size() == Other.InternalAddress.size() ) {
+                for( Whole X = 0 ; X < this->InternalAddress.size() ; ++X )
+                {
+                    if( this->InternalAddress[X] != Other.InternalAddress[X] ) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
         }
 
-        IPAddress_6::~IPAddress_6()
+        Boole IPAddress::operator!=(const IPAddress& Other) const
         {
-
+            return !(this->operator==(Other));
         }
 
-        Boole IPAddress_6::VerifyAddress(const String& Addr)
-        {
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
 
+        void IPAddress::ProtoSerialize(XML::Node& ParentNode) const
+        {
+            XML::Node SelfRoot = ParentNode.AppendChild( IPAddress::GetSerializableName() );
+
+            if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                SelfRoot.AppendAttribute("Address").SetValue( this->GetAsString() ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",IPAddress::GetSerializableName(),true);
+            }
         }
 
-        IPAddress::IPVersion IPAddress_6::GetVersion() const
+        void IPAddress::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            return IPAddress::IP_v6;
+            XML::Attribute CurrAttrib;
+
+            if( !SelfRoot.Empty() && SelfRoot.Name() == IPAddress::GetSerializableName() ) {
+                if( SelfRoot.GetAttribute("Version").AsInt() == 1 ) {
+                    CurrAttrib = SelfRoot.GetAttribute("Address");
+                    if( !CurrAttrib.Empty() )
+                        this->SetBinaryAddress( IPAddress::Resolve( CurrAttrib.AsString() ) );
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + IPAddress::GetSerializableName() + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,IPAddress::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+            }
         }
+
+        String IPAddress::GetSerializableName()
+            { return "IPAddress"; }
     }//Network
 }//Mezzanine
 

@@ -1,5 +1,0 @@
-<map id="InstanceIdentityException" name="InstanceIdentityException">
-<area shape="rect" id="node3" href="$classInstanceIdentityDuplicateException.html" title="Thrown when duplicates of teh same identity string exist. " alt="" coords="375,5,545,47"/>
-<area shape="rect" id="node4" href="$classInstanceIdentityInvalidException.html" title="Thrown when the identity string wasn&#39;t valid at all. " alt="" coords="355,71,565,98"/>
-<area shape="rect" id="node5" href="$classInstanceIdentityNotFoundException.html" title="Thrown when the requested identity could not be found. " alt="" coords="374,123,546,164"/>
-</map>

@@ -1,5 +1,5 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/attachable.cpp:227: warning: Reached end of file while still inside a (nested) comment. Nesting level 3 (probable line reference: 223, 100, 98)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:1090: warning: Reached end of file while still inside a (nested) comment. Nesting level 9 (probable line reference: 832, 816, 802, 481, 478, 412, 371, 128, 127)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:1091: warning: Reached end of file while still inside a (nested) comment. Nesting level 9 (probable line reference: 834, 818, 804, 481, 478, 412, 371, 128, 127)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.cpp:801: warning: Reached end of file while still inside a (nested) comment. Nesting level 4 (probable line reference: 495, 494, 471, 470)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventuserinput.h:233: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 137, 133)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/linegroup.cpp:413: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 296, 283)
@@ -215,6 +215,7 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/verticalscrollbar.h:95: warning: @copybrief or @copydoc target 'QuadRenderable::SetScrollerValue(const Real&)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/verticalscrollbar.h:99: warning: @copybrief or @copydoc target 'QuadRenderable::SetScrollerSize(const Real&)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/crossplatformexport.h:136: warning: Member _MEZZ_PLATFORM_DEFINED_ (macro definition) of file crossplatformexport.h is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.h:3049: warning: unable to resolve reference to `ExceptionBase::ExceptionCodes' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:58: warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:53: warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.cpp:63: warning: Member luaopen_Mezzanine(lua_State *L) (function) of file lua51script.cpp is not documented.
@@ -419,16 +420,16 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trie.h:95: warning: Member operator==(NodeItemClass const &oth) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trie.h:107: warning: Member set(T const &key) (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:515: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const ManagerVec &ManagersToBeAdded)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:517: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const ManagerVec &ManagersToBeAdded)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:171: warning: Found unknown command `\TODO'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:761: warning: argument 'WorldToAdd' of command @param is not found in the argument list of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:761: warning: The following parameters of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:763: warning: argument 'WorldToAdd' of command @param is not found in the argument list of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:763: warning: The following parameters of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded) are not documented:
   parameter 'WorldToBeAdded'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:742: warning: argument 'Managers' of command @param is not found in the argument list of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:742: warning: The following parameters of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:744: warning: argument 'Managers' of command @param is not found in the argument list of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:744: warning: The following parameters of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded) are not documented:
   parameter 'ManagerToBeAdded'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:769: warning: argument 'WorldIndex' of command @param is not found in the argument list of Mezzanine::Entresol::GetWorld(const Whole Index)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:769: warning: The following parameters of Mezzanine::Entresol::GetWorld(const Whole Index) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:771: warning: argument 'WorldIndex' of command @param is not found in the argument list of Mezzanine::Entresol::GetWorld(const Whole Index)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:771: warning: The following parameters of Mezzanine::Entresol::GetWorld(const Whole Index) are not documented:
   parameter 'Index'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventgamewindow.h:110: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
@@ -882,7 +883,7 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/scenemanager.h:376: warning: argument 'Red' of command @param is not found in the argument list of Mezzanine::Graphics::SceneManager::SetAmbientLight(const ColourValue &LightColor)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/scenemanager.h:376: warning: The following parameters of Mezzanine::Graphics::SceneManager::SetAmbientLight(const ColourValue &LightColor) are not documented:
   parameter 'LightColor'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/scenemanager.cpp:130: warning: parameters of member Mezzanine::Graphics::SceneManagerData::UpdateSkyCache are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/scenemanager.cpp:131: warning: parameters of member Mezzanine::Graphics::SceneManagerData::UpdateSkyCache are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/skeleton.h:66: warning: Member BoneContainer (typedef) of class Mezzanine::Graphics::Skeleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/skeleton.h:67: warning: Member BoneIterator (typedef) of class Mezzanine::Graphics::Skeleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/skeleton.h:68: warning: Member ConstBoneIterator (typedef) of class Mezzanine::Graphics::Skeleton is not documented.

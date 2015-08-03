@@ -1,9 +1,0 @@
-<map id="DirectoryException" name="DirectoryException">
-<area shape="rect" id="node5" href="$classDirectoryNotFoundException.html" title="Thrown when a directory was expected to be there, but was not. " alt="" coords="644,5,835,32"/>
-<area shape="rect" id="node6" href="$classDirectoryPermissionException.html" title="Thrown when permission is denied to a directory. " alt="" coords="640,56,839,83"/>
-<area shape="rect" id="node7" href="$classDirectoryReadException.html" title="Thrown when a directory could be read and it wasn&#39;t a permission issue. " alt="" coords="657,107,821,133"/>
-<area shape="rect" id="node8" href="$classDirectoryWriteException.html" title="Thrown when a directory could be written to and it wasn&#39;t a permission issue. " alt="" coords="657,157,821,184"/>
-<area shape="rect" id="node2" href="$classIOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="316,81,411,108"/>
-<area shape="rect" id="node3" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,81,268,108"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="5,81,109,108"/>
-</map>

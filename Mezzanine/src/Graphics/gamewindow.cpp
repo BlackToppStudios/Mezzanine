@@ -51,16 +51,16 @@
 #include "serialization.h"
 #include "exception.h"
 
-#ifdef WINDOWS
+#ifdef MEZZ_WINDOWS
 #include <windows.h>
 #endif
 
-#ifdef LINUX
+#ifdef MEZZ_LINUX
 #include <X11/X.h>      //x11proto-core-dev
 #include <X11/Xlib.h>   //libx11-dev
 #endif
 
-#ifdef MACOSX
+#ifdef MEZZ_MACOSX
 #include <Cocoa/Cocoa.h>
 #endif
 
@@ -144,24 +144,24 @@ namespace Mezzanine
 
             }
 
-            #ifdef MACOSX
+            #ifdef MEZZ_MACOSX
 			Opts["macAPI"] = "cocoa";
             #endif
 
-            //#ifdef LINUX
+            //#ifdef MEZZ_LINUX
             //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(ResourceManager::GetSingletonPtr()->GetEngineDataDirectory(),"FileSystem");
             //#endif
             this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.WinRes.Width, this->Settings.WinRes.Height, this->Settings.Fullscreen, &Opts);//*/
             this->RequestedFSAA = this->GetActualFSAALevel();
 
             if( !(WF_Hidden & Flags) ) {
-                #ifdef WINDOWS
+                #ifdef MEZZ_WINDOWS
                 HWND Data = 0;
                 #endif
-                #ifdef LINUX
+                #ifdef MEZZ_LINUX
                 Window Data = 0;
                 #endif
-                #ifdef MACOSX
+                #ifdef MEZZ_MACOSX
                 NSWindow* Data = 0;
                 #endif
                 this->OgreWindow->getCustomAttribute("WINDOW",&Data);

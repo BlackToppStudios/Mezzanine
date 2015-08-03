@@ -1,5 +1,6 @@
 <map id="Mezzanine::ScriptLuaException" name="Mezzanine::ScriptLuaException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ScriptException.html" title="Thrown when an unknown error happens with a script. " alt="" coords="16,155,201,181"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="33,80,184,107"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="57,5,161,32"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ScriptException.html" title="Thrown when an unknown error happens with a script. " alt="" coords="83,155,268,181"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="5,80,156,107"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="123,5,227,32"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="181,80,362,107"/>
 </map>

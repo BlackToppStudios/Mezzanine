@@ -1,6 +1,7 @@
 <map id="Mezzanine::FileReadException" name="Mezzanine::FileReadException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1FileException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="21,229,193,256"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="24,155,189,181"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="31,80,182,107"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="55,5,159,32"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1FileException.html" title="Thrown when there is an unknown issue with a file. " alt="" coords="89,229,261,256"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="93,155,258,181"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="5,80,156,107"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="123,5,227,32"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="181,80,362,107"/>
 </map>

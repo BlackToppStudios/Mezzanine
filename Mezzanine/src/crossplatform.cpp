@@ -60,7 +60,7 @@
 #include <stdio.h>
 
 //Selective Includes
-#ifdef WINDOWS
+#ifdef MEZZ_WINDOWS
     #include <windows.h>
     #include <cstdlib>//for sleep
     #include <Winuser.h>
@@ -77,13 +77,13 @@ namespace Mezzanine
     {
         String GetPlatform()
         {
-            #ifdef LINUX
+            #ifdef MEZZ_LINUX
                 return "Linux";
             #endif
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
                 return "Windows";
             #endif
-            #ifdef MACOSX
+            #ifdef MEZZ_MACOSX
                 return "MacOSX";
             #endif
         }

@@ -1,4 +1,0 @@
-<map id="MemoryManagementException" name="MemoryManagementException">
-<area shape="rect" id="node3" href="$classMemoryOutOfBoundsException.html" title="Thrown when attempted to access something that really should note be accessed. " alt="" coords="5,155,212,181"/>
-<area shape="rect" id="node4" href="$classOutOfMemoryException.html" title="Thrown when A memory allocation was attempted and failed. " alt="" coords="237,155,399,181"/>
-</map>

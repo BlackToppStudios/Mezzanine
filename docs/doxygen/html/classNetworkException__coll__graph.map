@@ -1,5 +1,0 @@
-<map id="NetworkException" name="NetworkException">
-<area shape="rect" id="node2" href="$classIOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="23,155,117,181"/>
-<area shape="rect" id="node3" href="$classExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="15,80,125,107"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="18,5,122,32"/>
-</map>

@@ -36201,6 +36201,55 @@ fail:
 
 static int _wrap_new_BinaryBuffer__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
+  Mezzanine::Whole arg1 ;
+  Mezzanine::BinaryTools::BinaryBuffer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",1,"Mezzanine::Whole const");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  arg1 = (Mezzanine::Whole const)lua_tonumber(L, 1);
+  result = (Mezzanine::BinaryTools::BinaryBuffer *)new Mezzanine::BinaryTools::BinaryBuffer(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BinaryBuffer__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BinaryTools::BinaryBuffer::Byte *arg1 = (Mezzanine::BinaryTools::BinaryBuffer::Byte *) 0 ;
+  Mezzanine::Whole arg2 ;
+  Mezzanine::BinaryTools::BinaryBuffer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",1,"Mezzanine::BinaryTools::BinaryBuffer::Byte *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",2,"Mezzanine::Whole const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_signed_char,0))){
+    SWIG_fail_ptr("new_BinaryBuffer",1,SWIGTYPE_p_signed_char);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  result = (Mezzanine::BinaryTools::BinaryBuffer *)new Mezzanine::BinaryTools::BinaryBuffer(arg1,arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BinaryBuffer__SWIG_4(lua_State* L) {
+  int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::Boole arg2 ;
   Mezzanine::String temp1 ;
@@ -36208,7 +36257,7 @@ static int _wrap_new_BinaryBuffer__SWIG_2(lua_State* L) {
   
   SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",2,2)
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",1,"Mezzanine::String const &");
-  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",2,"Mezzanine::Boole");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",2,"Mezzanine::Boole const");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   arg2 = (lua_toboolean(L, 2)!=0);
   result = (Mezzanine::BinaryTools::BinaryBuffer *)new Mezzanine::BinaryTools::BinaryBuffer((Mezzanine::String const &)*arg1,arg2);
@@ -36223,7 +36272,7 @@ fail:
 }
 
 
-static int _wrap_new_BinaryBuffer__SWIG_3(lua_State* L) {
+static int _wrap_new_BinaryBuffer__SWIG_5(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::String temp1 ;
@@ -36233,54 +36282,6 @@ static int _wrap_new_BinaryBuffer__SWIG_3(lua_State* L) {
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",1,"Mezzanine::String const &");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   result = (Mezzanine::BinaryTools::BinaryBuffer *)new Mezzanine::BinaryTools::BinaryBuffer((Mezzanine::String const &)*arg1);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_BinaryBuffer__SWIG_4(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::BinaryTools::BinaryBuffer::Byte *arg1 = (Mezzanine::BinaryTools::BinaryBuffer::Byte *) 0 ;
-  Mezzanine::Integer arg2 ;
-  Mezzanine::BinaryTools::BinaryBuffer *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",1,"Mezzanine::BinaryTools::BinaryBuffer::Byte *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",2,"Mezzanine::Integer");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_signed_char,0))){
-    SWIG_fail_ptr("new_BinaryBuffer",1,SWIGTYPE_p_signed_char);
-  }
-  
-  arg2 = (Mezzanine::Integer)lua_tonumber(L, 2);
-  result = (Mezzanine::BinaryTools::BinaryBuffer *)new Mezzanine::BinaryTools::BinaryBuffer(arg1,arg2);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_BinaryBuffer__SWIG_5(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Whole arg1 ;
-  Mezzanine::BinaryTools::BinaryBuffer *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer",1,"Mezzanine::Whole");
-  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
-  arg1 = (Mezzanine::Whole)lua_tonumber(L, 1);
-  result = (Mezzanine::BinaryTools::BinaryBuffer *)new Mezzanine::BinaryTools::BinaryBuffer(arg1);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -36322,7 +36323,7 @@ static int _wrap_new_BinaryBuffer(lua_State* L) {
       _v = lua_isnumber(L,argv[0]);
     }
     if (_v) {
-      return _wrap_new_BinaryBuffer__SWIG_5(L);
+      return _wrap_new_BinaryBuffer__SWIG_2(L);
     }
   }
   if (argc == 1) {
@@ -36331,7 +36332,7 @@ static int _wrap_new_BinaryBuffer(lua_State* L) {
       _v = lua_isstring(L,argv[0]);
     }
     if (_v) {
-      return _wrap_new_BinaryBuffer__SWIG_3(L);
+      return _wrap_new_BinaryBuffer__SWIG_5(L);
     }
   }
   if (argc == 2) {
@@ -36349,7 +36350,7 @@ static int _wrap_new_BinaryBuffer(lua_State* L) {
         _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        return _wrap_new_BinaryBuffer__SWIG_4(L);
+        return _wrap_new_BinaryBuffer__SWIG_3(L);
       }
     }
   }
@@ -36363,7 +36364,7 @@ static int _wrap_new_BinaryBuffer(lua_State* L) {
         _v = lua_isboolean(L,argv[1]);
       }
       if (_v) {
-        return _wrap_new_BinaryBuffer__SWIG_2(L);
+        return _wrap_new_BinaryBuffer__SWIG_4(L);
       }
     }
   }
@@ -36372,11 +36373,34 @@ static int _wrap_new_BinaryBuffer(lua_State* L) {
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer()\n"
     "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::BinaryTools::BinaryBuffer const &)\n"
-    "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::String const &,Mezzanine::Boole)\n"
-    "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::String const &)\n"
-    "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::BinaryTools::BinaryBuffer::Byte *,Mezzanine::Integer)\n"
-    "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::Whole)\n");
+    "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::Whole const)\n"
+    "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::BinaryTools::BinaryBuffer::Byte *,Mezzanine::Whole const)\n"
+    "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::String const &,Mezzanine::Boole const)\n"
+    "    Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Mezzanine::String const &)\n");
   lua_error(L);return 0;
+}
+
+
+static int _wrap_BinaryBuffer_CreateBuffer(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BinaryTools::BinaryBuffer *arg1 = (Mezzanine::BinaryTools::BinaryBuffer *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::CreateBuffer",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::CreateBuffer",1,"Mezzanine::BinaryTools::BinaryBuffer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,0))){
+    SWIG_fail_ptr("BinaryBuffer_CreateBuffer",1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer);
+  }
+  
+  (arg1)->CreateBuffer();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
 }
 
 
@@ -36387,14 +36411,14 @@ static int _wrap_BinaryBuffer_DeleteBuffer__SWIG_0(lua_State* L) {
   
   SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::DeleteBuffer",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::DeleteBuffer",1,"Mezzanine::BinaryTools::BinaryBuffer *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::DeleteBuffer",2,"Mezzanine::Whole");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::DeleteBuffer",2,"Mezzanine::Whole const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,0))){
     SWIG_fail_ptr("BinaryBuffer_DeleteBuffer",1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer);
   }
   
   SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
   (arg1)->DeleteBuffer(arg2);
   
   return SWIG_arg;
@@ -36473,24 +36497,28 @@ static int _wrap_BinaryBuffer_DeleteBuffer(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'BinaryBuffer_DeleteBuffer'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::BinaryTools::BinaryBuffer::DeleteBuffer(Mezzanine::Whole)\n"
+    "    Mezzanine::BinaryTools::BinaryBuffer::DeleteBuffer(Mezzanine::Whole const)\n"
     "    Mezzanine::BinaryTools::BinaryBuffer::DeleteBuffer()\n");
   lua_error(L);return 0;
 }
 
 
-static int _wrap_BinaryBuffer_CreateBuffer(lua_State* L) {
+static int _wrap_BinaryBuffer_CreateFromBase64(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::BinaryTools::BinaryBuffer *arg1 = (Mezzanine::BinaryTools::BinaryBuffer *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
   
-  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::CreateBuffer",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::CreateBuffer",1,"Mezzanine::BinaryTools::BinaryBuffer *");
+  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::CreateFromBase64",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::CreateFromBase64",1,"Mezzanine::BinaryTools::BinaryBuffer *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::CreateFromBase64",2,"Mezzanine::String const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,0))){
-    SWIG_fail_ptr("BinaryBuffer_CreateBuffer",1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer);
+    SWIG_fail_ptr("BinaryBuffer_CreateFromBase64",1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer);
   }
   
-  (arg1)->CreateBuffer();
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  (arg1)->CreateFromBase64((Mezzanine::String const &)*arg2);
   
   return SWIG_arg;
   
@@ -36526,57 +36554,6 @@ fail:
 }
 
 
-static int _wrap_BinaryBuffer_ToString(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::BinaryTools::BinaryBuffer *arg1 = (Mezzanine::BinaryTools::BinaryBuffer *) 0 ;
-  Mezzanine::String result;
-  
-  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::ToString",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::ToString",1,"Mezzanine::BinaryTools::BinaryBuffer *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,0))){
-    SWIG_fail_ptr("BinaryBuffer_ToString",1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer);
-  }
-  
-  result = (arg1)->ToString();
-  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_BinaryBuffer_CreateFromBase64(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::BinaryTools::BinaryBuffer *arg1 = (Mezzanine::BinaryTools::BinaryBuffer *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::String temp2 ;
-  
-  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::CreateFromBase64",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::CreateFromBase64",1,"Mezzanine::BinaryTools::BinaryBuffer *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::CreateFromBase64",2,"Mezzanine::String const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,0))){
-    SWIG_fail_ptr("BinaryBuffer_CreateFromBase64",1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer);
-  }
-  
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  (arg1)->CreateFromBase64((Mezzanine::String const &)*arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_BinaryBuffer_Concatenate__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::BinaryTools::BinaryBuffer *arg1 = (Mezzanine::BinaryTools::BinaryBuffer *) 0 ;
@@ -36586,7 +36563,7 @@ static int _wrap_BinaryBuffer_Concatenate__SWIG_0(lua_State* L) {
   SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::Concatenate",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::Concatenate",1,"Mezzanine::BinaryTools::BinaryBuffer *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::Concatenate",2,"Mezzanine::BinaryTools::BinaryBuffer::Byte const *");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::Concatenate",3,"Mezzanine::Whole");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::Concatenate",3,"Mezzanine::Whole const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,0))){
     SWIG_fail_ptr("BinaryBuffer_Concatenate",1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer);
@@ -36598,7 +36575,7 @@ static int _wrap_BinaryBuffer_Concatenate__SWIG_0(lua_State* L) {
   }
   
   SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
-  arg3 = (Mezzanine::Whole)lua_tonumber(L, 3);
+  arg3 = (Mezzanine::Whole const)lua_tonumber(L, 3);
   (arg1)->Concatenate((Mezzanine::BinaryTools::BinaryBuffer::Byte const *)arg2,arg3);
   
   return SWIG_arg;
@@ -36706,9 +36683,33 @@ static int _wrap_BinaryBuffer_Concatenate(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'BinaryBuffer_Concatenate'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::BinaryTools::BinaryBuffer::Concatenate(Mezzanine::BinaryTools::BinaryBuffer::Byte const *,Mezzanine::Whole)\n"
+    "    Mezzanine::BinaryTools::BinaryBuffer::Concatenate(Mezzanine::BinaryTools::BinaryBuffer::Byte const *,Mezzanine::Whole const)\n"
     "    Mezzanine::BinaryTools::BinaryBuffer::Concatenate(Mezzanine::BinaryTools::BinaryBuffer const)\n");
   lua_error(L);return 0;
+}
+
+
+static int _wrap_BinaryBuffer_ToString(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BinaryTools::BinaryBuffer *arg1 = (Mezzanine::BinaryTools::BinaryBuffer *) 0 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::BinaryTools::BinaryBuffer::ToString",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BinaryTools::BinaryBuffer::ToString",1,"Mezzanine::BinaryTools::BinaryBuffer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer,0))){
+    SWIG_fail_ptr("BinaryBuffer_ToString",1,SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer);
+  }
+  
+  result = (arg1)->ToString();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
 }
 
 
@@ -36741,12 +36742,12 @@ Mezzanine::BinaryTools::BinaryBuffer *arg1 = (Mezzanine::BinaryTools::BinaryBuff
 delete arg1;
 }
 static swig_lua_method swig_Mezzanine_BinaryTools_BinaryBuffer_methods[] = {
-    {"DeleteBuffer", _wrap_BinaryBuffer_DeleteBuffer}, 
     {"CreateBuffer", _wrap_BinaryBuffer_CreateBuffer}, 
-    {"ToBase64String", _wrap_BinaryBuffer_ToBase64String}, 
-    {"ToString", _wrap_BinaryBuffer_ToString}, 
+    {"DeleteBuffer", _wrap_BinaryBuffer_DeleteBuffer}, 
     {"CreateFromBase64", _wrap_BinaryBuffer_CreateFromBase64}, 
+    {"ToBase64String", _wrap_BinaryBuffer_ToBase64String}, 
     {"Concatenate", _wrap_BinaryBuffer_Concatenate}, 
+    {"ToString", _wrap_BinaryBuffer_ToString}, 
     {"GetSize", _wrap_BinaryBuffer_GetSize}, 
     {0,0}
 };

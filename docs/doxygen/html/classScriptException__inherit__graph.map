@@ -1,6 +1,0 @@
-<map id="ScriptException" name="ScriptException">
-<area shape="rect" id="node3" href="$classScriptLuaException.html" title="Thrown when an unknown error happens in a Lua script. " alt="" coords="224,155,359,181"/>
-<area shape="rect" id="node4" href="$classScriptLuaErrErrException.html" title="Thrown when Lua has an error handling an error. " alt="" coords="5,229,175,256"/>
-<area shape="rect" id="node5" href="$classScriptLuaRuntimeException.html" title="Thrown when a Lua script has a runtime error. " alt="" coords="199,229,383,256"/>
-<area shape="rect" id="node6" href="$classScriptLuaYieldException.html" title="Thrown when Lua returns a yield and it should not have. " alt="" coords="408,229,572,256"/>
-</map>

@@ -1,9 +1,10 @@
 <map id="Mezzanine::DirectoryException" name="Mezzanine::DirectoryException">
-<area shape="rect" id="node5" href="$classMezzanine_1_1DirectoryNotFoundException.html" title="Thrown when a directory was expected to be there, but was not. " alt="" coords="825,5,1028,47"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1DirectoryPermissionException.html" title="Thrown when permission is denied to a directory. " alt="" coords="821,71,1032,112"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1DirectoryReadException.html" title="Thrown when a directory could be read and it wasn&#39;t a permission issue. " alt="" coords="838,136,1015,177"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1DirectoryWriteException.html" title="Thrown when a directory could be written to and it wasn&#39;t a permission issue. " alt="" coords="838,201,1015,243"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="356,111,521,138"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="157,111,308,138"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1DirectoryNotFoundException.html" title="Thrown when a directory was expected to be there, but was not. " alt="" coords="856,5,1059,47"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1DirectoryPermissionException.html" title="Thrown when permission is denied to a directory. " alt="" coords="852,71,1063,112"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1DirectoryReadException.html" title="Thrown when a directory could be read and it wasn&#39;t a permission issue. " alt="" coords="869,136,1046,177"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1DirectoryWriteException.html" title="Thrown when a directory could be written to and it wasn&#39;t a permission issue. " alt="" coords="869,201,1046,243"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="387,111,552,138"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="173,86,323,113"/>
 <area shape="rect" id="node4" title="STL class. " alt="" coords="5,111,109,138"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,137,339,163"/>
 </map>
