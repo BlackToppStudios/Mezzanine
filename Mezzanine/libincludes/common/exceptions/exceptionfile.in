@@ -56,7 +56,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the exception thrown by most Mezzanine systems that can throw exceptions.
-    class ExceptionBase : public std::exception
+    class MEZZ_LIB ExceptionBase : public std::exception
     {
         public:
             /// @enum ExceptionCodes

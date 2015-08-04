@@ -3,7 +3,7 @@
 /// @ingroup exception_heirarchy @ExceptionClass@
 /// @details When catching this in java look for @a @JavaExceptionDot@
 ///////////////////
-class  @ExceptionClass@ : public @ExceptionParent@
+class MEZZ_LIB @ExceptionClass@ : public @ExceptionParent@
 {
     public:
         /// @brief @BriefDox@

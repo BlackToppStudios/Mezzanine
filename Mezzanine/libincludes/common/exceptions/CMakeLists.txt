@@ -221,7 +221,7 @@ add_exception(	INVALID_ASSIGNMENT                     0x00F08F00   InvalidAssign
                 "Thrown when a complex class is assigned to itself or other invalid assignments occur"
                 "java/lang/XXXXX")
 
-add_enum(LAST_EXCEPTION 0x01F00F00 "To allow some inspection of the Exception system this can be use to identify the highest numbered Exception")
+add_final_enum(LAST_EXCEPTION 0x01F00F00 "To allow some inspection of the Exception system this can be use to identify the highest numbered Exception")
 
 
 # message(STATUS "Writing exception hiearchy to ${DestinationDirectory}GeneratedExceptions.h")#

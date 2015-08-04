@@ -56,7 +56,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the exception thrown by most Mezzanine systems that can throw exceptions.
-    class ExceptionBase : public std::exception
+    class MEZZ_LIB ExceptionBase : public std::exception
     {
         public:
             /// @enum ExceptionCodes
@@ -117,7 +117,7 @@ namespace Mezzanine
                 INTERNAL_EXCEPTION = 0x00F06F00, ///< Thrown when an unknown internal error occurred
                 NOT_IMPLEMENTED_EXCEPTION = 0x00F07F00, ///< Thrown when we just have not coded a thing yet, but we knew what the API should look like
                 INVALID_ASSIGNMENT = 0x00F08F00, ///< Thrown when a complex class is assigned to itself or other invalid assignments occur
-                LAST_EXCEPTION = 0x01F00F00, ///< To allow some inspection of the Exception system this can be use to identify the highest numbered Exception
+                LAST_EXCEPTION = 0x01F00F00 ///< To allow some inspection of the Exception system this can be use to identify the highest numbered Exception
 
             };
 
@@ -221,7 +221,7 @@ namespace Mezzanine
 /// @ingroup exception_heirarchy IOException
 /// @details When catching this in java look for @a java.io.IOException
 ///////////////////
-class  IOException : public ExceptionBase
+class MEZZ_LIB IOException : public ExceptionBase
 {
     public:
         /// @brief Thrown when there was an issue with IO but very little was known about it.
@@ -282,7 +282,7 @@ struct ExceptionFactory< IOException::ExceptionCode>
 /// @ingroup exception_heirarchy FileException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  FileException : public IOException
+class MEZZ_LIB FileException : public IOException
 {
     public:
         /// @brief Thrown when there is an unknown issue with a file
@@ -343,7 +343,7 @@ struct ExceptionFactory< FileException::ExceptionCode>
 /// @ingroup exception_heirarchy FileReadException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  FileReadException : public FileException
+class MEZZ_LIB FileReadException : public FileException
 {
     public:
         /// @brief Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware issue?
@@ -404,7 +404,7 @@ struct ExceptionFactory< FileReadException::ExceptionCode>
 /// @ingroup exception_heirarchy FileWriteException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  FileWriteException : public FileException
+class MEZZ_LIB FileWriteException : public FileException
 {
     public:
         /// @brief Thrown when a file could not be written and perimssions seem not to be an issue
@@ -465,7 +465,7 @@ struct ExceptionFactory< FileWriteException::ExceptionCode>
 /// @ingroup exception_heirarchy FileNotFoundException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  FileNotFoundException : public FileException
+class MEZZ_LIB FileNotFoundException : public FileException
 {
     public:
         /// @brief Thrown when a file was expected to be there, but was not
@@ -526,7 +526,7 @@ struct ExceptionFactory< FileNotFoundException::ExceptionCode>
 /// @ingroup exception_heirarchy FilePermissionException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  FilePermissionException : public FileException
+class MEZZ_LIB FilePermissionException : public FileException
 {
     public:
         /// @brief Thrown when permission was denied to a file
@@ -587,7 +587,7 @@ struct ExceptionFactory< FilePermissionException::ExceptionCode>
 /// @ingroup exception_heirarchy DirectoryException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  DirectoryException : public IOException
+class MEZZ_LIB DirectoryException : public IOException
 {
     public:
         /// @brief Thrown when there is an unknown issue with a file
@@ -648,7 +648,7 @@ struct ExceptionFactory< DirectoryException::ExceptionCode>
 /// @ingroup exception_heirarchy DirectoryReadException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  DirectoryReadException : public DirectoryException
+class MEZZ_LIB DirectoryReadException : public DirectoryException
 {
     public:
         /// @brief Thrown when a directory could be read and it wasn't a permission issue
@@ -709,7 +709,7 @@ struct ExceptionFactory< DirectoryReadException::ExceptionCode>
 /// @ingroup exception_heirarchy DirectoryWriteException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  DirectoryWriteException : public DirectoryException
+class MEZZ_LIB DirectoryWriteException : public DirectoryException
 {
     public:
         /// @brief Thrown when a directory could be written to and it wasn't a permission issue
@@ -770,7 +770,7 @@ struct ExceptionFactory< DirectoryWriteException::ExceptionCode>
 /// @ingroup exception_heirarchy DirectoryNotFoundException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  DirectoryNotFoundException : public DirectoryException
+class MEZZ_LIB DirectoryNotFoundException : public DirectoryException
 {
     public:
         /// @brief Thrown when a directory was expected to be there, but was not
@@ -831,7 +831,7 @@ struct ExceptionFactory< DirectoryNotFoundException::ExceptionCode>
 /// @ingroup exception_heirarchy DirectoryPermissionException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  DirectoryPermissionException : public DirectoryException
+class MEZZ_LIB DirectoryPermissionException : public DirectoryException
 {
     public:
         /// @brief Thrown when permission is denied to a directory
@@ -892,7 +892,7 @@ struct ExceptionFactory< DirectoryPermissionException::ExceptionCode>
 /// @ingroup exception_heirarchy NetworkException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  NetworkException : public IOException
+class MEZZ_LIB NetworkException : public IOException
 {
     public:
         /// @brief Thrown when something unknown causes network IO to fail
@@ -953,7 +953,7 @@ struct ExceptionFactory< NetworkException::ExceptionCode>
 /// @ingroup exception_heirarchy NetworkReadException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  NetworkReadException : public NetworkException
+class MEZZ_LIB NetworkReadException : public NetworkException
 {
     public:
         /// @brief Thrown when data could not be read from the network (downloads)
@@ -1014,7 +1014,7 @@ struct ExceptionFactory< NetworkReadException::ExceptionCode>
 /// @ingroup exception_heirarchy NetworkWriteException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  NetworkWriteException : public NetworkException
+class MEZZ_LIB NetworkWriteException : public NetworkException
 {
     public:
         /// @brief Thrown when data could not be read from the network (iloads)
@@ -1075,7 +1075,7 @@ struct ExceptionFactory< NetworkWriteException::ExceptionCode>
 /// @ingroup exception_heirarchy NetworkNotFoundException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  NetworkNotFoundException : public NetworkException
+class MEZZ_LIB NetworkNotFoundException : public NetworkException
 {
     public:
         /// @brief Thrown when no network connection is available
@@ -1136,7 +1136,7 @@ struct ExceptionFactory< NetworkNotFoundException::ExceptionCode>
 /// @ingroup exception_heirarchy NetworkURLException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  NetworkURLException : public NetworkException
+class MEZZ_LIB NetworkURLException : public NetworkException
 {
     public:
         /// @brief Thrown when an address is invalid or could not be found
@@ -1197,7 +1197,7 @@ struct ExceptionFactory< NetworkURLException::ExceptionCode>
 /// @ingroup exception_heirarchy NetworkPermissionException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  NetworkPermissionException : public NetworkException
+class MEZZ_LIB NetworkPermissionException : public NetworkException
 {
     public:
         /// @brief Thrown when permision was denied to a network interface or network resource
@@ -1258,7 +1258,7 @@ struct ExceptionFactory< NetworkPermissionException::ExceptionCode>
 /// @ingroup exception_heirarchy IOWriteException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  IOWriteException : public IOException
+class MEZZ_LIB IOWriteException : public IOException
 {
     public:
         /// @brief Thrown when a write is happening but something has prevented the underlying code from knowing what was writing
@@ -1319,7 +1319,7 @@ struct ExceptionFactory< IOWriteException::ExceptionCode>
 /// @ingroup exception_heirarchy IOReadException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  IOReadException : public IOException
+class MEZZ_LIB IOReadException : public IOException
 {
     public:
         /// @brief Thrown when a read is happening but something has prevented the underlying code from knowing what was reading
@@ -1380,7 +1380,7 @@ struct ExceptionFactory< IOReadException::ExceptionCode>
 /// @ingroup exception_heirarchy InstanceIdentityException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  InstanceIdentityException : public ExceptionBase
+class MEZZ_LIB InstanceIdentityException : public ExceptionBase
 {
     public:
         /// @brief Thrown when an unknown error with using an Identifier and it is invalid
@@ -1441,7 +1441,7 @@ struct ExceptionFactory< InstanceIdentityException::ExceptionCode>
 /// @ingroup exception_heirarchy InstanceIdentityInvalidException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  InstanceIdentityInvalidException : public InstanceIdentityException
+class MEZZ_LIB InstanceIdentityInvalidException : public InstanceIdentityException
 {
     public:
         /// @brief Thrown when the identity string wasn't valid at all
@@ -1502,7 +1502,7 @@ struct ExceptionFactory< InstanceIdentityInvalidException::ExceptionCode>
 /// @ingroup exception_heirarchy InstanceIdentityNotFoundException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  InstanceIdentityNotFoundException : public InstanceIdentityException
+class MEZZ_LIB InstanceIdentityNotFoundException : public InstanceIdentityException
 {
     public:
         /// @brief Thrown when the requested identity could not be found
@@ -1563,7 +1563,7 @@ struct ExceptionFactory< InstanceIdentityNotFoundException::ExceptionCode>
 /// @ingroup exception_heirarchy InstanceIdentityDuplicateException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  InstanceIdentityDuplicateException : public InstanceIdentityException
+class MEZZ_LIB InstanceIdentityDuplicateException : public InstanceIdentityException
 {
     public:
         /// @brief Thrown when duplicates of teh same identity string exist
@@ -1624,7 +1624,7 @@ struct ExceptionFactory< InstanceIdentityDuplicateException::ExceptionCode>
 /// @ingroup exception_heirarchy MemoryManagementException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  MemoryManagementException : public ExceptionBase
+class MEZZ_LIB MemoryManagementException : public ExceptionBase
 {
     public:
         /// @brief Thrown when an unknown memory management exception occurs
@@ -1685,7 +1685,7 @@ struct ExceptionFactory< MemoryManagementException::ExceptionCode>
 /// @ingroup exception_heirarchy OutOfMemoryException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  OutOfMemoryException : public MemoryManagementException
+class MEZZ_LIB OutOfMemoryException : public MemoryManagementException
 {
     public:
         /// @brief Thrown when A memory allocation was attempted and failed
@@ -1746,7 +1746,7 @@ struct ExceptionFactory< OutOfMemoryException::ExceptionCode>
 /// @ingroup exception_heirarchy MemoryOutOfBoundsException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  MemoryOutOfBoundsException : public MemoryManagementException
+class MEZZ_LIB MemoryOutOfBoundsException : public MemoryManagementException
 {
     public:
         /// @brief Thrown when attempted to access something that really should note be accessed
@@ -1807,7 +1807,7 @@ struct ExceptionFactory< MemoryOutOfBoundsException::ExceptionCode>
 /// @ingroup exception_heirarchy SyntaxErrorException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  SyntaxErrorException : public ExceptionBase
+class MEZZ_LIB SyntaxErrorException : public ExceptionBase
 {
     public:
         /// @brief Thrown when some kind of syntax exception
@@ -1868,7 +1868,7 @@ struct ExceptionFactory< SyntaxErrorException::ExceptionCode>
 /// @ingroup exception_heirarchy SyntaxErrorXMLException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  SyntaxErrorXMLException : public SyntaxErrorException
+class MEZZ_LIB SyntaxErrorXMLException : public SyntaxErrorException
 {
     public:
         /// @brief Thrown when and XML document is being parsed but is invalid
@@ -1929,7 +1929,7 @@ struct ExceptionFactory< SyntaxErrorXMLException::ExceptionCode>
 /// @ingroup exception_heirarchy SyntaxErrorXPathException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  SyntaxErrorXPathException : public SyntaxErrorException
+class MEZZ_LIB SyntaxErrorXPathException : public SyntaxErrorException
 {
     public:
         /// @brief Thrown when an XPath query is being parsed but is invalid
@@ -1990,7 +1990,7 @@ struct ExceptionFactory< SyntaxErrorXPathException::ExceptionCode>
 /// @ingroup exception_heirarchy SyntaxErrorLuaException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  SyntaxErrorLuaException : public SyntaxErrorException
+class MEZZ_LIB SyntaxErrorLuaException : public SyntaxErrorException
 {
     public:
         /// @brief Thrown when lua code in incorrect
@@ -2051,7 +2051,7 @@ struct ExceptionFactory< SyntaxErrorLuaException::ExceptionCode>
 /// @ingroup exception_heirarchy ScriptException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ScriptException : public ExceptionBase
+class MEZZ_LIB ScriptException : public ExceptionBase
 {
     public:
         /// @brief Thrown when an unknown error happens with a script
@@ -2112,7 +2112,7 @@ struct ExceptionFactory< ScriptException::ExceptionCode>
 /// @ingroup exception_heirarchy ScriptLuaException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ScriptLuaException : public ScriptException
+class MEZZ_LIB ScriptLuaException : public ScriptException
 {
     public:
         /// @brief Thrown when an unknown error happens in a Lua script
@@ -2173,7 +2173,7 @@ struct ExceptionFactory< ScriptLuaException::ExceptionCode>
 /// @ingroup exception_heirarchy ScriptLuaYieldException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ScriptLuaYieldException : public ScriptLuaException
+class MEZZ_LIB ScriptLuaYieldException : public ScriptLuaException
 {
     public:
         /// @brief Thrown when Lua returns a yield and it should not have
@@ -2234,7 +2234,7 @@ struct ExceptionFactory< ScriptLuaYieldException::ExceptionCode>
 /// @ingroup exception_heirarchy ScriptLuaRuntimeException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ScriptLuaRuntimeException : public ScriptLuaException
+class MEZZ_LIB ScriptLuaRuntimeException : public ScriptLuaException
 {
     public:
         /// @brief Thrown when a Lua script has a runtime error
@@ -2295,7 +2295,7 @@ struct ExceptionFactory< ScriptLuaRuntimeException::ExceptionCode>
 /// @ingroup exception_heirarchy ScriptLuaErrErrException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ScriptLuaErrErrException : public ScriptLuaException
+class MEZZ_LIB ScriptLuaErrErrException : public ScriptLuaException
 {
     public:
         /// @brief Thrown when Lua has an error handling an error
@@ -2356,7 +2356,7 @@ struct ExceptionFactory< ScriptLuaErrErrException::ExceptionCode>
 /// @ingroup exception_heirarchy ParametersException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ParametersException : public ExceptionBase
+class MEZZ_LIB ParametersException : public ExceptionBase
 {
     public:
         /// @brief Thrown when parameters are checked at runtime and found invalid
@@ -2417,7 +2417,7 @@ struct ExceptionFactory< ParametersException::ExceptionCode>
 /// @ingroup exception_heirarchy ParametersCastException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ParametersCastException : public ParametersException
+class MEZZ_LIB ParametersCastException : public ParametersException
 {
     public:
         /// @brief Thrown when a pointer parameter is checked at runtime and cannot be cast as expected
@@ -2478,7 +2478,7 @@ struct ExceptionFactory< ParametersCastException::ExceptionCode>
 /// @ingroup exception_heirarchy ParametersRangeException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ParametersRangeException : public ParametersException
+class MEZZ_LIB ParametersRangeException : public ParametersException
 {
     public:
         /// @brief Thrown when a passed parameter is checked at runtime and not in the expected range
@@ -2539,7 +2539,7 @@ struct ExceptionFactory< ParametersRangeException::ExceptionCode>
 /// @ingroup exception_heirarchy ArithmeticException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  ArithmeticException : public ExceptionBase
+class MEZZ_LIB ArithmeticException : public ExceptionBase
 {
     public:
         /// @brief Thrown when Math has failed
@@ -2600,7 +2600,7 @@ struct ExceptionFactory< ArithmeticException::ExceptionCode>
 /// @ingroup exception_heirarchy InvalidVersionException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  InvalidVersionException : public ExceptionBase
+class MEZZ_LIB InvalidVersionException : public ExceptionBase
 {
     public:
         /// @brief Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing
@@ -2661,7 +2661,7 @@ struct ExceptionFactory< InvalidVersionException::ExceptionCode>
 /// @ingroup exception_heirarchy InvalidStateException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  InvalidStateException : public ExceptionBase
+class MEZZ_LIB InvalidStateException : public ExceptionBase
 {
     public:
         /// @brief Thrown when the available information should have worked but failed for unknown reasons
@@ -2722,7 +2722,7 @@ struct ExceptionFactory< InvalidStateException::ExceptionCode>
 /// @ingroup exception_heirarchy RenderingAPIException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  RenderingAPIException : public ExceptionBase
+class MEZZ_LIB RenderingAPIException : public ExceptionBase
 {
     public:
         /// @brief Thrown when the graphics card/DirectX/OpenGL fail
@@ -2783,7 +2783,7 @@ struct ExceptionFactory< RenderingAPIException::ExceptionCode>
 /// @ingroup exception_heirarchy RuntimeAssertionException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  RuntimeAssertionException : public ExceptionBase
+class MEZZ_LIB RuntimeAssertionException : public ExceptionBase
 {
     public:
         /// @brief Thrown when a rutime assertion could have been Thrown
@@ -2844,7 +2844,7 @@ struct ExceptionFactory< RuntimeAssertionException::ExceptionCode>
 /// @ingroup exception_heirarchy InternalException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  InternalException : public ExceptionBase
+class MEZZ_LIB InternalException : public ExceptionBase
 {
     public:
         /// @brief Thrown when an unknown internal error occurred
@@ -2905,7 +2905,7 @@ struct ExceptionFactory< InternalException::ExceptionCode>
 /// @ingroup exception_heirarchy NotImplementedException
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  NotImplementedException : public ExceptionBase
+class MEZZ_LIB NotImplementedException : public ExceptionBase
 {
     public:
         /// @brief Thrown when we just have not coded a thing yet, but we knew what the API should look like
@@ -2966,7 +2966,7 @@ struct ExceptionFactory< NotImplementedException::ExceptionCode>
 /// @ingroup exception_heirarchy InvalidAssignment
 /// @details When catching this in java look for @a java.lang.XXXXX
 ///////////////////
-class  InvalidAssignment : public ExceptionBase
+class MEZZ_LIB InvalidAssignment : public ExceptionBase
 {
     public:
         /// @brief Thrown when a complex class is assigned to itself or other invalid assignments occur
