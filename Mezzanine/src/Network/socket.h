@@ -120,8 +120,8 @@ namespace Mezzanine
         extern const Integer SE_HostIsDown;
         /// @brief No route to the specified host could be found.
         extern const Integer SE_HostUnreachable;
-        /// @brief The number of processes interacting with the network subsystem has met or exceeded it's limit.
-        extern const Integer SE_ProcessLimit;
+        /*/// @brief The number of processes interacting with the network subsystem has met or exceeded it's limit.
+        extern const Integer SE_ProcessLimit;//*/
 
         ///////////////////////////////////////////////////////////////////////////////
         // Socket Errors - Could occur, but you shouldn't see because of our API wrapper
@@ -309,6 +309,15 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal
+
+            /// @brief Starts the socket subsystem.
+            /// @remarks This exists primarily because Winsock is lame.  Always returns success on non-winsock platforms.
+            /// @return Returns zero if startup was successful, or an error code if something went wrong.
+            static Integer Initialize();
+            /// @brief Stops the socket subsystem.
+            /// @remarks This exists primarily because Winsock is lame.  Always returns success on non-winsock platforms.
+            /// @return Returns zero if shutdown was successful, or an error code if something went wrong.
+            static Integer Deinitialize();
 
             /// @brief Gets a pointer to the internal socket.
             /// @return Returns a pointer to the internal platform-specific socket.

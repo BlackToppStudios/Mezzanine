@@ -92,7 +92,7 @@ namespace Mezzanine
         const Integer SE_ConnectionRefused = WSAECONNREFUSED;
         const Integer SE_HostIsDown = WSAEHOSTDOWN;
         const Integer SE_HostUnreachable = WSAEHOSTUNREACH;
-        const Integer SE_ProcessLimit = WSAEPROCLIM;
+        //const Integer SE_ProcessLimit = WSAEPROCLIM;
         #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
         const Integer SE_Uninitialized = -1;
         const Integer SE_NetworkNotReady = -1;
@@ -125,7 +125,7 @@ namespace Mezzanine
         const Integer SE_ConnectionRefused = ECONNREFUSED;
         const Integer SE_HostIsDown = EHOSTDOWN;
         const Integer SE_HostUnreachable = EHOSTUNREACH;
-//        const Integer SE_ProcessLimit = EPROCLIM;
+        //const Integer SE_ProcessLimit = EPROCLIM;
         #endif
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -292,6 +292,26 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal
+
+        Integer Socket::Initialize()
+        {
+            #if defined(MEZZ_WINDOWS)
+            WORD Version = MAKEWORD(2,2);
+            WSADATA StartupData;
+            return ::WSAStartup(Version,&StartupData);
+            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return 0;
+            #endif
+        }
+
+        Integer Socket::Deinitialize()
+        {
+            #if defined(MEZZ_WINDOWS)
+            return ::WSACleanup();
+            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return 0;
+            #endif
+        }
 
         PlatformSocket* Socket::_GetPlatformSocket() const
             { return this->InternalSocket; }
