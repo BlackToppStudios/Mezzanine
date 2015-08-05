@@ -112,13 +112,13 @@ namespace Mezzanine
         /// @brief Interface class for input (read) streams.
         /// @details
         ///////////////////////////////////////
-        class iIStream : virtual public iStreamBase
+        class iInStream : virtual public iStreamBase
         {
         public:
             /// @brief Class constructor.
-            iIStream() {  }
+            iInStream() {  }
             /// @brief Class destructor.
-            virtual ~iIStream() {  }
+            virtual ~iInStream() {  }
 
             /// @brief Reads from the stream and copies that data to a buffer.
             /// @param Buffer The buffer to be populated with the read data.
@@ -136,19 +136,19 @@ namespace Mezzanine
             /// @brief Gets the current read position in this stream.
             /// @return Returns a StreamPos representing the current read position.
             virtual StreamPos GetReadPosition() = 0;
-        };//iIStream
+        };//iInStream
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief Interface class for output (write) streams.
         /// @details
         ///////////////////////////////////////
-        class iOStream : virtual public iStreamBase
+        class iOutStream : virtual public iStreamBase
         {
         public:
             /// @brief Class constructor.
-            iOStream() {  }
+            iOutStream() {  }
             /// @brief Class destructor.
-            virtual ~iOStream() {  }
+            virtual ~iOutStream() {  }
 
             /// @brief Writes data to the stream.
             /// @param Buffer The memory buffer to write to this stream.
@@ -166,13 +166,13 @@ namespace Mezzanine
             /// @brief Gets the current write position in this stream.
             /// @return Returns a StreamPos representing the current write position.
             virtual StreamPos GetWritePosition() = 0;
-        };//iOStream
+        };//iOutStream
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief Base class for input (read) streams with minimal implementation.
         /// @details
         ///////////////////////////////////////
-        class IStream : public iIStream, public std::istream
+        class IStream : public iInStream, public std::istream
         {
         public:
             /// @brief Class constructor.
@@ -180,14 +180,14 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~IStream();
 
-            /// @copydoc iIStream::Read(void*, StreamSize)
+            /// @copydoc iInStream::Read(void*, StreamSize)
             virtual size_t Read(void* Buffer, StreamSize Size);
 
-            /// @copydoc iIStream::SetReadPosition(StreamPos)
+            /// @copydoc iInStream::SetReadPosition(StreamPos)
             virtual void SetReadPosition(StreamPos Position);
-            /// @copydoc iIStream::SetReadPosition(StreamOff, SeekOrigin)
+            /// @copydoc iInStream::SetReadPosition(StreamOff, SeekOrigin)
             virtual void SetReadPosition(StreamOff Offset, SeekOrigin Origin);
-            /// @copydoc iIStream::GetReadPosition()
+            /// @copydoc iInStream::GetReadPosition()
             virtual StreamPos GetReadPosition();
         };//IStream
 
@@ -195,7 +195,7 @@ namespace Mezzanine
         /// @brief Base class for output (write) streams with minimal implementation.
         /// @details
         ///////////////////////////////////////
-        class OStream : public iOStream, public std::ostream
+        class OStream : public iOutStream, public std::ostream
         {
         public:
             /// @brief Class constructor.
@@ -203,14 +203,14 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~OStream();
 
-            /// @copydoc iOStream::Write(const void*, StreamSize)
+            /// @copydoc iOutStream::Write(const void*, StreamSize)
             virtual size_t Write(const void* Buffer, StreamSize Size);
 
-            /// @copydoc iOStream::SetWritePosition(StreamPos)
+            /// @copydoc iOutStream::SetWritePosition(StreamPos)
             virtual void SetWritePosition(StreamPos Position);
-            /// @copydoc iOStream::SetWritePosition(StreamOff, SeekOrigin)
+            /// @copydoc iOutStream::SetWritePosition(StreamOff, SeekOrigin)
             virtual void SetWritePosition(StreamOff Offset, SeekOrigin Origin);
-            /// @copydoc iOStream::GetWritePosition()
+            /// @copydoc iOutStream::GetWritePosition()
             virtual StreamPos GetWritePosition();
         };//OStream
 
@@ -218,7 +218,7 @@ namespace Mezzanine
         /// @brief Base class for streams that support both read and write operations.
         /// @details
         ///////////////////////////////////////
-        class IOStream : public iIStream, public iOStream, public std::iostream
+        class IOStream : public iInStream, public iOutStream, public std::iostream
         {
         public:
             /// @brief Class constructor.
@@ -235,27 +235,27 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Input methods
 
-            /// @copydoc iIStream::Read(void*, StreamSize)
+            /// @copydoc iInStream::Read(void*, StreamSize)
             virtual size_t Read(void* Buffer, StreamSize Size);
 
-            /// @copydoc iIStream::SetReadPosition(StreamPos)
+            /// @copydoc iInStream::SetReadPosition(StreamPos)
             virtual void SetReadPosition(StreamPos Position);
-            /// @copydoc iIStream::SetReadPosition(StreamOff, SeekOrigin)
+            /// @copydoc iInStream::SetReadPosition(StreamOff, SeekOrigin)
             virtual void SetReadPosition(StreamOff Offset, SeekOrigin Origin);
-            /// @copydoc iIStream::GetReadPosition()
+            /// @copydoc iInStream::GetReadPosition()
             virtual StreamPos GetReadPosition();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Output methods
 
-            /// @copydoc iOStream::Write(const void*, StreamSize)
+            /// @copydoc iOutStream::Write(const void*, StreamSize)
             virtual size_t Write(const void* Buffer, StreamSize Size);
 
-            /// @copydoc iOStream::SetWritePosition(StreamPos)
+            /// @copydoc iOutStream::SetWritePosition(StreamPos)
             virtual void SetWritePosition(StreamPos Position);
-            /// @copydoc iOStream::SetWritePosition(StreamOff, SeekOrigin)
+            /// @copydoc iOutStream::SetWritePosition(StreamOff, SeekOrigin)
             virtual void SetWritePosition(StreamOff Offset, SeekOrigin Origin);
-            /// @copydoc iOStream::GetWritePosition()
+            /// @copydoc iOutStream::GetWritePosition()
             virtual StreamPos GetWritePosition();
 
             ///////////////////////////////////////////////////////////////////////////////
