@@ -49,27 +49,27 @@
 
 // Because MinGW doesn't have it's shit together
 #ifdef MEZZ_WIN_MINGW
-#ifndef MCAST_JOIN_GROUP
-#define MCAST_JOIN_GROUP          41
-#endif//MCAST_JOIN_GROUP
-#ifndef MCAST_LEAVE_GROUP
-#define MCAST_LEAVE_GROUP         42
-#endif//MCAST_LEAVE_GROUP
-#ifndef MCAST_BLOCK_SOURCE
-#define MCAST_BLOCK_SOURCE        43
-#endif//MCAST_BLOCK_SOURCE
-#ifndef MCAST_UNBLOCK_SOURCE
-#define MCAST_UNBLOCK_SOURCE      44
-#endif//MCAST_UNBLOCK_SOURCE
-#ifndef MCAST_JOIN_SOURCE_GROUP
-#define MCAST_JOIN_SOURCE_GROUP   45
-#endif//MCAST_JOIN_SOURCE_GROUP
-#ifndef MCAST_LEAVE_SOURCE_GROUP
-#define MCAST_LEAVE_SOURCE_GROUP  46
-#endif//MCAST_LEAVE_SOURCE_GROUP
-#ifndef MCAST_MSFILTER
-#define MCAST_MSFILTER            47
-#endif//MCAST_MSFILTER
+    #ifndef MCAST_JOIN_GROUP
+        #define MCAST_JOIN_GROUP          41
+    #endif//MCAST_JOIN_GROUP
+    #ifndef MCAST_LEAVE_GROUP
+        #define MCAST_LEAVE_GROUP         42
+    #endif//MCAST_LEAVE_GROUP
+    #ifndef MCAST_BLOCK_SOURCE
+        #define MCAST_BLOCK_SOURCE        43
+    #endif//MCAST_BLOCK_SOURCE
+    #ifndef MCAST_UNBLOCK_SOURCE
+        #define MCAST_UNBLOCK_SOURCE      44
+    #endif//MCAST_UNBLOCK_SOURCE
+    #ifndef MCAST_JOIN_SOURCE_GROUP
+        #define MCAST_JOIN_SOURCE_GROUP   45
+    #endif//MCAST_JOIN_SOURCE_GROUP
+    #ifndef MCAST_LEAVE_SOURCE_GROUP
+        #define MCAST_LEAVE_SOURCE_GROUP  46
+    #endif//MCAST_LEAVE_SOURCE_GROUP
+    #ifndef MCAST_MSFILTER
+        #define MCAST_MSFILTER            47
+    #endif//MCAST_MSFILTER
 #endif//MEZZ_WIN_MINGW
 
 namespace Mezzanine

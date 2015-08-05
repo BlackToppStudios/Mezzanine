@@ -44,18 +44,14 @@
 #define _networkplatformincludes_h_cpp
 
 #ifdef MEZZ_WINDOWS
-
     #define WIN32_LEAN_AND_MEAN
-
     #include <w32api.h>
     #define _WIN32_WINNT _WIN32_WINNT_VISTA
     // Winsock 2
     #include <winsock2.h>
     #include <ws2tcpip.h>
     #include <basetsd.h>
-
 #elif MEZZ_MACOSX || MEZZ_LINUX
-
     // Berkeley Sockets
     #include <sys/types.h>
     #include <sys/socket.h>

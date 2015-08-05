@@ -52,24 +52,27 @@ namespace Mezzanine
 {
     namespace Network
     {
-        #if defined(MEZZ_WINDOWS)
-            /// @internal
-            /// @brief Convenience type for the length of the address in Winsock 2.
-            typedef int AddrLen;
-            /// @internal
-            /// @brief Convenience type for the system handle to the socket in Winsock 2.
-            typedef SOCKET SocketHandleImplementation;
-        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-            /// @internal
-            /// @brief Convenience type for the length of the address in Berkeley Sockets.
-            typedef socklen_t AddrLen;
-            /// @internal
-            /// @brief Convenience type for the system handle to the socket in Berkeley Sockets.
-            typedef int SocketHandleImplementation;
-            #ifndef INVALID_SOCKET
-                #define INVALID_SOCKET -1
-            #endif
+    #if defined(MEZZ_WINDOWS)
+        /// @internal
+        /// @brief Convenience type for the length of the address in Winsock 2.
+        typedef int AddrLen;
+        /// @internal
+        /// @brief Convenience type for the system handle to the socket in Winsock 2.
+        typedef SOCKET SocketHandleImplementation;
+    #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+        /// @internal
+        /// @brief Convenience type for the length of the address in Berkeley Sockets.
+        typedef socklen_t AddrLen;
+        /// @internal
+        /// @brief Convenience type for the system handle to the socket in Berkeley Sockets.
+        typedef int SocketHandleImplementation;
+        #ifndef INVALID_SOCKET
+            #define INVALID_SOCKET -1
         #endif
+        #ifndef SOCKET_ERROR
+            #define SOCKET_ERROR -1
+        #endif
+    #endif
 
         /// @internal
         /// @brief Used to allow type inference on @ref PlatformSocket constructors.
@@ -78,39 +81,39 @@ namespace Mezzanine
         /// where method calls would be identical otherwise.
         class SocketHandle
         {
-            protected:
-                /// @internal
-                /// @brief The actual handle store as a platform specific type thanks to typedefs.
-                SocketHandleImplementation handle;
+        protected:
+            /// @internal
+            /// @brief The actual handle store as a platform specific type thanks to typedefs.
+            SocketHandleImplementation handle;
+        public:
+            /// @brief Platform specific contructor
+            /// @details Because of the @ref SocketHandleImplementation typedef the
+            /// signature of this constructor changes to match lower level OS constructs.
+            /// Because this constructor accepts only on parameter the compiler will
+            /// automatically use this when passing a @ref SocketHandleImplementation to a
+            /// function or method that accepts a SocketHandle.
+            /// @param OSHandle The handle the OS would use to reference this.
+            SocketHandle(SocketHandleImplementation OSHandle = INVALID_SOCKET) :
+                handle(OSHandle)
+                {  }
 
-            public:
-                /// @brief Platform specific contructor
-                /// @details Because of the @ref SocketHandleImplementation typedef the
-                /// signature of this constructor changes to match lower level OS constructs.
-                /// Because this constructor accepts only on parameter the compiler will
-                /// automatically use this when passing a @ref SocketHandleImplementation to a
-                /// function or method that accepts a SocketHandle.
-                /// @param OSHandle The handle the OS would use to reference this.
-                SocketHandle(SocketHandleImplementation OSHandle = INVALID_SOCKET) : handle(OSHandle)
-                    {}
-
-                #if defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                    /// @brief Casting operator on Linux
-                    /// @details When a function accepts a platform specific socket handle (int),
-                    /// but an instance of this class was passed the compiler will find this method
-                    /// and use it to correctly convert to an int.
-                    /// @return  A valid platform specific socket.
-                    operator int() const
-                        { return handle; }
-                #elif defined(MEZZ_WINDOWS)
-                    /// @brief Casting operator on Mac OS X
-                    /// @details When a function accepts a platform specific socket handle (SOCKET),
-                    /// but an instance of this class was passed the compiler will find this method
-                    /// and use it to correctly convert to a SOCKET
-                    /// @return  A valid platform specific socket.
-                    operator SOCKET() const
-                        { return handle; }
-                #endif
+        #if defined(MEZZ_WINDOWS)
+            /// @brief Casting operator for Winsock.
+            /// @details When a function accepts a platform specific socket handle (SOCKET),
+            /// but an instance of this class was passed the compiler will find this method
+            /// and use it to correctly convert to a SOCKET.
+            /// @return A valid platform specific socket.
+            operator SOCKET() const
+                { return handle; }
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            /// @brief Casting operator for Berkeley Sockets.
+            /// @details When a function accepts a platform specific socket handle (int),
+            /// but an instance of this class was passed the compiler will find this method
+            /// and use it to correctly convert to an int.
+            /// @return A valid platform specific socket.
+            operator int() const
+                { return handle; }
+        #endif
         };
 
         /// @enum SocketOptionLevel
@@ -160,11 +163,11 @@ namespace Mezzanine
         {
             // Datagram Options
             // Not fragmenting between the two platforms is weird.
-            #if defined(MEZZ_WINDOWS)
+        #if defined(MEZZ_WINDOWS)
             IPv4Opts_Fragmentation    = IP_DONTFRAGMENT,
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
             IPv4Opts_Fragmentation    = IP_MTU_DISCOVER,
-            #endif
+        #endif
             // Multicasting Options
             IPv4Opts_MulticastLoop    = IP_MULTICAST_LOOP,
             IPv4Opts_MulticastTTL     = IP_MULTICAST_TTL,
@@ -178,13 +181,13 @@ namespace Mezzanine
         /// @brief An enum for the easy mapping of the actual values needed to toggle IPv4 fragmentation.
         enum MsgFragValues
         {
-            #if defined(MEZZ_WINDOWS)
-                MFV_Frag_Enable  = 0,
-                MFV_Frag_Disable = 1,
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                MFV_Frag_Enable  = IP_PMTUDISC_DONT,
-                MFV_Frag_Disable = IP_PMTUDISC_DO
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            MFV_Frag_Enable  = 0,
+            MFV_Frag_Disable = 1,
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            MFV_Frag_Enable  = IP_PMTUDISC_DONT,
+            MFV_Frag_Disable = IP_PMTUDISC_DO
+        #endif
         };
 
         /// @enum IPv6LevelOptions
@@ -253,10 +256,7 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB PlatformSocket
         {
-        //public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Public Data Members
-
+        protected:
             /// @brief The handle to the internal socket implementation.
             SocketHandle InternalSocket;
             /// @brief The address type used for transmissions on this socket.
