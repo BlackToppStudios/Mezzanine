@@ -309,6 +309,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Input/metacodekey.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/mouse.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/sequencecontainer.h"
+        "${${PROJECT_NAME}_SRC_DIR}Input/inpututilities.h"
         # Internal Items
         "${${PROJECT_NAME}_SRC_DIR}Internal/decompinterface.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/iostreamwrapper.h.cpp"
@@ -761,6 +762,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Input/metacodekey.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/mouse.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/sequencecontainer.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Input/inpututilities.cpp"
         # Internal Items
         "${${PROJECT_NAME}_SRC_DIR}Internal/decompinterface.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/iostreamwrapper.cpp"
