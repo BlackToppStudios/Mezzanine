@@ -1,0 +1,7 @@
+<map id="Mezzanine::Resource::iInStream" name="Mezzanine::Resource::iInStream">
+<area shape="rect" id="node3" href="$classMezzanine_1_1Resource_1_1IOStream.html" title="Base class for streams that support both read and write operations. " alt="" coords="91,184,239,225"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Resource_1_1IStream.html" title="Base class for input (read) streams with minimal implementation. " alt="" coords="263,184,411,225"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1iStreamBase.html" title="Base class interface for resource streams. " alt="" coords="176,5,324,47"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Resource_1_1FileStream.html" title="This represents a stream to a file on disk using the C++ file stream API. " alt="" coords="5,273,153,315"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Resource_1_1MemoryStream.html" title="This represents a stream to a buffer in memory. " alt="" coords="177,273,325,315"/>
+</map>

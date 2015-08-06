@@ -24,13 +24,13 @@ if (edges && edges.length) {
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
                 <g id="zoomPlus">
-                        <use xlink:href="#rim" fill="#404040">
+                        <use xlink:href="#rim" target="_top" fill="#404040">
                                 <set attributeName="fill" to="#808080" begin="zoomplus.mouseover" end="zoomplus.mouseout"/>
                         </use>
                         <path d="M-4,0h8M0,-4v8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
                 </g>
                 <g id="zoomMin">
-                        <use xlink:href="#rim" fill="#404040">
+                        <use xlink:href="#rim" target="_top" fill="#404040">
                                 <set attributeName="fill" to="#808080" begin="zoomminus.mouseover" end="zoomminus.mouseout"/>
                         </use>
                         <path d="M-4,0h8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
@@ -39,7 +39,7 @@ if (edges && edges.length) {
                         <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
                <g id="resetDef">
-                       <use xlink:href="#rim2" fill="#404040">
+                       <use xlink:href="#rim2" target="_top" fill="#404040">
                                <set attributeName="fill" to="#808080" begin="reset.mouseover" end="reset.mouseout"/>
                        </use>
                </g>
@@ -50,7 +50,7 @@ var viewWidth = 2009;
 var viewHeight = 666;
 var sectionId = 'dynsection-0';
 </script>
-<script xlink:href="svgpan.js"/>
+<script xlink:href="svgpan.js" target="_top"/>
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptargument.cpp</title>
@@ -64,7 +64,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<g id="a_node2"><a xlink:href="datatypes_8h.html" target="_top" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="888,-56.5 888,-75.5 956,-75.5 956,-56.5 888,-56.5"/>
 <text text-anchor="middle" x="922" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">datatypes.h</text>
 </a>
@@ -87,7 +87,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node20" class="node"><title>Node20</title>
-<g id="a_node20"><a xlink:href="lua51scriptargument_8h.html" target="_top" xlink:title="This file has the definition of the Script Arguments for Lua 51. ">
+<g id="a_node20"><a xlink:href="lua51scriptargument_8h.html" target="_top" target="_top" xlink:title="This file has the definition of the Script Arguments for Lua 51. ">
 <polygon fill="white" stroke="black" points="483.5,-560.5 483.5,-579.5 596.5,-579.5 596.5,-560.5 483.5,-560.5"/>
 <text text-anchor="middle" x="540" y="-567.5" font-family="Helvetica,sans-Serif" font-size="10.00">lua51scriptargument.h</text>
 </a>
@@ -100,7 +100,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node51 -->
 <g id="node51" class="node"><title>Node51</title>
-<g id="a_node51"><a xlink:href="exception_8h.html" target="_top" xlink:title="This implements the exception hiearchy for Mezzanine. ">
+<g id="a_node51"><a xlink:href="exception_8h.html" target="_top" target="_top" xlink:title="This implements the exception hiearchy for Mezzanine. ">
 <polygon fill="white" stroke="black" points="151.5,-392.5 151.5,-411.5 218.5,-411.5 218.5,-392.5 151.5,-392.5"/>
 <text text-anchor="middle" x="185" y="-399.5" font-family="Helvetica,sans-Serif" font-size="10.00">exception.h</text>
 </a>
@@ -113,7 +113,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node52 -->
 <g id="node52" class="node"><title>Node52</title>
-<g id="a_node52"><a xlink:href="lua51script_8h.html" target="_top" xlink:title="This file has the interface for the Lua scripts. ">
+<g id="a_node52"><a xlink:href="lua51script_8h.html" target="_top" target="_top" xlink:title="This file has the interface for the Lua scripts. ">
 <polygon fill="white" stroke="black" points="615,-560.5 615,-579.5 687,-579.5 687,-560.5 615,-560.5"/>
 <text text-anchor="middle" x="651" y="-567.5" font-family="Helvetica,sans-Serif" font-size="10.00">lua51script.h</text>
 </a>
@@ -126,7 +126,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node53 -->
 <g id="node53" class="node"><title>Node53</title>
-<g id="a_node53"><a xlink:href="lua51scriptingengine_8h.html" target="_top" xlink:title="This file has the interface for the Lua based implementation of the Scripting system. ">
+<g id="a_node53"><a xlink:href="lua51scriptingengine_8h.html" target="_top" target="_top" xlink:title="This file has the interface for the Lua based implementation of the Scripting system. ">
 <polygon fill="white" stroke="black" points="349.5,-560.5 349.5,-579.5 462.5,-579.5 462.5,-560.5 349.5,-560.5"/>
 <text text-anchor="middle" x="406" y="-567.5" font-family="Helvetica,sans-Serif" font-size="10.00">lua51scriptingengine.h</text>
 </a>
@@ -169,7 +169,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<g id="a_node3"><a xlink:href="crossplatformexport_8h.html" target="_top" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="1801.5,-0.5 1801.5,-19.5 1912.5,-19.5 1912.5,-0.5 1801.5,-0.5"/>
 <text text-anchor="middle" x="1857" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -327,7 +327,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node19" class="node"><title>Node19</title>
-<g id="a_node19"><a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
+<g id="a_node19"><a xlink:href="swig_8h.html" target="_top" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1675.5,-0.5 1675.5,-19.5 1720.5,-19.5 1720.5,-0.5 1675.5,-0.5"/>
 <text text-anchor="middle" x="1698" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">swig.h</text>
 </a>
@@ -345,7 +345,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node21 -->
 <g id="node21" class="node"><title>Node21</title>
-<g id="a_node21"><a xlink:href="scriptargument_8h.html" target="_top" xlink:title="This file has the interfaces for Script Arguments and the associated dependency chain. ">
+<g id="a_node21"><a xlink:href="scriptargument_8h.html" target="_top" target="_top" xlink:title="This file has the interfaces for Script Arguments and the associated dependency chain. ">
 <polygon fill="white" stroke="black" points="724.5,-392.5 724.5,-411.5 855.5,-411.5 855.5,-392.5 724.5,-392.5"/>
 <text text-anchor="middle" x="790" y="-399.5" font-family="Helvetica,sans-Serif" font-size="10.00">Scripting/scriptargument.h</text>
 </a>
@@ -358,7 +358,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node23 -->
 <g id="node23" class="node"><title>Node23</title>
-<g id="a_node23"><a xlink:href="script_8h.html" target="_top" xlink:title="This file has the interfaces for Scripts and tag derived classes. ">
+<g id="a_node23"><a xlink:href="script_8h.html" target="_top" target="_top" xlink:title="This file has the interfaces for Scripts and tag derived classes. ">
 <polygon fill="white" stroke="black" points="708,-448.5 708,-467.5 798,-467.5 798,-448.5 708,-448.5"/>
 <text text-anchor="middle" x="753" y="-455.5" font-family="Helvetica,sans-Serif" font-size="10.00">Scripting/script.h</text>
 </a>
@@ -371,7 +371,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node25 -->
 <g id="node25" class="node"><title>Node25</title>
-<g id="a_node25"><a xlink:href="scriptingmanager_8h.html" target="_top" xlink:title="This file has the interfaces for Scripting managers and the associated dependency chain...">
+<g id="a_node25"><a xlink:href="scriptingmanager_8h.html" target="_top" target="_top" xlink:title="This file has the interfaces for Scripting managers and the associated dependency chain...">
 <polygon fill="white" stroke="black" points="474,-504.5 474,-523.5 614,-523.5 614,-504.5 474,-504.5"/>
 <text text-anchor="middle" x="544" y="-511.5" font-family="Helvetica,sans-Serif" font-size="10.00">Scripting/scriptingmanager.h</text>
 </a>
@@ -389,7 +389,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node22 -->
 <g id="node22" class="node"><title>Node22</title>
-<g id="a_node22"><a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe. ">
+<g id="a_node22"><a xlink:href="countedptr_8h.html" target="_top" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe. ">
 <polygon fill="white" stroke="black" points="1783.5,-112.5 1783.5,-131.5 1854.5,-131.5 1854.5,-112.5 1783.5,-112.5"/>
 <text text-anchor="middle" x="1819" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">countedptr.h</text>
 </a>
@@ -417,7 +417,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node24 -->
 <g id="node24" class="node"><title>Node24</title>
-<g id="a_node24"><a xlink:href="binarybuffer_8h_source.html" target="_top" xlink:title="binarybuffer.h">
+<g id="a_node24"><a xlink:href="binarybuffer_8h_source.html" target="_top" target="_top" xlink:title="binarybuffer.h">
 <polygon fill="white" stroke="black" points="1897,-336.5 1897,-355.5 1973,-355.5 1973,-336.5 1897,-336.5"/>
 <text text-anchor="middle" x="1935" y="-343.5" font-family="Helvetica,sans-Serif" font-size="10.00">binarybuffer.h</text>
 </a>
@@ -445,7 +445,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node26 -->
 <g id="node26" class="node"><title>Node26</title>
-<g id="a_node26"><a xlink:href="entresolmanager_8h_source.html" target="_top" xlink:title="entresolmanager.h">
+<g id="a_node26"><a xlink:href="entresolmanager_8h_source.html" target="_top" target="_top" xlink:title="entresolmanager.h">
 <polygon fill="white" stroke="black" points="516.5,-448.5 516.5,-467.5 613.5,-467.5 613.5,-448.5 516.5,-448.5"/>
 <text text-anchor="middle" x="565" y="-455.5" font-family="Helvetica,sans-Serif" font-size="10.00">entresolmanager.h</text>
 </a>
@@ -458,7 +458,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node50 -->
 <g id="node50" class="node"><title>Node50</title>
-<g id="a_node50"><a xlink:href="singleton_8h_source.html" target="_top" xlink:title="singleton.h">
+<g id="a_node50"><a xlink:href="singleton_8h_source.html" target="_top" target="_top" xlink:title="singleton.h">
 <polygon fill="white" stroke="black" points="434,-448.5 434,-467.5 498,-467.5 498,-448.5 434,-448.5"/>
 <text text-anchor="middle" x="466" y="-455.5" font-family="Helvetica,sans-Serif" font-size="10.00">singleton.h</text>
 </a>
@@ -471,7 +471,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node27 -->
 <g id="node27" class="node"><title>Node27</title>
-<g id="a_node27"><a xlink:href="managerbase_8h_source.html" target="_top" xlink:title="managerbase.h">
+<g id="a_node27"><a xlink:href="managerbase_8h_source.html" target="_top" target="_top" xlink:title="managerbase.h">
 <polygon fill="white" stroke="black" points="623.5,-392.5 623.5,-411.5 706.5,-411.5 706.5,-392.5 623.5,-392.5"/>
 <text text-anchor="middle" x="665" y="-399.5" font-family="Helvetica,sans-Serif" font-size="10.00">managerbase.h</text>
 </a>
@@ -494,7 +494,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node28 -->
 <g id="node28" class="node"><title>Node28</title>
-<g id="a_node28"><a xlink:href="xml_8h_source.html" target="_top" xlink:title="XML/xml.h">
+<g id="a_node28"><a xlink:href="xml_8h_source.html" target="_top" target="_top" xlink:title="XML/xml.h">
 <polygon fill="white" stroke="black" points="823,-336.5 823,-355.5 887,-355.5 887,-336.5 823,-336.5"/>
 <text text-anchor="middle" x="855" y="-343.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xml.h</text>
 </a>
@@ -512,7 +512,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node29 -->
 <g id="node29" class="node"><title>Node29</title>
-<g id="a_node29"><a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template. ">
+<g id="a_node29"><a xlink:href="objectrange_8h.html" target="_top" target="_top" xlink:title="Contains the implementation of the ObjectRange class template. ">
 <polygon fill="white" stroke="black" points="873,-112.5 873,-131.5 971,-131.5 971,-112.5 873,-112.5"/>
 <text text-anchor="middle" x="922" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/objectrange.h</text>
 </a>
@@ -525,7 +525,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node30 -->
 <g id="node30" class="node"><title>Node30</title>
-<g id="a_node30"><a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class. ">
+<g id="a_node30"><a xlink:href="attribute_8h.html" target="_top" target="_top" xlink:title="Contains the definition for the XML::Attribute class. ">
 <polygon fill="white" stroke="black" points="989.5,-112.5 989.5,-131.5 1072.5,-131.5 1072.5,-112.5 989.5,-112.5"/>
 <text text-anchor="middle" x="1031" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/attribute.h</text>
 </a>
@@ -538,7 +538,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node31 -->
 <g id="node31" class="node"><title>Node31</title>
-<g id="a_node31"><a xlink:href="attributeiterator_8h.html" target="_top" xlink:title="Contains the defintion of the AttributeIterator class. ">
+<g id="a_node31"><a xlink:href="attributeiterator_8h.html" target="_top" target="_top" xlink:title="Contains the defintion of the AttributeIterator class. ">
 <polygon fill="white" stroke="black" points="997.5,-224.5 997.5,-243.5 1110.5,-243.5 1110.5,-224.5 997.5,-224.5"/>
 <text text-anchor="middle" x="1054" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/attributeiterator.h</text>
 </a>
@@ -551,7 +551,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node32 -->
 <g id="node32" class="node"><title>Node32</title>
-<g id="a_node32"><a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes. ">
+<g id="a_node32"><a xlink:href="node_8h.html" target="_top" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes. ">
 <polygon fill="white" stroke="black" points="871.5,-168.5 871.5,-187.5 940.5,-187.5 940.5,-168.5 871.5,-168.5"/>
 <text text-anchor="middle" x="906" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/node.h</text>
 </a>
@@ -564,7 +564,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node33 -->
 <g id="node33" class="node"><title>Node33</title>
-<g id="a_node33"><a xlink:href="xmlenumerations_8h.html" target="_top" xlink:title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ...">
+<g id="a_node33"><a xlink:href="xmlenumerations_8h.html" target="_top" target="_top" xlink:title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ...">
 <polygon fill="white" stroke="black" points="591,-112.5 591,-131.5 713,-131.5 713,-112.5 591,-112.5"/>
 <text text-anchor="middle" x="652" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xmlenumerations.h</text>
 </a>
@@ -577,7 +577,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node34 -->
 <g id="node34" class="node"><title>Node34</title>
-<g id="a_node34"><a xlink:href="document_8h.html" target="_top" xlink:title="The definition of the XML::Document Class. ">
+<g id="a_node34"><a xlink:href="document_8h.html" target="_top" target="_top" xlink:title="The definition of the XML::Document Class. ">
 <polygon fill="white" stroke="black" points="1204.5,-280.5 1204.5,-299.5 1295.5,-299.5 1295.5,-280.5 1204.5,-280.5"/>
 <text text-anchor="middle" x="1250" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/document.h</text>
 </a>
@@ -590,7 +590,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node35 -->
 <g id="node35" class="node"><title>Node35</title>
-<g id="a_node35"><a xlink:href="parseresult_8h.html" target="_top" xlink:title="XML/parseresult.h">
+<g id="a_node35"><a xlink:href="parseresult_8h.html" target="_top" target="_top" xlink:title="XML/parseresult.h">
 <polygon fill="white" stroke="black" points="1129,-168.5 1129,-187.5 1225,-187.5 1225,-168.5 1129,-168.5"/>
 <text text-anchor="middle" x="1177" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/parseresult.h</text>
 </a>
@@ -603,7 +603,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node36 -->
 <g id="node36" class="node"><title>Node36</title>
-<g id="a_node36"><a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy. ">
+<g id="a_node36"><a xlink:href="writer_8h.html" target="_top" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy. ">
 <polygon fill="white" stroke="black" points="1461,-224.5 1461,-243.5 1533,-243.5 1533,-224.5 1461,-224.5"/>
 <text text-anchor="middle" x="1497" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/writer.h</text>
 </a>
@@ -616,7 +616,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node39 -->
 <g id="node39" class="node"><title>Node39</title>
-<g id="a_node39"><a xlink:href="memorymanagement_8h.html" target="_top" xlink:title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen...">
+<g id="a_node39"><a xlink:href="memorymanagement_8h.html" target="_top" target="_top" xlink:title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen...">
 <polygon fill="white" stroke="black" points="1352,-280.5 1352,-299.5 1492,-299.5 1492,-280.5 1352,-280.5"/>
 <text text-anchor="middle" x="1422" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/memorymanagement.h</text>
 </a>
@@ -629,7 +629,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node40 -->
 <g id="node40" class="node"><title>Node40</title>
-<g id="a_node40"><a xlink:href="nodeiterator_8h.html" target="_top" xlink:title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas...">
+<g id="a_node40"><a xlink:href="nodeiterator_8h.html" target="_top" target="_top" xlink:title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas...">
 <polygon fill="white" stroke="black" points="1551.5,-224.5 1551.5,-243.5 1650.5,-243.5 1650.5,-224.5 1551.5,-224.5"/>
 <text text-anchor="middle" x="1601" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/nodeiterator.h</text>
 </a>
@@ -642,7 +642,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node41 -->
 <g id="node41" class="node"><title>Node41</title>
-<g id="a_node41"><a xlink:href="nodetext_8h.html" target="_top" xlink:title="The declaration of the XML::NodeText class. ">
+<g id="a_node41"><a xlink:href="nodetext_8h.html" target="_top" target="_top" xlink:title="The declaration of the XML::NodeText class. ">
 <polygon fill="white" stroke="black" points="1281,-224.5 1281,-243.5 1367,-243.5 1367,-224.5 1281,-224.5"/>
 <text text-anchor="middle" x="1324" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/nodetext.h</text>
 </a>
@@ -655,7 +655,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node42 -->
 <g id="node42" class="node"><title>Node42</title>
-<g id="a_node42"><a xlink:href="treewalker_8h.html" target="_top" xlink:title="This defines the TreeWalker Interface. ">
+<g id="a_node42"><a xlink:href="treewalker_8h.html" target="_top" target="_top" xlink:title="This defines the TreeWalker Interface. ">
 <polygon fill="white" stroke="black" points="370.5,-224.5 370.5,-243.5 463.5,-243.5 463.5,-224.5 370.5,-224.5"/>
 <text text-anchor="middle" x="417" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/treewalker.h</text>
 </a>
@@ -668,7 +668,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node43 -->
 <g id="node43" class="node"><title>Node43</title>
-<g id="a_node43"><a xlink:href="xmlstring_8h.html" target="_top" xlink:title="A few functions to help the XML system perform conversions between UTF8 and the native wide character...">
+<g id="a_node43"><a xlink:href="xmlstring_8h.html" target="_top" target="_top" xlink:title="A few functions to help the XML system perform conversions between UTF8 and the native wide character...">
 <polygon fill="white" stroke="black" points="218,-280.5 218,-299.5 306,-299.5 306,-280.5 218,-280.5"/>
 <text text-anchor="middle" x="262" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xmlstring.h</text>
 </a>
@@ -681,7 +681,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node44 -->
 <g id="node44" class="node"><title>Node44</title>
-<g id="a_node44"><a xlink:href="xpathnode_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode. ">
+<g id="a_node44"><a xlink:href="xpathnode_8h.html" target="_top" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode. ">
 <polygon fill="white" stroke="black" points="481.5,-224.5 481.5,-243.5 574.5,-243.5 574.5,-224.5 481.5,-224.5"/>
 <text text-anchor="middle" x="528" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xpathnode.h</text>
 </a>
@@ -694,7 +694,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node45 -->
 <g id="node45" class="node"><title>Node45</title>
-<g id="a_node45"><a xlink:href="xpathnodeset_8h.html" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet. ">
+<g id="a_node45"><a xlink:href="xpathnodeset_8h.html" target="_top" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet. ">
 <polygon fill="white" stroke="black" points="442.5,-280.5 442.5,-299.5 549.5,-299.5 549.5,-280.5 442.5,-280.5"/>
 <text text-anchor="middle" x="496" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xpathnodeset.h</text>
 </a>
@@ -707,7 +707,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node46 -->
 <g id="node46" class="node"><title>Node46</title>
-<g id="a_node46"><a xlink:href="xpathparseresult_8h.html" target="_top" xlink:title="Has all the classes for the XPath implementation. ">
+<g id="a_node46"><a xlink:href="xpathparseresult_8h.html" target="_top" target="_top" xlink:title="Has all the classes for the XPath implementation. ">
 <polygon fill="white" stroke="black" points="707,-224.5 707,-243.5 827,-243.5 827,-224.5 707,-224.5"/>
 <text text-anchor="middle" x="767" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xpathparseresult.h</text>
 </a>
@@ -720,7 +720,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node47 -->
 <g id="node47" class="node"><title>Node47</title>
-<g id="a_node47"><a xlink:href="xpathvariable_8h.html" target="_top" xlink:title="The XPathVariable class definition. ">
+<g id="a_node47"><a xlink:href="xpathvariable_8h.html" target="_top" target="_top" xlink:title="The XPathVariable class definition. ">
 <polygon fill="white" stroke="black" points="303,-168.5 303,-187.5 409,-187.5 409,-168.5 303,-168.5"/>
 <text text-anchor="middle" x="356" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xpathvariable.h</text>
 </a>
@@ -733,7 +733,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node48 -->
 <g id="node48" class="node"><title>Node48</title>
-<g id="a_node48"><a xlink:href="xpathvariableset_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathVariableSet. ">
+<g id="a_node48"><a xlink:href="xpathvariableset_8h.html" target="_top" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathVariableSet. ">
 <polygon fill="white" stroke="black" points="503.5,-168.5 503.5,-187.5 622.5,-187.5 622.5,-168.5 503.5,-168.5"/>
 <text text-anchor="middle" x="563" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xpathvariableset.h</text>
 </a>
@@ -746,7 +746,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node49 -->
 <g id="node49" class="node"><title>Node49</title>
-<g id="a_node49"><a xlink:href="xpathquery_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery . ">
+<g id="a_node49"><a xlink:href="xpathquery_8h.html" target="_top" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery . ">
 <polygon fill="white" stroke="black" points="667,-280.5 667,-299.5 763,-299.5 763,-280.5 667,-280.5"/>
 <text text-anchor="middle" x="715" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">XML/xpathquery.h</text>
 </a>
@@ -829,7 +829,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node37 -->
 <g id="node37" class="node"><title>Node37</title>
-<g id="a_node37"><a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream. ">
+<g id="a_node37"><a xlink:href="datastream_8h.html" target="_top" target="_top" xlink:title="Declaration of DataStream. ">
 <polygon fill="white" stroke="black" points="1379.5,-168.5 1379.5,-187.5 1498.5,-187.5 1498.5,-168.5 1379.5,-168.5"/>
 <text text-anchor="middle" x="1439" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">Resource/datastream.h</text>
 </a>
@@ -1047,7 +1047,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node54 -->
 <g id="node54" class="node"><title>Node54</title>
-<g id="a_node54"><a xlink:href="trie_8h_source.html" target="_top" xlink:title="trie.h">
+<g id="a_node54"><a xlink:href="trie_8h_source.html" target="_top" target="_top" xlink:title="trie.h">
 <polygon fill="white" stroke="black" points="104,-336.5 104,-355.5 142,-355.5 142,-336.5 104,-336.5"/>
 <text text-anchor="middle" x="123" y="-343.5" font-family="Helvetica,sans-Serif" font-size="10.00">trie.h</text>
 </a>
@@ -1060,7 +1060,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node55 -->
 <g id="node55" class="node"><title>Node55</title>
-<g id="a_node55"><a xlink:href="entresolmanagerfactory_8h_source.html" target="_top" xlink:title="entresolmanagerfactory.h">
+<g id="a_node55"><a xlink:href="entresolmanagerfactory_8h_source.html" target="_top" target="_top" xlink:title="entresolmanagerfactory.h">
 <polygon fill="white" stroke="black" points="212.5,-504.5 212.5,-523.5 339.5,-523.5 339.5,-504.5 212.5,-504.5"/>
 <text text-anchor="middle" x="276" y="-511.5" font-family="Helvetica,sans-Serif" font-size="10.00">entresolmanagerfactory.h</text>
 </a>
@@ -1078,7 +1078,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node56 -->
 <g id="node56" class="node"><title>Node56</title>
-<g id="a_node56"><a xlink:href="managerfactory_8h_source.html" target="_top" xlink:title="managerfactory.h">
+<g id="a_node56"><a xlink:href="managerfactory_8h_source.html" target="_top" target="_top" xlink:title="managerfactory.h">
 <polygon fill="white" stroke="black" points="283,-448.5 283,-467.5 375,-467.5 375,-448.5 283,-448.5"/>
 <text text-anchor="middle" x="329" y="-455.5" font-family="Helvetica,sans-Serif" font-size="10.00">managerfactory.h</text>
 </a>
@@ -1098,29 +1098,29 @@ var sectionId = 'dynsection-0';
 </svg>
         <g id="navigator" transform="translate(0 0)" fill="#404254">
                 <rect fill="#f2f5e9" fill-opacity="0.5" stroke="#606060" stroke-width=".5" x="0" y="0" width="60" height="60"/>
-                <use id="zoomplus" xlink:href="#zoomPlus" x="17" y="9" onmousedown="handleZoom(evt,'in')"/>
-                <use id="zoomminus" xlink:href="#zoomMin" x="42" y="9" onmousedown="handleZoom(evt,'out')"/>
-                <use id="reset" xlink:href="#resetDef" x="30" y="36" onmousedown="handleReset()"/>
-                <g id="arrowUp" xlink:href="#dirArrow" transform="translate(30 24)" onmousedown="handlePan(0,-1)">
-                  <use xlink:href="#rim" fill="#404040">
+                <use id="zoomplus" xlink:href="#zoomPlus" target="_top" x="17" y="9" onmousedown="handleZoom(evt,'in')"/>
+                <use id="zoomminus" xlink:href="#zoomMin" target="_top" x="42" y="9" onmousedown="handleZoom(evt,'out')"/>
+                <use id="reset" xlink:href="#resetDef" target="_top" x="30" y="36" onmousedown="handleReset()"/>
+                <g id="arrowUp" xlink:href="#dirArrow" target="_top" transform="translate(30 24)" onmousedown="handlePan(0,-1)">
+                  <use xlink:href="#rim" target="_top" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowUp.mouseover" end="arrowUp.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowRight" xlink:href="#dirArrow" transform="rotate(90) translate(36 -43)" onmousedown="handlePan(1,0)">
-                  <use xlink:href="#rim" fill="#404040">
+                <g id="arrowRight" xlink:href="#dirArrow" target="_top" transform="rotate(90) translate(36 -43)" onmousedown="handlePan(1,0)">
+                  <use xlink:href="#rim" target="_top" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowRight.mouseover" end="arrowRight.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowDown" xlink:href="#dirArrow" transform="rotate(180) translate(-30 -48)" onmousedown="handlePan(0,1)">
-                  <use xlink:href="#rim" fill="#404040">
+                <g id="arrowDown" xlink:href="#dirArrow" target="_top" transform="rotate(180) translate(-30 -48)" onmousedown="handlePan(0,1)">
+                  <use xlink:href="#rim" target="_top" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowDown.mouseover" end="arrowDown.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowLeft" xlink:href="#dirArrow" transform="rotate(270) translate(-36 17)" onmousedown="handlePan(-1,0)">
-                  <use xlink:href="#rim" fill="#404040">
+                <g id="arrowLeft" xlink:href="#dirArrow" target="_top" transform="rotate(270) translate(-36 17)" onmousedown="handlePan(-1,0)">
+                  <use xlink:href="#rim" target="_top" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowLeft.mouseover" end="arrowLeft.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
@@ -1128,7 +1128,7 @@ var sectionId = 'dynsection-0';
         </g>
         <svg viewBox="0 0 15 15" width="100%" height="30px" preserveAspectRatio="xMaxYMin meet">
          <g id="arrow_out" transform="scale(0.3 0.3)">
-          <a xlink:href="lua51scriptargument_8cpp__incl_org.svg" target="_base">
+          <a xlink:href="lua51scriptargument_8cpp__incl_org.svg" target="_top" target="_base">
            <rect id="button" ry="5" rx="5" y="6" x="6" height="38" width="38"
                 fill="#f2f5e9" fill-opacity="0.5" stroke="#606060" stroke-width="1.0"/>
            <path id="arrow"

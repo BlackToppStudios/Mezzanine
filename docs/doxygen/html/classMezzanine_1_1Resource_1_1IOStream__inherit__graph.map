@@ -1,0 +1,7 @@
+<map id="Mezzanine::Resource::IOStream" name="Mezzanine::Resource::IOStream">
+<area shape="rect" id="node6" href="$classMezzanine_1_1Resource_1_1FileStream.html" title="This represents a stream to a file on disk using the C++ file stream API. " alt="" coords="92,273,240,315"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Resource_1_1MemoryStream.html" title="This represents a stream to a buffer in memory. " alt="" coords="264,273,412,315"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1iInStream.html" title="Interface class for input (read) streams. " alt="" coords="5,95,153,136"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Resource_1_1iStreamBase.html" title="Base class interface for resource streams. " alt="" coords="91,5,239,47"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Resource_1_1iOutStream.html" title="Interface class for output (write) streams. " alt="" coords="177,95,325,136"/>
+</map>
