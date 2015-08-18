@@ -289,7 +289,7 @@ namespace Mezzanine
         {
             #ifdef MEZZDEBUG
             if( Index >= this->Size )
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION, "Attempted access beyond range of Binary Buffer"); }
+                { MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION, "Attempted access beyond range of Binary Buffer"); }
             #endif
             return *(this->Binary + Index);
         }
