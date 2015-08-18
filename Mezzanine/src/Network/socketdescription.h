@@ -44,6 +44,7 @@
 #define _networksocketdescription_h
 
 #include "Network/ipaddress.h"
+#include "Network/systemaddress.h"
 
 namespace Mezzanine
 {
@@ -92,6 +93,19 @@ namespace Mezzanine
             /// @brief Class destructor.
             ~SocketDescription()
                 {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Converts the applicable data in this description into a SystemAddress which can be used by other parts of the Network system.
+            /// @return Returns a new SystemAddress class containing much of the same information in this SocketDescription.
+            SystemAddress ConvertToSystemAddress() const
+            {
+                SystemAddress Ret(this->SocketAddress,this->SocketPort,true);
+                Ret.SetV6Flow(this->V6FlowInformation);
+                Ret.SetV6Scope(this->V6ScopeID);
+                return Ret;
+            }
         };//SocketDescription
     }//Network
 }//Mezzanine

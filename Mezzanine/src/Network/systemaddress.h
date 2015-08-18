@@ -80,11 +80,13 @@ namespace Mezzanine
             SystemAddress(const IPAddress& TargetAddress);
             /// @brief Port constructor.
             /// @param TargetPort The port of the target in Host-Byte-Order.
-            SystemAddress(const UInt16 TargetPort);
+            /// @param NBO Whether or not the passed in port number is already in Network-Byte-Order.
+            SystemAddress(const UInt16 TargetPort, const Boole NBO = false);
             /// @brief Descriptive constructor.
             /// @param TargetAddress The IP address of the target.
             /// @param TargetPort The port of the target in Host-Byte-Order.
-            SystemAddress(const IPAddress& TargetAddress, const UInt16 TargetPort);
+            /// @param NBO Whether or not the passed in port number is already in Network-Byte-Order.
+            SystemAddress(const IPAddress& TargetAddress, const UInt16 TargetPort, const Boole NBO = false);
             /// @brief Copy constructor.
             /// @param Other The other SystemAddress to copy from.
             SystemAddress(const SystemAddress& Other);

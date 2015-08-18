@@ -43,7 +43,7 @@
 #ifndef _networkplatformincludes_h_cpp
 #define _networkplatformincludes_h_cpp
 
-#ifdef MEZZ_WINDOWS
+#if defined(MEZZ_WINDOWS)
     #define WIN32_LEAN_AND_MEAN
     #include <w32api.h>
     #define _WIN32_WINNT _WIN32_WINNT_VISTA
@@ -51,7 +51,7 @@
     #include <winsock2.h>
     #include <ws2tcpip.h>
     #include <basetsd.h>
-#elif MEZZ_MACOSX || MEZZ_LINUX
+#elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
     // Berkeley Sockets
     #include <sys/types.h>
     #include <sys/socket.h>
@@ -66,6 +66,6 @@
     #include <sys/ioctl.h>
 #endif //Platforms
 
-#endif
+#endif //Include guard
 
 #endif //MEZZNETWORK

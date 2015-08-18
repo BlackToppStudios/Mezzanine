@@ -403,6 +403,9 @@ namespace Mezzanine
             /// and before another method gets called.  Thus, the number returned cannot be a guarentee in all cases.
             /// @return Returns the amount of data that can be read from the receive buffer in bytes, or -1 if there was an error.
             Integer GetNumBytesAvailable() const;
+            /// @brief Gets whether or not this socket is invalid, indicating an error during creation.
+            /// @return Returns true if this socket is invalid, false if this socket has a valid file descriptor.
+            Boole IsInvalid() const;
 
             /// @brief Set a low level socket parameter.
             /// @param Level The type of option to be set.

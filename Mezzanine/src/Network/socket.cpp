@@ -165,6 +165,9 @@ namespace Mezzanine
         Integer Socket::GetNumBytesAvailable() const
             { return this->InternalSocket->GetNumBytesAvailable(); }
 
+        Boole Socket::IsInvalid() const
+            { return this->InternalSocket->IsInvalid(); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Core Operations
 

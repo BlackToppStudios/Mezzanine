@@ -249,6 +249,7 @@ namespace Mezzanine
             addrinfo Hints;
             addrinfo* Results;
 
+            memset(&Hints,0,sizeof(addrinfo));
             Hints.ai_family = this->SockDomain;
             Hints.ai_socktype = this->SockType;
             Hints.ai_flags = AI_PASSIVE;
@@ -447,23 +448,14 @@ namespace Mezzanine
             return Ret;
         }
 
+        Boole PlatformSocket::IsInvalid() const
+            { return ( this->InternalSocket == INVALID_SOCKET ); }
+
         Boole PlatformSocket::SetSocketOption(const Integer Level, const Integer OptID, const char* Value, const AddrLen ValueLen)
-        {
-            #if defined(MEZZ_WINDOWS)
-                return ( ::setsockopt(this->InternalSocket,Level,OptID,Value,ValueLen) != SOCKET_ERROR );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ( ::setsockopt(this->InternalSocket,Level,OptID,Value,ValueLen) == 0 );
-            #endif
-        }
+            { return ( ::setsockopt(this->InternalSocket,Level,OptID,Value,ValueLen) != SOCKET_ERROR ); }
 
         Boole PlatformSocket::GetSocketOption(const Integer Level, const Integer OptID, char* Value, AddrLen* ValueLen) const
-        {
-            #if defined(MEZZ_WINDOWS)
-                return ( ::getsockopt(this->InternalSocket,Level,OptID,Value,ValueLen) != SOCKET_ERROR );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ( getsockopt(this->InternalSocket,Level,OptID,Value,ValueLen) == 0 );
-            #endif
-        }
+            { return ( ::getsockopt(this->InternalSocket,Level,OptID,Value,ValueLen) != SOCKET_ERROR ); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Error Handling

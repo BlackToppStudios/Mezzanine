@@ -67,18 +67,16 @@ namespace Mezzanine
             Port(0)
             {  }
 
-        SystemAddress::SystemAddress(const UInt16 TargetPort) :
+        SystemAddress::SystemAddress(const UInt16 TargetPort, const Boole NBO) :
             V6Flow(0),
-            V6Scope(0),
-            Port(TargetPort)
-            {  }
+            V6Scope(0)
+            { this->SetPort(TargetPort,NBO); }
 
-        SystemAddress::SystemAddress(const IPAddress& TargetAddress, const UInt16 TargetPort) :
+        SystemAddress::SystemAddress(const IPAddress& TargetAddress, const UInt16 TargetPort, const Boole NBO) :
             Address(TargetAddress),
             V6Flow(0),
-            V6Scope(0),
-            Port(TargetPort)
-            {  }
+            V6Scope(0)
+            { this->SetPort(TargetPort,NBO); }
 
         SystemAddress::SystemAddress(const SystemAddress& Other) :
             Address(Other.Address),
