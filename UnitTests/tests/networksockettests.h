@@ -78,8 +78,6 @@ public:
     /// @param NullParam A parameter that was created just to satisfy the necessary signature.
     static void TCPClientv4HelperFunction(void* NullParam)
     {
-        Threading::this_thread::sleep_for(2 * 1000);
-
         const String Message1("Hello from myself!  So alone...");
         const Whole Message1Size = Message1.size();//31;
         const String Message2("I am all I need!");
@@ -115,8 +113,6 @@ public:
     /// @param NullParam A parameter that was created just to satisfy the necessary signature.
     static void TCPClientv6HelperFunction(void* NullParam)
     {
-        Threading::this_thread::sleep_for(2 * 1000);
-
         const String Message1("Hello from myself!  So alone...");
         const Whole Message1Size = Message1.size();//31;
         const String Message2("I am all I need!");
@@ -190,8 +186,6 @@ public:
                                 ReceiveSize = ClientConnection->Receive(ReceiveBuffer,ReceiveBufferSize);
                                 if( ReceiveSize > 0 ) {
                                     String MsgResult(ReceiveBuffer,ReceiveSize);
-                                    Boole ReceiveSuccess = ( Message == MsgResult );
-
                                     TCPv4Result = ( Message == MsgResult ) && ( ClientConnection->Send(TCPAck.c_str(),TCPAckSize) == TCPAckSize );
                                 }
                             }
@@ -250,8 +244,6 @@ public:
                                 ReceiveSize = ClientConnection->Receive(ReceiveBuffer,ReceiveBufferSize);
                                 if( ReceiveSize > 0 ) {
                                     String MsgResult(ReceiveBuffer,ReceiveSize);
-                                    Boole ReceiveSuccess = ( Message == MsgResult );
-
                                     TCPv6Result = ( Message == MsgResult ) && ( ClientConnection->Send(TCPAck.c_str(),TCPAckSize) == TCPAckSize );
                                 }
                             }
