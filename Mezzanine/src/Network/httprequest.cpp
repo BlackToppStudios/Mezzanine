@@ -45,6 +45,8 @@
 
 #include "Network/httprequest.h"
 
+#include "stringtool.h"
+
 namespace Mezzanine
 {
     namespace Network
@@ -130,9 +132,52 @@ namespace Mezzanine
             return RequestStream.str();
         }
 
-        void HTTPRequest::DecomposeRequest(const String& Request)
+        Boole HTTPRequest::DecomposeRequest(const String& Request)
         {
+            this->RequestFields.clear();
+            // Get the header information
+            const size_t HeaderEndPos = Request.find("\r\n");
+            if( HeaderEndPos != String::npos ) {
+                String HeaderSubString(0,HeaderEndPos);
+                StringVector SplitHeader = StringTools::Split(HeaderSubString," ",3);
 
+                this->RequestMethod = HTTPRequest::ConvertRequestMethod( SplitHeader[0] );
+                this->RequestURI = SplitHeader[1];
+
+                size_t DecimalPos = SplitHeader[2].find(".");
+                if( DecimalPos == String::npos ) {
+                    return false;
+                }
+
+                this->MajorVersion = StringTools::ConvertToUInt16( String( 1, SplitHeader[2].at( DecimalPos - 1 ) ) );
+                this->MinorVersion = StringTools::ConvertToUInt16( String( 1, SplitHeader[2].at( DecimalPos + 1 ) ) );
+            }else{
+                return false;
+            }
+            // Get the field information
+            const size_t FieldStartPos = HeaderEndPos + 2;
+            const size_t FieldEndPos = Request.find("\r\n\r\n",FieldStartPos);
+            if( FieldEndPos != String::npos ) {
+                // If the field section has no length, there are no fields
+                // Having no fields is valid in some situations, so we don't pair it with the check above that will cause an auto-fail
+                if( FieldStartPos <= FieldEndPos ) {
+                    size_t CurrPos = FieldStartPos;
+                    while( CurrPos < FieldEndPos )
+                    {
+                        const size_t CurrFieldEndPos = Request.find("\r\n",CurrPos);
+                        const size_t CurrFieldColonPos = Request.find(": ",CurrPos);
+                        if( CurrFieldColonPos != String::npos && CurrFieldColonPos < CurrFieldEndPos ) {
+                            this->SetField( Request.substr(CurrPos,CurrFieldColonPos - CurrPos), Request.substr(CurrFieldColonPos + 2,CurrFieldEndPos - ( CurrFieldColonPos + 2 ) ) );
+                        }
+                    }
+                }
+            }else{
+                return false;
+            }
+            // Lastly, get the body
+            this->RequestBody = Request.substr(FieldEndPos + 4);
+
+            return true;
         }
 
         void HTTPRequest::SetHTTPVersion(const UInt16 Major, const UInt16 Minor)

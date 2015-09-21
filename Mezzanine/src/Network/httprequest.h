@@ -105,8 +105,11 @@ namespace Mezzanine
             /// @return Returns a String containing the generated request.
             String ComposeRequest() const;
             /// @brief Populates the members of this class with data from a text HTTP request.
+            /// @warning A request can be partially decomposed when it fails and have that data saved to members of this class.  For that
+            /// reason you should only utilize the data in this class if the decompose was successful, or completely re-written.
             /// @param Request The String containing the request to be decomposed.
-            void DecomposeRequest(const String& Request);
+            /// @return Returns true if the String was successfully decomposed.
+            Boole DecomposeRequest(const String& Request);
 
             /// @brief Sets both the major and minor version of the request.
             /// @param Major The major portion of the version to set.  Initial Value: 1.
