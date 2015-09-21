@@ -102,30 +102,24 @@ namespace Mezzanine
             Source.erase(0,Source.find_first_not_of(Delims));
     }
 
-    CountedPtr<StringVector> StringTools::Split(const String& Source, const String& Delims, const Whole& MaxSplits)
+    StringVector StringTools::Split(const String& Source, const String& Delims, const Whole MaxSplits)
     {
-        CountedPtr<StringVector> Ret(new StringVector);
-        Ret->reserve( MaxSplits ? MaxSplits+1 : 10 );
+        StringVector Ret;
+        Ret.reserve( MaxSplits ? MaxSplits + 1 : 10 );
         Whole Splits = 0;
 
         size_t Start = 0;
         size_t Pos = 0;
 
-        do
-        {
+        do{
             Pos = Source.find_first_of(Delims,Start);
-            if(Pos == Start)
-            {
+            if( Pos == Start ) {
                 Start = Pos + 1;
-            }
-            else if(Pos == String::npos || (MaxSplits && Splits == MaxSplits))
-            {
-                Ret->push_back(Source.substr(Start));
+            }else if( Pos == String::npos || ( MaxSplits && Splits == MaxSplits ) ) {
+                Ret.push_back(Source.substr(Start));
                 break;
-            }
-            else
-            {
-                Ret->push_back(Source.substr(Start,Pos - Start));
+            }else{
+                Ret.push_back(Source.substr(Start,Pos - Start));
                 Start = Pos + 1;
             }
             Start = Source.find_first_not_of(Delims,Start);
@@ -212,10 +206,9 @@ namespace Mezzanine
 
     Vector2 StringTools::ConvertToVector2(const String& ToConvert)
     {
-        CountedPtr<StringVector> Digits = Split(ToConvert);
-        if(2 == Digits->size())
-        {
-            return Vector2(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)));
+        StringVector Digits = Split(ToConvert);
+        if( 2 == Digits.size() ) {
+            return Vector2(ConvertToReal(Digits.at(0)),ConvertToReal(Digits.at(1)));
         }else{
             MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"String does not contain 2 digits when attempting to convert.");
         }
@@ -223,17 +216,16 @@ namespace Mezzanine
 
     String StringTools::ConvertToString(const Vector2& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert.X << " " << ToConvert.Y;
         return converter.str();
     }
 
     Vector3 StringTools::ConvertToVector3(const String& ToConvert)
     {
-        CountedPtr<StringVector> Digits = Split(ToConvert);
-        if(3 == Digits->size())
-        {
-            return Vector3(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)));
+        StringVector Digits = Split(ToConvert);
+        if( 3 == Digits.size() ) {
+            return Vector3(ConvertToReal(Digits.at(0)),ConvertToReal(Digits.at(1)),ConvertToReal(Digits.at(2)));
         }else{
             MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"String does not contain 3 digits when attempting to convert.");
         }
@@ -241,17 +233,16 @@ namespace Mezzanine
 
     String StringTools::ConvertToString(const Vector3& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert.X << " " << ToConvert.Y << " " << ToConvert.Z;
         return converter.str();
     }
 
     Quaternion StringTools::ConvertToQuaternion(const String& ToConvert)
     {
-        CountedPtr<StringVector> Digits = Split(ToConvert);
-        if(4 == Digits->size())
-        {
-            return Quaternion(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
+        StringVector Digits = Split(ToConvert);
+        if( 4 == Digits.size() ) {
+            return Quaternion(ConvertToReal(Digits.at(0)),ConvertToReal(Digits.at(1)),ConvertToReal(Digits.at(2)),ConvertToReal(Digits.at(3)));
         }else{
             MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
         }
@@ -259,17 +250,16 @@ namespace Mezzanine
 
     String StringTools::ConvertToString(const Quaternion& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert.X << " " << ToConvert.Y << " " << ToConvert.Z << " " << ToConvert.W;
         return converter.str();
     }
 
     ColourValue StringTools::ConvertToColourValue(const String& ToConvert)
     {
-        CountedPtr<StringVector> Digits = Split(ToConvert);
-        if(4 == Digits->size())
-        {
-            return ColourValue(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
+        StringVector Digits = Split(ToConvert);
+        if( 4 == Digits.size() ) {
+            return ColourValue(ConvertToReal(Digits.at(0)),ConvertToReal(Digits.at(1)),ConvertToReal(Digits.at(2)),ConvertToReal(Digits.at(3)));
         }else{
             MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
         }
@@ -277,7 +267,7 @@ namespace Mezzanine
 
     String StringTools::ConvertToString(const ColourValue& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert.RedChannel << " " << ToConvert.GreenChannel << " " << ToConvert.BlueChannel << " " << ToConvert.AlphaChannel;
         return converter.str();
     }

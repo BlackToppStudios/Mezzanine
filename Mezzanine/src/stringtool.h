@@ -74,7 +74,7 @@ namespace Mezzanine
         /// @param Delims The characters to look for and use as split points in the source string.
         /// @param MaxSplits The maximum number of splits to perform on this string.  Value of zero means unlimited splits.
         /// @return Returns a vector containing all the substrings generated from the source string.
-        CountedPtr<StringVector> MEZZ_LIB Split(const String& Source, const String& Delims = " \t\n", const Whole& MaxSplits = 0);
+        StringVector MEZZ_LIB Split(const String& Source, const String& Delims = " \t\n", const Whole MaxSplits = 0);
         /// @brief Converts all lower case characters in a string to their respective upper case.
         /// @param Source The string to be converted.
         void MEZZ_LIB ToUpperCase(String& Source);

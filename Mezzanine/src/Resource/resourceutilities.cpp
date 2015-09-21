@@ -153,23 +153,23 @@ namespace Mezzanine
         {
             Boole Result = true;
             StringVector FolderNames;
-            CountedPtr<StringVector> FolderVec = StringTools::Split(DirectoryPath,"/\\");
+            StringVector FolderVec = StringTools::Split(DirectoryPath,"/\\");
             size_t StartIndex = 0;
             String PathAttempt;
             Char8 SysSlash = GetDirectorySeparator();
             #ifdef MEZZ_WINDOWS
             // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
-            if(FolderVec->at(0).find(':') != String::npos) {
-                PathAttempt.append( FolderVec->at(0) );
+            if( FolderVec.at(0).find(':') != String::npos ) {
+                PathAttempt.append( FolderVec.at(0) );
                 PathAttempt.append( 1, SysSlash );
                 StartIndex++;
             }
             #else
             PathAttempt.append( 1, SysSlash );
             #endif
-            for( size_t VecIndex = StartIndex ; VecIndex < FolderVec->size() ; ++VecIndex )
+            for( size_t VecIndex = StartIndex ; VecIndex < FolderVec.size() ; ++VecIndex )
             {
-                PathAttempt.append( FolderVec->at(VecIndex) );
+                PathAttempt.append( FolderVec.at(VecIndex) );
                 PathAttempt.append( 1, SysSlash );
                 Result = CreateDirectory( PathAttempt );
             }
