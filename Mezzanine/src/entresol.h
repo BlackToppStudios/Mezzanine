@@ -404,10 +404,30 @@ namespace Mezzanine
         typedef WorldContainer::const_iterator             ConstWorldIterator;
     private:
         /// @internal
+        /// @brief This is a map containing all the registered manager factories.
+        static ManagerFactoryMap ManagerFactories;
+        /// @internal
         /// @brief The core structure responsible for our multi-threaded main loop.
         Threading::FrameScheduler WorkScheduler;
+        /// @internal
+        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+        ManagerContainer ManagerList;
+        /// @internal
+        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+        WorldContainer Worlds;
+        /// @internal
+        /// @brief Used to track Ogre specific details for the statically linked Particle plugin
+        Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
+        /// @internal
+        /// @brief Responsible for asynchronously flushing the logs to disk (or wherever they sync to).
+        Threading::LogAggregator* Aggregator;
+        /// @internal
+        /// @brief Internal value used to indicate during the main loop something wants the loop to end.
+        Int32 ManualLoopBreak;
 
-        //Used by the constructors
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Initialization and Deinitialization Methods
+
         /// @internal
         /// @brief This is called by most of the constructors so that the is one unified place to have all the settings made.
         /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
@@ -415,61 +435,13 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
         /// @param ManagersToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
-        void Construct( const Physics::ManagerConstructionInfo& PhysicsInfo,
-                        const String& SceneType,
-                        const String& EngineDataPath,
-                        const String& GraphicsLogFileName,
-                        const ManagerVec& ManagersToBeAdded );
-
+        void Construct(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType, const String& EngineDataPath, const String& GraphicsLogFileName, const ManagerVec& ManagersToBeAdded);
         /// @internal
         /// @brief Used to intialize from XML
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param ArchType Should This be looking for raw or zip or whatever kind of files.
         /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.
-        void ConstructFromXML(  const String& EngineDataPath,
-                                const ArchiveType ArchType,
-                                const String& InitializerFile );
-
-        /// @brief Perform a series of checks that could change on certain system or from certain codechanges to alert us to any problems early.
-        void SanityChecks();
-
-        Boole VerifyManagerInitializations();
-
-        /// @internal
-        /// @brief This is a map containing all the registered manager factories.
-        ManagerFactoryMap ManagerFactories;
-        /// @internal
-        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
-        ManagerContainer ManagerList;
-
-        /// @internal
-        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
-        WorldContainer Worlds;
-
-        /// @internal
-        /// @brief Used to track Ogre specific details for the statically linked Particle plugin
-        Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
-
-        //Used to break the mainloop
-        Int32 ManualLoopBreak;
-
-        /// @internal
-        /// @brief Responsible for asynchronously flushing the logs to disk (or wherever they sync to).
-        Threading::LogAggregator* Aggregator;
-
-        /// @internal
-        /// @brief Create and direct streams used for logging that are not part of the FrameScheduler
-        /// @details This sets the name of the Ogre log file (so must be called after the SetupOgre
-        /// function is called). This will be changed in the future to change/set the framescheduler
-        /// log, in the meantime its only interaction with the framescheduler is adding a
-        /// LogAggregator WorkUnit.
-        /// @param LogFileName The name of the file to log to. Some Subsystems will use this in addition to some other descriptor
-        void SetupLogging(const String& OgreLogFileName);
-        void SetupOgreLogging(const String& OgreLogFileName);
-        void SetupInternalLogging();
-        /// @internal
-        /// @brief Closes log files/streams and removes any WorkUnits from Scheduling dedicated to logging.
-        void DestroyLogging();
+        void ConstructFromXML(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile);
 
         /// @internal
         /// @brief If not already created create an instance of Ogre.
@@ -478,9 +450,35 @@ namespace Mezzanine
         /// @brief Do any teardown required for Ogre, then destroy Ogre.
         void DestroyOgre();
         /// @internal
-        /// @brief Do any teardown required for SDL
+        /// @brief Do any teardown required for SDL that may have been missed by other managers.
         void DestroySDL();
 
+        /// @internal
+        /// @brief Create and direct streams used for logging that are not part of the FrameScheduler.
+        /// @details This sets the name of the Ogre log file (so must be called after the SetupOgre
+        /// function is called). This will be changed in the future to change/set the framescheduler
+        /// log, in the meantime its only interaction with the framescheduler is adding a
+        /// LogAggregator WorkUnit.
+        /// @param LogFileName The name of the file to log to.
+        void SetupLogging(const String& OgreLogFileName);
+        /// @internal
+        /// @brief Creates the logging components used by ogre and configures them appropriately.
+        /// @param LogFileName The name of the file to log to.
+        void SetupOgreLogging(const String& OgreLogFileName);
+        /// @internal
+        /// @brief Creates the appropriate streams for multi-threaded logging and configures them appropriately.
+        void SetupInternalLogging();
+        /// @internal
+        /// @brief Closes log files/streams and removes any WorkUnits from Scheduling dedicated to logging.
+        void DestroyLogging();
+
+        /// @internal
+        /// @brief Performs a small series of checks to verify assumptions made by the Mezzanine.
+        void SanityChecks();
+        /// @internal
+        /// @brief Checks if all managers currently stored in this Entresol have been initialized.
+        /// @return Returns true if all stored managers have been initialized, false otherwise.
+        Boole VerifyManagerInitializations();
     public:
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
@@ -607,10 +605,8 @@ namespace Mezzanine
         /// @brief This Function house the main loop.
         /// @details If using this you don't need to worry about initialization of managers or other pre main loop items.
         void MainLoop();
-
         /// @brief Initialize any default managers and any added after construction. This should be called before DoOneFrame()
         void PreMainLoopInit();
-
         /// @brief Run one frame
         /// @details This should only be called after Managers and other Pre Main loop items
         void DoOneFrame();
@@ -620,7 +616,6 @@ namespace Mezzanine
         /// @details If called while not in the main loop, it will affect the next main loop iteration.
         /// This function is thread safe and can be called from any work unit at any time.
         void BreakMainLoop(Boole Break = true);
-
         /// @brief How many frames have elasped?
         /// @return A Whole containing the currect 0 based frame number.
         Whole GetFrameCount() const;
@@ -630,24 +625,24 @@ namespace Mezzanine
 
         /// @brief Adds/registers a manager factory with this Entresol, allowing it to be constructed through this API.
         /// @param ToBeAdded The manager factory to be added.
-        void AddManagerFactory(EntresolManagerFactory* ToBeAdded);
+        static void AddManagerFactory(EntresolManagerFactory* ToBeAdded);
         /// @brief Removes a manager factory from this Entresol.
         /// @param ToBeRemoved A pointer to the manager factory that is to be removed.
-        void RemoveManagerFactory(EntresolManagerFactory* ToBeRemoved);
+        static void RemoveManagerFactory(EntresolManagerFactory* ToBeRemoved);
         /// @brief Removes a manager factory from this Entresol.
         /// @param ImplName The name of the manager implementation created by the factory to be removed.
-        void RemoveManagerFactory(const String& ImplName);
+        static void RemoveManagerFactory(const String& ImplName);
         /// @brief Removes and destroys a manager factory in this Entresol.
         /// @param ToBeRemoved A pointer to the manager factory that is to be removed and destroyed.
-        void DestroyManagerFactory(EntresolManagerFactory* ToBeRemoved);
+        static void DestroyManagerFactory(EntresolManagerFactory* ToBeRemoved);
         /// @brief Removes and destroys a manager factory in this Entresol.
         /// @param ImplName The name of the manager implementation created by the factory to be removed and destroyed.
-        void DestroyManagerFactory(const String& ImplName);
+        static void DestroyManagerFactory(const String& ImplName);
         /// @brief Destroys all manager factories in this Entresol.
         /// @warning The destruction of manager factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
-        void DestroyAllManagerFactories();
+        static void DestroyAllManagerFactories();
         /// @brief Adds all the default manager factories provided by the engine to the Entresol.
-        void AddAllEngineDefaultManagerFactories();
+        static void AddAllEngineDefaultManagerFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Upper Management
