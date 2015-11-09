@@ -342,7 +342,7 @@ int main(int argc, char **argv)
         //Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
         //Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
         //Info.MaxProxies = 60;
-        TheEntresol = new Entresol( Info, "DefaultSceneManager", "data/common/", "EngineDemoLog.txt");
+        TheEntresol = new Entresol( "data/common/", "EngineDemoLog.txt");
         TheEntresol->SetTargetFrameRate(60);
 
         TheEntresol->Initialize(false);
