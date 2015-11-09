@@ -379,12 +379,10 @@ namespace Mezzanine
 
         /// @internal
         /// @brief This is called by most of the constructors so that the is one unified place to have all the settings made.
-        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-        /// @param SceneType This is the type of Scene Manager to be created.
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
         /// @param ManagersToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
-        void Construct(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType, const String& EngineDataPath, const String& GraphicsLogFileName, const ManagerVec& ManagersToBeAdded);
+        void Construct(const String& EngineDataPath, const String& GraphicsLogFileName, const ManagerVec& ManagersToBeAdded);
         /// @internal
         /// @brief Used to intialize from XML
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
@@ -449,33 +447,20 @@ namespace Mezzanine
         /// @param ArchType The type of archive at the path provided.
         /// @param InitializerFile The file that describes how to initialize Mezzanine.
         Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
-        /// @brief Descriptive constructor With Manager Pointers
-        /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
-        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-        /// @param SceneType A cue to the scenemanager as to how rendering should occur.
+        /// @brief Descriptive constructor With Manager Pointers.
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
         /// @param LogFileName This is the place that log messages get sent to.
-        Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
-                   const String& SceneType,
-                   const String& EngineDataPath,
-                   const String& LogFileName = "Mezzanine.log" );
-        /// @brief Descriptive constructor
+        Entresol(const String& EngineDataPath, const String& LogFileName = "Mezzanine.log" );
+        /// @brief Descriptive constructor.
         /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the entresol.
-        /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other
+        /// This constructor provides no default arguments, but allows for a lot of customization. In addition to everything the other
         /// constructors this one can accept a vector of pointers to managers which will be added.
-        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-        /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param LogFileName This is the place that log messages get sent to.
-        /// @param SceneType A cue to the scenemanager as to how rendering should occur.
         /// @param ManagersToBeAdded This is a vector of manager pointers that will be used instead of creating new ones.
-        Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
-                   const String& SceneType,
-                   const String& EngineDataPath,
-                   const String& LogFileName,
-                   const ManagerVec& ManagersToBeAdded);
+        Entresol(const String& EngineDataPath, const String& LogFileName, const ManagerVec& ManagersToBeAdded);
         /// @brief Default constructor.
-        /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a entresol which expands for 100 units from the Origin, and only allows 10 Actors.
+        /// @details This simply performs the same work as the descriptive constructor with some sane defaults.
         /// @warning Do not make a new entresol if one already exists. This can only cause problems.
         Entresol();
         /// @brief Deconstructor.
@@ -613,6 +598,7 @@ namespace Mezzanine
         void DestroyAllManagers();
 
         /// @brief This adds a manager, in the correct order, to the list that the Entresol calls on.
+        /// @note This method will detect if a manager is being double inserted, and will silently fail in such a case.
         /// @param ManagerToAdd The pointer to the manager to be added.
         void AddManager(EntresolManager* ManagerToAdd);
         /// @brief This removes a manager by finding the matching pointer.

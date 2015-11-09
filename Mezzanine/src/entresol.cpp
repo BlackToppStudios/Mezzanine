@@ -106,18 +106,17 @@ namespace Mezzanine
     /// @TODO In the Entrosol, reomves all references to a plugins file
     Entresol::Entresol()
     {
-        Physics::ManagerConstructionInfo PhysicsInfo;
         ManagerVec temp;
-
-        this->Construct(PhysicsInfo,"DefaultSceneManager",".","Mezzanine.log",temp);
+        this->Construct(".","Mezzanine.log",temp);
     }
 
     Entresol::Entresol(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
     {
-        if( String::npos != InitializerFile.find(".mxi") )
-            { this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile); }
-        else
-            { MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
+        if( String::npos != InitializerFile.find(".mxi") ) {
+            this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile);
+        }else{
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type.");
+        }
     }
 
     Entresol::Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
@@ -127,36 +126,22 @@ namespace Mezzanine
             this->AddManagerFactory( (*it) );
         }
 
-        if( String::npos != InitializerFile.find(".mxi") )
-            { this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile); }
-        else
-            { MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
+        if( String::npos != InitializerFile.find(".mxi") ) {
+            this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile);
+        }else{
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type.");
+        }
     }
 
-    Entresol::Entresol( const Physics::ManagerConstructionInfo& PhysicsInfo,
-                        const String& SceneType,
-                        const String& EngineDataPath,
-                        const String& LogFileName)
+    Entresol::Entresol(const String& EngineDataPath, const String& LogFileName)
     {
         ManagerVec temp;
-        this->Construct(PhysicsInfo,
-                        SceneType,
-                        EngineDataPath,
-                        LogFileName,
-                        temp );
+        this->Construct(EngineDataPath, LogFileName, temp);
     }
 
-    Entresol::Entresol( const Physics::ManagerConstructionInfo& PhysicsInfo,
-                        const String& SceneType,
-                        const String& EngineDataPath,
-                        const String& LogFileName,
-                        const ManagerVec& ManagersToBeAdded)
+    Entresol::Entresol(const String& EngineDataPath, const String& LogFileName, const ManagerVec& ManagersToBeAdded)
     {
-        this->Construct(PhysicsInfo,
-                        SceneType,
-                        EngineDataPath,
-                        LogFileName,
-                        ManagersToBeAdded );
+        this->Construct(EngineDataPath, LogFileName, ManagersToBeAdded);
     }
 
     Entresol::~Entresol()
@@ -176,15 +161,10 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Initialization and Deinitialization Methods
 
-    void Entresol::Construct( const Physics::ManagerConstructionInfo& PhysicsInfo,
-                              const String& SceneType,
-                              const String& EngineDataPath,
-                              const String& GraphicsLogFileName,
-                              const ManagerVec& ManagersToBeAdded )
-
+    void Entresol::Construct(const String& EngineDataPath, const String& GraphicsLogFileName, const ManagerVec& ManagersToBeAdded)
     {
         //Add default manager factories
-        this->AddAllEngineDefaultManagerFactories();
+        Entresol::AddAllEngineDefaultManagerFactories();
         World::AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values
         this->ManualLoopBreak = 0;
@@ -203,26 +183,37 @@ namespace Mezzanine
         //Dummy param list so we can use the auto-added manager types if needed
         NameValuePairList Params;
         // Create and add any managers that have not been taken care of yet.
-        if( this->GetManager(ManagerBase::MT_ResourceManager) == 0 )
-            { this->AddManager( new Resource::ResourceManager(EngineDataPath) ); }
-        if( this->GetManager(ManagerBase::MT_GraphicsManager) == 0 )
-            { this->AddManager( new Graphics::GraphicsManager() ); }
-        if( this->GetManager(ManagerBase::MT_EventManager) == 0 )
-            { this->AddManager( new EventManager() ); }
-        if( this->GetManager(ManagerBase::MT_InputManager) == 0 )
-            { this->AddManager( new Input::InputManager() ); }
-        if( this->GetManager(ManagerBase::MT_UIManager) == 0 )
-            { this->AddManager( new UI::UIManager() ); }
-        if( this->GetManager(ManagerBase::MT_MeshManager) == 0 )
-            { this->AddManager( new Graphics::MeshManager() ); }
-        if( this->GetManager(ManagerBase::MT_TextureManager) == 0 )
-            { this->AddManager( new Graphics::TextureManager() ); }
-        if( this->GetManager(ManagerBase::MT_CollisionShapeManager) == 0 )
-            { this->AddManager( new Physics::CollisionShapeManager() ); }
+        if( this->GetManager(ManagerBase::MT_ResourceManager) == 0 ) {
+            Params.push_back( std::pair<String,String>("EngineDataPath",EngineDataPath) );
+            this->CreateManager( "DefaultResourceManager", Params );
+            Params.clear();
+        }
+        if( this->GetManager(ManagerBase::MT_GraphicsManager) == 0 ) {
+            this->CreateManager( "DefaultGraphicsManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_EventManager) == 0 ) {
+            this->CreateManager( "DefaultEventManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_InputManager) == 0 ) {
+            this->CreateManager( "DefaultInputManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_UIManager) == 0 ) {
+            this->CreateManager( "DefaultUIManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_MeshManager) == 0 ) {
+            this->CreateManager( "DefaultMeshManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_TextureManager) == 0 ) {
+            this->CreateManager( "DefaultTextureManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_CollisionShapeManager) == 0 ) {
+            this->CreateManager( "DefaultCollisionShapeManager", Params );
+        }
 
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
-        if( this->GetManager(ManagerBase::MT_AudioManager) == 0 )
-            { this->AddManager( this->CreateManager("OALSAudioManager",Params,false) ); }
+        if( this->GetManager(ManagerBase::MT_AudioManager) == 0 ) {
+            this->CreateManager("OALSAudioManager",Params);
+        }
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
         // This Tests various assumptions about the way the platform works, and will not act
@@ -789,7 +780,7 @@ namespace Mezzanine
         #ifdef MEZZDEBUG
         this->_Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".\n");
         #endif
-        // We have to verify the manager is unique.  A number of issues can arrise if a manager is double inserted.
+        // We have to verify the manager is unique.  A number of issues can arise if a manager is double inserted.
         for( ManagerIterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
         {
             if( (*ManIter) == ManagerToAdd )
