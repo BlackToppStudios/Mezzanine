@@ -172,11 +172,11 @@ namespace Mezzanine
             Ogre::SceneNode* GetNode() const;
         };//Line3D
 
-        Line3D::Line3D(World * ParentWorldArg) 
+        Line3D::Line3D(World * ParentWorldArg)
             : ParentWorld(ParentWorldArg)
         {
             mRenderOp.vertexData = new Ogre::VertexData();
-            this->SelfNode = this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+            this->SelfNode = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) )->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
 
             // Initialization stuff
             mRenderOp.indexData = 0;
@@ -210,7 +210,7 @@ namespace Mezzanine
 
         Line3D::~Line3D()
         {
-            this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
+            static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) )->_GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
             delete mRenderOp.vertexData;
         }
 

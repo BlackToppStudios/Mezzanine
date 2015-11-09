@@ -290,7 +290,7 @@ namespace Mezzanine
         this->_Data->EventPumpWork = new EventPumpWorkUnit(this);
     }
 
-    EventManager::EventManager(XML::Node& XMLNode)
+    EventManager::EventManager(const XML::Node& XMLNode)
     {
         UInt32 InitSDLSystems = SDL_WasInit(0);
         if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
@@ -695,7 +695,7 @@ namespace Mezzanine
     ManagerBase::ManagerType DefaultEventManagerFactory::GetManagerType() const
         { return EventManager::InterfaceType; }
 
-    EntresolManager* DefaultEventManagerFactory::CreateManager(NameValuePairList& Params)
+    EntresolManager* DefaultEventManagerFactory::CreateManager(const NameValuePairList& Params)
     {
         if( EventManager::SingletonValid() ) {
             /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -703,7 +703,7 @@ namespace Mezzanine
         }else return new EventManager();
     }
 
-    EntresolManager* DefaultEventManagerFactory::CreateManager(XML::Node& XMLNode)
+    EntresolManager* DefaultEventManagerFactory::CreateManager(const XML::Node& XMLNode)
     {
         if( EventManager::SingletonValid() ) {
             /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

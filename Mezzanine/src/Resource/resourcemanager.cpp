@@ -75,7 +75,7 @@ namespace Mezzanine
             this->CreateAssetGroup("");
         }
 
-        ResourceManager::ResourceManager(XML::Node& XMLNode)
+        ResourceManager::ResourceManager(const XML::Node& XMLNode)
         {
             this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
             this->CreateAssetGroup("");
@@ -273,7 +273,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultResourceManagerFactory::GetManagerType() const
             { return ResourceManager::InterfaceType; }
 
-        EntresolManager* DefaultResourceManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultResourceManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( ResourceManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -285,7 +285,7 @@ namespace Mezzanine
 
             String EngineDataPath;
             ArchiveType ArchiveType_;
-            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
             {
                 String Lower = (*ParIt).first;
                 StringTools::ToLowerCase(Lower);
@@ -298,7 +298,7 @@ namespace Mezzanine
             return new ResourceManager(EngineDataPath,ArchiveType_);
         }
 
-        EntresolManager* DefaultResourceManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultResourceManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( ResourceManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

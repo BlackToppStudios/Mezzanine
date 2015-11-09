@@ -190,7 +190,7 @@ namespace Mezzanine
             //OgreManager->setShadowCameraSetup(ShadowCam);
         }
 
-        SceneManager::SceneManager(World* Creator, XML::Node& XMLNode) :
+        SceneManager::SceneManager(World* Creator, const XML::Node& XMLNode) :
             WorldManager(Creator),
             ThreadResources(NULL)
         {
@@ -688,13 +688,13 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultSceneManagerFactory::GetManagerType() const
             { return SceneManager::InterfaceType; }
 
-        WorldManager* DefaultSceneManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+        WorldManager* DefaultSceneManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
         {
             if( Params.empty() ) {
                 return new SceneManager(Creator);
             }
             String InternalManagerTypeName;
-            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
             {
                 String Lower = (*ParIt).first;
                 StringTools::ToLowerCase(Lower);
@@ -705,7 +705,7 @@ namespace Mezzanine
             return new SceneManager(Creator,InternalManagerTypeName);
         }
 
-        WorldManager* DefaultSceneManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+        WorldManager* DefaultSceneManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
         {
             return new SceneManager(Creator,XMLNode);
         }

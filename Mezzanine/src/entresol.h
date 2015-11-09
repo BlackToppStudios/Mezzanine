@@ -286,57 +286,6 @@
     #include "Threading/dagframescheduler.h"
 #endif
 
-namespace Mezzanine
-{
-    // Forward declarations
-    class ActorManager;
-    class AreaEffectManager;
-    class DebrisManager;
-    class EventManager;
-    class EntresolManager;
-    class EntresolManagerFactory;
-    class World;
-    class WorldManager;
-    namespace Audio
-    {
-        class AudioManager;
-        class SoundScapeManager;
-    }
-    namespace Graphics
-    {
-        class GraphicsManager;
-        class MeshManager;
-        class SceneManager;
-        class TextureManager;
-    }
-    namespace Input
-    {
-        class InputManager;
-    }
-    namespace Network
-    {
-        class NetworkManager;
-    }
-    namespace Physics
-    {
-        class PhysicsManager;
-        class CollisionShapeManager;
-        class ManagerConstructionInfo;
-    }
-    namespace Resource
-    {
-        class ResourceManager;
-    }
-    namespace UI
-    {
-        class UIManager;
-    }
-    namespace Scripting
-    {
-        class iScriptingManager;
-    }
-}
-
 //Other forward declarations
 //forward Declarations so that we do not need #include "SDL.h"
 class SDL_Surface;
@@ -344,14 +293,6 @@ class SDL_Surface;
 //forward Declarations so that we do not need #include <Ogre.h>
 namespace Ogre
 {
-    class Root;
-    class RenderSystem;
-    class RenderWindow;
-    class ResourceGroupManager;
-    class SceneManager;
-    class Camera;
-    class Viewport;
-
     class ParticleFXPlugin;
 }
 
@@ -364,6 +305,14 @@ namespace Ogre
 ///////////////////////////////////////
 namespace Mezzanine
 {
+    class EntresolManager;
+    class EntresolManagerFactory;
+    class World;
+    class WorldManager;
+    namespace Physics
+    {
+        class ManagerConstructionInfo;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Entresol
     /// @brief This is the main entry point for the entire library.
@@ -537,9 +486,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Pauses all animations, particles, and object movement throughout all worlds.
-        /// @param Pause Pauses the world if true, unpauses if false.
-        void PauseAllWorlds(Boole Pause);
+        /// @brief Gets the core structure responsible for scheduling work in the Entresol main loop.
+        /// @return Returns a reference to the FrameScheduler being used by this Entresol.
+        Threading::FrameScheduler& GetScheduler();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Timing system methods
@@ -595,18 +544,15 @@ namespace Mezzanine
         /// @brief This deinitializeds all managers and Worlds currently in the Entresol.
         void Deinitialize();
 
+        /// @brief Initialize any default managers and any added after construction. This should be called before DoOneFrame()
+        void PreMainLoopInit();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Main Loop
-
-        /// @brief Gets the core structure responsible for scheduling work in the Entresol main loop.
-        /// @return Returns a reference to the FrameScheduler being used by this Entresol.
-        Threading::FrameScheduler& GetScheduler();
 
         /// @brief This Function house the main loop.
         /// @details If using this you don't need to worry about initialization of managers or other pre main loop items.
         void MainLoop();
-        /// @brief Initialize any default managers and any added after construction. This should be called before DoOneFrame()
-        void PreMainLoopInit();
         /// @brief Run one frame
         /// @details This should only be called after Managers and other Pre Main loop items
         void DoOneFrame();
@@ -652,13 +598,13 @@ namespace Mezzanine
         /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
         /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
         /// @return Returns a pointer to the created manager.
-        EntresolManager* CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToEntresol = true);
+        EntresolManager* CreateManager(const String& ManagerImplName, const NameValuePairList& Params, const Boole AddToEntresol = true);
         /// @brief Creates a new manager.
         /// @param ManagerImplName The name of the manager implementation to create.
         /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
         /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
         /// @return Returns a pointer to the created manager.
-        EntresolManager* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToEntresol = true);
+        EntresolManager* CreateManager(const String& ManagerImplName, const XML::Node& XMLNode, const Boole AddToEntresol = true);
         /// @brief Destroys a manager.
         /// @param ToBeDestroyed The manager to be destroyed.
         void DestroyManager(EntresolManager* ToBeDestroyed);
@@ -673,61 +619,14 @@ namespace Mezzanine
         /// @param ManagerToRemove A pointer to the manager to be removed.
         void RemoveManager(EntresolManager* ManagerToRemove);
         /// @brief This is will find the manager of a given type.
-        /// @param RetrieveType The ManagerBase::ManagerTypeName of the manager to get.
+        /// @param RetrieveType The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
         /// @param WhichOne If not getting the first/only manager of the given type, get one.
         /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists.
-        EntresolManager* GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne = 0);
-        /// @brief This removes a manager of a specific type from the list
-        /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
+        EntresolManager* GetManager(const Whole RetrieveType, UInt16 WhichOne = 0);
+        /// @brief This removes a manager of a specific type from the list.
+        /// @param RemoveType The type ID of the manager to remove.  Use ManagerBase::ManagerType enum values for this.
         /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
-        void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
-
-        /// @brief This gets the AudioManager from the manager list.
-        /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
-        /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.
-        Audio::AudioManager* GetAudioManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the CollisionShapeManager from the manager list.
-        /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
-        /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.
-        Physics::CollisionShapeManager* GetCollisionShapeManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the EventManager from the manager list.
-        /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
-        /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
-        EventManager* GetEventManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the GraphicsManager from the manager list.
-        /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
-        /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
-        Graphics::GraphicsManager* GetGraphicsManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the InputManager from the manager list.
-        /// @param WhichOne If you have multiple InputManagers this will choose which one to return.
-        /// @return This returns a pointer to a InputManager, or a NULL pointer if no matching manager exists.
-        Input::InputManager* GetInputManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the MeshManager from the manager list.
-        /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
-        /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
-        Graphics::MeshManager* GetMeshManager(const UInt16 WhichOne = 0);
-#ifdef MEZZNETWORK
-        /// @brief This gets the NetworkManager from the manager list.
-        /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.
-        /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
-        Network::NetworkManager* GetNetworkManager(const UInt16 WhichOne = 0);
-#endif
-        /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
-        /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
-        /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
-        Resource::ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the TextureManager from the manager list.
-        /// @param WhichOne If you have multiple TextureManagers this will choose which one to return.
-        /// @return This returns a pointer to a TextureManager, or a NULL pointer if no matching manager exists.
-        Graphics::TextureManager* GetTextureManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the UIManager from the manager list.
-        /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
-        /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
-        UI::UIManager* GetUIManager(const UInt16 WhichOne = 0);
-        /// @brief This gets a ScriptingManager from the manager list.
-        /// @param WhichOne If you have multiple ScriptingManagers this will choose which one to return.
-        /// @return This returns a pointer to a ScriptingManager, or a NULL pointer if no matching manager exists.
-        Scripting::iScriptingManager* GetScriptingManager(const UInt16 WhichOne = 0);
+        void RemoveManager(const Whole RemoveType, UInt16 WhichOne = 0);
 
         ///////////////////////////////////////////////////////////////////////////////
         // World Management
@@ -788,6 +687,10 @@ namespace Mezzanine
         void DestroyWorldByName(const String& WorldName);
         /// @brief This destroys all the worlds in the world list.
         void DestroyAllWorlds();
+
+        /// @brief Pauses all animations, particles, and object movement throughout all worlds.
+        /// @param Pause Pauses the world if true, unpauses if false.
+        void PauseAllWorlds(Boole Pause);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Logging

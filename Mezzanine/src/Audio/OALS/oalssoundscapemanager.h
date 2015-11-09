@@ -160,7 +160,7 @@ namespace Mezzanine
                 /// @brief XML constructor.
                 /// @param Creator The parent world that is creating the manager.
                 /// @param XMLNode The node of the xml document to construct from.
-                SoundScapeManager(World* Creator, XML::Node& XMLNode);
+                SoundScapeManager(World* Creator, const XML::Node& XMLNode);
                 /// @brief Class destructor.
                 virtual ~SoundScapeManager();
 

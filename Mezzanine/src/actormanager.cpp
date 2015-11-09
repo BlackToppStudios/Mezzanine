@@ -91,7 +91,7 @@ namespace Mezzanine
         this->ActorUpdateWork = new ActorUpdateWorkUnit(this);
     }
 
-    ActorManager::ActorManager(World* Creator, XML::Node& XMLNode) :
+    ActorManager::ActorManager(World* Creator, const XML::Node& XMLNode) :
         WorldManager(Creator),
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
@@ -273,7 +273,7 @@ namespace Mezzanine
             WorldManager::Initialize();
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->ActorUpdateWork, "ActorUpdateWork" );
-            Physics::PhysicsManager* PhysicsMan = this->ParentWorld->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
             if( PhysicsMan ) {
                 this->ActorUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
             }
@@ -320,10 +320,10 @@ namespace Mezzanine
     ManagerBase::ManagerType DefaultActorManagerFactory::GetManagerType() const
         { return ActorManager::InterfaceType; }
 
-    WorldManager* DefaultActorManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+    WorldManager* DefaultActorManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
         { return new ActorManager(Creator); }
 
-    WorldManager* DefaultActorManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+    WorldManager* DefaultActorManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
         { return new ActorManager(Creator,XMLNode); }
 
     void DefaultActorManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)

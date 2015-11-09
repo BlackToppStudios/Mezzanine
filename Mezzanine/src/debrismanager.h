@@ -144,7 +144,7 @@ namespace Mezzanine
         /// @brief XML constructor.
         /// @param Creator The parent world that is creating the manager.
         /// @param XMLNode The node of the xml document to construct from.
-        DebrisManager(World* Creator, XML::Node& XMLNode);
+        DebrisManager(World* Creator, const XML::Node& XMLNode);
         /// @brief Class destructor.
         virtual ~DebrisManager();
 
@@ -293,10 +293,10 @@ namespace Mezzanine
         /// @copydoc ManagerFactory::GetManagerType() const
         ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc WorldManagerFactory::CreateManager(World*, NameValuePairList&)
-        WorldManager* CreateManager(World* Creator, NameValuePairList& Params);
-        /// @copydoc WorldManagerFactory::CreateManager(World*, XML::Node&)
-        WorldManager* CreateManager(World* Creator, XML::Node& XMLNode);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, const NameValuePairList&)
+        WorldManager* CreateManager(World* Creator, const NameValuePairList& Params);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, const XML::Node&)
+        WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode);
         /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
         void DestroyManager(WorldManager* ToBeDestroyed);
     };//DefaultDebrisManagerFactory

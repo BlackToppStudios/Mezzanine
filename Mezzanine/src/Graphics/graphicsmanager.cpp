@@ -132,7 +132,7 @@ namespace Mezzanine
             this->AutoGenFiles = false;
         }
 
-        GraphicsManager::GraphicsManager(XML::Node& XMLNode) :
+        GraphicsManager::GraphicsManager(const XML::Node& XMLNode) :
             PrimaryGameWindow(NULL),
             RenderWork(NULL),
             ThreadResources(NULL),
@@ -572,9 +572,22 @@ namespace Mezzanine
 
         void GraphicsManager::RenderOneFrame()
         {
+            // Do the actual frame
             Ogre::Root::getSingleton().renderOneFrame();
-            if( !this->GetPrimaryGameWindow()->_GetOgreWindowPointer()->isVisible() )
+            // This fixes an undocumented error of some kind
+            if( !this->GetPrimaryGameWindow()->_GetOgreWindowPointer()->isVisible() ) {
                 Ogre::Root::getSingleton().clearEventTimes();
+            }
+            // Do the Logging aggregation
+            /*Ogre::Log* DefaultLog = Ogre::LogManager::getSingleton().getDefaultLog();
+            if( DefaultLog != NULL ) {
+                if( this->ThreadResources != NULL ) {
+                    //this->ThreadResources->GetUsableLogger() << DefaultLog->stream();
+                }else{
+                    //Entresol::GetSingletonPtr()->_GetLogStream() << DefaultLog->stream();
+                }
+                DefaultLog->stream().flush();
+            }//*/
         }
 
         void GraphicsManager::SwapAllBuffers(Boole WaitForVsync)
@@ -628,14 +641,14 @@ namespace Mezzanine
                 // Textures are loaded into video memory, which we can only do with a valid and initialized rendering context.
                 // If the context goes away, such as is the case when the rendersystem is shut down then we can't have textures loaded.
                 // So deinitialize the TextureManager.
-                this->TheEntresol->GetTextureManager()->Deinitialize();
+                this->TheEntresol->GetManager(ManagerBase::MT_TextureManager)->Deinitialize();
 
                 /// @todo Here is where we should be shutting down the rendersystem, but Ogre in it's poorly coded ways wasn't
                 /// designed for that unless you are also deleting Ogre::Root.  Take it up with them if you don't like it.
                 /// (tell me where the thread is when you do, I'll join in)
                 /// Related: http://www.ogre3d.org/forums/viewtopic.php?f=4&t=77036&sid=a7ce7512032eb851d50da083795198f3
 
-                if(this->AutoGenFiles)
+                if( this->AutoGenFiles )
                     this->SaveAllSettings();
 
                 this->Initialized = false;
@@ -682,7 +695,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultGraphicsManagerFactory::GetManagerType() const
             { return GraphicsManager::InterfaceType; }
 
-        EntresolManager* DefaultGraphicsManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultGraphicsManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( GraphicsManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -692,7 +705,7 @@ namespace Mezzanine
             }
         }
 
-        EntresolManager* DefaultGraphicsManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultGraphicsManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( GraphicsManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

@@ -420,7 +420,7 @@ namespace Mezzanine
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(World* Creator, XML::Node& XMLNode) :
+        PhysicsManager::PhysicsManager(World* Creator, const XML::Node& XMLNode) :
             WorldManager(Creator),
             SimulationPaused(false),
             DebugRenderMode(0),
@@ -1396,13 +1396,13 @@ namespace Mezzanine
                 }else{
                     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork, "SimulationWorkMain" );
                 }
-                Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
+                Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
                 if( GraphicsMan )
                     this->SimulationWork->AddDependency( GraphicsMan->GetRenderWork() );
 
-                Mezzanine::ActorManager* ActorMan = this->ParentWorld->GetActorManager();
-                Mezzanine::AreaEffectManager* AEMan = this->ParentWorld->GetAreaEffectManager();
-                Mezzanine::DebrisManager* DebrisMan = this->ParentWorld->GetDebrisManager();
+                ActorManager* ActorMan = static_cast<ActorManager*>( this->ParentWorld->GetManager(ManagerBase::MT_ActorManager) );
+                AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->ParentWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+                DebrisManager* DebrisMan = static_cast<DebrisManager*>( this->ParentWorld->GetManager(ManagerBase::MT_DebrisManager) );
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
                 this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork, "DebugDrawWork" );
@@ -1521,13 +1521,13 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultPhysicsManagerFactory::GetManagerType() const
             { return PhysicsManager::InterfaceType; }
 
-        WorldManager* DefaultPhysicsManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+        WorldManager* DefaultPhysicsManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
         {
             if( Params.empty() ) {
                 return new PhysicsManager(Creator);
             }
             ManagerConstructionInfo PhysInfo;
-            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
             {
                 String Lower = (*ParIt).first;
                 StringTools::ToLowerCase(Lower);
@@ -1566,7 +1566,7 @@ namespace Mezzanine
             return new PhysicsManager(Creator,PhysInfo);
         }
 
-        WorldManager* DefaultPhysicsManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+        WorldManager* DefaultPhysicsManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
             { return new PhysicsManager(Creator,XMLNode); }
 
         void DefaultPhysicsManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)

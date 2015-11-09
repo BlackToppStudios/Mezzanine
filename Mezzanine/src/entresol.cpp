@@ -49,8 +49,24 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
 
-/// @todo Remove #include "mezzanine.h" and just include what is required. Waiting for multithreaded refactor, because we will have to do this again after that.
-#include "mezzanine.h"
+#include "entresol.h"
+#include "entresolmanager.h"
+#include "world.h"
+
+// Manager Includes
+#include "eventmanager.h"
+#include "Graphics/graphicsmanager.h"
+#include "Graphics/meshmanager.h"
+#include "Graphics/scenemanager.h"
+#include "Graphics/texturemanager.h"
+#include "Input/inputmanager.h"
+#include "Network/networkmanager.h"
+#include "Physics/collisionshapemanager.h"
+#include "Physics/physicsmanager.h"
+#include "Resource/resourcemanager.h"
+#include "UI/uimanager.h"
+
+#include "Resource/filestream.h"
 
 // Enabled implementation includes
 #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
@@ -187,25 +203,25 @@ namespace Mezzanine
         //Dummy param list so we can use the auto-added manager types if needed
         NameValuePairList Params;
         // Create and add any managers that have not been taken care of yet.
-        if(this->GetResourceManager()==0)
-            { this->AddManager(new Resource::ResourceManager(EngineDataPath)); }
-        if(this->GetGraphicsManager()==0)
-            { this->AddManager(new Graphics::GraphicsManager()); }
-        if(this->GetEventManager()==0)
-            { this->AddManager(new EventManager()); }
-        if(this->GetInputManager()==0)
-            { this->AddManager(new Input::InputManager()); }
-        if(this->GetUIManager()==0)
-            { this->AddManager(new UI::UIManager()); }
-        if(this->GetMeshManager()==0)
-            { this->AddManager(new Graphics::MeshManager()); }
-        if(this->GetTextureManager()==0)
-            { this->AddManager(new Graphics::TextureManager()); }
-        if(this->GetCollisionShapeManager()==0)
-            { this->AddManager(new Physics::CollisionShapeManager()); }
+        if( this->GetManager(ManagerBase::MT_ResourceManager) == 0 )
+            { this->AddManager( new Resource::ResourceManager(EngineDataPath) ); }
+        if( this->GetManager(ManagerBase::MT_GraphicsManager) == 0 )
+            { this->AddManager( new Graphics::GraphicsManager() ); }
+        if( this->GetManager(ManagerBase::MT_EventManager) == 0 )
+            { this->AddManager( new EventManager() ); }
+        if( this->GetManager(ManagerBase::MT_InputManager) == 0 )
+            { this->AddManager( new Input::InputManager() ); }
+        if( this->GetManager(ManagerBase::MT_UIManager) == 0 )
+            { this->AddManager( new UI::UIManager() ); }
+        if( this->GetManager(ManagerBase::MT_MeshManager) == 0 )
+            { this->AddManager( new Graphics::MeshManager() ); }
+        if( this->GetManager(ManagerBase::MT_TextureManager) == 0 )
+            { this->AddManager( new Graphics::TextureManager() ); }
+        if( this->GetManager(ManagerBase::MT_CollisionShapeManager) == 0 )
+            { this->AddManager( new Physics::CollisionShapeManager() ); }
 
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
-        if(this->GetAudioManager()==0)
+        if( this->GetManager(ManagerBase::MT_AudioManager) == 0 )
             { this->AddManager( this->CreateManager("OALSAudioManager",Params,false) ); }
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
@@ -243,7 +259,7 @@ namespace Mezzanine
         }
 
         // Open and load the initializer doc.
-        Resource::ResourceManager* ResourceMan = GetResourceManager();
+        Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager) );
         Resource::FileStream InitStream(InitializerFile,EngineDataPath);
         XML::Document InitDoc;
         XML::ParseResult DocResult = InitDoc.Load(InitStream);
@@ -485,13 +501,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void Entresol::PauseAllWorlds(Boole Pause)
-    {
-        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
-        {
-            (*it)->GetPhysicsManager()->PauseSimulation(Pause);
-        }
-    }
+    Threading::FrameScheduler& Entresol::GetScheduler()
+        { return this->WorkScheduler; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Initialization and Deinitialization
@@ -534,32 +545,25 @@ namespace Mezzanine
         }
     }
 
+    void Entresol::PreMainLoopInit()
+    {
+        this->VerifyManagerInitializations();
+
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+            { (*it)->PreMainLoopInit(); }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // MainLoop
-    ///////////////////////////////////////
-
-    Threading::FrameScheduler& Entresol::GetScheduler()
-        { return this->WorkScheduler; }
 
     void Entresol::MainLoop()
     {
         this->PreMainLoopInit();
 
-        while(!ManualLoopBreak)
-            { DoOneFrame(); } //Main loop
+        while( !this->ManualLoopBreak )
+            { this->DoOneFrame(); } //Main loop
 
-        ManualLoopBreak = 0;
-    }
-
-    void Entresol::PreMainLoopInit()
-    {
-        VerifyManagerInitializations();
-
-        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
-        {
-            (*it)->GetPhysicsManager()->MainLoopInitialize();
-            (*it)->GetAreaEffectManager()->MainLoopInitialize();
-        }
+        this->ManualLoopBreak = 0;
     }
 
     void Entresol::DoOneFrame()
@@ -584,16 +588,16 @@ namespace Mezzanine
     void Entresol::BreakMainLoop(Boole Break)
     {
         if(Break) {
-            while(!ManualLoopBreak)
-                { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,0,1); }
-        } else {
-            while(ManualLoopBreak)
-                { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,1,0); }
+            while( !this->ManualLoopBreak )
+                { Threading::AtomicCompareAndSwap32(&this->ManualLoopBreak,0,1); }
+        }else{
+            while( this->ManualLoopBreak )
+                { Threading::AtomicCompareAndSwap32(&this->ManualLoopBreak,1,0); }
         }
     }
 
     Whole Entresol::GetFrameCount() const
-        { return WorkScheduler.GetFrameCount(); }
+        { return this->WorkScheduler.GetFrameCount(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Simple get and Set functions
@@ -606,19 +610,19 @@ namespace Mezzanine
         { this->SetTargetFrameTimeMicroseconds( NewTargetTime * 1000 ); }
 
     void Entresol::SetTargetFrameTimeMicroseconds(const Whole NewTargetTime)
-        { WorkScheduler.SetFrameLength(NewTargetTime); }
+        { this->WorkScheduler.SetFrameLength(NewTargetTime); }
 
     Whole Entresol::GetTargetFrameTimeMilliseconds() const
-        { return WorkScheduler.GetFrameLength()*0.001; }
+        { return this->WorkScheduler.GetFrameLength()*0.001; }
 
     Whole Entresol::GetTargetFrameTimeMicroseconds() const
-        { return WorkScheduler.GetFrameLength(); }
+        { return this->WorkScheduler.GetFrameLength(); }
 
     Whole Entresol::GetLastFrameTimeMilliseconds() const
-        { return WorkScheduler.GetLastFrameTime()*0.001; }
+        { return this->WorkScheduler.GetLastFrameTime()*0.001; }
 
     Whole Entresol::GetLastFrameTimeMicroseconds() const
-        { return WorkScheduler.GetLastFrameTime(); }
+        { return this->WorkScheduler.GetLastFrameTime(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Factory Management
@@ -710,7 +714,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
 
-    EntresolManager* Entresol::CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld)
+    EntresolManager* Entresol::CreateManager(const String& ManagerImplName, const NameValuePairList& Params, const Boole AddToWorld)
     {
         ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(ManagerImplName);
         if( ManIt == Entresol::ManagerFactories.end() ) {
@@ -722,7 +726,7 @@ namespace Mezzanine
         return NewMan;
     }
 
-    EntresolManager* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToWorld)
+    EntresolManager* Entresol::CreateManager(const String& ManagerImplName, const XML::Node& XMLNode, const Boole AddToWorld)
     {
         ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(ManagerImplName);
         if( ManIt == Entresol::ManagerFactories.end() ) {
@@ -794,7 +798,7 @@ namespace Mezzanine
         this->ManagerList.push_back(ManagerToAdd);
     }
 
-    EntresolManager* Entresol::GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne)
+    EntresolManager* Entresol::GetManager(const Whole RetrieveType, UInt16 WhichOne)
     {
         for(ManagerIterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
@@ -817,12 +821,12 @@ namespace Mezzanine
         }
     }
 
-    void Entresol::RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne)
+    void Entresol::RemoveManager(const Whole RemoveType, UInt16 WhichOne)
     {
         for( ManagerIterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
-            if( (*ManIter)->GetInterfaceType() == ManagersToRemoveType ) {
-                if(0==WhichOne) {   // we use our copy of WhichOne as a countdown to 0
+            if( (*ManIter)->GetInterfaceType() == RemoveType ) {
+                if( 0 == WhichOne ) {   // we use our copy of WhichOne as a countdown to 0
                     this->ManagerList.erase(ManIter);
                     return;
                 }else{
@@ -831,59 +835,6 @@ namespace Mezzanine
             }
         }
     }
-
-    Audio::AudioManager* Entresol::GetAudioManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Audio::AudioManager*>( this->GetManager(ManagerBase::MT_AudioManager, WhichOne) );
-    }
-
-    Physics::CollisionShapeManager* Entresol::GetCollisionShapeManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Physics::CollisionShapeManager*>( this->GetManager(ManagerBase::MT_CollisionShapeManager, WhichOne) );
-    }
-
-    EventManager* Entresol::GetEventManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<EventManager*>( this->GetManager(ManagerBase::MT_EventManager, WhichOne) );
-    }
-
-    Graphics::GraphicsManager* Entresol::GetGraphicsManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::GraphicsManager*>( this->GetManager(ManagerBase::MT_GraphicsManager, WhichOne) );
-    }
-
-    Input::InputManager* Entresol::GetInputManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Input::InputManager*>( this->GetManager(ManagerBase::MT_InputManager, WhichOne) );
-    }
-
-    Graphics::MeshManager* Entresol::GetMeshManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::MeshManager*>( this->GetManager(ManagerBase::MT_MeshManager, WhichOne) );
-    }
-    #ifdef MEZZNETWORK
-    Network::NetworkManager* Entresol::GetNetworkManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Network::NetworkManager*>( this->GetManager(ManagerBase::MT_NetworkManager, WhichOne) );
-    }
-    #endif
-    Resource::ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager, WhichOne) );
-    }
-
-    Graphics::TextureManager* Entresol::GetTextureManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::TextureManager*>( this->GetManager(ManagerBase::MT_TextureManager, WhichOne) );
-    }
-
-    UI::UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<UI::UIManager*>( this->GetManager(ManagerBase::MT_UIManager, WhichOne) );
-    }
-
-    Scripting::iScriptingManager* Entresol::GetScriptingManager(const UInt16 WhichOne)
-        { return dynamic_cast<Scripting::iScriptingManager*>( this->GetManager(ManagerBase::MT_ScriptingManager, WhichOne) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // World Management
@@ -1009,6 +960,14 @@ namespace Mezzanine
             delete w;
         }
         this->Worlds.clear();
+    }
+
+    void Entresol::PauseAllWorlds(Boole Pause)
+    {
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        {
+            (*it)->PauseWorld(Pause);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

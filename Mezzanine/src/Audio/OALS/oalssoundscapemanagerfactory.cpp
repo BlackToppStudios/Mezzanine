@@ -61,10 +61,10 @@ namespace Mezzanine
             ManagerBase::ManagerType OALSSoundScapeManagerFactory::GetManagerType() const
                 { return OALS::SoundScapeManager::InterfaceType; }
 
-            WorldManager* OALSSoundScapeManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+            WorldManager* OALSSoundScapeManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
                 { return new OALS::SoundScapeManager(Creator); }
 
-            WorldManager* OALSSoundScapeManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+            WorldManager* OALSSoundScapeManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
                 { return new OALS::SoundScapeManager(Creator,XMLNode); }
 
             void OALSSoundScapeManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)

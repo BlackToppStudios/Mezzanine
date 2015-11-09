@@ -94,7 +94,7 @@ namespace Mezzanine
         this->DebrisUpdateWork = new DebrisUpdateWorkUnit(this);
     }
 
-    DebrisManager::DebrisManager(World* Creator, XML::Node& XMLNode) :
+    DebrisManager::DebrisManager(World* Creator, const XML::Node& XMLNode) :
         WorldManager(Creator)
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -345,12 +345,11 @@ namespace Mezzanine
 
     void DebrisManager::Initialize()
     {
-        if( !this->Initialized )
-        {
+        if( !this->Initialized ) {
             WorldManager::Initialize();
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->DebrisUpdateWork, "DebrisUpdateWork" );
-            Physics::PhysicsManager* PhysicsMan = this->ParentWorld->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
             if( PhysicsMan ) {
                 this->DebrisUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
             }
@@ -361,8 +360,7 @@ namespace Mezzanine
 
     void DebrisManager::Deinitialize()
     {
-        if( this->Initialized )
-        {
+        if( this->Initialized ) {
             this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebrisUpdateWork );
             this->DebrisUpdateWork->ClearDependencies();
 
@@ -397,10 +395,10 @@ namespace Mezzanine
     ManagerBase::ManagerType DefaultDebrisManagerFactory::GetManagerType() const
         { return DebrisManager::InterfaceType; }
 
-    WorldManager* DefaultDebrisManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+    WorldManager* DefaultDebrisManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
         { return new DebrisManager(Creator); }
 
-    WorldManager* DefaultDebrisManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+    WorldManager* DefaultDebrisManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
         { return new DebrisManager(Creator,XMLNode); }
 
     void DefaultDebrisManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)

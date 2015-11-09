@@ -107,30 +107,29 @@ namespace Mezzanine
         this->DestroyAllManagers();
     }
 
-    void World::Construct(const Physics::ManagerConstructionInfo& PhysicsInfo,
-            const String& SceneType, const std::vector <WorldManager*>& ManagerToBeAdded  )
+    void World::Construct(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType, const WorldManagerContainer& ManagerToBeAdded  )
     {
         //add each manager that was passed in to the manager list
-        for(std::vector<WorldManager*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
+        for( ConstWorldManagerIterator iter = ManagerToBeAdded.begin() ; iter!= ManagerToBeAdded.end() ; ++iter )
             { this->AddManager(*iter); }
 
         //Dummy param list so we can use the auto-added manager types if needed
         NameValuePairList Params;
-        if( this->GetActorManager() == 0 ) {
+        if( this->GetManager(ManagerBase::MT_ActorManager) == 0 ) {
             this->CreateManager("DefaultActorManager",Params,true);
         }
-        if( this->GetAreaEffectManager() == 0 ) {
+        if( this->GetManager(ManagerBase::MT_AreaEffectManager) == 0 ) {
             this->CreateManager("DefaultAreaEffectManager",Params,true);
         }
-        if( this->GetDebrisManager() == 0 ) {
+        if( this->GetManager(ManagerBase::MT_DebrisManager) == 0 ) {
             this->CreateManager("DefaultDebrisManager",Params,true);
         }
-        if( this->GetSceneManager() == 0 ) {
+        if( this->GetManager(ManagerBase::MT_SceneManager) == 0 ) {
             Params.push_back( std::make_pair( String("InternalManagerTypeName"),SceneType ) );
             this->CreateManager("DefaultSceneManager",Params,true);
             Params.clear();
         }
-        if( this->GetPhysicsManager() == 0 ) {
+        if( this->GetManager(ManagerBase::MT_PhysicsManager) == 0 ) {
             Params.push_back( std::make_pair( String("GeographyUpperBounds"),StringTools::ConvertToString( PhysicsInfo.GeographyUpperBounds ) ) );
             Params.push_back( std::make_pair( String("GeogrpahyLowerBounds"),StringTools::ConvertToString( PhysicsInfo.GeographyLowerBounds ) ) );
             Params.push_back( std::make_pair( String("MaxProxies"),StringTools::ConvertToString( PhysicsInfo.MaxProxies ) ) );
@@ -143,10 +142,15 @@ namespace Mezzanine
         }
 
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
-        if(this->GetSoundScapeManager()==0) {
+        if( this->GetManager(ManagerBase::MT_SoundScapeManager) == 0 ) {
             this->CreateManager("OALSSoundScapeManager",Params,true);
         }
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
+    }
+
+    Boole World::VerifyManagerInitializations()
+    {
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -155,14 +159,14 @@ namespace Mezzanine
     const String& World::GetName() const
         { return this->Name; }
 
-    void World::PauseWorld(Boole Pause)
+    void World::PauseWorld(const Boole Pause)
     {
-        this->GetPhysicsManager()->PauseSimulation(Pause);
+        static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) )->PauseSimulation(Pause);
     }
 
     void World::Clear()
     {
-        Physics::PhysicsManager* PhysMan = this->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
         // Start with constraints and anything else that is linking the objects.
         // Nuke the metadata while we're at it.
         if( PhysMan != NULL ) {
@@ -171,9 +175,9 @@ namespace Mezzanine
             PhysMan->ClearPhysicsMetaData();
         }
 
-        ActorManager* ActorMan = this->GetActorManager();
-        AreaEffectManager* AreaEffectMan = this->GetAreaEffectManager();
-        DebrisManager* DebrisMan = this->GetDebrisManager();
+        ActorManager* ActorMan = static_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) );
+        AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
+        DebrisManager* DebrisMan = static_cast<DebrisManager*>( this->GetManager(ManagerBase::MT_DebrisManager) );
         // Now get the higher level world objects.  They'll take out their bound proxies as they go.
         if( ActorMan != NULL ) {
             ActorMan->DestroyAllActors();
@@ -185,8 +189,8 @@ namespace Mezzanine
             DebrisMan->DestroyAllDebris();
         }
 
-        Audio::SoundScapeManager* SoundScapeMan = this->GetSoundScapeManager();
-        Graphics::SceneManager* SceneMan = this->GetSceneManager();
+        Audio::SoundScapeManager* SoundScapeMan = static_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
         // Now deal with any dangling proxies.
         // Any additional minor cleanup related to these managers can be done after proxy cleanup as well.
         if( PhysMan != NULL ) {
@@ -208,9 +212,11 @@ namespace Mezzanine
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
+            #ifdef MEZZDEBUG
             StringStream InitStream;
             InitStream << "Initializing " << (*ManIter)->GetImplementationTypeName() << " as " << (*ManIter)->GetInterfaceTypeAsString() << "." << std::endl;
             Entresol::GetSingletonPtr()->_Log( InitStream.str() );
+            #endif
             (*ManIter)->Initialize();
         }
     }
@@ -219,17 +225,25 @@ namespace Mezzanine
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
+            #ifdef MEZZDEBUG
             StringStream DeinitStream;
             DeinitStream << "Deinitializing " << (*ManIter)->GetImplementationTypeName() << " as " << (*ManIter)->GetInterfaceTypeAsString() << "." << std::endl;
             Entresol::GetSingletonPtr()->_Log( DeinitStream.str() );
+            #endif
             (*ManIter)->Deinitialize();
         }
+    }
+
+    void World::PreMainLoopInit()
+    {
+        static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) )->MainLoopInitialize();
+        static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) )->MainLoopInitialize();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
 
-    WorldManager* World::CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld)
+    WorldManager* World::CreateManager(const String& ManagerImplName, const NameValuePairList& Params, Boole AddToWorld)
     {
         ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ManagerImplName);
         if( FactoryIt == World::ManagerFactories.end() ) {
@@ -242,7 +256,7 @@ namespace Mezzanine
         return NewMan;
     }
 
-    WorldManager* World::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToWorld)
+    WorldManager* World::CreateManager(const String& ManagerImplName, const XML::Node& XMLNode, Boole AddToWorld)
     {
         ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ManagerImplName);
         if( FactoryIt == World::ManagerFactories.end() ) {
@@ -307,7 +321,7 @@ namespace Mezzanine
         return true;
     }
 
-    WorldManager* World::GetManager(const ManagerBase::ManagerType ManagerToGet)
+    WorldManager* World::GetManager(const Whole ManagerToGet)
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
@@ -328,7 +342,7 @@ namespace Mezzanine
         }
     }
 
-    void World::RemoveManager(const ManagerBase::ManagerType ToBeRemoved)
+    void World::RemoveManager(const Whole ToBeRemoved)
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
@@ -348,30 +362,6 @@ namespace Mezzanine
     {
         return WorldManagers;
     }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Specific Manager Fetch
-
-    ActorManager* World::GetActorManager()
-        { return static_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) ); }
-
-    AreaEffectManager* World::GetAreaEffectManager()
-        { return static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) ); }
-
-    DebrisManager* World::GetDebrisManager()
-        { return static_cast<DebrisManager*>( this->GetManager(ManagerBase::MT_DebrisManager) ); }
-
-    TerrainManager* World::GetTerrainManager()
-        { return static_cast<TerrainManager*>( this->GetManager(ManagerBase::MT_TerrainManager) ); }
-
-    Audio::SoundScapeManager* World::GetSoundScapeManager()
-        { return static_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) ); }
-
-    Graphics::SceneManager* World::GetSceneManager()
-        { return static_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) ); }
-
-    Physics::PhysicsManager* World::GetPhysicsManager()
-        { return static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Factories Management

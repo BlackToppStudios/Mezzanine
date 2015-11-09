@@ -57,7 +57,7 @@ namespace Mezzanine
         TextureManager::TextureManager()
             {  }
 
-        TextureManager::TextureManager(XML::Node& XMLNode)
+        TextureManager::TextureManager(const XML::Node& XMLNode)
         {
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
         }
@@ -189,7 +189,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultTextureManagerFactory::GetManagerType() const
             { return TextureManager::InterfaceType; }
 
-        EntresolManager* DefaultTextureManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultTextureManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( TextureManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -197,7 +197,7 @@ namespace Mezzanine
             }else return new TextureManager();
         }
 
-        EntresolManager* DefaultTextureManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultTextureManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( TextureManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

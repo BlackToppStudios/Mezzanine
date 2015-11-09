@@ -129,7 +129,7 @@ namespace Mezzanine
             AudioManager();
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            AudioManager(XML::Node& XMLNode);
+            AudioManager(const XML::Node& XMLNode);
             /// @brief Class Destructor.
             /// @details The class destructor.
             virtual ~AudioManager();
