@@ -182,7 +182,7 @@ Whole ProfileManager::DetectProfiles()
     // Now detect and load.
     Whole Detected = 0;
     XML::Document ProfileDoc;
-    Resource::ResourceManager* ResourceMan = this->TheEntresol->GetResourceManager();
+    Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( this->TheEntresol->GetManager(ManagerBase::MT_ResourceManager) );
     StringVector ProfileVec = Resource::GetDirContents(this->ProfilesDirectory);
     for( StringVector::iterator it = ProfileVec.begin() ; it != ProfileVec.end() ; it++ )
     {
@@ -203,7 +203,7 @@ Whole ProfileManager::DetectProfiles()
 
 void ProfileManager::ApplyProfileDataToProfileList()
 {
-    UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
+    UI::Screen* MainMenuScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("MainMenuScreen");
     UI::DropDownList* ProfilesDropList = static_cast<UI::DropDownList*>( MainMenuScreen->GetWidget("MS_ProfilesList") );
     UI::ListBox* ProfilesList = ProfilesDropList->GetSelectionList();
 
@@ -228,7 +228,7 @@ void ProfileManager::ApplyProfileDataToLevelSelect(GameProfile* Profile)
 {
     // Get our pointers
     LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
-    UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
+    UI::Screen* MainMenuScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("MainMenuScreen");
 
     for( LevelManager::ConstGameLevelIterator LevelIt = LevelMan->BeginGameLevel() ; LevelIt != LevelMan->EndGameLevel() ; ++LevelIt )
     {
@@ -255,7 +255,7 @@ void ProfileManager::SetNewHighScore(const String& LevelName, const Whole LevelS
 {
     // Get our pointers
     LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
-    UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
+    UI::Screen* MainMenuScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("MainMenuScreen");
 
     GameLevel* HighScoreLevel = LevelMan->GetLevel(LevelName);
     UI::Widget* LevelScoreWid = MainMenuScreen->GetWidget( LevelName + ".Score" );
@@ -291,7 +291,7 @@ void ProfileManager::SetProfilesDirectory(const String& Path)
     }
     Resource::CreateDirectoryPath(this->ProfilesDirectory);
 
-    Resource::ResourceManager* ResourceMan = this->TheEntresol->GetResourceManager();
+    Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( this->TheEntresol->GetManager(ManagerBase::MT_ResourceManager) );
     Resource::AssetGroup* ProfilesGroup = ResourceMan->GetAssetGroup("Profiles");
     if( ProfilesGroup != NULL ) {
         ResourceMan->DestroyAssetGroup("Profiles");
@@ -416,7 +416,7 @@ void ProfileManager::SetActiveProfile(GameProfile* Profile)
     //this->ApplyProfileDataToUI( this->ActiveProfile );
 
     if( this->ActiveProfile != NULL ) {
-        UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
+        UI::Screen* MainMenuScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("MainMenuScreen");
         if( MainMenuScreen != NULL ) {
             UI::Widget* ProfileDisplay = MainMenuScreen->GetWidget("MS_ProfilesAccess");
             UI::SingleLineTextLayer* ProfileDisplayText = static_cast<UI::SingleLineTextLayer*>( ProfileDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );

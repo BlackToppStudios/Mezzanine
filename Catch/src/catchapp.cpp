@@ -134,7 +134,7 @@ void CatchApp::CreateWorld()
 
     this->TheWorld = this->TheEntresol->CreateWorld("CatchWorld",Info,"DefaultSceneManager");
 
-    this->TheWorld->GetPhysicsManager()->SetSimulationSubstepModifier(2);
+    static_cast<Physics::PhysicsManager*>( this->TheWorld->GetManager(ManagerBase::MT_PhysicsManager) )->SetSimulationSubstepModifier(2);
 }
 
 void CatchApp::MakeGUI()
@@ -1523,7 +1523,7 @@ void CatchApp::CreateLoadingScreen()
 
     GUI->LoadMTA("Catch_Loading.mta","Common");
     Graphics::Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
-    UIViewport->SetCamera(this->TheWorld->GetSceneManager()->CreateCamera());
+    UIViewport->SetCamera(static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) )->CreateCamera());
 
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen","Catch_Loading",UIViewport,9);
     UI::Widget* BackgroundWidget = LoadScreen->CreateWidget("LoadBackground",UI::UnifiedRect(0,0,1.7777,1,0,0,0,0));
@@ -1618,7 +1618,7 @@ void CatchApp::VerifySettings()
 
 void CatchApp::RegisterTypes()
 {
-    AreaEffectManager* AEMan = this->TheWorld->GetAreaEffectManager();
+    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->TheWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
     if( AEMan != NULL ) {
         AEMan->AddAreaEffectFactory( new ScoreAreaFactory() );
         AEMan->AddAreaEffectFactory( new StartAreaFactory() );
@@ -1633,7 +1633,7 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
     this->SetVisibleScreens(StateToSet);
     if( StateToSet == CatchApp::Catch_MenuScreen ) {
         // This code block was created due to cameras being destroyed on every level unload.
-        Graphics::SceneManager* SceneMan = this->TheWorld->GetSceneManager();
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) );
         Graphics::CameraProxy* MainCam = static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
         if( MainCam == NULL ) {
             SceneMan->CreateCamera();
@@ -1726,46 +1726,57 @@ int CatchApp::GetCatchin()
     // Verify all the settings are there, and generate defaults if they aren't.
     this->VerifySettings();
 
+    // Get our manager pointers we'll use.
+    EventManager* EventMan = static_cast<EventManager*>( this->TheEntresol->GetManager(ManagerBase::MT_EventManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( this->TheWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
+    Audio::SoundScapeManager* SoundScapeMan = static_cast<Audio::SoundScapeManager*>( this->TheWorld->GetManager(ManagerBase::MT_SoundScapeManager) );
+    Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) );
+    Input::InputManager* InputMan = static_cast<Input::InputManager*>( this->TheEntresol->GetManager(ManagerBase::MT_InputManager) );
+    Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->TheWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Scripting::Lua::Lua51ScriptingEngine* ScriptingMan = static_cast<Scripting::Lua::Lua51ScriptingEngine*>( this->TheEntresol->GetManager(ManagerBase::MT_ScriptingManager) );
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
+
     // WorkUnit configuration
-    this->AudioSettingsWork = new AudioSettingsWorkUnit(this->TheEntresol->GetUIManager(),this->TheEntresol->GetAudioManager());
-    this->AudioSettingsWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->TheEntresol->GetAudioManager()->GetBufferUpdate2DWork()->AddDependency( this->AudioSettingsWork );
-    Audio::SoundScapeManager* SoundScapeMan = this->TheWorld->GetSoundScapeManager();
+    this->AudioSettingsWork = new AudioSettingsWorkUnit(UIMan,AudioMan);
+    this->AudioSettingsWork->AddDependency( UIMan->GetWidgetUpdateWork() );
+    AudioMan->GetBufferUpdate2DWork()->AddDependency( this->AudioSettingsWork );
     if( SoundScapeMan != NULL ) {
         SoundScapeMan->GetBufferUpdate3DWork()->AddDependency( this->AudioSettingsWork );
     }
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AudioSettingsWork, "AudioSettingsWork" );
 
-    this->VideoSettingsWork = new VideoSettingsWorkUnit(this->TheEntresol->GetUIManager(),this->TheEntresol->GetGraphicsManager());
-    this->VideoSettingsWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
+    this->VideoSettingsWork = new VideoSettingsWorkUnit(UIMan,GraphicsMan);
+    this->VideoSettingsWork->AddDependency( UIMan->GetWidgetUpdateWork() );
     // Add a line here setting the graphics monopoly as a dependency?
     this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->VideoSettingsWork, "VideoSettingsWork" );
 
     this->PreInputWork = new CatchPreInputWorkUnit(this);
-    this->TheEntresol->GetEventManager()->GetEventPumpWork()->AddDependency( this->PreInputWork );
+    EventMan->GetEventPumpWork()->AddDependency( this->PreInputWork );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PreInputWork, "PreInputWork" );
 
     this->PostInputWork = new CatchPostInputWorkUnit(this);
-    this->PostInputWork->AddDependency( this->TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
+    this->PostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostInputWork, "PostInputWork" );
 
     this->PostUIWork = new CatchPostUIWorkUnit(this);
-    this->PostUIWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->PostUIWork->AddDependency( this->TheWorld->GetPhysicsManager()->GetSimulationWork() );
+    this->PostUIWork->AddDependency( UIMan->GetWidgetUpdateWork() );
+    this->PostUIWork->AddDependency( PhysicsMan->GetSimulationWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostUIWork, "PostUIWork" );
 
-    this->PauseWork = new CatchPauseWorkUnit(this,this->TheEntresol->GetUIManager());
-    this->PauseWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->PauseWork->AddDependency( this->TheWorld->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->PauseWork = new CatchPauseWorkUnit(this,UIMan);
+    this->PauseWork->AddDependency( UIMan->GetWidgetUpdateWork() );
+    this->PauseWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PauseWork, "PauseWork" );
 
     this->HUDUpdateWork = new CatchHUDUpdateWorkUnit(this);
-    this->HUDUpdateWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->HUDUpdateWork->AddDependency( this->TheWorld->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->HUDUpdateWork->AddDependency( UIMan->GetWidgetUpdateWork() );
+    this->HUDUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->HUDUpdateWork, "HUDUpdateWork" );
 
     this->EndLevelWork = new CatchEndLevelWorkUnit(this);
-    this->EndLevelWork->AddDependency( this->TheWorld->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->EndLevelWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->EndLevelWork, "EndLevelWork" );
 
     this->RegisterTypes();
@@ -1774,15 +1785,15 @@ int CatchApp::GetCatchin()
     this->TheEntresol->Initialize(false);
     this->TheWorld->Initialize();
 
-    this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( dynamic_cast<Scripting::Lua::Lua51ScriptingEngine*>(this->TheEntresol->GetScriptingManager()) );
-    this->LuaScriptWork->AddDependency( this->TheWorld->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( ScriptingMan );
+    this->LuaScriptWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "LuaWork" );
 
     this->Profiles->Initialize();
 
     this->CreateLoadingScreen();
 
-    Graphics::CameraProxy* DefaultCam = static_cast<Graphics::CameraProxy*>( this->TheWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    Graphics::CameraProxy* DefaultCam = static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
     DefaultCam->SetNearClipDistance(0.5);
     this->PostInputWork->GetDefaultControl().SetControlledCamera(DefaultCam);
 
@@ -1799,12 +1810,12 @@ int CatchApp::GetCatchin()
     this->Profiles->ApplyProfileDataToLevelSelect();
     this->Profiles->ApplyProfileDataToProfileList();
 
-    this->TheEntresol->GetAudioManager()->GetMusicPlayer()->Play();
+    AudioMan->GetMusicPlayer()->Play();
     this->LevelMan->SetNextLevel("MainMenu");
     do{
         this->ChangeState(CatchApp::Catch_Loading);
         this->PauseGame(false);
-        this->TheEntresol->GetGraphicsManager()->RenderOneFrame();
+        GraphicsMan->RenderOneFrame();
         //Actually Load the game stuff
         this->TheEntresol->_Log( "Loading Level: " + this->GetLevelManager()->GetNextLevel()->GetName() + ".\n" );
         this->LevelMan->LoadNextLevel();
@@ -1812,7 +1823,7 @@ int CatchApp::GetCatchin()
         CatchApp::GameState NewState = ( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() ? CatchApp::Catch_MenuScreen : CatchApp::Catch_GameScreen );
         this->ChangeState(NewState);
 
-        this->TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0)->SetCamera( static_cast<Graphics::CameraProxy*>( this->TheWorld->GetSceneManager()->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) ) );
+        GraphicsMan->GetGameWindow(0)->GetViewport(0)->SetCamera( static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) ) );
 
         this->LevelTimer->Reset();
         this->LevelTimer->Start();
@@ -1865,7 +1876,7 @@ Boole CatchApp::GameIsPaused() const
 
 void CatchApp::SetVisibleScreens(const CatchApp::GameState State)
 {
-    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
     switch( State )
     {
         case CatchApp::Catch_GameScreen:

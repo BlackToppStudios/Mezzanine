@@ -303,7 +303,7 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     }
     // Determine our Debug drawer visibility
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) ) {
-        Physics::PhysicsManager* PhysMan = CatchApp::GetCatchAppPointer()->GetTheWorld()->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->CatchApplication->GetTheWorld()->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan->GetDebugRenderingMode() == Physics::DDM_NoDebug ) {
             PhysMan->SetDebugRenderingMode( Physics::DDM_DrawWireframe );
         }else{
@@ -315,7 +315,7 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     if( SysKeyboard->IsButtonPressing(Input::KEY_F4) ) {
         Boole Toggled = !HideUI;
         if( Toggled ) {
-            this->CatchApplication->TheEntresol->GetUIManager()->HideAllScreens();
+            static_cast<UI::UIManager*>( this->CatchApplication->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->HideAllScreens();
         }else{
             this->CatchApplication->SetVisibleScreens( this->CatchApplication->GetState() );
         }
@@ -338,6 +338,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
 {
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->CatchApplication->GetTheWorld()->GetManager(ManagerBase::MT_PhysicsManager) );
     static Physics::Point2PointConstraint* Dragger = NULL;
 
     if( SysMouse->IsButtonPressed(1) ) {
@@ -356,7 +357,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                     {
                         RigidDebris* rigid = static_cast<RigidDebris*>( RayCaster.LastQueryResultsObjectPtr() );
                         rigid->GetRigidProxy()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-                        Dragger = this->CatchApplication->GetTheWorld()->GetPhysicsManager()->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
+                        Dragger = PhysMan->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
                         Dragger->SetTAU(0.001);
                         Dragger->EnableConstraint(true);
                         Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
@@ -379,7 +380,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
 
             if(Dragger && !this->CatchApplication->IsInsideAnyStartZone( this->CatchApplication->LastObjectThrown ) ) {
                 Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                CatchApp::GetCatchAppPointer()->GetTheWorld()->GetPhysicsManager()->DestroyConstraint(Dragger);
+                PhysMan->DestroyConstraint(Dragger);
                 Dragger = NULL;
                 Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
             }
@@ -388,7 +389,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
     }else{  //Since we are no longer clicking we need to setup for the next clicking
         if( Dragger ) {
             Physics::RigidProxy* Prox = Dragger->GetProxyA();
-            CatchApp::GetCatchAppPointer()->GetTheWorld()->GetPhysicsManager()->DestroyConstraint(Dragger);
+            PhysMan->DestroyConstraint(Dragger);
             Dragger = NULL;
             Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
         }
@@ -457,8 +458,8 @@ void CatchHUDUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
 {
     if( this->CatchApplication->GetState() == CatchApp::Catch_GameScreen ) {
         // Get our UI pointers
-        Graphics::GraphicsManager* GraphicsMan = this->CatchApplication->TheEntresol->GetGraphicsManager();
-        UI::UIManager* UIMan = this->CatchApplication->TheEntresol->GetUIManager();
+        Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->CatchApplication->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
+        UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->CatchApplication->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
         UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
         UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
 

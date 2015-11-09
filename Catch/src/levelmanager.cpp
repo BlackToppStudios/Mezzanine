@@ -18,10 +18,10 @@ void LoadFerris()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
@@ -298,10 +298,10 @@ void LoadBigCurve()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
@@ -424,10 +424,10 @@ void LoadBlowsNotSucks()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
@@ -643,10 +643,10 @@ void LoadJustice()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
@@ -872,10 +872,10 @@ void LoadRollers()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
@@ -1015,10 +1015,10 @@ void LoadJustBounce()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
@@ -1321,7 +1321,7 @@ LevelManager::~LevelManager()
     {  }
 
 Resource::ResourceManager* LevelManager::GetResourceManager() const
-    { return this->TheEntresol->GetResourceManager(); }
+    { return static_cast<Resource::ResourceManager*>( this->TheEntresol->GetManager(ManagerBase::MT_ResourceManager) ); }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Utility
@@ -1358,7 +1358,7 @@ void LevelManager::PopulateLevelSelectUI()
     const String LevelNameFont = "Ubuntu-18";
     const Real LevelNameScale = 0.85;
 
-    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
     UI::Screen* MainMenuScreen = UIMan->GetScreen("MainMenuScreen");
     UI::GridContainer* LevelSelect = static_cast<UI::GridContainer*>( MainMenuScreen->GetWidget("MS_LevelSelectGrid") );
 
@@ -1551,8 +1551,8 @@ void LevelManager::UnloadLevel()
 
     // Entresol Cleanup
     /// @todo This should be populated with the appropriate logic after the engine state refactors are done.
-    Physics::CollisionShapeManager* CShapeMan = this->TheEntresol->GetCollisionShapeManager();
-    Graphics::MeshManager* MeshMan = this->TheEntresol->GetMeshManager();
+    Physics::CollisionShapeManager* CShapeMan = static_cast<Physics::CollisionShapeManager*>( this->TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) );
+    Graphics::MeshManager* MeshMan = static_cast<Graphics::MeshManager*>( this->TheEntresol->GetManager(ManagerBase::MT_MeshManager) );
 
     CShapeMan->DestroyAllShapes();
     MeshMan->UnloadAllMeshes();
