@@ -58,12 +58,13 @@ public:
     void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
         //this will either set the pointer to 0 or return a valid pointer to work with.
-        EventUserInput* OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
+        EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
+        EventUserInput* OneInput = EventMan->PopNextUserInputEvent();
 
         //We check each Event
-        while(0 != OneInput)
+        while( 0 != OneInput )
         {
-            if(OneInput->GetType()!=EventBase::UserInput)
+            if( OneInput->GetType() != EventBase::UserInput )
                 { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
             //we check each MetaCode in each Event
@@ -75,24 +76,22 @@ public:
             }
 
             delete OneInput;
-            OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
+            OneInput = EventMan->PopNextUserInputEvent();
         }
 
-        EventGameWindow* OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
+        EventGameWindow* OneWindowEvent = EventMan->PopNextGameWindowEvent();
         while(0 != OneWindowEvent)
         {
             if(OneWindowEvent->GetType()!=EventBase::GameWindow)
                 { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
-            if(!OneWindowEvent->IsEventIDValid())
-            {
+            if( !OneWindowEvent->IsEventIDValid() ) {
                 StringStream ExceptionStream;
                 ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
             }
 
-            if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
-            {
+            if( OneWindowEvent->GetEventID() == EventGameWindow::GAME_WINDOW_MINIMIZED ) {
                 Audio::iSound* Welcome = NULL;
                 Welcome = Announcer->front();
                 if(Welcome)
@@ -100,7 +99,7 @@ public:
             }
 
             delete OneWindowEvent;
-            OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
+            OneWindowEvent = EventMan->PopNextGameWindowEvent();
         }
     }
 };//DemoPreEventWorkUnit
@@ -125,16 +124,16 @@ public:
             Controller1 = InputMan->GetController(0);
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
-            { CamControl->StrafeLeft(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+            { CamControl->StrafeLeft( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
-            { CamControl->StrafeRight(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+            { CamControl->StrafeRight( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
-            { CamControl->MoveForward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+            { CamControl->MoveForward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
-            { CamControl->MoveBackward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+            { CamControl->MoveBackward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
         static bool MouseCam = false;
         if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
@@ -143,22 +142,23 @@ public:
         if( SysKeyboard->IsButtonPressed(Input::KEY_END))
             { MouseCam = false; }
 
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->OneWorld->GetManager(ManagerBase::MT_PhysicsManager) );
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_BACKSLASH) )
-            { OneWorld->GetPhysicsManager()->SetTimeMultiplier(1.0); }
+            { PhysMan->SetTimeMultiplier(1.0); }
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHTBRACKET) ) {
-            Real Factor = OneWorld->GetPhysicsManager()->GetTimeMultiplier() * 1.5;
-            if(Factor>2.0)
+            Real Factor = PhysMan->GetTimeMultiplier() * 1.5;
+            if( Factor > 2.0 )
                 { Factor = 2.0; }
-            OneWorld->GetPhysicsManager()->SetTimeMultiplier(Factor);
+            PhysMan->SetTimeMultiplier(Factor);
         }
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_LEFTBRACKET) ) {
-            Real Factor = OneWorld->GetPhysicsManager()->GetTimeMultiplier() * .75;
-            if(Factor<0.01)
+            Real Factor = PhysMan->GetTimeMultiplier() * .75;
+            if( Factor < 0.01 )
                 { Factor = 0.01; }
-            OneWorld->GetPhysicsManager()->SetTimeMultiplier(Factor);
+            PhysMan->SetTimeMultiplier(Factor);
         }
 
         Vector2 Offset = SysMouse->GetMouseDelta();
@@ -167,13 +167,13 @@ public:
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) ) {
             Audio::iSound* Theme = Soundtrack->at(1);
-            if(!Theme->IsPlaying())
+            if( !Theme->IsPlaying() )
                 { Theme->Play(); }
         }
 
         if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) ) {
             Audio::iSound* Theme = Soundtrack->at(1);
-            if(Theme->IsPlaying())
+            if( Theme->IsPlaying() )
                 { Theme->Stop(); }
         }
 
@@ -214,7 +214,7 @@ public:
                                 RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
                                 rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
                                 //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                                Dragger = DemoWorld->GetPhysicsManager()->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
+                                Dragger = PhysMan->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
                                 Dragger->SetTAU(0.001);
                                 Dragger->EnableConstraint(true);
                                 Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
@@ -243,7 +243,7 @@ public:
         }else{  //Since we are no longer clicking we need to setup for the next clicking
             if( Dragger ) {
                 Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                OneWorld->GetPhysicsManager()->DestroyConstraint(Dragger);
+                PhysMan->DestroyConstraint(Dragger);
                 Dragger = NULL;
                 Prox->SetActivationState(Physics::AS_Active);
             }
@@ -287,13 +287,14 @@ public:
         }
 
         // Update Stat information
-        UI::Screen* DScreen = TheEntresol->GetUIManager()->GetScreen("DefaultScreen");
+        Graphics::GameWindow* MainWindow = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) )->GetGameWindow(0);
+        UI::Screen* DScreen = static_cast<UI::UIManager*>( TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("DefaultScreen");
         UI::Widget* CurFPS = static_cast<UI::Widget*>(DScreen->GetWidget("D_CurFPS"));
         UI::Widget* AvFPS = static_cast<UI::Widget*>(DScreen->GetWidget("D_AvFPS"));
         StringStream CFPSstream;
         StringStream AFPSstream;
-        CFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetLastFPS();
-        AFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetAverageFPS();
+        CFPSstream << MainWindow->GetLastFPS();
+        AFPSstream << MainWindow->GetAverageFPS();
         String CFPS = CFPSstream.str();
         String AFPS = AFPSstream.str();
         static_cast<UI::SingleLineTextLayer*>(CurFPS->GetRenderLayer(0))->SetText(CFPS);
@@ -401,9 +402,14 @@ void CreateDemoWorld()
 
     DemoWorld->Initialize();
 
-    Graphics::GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( DemoWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
+    Graphics::GraphicsManager* GraphMan = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( DemoWorld->GetManager(ManagerBase::MT_SceneManager) );
+    Input::InputManager* InputMan = static_cast<Input::InputManager*>( TheEntresol->GetManager(ManagerBase::MT_InputManager) );
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( DemoWorld->GetManager(ManagerBase::MT_PhysicsManager) );
 
-    MainCam = DemoWorld->GetSceneManager()->CreateCamera();
+    MainCam = SceneMan->CreateCamera();
     MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
     MainCam->LookAt(Vector3(0,0,0));
 
@@ -417,28 +423,28 @@ void CreateDemoWorld()
 
     // Setup our workunits
     DemoPreEventWork = new DemoPreEventWorkUnit();
-    TheEntresol->GetEventManager()->GetEventPumpWork()->AddDependency( DemoPreEventWork );
+    EventMan->GetEventPumpWork()->AddDependency( DemoPreEventWork );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork, "DemoPreEventWork" );
 
     DemoPostInputWork = new DemoPostInputWorkUnit(DemoWorld);
-    DemoPostInputWork->AddDependency( TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
+    DemoPostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork, "DemoPostInputWork" );
 
     DemoPostRenderWork = new DemoPostRenderWorkUnit();
-    DemoPostRenderWork->AddDependency( TheEntresol->GetGraphicsManager()->GetRenderWork() );
-    DemoPostRenderWork->AddDependency( DemoWorld->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    DemoPostRenderWork->AddDependency( GraphMan->GetRenderWork() );
+    DemoPostRenderWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostRenderWork, "DemoPostRenderWork" );
 
     DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();
-    DemoPostPhysicsWork->AddDependency( DemoWorld->GetPhysicsManager()->GetSimulationWork() );
+    DemoPostPhysicsWork->AddDependency( PhysMan->GetSimulationWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostPhysicsWork, "DemoPostPhysicsWork" );
 
     // Configure Shadows
-    DemoWorld->GetSceneManager()->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
-    DemoWorld->GetSceneManager()->SetShadowFarDistance(3000);
+    SceneMan->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
+    SceneMan->SetShadowFarDistance(3000);
 
     //Set up polling for the letter Q
-    TheEntresol->GetEventManager()->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
+    EventMan->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
 
     //Actually Load the game stuff
     LoadContent();
@@ -447,7 +453,7 @@ void CreateDemoWorld()
     //TheEntresol->GetPhysicsManager()->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
     //TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
 
-    Graphics::LightProxy* Headlight = DemoWorld->GetSceneManager()->CreateLightProxy(Graphics::LT_Directional);
+    Graphics::LightProxy* Headlight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 LightLoc(200,300,0);
     Headlight->SetLocation(LightLoc);
     LightLoc.X = -LightLoc.X;
@@ -462,7 +468,6 @@ void CreateDemoWorld()
     // CameraNode->AttachObject(Headlight);
 
     std::cerr << "Finished Creating World\n";
-
 }
 
 void DestroyDemoWorld()
@@ -496,17 +501,22 @@ void DestroyDemoWorld()
         DemoWorld = NULL;
     }
 
-    Entresol::GetSingletonPtr()->GetCollisionShapeManager()->DestroyAllShapes();
+    static_cast<Physics::CollisionShapeManager*>( TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) )->DestroyAllShapes();
 
     if( FirstWindow ) {
-        TheEntresol->GetGraphicsManager()->DestroyGameWindow( FirstWindow );
+        static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) )->DestroyGameWindow( FirstWindow );
         FirstWindow = NULL;
     }
 }
 
 void LoadContent()
 {
-    DemoWorld->GetSceneManager()->SetAmbientLight(0.10,0.10,0.10,0.10);
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( DemoWorld->GetManager(ManagerBase::MT_DebrisManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( DemoWorld->GetManager(ManagerBase::MT_SceneManager) );
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( DemoWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( TheEntresol->GetManager(ManagerBase::MT_ResourceManager) );
+
+    SceneMan->SetAmbientLight(0.10,0.10,0.10,0.10);
 
     RigidDebris* object1;
     RigidDebris* object2;
@@ -522,21 +532,21 @@ void LoadContent()
 
     Real mass = 15.0;
     /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", AT_FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", AT_FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/sounds", AT_FileSystem, groupname, false);
-    //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("", AT_FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
+    ResourceMan->AddAssetLocation("data/common", AT_FileSystem, groupname, false);
+    ResourceMan->AddAssetLocation("data/common/music", AT_FileSystem, groupname, false);
+    ResourceMan->AddAssetLocation("data/common/sounds", AT_FileSystem, groupname, false);
+    //ResourceMan->AddAssetLocation(zipname.str(), "Zip", groupname, false);
+    ResourceMan->AddAssetLocation("", AT_FileSystem, groupname, false);
+    ResourceMan->InitAssetGroup(groupname);
 
     Vector3 grav( 0.0, -400.0, 0.0 );
-    DemoWorld->GetPhysicsManager()->SetWorldGravity(grav);
-    DemoWorld->GetPhysicsManager()->SetWorldSoftGravity(grav);
+    PhysMan->SetWorldGravity(grav);
+    PhysMan->SetWorldSoftGravity(grav);
 
-    //ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
+    //ParticleEffect *GreenPart = SceneMan->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
     //GreenPart->SetLocation(Vector3(-70,70,-100));
 
-    Physics::CollisionShapeManager* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
+    Physics::CollisionShapeManager* CSMan = static_cast<Physics::CollisionShapeManager*>( TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) );
     Physics::CollisionShape* RobitCH = CSMan->GenerateConvexHull("RobitConvexHull",filerobot,groupname);
     //Physics::CollisionShape* RobitCD = CSMan->PerformConvexDecomposition("RobitConvexDecomp",filerobot,groupname,5.0,5.0,10.0);
     Physics::CollisionShape* PlaneStatic = CSMan->GenerateStaticTriMesh("PlaneShape","Plane.mesh",groupname);
@@ -551,7 +561,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        RigDeb = DemoWorld->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
@@ -563,7 +573,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        RigDeb = DemoWorld->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
@@ -576,7 +586,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        RigDeb = DemoWorld->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         RigDeb->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
@@ -589,54 +599,54 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    RigDeb = DemoWorld->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
+    RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
     RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
     RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
     RigDeb->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
     RigDeb->AddToWorld();
 
-    object5 = DemoWorld->GetDebrisManager()->CreateRigidDebris("Plane",0,false);
+    object5 = DebrisMan->CreateRigidDebris("Plane",0,false);
     object5->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object5->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object5->SetLocation(Vector3(0.0,-100,-300.0));
     object5->AddToWorld();
 
-    object6 = DemoWorld->GetDebrisManager()->CreateRigidDebris("Ramp",0,false);
+    object6 = DebrisMan->CreateRigidDebris("Ramp",0,false);
     object6->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object6->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object6->SetLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
     object6->AddToWorld();
 
-    object1 = DemoWorld->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontRight",mass,false);
+    object1 = DebrisMan->CreateRigidDebris("RobotWayUpFrontRight",mass,false);
     object1->GetRigidProxy()->SetCollisionShape(RobitCH);
     object1->GetEntityProxy()->SetMesh(filerobot,groupname);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->AddToWorld();
 
-    object2 = DemoWorld->GetDebrisManager()->CreateRigidDebris("WoodSphere",150.0,false);
+    object2 = DebrisMan->CreateRigidDebris("WoodSphere",150.0,false);
     object2->GetRigidProxy()->SetCollisionShape(WoodenSphere);
     object2->GetEntityProxy()->SetMesh("Sphere_Wood.mesh",groupname);
     object2->SetScale(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
     object2->AddToWorld();
 
-    object3 = DemoWorld->GetDebrisManager()->CreateRigidDebris("MetalSphere",200.0,false);
+    object3 = DebrisMan->CreateRigidDebris("MetalSphere",200.0,false);
     object3->GetRigidProxy()->SetCollisionShape(MetalSphere);
     object3->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object3->SetScale(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
     object3->AddToWorld();
 
-    object4 = DemoWorld->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontLeft",mass,false);
+    object4 = DebrisMan->CreateRigidDebris("RobotWayUpFrontLeft",mass,false);
     object4->GetRigidProxy()->SetCollisionShape(RobitCH);
     object4->GetEntityProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->AddToWorld();
 
-    object7 = DemoWorld->GetDebrisManager()->CreateRigidDebris("MetalSphere2",800.0,false);
+    object7 = DebrisMan->CreateRigidDebris("MetalSphere2",800.0,false);
     object7->GetRigidProxy()->SetCollisionShape(MetalSphere2);
     object7->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object7->SetScale(Vector3(0.3,0.3,0.3));
@@ -648,7 +658,7 @@ void LoadContent()
     /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
     Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
-    DemoWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
+    PhysMan->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
     //GravityWell
     /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
@@ -657,9 +667,9 @@ void LoadContent()
     BlackHole->SetFieldStrength(1000.0);
     BlackHole->SetAttenuation(3.000,Mezzanine::Att_Linear);
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
-    DemoWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
+    PhysMan->AddAreaEffect(BlackHole);// */
 
-    Physics::RigidProxy* InvisFloor = DemoWorld->GetPhysicsManager()->CreateRigidProxy(0,NULL,false);
+    Physics::RigidProxy* InvisFloor = PhysMan->CreateRigidProxy(0,NULL,false);
     InvisFloor->SetCollisionShape( new Physics::PlaneCollisionShape("InvisFloor",Plane(Vector3::Unit_Y(),Vector3(0,-300,0))) );
     InvisFloor->AddToWorld();
 
@@ -667,7 +677,7 @@ void LoadContent()
     Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
     Announcer = new std::vector<Audio::iSound*>();
     Soundtrack = new std::vector<Audio::iSound*>();
-    Audio::AudioManager* AudioMan = TheEntresol->GetAudioManager();
+    Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
     sound1 = AudioMan->CreateDialogSound("welcomefun-1.ogg", groupname);
     Announcer->push_back(sound1);
 
@@ -677,14 +687,14 @@ void LoadContent()
     Soundtrack->push_back(music2);
 
     TheEntresol->_Log("Debris Count ");
-    TheEntresol->_Log( DemoWorld->GetDebrisManager()->GetNumDebris() );
+    TheEntresol->_Log( DebrisMan->GetNumDebris() );
 }
 
 void MakeGUI()
 {
     String DefaultScreen = "DefaultScreen";
-    UI::UIManager* GUI = TheEntresol->GetUIManager();
-    Graphics::Viewport* UIViewport = TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0);
+    UI::UIManager* GUI = static_cast<UI::UIManager*>( TheEntresol->GetManager(ManagerBase::MT_UIManager) );
+    Graphics::Viewport* UIViewport = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) )->GetGameWindow(0)->GetViewport(0);
     GUI->LoadMTA("EngineDemo_Menu.mta","Group1");
     GUI->AddAutoRegisterCode(Input::MetaCode(Input::BUTTON_PRESSING,Input::MOUSEBUTTON_1));
     GUI->EnableButtonAutoRegister(true);
