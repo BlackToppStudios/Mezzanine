@@ -283,8 +283,8 @@ namespace Mezzanine
                 return new ResourceManager();
             }
 
-            String EngineDataPath;
-            ArchiveType ArchiveType_;
+            String EngineDataPath = ".";
+            ArchiveType ArchType = Mezzanine::AT_FileSystem;
             for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
             {
                 String Lower = (*ParIt).first;
@@ -292,10 +292,10 @@ namespace Mezzanine
                 if( "enginedatapath" == Lower ) {
                     EngineDataPath = (*ParIt).second;
                 }else if( "archivetype" == Lower ) {
-                    ArchiveType_ = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
+                    ArchType = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
                 }
             }
-            return new ResourceManager(EngineDataPath,ArchiveType_);
+            return new ResourceManager(EngineDataPath,ArchType);
         }
 
         EntresolManager* DefaultResourceManagerFactory::CreateManager(const XML::Node& XMLNode)
