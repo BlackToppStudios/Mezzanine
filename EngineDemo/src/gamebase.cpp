@@ -28,8 +28,8 @@ Entresol* TheEntresol = NULL;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
-std::vector<Audio::iSound*>* Announcer = NULL;
-std::vector<Audio::iSound*>* Soundtrack = NULL;
+std::vector<Audio::iSound*> Announcer;
+std::vector<Audio::iSound*> Soundtrack;
 
 RigidDebris* Robot7 = NULL;
 RigidDebris* Robot8 = NULL;
@@ -89,13 +89,6 @@ public:
                 StringStream ExceptionStream;
                 ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
-            }
-
-            if( OneWindowEvent->GetEventID() == EventGameWindow::GAME_WINDOW_MINIMIZED ) {
-                Audio::iSound* Welcome = NULL;
-                Welcome = Announcer->front();
-                if(Welcome)
-                    { Welcome->Play(); }
             }
 
             delete OneWindowEvent;
@@ -165,16 +158,31 @@ public:
         if( MouseCam && Vector2(0,0) != Offset )
             CamControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) ) {
-            Audio::iSound* Theme = Soundtrack->at(1);
-            if( !Theme->IsPlaying() )
-                { Theme->Play(); }
+        if( SysKeyboard->IsButtonPressing(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) ) {
+            Audio::iSound* Theme = Soundtrack.at(1);
+            if( !Theme->IsPlaying() ) {
+                Theme->Play();
+            }
         }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) ) {
-            Audio::iSound* Theme = Soundtrack->at(1);
-            if( Theme->IsPlaying() )
-                { Theme->Stop(); }
+        if( SysKeyboard->IsButtonPressing(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) ) {
+            Audio::iSound* Theme = Soundtrack.at(1);
+            if( Theme->IsPlaying() ) {
+                Theme->Stop();
+            }
+        }
+
+        // Audio test fun
+        if( SysKeyboard->IsButtonPressing(Input::KEY_T) ) {
+            static Boole Toggle = true;
+            Audio::iSound* Welcome = ( Announcer.size() >= 2 ? ( Toggle ? Announcer[1] : Announcer[0] ) : NULL );
+            if( Welcome != NULL ) {
+                if( Welcome->IsPlaying() ) {
+                    Welcome->Stop();
+                }
+                Welcome->Play();
+            }
+            Toggle = !Toggle;
         }
 
         // Make a declaration for a static constrain so it survives the function lifetime
@@ -271,21 +279,6 @@ public:
             Deb2->AdvanceAnimation((Real)0.0001 * TheEntresol->GetLastFrameTimeMilliseconds() );
         }//*/
 
-        static bool notplayed = true;
-        //if (1000<gametime && notplayed)
-        if( notplayed )
-        {
-            notplayed = false;
-            Audio::iSound* Welcome = NULL;
-            Welcome = Announcer->front();
-            if(Welcome)
-                { Welcome->Play(); }
-            #ifdef MEZZDEBUG
-            //TheEntresol->Log("Played Welcome Fun:");
-            #endif
-
-        }
-
         // Update Stat information
         Graphics::GameWindow* MainWindow = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) )->GetGameWindow(0);
         UI::Screen* DScreen = static_cast<UI::UIManager*>( TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("DefaultScreen");
@@ -339,9 +332,6 @@ int main(int argc, char **argv)
 
     try
     {
-        //Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
-        //Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
-        //Info.MaxProxies = 60;
         TheEntresol = new Entresol( "data/common/", "EngineDemoLog.txt");
         TheEntresol->SetTargetFrameRate(60);
 
@@ -351,34 +341,30 @@ int main(int argc, char **argv)
         DestroyDemoWorld();
         CreateDemoWorld();
 
-        // TheEntresol->EngineInit(false);
-
-        //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
-        //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXSeconds,5);
-        //TheEntresol->SetLoggingFrequency(Entresol::LogNever);
-
         //Generate the UI
         MakeGUI();
+
+        // Greet our viewers
+        Audio::iSound* Welcome = Announcer.at(0);
+        if( Welcome ) {
+            Welcome->Play();
+        }
+        #ifdef MEZZDEBUG
+        TheEntresol->_Log("Played Welcome Fun.");
+        #endif
 
         //Start the Main Loop
         TheEntresol->MainLoop();
 
-        // delete DemoWorld;
-        TheEntresol->DestroyWorld( DemoWorld );
-        delete Soundtrack;
-        delete Announcer;
+        DestroyDemoWorld();
         delete TheEntresol;
-        //delete DemoPostInputWork;
-        //delete DemoPostPhysicsWork;
-        //delete DemoPostRenderWork;
-        //delete DemoPreEventWork;
-    }catch(std::exception & excep){
+    }catch(std::exception& excep){
         std::cerr << "Exception: " << excep.what() << std::endl;
         return 1;
     }catch(...){
         std::cerr << "Unknown exception" << std::endl;
         return 1;
-        // Could not create the perfect worldending program
+        // Could not create the perfect world ending program
     }
     return 0;
 }
@@ -532,11 +518,11 @@ void LoadContent()
 
     Real mass = 15.0;
     /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
-    ResourceMan->AddAssetLocation("data/common", AT_FileSystem, groupname, false);
-    ResourceMan->AddAssetLocation("data/common/music", AT_FileSystem, groupname, false);
-    ResourceMan->AddAssetLocation("data/common/sounds", AT_FileSystem, groupname, false);
+    ResourceMan->AddAssetLocation("data/common", Resource::AT_FileSystem, groupname, false);
+    ResourceMan->AddAssetLocation("data/common/music", Resource::AT_FileSystem, groupname, false);
+    ResourceMan->AddAssetLocation("data/common/sounds", Resource::AT_FileSystem, groupname, false);
     //ResourceMan->AddAssetLocation(zipname.str(), "Zip", groupname, false);
-    ResourceMan->AddAssetLocation("", AT_FileSystem, groupname, false);
+    ResourceMan->AddAssetLocation("", Resource::AT_FileSystem, groupname, false);
     ResourceMan->InitAssetGroup(groupname);
 
     Vector3 grav( 0.0, -400.0, 0.0 );
@@ -674,17 +660,17 @@ void LoadContent()
     InvisFloor->AddToWorld();
 
     //Final Steps
-    Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
-    Announcer = new std::vector<Audio::iSound*>();
-    Soundtrack = new std::vector<Audio::iSound*>();
+    Audio::iSound* Sound = NULL;
     Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
-    sound1 = AudioMan->CreateDialogSound("welcomefun-1.ogg", groupname);
-    Announcer->push_back(sound1);
+    Sound = AudioMan->CreateDialogSound("welcomefun-1-edit.ogg", groupname);
+    Announcer.push_back(Sound);
+    Sound = AudioMan->CreateDialogSound("welcomefun-1-edit.ogg", groupname);
+    Announcer.push_back(Sound);
 
-    music1 = AudioMan->CreateMusicSound("cAudioTheme1.ogg", groupname);
-    Soundtrack->push_back(music1);
-    music2 = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
-    Soundtrack->push_back(music2);
+    Sound = AudioMan->CreateMusicSound("cAudioTheme1.ogg", groupname);
+    Soundtrack.push_back(Sound);
+    Sound = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
+    Soundtrack.push_back(Sound);
 
     TheEntresol->_Log("Debris Count ");
     TheEntresol->_Log( DebrisMan->GetNumDebris() );

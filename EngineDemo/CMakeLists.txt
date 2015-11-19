@@ -151,6 +151,7 @@ CopyFilesDuringBuild( common/test.zip data/common/test.zip )
 CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
 CopyFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomefun-1.ogg )
+CopyFilesDuringBuild( common/sounds/welcomefun-1-edit.ogg data/common/sounds/welcomefun-1-edit.ogg )
 
 CopyLicenseFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt BulletZLibLicense.txt )
 CopyLicenseFromMezzanineDuringBuild( data/common/gpl-2.0.txt gpl-2.0.txt )
