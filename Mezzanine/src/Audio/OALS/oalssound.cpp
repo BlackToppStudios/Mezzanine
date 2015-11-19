@@ -100,24 +100,24 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Methods
 
-            Sound::Sound(const UInt16 Type, iDecoder* Decode, ALCcontext* PlayContext)
-                : Context(PlayContext),
-                  SoundFilter(NULL),
-                  SoundDecoder(Decode),
-                  SType(Type),
-                  State(OALS::PS_Stopped),
-                  SoundPitch(1.0),
-                  BaseVolume(1.0),
-                  MinVolume(0.0),
-                  MaxVolume(1.0),
-                  InternalSource(0)
+            Sound::Sound(const UInt16 Type, iDecoder* Decode, ALCcontext* PlayContext) :
+                Context(PlayContext),
+                SoundFilter(NULL),
+                SoundDecoder(Decode),
+                SType(Type),
+                State(OALS::PS_Stopped),
+                SoundPitch(1.0),
+                BaseVolume(1.0),
+                MinVolume(0.0),
+                MaxVolume(1.0),
+                InternalSource(0)
             {
                 // Set the context, so we can safely do all our business with the sources
                 this->MakeCurrent();
                 // Create the storage space for our buffer handles
-                Buffers.resize(OALS_SOURCE_NUM_BUFFERS,0);
+                this->Buffers.resize(OALS_SOURCE_NUM_BUFFERS,0);
                 // Create the storage space for our effect slots
-                Effects.resize(OALS_SOURCE_MAX_EFFECT_SLOTS,NULL);
+                this->Effects.resize(OALS_SOURCE_MAX_EFFECT_SLOTS,NULL);
 
                 // Create and place our buffers
                 alGenBuffers(OALS_SOURCE_NUM_BUFFERS,&Buffers[0]);
@@ -136,7 +136,7 @@ namespace Mezzanine
                 // Eradicate the source
                 alDeleteSources(1,&InternalSource);
                 // Eradicate the buffers
-                alDeleteBuffers(OALS_SOURCE_NUM_BUFFERS,&Buffers[0]);
+                alDeleteBuffers(OALS_SOURCE_NUM_BUFFERS,&this->Buffers[0]);
                 // Clean out our decoder
                 delete this->SoundDecoder;
             }
@@ -144,47 +144,41 @@ namespace Mezzanine
             void Sound::MakeCurrent()
             {
                 ALCcontext* CurrContext = alcGetCurrentContext();
-                if( CurrContext != this->Context )
+                if( CurrContext != this->Context ) {
                     alcMakeContextCurrent(this->Context);
+                }
             }
 
             Boole Sound::StreamToBuffer(const UInt32 Buffer)
             {
-                if(this->SoundDecoder)
-                {
+                if( this->SoundDecoder ) {
                     UInt32 TotalRead = 0;
                     UInt8 ErrorCount = 0;
-                    Char8 TempBuffer[OALS_SOURCE_BUFFER_SIZE];
+                    Char8 ALBuffer[OALS_SOURCE_BUFFER_SIZE];
                     while( TotalRead < OALS_SOURCE_BUFFER_SIZE )
                     {
-                        Char8 TempBuffer2[OALS_SOURCE_BUFFER_SIZE];
-                        UInt32 ActualRead = this->SoundDecoder->ReadAudioData(TempBuffer2,OALS_SOURCE_BUFFER_SIZE - TotalRead);
-                        if(ActualRead > 0)
-                        {
-                            memcpy(TempBuffer+TotalRead,TempBuffer2,ActualRead);
-                            TotalRead += ActualRead;
-                        }
-                        else if(ActualRead < 0)
-                        {
+                        Char8 DecodeBuffer[OALS_SOURCE_BUFFER_SIZE];
+                        UInt32 AmountDecoded = this->SoundDecoder->ReadAudioData(DecodeBuffer,OALS_SOURCE_BUFFER_SIZE - TotalRead);
+                        if( AmountDecoded > 0 ) {
+                            memcpy(ALBuffer+TotalRead,DecodeBuffer,AmountDecoded);
+                            TotalRead += AmountDecoded;
+                        }else if( AmountDecoded < 0 ) {
                             ++ErrorCount;
-                            if(ErrorCount >= 3)
-                            {
+                            if( ErrorCount >= 3 ) {
                                 this->Stop();
-                                break;
+                                return false;
+                                //break;
                             }
-                        }
-                        else if(ActualRead == 0)
-                        {
-                            if(this->IsLooping()) this->SoundDecoder->SetPosition(0,false);
+                        }else if( AmountDecoded == 0 ) {
+                            if( this->IsLooping() ) this->SoundDecoder->SetPosition(0,false);
                             else break;
                         }
                     }
 
-                    if(TotalRead == 0)
-                    {
+                    if( TotalRead == 0 ) {
                         return false;
                     }
-                    alBufferData(Buffer,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),TempBuffer,TotalRead,this->SoundDecoder->GetFrequency());
+                    alBufferData(Buffer,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),ALBuffer,TotalRead,this->SoundDecoder->GetFrequency());
                     return true;
                 }
                 return false;
@@ -210,8 +204,7 @@ namespace Mezzanine
 
             void Sound::SetPitch(const Real Pitch)
             {
-                if( this->SoundPitch != Pitch )
-                {
+                if( this->SoundPitch != Pitch ) {
                     this->MakeCurrent();
                     alSourcef(this->InternalSource,AL_PITCH,Pitch);
                     this->SoundPitch = Pitch;
@@ -226,12 +219,10 @@ namespace Mezzanine
             void Sound::SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
-                if( Factory != NULL )
-                {
-                    if( this->SoundDecoder )
-                    {
-                        delete SoundDecoder;
-                        SoundDecoder = NULL;
+                if( Factory != NULL ) {
+                    if( this->SoundDecoder ) {
+                        delete this->SoundDecoder;
+                        this->SoundDecoder = NULL;
                     }
                     this->SoundDecoder = Factory->CreateDecoder(Stream);
                 }
@@ -245,10 +236,9 @@ namespace Mezzanine
 
             void Sound::SetStream(iDecoder* Decode)
             {
-                if( this->SoundDecoder )
-                {
-                    delete SoundDecoder;
-                    SoundDecoder = NULL;
+                if( this->SoundDecoder ) {
+                    delete this->SoundDecoder;
+                    this->SoundDecoder = NULL;
                 }
                 this->SoundDecoder = Decode;
             }
@@ -264,20 +254,20 @@ namespace Mezzanine
 
             Boole Sound::Play()
             {
-                if( !IsPaused() )
-                {
-                    UInt32 QueueSize = 0;
-                    alSourcei(this->InternalSource,AL_BUFFER,0);
-                    for( UInt32 BuffIndex = 0 ; BuffIndex < Buffers.size() ; ++BuffIndex )
-                    {
-                        if( this->StreamToBuffer(Buffers[BuffIndex]) ) ++QueueSize;
-                        else return false;
+                if( !this->IsPlaying() ) {
+                    if( !this->IsPaused() ) {
+                        UInt32 QueueSize = 0;
+                        for( UInt32 BuffIndex = 0 ; BuffIndex < this->Buffers.size() ; ++BuffIndex )
+                        {
+                            if( this->StreamToBuffer(Buffers[BuffIndex]) ) ++QueueSize;
+                            else return false;
+                        }
+                        alSourceQueueBuffers(this->InternalSource,QueueSize,&this->Buffers[0]);
                     }
-                    alSourceQueueBuffers(this->InternalSource,QueueSize,&Buffers[0]);
-                }
 
-                alSourcePlay(this->InternalSource);
-                this->State = ( this->IsLooping() ? OALS::PS_Playing | OALS::PS_Looping : OALS::PS_Playing );
+                    alSourcePlay(this->InternalSource);
+                    this->State = ( this->IsLooping() ? OALS::PS_Playing | OALS::PS_Looping : OALS::PS_Playing );
+                }
                 return true;
             }
 
@@ -302,6 +292,12 @@ namespace Mezzanine
             {
                 // Stop the source
                 alSourceStop(this->InternalSource);
+                // Unbind the buffers
+                Int32 BufferCount;
+                ALuint TempBuffer;
+                alGetSourcei(this->InternalSource,AL_BUFFERS_PROCESSED,&BufferCount);
+                for( Int32 BuffIndex = 0 ; BuffIndex < BufferCount ; ++BuffIndex )
+                    { alSourceUnqueueBuffers(this->InternalSource,1,&TempBuffer); }
                 // Inform the decoder
                 this->SoundDecoder->SetPosition(0,false);
                 this->State = ( this->IsLooping() ? OALS::PS_Stopped | OALS::PS_Looping : OALS::PS_Stopped );
@@ -326,8 +322,7 @@ namespace Mezzanine
             Boole Sound::Seek(const Real Seconds, Boole Relative)
             {
                 Boole Ret = false;
-                if( this->SoundDecoder->IsSeekingSupported() )
-                {
+                if( this->SoundDecoder->IsSeekingSupported() ) {
                     Ret = this->SoundDecoder->Seek(Seconds,Relative);
                 }
                 return Ret;
@@ -354,8 +349,7 @@ namespace Mezzanine
 
             void Sound::SetMinVolume(const Real MinVol)
             {
-                if( this->MinVolume != MinVol )
-                {
+                if( this->MinVolume != MinVol ) {
                     this->MakeCurrent();
                     alSourcef(this->InternalSource,AL_MIN_GAIN,MinVol);
                     this->MinVolume = MinVol;
@@ -369,8 +363,7 @@ namespace Mezzanine
 
             void Sound::SetMaxVolume(const Real MaxVol)
             {
-                if( this->MaxVolume != MaxVol )
-                {
+                if( this->MaxVolume != MaxVol ) {
                     this->MakeCurrent();
                     alSourcef(this->InternalSource,AL_MAX_GAIN,MaxVol);
                     this->MaxVolume = MaxVol;
@@ -387,14 +380,13 @@ namespace Mezzanine
 
             Boole Sound::AttachEffect(const UInt32 Slot, iEffect* Eff)
             {
-                if( Eff && Eff->IsValid() == false )
+                if( Eff && Eff->IsValid() == false ) {
                     return false;
+                }
 
-                if( Slot < this->Effects.size() )
-                {
+                if( Slot < this->Effects.size() ) {
                     OALS::Effect* BeingAdded = static_cast<OALS::Effect*>(Eff);
-                    if( BeingAdded )
-                    {
+                    if( BeingAdded ) {
                         this->Effects[Slot] = BeingAdded;
 
                         ALuint EffectSlotID = BeingAdded->_GetInternalEffectSlot();
@@ -433,8 +425,7 @@ namespace Mezzanine
 
             void Sound::RemoveEffect(const UInt32 Slot)
             {
-                if( Slot < this->Effects.size() )
-                {
+                if( Slot < this->Effects.size() ) {
                     this->Effects[Slot] = NULL;
                     alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,AL_EFFECTSLOT_NULL,Slot,AL_FILTER_NULL);
                 }
@@ -449,8 +440,7 @@ namespace Mezzanine
                     return false;
 
                 this->SoundFilter = static_cast<OALS::Filter*>(Fil);
-                if( this->SoundFilter != NULL )
-                {
+                if( this->SoundFilter != NULL ) {
                     ALuint FilterID = this->SoundFilter->_GetInternalFilter();
                     alSourcei(this->InternalSource,AL_DIRECT_FILTER,FilterID);
                 }
@@ -464,8 +454,7 @@ namespace Mezzanine
 
             void Sound::RemoveFilter()
             {
-                if( this->SoundFilter != NULL )
-                {
+                if( this->SoundFilter != NULL ) {
                     this->SoundFilter = NULL;
                     alSourcei(this->InternalSource,AL_DIRECT_FILTER,AL_FILTER_NULL);
                 }
@@ -481,8 +470,7 @@ namespace Mezzanine
                 alSourcef(this->InternalSource,AL_GAIN,this->GetVolume());
 
                 // Update our filter
-                if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() )
-                {
+                if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() ) {
                     ALuint FilterID = this->SoundFilter->_GetInternalFilter();
                     alSourcei(this->InternalSource,AL_DIRECT_FILTER,FilterID);
                 }
@@ -491,8 +479,7 @@ namespace Mezzanine
                 for( UInt32 Index = 0 ; Index < this->Effects.size() ; ++Index )
                 {
                     OALS::Effect* CurrEffect = this->Effects.at(Index);
-                    if( CurrEffect != NULL && CurrEffect->_IsDirty() )
-                    {
+                    if( CurrEffect != NULL && CurrEffect->_IsDirty() ) {
                         //ALuint EffectID = CurrEffect->_GetInternalEffect();
                         ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
                         ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
@@ -508,25 +495,24 @@ namespace Mezzanine
             {
                 Int32 Processed = 0;
                 Boole Active = true;
-                if( this->IsPlaying() )
-                {
+                if( this->IsPlaying() ) {
                     alGetSourcei(this->InternalSource,AL_BUFFERS_PROCESSED,&Processed);
 
                     while( Processed-- )
                     {
                         UInt32 Buffer = 0;
                         alSourceUnqueueBuffers(this->InternalSource,1,&Buffer);
-                        Active = StreamToBuffer(Buffer);
+                        Active = this->StreamToBuffer(Buffer);
 
-                        if( Active )
+                        if( Active ) {
                             alSourceQueueBuffers(this->InternalSource,1,&Buffer);
+                        }
                     }
                 }
 
                 ALenum OALSState;
                 alGetSourcei(this->InternalSource,AL_SOURCE_STATE,&OALSState);
-                if( OALSState == AL_STOPPED && !IsStopped() )
-                {
+                if( OALSState == AL_STOPPED && !this->IsStopped() ) {
                     this->SoundDecoder->SetPosition(0,false);
                     this->State = ( this->IsLooping() ? OALS::PS_Stopped | OALS::PS_Looping : OALS::PS_Stopped );
                 }
