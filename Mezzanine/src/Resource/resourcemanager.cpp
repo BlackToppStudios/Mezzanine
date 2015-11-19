@@ -67,7 +67,7 @@ namespace Mezzanine
         const String ResourceManager::ImplementationName = "DefaultResourceManager";
         const ManagerBase::ManagerType ResourceManager::InterfaceType = ManagerBase::MT_ResourceManager;
 
-        ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
+        ResourceManager::ResourceManager(const String& EngineDataPath, const Resource::ArchiveType ArchType)
         {
             this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
             this->EngineDataDir = EngineDataPath;
@@ -225,13 +225,13 @@ namespace Mezzanine
             Initialized = false;
         }
 
-        String ResourceManager::GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType)
+        String ResourceManager::GetStringFromArchiveType(const Resource::ArchiveType ArchType)
         {
             switch(ArchType)
             {
-                case Mezzanine::AT_FileSystem:
+                case Resource::AT_FileSystem:
                     return String("FileSystem");
-                case Mezzanine::AT_Zip:
+                case Resource::AT_Zip:
                     return String("Zip");
                 default:
                     MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
@@ -239,12 +239,12 @@ namespace Mezzanine
             }
         }
 
-        Mezzanine::ArchiveType ResourceManager::GetArchiveTypeFromString(const String& FromString)
+        Resource::ArchiveType ResourceManager::GetArchiveTypeFromString(const String& FromString)
         {
             if(String("FileSystem")==FromString)
-                { return Mezzanine::AT_FileSystem; }
+                { return Resource::AT_FileSystem; }
             if(String("Zip")==FromString)
-                { return Mezzanine::AT_Zip; }
+                { return Resource::AT_Zip; }
             MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
             return AT_Invalid;
         }
@@ -284,7 +284,7 @@ namespace Mezzanine
             }
 
             String EngineDataPath = ".";
-            ArchiveType ArchType = Mezzanine::AT_FileSystem;
+            ArchiveType ArchType = Resource::AT_FileSystem;
             for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
             {
                 String Lower = (*ParIt).first;

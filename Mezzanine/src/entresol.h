@@ -272,15 +272,12 @@
 */
 
 //And now for actual source code!
-#include "stringtool.h"
-#include "crossplatform.h"
-#include "eventbase.h"
-#include "exception.h"
-#include "enumerations.h"
 #include "datatypes.h"
-#include "vector3.h"
-#include "managerbase.h"
 #include "singleton.h"
+#include "stringtool.h"
+
+#include "Resource/resourceenumerations.h"
+#include "XML/xml.h"
 
 #ifndef SWIG
     #include "Threading/dagframescheduler.h"
@@ -388,7 +385,7 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param ArchType Should This be looking for raw or zip or whatever kind of files.
         /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.
-        void ConstructFromXML(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile);
+        void ConstructFromXML(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile);
 
         /// @internal
         /// @brief If not already created create an instance of Ogre.
@@ -437,7 +434,7 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
         /// @param ArchType The type of archive at the path provided.
         /// @param InitializerFile The file that describes how to initialize Mezzanine.
-        Entresol(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
+        Entresol(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
         /// @brief Factory and initializer file constructor.
         /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
         /// If the file provided is not one of this type this function will throw an exception. @n @n
@@ -446,7 +443,7 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
         /// @param ArchType The type of archive at the path provided.
         /// @param InitializerFile The file that describes how to initialize Mezzanine.
-        Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
+        Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
         /// @brief Descriptive constructor With Manager Pointers.
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
         /// @param LogFileName This is the place that log messages get sent to.

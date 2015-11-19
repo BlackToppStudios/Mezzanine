@@ -41,10 +41,10 @@
 #define _resourcemanager_h
 
 #include "datatypes.h"
-#include "enumerations.h"
 #include "entresolmanager.h"
 #include "entresolmanagerfactory.h"
 #include "singleton.h"
+#include "Resource/resourceenumerations.h"
 #include "Resource/datastream.h"
 
 /// @file
@@ -229,11 +229,11 @@ namespace Mezzanine
             /// @brief Gets a string that describes an @ref ArchiveType.
             /// @param ArchType A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
             /// @return A String that represents the @ref ArchiveType passed.
-            static String GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType);
+            static String GetStringFromArchiveType(const Resource::ArchiveType ArchType);
             /// @brief Gets an @ref ArchiveType from a string.
             /// @param FromString The string to be converted to an archive type.
             /// @return Returns a @ref ArchiveType corresponding to the string provided, or AT_Invalid if it is invalid.
-            static ArchiveType GetArchiveTypeFromString(const String& FromString);
+            static Resource::ArchiveType GetArchiveTypeFromString(const String& FromString);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods
