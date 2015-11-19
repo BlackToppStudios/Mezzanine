@@ -251,7 +251,7 @@ namespace Mezzanine
                 /// @details Each name can be the name of a libname (except None) and the value can
                 /// either be "Load" or "Unload". To indicate whether or not a library will be loaded
                 /// or not during instantation.
-                explicit Lua51ScriptingEngine(NameValuePairList& Params);
+                explicit Lua51ScriptingEngine(const NameValuePairList& Params);
 
                 /// @brief Construct by deserializing
                 /// @param XMLNode An XML::Node That contains an A valid lua scripting engine.
@@ -511,10 +511,10 @@ namespace Mezzanine
                 /// @copydoc ManagerFactory::GetManagerType() const
                 ManagerBase::ManagerType GetManagerType() const;
 
-                /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
-                EntresolManager* CreateManager(NameValuePairList& Params);
-                /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
-                EntresolManager* CreateManager(XML::Node& XMLNode);
+                /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+                EntresolManager* CreateManager(const NameValuePairList& Params);
+                /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+                EntresolManager* CreateManager(const XML::Node& XMLNode);
                 /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
                 void DestroyManager(EntresolManager* ToBeDestroyed);
             };//ManagerFactory
