@@ -49,7 +49,6 @@ namespace Mezzanine
 {
     namespace Resource
     {
-#ifdef USENEWDATASTREAM
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This represents a stream to a file on disk using the C++ file stream API.
         /// @details
@@ -118,50 +117,6 @@ namespace Mezzanine
             /// @copydoc StreamBase::GetSize() const
             virtual StreamSize GetSize() const;
         };//FileStream
-#else //USENEWDATASTREAM
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This represents a stream to a file on disk using the C++ file stream API.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB FileStream : public DataStream
-        {
-        protected:
-            std::fstream* StandardStream;
-        public:
-            /// @brief Class constructor.
-            /// @param Stream The stream to the file being streamed to/from.
-            /// @param Mode The flags to use when initializing the stream.
-            FileStream(std::fstream* Stream, const UInt16 Flags = DataStream::SF_Read);
-            /// @brief Self loading constructor.
-            /// @param FileName The name of the file to be loaded.  This will also become the name of the stream.
-            /// @param Path The path to the file being loaded.
-            /// @param Mode The flags to use when initializing the stream.
-            FileStream(const String& FileName, const String& Path, const UInt16 Flags = DataStream::SF_Read);
-            /// @brief Class destructor.
-            virtual ~FileStream();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Stream Access and Manipulation
-
-            /// @copydoc DataStream::Read(void* Buffer, const size_t& Count)
-            virtual size_t Read(void* Buffer, const size_t& Count);
-            /// @copydoc DataStream::Write(const void* Buffer, const size_t& Count)
-            virtual size_t Write(const void* Buffer, const size_t& Count);
-
-            /// @copydoc DataStream::Advance(const StreamOff Count)
-            virtual void Advance(const StreamOff Count);
-            /// @copydoc DataStream::SetStreamPosition(StreamPos Position)
-            virtual void SetStreamPosition(StreamPos Position);
-            /// @copydoc DataStream::SetStreamPosition(StreamOff Offset, SeekOrigin Origin)
-            virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin);
-            /// @copydoc DataStream::GetStreamPosition(Boole Read = true)
-            virtual StreamPos GetStreamPosition(Boole Read = true);
-            /// @copydoc DataStream::EoF() const
-            virtual Boole EoF() const;
-            /// @copydoc DataStream::Close()
-            virtual void Close();
-        };//FileStream
-#endif //USENEWDATASTREAM
     }//Resource
 }//Mezzanine
 

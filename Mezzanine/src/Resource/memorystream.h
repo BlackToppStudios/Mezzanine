@@ -49,7 +49,6 @@ namespace Mezzanine
 {
     namespace Resource
     {
-#ifdef USENEWDATASTREAM
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief A stream buffer object to a chunk of memory.
         /// @details
@@ -286,78 +285,6 @@ namespace Mezzanine
             /// @copydoc StreamBase::GetSize() const
             virtual StreamSize GetSize() const;
         };//MemoryStream
-#else //USENEWDATASTREAM
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This represents a stream to a buffer in memory.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB MemoryStream : public DataStream
-        {
-            protected:
-                Boole FreeBuffer;
-                UInt8* BufferStart;
-                UInt8* BufferPos;
-                UInt8* BufferEnd;
-            public:
-                /// @brief Buffer creation constructor.
-                /// @param BufferSize The size of the buffer to be created.
-                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
-                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryStream(const size_t& BufferSize, Boole FreeOnClose = true, Boole ReadOnly = false);
-                /// @brief Pre-made buffer constructor.
-                /// @param Buffer The premade buffer to stream from.
-                /// @param BufferSize The size of the buffer to stream to/from.
-                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
-                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryStream(void* Buffer, const size_t& BufferSize, Boole FreeOnClose = false, Boole ReadOnly = false);
-                /// @brief Class destructor.
-                virtual ~MemoryStream();
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
-
-                /// @brief Gets a pointer to the start of the memory buffer used by this stream.
-                /// @return Returns a pointer to the start of the memory buffer.
-                UInt8* GetBufferStart() const;
-                /// @brief Gets a pointer to the current position in the memory buffer used by this stream.
-                /// @return Returns a pointer to the current position in the memory buffer.
-                UInt8* GetBufferPosition() const;
-                /// @brief Gets a pointer to the end of the memory buffer used by this stream.
-                /// @return Returns a pointer to the end of the memory buffer.
-                UInt8* GetBufferEnd() const;
-                /// @brief Sets whether or not you want this stream to free the memory buffer when it closes.
-                /// @param True if you want this stream to free the buffer when it closes, false if you want it preserved.
-                void SetFreeOnClose(Boole FreeOnClose);
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Stream Access and Manipulation
-
-                /// @copydoc DataStream::Read(void* Buffer, const size_t& Count)
-                virtual size_t Read(void* Buffer, const size_t& Count);
-                /// @copydoc DataStream::Write(const void* Buffer, const size_t& Count)
-                virtual size_t Write(const void* Buffer, const size_t& Count);
-                /// @copydoc DataStream::Advance(const StreamOff Count)
-                virtual void Advance(const StreamOff Count);
-                /// @copydoc DataStream::SetStreamPosition(StreamPos Position)
-                virtual void SetStreamPosition(StreamPos Position);
-                /// @copydoc DataStream::SetStreamPosition(StreamOff Offset, SeekOrigin Origin)
-                virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin);
-                /// @copydoc DataStream::GetStreamPosition(Boole Read = true)
-                virtual StreamPos GetStreamPosition(Boole Read = true);
-                /// @copydoc DataStream::EoF() const
-                virtual Boole EoF() const;
-                /// @copydoc DataStream::Close()
-                virtual void Close();
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Formatting Methods
-
-                /// @copydoc DataStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim = "\n")
-                virtual size_t ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim = "\n");
-                /// @copydoc DataStream::SkipLine(const String& Delim = "\n")
-                virtual size_t SkipLine(const String& Delim = "\n");
-        };//MemoryStream
-#endif //USENEWDATASTREAM
     }//Resource
 }//Mezzanine
 

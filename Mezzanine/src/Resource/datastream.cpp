@@ -54,7 +54,6 @@ namespace Mezzanine
 {
     namespace Resource
     {
-#ifdef USENEWDATASTREAM
         ///////////////////////////////////////////////////////////////////////////////
         // IStream Methods
 
@@ -63,6 +62,27 @@ namespace Mezzanine
 
         IStream::~IStream()
             {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Base Operations
+
+        Boole IStream::EoF() const
+            { return this->eof(); }
+
+        Boole IStream::Bad() const
+            { return this->bad(); }
+
+        Boole IStream::Fail() const
+            { return this->fail(); }
+
+        Boole IStream::IsValid() const
+            { return this->good(); }
+
+        void IStream::ClearErrors()
+            { this->clear(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Input methods
 
         size_t IStream::Read(void* Buffer, StreamSize Size)
         {
@@ -87,6 +107,27 @@ namespace Mezzanine
 
         OStream::~OStream()
             {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Base Operations
+
+        Boole OStream::EoF() const
+            { return this->eof(); }
+
+        Boole OStream::Bad() const
+            { return this->bad(); }
+
+        Boole OStream::Fail() const
+            { return this->fail(); }
+
+        Boole OStream::IsValid() const
+            { return this->good(); }
+
+        void OStream::ClearErrors()
+            { this->clear(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Output methods
 
         size_t OStream::Write(const void* Buffer, StreamSize Size)
         {
@@ -117,6 +158,18 @@ namespace Mezzanine
 
         Boole IOStream::EoF() const
             { return this->eof(); }
+
+        Boole IOStream::Bad() const
+            { return this->bad(); }
+
+        Boole IOStream::Fail() const
+            { return this->fail(); }
+
+        Boole IOStream::IsValid() const
+            { return this->good(); }
+
+        void IOStream::ClearErrors()
+            { this->clear(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Input methods
@@ -291,147 +344,6 @@ namespace Mezzanine
 
             return TotalBytes;
         }
-#else //USENEWDATASTREAM
-        ///////////////////////////////////////////////////////////////////////////////
-        // DataStream Methods
-        ///////////////////////////////////////
-        DataStream::DataStream(const UInt16 Flags) :
-            SFlags(Flags),
-            Size(0)
-            {  }
-
-        DataStream::~DataStream()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        StreamSize DataStream::GetSize() const
-            { return Size; }
-
-        Boole DataStream::IsReadable() const
-            { return (SFlags & DataStream::SF_Read); }
-
-        Boole DataStream::IsWriteable() const
-            { return (SFlags & DataStream::SF_Write); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Stream Access and Manipulation
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Formatting Methods
-
-        String DataStream::GetAsString()
-        {
-            size_t BufferSize = (this->Size > 0 ? this->Size : 4096);
-            char* Buffer = new char[BufferSize];
-
-            this->SetStreamPosition(0);
-            String Ret;
-            while (!EoF())
-            {
-                size_t BytesRead = Read(Buffer,BufferSize);
-                Ret.append(Buffer,BytesRead);
-            }
-            delete[] Buffer;
-            return Ret;
-        }
-
-        size_t DataStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim)
-        {
-            Boole TrimCR = false;
-            if( Delim.find_first_of('\n') != String::npos ) {
-                TrimCR = true;
-            }
-
-            char Temp[TEMP_STREAM_SIZE];
-            size_t ChunkSize = std::min(MaxCount,(size_t)TEMP_STREAM_SIZE - 1);
-            size_t TotalCount = 0;
-            size_t ReadCount = 0;
-
-            while(ChunkSize && (ReadCount = Read(Temp,ChunkSize)) != 0)
-            {
-                Temp[ReadCount] = '\0';
-                size_t Pos = std::strcspn(Temp,Delim.c_str());
-
-                if(Pos < ReadCount) {
-                    this->Advance((long)(Pos + 1 - ReadCount));
-                }
-
-                if(Buffer) {
-                    std::memcpy(Buffer + TotalCount,Temp,Pos);
-                }
-                TotalCount += Pos;
-
-                if(Pos < ReadCount) {
-                    if(TrimCR && TotalCount && Buffer[TotalCount - 1] == '\r') {
-                        --TotalCount;
-                    }
-                    break;
-                }
-
-                ChunkSize = std::min(MaxCount - TotalCount,(size_t)TEMP_STREAM_SIZE - 1);
-            }
-            Buffer[TotalCount] = '\0';
-            return TotalCount;
-        }
-
-        String DataStream::GetLine(Boole Trim)
-        {
-            char Temp[TEMP_STREAM_SIZE];
-            String Ret;
-            size_t ReadCount;
-
-            while( (ReadCount = Read(Temp,TEMP_STREAM_SIZE - 1)) != 0 )
-            {
-                Temp[ReadCount] = '\0';
-
-                char* Pos = std::strchr(Temp,'\n');
-                if(Pos != 0) {
-                    this->Advance((long)(Pos + 1 - Temp - ReadCount));
-                    *Pos = '\0';
-                }
-
-                Ret += Temp;
-
-                if(Pos != 0) {
-                    if(Ret.length() && Ret[Ret.length() - 1] == '\r') {
-                        Ret.erase(Ret.length() - 1, 1);
-                    }
-                    break;
-                }
-            }
-
-            if(Trim) {
-                StringTools::Trim(Ret);
-            }
-
-            return Ret;
-        }
-
-        size_t DataStream::SkipLine(const String& Delim)
-        {
-            char Temp[TEMP_STREAM_SIZE];
-            size_t TotalBytes = 0;
-            size_t ReadCount = 0;
-
-            while( (ReadCount = Read(Temp,TEMP_STREAM_SIZE - 1)) != 0 )
-            {
-                Temp[ReadCount] = '\0';
-                size_t Position = std::strcspn(Temp,Delim.c_str());
-
-                if(Position < ReadCount) {
-                    this->Advance((long)(Position + 1 - ReadCount));
-                    TotalBytes += Position + 1;
-                    break;
-                }
-
-                TotalBytes += ReadCount;
-            }
-
-            return TotalBytes;
-        }
-#endif
     }//Resource
 }//Mezzanine
 
