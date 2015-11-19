@@ -65,7 +65,7 @@ protected:
     ThrowableContainer ThrownItems;
     StartAreaContainer StartAreas;
 
-    void InitializeFromXML(const String& CatchDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile);
+    void InitializeFromXML(const String& CatchDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile);
 
     void CreateWorld();
     void MakeGUI();

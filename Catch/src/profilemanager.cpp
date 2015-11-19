@@ -296,7 +296,7 @@ void ProfileManager::SetProfilesDirectory(const String& Path)
     if( ProfilesGroup != NULL ) {
         ResourceMan->DestroyAssetGroup("Profiles");
     }
-    ResourceMan->AddAssetLocation(this->ProfilesDirectory,Mezzanine::AT_FileSystem,"Profiles");
+    ResourceMan->AddAssetLocation(this->ProfilesDirectory,Resource::AT_FileSystem,"Profiles");
 }
 
 const String& ProfileManager::GetProfilesDirectory() const

@@ -42,12 +42,12 @@ CatchApp::CatchApp() :
     CatchApp::TheRealCatchApp = this;
 
     // Initialize the engine
-    this->TheEntresol = new Entresol( "Data/", Mezzanine::AT_FileSystem );
+    this->TheEntresol = new Entresol( "Data/", Resource::AT_FileSystem );
     //this->TheWorld = this->TheEntresol->CreateWorld("Catching");
     this->CreateWorld();
 
     // Now initialize game specific stuff
-    this->InitializeFromXML( "Data/", Mezzanine::AT_FileSystem, "Catch.mxi" );
+    this->InitializeFromXML( "Data/", Resource::AT_FileSystem, "Catch.mxi" );
 
     this->LevelMan = new LevelManager( this->TheEntresol, "Levels/" );
     this->Scorer = new LevelScorer( this, this->TheEntresol );
@@ -99,7 +99,7 @@ CatchApp::~CatchApp()
     CatchApp::TheRealCatchApp = NULL;
 }
 
-void CatchApp::InitializeFromXML(const String& CatchDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
+void CatchApp::InitializeFromXML(const String& CatchDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
 {
     // Start with the XML initializer file
     Resource::FileStream InitStream(InitializerFile,CatchDataPath);

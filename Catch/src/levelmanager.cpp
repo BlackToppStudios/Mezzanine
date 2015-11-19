@@ -27,7 +27,7 @@ void LoadFerris()
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", AT_Zip, FerrisGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", Resource::AT_Zip, FerrisGroup, false);
     ResourceMan->InitAssetGroup(FerrisGroup);
 
     // Scoring and Shop Setup
@@ -307,7 +307,7 @@ void LoadBigCurve()
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", AT_Zip, BigCurveGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", Resource::AT_Zip, BigCurveGroup, false);
     ResourceMan->InitAssetGroup(BigCurveGroup);
 
     // Scoring and Shop Setup
@@ -433,7 +433,7 @@ void LoadBlowsNotSucks()
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", AT_Zip, BlowsNotSucksGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", Resource::AT_Zip, BlowsNotSucksGroup, false);
     ResourceMan->InitAssetGroup(BlowsNotSucksGroup);
 
     // Scoring and Shop Setup
@@ -652,7 +652,7 @@ void LoadJustice()
     String CommonGroup("Common");
     String JusticeGroup("Justice");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", AT_Zip, JusticeGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", Resource::AT_Zip, JusticeGroup, false);
     ResourceMan->InitAssetGroup(JusticeGroup);
 
     // Scoring and Shop Setup
@@ -881,7 +881,7 @@ void LoadRollers()
     String CommonGroup("Common");
     String RollersGroup("Rollers");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", AT_Zip, RollersGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", Resource::AT_Zip, RollersGroup, false);
     ResourceMan->InitAssetGroup(RollersGroup);
 
     // Scoring and Shop Setup
@@ -1024,7 +1024,7 @@ void LoadJustBounce()
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", AT_Zip, JustBounceGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", Resource::AT_Zip, JustBounceGroup, false);
     ResourceMan->InitAssetGroup(JustBounceGroup);
 
     // Scoring and Shop Setup
@@ -1340,7 +1340,7 @@ Whole LevelManager::DetectLevels()
 
             const String AssetGroupName = FileName.substr(0,FileName.find_last_of('.'));
             const String CompletePath = this->LevelPath + FileName;
-            ResourceMan->AddAssetLocation(CompletePath,Mezzanine::AT_Zip,AssetGroupName);
+            ResourceMan->AddAssetLocation(CompletePath,Resource::AT_Zip,AssetGroupName);
 
             LevelDoc.Reset();
             Resource::DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);
