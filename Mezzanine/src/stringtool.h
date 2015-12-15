@@ -59,10 +59,52 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         // Globals, mostly used for comparison and such
+
+        /// @brief Convenience String for comparing to return blank Strings where necessary.
         const String Blank = "";
 
         ///////////////////////////////////////////////////////////////////////////////
-        // String Manipulation and checks
+        // Character Manipulation and checks
+
+        /// @brief Checks if a character is a decimal digit.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a decimal digit, false otherwise.
+        Boole MEZZ_LIB IsDigit(const Char8 ToCheck);
+        /// @brief Checks if a character is a lower-case alphabetic letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a lower-case letter, false otherwise.
+        Boole MEZZ_LIB IsLowerAlphaLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a upper-case alphabetic letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a upper-case letter, false otherwise.
+        Boole MEZZ_LIB IsUpperAlphaLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a lower or upper case letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a lower or upper case letter, false otherwise.
+        Boole MEZZ_LIB IsAlphaLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a lower-case hexadecimal letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a lower-case letter, false otherwise.
+        Boole MEZZ_LIB IsLowerHexLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a upper-case hexadecimal letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a upper-case letter, false otherwise.
+        Boole MEZZ_LIB IsUpperHexLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a hexadecimal letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a hexadecimal letter, false otherwise.
+        Boole MEZZ_LIB IsHexLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a hexadecimal digit.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a hexadecimal digit, false otherwise.
+        Boole MEZZ_LIB IsHexDigit(const Char8 ToCheck);
+        /// @brief Checks if a character is a letter or digit.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a letter or digit, false otherwise.
+        Boole MEZZ_LIB IsAlphanumeric(const Char8 ToCheck);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // String Manipulation and Checks
 
         /// @brief Trims all whitespaces and tabs from a one or both sides of a string.
         /// @param Source The original string to be trimmed.
