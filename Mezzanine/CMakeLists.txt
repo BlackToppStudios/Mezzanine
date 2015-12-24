@@ -151,6 +151,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}unicode.h"
         "${${PROJECT_NAME}_SRC_DIR}vector2.h"
         "${${PROJECT_NAME}_SRC_DIR}vector3.h"
+        "${${PROJECT_NAME}_SRC_DIR}version.h"
         "${${PROJECT_NAME}_SRC_DIR}world.h"
         "${${PROJECT_NAME}_SRC_DIR}worldmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldmanagerfactory.h"
@@ -351,6 +352,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Network/udpsocket.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/udpv4socket.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/udpv6socket.h"
+        "${${PROJECT_NAME}_SRC_DIR}Network/uri.h"
         # Noise Items
         "${${PROJECT_NAME}_SRC_DIR}Noise/noise.h"
         "${${PROJECT_NAME}_SRC_DIR}Noise/noiseenumerations.h"
@@ -803,6 +805,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Network/udpsocket.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/udpv4socket.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/udpv6socket.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Network/uri.cpp"
         # Noise Items
         "${${PROJECT_NAME}_SRC_DIR}Noise/noiseutilities.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Noise/noisegen.cpp"

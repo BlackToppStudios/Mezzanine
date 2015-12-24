@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkenumerations_h
 #define _networkenumerations_h
 
@@ -191,9 +189,28 @@ namespace Mezzanine
             TLP_TCP     = 2,   ///< Transmission Control Protocol.
             TLP_UDP     = 4    ///< User Datagram Protocol.
         };
+
+        /// @enum WellKnownPorts
+        /// @brief A listing of commonly used ports for various frequently used protocols.
+        enum WellKnownPorts
+        {
+            WKP_FTPData = 20,
+            WKP_FTPControl = 21,
+            WKP_SSH = 22,
+            WKP_Telnet = 23,
+            WKP_SMTP = 25,
+            WKP_HTTP = 80,
+            WKP_NNTP = 119,
+            WKP_LDAP = 389,
+            WKP_HTTPS = 443,
+            WKP_RTSP = 554,
+            WKP_FTPSData = 989,
+            WKP_FTPSControl = 990,
+            WKP_SIP = 5060,
+            WKP_SIPS = 5061,
+            WKP_XMPP = 5222
+        };
     }//Network
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK
