@@ -69,7 +69,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Configuration
 
-        void UDPv4Socket::SetDontFragment(const Boole DontFrag)
+        /*void UDPv4Socket::SetDontFragment(const Boole DontFrag)
         {
             int Value = ( DontFrag ? Network::MFV_Frag_Disable : Network::MFV_Frag_Enable );
             this->InternalSocket->SetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_Fragmentation,(char*)&Value,sizeof(Value));
@@ -81,7 +81,7 @@ namespace Mezzanine
             AddrLen Size;
             this->InternalSocket->GetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_Fragmentation,(char*)&Value,&Size);
             return ( Value != 0 );
-        }
+        }//*/
 
         void UDPv4Socket::SetNumMulticastHops(const Integer Hops)
         {
