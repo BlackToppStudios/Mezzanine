@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="pugiconfig_8h.html" target="_top" target="_top" xlink:title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ...">
+<g id="a_node2"><a xlink:href="pugiconfig_8h.html" target="_top" xlink:title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 69,-19.5 69,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="34.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pugiconfig.h</text>
 </a>

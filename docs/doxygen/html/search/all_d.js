@@ -5,7 +5,6 @@ var searchData=
   ['debug',['debug',['../namespaceMezzanine_1_1debug.html',1,'Mezzanine']]],
   ['mezzanine_20gnu_20public_20license_203',['Mezzanine GNU Public License 3',['../GPLLicense.html',1,'']]],
   ['graphics',['Graphics',['../namespaceMezzanine_1_1Graphics.html',1,'Mezzanine']]],
-  ['mezzanine',['Mezzanine',['../index.html',1,'']]],
   ['input',['Input',['../namespaceMezzanine_1_1Input.html',1,'Mezzanine']]],
   ['internal',['internal',['../namespaceMezzanine_1_1internal.html',1,'Mezzanine']]],
   ['lua',['Lua',['../namespaceMezzanine_1_1Scripting_1_1Lua.html',1,'Mezzanine::Scripting']]],

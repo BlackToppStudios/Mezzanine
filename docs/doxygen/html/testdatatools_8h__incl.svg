@@ -24,13 +24,13 @@ if (edges && edges.length) {
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
                 <g id="zoomPlus">
-                        <use xlink:href="#rim" target="_top" fill="#404040">
+                        <use xlink:href="#rim" fill="#404040">
                                 <set attributeName="fill" to="#808080" begin="zoomplus.mouseover" end="zoomplus.mouseout"/>
                         </use>
                         <path d="M-4,0h8M0,-4v8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
                 </g>
                 <g id="zoomMin">
-                        <use xlink:href="#rim" target="_top" fill="#404040">
+                        <use xlink:href="#rim" fill="#404040">
                                 <set attributeName="fill" to="#808080" begin="zoomminus.mouseover" end="zoomminus.mouseout"/>
                         </use>
                         <path d="M-4,0h8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
@@ -39,7 +39,7 @@ if (edges && edges.length) {
                         <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
                <g id="resetDef">
-                       <use xlink:href="#rim2" target="_top" fill="#404040">
+                       <use xlink:href="#rim2" fill="#404040">
                                <set attributeName="fill" to="#808080" begin="reset.mouseover" end="reset.mouseout"/>
                        </use>
                </g>
@@ -50,7 +50,7 @@ var viewWidth = 1428;
 var viewHeight = 263;
 var sectionId = 'dynsection-0';
 </script>
-<script xlink:href="svgpan.js" target="_top"/>
+<script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>/home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdatatools.h</title>
@@ -63,7 +63,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="datatypes_8h.html" target="_top" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<g id="a_node2"><a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="860.5,-56.5 860.5,-75.5 928.5,-75.5 928.5,-56.5 860.5,-56.5"/>
 <text text-anchor="middle" x="894.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">datatypes.h</text>
 </a>
@@ -76,7 +76,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node20" class="node"><title>Node20</title>
-<g id="a_node20"><a xlink:href="testdata_8h.html" target="_top" target="_top" xlink:title="TestData, TestDataStorage and UnitTestGroup class definitions. ">
+<g id="a_node20"><a xlink:href="testdata_8h.html" target="_top" xlink:title="TestData, TestDataStorage and UnitTestGroup class definitions. ">
 <polygon fill="white" stroke="black" points="879.5,-168.5 879.5,-187.5 939.5,-187.5 939.5,-168.5 879.5,-168.5"/>
 <text text-anchor="middle" x="909.5" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">testdata.h</text>
 </a>
@@ -99,7 +99,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="crossplatformexport_8h.html" target="_top" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<g id="a_node3"><a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="475,-0.5 475,-19.5 586,-19.5 586,-0.5 475,-0.5"/>
 <text text-anchor="middle" x="530.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -262,7 +262,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node19" class="node"><title>Node19</title>
-<g id="a_node19"><a xlink:href="swig_8h.html" target="_top" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
+<g id="a_node19"><a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1256,-0.5 1256,-19.5 1301,-19.5 1301,-0.5 1256,-0.5"/>
 <text text-anchor="middle" x="1278.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">swig.h</text>
 </a>
@@ -295,7 +295,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node21 -->
 <g id="node21" class="node"><title>Node21</title>
-<g id="a_node21"><a xlink:href="testenumerations_8h.html" target="_top" target="_top" xlink:title="Enumerations and constant values associated with the Unit tests. ">
+<g id="a_node21"><a xlink:href="testenumerations_8h.html" target="_top" xlink:title="Enumerations and constant values associated with the Unit tests. ">
 <polygon fill="white" stroke="black" points="898.5,-112.5 898.5,-131.5 998.5,-131.5 998.5,-112.5 898.5,-112.5"/>
 <text text-anchor="middle" x="948.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">testenumerations.h</text>
 </a>
@@ -308,7 +308,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node22 -->
 <g id="node22" class="node"><title>Node22</title>
-<g id="a_node22"><a xlink:href="pugixml_8h.html" target="_top" target="_top" xlink:title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ...">
+<g id="a_node22"><a xlink:href="pugixml_8h.html" target="_top" xlink:title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ...">
 <polygon fill="white" stroke="black" points="216,-56.5 216,-75.5 275,-75.5 275,-56.5 216,-56.5"/>
 <text text-anchor="middle" x="245.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">pugixml.h</text>
 </a>
@@ -346,7 +346,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node23 -->
 <g id="node23" class="node"><title>Node23</title>
-<g id="a_node23"><a xlink:href="pugiconfig_8h.html" target="_top" target="_top" xlink:title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ...">
+<g id="a_node23"><a xlink:href="pugiconfig_8h.html" target="_top" xlink:title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 69,-19.5 69,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="34.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pugiconfig.h</text>
 </a>
@@ -391,29 +391,29 @@ var sectionId = 'dynsection-0';
 </svg>
         <g id="navigator" transform="translate(0 0)" fill="#404254">
                 <rect fill="#f2f5e9" fill-opacity="0.5" stroke="#606060" stroke-width=".5" x="0" y="0" width="60" height="60"/>
-                <use id="zoomplus" xlink:href="#zoomPlus" target="_top" x="17" y="9" onmousedown="handleZoom(evt,'in')"/>
-                <use id="zoomminus" xlink:href="#zoomMin" target="_top" x="42" y="9" onmousedown="handleZoom(evt,'out')"/>
-                <use id="reset" xlink:href="#resetDef" target="_top" x="30" y="36" onmousedown="handleReset()"/>
-                <g id="arrowUp" xlink:href="#dirArrow" target="_top" transform="translate(30 24)" onmousedown="handlePan(0,-1)">
-                  <use xlink:href="#rim" target="_top" fill="#404040">
+                <use id="zoomplus" xlink:href="#zoomPlus" x="17" y="9" onmousedown="handleZoom(evt,'in')"/>
+                <use id="zoomminus" xlink:href="#zoomMin" x="42" y="9" onmousedown="handleZoom(evt,'out')"/>
+                <use id="reset" xlink:href="#resetDef" x="30" y="36" onmousedown="handleReset()"/>
+                <g id="arrowUp" xlink:href="#dirArrow" transform="translate(30 24)" onmousedown="handlePan(0,-1)">
+                  <use xlink:href="#rim" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowUp.mouseover" end="arrowUp.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowRight" xlink:href="#dirArrow" target="_top" transform="rotate(90) translate(36 -43)" onmousedown="handlePan(1,0)">
-                  <use xlink:href="#rim" target="_top" fill="#404040">
+                <g id="arrowRight" xlink:href="#dirArrow" transform="rotate(90) translate(36 -43)" onmousedown="handlePan(1,0)">
+                  <use xlink:href="#rim" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowRight.mouseover" end="arrowRight.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowDown" xlink:href="#dirArrow" target="_top" transform="rotate(180) translate(-30 -48)" onmousedown="handlePan(0,1)">
-                  <use xlink:href="#rim" target="_top" fill="#404040">
+                <g id="arrowDown" xlink:href="#dirArrow" transform="rotate(180) translate(-30 -48)" onmousedown="handlePan(0,1)">
+                  <use xlink:href="#rim" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowDown.mouseover" end="arrowDown.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowLeft" xlink:href="#dirArrow" target="_top" transform="rotate(270) translate(-36 17)" onmousedown="handlePan(-1,0)">
-                  <use xlink:href="#rim" target="_top" fill="#404040">
+                <g id="arrowLeft" xlink:href="#dirArrow" transform="rotate(270) translate(-36 17)" onmousedown="handlePan(-1,0)">
+                  <use xlink:href="#rim" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowLeft.mouseover" end="arrowLeft.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
@@ -421,7 +421,7 @@ var sectionId = 'dynsection-0';
         </g>
         <svg viewBox="0 0 15 15" width="100%" height="30px" preserveAspectRatio="xMaxYMin meet">
          <g id="arrow_out" transform="scale(0.3 0.3)">
-          <a xlink:href="testdatatools_8h__incl_org.svg" target="_top" target="_base">
+          <a xlink:href="testdatatools_8h__incl_org.svg" target="_base">
            <rect id="button" ry="5" rx="5" y="6" x="6" height="38" width="38"
                 fill="#f2f5e9" fill-opacity="0.5" stroke="#606060" stroke-width="1.0"/>
            <path id="arrow"

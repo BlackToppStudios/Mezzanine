@@ -29,6 +29,7 @@ CMakeLists.txt.user*
 
 # Doxygen Temp Files
 *.tmp
+doxygen_sqlite3.db
 
 # Editor Temp Files
 *~

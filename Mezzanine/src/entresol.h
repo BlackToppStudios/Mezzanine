@@ -40,8 +40,10 @@
 #ifndef _entresol_h
 #define _entresol_h
 
+#include "dox/mainpage.h"
+
 /**
- @mainpage Mezzanine
+ @page Mezzanine
  The Mezzanine Engine isn't really an engine. It is glue holding other code and libraries together. It is a series of other open source libraries (sometimes
  less user friendly, and almost always more sophisticated) that are held together in a single API that will be stable after its 1.0 release. Others have
  attempted to do things like this before. Usually simple mistakes are made along the way that have huge negative impacts later in the design. A common mistake

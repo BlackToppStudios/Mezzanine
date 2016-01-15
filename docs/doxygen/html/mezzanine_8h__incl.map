@@ -1,311 +1,311 @@
 <map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/mezzanine.h" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/mezzanine.h">
-<area shape="rect" id="node2" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="5317,1379,5377,1405"/>
+<area shape="rect" id="node2" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="5045,1379,5105,1405"/>
 <area shape="rect" id="node3" href="$audio_8h_source.html" title="Audio/audio.h" alt="" coords="1447,408,1548,435"/>
-<area shape="rect" id="node6" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="7912,1304,8003,1331"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="16409,1379,16557,1405"/>
-<area shape="rect" id="node23" href="$entresolmanager_8h_source.html" title="entresolmanager.h" alt="" coords="5874,707,6003,733"/>
-<area shape="rect" id="node24" href="$managerbase_8h_source.html" title="managerbase.h" alt="" coords="2955,856,3066,883"/>
-<area shape="rect" id="node25" href="$xml_8h_source.html" title="XML/xml.h" alt="" coords="7785,931,7871,957"/>
-<area shape="rect" id="node35" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="11499,1229,11594,1256"/>
-<area shape="rect" id="node48" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="2772,781,2895,808"/>
-<area shape="rect" id="node49" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="6989,707,7075,733"/>
-<area shape="rect" id="node50" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="14982,856,15071,883"/>
-<area shape="rect" id="node51" href="$objectsettings_8h_source.html" title="objectsettings.h" alt="" coords="4832,632,4947,659"/>
-<area shape="rect" id="node52" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="12337,781,12413,808"/>
-<area shape="rect" id="node54" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="8325,707,8401,733"/>
-<area shape="rect" id="node55" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here. " alt="" coords="7294,781,7405,808"/>
-<area shape="rect" id="node56" href="$macros_8h.html" title="All convience/utility macros for the Mezzanine are to be placed here. " alt="" coords="4861,856,4937,883"/>
-<area shape="rect" id="node57" href="$interpolator_8h.html" title="Helper classes to assist in generating data points between two other data points. ..." alt="" coords="9143,781,9241,808"/>
-<area shape="rect" id="node59" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="6738,856,6841,883"/>
-<area shape="rect" id="node63" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="6129,707,6223,733"/>
-<area shape="rect" id="node64" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="12789,707,12888,733"/>
-<area shape="rect" id="node83" href="$worldproxy_8h_source.html" title="worldproxy.h" alt="" coords="5069,557,5165,584"/>
-<area shape="rect" id="node93" href="$worldmanager_8h_source.html" title="worldmanager.h" alt="" coords="2677,707,2792,733"/>
-<area shape="rect" id="node98" href="$Mezzanine_2src_2Threading_2dagframescheduler_8h.html" title="This is the file that code using this library should include. It includes all the required components..." alt="" coords="4403,707,4607,733"/>
-<area shape="rect" id="node107" href="$graphics_8h_source.html" title="Graphics/graphics.h" alt="" coords="4724,333,4863,360"/>
-<area shape="rect" id="node110" href="$entresolmanagerfactory_8h_source.html" title="entresolmanagerfactory.h" alt="" coords="6298,707,6467,733"/>
-<area shape="rect" id="node115" href="$uidgenerator_8h_source.html" title="uidgenerator.h" alt="" coords="4847,707,4951,733"/>
-<area shape="rect" id="node116" href="$interval_8h_source.html" title="interval.h" alt="" coords="8869,781,8944,808"/>
-<area shape="rect" id="node117" href="$worldmanagerfactory_8h_source.html" title="worldmanagerfactory.h" alt="" coords="2816,707,2971,733"/>
-<area shape="rect" id="node123" href="$axisalignedbox_8h.html" title="This file contains the AxisAlignedBox class for representing AABB&#39;s of objects in the world..." alt="" coords="7673,557,7791,584"/>
-<area shape="rect" id="node124" href="$plane_8h_source.html" title="plane.h" alt="" coords="7363,632,7427,659"/>
-<area shape="rect" id="node127" href="$ray_8h_source.html" title="ray.h" alt="" coords="7061,483,7112,509"/>
-<area shape="rect" id="node144" href="$input_8h_source.html" title="Input/input.h" alt="" coords="8791,408,8886,435"/>
-<area shape="rect" id="node155" href="$physics_8h.html" title="The file to include to get access to all the physics stuff. " alt="" coords="7467,184,7597,211"/>
-<area shape="rect" id="node160" href="$transform_8h.html" title="The defintion of the transform is stored in this file. " alt="" coords="7867,632,7955,659"/>
-<area shape="rect" id="node195" href="$network_8h_source.html" title="Network/network.h" alt="" coords="9395,102,9527,129"/>
-<area shape="rect" id="node197" href="$resource_8h_source.html" title="Resource/resource.h" alt="" coords="9797,557,9939,584"/>
-<area shape="rect" id="node208" href="$scripting_8h_source.html" title="Scripting/scripting.h" alt="" coords="11190,408,11327,435"/>
-<area shape="rect" id="node210" href="$binarybuffer_8h_source.html" title="binarybuffer.h" alt="" coords="13001,781,13103,808"/>
-<area shape="rect" id="node218" href="$ui_8h_source.html" title="UI/ui.h" alt="" coords="13591,102,13652,129"/>
-<area shape="rect" id="node223" href="$eventpublisher_8h_source.html" title="eventpublisher.h" alt="" coords="15375,483,15492,509"/>
-<area shape="rect" id="node224" href="$event_8h_source.html" title="event.h" alt="" coords="16070,557,16135,584"/>
-<area shape="rect" id="node225" href="$eventsubscriber_8h_source.html" title="eventsubscriber.h" alt="" coords="15925,632,16051,659"/>
-<area shape="rect" id="node226" href="$eventarguments_8h_source.html" title="eventarguments.h" alt="" coords="15925,707,16051,733"/>
-<area shape="rect" id="node227" href="$eventsubscriberslot_8h_source.html" title="eventsubscriberslot.h" alt="" coords="16075,632,16221,659"/>
-<area shape="rect" id="node233" href="$timer_8h_source.html" title="timer.h" alt="" coords="15054,408,15117,435"/>
-<area shape="rect" id="node295" href="$actor_8h.html" title="The base class for all Actors is defined here. " alt="" coords="10910,184,10973,211"/>
-<area shape="rect" id="node296" href="$worldobject_8h_source.html" title="worldobject.h" alt="" coords="9171,259,9269,285"/>
-<area shape="rect" id="node297" href="$attachable_8h.html" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="9501,333,9595,360"/>
-<area shape="rect" id="node298" href="$actormanager_8h_source.html" title="actormanager.h" alt="" coords="2643,632,2755,659"/>
-<area shape="rect" id="node299" href="$areaeffect_8h_source.html" title="areaeffect.h" alt="" coords="10615,184,10705,211"/>
-<area shape="rect" id="node300" href="$areaeffectmanager_8h_source.html" title="areaeffectmanager.h" alt="" coords="2779,632,2920,659"/>
-<area shape="rect" id="node301" href="$cameracontroller_8h_source.html" title="cameracontroller.h" alt="" coords="16990,557,17119,584"/>
-<area shape="rect" id="node302" href="$rayquerytool_8h_source.html" title="rayquerytool.h" alt="" coords="17059,632,17163,659"/>
-<area shape="rect" id="node303" href="$circle_8h_source.html" title="circle.h" alt="" coords="10803,632,10867,659"/>
-<area shape="rect" id="node304" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="16345,856,16457,883"/>
-<area shape="rect" id="node305" href="$debris_8h.html" title="This file contains the declaration for the debris class used to represent a small loose object in the..." alt="" coords="8805,184,8873,211"/>
-<area shape="rect" id="node306" href="$debrismanager_8h.html" title="This file contains the declaration for the manager that manages debris objects in a world..." alt="" coords="2501,632,2619,659"/>
-<area shape="rect" id="node307" href="$eventbase_8h_source.html" title="eventbase.h" alt="" coords="16759,781,16852,808"/>
-<area shape="rect" id="node308" href="$eventgamewindow_8h_source.html" title="eventgamewindow.h" alt="" coords="17131,707,17272,733"/>
-<area shape="rect" id="node309" href="$eventmanager_8h_source.html" title="eventmanager.h" alt="" coords="3443,632,3557,659"/>
-<area shape="rect" id="node310" href="$eventquit_8h_source.html" title="eventquit.h" alt="" coords="17019,707,17106,733"/>
-<area shape="rect" id="node311" href="$rect_8h_source.html" title="rect.h" alt="" coords="17307,1005,17362,1032"/>
-<area shape="rect" id="node312" href="$sphere_8h.html" title="This file contains a generic Sphere class for math and spacial query. " alt="" coords="9831,102,9903,129"/>
-<area shape="rect" id="node313" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="13158,632,13245,659"/>
-<area shape="rect" id="node314" href="$world_8h_source.html" title="world.h" alt="" coords="2519,102,2583,129"/>
-<area shape="rect" id="node315" href="$entresol_8h_source.html" title="entresol.h" alt="" coords="15250,557,15329,584"/>
-<area shape="rect" id="node316" href="$eventuserinput_8h_source.html" title="eventuserinput.h" alt="" coords="9659,707,9778,733"/>
-<area shape="rect" id="node317" href="$fieldofforce_8h_source.html" title="fieldofforce.h" alt="" coords="10655,102,10753,129"/>
-<area shape="rect" id="node318" href="$gravityfield_8h_source.html" title="gravityfield.h" alt="" coords="10777,102,10873,129"/>
-<area shape="rect" id="node319" href="$gravitywell_8h_source.html" title="gravitywell.h" alt="" coords="10485,102,10579,129"/>
-<area shape="rect" id="node320" href="$hashedstring_8h.html" title="This implemenation of. " alt="" coords="12187,856,12293,883"/>
-<area shape="rect" id="node321" href="$linegroup_8h_source.html" title="linegroup.h" alt="" coords="17339,632,17424,659"/>
-<area shape="rect" id="node322" href="$linesegment_8h_source.html" title="linesegment.h" alt="" coords="10675,632,10778,659"/>
-<area shape="rect" id="node323" href="$managedptr_8h.html" title="The interface for a class useful for applying RAII when it should have been used but wasn&#39;t..." alt="" coords="16583,781,16684,808"/>
-<area shape="rect" id="node324" href="$meshterrain_8h_source.html" title="meshterrain.h" alt="" coords="9168,102,9269,129"/>
-<area shape="rect" id="node325" href="$terrainbase_8h_source.html" title="terrainbase.h" alt="" coords="9170,184,9267,211"/>
-<area shape="rect" id="node326" href="$rigiddebris_8h.html" title="This file contains the declaration for the debris class that does not deform. " alt="" coords="8835,102,8927,129"/>
-<area shape="rect" id="node327" href="$softdebris_8h.html" title="This file contains the declaration for the debris class that will compress and deform. " alt="" coords="8669,102,8760,129"/>
-<area shape="rect" id="node328" href="$streamlogging_8h_source.html" title="streamlogging.h" alt="" coords="16393,1155,16508,1181"/>
-<area shape="rect" id="node329" href="$track_8h_source.html" title="track.h" alt="" coords="16127,707,16190,733"/>
-<area shape="rect" id="node330" href="$trackiterator_8h_source.html" title="trackiterator.h" alt="" coords="16157,781,16259,808"/>
-<area shape="rect" id="node331" href="$triangle_8h_source.html" title="triangle.h" alt="" coords="10081,557,10156,584"/>
-<area shape="rect" id="node332" href="$terrainmanager_8h_source.html" title="terrainmanager.h" alt="" coords="3097,632,3215,659"/>
-<area shape="rect" id="node333" href="$worldtrigger_8h_source.html" title="worldtrigger.h" alt="" coords="16837,1155,16937,1181"/>
-<area shape="rect" id="node4" href="$audioenumerations_8h_source.html" title="Audio/audioenumerations.h" alt="" coords="1545,707,1724,733"/>
-<area shape="rect" id="node5" href="$audiomanager_8h_source.html" title="Audio/audiomanager.h" alt="" coords="2227,557,2378,584"/>
-<area shape="rect" id="node76" href="$decoder_8h_source.html" title="Audio/decoder.h" alt="" coords="1083,632,1199,659"/>
+<area shape="rect" id="node6" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="7656,1304,7747,1331"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="15874,1379,16022,1405"/>
+<area shape="rect" id="node23" href="$entresolmanager_8h_source.html" title="entresolmanager.h" alt="" coords="5641,707,5770,733"/>
+<area shape="rect" id="node24" href="$managerbase_8h_source.html" title="managerbase.h" alt="" coords="2731,856,2842,883"/>
+<area shape="rect" id="node25" href="$xml_8h_source.html" title="XML/xml.h" alt="" coords="7428,931,7513,957"/>
+<area shape="rect" id="node35" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="11806,1229,11901,1256"/>
+<area shape="rect" id="node48" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="2624,781,2747,808"/>
+<area shape="rect" id="node49" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="7461,707,7547,733"/>
+<area shape="rect" id="node50" href="$exception_8h.html" title="This implements the exception hiearchy for Mezzanine. " alt="" coords="14677,856,14766,883"/>
+<area shape="rect" id="node51" href="$objectsettings_8h_source.html" title="objectsettings.h" alt="" coords="4728,632,4843,659"/>
+<area shape="rect" id="node52" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="12283,781,12359,808"/>
+<area shape="rect" id="node54" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="8002,707,8078,733"/>
+<area shape="rect" id="node55" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here. " alt="" coords="7633,781,7743,808"/>
+<area shape="rect" id="node56" href="$macros_8h.html" title="All convience/utility macros for the Mezzanine are to be placed here. " alt="" coords="4453,856,4529,883"/>
+<area shape="rect" id="node57" href="$interpolator_8h.html" title="Helper classes to assist in generating data points between two other data points. ..." alt="" coords="8874,781,8971,808"/>
+<area shape="rect" id="node59" href="$serialization_8h.html" title="The interface for serialization. " alt="" coords="6330,856,6433,883"/>
+<area shape="rect" id="node63" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="6861,707,6955,733"/>
+<area shape="rect" id="node64" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="12536,707,12635,733"/>
+<area shape="rect" id="node83" href="$worldproxy_8h_source.html" title="worldproxy.h" alt="" coords="5203,557,5299,584"/>
+<area shape="rect" id="node93" href="$worldmanager_8h_source.html" title="worldmanager.h" alt="" coords="2624,707,2739,733"/>
+<area shape="rect" id="node98" href="$Mezzanine_2src_2Threading_2dagframescheduler_8h.html" title="This is the file that code using this library should include. It includes all the required components..." alt="" coords="3651,707,3855,733"/>
+<area shape="rect" id="node107" href="$graphics_8h_source.html" title="Graphics/graphics.h" alt="" coords="4827,333,4965,360"/>
+<area shape="rect" id="node110" href="$entresolmanagerfactory_8h_source.html" title="entresolmanagerfactory.h" alt="" coords="6577,707,6746,733"/>
+<area shape="rect" id="node115" href="$uidgenerator_8h_source.html" title="uidgenerator.h" alt="" coords="4488,707,4592,733"/>
+<area shape="rect" id="node116" href="$interval_8h_source.html" title="interval.h" alt="" coords="8720,781,8795,808"/>
+<area shape="rect" id="node117" href="$worldmanagerfactory_8h_source.html" title="worldmanagerfactory.h" alt="" coords="2763,707,2917,733"/>
+<area shape="rect" id="node123" href="$axisalignedbox_8h.html" title="This file contains the AxisAlignedBox class for representing AABB&#39;s of objects in the world..." alt="" coords="5779,557,5898,584"/>
+<area shape="rect" id="node124" href="$plane_8h_source.html" title="plane.h" alt="" coords="6235,632,6299,659"/>
+<area shape="rect" id="node127" href="$ray_8h_source.html" title="ray.h" alt="" coords="6735,483,6785,509"/>
+<area shape="rect" id="node144" href="$input_8h_source.html" title="Input/input.h" alt="" coords="8878,408,8973,435"/>
+<area shape="rect" id="node155" href="$physics_8h.html" title="The file to include to get access to all the physics stuff. " alt="" coords="7717,184,7846,211"/>
+<area shape="rect" id="node160" href="$transform_8h.html" title="The defintion of the transform is stored in this file. " alt="" coords="7408,632,7496,659"/>
+<area shape="rect" id="node195" href="$network_8h_source.html" title="Network/network.h" alt="" coords="9229,102,9361,129"/>
+<area shape="rect" id="node197" href="$resource_8h_source.html" title="Resource/resource.h" alt="" coords="9835,557,9978,584"/>
+<area shape="rect" id="node208" href="$scripting_8h_source.html" title="Scripting/scripting.h" alt="" coords="11105,408,11242,435"/>
+<area shape="rect" id="node210" href="$binarybuffer_8h_source.html" title="binarybuffer.h" alt="" coords="12945,781,13047,808"/>
+<area shape="rect" id="node218" href="$ui_8h_source.html" title="UI/ui.h" alt="" coords="13473,102,13535,129"/>
+<area shape="rect" id="node223" href="$eventpublisher_8h_source.html" title="eventpublisher.h" alt="" coords="15313,483,15431,509"/>
+<area shape="rect" id="node224" href="$event_8h_source.html" title="event.h" alt="" coords="15681,557,15746,584"/>
+<area shape="rect" id="node225" href="$eventsubscriber_8h_source.html" title="eventsubscriber.h" alt="" coords="15552,632,15677,659"/>
+<area shape="rect" id="node226" href="$eventarguments_8h_source.html" title="eventarguments.h" alt="" coords="15553,707,15679,733"/>
+<area shape="rect" id="node227" href="$eventsubscriberslot_8h_source.html" title="eventsubscriberslot.h" alt="" coords="15701,632,15848,659"/>
+<area shape="rect" id="node233" href="$timer_8h_source.html" title="timer.h" alt="" coords="14789,408,14851,435"/>
+<area shape="rect" id="node295" href="$actor_8h.html" title="The base class for all Actors is defined here. " alt="" coords="10742,184,10805,211"/>
+<area shape="rect" id="node296" href="$worldobject_8h_source.html" title="worldobject.h" alt="" coords="9091,259,9189,285"/>
+<area shape="rect" id="node297" href="$attachable_8h.html" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="9392,333,9485,360"/>
+<area shape="rect" id="node298" href="$actormanager_8h_source.html" title="actormanager.h" alt="" coords="2496,632,2608,659"/>
+<area shape="rect" id="node299" href="$areaeffect_8h_source.html" title="areaeffect.h" alt="" coords="10501,184,10592,211"/>
+<area shape="rect" id="node300" href="$areaeffectmanager_8h_source.html" title="areaeffectmanager.h" alt="" coords="2632,632,2773,659"/>
+<area shape="rect" id="node301" href="$cameracontroller_8h_source.html" title="cameracontroller.h" alt="" coords="16822,557,16951,584"/>
+<area shape="rect" id="node302" href="$rayquerytool_8h_source.html" title="rayquerytool.h" alt="" coords="16923,632,17027,659"/>
+<area shape="rect" id="node303" href="$circle_8h_source.html" title="circle.h" alt="" coords="10749,632,10813,659"/>
+<area shape="rect" id="node304" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="16388,856,16500,883"/>
+<area shape="rect" id="node305" href="$debris_8h.html" title="This file contains the declaration for the debris class used to represent a small loose object in the..." alt="" coords="8638,184,8706,211"/>
+<area shape="rect" id="node306" href="$debrismanager_8h.html" title="This file contains the declaration for the manager that manages debris objects in a world..." alt="" coords="2849,632,2967,659"/>
+<area shape="rect" id="node307" href="$eventbase_8h_source.html" title="eventbase.h" alt="" coords="16801,781,16895,808"/>
+<area shape="rect" id="node308" href="$eventgamewindow_8h_source.html" title="eventgamewindow.h" alt="" coords="17015,707,17156,733"/>
+<area shape="rect" id="node309" href="$eventmanager_8h_source.html" title="eventmanager.h" alt="" coords="3491,632,3605,659"/>
+<area shape="rect" id="node310" href="$eventquit_8h_source.html" title="eventquit.h" alt="" coords="16903,707,16990,733"/>
+<area shape="rect" id="node311" href="$rect_8h_source.html" title="rect.h" alt="" coords="16857,1005,16911,1032"/>
+<area shape="rect" id="node312" href="$sphere_8h.html" title="This file contains a generic Sphere class for math and spacial query. " alt="" coords="9613,102,9685,129"/>
+<area shape="rect" id="node313" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="12801,632,12887,659"/>
+<area shape="rect" id="node314" href="$world_8h_source.html" title="world.h" alt="" coords="2448,102,2512,129"/>
+<area shape="rect" id="node315" href="$entresol_8h_source.html" title="entresol.h" alt="" coords="16373,557,16451,584"/>
+<area shape="rect" id="node317" href="$eventuserinput_8h_source.html" title="eventuserinput.h" alt="" coords="9369,707,9487,733"/>
+<area shape="rect" id="node318" href="$fieldofforce_8h_source.html" title="fieldofforce.h" alt="" coords="10542,102,10639,129"/>
+<area shape="rect" id="node319" href="$gravityfield_8h_source.html" title="gravityfield.h" alt="" coords="10664,102,10760,129"/>
+<area shape="rect" id="node320" href="$gravitywell_8h_source.html" title="gravitywell.h" alt="" coords="10371,102,10466,129"/>
+<area shape="rect" id="node321" href="$hashedstring_8h.html" title="This implemenation of. " alt="" coords="12024,856,12131,883"/>
+<area shape="rect" id="node322" href="$linegroup_8h_source.html" title="linegroup.h" alt="" coords="17273,632,17359,659"/>
+<area shape="rect" id="node323" href="$linesegment_8h_source.html" title="linesegment.h" alt="" coords="9454,632,9557,659"/>
+<area shape="rect" id="node324" href="$managedptr_8h.html" title="The interface for a class useful for applying RAII when it should have been used but wasn&#39;t..." alt="" coords="16625,781,16727,808"/>
+<area shape="rect" id="node325" href="$meshterrain_8h_source.html" title="meshterrain.h" alt="" coords="9001,102,9103,129"/>
+<area shape="rect" id="node326" href="$terrainbase_8h_source.html" title="terrainbase.h" alt="" coords="9003,184,9101,211"/>
+<area shape="rect" id="node327" href="$rigiddebris_8h.html" title="This file contains the declaration for the debris class that does not deform. " alt="" coords="8669,102,8761,129"/>
+<area shape="rect" id="node328" href="$softdebris_8h.html" title="This file contains the declaration for the debris class that will compress and deform. " alt="" coords="8503,102,8593,129"/>
+<area shape="rect" id="node329" href="$streamlogging_8h_source.html" title="streamlogging.h" alt="" coords="16436,1155,16551,1181"/>
+<area shape="rect" id="node330" href="$track_8h_source.html" title="track.h" alt="" coords="15857,707,15919,733"/>
+<area shape="rect" id="node331" href="$trackiterator_8h_source.html" title="trackiterator.h" alt="" coords="15833,781,15935,808"/>
+<area shape="rect" id="node332" href="$triangle_8h_source.html" title="triangle.h" alt="" coords="9737,557,9812,584"/>
+<area shape="rect" id="node333" href="$terrainmanager_8h_source.html" title="terrainmanager.h" alt="" coords="3043,632,3162,659"/>
+<area shape="rect" id="node334" href="$worldtrigger_8h_source.html" title="worldtrigger.h" alt="" coords="16930,1155,17030,1181"/>
+<area shape="rect" id="node4" href="$audioenumerations_8h_source.html" title="Audio/audioenumerations.h" alt="" coords="1340,707,1519,733"/>
+<area shape="rect" id="node5" href="$audiomanager_8h_source.html" title="Audio/audiomanager.h" alt="" coords="2169,557,2319,584"/>
+<area shape="rect" id="node76" href="$decoder_8h_source.html" title="Audio/decoder.h" alt="" coords="977,632,1093,659"/>
 <area shape="rect" id="node77" href="$decoderfactory_8h_source.html" title="Audio/decoderfactory.h" alt="" coords="954,483,1110,509"/>
-<area shape="rect" id="node78" href="$effect_8h_source.html" title="Audio/effect.h" alt="" coords="1299,557,1402,584"/>
-<area shape="rect" id="node79" href="$effectparameters_8h_source.html" title="Audio/effectparameters.h" alt="" coords="1495,632,1663,659"/>
-<area shape="rect" id="node80" href="$filter_8h_source.html" title="Audio/filter.h" alt="" coords="1223,632,1318,659"/>
+<area shape="rect" id="node78" href="$effect_8h_source.html" title="Audio/effect.h" alt="" coords="1411,557,1514,584"/>
+<area shape="rect" id="node79" href="$effectparameters_8h_source.html" title="Audio/effectparameters.h" alt="" coords="1440,632,1608,659"/>
+<area shape="rect" id="node80" href="$filter_8h_source.html" title="Audio/filter.h" alt="" coords="1270,632,1365,659"/>
 <area shape="rect" id="node81" href="$effectshandler_8h_source.html" title="Audio/effectshandler.h" alt="" coords="1701,483,1853,509"/>
-<area shape="rect" id="node82" href="$listener_8h_source.html" title="Audio/listener.h" alt="" coords="3248,483,3360,509"/>
-<area shape="rect" id="node85" href="$musicplayer_8h.html" title="The interface for the Musicplayer class. " alt="" coords="1727,1229,1867,1256"/>
-<area shape="rect" id="node86" href="$playlist_8h.html" title="The declaration of the Playlist class. " alt="" coords="1930,1080,2041,1107"/>
+<area shape="rect" id="node82" href="$listener_8h_source.html" title="Audio/listener.h" alt="" coords="2848,483,2960,509"/>
+<area shape="rect" id="node85" href="$musicplayer_8h.html" title="The interface for the Musicplayer class. " alt="" coords="1594,1229,1734,1256"/>
+<area shape="rect" id="node86" href="$playlist_8h.html" title="The declaration of the Playlist class. " alt="" coords="1845,1080,1955,1107"/>
 <area shape="rect" id="node87" href="$rawdecoder_8h_source.html" title="Audio/rawdecoder.h" alt="" coords="1338,483,1475,509"/>
 <area shape="rect" id="node88" href="$rawdecoderfactory_8h_source.html" title="Audio/rawdecoderfactory.h" alt="" coords="1499,483,1677,509"/>
-<area shape="rect" id="node89" href="$recorder_8h_source.html" title="Audio/recorder.h" alt="" coords="1737,632,1855,659"/>
-<area shape="rect" id="node90" href="$sound_8h_source.html" title="Audio/sound.h" alt="" coords="1426,557,1531,584"/>
-<area shape="rect" id="node91" href="$soundproxy_8h_source.html" title="Audio/soundproxy.h" alt="" coords="2030,483,2167,509"/>
-<area shape="rect" id="node92" href="$soundscapemanager_8h_source.html" title="Audio/soundscapemanager.h" alt="" coords="2082,632,2273,659"/>
+<area shape="rect" id="node89" href="$recorder_8h_source.html" title="Audio/recorder.h" alt="" coords="1683,632,1800,659"/>
+<area shape="rect" id="node90" href="$sound_8h_source.html" title="Audio/sound.h" alt="" coords="1179,557,1285,584"/>
+<area shape="rect" id="node91" href="$soundproxy_8h_source.html" title="Audio/soundproxy.h" alt="" coords="2182,483,2319,509"/>
+<area shape="rect" id="node92" href="$soundscapemanager_8h_source.html" title="Audio/soundscapemanager.h" alt="" coords="2027,632,2218,659"/>
 <area shape="rect" id="node94" href="$vorbisdecoder_8h_source.html" title="Audio/vorbisdecoder.h" alt="" coords="145,483,295,509"/>
 <area shape="rect" id="node95" href="$vorbisdecoderfactory_8h_source.html" title="Audio/vorbisdecoderfactory.h" alt="" coords="319,483,510,509"/>
 <area shape="rect" id="node96" href="$wavdecoder_8h_source.html" title="Audio/wavdecoder.h" alt="" coords="534,483,674,509"/>
 <area shape="rect" id="node97" href="$wavdecoderfactory_8h_source.html" title="Audio/wavdecoderfactory.h" alt="" coords="698,483,878,509"/>
-<area shape="rect" id="node34" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="9285,1155,9443,1181"/>
-<area shape="rect" id="node65" href="$workunit_8h.html" title="This file has the definition of the workunit. " alt="" coords="4457,931,4599,957"/>
-<area shape="rect" id="node26" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="7841,1229,7972,1256"/>
-<area shape="rect" id="node27" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="7170,1229,7281,1256"/>
-<area shape="rect" id="node28" href="$attributeiterator_8h.html" title="Contains the defintion of the AttributeIterator class. " alt="" coords="6842,1080,6993,1107"/>
-<area shape="rect" id="node29" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes. " alt="" coords="7554,1155,7646,1181"/>
-<area shape="rect" id="node30" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="7655,1229,7817,1256"/>
-<area shape="rect" id="node31" href="$document_8h.html" title="The definition of the XML::Document Class. " alt="" coords="7570,1005,7691,1032"/>
-<area shape="rect" id="node32" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="7351,1155,7479,1181"/>
-<area shape="rect" id="node33" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="8455,1080,8551,1107"/>
-<area shape="rect" id="node37" href="$memorymanagement_8h.html" title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen..." alt="" coords="7001,1005,7188,1032"/>
-<area shape="rect" id="node38" href="$nodeiterator_8h.html" title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas..." alt="" coords="7069,1080,7201,1107"/>
-<area shape="rect" id="node39" href="$nodetext_8h.html" title="The declaration of the XML::NodeText class. " alt="" coords="7225,1080,7340,1107"/>
-<area shape="rect" id="node40" href="$treewalker_8h.html" title="This defines the TreeWalker Interface. " alt="" coords="7618,1080,7742,1107"/>
-<area shape="rect" id="node41" href="$xmlstring_8h.html" title="A few functions to help the XML system perform conversions between UTF8 and the native wide character..." alt="" coords="7817,1005,7935,1032"/>
-<area shape="rect" id="node42" href="$xpathnode_8h.html" title="The definition of the Mezzanine::XML::XPathNode. " alt="" coords="7919,1080,8043,1107"/>
-<area shape="rect" id="node43" href="$xpathnodeset_8h.html" title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet. " alt="" coords="8010,1005,8153,1032"/>
-<area shape="rect" id="node44" href="$xpathparseresult_8h.html" title="Has all the classes for the XPath implementation. " alt="" coords="8220,1080,8380,1107"/>
-<area shape="rect" id="node45" href="$xpathvariable_8h.html" title="The XPathVariable class definition. " alt="" coords="8260,1155,8401,1181"/>
-<area shape="rect" id="node46" href="$xpathvariableset_8h.html" title="The definition of the Mezzanine::XML::XPathVariableSet. " alt="" coords="8477,1155,8635,1181"/>
-<area shape="rect" id="node47" href="$xpathquery_8h.html" title="The definition of the Mezzanine::XML::XPathQuery . " alt="" coords="8177,1005,8305,1032"/>
-<area shape="rect" id="node58" href="$cubicspline_8h.html" title="cubicspline.h" alt="" coords="9111,931,9209,957"/>
-<area shape="rect" id="node66" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class. " alt="" coords="4107,1005,4229,1032"/>
-<area shape="rect" id="node68" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="4560,1080,4629,1107"/>
-<area shape="rect" id="node70" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. " alt="" coords="4767,1155,4836,1181"/>
-<area shape="rect" id="node72" href="$workunitkey_8h.html" title="This file defines the metadata used to sort workunits. " alt="" coords="5063,1080,5166,1107"/>
-<area shape="rect" id="node74" href="$rollingaverage_8h.html" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. " alt="" coords="3787,1080,3901,1107"/>
-<area shape="rect" id="node75" href="$threadingenumerations_8h.html" title="Any enumerations the threading library requires are all declared here. " alt="" coords="3562,1005,3726,1032"/>
-<area shape="rect" id="node67" href="$doublebufferedresource_8h.html" title="This file defines the template double buffered resources that can be attached to a thread..." alt="" coords="3955,1080,4123,1107"/>
-<area shape="rect" id="node69" href="$systemcalls_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="4257,1155,4359,1181"/>
-<area shape="rect" id="node73" href="$spinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. " alt="" coords="4249,1080,4330,1107"/>
-<area shape="rect" id="node71" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically. " alt="" coords="4771,1229,4903,1256"/>
-<area shape="rect" id="node84" href="$transformableobject_8h_source.html" title="transformableobject.h" alt="" coords="6187,632,6333,659"/>
-<area shape="rect" id="node99" href="$asynchronousfileloadingworkunit_8h.html" title="The declaration of the AsynchronousFileLoadWorkUnit a workunit that loads a listing of files asynchro..." alt="" coords="4196,781,4417,808"/>
-<area shape="rect" id="node100" href="$asynchronousworkunit_8h.html" title="Contains an interface for a kind of WorkUnit that loads or does other work even when the frame schedu..." alt="" coords="4217,856,4380,883"/>
-<area shape="rect" id="node101" href="$barrier_8h.html" title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive. " alt="" coords="4623,1155,4692,1181"/>
-<area shape="rect" id="node102" href="$frameschedulerworkunits_8h.html" title="This defines a number of workunits that are required for doing some tasks that the Framescheduler req..." alt="" coords="5012,856,5191,883"/>
-<area shape="rect" id="node103" href="$lockguard_8h.html" title="Declares a tool for automatically unlocking a mutex in an exception safe way. " alt="" coords="3926,856,4015,883"/>
-<area shape="rect" id="node104" href="$logtools_8h.html" title="The definitions of the logging tools. " alt="" coords="4406,1080,4485,1107"/>
-<area shape="rect" id="node105" href="$monopoly_8h.html" title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread. " alt="" coords="5317,856,5406,883"/>
-<area shape="rect" id="node106" href="$readwritespinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. " alt="" coords="4037,781,4171,808"/>
-<area shape="rect" id="node108" href="$graphicsenumerations_8h_source.html" title="Graphics/graphicsenumerations.h" alt="" coords="5228,707,5444,733"/>
-<area shape="rect" id="node109" href="$graphicsmanager_8h_source.html" title="Graphics/graphicsmanager.h" alt="" coords="4703,557,4891,584"/>
-<area shape="rect" id="node111" href="$windowsettings_8h_source.html" title="Graphics/windowsettings.h" alt="" coords="3991,707,4169,733"/>
-<area shape="rect" id="node112" href="$resolution_8h_source.html" title="Graphics/resolution.h" alt="" coords="3815,781,3961,808"/>
-<area shape="rect" id="node113" href="$gamewindow_8h_source.html" title="Graphics/gamewindow.h" alt="" coords="4189,632,4355,659"/>
-<area shape="rect" id="node114" href="$scenemanager_8h_source.html" title="Graphics/scenemanager.h" alt="" coords="4633,632,4807,659"/>
-<area shape="rect" id="node118" href="$meshmanager_8h_source.html" title="Graphics/meshmanager.h" alt="" coords="6763,632,6933,659"/>
-<area shape="rect" id="node119" href="$texturemanager_8h_source.html" title="Graphics/texturemanager.h" alt="" coords="3885,632,4064,659"/>
-<area shape="rect" id="node120" href="$billboard_8h.html" title="This file contains the declaration for the Billboard class used by BillboardSetProxy. " alt="" coords="7603,632,7741,659"/>
-<area shape="rect" id="node121" href="$billboardsetproxy_8h.html" title="This file contains the declaration for the World proxy wrapping billboard functionality. " alt="" coords="5237,408,5424,435"/>
-<area shape="rect" id="node122" href="$renderableproxy_8h.html" title="This file contains the declaration for the base class from which graphics proxies inherit..." alt="" coords="5119,483,5300,509"/>
-<area shape="rect" id="node125" href="$bone_8h_source.html" title="Graphics/bone.h" alt="" coords="4415,408,4532,435"/>
-<area shape="rect" id="node126" href="$cameraproxy_8h.html" title="This file contains the declaration for the World proxy wrapping camera functionality. " alt="" coords="5803,408,5967,435"/>
-<area shape="rect" id="node129" href="$entityproxy_8h.html" title="This file contains the declaration for the World proxy wrapping basic entity(mesh) functionality..." alt="" coords="4829,408,4982,435"/>
-<area shape="rect" id="node130" href="$image_8h_source.html" title="Graphics/image.h" alt="" coords="5225,632,5349,659"/>
-<area shape="rect" id="node131" href="$lightproxy_8h.html" title="This file contains the declaration for the World proxy wrapping light functionality. " alt="" coords="4607,408,4753,435"/>
-<area shape="rect" id="node132" href="$material_8h_source.html" title="Graphics/material.h" alt="" coords="3149,931,3283,957"/>
-<area shape="rect" id="node133" href="$mesh_8h_source.html" title="Graphics/mesh.h" alt="" coords="6018,1005,6139,1032"/>
-<area shape="rect" id="node134" href="$particleaffector_8h_source.html" title="Graphics/particleaffector.h" alt="" coords="5837,856,6011,883"/>
-<area shape="rect" id="node135" href="$particleemitter_8h_source.html" title="Graphics/particleemitter.h" alt="" coords="6036,856,6207,883"/>
-<area shape="rect" id="node136" href="$particlesystemproxy_8h.html" title="This file contains the declaration for the World proxy wrapping particle functionality. " alt="" coords="5006,408,5213,435"/>
-<area shape="rect" id="node137" href="$pass_8h_source.html" title="Graphics/pass.h" alt="" coords="6073,1229,6191,1256"/>
-<area shape="rect" id="node138" href="$skeleton_8h_source.html" title="Graphics/skeleton.h" alt="" coords="6271,931,6409,957"/>
-<area shape="rect" id="node139" href="$submesh_8h_source.html" title="Graphics/submesh.h" alt="" coords="6317,1005,6459,1032"/>
-<area shape="rect" id="node140" href="$technique_8h_source.html" title="Graphics/technique.h" alt="" coords="6317,1155,6462,1181"/>
-<area shape="rect" id="node141" href="$texture_8h_source.html" title="Graphics/texture.h" alt="" coords="5475,632,5605,659"/>
-<area shape="rect" id="node142" href="$viewport_8h_source.html" title="Graphics/viewport.h" alt="" coords="6827,707,6965,733"/>
-<area shape="rect" id="node145" href="$inputenumerations_8h_source.html" title="Input/inputenumerations.h" alt="" coords="8690,856,8862,883"/>
-<area shape="rect" id="node146" href="$inputmanager_8h_source.html" title="Input/inputmanager.h" alt="" coords="8029,632,8173,659"/>
-<area shape="rect" id="node147" href="$metacode_8h_source.html" title="Input/metacode.h" alt="" coords="9896,781,10019,808"/>
-<area shape="rect" id="node150" href="$controller_8h_source.html" title="Input/controller.h" alt="" coords="8873,483,8991,509"/>
-<area shape="rect" id="node152" href="$device_8h.html" title="The declaration of the User input Device class. " alt="" coords="8704,632,8808,659"/>
-<area shape="rect" id="node153" href="$keyboard_8h_source.html" title="Input/keyboard.h" alt="" coords="8627,483,8746,509"/>
-<area shape="rect" id="node154" href="$mouse_8h_source.html" title="Input/mouse.h" alt="" coords="9115,483,9221,509"/>
-<area shape="rect" id="node148" href="$sequencecontainer_8h_source.html" title="Input/sequencecontainer.h" alt="" coords="8891,707,9066,733"/>
-<area shape="rect" id="node149" href="$trie_8h_source.html" title="trie.h" alt="" coords="9771,781,9821,808"/>
-<area shape="rect" id="node151" href="$buttondevice_8h_source.html" title="Input/buttondevice.h" alt="" coords="9014,557,9154,584"/>
-<area shape="rect" id="node156" href="$physicsenumerations_8h_source.html" title="Physics/physicsenumerations.h" alt="" coords="7510,408,7717,435"/>
-<area shape="rect" id="node157" href="$physicsmanager_8h_source.html" title="Physics/physicsmanager.h" alt="" coords="6729,483,6908,509"/>
-<area shape="rect" id="node158" href="$collidablepair_8h_source.html" title="Physics/collidablepair.h" alt="" coords="7438,557,7597,584"/>
-<area shape="rect" id="node159" href="$constraint_8h_source.html" title="Physics/constraint.h" alt="" coords="7968,557,8109,584"/>
-<area shape="rect" id="node161" href="$managerconstructioninfo_8h_source.html" title="Physics/managerconstructioninfo.h" alt="" coords="7187,557,7413,584"/>
-<area shape="rect" id="node162" href="$collisionshapemanager_8h_source.html" title="Physics/collisionshapemanager.h" alt="" coords="5965,483,6181,509"/>
-<area shape="rect" id="node163" href="$collisionshape_8h_source.html" title="Physics/collisionshape.h" alt="" coords="6361,557,6527,584"/>
-<area shape="rect" id="node164" href="$boxcollisionshape_8h_source.html" title="Physics/boxcollisionshape.h" alt="" coords="5892,259,6079,285"/>
-<area shape="rect" id="node165" href="$primitivecollisionshape_8h_source.html" title="Physics/primitivecollisionshape.h" alt="" coords="5363,333,5578,360"/>
-<area shape="rect" id="node166" href="$capsulecollisionshape_8h_source.html" title="Physics/capsulecollisionshape.h" alt="" coords="4412,259,4623,285"/>
-<area shape="rect" id="node167" href="$collidableproxy_8h_source.html" title="Physics/collidableproxy.h" alt="" coords="7021,333,7192,360"/>
-<area shape="rect" id="node168" href="$collision_8h_source.html" title="Physics/collision.h" alt="" coords="7560,333,7691,360"/>
-<area shape="rect" id="node169" href="$compoundcollisionshape_8h_source.html" title="Physics/compoundcollisionshape.h" alt="" coords="5033,333,5260,360"/>
-<area shape="rect" id="node170" href="$conecollisionshape_8h_source.html" title="Physics/conecollisionshape.h" alt="" coords="4647,259,4841,285"/>
-<area shape="rect" id="node171" href="$conetwistconstraint_8h_source.html" title="Physics/conetwistconstraint.h" alt="" coords="8549,333,8747,360"/>
-<area shape="rect" id="node172" href="$dualtransformconstraint_8h_source.html" title="Physics/dualtransformconstraint.h" alt="" coords="7875,483,8095,509"/>
-<area shape="rect" id="node173" href="$convexhullcollisionshape_8h_source.html" title="Physics/convexhullcollisionshape.h" alt="" coords="4866,259,5094,285"/>
-<area shape="rect" id="node174" href="$cylindercollisionshape_8h_source.html" title="Physics/cylindercollisionshape.h" alt="" coords="5119,259,5329,285"/>
-<area shape="rect" id="node175" href="$dynamicmeshcollisionshape_8h_source.html" title="Physics/dynamicmeshcollisionshape.h" alt="" coords="6674,259,6921,285"/>
-<area shape="rect" id="node176" href="$meshcollisionshape_8h_source.html" title="Physics/meshcollisionshape.h" alt="" coords="6698,333,6897,360"/>
-<area shape="rect" id="node177" href="$fieldcollisionshape_8h_source.html" title="Physics/fieldcollisionshape.h" alt="" coords="6433,333,6623,360"/>
-<area shape="rect" id="node178" href="$gearconstraint_8h_source.html" title="Physics/gearconstraint.h" alt="" coords="7267,333,7434,360"/>
-<area shape="rect" id="node179" href="$generic6dofconstraint_8h_source.html" title="Physics/generic6dofconstraint.h" alt="" coords="7893,408,8101,435"/>
-<area shape="rect" id="node180" href="$generic6dofspringconstraint_8h_source.html" title="Physics/generic6dofspringconstraint.h" alt="" coords="8035,333,8277,360"/>
-<area shape="rect" id="node181" href="$ghostproxy_8h_source.html" title="Physics/ghostproxy.h" alt="" coords="7514,259,7662,285"/>
-<area shape="rect" id="node182" href="$heightfieldcollisionshape_8h_source.html" title="Physics/heightfieldcollisionshape.h" alt="" coords="6153,259,6378,285"/>
-<area shape="rect" id="node183" href="$hinge2constraint_8h_source.html" title="Physics/hinge2constraint.h" alt="" coords="8420,259,8599,285"/>
-<area shape="rect" id="node184" href="$hingeconstraint_8h_source.html" title="Physics/hingeconstraint.h" alt="" coords="8302,333,8474,360"/>
-<area shape="rect" id="node185" href="$multispherecollisionshape_8h_source.html" title="Physics/multispherecollisionshape.h" alt="" coords="5354,259,5587,285"/>
-<area shape="rect" id="node186" href="$planecollisionshape_8h_source.html" title="Physics/planecollisionshape.h" alt="" coords="6403,259,6600,285"/>
-<area shape="rect" id="node187" href="$point2pointconstraint_8h_source.html" title="Physics/point2pointconstraint.h" alt="" coords="9121,333,9325,360"/>
-<area shape="rect" id="node188" href="$rigidproxy_8h_source.html" title="Physics/rigidproxy.h" alt="" coords="7901,259,8041,285"/>
-<area shape="rect" id="node189" href="$sliderconstraint_8h_source.html" title="Physics/sliderconstraint.h" alt="" coords="8771,333,8943,360"/>
-<area shape="rect" id="node190" href="$softcollisionshape_8h_source.html" title="Physics/softcollisionshape.h" alt="" coords="6945,259,7133,285"/>
-<area shape="rect" id="node191" href="$softproxy_8h_source.html" title="Physics/softproxy.h" alt="" coords="7687,259,7825,285"/>
-<area shape="rect" id="node192" href="$spherecollisionshape_8h_source.html" title="Physics/spherecollisionshape.h" alt="" coords="5612,259,5817,285"/>
-<area shape="rect" id="node193" href="$staticmeshcollisionshape_8h_source.html" title="Physics/staticmeshcollisionshape.h" alt="" coords="7157,259,7387,285"/>
-<area shape="rect" id="node194" href="$universalconstraint_8h_source.html" title="Physics/universalconstraint.h" alt="" coords="7817,333,8010,360"/>
-<area shape="rect" id="node198" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="9608,632,9829,659"/>
-<area shape="rect" id="node199" href="$resourceutilities_8h_source.html" title="Resource/resourceutilities.h" alt="" coords="10100,931,10284,957"/>
-<area shape="rect" id="node200" href="$resourcemanager_8h.html" title="The defintion of the Resource Manager. " alt="" coords="8934,632,9127,659"/>
-<area shape="rect" id="node201" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="9955,632,10090,659"/>
-<area shape="rect" id="node202" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="10308,931,10433,957"/>
-<area shape="rect" id="node203" href="$assetid_8h_source.html" title="Resource/assetid.h" alt="" coords="10458,931,10593,957"/>
-<area shape="rect" id="node204" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="9385,931,9543,957"/>
-<area shape="rect" id="node205" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="10217,632,10383,659"/>
-<area shape="rect" id="node206" href="$filestream_8h.html" title="Declaration of FileStream. " alt="" coords="9618,931,9769,957"/>
-<area shape="rect" id="node207" href="$memorystream_8h.html" title="Declaration of MemoryStream. " alt="" coords="9895,931,10075,957"/>
-<area shape="rect" id="node209" href="$script_8h.html" title="This file has the interfaces for Scripts and tag derived classes. " alt="" coords="11686,707,11751,733"/>
-<area shape="rect" id="node211" href="$scriptargument_8h.html" title="This file has the interfaces for Script Arguments and the associated dependency chain. " alt="" coords="11487,781,11606,808"/>
-<area shape="rect" id="node212" href="$scriptingmanager_8h.html" title="This file has the interfaces for Scripting managers and the associated dependency chain..." alt="" coords="11587,632,11719,659"/>
-<area shape="rect" id="node213" href="$scriptworkunit_8h.html" title="This file has the interfaces for ScriptsWorkUnit. " alt="" coords="11296,632,11411,659"/>
-<area shape="rect" id="node214" href="$lua51script_8h.html" title="This file has the interface for the Lua scripts. " alt="" coords="11297,557,11431,584"/>
-<area shape="rect" id="node215" href="$lua51scriptargument_8h.html" title="This file has the definition of the Script Arguments for Lua 51. " alt="" coords="11507,557,11696,584"/>
-<area shape="rect" id="node216" href="$lua51scriptingengine_8h.html" title="This file has the interface for the Lua based implementation of the Scripting system. " alt="" coords="10878,557,11069,584"/>
-<area shape="rect" id="node217" href="$lua51workunit_8h.html" title="This file has the declaration for a workunit that can execute lua script every frame. " alt="" coords="11069,483,11221,509"/>
-<area shape="rect" id="node219" href="$uienumerations_8h_source.html" title="UI/uienumerations.h" alt="" coords="14273,632,14412,659"/>
-<area shape="rect" id="node220" href="$uimanager_8h_source.html" title="UI/uimanager.h" alt="" coords="11897,632,12007,659"/>
-<area shape="rect" id="node221" href="$UI_2rect_8h_source.html" title="UI/rect.h" alt="" coords="12641,707,12714,733"/>
-<area shape="rect" id="node222" href="$action_8h_source.html" title="UI/action.h" alt="" coords="12571,408,12658,435"/>
-<area shape="rect" id="node228" href="$actionhandler_8h_source.html" title="UI/actionhandler.h" alt="" coords="11823,184,11951,211"/>
-<area shape="rect" id="node230" href="$brutestrategy_8h_source.html" title="UI/brutestrategy.h" alt="" coords="11302,184,11429,211"/>
-<area shape="rect" id="node231" href="$mousehoverstrategy_8h_source.html" title="UI/mousehoverstrategy.h" alt="" coords="11733,259,11902,285"/>
-<area shape="rect" id="node232" href="$button_8h_source.html" title="UI/button.h" alt="" coords="14667,333,14754,360"/>
-<area shape="rect" id="node234" href="$widget_8h_source.html" title="UI/widget.h" alt="" coords="15193,408,15282,435"/>
-<area shape="rect" id="node235" href="$quadrenderable_8h_source.html" title="UI/quadrenderable.h" alt="" coords="13552,483,13691,509"/>
-<area shape="rect" id="node236" href="$unifieddim_8h_source.html" title="UI/unifieddim.h" alt="" coords="13422,632,13533,659"/>
-<area shape="rect" id="node237" href="$positioninginfo_8h_source.html" title="UI/positioninginfo.h" alt="" coords="13783,557,13918,584"/>
-<area shape="rect" id="node238" href="$sizinginfo_8h_source.html" title="UI/sizinginfo.h" alt="" coords="13467,557,13573,584"/>
-<area shape="rect" id="node239" href="$renderable_8h_source.html" title="UI/renderable.h" alt="" coords="13649,557,13759,584"/>
-<area shape="rect" id="node240" href="$vertex_8h_source.html" title="UI/vertex.h" alt="" coords="12691,632,12778,659"/>
-<area shape="rect" id="node241" href="$widgetfactory_8h_source.html" title="UI/widgetfactory.h" alt="" coords="15515,483,15645,509"/>
-<area shape="rect" id="node242" href="$character_8h_source.html" title="UI/character.h" alt="" coords="13738,408,13843,435"/>
-<area shape="rect" id="node243" href="$glyph_8h_source.html" title="UI/glyph.h" alt="" coords="14264,483,14347,509"/>
-<area shape="rect" id="node244" href="$kerning_8h_source.html" title="UI/kerning.h" alt="" coords="13349,557,13443,584"/>
-<area shape="rect" id="node245" href="$font_8h_source.html" title="UI/font.h" alt="" coords="14797,557,14870,584"/>
-<area shape="rect" id="node246" href="$textureatlas_8h_source.html" title="UI/textureatlas.h" alt="" coords="14095,557,14214,584"/>
-<area shape="rect" id="node247" href="$sprite_8h_source.html" title="UI/sprite.h" alt="" coords="13789,483,13872,509"/>
-<area shape="rect" id="node248" href="$charactertraits_8h_source.html" title="UI/charactertraits.h" alt="" coords="12785,483,12919,509"/>
-<area shape="rect" id="node249" href="$checkbox_8h_source.html" title="UI/checkbox.h" alt="" coords="14337,259,14444,285"/>
-<area shape="rect" id="node250" href="$defaultmarkupparser_8h_source.html" title="UI/defaultmarkupparser.h" alt="" coords="12917,184,13086,211"/>
-<area shape="rect" id="node251" href="$markupparser_8h_source.html" title="UI/markupparser.h" alt="" coords="12875,408,13005,435"/>
-<area shape="rect" id="node252" href="$dropdownlist_8h_source.html" title="UI/dropdownlist.h" alt="" coords="15331,333,15455,360"/>
-<area shape="rect" id="node253" href="$editbox_8h_source.html" title="UI/editbox.h" alt="" coords="15051,333,15144,360"/>
-<area shape="rect" id="node254" href="$gridcontainer_8h_source.html" title="UI/gridcontainer.h" alt="" coords="15380,184,15505,211"/>
-<area shape="rect" id="node255" href="$pagedcontainer_8h_source.html" title="UI/pagedcontainer.h" alt="" coords="15168,333,15307,360"/>
-<area shape="rect" id="node256" href="$horizontalcontainer_8h_source.html" title="UI/horizontalcontainer.h" alt="" coords="14975,184,15135,211"/>
-<area shape="rect" id="node257" href="$linearcontainer_8h_source.html" title="UI/linearcontainer.h" alt="" coords="15138,259,15273,285"/>
-<area shape="rect" id="node258" href="$horizontallayoutstrategy_8h_source.html" title="UI/horizontallayoutstrategy.h" alt="" coords="12175,184,12364,211"/>
-<area shape="rect" id="node259" href="$layoutstrategy_8h_source.html" title="UI/layoutstrategy.h" alt="" coords="12281,259,12415,285"/>
-<area shape="rect" id="node260" href="$horizontalscrollbar_8h_source.html" title="UI/horizontalscrollbar.h" alt="" coords="15849,184,16005,211"/>
-<area shape="rect" id="node261" href="$scrollbar_8h_source.html" title="UI/scrollbar.h" alt="" coords="15799,259,15899,285"/>
-<area shape="rect" id="node262" href="$pageprovider_8h_source.html" title="UI/pageprovider.h" alt="" coords="15581,333,15707,360"/>
-<area shape="rect" id="node263" href="$hotkeyhandler_8h_source.html" title="UI/hotkeyhandler.h" alt="" coords="11979,707,12111,733"/>
-<area shape="rect" id="node264" href="$imagelayer_8h_source.html" title="UI/imagelayer.h" alt="" coords="12659,333,12773,360"/>
-<area shape="rect" id="node265" href="$renderlayer_8h_source.html" title="UI/renderlayer.h" alt="" coords="12331,408,12445,435"/>
-<area shape="rect" id="node266" href="$quadrenderer_8h_source.html" title="UI/quadrenderer.h" alt="" coords="12075,483,12202,509"/>
-<area shape="rect" id="node267" href="$simplerenderer_8h_source.html" title="UI/simplerenderer.h" alt="" coords="12227,557,12363,584"/>
-<area shape="rect" id="node268" href="$layoutcontainer_8h_source.html" title="UI/layoutcontainer.h" alt="" coords="15832,333,15971,360"/>
-<area shape="rect" id="node269" href="$linelist_8h_source.html" title="UI/linelist.h" alt="" coords="14421,483,14509,509"/>
-<area shape="rect" id="node270" href="$listbox_8h_source.html" title="UI/listbox.h" alt="" coords="14173,259,14262,285"/>
-<area shape="rect" id="node271" href="$textlayer_8h_source.html" title="UI/textlayer.h" alt="" coords="13388,333,13489,360"/>
-<area shape="rect" id="node272" href="$menuentry_8h_source.html" title="UI/menuentry.h" alt="" coords="14687,184,14799,211"/>
-<area shape="rect" id="node273" href="$stackedcontainer_8h_source.html" title="UI/stackedcontainer.h" alt="" coords="14685,259,14835,285"/>
-<area shape="rect" id="node274" href="$multiimagelayer_8h_source.html" title="UI/multiimagelayer.h" alt="" coords="12810,259,12953,285"/>
-<area shape="rect" id="node275" href="$multilinetextlayer_8h_source.html" title="UI/multilinetextlayer.h" alt="" coords="13364,259,13513,285"/>
-<area shape="rect" id="node276" href="$nineboxstrategy_8h_source.html" title="UI/nineboxstrategy.h" alt="" coords="11453,184,11595,211"/>
-<area shape="rect" id="node277" href="$radiobutton_8h_source.html" title="UI/radiobutton.h" alt="" coords="14140,184,14255,211"/>
-<area shape="rect" id="node278" href="$renderlayergroup_8h_source.html" title="UI/renderlayergroup.h" alt="" coords="15500,1229,15647,1256"/>
-<area shape="rect" id="node279" href="$screen_8h_source.html" title="UI/screen.h" alt="" coords="13969,333,14060,360"/>
-<area shape="rect" id="node282" href="$singleimagelayer_8h_source.html" title="UI/singleimagelayer.h" alt="" coords="12642,184,12790,211"/>
-<area shape="rect" id="node283" href="$singlelinetextlayer_8h_source.html" title="UI/singlelinetextlayer.h" alt="" coords="13639,259,13793,285"/>
-<area shape="rect" id="node284" href="$spinner_8h_source.html" title="UI/spinner.h" alt="" coords="15513,259,15607,285"/>
-<area shape="rect" id="node285" href="$stackbutton_8h_source.html" title="UI/stackbutton.h" alt="" coords="14279,184,14398,211"/>
-<area shape="rect" id="node286" href="$tabset_8h_source.html" title="UI/tabset.h" alt="" coords="14575,184,14662,211"/>
-<area shape="rect" id="node287" href="$textcursor_8h_source.html" title="UI/textcursor.h" alt="" coords="13180,259,13289,285"/>
-<area shape="rect" id="node288" href="$textline_8h_source.html" title="UI/textline.h" alt="" coords="13617,184,13711,211"/>
-<area shape="rect" id="node289" href="$texttoken_8h_source.html" title="UI/texttoken.h" alt="" coords="15671,1005,15777,1032"/>
-<area shape="rect" id="node290" href="$textureatlashandler_8h_source.html" title="UI/textureatlashandler.h" alt="" coords="15722,1229,15883,1256"/>
-<area shape="rect" id="node291" href="$verticalcontainer_8h_source.html" title="UI/verticalcontainer.h" alt="" coords="15209,184,15356,211"/>
-<area shape="rect" id="node292" href="$verticallayoutstrategy_8h_source.html" title="UI/verticallayoutstrategy.h" alt="" coords="11975,184,12150,211"/>
-<area shape="rect" id="node293" href="$verticalscrollbar_8h_source.html" title="UI/verticalscrollbar.h" alt="" coords="15682,184,15825,211"/>
-<area shape="rect" id="node294" href="$window_8h_source.html" title="UI/window.h" alt="" coords="14830,333,14925,360"/>
-<area shape="rect" id="node229" href="$metacodekey_8h_source.html" title="Input/metacodekey.h" alt="" coords="13080,408,13224,435"/>
-<area shape="rect" id="node280" href="$matrix4x4_8h_source.html" title="matrix4x4.h" alt="" coords="9967,557,10057,584"/>
-<area shape="rect" id="node281" href="$matrix3x3_8h_source.html" title="matrix3x3.h" alt="" coords="10408,632,10499,659"/>
+<area shape="rect" id="node34" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="9257,1155,9415,1181"/>
+<area shape="rect" id="node65" href="$workunit_8h.html" title="This file has the definition of the workunit. " alt="" coords="4047,931,4190,957"/>
+<area shape="rect" id="node26" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="7764,1229,7895,1256"/>
+<area shape="rect" id="node27" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="6614,1229,6725,1256"/>
+<area shape="rect" id="node28" href="$attributeiterator_8h.html" title="Contains the defintion of the AttributeIterator class. " alt="" coords="6429,1080,6579,1107"/>
+<area shape="rect" id="node29" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes. " alt="" coords="7154,1155,7246,1181"/>
+<area shape="rect" id="node30" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="7321,1229,7484,1256"/>
+<area shape="rect" id="node31" href="$document_8h.html" title="The definition of the XML::Document Class. " alt="" coords="7263,1005,7385,1032"/>
+<area shape="rect" id="node32" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="6900,1155,7028,1181"/>
+<area shape="rect" id="node33" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="8092,1080,8188,1107"/>
+<area shape="rect" id="node37" href="$memorymanagement_8h.html" title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen..." alt="" coords="6589,1005,6776,1032"/>
+<area shape="rect" id="node38" href="$nodeiterator_8h.html" title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas..." alt="" coords="6655,1080,6787,1107"/>
+<area shape="rect" id="node39" href="$nodetext_8h.html" title="The declaration of the XML::NodeText class. " alt="" coords="6812,1080,6927,1107"/>
+<area shape="rect" id="node40" href="$treewalker_8h.html" title="This defines the TreeWalker Interface. " alt="" coords="7205,1080,7329,1107"/>
+<area shape="rect" id="node41" href="$xmlstring_8h.html" title="A few functions to help the XML system perform conversions between UTF8 and the native wide character..." alt="" coords="7460,1005,7577,1032"/>
+<area shape="rect" id="node42" href="$xpathnode_8h.html" title="The definition of the Mezzanine::XML::XPathNode. " alt="" coords="7557,1080,7681,1107"/>
+<area shape="rect" id="node43" href="$xpathnodeset_8h.html" title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet. " alt="" coords="7653,1005,7795,1032"/>
+<area shape="rect" id="node44" href="$xpathparseresult_8h.html" title="Has all the classes for the XPath implementation. " alt="" coords="7857,1080,8017,1107"/>
+<area shape="rect" id="node45" href="$xpathvariable_8h.html" title="The XPathVariable class definition. " alt="" coords="7863,1155,8004,1181"/>
+<area shape="rect" id="node46" href="$xpathvariableset_8h.html" title="The definition of the Mezzanine::XML::XPathVariableSet. " alt="" coords="8079,1155,8238,1181"/>
+<area shape="rect" id="node47" href="$xpathquery_8h.html" title="The definition of the Mezzanine::XML::XPathQuery . " alt="" coords="7820,1005,7948,1032"/>
+<area shape="rect" id="node58" href="$cubicspline_8h.html" title="cubicspline.h" alt="" coords="8871,931,8969,957"/>
+<area shape="rect" id="node66" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class. " alt="" coords="3729,1005,3852,1032"/>
+<area shape="rect" id="node68" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="4183,1080,4252,1107"/>
+<area shape="rect" id="node70" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. " alt="" coords="4340,1155,4409,1181"/>
+<area shape="rect" id="node72" href="$workunitkey_8h.html" title="This file defines the metadata used to sort workunits. " alt="" coords="4706,1080,4809,1107"/>
+<area shape="rect" id="node74" href="$rollingaverage_8h.html" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. " alt="" coords="3439,1080,3553,1107"/>
+<area shape="rect" id="node75" href="$threadingenumerations_8h.html" title="Any enumerations the threading library requires are all declared here. " alt="" coords="3287,1005,3451,1032"/>
+<area shape="rect" id="node67" href="$doublebufferedresource_8h.html" title="This file defines the template double buffered resources that can be attached to a thread..." alt="" coords="3577,1080,3745,1107"/>
+<area shape="rect" id="node69" href="$systemcalls_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="3879,1155,3982,1181"/>
+<area shape="rect" id="node73" href="$spinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. " alt="" coords="3871,1080,3953,1107"/>
+<area shape="rect" id="node71" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically. " alt="" coords="4345,1229,4477,1256"/>
+<area shape="rect" id="node84" href="$transformableobject_8h_source.html" title="transformableobject.h" alt="" coords="6627,632,6773,659"/>
+<area shape="rect" id="node99" href="$asynchronousfileloadingworkunit_8h.html" title="The declaration of the AsynchronousFileLoadWorkUnit a workunit that loads a listing of files asynchro..." alt="" coords="3599,781,3820,808"/>
+<area shape="rect" id="node100" href="$asynchronousworkunit_8h.html" title="Contains an interface for a kind of WorkUnit that loads or does other work even when the frame schedu..." alt="" coords="3708,856,3871,883"/>
+<area shape="rect" id="node101" href="$barrier_8h.html" title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive. " alt="" coords="4196,1155,4265,1181"/>
+<area shape="rect" id="node102" href="$frameschedulerworkunits_8h.html" title="This defines a number of workunits that are required for doing some tasks that the Framescheduler req..." alt="" coords="4604,856,4783,883"/>
+<area shape="rect" id="node103" href="$lockguard_8h.html" title="Declares a tool for automatically unlocking a mutex in an exception safe way. " alt="" coords="3505,856,3594,883"/>
+<area shape="rect" id="node104" href="$logtools_8h.html" title="The definitions of the logging tools. " alt="" coords="4029,1080,4107,1107"/>
+<area shape="rect" id="node105" href="$monopoly_8h.html" title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread. " alt="" coords="4909,856,4998,883"/>
+<area shape="rect" id="node106" href="$readwritespinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. " alt="" coords="3389,781,3523,808"/>
+<area shape="rect" id="node108" href="$graphicsenumerations_8h_source.html" title="Graphics/graphicsenumerations.h" alt="" coords="5096,707,5312,733"/>
+<area shape="rect" id="node109" href="$graphicsmanager_8h_source.html" title="Graphics/graphicsmanager.h" alt="" coords="4238,557,4426,584"/>
+<area shape="rect" id="node111" href="$windowsettings_8h_source.html" title="Graphics/windowsettings.h" alt="" coords="4285,707,4464,733"/>
+<area shape="rect" id="node112" href="$resolution_8h_source.html" title="Graphics/resolution.h" alt="" coords="5005,781,5150,808"/>
+<area shape="rect" id="node113" href="$gamewindow_8h_source.html" title="Graphics/gamewindow.h" alt="" coords="4136,632,4301,659"/>
+<area shape="rect" id="node114" href="$scenemanager_8h_source.html" title="Graphics/scenemanager.h" alt="" coords="4529,632,4703,659"/>
+<area shape="rect" id="node118" href="$meshmanager_8h_source.html" title="Graphics/meshmanager.h" alt="" coords="6797,632,6968,659"/>
+<area shape="rect" id="node119" href="$texturemanager_8h_source.html" title="Graphics/texturemanager.h" alt="" coords="3832,632,4011,659"/>
+<area shape="rect" id="node120" href="$billboard_8h.html" title="This file contains the declaration for the Billboard class used by BillboardSetProxy. " alt="" coords="7043,632,7181,659"/>
+<area shape="rect" id="node121" href="$billboardsetproxy_8h.html" title="This file contains the declaration for the World proxy wrapping billboard functionality. " alt="" coords="4440,408,4627,435"/>
+<area shape="rect" id="node122" href="$renderableproxy_8h.html" title="This file contains the declaration for the base class from which graphics proxies inherit..." alt="" coords="4924,483,5105,509"/>
+<area shape="rect" id="node125" href="$bone_8h_source.html" title="Graphics/bone.h" alt="" coords="6079,408,6196,435"/>
+<area shape="rect" id="node126" href="$cameraproxy_8h.html" title="This file contains the declaration for the World proxy wrapping camera functionality. " alt="" coords="5738,408,5902,435"/>
+<area shape="rect" id="node129" href="$entityproxy_8h.html" title="This file contains the declaration for the World proxy wrapping basic entity(mesh) functionality..." alt="" coords="4934,408,5087,435"/>
+<area shape="rect" id="node130" href="$image_8h_source.html" title="Graphics/image.h" alt="" coords="4918,632,5042,659"/>
+<area shape="rect" id="node131" href="$lightproxy_8h.html" title="This file contains the declaration for the World proxy wrapping light functionality. " alt="" coords="5111,408,5257,435"/>
+<area shape="rect" id="node132" href="$material_8h_source.html" title="Graphics/material.h" alt="" coords="2874,931,3009,957"/>
+<area shape="rect" id="node133" href="$mesh_8h_source.html" title="Graphics/mesh.h" alt="" coords="5610,1005,5731,1032"/>
+<area shape="rect" id="node134" href="$particleaffector_8h_source.html" title="Graphics/particleaffector.h" alt="" coords="5429,856,5603,883"/>
+<area shape="rect" id="node135" href="$particleemitter_8h_source.html" title="Graphics/particleemitter.h" alt="" coords="5628,856,5799,883"/>
+<area shape="rect" id="node136" href="$particlesystemproxy_8h.html" title="This file contains the declaration for the World proxy wrapping particle functionality. " alt="" coords="4651,408,4858,435"/>
+<area shape="rect" id="node137" href="$pass_8h_source.html" title="Graphics/pass.h" alt="" coords="5708,1229,5825,1256"/>
+<area shape="rect" id="node138" href="$skeleton_8h_source.html" title="Graphics/skeleton.h" alt="" coords="5863,931,6001,957"/>
+<area shape="rect" id="node139" href="$submesh_8h_source.html" title="Graphics/submesh.h" alt="" coords="5858,1005,6001,1032"/>
+<area shape="rect" id="node140" href="$technique_8h_source.html" title="Graphics/technique.h" alt="" coords="5954,1155,6099,1181"/>
+<area shape="rect" id="node141" href="$texture_8h_source.html" title="Graphics/texture.h" alt="" coords="5321,632,5450,659"/>
+<area shape="rect" id="node142" href="$viewport_8h_source.html" title="Graphics/viewport.h" alt="" coords="7299,707,7437,733"/>
+<area shape="rect" id="node145" href="$inputenumerations_8h_source.html" title="Input/inputenumerations.h" alt="" coords="8510,856,8682,883"/>
+<area shape="rect" id="node146" href="$inputmanager_8h_source.html" title="Input/inputmanager.h" alt="" coords="8179,632,8323,659"/>
+<area shape="rect" id="node147" href="$metacode_8h_source.html" title="Input/metacode.h" alt="" coords="9375,781,9497,808"/>
+<area shape="rect" id="node150" href="$controller_8h_source.html" title="Input/controller.h" alt="" coords="8915,483,9034,509"/>
+<area shape="rect" id="node152" href="$device_8h.html" title="The declaration of the User input Device class. " alt="" coords="8752,632,8856,659"/>
+<area shape="rect" id="node153" href="$keyboard_8h_source.html" title="Input/keyboard.h" alt="" coords="8670,483,8789,509"/>
+<area shape="rect" id="node154" href="$mouse_8h_source.html" title="Input/mouse.h" alt="" coords="9110,483,9215,509"/>
+<area shape="rect" id="node148" href="$sequencecontainer_8h_source.html" title="Input/sequencecontainer.h" alt="" coords="8721,707,8895,733"/>
+<area shape="rect" id="node149" href="$trie_8h_source.html" title="trie.h" alt="" coords="9148,781,9199,808"/>
+<area shape="rect" id="node151" href="$buttondevice_8h_source.html" title="Input/buttondevice.h" alt="" coords="8985,557,9125,584"/>
+<area shape="rect" id="node156" href="$physicsenumerations_8h_source.html" title="Physics/physicsenumerations.h" alt="" coords="7558,408,7765,435"/>
+<area shape="rect" id="node157" href="$physicsmanager_8h_source.html" title="Physics/physicsmanager.h" alt="" coords="6103,483,6281,509"/>
+<area shape="rect" id="node158" href="$collidablepair_8h_source.html" title="Physics/collidablepair.h" alt="" coords="7761,557,7919,584"/>
+<area shape="rect" id="node159" href="$constraint_8h_source.html" title="Physics/constraint.h" alt="" coords="8147,557,8288,584"/>
+<area shape="rect" id="node161" href="$managerconstructioninfo_8h_source.html" title="Physics/managerconstructioninfo.h" alt="" coords="7509,557,7736,584"/>
+<area shape="rect" id="node162" href="$collisionshapemanager_8h_source.html" title="Physics/collisionshapemanager.h" alt="" coords="7208,483,7424,509"/>
+<area shape="rect" id="node163" href="$collisionshape_8h_source.html" title="Physics/collisionshape.h" alt="" coords="7065,557,7231,584"/>
+<area shape="rect" id="node164" href="$boxcollisionshape_8h_source.html" title="Physics/boxcollisionshape.h" alt="" coords="7261,259,7448,285"/>
+<area shape="rect" id="node165" href="$primitivecollisionshape_8h_source.html" title="Physics/primitivecollisionshape.h" alt="" coords="6350,333,6565,360"/>
+<area shape="rect" id="node166" href="$capsulecollisionshape_8h_source.html" title="Physics/capsulecollisionshape.h" alt="" coords="6808,259,7019,285"/>
+<area shape="rect" id="node167" href="$collidableproxy_8h_source.html" title="Physics/collidableproxy.h" alt="" coords="5243,333,5413,360"/>
+<area shape="rect" id="node168" href="$collision_8h_source.html" title="Physics/collision.h" alt="" coords="7259,333,7389,360"/>
+<area shape="rect" id="node169" href="$compoundcollisionshape_8h_source.html" title="Physics/compoundcollisionshape.h" alt="" coords="6907,333,7133,360"/>
+<area shape="rect" id="node170" href="$conecollisionshape_8h_source.html" title="Physics/conecollisionshape.h" alt="" coords="7043,259,7237,285"/>
+<area shape="rect" id="node171" href="$conetwistconstraint_8h_source.html" title="Physics/conetwistconstraint.h" alt="" coords="7661,333,7859,360"/>
+<area shape="rect" id="node172" href="$dualtransformconstraint_8h_source.html" title="Physics/dualtransformconstraint.h" alt="" coords="7817,483,8037,509"/>
+<area shape="rect" id="node173" href="$convexhullcollisionshape_8h_source.html" title="Physics/convexhullcollisionshape.h" alt="" coords="5782,259,6010,285"/>
+<area shape="rect" id="node174" href="$cylindercollisionshape_8h_source.html" title="Physics/cylindercollisionshape.h" alt="" coords="6035,259,6245,285"/>
+<area shape="rect" id="node175" href="$dynamicmeshcollisionshape_8h_source.html" title="Physics/dynamicmeshcollisionshape.h" alt="" coords="5511,259,5758,285"/>
+<area shape="rect" id="node176" href="$meshcollisionshape_8h_source.html" title="Physics/meshcollisionshape.h" alt="" coords="5977,333,6175,360"/>
+<area shape="rect" id="node177" href="$fieldcollisionshape_8h_source.html" title="Physics/fieldcollisionshape.h" alt="" coords="6691,333,6882,360"/>
+<area shape="rect" id="node178" href="$gearconstraint_8h_source.html" title="Physics/gearconstraint.h" alt="" coords="9099,333,9266,360"/>
+<area shape="rect" id="node179" href="$generic6dofconstraint_8h_source.html" title="Physics/generic6dofconstraint.h" alt="" coords="7891,408,8099,435"/>
+<area shape="rect" id="node180" href="$generic6dofspringconstraint_8h_source.html" title="Physics/generic6dofspringconstraint.h" alt="" coords="7883,333,8125,360"/>
+<area shape="rect" id="node181" href="$ghostproxy_8h_source.html" title="Physics/ghostproxy.h" alt="" coords="4606,259,4754,285"/>
+<area shape="rect" id="node182" href="$heightfieldcollisionshape_8h_source.html" title="Physics/heightfieldcollisionshape.h" alt="" coords="7743,259,7969,285"/>
+<area shape="rect" id="node183" href="$hinge2constraint_8h_source.html" title="Physics/hinge2constraint.h" alt="" coords="8347,259,8525,285"/>
+<area shape="rect" id="node184" href="$hingeconstraint_8h_source.html" title="Physics/hingeconstraint.h" alt="" coords="8419,333,8591,360"/>
+<area shape="rect" id="node185" href="$multispherecollisionshape_8h_source.html" title="Physics/multispherecollisionshape.h" alt="" coords="6270,259,6503,285"/>
+<area shape="rect" id="node186" href="$planecollisionshape_8h_source.html" title="Physics/planecollisionshape.h" alt="" coords="7472,259,7669,285"/>
+<area shape="rect" id="node187" href="$point2pointconstraint_8h_source.html" title="Physics/point2pointconstraint.h" alt="" coords="8819,333,9023,360"/>
+<area shape="rect" id="node188" href="$rigidproxy_8h_source.html" title="Physics/rigidproxy.h" alt="" coords="4830,259,4970,285"/>
+<area shape="rect" id="node189" href="$sliderconstraint_8h_source.html" title="Physics/sliderconstraint.h" alt="" coords="7465,333,7637,360"/>
+<area shape="rect" id="node190" href="$softcollisionshape_8h_source.html" title="Physics/softcollisionshape.h" alt="" coords="4994,259,5182,285"/>
+<area shape="rect" id="node191" href="$softproxy_8h_source.html" title="Physics/softproxy.h" alt="" coords="4392,259,4531,285"/>
+<area shape="rect" id="node192" href="$spherecollisionshape_8h_source.html" title="Physics/spherecollisionshape.h" alt="" coords="6528,259,6733,285"/>
+<area shape="rect" id="node193" href="$staticmeshcollisionshape_8h_source.html" title="Physics/staticmeshcollisionshape.h" alt="" coords="5206,259,5437,285"/>
+<area shape="rect" id="node194" href="$universalconstraint_8h_source.html" title="Physics/universalconstraint.h" alt="" coords="8150,333,8343,360"/>
+<area shape="rect" id="node198" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="10339,632,10560,659"/>
+<area shape="rect" id="node199" href="$resourceutilities_8h_source.html" title="Resource/resourceutilities.h" alt="" coords="9896,931,10080,957"/>
+<area shape="rect" id="node200" href="$resourcemanager_8h.html" title="The defintion of the Resource Manager. " alt="" coords="8931,632,9125,659"/>
+<area shape="rect" id="node201" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="9835,632,9970,659"/>
+<area shape="rect" id="node202" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="10280,931,10405,957"/>
+<area shape="rect" id="node203" href="$assetid_8h_source.html" title="Resource/assetid.h" alt="" coords="10430,931,10565,957"/>
+<area shape="rect" id="node204" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="9715,931,9872,957"/>
+<area shape="rect" id="node205" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="10097,632,10263,659"/>
+<area shape="rect" id="node206" href="$filestream_8h.html" title="Declaration of FileStream. " alt="" coords="10105,931,10255,957"/>
+<area shape="rect" id="node207" href="$memorystream_8h.html" title="Declaration of MemoryStream. " alt="" coords="9459,931,9639,957"/>
+<area shape="rect" id="node209" href="$script_8h.html" title="This file has the interfaces for Scripts and tag derived classes. " alt="" coords="11606,707,11671,733"/>
+<area shape="rect" id="node211" href="$scriptargument_8h.html" title="This file has the interfaces for Script Arguments and the associated dependency chain. " alt="" coords="11453,781,11571,808"/>
+<area shape="rect" id="node212" href="$scriptingmanager_8h.html" title="This file has the interfaces for Scripting managers and the associated dependency chain..." alt="" coords="11395,632,11527,659"/>
+<area shape="rect" id="node213" href="$scriptworkunit_8h.html" title="This file has the interfaces for ScriptsWorkUnit. " alt="" coords="11603,632,11717,659"/>
+<area shape="rect" id="node214" href="$lua51script_8h.html" title="This file has the interface for the Lua scripts. " alt="" coords="11106,557,11241,584"/>
+<area shape="rect" id="node215" href="$lua51scriptargument_8h.html" title="This file has the definition of the Script Arguments for Lua 51. " alt="" coords="11468,557,11657,584"/>
+<area shape="rect" id="node216" href="$lua51scriptingengine_8h.html" title="This file has the interface for the Lua based implementation of the Scripting system. " alt="" coords="10738,557,10929,584"/>
+<area shape="rect" id="node217" href="$lua51workunit_8h.html" title="This file has the declaration for a workunit that can execute lua script every frame. " alt="" coords="10891,483,11043,509"/>
+<area shape="rect" id="node219" href="$uienumerations_8h_source.html" title="UI/uienumerations.h" alt="" coords="14149,632,14288,659"/>
+<area shape="rect" id="node220" href="$uimanager_8h_source.html" title="UI/uimanager.h" alt="" coords="11843,632,11954,659"/>
+<area shape="rect" id="node221" href="$UI_2rect_8h_source.html" title="UI/rect.h" alt="" coords="12990,707,13063,733"/>
+<area shape="rect" id="node222" href="$action_8h_source.html" title="UI/action.h" alt="" coords="12749,408,12835,435"/>
+<area shape="rect" id="node228" href="$actionhandler_8h_source.html" title="UI/actionhandler.h" alt="" coords="12220,184,12348,211"/>
+<area shape="rect" id="node230" href="$brutestrategy_8h_source.html" title="UI/brutestrategy.h" alt="" coords="11134,184,11261,211"/>
+<area shape="rect" id="node231" href="$mousehoverstrategy_8h_source.html" title="UI/mousehoverstrategy.h" alt="" coords="11541,259,11710,285"/>
+<area shape="rect" id="node232" href="$button_8h_source.html" title="UI/button.h" alt="" coords="14478,333,14565,360"/>
+<area shape="rect" id="node234" href="$widget_8h_source.html" title="UI/widget.h" alt="" coords="15029,408,15118,435"/>
+<area shape="rect" id="node235" href="$quadrenderable_8h_source.html" title="UI/quadrenderable.h" alt="" coords="13279,483,13417,509"/>
+<area shape="rect" id="node236" href="$unifieddim_8h_source.html" title="UI/unifieddim.h" alt="" coords="13166,632,13277,659"/>
+<area shape="rect" id="node237" href="$positioninginfo_8h_source.html" title="UI/positioninginfo.h" alt="" coords="13058,557,13193,584"/>
+<area shape="rect" id="node238" href="$sizinginfo_8h_source.html" title="UI/sizinginfo.h" alt="" coords="13268,557,13375,584"/>
+<area shape="rect" id="node239" href="$renderable_8h_source.html" title="UI/renderable.h" alt="" coords="14117,557,14227,584"/>
+<area shape="rect" id="node240" href="$vertex_8h_source.html" title="UI/vertex.h" alt="" coords="12537,632,12623,659"/>
+<area shape="rect" id="node241" href="$widgetfactory_8h_source.html" title="UI/widgetfactory.h" alt="" coords="15454,483,15583,509"/>
+<area shape="rect" id="node242" href="$character_8h_source.html" title="UI/character.h" alt="" coords="13503,408,13609,435"/>
+<area shape="rect" id="node243" href="$glyph_8h_source.html" title="UI/glyph.h" alt="" coords="13977,483,14060,509"/>
+<area shape="rect" id="node244" href="$kerning_8h_source.html" title="UI/kerning.h" alt="" coords="13753,557,13847,584"/>
+<area shape="rect" id="node245" href="$font_8h_source.html" title="UI/font.h" alt="" coords="14861,557,14934,584"/>
+<area shape="rect" id="node246" href="$textureatlas_8h_source.html" title="UI/textureatlas.h" alt="" coords="13871,557,13990,584"/>
+<area shape="rect" id="node247" href="$sprite_8h_source.html" title="UI/sprite.h" alt="" coords="13601,483,13684,509"/>
+<area shape="rect" id="node248" href="$charactertraits_8h_source.html" title="UI/charactertraits.h" alt="" coords="12805,483,12939,509"/>
+<area shape="rect" id="node249" href="$checkbox_8h_source.html" title="UI/checkbox.h" alt="" coords="14057,259,14164,285"/>
+<area shape="rect" id="node250" href="$defaultmarkupparser_8h_source.html" title="UI/defaultmarkupparser.h" alt="" coords="12799,184,12969,211"/>
+<area shape="rect" id="node251" href="$markupparser_8h_source.html" title="UI/markupparser.h" alt="" coords="12961,408,13092,435"/>
+<area shape="rect" id="node252" href="$dropdownlist_8h_source.html" title="UI/dropdownlist.h" alt="" coords="15193,333,15317,360"/>
+<area shape="rect" id="node253" href="$editbox_8h_source.html" title="UI/editbox.h" alt="" coords="14912,333,15005,360"/>
+<area shape="rect" id="node254" href="$gridcontainer_8h_source.html" title="UI/gridcontainer.h" alt="" coords="15212,184,15337,211"/>
+<area shape="rect" id="node255" href="$pagedcontainer_8h_source.html" title="UI/pagedcontainer.h" alt="" coords="15029,333,15168,360"/>
+<area shape="rect" id="node256" href="$horizontalcontainer_8h_source.html" title="UI/horizontalcontainer.h" alt="" coords="14807,184,14967,211"/>
+<area shape="rect" id="node257" href="$linearcontainer_8h_source.html" title="UI/linearcontainer.h" alt="" coords="14978,259,15113,285"/>
+<area shape="rect" id="node258" href="$horizontallayoutstrategy_8h_source.html" title="UI/horizontallayoutstrategy.h" alt="" coords="11855,184,12044,211"/>
+<area shape="rect" id="node259" href="$layoutstrategy_8h_source.html" title="UI/layoutstrategy.h" alt="" coords="12039,259,12172,285"/>
+<area shape="rect" id="node260" href="$horizontalscrollbar_8h_source.html" title="UI/horizontalscrollbar.h" alt="" coords="15681,184,15837,211"/>
+<area shape="rect" id="node261" href="$scrollbar_8h_source.html" title="UI/scrollbar.h" alt="" coords="15581,259,15681,285"/>
+<area shape="rect" id="node262" href="$pageprovider_8h_source.html" title="UI/pageprovider.h" alt="" coords="15443,333,15568,360"/>
+<area shape="rect" id="node263" href="$hotkeyhandler_8h_source.html" title="UI/hotkeyhandler.h" alt="" coords="12025,707,12157,733"/>
+<area shape="rect" id="node264" href="$imagelayer_8h_source.html" title="UI/imagelayer.h" alt="" coords="12399,333,12513,360"/>
+<area shape="rect" id="node265" href="$renderlayer_8h_source.html" title="UI/renderlayer.h" alt="" coords="12255,408,12369,435"/>
+<area shape="rect" id="node266" href="$quadrenderer_8h_source.html" title="UI/quadrenderer.h" alt="" coords="11943,483,12070,509"/>
+<area shape="rect" id="node267" href="$simplerenderer_8h_source.html" title="UI/simplerenderer.h" alt="" coords="12137,557,12273,584"/>
+<area shape="rect" id="node268" href="$layoutcontainer_8h_source.html" title="UI/layoutcontainer.h" alt="" coords="15717,333,15856,360"/>
+<area shape="rect" id="node269" href="$linelist_8h_source.html" title="UI/linelist.h" alt="" coords="14301,483,14389,509"/>
+<area shape="rect" id="node270" href="$listbox_8h_source.html" title="UI/listbox.h" alt="" coords="13943,259,14033,285"/>
+<area shape="rect" id="node271" href="$textlayer_8h_source.html" title="UI/textlayer.h" alt="" coords="13108,333,13209,360"/>
+<area shape="rect" id="node272" href="$menuentry_8h_source.html" title="UI/menuentry.h" alt="" coords="14519,184,14631,211"/>
+<area shape="rect" id="node273" href="$stackedcontainer_8h_source.html" title="UI/stackedcontainer.h" alt="" coords="14515,259,14666,285"/>
+<area shape="rect" id="node274" href="$multiimagelayer_8h_source.html" title="UI/multiimagelayer.h" alt="" coords="12479,259,12622,285"/>
+<area shape="rect" id="node275" href="$multilinetextlayer_8h_source.html" title="UI/multilinetextlayer.h" alt="" coords="13084,259,13233,285"/>
+<area shape="rect" id="node276" href="$nineboxstrategy_8h_source.html" title="UI/nineboxstrategy.h" alt="" coords="11285,184,11427,211"/>
+<area shape="rect" id="node277" href="$radiobutton_8h_source.html" title="UI/radiobutton.h" alt="" coords="13871,184,13985,211"/>
+<area shape="rect" id="node278" href="$renderlayergroup_8h_source.html" title="UI/renderlayergroup.h" alt="" coords="15147,1229,15293,1256"/>
+<area shape="rect" id="node279" href="$screen_8h_source.html" title="UI/screen.h" alt="" coords="13791,333,13881,360"/>
+<area shape="rect" id="node282" href="$singleimagelayer_8h_source.html" title="UI/singleimagelayer.h" alt="" coords="12423,184,12571,211"/>
+<area shape="rect" id="node283" href="$singlelinetextlayer_8h_source.html" title="UI/singlelinetextlayer.h" alt="" coords="13359,259,13513,285"/>
+<area shape="rect" id="node284" href="$spinner_8h_source.html" title="UI/spinner.h" alt="" coords="15367,259,15460,285"/>
+<area shape="rect" id="node285" href="$stackbutton_8h_source.html" title="UI/stackbutton.h" alt="" coords="14061,184,14179,211"/>
+<area shape="rect" id="node286" href="$tabset_8h_source.html" title="UI/tabset.h" alt="" coords="14407,184,14494,211"/>
+<area shape="rect" id="node287" href="$textcursor_8h_source.html" title="UI/textcursor.h" alt="" coords="12900,259,13009,285"/>
+<area shape="rect" id="node288" href="$textline_8h_source.html" title="UI/textline.h" alt="" coords="13348,184,13441,211"/>
+<area shape="rect" id="node289" href="$texttoken_8h_source.html" title="UI/texttoken.h" alt="" coords="15357,1005,15462,1032"/>
+<area shape="rect" id="node290" href="$textureatlashandler_8h_source.html" title="UI/textureatlashandler.h" alt="" coords="15369,1229,15530,1256"/>
+<area shape="rect" id="node291" href="$verticalcontainer_8h_source.html" title="UI/verticalcontainer.h" alt="" coords="15041,184,15188,211"/>
+<area shape="rect" id="node292" href="$verticallayoutstrategy_8h_source.html" title="UI/verticallayoutstrategy.h" alt="" coords="11655,184,11830,211"/>
+<area shape="rect" id="node293" href="$verticalscrollbar_8h_source.html" title="UI/verticalscrollbar.h" alt="" coords="15514,184,15657,211"/>
+<area shape="rect" id="node294" href="$window_8h_source.html" title="UI/window.h" alt="" coords="14691,333,14786,360"/>
+<area shape="rect" id="node229" href="$metacodekey_8h_source.html" title="Input/metacodekey.h" alt="" coords="13167,408,13311,435"/>
+<area shape="rect" id="node280" href="$matrix4x4_8h_source.html" title="matrix4x4.h" alt="" coords="10003,557,10093,584"/>
+<area shape="rect" id="node281" href="$matrix3x3_8h_source.html" title="matrix3x3.h" alt="" coords="10635,632,10725,659"/>
 </map>
