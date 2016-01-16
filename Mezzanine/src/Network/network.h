@@ -57,6 +57,10 @@ namespace Mezzanine
 #include "Network/networkutilities.h"
 #include "Network/networkmanager.h"
 
+#include "Network/httpclient.h"
+#include "Network/httpmessage.h"
+#include "Network/httprequest.h"
+#include "Network/httpresponse.h"
 #include "Network/ipaddress.h"
 #include "Network/ipv4socket.h"
 #include "Network/ipv6socket.h"

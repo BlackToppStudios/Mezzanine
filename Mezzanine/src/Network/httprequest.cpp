@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkhttprequest_cpp
 #define _networkhttprequest_cpp
 
@@ -52,21 +50,46 @@ namespace Mezzanine
     namespace Network
     {
         HTTPRequest::HTTPRequest() :
-            MajorVersion(1),
-            MinorVersion(0),
             RequestMethod(Network::HRM_GET)
             {  }
 
+        HTTPRequest::HTTPRequest(const String& ToDecompose)
+            { this->Decompose(ToDecompose); }
+
         HTTPRequest::HTTPRequest(const String& URI, const Network::HTTPRequestMethod Method, const String& Body) :
-            MajorVersion(1),
-            MinorVersion(0),
             RequestMethod(Method),
-            RequestURI(URI),
-            RequestBody(Body)
-            {  }
+            RequestURI(URI)
+            { this->MessageBody = Body; }
 
         HTTPRequest::~HTTPRequest()
             {  }
+
+        Boole HTTPRequest::ParseHTTPHeader(StringIterator& CurrIt, const StringIterator EndIt)
+        {
+            // A request header has 3 components: A method, a URI, and a version.
+            Boole EoL = false;
+            String HeaderTemp;
+            // Method
+            EoL = this->GetMessageComponent(CurrIt,EndIt,HeaderTemp);
+            this->RequestMethod = this->ConvertRequestMethod(HeaderTemp);
+            if( EoL ) {
+                return false;
+            }
+            // URI
+            HeaderTemp.clear();
+            EoL = this->GetMessageComponent(CurrIt,EndIt,HeaderTemp);
+            this->RequestURI.ParseFromString(HeaderTemp);
+            if( EoL ) {
+                return false;
+            }
+            // Version
+            HeaderTemp.clear();
+            this->GetMessageComponent(CurrIt,EndIt,HeaderTemp);
+            this->ParseHTTPVersion(HeaderTemp);
+            // Handle extra trash
+            //this->AdvanceToNewline(CurrIt,EndIt);
+            return true;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -99,106 +122,67 @@ namespace Mezzanine
 
         Network::HTTPRequestMethod HTTPRequest::ConvertRequestMethod(const String& Method)
         {
-            if( Method == "GET" )       return Network::HRM_GET;
-            if( Method == "HEAD" )      return Network::HRM_HEAD;
-            if( Method == "POST" )      return Network::HRM_POST;
-            if( Method == "OPTIONS" )   return Network::HRM_OPTIONS;
-            if( Method == "PUT" )       return Network::HRM_PUT;
-            if( Method == "DELETE" )    return Network::HRM_DELETE;
-            if( Method == "TRACE" )     return Network::HRM_TRACE;
-            if( Method == "CONNECT" )   return Network::HRM_CONNECT;
-            if( Method == "PATCH" )     return Network::HRM_PATCH;
-            if( Method == "PROPFIND" )  return Network::HRM_PROPFIND;
-            if( Method == "PROPPATCH" ) return Network::HRM_PROPPATCH;
-            if( Method == "MKCOL" )     return Network::HRM_MKCOL;
-            if( Method == "COPY" )      return Network::HRM_COPY;
-            if( Method == "MOVE" )      return Network::HRM_MOVE;
-            if( Method == "LOCK" )      return Network::HRM_LOCK;
-            if( Method == "UNLOCK" )    return Network::HRM_UNLOCK;
+            if( Method == "GET" )       { return Network::HRM_GET; }
+            if( Method == "HEAD" )      { return Network::HRM_HEAD; }
+            if( Method == "POST" )      { return Network::HRM_POST; }
+            if( Method == "OPTIONS" )   { return Network::HRM_OPTIONS; }
+            if( Method == "PUT" )       { return Network::HRM_PUT; }
+            if( Method == "DELETE" )    { return Network::HRM_DELETE; }
+            if( Method == "TRACE" )     { return Network::HRM_TRACE; }
+            if( Method == "CONNECT" )   { return Network::HRM_CONNECT; }
+            if( Method == "PATCH" )     { return Network::HRM_PATCH; }
+            if( Method == "PROPFIND" )  { return Network::HRM_PROPFIND; }
+            if( Method == "PROPPATCH" ) { return Network::HRM_PROPPATCH; }
+            if( Method == "MKCOL" )     { return Network::HRM_MKCOL; }
+            if( Method == "COPY" )      { return Network::HRM_COPY; }
+            if( Method == "MOVE" )      { return Network::HRM_MOVE; }
+            if( Method == "LOCK" )      { return Network::HRM_LOCK; }
+            if( Method == "UNLOCK" )    { return Network::HRM_UNLOCK; }
             return Network::HRM_Invalid;
         }
 
-        String HTTPRequest::ComposeRequest() const
+        String HTTPRequest::Compose() const
         {
             StringStream RequestStream;
-            RequestStream << HTTPRequest::ConvertRequestMethod( this->RequestMethod ) << " " << this->RequestURI << " ";
-            RequestStream << "HTTP/" << this->MajorVersion << "." << this->MinorVersion << "\r\n";
-            for( NameValuePairMap::const_iterator FieldIt = this->RequestFields.begin() ; FieldIt != this->RequestFields.end() ; ++FieldIt )
+            // Header
+            RequestStream << HTTPRequest::ConvertRequestMethod( this->RequestMethod ) << " " << this->RequestURI.ConvertToString() << " ";
+            RequestStream << "HTTP/" << this->MessageVersion.Major << "." << this->MessageVersion.Minor << "\r\n";
+            // Fields
+            for( NameValuePairMap::const_iterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
             {
                 RequestStream << (*FieldIt).first << ": " << (*FieldIt).second << "\r\n";
             }
             RequestStream << "\r\n";
-            RequestStream << this->RequestBody;
+            // Body
+            RequestStream << this->MessageBody;
             return RequestStream.str();
         }
 
-        Boole HTTPRequest::DecomposeRequest(const String& Request)
+        Boole HTTPRequest::Decompose(const String& Request)
         {
-            this->RequestFields.clear();
-            // Get the header information
-            const size_t HeaderEndPos = Request.find("\r\n");
-            if( HeaderEndPos != String::npos ) {
-                String HeaderSubString(0,HeaderEndPos);
-                StringVector SplitHeader = StringTools::Split(HeaderSubString," ",3);
-
-                this->RequestMethod = HTTPRequest::ConvertRequestMethod( SplitHeader[0] );
-                this->RequestURI = SplitHeader[1];
-
-                size_t DecimalPos = SplitHeader[2].find(".");
-                if( DecimalPos == String::npos ) {
+            if( !Request.empty() ) {
+                // Set up the data
+                StringIterator CurrIt = Request.begin();
+                const StringIterator EndIt = Request.end();
+                // Start decomposing
+                if( !this->ParseHTTPHeader(CurrIt,EndIt) ) {
                     return false;
                 }
-
-                this->MajorVersion = StringTools::ConvertToUInt16( String( 1, SplitHeader[2].at( DecimalPos - 1 ) ) );
-                this->MinorVersion = StringTools::ConvertToUInt16( String( 1, SplitHeader[2].at( DecimalPos + 1 ) ) );
-            }else{
-                return false;
-            }
-            // Get the field information
-            const size_t FieldStartPos = HeaderEndPos + 2;
-            const size_t FieldEndPos = Request.find("\r\n\r\n",FieldStartPos);
-            if( FieldEndPos != String::npos ) {
-                // If the field section has no length, there are no fields
-                // Having no fields is valid in some situations, so we don't pair it with the check above that will cause an auto-fail
-                if( FieldStartPos <= FieldEndPos ) {
-                    size_t CurrPos = FieldStartPos;
-                    while( CurrPos < FieldEndPos )
-                    {
-                        const size_t CurrFieldEndPos = Request.find("\r\n",CurrPos);
-                        const size_t CurrFieldColonPos = Request.find(": ",CurrPos);
-                        if( CurrFieldColonPos != String::npos && CurrFieldColonPos < CurrFieldEndPos ) {
-                            this->SetField( Request.substr(CurrPos,CurrFieldColonPos - CurrPos), Request.substr(CurrFieldColonPos + 2,CurrFieldEndPos - ( CurrFieldColonPos + 2 ) ) );
-                        }
-                    }
+                if( !this->ParseHTTPFields(CurrIt,EndIt) ) {
+                    return false;
                 }
-            }else{
-                return false;
-            }
-            // Lastly, get the body
-            this->RequestBody = Request.substr(FieldEndPos + 4);
+                this->MessageBody.clear();
+                this->MessageBody.assign(CurrIt,EndIt);
 
-            return true;
+                return true;
+            }
+            return false;
         }
 
-        void HTTPRequest::SetHTTPVersion(const UInt16 Major, const UInt16 Minor)
-            { this->MajorVersion = Major;  this->MinorVersion = Minor; }
-
-        void HTTPRequest::SetHTTPMajorVersion(const UInt16 Major)
-            { this->MajorVersion = Major; }
-
-        UInt16 HTTPRequest::GetHTTPMajorVersion() const
-            { return this->MajorVersion; }
-
-        void HTTPRequest::SetHTTPMinorVersion(const UInt16 Minor)
-            { this->MinorVersion = Minor; }
-
-        UInt16 HTTPRequest::GetHTTPMinorVersion() const
-            { return this->MinorVersion; }
-
-        void HTTPRequest::SetURI(const String& URI)
+        void HTTPRequest::SetURI(const URI& URI)
             { this->RequestURI = URI; }
 
-        const String& HTTPRequest::GetURI() const
+        const URI& HTTPRequest::GetURI() const
             { return this->RequestURI; }
 
         void HTTPRequest::SetMethod(const Network::HTTPRequestMethod Method)
@@ -207,34 +191,33 @@ namespace Mezzanine
         Network::HTTPRequestMethod HTTPRequest::GetMethod() const
             { return this->RequestMethod; }
 
-        void HTTPRequest::SetBody(const String& Body)
-            { this->RequestBody = Body; }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Recommended Header Field Convenience Methods
 
-        const String& HTTPRequest::GetBody() const
-            { return this->RequestBody; }
+        void HTTPRequest::SetExpectHeader(const String& Expect)
+            { this->SetField("Expect",Expect); }
 
-        void HTTPRequest::SetField(const String& FieldName, const String& FieldValue)
-        {
-            this->RequestFields[FieldName] = FieldValue;
-        }
+        const String& HTTPRequest::GetExpectHeader() const
+            { return this->GetField("Expect"); }
 
-        String HTTPRequest::GetField(const String& FieldName) const
-        {
-            NameValuePairMap::const_iterator FieldIt = this->RequestFields.find(FieldName);
-            if( FieldIt != this->RequestFields.end() ) {
-                return (*FieldIt).second;
-            }
-            return "";
-        }
+        void HTTPRequest::SetFromHeader(const String& From)
+            { this->SetField("From",From); }
 
-        Boole HTTPRequest::HasField(const String& FieldName) const
-        {
-            NameValuePairMap::const_iterator FieldIt = this->RequestFields.find(FieldName);
-            return ( FieldIt != this->RequestFields.end() );
-        }
+        const String& HTTPRequest::GetFromHeader() const
+            { return this->GetField("From"); }
+
+        void HTTPRequest::SetHostHeader(const String& Host)
+            { this->SetField("Host",Host); }
+
+        const String& HTTPRequest::GetHostHeader() const
+            { return this->GetField("Host"); }
+
+        void HTTPRequest::SetUserAgentHeader(const String& UserAgent)
+            { this->SetField("User-Agent",UserAgent); }
+
+        const String& HTTPRequest::GetUserAgentHeader() const
+            { return this->GetField("User-Agent"); }
     }//Network
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK
