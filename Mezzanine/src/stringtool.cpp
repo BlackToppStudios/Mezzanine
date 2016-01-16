@@ -186,7 +186,7 @@ namespace Mezzanine
         void ToCamelCase(String& Source)
         {
             Boole PrevCharIsLetter = false;
-            for( String::const_iterator CurrIt = Source.begin() ; CurrIt != Source.end() ; ++CurrIt )
+            for( String::iterator CurrIt = Source.begin() ; CurrIt != Source.end() ; ++CurrIt )
             {
                 Boole CurrCharIsLowerLetter = StringTools::IsLowerAlphaLetter( *CurrIt );
                 Boole CurrCharIsUpperLetter = StringTools::IsUpperAlphaLetter( *CurrIt );
