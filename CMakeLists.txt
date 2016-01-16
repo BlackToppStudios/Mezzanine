@@ -594,10 +594,10 @@ set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_A
 
 # Force cmake to use Clang on MacOS
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    include(CMakeForceCompiler)
-    CMAKE_FORCE_C_COMPILER(clang GNU)
-    CMAKE_FORCE_CXX_COMPILER(clang++ GNU)
-    set(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "com.apple.compilers.llvm.clang.1_0")
+    #include(CMakeForceCompiler)
+    #CMAKE_FORCE_C_COMPILER(clang GNU)
+    #CMAKE_FORCE_CXX_COMPILER(clang++ GNU)
+    #set(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "com.apple.compilers.llvm.clang.1_0")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
