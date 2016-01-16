@@ -52839,6 +52839,49 @@ fail:
 }
 
 
+static int _wrap_ToCamelCase(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::StringTools::ToCamelCase",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::StringTools::ToCamelCase",1,"Mezzanine::String &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("ToCamelCase",1,SWIGTYPE_p_std__string);
+  }
+  
+  Mezzanine::StringTools::ToCamelCase(*arg1);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_CamelCaseCopy(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String arg1 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::StringTools::CamelCaseCopy",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::StringTools::CamelCaseCopy",1,"Mezzanine::String");
+  (&arg1)->assign(lua_tostring(L,1),lua_rawlen(L,1));
+  result = Mezzanine::StringTools::CamelCaseCopy(arg1);
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_StartsWith(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
@@ -57686,6 +57729,8 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "UpperCaseCopy", _wrap_UpperCaseCopy},
     { "ToLowerCase", _wrap_ToLowerCase},
     { "LowerCaseCopy", _wrap_LowerCaseCopy},
+    { "ToCamelCase", _wrap_ToCamelCase},
+    { "CamelCaseCopy", _wrap_CamelCaseCopy},
     { "StartsWith", _wrap_StartsWith},
     { "EndsWith", _wrap_EndsWith},
     { "RemoveDuplicateWhitespaces", _wrap_RemoveDuplicateWhitespaces},
