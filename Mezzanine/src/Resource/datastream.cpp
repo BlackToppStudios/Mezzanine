@@ -57,7 +57,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // IStream Methods
 
-        IStream::IStream()
+        IStream::IStream(std::streambuf* Buf) :
+            std::istream(Buf)
             {  }
 
         IStream::~IStream()
@@ -102,7 +103,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // OStream Methods
 
-        OStream::OStream()
+        OStream::OStream(std::streambuf* Buf) :
+            std::ostream(Buf)
             {  }
 
         OStream::~OStream()
@@ -147,7 +149,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // IOStream Methods
 
-        IOStream::IOStream()
+        IOStream::IOStream(std::streambuf* Buf) :
+            std::iostream(Buf)
             {  }
 
         IOStream::~IOStream()

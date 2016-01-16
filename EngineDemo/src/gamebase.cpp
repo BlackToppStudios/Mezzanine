@@ -322,7 +322,7 @@ public:
 int main(int argc, char **argv)
 {
     // Temporary Hack
-    #ifdef MACOSX
+    #ifdef MEZZ_MACOSX
     String ExeDir = Mezzanine::Resource::GetExecutableDirFromArg(argc,argv);
     Mezzanine::Resource::ChangeWorkingDirectory(ExeDir);
     #endif
