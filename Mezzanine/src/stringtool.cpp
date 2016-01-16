@@ -168,16 +168,41 @@ namespace Mezzanine
 
         String UpperCaseCopy(String Source)
         {
-            ToUpperCase(Source);
+            StringTools::ToUpperCase(Source);
             return Source;
         }
 
         void ToLowerCase(String& Source)
-            { std::transform(Source.begin(),Source.end(),Source.begin(),::tolower); }
+        {
+            std::transform(Source.begin(),Source.end(),Source.begin(),::tolower);
+        }
 
         String LowerCaseCopy(String Source)
         {
-            ToLowerCase(Source);
+            StringTools::ToLowerCase(Source);
+            return Source;
+        }
+
+        void ToCamelCase(String& Source)
+        {
+            Boole PrevCharIsLetter = false;
+            for( String::const_iterator CurrIt = Source.begin() ; CurrIt != Source.end() ; ++CurrIt )
+            {
+                Boole CurrCharIsLowerLetter = StringTools::IsLowerAlphaLetter( *CurrIt );
+                Boole CurrCharIsUpperLetter = StringTools::IsUpperAlphaLetter( *CurrIt );
+                if( !PrevCharIsLetter && CurrCharIsLowerLetter ) {
+                    (*CurrIt) -= 32;
+                }else if( PrevCharIsLetter && CurrCharIsUpperLetter ) {
+                    (*CurrIt) += 32;
+                }
+                PrevCharIsLetter = CurrCharIsLowerLetter || CurrCharIsUpperLetter;
+                ++CurrIt;
+            }
+        }
+
+        String CamelCaseCopy(String Source)
+        {
+            StringTools::ToCamelCase(Source);
             return Source;
         }
 
@@ -185,40 +210,40 @@ namespace Mezzanine
         {
             size_t StrLen = Str.length();
             size_t PatternLen = Pattern.length();
-
-            if( PatternLen > StrLen || PatternLen == 0 )
-                return false;
-
             String Start = Str.substr(0,PatternLen);
 
             if( CaseSensitive ) {
-                String LowerPattern = Pattern;
-                ToLowerCase(Start);
-                ToLowerCase(LowerPattern);
-                return ( Start == LowerPattern );
+                return ( Start == Pattern );
             }
 
-            return (Start == Pattern);
+            if( PatternLen > StrLen || PatternLen == 0 ) {
+                return false;
+            }
+
+            String LowerPattern = Pattern;
+            StringTools::ToLowerCase(Start);
+            StringTools::ToLowerCase(LowerPattern);
+            return (Start == LowerPattern);
         }
 
         Boole EndsWith(const String& Str, const String& Pattern, const Boole CaseSensitive)
         {
             size_t StrLen = Str.length();
             size_t PatternLen = Pattern.length();
-
-            if( PatternLen > StrLen || PatternLen == 0 )
-                return false;
-
             String End = Str.substr(StrLen - PatternLen,PatternLen);
 
-            if( !CaseSensitive ) {
-                String LowerPattern = Pattern;
-                ToLowerCase(End);
-                ToLowerCase(LowerPattern);
-                return ( End == LowerPattern );
+            if( CaseSensitive ) {
+                return ( End == Pattern );
             }
 
-            return ( End == Pattern );
+            if( PatternLen > StrLen || PatternLen == 0 ) {
+                return false;
+            }
+
+            String LowerPattern = Pattern;
+            StringTools::ToLowerCase(End);
+            StringTools::ToLowerCase(LowerPattern);
+            return ( End == LowerPattern );
         }
 
         void RemoveDuplicateWhitespaces(String& Source)
