@@ -208,6 +208,47 @@ public:
                 TEST(QueryTest.GetParameterValue("Compress") == "Yes" && QueryTest.GetParameterValue("Binary") == "No","URI::GetParameterValue(const_String&)");
             }//Utilities
         }//URI
+
+        {//HTTP
+            {//Request
+                String SourceStringFirst( "GET http://www.blacktoppstudios.com/index.html HTTP/1.1\r\n"
+                                          "Host: www.blacktoppstudios.com\r\n"
+                                          "User-Agent: Mezzanine Network\r\n"
+                                          "\r\n" );
+                Network::HTTPRequest RequestTestFirst(SourceStringFirst);
+
+                Boole MethodTestFirst = RequestTestFirst.GetMethod() == Network::HRM_GET;
+                Boole URITestFirst = RequestTestFirst.GetURI() == Network::URI("http://www.blacktoppstudios.com/index.html");
+                Boole VersionTestFirst = RequestTestFirst.GetHTTPVersion() == SimpleVersion(1,1);
+                Boole HostTestFirst = RequestTestFirst.GetHostHeader() == "www.blacktoppstudios.com";
+                Boole UserAgentTestFirst = RequestTestFirst.GetUserAgentHeader() == "Mezzanine Network";
+                Boole BodyTestFirst = RequestTestFirst.GetBody().empty();
+
+                TEST(MethodTestFirst && URITestFirst && VersionTestFirst && HostTestFirst && UserAgentTestFirst && BodyTestFirst,"HTTPRequest_Decompose_First");
+                String ComposeTestResult = RequestTestFirst.Compose();
+                TEST(ComposeTestResult == SourceStringFirst,"HTTPRequest_Compose_First");
+
+                String SourceStringSecond( "POST http://www.blacktoppstudios.com/forums HTTP/1.0\r\n"
+                                           "Host: www.blacktoppstudios.com\r\n"
+                                           "\r\n"
+                                           "Hello Server!" );
+                Network::HTTPRequest RequestTestSecond(SourceStringSecond);
+
+                Boole MethodTestSecond = RequestTestSecond.GetMethod() == Network::HRM_POST;
+                Boole URITestSecond = RequestTestSecond.GetURI() == Network::URI("http://www.blacktoppstudios.com/forums");
+                Boole VersionTestSecond = RequestTestSecond.GetHTTPVersion() == SimpleVersion(1,0);
+                Boole HostTestSecond = RequestTestSecond.GetHostHeader() == "www.blacktoppstudios.com";
+                Boole BodyTestSecond = RequestTestSecond.GetBody() == "Hello Server!";
+
+                TEST(MethodTestSecond && URITestSecond && VersionTestSecond && HostTestSecond && BodyTestSecond,"HTTPRequest_Decompose_Second");
+                TEST(RequestTestSecond.Compose() == SourceStringSecond,"HTTPRequest_Compose_Second");
+            }//Request
+
+            {//Response
+                String SourceStringFirst(  );
+                String SourceStringSecond(  );
+            }//Response
+        }//HTTP
     }
     /// @brief Since RunAutomaticTests is implemented so is this.
     /// @return returns true
