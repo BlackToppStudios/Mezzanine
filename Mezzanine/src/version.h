@@ -141,7 +141,7 @@ namespace Mezzanine
         /// @brief Less than comparison operator.
         /// @param Other The other SimpleVersion to be compared to.
         /// @return Returns true if this compares less than the other SimpleVersion.
-        Boole operator<(const SimpleVersion& Other)
+        Boole operator<(const SimpleVersion& Other) const
         {
             if( this->Major < Other.Major ) return true;
             else if( this->Major > Other.Major ) return false;
@@ -150,7 +150,7 @@ namespace Mezzanine
         /// @brief Less than or equal to comparison operator.
         /// @param Other The other SimpleVersion to be compared to.
         /// @return Returns true if this compares less than or equal to the other SimpleVersion.
-        Boole operator<=(const SimpleVersion& Other)
+        Boole operator<=(const SimpleVersion& Other) const
         {
             if( this->Major < Other.Major ) return true;
             else if( this->Major > Other.Major ) return false;
@@ -159,7 +159,7 @@ namespace Mezzanine
         /// @brief Greater than comparison operator.
         /// @param Other The other SimpleVersion to be compared to.
         /// @return Returns true if this compares greater than the other SimpleVersion.
-        Boole operator>(const SimpleVersion& Other)
+        Boole operator>(const SimpleVersion& Other) const
         {
             if( this->Major > Other.Major ) return true;
             else if( this->Major < Other.Major ) return false;
@@ -168,7 +168,7 @@ namespace Mezzanine
         /// @brief Greater than or equal to comparison operator.
         /// @param Other The other SimpleVersion to be compared to.
         /// @return Returns true if this compares greater than or equal to the other SimpleVersion.
-        Boole operator>=(const SimpleVersion& Other)
+        Boole operator>=(const SimpleVersion& Other) const
         {
             if( this->Major > Other.Major ) return true;
             else if( this->Major < Other.Major ) return false;
@@ -178,12 +178,12 @@ namespace Mezzanine
         /// @brief Equality comparison operator.
         /// @param Other The other SimpleVersion to be compared to.
         /// @return Returns true if the two SimpleVersions are equal.
-        Boole operator==(const SimpleVersion& Other)
+        Boole operator==(const SimpleVersion& Other) const
             { return ( this->Major == Other.Major && this->Minor == Other.Minor ); }
         /// @brief Inequality comparison operator.
         /// @param Other The other SimpleVersion to be compared to.
         /// @return Returns true if the two SimpleVersions are inequal.
-        Boole operator!=(const SimpleVersion& Other)
+        Boole operator!=(const SimpleVersion& Other) const
             { return ( this->Major != Other.Major || this->Minor != Other.Minor ); }
     };//SimpleVersion
 
@@ -341,7 +341,7 @@ namespace Mezzanine
         /// @brief Less than comparison operator.
         /// @param Other The other SemanticVersion to be compared to.
         /// @return Returns true if this compares less than the other SemanticVersion.
-        Boole operator<(const SemanticVersion& Other)
+        Boole operator<(const SemanticVersion& Other) const
         {
             // Check the Major component
             if( this->Major < Other.Major ) return true;
@@ -358,7 +358,7 @@ namespace Mezzanine
         /// @brief Less than or equal to comparison operator.
         /// @param Other The other SemanticVersion to be compared to.
         /// @return Returns true if this compares less than or equal to the other SemanticVersion.
-        Boole operator<=(const SemanticVersion& Other)
+        Boole operator<=(const SemanticVersion& Other) const
         {
             // Check the Major component
             if( this->Major < Other.Major ) return true;
@@ -375,7 +375,7 @@ namespace Mezzanine
         /// @brief Greater than comparison operator.
         /// @param Other The other SemanticVersion to be compared to.
         /// @return Returns true if this compares greater than the other SemanticVersion.
-        Boole operator>(const SemanticVersion& Other)
+        Boole operator>(const SemanticVersion& Other) const
         {
             // Check the Major component
             if( this->Major > Other.Major ) return true;
@@ -392,7 +392,7 @@ namespace Mezzanine
         /// @brief Greater than or equal to comparison operator.
         /// @param Other The other SemanticVersion to be compared to.
         /// @return Returns true if this compares greater than or equal to the other SemanticVersion.
-        Boole operator>=(const SemanticVersion& Other)
+        Boole operator>=(const SemanticVersion& Other) const
         {
             // Check the Major component
             if( this->Major > Other.Major ) return true;
@@ -410,12 +410,12 @@ namespace Mezzanine
         /// @brief Equality comparison operator.
         /// @param Other The other SemanticVersion to be compared to.
         /// @return Returns true if the two SimpleVersions are equal.
-        Boole operator==(const SemanticVersion& Other)
+        Boole operator==(const SemanticVersion& Other) const
             { return ( this->Major == Other.Major && this->Minor == Other.Minor && this->Patch == Other.Patch && this->PreRelease == Other.PreRelease ); }
         /// @brief Inequality comparison operator.
         /// @param Other The other SemanticVersion to be compared to.
         /// @return Returns true if the two SimpleVersions are inequal.
-        Boole operator!=(const SemanticVersion& Other)
+        Boole operator!=(const SemanticVersion& Other) const
             { return ( this->Major != Other.Major || this->Minor != Other.Minor || this->Patch != Other.Patch || this->PreRelease != Other.PreRelease ); }
     };//SemanticVersion
 }//Mezzanine

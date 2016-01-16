@@ -459,11 +459,11 @@ namespace Mezzanine
             /// @brief Equality Comparison Operator.
             /// @param Other The other URI to compare to.
             /// @return Returns true if the two URI's are equal, false otherwise.
-            Boole operator==(const URI& Other);
+            Boole operator==(const URI& Other) const;
             /// @brief Inequality Comparison Operator.
             /// @param Other The other URI to compare to.
             /// @return Returns true if the two URI's are not equal, false otherwise.
-            Boole operator!=(const URI& Other);
+            Boole operator!=(const URI& Other) const;
         };//URI
     }//Network
 }//Mezzanine

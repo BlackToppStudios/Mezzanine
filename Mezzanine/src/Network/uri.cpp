@@ -942,7 +942,7 @@ namespace Mezzanine
             this->URIPort = Other.URIPort;
         }
 
-        Boole URI::operator==(const URI& Other)
+        Boole URI::operator==(const URI& Other) const
         {
             return ( this->URIScheme == Other.URIScheme &&
                      this->URIUserInfo == Other.URIUserInfo &&
@@ -953,7 +953,7 @@ namespace Mezzanine
                      this->URIPort == Other.URIPort );
         }
 
-        Boole URI::operator!=(const URI& Other)
+        Boole URI::operator!=(const URI& Other) const
         {
             return ( this->URIScheme != Other.URIScheme ||
                      this->URIUserInfo != Other.URIUserInfo ||
