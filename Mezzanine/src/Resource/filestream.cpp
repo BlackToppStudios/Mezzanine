@@ -52,14 +52,17 @@ namespace Mezzanine
     namespace Resource
     {
 #ifdef USENEWDATASTREAM
-        FileStream::FileStream()
-            { this->init(&this->FileBuffer); }
+        FileStream::FileStream() :
+            IOStream(&this->FileBuffer)
+            { /*this->init(&this->FileBuffer);*/ }
 
-        FileStream::FileStream(const String& File, const Whole Mode)
-            { this->init(&this->FileBuffer);  this->OpenFile(File,Mode); }
+        FileStream::FileStream(const String& File, const Whole Mode) :
+            IOStream(&this->FileBuffer)
+            { /*this->init(&this->FileBuffer);*/  this->OpenFile(File,Mode); }
 
-        FileStream::FileStream(const String& FileName, const String& FilePath, const Whole Mode)
-            { this->init(&this->FileBuffer);  this->OpenFile(FileName,FilePath,Mode); }
+        FileStream::FileStream(const String& FileName, const String& FilePath, const Whole Mode) :
+            IOStream(&this->FileBuffer)
+            { /*this->init(&this->FileBuffer);*/  this->OpenFile(FileName,FilePath,Mode); }
 
         FileStream::~FileStream()
             { if( this->IsOpenToFile() ) this->CloseFile(); }

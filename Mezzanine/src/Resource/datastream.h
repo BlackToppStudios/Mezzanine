@@ -176,7 +176,8 @@ namespace Mezzanine
         {
         public:
             /// @brief Class constructor.
-            IStream();
+            /// @param Buf A pointer to the buffer that will be streamed.
+            IStream(std::streambuf* Buf);
             /// @brief Class destructor.
             virtual ~IStream();
 
@@ -199,7 +200,8 @@ namespace Mezzanine
         {
         public:
             /// @brief Class constructor.
-            OStream();
+            /// @param Buf A pointer to the buffer that will be streamed.
+            OStream(std::streambuf* Buf);
             /// @brief Class destructor.
             virtual ~OStream();
 
@@ -222,7 +224,8 @@ namespace Mezzanine
         {
         public:
             /// @brief Class constructor.
-            IOStream();
+            /// @param Buf A pointer to the buffer that will be streamed.
+            IOStream(std::streambuf* Buf);
             /// @brief Class destructor.
             virtual ~IOStream();
 

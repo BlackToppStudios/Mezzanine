@@ -312,17 +312,21 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // MemoryStream Methods
 
-        MemoryStream::MemoryStream()
-            { this->init(&this->Buffer); }
+        MemoryStream::MemoryStream() :
+            IOStream(&this->Buffer)
+            { /*this->init(&this->Buffer);*/ }
 
-        MemoryStream::MemoryStream(const Whole BufferSize, const Whole Mode)
-            { this->init(&this->Buffer);  this->CreateBuffer(BufferSize,Mode); }
+        MemoryStream::MemoryStream(const Whole BufferSize, const Whole Mode) :
+            IOStream(&this->Buffer)
+            { /*this->init(&this->Buffer);*/  this->CreateBuffer(BufferSize,Mode); }
 
-        MemoryStream::MemoryStream(const void* Buffer, const Whole BufferSize, const Whole Mode)
-            { this->init(&this->Buffer);  this->CopyBuffer(Buffer,BufferSize,Mode); }
+        MemoryStream::MemoryStream(const void* Buffer, const Whole BufferSize, const Whole Mode) :
+            IOStream(&this->Buffer)
+            { /*this->init(&this->Buffer);*/  this->CopyBuffer(Buffer,BufferSize,Mode); }
 
-        MemoryStream::MemoryStream(void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Mode)
-            { this->init(&this->Buffer);  this->SetBuffer(Buffer,BufferSize,FreeAfter,Mode); }
+        MemoryStream::MemoryStream(void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Mode) :
+            IOStream(&this->Buffer)
+            { /*this->init(&this->Buffer);*/  this->SetBuffer(Buffer,BufferSize,FreeAfter,Mode); }
 
         MemoryStream::~MemoryStream()
             {  }
