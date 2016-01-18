@@ -196,6 +196,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/lightproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/material.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/mesh.h"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/meshinfo.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/meshmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/particleaffector.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/particleemitter.h"
