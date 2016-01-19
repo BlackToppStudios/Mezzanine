@@ -320,6 +320,18 @@ namespace Mezzanine
             PT_Perspective     = 1         ///< Normal (realistic) perspective.
         };
 
+        /// @enum RenderOperation
+        /// @brief Used to describe low level assembly of Meshes.  Mostly for internal use.
+        enum RenderOperation
+        {
+            RO_PointList      = 1,  ///< Vertices are just a bunch of points.  Do not form polygons.
+            RO_LineList       = 2,  ///< Vertices form lines.  Each line segment has it's own distinct pair of Vertices.  Vertices are not expected to be reused.
+            RO_LineStrip      = 3,  ///< Vertices form lines.  The first line is defined with 2 Vertices and each line after requires one additional Vertex, reusing the previous lines end Vertex as the current lines start Vertex.
+            RO_TriangleList   = 4,  ///< Vertices form triangles.  Each triangle has it's own distinct set of Vertices.  Vertices are not expected to be reused.
+            RO_TriangleStrip  = 5,  ///< Vertices form triangles.  The first triangle is defined with 3 Vertices and each triangle after requires one additional Vertex, reusing the previous two Vertices for the start of the triangle.
+            RO_TriangleFan    = 6   ///< Similar to RO_TriangleString, first triangle defined with 3 Vertices and each triangle after requires one additional Vertex.
+        };
+
         /// @enum RenderSystem
         /// @brief Used primarily by the graphics manager class during initialization.
         /// @details This enum specifies which Rendersystem is to be used for rendering.
