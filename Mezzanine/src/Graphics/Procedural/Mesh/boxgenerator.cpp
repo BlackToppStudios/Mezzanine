@@ -118,47 +118,35 @@ namespace Mezzanine
                     PG.SetOrientation(this->Orientation);
                 }
 
-                BufferSection Sect = Buffer.BeginSection(BoxGenerator::TAG_NEGZ);
                 PG.SetNumSegX(this->NumSegY).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Y).SetSizeY(this->BoxHalf.X)
                 .SetNormal( Vector3::Neg_Unit_Z() )
                 .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_Z() ) * ( this->BoxHalf.Z * 0.5 ) ) )
                 .AddToTriangleBuffer(Buffer);
-                Buffer.EndSection(Sect);
 
-                Sect = Buffer.BeginSection(BoxGenerator::TAG_Z);
                 PG.SetNumSegX(this->NumSegY).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Y).SetSizeY(this->BoxHalf.X)
                 .SetNormal( Vector3::Unit_Z() )
                 .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_Z() ) * ( this->BoxHalf.Z * 0.5 ) ) )
                 .AddToTriangleBuffer(Buffer);
-                Buffer.EndSection(Sect);
 
-                Sect = Buffer.BeginSection(BoxGenerator::TAG_NEGY);
                 PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Z).SetSizeY(this->BoxHalf.X)
                 .SetNormal( Vector3::Neg_Unit_Y() )
                 .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_Y() ) * ( this->BoxHalf.Y * 0.5 ) ) )
                 .AddToTriangleBuffer(Buffer);
-                Buffer.EndSection(Sect);
 
-                Sect = Buffer.BeginSection(BoxGenerator::TAG_Y);
                 PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Z).SetSizeY(this->BoxHalf.X)
                 .SetNormal( Vector3::Unit_Y() )
                 .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_Y() ) * ( this->BoxHalf.Y * 0.5 ) ) )
                 .AddToTriangleBuffer(Buffer);
-                Buffer.EndSection(Sect);
 
-                Sect = Buffer.BeginSection(BoxGenerator::TAG_NEGX);
                 PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegY).SetSizeX(this->BoxHalf.Z).SetSizeY(this->BoxHalf.Y)
                 .SetNormal( Vector3::Neg_Unit_X() )
                 .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_X() ) * ( this->BoxHalf.X * 0.5 ) ) )
                 .AddToTriangleBuffer(Buffer);
-                Buffer.EndSection(Sect);
 
-                Sect = Buffer.BeginSection(BoxGenerator::TAG_X);
                 PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegY).SetSizeX(this->BoxHalf.Z).SetSizeY(this->BoxHalf.Y)
                 .SetNormal( Vector3::Unit_X() )
                 .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_X() ) * ( this->BoxHalf.X * 0.5 ) ) )
                 .AddToTriangleBuffer(Buffer);
-                Buffer.EndSection(Sect);
             }
 
             ///////////////////////////////////////////////////////////////////////////////
