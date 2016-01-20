@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['simple_20trie',['Simple Trie',['../index.html',1,'']]]
+  ['linux_20development_20tools',['Linux Development Tools',['../linux_dev_tools.html',1,'']]]
 ];

@@ -1,38 +1,3 @@
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/attachable.cpp:227: warning: Reached end of file while still inside a (nested) comment. Nesting level 3 (probable line reference: 223, 100, 98)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:1091: warning: Reached end of file while still inside a (nested) comment. Nesting level 9 (probable line reference: 834, 818, 804, 481, 478, 412, 371, 128, 127)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.cpp:801: warning: Reached end of file while still inside a (nested) comment. Nesting level 4 (probable line reference: 495, 494, 471, 470)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventuserinput.h:233: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 137, 133)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/linegroup.cpp:413: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 296, 283)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:68: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 64, 62)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/rayquerytool.cpp:458: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 365, 308)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/terrainmanager.cpp:233: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 165, 162)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/world.cpp:477: warning: Reached end of file while still inside a (nested) comment. Nesting level 3 (probable line reference: 294, 284, 273)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/gamewindow.cpp:589: warning: Reached end of file while still inside a (nested) comment. Nesting level 3 (probable line reference: 456, 350, 332)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/mesh.h:116: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 75, 74)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/viewport.cpp:236: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 201, 199)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/sequencecontainer.cpp:217: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 145, 143)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collidableproxy.cpp:789: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 407, 348)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collidableproxy.h:355: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 72, 69)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsmanager.cpp:1578: warning: Reached end of file while still inside a (nested) comment. Nesting level 11 (probable line reference: 747, 732, 726, 705, 699, 595, 590, 580, 565, 542, 540)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/rigidproxy.h:290: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 242, 235)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/softproxy.cpp:310: warning: Reached end of file while still inside a (nested) comment. Nesting level 6 (probable line reference: 159, 141, 138, 114, 84, 59)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourceutilities.cpp:516: warning: Reached end of file while still inside a (nested) comment. Nesting level 4 (probable line reference: 187, 184, 116, 113)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourceutilities.h:201: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 63, 60)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/defaultmarkupparser.cpp:165: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 95, 90)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/horizontalscrollbar.cpp:647: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 418, 412)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/layoutcontainer.cpp:131: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 80, 78)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/linelist.cpp:287: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 265, 259)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/menuentry.cpp:534: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 452, 449)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/multiimagelayer.cpp:476: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 137, 67)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/multiimagelayer.h:226: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 87, 76)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/screen.cpp:1123: warning: Reached end of file while still inside a (nested) comment. Nesting level 4 (probable line reference: 853, 850, 189, 186)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/screen.h:727: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 569, 565)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textcursor.cpp:285: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 81, 74)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textcursor.h:168: warning: Reached end of file while still inside a (nested) comment. Nesting level 4 (probable line reference: 100, 94, 67, 65)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textureatlas.cpp:607: warning: Reached end of file while still inside a (nested) comment. Nesting level 6 (probable line reference: 238, 236, 233, 231, 228, 226)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/verticalscrollbar.cpp:647: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 418, 412)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/window.cpp:132: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 127, 52)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/window.h:121: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 116, 49)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:229: warning: Example LogStream was already documented. Ignoring documentation found here.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:240: warning: Example LogStream was already documented. Ignoring documentation found here.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:251: warning: Example LogStream was already documented. Ignoring documentation found here.
@@ -86,7 +51,7 @@
 
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.cpp:312: warning: documented symbol `Boole Mezzanine::Resource::DataStream::IsReadable' was not declared or defined.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.cpp:315: warning: documented symbol `Boole Mezzanine::Resource::DataStream::IsWriteable' was not declared or defined.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/dagframescheduler.h:133: warning: found more than one \mainpage comment block! Skipping this block.
+error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exist!
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:306: warning: included file cout is not found. Check your EXAMPLE_PATH
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:226: warning: included file LogStream is not found. Check your EXAMPLE_PATH
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
@@ -447,7 +412,7 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.h:373: warning: parameters of member Mezzanine::EventManager::RemoveAllSpecificEvents are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.h:118: warning: return type of member Mezzanine::EventPumpWorkUnit::operator= is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventquit.h:70: warning: return type of member Mezzanine::EventQuit::GetType is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventuserinput.h:160: warning: parameters of member Mezzanine::EventUserInput::GetMetaCode are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventuserinput.h:159: warning: parameters of member Mezzanine::EventUserInput::GetMetaCode are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.h:186: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.h:1826: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ArithmeticException::ExceptionCode > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.h:482: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryException::ExceptionCode > is not documented.
@@ -1380,8 +1345,8 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/universalconstraint.h:67: warning: @copydetails or @copydoc target 'TypedConstraint::_GetConstraintBase() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/universalconstraint.h:67: warning: return type of member Mezzanine::Physics::UniversalConstraint::Universal is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsmanager.h:195: warning: return type of member Mezzanine::Physics::WorldTriggerUpdateWorkUnit::operator= is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourceutilities.h:129: warning: parameters of member Mezzanine::Resource::Which are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourceutilities.h:129: warning: return type of member Mezzanine::Resource::Which is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourceutilities.h:128: warning: parameters of member Mezzanine::Resource::Which are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourceutilities.h:128: warning: return type of member Mezzanine::Resource::Which is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/assetgroup.h:102: warning: return type of member Mezzanine::Resource::AssetGroup::OpenAssetStream is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:161: warning: @copybrief or @copydoc target 'DataStream::Close()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:159: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
