@@ -107,7 +107,8 @@ namespace Mezzanine
             /// @brief Create the ogre specific handle and sort items for raycasting.
             void Construct()
             {
-                this->RayQuery = this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+                Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
+                this->RayQuery = SceneMan->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
                 this->RayQuery->setSortByDistance(true);
             }
 
@@ -115,7 +116,7 @@ namespace Mezzanine
             void Deconstruct()
             {
                 if( this->GetPointer() )
-                    { this->ParentWorld->GetSceneManager()->_GetGraphicsWorldPointer()->destroyQuery(this->RayQuery); }
+                    { static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) )->_GetGraphicsWorldPointer()->destroyQuery(this->RayQuery); }
             }
 
             /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
@@ -425,19 +426,19 @@ namespace Mezzanine
                 ValidResult=OneNode.GetAttribute("ValidResult").AsBool();
 
                 XML::Node VecNode = OneNode.GetChild("Offset");
-                if(!VecNode)
+                if( !VecNode )
                     { DeSerializeError("Could not Deserialize Offset",GetSerializableName()); }
                 Offset.ProtoDeSerialize(VecNode);
 
                 String WorldObjectName(OneNode.GetAttribute("WorldObject").AsString());
-                if (WorldObjectName.size()) {
+                if( WorldObjectName.size() ) {
                     /// @todo This is temporary code that should be replaced with something more robust to find the proper world object.
-                    IntersectedObject = this->ParentWorld->GetDebrisManager()->GetDebris(WorldObjectName);
+                    IntersectedObject = static_cast<DebrisManager*>( this->ParentWorld->GetManager(ManagerBase::MT_DebrisManager) )->GetDebris(WorldObjectName);
                     if( IntersectedObject == NULL ) {
-                        IntersectedObject = this->ParentWorld->GetActorManager()->GetActor(WorldObjectName);
+                        IntersectedObject = static_cast<ActorManager*>( this->ParentWorld->GetManager(ManagerBase::MT_ActorManager) )->GetActor(WorldObjectName);
                     }
                     if( IntersectedObject == NULL ) {
-                        IntersectedObject = this->ParentWorld->GetAreaEffectManager()->GetAreaEffect(WorldObjectName);
+                        IntersectedObject = static_cast<AreaEffectManager*>( this->ParentWorld->GetManager(ManagerBase::MT_AreaEffectManager) )->GetAreaEffect(WorldObjectName);
                     }
                 }else{
                     IntersectedObject = NULL;

@@ -61,11 +61,11 @@ namespace Mezzanine
         /// @brief Creates a manager of the type represented by this factory.
         /// @param Params A NameValuePairList containing the params to be applied during construction.
         /// @return Returns a pointer to the created manager.
-        virtual EntresolManager* CreateManager(NameValuePairList& Params) = 0;
+        virtual EntresolManager* CreateManager(const NameValuePairList& Params) = 0;
         /// @brief Creates a manager from XML.
         /// @param XMLNode The node of the xml document to construct from.
         /// @return Returns a pointer to the created manager.
-        virtual EntresolManager* CreateManager(XML::Node& XMLNode) = 0;
+        virtual EntresolManager* CreateManager(const XML::Node& XMLNode) = 0;
         /// @brief Destroys a Manager created by this factory.
         /// @param ToBeDestroyed A pointer to the manager to be destroyed.
         virtual void DestroyManager(EntresolManager* ToBeDestroyed) = 0;

@@ -165,7 +165,9 @@ namespace Mezzanine
             // Not fragmenting between the two platforms is weird.
         #if defined(MEZZ_WINDOWS)
             IPv4Opts_Fragmentation    = IP_DONTFRAGMENT,
-        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+        #elif defined(MEZZ_MACOSX)
+            // No Support
+        #elif defined(MEZZ_LINUX)
             IPv4Opts_Fragmentation    = IP_MTU_DISCOVER,
         #endif
             // Multicasting Options
@@ -184,7 +186,9 @@ namespace Mezzanine
         #if defined(MEZZ_WINDOWS)
             MFV_Frag_Enable  = 0,
             MFV_Frag_Disable = 1,
-        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+        #elif defined(MEZZ_MACOSX)
+            // No Support
+        #elif defined(MEZZ_LINUX)
             MFV_Frag_Enable  = IP_PMTUDISC_DONT,
             MFV_Frag_Disable = IP_PMTUDISC_DO
         #endif
@@ -195,7 +199,7 @@ namespace Mezzanine
         enum IPv6LevelOptions
         {
             // Datagram Options
-            IPv6Opts_HopLimit      = IPV6_HOPLIMIT,       // Not used
+            //IPv6Opts_HopLimit      = IPV6_HOPLIMIT,       // Not used
             // Multicasting Options
             IPv6Opts_MulticastHops = IPV6_MULTICAST_HOPS,
             IPv6Opts_MulticastLoop = IPV6_MULTICAST_LOOP,

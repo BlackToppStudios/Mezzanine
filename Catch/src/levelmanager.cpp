@@ -18,16 +18,16 @@ void LoadFerris()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", AT_Zip, FerrisGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", Resource::AT_Zip, FerrisGroup, false);
     ResourceMan->InitAssetGroup(FerrisGroup);
 
     // Scoring and Shop Setup
@@ -298,16 +298,16 @@ void LoadBigCurve()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", AT_Zip, BigCurveGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", Resource::AT_Zip, BigCurveGroup, false);
     ResourceMan->InitAssetGroup(BigCurveGroup);
 
     // Scoring and Shop Setup
@@ -424,16 +424,16 @@ void LoadBlowsNotSucks()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", AT_Zip, BlowsNotSucksGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", Resource::AT_Zip, BlowsNotSucksGroup, false);
     ResourceMan->InitAssetGroup(BlowsNotSucksGroup);
 
     // Scoring and Shop Setup
@@ -643,16 +643,16 @@ void LoadJustice()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String JusticeGroup("Justice");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", AT_Zip, JusticeGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", Resource::AT_Zip, JusticeGroup, false);
     ResourceMan->InitAssetGroup(JusticeGroup);
 
     // Scoring and Shop Setup
@@ -872,16 +872,16 @@ void LoadRollers()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String RollersGroup("Rollers");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", AT_Zip, RollersGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", Resource::AT_Zip, RollersGroup, false);
     ResourceMan->InitAssetGroup(RollersGroup);
 
     // Scoring and Shop Setup
@@ -1015,16 +1015,16 @@ void LoadJustBounce()
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = CatchWorld->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = CatchWorld->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = CatchWorld->GetAreaEffectManager();
-    DebrisManager* DebrisMan = CatchWorld->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", AT_Zip, JustBounceGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", Resource::AT_Zip, JustBounceGroup, false);
     ResourceMan->InitAssetGroup(JustBounceGroup);
 
     // Scoring and Shop Setup
@@ -1321,7 +1321,7 @@ LevelManager::~LevelManager()
     {  }
 
 Resource::ResourceManager* LevelManager::GetResourceManager() const
-    { return this->TheEntresol->GetResourceManager(); }
+    { return static_cast<Resource::ResourceManager*>( this->TheEntresol->GetManager(ManagerBase::MT_ResourceManager) ); }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Utility
@@ -1340,7 +1340,7 @@ Whole LevelManager::DetectLevels()
 
             const String AssetGroupName = FileName.substr(0,FileName.find_last_of('.'));
             const String CompletePath = this->LevelPath + FileName;
-            ResourceMan->AddAssetLocation(CompletePath,Mezzanine::AT_Zip,AssetGroupName);
+            ResourceMan->AddAssetLocation(CompletePath,Resource::AT_Zip,AssetGroupName);
 
             LevelDoc.Reset();
             Resource::DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);
@@ -1358,7 +1358,7 @@ void LevelManager::PopulateLevelSelectUI()
     const String LevelNameFont = "Ubuntu-18";
     const Real LevelNameScale = 0.85;
 
-    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
     UI::Screen* MainMenuScreen = UIMan->GetScreen("MainMenuScreen");
     UI::GridContainer* LevelSelect = static_cast<UI::GridContainer*>( MainMenuScreen->GetWidget("MS_LevelSelectGrid") );
 
@@ -1551,8 +1551,8 @@ void LevelManager::UnloadLevel()
 
     // Entresol Cleanup
     /// @todo This should be populated with the appropriate logic after the engine state refactors are done.
-    Physics::CollisionShapeManager* CShapeMan = this->TheEntresol->GetCollisionShapeManager();
-    Graphics::MeshManager* MeshMan = this->TheEntresol->GetMeshManager();
+    Physics::CollisionShapeManager* CShapeMan = static_cast<Physics::CollisionShapeManager*>( this->TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) );
+    Graphics::MeshManager* MeshMan = static_cast<Graphics::MeshManager*>( this->TheEntresol->GetManager(ManagerBase::MT_MeshManager) );
 
     CShapeMan->DestroyAllShapes();
     MeshMan->UnloadAllMeshes();

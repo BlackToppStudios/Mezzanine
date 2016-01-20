@@ -274,70 +274,16 @@
 */
 
 //And now for actual source code!
-#include "stringtool.h"
-#include "crossplatform.h"
-#include "eventbase.h"
-#include "exception.h"
-#include "enumerations.h"
 #include "datatypes.h"
-#include "vector3.h"
-#include "managerbase.h"
 #include "singleton.h"
+#include "stringtool.h"
+
+#include "Resource/resourceenumerations.h"
+#include "XML/xml.h"
 
 #ifndef SWIG
     #include "Threading/dagframescheduler.h"
 #endif
-
-namespace Mezzanine
-{
-    // Forward declarations
-    class ActorManager;
-    class AreaEffectManager;
-    class DebrisManager;
-    class EventManager;
-    class EntresolManager;
-    class EntresolManagerFactory;
-    class World;
-    class WorldManager;
-    namespace Audio
-    {
-        class AudioManager;
-        class SoundScapeManager;
-    }
-    namespace Graphics
-    {
-        class GraphicsManager;
-        class MeshManager;
-        class SceneManager;
-        class TextureManager;
-    }
-    namespace Input
-    {
-        class InputManager;
-    }
-    namespace Network
-    {
-        class NetworkManager;
-    }
-    namespace Physics
-    {
-        class PhysicsManager;
-        class CollisionShapeManager;
-        class ManagerConstructionInfo;
-    }
-    namespace Resource
-    {
-        class ResourceManager;
-    }
-    namespace UI
-    {
-        class UIManager;
-    }
-    namespace Scripting
-    {
-        class iScriptingManager;
-    }
-}
 
 //Other forward declarations
 //forward Declarations so that we do not need #include "SDL.h"
@@ -346,14 +292,6 @@ class SDL_Surface;
 //forward Declarations so that we do not need #include <Ogre.h>
 namespace Ogre
 {
-    class Root;
-    class RenderSystem;
-    class RenderWindow;
-    class ResourceGroupManager;
-    class SceneManager;
-    class Camera;
-    class Viewport;
-
     class ParticleFXPlugin;
 }
 
@@ -366,6 +304,14 @@ namespace Ogre
 ///////////////////////////////////////
 namespace Mezzanine
 {
+    class EntresolManager;
+    class EntresolManagerFactory;
+    class World;
+    class WorldManager;
+    namespace Physics
+    {
+        class ManagerConstructionInfo;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Entresol
     /// @brief This is the main entry point for the entire library.
@@ -406,72 +352,42 @@ namespace Mezzanine
         typedef WorldContainer::const_iterator             ConstWorldIterator;
     private:
         /// @internal
+        /// @brief This is a map containing all the registered manager factories.
+        static ManagerFactoryMap ManagerFactories;
+        /// @internal
         /// @brief The core structure responsible for our multi-threaded main loop.
         Threading::FrameScheduler WorkScheduler;
+        /// @internal
+        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+        ManagerContainer ManagerList;
+        /// @internal
+        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+        WorldContainer Worlds;
+        /// @internal
+        /// @brief Used to track Ogre specific details for the statically linked Particle plugin
+        Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
+        /// @internal
+        /// @brief Responsible for asynchronously flushing the logs to disk (or wherever they sync to).
+        Threading::LogAggregator* Aggregator;
+        /// @internal
+        /// @brief Internal value used to indicate during the main loop something wants the loop to end.
+        Int32 ManualLoopBreak;
 
-        //Used by the constructors
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Initialization and Deinitialization Methods
+
         /// @internal
         /// @brief This is called by most of the constructors so that the is one unified place to have all the settings made.
-        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-        /// @param SceneType This is the type of Scene Manager to be created.
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
         /// @param ManagersToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
-        void Construct( const Physics::ManagerConstructionInfo& PhysicsInfo,
-                        const String& SceneType,
-                        const String& EngineDataPath,
-                        const String& GraphicsLogFileName,
-                        const ManagerVec& ManagersToBeAdded );
-
+        void Construct(const String& EngineDataPath, const String& GraphicsLogFileName, const ManagerVec& ManagersToBeAdded);
         /// @internal
         /// @brief Used to intialize from XML
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param ArchType Should This be looking for raw or zip or whatever kind of files.
         /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.
-        void ConstructFromXML(  const String& EngineDataPath,
-                                const ArchiveType ArchType,
-                                const String& InitializerFile );
-
-        /// @brief Perform a series of checks that could change on certain system or from certain codechanges to alert us to any problems early.
-        void SanityChecks();
-
-        Boole VerifyManagerInitializations();
-
-        /// @internal
-        /// @brief This is a map containing all the registered manager factories.
-        ManagerFactoryMap ManagerFactories;
-        /// @internal
-        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
-        ManagerContainer ManagerList;
-
-        /// @internal
-        /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
-        WorldContainer Worlds;
-
-        /// @internal
-        /// @brief Used to track Ogre specific details for the statically linked Particle plugin
-        Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
-
-        //Used to break the mainloop
-        Int32 ManualLoopBreak;
-
-        /// @internal
-        /// @brief Responsible for asynchronously flushing the logs to disk (or wherever they sync to).
-        Threading::LogAggregator* Aggregator;
-
-        /// @internal
-        /// @brief Create and direct streams used for logging that are not part of the FrameScheduler
-        /// @details This sets the name of the Ogre log file (so must be called after the SetupOgre
-        /// function is called). This will be changed in the future to change/set the framescheduler
-        /// log, in the meantime its only interaction with the framescheduler is adding a
-        /// LogAggregator WorkUnit.
-        /// @param LogFileName The name of the file to log to. Some Subsystems will use this in addition to some other descriptor
-        void SetupLogging(const String& OgreLogFileName);
-        void SetupOgreLogging(const String& OgreLogFileName);
-        void SetupInternalLogging();
-        /// @internal
-        /// @brief Closes log files/streams and removes any WorkUnits from Scheduling dedicated to logging.
-        void DestroyLogging();
+        void ConstructFromXML(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile);
 
         /// @internal
         /// @brief If not already created create an instance of Ogre.
@@ -480,9 +396,35 @@ namespace Mezzanine
         /// @brief Do any teardown required for Ogre, then destroy Ogre.
         void DestroyOgre();
         /// @internal
-        /// @brief Do any teardown required for SDL
+        /// @brief Do any teardown required for SDL that may have been missed by other managers.
         void DestroySDL();
 
+        /// @internal
+        /// @brief Create and direct streams used for logging that are not part of the FrameScheduler.
+        /// @details This sets the name of the Ogre log file (so must be called after the SetupOgre
+        /// function is called). This will be changed in the future to change/set the framescheduler
+        /// log, in the meantime its only interaction with the framescheduler is adding a
+        /// LogAggregator WorkUnit.
+        /// @param LogFileName The name of the file to log to.
+        void SetupLogging(const String& OgreLogFileName);
+        /// @internal
+        /// @brief Creates the logging components used by ogre and configures them appropriately.
+        /// @param LogFileName The name of the file to log to.
+        void SetupOgreLogging(const String& OgreLogFileName);
+        /// @internal
+        /// @brief Creates the appropriate streams for multi-threaded logging and configures them appropriately.
+        void SetupInternalLogging();
+        /// @internal
+        /// @brief Closes log files/streams and removes any WorkUnits from Scheduling dedicated to logging.
+        void DestroyLogging();
+
+        /// @internal
+        /// @brief Performs a small series of checks to verify assumptions made by the Mezzanine.
+        void SanityChecks();
+        /// @internal
+        /// @brief Checks if all managers currently stored in this Entresol have been initialized.
+        /// @return Returns true if all stored managers have been initialized, false otherwise.
+        Boole VerifyManagerInitializations();
     public:
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
@@ -494,7 +436,7 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
         /// @param ArchType The type of archive at the path provided.
         /// @param InitializerFile The file that describes how to initialize Mezzanine.
-        Entresol(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
+        Entresol(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
         /// @brief Factory and initializer file constructor.
         /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
         /// If the file provided is not one of this type this function will throw an exception. @n @n
@@ -503,34 +445,21 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
         /// @param ArchType The type of archive at the path provided.
         /// @param InitializerFile The file that describes how to initialize Mezzanine.
-        Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
-        /// @brief Descriptive constructor With Manager Pointers
-        /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
-        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-        /// @param SceneType A cue to the scenemanager as to how rendering should occur.
+        Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
+        /// @brief Descriptive constructor With Manager Pointers.
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
         /// @param LogFileName This is the place that log messages get sent to.
-        Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
-                   const String& SceneType,
-                   const String& EngineDataPath,
-                   const String& LogFileName = "Mezzanine.log" );
-        /// @brief Descriptive constructor
+        Entresol(const String& EngineDataPath, const String& LogFileName = "Mezzanine.log" );
+        /// @brief Descriptive constructor.
         /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the entresol.
-        /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other
+        /// This constructor provides no default arguments, but allows for a lot of customization. In addition to everything the other
         /// constructors this one can accept a vector of pointers to managers which will be added.
-        /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
-        /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param LogFileName This is the place that log messages get sent to.
-        /// @param SceneType A cue to the scenemanager as to how rendering should occur.
         /// @param ManagersToBeAdded This is a vector of manager pointers that will be used instead of creating new ones.
-        Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
-                   const String& SceneType,
-                   const String& EngineDataPath,
-                   const String& LogFileName,
-                   const ManagerVec& ManagersToBeAdded);
+        Entresol(const String& EngineDataPath, const String& LogFileName, const ManagerVec& ManagersToBeAdded);
         /// @brief Default constructor.
-        /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a entresol which expands for 100 units from the Origin, and only allows 10 Actors.
+        /// @details This simply performs the same work as the descriptive constructor with some sane defaults.
         /// @warning Do not make a new entresol if one already exists. This can only cause problems.
         Entresol();
         /// @brief Deconstructor.
@@ -541,9 +470,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Pauses all animations, particles, and object movement throughout all worlds.
-        /// @param Pause Pauses the world if true, unpauses if false.
-        void PauseAllWorlds(Boole Pause);
+        /// @brief Gets the core structure responsible for scheduling work in the Entresol main loop.
+        /// @return Returns a reference to the FrameScheduler being used by this Entresol.
+        Threading::FrameScheduler& GetScheduler();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Timing system methods
@@ -599,20 +528,15 @@ namespace Mezzanine
         /// @brief This deinitializeds all managers and Worlds currently in the Entresol.
         void Deinitialize();
 
+        /// @brief Initialize any default managers and any added after construction. This should be called before DoOneFrame()
+        void PreMainLoopInit();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Main Loop
-
-        /// @brief Gets the core structure responsible for scheduling work in the Entresol main loop.
-        /// @return Returns a reference to the FrameScheduler being used by this Entresol.
-        Threading::FrameScheduler& GetScheduler();
 
         /// @brief This Function house the main loop.
         /// @details If using this you don't need to worry about initialization of managers or other pre main loop items.
         void MainLoop();
-
-        /// @brief Initialize any default managers and any added after construction. This should be called before DoOneFrame()
-        void PreMainLoopInit();
-
         /// @brief Run one frame
         /// @details This should only be called after Managers and other Pre Main loop items
         void DoOneFrame();
@@ -622,7 +546,6 @@ namespace Mezzanine
         /// @details If called while not in the main loop, it will affect the next main loop iteration.
         /// This function is thread safe and can be called from any work unit at any time.
         void BreakMainLoop(Boole Break = true);
-
         /// @brief How many frames have elasped?
         /// @return A Whole containing the currect 0 based frame number.
         Whole GetFrameCount() const;
@@ -632,24 +555,24 @@ namespace Mezzanine
 
         /// @brief Adds/registers a manager factory with this Entresol, allowing it to be constructed through this API.
         /// @param ToBeAdded The manager factory to be added.
-        void AddManagerFactory(EntresolManagerFactory* ToBeAdded);
+        static void AddManagerFactory(EntresolManagerFactory* ToBeAdded);
         /// @brief Removes a manager factory from this Entresol.
         /// @param ToBeRemoved A pointer to the manager factory that is to be removed.
-        void RemoveManagerFactory(EntresolManagerFactory* ToBeRemoved);
+        static void RemoveManagerFactory(EntresolManagerFactory* ToBeRemoved);
         /// @brief Removes a manager factory from this Entresol.
         /// @param ImplName The name of the manager implementation created by the factory to be removed.
-        void RemoveManagerFactory(const String& ImplName);
+        static void RemoveManagerFactory(const String& ImplName);
         /// @brief Removes and destroys a manager factory in this Entresol.
         /// @param ToBeRemoved A pointer to the manager factory that is to be removed and destroyed.
-        void DestroyManagerFactory(EntresolManagerFactory* ToBeRemoved);
+        static void DestroyManagerFactory(EntresolManagerFactory* ToBeRemoved);
         /// @brief Removes and destroys a manager factory in this Entresol.
         /// @param ImplName The name of the manager implementation created by the factory to be removed and destroyed.
-        void DestroyManagerFactory(const String& ImplName);
+        static void DestroyManagerFactory(const String& ImplName);
         /// @brief Destroys all manager factories in this Entresol.
         /// @warning The destruction of manager factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
-        void DestroyAllManagerFactories();
+        static void DestroyAllManagerFactories();
         /// @brief Adds all the default manager factories provided by the engine to the Entresol.
-        void AddAllEngineDefaultManagerFactories();
+        static void AddAllEngineDefaultManagerFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Upper Management
@@ -659,13 +582,13 @@ namespace Mezzanine
         /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
         /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
         /// @return Returns a pointer to the created manager.
-        EntresolManager* CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToEntresol = true);
+        EntresolManager* CreateManager(const String& ManagerImplName, const NameValuePairList& Params, const Boole AddToEntresol = true);
         /// @brief Creates a new manager.
         /// @param ManagerImplName The name of the manager implementation to create.
         /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
         /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
         /// @return Returns a pointer to the created manager.
-        EntresolManager* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToEntresol = true);
+        EntresolManager* CreateManager(const String& ManagerImplName, const XML::Node& XMLNode, const Boole AddToEntresol = true);
         /// @brief Destroys a manager.
         /// @param ToBeDestroyed The manager to be destroyed.
         void DestroyManager(EntresolManager* ToBeDestroyed);
@@ -674,67 +597,21 @@ namespace Mezzanine
         void DestroyAllManagers();
 
         /// @brief This adds a manager, in the correct order, to the list that the Entresol calls on.
+        /// @note This method will detect if a manager is being double inserted, and will silently fail in such a case.
         /// @param ManagerToAdd The pointer to the manager to be added.
         void AddManager(EntresolManager* ManagerToAdd);
         /// @brief This removes a manager by finding the matching pointer.
         /// @param ManagerToRemove A pointer to the manager to be removed.
         void RemoveManager(EntresolManager* ManagerToRemove);
         /// @brief This is will find the manager of a given type.
-        /// @param RetrieveType The ManagerBase::ManagerTypeName of the manager to get.
+        /// @param RetrieveType The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
         /// @param WhichOne If not getting the first/only manager of the given type, get one.
         /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists.
-        EntresolManager* GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne = 0);
-        /// @brief This removes a manager of a specific type from the list
-        /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
+        EntresolManager* GetManager(const Whole RetrieveType, UInt16 WhichOne = 0);
+        /// @brief This removes a manager of a specific type from the list.
+        /// @param RemoveType The type ID of the manager to remove.  Use ManagerBase::ManagerType enum values for this.
         /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
-        void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
-
-        /// @brief This gets the AudioManager from the manager list.
-        /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
-        /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.
-        Audio::AudioManager* GetAudioManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the CollisionShapeManager from the manager list.
-        /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
-        /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.
-        Physics::CollisionShapeManager* GetCollisionShapeManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the EventManager from the manager list.
-        /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
-        /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
-        EventManager* GetEventManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the GraphicsManager from the manager list.
-        /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
-        /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
-        Graphics::GraphicsManager* GetGraphicsManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the InputManager from the manager list.
-        /// @param WhichOne If you have multiple InputManagers this will choose which one to return.
-        /// @return This returns a pointer to a InputManager, or a NULL pointer if no matching manager exists.
-        Input::InputManager* GetInputManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the MeshManager from the manager list.
-        /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
-        /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
-        Graphics::MeshManager* GetMeshManager(const UInt16 WhichOne = 0);
-#ifdef MEZZNETWORK
-        /// @brief This gets the NetworkManager from the manager list.
-        /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.
-        /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
-        Network::NetworkManager* GetNetworkManager(const UInt16 WhichOne = 0);
-#endif
-        /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
-        /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
-        /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
-        Resource::ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the TextureManager from the manager list.
-        /// @param WhichOne If you have multiple TextureManagers this will choose which one to return.
-        /// @return This returns a pointer to a TextureManager, or a NULL pointer if no matching manager exists.
-        Graphics::TextureManager* GetTextureManager(const UInt16 WhichOne = 0);
-        /// @brief This gets the UIManager from the manager list.
-        /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
-        /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
-        UI::UIManager* GetUIManager(const UInt16 WhichOne = 0);
-        /// @brief This gets a ScriptingManager from the manager list.
-        /// @param WhichOne If you have multiple ScriptingManagers this will choose which one to return.
-        /// @return This returns a pointer to a ScriptingManager, or a NULL pointer if no matching manager exists.
-        Scripting::iScriptingManager* GetScriptingManager(const UInt16 WhichOne = 0);
+        void RemoveManager(const Whole RemoveType, UInt16 WhichOne = 0);
 
         ///////////////////////////////////////////////////////////////////////////////
         // World Management
@@ -795,6 +672,10 @@ namespace Mezzanine
         void DestroyWorldByName(const String& WorldName);
         /// @brief This destroys all the worlds in the world list.
         void DestroyAllWorlds();
+
+        /// @brief Pauses all animations, particles, and object movement throughout all worlds.
+        /// @param Pause Pauses the world if true, unpauses if false.
+        void PauseAllWorlds(Boole Pause);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Logging

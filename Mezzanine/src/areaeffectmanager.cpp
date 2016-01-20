@@ -102,7 +102,7 @@ namespace Mezzanine
         this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
     }
 
-    AreaEffectManager::AreaEffectManager(World* Creator, XML::Node& XMLNode) :
+    AreaEffectManager::AreaEffectManager(World* Creator, const XML::Node& XMLNode) :
         WorldManager(Creator),
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
@@ -428,13 +428,13 @@ namespace Mezzanine
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork, "AreaEffectUpdateWork" );
 
-            Physics::PhysicsManager* PhysicsMan = this->ParentWorld->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
             if( PhysicsMan ) {
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetWorldTriggerUpdateWork() );
             }
 
-            Mezzanine::ActorManager* ActorMan = this->ParentWorld->GetActorManager();
+            Mezzanine::ActorManager* ActorMan = static_cast<ActorManager*>( this->ParentWorld->GetManager(ManagerBase::MT_ActorManager) );
             if( ActorMan ) {
                 this->AreaEffectUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
             }
@@ -481,10 +481,10 @@ namespace Mezzanine
     ManagerBase::ManagerType DefaultAreaEffectManagerFactory::GetManagerType() const
         { return AreaEffectManager::InterfaceType; }
 
-    WorldManager* DefaultAreaEffectManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+    WorldManager* DefaultAreaEffectManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
         { return new AreaEffectManager(Creator); }
 
-    WorldManager* DefaultAreaEffectManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+    WorldManager* DefaultAreaEffectManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
         { return new AreaEffectManager(Creator,XMLNode); }
 
     void DefaultAreaEffectManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)

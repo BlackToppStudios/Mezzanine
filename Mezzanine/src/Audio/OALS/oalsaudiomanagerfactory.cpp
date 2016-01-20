@@ -61,7 +61,7 @@ namespace Mezzanine
             ManagerBase::ManagerType OALSAudioManagerFactory::GetManagerType() const
                 { return OALS::AudioManager::InterfaceType; }
 
-            EntresolManager* OALSAudioManagerFactory::CreateManager(NameValuePairList& Params)
+            EntresolManager* OALSAudioManagerFactory::CreateManager(const NameValuePairList& Params)
             {
                 if( AudioManager::SingletonValid() ) {
                     /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -69,7 +69,7 @@ namespace Mezzanine
                 }else return new OALS::AudioManager();
             }
 
-            EntresolManager* OALSAudioManagerFactory::CreateManager(XML::Node& XMLNode)
+            EntresolManager* OALSAudioManagerFactory::CreateManager(const XML::Node& XMLNode)
             {
                 if( AudioManager::SingletonValid() ) {
                     /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

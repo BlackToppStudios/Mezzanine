@@ -55,7 +55,7 @@ namespace Mezzanine
         WorldManager(Creator)
         {  }
 
-    TerrainManager::TerrainManager(World* Creator, XML::Node& XMLNode) :
+    TerrainManager::TerrainManager(World* Creator, const XML::Node& XMLNode) :
         WorldManager(Creator)
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -219,10 +219,10 @@ namespace Mezzanine
     ManagerBase::ManagerType DefaultTerrainManagerFactory::GetManagerType() const
         { return TerrainManager::InterfaceType; }
 
-    WorldManager* DefaultTerrainManagerFactory::CreateManager(World* Creator, NameValuePairList& Params)
+    WorldManager* DefaultTerrainManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
         { return new TerrainManager(Creator); }
 
-    WorldManager* DefaultTerrainManagerFactory::CreateManager(World* Creator, XML::Node& XMLNode)
+    WorldManager* DefaultTerrainManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
         { return new TerrainManager(Creator,XMLNode); }
 
     void DefaultTerrainManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)

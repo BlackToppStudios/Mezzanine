@@ -41,10 +41,10 @@
 #define _resourcemanager_h
 
 #include "datatypes.h"
-#include "enumerations.h"
 #include "entresolmanager.h"
 #include "entresolmanagerfactory.h"
 #include "singleton.h"
+#include "Resource/resourceenumerations.h"
 #include "Resource/datastream.h"
 
 /// @file
@@ -118,7 +118,7 @@ namespace Mezzanine
             ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            ResourceManager(XML::Node& XMLNode);
+            ResourceManager(const XML::Node& XMLNode);
             /// @details Class Destructor.
             virtual ~ResourceManager();
 
@@ -229,11 +229,11 @@ namespace Mezzanine
             /// @brief Gets a string that describes an @ref ArchiveType.
             /// @param ArchType A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
             /// @return A String that represents the @ref ArchiveType passed.
-            static String GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType);
+            static String GetStringFromArchiveType(const Resource::ArchiveType ArchType);
             /// @brief Gets an @ref ArchiveType from a string.
             /// @param FromString The string to be converted to an archive type.
             /// @return Returns a @ref ArchiveType corresponding to the string provided, or AT_Invalid if it is invalid.
-            static ArchiveType GetArchiveTypeFromString(const String& FromString);
+            static Resource::ArchiveType GetArchiveTypeFromString(const String& FromString);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods
@@ -262,10 +262,10 @@ namespace Mezzanine
             /// @copydoc ManagerFactory::GetManagerType() const
             ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
-            EntresolManager* CreateManager(NameValuePairList& Params);
-            /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
-            EntresolManager* CreateManager(XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+            EntresolManager* CreateManager(const NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+            EntresolManager* CreateManager(const XML::Node& XMLNode);
             /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
             void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultResourceManagerFactory

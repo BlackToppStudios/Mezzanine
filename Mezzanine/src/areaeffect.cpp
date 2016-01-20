@@ -86,7 +86,7 @@ namespace Mezzanine
 
     void AreaEffect::CreateAreaEffect(Physics::CollisionShape* Shape)
     {
-        Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan != NULL ) {
             if( Shape == NULL ) {
                 this->Ghost = PhysMan->CreateGhostProxy();
@@ -104,7 +104,7 @@ namespace Mezzanine
     void AreaEffect::DestroyAreaEffect()
     {
         this->RemoveFromWorld();
-        Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( this->Ghost != NULL && PhysMan != NULL ) {
             PhysMan->DestroyProxy( this->Ghost );
             this->Ghost = NULL;
@@ -317,7 +317,7 @@ namespace Mezzanine
 
                 XML::Node GhostProxNode = ProxiesNode.GetChild("Ghost").GetFirstChild();
                 if( !GhostProxNode.Empty() ) {
-                    Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
+                    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
                     if( PhysMan ) {
                         this->Ghost = PhysMan->CreateGhostProxy(GhostProxNode);
                         this->Ghost->_Bind( this );

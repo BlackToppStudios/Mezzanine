@@ -73,14 +73,15 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            /// @brief Sets whether or not messages sent by this socket can be fragmented by routers.
+            // Commented out due to lack of support on MacOSX.  Additionally there may be better ways to moderate tranmissions.
+            /*/// @brief Sets whether or not messages sent by this socket can be fragmented by routers.
             /// @remarks In a situation where message fragmentation would occur but isn't allowed to because of this setting
             /// the router will discard the message and send an error back to the sending host.
             /// @param DontFrag Whether or not messages from this socket can be fragmented.
             void SetDontFragment(const Boole DontFrag);
             /// @brief Gets whether or not messages sent by this socket can be fragmented by routers.
             /// @return Returns true if messages sent by this socket can be fragmented, false otherwise.
-            Boole GetDontFragment() const;
+            Boole GetDontFragment() const;//*/
 
             /// @copydoc UDPSocket::SetNumMulticastHops(const Integer)
             void SetNumMulticastHops(const Integer Hops);

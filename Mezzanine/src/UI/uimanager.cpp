@@ -122,7 +122,7 @@ namespace Mezzanine
             this->WidgetUpdateWork = new WidgetUpdateWorkUnit(this);
         }
 
-        UIManager::UIManager(XML::Node& XMLNode) :
+        UIManager::UIManager(const XML::Node& XMLNode) :
             HoveredWidget(NULL),
             WidgetFocus(NULL),
 
@@ -741,7 +741,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultUIManagerFactory::GetManagerType() const
             { return UIManager::InterfaceType; }
 
-        EntresolManager* DefaultUIManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultUIManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( UIManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -749,7 +749,7 @@ namespace Mezzanine
             }else return new UIManager();
         }
 
-        EntresolManager* DefaultUIManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultUIManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( UIManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

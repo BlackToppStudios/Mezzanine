@@ -27,7 +27,7 @@ StartArea::~StartArea()
 void StartArea::CreateStartArea(const Vector3& HalfAreaSize)
 {
     CatchApp::GetCatchAppPointer()->RegisterStartArea(this);
-    Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
     //Graphics::MeshManager* MeshMan = this->ParentWorld->GetMeshManager();
     //Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
     //Physics::CollisionShapeMananger* CSMan = this->ParentWorld->GetCollisionShapeManager();
@@ -57,7 +57,7 @@ void StartArea::CreateStartArea(const Vector3& HalfAreaSize)
 void StartArea::DestroyStartArea()
 {
     this->RemoveFromWorld();
-    Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
     if( this->ParSysProx != NULL && SceneMan != NULL ) {
         SceneMan->DestroyProxy( this->ParSysProx );
         this->ParSysProx = NULL;
@@ -111,8 +111,7 @@ Real StartArea::GetParticleMaximumTimeToLive() const
 void StartArea::ApplyEffect()
 {
     static const Vector3 ZeroGrav(0,0,0);
-    if( !this->AddedObjects.empty() )
-    {
+    if( !this->AddedObjects.empty() ) {
         for( ObjectIterator ObjIt = this->AddedObjects.begin() ; ObjIt != this->AddedObjects.end() ; ObjIt++ )
         {
             ProxyContainer ColProxies;
@@ -127,9 +126,8 @@ void StartArea::ApplyEffect()
         }
     }
 
-    if( !this->RemovedObjects.empty() )
-    {
-        const Vector3 WorldGrav = this->ParentWorld->GetPhysicsManager()->GetWorldGravity();
+    if( !this->RemovedObjects.empty() ) {
+        const Vector3 WorldGrav = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) )->GetWorldGravity();
         for( ObjectIterator ObjIt = this->RemovedObjects.begin() ; ObjIt != this->RemovedObjects.end() ; ObjIt++ )
         {
             ProxyContainer ColProxies;
@@ -335,7 +333,7 @@ void StartArea::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
 
             XML::Node ParSysProxNode = ProxiesNode.GetChild("ParSysProx").GetFirstChild();
             if( !ParSysProxNode.Empty() ) {
-                Graphics::SceneManager* SceneMan = this->ParentWorld->GetSceneManager();
+                Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
                 if( SceneMan ) {
                     this->ParSysProx = SceneMan->CreateParticleSystemProxy(ParSysProxNode);
                     this->ParSysProx->_Bind( this );

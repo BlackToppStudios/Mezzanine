@@ -89,7 +89,7 @@ namespace Mezzanine
         CollisionShapeManager::CollisionShapeManager()
             {  }
 
-        CollisionShapeManager::CollisionShapeManager(XML::Node& XMLNode)
+        CollisionShapeManager::CollisionShapeManager(const XML::Node& XMLNode)
         {
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
         }
@@ -774,7 +774,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultCollisionShapeManagerFactory::GetManagerType() const
             { return CollisionShapeManager::InterfaceType; }
 
-        EntresolManager* DefaultCollisionShapeManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultCollisionShapeManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( CollisionShapeManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -782,7 +782,7 @@ namespace Mezzanine
             }else return new CollisionShapeManager();
         }
 
-        EntresolManager* DefaultCollisionShapeManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultCollisionShapeManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( CollisionShapeManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

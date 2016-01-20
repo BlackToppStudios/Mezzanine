@@ -67,7 +67,7 @@ namespace Mezzanine
         const String ResourceManager::ImplementationName = "DefaultResourceManager";
         const ManagerBase::ManagerType ResourceManager::InterfaceType = ManagerBase::MT_ResourceManager;
 
-        ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
+        ResourceManager::ResourceManager(const String& EngineDataPath, const Resource::ArchiveType ArchType)
         {
             this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
             this->EngineDataDir = EngineDataPath;
@@ -75,7 +75,7 @@ namespace Mezzanine
             this->CreateAssetGroup("");
         }
 
-        ResourceManager::ResourceManager(XML::Node& XMLNode)
+        ResourceManager::ResourceManager(const XML::Node& XMLNode)
         {
             this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
             this->CreateAssetGroup("");
@@ -225,13 +225,13 @@ namespace Mezzanine
             Initialized = false;
         }
 
-        String ResourceManager::GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType)
+        String ResourceManager::GetStringFromArchiveType(const Resource::ArchiveType ArchType)
         {
             switch(ArchType)
             {
-                case Mezzanine::AT_FileSystem:
+                case Resource::AT_FileSystem:
                     return String("FileSystem");
-                case Mezzanine::AT_Zip:
+                case Resource::AT_Zip:
                     return String("Zip");
                 default:
                     MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
@@ -239,12 +239,12 @@ namespace Mezzanine
             }
         }
 
-        Mezzanine::ArchiveType ResourceManager::GetArchiveTypeFromString(const String& FromString)
+        Resource::ArchiveType ResourceManager::GetArchiveTypeFromString(const String& FromString)
         {
             if(String("FileSystem")==FromString)
-                { return Mezzanine::AT_FileSystem; }
+                { return Resource::AT_FileSystem; }
             if(String("Zip")==FromString)
-                { return Mezzanine::AT_Zip; }
+                { return Resource::AT_Zip; }
             MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
             return AT_Invalid;
         }
@@ -273,7 +273,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultResourceManagerFactory::GetManagerType() const
             { return ResourceManager::InterfaceType; }
 
-        EntresolManager* DefaultResourceManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultResourceManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( ResourceManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -283,22 +283,22 @@ namespace Mezzanine
                 return new ResourceManager();
             }
 
-            String EngineDataPath;
-            ArchiveType ArchiveType_;
-            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            String EngineDataPath = ".";
+            ArchiveType ArchType = Resource::AT_FileSystem;
+            for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
             {
                 String Lower = (*ParIt).first;
                 StringTools::ToLowerCase(Lower);
                 if( "enginedatapath" == Lower ) {
                     EngineDataPath = (*ParIt).second;
                 }else if( "archivetype" == Lower ) {
-                    ArchiveType_ = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
+                    ArchType = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
                 }
             }
-            return new ResourceManager(EngineDataPath,ArchiveType_);
+            return new ResourceManager(EngineDataPath,ArchType);
         }
 
-        EntresolManager* DefaultResourceManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultResourceManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( ResourceManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

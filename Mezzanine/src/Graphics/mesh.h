@@ -63,16 +63,30 @@ namespace Mezzanine
         class MEZZ_LIB Mesh
         {
         public:
+            /// @brief A convenience type for the storage of SubMeshes in this class.
             typedef std::vector<SubMesh*>             SubMeshContainer;
+            /// @brief An iterator type for SubMeshes being stored by this class.
             typedef SubMeshContainer::iterator        SubMeshIterator;
+            /// @brief A const iterator type for SubMeshes being stored by this class.
             typedef SubMeshContainer::const_iterator  ConstSubMeshIterator;
         protected:
+            /// @internal
+            /// @brief A pointer to the internal data this Mesh is based on.
             InternalMeshData* IMD;
+            /// @internal
+            /// @brief If Skeletal animations are enabled on this Mesh, this is a pointer to the Skeleton being used.
             Skeleton* MeshSkel;
+            /// @internal
+            /// @brief A container storing all the SubMeshes in this Mesh.
             SubMeshContainer SubMeshes;
+
+            /// @internal
+            /// @brief Constructs a Mezzanine wrapper for every SubMesh in the internal Mesh.
+            void WrapAllSubMeshes();
+            /// @internal
+            /// @brief Destroys every wrapped (but not the underlying instance) SubMesh in this Mesh.
+            void DestroyAllWrappedSubMeshes();
         public:
-            /*/// @brief Class Constructor.
-            Mesh();// */
             /// @internal
             /// @brief Internal Constructor.
             /// @param InternalMesh The internal Mesh this Mesh class is based on.
@@ -81,9 +95,25 @@ namespace Mezzanine
             ~Mesh();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Submesh Methods
+            // Utility Methods
 
+            /// @brief Gets the number of Vertices in this Mesh.
+            /// @return Returns the number of Vertices that make up all SubMeshes in this Mesh.
+            Whole GetVertexCount() const;
+            /// @brief Gets the number of Indices in this Mesh.
+            /// @return Returns the number of Indices used to assemble the vertices in all SubMeshes in this Mesh.
+            Whole GetIndexCount() const;
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // SubMesh Methods
+
+            /// @brief Gets a SubMesh by index.
+            /// @param Index The index of the SubMesh to retrieve.
+            /// @return Returns a pointer to the SubMesh at the specified index.
+            SubMesh* GetSubMesh(const Whole Index) const;
+            /// @brief Gets the number of SubMeshes in this Mesh.
+            /// @return Returns a Whole representing the number of SubMeshes that make up this Mesh.
+            Whole GetNumSubMeshes() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Skeleton Methods

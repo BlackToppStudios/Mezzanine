@@ -56,7 +56,7 @@ namespace Mezzanine
         NetworkManager::NetworkManager()
             {  }
 
-        NetworkManager::NetworkManager(XML::Node& XMLNode)
+        NetworkManager::NetworkManager(const XML::Node& XMLNode)
         {
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
         }
@@ -105,7 +105,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultNetworkManagerFactory::GetManagerType() const
             { return NetworkManager::InterfaceType; }
 
-        EntresolManager* DefaultNetworkManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultNetworkManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( NetworkManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -113,7 +113,7 @@ namespace Mezzanine
             }else return new NetworkManager();
         }
 
-        EntresolManager* DefaultNetworkManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultNetworkManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( NetworkManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

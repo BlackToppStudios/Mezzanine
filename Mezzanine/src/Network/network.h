@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _network_h
 #define _network_h
 
@@ -59,6 +57,10 @@ namespace Mezzanine
 #include "Network/networkutilities.h"
 #include "Network/networkmanager.h"
 
+#include "Network/httpclient.h"
+#include "Network/httpmessage.h"
+#include "Network/httprequest.h"
+#include "Network/httpresponse.h"
 #include "Network/ipaddress.h"
 #include "Network/ipv4socket.h"
 #include "Network/ipv6socket.h"
@@ -72,8 +74,7 @@ namespace Mezzanine
 #include "Network/udpsocket.h"
 #include "Network/udpv4socket.h"
 #include "Network/udpv6socket.h"
+#include "Network/uri.h"
 
 #endif
-
-#endif //MEZZNETWORK
 

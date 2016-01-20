@@ -59,48 +59,99 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         // Globals, mostly used for comparison and such
+
+        /// @brief Convenience String for comparing to return blank Strings where necessary.
         const String Blank = "";
 
         ///////////////////////////////////////////////////////////////////////////////
-        // String Manipulation and checks
+        // Character Manipulation and checks
 
-        /// @brief Trims all whitespaces and tabs from a one or both sides of a string.
+        /// @brief Checks if a character is a decimal digit.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a decimal digit, false otherwise.
+        Boole MEZZ_LIB IsDigit(const Char8 ToCheck);
+        /// @brief Checks if a character is a lower-case alphabetic letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a lower-case letter, false otherwise.
+        Boole MEZZ_LIB IsLowerAlphaLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a upper-case alphabetic letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a upper-case letter, false otherwise.
+        Boole MEZZ_LIB IsUpperAlphaLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a lower or upper case letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a lower or upper case letter, false otherwise.
+        Boole MEZZ_LIB IsAlphaLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a lower-case hexadecimal letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a lower-case letter, false otherwise.
+        Boole MEZZ_LIB IsLowerHexLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a upper-case hexadecimal letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a upper-case letter, false otherwise.
+        Boole MEZZ_LIB IsUpperHexLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a hexadecimal letter.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a hexadecimal letter, false otherwise.
+        Boole MEZZ_LIB IsHexLetter(const Char8 ToCheck);
+        /// @brief Checks if a character is a hexadecimal digit.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a hexadecimal digit, false otherwise.
+        Boole MEZZ_LIB IsHexDigit(const Char8 ToCheck);
+        /// @brief Checks if a character is a letter or digit.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a letter or digit, false otherwise.
+        Boole MEZZ_LIB IsAlphanumeric(const Char8 ToCheck);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // String Manipulation and Checks
+
+        /// @brief Trims all whitespaces and tabs from a one or both sides of a String.
         /// @param Source The original string to be trimmed.
-        /// @param Left Whether or not to trim the left side of the string.
-        /// @param Right Whether or not to trim the right side of the string.
+        /// @param Left Whether or not to trim the left side of the String.
+        /// @param Right Whether or not to trim the right side of the String.
         void MEZZ_LIB Trim(String& Source, Boole Left = true, Boole Right = true);
         /// @brief Splits a string into multiple substrings based on the specified delimiters.
-        /// @param Source The string to be split.
-        /// @param Delims The characters to look for and use as split points in the source string.
-        /// @param MaxSplits The maximum number of splits to perform on this string.  Value of zero means unlimited splits.
-        /// @return Returns a vector containing all the substrings generated from the source string.
-        CountedPtr<StringVector> MEZZ_LIB Split(const String& Source, const String& Delims = " \t\n", const Whole& MaxSplits = 0);
+        /// @param Source The String to be split.
+        /// @param Delims The characters to look for and use as split points in the source String.
+        /// @param MaxSplits The maximum number of splits to perform on this String.  Value of zero means unlimited splits.
+        /// @return Returns a vector containing all the substrings generated from the source String.
+        StringVector MEZZ_LIB Split(const String& Source, const String& Delims = " \t\n", const Whole MaxSplits = 0);
         /// @brief Converts all lower case characters in a string to their respective upper case.
-        /// @param Source The string to be converted.
+        /// @param Source The String to be converted.
         void MEZZ_LIB ToUpperCase(String& Source);
         /// @brief Create a copy of the String that is upper case.
-        /// @return The copy of string with lower case letters identified by the local converted to upper case.
-        String UpperCaseCopy(String Source);
+        /// @param Source The original String to copy.
+        /// @return Returns a copy of the String that has been modified to be in all upper case.
+        String MEZZ_LIB UpperCaseCopy(String Source);
         /// @brief Converts all upper case characters in a string to their respective lower case.
-        /// @param Source The string to be converted.
+        /// @param Source The String to be converted.
         void MEZZ_LIB ToLowerCase(String& Source);
         /// @brief Create a copy of the String that is lower case.
-        /// @return The copy of string with upper case letters identified by the local converted to lower case.
-        String LowerCaseCopy(String Source);
-        /// @brief Checks a string to see if it starts with a specific pattern.
-        /// @param Str The string to check.
-        /// @param Pattern The sequence to check for at the start of the string.
+        /// @param Source The original String to copy.
+        /// @return Returns a copy of the String that has been modified to be in all lower case.
+        String MEZZ_LIB LowerCaseCopy(String Source);
+        /// @brief Converts the first letter of each word to upper case and all other letters to lower case.
+        /// @param Source The String to be converted.
+        void MEZZ_LIB ToCamelCase(String& Source);
+        /// @brief Create a copy of the String that has the first letter of each word upper case and other letters lower case.
+        /// @param Source The original String to copy.
+        /// @return Returns a copy of the String that has been modified to be in Camel Case.
+        String MEZZ_LIB CamelCaseCopy(String Source);
+        /// @brief Checks a String to see if it starts with a specific pattern.
+        /// @param Str The String to check.
+        /// @param Pattern The sequence to check for at the start of the String.
         /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
-        /// @return Returns true if the string starts with the provided pattern, false otherwise.
+        /// @return Returns true if the String starts with the provided pattern, false otherwise.
         Boole MEZZ_LIB StartsWith(const String& Str, const String& Pattern, const Boole CaseSensitive);
-        /// @brief Checks a string to see if it ends with a specific pattern.
-        /// @param Str The string to check.
-        /// @param Pattern The sequence to check for at the end of the string.
+        /// @brief Checks a String to see if it ends with a specific pattern.
+        /// @param Str The String to check.
+        /// @param Pattern The sequence to check for at the end of the String.
         /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
         /// @return Returns true if the string ends with the provided pattern, false otherwise.
         Boole MEZZ_LIB EndsWith(const String& Str, const String& Pattern, const Boole CaseSensitive);
         /// @brief Replaces all instances of multiple consecutive whitespaces with only a single whitespace.
-        /// @param Source The string to be altered.
+        /// @param Source The String to be altered.
         void MEZZ_LIB RemoveDuplicateWhitespaces(String& Source);
 
         ///////////////////////////////////////////////////////////////////////////////

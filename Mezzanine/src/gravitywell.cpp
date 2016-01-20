@@ -163,7 +163,7 @@ namespace Mezzanine
 
         if( !this->AllowWorldGrav && !this->RemovedObjects.empty() )
         {
-            const Vector3 WorldGravity = this->ParentWorld->GetPhysicsManager()->GetWorldGravity();
+            const Vector3 WorldGravity = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) )->GetWorldGravity();
             for( ObjectIterator RemovedIt = this->RemovedObjects.begin() ; RemovedIt != this->RemovedObjects.end() ; ++RemovedIt )
             {
                 ProxyContainer RigidProxies;

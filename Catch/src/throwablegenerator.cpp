@@ -136,7 +136,7 @@ ThrowableData* ThrowableGenerator::GetThrowableData(const String& Throwable)
 
 Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
 {
-    DebrisManager* DebMan = Entresol::GetSingletonPtr()->GetWorld(0)->GetDebrisManager();
+    DebrisManager* DebMan = static_cast<DebrisManager*>( Entresol::GetSingletonPtr()->GetWorld(0)->GetManager(ManagerBase::MT_DebrisManager) );
     ThrowableData* ToBeCreated = GetThrowableData(Throwable);
     if(!ToBeCreated)
         return NULL;

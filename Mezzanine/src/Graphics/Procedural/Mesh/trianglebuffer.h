@@ -67,6 +67,7 @@
 #ifndef _graphicsproceduraltrianglebuffer_h
 #define _graphicsproceduraltrianglebuffer_h
 
+#include "Graphics/graphicsenumerations.h"
 #include "Graphics/Procedural/proceduraldatatypes.h"
 #include "matrix4x4.h"
 
@@ -121,18 +122,69 @@ namespace Mezzanine
             ///////////////////////////////////////
             struct MEZZ_LIB BufferSection
             {
-                /// @brief The name of this section.
-                String SectionName;
-                /// @brief The start indicy of this section in the parent buffer.
-                Whole FirstIndex;
-                /// @brief The end indicy of this section in the parent buffer.
-                Whole LastIndex;
+                ///////////////////////////////////////////////////////////////////////////////
+                // Public Data Members
+
                 /// @brief The start vertex of this section in the parent buffer.
                 Whole FirstVertex;
                 /// @brief The end vertex of this section in the parent buffer.
                 Whole LastVertex;
-                /// @brief A pointer to the parent buffer this section is inside.
-                TriangleBuffer* Buffer;
+                /// @brief The start indicy of this section in the parent buffer.
+                Whole FirstIndex;
+                /// @brief The end indicy of this section in the parent buffer.
+                Whole LastIndex;
+                /// @brief The render operation to be used for the section.  See Graphics::RenderOperation enum for more info.
+                Whole RenderOp;
+                /// @brief The name of the material to be used with this section.
+                String MaterialName;
+                /// @brief The asset group where the material can be found.
+                String MaterialGroup;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Construction and Destruction
+
+                /// @brief Class constructor.
+                BufferSection() :
+                    FirstVertex(0),
+                    LastVertex(0),
+                    FirstIndex(0),
+                    LastIndex(0),
+                    RenderOp(Graphics::RO_TriangleList)
+                    {  }
+                /// @brief Class destructor.
+                ~BufferSection()
+                    {  }
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @brief Clears all the data on this BufferSection back to a blank initialization.
+                void Clear()
+                {
+                    this->FirstVertex = 0;
+                    this->LastVertex = 0;
+                    this->FirstIndex = 0;
+                    this->LastIndex = 0;
+                    this->RenderOp = Graphics::RO_TriangleList;
+                    this->MaterialName.clear();
+                    this->MaterialGroup.clear();
+                }
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Operators
+
+                /// @brief Assignment operator.
+                /// @param Other The other BufferSection to be copied to this.
+                void operator=(const BufferSection& Other)
+                {
+                    this->FirstVertex = Other.FirstVertex;
+                    this->LastVertex = Other.LastVertex;
+                    this->FirstIndex = Other.FirstIndex;
+                    this->LastIndex = Other.LastIndex;
+                    this->RenderOp = Other.RenderOp;
+                    this->MaterialName = Other.MaterialName;
+                    this->MaterialGroup = Other.MaterialGroup;
+                }
             };//BufferSection
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -146,7 +198,7 @@ namespace Mezzanine
             {
             public:
                 /// @brief Basic container type for Section storage in this class.
-                typedef std::map<String,BufferSection>          SectionContainer;
+                typedef std::vector<BufferSection>              SectionContainer;
                 /// @brief Iterator type for Section instances stored in this class.
                 typedef SectionContainer::iterator              SectionIterator;
                 /// @brief Const Iterator type for Section instances stored in this class.
@@ -161,6 +213,9 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Container storing all of the Indices in this buffer.
                 IndexContainer Indices;
+                /// @internal
+                /// @brief Temporary storage for the current section being worked on.
+                BufferSection CurrentSection;
                 /// @internal
                 /// @brief Convenience pointer to the Vertex currently being manipulated.
                 Vertex* CurrentVertex;
@@ -185,14 +240,20 @@ namespace Mezzanine
                 /// @brief Appends the contents of another buffer to this buffer.
                 /// @param Other The other TriangleBuffer to append to this.
                 void AppendBuffer(const TriangleBuffer& Other);
+                /// @brief Appends the contents of another buffer to this buffer as a separate section of the Mesh.
+                /// @param Other The other TriangleBuffer to append to this.
+                /// @param MatName The name of the material to be used with this section.
+                /// @param MatGroup The asset group where the Material can be found.
+                /// @param RenderOp The render operation describing how the Vertices should be treated for assembling the Mesh.  See Graphics::RenderOperation enum for more information.
+                void AppendBufferAsSection(const TriangleBuffer& Other, const String& MatName = "", const String& MatGroup = "", const Whole RenderOp = Graphics::RO_TriangleList);
                 /// @brief Builds a Mesh from this buffer.
-                /// @note The returned mesh will need a material applied to it for proper rendering.
-                /// @param MeshName The name to give to the generated mesh.
+                /// @note The returned mesh will need a Material applied to it for proper rendering.
+                /// @param MeshName The name to give to the generated Mesh.
                 /// @param MeshGroup The asset group to place the mesh in.
-                /// @param MatName The name of the material to apply to the mesh.
-                /// @param MatGroup The asset group where the material can be found.
+                /// @param MatName The name of the Material to apply to the Mesh.  This is only used if the buffer isn't using sections.
+                /// @param MatGroup The asset group where the Material can be found.  This is only used if the buffer isn't using sections.
                 /// @return Returns a pointer to the created Mesh.
-                Mesh* GenerateMesh(const String& MeshName, const String& MeshGroup, const String& MatName, const String& MatGroup) const;
+                Mesh* GenerateMesh(const String& MeshName, const String& MeshGroup, const String& MatName = "", const String& MatGroup = "") const;
 
                 /// @brief Gives an estimation of the number of vertices need for this triangle buffer.
                 /// @remarks If this function is called several times, it means an extra vertices count, not an absolute measure.
@@ -207,16 +268,23 @@ namespace Mezzanine
                 /// @remarks Call this function before you add a new mesh to the triangle buffer.
                 void RebaseOffset();
 
-                /// @brief Gets a modifiable reference to vertices.
+                /// @brief Gets a modifiable reference to Sections.
+                /// @return Returns a reference to the container storing the Sections of this buffer.
+                SectionContainer& GetSections();
+                /// @brief Gets a non-modifiable reference to Sections.
+                /// @return Returns a const reference to the container storing the Sections of this buffer.
+                const SectionContainer& GetSections() const;
+
+                /// @brief Gets a modifiable reference to Vertices.
                 /// @return Returns a reference to the container storing the Vertices of this buffer.
                 VertexContainer& GetVertices();
-                /// @brief Gets a non-modifiable reference to vertices.
+                /// @brief Gets a non-modifiable reference to Vertices.
                 /// @return Returns a const reference to the container storing the Vertices of this buffer.
                 const VertexContainer& GetVertices() const;
-                /// @brief Gets a modifiable reference to vertices.
+                /// @brief Gets a modifiable reference to Indices.
                 /// @return Returns a reference to the container storing the Indices of this buffer.
                 IndexContainer& GetIndices();
-                /// @brief Gets a non-modifiable reference to indices.
+                /// @brief Gets a non-modifiable reference to Indices.
                 /// @return Returns a const reference to the container storing the Indices of this buffer.
                 const IndexContainer& GetIndices() const;
 
@@ -224,16 +292,26 @@ namespace Mezzanine
                 // Section Utility
 
                 /// @brief Gets a BufferSection that can be appended to the end of this buffer.
-                /// @param SectName The name of the new BufferSection to create.
-                /// @return Returns a new BufferSection that is appended to the end.
-                BufferSection BeginSection(const String& SectName = "");
+                /// @remarks Sections are a useful tool for if and when you want to generate a Mesh with multiple SubMeshes.  The usefulness of multiple
+                /// SubMeshes is being able to assign more than one material to a mesh for whatever reason (there are plenty).  When you start a Section
+                /// if you have already added some vertex data to the mesh then all data input thus far will become a section and a new, second section
+                /// will be started.  Likewise, if a section is in progress and you call BeginSection then the previous section will be ended. \n
+                /// Section names and their materials are optional.  However if you do not assign a material to a completed mesh prior
+                /// to rendered it will render as just white (probably not what you are going for).  So while setting a material name is optional at this
+                /// stage it is a good idea to get around to.
+                /// @param MatName The name of the material to be used with this section.
+                /// @param MatGroup The asset group where the Material can be found.
+                /// @param RenderOp The render operation describing how the Vertices should be treated for assembling the Mesh.  See Graphics::RenderOperation enum for more information.
+                void BeginSection(const String& MatName = "", const String& MatGroup = "", const Whole RenderOp = Graphics::RO_TriangleList);
                 /// @brief Sets a BufferSection as the end section of this buffer.
                 /// @param Sect The BufferSection to set as the end of the buffer.
-                void EndSection(BufferSection& Sect);
-                /// @brief Gets a BufferSection that is the entire contents of this buffer.
-                /// @param SectName The name of the new BufferSection to create.
-                /// @return Returns a new BufferSection that expresses the entire contents of this buffer.
-                BufferSection GetFullSection(const String& SectName = "");
+                void EndSection();
+                /// @brief Gets whether or not this buffer is divided into sections.
+                /// @return Returns true if this buffer will generate multiple SubMeshes when it makes a Mesh, false otherwise.
+                Boole IsUsingSections() const;
+                /// @brief Gets whether or not a section has been started and not yet closed.
+                /// @return Returns true if this buffer has an open section that is not yet ended, false otherwise.
+                Boole IsWorkingOnSection() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Vertex Management

@@ -22640,9 +22640,6 @@ static swig_lua_attribute swig_SwigModule_attributes[] = {
 static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("MEZZANINE_CORE", 1)},
     {SWIG_LUA_CONSTTAB_INT("MEZZ_FRAMESTOTRACK", 10)},
-    {SWIG_LUA_CONSTTAB_INT("AT_FileSystem", Mezzanine::AT_FileSystem)},
-    {SWIG_LUA_CONSTTAB_INT("AT_Zip", Mezzanine::AT_Zip)},
-    {SWIG_LUA_CONSTTAB_INT("AT_Invalid", Mezzanine::AT_Invalid)},
     {SWIG_LUA_CONSTTAB_INT("Att_None", Mezzanine::Att_None)},
     {SWIG_LUA_CONSTTAB_INT("Att_Linear", Mezzanine::Att_Linear)},
     {SWIG_LUA_CONSTTAB_INT("Att_Quadratic", Mezzanine::Att_Quadratic)},

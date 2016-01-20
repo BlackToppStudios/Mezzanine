@@ -66,6 +66,7 @@ public:
         // In future versions of the Mezzanine we should be able to get away with just the graphics manager.
         // The purpose to doing this is to ensure the internal code to initialize the necessary buffer providers are registered.
         Entresol TheEntresol;
+        TheEntresol.GetManager(ManagerBase::MT_GraphicsManager)->Initialize();
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.

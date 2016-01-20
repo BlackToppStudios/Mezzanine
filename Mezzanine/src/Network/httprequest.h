@@ -38,13 +38,12 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkhttprequest_h
 #define _networkhttprequest_h
 
-#include "datatypes.h"
 #include "Network/networkenumerations.h"
+#include "Network/httpmessage.h"
+#include "Network/uri.h"
 
 namespace Mezzanine
 {
@@ -60,34 +59,39 @@ namespace Mezzanine
         /// request, which may require the message be put in the request body, and a "Content-Length" header be supplied with the size of
         /// the body.  Many more nuances exist, and we can't cover all use cases.  So take care when using this class.
         ///////////////////////////////////////
-        class MEZZ_LIB HTTPRequest
+        class MEZZ_LIB HTTPRequest : public HTTPMessage
         {
         protected:
-            /// @internal
-            /// @brief The major version component for this request.
-            UInt16 MajorVersion;
-            /// @internal
-            /// @brief The minor version component for this request.
-            UInt16 MinorVersion;
             /// @internal
             /// @brief The HTTP method to use for the request.
             HTTPRequestMethod RequestMethod;
             /// @internal
             /// @brief The URI of the resource to request.
-            String RequestURI;
-            /// @internal
-            /// @brief The body of the request.
-            String RequestBody;
-            /// @internal
-            /// @brief A container of fields to populate the request header with.
-            NameValuePairMap RequestFields;
+            URI RequestURI;
+
+            /// @copydoc HTTPMessage::ParseHTTPHeader(StringIterator&,const StringIterator)
+            Boole ParseHTTPHeader(StringIterator& CurrIt, const StringIterator EndIt);
         public:
             /// @brief Blank constructor.
             HTTPRequest();
+            /// @brief String constructor.
+            /// @param ToDecompose The String to construct this request from.
+            /// @remarks For normal operation this constructor should seldom be used, since this class is intended to aid in building the string.
+            HTTPRequest(const String& ToDecompose);
             /// @brief Descriptive constructor.
             HTTPRequest(const String& URI, const Network::HTTPRequestMethod Method, const String& Body);
             /// @brief Class destructor.
             ~HTTPRequest();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Core Operations
+
+            /// @copydoc HTTPMessage::Compose() const
+            String Compose() const;
+            /// @copydoc HTTPMessage::Decompose(const String&)
+            /// @warning A request can be partially decomposed when it fails and have that data saved to members of this class.  For that
+            /// reason you should only utilize the data in this class if the decompose was successful, or completely re-written.
+            Boole Decompose(const String& Request);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -101,67 +105,54 @@ namespace Mezzanine
             /// @return Returns a HTTPRequestMethod enum value representing the converted String.
             static Network::HTTPRequestMethod ConvertRequestMethod(const String& Method);
 
-            /// @brief Creates a request that can be sent to a HTTP server.
-            /// @return Returns a String containing the generated request.
-            String ComposeRequest() const;
-            /// @brief Populates the members of this class with data from a text HTTP request.
-            /// @param Request The String containing the request to be decomposed.
-            void DecomposeRequest(const String& Request);
-
-            /// @brief Sets both the major and minor version of the request.
-            /// @param Major The major portion of the version to set.  Initial Value: 1.
-            /// @param Minor The minor portion of the version to set.  Initial Value: 0.
-            void SetHTTPVersion(const UInt16 Major, const UInt16 Minor);
-
-            /// @brief Sets the major version of the request.
-            /// @param Major The major portion of the version to set.  Initial Value: 1.
-            void SetHTTPMajorVersion(const UInt16 Major);
-            /// @brief Gets the major version of the request.
-            /// @return Returns the major component of this requests version.
-            UInt16 GetHTTPMajorVersion() const;
-            /// @brief Sets the minor version of the request.
-            /// @param Minor The minor portion of the version to set.  Initial Value: 0.
-            void SetHTTPMinorVersion(const UInt16 Minor);
-            /// @brief Gets the minor version of the request.
-            /// @return Returns the minor component of this requests version.
-            UInt16 GetHTTPMinorVersion() const;
-
             /// @brief Sets the URI of the resource being requested.
             /// @param URI The Uniform Resource Identifier of the resource to request.
-            void SetURI(const String& URI);
+            void SetURI(const URI& URI);
             /// @brief Gets the URI of the resource being requested.
             /// @return Returns a String containing the Uniform Resource Identifier of the resource being requested.
-            const String& GetURI() const;
+            const URI& GetURI() const;
             /// @brief Sets the method to be used for the request.
             /// @param Method The HTTP method to use for the request.  Initial Value: HRM_GET.
             void SetMethod(const Network::HTTPRequestMethod Method);
             /// @brief Gets the method to be used for the request.
             /// @return Returns a HTTPRequestMethod enum value of the request method to be used.
             Network::HTTPRequestMethod GetMethod() const;
-            /// @brief Sets the request body containing additional information.
-            /// @remarks Request bodies are optional or just unnecessary for most request methods.  Be sure you need a body for your request before setting one.
-            /// @param Body The body of the request.
-            void SetBody(const String& Body);
-            /// @brief Gets the request body containing additional information.
-            /// @return Returns a String containing the body of the request.
-            const String& GetBody() const;
-            /// @brief Sets a Name-Value pair for a header field in the request.
-            /// @param FieldName The name of the field to be set.
-            /// @param FieldValue The value to be set for the named header field.
-            void SetField(const String& FieldName, const String& FieldValue);
-            /// @brief Gets a Name-Value pair for a header field in the request.
-            /// @param FieldName The name of the field to retrieve.
-            /// @return Returns a String containing the set value for the named header.  If none is set or the named field does not exist then an empty String is returned.
-            String GetField(const String& FieldName) const;
-            /// @brief Checks if this request has the named header field.
-            /// @note Fields should only ever be created when "SetField" is called, but there is no guarantee that the value for that field will be set.
-            /// @param FieldName The name of the field to check for.
-            /// @return Returns true if this request has the named field, false otherwise.
-            Boole HasField(const String& FieldName) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Recommended Header Field Convenience Methods
+
+            /// @brief Sets the Expect Header.
+            /// @remarks An optional header that most commonly is used when the expectation is "100-continue".  When that expectation is set a partial request (without a body)
+            /// can be sent to the HTTP server and will check the headers to see if anything is malformed there.  If nothing is it will succeed and the client can then send
+            /// a full request with the body.  Useful for requests with very large bodies.
+            /// @param Expect Used to describe to the server one or more expectations being made on it by the client.
+            void SetExpectHeader(const String& Expect);
+            /// @brief Gets the Expect Header.
+            /// @return Returns a String containing one or more expectations being made on the server by the client.
+            const String& GetExpectHeader() const;
+            /// @brief Sets the From Header.
+            /// @remarks This field is entirely optional.  Some smaller web services can make use of this however.
+            /// @param From Contains an email address that uniquely identifies the sender of the request.
+            void SetFromHeader(const String& From);
+            /// @brief Gets the From Header.
+            /// @return Returns a String containing an email address that uniquely identifies the sender of the request.
+            const String& GetFromHeader() const;
+            /// @brief Sets the Host Header.
+            /// @remarks This header is required for all requests being made via HTTP 1.1 and up.  It is useful for servers when resolving specific hosts behind proxies.
+            /// @param Host The URI-Authority of the host to be connected to.
+            void SetHostHeader(const String& Host);
+            /// @brief Gets the Host Header.
+            /// @return Returns a String containing the URI-Authority of the host to be connected to, or blank if the field is not set.
+            const String& GetHostHeader() const;
+            /// @brief Sets the User-Agent Header.
+            /// @remarks An optional header used to provide slightly more context about what the requester is running.
+            /// @param UserAgent The name of the platform/software being used to generate this request.
+            void SetUserAgentHeader(const String& UserAgent);
+            /// @brief Gets the User-Agent Header.
+            /// @return Returns a String containing the name of the platform/software being used to generate this request.
+            const String& GetUserAgentHeader() const;
         };//HTTPRequest
     }//Network
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

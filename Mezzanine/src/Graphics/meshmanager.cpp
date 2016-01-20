@@ -60,7 +60,7 @@ namespace Mezzanine
         MeshManager::MeshManager()
             {  }
 
-        MeshManager::MeshManager(XML::Node& XMLNode)
+        MeshManager::MeshManager(const XML::Node& XMLNode)
         {
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
         }
@@ -173,7 +173,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultMeshManagerFactory::GetManagerType() const
             { return MeshManager::InterfaceType; }
 
-        EntresolManager* DefaultMeshManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultMeshManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( MeshManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -181,7 +181,7 @@ namespace Mezzanine
             }else return new MeshManager();
         }
 
-        EntresolManager* DefaultMeshManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultMeshManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( MeshManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

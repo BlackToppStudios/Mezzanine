@@ -42,6 +42,9 @@
 
 #include "Graphics/Procedural/Mesh/meshloader.h"
 
+#include "Graphics/mesh.h"
+#include "Graphics/submesh.h"
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -60,12 +63,25 @@ namespace Mezzanine
 
             void MeshLoader::AddToTriangleBuffer(TriangleBuffer& Buffer) const
             {
+                Buffer.RebaseOffset();
+                Buffer.EstimateVertexCount( this->GenMesh->GetVertexCount() );
+                Buffer.EstimateIndexCount( this->GenMesh->GetIndexCount() );
 
+                for( Whole SubMeshIndex = 0 ; SubMeshIndex < this->GenMesh->GetNumSubMeshes() ; ++SubMeshIndex )
+                {
+                    Graphics::MeshInfo SubMeshInfo;
+                    SubMesh* CurrSubMesh = this->GenMesh->GetSubMesh(SubMeshIndex);
 
-                // Prep the buffer
-                //Buffer.RebaseOffset();
-                //Buffer.EstimateVertexCount(  );
-                //Buffer.EstimateIndexCount(  );
+                    CurrSubMesh->GetInfo(SubMeshInfo);
+                    /// @todo This doesn't account for the submesh name.  Should research/consider adding this.
+                    Buffer.BeginSection(SubMeshInfo.MaterialName,SubMeshInfo.MaterialGroup,SubMeshInfo.OperationType);
+                    for( Whole CurrVert = 0 ; CurrVert < SubMeshInfo.Vertices.VertexCount ; ++CurrVert )
+                        { Buffer.AddVertex( SubMeshInfo.Vertices.Positions[CurrVert], SubMeshInfo.Vertices.Normals[CurrVert], SubMeshInfo.Vertices.UVs[CurrVert] ); }
+
+                    for( Whole CurrIndex = 0 ; CurrIndex < SubMeshInfo.Vertices.IndexCount ; ++CurrIndex )
+                        { Buffer.AddIndex( SubMeshInfo.Vertices.Indices[CurrIndex] ); }
+                    Buffer.EndSection();
+                }
             }
 
             ///////////////////////////////////////////////////////////////////////////////

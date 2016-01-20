@@ -145,6 +145,7 @@
 #include "terrainmanager.h"
 #include "uidgenerator.h"
 #include "worldtrigger.h"
+#include "version.h"
 #endif // no SWIG
 
 #endif // _mezzanine_h

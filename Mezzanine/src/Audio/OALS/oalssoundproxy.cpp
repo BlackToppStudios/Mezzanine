@@ -197,29 +197,23 @@ namespace Mezzanine
                     {
                         Char8 TempBuffer2[OALS_SOURCE_BUFFER_SIZE];
                         UInt32 ActualRead = this->SoundDecoder->ReadAudioData(TempBuffer2,OALS_SOURCE_BUFFER_SIZE - TotalRead);
-                        if(ActualRead > 0)
-                        {
+                        if( ActualRead > 0 ) {
                             memcpy(TempBuffer+TotalRead,TempBuffer2,ActualRead);
                             TotalRead += ActualRead;
-                        }
-                        else if(ActualRead < 0)
-                        {
+                        }else if(ActualRead < 0) {
                             ++ErrorCount;
-                            if(ErrorCount >= 3)
-                            {
+                            if( ErrorCount >= 3 ) {
                                 this->Stop();
-                                break;
+                                return false;
+                                //break;
                             }
-                        }
-                        else if(ActualRead == 0)
-                        {
+                        }else if(ActualRead == 0 ) {
                             if(this->IsLooping()) this->SoundDecoder->SetPosition(0,false);
                             else break;
                         }
                     }
 
-                    if(TotalRead == 0)
-                    {
+                    if( TotalRead == 0 ) {
                         return false;
                     }
                     alBufferData(Buffer,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),TempBuffer,TotalRead,this->SoundDecoder->GetFrequency());
@@ -361,43 +355,45 @@ namespace Mezzanine
                     return false;
 
                 // Setup the buffers for playback
-                if( !this->IsPaused() ) {
-                    UInt32 QueueSize = 0;
-                    /// @todo Currently in this method we iterate over all the sources for each context twice due to the order in which these
-                    /// operations have to be done.  Purge the buffers before refreshing them and making them available to the sources, otherwise
-                    /// audio artifacts may surface.  If this can be refactored more cleanly somehow, it should be done.
-                    for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
-                    {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
-                            this->MakeCurrent( (*CSI).first );
-                            alSourcei((*CSI).second,AL_BUFFER,0);
+                if( !this->IsPlaying() ) {
+                    if( !this->IsPaused() ) {
+                        UInt32 QueueSize = 0;
+                        /// @todo Currently in this method we iterate over all the sources for each context twice due to the order in which these
+                        /// operations have to be done.  Purge the buffers before refreshing them and making them available to the sources, otherwise
+                        /// audio artifacts may surface.  If this can be refactored more cleanly somehow, it should be done.
+                        for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
+                        {
+                            if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                                this->MakeCurrent( (*CSI).first );
+                                alSourcei((*CSI).second,AL_BUFFER,0);
+                            }
+                        }
+                        for( UInt32 BuffIndex = 0 ; BuffIndex < Buffers.size() ; ++BuffIndex )
+                        {
+                            if( this->StreamToBuffer(Buffers[BuffIndex]) ) ++QueueSize;
+                            else return false;
+                        }
+                        for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
+                        {
+                            if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                                this->MakeCurrent( (*CSI).first );
+                                alSourceQueueBuffers((*CSI).second,QueueSize,&Buffers[0]);
+                            }
                         }
                     }
-                    for( UInt32 BuffIndex = 0 ; BuffIndex < Buffers.size() ; ++BuffIndex )
-                    {
-                        if( this->StreamToBuffer(Buffers[BuffIndex]) ) ++QueueSize;
-                        else return false;
-                    }
-                    for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
-                    {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
-                            this->MakeCurrent( (*CSI).first );
-                            alSourceQueueBuffers((*CSI).second,QueueSize,&Buffers[0]);
-                        }
-                    }
-                }
 
-                for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
-                {
-                    if( (*CSI).first != NULL && (*CSI).second != 0 ) {
-                        this->MakeCurrent( (*CSI).first );
-                        alSourcePlay((*CSI).second);
+                    for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
+                    {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            this->MakeCurrent( (*CSI).first );
+                            alSourcePlay((*CSI).second);
+                        }
                     }
+                    // Remove Stopped state if it exists
+                    this->State = ( this->State & ~(OALS::PS_Stopped | OALS::PS_Paused) );
+                    // Add the Playing state
+                    this->State = ( this->State | OALS::PS_Playing );
                 }
-                // Remove Stopped state if it exists
-                this->State = ( this->State & ~(OALS::PS_Stopped | OALS::PS_Paused) );
-                // Add the Playing state
-                this->State = ( this->State | OALS::PS_Playing );
                 return true;
             }
 
@@ -413,6 +409,7 @@ namespace Mezzanine
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
                         if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            this->MakeCurrent( (*CSI).first );
                             alSourcePause((*CSI).second);
                         }
                     }
@@ -430,11 +427,19 @@ namespace Mezzanine
 
             void OALS::SoundProxy::Stop()
             {
-                if( !(this->IsStopped()) ) {
+                if( !this->IsStopped() ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
                         if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            this->MakeCurrent( (*CSI).first );
+                            // Stop the source
                             alSourceStop((*CSI).second);
+                            // Unbind the buffers
+                            Int32 BufferCount;
+                            ALuint TempBuffer;
+                            alGetSourcei((*CSI).second,AL_BUFFERS_PROCESSED,&BufferCount);
+                            for( Int32 BuffIndex = 0 ; BuffIndex < BufferCount ; ++BuffIndex )
+                                { alSourceUnqueueBuffers((*CSI).second,1,&TempBuffer); }
                         }
                     }
                     // Inform the decoder

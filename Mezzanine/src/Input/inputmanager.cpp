@@ -190,7 +190,7 @@ namespace Mezzanine
             this->DeviceUpdateWork = new DeviceUpdateWorkUnit(this);
         }
 
-        InputManager::InputManager(XML::Node& XMLNode) :
+        InputManager::InputManager(const XML::Node& XMLNode) :
             IMID(NULL),
             SystemMouse(NULL),
             SystemKeyboard(NULL),
@@ -359,7 +359,7 @@ namespace Mezzanine
         ManagerBase::ManagerType DefaultInputManagerFactory::GetManagerType() const
             { return InputManager::InterfaceType; }
 
-        EntresolManager* DefaultInputManagerFactory::CreateManager(NameValuePairList& Params)
+        EntresolManager* DefaultInputManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( InputManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -367,7 +367,7 @@ namespace Mezzanine
             }else return new InputManager();
         }
 
-        EntresolManager* DefaultInputManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultInputManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( InputManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.

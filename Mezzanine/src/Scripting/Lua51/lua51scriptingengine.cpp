@@ -436,7 +436,7 @@ namespace Mezzanine
                 OpenLibraries(LibrariesToOpen);
             }
 
-            Lua51ScriptingEngine::Lua51ScriptingEngine(NameValuePairList& Params) : State(luaL_newstate())
+            Lua51ScriptingEngine::Lua51ScriptingEngine(const NameValuePairList& Params) : State(luaL_newstate())
             {
                 CheckLuaStateAfterConstruction();
                 Integer ToLoad = NoLib;
@@ -444,7 +444,7 @@ namespace Mezzanine
                     { ToLoad = DefaultLibs; }
                 else
                 {
-                    for(NameValuePairList::iterator Iter = Params.begin(); Params.end() != Iter; Iter++ )
+                    for(NameValuePairList::const_iterator Iter = Params.begin(); Params.end() != Iter; Iter++ )
                     {
                         Lua51Libraries Lib( GetLibFromName(Iter->first) );
                         String LoadState(Iter->second);
@@ -904,10 +904,10 @@ namespace Mezzanine
             ManagerBase::ManagerType Lua51ScriptingEngineFactory::GetManagerType() const
                 { return Lua51ScriptingEngine::InterfaceType; }
 
-            EntresolManager* Lua51ScriptingEngineFactory::CreateManager(NameValuePairList& Params)
+            EntresolManager* Lua51ScriptingEngineFactory::CreateManager(const NameValuePairList& Params)
                 { return new Lua51ScriptingEngine(Params); }
 
-            EntresolManager* Lua51ScriptingEngineFactory::CreateManager(XML::Node& XMLNode)
+            EntresolManager* Lua51ScriptingEngineFactory::CreateManager(const XML::Node& XMLNode)
                 { return new Lua51ScriptingEngine(XMLNode); }
 
             void Lua51ScriptingEngineFactory::DestroyManager(EntresolManager* ToBeDestroyed)

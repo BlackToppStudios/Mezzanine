@@ -62,17 +62,11 @@ namespace Mezzanine
             /// @brief This is a shared pointer to the stream being decoded.
             Resource::DataStreamPtr WavStream;
             /// @internal
-            /// @brief Tracks and stores the validity of the Wav stream.
-            Boole Valid;
+            /// @brief This is used to cache the total size of the stream used by this decoder.
+            Integer WavStreamSize;
             /// @internal
-            /// @brief The number of channels in this wav file.
-            UInt16 Channels;
-            /// @internal
-            /// @brief The byte alignment of the waveform data in this wav file.
-            UInt16 BlockAlign;
-            /// @internal
-            /// @brief The size of each sample in this wav file.
-            UInt16 BitsPerSample;
+            /// @brief This is used to cache the current stream position for this decoder.
+            Integer WavStreamPos;
             /// @internal
             /// @brief The frequency of the wav file.
             Int32 SampleRate;
@@ -85,6 +79,25 @@ namespace Mezzanine
             /// @internal
             /// @brief The start point of the audio in the wav file.
             Int32 DataOffset;
+            /// @internal
+            /// @brief The number of channels in this wav file.
+            UInt16 Channels;
+            /// @internal
+            /// @brief The byte alignment of the waveform data in this wav file.
+            UInt16 BlockAlign;
+            /// @internal
+            /// @brief The size of each sample in this wav file.
+            UInt16 BitsPerSample;
+            /// @internal
+            /// @brief Tracks and stores the validity of the Wav stream.
+            Boole Valid;
+
+            /// @copydoc iDecoder::ClearStreamErrors()
+            void ClearStreamErrors();
+            /// @internal
+            /// @brief Reads the metadata at the start of a Wav stream and saves it.
+            /// @param Stream The Wav stream to read metadata from.
+            void ReadWavMetaData(Resource::DataStreamPtr Stream);
         public:
             /// @brief Class constructor.
             /// @param Stream The stream to decode.
@@ -96,41 +109,43 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc iDecoder::IsValid()
-            virtual Boole IsValid();
+            Boole IsValid();
             /// @copydoc iDecoder::GetEncoding() const
-            virtual Audio::Encoding GetEncoding() const;
+            Audio::Encoding GetEncoding() const;
             /// @copydoc iDecoder::IsSeekingSupported()
-            virtual Boole IsSeekingSupported();
+            Boole IsSeekingSupported();
             /// @copydoc iDecoder::GetBitConfiguration() const
-            virtual Audio::BitConfig GetBitConfiguration() const;
+            Audio::BitConfig GetBitConfiguration() const;
             /// @copydoc iDecoder::GetFrequency() const
-            virtual UInt32 GetFrequency() const;
+            UInt32 GetFrequency() const;
             /// @copydoc iDecoder::GetStream() const
-            virtual Resource::DataStreamPtr GetStream() const;
+            Resource::DataStreamPtr GetStream() const;
+            /// @copydoc iDecoder::IsEndOfStream() const
+            Boole IsEndOfStream() const;
 
-            /// @copydoc iDecoder::SetPosition(Int32 Position, Boole Relative)
-            virtual Boole SetPosition(Int32 Position, Boole Relative);
-            /// @copydoc iDecoder::Seek(const Real Seconds, Boole Relative)
-            virtual Boole Seek(const Real Seconds, Boole Relative);
+            /// @copydoc iDecoder::SetPosition(Int32, const Boole)
+            Boole SetPosition(Int32 Position, const Boole Relative);
+            /// @copydoc iDecoder::Seek(const Real, const Boole)
+            Boole Seek(const Real Seconds, const Boole Relative);
 
-            /// @copydoc iDecoder::ReadAudioData(void* Output, UInt32 Amount)
-            virtual UInt32 ReadAudioData(void* Output, UInt32 Amount);
+            /// @copydoc iDecoder::ReadAudioData(void*, UInt32)
+            UInt32 ReadAudioData(void* Output, UInt32 Amount);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Stats
 
             /// @copydoc iDecoder::GetTotalTime() const
-            virtual Real GetTotalTime() const;
+            Real GetTotalTime() const;
             /// @copydoc iDecoder::GetCurrentTime() const
-            virtual Real GetCurrentTime() const;
+            Real GetCurrentTime() const;
             /// @copydoc iDecoder::GetTotalSize() const
-            virtual UInt32 GetTotalSize() const;
+            UInt32 GetTotalSize() const;
             /// @copydoc iDecoder::GetCompressedSize() const
-            virtual UInt32 GetCompressedSize() const;
+            UInt32 GetCompressedSize() const;
             /// @copydoc iDecoder::GetCurrentPosition() const
-            virtual UInt32 GetCurrentPosition() const;
+            UInt32 GetCurrentPosition() const;
             /// @copydoc iDecoder::GetCurrentCompressedPosition() const
-            virtual UInt32 GetCurrentCompressedPosition() const;
+            UInt32 GetCurrentCompressedPosition() const;
         };//WavDecoder
     }//Audio
 }//Mezzanine

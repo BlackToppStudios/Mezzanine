@@ -56,11 +56,21 @@
 namespace
 {
     /// @internal
+    /// @brief Convenience method to check for and clear EoF flags that may be encountered during decoding.
+    void ClearEoF(Mezzanine::Resource::DataStream* Stream)
+    {
+        if( Stream->eof() ) {
+            Stream->clear( Stream->rdstate() ^ ( std::ios::eofbit | std::ios::failbit ) );
+        }
+    }
+
+    /// @internal
     /// @brief The Vorbis read callback.
     size_t VorbisRead(void *ptr, size_t byteSize,size_t sizeToRead, void *datasource)
     {
         Mezzanine::Resource::DataStream* Stream = static_cast<Mezzanine::Resource::DataStream*>(datasource);
-        return Stream->Read(ptr,byteSize * sizeToRead);
+        Stream->read( static_cast<char*>(ptr), byteSize * sizeToRead );
+        return Stream->gcount();
     }
 
     /// @internal
@@ -68,20 +78,23 @@ namespace
     int VorbisSeek(void *datasource,ogg_int64_t offset,int whence)
     {
         Mezzanine::Resource::DataStream* Stream = static_cast<Mezzanine::Resource::DataStream*>(datasource);
+        ClearEoF(Stream);
         switch(whence)
         {
-            case SEEK_SET:    Stream->SetStreamPosition(offset, Mezzanine::Resource::SO_Beginning);  break;
-            case SEEK_CUR:    Stream->SetStreamPosition(offset, Mezzanine::Resource::SO_Current);    break;
-            case SEEK_END:    Stream->SetStreamPosition(offset, Mezzanine::Resource::SO_End);        break;
+            case SEEK_SET:    Stream->seekg(offset,std::ios_base::beg);    break;
+            case SEEK_CUR:    Stream->seekg(offset,std::ios_base::cur);    break;
+            case SEEK_END:    Stream->seekg(offset,std::ios_base::end);    break;
         };
-        return 0;
+        return ( Stream->good() ? 0 : -1 );
     }
 
     /// @internal
     /// @brief The Vorbis tell callback (retrieve position).
     long VorbisTell(void *datasource)
     {
-        return static_cast<Mezzanine::Resource::DataStream*>(datasource)->GetStreamPosition();
+        Mezzanine::Resource::DataStream* Stream = static_cast<Mezzanine::Resource::DataStream*>(datasource);
+        ClearEoF(Stream);
+        return Stream->tellg();
     }
 
     /// @internal
@@ -123,33 +136,47 @@ namespace Mezzanine
             /// @brief Class constructor.
             VorbisDecoderInternalData()
             {
-                VorbisCallbacks.read_func = VorbisRead;
-                VorbisCallbacks.seek_func = VorbisSeek;
-                VorbisCallbacks.tell_func = VorbisTell;
-                VorbisCallbacks.close_func = VorbisClose;
+                this->VorbisCallbacks.read_func = VorbisRead;
+                this->VorbisCallbacks.seek_func = VorbisSeek;
+                this->VorbisCallbacks.tell_func = VorbisTell;
+                this->VorbisCallbacks.close_func = VorbisClose;
             }
             /// @brief Class destructor.
             ~VorbisDecoderInternalData() {  }
         };//VorbisDecoderInternalData
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // VorbisDecoder Methods
 
-        VorbisDecoder::VorbisDecoder(Resource::DataStreamPtr Stream)
-            : VorbisStream(Stream),
-              Valid(false)
+        VorbisDecoder::VorbisDecoder(Resource::DataStreamPtr Stream) :
+            VorbisStream(Stream),
+            VorbisStreamSize(0),
+            VorbisStreamPos(0),
+            Valid(false)
         {
+            this->VorbisStream->seekg(0,std::ios_base::end);
+            this->VorbisStreamSize = this->VorbisStream->tellg();
+            this->VorbisStream->seekg(0);
             this->VDID = new VorbisDecoderInternalData();
             this->Valid = ( ov_open_callbacks(VorbisStream.get(),&(this->VDID->VorbisFile),NULL,0,this->VDID->VorbisCallbacks) == 0 );
 
-            if( this->Valid )
-            {
+            if( this->Valid ) {
                 this->VDID->VorbisInfo = ov_info( &(this->VDID->VorbisFile), -1 );
                 this->VDID->VorbisComments = ov_comment( &(this->VDID->VorbisFile), -1 );
+                this->VorbisStreamPos = this->VorbisStream->tellg();
             }
         }
 
         VorbisDecoder::~VorbisDecoder()
         {
             ov_clear( &(this->VDID->VorbisFile) );
+        }
+
+        void VorbisDecoder::ClearStreamErrors()
+        {
+            if( this->VorbisStream->eof() ) {
+                this->VorbisStream->clear( this->VorbisStream->rdstate() ^ ( std::ios::eofbit | std::ios::failbit ) );
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -188,8 +215,7 @@ namespace Mezzanine
 
         Audio::BitConfig VorbisDecoder::GetBitConfiguration() const
         {
-            if( this->Valid )
-            {
+            if( this->Valid ) {
                 switch( this->VDID->VorbisInfo->channels )
                 {
                     case 1:  return Audio::BC_16Bit_Mono;    break;
@@ -211,29 +237,44 @@ namespace Mezzanine
             return this->VorbisStream;
         }
 
-        Boole VorbisDecoder::SetPosition(Int32 Position, Boole Relative)
+        Boole VorbisDecoder::IsEndOfStream() const
         {
-            if( this->IsSeekingSupported() )
-            {
+            return ( this->VorbisStream->eof() || this->VorbisStream->tellg() >= this->VorbisStreamSize );
+        }
+
+        Boole VorbisDecoder::SetPosition(Int32 Position, const Boole Relative)
+        {
+            if( this->IsSeekingSupported() ) {
                 if( Relative ) {
                     Real CurrPos = ov_raw_tell( &(this->VDID->VorbisFile) );
-                    return ( ov_raw_seek( &(this->VDID->VorbisFile), CurrPos + Position ) == 0 );
+                    if( ov_raw_seek( &(this->VDID->VorbisFile), CurrPos + Position ) == 0 ) {
+                        this->VorbisStreamPos = this->VorbisStream->tellg();
+                        return true;
+                    }
                 }else{
-                    return ( ov_raw_seek( &(this->VDID->VorbisFile), Position ) == 0 );
+                    if( ov_raw_seek( &(this->VDID->VorbisFile), Position ) == 0 ) {
+                        this->VorbisStreamPos = this->VorbisStream->tellg();
+                        return true;
+                    }
                 }
             }
             return false;
         }
 
-        Boole VorbisDecoder::Seek(const Real Seconds, Boole Relative)
+        Boole VorbisDecoder::Seek(const Real Seconds, const Boole Relative)
         {
-            if( this->IsSeekingSupported() )
-            {
+            if( this->IsSeekingSupported() ) {
                 if( Relative ) {
                     Real CurrTime = ov_time_tell( &(this->VDID->VorbisFile) );
-                    return ( ov_time_seek( &(this->VDID->VorbisFile), CurrTime + Seconds ) == 0 );
+                    if( ov_time_seek( &(this->VDID->VorbisFile), CurrTime + Seconds ) == 0 ) {
+                        this->VorbisStreamPos = this->VorbisStream->tellg();
+                        return true;
+                    }
                 }else{
-                    return ( ov_time_seek( &(this->VDID->VorbisFile), Seconds ) == 0 );
+                    if( ov_time_seek( &(this->VDID->VorbisFile), Seconds ) == 0 ) {
+                        this->VorbisStreamPos = this->VorbisStream->tellg();
+                        return true;
+                    }
                 }
             }
             return false;
@@ -242,9 +283,14 @@ namespace Mezzanine
         UInt32 VorbisDecoder::ReadAudioData(void* Output, UInt32 Amount)
         {
             if( this->Valid ) {
+                if( this->VorbisStreamPos != this->VorbisStream->tellg() ) {
+                    this->ClearStreamErrors();
+                    this->VorbisStream->seekg( this->VorbisStreamPos );
+                }
                 Integer Temp = 0;
                 Integer Ret = ov_read( &(this->VDID->VorbisFile), (Char8*)Output, Amount, 0, 2, 1, &Temp );
-                return Ret;
+                this->VorbisStreamPos = this->VorbisStream->tellg();
+                return ( Ret > 0 ? Ret : 0 );
             }else{
                 return 0;
             }
@@ -254,34 +300,22 @@ namespace Mezzanine
         // Stream Stats
 
         Real VorbisDecoder::GetTotalTime() const
-        {
-            return ov_time_total( &(this->VDID->VorbisFile), -1 );
-        }
+            { return ov_time_total( &(this->VDID->VorbisFile), -1 ); }
 
         Real VorbisDecoder::GetCurrentTime() const
-        {
-            return ov_time_tell( &(this->VDID->VorbisFile) );
-        }
+            { return ov_time_tell( &(this->VDID->VorbisFile) ); }
 
         UInt32 VorbisDecoder::GetTotalSize() const
-        {
-            return ov_pcm_total( &(this->VDID->VorbisFile), -1 ) * this->VDID->VorbisInfo->channels;
-        }
+            { return ov_pcm_total( &(this->VDID->VorbisFile), -1 ) * this->VDID->VorbisInfo->channels; }
 
         UInt32 VorbisDecoder::GetCompressedSize() const
-        {
-            return ov_raw_total( &(this->VDID->VorbisFile), -1 );
-        }
+            { return ov_raw_total( &(this->VDID->VorbisFile), -1 ); }
 
         UInt32 VorbisDecoder::GetCurrentPosition() const
-        {
-            return ov_pcm_tell( &(this->VDID->VorbisFile) ) * this->VDID->VorbisInfo->channels;
-        }
+            { return ov_pcm_tell( &(this->VDID->VorbisFile) ) * this->VDID->VorbisInfo->channels; }
 
         UInt32 VorbisDecoder::GetCurrentCompressedPosition() const
-        {
-            return ov_raw_tell( &(this->VDID->VorbisFile) );
-        }
+            { return ov_raw_tell( &(this->VDID->VorbisFile) ); }
     }//Audio
 }//Mezzanine
 

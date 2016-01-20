@@ -38,13 +38,12 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkhttpresponse_h
 #define _networkhttpresponse_h
 
-#include "datatypes.h"
+#include "version.h"
 #include "Network/networkenumerations.h"
+#include "Network/httpmessage.h"
 
 namespace Mezzanine
 {
@@ -54,39 +53,85 @@ namespace Mezzanine
         /// @class HTTPResponse
         /// @brief
         ///////////////////////////////////////
-        class MEZZ_LIB HTTPResponse
+        class MEZZ_LIB HTTPResponse : public HTTPMessage
         {
         protected:
+            /// @internal
+            /// @brief The HTTP method to use for the response.
+            Whole ResponseCode;
+            /// @internal
+            /// @brief The textual message delivered to explain the status code.
+            String ResponseDescription;
+
+            /// @copydoc HTTPMessage::ParseHTTPHeader(StringIterator&,const StringIterator)
+            Boole ParseHTTPHeader(StringIterator& CurrIt, const StringIterator EndIt);
         public:
             /// @brief Class constructor.
             HTTPResponse();
+            /// @brief String constructor.
+            /// @param ToDecompose The String to construct this response from.
+            HTTPResponse(const String& ToDecompose);
             /// @brief Class destructor.
             ~HTTPResponse();
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Core Operations
+
+            /// @copydoc HTTPMessage::Compose() const
+            String Compose() const;
+            /// @copydoc HTTPMessage::Decompose(const String&)
+            Boole Decompose(const String& Response);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Sets both the major and minor version of the request.
-            /// @param Major The major portion of the version to set.
-            /// @param Minor The minor portion of the version to set.
-            void SetHTTPVersion(const UInt16 Major, const UInt16 Minor);
+            /// @brief Sets the status code explaining the result of a HTTP request.
+            /// @param Code The HTTP status code representing the manner of response to a previous HTTP request.
+            void SetStatusCode(const Whole Code);
+            /// @brief Gets the status code explaining the result of a HTTP request.
+            /// @return Returns a HTTPStatusCode enum value explaining the result of a previous HTTP request.
+            Whole GetStatusCode() const;
 
-            /// @brief Sets the major version of the request.
-            /// @param Major The major portion of the version to set.
-            void SetHTTPMajorVersion(const UInt16 Major);
-            /// @brief Gets the major version of the request.
-            /// @return Returns the major component of this requests version.
-            UInt16 GetHTTPMajorVersion() const;
-            /// @brief Sets the minor version of the request.
-            /// @param Minor The minor portion of the version to set.
-            void SetHTTPMinorVersion(const UInt16 Minor);
-            /// @brief Gets the minor version of the request.
-            /// @return Returns the minor component of this requests version.
-            UInt16 GetHTTPMinorVersion() const;
+            /// @brief Sets the textual description to explain the status code contained in the response.
+            /// @param Message A String to explain the provided status code.
+            void SetResponseDescription(const String& Message);
+            /// @brief Gets the textual description to explain the status code contained in the response.
+            /// @return Returns a String containing the description of the status code.
+            const String& GetResponseDescription() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Recommended Header Field Convenience Methods
+
+            /// @brief Sets the Allow Header.
+            /// @remarks This header is required to be defined in a response when the server responds with "405 Method not allowed".
+            /// @param Allow A comma separated list of HTTP methods that are allowed to be performed on the on the resource located on the responding server.
+            void SetAllowHeader(const String& Allow);
+            /// @brief Gets the Allow Header.
+            /// @return Returns a String containing a comma separated list of supported HTTP methods allowed to be used on the specified resource, or blank if the field is not set.
+            const String& GetAllowHeader() const;
+            /// @brief Sets the Content-Encoding Header.
+            /// @remarks This header is required if any kind of encoding is performed on the message body of the response.
+            /// @param ContentEncoding A description of the encoding used on the message body if it were encoded/compressed.
+            void SetContentEncodingHeader(const String& ContentEncoding);
+            /// @brief Gets the Content-Encoding Header.
+            /// @return Returns a String containing a description of the encoding used on the message body if it were encoded/compressed, or blank if the field is not set.
+            const String& GetContentEncodingHeader() const;
+            /// @brief Sets the Date Header.
+            /// @remarks A server must provide a Date header if it is capable of providing a reasonable approximation of the actual time.
+            /// @param Date The time and date of when the server processed the request in UTC.
+            void SetDateHeader(const String& Date);
+            /// @brief Gets the Date Header.
+            /// @return Returns a String containing the time and date of when the server processed the request in UTC, or blank if the field is not set.
+            const String& GetDateHeader() const;
+            /// @brief Sets the Server Header.
+            /// @remarks An optional but widely used header field to describe what software is running on the server.
+            /// @param Server Information on the platform/server being used by the server.
+            void SetServerHeader(const String& Server);
+            /// @brief Gets the Server Header.
+            /// @return Returns a String containing information on the platform/server being used by the server, or blank if the field is not set.
+            const String& GetServerHeader() const;
         };//HTTPResponse
     }//Network
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

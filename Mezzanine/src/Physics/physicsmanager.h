@@ -408,7 +408,7 @@ namespace Mezzanine
             PhysicsManager(World* Creator, const ManagerConstructionInfo& Info);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            PhysicsManager(World* Creator, XML::Node& XMLNode);
+            PhysicsManager(World* Creator, const XML::Node& XMLNode);
             /// @brief Class destructor.
             virtual ~PhysicsManager();
 
@@ -887,10 +887,10 @@ namespace Mezzanine
             /// @copydoc ManagerFactory::GetManagerType() const
             ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc WorldManagerFactory::CreateManager(World*, NameValuePairList&)
-            WorldManager* CreateManager(World* Creator, NameValuePairList& Params);
-            /// @copydoc WorldManagerFactory::CreateManager(World*, XML::Node&)
-            WorldManager* CreateManager(World* Creator, XML::Node& XMLNode);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, const NameValuePairList&)
+            WorldManager* CreateManager(World* Creator, const NameValuePairList& Params);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, const XML::Node&)
+            WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode);
             /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
             void DestroyManager(WorldManager* ToBeDestroyed);
         };//DefaultPhysicsManagerFactory

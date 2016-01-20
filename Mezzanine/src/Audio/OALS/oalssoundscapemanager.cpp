@@ -115,7 +115,7 @@ namespace Mezzanine
                 this->Contexts.resize(OALS_MAX_LISTENERS_PER_MANAGER,NULL);
             }
 
-            SoundScapeManager::SoundScapeManager(World* Creator, XML::Node& XMLNode) :
+            SoundScapeManager::SoundScapeManager(World* Creator, const XML::Node& XMLNode) :
                 Audio::SoundScapeManager(Creator),
                 BufferUpdate3DWork(NULL),
                 ThreadResources(NULL)

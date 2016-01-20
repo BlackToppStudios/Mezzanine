@@ -157,7 +157,7 @@ namespace Mezzanine
                 this->EffectFilterCleanWork = new EffectFilterCleanWorkUnit(this);
             }
 
-            OALS::AudioManager::AudioManager(XML::Node& XMLNode) :
+            OALS::AudioManager::AudioManager(const XML::Node& XMLNode) :
                 InternalDevice(NULL),
                 NonSpacialContext(NULL),
                 EffHandler(NULL),

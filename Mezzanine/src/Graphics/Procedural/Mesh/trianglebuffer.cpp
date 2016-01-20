@@ -102,32 +102,65 @@ namespace Mezzanine
                     { this->Vertices.push_back( *VertIt ); }
             }
 
+            void TriangleBuffer::AppendBufferAsSection(const TriangleBuffer& Other, const String& MatName, const String& MatGroup, const Whole RenderOp)
+            {
+                this->BeginSection(MatName,MatGroup,RenderOp);
+                this->AppendBuffer(Other);
+                this->EndSection();
+            }
+
             Mesh* TriangleBuffer::GenerateMesh(const String& MeshName, const String& MeshGroup, const String& MatName, const String& MatGroup) const
             {
                 Ogre::ManualObject* TempMan = new Ogre::ManualObject("TempMan");
-                TempMan->begin(MatName,Ogre::RenderOperation::OT_TRIANGLE_LIST,MatGroup);
 
             #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
                 Ogre::Vector3 aabb_min = Ogre::Vector3::ZERO;
                 Ogre::Vector3 aabb_max = Ogre::Vector3::ZERO;
             #endif
-                for( ConstVertexIterator it = this->Vertices.begin() ; it != this->Vertices.end() ; ++it )
-                {
-                    TempMan->position( it->Position.GetOgreVector3() );
-                    TempMan->textureCoord( it->UV.GetOgreVector2() );
-                    TempMan->normal( it->Normal.GetOgreVector3() );
-            #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
-                    if( it->Position.X < aabb_min.X ) aabb_min.X = it->Position.X;
-                    if( it->Position.Y < aabb_min.Y ) aabb_min.Y = it->Position.Y;
-                    if( it->Position.Z < aabb_min.Z ) aabb_min.Z = it->Position.Z;
-                    if( it->Position.X > aabb_max.X ) aabb_max.X = it->Position.X;
-                    if( it->Position.Y > aabb_max.Y ) aabb_max.Y = it->Position.Y;
-                    if( it->Position.Z > aabb_max.Z ) aabb_max.z = it->Position.Z;
-            #endif
+                if( this->IsUsingSections() ) {
+                    for( ConstSectionIterator SectIt = this->Sections.begin() ; SectIt != this->Sections.end() ; ++SectIt )
+                    {
+                        TempMan->begin( (*SectIt).MaterialName, Ogre::RenderOperation::OT_TRIANGLE_LIST, (*SectIt).MaterialGroup );
+                        const ConstVertexIterator VertEndIt = this->Vertices.begin() + (*SectIt).LastVertex;
+                        for( ConstVertexIterator VertIt = this->Vertices.begin() + (*SectIt).FirstVertex ; VertIt != VertEndIt ; ++VertIt )
+                        {
+                            TempMan->position( VertIt->Position.GetOgreVector3() );
+                            TempMan->textureCoord( VertIt->UV.GetOgreVector2() );
+                            TempMan->normal( VertIt->Normal.GetOgreVector3() );
+                        #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
+                            if( VertIt->Position.X < aabb_min.X ) aabb_min.X = it->Position.X;
+                            if( VertIt->Position.Y < aabb_min.Y ) aabb_min.Y = it->Position.Y;
+                            if( VertIt->Position.Z < aabb_min.Z ) aabb_min.Z = it->Position.Z;
+                            if( VertIt->Position.X > aabb_max.X ) aabb_max.X = it->Position.X;
+                            if( VertIt->Position.Y > aabb_max.Y ) aabb_max.Y = it->Position.Y;
+                            if( VertIt->Position.Z > aabb_max.Z ) aabb_max.z = it->Position.Z;
+                        #endif
+                        }
+                        const ConstIndexIterator IndicEndIt = this->Indices.begin() + (*SectIt).LastIndex;
+                        for( ConstIndexIterator IndicIt = this->Indices.begin() + (*SectIt).FirstIndex ; IndicIt != IndicEndIt ; ++IndicIt )
+                            { TempMan->index( *IndicIt ); }
+                        TempMan->end();
+                    }
+                }else{
+                    TempMan->begin(MatName,Ogre::RenderOperation::OT_TRIANGLE_LIST,MatGroup);
+                    for( ConstVertexIterator VertIt = this->Vertices.begin() ; VertIt != this->Vertices.end() ; ++VertIt )
+                    {
+                        TempMan->position( VertIt->Position.GetOgreVector3() );
+                        TempMan->textureCoord( VertIt->UV.GetOgreVector2() );
+                        TempMan->normal( VertIt->Normal.GetOgreVector3() );
+                    #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
+                        if( VertIt->Position.X < aabb_min.X ) aabb_min.X = it->Position.X;
+                        if( VertIt->Position.Y < aabb_min.Y ) aabb_min.Y = it->Position.Y;
+                        if( VertIt->Position.Z < aabb_min.Z ) aabb_min.Z = it->Position.Z;
+                        if( VertIt->Position.X > aabb_max.X ) aabb_max.X = it->Position.X;
+                        if( VertIt->Position.Y > aabb_max.Y ) aabb_max.Y = it->Position.Y;
+                        if( VertIt->Position.Z > aabb_max.Z ) aabb_max.z = it->Position.Z;
+                    #endif
+                    }
+                    for( ConstIndexIterator IndIt = this->Indices.begin() ; IndIt != this->Indices.end() ; ++IndIt )
+                        { TempMan->index( *IndIt ); }
+                    TempMan->end();
                 }
-                for( ConstIndexIterator it = this->Indices.begin() ; it != this->Indices.end() ; ++it )
-                    { TempMan->index(*it); }
-                TempMan->end();
             #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
                 TempMan->setLocalAabb( Ogre::Aabb::newFromExtents(aabb_min,aabb_max) );
             #endif
@@ -151,6 +184,12 @@ namespace Mezzanine
             void TriangleBuffer::RebaseOffset()
                 { this->GlobalOffset = Vertices.size(); }
 
+            TriangleBuffer::SectionContainer& TriangleBuffer::GetSections()
+                { return this->Sections; }
+
+            const TriangleBuffer::SectionContainer& TriangleBuffer::GetSections() const
+                { return this->Sections; }
+
             VertexContainer& TriangleBuffer::GetVertices()
                 { return this->Vertices; }
 
@@ -166,37 +205,46 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Section Utility
 
-            BufferSection TriangleBuffer::BeginSection(const String& SectName)
+            void TriangleBuffer::BeginSection(const String& MatName, const String& MatGroup, const Whole RenderOp)
             {
+                // Close any sections we may be working on.
+                this->EndSection();
+                // If this check succeeds then we have no sections and are starting a new one with data that needs to be in a section.
+                if( this->Sections.empty() && !this->Vertices.empty() ) {
+                    this->CurrentSection.FirstIndex = 0;
+                    this->CurrentSection.FirstVertex = 0;
+                    this->CurrentSection.RenderOp = Graphics::RO_TriangleList;
+                    this->CurrentSection.LastIndex = this->Indices.size() - 1;
+                    this->CurrentSection.LastVertex = this->Vertices.size() - 1;
+
+                    this->Sections.push_back( this->CurrentSection );
+                    this->CurrentSection.Clear();
+                }
+
                 this->RebaseOffset();
-                BufferSection Sect;
-                Sect.SectionName = SectName;
-                Sect.FirstIndex = this->Indices.size();
-                Sect.FirstVertex = this->Vertices.size();
-                Sect.Buffer = this;
-                return Sect;
+                this->CurrentSection.FirstIndex = this->Indices.size();
+                this->CurrentSection.FirstVertex = this->Vertices.size();
+                this->CurrentSection.RenderOp = RenderOp;
+                this->CurrentSection.MaterialName = MatName;
+                this->CurrentSection.MaterialGroup = MatGroup;
             }
 
-            void TriangleBuffer::EndSection(BufferSection& Sect)
+            void TriangleBuffer::EndSection()
             {
-                Sect.LastIndex = this->Indices.size() - 1;
-                Sect.LastVertex = this->Vertices.size() - 1;
-                if( Sect.SectionName != "" ) {
-                    this->Sections[Sect.SectionName] = Sect;
+                if( this->IsWorkingOnSection() ) {
+                    this->CurrentSection.LastIndex = this->Indices.size() - 1;
+                    this->CurrentSection.LastVertex = this->Vertices.size() - 1;
+
+                    this->Sections.push_back( this->CurrentSection );
+                    this->CurrentSection.Clear();
                 }
             }
 
-            BufferSection TriangleBuffer::GetFullSection(const String& SectName)
-            {
-                BufferSection Sect;
-                Sect.FirstIndex = 0;
-                Sect.LastIndex = this->Indices.size() - 1;
-                Sect.FirstVertex = 0;
-                Sect.LastVertex = this->Vertices.size() - 1;
-                Sect.SectionName = SectName;
-                Sect.Buffer = this;
-                return Sect;
-            }
+            Boole TriangleBuffer::IsUsingSections() const
+                { return ( !this->Sections.empty() || this->IsWorkingOnSection() ); }
+
+            Boole TriangleBuffer::IsWorkingOnSection() const
+                { return ( this->CurrentSection.FirstVertex != 0 && this->CurrentSection.FirstIndex != 0 ); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Vertex Management

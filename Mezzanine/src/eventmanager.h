@@ -189,7 +189,7 @@ namespace Mezzanine
         EventManager();
         /// @brief XML constructor.
         /// @param XMLNode The node of the xml document to construct from.
-        EventManager(XML::Node& XMLNode);
+        EventManager(const XML::Node& XMLNode);
         /// @brief Default Deconstructor.
         virtual ~EventManager();
 
@@ -430,10 +430,10 @@ namespace Mezzanine
         /// @copydoc ManagerFactory::GetManagerType() const
         ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&)
-        EntresolManager* CreateManager(NameValuePairList& Params);
-        /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&)
-        EntresolManager* CreateManager(XML::Node& XMLNode);
+        /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+        EntresolManager* CreateManager(const NameValuePairList& Params);
+        /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+        EntresolManager* CreateManager(const XML::Node& XMLNode);
         /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
         void DestroyManager(EntresolManager* ToBeDestroyed);
     };//DefaultEventManagerFactory

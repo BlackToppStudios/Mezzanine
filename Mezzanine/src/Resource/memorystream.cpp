@@ -52,7 +52,6 @@ namespace Mezzanine
 {
     namespace Resource
     {
-#ifdef USENEWDATASTREAM
         ///////////////////////////////////////////////////////////////////////////////
         // MemoryStreamBuffer Methods
 
@@ -312,17 +311,21 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // MemoryStream Methods
 
-        MemoryStream::MemoryStream()
-            { this->init(&this->Buffer); }
+        MemoryStream::MemoryStream() :
+            IOStream(&this->Buffer)
+            { /*this->init(&this->Buffer);*/ }
 
-        MemoryStream::MemoryStream(const Whole BufferSize, const Whole Mode)
-            { this->init(&this->Buffer);  this->CreateBuffer(BufferSize,Mode); }
+        MemoryStream::MemoryStream(const Whole BufferSize, const Whole Mode) :
+            IOStream(&this->Buffer)
+            { /*this->init(&this->Buffer);*/  this->CreateBuffer(BufferSize,Mode); }
 
-        MemoryStream::MemoryStream(const void* Buffer, const Whole BufferSize, const Whole Mode)
-            { this->init(&this->Buffer);  this->CopyBuffer(Buffer,BufferSize,Mode); }
+        MemoryStream::MemoryStream(const void* Buffer, const Whole BufferSize, const Whole Mode) :
+            IOStream(&this->Buffer)
+            { /*this->init(&this->Buffer);*/  this->CopyBuffer(Buffer,BufferSize,Mode); }
 
-        MemoryStream::MemoryStream(void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Mode)
-            { this->init(&this->Buffer);  this->SetBuffer(Buffer,BufferSize,FreeAfter,Mode); }
+        MemoryStream::MemoryStream(void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Mode) :
+            IOStream(&this->Buffer)
+            { /*this->init(&this->Buffer);*/  this->SetBuffer(Buffer,BufferSize,FreeAfter,Mode); }
 
         MemoryStream::~MemoryStream()
             {  }
@@ -356,198 +359,6 @@ namespace Mezzanine
 
         StreamSize MemoryStream::GetSize() const
             { return this->Buffer.GetBufferSize(); }
-#else //USENEWDATASTREAM
-        MemoryStream::MemoryStream(const size_t& BufferSize, Boole FreeOnClose, Boole ReadOnly) :
-            DataStream( ReadOnly ? DataStream::SF_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
-            FreeBuffer(FreeOnClose)
-        {
-            this->Size = BufferSize;
-            this->BufferStart = new UInt8[BufferSize];
-            this->BufferPos = BufferStart;
-            this->BufferEnd = BufferStart + BufferSize;
-
-            if( BufferEnd <= BufferStart ) {
-                MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
-            }
-        }
-
-        MemoryStream::MemoryStream(void* Buffer, const size_t& BufferSize, Boole FreeOnClose, Boole ReadOnly) :
-            DataStream( ReadOnly ? DataStream::SF_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
-            FreeBuffer(FreeOnClose)
-        {
-            this->BufferStart = BufferPos = static_cast<UInt8*>(Buffer);
-            this->Size = BufferSize;
-            this->BufferEnd = BufferStart + BufferSize;
-
-            if( BufferEnd <= BufferStart ) {
-                MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
-            }
-        }
-
-        MemoryStream::~MemoryStream()
-            { this->Close(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        UInt8* MemoryStream::GetBufferStart() const
-            { return this->BufferStart; }
-
-        UInt8* MemoryStream::GetBufferPosition() const
-            { return this->BufferPos; }
-
-        UInt8* MemoryStream::GetBufferEnd() const
-            { return this->BufferEnd; }
-
-        void MemoryStream::SetFreeOnClose(Boole FreeOnClose)
-            { this->FreeBuffer = FreeOnClose; }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Stream Access and Manipulation
-
-        size_t MemoryStream::Read(void* Buffer, const size_t& Count)
-        {
-            size_t RetCount = Count;
-            if( this->BufferPos + RetCount > this->BufferEnd ) {
-                RetCount = BufferEnd - BufferPos;
-            }
-            if( RetCount == 0 ) {
-                return 0;
-            }
-
-            //if( RetCount > Count ) {
-            //    MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Cannot read passed end of stream");
-            //}
-
-            std::memcpy(Buffer,this->BufferPos,RetCount);
-            this->BufferPos += RetCount;
-            return RetCount;
-        }
-
-        size_t MemoryStream::Write(const void* Buffer, const size_t& Count)
-        {
-            size_t Written = 0;
-            if( this->IsWriteable() ) {
-                Written = Count;
-                if( this->BufferPos + Written > this->BufferEnd ) {
-                    Written = BufferEnd - BufferPos;
-                }
-                if( Written == 0 ) {
-                    return 0;
-                }
-
-                std::memcpy(this->BufferPos,Buffer,Written);
-                this->BufferPos += Written;
-            }
-            return Written;
-        }
-
-        void MemoryStream::Advance(const StreamOff Count)
-        {
-            size_t NewPos = (size_t)( ( this->BufferPos - this->BufferStart ) + Count );
-            if( this->BufferStart + NewPos > this->BufferEnd )
-                NewPos = Size;
-
-            this->BufferPos = this->BufferStart + NewPos;
-        }
-
-        void MemoryStream::SetStreamPosition(StreamPos Position)
-        {
-            if( this->BufferStart + Position > this->BufferEnd || Position < 0 ) {
-                MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
-            }
-
-            this->BufferPos = this->BufferStart + Position;
-        }
-
-        void MemoryStream::SetStreamPosition(StreamOff Offset, SeekOrigin Origin)
-        {
-            switch(Origin)
-            {
-                case SO_Beginning:
-                {
-                    this->SetStreamPosition(Offset);
-                    break;
-                }
-                case SO_Current:
-                {
-                    if( GetStreamPosition() + Offset < 0 || GetStreamPosition() + Offset >= Size )
-                        MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
-
-                    this->BufferPos = this->BufferStart + ( this->GetStreamPosition() + Offset );
-                    break;
-                }
-                case SO_End:
-                {
-                    if(Offset > 0 || Offset <= -Size)
-                        MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
-
-                    this->BufferPos = this->BufferStart + ( ( Size - 1 ) + Offset );
-                    break;
-                }
-            }
-        }
-
-        StreamPos MemoryStream::GetStreamPosition(Boole Read)
-        {
-            return this->BufferPos - this->BufferStart;
-        }
-
-        Boole MemoryStream::EoF() const
-        {
-            return this->BufferPos >= this->BufferEnd;
-        }
-
-        void MemoryStream::Close()
-        {
-            if( this->FreeBuffer && this->BufferStart ) {
-                delete[] this->BufferStart;
-                this->BufferStart = NULL;
-                this->BufferPos = NULL;
-                this->BufferEnd = NULL;
-            }
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Formatting Methods
-
-        size_t MemoryStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim)
-        {
-            Boole TrimCR = false;
-            if( Delim.find_first_of('\n') != String::npos ) {
-                TrimCR = true;
-            }
-
-            size_t BytesRead = 0;
-            while( BytesRead < MaxCount && this->BufferPos < this->BufferEnd )
-            {
-                if( Delim.find(*BufferPos) != String::npos ) {
-                    if( TrimCR && BytesRead && Buffer[BytesRead - 1] == '\r' ) {
-                        --BytesRead;
-                    }
-
-                    ++this->BufferPos;
-                    break;
-                }
-                Buffer[BytesRead++] = *this->BufferPos++;
-            }
-            Buffer[BytesRead] = '\0';
-            return BytesRead;
-        }
-
-        size_t MemoryStream::SkipLine(const String& Delim)
-        {
-            size_t BytesSkipped = 0;
-            while( this->BufferPos < this->BufferEnd )
-            {
-                ++BytesSkipped;
-                if( Delim.find(*BufferPos++) != String::npos ) {
-                    break;
-                }
-            }
-            return BytesSkipped;
-        }
-#endif //USENEWDATASTREAM
     }//Resource
 }//Mezzanine
 

@@ -63,12 +63,12 @@ namespace Mezzanine
         /// @param Creator The parent world that is creating the manager.
         /// @param Params A NameValuePairList containing the params to be applied during construction.
         /// @return Returns a pointer to the created manager.
-        virtual WorldManager* CreateManager(World* Creator, NameValuePairList& Params) = 0;
+        virtual WorldManager* CreateManager(World* Creator, const NameValuePairList& Params) = 0;
         /// @brief Creates a manager from XML.
         /// @param Creator The parent world that is creating the manager.
         /// @param XMLNode The node of the xml document to construct from.
         /// @return Returns a pointer to the created manager.
-        virtual WorldManager* CreateManager(World* Creator, XML::Node& XMLNode) = 0;
+        virtual WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode) = 0;
         /// @brief Destroys a Manager created by this factory.
         /// @param ToBeDestroyed A pointer to the manager to be destroyed.
         virtual void DestroyManager(WorldManager* ToBeDestroyed) = 0;

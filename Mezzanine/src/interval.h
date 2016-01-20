@@ -42,6 +42,7 @@
 #define _interval_h
 
 #include "exception.h"
+#include "serialization.h"
 #include "XML/xml.h"
 
 namespace Mezzanine

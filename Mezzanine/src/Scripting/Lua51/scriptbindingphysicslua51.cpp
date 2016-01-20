@@ -3851,7 +3851,7 @@ static int _wrap_new_PhysicsManager__SWIG_2(lua_State* L) {
   
   SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::PhysicsManager",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::PhysicsManager",1,"Mezzanine::World *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::PhysicsManager",2,"XML::Node &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::PhysicsManager",2,"XML::Node const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__World,0))){
     SWIG_fail_ptr("new_PhysicsManager",1,SWIGTYPE_p_Mezzanine__World);
@@ -3862,7 +3862,7 @@ static int _wrap_new_PhysicsManager__SWIG_2(lua_State* L) {
     SWIG_fail_ptr("new_PhysicsManager",2,SWIGTYPE_p_XML__Node);
   }
   
-  result = (Mezzanine::Physics::PhysicsManager *)new Mezzanine::Physics::PhysicsManager(arg1,*arg2);
+  result = (Mezzanine::Physics::PhysicsManager *)new Mezzanine::Physics::PhysicsManager(arg1,(XML::Node const &)*arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -3948,7 +3948,7 @@ static int _wrap_new_PhysicsManager(lua_State* L) {
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Physics::PhysicsManager::PhysicsManager(Mezzanine::World *)\n"
     "    Mezzanine::Physics::PhysicsManager::PhysicsManager(Mezzanine::World *,ManagerConstructionInfo const &)\n"
-    "    Mezzanine::Physics::PhysicsManager::PhysicsManager(Mezzanine::World *,XML::Node &)\n");
+    "    Mezzanine::Physics::PhysicsManager::PhysicsManager(Mezzanine::World *,XML::Node const &)\n");
   lua_error(L);return 0;
 }
 
@@ -8690,7 +8690,7 @@ static int _wrap_DefaultPhysicsManagerFactory_CreateManager__SWIG_0(lua_State* L
   SWIG_check_num_args("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",1,"Mezzanine::Physics::DefaultPhysicsManagerFactory *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",2,"Mezzanine::World *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",3,"Mezzanine::NameValuePairList &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",3,"Mezzanine::NameValuePairList const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__DefaultPhysicsManagerFactory,0))){
     SWIG_fail_ptr("DefaultPhysicsManagerFactory_CreateManager",1,SWIGTYPE_p_Mezzanine__Physics__DefaultPhysicsManagerFactory);
@@ -8706,7 +8706,7 @@ static int _wrap_DefaultPhysicsManagerFactory_CreateManager__SWIG_0(lua_State* L
     SWIG_fail_ptr("DefaultPhysicsManagerFactory_CreateManager",3,SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t);
   }
   
-  result = (WorldManager *)(arg1)->CreateManager(arg2,*arg3);
+  result = (WorldManager *)(arg1)->CreateManager(arg2,(Mezzanine::NameValuePairList const &)*arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_WorldManager,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -8728,7 +8728,7 @@ static int _wrap_DefaultPhysicsManagerFactory_CreateManager__SWIG_1(lua_State* L
   SWIG_check_num_args("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",1,"Mezzanine::Physics::DefaultPhysicsManagerFactory *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",2,"Mezzanine::World *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",3,"XML::Node &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager",3,"XML::Node const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__DefaultPhysicsManagerFactory,0))){
     SWIG_fail_ptr("DefaultPhysicsManagerFactory_CreateManager",1,SWIGTYPE_p_Mezzanine__Physics__DefaultPhysicsManagerFactory);
@@ -8744,7 +8744,7 @@ static int _wrap_DefaultPhysicsManagerFactory_CreateManager__SWIG_1(lua_State* L
     SWIG_fail_ptr("DefaultPhysicsManagerFactory_CreateManager",3,SWIGTYPE_p_XML__Node);
   }
   
-  result = (WorldManager *)(arg1)->CreateManager(arg2,*arg3);
+  result = (WorldManager *)(arg1)->CreateManager(arg2,(XML::Node const &)*arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_WorldManager,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -8834,8 +8834,8 @@ static int _wrap_DefaultPhysicsManagerFactory_CreateManager(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'DefaultPhysicsManagerFactory_CreateManager'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager(Mezzanine::World *,Mezzanine::NameValuePairList &)\n"
-    "    Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager(Mezzanine::World *,XML::Node &)\n");
+    "    Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager(Mezzanine::World *,Mezzanine::NameValuePairList const &)\n"
+    "    Mezzanine::Physics::DefaultPhysicsManagerFactory::CreateManager(Mezzanine::World *,XML::Node const &)\n");
   lua_error(L);return 0;
 }
 
@@ -9785,13 +9785,13 @@ static int _wrap_new_CollisionShapeManager__SWIG_1(lua_State* L) {
   Mezzanine::Physics::CollisionShapeManager *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CollisionShapeManager::CollisionShapeManager",1,1)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollisionShapeManager::CollisionShapeManager",1,"XML::Node &");
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollisionShapeManager::CollisionShapeManager",1,"XML::Node const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_XML__Node,0))){
     SWIG_fail_ptr("new_CollisionShapeManager",1,SWIGTYPE_p_XML__Node);
   }
   
-  result = (Mezzanine::Physics::CollisionShapeManager *)new Mezzanine::Physics::CollisionShapeManager(*arg1);
+  result = (Mezzanine::Physics::CollisionShapeManager *)new Mezzanine::Physics::CollisionShapeManager((XML::Node const &)*arg1);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__CollisionShapeManager,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -9831,7 +9831,7 @@ static int _wrap_new_CollisionShapeManager(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_CollisionShapeManager'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Physics::CollisionShapeManager::CollisionShapeManager()\n"
-    "    Mezzanine::Physics::CollisionShapeManager::CollisionShapeManager(XML::Node &)\n");
+    "    Mezzanine::Physics::CollisionShapeManager::CollisionShapeManager(XML::Node const &)\n");
   lua_error(L);return 0;
 }
 
@@ -12007,7 +12007,7 @@ static int _wrap_DefaultCollisionShapeManagerFactory_CreateManager__SWIG_0(lua_S
   
   SWIG_check_num_args("Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager",1,"Mezzanine::Physics::DefaultCollisionShapeManagerFactory *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager",2,"Mezzanine::NameValuePairList &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager",2,"Mezzanine::NameValuePairList const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__DefaultCollisionShapeManagerFactory,0))){
     SWIG_fail_ptr("DefaultCollisionShapeManagerFactory_CreateManager",1,SWIGTYPE_p_Mezzanine__Physics__DefaultCollisionShapeManagerFactory);
@@ -12018,7 +12018,7 @@ static int _wrap_DefaultCollisionShapeManagerFactory_CreateManager__SWIG_0(lua_S
     SWIG_fail_ptr("DefaultCollisionShapeManagerFactory_CreateManager",2,SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t);
   }
   
-  result = (EntresolManager *)(arg1)->CreateManager(*arg2);
+  result = (EntresolManager *)(arg1)->CreateManager((Mezzanine::NameValuePairList const &)*arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_EntresolManager,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -12038,7 +12038,7 @@ static int _wrap_DefaultCollisionShapeManagerFactory_CreateManager__SWIG_1(lua_S
   
   SWIG_check_num_args("Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager",1,"Mezzanine::Physics::DefaultCollisionShapeManagerFactory *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager",2,"XML::Node &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager",2,"XML::Node const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__DefaultCollisionShapeManagerFactory,0))){
     SWIG_fail_ptr("DefaultCollisionShapeManagerFactory_CreateManager",1,SWIGTYPE_p_Mezzanine__Physics__DefaultCollisionShapeManagerFactory);
@@ -12049,7 +12049,7 @@ static int _wrap_DefaultCollisionShapeManagerFactory_CreateManager__SWIG_1(lua_S
     SWIG_fail_ptr("DefaultCollisionShapeManagerFactory_CreateManager",2,SWIGTYPE_p_XML__Node);
   }
   
-  result = (EntresolManager *)(arg1)->CreateManager(*arg2);
+  result = (EntresolManager *)(arg1)->CreateManager((XML::Node const &)*arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_EntresolManager,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -12119,8 +12119,8 @@ static int _wrap_DefaultCollisionShapeManagerFactory_CreateManager(lua_State* L)
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'DefaultCollisionShapeManagerFactory_CreateManager'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager(Mezzanine::NameValuePairList &)\n"
-    "    Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager(XML::Node &)\n");
+    "    Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager(Mezzanine::NameValuePairList const &)\n"
+    "    Mezzanine::Physics::DefaultCollisionShapeManagerFactory::CreateManager(XML::Node const &)\n");
   lua_error(L);return 0;
 }
 
@@ -61981,9 +61981,6 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("CollisionShape_ST_Plane", Mezzanine::Physics::CollisionShape::ST_Plane)},
     {SWIG_LUA_CONSTTAB_INT("CollisionShape_ST_Soft", Mezzanine::Physics::CollisionShape::ST_Soft)},
     {SWIG_LUA_CONSTTAB_INT("CollisionShape_ST_StaticTriMesh", Mezzanine::Physics::CollisionShape::ST_StaticTriMesh)},
-    {SWIG_LUA_CONSTTAB_INT("AT_FileSystem", Mezzanine::AT_FileSystem)},
-    {SWIG_LUA_CONSTTAB_INT("AT_Zip", Mezzanine::AT_Zip)},
-    {SWIG_LUA_CONSTTAB_INT("AT_Invalid", Mezzanine::AT_Invalid)},
     {SWIG_LUA_CONSTTAB_INT("Att_None", Mezzanine::Att_None)},
     {SWIG_LUA_CONSTTAB_INT("Att_Linear", Mezzanine::Att_Linear)},
     {SWIG_LUA_CONSTTAB_INT("Att_Quadratic", Mezzanine::Att_Quadratic)},

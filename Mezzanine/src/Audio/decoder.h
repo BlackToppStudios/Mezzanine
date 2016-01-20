@@ -58,6 +58,11 @@ namespace Mezzanine
         ///////////////////////////////////////
         class iDecoder
         {
+        protected:
+            /// @brief Clears EoF and Fail bits from the stream if they are present.
+            /// @remarks This should only check for the EoF bit, and if found clear EoF and Fail bits.  Both of these
+            /// can be encountered when the stream reaches EoF and isn't an error condition when streaming audio.
+            virtual void ClearStreamErrors() = 0;
         public:
             /// @brief Class constructor.
             iDecoder() {  }
@@ -86,6 +91,13 @@ namespace Mezzanine
             /// @brief Gets the stream being decoded.
             /// @return Returns a shared pointer to the DataStream being decoded.
             virtual Resource::DataStreamPtr GetStream() const = 0;
+            /// @brief Checks to see if the decode has reached the end of the stream.
+            /// @remarks Multiple decoders may use the same stream, and when this happens the actual underlying stream position
+            /// may be altered multiple times to varying positions in the stream.  Because of this, checking the underlying
+            /// stream directly may not give you an accurate idea of if this decoders point in the stream has reached it's end.
+            /// That is what this function is meant to address.
+            /// @return Returns true if all of the data in the stream has been decoded, false otherwise.
+            virtual Boole IsEndOfStream() const = 0;
 
             /// @brief Gets the sample size based on the decoders current configuration.
             /// @return Returns a UInt32 representing the size of a single sample from the underlying stream.
@@ -107,12 +119,12 @@ namespace Mezzanine
             /// @param Position The number of bytes to move(if relative) or the actual position in the stream to set.
             /// @param Relative Whether or not to move from the current position.  If false this will set from the beginning.
             /// @return Returns true if the position was successfully set, false otherwise.
-            virtual Boole SetPosition(Int32 Position, Boole Relative) = 0;
+            virtual Boole SetPosition(Int32 Position, const Boole Relative) = 0;
             /// @brief Moves the current time position in the stream.
             /// @param Seconds The position in seconds to move to in the stream.
             /// @param Relative Whether or not to move from the current position.  If false this will seek from the beginning.
             /// @return Returns true if the position was successfully moved, false otherwise.
-            virtual Boole Seek(const Real Seconds, Boole Relative) = 0;
+            virtual Boole Seek(const Real Seconds, const Boole Relative) = 0;
 
             /// @brief Reads from the audio stream and writes what is read to a buffer.
             /// @param Output The buffer to write to when reading the audio stream.
