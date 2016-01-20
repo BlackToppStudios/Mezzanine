@@ -93,7 +93,7 @@ WARN_LOGFILE           = ../html/DoxygenWarnings.txt
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/dox ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/Scripting/Lua51 ../../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML ../../../UnitTests/src
+INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/dox ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/Scripting/Lua51 ../../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML ../../../UnitTests/src ../../../Mezzanine/src/Graphics/Procedural/ ../../../Mezzanine/src/Graphics/Procedural/Mesh ../../../Mezzanine/src/Graphics/Procedural/Texture
 # ../../../Mezzanine/src/Internal
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =

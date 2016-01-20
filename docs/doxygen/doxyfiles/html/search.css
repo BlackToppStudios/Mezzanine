@@ -6,21 +6,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
-    transition: border 1s, border-color 1s, border-top-left-radius 1s,
-        border-bottom-right-radius 1s, background-color 1s, text-decoration 1s, color 1s;
-}
-
-a:hover {
-    border: 1px;
-    border-color: #8dd3ab;
-    border-top-left-radius: 0.25em;
-    border-bottom-right-radius: 0.25em;
-    background-color: #8dd3ab;
-    text-decoration: none;
-    color: #222;
-}
-
 #FSearchBox {
     float: left;
 }
@@ -210,7 +195,7 @@ iframe#MSearchResults {
 
 .SRPage .SREntry {
     font-size: 100%;
-    padding: 1px 0.5em;
+    padding-left: 3ex;
 }
 
 body.SRPage {
@@ -228,10 +213,23 @@ body.SRPage {
 }
 
 .SRSymbol, .SRStatus {
+    padding-left: 0.5ex;
+    padding-right: 0.5ex;
     font-weight: bold;
     color: #EEE;
     outline: none;
-    padding-left: 3ex;
+    transition: border 1s, border-color 1s, border-top-left-radius 1s,
+        border-bottom-right-radius 1s, background-color 1s, text-decoration 1s, color 1s;
+}
+
+a.SRSymbol:hover {
+    border: 1px;
+    border-color: #8dd3ab;
+    border-top-left-radius: 0.25em;
+    border-bottom-right-radius: 0.25em;
+    background-color: #8dd3ab;
+    text-decoration: none;
+    color: #222;
 }
 
 .SRScope {

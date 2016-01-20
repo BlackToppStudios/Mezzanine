@@ -11,7 +11,7 @@
 /* Fix the color on some things. */
 table, tr, td, dl, dt, dd, p, b, em,
 .memproto, .return, .memdoc, .memitem, .contents, .textblock,
-.mlabels, .mlabel, .paramtype, .paramname{
+.mlabels, .mlabel, .paramtype, .paramname, .memtemplate{
     background-color: #111;
 }
 
@@ -191,13 +191,16 @@ iframe {
 }
 
 /* Hover over links */
-a {
+p a, td a, a.el {
     transition: border 1s, border-color 1s, border-top-left-radius 1s,
         border-bottom-right-radius 1s, background-color 1s, text-decoration 1s, color 1s;
+    padding-left: 0.5ex;
+    padding-right: 0.5ex;
 }
 
 p a:focus, p a:hover,
-table a:focus, table a:hover {
+td a:focus, td a:hover,
+a.el:focus, a.el:hover{
     border: 1px;
     border-color: #8dd3ab;
     border-top-left-radius: 0.25em;
@@ -205,4 +208,27 @@ table a:focus, table a:hover {
     background-color: #8dd3ab;
     text-decoration: none;
     color: #222;
+}
+
+/* Nav bars */
+
+.tablist {
+        display: table;
+}
+
+.tablist li {
+        float: left;
+        display: table-cell;
+        line-height: 4ex;
+        list-style: none;
+}
+
+.tablist a {
+        border-top-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        display: block;
+        padding: 0 1em;
+        font-weight: bold;
+        text-decoration: none;
+        outline: none;
 }
