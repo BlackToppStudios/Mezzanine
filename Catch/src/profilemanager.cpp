@@ -166,7 +166,7 @@ void ProfileManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
             if(!CurrSettingValue.empty())
                 this->SetActiveProfile( CurrSettingValue );
         }
-    }//*/
+    }// */
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -214,7 +214,7 @@ void ProfileManager::ApplyProfileDataToProfileList()
         ProfilesList->CreateSingleLineListItem(ProfileName,ProfileName);
     }
     ProfilesList->UpdateChildDimensions();
-    ProfilesDropList->UpdateCurrentSelection( ProfilesList->GetListItem( this->ActiveProfile->GetName() ) );//*/
+    ProfilesDropList->UpdateCurrentSelection( ProfilesList->GetListItem( this->ActiveProfile->GetName() ) );// */
 }
 
 void ProfileManager::ApplyProfileDataToLevelSelect()
@@ -394,7 +394,7 @@ void ProfileManager::DestroyProfile(GameProfile* Profile)
     Resource::RemoveFile( this->ProfilesDirectory + Profile->GetName() );
     // Clean up the profile itself
     delete Profile;
-}//*/
+}// */
 
 ///////////////////////////////////////////////////////////////////////////////
 // ActiveProfile Management
@@ -476,6 +476,6 @@ void ProfileManager::Deinitialize()
     UI::Menu* MainMenu = static_cast<UI::Menu*>( UI::UIManager::GetSingletonPtr()->GetScreen("MainMenuScreen")->GetWidget("MS_Menu") );
     UI::PagedCellGrid* Grid = static_cast<UI::PagedCellGrid*>( MainMenu->GetRootWindow()->GetChildMenuWindow("MS_LevelSelectWin")->GetWidget("MS_LevelGrid") );
     return Grid;
-}//*/
+}// */
 
 #endif

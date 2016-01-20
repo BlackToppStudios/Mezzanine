@@ -40,11 +40,51 @@
 #ifndef _dox_mainpage_h
 #define _dox_mainpage_h
 
-#include "dox/mainpage.h"
+/**
+    @mainpage BlackTopp Studios Documentation
+
+    @ref tech_docs - Walkthroughs, How-Tos, and other descriptions of technical procedures.
+    @n @n
+    @ref blog - Includes historical references that might be useful
+    @n @n
+
+
+    @htmlonly
+    @endhtmlonly
+*/
 
 /**
- @mainpage home_page
- Test main page
+    @page blog BTS blog
+
+
+
+    - @htmlonly<a href="">@endhtmlonly
+    TITLE
+    @htmlonly</a>@endhtmlonly
+    — DEsc
+*/
+
+/**
+    @page cxx_training C++ Training
+
+
+    C++!
+
+*/
+
+/**
+    @page building_the_engine Building the Engine
+
+
+    C++!
+
+*/
+
+/**
+    @page engine_dependencies Mezzanine Engine Dependencies
+
+
+    C++!
 
 */
 

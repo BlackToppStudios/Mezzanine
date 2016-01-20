@@ -78,7 +78,7 @@ namespace Mezzanine
         }
 
         Boole TextCursor::GetFlicker() const
-            { return !( this->FlickerTimer->IsStopped() ); }//*/
+            { return !( this->FlickerTimer->IsStopped() ); }// */
 
         void TextCursor::SetCursorIndex(const Integer& Index)
         {

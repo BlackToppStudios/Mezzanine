@@ -61,7 +61,7 @@ namespace Mezzanine
     // This returns the value of a bit at the specified index. Passing in zero returns one.
     /*#ifndef MEZZ_BITMASK_INDEX(X)
     #define MEZZ_BITMASK_INDEX(X) ( 1u << X )
-    #endif//*/
+    #endif// */
 }//Mezzanine
 
 #endif

@@ -60,7 +60,7 @@ namespace Mezzanine
                 #endif
                 VoidFunct* Ret = reinterpret_cast<VoidFunct*>(alGetProcAddress(FunctName.c_str()));
                 return Ret;
-            }//*/
+            }// */
 
             ///////////////////////////////////////////////////////////////////////////////
             // EFXInterface Methods

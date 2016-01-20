@@ -111,7 +111,7 @@ namespace Mezzanine
                         /*ColourValue TargetColour( FirstColour.RedChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.RedChannel * this->InterpolateAmount,
                                                   FirstColour.GreenChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.GreenChannel * this->InterpolateAmount,
                                                   FirstColour.BlueChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.BlueChannel * this->InterpolateAmount,
-                                                  FirstColour.AlphaChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.AlphaChannel * this->InterpolateAmount);//*/
+                                                  FirstColour.AlphaChannel * ( 1.0 - this->InterpolateAmount ) + SecondColour.AlphaChannel * this->InterpolateAmount);// */
                         LinearInterpolator<Real> Interpolator;
                         ColourValue TargetColour( Interpolator.InterpolateMath(FirstColour.RedChannel,SecondColour.RedChannel,this->InterpolateAmount),
                                                   Interpolator.InterpolateMath(FirstColour.GreenChannel,SecondColour.GreenChannel,this->InterpolateAmount),

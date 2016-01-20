@@ -92,6 +92,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}datatypes.h"
         "${${PROJECT_NAME}_SRC_DIR}debris.h"
         "${${PROJECT_NAME}_SRC_DIR}debrismanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/mainpage.h"
         "${${PROJECT_NAME}_SRC_DIR}entresol.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanager.h"

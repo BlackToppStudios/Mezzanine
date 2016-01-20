@@ -59,7 +59,7 @@ namespace Mezzanine
         MemoryStreamBuffer::MemoryStreamBuffer() :
             BufferStart(NULL),
             /*BufferReadPos(NULL),
-            BufferWritePos(NULL),//*/
+            BufferWritePos(NULL),// */
             BufferEnd(NULL),
             FreeBuffer(true)
             {  }
@@ -114,9 +114,9 @@ namespace Mezzanine
                 this->BufferStart = s;
                 this->BufferEnd = this->BufferStart + n;
                 /*this->BufferReadPos = this->BufferStart;
-                this->BufferWritePos = this->BufferStart;//*/
+                this->BufferWritePos = this->BufferStart;// */
                 this->setg(this->BufferStart,this->BufferStart,this->BufferEnd);
-                this->setp(this->BufferStart,this->BufferEnd);//*/
+                this->setp(this->BufferStart,this->BufferEnd);// */
                 return this;
             }
             return NULL;
@@ -298,7 +298,7 @@ namespace Mezzanine
                 delete[] this->BufferStart;
                 this->BufferStart = NULL;
                 /*this->BufferReadPos = NULL;
-                this->BufferWritePos = NULL;//*/
+                this->BufferWritePos = NULL;// */
                 this->BufferEnd = NULL;
             }
         }

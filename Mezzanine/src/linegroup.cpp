@@ -293,7 +293,7 @@ namespace Mezzanine
 
                     mRenderOp.vertexData->vertexStart = 0;
                     mRenderOp.vertexData->vertexBufferBinding->setBinding(0,this->VertexBuffer);
-                }//*/
+                }// */
 
                 Vector3 vaabMin = this->Points[0].Position;
                 Vector3 vaabMax = this->Points[0].Position;

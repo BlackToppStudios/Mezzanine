@@ -92,7 +92,7 @@ namespace Mezzanine
                 Traits.CharFont->
             }else{
                 return ProcessResult(false,NULL);
-            }//*/
+            }// */
 
             return ProcessResult(true,NULL);
         }

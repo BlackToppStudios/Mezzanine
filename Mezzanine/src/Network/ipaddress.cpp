@@ -190,7 +190,7 @@ namespace Mezzanine
             this->InternalAddress[0] = Converted[0];
             this->InternalAddress[1] = Converted[1];
             this->InternalAddress[2] = Converted[2];
-            this->InternalAddress[3] = Converted[3];//*/
+            this->InternalAddress[3] = Converted[3];// */
         }
 
         UInt32 IPAddress::GetV4Address(const Boole NBO) const
@@ -198,7 +198,7 @@ namespace Mezzanine
             if( this->InternalAddress.size() == IPAddress::IPv4BinaryLength ) {
                 UInt32 Ret = *reinterpret_cast<const UInt32*>( &this->InternalAddress[0] );
                 /*UInt32 Ret = 0;
-                std::copy(&this->InternalAddress[0],&this->InternalAddress[4],reinterpret_cast<Int8*>(&Ret));//*/
+                std::copy(&this->InternalAddress[0],&this->InternalAddress[4],reinterpret_cast<Int8*>(&Ret));// */
                 if( NBO ) {
                     return Ret;
                 }else{

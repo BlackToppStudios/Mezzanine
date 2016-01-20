@@ -151,7 +151,7 @@ namespace Mezzanine
             //#ifdef MEZZ_LINUX
             //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(ResourceManager::GetSingletonPtr()->GetEngineDataDirectory(),"FileSystem");
             //#endif
-            this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.WinRes.Width, this->Settings.WinRes.Height, this->Settings.Fullscreen, &Opts);//*/
+            this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.WinRes.Width, this->Settings.WinRes.Height, this->Settings.Fullscreen, &Opts);// */
             this->RequestedFSAA = this->GetActualFSAALevel();
 
             if( !(WF_Hidden & Flags) ) {
@@ -347,7 +347,7 @@ namespace Mezzanine
                     FSDisplayMode.h = this->Settings.WinRes.Height;
                     FSDisplayMode.refresh_rate = Settings.RefreshRate;
                     SDL_SetWindowDisplayMode(SDLWindow,&FSDisplayMode);
-                }//*/
+                }// */
 
                 if(SDL_SetWindowFullscreen(SDLWindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0) {
                     this->OgreWindow->setFullscreen(Fullscreen,this->Settings.WinRes.Width,this->Settings.WinRes.Height);
@@ -453,7 +453,7 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("Borderless").SetValue( this->IsBorderless() ) &&
                 PropertiesNode.AppendAttribute("FSAA").SetValue( this->GetFSAALevel() ) )
                 /// @todo Currently the maximized setting does nothing in the gamewindow.  If it gets implemented, so does this.
-                //PropertiesNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );//*/ )
+                //PropertiesNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );// */ )
             {
                 return;
             }else{

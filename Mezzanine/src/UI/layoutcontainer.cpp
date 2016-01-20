@@ -77,7 +77,7 @@ namespace Mezzanine
 
             /*// Update the children, if any
             if( this->VisibleChildren.empty() == false )
-                this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->VisibleChildren);//*/
+                this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->VisibleChildren);// */
 
             // We done got icky
             this->_MarkAllLayersDirty();

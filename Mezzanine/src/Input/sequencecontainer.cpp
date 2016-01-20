@@ -142,7 +142,7 @@ namespace Mezzanine
 
             /*UInt32* Ret = SequencedInputs.get(Codes);
             if(Ret) return *Ret;
-            else return ULONG_MAX;//*/
+            else return ULONG_MAX;// */
         }
 
         void SequenceContainer::RemoveInputSequence(const MetaCodeContainer& Codes)

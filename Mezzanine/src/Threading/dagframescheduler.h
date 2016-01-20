@@ -128,12 +128,6 @@
 #define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 1
 
 
-
-#ifndef MEZZANINE_CORE
-/// @mainpage Directed Acyclic Graph Frame Scheduler.
-/// For an in depth description please see the @ref ThreadingManual
-#endif
-
 /// @page ThreadingManual Directed Acyclic Graph Frame Scheduler
 /// @section dag_header The DAG Frame Scheduler Manual.
 /// This page will explain what the DAG FrameScheduler than explain how to use it.

@@ -449,7 +449,7 @@ namespace Mezzanine
                     /*Boole PopResult = this->PopFromStack();
                     if( !PopResult ) {
                         // Is there anything to do here?
-                    }//*/
+                    }// */
                 }
             }
         }

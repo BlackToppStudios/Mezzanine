@@ -231,7 +231,7 @@ Whole LevelScorer::PresentFinalScore()
         //
         // Loop through special conditions from lua
         //
-    }//*/
+    }// */
 
     Whole TotalScore = NormalScore+BonusScore+ShopScore+TimerScore+ObjectiveScore;
     UI::Widget* ScoreDisplay = GameScreen->GetWidget("GS_LevelReportScore");

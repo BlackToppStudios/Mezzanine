@@ -81,7 +81,7 @@ namespace Mezzanine
             btQuaternion rotation = this->PhysicsSoftBody->m_clusters[0]->m_framexform.getRotation();
             this->GraphicsNode->setPosition(position.x(), position.y(), position.z());
             this->GraphicsNode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-        }//*/
+        }// */
 
 
         SoftProxy::SoftProxy(const UInt32 ID, const Real Mass, PhysicsManager* Creator) :
@@ -135,7 +135,7 @@ namespace Mezzanine
             Ogre::Any OgreRef( (WorldObject*)this );
             GraphicsObject->setUserAny(OgreRef);
 
-            this->PhysicsSoftBody->m_clusters[0]->m_collide = true;//*/
+            this->PhysicsSoftBody->m_clusters[0]->m_collide = true;// */
 
             // CreateManualMesh
             /*Ogre::ManualObject* ManualEntity = new Ogre::ManualObject(TheMesh.Name);
@@ -156,7 +156,7 @@ namespace Mezzanine
             }
             ManualEntity->end();
             ManualEntity->convertToMesh(TheMesh.Name + "M", TheMesh.Group);
-            delete ManualEntity;//*/
+            delete ManualEntity;// */
         }
 
         ///////////////////////////////////////////////////////////////////////////////

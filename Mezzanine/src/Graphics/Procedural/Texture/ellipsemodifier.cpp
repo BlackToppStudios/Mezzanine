@@ -179,7 +179,7 @@ namespace Mezzanine
                         this->PutPixel( XPos + (+DeltaX), YPos, Buffer );
                         this->PutPixel( XPos + (-DeltaX), YPos, Buffer );
                     }
-                }//*/
+                }// */
             }
 
             String EllipseModifier::GetName() const

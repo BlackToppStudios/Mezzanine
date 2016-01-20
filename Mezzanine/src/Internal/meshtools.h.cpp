@@ -146,7 +146,7 @@ namespace Mezzanine
             /// @param TheMesh The internal Mesh being queried.
             /// @param VertexArray The vector which will be populated with Vertex information.
             /// @param IndexArray The vector which will be populated with Index information.
-            void MEZZ_LIB GetMeshData(Ogre::MeshPtr TheMesh, Vector3Vec& VertexArray, IntVec& IndexArray);//*/
+            void MEZZ_LIB GetMeshData(Ogre::MeshPtr TheMesh, Vector3Vec& VertexArray, IntVec& IndexArray);// */
             /// @brief Gets the Mesh data but also updates each vertex transform appropriately based on the Entity configuration.
             /// @param TheEntity The graphics object to collect Mesh data from.
             /// @param VertexArray The vector which will be populated with Vertex information.

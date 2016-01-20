@@ -134,7 +134,7 @@ namespace Mezzanine
             /// @brief Gets the MetaCode from RawInput Data.
             /// @param RawEvent_ The event that contains only Joystick button data.
             /// @return a metacode that represents a button press.
-            MetaCode AddCodeFromSDLJoyStickButton(const RawEvent &RawEvent_);//*/
+            MetaCode AddCodeFromSDLJoyStickButton(const RawEvent &RawEvent_);// */
 
         public:
 

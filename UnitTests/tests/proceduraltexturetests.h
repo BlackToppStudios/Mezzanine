@@ -166,7 +166,7 @@ public:
             // Cell Generator - Grid
             /*TempImage = Graphics::Procedural::CellGenerator().SetMode(Graphics::Procedural::CellGenerator::CM_Grid).GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-CellGridGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image CellImage;
@@ -184,7 +184,7 @@ public:
             // Cell Generator - Chessboard
             /*TempImage = Graphics::Procedural::CellGenerator().SetMode(Graphics::Procedural::CellGenerator::CM_Chessboard).GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-CellChessboardGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image CellImage;
@@ -202,7 +202,7 @@ public:
             // Cloud Generator
             /*TempImage = Graphics::Procedural::CloudGenerator().GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-CloudGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image CloudImage;
@@ -220,7 +220,7 @@ public:
             // Gradient Generator
             /*TempImage = Graphics::Procedural::GradientGenerator().GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-GradientGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image GradientImage;
@@ -241,7 +241,7 @@ public:
             Graphics::Procedural::ImageGenerator Gen;
             Gen.SetImage(&PaletteImage);
             Gen.AddToTextureBuffer(PaletteBuff);
-            this->OutputImageAsText(PaletteBuff,"./ProceduralTexture-PaletteOutput.txt");//*/
+            this->OutputImageAsText(PaletteBuff,"./ProceduralTexture-PaletteOutput.txt");// */
 
             // Get the image to compare to
             Graphics::Procedural::TextureBuffer LoadedBuffer(proceduraltexturetests::PalettePixelWidth,proceduraltexturetests::PalettePixelHeight);
@@ -262,14 +262,14 @@ public:
             Graphics::Procedural::TextureBuffer TestBuffer(proceduraltexturetests::PalettePixelWidth,proceduraltexturetests::PalettePixelHeight);
             Graphics::Procedural::ImageGenerator().SetImage(&LoadedImage).AddToTextureBuffer(TestBuffer);
             // Do the test
-            TEST(this->VerifyImage(TestBuffer,LoadedBuffer), "ImageGenerator");//*/
+            TEST(this->VerifyImage(TestBuffer,LoadedBuffer), "ImageGenerator");// */
         }
 
         {
             // Labyrinth Generator
             /*TempImage = Graphics::Procedural::LabyrinthGenerator().GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-LabyrinthGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image LabyrinthImage;
@@ -291,7 +291,7 @@ public:
             Graphics::Procedural::RectangleModifier().SetColour(ColourValue(0.0,1.0,1.0,1.0)).SetPosition(0.15,0.38,0.0,0.0).SetSize(0.70,0.24,0.0,0.0).Modify(SecondBuff);
             TempImage = Graphics::Procedural::LerpGenerator().SetFirstTexture(&FirstBuff).SetSecondTexture(&SecondBuff).GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-LerpGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image LerpImage;
@@ -313,7 +313,7 @@ public:
             // Marble Generator
             /*TempImage = Graphics::Procedural::MarbleGenerator().GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-MarbleGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image MarbleImage;
@@ -331,7 +331,7 @@ public:
             // Noise Generator
             /*TempImage = Graphics::Procedural::NoiseGenerator().GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-NoiseGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image NoiseImage;
@@ -349,7 +349,7 @@ public:
             // Solid Generator
             /*TempImage = Graphics::Procedural::SolidGenerator().GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-SolidGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image SolidImage;
@@ -367,7 +367,7 @@ public:
             // Textile Generator
             /*TempImage = Graphics::Procedural::TextileGenerator().GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-TextileGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TextileImage;
@@ -385,7 +385,7 @@ public:
             // Wood Generator
             /*TempImage = Graphics::Procedural::WoodGenerator().GenerateImage(SquareSize);
             TempImage->_SaveImage("./ProceduralTexture-WoodGenTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image WoodImage;
@@ -408,7 +408,7 @@ public:
             Graphics::Procedural::AlphaMaskModifier().SetMaskTexture(&ParameterBuffer).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-AlphaMaskModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -432,7 +432,7 @@ public:
             Graphics::Procedural::AlphaModifier().Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-AlphaModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -456,7 +456,7 @@ public:
             Graphics::Procedural::BlitModifier().SetSrcTexture(&SrcBuffer).SetSrcRect(0,0,SquareSize * 0.5,SquareSize * 0.5).SetDestRect(128,128,388,388).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-BlitModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -482,7 +482,7 @@ public:
             Graphics::Procedural::BlurModifier().Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-BlurModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -509,7 +509,7 @@ public:
             Graphics::Procedural::ChannelModifier().SetSelection(Selection).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-ChannelModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -533,7 +533,7 @@ public:
             Graphics::Procedural::CircleModifier().SetColour(1.0,0.0,0.0,1.0).SetPosition(0.5,0.5,0.0,0.0).SetRadius(SquareSize * 0.25).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CircleModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -556,7 +556,7 @@ public:
             Graphics::Procedural::ColoursModifier().SetSaturation(255).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-ColoursSaturationModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -582,7 +582,7 @@ public:
             Graphics::Procedural::CombineModifier().AddTexture(&TexBuffer1,Graphics::Procedural::CombineModifier::CM_Add_Clamp).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CombineAddClampModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -621,7 +621,7 @@ public:
             Graphics::Procedural::ConvolutionModifier().SetKernel(9,&Kernel[0]).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-ConvolutionModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -647,7 +647,7 @@ public:
             Graphics::Procedural::CrackModifier().SetNormalsTexture(&ParameterBuffer).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CrackModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -671,7 +671,7 @@ public:
             Graphics::Procedural::CycloidModifier().SetColour(1.0,0.2,0.0,1.0).SetCycloidPenSize(3).SetCycloidType(Graphics::Procedural::CycloidModifier::CT_Hypocycloid).SetDefaultParameters(SquareSize).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CycloidHypocycloidModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -693,7 +693,7 @@ public:
             Graphics::Procedural::CycloidModifier().SetColour(1.0,0.2,0.0,1.0).SetCycloidPenSize(3).SetCycloidType(Graphics::Procedural::CycloidModifier::CT_Hypotrochoid).SetDefaultParameters(SquareSize).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CycloidHypotrochoidModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -715,7 +715,7 @@ public:
             Graphics::Procedural::CycloidModifier().SetColour(1.0,0.2,0.0,1.0).SetCycloidPenSize(3).SetCycloidType(Graphics::Procedural::CycloidModifier::CT_Epicycloid).SetDefaultParameters(SquareSize).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CycloidEpicycloidModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -737,7 +737,7 @@ public:
             Graphics::Procedural::CycloidModifier().SetColour(1.0,0.2,0.0,1.0).SetCycloidPenSize(3).SetCycloidType(Graphics::Procedural::CycloidModifier::CT_Epitrochoid).SetDefaultParameters(SquareSize).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CycloidEpitrochoidModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -759,7 +759,7 @@ public:
             Graphics::Procedural::CycloidModifier().SetColour(1.0,0.2,0.0,1.0).SetCycloidPenSize(3).SetCycloidType(Graphics::Procedural::CycloidModifier::CT_RoseCurve).SetDefaultParameters(SquareSize).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CycloidRoseCurveModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -781,7 +781,7 @@ public:
             Graphics::Procedural::CycloidModifier().SetColour(1.0,0.2,0.0,1.0).SetCycloidPenSize(3).SetCycloidType(Graphics::Procedural::CycloidModifier::CT_LissajousCurve).SetDefaultParameters(SquareSize).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-CycloidLissajousCurveModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -803,7 +803,7 @@ public:
             Graphics::Procedural::DilateModifier().Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-DilateModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -825,7 +825,7 @@ public:
             Graphics::Procedural::EdgeDetectionModifier().SetDetectionType(Graphics::Procedural::EdgeDetectionModifier::DM_Sobel).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-EdgeDetectionSobelModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -846,7 +846,7 @@ public:
             Graphics::Procedural::EllipseModifier().SetColour(ColourValue(1.0,0.0,0.0,1.0)).SetPosition(0.5,0.5,0,0).SetRadius(0.4,0.2,0,0).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-EllipseModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -867,7 +867,7 @@ public:
             Graphics::Procedural::FlareModifier().SetFlareCenter(0.5,0.5).SetFlareRadius(0.4,0.4).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-FlareModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -891,7 +891,7 @@ public:
             Graphics::Procedural::FlipModifier().SetFlipAxis(Graphics::Procedural::FlipModifier::PFA_Point).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-FlipPointModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -915,7 +915,7 @@ public:
             Graphics::Procedural::InvertModifier().Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-InvertModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -939,7 +939,7 @@ public:
             Graphics::Procedural::JitterModifier().Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-JitterModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -965,7 +965,7 @@ public:
             Graphics::Procedural::LookupModifier().SetLookupTexture(&ParameterBuffer).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-LookupModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -989,7 +989,7 @@ public:
             Graphics::Procedural::NormalsModifier().Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-NormalsModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1013,7 +1013,7 @@ public:
             Graphics::Procedural::OilPaintModifier().Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-OilpaintModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1037,7 +1037,7 @@ public:
             Graphics::Procedural::RandomPixelsModifier().SetColour(ColourValue(1.0,0.2,0.0,1.0)).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-RandomPixelsModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1058,7 +1058,7 @@ public:
             Graphics::Procedural::RectangleModifier().SetColour(ColourValue(1.0,0.0,0.0,1.0)).SetPosition(0.2,0.3,0,0).SetSize(0.6,0.4,0,0).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-RectangleModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1079,7 +1079,7 @@ public:
             Graphics::Procedural::RotationZoomModifier().SetRotation(MathTools::GetPi() * 0.25).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-RotationZoomRotationOnlyModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1103,7 +1103,7 @@ public:
             Graphics::Procedural::SegmentModifier().SetColourSource(&ParameterBuffer).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-SegmentModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1129,7 +1129,7 @@ public:
             Graphics::Procedural::SharpenModifier().Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-SharpenModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1157,7 +1157,7 @@ public:
             Graphics::Procedural::ThresholdModifier().SetLowerLimit(0.5).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-ThresholdModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1179,7 +1179,7 @@ public:
             Graphics::Procedural::VortexModifier().SetVortexCenter(0.5,0.5).SetVortexRadius(0.5,0.5).SetVortexTwist(MathTools::GetHalfPi()).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-VortexModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;
@@ -1205,7 +1205,7 @@ public:
             Graphics::Procedural::WeighedLerpModifier().SetFirstTexture(&FirstParamBuffer).SetSecondTexture(&SecondParamBuffer).Modify(TestBuffer);
             TempImage = TestBuffer.GenerateImage();
             TempImage->_SaveImage("./ProceduralTexture-WeighedLerpModTest.png");
-            this->Clean(TempImage);//*/
+            this->Clean(TempImage);// */
 
             // Get the image to compare to
             Graphics::Image TestImage;

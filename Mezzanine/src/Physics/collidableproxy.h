@@ -69,7 +69,7 @@ namespace Mezzanine
             /*/// @internal
             /// @brief A vector3 storing the scaling applied to this body.
             /// @note This exists because in bullet scaling is a property of shapes instead of bodies.
-            Vector3 BodyScale;//*/
+            Vector3 BodyScale;// */
             /// @internal
             /// @brief The physics shape of this proxy.
             CollisionShape* ProxyShape;

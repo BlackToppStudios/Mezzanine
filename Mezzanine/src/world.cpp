@@ -281,7 +281,7 @@ namespace Mezzanine
                 (*FactoryIt).second->DestroyManager(Current);
             }
             WorldManagerList.pop_front();
-        }//*/
+        }// */
         for( WorldManagerIterator WorldManIt = this->WorldManagers.begin() ; WorldManIt != this->WorldManagers.end() ; ++WorldManIt )
         {
             String ImplName = (*WorldManIt)->GetImplementationTypeName();
@@ -291,7 +291,7 @@ namespace Mezzanine
             }else{
                 (*FactoryIt).second->DestroyManager( (*WorldManIt) );
             }
-        }//*/
+        }// */
         this->WorldManagers.clear();
     }
 

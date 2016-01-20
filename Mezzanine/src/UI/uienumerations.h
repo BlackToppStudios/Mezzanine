@@ -126,7 +126,7 @@ namespace Mezzanine
             PF_Anchor_HorizontalCenter = (PF_Anchor_Left | PF_Anchor_Right),          ///< Centers along the X axis of the quad.
 
             PF_Anchor_Center           = (PF_Anchor_TopLeft | PF_Anchor_BottomRight)  ///< Centers within the quad.
-        };//*/
+        };// */
 
         /// @enum QuadCorner
         /// @brief Used by Sprites and Glyphs for tracking their placement on a TextureAtlas.

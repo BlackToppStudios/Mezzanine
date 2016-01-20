@@ -97,7 +97,7 @@ namespace Mezzanine
             return;
         /*if( ( this->GetType() >= Mezzanine::WSO_AEFirst && this->GetType() <= Mezzanine::WSO_AELast ) &&
             ( Target->GetType() >= Mezzanine::WSO_AEFirst && Target->GetType() <= Mezzanine::WSO_AELast ) ) //do not permit AE's to attach to other AE's
-            Entresol::GetSingletonPtr()->LogAndThrow(Exception("Cannot attach AreaEffects to other AreaEffects."));//*/
+            Entresol::GetSingletonPtr()->LogAndThrow(Exception("Cannot attach AreaEffects to other AreaEffects.")); */
         if(Target->Parent)
         {
             if(Target->Parent == this) return;
@@ -220,7 +220,7 @@ namespace Mezzanine
 
     // The coding that goes into pure virtual functions is not for inexperienced eyes such
     // as yours. Take your training to the Mountaintop monanstary and learn the ancient ways of
-    // c++ from the Tibetan monks you find there.  Godspeed. //*/
+    // c++ from the Tibetan monks you find there.  Godspeed.
 }//Mezzanine
 
 #endif

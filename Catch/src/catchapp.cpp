@@ -355,7 +355,7 @@ void CatchApp::MakeGUI()
     MMProfilesDestroyText->VerticallyAlign(UI::LA_Center);
     MMProfilesDestroyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
     //MMLevelStart->Subscribe(UI::Button::EventDeactivated,new MSLevelStart(MMLevelSelectGrid),true);
-    MMProfilesWin->AddChild(MMProfilesDestroy,5);//*/
+    MMProfilesWin->AddChild(MMProfilesDestroy,5);// */
 
     // Create the button that will confirm the switch to another profile
     //UI::Button* MMProfilesSelect = MainMenuScreen->CreateButton("MS_ProfilesSelect",UI::UnifiedRect(0.12,0.76,0.34,0.16));
@@ -775,7 +775,7 @@ void CatchApp::MakeGUI()
     MMAudioDeviceOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
     // Wrap up listing configuration
     MMAudioDeviceList->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
-    MMAudioSet->AddChild(MMAudioDeviceList,10);//*/
+    MMAudioSet->AddChild(MMAudioDeviceList,10);// */
 
     // Create the checkbox for enabling or disabling FPS stats display
     UI::CheckBox* MMMuteBox = MainMenuScreen->CreateCheckBox("MS_MuteBox",UI::UnifiedRect(0.655,0.695,0,0.12));
@@ -1313,7 +1313,7 @@ void CatchApp::MakeGUI()
     GSAudioDeviceOptionsScroll->GetScrollBack()->CreateSingleImageLayer("GSListScrollBackground",0,0);
     // Wrap up listing configuration
     GSAudioDeviceList->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
-    GSAudioSet->AddChild(GSAudioDeviceList,10);//*/
+    GSAudioSet->AddChild(GSAudioDeviceList,10);// */
 
     // Create the checkbox for enabling or disabling FPS stats display
     UI::CheckBox* GSMuteBox = GameScreen->CreateCheckBox("GS_MuteBox",UI::UnifiedRect(0.655,0.695,0,0.12));
@@ -1712,7 +1712,7 @@ void CatchApp::UnloadLevel()
     UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
     GameScreen->GetWidget("GS_LevelReport")->Hide();
     GameScreen->GetWidget("GS_MenuRoot")->Hide();
-    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();//*/
+    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();// */
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()

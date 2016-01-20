@@ -262,7 +262,7 @@ namespace Mezzanine
             for( Whole Index = 0 ; Index < Positions.size() ; Index++ )
             {
                 Positions[Index] = (Positions[Index] - OldMid) + NewMid;
-            }//*/
+            }// */
             //_MarkDirty();
         }
 

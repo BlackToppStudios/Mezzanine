@@ -415,7 +415,7 @@ namespace Mezzanine
                     }else{
                         this->Show();
                     }
-                }//*/
+                }// */
             }
         }
 

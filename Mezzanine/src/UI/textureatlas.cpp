@@ -225,17 +225,17 @@ namespace Mezzanine
                 // Get the monowidth
                 /*CurrAttrib = (*FontNode).GetAttribute("MonoWidth");
                 if( !CurrAttrib.Empty() )
-                    Data->_SetMonoWidth( CurrAttrib.AsReal() );//*/
+                    Data->_SetMonoWidth( CurrAttrib.AsReal() );// */
 
                 // Get the start of the range
                 /*CurrAttrib = (*FontNode).GetAttribute("RangeBegin");
                 if( !CurrAttrib.Empty() )
-                    Data->_SetRangeBegin( CurrAttrib.AsReal() );//*/
+                    Data->_SetRangeBegin( CurrAttrib.AsReal() );// */
 
                 // Get the end of the range
                 /*CurrAttrib = (*FontNode).GetAttribute("RangeEnd");
                 if( !CurrAttrib.Empty() )
-                    Data->_SetRangeEnd( CurrAttrib.AsReal() );//*/
+                    Data->_SetRangeEnd( CurrAttrib.AsReal() );// */
 
                 // Generate the whitespaces
                 Data->_GenerateWhitespaceGlyphs();

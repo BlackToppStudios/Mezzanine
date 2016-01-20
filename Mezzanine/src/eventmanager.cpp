@@ -406,7 +406,7 @@ namespace Mezzanine
                 { FromSDLEvent->AddCode(Input::BUTTON_DOWN, Iter->first); }
             else
                 { FromSDLEvent->AddCode(Input::BUTTON_UP, Iter->first); }    //It must be just a polling check
-        }//*/
+        }// */
 
         /* Here is a list of SDL event which aren't coded yet.
         //event types
@@ -468,7 +468,7 @@ namespace Mezzanine
                 case SDL_WINDOWEVENT: {
                     EventGameWindow* React = new EventGameWindow(FromSDLRaw);
                     /*if(EventGameWindow::GAME_WINDOW_FOCUS_LOST==React->GetEventID())        //we dropp all keypresses when windows are switched
-                        { ClearKeyPresses = true; }//*/
+                        { ClearKeyPresses = true; }// */
                     this->AddEvent(React);
                     break; }
 
@@ -492,7 +492,7 @@ namespace Mezzanine
         }
 
         /*if(ClearKeyPresses)
-            { this->_Data->DropAllKeyPresses(); }//*/
+            { this->_Data->DropAllKeyPresses(); }// */
 
         #ifdef MEZZDEBUG
         /*Entresol::GetSingletonPtr()->Log("User Input entered this Frame");
@@ -501,7 +501,7 @@ namespace Mezzanine
             Entresol::GetSingletonPtr()->Log(*LIter);
         }
         Entresol::GetSingletonPtr()->Log("End Of User Input entered this Frame");
-        Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
+        Entresol::GetSingletonPtr()->DoMainLoopLogging();// */
         #endif
 
         // Check to see if we should add a User input event or not. We wouldn't want to pass an empty event

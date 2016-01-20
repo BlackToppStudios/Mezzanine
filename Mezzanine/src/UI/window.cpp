@@ -124,7 +124,7 @@ namespace Mezzanine
         Rectangle* Window::GetWindowBack()
         {
             return WidgetBack;
-        }//*/
+        }// */
     }//UI
 }//Mezzanine
 

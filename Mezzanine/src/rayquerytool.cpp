@@ -362,7 +362,7 @@ namespace Mezzanine
             Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
             Entresol::GetSingletonPtr()->Log(e.what());
             return ClearReturns();
-        }//*/
+        }// */
     }
 
     Ray RayQueryTool::GetMouseRay()

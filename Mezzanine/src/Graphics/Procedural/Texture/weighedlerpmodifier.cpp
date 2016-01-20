@@ -111,7 +111,7 @@ namespace Mezzanine
                         /*ColourValue TargetColour( FirstColour.RedChannel * ( 1.0 - ModifyTexColour.RedChannel ) + SecondColour.RedChannel * ModifyTexColour.RedChannel,
                                                   FirstColour.GreenChannel * ( 1.0 - ModifyTexColour.GreenChannel ) + SecondColour.GreenChannel * ModifyTexColour.GreenChannel,
                                                   FirstColour.BlueChannel * ( 1.0 - ModifyTexColour.BlueChannel ) + SecondColour.BlueChannel * ModifyTexColour.BlueChannel,
-                                                  FirstColour.AlphaChannel * ( 1.0 - ModifyTexColour.AlphaChannel ) + SecondColour.AlphaChannel * ModifyTexColour.AlphaChannel);//*/
+                                                  FirstColour.AlphaChannel * ( 1.0 - ModifyTexColour.AlphaChannel ) + SecondColour.AlphaChannel * ModifyTexColour.AlphaChannel);// */
                         LinearInterpolator<Real> Interpolator;
                         ColourValue TargetColour( Interpolator.InterpolateMath(FirstColour.RedChannel,SecondColour.RedChannel,ModifyTexColour.RedChannel),
                                                   Interpolator.InterpolateMath(FirstColour.GreenChannel,SecondColour.GreenChannel,ModifyTexColour.GreenChannel),

@@ -87,7 +87,7 @@ void AudioSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
                         AudioDeviceList->UpdateChildDimensions();
                     }
                     AudioDeviceList->UpdateCurrentSelection( DeviceContainer->GetListItem( AudioMan->GetCurrentPlaybackDeviceName() ) );
-                }//*/
+                }// */
             }
         }
     }
@@ -154,7 +154,7 @@ void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
                     NewSettings.WinRes.Width = StringTools::ConvertToWhole(StrWidth);
                     NewSettings.WinRes.Height = StringTools::ConvertToWhole(StrHeight);
                     // Apply the resolution and fullscreen settings
-                    CatchWindow->SetRenderOptions(NewSettings);//*/
+                    CatchWindow->SetRenderOptions(NewSettings);// */
                     // Now get the FSAA setting and pass it along
                     String FSAASetting = static_cast<UI::DropDownList*>( EventScreen->GetWidget(NamePrefix + "_FSAAList") )->GetSelectionText();
                     CatchWindow->SetFSAALevel( StringTools::ConvertToWhole( FSAASetting.substr(1,1) ) );
@@ -162,7 +162,7 @@ void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
                     // Apply other settings
                     UI::CheckBox* FPSStatsBox = static_cast<UI::CheckBox*>( EventScreen->GetWidget(NamePrefix + "_StatsBox") );
                     StatsScreen->GetWidget("SS_CurrentFPS")->SetVisible( FPSStatsBox->IsSelected() );
-                    StatsScreen->GetWidget("SS_AverageFPS")->SetVisible( FPSStatsBox->IsSelected() );//*/
+                    StatsScreen->GetWidget("SS_AverageFPS")->SetVisible( FPSStatsBox->IsSelected() );// */
                 }
             }else if( WidArgs->EventName == UI::Widget::EventVisibilityShown ) {
                 if( StringTools::EndsWith( WidArgs->WidgetName, "_FSAAList", true ) ) {
@@ -438,7 +438,7 @@ void CatchPauseWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& C
 
         }else if( (*EvIt)->EventName == UI::Button::EventDeactivated ) {
 
-        }//*/
+        }// */
     }// For each event
     this->PauseSubscriber->ClearEvents();
     this->PauseSubscriber->EndUpdate();

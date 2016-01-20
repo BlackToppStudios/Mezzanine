@@ -65,7 +65,7 @@ namespace Mezzanine
             Char8* BufferReadPos;
             /// @internal
             /// @brief The current position for write operations on this buffer.
-            Char8* BufferWritePos;//*/
+            Char8* BufferWritePos;// */
             /// @internal
             /// @brief A pointer to one passed the last element in the range of this buffer.
             Char8* BufferEnd;

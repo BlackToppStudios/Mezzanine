@@ -1038,7 +1038,7 @@ protected:
 };
 
 /*!
- * @mainpage Simple Trie
+ * @page simple_trie Simple Trie
  * @section trie_intro_sec Introduction
  * This is an implementation of prefix Trie data structure. This implementation is in C++ and using template.
  * @section trie_features Features

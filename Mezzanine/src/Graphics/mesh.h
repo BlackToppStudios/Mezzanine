@@ -72,7 +72,7 @@ namespace Mezzanine
             SubMeshContainer SubMeshes;
         public:
             /*/// @brief Class Constructor.
-            Mesh();//*/
+            Mesh();// */
             /// @internal
             /// @brief Internal Constructor.
             /// @param InternalMesh The internal Mesh this Mesh class is based on.

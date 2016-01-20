@@ -113,7 +113,7 @@ namespace Mezzanine
         /*Boole RemoveFile(const String& PathAndFile)
         {
             return ( remove( PathAndFile.c_str() ) == 0 );
-        }//*/
+        }// */
 
         ///////////////////////////////////////////////////////////////////////////////
         // Basic Directory Management
@@ -184,7 +184,7 @@ namespace Mezzanine
             }/*else{
                 //MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error getting directory information.");
                 return false;
-            }//*/
+            }// */
             return false;
         }
 

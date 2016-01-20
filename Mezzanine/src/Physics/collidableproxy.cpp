@@ -270,7 +270,7 @@ namespace Mezzanine
                 { this->ChildConvexShape->getPreferredPenetrationDirection(index,penetrationVector); }
         };//ScalingShape
 /// @endcond
-//*/
+// */
         ///////////////////////////////////////////////////////////////////////////////
         // CollidableProxy Methods
 
@@ -404,7 +404,7 @@ namespace Mezzanine
                         this->ScalerShape = NULL;
                     }
                     this->ProxyShape = NULL;
-                }//*/
+                }// */
 
                 this->ProxyShape = Shape;
                 this->_GetBasePhysicsObject()->setCollisionShape( this->ProxyShape->_GetInternalShape() );

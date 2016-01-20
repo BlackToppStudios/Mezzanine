@@ -186,7 +186,7 @@ namespace Mezzanine
             /*this->ActDims.Size.X = (Real)this->GameViewport->GetActualWidth();
             this->ActDims.Size.Y = (Real)this->GameViewport->GetActualHeight();
             this->InverseSize.X = 1 / this->ActDims.Size.X;
-            this->InverseSize.Y = 1 / this->ActDims.Size.Y;//*/
+            this->InverseSize.Y = 1 / this->ActDims.Size.Y;// */
 
             this->SID = new ScreenInternalData();
             this->SID->RenderSys = Ogre::Root::getSingletonPtr()->getRenderSystem();
@@ -850,7 +850,7 @@ namespace Mezzanine
         /*Window* Screen::CreateWidgetWindow(ConstString& Name, const Rect& RendRect)
         {
             return static_cast<Window*>( this->CheckAndInsert( ExtendedRenderableFactory::CreateWidgetWindow(Name,RendRect) ) );
-        }//*/
+        }// */
 
         ///////////////////////////////////////////////////////////////////////////////
         // Atlas Query

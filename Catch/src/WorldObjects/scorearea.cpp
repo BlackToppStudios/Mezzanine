@@ -42,7 +42,7 @@ void ScoreArea::CreateScoreArea(const Vector3& HalfAreaSize)
     if( this->Ghost != NULL && CSMan != NULL ) {
         Physics::CollisionShape* StartCS = new Physics::BoxCollisionShape("StartAreaShape",HalfAreaSize);
         this->Ghost->SetCollisionShape( StartCS );
-    }//*/
+    }// */
 }
 
 void ScoreArea::DestroyScoreArea()

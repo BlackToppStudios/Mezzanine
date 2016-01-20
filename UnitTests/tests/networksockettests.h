@@ -329,7 +329,7 @@ public:
     /// @brief Since RunInteractiveTests is implemented so is this.
     /// @return Returns true.
     virtual bool HasInteractiveTests() const
-        { return true; }//*/
+        { return true; }// */
 };//networksockettests
 
 Integer networksockettests::TCPClientThreadResult = -1;

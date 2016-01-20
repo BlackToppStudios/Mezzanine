@@ -134,7 +134,7 @@ namespace Mezzanine
         }
 
         String MultiImageData::GetSerializableName()
-            { return "MultiImageData"; }//*/
+            { return "MultiImageData"; }// */
 
         ///////////////////////////////////////////////////////////////////////////////
         // MultiImageLayer Methods

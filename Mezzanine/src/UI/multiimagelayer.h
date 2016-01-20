@@ -84,7 +84,7 @@ namespace Mezzanine
             void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
-            static String GetSerializableName();//*/
+            static String GetSerializableName();// */
         };//MultiImageData
 
         ///////////////////////////////////////////////////////////////////////////////

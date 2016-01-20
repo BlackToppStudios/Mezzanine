@@ -113,7 +113,7 @@ namespace Mezzanine
                 /// @brief Gets the background object of this window.
                 /// @return Returns a pointer to the rectangle that is the background for this window.
                 virtual Rectangle* GetWindowBack();
-        };//Window//*/
+        };//Window// */
     }//UI
 }//Mezzanine
 

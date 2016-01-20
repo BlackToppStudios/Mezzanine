@@ -239,7 +239,7 @@ namespace Mezzanine
             virtual void ClearStickyContacts();
             /// @brief Gets the struct storing the data related to sticky behavior.
             /// @return Returns a pointer to the struct storing the sticky data for this proxy.
-            virtual StickyData* GetStickyData() const;//*/
+            virtual StickyData* GetStickyData() const;// */
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Syncronization

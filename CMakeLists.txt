@@ -528,11 +528,17 @@ if(Mezz_Doc)
         add_custom_target(MezzanineDocumentation ALL
             COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
             COMMAND ${CatCommand} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt 1>&2
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/search.css
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search.css
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
             COMMENT "Generating API documentation with Doxygen" VERBATIM
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt
-                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/index.html
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/DoxyStyle.css
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/search.css
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/DoxyFooter.html
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/DoxyHeader.html
         )
     else(DOXYGEN_FOUND)
         Message(STATUS "Doxygen not found.")

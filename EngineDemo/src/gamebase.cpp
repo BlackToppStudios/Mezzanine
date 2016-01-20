@@ -269,7 +269,7 @@ public:
         if( Deb2->IsAnimated() )
         {
             Deb2->AdvanceAnimation((Real)0.0001 * TheEntresol->GetLastFrameTimeMilliseconds() );
-        }//*/
+        }// */
 
         static bool notplayed = true;
         //if (1000<gametime && notplayed)
@@ -1066,7 +1066,7 @@ void TestsToSave()
         TheEntresol->Log("End of testing XML and Streaming test 3");
         #endif
     }
-    //*/
+    // */
 }
-//*/
+// */
 #endif

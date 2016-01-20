@@ -198,7 +198,7 @@ namespace Mezzanine
 
                     /*CurrAttrib = SelfRoot.GetAttribute("CameraName");
                     if( !CurrAttrib.Empty() )
-                        this->SetCamera( CurrAttrib.AsString() );//*/
+                        this->SetCamera( CurrAttrib.AsString() );// */
 
                     XML::Node PositionNode = SelfRoot.GetChild("Position").GetFirstChild();
                     if( !PositionNode.Empty() ) {

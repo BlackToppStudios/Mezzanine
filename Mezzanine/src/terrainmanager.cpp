@@ -162,7 +162,7 @@ namespace Mezzanine
         /*MeshTerrain* Terrain = new MeshTerrain(InitPosition, name, file, group);
         Terrains.push_back(Terrain);
         Terrain->AddTerrainToWorld();
-        return Terrain;//*/
+        return Terrain;// */
         return NULL;
     }
 

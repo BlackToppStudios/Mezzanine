@@ -146,7 +146,7 @@ namespace Mezzanine
                         //P += 4 * ( X++ - Y-- ) + 10;
                         P += 2 * ( X++ - Y-- ) + 1;
                     }
-                }//*/
+                }// */
             }
 
             String CircleModifier::GetName() const

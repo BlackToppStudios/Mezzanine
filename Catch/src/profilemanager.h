@@ -190,7 +190,7 @@ public:
     /// @brief Destroys a loaded profile.
     /// @note This will also delete the profile file from the disk.
     /// @param Profile A pointer to the profile to be destroyed.
-    void DestroyProfile(GameProfile* Profile);//*/
+    void DestroyProfile(GameProfile* Profile);// */
 
     ///////////////////////////////////////////////////////////////////////////////
     // ActiveProfile Management

@@ -539,7 +539,7 @@ namespace Mezzanine
                 this->BulletCollisionConfiguration = new btSoftBodyRigidBodyCollisionConfiguration();
             /*}else{
                 this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
-            }//*/
+            }// */
 
             // Create the dispatcher (narrowphase)
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
@@ -577,7 +577,7 @@ namespace Mezzanine
                 this->BulletSolverThreads = new PosixThreadSupport(BulletThreadInfo);
                 #endif //WINDOWS
                 this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
-            }else{//*/
+            }else{// */
                 this->BulletSolver = new btSequentialImpulseConstraintSolver();
             //}
 
@@ -592,7 +592,7 @@ namespace Mezzanine
                                                                          this->BulletBroadphase,
                                                                          this->BulletSolver,
                                                                          this->BulletCollisionConfiguration);
-            }//*/
+            }// */
 
             // Set up the work units
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
@@ -691,7 +691,7 @@ namespace Mezzanine
             /*StringStream logstream;
             logstream << "Processing " << AlgoQueue->size() << " algorithms for collisions.";
             Entresol::GetSingletonPtr()->Log(logstream.str());
-            Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
+            Entresol::GetSingletonPtr()->DoMainLoopLogging();// */
             #endif
             btCollisionAlgorithm* NewAlgo = AlgoQueue->front();
             while( NewAlgo != NULL )
@@ -702,7 +702,7 @@ namespace Mezzanine
 
                         break;
                     }
-                }//*/
+                }// */
                 // Old method involving detecting the actual WorldObject pair
                 CollidableProxy* ProxA = NULL;
                 CollidableProxy* ProxB = NULL;
@@ -729,7 +729,7 @@ namespace Mezzanine
                         //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         Collisions.insert( CollisionSortPair(NewPair,NewCol) );
-                    }//*/
+                    }// */
                     PhysicsManager::CollisionMapIterator ColIt = this->Collisions.begin();
                     while( ColIt != this->Collisions.end() )
                     {
@@ -744,11 +744,11 @@ namespace Mezzanine
                         //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         Collisions.insert( CollisionSortPair(NewPair,NewCol) );
                     }
-                }//*/
+                }// */
                 AlgoQueue->pop_front();
                 if(AlgoQueue->size() > 0) NewAlgo = AlgoQueue->front();
                 else NewAlgo = NULL;
-            }//*/
+            }// */
             AlgoQueue->clear();
         }
 

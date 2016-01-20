@@ -121,7 +121,7 @@ namespace Mezzanine
         /// @brief No route to the specified host could be found.
         extern const Integer SE_HostUnreachable;
         /*/// @brief The number of processes interacting with the network subsystem has met or exceeded it's limit.
-        extern const Integer SE_ProcessLimit;//*/
+        extern const Integer SE_ProcessLimit;// */
 
         ///////////////////////////////////////////////////////////////////////////////
         // Socket Errors - Could occur, but you shouldn't see because of our API wrapper
@@ -161,7 +161,7 @@ namespace Mezzanine
             enum SocketStatus
             {
 
-            };//*/
+            };// */
         protected:
             /// @internal
             /// @brief A pointer to the internal system socket.
@@ -177,7 +177,7 @@ namespace Mezzanine
 
             /*/// @brief Gets the current status of this socket.
             /// @return Returns a SocketStatus enum value representing the current working state of this socket.
-            virtual SocketStatus GetStatus() const = 0;//*/
+            virtual SocketStatus GetStatus() const = 0;// */
 
             /// @brief Gets the layer 3 protocol this socket is operating on.
             /// @return Returns a NetworkLayerProtocol enum value describing the layer 3 protocol being used.
