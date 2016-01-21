@@ -587,7 +587,7 @@ namespace Mezzanine
                     //Entresol::GetSingletonPtr()->_GetLogStream() << DefaultLog->stream();
                 }
                 DefaultLog->stream().flush();
-            }//*/
+            }// */
         }
 
         void GraphicsManager::SwapAllBuffers(Boole WaitForVsync)

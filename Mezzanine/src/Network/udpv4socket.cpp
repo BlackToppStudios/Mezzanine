@@ -81,7 +81,7 @@ namespace Mezzanine
             AddrLen Size;
             this->InternalSocket->GetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_Fragmentation,(char*)&Value,&Size);
             return ( Value != 0 );
-        }//*/
+        }// */
 
         void UDPv4Socket::SetNumMulticastHops(const Integer Hops)
         {

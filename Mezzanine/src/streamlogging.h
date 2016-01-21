@@ -215,7 +215,11 @@ LogStream<CharType, CharTraits>& MessageLogLevel(LogStream<CharType, CharTraits>
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example LogStream Log(cout); Log << LogTrace << "Entering function int MeaningOfLifeUniverseAndEverything(42).";
+/// @details Sample usage:
+/// @code
+/// LogStream Log(cout);
+/// Log << LogTrace << "Entering function int MeaningOfLifeUniverseAndEverything(42).";
+/// @endcode
 template<class CharType, class CharTraits>
 LogStream<CharType, CharTraits>& LogTrace(LogStream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Trace); }
@@ -226,7 +230,11 @@ LogStream<CharType, CharTraits>& LogTrace(LogStream<CharType, CharTraits>& Outpu
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example LogStream Log(cout); Log << LogDebug << "Opening file foo.txt.";
+/// @details Sample usage:
+/// @code
+/// LogStream Log(cout);
+/// Log << LogDebug << "Sample Log Message.";
+/// @endcode
 template<class CharType, class CharTraits>
 LogStream<CharType, CharTraits>& LogDebug(LogStream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Debug); }
@@ -237,7 +245,11 @@ LogStream<CharType, CharTraits>& LogDebug(LogStream<CharType, CharTraits>& Outpu
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example LogStream Log(cout); Log << LogWarn << "Danger Will Robinson, Danger!!!";
+/// @details Sample usage:
+/// @code
+/// LogStream Log(cout);
+/// Log << LogWarn << "Danger Will Robinson, Danger!!!";
+/// @endcode
 template<class CharType, class CharTraits>
 LogStream<CharType, CharTraits>& LogWarn(LogStream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Warn); }
@@ -248,7 +260,11 @@ LogStream<CharType, CharTraits>& LogWarn(LogStream<CharType, CharTraits>& Output
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example LogStream Log(cout); Log << LogError << "The System is dowm, the system is down, Bwoo Dee boo do do.";
+/// @details Sample usage:
+/// @code
+/// LogStream Log(cout);
+/// Log << LogError << "The System is dowm, the system is down, Bwoo Dee boo do do.";
+/// @endcode
 template<class CharType, class CharTraits>
 LogStream<CharType, CharTraits>& LogError(LogStream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Error); }
@@ -259,7 +275,11 @@ LogStream<CharType, CharTraits>& LogError(LogStream<CharType, CharTraits>& Outpu
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example LogStream Log(cout); Log << LogFatal << "The Tuna contains too much Flipper!!!";
+/// @details Sample usage:
+/// @code
+/// LogStream Log(cout);
+/// Log << LogFatal << "The Tuna contains too much Flipper!!!";
+/// @endcode
 template<class CharType, class CharTraits>
 LogStream<CharType, CharTraits>& LogFatal(LogStream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Fatal); }

@@ -430,7 +430,7 @@ namespace Mezzanine
     {
         // One last aggregation
         /*Threading::DefaultThreadSpecificStorage::Type LogResource(&this->WorkScheduler);
-        this->Aggregator->DoWork(LogResource);//*/
+        this->Aggregator->DoWork(LogResource);// */
         Threading::DefaultThreadSpecificStorage::Type* LogResource = this->WorkScheduler.GetThreadResource();
         this->WorkScheduler.GetLog() << LogResource->GetUsableLogger().str();
         LogResource->SwapAllBufferedResources();
@@ -448,7 +448,7 @@ namespace Mezzanine
         /*Log("Verifying size of userinput events:");
         Log(sizeof(Input::InputCode));
         Log(sizeof(SDL_Scancode));
-        Log(sizeof(int));//*/
+        Log(sizeof(int));// */
         if(sizeof(Input::InputCode) != sizeof(SDL_Scancode)) {
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
         }
@@ -756,7 +756,7 @@ namespace Mezzanine
                 (*ManIt).second->DestroyManager(Current);
             }
         }
-        this->ManagerList.clear();//*/
+        this->ManagerList.clear();// */
         while( !(this->ManagerList.empty()) )
         {
             EntresolManager* Current = this->ManagerList.front();
@@ -772,7 +772,7 @@ namespace Mezzanine
             }
 
             this->ManagerList.pop_front();
-        }//*/
+        }// */
     }
 
     void Entresol::AddManager(EntresolManager* ManagerToAdd)

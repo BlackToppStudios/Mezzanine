@@ -81,7 +81,7 @@ namespace Mezzanine
             void SetDontFragment(const Boole DontFrag);
             /// @brief Gets whether or not messages sent by this socket can be fragmented by routers.
             /// @return Returns true if messages sent by this socket can be fragmented, false otherwise.
-            Boole GetDontFragment() const;//*/
+            Boole GetDontFragment() const;// */
 
             /// @copydoc UDPSocket::SetNumMulticastHops(const Integer)
             void SetNumMulticastHops(const Integer Hops);
