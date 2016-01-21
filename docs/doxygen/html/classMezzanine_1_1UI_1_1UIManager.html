@@ -162,37 +162,38 @@ typedef ScreenContainer::iterator&#160;</td><td class="memItemRight" valign="bot
 <tr class="separator:ac96a2aa5e7e55476d0ad728833833063"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br />
-&#160;&#160;<b>MT_AudioManager</b> = 1, 
-<b>MT_AnimationManager</b>, 
-<b>MT_CollisionShapeManager</b>, 
-<b>MT_CompositorManager</b>, 
+&#160;&#160;<b>MT_Undefined</b> = 0, 
+<b>MT_AudioManager</b> = 1, 
+<b>MT_AnimationManager</b> = 2, 
+<b>MT_CollisionShapeManager</b> = 3, 
 <br />
-&#160;&#160;<b>MT_GraphicsManager</b>, 
-<b>MT_EventManager</b>, 
-<b>MT_InputManager</b>, 
-<b>MT_LogManager</b>, 
+&#160;&#160;<b>MT_CompositorManager</b> = 4, 
+<b>MT_GraphicsManager</b> = 5, 
+<b>MT_EventManager</b> = 6, 
+<b>MT_InputManager</b> = 7, 
 <br />
-&#160;&#160;<b>MT_MaterialManager</b>, 
-<b>MT_MeshManager</b>, 
-<b>MT_NetworkManager</b>, 
-<b>MT_ResourceManager</b>, 
+&#160;&#160;<b>MT_LogManager</b> = 8, 
+<b>MT_MaterialManager</b> = 9, 
+<b>MT_MeshManager</b> = 10, 
+<b>MT_NetworkManager</b> = 11, 
 <br />
-&#160;&#160;<b>MT_ScriptingManager</b>, 
-<b>MT_TextureManager</b>, 
-<b>MT_UIManager</b>, 
-<b>MT_ActorManager</b> = 100, 
+&#160;&#160;<b>MT_ResourceManager</b> = 12, 
+<b>MT_ScriptingManager</b> = 13, 
+<b>MT_TextureManager</b> = 14, 
+<b>MT_UIManager</b> = 15, 
 <br />
-&#160;&#160;<b>MT_AreaEffectManager</b>, 
-<b>MT_DebrisManager</b>, 
-<b>MT_PagingManager</b>, 
-<b>MT_PhysicsManager</b>, 
+&#160;&#160;<b>MT_ActorManager</b> = 101, 
+<b>MT_AreaEffectManager</b> = 102, 
+<b>MT_DebrisManager</b> = 103, 
+<b>MT_PagingManager</b> = 104, 
 <br />
-&#160;&#160;<b>MT_SceneManager</b>, 
-<b>MT_SoundScapeManager</b>, 
-<b>MT_TerrainManager</b>, 
-<b>MT_VehicleManager</b>, 
+&#160;&#160;<b>MT_PhysicsManager</b> = 105, 
+<b>MT_SceneManager</b> = 106, 
+<b>MT_SoundScapeManager</b> = 107, 
+<b>MT_TerrainManager</b> = 108, 
 <br />
-&#160;&#160;<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
+&#160;&#160;<b>MT_VehicleManager</b> = 109, 
+<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br />
  }</td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,9 +204,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#ab27c2bc16bac3a332d0f54515909e761">UIManager</a> ()</td></tr>
 <tr class="memdesc:ab27c2bc16bac3a332d0f54515909e761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor. <br /></td></tr>
 <tr class="separator:ab27c2bc16bac3a332d0f54515909e761"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a155c3b3a6b7fdefefde26cf781bd82ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a155c3b3a6b7fdefefde26cf781bd82ff">UIManager</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
-<tr class="memdesc:a155c3b3a6b7fdefefde26cf781bd82ff"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#a155c3b3a6b7fdefefde26cf781bd82ff">More...</a><br /></td></tr>
-<tr class="separator:a155c3b3a6b7fdefefde26cf781bd82ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab99509fa4670b35bbd68d671f58e9073"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#ab99509fa4670b35bbd68d671f58e9073">UIManager</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
+<tr class="memdesc:ab99509fa4670b35bbd68d671f58e9073"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#ab99509fa4670b35bbd68d671f58e9073">More...</a><br /></td></tr>
+<tr class="separator:ab99509fa4670b35bbd68d671f58e9073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98093965b967c03904de95e652b1a79b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98093965b967c03904de95e652b1a79b"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a98093965b967c03904de95e652b1a79b">~UIManager</a> ()</td></tr>
 <tr class="memdesc:a98093965b967c03904de95e652b1a79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br /></td></tr>
@@ -511,14 +512,14 @@ static UIManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Singlet
 
 <p>Definition at line <a class="el" href="uimanager_8h_source.html#l00113">113</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a155c3b3a6b7fdefefde26cf781bd82ff"></a>
+<a class="anchor" id="ab99509fa4670b35bbd68d671f58e9073"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::UI::UIManager::UIManager </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
           <td class="paramname"><em>XMLNode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -532,7 +533,7 @@ static UIManager *&#160;</td><td class="memItemRight" valign="bottom"><b>Singlet
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000143">Todo:</a></b></dt><dd>This class currently doesn't initialize anything from <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a>, if that changes this constructor needs to be expanded. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000145">Todo:</a></b></dt><dd>This class currently doesn't initialize anything from <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a>, if that changes this constructor needs to be expanded. </dd></dl>
 
 <p>Definition at line <a class="el" href="uimanager_8cpp_source.html#l00125">125</a> of file <a class="el" href="uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
@@ -1260,7 +1261,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000147">Todo:</a></b></dt><dd>There is currently nothing that the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system as a whole needs controller inputs. Perhaps when we implement consoles this should be expanded, maybe even sooner then that. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000149">Todo:</a></b></dt><dd>There is currently nothing that the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system as a whole needs controller inputs. Perhaps when we implement consoles this should be expanded, maybe even sooner then that. </dd></dl>
 
 <p>Definition at line <a class="el" href="uimanager_8cpp_source.html#l00246">246</a> of file <a class="el" href="uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
@@ -1295,7 +1296,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000145">Todo:</a></b></dt><dd>If other devices are added, appropriate functions should be added to this class, and called here. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000147">Todo:</a></b></dt><dd>If other devices are added, appropriate functions should be added to this class, and called here. </dd></dl>
 
 <p>Definition at line <a class="el" href="uimanager_8cpp_source.html#l00176">176</a> of file <a class="el" href="uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
@@ -1398,7 +1399,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000146">Todo:</a></b></dt><dd>There is currently nothing that the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system as a whole needs controller inputs. Perhaps when we implement consoles this should be expanded, maybe even sooner then that. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000148">Todo:</a></b></dt><dd>There is currently nothing that the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system as a whole needs controller inputs. Perhaps when we implement consoles this should be expanded, maybe even sooner then that. </dd></dl>
 
 <p>Definition at line <a class="el" href="uimanager_8cpp_source.html#l00227">227</a> of file <a class="el" href="uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
@@ -1433,7 +1434,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000144">Todo:</a></b></dt><dd>If other devices are added, appropriate functions should be added to this class, and called here. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000146">Todo:</a></b></dt><dd>If other devices are added, appropriate functions should be added to this class, and called here. </dd></dl>
 
 <p>Definition at line <a class="el" href="uimanager_8cpp_source.html#l00165">165</a> of file <a class="el" href="uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
@@ -2298,7 +2299,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:06 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:48 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

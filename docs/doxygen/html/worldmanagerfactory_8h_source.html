@@ -146,12 +146,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">        /// @param Creator The parent world that is creating the manager.</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">        /// @param Params A NameValuePairList containing the params to be applied during construction.</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">        /// @return Returns a pointer to the created manager.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1WorldManager.html">WorldManager</a>* CreateManager(<a class="code" href="classMezzanine_1_1World.html">World</a>* Creator, <a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a>&amp; Params) = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1WorldManager.html">WorldManager</a>* CreateManager(<a class="code" href="classMezzanine_1_1World.html">World</a>* Creator, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a>&amp; Params) = 0;<span class="comment"></span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">        /// @brief Creates a manager from XML.</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">        /// @param Creator The parent world that is creating the manager.</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">        /// @param XMLNode The node of the xml document to construct from.</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">        /// @return Returns a pointer to the created manager.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1WorldManager.html">WorldManager</a>* CreateManager(<a class="code" href="classMezzanine_1_1World.html">World</a>* Creator, <a class="code" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a>&amp; XMLNode) = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1WorldManager.html">WorldManager</a>* CreateManager(<a class="code" href="classMezzanine_1_1World.html">World</a>* Creator, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a>&amp; XMLNode) = 0;<span class="comment"></span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">        /// @brief Destroys a Manager created by this factory.</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">        /// @param ToBeDestroyed A pointer to the manager to be destroyed.</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyManager(<a class="code" href="classMezzanine_1_1WorldManager.html">WorldManager</a>* ToBeDestroyed) = 0;</div>
@@ -173,7 +173,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:00 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:38 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

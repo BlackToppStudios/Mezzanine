@@ -1,0 +1,7 @@
+<map id="Mezzanine::Graphics::MeshInfo" name="Mezzanine::Graphics::MeshInfo">
+<area shape="rect" id="node2" href="$structMezzanine_1_1Graphics_1_1VertexInfo.html" title="A convenience class for the storage of Vertex data in a Mesh/SubMesh. " alt="" coords="509,51,655,93"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="5,56,144,83"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="5,120,144,147"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="542,147,622,173"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="263,171,389,213"/>
+</map>

@@ -130,27 +130,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">namespace </span>Resource</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {<span class="comment"></span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">        /// @enum LoadingState</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        /// @brief This enum describes the current state of loading for an asset.</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="namespaceMezzanine_1_1Resource.html#afc80f5aeae6c4335e6171639a9709eb1">   52</a></span>&#160;<span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1Resource.html#afc80f5aeae6c4335e6171639a9709eb1">LoadingState</a></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">        /// @enum ArchiveType</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        /// @brief Used to indicate what kind of resources the Entrosol should look for</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacb">   52</a></span>&#160;<span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacb">ArchiveType</a></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            LS_Uninitialized = 0,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            LS_Initializing = 1,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            LS_Initialized = 2,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            LS_Loading = 3,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            LS_Loaded = 4</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        };</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }<span class="comment">//Resource</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_afc80f5aeae6c4335e6171639a9709eb1"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#afc80f5aeae6c4335e6171639a9709eb1">Mezzanine::Resource::LoadingState</a></div><div class="ttdeci">LoadingState</div><div class="ttdoc">This enum describes the current state of loading for an asset. </div><div class="ttdef"><b>Definition:</b> <a href="resourceenumerations_8h_source.html#l00052">resourceenumerations.h:52</a></div></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbae825170f2d329daca73247ecf6e658e3">   54</a></span>&#160;            <a class="code" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbae825170f2d329daca73247ecf6e658e3">AT_FileSystem</a>  = 0,    <span class="comment">///&lt; Look for raw files</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbae3d8364f509b769a21b212155c77f552">   55</a></span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbae3d8364f509b769a21b212155c77f552">AT_Zip</a>         = 1,    <span class="comment">///&lt; Look for stuff in zip files even if the extension is not &#39;.zip&#39;.</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbac0c9a85d1b4ac4c99314ff3c5a989a68">   56</a></span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbac0c9a85d1b4ac4c99314ff3c5a989a68">AT_Invalid</a>     = 32768 <span class="comment">///&lt; Indicates this valid was messed up unrecoverably, most likely by a bug.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span>        };</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">        /// @enum LoadingState</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">        /// @brief This enum describes the current state of loading for an asset.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="namespaceMezzanine_1_1Resource.html#afc80f5aeae6c4335e6171639a9709eb1">   61</a></span>&#160;<span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1Resource.html#afc80f5aeae6c4335e6171639a9709eb1">LoadingState</a></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            LS_Uninitialized = 0,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            LS_Initializing = 1,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            LS_Initialized = 2,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            LS_Loading = 3,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            LS_Loaded = 4</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        };</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }<span class="comment">//Resource</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="namespaceMezzanine_1_1Resource_html_afc80f5aeae6c4335e6171639a9709eb1"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#afc80f5aeae6c4335e6171639a9709eb1">Mezzanine::Resource::LoadingState</a></div><div class="ttdeci">LoadingState</div><div class="ttdoc">This enum describes the current state of loading for an asset. </div><div class="ttdef"><b>Definition:</b> <a href="resourceenumerations_8h_source.html#l00061">resourceenumerations.h:61</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Resource_html_aa217e46d611590fd63859ff2f9c5eacb"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacb">Mezzanine::Resource::ArchiveType</a></div><div class="ttdeci">ArchiveType</div><div class="ttdoc">Used to indicate what kind of resources the Entrosol should look for. </div><div class="ttdef"><b>Definition:</b> <a href="resourceenumerations_8h_source.html#l00052">resourceenumerations.h:52</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Resource_html_aa217e46d611590fd63859ff2f9c5eacbae3d8364f509b769a21b212155c77f552"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbae3d8364f509b769a21b212155c77f552">Mezzanine::Resource::AT_Zip</a></div><div class="ttdoc">Look for stuff in zip files even if the extension is not &#39;.zip&#39;. </div><div class="ttdef"><b>Definition:</b> <a href="resourceenumerations_8h_source.html#l00055">resourceenumerations.h:55</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Resource_html_aa217e46d611590fd63859ff2f9c5eacbae825170f2d329daca73247ecf6e658e3"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbae825170f2d329daca73247ecf6e658e3">Mezzanine::Resource::AT_FileSystem</a></div><div class="ttdoc">Look for raw files. </div><div class="ttdef"><b>Definition:</b> <a href="resourceenumerations_8h_source.html#l00054">resourceenumerations.h:54</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Resource_html_aa217e46d611590fd63859ff2f9c5eacbac0c9a85d1b4ac4c99314ff3c5a989a68"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbac0c9a85d1b4ac4c99314ff3c5a989a68">Mezzanine::Resource::AT_Invalid</a></div><div class="ttdoc">Indicates this valid was messed up unrecoverably, most likely by a bug. </div><div class="ttdef"><b>Definition:</b> <a href="resourceenumerations_8h_source.html#l00056">resourceenumerations.h:56</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:22:59 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:36 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

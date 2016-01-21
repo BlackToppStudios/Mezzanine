@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structMezzanine_1_1Internal_1_1LineVertex.html" title="A small declaration of what our vertexs look like for when we write to the buffers. " alt="" coords="5,5,141,47"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html" title="Mezzanine::Graphics\l::Procedural::MeshGenerator\l\&lt; MeshLoader \&gt;" alt="" coords="5,5,195,61"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshLoader.html" title="A generator class for loading an external mesh into a procedural buffer. " alt="" coords="243,13,413,54"/>
 </map>

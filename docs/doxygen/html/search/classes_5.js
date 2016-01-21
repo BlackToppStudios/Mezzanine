@@ -2,8 +2,10 @@ var searchData=
 [
   ['eaxreverbparameters',['EAXReverbParameters',['../structMezzanine_1_1Audio_1_1EAXReverbParameters.html',1,'Mezzanine::Audio']]],
   ['echoparameters',['EchoParameters',['../structMezzanine_1_1Audio_1_1EchoParameters.html',1,'Mezzanine::Audio']]],
+  ['edgedetectionmodifier',['EdgeDetectionModifier',['../classMezzanine_1_1Graphics_1_1Procedural_1_1EdgeDetectionModifier.html',1,'Mezzanine::Graphics::Procedural']]],
   ['editbox',['EditBox',['../classMezzanine_1_1UI_1_1EditBox.html',1,'Mezzanine::UI']]],
   ['editboxfactory',['EditBoxFactory',['../classMezzanine_1_1UI_1_1EditBoxFactory.html',1,'Mezzanine::UI']]],
+  ['ellipsemodifier',['EllipseModifier',['../classMezzanine_1_1Graphics_1_1Procedural_1_1EllipseModifier.html',1,'Mezzanine::Graphics::Procedural']]],
   ['endnodeitem',['EndNodeItem',['../classMezzanine_1_1EndNodeItem.html',1,'Mezzanine']]],
   ['entityproxy',['EntityProxy',['../classMezzanine_1_1Graphics_1_1EntityProxy.html',1,'Mezzanine::Graphics']]],
   ['entresol',['Entresol',['../classMezzanine_1_1Entresol.html',1,'Mezzanine']]],
@@ -72,5 +74,6 @@ var searchData=
   ['exceptionfactory_3c_20syntaxerrorluaexception_3a_3aexceptioncode_20_3e',['ExceptionFactory&lt; SyntaxErrorLuaException::ExceptionCode &gt;',['../structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorLuaException_1_1ExceptionCode_01_4.html',1,'Mezzanine']]],
   ['exceptionfactory_3c_20syntaxerrorxmlexception_3a_3aexceptioncode_20_3e',['ExceptionFactory&lt; SyntaxErrorXMLException::ExceptionCode &gt;',['../structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorXMLException_1_1ExceptionCode_01_4.html',1,'Mezzanine']]],
   ['exceptionfactory_3c_20syntaxerrorxpathexception_3a_3aexceptioncode_20_3e',['ExceptionFactory&lt; SyntaxErrorXPathException::ExceptionCode &gt;',['../structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorXPathException_1_1ExceptionCode_01_4.html',1,'Mezzanine']]],
-  ['extendedtimer',['ExtendedTimer',['../classMezzanine_1_1ExtendedTimer.html',1,'Mezzanine']]]
+  ['extendedtimer',['ExtendedTimer',['../classMezzanine_1_1ExtendedTimer.html',1,'Mezzanine']]],
+  ['extruder',['Extruder',['../classMezzanine_1_1Graphics_1_1Procedural_1_1Extruder.html',1,'Mezzanine::Graphics::Procedural']]]
 ];

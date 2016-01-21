@@ -1,0 +1,7 @@
+<map id="Mezzanine::Network::HTTPRequest" name="Mezzanine::Network::HTTPRequest">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Network_1_1HTTPMessage.html" title="A base class for HTTP text parsing classes. " alt="" coords="207,389,350,431"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="187,96,267,123"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Network_1_1URI.html" title="A helper class for the reading and using of Uniform Resource Identifiers. " alt="" coords="467,339,642,365"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="163,5,290,47"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1SimpleVersion.html" title="A very basic class for expressing an API or syntax version. " alt="" coords="339,288,517,315"/>
+</map>

@@ -81,6 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classMezzanine_1_1Audio_1_1iDecoder-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Mezzanine::Audio::iDecoder Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -135,6 +136,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:adbef54638e25405a51783e1d6dffb1b3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#adbef54638e25405a51783e1d6dffb1b3">GetTotalTime</a> () const =0</td></tr>
 <tr class="memdesc:adbef54638e25405a51783e1d6dffb1b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the length of the stream in seconds.  <a href="#adbef54638e25405a51783e1d6dffb1b3">More...</a><br /></td></tr>
 <tr class="separator:adbef54638e25405a51783e1d6dffb1b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1122c8694f74755c8b8b75ca6cdbf33"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#ac1122c8694f74755c8b8b75ca6cdbf33">IsEndOfStream</a> () const =0</td></tr>
+<tr class="memdesc:ac1122c8694f74755c8b8b75ca6cdbf33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the decode has reached the end of the stream.  <a href="#ac1122c8694f74755c8b8b75ca6cdbf33">More...</a><br /></td></tr>
+<tr class="separator:ac1122c8694f74755c8b8b75ca6cdbf33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bd84fb1a7d5b81e21395835ee179d25"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#a4bd84fb1a7d5b81e21395835ee179d25">IsSeekingSupported</a> ()=0</td></tr>
 <tr class="memdesc:a4bd84fb1a7d5b81e21395835ee179d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not seeking is supported.  <a href="#a4bd84fb1a7d5b81e21395835ee179d25">More...</a><br /></td></tr>
 <tr class="separator:a4bd84fb1a7d5b81e21395835ee179d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,18 +148,50 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a8a7614beace7f27a90bfadf7b1ef26f1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#a8a7614beace7f27a90bfadf7b1ef26f1">ReadAudioData</a> (void *Output, <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Amount)=0</td></tr>
 <tr class="memdesc:a8a7614beace7f27a90bfadf7b1ef26f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads from the audio stream and writes what is read to a buffer.  <a href="#a8a7614beace7f27a90bfadf7b1ef26f1">More...</a><br /></td></tr>
 <tr class="separator:a8a7614beace7f27a90bfadf7b1ef26f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a413c90888901598505cdebda66cd46"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#a7a413c90888901598505cdebda66cd46">Seek</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Seconds, <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)=0</td></tr>
-<tr class="memdesc:a7a413c90888901598505cdebda66cd46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the current time position in the stream.  <a href="#a7a413c90888901598505cdebda66cd46">More...</a><br /></td></tr>
-<tr class="separator:a7a413c90888901598505cdebda66cd46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c185360f14079eca8f9998da8c5e18e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#a5c185360f14079eca8f9998da8c5e18e">SetPosition</a> (<a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Position, <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)=0</td></tr>
-<tr class="memdesc:a5c185360f14079eca8f9998da8c5e18e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the position (in bytes) of the stream.  <a href="#a5c185360f14079eca8f9998da8c5e18e">More...</a><br /></td></tr>
-<tr class="separator:a5c185360f14079eca8f9998da8c5e18e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1b120fad39249e93d466e91c721a17d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#ac1b120fad39249e93d466e91c721a17d">Seek</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Seconds, const <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)=0</td></tr>
+<tr class="memdesc:ac1b120fad39249e93d466e91c721a17d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the current time position in the stream.  <a href="#ac1b120fad39249e93d466e91c721a17d">More...</a><br /></td></tr>
+<tr class="separator:ac1b120fad39249e93d466e91c721a17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cfc691c12675ba2cba031a6206033fd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#a3cfc691c12675ba2cba031a6206033fd">SetPosition</a> (<a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Position, const <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)=0</td></tr>
+<tr class="memdesc:a3cfc691c12675ba2cba031a6206033fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the position (in bytes) of the stream.  <a href="#a3cfc691c12675ba2cba031a6206033fd">More...</a><br /></td></tr>
+<tr class="separator:a3cfc691c12675ba2cba031a6206033fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a5485d1899004174116f6bd0e51428be6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iDecoder.html#a5485d1899004174116f6bd0e51428be6">ClearStreamErrors</a> ()=0</td></tr>
+<tr class="memdesc:a5485d1899004174116f6bd0e51428be6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears EoF and Fail bits from the stream if they are present.  <a href="#a5485d1899004174116f6bd0e51428be6">More...</a><br /></td></tr>
+<tr class="separator:a5485d1899004174116f6bd0e51428be6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an interface class for the decoding of audio from a stream. </p>
 
 <p>Definition at line <a class="el" href="decoder_8h_source.html#l00059">59</a> of file <a class="el" href="decoder_8h_source.html">decoder.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a5485d1899004174116f6bd0e51428be6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::Audio::iDecoder::ClearStreamErrors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clears EoF and Fail bits from the stream if they are present. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This should only check for the EoF bit, and if found clear EoF and Fail bits. Both of these can be encountered when the stream reaches EoF and isn't an error condition when streaming audio. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ae417c258ed195340ca75eae34ed95566"></a>
 <div class="memitem">
 <div class="memproto">
@@ -362,7 +398,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets the sample size based on the decoders current configuration. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a UInt32 representing the size of a single sample from the underlying stream. </dd></dl>
 
-<p>Definition at line <a class="el" href="decoder_8h_source.html#l00092">92</a> of file <a class="el" href="decoder_8h_source.html">decoder.h</a>.</p>
+<p>Definition at line <a class="el" href="decoder_8h_source.html#l00104">104</a> of file <a class="el" href="decoder_8h_source.html">decoder.h</a>.</p>
 
 </div>
 </div>
@@ -441,6 +477,33 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 <p>Gets the length of the stream in seconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the total amount of time needed to playback the sound in seconds. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac1122c8694f74755c8b8b75ca6cdbf33"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::iDecoder::IsEndOfStream </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks to see if the decode has reached the end of the stream. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>Multiple decoders may use the same stream, and when this happens the actual underlying stream position may be altered multiple times to varying positions in the stream. Because of this, checking the underlying stream directly may not give you an accurate idea of if this decoders point in the stream has reached it's end. That is what this function is meant to address. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if all of the data in the stream has been decoded, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -541,7 +604,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a class="anchor" id="a7a413c90888901598505cdebda66cd46"></a>
+<a class="anchor" id="ac1b120fad39249e93d466e91c721a17d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -557,7 +620,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>Relative</em>&#160;</td>
         </tr>
         <tr>
@@ -585,7 +648,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a class="anchor" id="a5c185360f14079eca8f9998da8c5e18e"></a>
+<a class="anchor" id="a3cfc691c12675ba2cba031a6206033fd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -601,7 +664,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>Relative</em>&#160;</td>
         </tr>
         <tr>
@@ -636,7 +699,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:03 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:43 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

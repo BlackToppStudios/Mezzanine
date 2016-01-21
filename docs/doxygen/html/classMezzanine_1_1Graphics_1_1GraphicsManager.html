@@ -143,37 +143,38 @@ typedef ResolutionContainer::iterator&#160;</td><td class="memItemRight" valign=
 <tr class="separator:a0dcebacc2a172eeb67022bf432af2209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br />
-&#160;&#160;<b>MT_AudioManager</b> = 1, 
-<b>MT_AnimationManager</b>, 
-<b>MT_CollisionShapeManager</b>, 
-<b>MT_CompositorManager</b>, 
+&#160;&#160;<b>MT_Undefined</b> = 0, 
+<b>MT_AudioManager</b> = 1, 
+<b>MT_AnimationManager</b> = 2, 
+<b>MT_CollisionShapeManager</b> = 3, 
 <br />
-&#160;&#160;<b>MT_GraphicsManager</b>, 
-<b>MT_EventManager</b>, 
-<b>MT_InputManager</b>, 
-<b>MT_LogManager</b>, 
+&#160;&#160;<b>MT_CompositorManager</b> = 4, 
+<b>MT_GraphicsManager</b> = 5, 
+<b>MT_EventManager</b> = 6, 
+<b>MT_InputManager</b> = 7, 
 <br />
-&#160;&#160;<b>MT_MaterialManager</b>, 
-<b>MT_MeshManager</b>, 
-<b>MT_NetworkManager</b>, 
-<b>MT_ResourceManager</b>, 
+&#160;&#160;<b>MT_LogManager</b> = 8, 
+<b>MT_MaterialManager</b> = 9, 
+<b>MT_MeshManager</b> = 10, 
+<b>MT_NetworkManager</b> = 11, 
 <br />
-&#160;&#160;<b>MT_ScriptingManager</b>, 
-<b>MT_TextureManager</b>, 
-<b>MT_UIManager</b>, 
-<b>MT_ActorManager</b> = 100, 
+&#160;&#160;<b>MT_ResourceManager</b> = 12, 
+<b>MT_ScriptingManager</b> = 13, 
+<b>MT_TextureManager</b> = 14, 
+<b>MT_UIManager</b> = 15, 
 <br />
-&#160;&#160;<b>MT_AreaEffectManager</b>, 
-<b>MT_DebrisManager</b>, 
-<b>MT_PagingManager</b>, 
-<b>MT_PhysicsManager</b>, 
+&#160;&#160;<b>MT_ActorManager</b> = 101, 
+<b>MT_AreaEffectManager</b> = 102, 
+<b>MT_DebrisManager</b> = 103, 
+<b>MT_PagingManager</b> = 104, 
 <br />
-&#160;&#160;<b>MT_SceneManager</b>, 
-<b>MT_SoundScapeManager</b>, 
-<b>MT_TerrainManager</b>, 
-<b>MT_VehicleManager</b>, 
+&#160;&#160;<b>MT_PhysicsManager</b> = 105, 
+<b>MT_SceneManager</b> = 106, 
+<b>MT_SoundScapeManager</b> = 107, 
+<b>MT_TerrainManager</b> = 108, 
 <br />
-&#160;&#160;<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
+&#160;&#160;<b>MT_VehicleManager</b> = 109, 
+<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br />
  }</td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,9 +213,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad9d76c8c8e6c911ba68c7b334dc6b41a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#ad9d76c8c8e6c911ba68c7b334dc6b41a">GraphicsManager</a> ()</td></tr>
 <tr class="memdesc:ad9d76c8c8e6c911ba68c7b334dc6b41a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor.  <a href="#ad9d76c8c8e6c911ba68c7b334dc6b41a">More...</a><br /></td></tr>
 <tr class="separator:ad9d76c8c8e6c911ba68c7b334dc6b41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70c482c5a946b737087fa4069f669e99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#a70c482c5a946b737087fa4069f669e99">GraphicsManager</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
-<tr class="memdesc:a70c482c5a946b737087fa4069f669e99"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#a70c482c5a946b737087fa4069f669e99">More...</a><br /></td></tr>
-<tr class="separator:a70c482c5a946b737087fa4069f669e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0a683877f5199c91a09dae601df15e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#af0a683877f5199c91a09dae601df15e5">GraphicsManager</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
+<tr class="memdesc:af0a683877f5199c91a09dae601df15e5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#af0a683877f5199c91a09dae601df15e5">More...</a><br /></td></tr>
+<tr class="separator:af0a683877f5199c91a09dae601df15e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa276cca69338afa3c5b573c83e9d3cd2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa276cca69338afa3c5b573c83e9d3cd2"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.html#aa276cca69338afa3c5b573c83e9d3cd2">~GraphicsManager</a> ()</td></tr>
 <tr class="memdesc:aa276cca69338afa3c5b573c83e9d3cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br /></td></tr>
@@ -606,14 +607,14 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 </div>
 </div>
-<a class="anchor" id="a70c482c5a946b737087fa4069f669e99"></a>
+<a class="anchor" id="af0a683877f5199c91a09dae601df15e5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::Graphics::GraphicsManager::GraphicsManager </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
           <td class="paramname"><em>XMLNode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -627,7 +628,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000068">Todo:</a></b></dt><dd>This is currently necessary because a render window of some kind needs to exist for the loading of resources that occurs later in world construction (when this is constructed by the world, which this assumes. If possible this should be removed, to keep construction more flexible. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000067">Todo:</a></b></dt><dd>This is currently necessary because a render window of some kind needs to exist for the loading of resources that occurs later in world construction (when this is constructed by the world, which this assumes. If possible this should be removed, to keep construction more flexible. </dd></dl>
 
 <p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00135">135</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
@@ -699,7 +700,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000069">Todo:</a></b></dt><dd>May want to make some other data member so that people can accurately get what is set now, instead of what will be set. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000068">Todo:</a></b></dt><dd>May want to make some other data member so that people can accurately get what is set now, instead of what will be set. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a69acdca039f113c3bc7b6410e6277c21">Mezzanine::ObjectSettingsHandler</a>.</p>
 
@@ -808,11 +809,11 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 </div><div class="memdoc">
 
 <p>Removes this manager from any necessary configuration so it can be safely disposed of. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000070">Todo:</a></b></dt><dd>Here is where we should be shutting down the rendersystem, but <a class="el" href="namespaceOgre.html">Ogre</a> in it's poorly coded ways wasn't designed for that unless you are also deleting Ogre::Root. Take it up with them if you don't like it. (tell me where the thread is when you do, I'll join in) Related: <a href="http://www.ogre3d.org/forums/viewtopic.php?f=4&t=77036&sid=a7ce7512032eb851d50da083795198f3">http://www.ogre3d.org/forums/viewtopic.php?f=4&amp;t=77036&amp;sid=a7ce7512032eb851d50da083795198f3</a> </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000069">Todo:</a></b></dt><dd>Here is where we should be shutting down the rendersystem, but <a class="el" href="namespaceOgre.html">Ogre</a> in it's poorly coded ways wasn't designed for that unless you are also deleting Ogre::Root. Take it up with them if you don't like it. (tell me where the thread is when you do, I'll join in) Related: <a href="http://www.ogre3d.org/forums/viewtopic.php?f=4&t=77036&sid=a7ce7512032eb851d50da083795198f3">http://www.ogre3d.org/forums/viewtopic.php?f=4&amp;t=77036&amp;sid=a7ce7512032eb851d50da083795198f3</a> </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#ab13bf1e752c3b54c7c392ba9a869fb72">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00623">623</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00636">636</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -995,7 +996,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#ac41d60f674e75d3d16b5544f4feb199c">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00667">667</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00680">680</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1025,7 +1026,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a388aa37ed71b8667785b789c137aa8c6">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00664">664</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00677">677</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1142,7 +1143,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>Gets the work unit responsible for performing the graphics render of all scenes. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" title="This does the main loop processing for required to make the Graphics Manager function. ">RenderWorkUnit</a> being used by this manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00645">645</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00658">658</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +1230,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>Gets whether or not <a class="el" href="namespaceOgre.html">Ogre</a> has been started. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Boole indicating whether or not <a class="el" href="namespaceOgre.html">Ogre</a> has been initialized yet. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00656">656</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00669">669</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1249,7 +1250,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <p>Gets whether or not SDL has been started. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Boole indicating whether or not SDL has been initialized yet. </dd></dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00651">651</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00664">664</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1279,7 +1280,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a864e3cac11928a602c1db28fa2d52ee2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00586">586</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00599">599</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1378,7 +1379,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00580">580</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.html#l00593">593</a> of file <a class="el" href="graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1632,7 +1633,7 @@ static GraphicsManager *&#160;</td><td class="memItemRight" valign="bottom"><b>S
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:03 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:44 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

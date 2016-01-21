@@ -272,7 +272,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Socket::ReceivePeek(<span class="keywordtype">void</span>* Buffer, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> BufSize)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;InternalSocket-&gt;Receive(Buffer,BufSize,MSG_PEEK); }</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Socket::Shutdown(<span class="keyword">const</span> Network::SocketShutdown How)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Socket::Shutdown(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1Network.html#a40c71c206b0069e9bb6dbaefa66374b8">Network::SocketShutdown</a> How)</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            { <span class="keywordflow">return</span> this-&gt;InternalSocket-&gt;Shutdown(How); }</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
@@ -412,11 +412,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="namespaceMezzanine_html_abea3b8e8e9b03d2547b2800284ba682d"><div class="ttname"><a href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">Mezzanine::UInt32</a></div><div class="ttdeci">uint32_t UInt32</div><div class="ttdoc">An 32-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00128">datatypes.h:128</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a1b6c09063432c7ddd87011c88306c767"><div class="ttname"><a href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">Mezzanine::UInt16</a></div><div class="ttdeci">uint16_t UInt16</div><div class="ttdoc">An 16-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00122">datatypes.h:122</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Network_html_a40c71c206b0069e9bb6dbaefa66374b8"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a40c71c206b0069e9bb6dbaefa66374b8">Mezzanine::Network::SocketShutdown</a></div><div class="ttdeci">SocketShutdown</div><div class="ttdoc">This is a small enum used for socket shutdown parameters. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00176">networkenumerations.h:176</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:22:58 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:36 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

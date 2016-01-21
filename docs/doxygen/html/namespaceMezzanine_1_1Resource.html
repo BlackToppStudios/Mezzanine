@@ -127,7 +127,10 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class interface for resource streams.  <a href="classMezzanine_1_1Resource_1_1iStreamBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1MemoryStream.html">MemoryStream</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This represents a stream to a buffer in memory.  <a href="classMezzanine_1_1Resource_1_1MemoryStream.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An I/O stream to a buffer of memory.  <a href="classMezzanine_1_1Resource_1_1MemoryStream.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1MemoryStreamBuffer.html">MemoryStreamBuffer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A stream buffer object to a chunk of memory.  <a href="classMezzanine_1_1Resource_1_1MemoryStreamBuffer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1OStream.html">OStream</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for output (write) streams with minimal implementation.  <a href="classMezzanine_1_1Resource_1_1OStream.html#details">More...</a><br /></td></tr>
@@ -140,12 +143,42 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a0ab367bb733ee143adc127085ab0da6a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ab367bb733ee143adc127085ab0da6a"></a>
 typedef <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html">IOStream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#a0ab367bb733ee143adc127085ab0da6a">DataStream</a></td></tr>
-<tr class="memdesc:a0ab367bb733ee143adc127085ab0da6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience define for compatibility. <br /></td></tr>
+<tr class="memdesc:a0ab367bb733ee143adc127085ab0da6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type for compatibility. <br /></td></tr>
 <tr class="separator:a0ab367bb733ee143adc127085ab0da6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62a315666b8e56a64640c813ac400b52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62a315666b8e56a64640c813ac400b52"></a>
 typedef <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt; <a class="el" href="namespaceMezzanine_1_1Resource.html#a0ab367bb733ee143adc127085ab0da6a">DataStream</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">DataStreamPtr</a></td></tr>
 <tr class="memdesc:a62a315666b8e56a64640c813ac400b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a convenience type for a data stream in a counted pointer. <br /></td></tr>
 <tr class="separator:a62a315666b8e56a64640c813ac400b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e41ac87285c063bfd370c750e98b9c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e41ac87285c063bfd370c750e98b9c3"></a>
+typedef <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Resource_1_1IStream.html">IStream</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>IStreamPtr</b></td></tr>
+<tr class="separator:a2e41ac87285c063bfd370c750e98b9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a81b65e7de9101e1d2d3386608bbd3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35a81b65e7de9101e1d2d3386608bbd3"></a>
+typedef <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html">OStream</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OStreamPtr</b></td></tr>
+<tr class="separator:a35a81b65e7de9101e1d2d3386608bbd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08e2e08dcb2cf80c734c910585539f95"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08e2e08dcb2cf80c734c910585539f95"></a>
+typedef std::istream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#a08e2e08dcb2cf80c734c910585539f95">StdInputStream</a></td></tr>
+<tr class="memdesc:a08e2e08dcb2cf80c734c910585539f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type for a standard input stream. <br /></td></tr>
+<tr class="separator:a08e2e08dcb2cf80c734c910585539f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bc12a2d9a6e059b65acb47ac3d08713"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bc12a2d9a6e059b65acb47ac3d08713"></a>
+typedef <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt; <a class="el" href="namespaceMezzanine_1_1Resource.html#a08e2e08dcb2cf80c734c910585539f95">StdInputStream</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#a9bc12a2d9a6e059b65acb47ac3d08713">StdInputStreamPtr</a></td></tr>
+<tr class="memdesc:a9bc12a2d9a6e059b65acb47ac3d08713"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type for a standard input stream in a <a class="el" href="classMezzanine_1_1CountedPtr.html" title="A simple reference counting pointer. ">CountedPtr</a>. <br /></td></tr>
+<tr class="separator:a9bc12a2d9a6e059b65acb47ac3d08713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ae4b5dd99446e32e84516e2bc8daaa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28ae4b5dd99446e32e84516e2bc8daaa"></a>
+typedef std::ostream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#a28ae4b5dd99446e32e84516e2bc8daaa">StdOutputStream</a></td></tr>
+<tr class="memdesc:a28ae4b5dd99446e32e84516e2bc8daaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type for a standard output stream. <br /></td></tr>
+<tr class="separator:a28ae4b5dd99446e32e84516e2bc8daaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a021f4365e5647dd431372fd7ec5782"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a021f4365e5647dd431372fd7ec5782"></a>
+typedef <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt; <a class="el" href="namespaceMezzanine_1_1Resource.html#a28ae4b5dd99446e32e84516e2bc8daaa">StdOutputStream</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#a6a021f4365e5647dd431372fd7ec5782">StdOutputStreamPtr</a></td></tr>
+<tr class="memdesc:a6a021f4365e5647dd431372fd7ec5782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type for a standard output stream in a <a class="el" href="classMezzanine_1_1CountedPtr.html" title="A simple reference counting pointer. ">CountedPtr</a>. <br /></td></tr>
+<tr class="separator:a6a021f4365e5647dd431372fd7ec5782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f5866fe47fc0b244cfc0ea37c14a835"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f5866fe47fc0b244cfc0ea37c14a835"></a>
+typedef std::iostream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#a4f5866fe47fc0b244cfc0ea37c14a835">StdStream</a></td></tr>
+<tr class="memdesc:a4f5866fe47fc0b244cfc0ea37c14a835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type for a standard input/output stream. <br /></td></tr>
+<tr class="separator:a4f5866fe47fc0b244cfc0ea37c14a835"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36f914aae13b77b8e77cd1ffba3cf69"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae36f914aae13b77b8e77cd1ffba3cf69"></a>
+typedef <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a>&lt; <a class="el" href="namespaceMezzanine_1_1Resource.html#a4f5866fe47fc0b244cfc0ea37c14a835">StdStream</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#ae36f914aae13b77b8e77cd1ffba3cf69">StdStreamPtr</a></td></tr>
+<tr class="memdesc:ae36f914aae13b77b8e77cd1ffba3cf69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type for a standard input/output stream in a <a class="el" href="classMezzanine_1_1CountedPtr.html" title="A simple reference counting pointer. ">CountedPtr</a>. <br /></td></tr>
+<tr class="separator:ae36f914aae13b77b8e77cd1ffba3cf69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a927f01aa6d9e7751748be3b042fd54f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a927f01aa6d9e7751748be3b042fd54f7"></a>
 typedef std::streamoff&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#a927f01aa6d9e7751748be3b042fd54f7">StreamOff</a></td></tr>
 <tr class="memdesc:a927f01aa6d9e7751748be3b042fd54f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience define for the stream offset datatype. <br /></td></tr>
@@ -161,6 +194,12 @@ typedef std::streamsize&#160;</td><td class="memItemRight" valign="bottom"><a cl
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:aa217e46d611590fd63859ff2f9c5eacb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacb">ArchiveType</a> { <a class="el" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbae825170f2d329daca73247ecf6e658e3">AT_FileSystem</a> = 0, 
+<a class="el" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbae3d8364f509b769a21b212155c77f552">AT_Zip</a> = 1, 
+<a class="el" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacbac0c9a85d1b4ac4c99314ff3c5a989a68">AT_Invalid</a> = 32768
+ }</td></tr>
+<tr class="memdesc:aa217e46d611590fd63859ff2f9c5eacb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to indicate what kind of resources the Entrosol should look for.  <a href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacb">More...</a><br /></td></tr>
+<tr class="separator:aa217e46d611590fd63859ff2f9c5eacb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc80f5aeae6c4335e6171639a9709eb1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc80f5aeae6c4335e6171639a9709eb1"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html#afc80f5aeae6c4335e6171639a9709eb1">LoadingState</a> { <br />
 &#160;&#160;<b>LS_Uninitialized</b> = 0, 
 <b>LS_Initializing</b> = 1, 
@@ -286,6 +325,33 @@ Functions</h2></td></tr>
 <div class="textblock"><p>This namespace is for all the classes belonging to the non-network I/O Subsystem. </p>
 <p>The resource system is primarily responsible for the loading, reading, and writing of files as well as filesystem management. </p>
 </div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="aa217e46d611590fd63859ff2f9c5eacb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceMezzanine_1_1Resource.html#aa217e46d611590fd63859ff2f9c5eacb">Mezzanine::Resource::ArchiveType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to indicate what kind of resources the Entrosol should look for. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="aa217e46d611590fd63859ff2f9c5eacbae825170f2d329daca73247ecf6e658e3"></a>AT_FileSystem&#160;</td><td class="fielddoc">
+<p>Look for raw files. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa217e46d611590fd63859ff2f9c5eacbae3d8364f509b769a21b212155c77f552"></a>AT_Zip&#160;</td><td class="fielddoc">
+<p>Look for stuff in zip files even if the extension is not '.zip'. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="aa217e46d611590fd63859ff2f9c5eacbac0c9a85d1b4ac4c99314ff3c5a989a68"></a>AT_Invalid&#160;</td><td class="fielddoc">
+<p>Indicates this valid was messed up unrecoverably, most likely by a bug. </p>
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="resourceenumerations_8h_source.html#l00052">52</a> of file <a class="el" href="resourceenumerations_8h_source.html">resourceenumerations.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a2a20876e012cfa5b7733b44c6fef11f7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +375,7 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="datastream_8h_source.html#l00084">84</a> of file <a class="el" href="datastream_8h_source.html">datastream.h</a>.</p>
+<p>Definition at line <a class="el" href="datastream_8h_source.html#l00082">82</a> of file <a class="el" href="datastream_8h_source.html">datastream.h</a>.</p>
 
 </div>
 </div>
@@ -349,7 +415,7 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="datastream_8h_source.html#l00071">71</a> of file <a class="el" href="datastream_8h_source.html">datastream.h</a>.</p>
+<p>Definition at line <a class="el" href="datastream_8h_source.html#l00069">69</a> of file <a class="el" href="datastream_8h_source.html">datastream.h</a>.</p>
 
 </div>
 </div>
@@ -1010,7 +1076,7 @@ Not all systems provide all the needed information to determine the executable d
 
 <p>Search the system path the same way most systems do to find an executable. </p>
 <dl class="section warning"><dt>Warning</dt><dd>This function is case sensitive and not all operating systems are. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000113">Todo:</a></b></dt><dd>Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched. <dl class="params"><dt>Parameters</dt><dd>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000115">Todo:</a></b></dt><dd>Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched. <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ExecutableName</td><td>The executable to look for. </td></tr>
   </table>
@@ -1027,7 +1093,7 @@ Not all systems provide all the needed information to determine the executable d
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:04 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:46 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

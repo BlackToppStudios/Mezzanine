@@ -139,7 +139,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        NetworkManager::NetworkManager()</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            {  }</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        NetworkManager::NetworkManager(XML::Node&amp; XMLNode)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        NetworkManager::NetworkManager(<span class="keyword">const</span> XML::Node&amp; XMLNode)</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {<span class="comment"></span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">            /// @todo This class currently doesn&#39;t initialize anything from XML, if that changes this constructor needs to be expanded.</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"></span>        }</div>
@@ -188,7 +188,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> DefaultNetworkManagerFactory::GetManagerType()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> NetworkManager::InterfaceType; }</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        EntresolManager* DefaultNetworkManagerFactory::CreateManager(<a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a>&amp; Params)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        EntresolManager* DefaultNetworkManagerFactory::CreateManager(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a>&amp; Params)</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        {</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">if</span>( NetworkManager::SingletonValid() ) {<span class="comment"></span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.</span></div>
@@ -196,7 +196,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            }<span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">new</span> NetworkManager();</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        }</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        EntresolManager* DefaultNetworkManagerFactory::CreateManager(XML::Node&amp; XMLNode)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        EntresolManager* DefaultNetworkManagerFactory::CreateManager(<span class="keyword">const</span> XML::Node&amp; XMLNode)</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        {</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <span class="keywordflow">if</span>( NetworkManager::SingletonValid() ) {<span class="comment"></span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.</span></div>
@@ -220,7 +220,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:22:58 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:36 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

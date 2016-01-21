@@ -109,18 +109,86 @@ Public Member Functions</h2></td></tr>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#aac2018bce087a1174de1b0a1a416b881">~iStreamBase</a> ()</td></tr>
 <tr class="memdesc:aac2018bce087a1174de1b0a1a416b881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br /></td></tr>
 <tr class="separator:aac2018bce087a1174de1b0a1a416b881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb4193ce19739e1e9203b9889875e7e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a9eb4193ce19739e1e9203b9889875e7e">Bad</a> () const =0</td></tr>
+<tr class="memdesc:a9eb4193ce19739e1e9203b9889875e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not a critical error was detected in a previous operation in the stream.  <a href="#a9eb4193ce19739e1e9203b9889875e7e">More...</a><br /></td></tr>
+<tr class="separator:a9eb4193ce19739e1e9203b9889875e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5138d6023de078cd07a3902a7f2c219e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a5138d6023de078cd07a3902a7f2c219e">ClearErrors</a> ()=0</td></tr>
+<tr class="memdesc:a5138d6023de078cd07a3902a7f2c219e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any stored error state on the stream.  <a href="#a5138d6023de078cd07a3902a7f2c219e">More...</a><br /></td></tr>
+<tr class="separator:a5138d6023de078cd07a3902a7f2c219e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a008551c90272e9ba965532ebe7e34f0b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a008551c90272e9ba965532ebe7e34f0b">EoF</a> () const =0</td></tr>
 <tr class="memdesc:a008551c90272e9ba965532ebe7e34f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the current position is at the end of the stream.  <a href="#a008551c90272e9ba965532ebe7e34f0b">More...</a><br /></td></tr>
 <tr class="separator:a008551c90272e9ba965532ebe7e34f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a575a6a2d7ae6a63c791e30970817f09f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a575a6a2d7ae6a63c791e30970817f09f">Fail</a> () const =0</td></tr>
+<tr class="memdesc:a575a6a2d7ae6a63c791e30970817f09f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not an otherwise silent and recoverable error was detected in a previous operation in the stream.  <a href="#a575a6a2d7ae6a63c791e30970817f09f">More...</a><br /></td></tr>
+<tr class="separator:a575a6a2d7ae6a63c791e30970817f09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0877e47816b9ada695fe4a101696dee9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1Resource.html#a57c319fb1991c37cb3ee0473ba973235">StreamSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a0877e47816b9ada695fe4a101696dee9">GetSize</a> () const =0</td></tr>
 <tr class="memdesc:a0877e47816b9ada695fe4a101696dee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of the stream.  <a href="#a0877e47816b9ada695fe4a101696dee9">More...</a><br /></td></tr>
 <tr class="separator:a0877e47816b9ada695fe4a101696dee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e13d9a9414ff5175c7619e274445bc"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a22e13d9a9414ff5175c7619e274445bc">IsValid</a> () const =0</td></tr>
+<tr class="memdesc:a22e13d9a9414ff5175c7619e274445bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this stream is intact and ready for operations.  <a href="#a22e13d9a9414ff5175c7619e274445bc">More...</a><br /></td></tr>
+<tr class="separator:a22e13d9a9414ff5175c7619e274445bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class interface for resource streams. </p>
 
-<p>Definition at line <a class="el" href="datastream_8h_source.html#l00095">95</a> of file <a class="el" href="datastream_8h_source.html">datastream.h</a>.</p>
+<p>Definition at line <a class="el" href="datastream_8h_source.html#l00093">93</a> of file <a class="el" href="datastream_8h_source.html">datastream.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9eb4193ce19739e1e9203b9889875e7e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Resource::iStreamBase::Bad </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets whether or not a critical error was detected in a previous operation in the stream. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if a critical error has occurred and the stream integrity may be invalid, false otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a13bbaac99d6ede90698bbbce259e1969">Mezzanine::Resource::IOStream</a>, <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a660a546959c786c633bbe17b45b1192b">Mezzanine::Resource::OStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1IStream.html#a1e677babb6dfe2545576f4315c221279">Mezzanine::Resource::IStream</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5138d6023de078cd07a3902a7f2c219e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::Resource::iStreamBase::ClearErrors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clears any stored error state on the stream. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This is useful for non-critical errors such as ones that cause "EoF()" or "Fail()" to return true but not "Bad()". Using this to clear critical errors is not advised. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#ad0eae154282722a448a57a76da0f78aa">Mezzanine::Resource::IOStream</a>, <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a5533562c226f0ac7f3d14e9ea6cf5f83">Mezzanine::Resource::OStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1IStream.html#a5627580a5a20e6cd5682da7007f88497">Mezzanine::Resource::IStream</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a008551c90272e9ba965532ebe7e34f0b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -145,7 +213,35 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets whether or not the current position is at the end of the stream. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the current position has reached the end of the stream, false otherwise. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1MemoryStream.html#a16e45b9bad30a11a61c35de6d3c982b2">Mezzanine::Resource::MemoryStream</a>, <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#af0786bccabb903921f04098adfc73caf">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1FileStream.html#a0a07e18bd7c03937cd376053b445cbdb">Mezzanine::Resource::FileStream</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a9e4447870e98fe6bcd16c6706ce85811">Mezzanine::Resource::IOStream</a>, <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a0a8584384ea311097f9e5287568aa454">Mezzanine::Resource::OStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1IStream.html#aa8b2f1cedf9d129a81bce90813142a1e">Mezzanine::Resource::IStream</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a575a6a2d7ae6a63c791e30970817f09f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Resource::iStreamBase::Fail </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets whether or not an otherwise silent and recoverable error was detected in a previous operation in the stream. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if a non-critical operation failed (such as seek), false otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a37a5e463071f946a670f307ef0449954">Mezzanine::Resource::IOStream</a>, <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#ad3ab1e7d67ea9100799f8e889435a56a">Mezzanine::Resource::OStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1IStream.html#ae864a49a983f12e178831d26521e94e8">Mezzanine::Resource::IStream</a>.</p>
 
 </div>
 </div>
@@ -173,6 +269,36 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets the size of the stream. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the size of this stream in bytes. </dd></dl>
 
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1MemoryStream.html#ac51938060817cae4630db772d22ee002">Mezzanine::Resource::MemoryStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1FileStream.html#a7ef6beccc98c7a47196ef8b1ea61ed2d">Mezzanine::Resource::FileStream</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a22e13d9a9414ff5175c7619e274445bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Resource::iStreamBase::IsValid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets whether or not this stream is intact and ready for operations. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if no failures have been detected, false otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a24f53bf18b19956bdde195032c3d1ba9">Mezzanine::Resource::IOStream</a>, <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#ac6c6b14ef36fcc15f5060c6b6e681e1e">Mezzanine::Resource::OStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1IStream.html#af58f322051bca55d07a2d09a8b93bbd6">Mezzanine::Resource::IStream</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -182,7 +308,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:04 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:46 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

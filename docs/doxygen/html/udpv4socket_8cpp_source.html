@@ -152,19 +152,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>        <span class="comment">// Configuration</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> UDPv4Socket::SetDontFragment(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> DontFrag)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordtype">int</span> Value = ( DontFrag ? Network::MFV_Frag_Disable : Network::MFV_Frag_Enable );</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            this-&gt;InternalSocket-&gt;SetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_Fragmentation,(<span class="keywordtype">char</span>*)&amp;Value,<span class="keyword">sizeof</span>(Value));</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> UDPv4Socket::GetDontFragment()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordtype">int</span> Value = 0;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            AddrLen Size;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            this-&gt;InternalSocket-&gt;GetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_Fragmentation,(<span class="keywordtype">char</span>*)&amp;Value,&amp;Size);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">return</span> ( Value != 0 );</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">/*void UDPv4Socket::SetDontFragment(const Boole DontFrag)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">        {</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">            int Value = ( DontFrag ? Network::MFV_Frag_Disable : Network::MFV_Frag_Enable );</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">            this-&gt;InternalSocket-&gt;SetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_Fragmentation,(char*)&amp;Value,sizeof(Value));</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">        Boole UDPv4Socket::GetDontFragment() const</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">        {</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            int Value = 0;</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">            AddrLen Size;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">            this-&gt;InternalSocket-&gt;GetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_Fragmentation,(char*)&amp;Value,&amp;Size);</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">            return ( Value != 0 );</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">        }// */</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> UDPv4Socket::SetNumMulticastHops(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Hops)</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        {</div>
@@ -215,7 +215,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:22:58 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:36 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

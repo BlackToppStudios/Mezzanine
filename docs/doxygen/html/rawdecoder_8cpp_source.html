@@ -134,110 +134,113 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">namespace </span>Audio</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        RawDecoder::RawDecoder(<a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> Stream, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Freq, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> Config)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            : RawStream(Stream),</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;              Frequency(Freq),</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;              BitConfiguration(Config)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        RawDecoder::~RawDecoder()</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::IsValid()</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">return</span> ( RawStream );</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Audio::Encoding</a> RawDecoder::GetEncoding()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbeeab1ab265e188be6904b824675b56eecfa">Audio::Enc_RAW</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::IsSeekingSupported()</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> RawDecoder::GetBitConfiguration()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">return</span> this-&gt;BitConfiguration;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetFrequency()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keywordflow">return</span> this-&gt;Frequency;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> RawDecoder::GetStream()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::SetPosition(<a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Position, <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            this-&gt;RawStream-&gt;SetStreamPosition(Position,( Relative ? <a class="code" href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7a3eeb01acc388e7d015db96163ca52878">Resource::SO_Current</a> : <a class="code" href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7ada12ae61124bc944a5665c257027a505">Resource::SO_Beginning</a> ));</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        RawDecoder::RawDecoder(<a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> Stream, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Freq, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> Config) :</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            RawStream(Stream),</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            RawStreamSize(0),</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            RawStreamPos(0),</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            Frequency(Freq),</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            BitConfiguration(Config)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            this-&gt;RawStream-&gt;seekg(0,std::ios_base::end);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            this-&gt;RawStreamSize = this-&gt;RawStream-&gt;tellg();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            this-&gt;RawStream-&gt;seekg(0);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        RawDecoder::~RawDecoder()</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            {  }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> RawDecoder::ClearStreamErrors()</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span>( this-&gt;RawStream-&gt;eof() ) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                this-&gt;RawStream-&gt;clear( this-&gt;RawStream-&gt;rdstate() ^ ( std::ios::eofbit | std::ios::failbit ) );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::IsValid()</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keywordflow">return</span> ( RawStream );</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Audio::Encoding</a> RawDecoder::GetEncoding()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbeeab1ab265e188be6904b824675b56eecfa">Audio::Enc_RAW</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::IsSeekingSupported()</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> RawDecoder::GetBitConfiguration()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">return</span> this-&gt;BitConfiguration;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetFrequency()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">return</span> this-&gt;Frequency;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::Seek(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Seconds, <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Pos = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a><span class="keyword">&gt;</span>( Seconds * <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>(this-&gt;Frequency) * static_cast&lt;Real&gt;( this-&gt;GetSampleSize() ) );</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">return</span> this-&gt;SetPosition(Pos,Relative);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::ReadAudioData(<span class="keywordtype">void</span>* Output, <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Amount)</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream-&gt;Read(Output,Amount);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        }</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>        <span class="comment">// Stream Stats</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RawDecoder::GetTotalTime()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>( this-&gt;RawStream-&gt;GetSize() ) / ( static_cast&lt;Real&gt;(this-&gt;Frequency) * <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>( this-&gt;GetSampleSize() ) );</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        }</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RawDecoder::GetCurrentTime()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>( this-&gt;RawStream-&gt;GetStreamPosition() ) / ( static_cast&lt;Real&gt;(this-&gt;Frequency) * <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>( this-&gt;GetSampleSize() ) );</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetTotalSize()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream-&gt;GetSize();</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetCompressedSize()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream-&gt;GetSize();</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> RawDecoder::GetStream()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::IsEndOfStream()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">return</span> ( this-&gt;RawStream-&gt;eof() || this-&gt;RawStream-&gt;tellg() &gt;= this-&gt;RawStreamSize );</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::SetPosition(<a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Position, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            this-&gt;RawStream-&gt;seekg(Position,( Relative ? std::ios_base::cur : std::ios_base::beg ));</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> RawDecoder::Seek(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Seconds, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Pos = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a><span class="keyword">&gt;</span>( Seconds * <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>(this-&gt;Frequency) * static_cast&lt;Real&gt;( this-&gt;GetSampleSize() ) );</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="keywordflow">return</span> this-&gt;SetPosition(Pos,Relative);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::ReadAudioData(<span class="keywordtype">void</span>* Output, <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Amount)</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            this-&gt;RawStream-&gt;read(static_cast&lt;char*&gt;(Output),Amount);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream-&gt;gcount();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"></span>        <span class="comment">// Stream Stats</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RawDecoder::GetTotalTime()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>( this-&gt;RawStreamSize ) / ( static_cast&lt;Real&gt;(this-&gt;Frequency) * <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>( this-&gt;GetSampleSize() ) ); }</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetCurrentPosition()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream-&gt;GetStreamPosition();</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        }</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetCurrentCompressedPosition()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream-&gt;GetStreamPosition();</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }<span class="comment">//Audio</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> RawDecoder::GetCurrentTime()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>( this-&gt;RawStream-&gt;tellg() ) / ( static_cast&lt;Real&gt;(this-&gt;Frequency) * <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a><span class="keyword">&gt;</span>( this-&gt;GetSampleSize() ) ); }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetTotalSize()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;RawStreamSize; }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetCompressedSize()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;RawStreamSize; }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetCurrentPosition()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;RawStream-&gt;tellg(); }</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif //ENABLE_RAW_ENCODE</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> RawDecoder::GetCurrentCompressedPosition()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;RawStream-&gt;tellg(); }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }<span class="comment">//Audio</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#endif //ENABLE_RAW_ENCODE</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="namespaceMezzanine_html_a7d765759d1196aae20197055f00498f8"><div class="ttname"><a href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00181">datatypes.h:181</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a2a20876e012cfa5b7733b44c6fef11f7a3eeb01acc388e7d015db96163ca52878"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7a3eeb01acc388e7d015db96163ca52878">Mezzanine::Resource::SO_Current</a></div><div class="ttdoc">The current position for read/write operations in the stream. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00087">datastream.h:87</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a590a2f3eb4a187e1b25209e546e540e1"><div class="ttname"><a href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Mezzanine::Int32</a></div><div class="ttdeci">int32_t Int32</div><div class="ttdoc">An 32-bit integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00125">datatypes.h:125</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a2a20876e012cfa5b7733b44c6fef11f7ada12ae61124bc944a5665c257027a505"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7ada12ae61124bc944a5665c257027a505">Mezzanine::Resource::SO_Beginning</a></div><div class="ttdoc">The beginning of the stream. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00086">datastream.h:86</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a62a315666b8e56a64640c813ac400b52"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Mezzanine::Resource::DataStreamPtr</a></div><div class="ttdeci">CountedPtr&lt; DataStream &gt; DataStreamPtr</div><div class="ttdoc">This is a convenience type for a data stream in a counted pointer. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00428">datastream.h:428</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a62a315666b8e56a64640c813ac400b52"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Mezzanine::Resource::DataStreamPtr</a></div><div class="ttdeci">CountedPtr&lt; DataStream &gt; DataStreamPtr</div><div class="ttdoc">This is a convenience type for a data stream in a counted pointer. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00398">datastream.h:398</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_abea3b8e8e9b03d2547b2800284ba682d"><div class="ttname"><a href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">Mezzanine::UInt32</a></div><div class="ttdeci">uint32_t UInt32</div><div class="ttdoc">An 32-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00128">datatypes.h:128</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a726731b1a7df72bf3583e4a97282c6f6"><div class="ttname"><a href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Mezzanine::Real</a></div><div class="ttdeci">float Real</div><div class="ttdoc">A Datatype used to represent a real floating point number. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00144">datatypes.h:144</a></div></div>
 <div class="ttc" id="namespaceMezzanine_1_1Audio_html_abbdf7b0c5dd3a09710208089436bdbee"><div class="ttname"><a href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Mezzanine::Audio::Encoding</a></div><div class="ttdeci">Encoding</div><div class="ttdoc">The encoding to use when reading or writing an audio buffer. </div><div class="ttdef"><b>Definition:</b> <a href="audioenumerations_8h_source.html#l00064">audioenumerations.h:64</a></div></div>
@@ -248,7 +251,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:22:58 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:34 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

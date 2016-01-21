@@ -139,255 +139,284 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">namespace</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{<span class="comment"></span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    /// @internal</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    /// @brief The Vorbis read callback.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>    <span class="keywordtype">size_t</span> VorbisRead(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">size_t</span> byteSize,<span class="keywordtype">size_t</span> sizeToRead, <span class="keywordtype">void</span> *datasource)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    /// @brief Convenience method to check for and clear EoF flags that may be encountered during decoding.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> ClearEoF(<a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>* Stream)</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>* Stream = <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>*<span class="keyword">&gt;</span>(datasource);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> Stream-&gt;<a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html#a2b24160830823838f880a799e9f0027b">Read</a>(ptr,byteSize * sizeToRead);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    /// @internal</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">    /// @brief The Vorbis seek callback (set position).</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span>    <span class="keywordtype">int</span> VorbisSeek(<span class="keywordtype">void</span> *datasource,ogg_int64_t offset,<span class="keywordtype">int</span> whence)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>* Stream = <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>*<span class="keyword">&gt;</span>(datasource);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">switch</span>(whence)</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">case</span> SEEK_SET:    Stream-&gt;<a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html#a5f4e240ecd6822b6b01c99db358cf440">SetStreamPosition</a>(offset, <a class="code" href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7ada12ae61124bc944a5665c257027a505">Mezzanine::Resource::SO_Beginning</a>);  <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">case</span> SEEK_CUR:    Stream-&gt;<a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html#a5f4e240ecd6822b6b01c99db358cf440">SetStreamPosition</a>(offset, <a class="code" href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7a3eeb01acc388e7d015db96163ca52878">Mezzanine::Resource::SO_Current</a>);    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">case</span> SEEK_END:    Stream-&gt;<a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html#a5f4e240ecd6822b6b01c99db358cf440">SetStreamPosition</a>(offset, <a class="code" href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7aa56b3d84ba327d35b08409bd9150b711">Mezzanine::Resource::SO_End</a>);        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        };</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">    /// @internal</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">    /// @brief The Vorbis tell callback (retrieve position).</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span>    <span class="keywordtype">long</span> VorbisTell(<span class="keywordtype">void</span> *datasource)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>*<span class="keyword">&gt;</span>(datasource)-&gt;GetStreamPosition();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">    /// @internal</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">    /// @brief The stream close callback.</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"></span>    <span class="keywordtype">int</span> VorbisClose(<span class="keywordtype">void</span> *datasource)</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">namespace </span>Audio</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {<span class="comment"></span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">        /// @internal</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">        /// @brief Internal convenience class for the storage of Vorbis structs needed for Vorbis operations.</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">        /// @details</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> VorbisDecoderInternalData</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"></span>            <span class="comment">// Publid Data Members</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">            /// @brief Format Information from the file.</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"></span>            vorbis_info* VorbisInfo;<span class="comment"></span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">            /// @brief User comments embedded in the file.</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span>            vorbis_comment* VorbisComments;<span class="comment"></span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">            /// @brief Mandatory callbacks for working with our streams.</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>            ov_callbacks VorbisCallbacks;<span class="comment"></span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">            /// @brief The main audio encoding.</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span>            OggVorbis_File VorbisFile;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment"></span>            <span class="comment">// Construction and destruction</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"></span>            VorbisDecoderInternalData()</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            {</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                VorbisCallbacks.read_func = VorbisRead;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                VorbisCallbacks.seek_func = VorbisSeek;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                VorbisCallbacks.tell_func = VorbisTell;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                VorbisCallbacks.close_func = VorbisClose;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            }<span class="comment"></span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"></span>            ~VorbisDecoderInternalData() {  }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        };<span class="comment">//VorbisDecoderInternalData</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        VorbisDecoder::VorbisDecoder(<a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> Stream)</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            : VorbisStream(Stream),</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;              Valid(false)</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            this-&gt;VDID = <span class="keyword">new</span> VorbisDecoderInternalData();</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            this-&gt;Valid = ( ov_open_callbacks(VorbisStream.get(),&amp;(this-&gt;VDID-&gt;VorbisFile),NULL,0,this-&gt;VDID-&gt;VorbisCallbacks) == 0 );</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid )</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                this-&gt;VDID-&gt;VorbisInfo = ov_info( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                this-&gt;VDID-&gt;VorbisComments = ov_comment( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            }</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        VorbisDecoder::~VorbisDecoder()</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        {</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            ov_clear( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment"></span>        <span class="comment">// Additional Vorbis Functionality</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> VorbisDecoder::GetUserComment(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Index)</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <a class="code" href="namespaceMezzanine.html#ab4f5efed51a1f6fc1799c821c3daf4b7">Char8</a>* Comment = this-&gt;VDID-&gt;VorbisComments-&gt;user_comments[Index];</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> CommentLength = this-&gt;VDID-&gt;VorbisComments-&gt;comment_lengths[Index];</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>(Comment,CommentLength);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetNumUserComments()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="keywordflow">return</span> this-&gt;VDID-&gt;VorbisComments-&gt;comments;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span>( Stream-&gt;eof() ) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            Stream-&gt;clear( Stream-&gt;rdstate() ^ ( std::ios::eofbit | std::ios::failbit ) );</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">    /// @internal</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    /// @brief The Vorbis read callback.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span>    <span class="keywordtype">size_t</span> VorbisRead(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">size_t</span> byteSize,<span class="keywordtype">size_t</span> sizeToRead, <span class="keywordtype">void</span> *datasource)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>* Stream = <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>*<span class="keyword">&gt;</span>(datasource);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        Stream-&gt;read( static_cast&lt;char*&gt;(ptr), byteSize * sizeToRead );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> Stream-&gt;gcount();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">    /// @internal</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">    /// @brief The Vorbis seek callback (set position).</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>    <span class="keywordtype">int</span> VorbisSeek(<span class="keywordtype">void</span> *datasource,ogg_int64_t offset,<span class="keywordtype">int</span> whence)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>* Stream = <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>*<span class="keyword">&gt;</span>(datasource);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        ClearEoF(Stream);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">switch</span>(whence)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">case</span> SEEK_SET:    Stream-&gt;seekg(offset,std::ios_base::beg);    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">case</span> SEEK_CUR:    Stream-&gt;seekg(offset,std::ios_base::cur);    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">case</span> SEEK_END:    Stream-&gt;seekg(offset,std::ios_base::end);    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        };</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> ( Stream-&gt;good() ? 0 : -1 );</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">    /// @internal</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">    /// @brief The Vorbis tell callback (retrieve position).</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span>    <span class="keywordtype">long</span> VorbisTell(<span class="keywordtype">void</span> *datasource)</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>* Stream = <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::DataStream</a>*<span class="keyword">&gt;</span>(datasource);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        ClearEoF(Stream);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span> Stream-&gt;tellg();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">    /// @internal</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">    /// @brief The stream close callback.</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span>    <span class="keywordtype">int</span> VorbisClose(<span class="keywordtype">void</span> *datasource)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">namespace </span>Audio</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {<span class="comment"></span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">        /// @internal</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">        /// @brief Internal convenience class for the storage of Vorbis structs needed for Vorbis operations.</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">        /// @details</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> VorbisDecoderInternalData</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span>            <span class="comment">// Publid Data Members</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">            /// @brief Format Information from the file.</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment"></span>            vorbis_info* VorbisInfo;<span class="comment"></span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">            /// @brief User comments embedded in the file.</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"></span>            vorbis_comment* VorbisComments;<span class="comment"></span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">            /// @brief Mandatory callbacks for working with our streams.</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"></span>            ov_callbacks VorbisCallbacks;<span class="comment"></span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">            /// @brief The main audio encoding.</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"></span>            OggVorbis_File VorbisFile;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment"></span>            <span class="comment">// Construction and destruction</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment"></span>            VorbisDecoderInternalData()</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                this-&gt;VorbisCallbacks.read_func = VorbisRead;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                this-&gt;VorbisCallbacks.seek_func = VorbisSeek;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                this-&gt;VorbisCallbacks.tell_func = VorbisTell;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                this-&gt;VorbisCallbacks.close_func = VorbisClose;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            }<span class="comment"></span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"></span>            ~VorbisDecoderInternalData() {  }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        };<span class="comment">//VorbisDecoderInternalData</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"></span>        <span class="comment">// VorbisDecoder Methods</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        VorbisDecoder::VorbisDecoder(<a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> Stream) :</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            VorbisStream(Stream),</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            VorbisStreamSize(0),</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            VorbisStreamPos(0),</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            Valid(false)</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            this-&gt;VorbisStream-&gt;seekg(0,std::ios_base::end);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            this-&gt;VorbisStreamSize = this-&gt;VorbisStream-&gt;tellg();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            this-&gt;VorbisStream-&gt;seekg(0);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            this-&gt;VDID = <span class="keyword">new</span> VorbisDecoderInternalData();</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            this-&gt;Valid = ( ov_open_callbacks(VorbisStream.get(),&amp;(this-&gt;VDID-&gt;VorbisFile),NULL,0,this-&gt;VDID-&gt;VorbisCallbacks) == 0 );</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                this-&gt;VDID-&gt;VorbisInfo = ov_info( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                this-&gt;VDID-&gt;VorbisComments = ov_comment( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                this-&gt;VorbisStreamPos = this-&gt;VorbisStream-&gt;tellg();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            }</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::IsValid()</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <span class="keywordflow">return</span> this-&gt;Valid;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        }</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Audio::Encoding</a> VorbisDecoder::GetEncoding()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbeea838e1cf2ef55387c810afb25950fecf2">Audio::Enc_VORBIS</a>;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        }</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::IsSeekingSupported()</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        {</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) <span class="keywordflow">return</span> (ov_seekable( &amp;(this-&gt;VDID-&gt;VorbisFile) ) != 0);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        }</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> VorbisDecoder::GetBitConfiguration()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid )</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                <span class="keywordflow">switch</span>( this-&gt;VDID-&gt;VorbisInfo-&gt;channels )</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                {</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                    <span class="keywordflow">case</span> 1:  <span class="keywordflow">return</span> Audio::BC_16Bit_Mono;    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                    <span class="keywordflow">case</span> 2:  <span class="keywordflow">return</span> Audio::BC_16Bit_Stereo;  <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        VorbisDecoder::~VorbisDecoder()</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            ov_clear( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        }</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordtype">void</span> VorbisDecoder::ClearStreamErrors()</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">if</span>( this-&gt;VorbisStream-&gt;eof() ) {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                this-&gt;VorbisStream-&gt;clear( this-&gt;VorbisStream-&gt;rdstate() ^ ( std::ios::eofbit | std::ios::failbit ) );</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment"></span>        <span class="comment">// Additional Vorbis Functionality</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> VorbisDecoder::GetUserComment(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Index)</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <a class="code" href="namespaceMezzanine.html#ab4f5efed51a1f6fc1799c821c3daf4b7">Char8</a>* Comment = this-&gt;VDID-&gt;VorbisComments-&gt;user_comments[Index];</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> CommentLength = this-&gt;VDID-&gt;VorbisComments-&gt;comment_lengths[Index];</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>(Comment,CommentLength);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetNumUserComments()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keywordflow">return</span> this-&gt;VDID-&gt;VorbisComments-&gt;comments;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keywordflow">return</span> Audio::BC_8Bit_Mono;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        }</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetFrequency()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) <span class="keywordflow">return</span> this-&gt;VDID-&gt;VorbisInfo-&gt;rate;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        }</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> VorbisDecoder::GetStream()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordflow">return</span> this-&gt;VorbisStream;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        }</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::SetPosition(<a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Position, <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        {</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="keywordflow">if</span>( this-&gt;IsSeekingSupported() )</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                <span class="keywordflow">if</span>( Relative ) {</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                    <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> CurrPos = ov_raw_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                    <span class="keywordflow">return</span> ( ov_raw_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), CurrPos + Position ) == 0 );</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                    <span class="keywordflow">return</span> ( ov_raw_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), Position ) == 0 );</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::IsValid()</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="keywordflow">return</span> this-&gt;Valid;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        }</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Audio::Encoding</a> VorbisDecoder::GetEncoding()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbeea838e1cf2ef55387c810afb25950fecf2">Audio::Enc_VORBIS</a>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        }</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::IsSeekingSupported()</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) <span class="keywordflow">return</span> (ov_seekable( &amp;(this-&gt;VDID-&gt;VorbisFile) ) != 0);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> VorbisDecoder::GetBitConfiguration()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                <span class="keywordflow">switch</span>( this-&gt;VDID-&gt;VorbisInfo-&gt;channels )</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                    <span class="keywordflow">case</span> 1:  <span class="keywordflow">return</span> Audio::BC_16Bit_Mono;    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                    <span class="keywordflow">case</span> 2:  <span class="keywordflow">return</span> Audio::BC_16Bit_Stereo;  <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                }</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            }</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        }</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::Seek(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Seconds, <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keywordflow">if</span>( this-&gt;IsSeekingSupported() )</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                <span class="keywordflow">if</span>( Relative ) {</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> CurrTime = ov_time_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    <span class="keywordflow">return</span> ( ov_time_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), CurrTime + Seconds ) == 0 );</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                    <span class="keywordflow">return</span> ( ov_time_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), Seconds ) == 0 );</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::ReadAudioData(<span class="keywordtype">void</span>* Output, <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Amount)</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) {</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Temp = 0;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Ret = ov_read( &amp;(this-&gt;VDID-&gt;VorbisFile), (<a class="code" href="namespaceMezzanine.html#ab4f5efed51a1f6fc1799c821c3daf4b7">Char8</a>*)Output, Amount, 0, 2, 1, &amp;Temp );</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <span class="keywordflow">return</span> Ret;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            }</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment"></span>        <span class="comment">// Stream Stats</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> VorbisDecoder::GetTotalTime()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            <span class="keywordflow">return</span> ov_time_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        }</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> VorbisDecoder::GetCurrentTime()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="keywordflow">return</span> ov_time_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        }</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetTotalSize()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            <span class="keywordflow">return</span> ov_pcm_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 ) * this-&gt;VDID-&gt;VorbisInfo-&gt;channels;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        }</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetCompressedSize()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="keywordflow">return</span> ov_raw_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        }</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetCurrentPosition()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">return</span> ov_pcm_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) ) * this-&gt;VDID-&gt;VorbisInfo-&gt;channels;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetCurrentCompressedPosition()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <span class="keywordflow">return</span> ov_raw_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        }</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    }<span class="comment">//Audio</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor">#endif //ENABLE_VORBIS_ENCODE</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            <span class="keywordflow">return</span> Audio::BC_8Bit_Mono;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetFrequency()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) <span class="keywordflow">return</span> this-&gt;VDID-&gt;VorbisInfo-&gt;rate;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> VorbisDecoder::GetStream()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="keywordflow">return</span> this-&gt;VorbisStream;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::IsEndOfStream()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">return</span> ( this-&gt;VorbisStream-&gt;eof() || this-&gt;VorbisStream-&gt;tellg() &gt;= this-&gt;VorbisStreamSize );</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        }</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::SetPosition(<a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Position, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        {</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="keywordflow">if</span>( this-&gt;IsSeekingSupported() ) {</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordflow">if</span>( Relative ) {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> CurrPos = ov_raw_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                    <span class="keywordflow">if</span>( ov_raw_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), CurrPos + Position ) == 0 ) {</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                        this-&gt;VorbisStreamPos = this-&gt;VorbisStream-&gt;tellg();</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                    }</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                    <span class="keywordflow">if</span>( ov_raw_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), Position ) == 0 ) {</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                        this-&gt;VorbisStreamPos = this-&gt;VorbisStream-&gt;tellg();</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                    }</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                }</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            }</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        }</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> VorbisDecoder::Seek(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Seconds, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Relative)</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        {</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <span class="keywordflow">if</span>( this-&gt;IsSeekingSupported() ) {</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                <span class="keywordflow">if</span>( Relative ) {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                    <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> CurrTime = ov_time_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                    <span class="keywordflow">if</span>( ov_time_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), CurrTime + Seconds ) == 0 ) {</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        this-&gt;VorbisStreamPos = this-&gt;VorbisStream-&gt;tellg();</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                    }</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                    <span class="keywordflow">if</span>( ov_time_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), Seconds ) == 0 ) {</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                        this-&gt;VorbisStreamPos = this-&gt;VorbisStream-&gt;tellg();</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                    }</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                }</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        }</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::ReadAudioData(<span class="keywordtype">void</span>* Output, <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Amount)</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        {</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                <span class="keywordflow">if</span>( this-&gt;VorbisStreamPos != this-&gt;VorbisStream-&gt;tellg() ) {</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                    this-&gt;ClearStreamErrors();</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                    this-&gt;VorbisStream-&gt;seekg( this-&gt;VorbisStreamPos );</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                }</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Temp = 0;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Ret = ov_read( &amp;(this-&gt;VDID-&gt;VorbisFile), (<a class="code" href="namespaceMezzanine.html#ab4f5efed51a1f6fc1799c821c3daf4b7">Char8</a>*)Output, Amount, 0, 2, 1, &amp;Temp );</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                this-&gt;VorbisStreamPos = this-&gt;VorbisStream-&gt;tellg();</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                <span class="keywordflow">return</span> ( Ret &gt; 0 ? Ret : 0 );</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            }</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        }</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment"></span>        <span class="comment">// Stream Stats</span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> VorbisDecoder::GetTotalTime()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> ov_time_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 ); }</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> VorbisDecoder::GetCurrentTime()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> ov_time_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) ); }</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetTotalSize()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> ov_pcm_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 ) * this-&gt;VDID-&gt;VorbisInfo-&gt;channels; }</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetCompressedSize()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> ov_raw_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 ); }</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetCurrentPosition()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> ov_pcm_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) ) * this-&gt;VDID-&gt;VorbisInfo-&gt;channels; }</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> VorbisDecoder::GetCurrentCompressedPosition()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> ov_raw_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) ); }</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    }<span class="comment">//Audio</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor">#endif //ENABLE_VORBIS_ENCODE</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="namespaceMezzanine_1_1Audio_html_abbdf7b0c5dd3a09710208089436bdbeea838e1cf2ef55387c810afb25950fecf2"><div class="ttname"><a href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbeea838e1cf2ef55387c810afb25950fecf2">Mezzanine::Audio::Enc_VORBIS</a></div><div class="ttdoc">Used in .ogg files. </div><div class="ttdef"><b>Definition:</b> <a href="audioenumerations_8h_source.html#l00069">audioenumerations.h:69</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a7d765759d1196aae20197055f00498f8"><div class="ttname"><a href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00181">datatypes.h:181</a></div></div>
-<div class="ttc" id="classMezzanine_1_1Resource_1_1IOStream_html_a2b24160830823838f880a799e9f0027b"><div class="ttname"><a href="classMezzanine_1_1Resource_1_1IOStream.html#a2b24160830823838f880a799e9f0027b">Mezzanine::Resource::IOStream::Read</a></div><div class="ttdeci">virtual size_t Read(void *Buffer, StreamSize Size)</div><div class="ttdoc">Reads from the stream and copies that data to a buffer. </div></div>
 <div class="ttc" id="namespaceMezzanine_html_ac3576e52af3c62d13dde94829e0c5465"><div class="ttname"><a href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Mezzanine::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdoc">A datatype used to represent any integer close to. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00157">datatypes.h:157</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a2a20876e012cfa5b7733b44c6fef11f7a3eeb01acc388e7d015db96163ca52878"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7a3eeb01acc388e7d015db96163ca52878">Mezzanine::Resource::SO_Current</a></div><div class="ttdoc">The current position for read/write operations in the stream. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00087">datastream.h:87</a></div></div>
-<div class="ttc" id="classMezzanine_1_1Resource_1_1IOStream_html"><div class="ttname"><a href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::IOStream</a></div><div class="ttdoc">Base class for streams that support both read and write operations. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00221">datastream.h:221</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Resource_1_1IOStream_html"><div class="ttname"><a href="classMezzanine_1_1Resource_1_1IOStream.html">Mezzanine::Resource::IOStream</a></div><div class="ttdoc">Base class for streams that support both read and write operations. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00268">datastream.h:268</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_acf9fcc130e6ebf08e3d8491aebcf1c86"><div class="ttname"><a href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a></div><div class="ttdeci">std::string String</div><div class="ttdoc">A datatype used to a series of characters. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00163">datatypes.h:163</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a590a2f3eb4a187e1b25209e546e540e1"><div class="ttname"><a href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Mezzanine::Int32</a></div><div class="ttdeci">int32_t Int32</div><div class="ttdoc">An 32-bit integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00125">datatypes.h:125</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a2a20876e012cfa5b7733b44c6fef11f7ada12ae61124bc944a5665c257027a505"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7ada12ae61124bc944a5665c257027a505">Mezzanine::Resource::SO_Beginning</a></div><div class="ttdoc">The beginning of the stream. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00086">datastream.h:86</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a2a20876e012cfa5b7733b44c6fef11f7aa56b3d84ba327d35b08409bd9150b711"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a2a20876e012cfa5b7733b44c6fef11f7aa56b3d84ba327d35b08409bd9150b711">Mezzanine::Resource::SO_End</a></div><div class="ttdoc">The end of the stream. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00088">datastream.h:88</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a62a315666b8e56a64640c813ac400b52"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Mezzanine::Resource::DataStreamPtr</a></div><div class="ttdeci">CountedPtr&lt; DataStream &gt; DataStreamPtr</div><div class="ttdoc">This is a convenience type for a data stream in a counted pointer. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00428">datastream.h:428</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a62a315666b8e56a64640c813ac400b52"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Mezzanine::Resource::DataStreamPtr</a></div><div class="ttdeci">CountedPtr&lt; DataStream &gt; DataStreamPtr</div><div class="ttdoc">This is a convenience type for a data stream in a counted pointer. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00398">datastream.h:398</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_abea3b8e8e9b03d2547b2800284ba682d"><div class="ttname"><a href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">Mezzanine::UInt32</a></div><div class="ttdeci">uint32_t UInt32</div><div class="ttdoc">An 32-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00128">datatypes.h:128</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a726731b1a7df72bf3583e4a97282c6f6"><div class="ttname"><a href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Mezzanine::Real</a></div><div class="ttdeci">float Real</div><div class="ttdoc">A Datatype used to represent a real floating point number. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00144">datatypes.h:144</a></div></div>
 <div class="ttc" id="namespaceMezzanine_1_1Audio_html_abbdf7b0c5dd3a09710208089436bdbee"><div class="ttname"><a href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Mezzanine::Audio::Encoding</a></div><div class="ttdeci">Encoding</div><div class="ttdoc">The encoding to use when reading or writing an audio buffer. </div><div class="ttdef"><b>Definition:</b> <a href="audioenumerations_8h_source.html#l00064">audioenumerations.h:64</a></div></div>
 <div class="ttc" id="crossplatformexport_8h_html_a455f91aab9e6a1cf4286f5cdfa74c7bc"><div class="ttname"><a href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a></div><div class="ttdeci">#define MEZZ_LIB</div><div class="ttdoc">Some platforms require special decorations to denote what is exported/imported in a share library...</div><div class="ttdef"><b>Definition:</b> <a href="crossplatformexport_8h_source.html#l00124">crossplatformexport.h:124</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
-<div class="ttc" id="classMezzanine_1_1Resource_1_1IOStream_html_a5f4e240ecd6822b6b01c99db358cf440"><div class="ttname"><a href="classMezzanine_1_1Resource_1_1IOStream.html#a5f4e240ecd6822b6b01c99db358cf440">Mezzanine::Resource::IOStream::SetStreamPosition</a></div><div class="ttdeci">virtual void SetStreamPosition(StreamPos Position)</div><div class="ttdoc">Sets the position of the read and write cursors explicitly. </div></div>
 <div class="ttc" id="namespaceMezzanine_html_ab4f5efed51a1f6fc1799c821c3daf4b7"><div class="ttname"><a href="namespaceMezzanine.html#ab4f5efed51a1f6fc1799c821c3daf4b7">Mezzanine::Char8</a></div><div class="ttdeci">char Char8</div><div class="ttdoc">A datatype to represent one character. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00176">datatypes.h:176</a></div></div>
 <div class="ttc" id="datastream_8h_html"><div class="ttname"><a href="datastream_8h.html">datastream.h</a></div><div class="ttdoc">Declaration of DataStream. </div></div>
 <div class="ttc" id="namespaceMezzanine_1_1Audio_html_a9978d2013313ec7bf6978c622e80d782"><div class="ttname"><a href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Mezzanine::Audio::BitConfig</a></div><div class="ttdeci">BitConfig</div><div class="ttdoc">Used to describe the different bit configurations supported by this audio system. ...</div><div class="ttdef"><b>Definition:</b> <a href="audioenumerations_8h_source.html#l00052">audioenumerations.h:52</a></div></div>
@@ -395,7 +424,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:22:58 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:34 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

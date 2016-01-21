@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Resource_1_1iOutStream__inherit__graph.svg" width="416" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Resource_1_1iOutStream__inherit__graph.svg" width="420" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::Resource::iOutStream:</div>
@@ -137,17 +137,29 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#aac2018bce087a1174de1b0a1a416b881">~iStreamBase</a> ()</td></tr>
 <tr class="memdesc:aac2018bce087a1174de1b0a1a416b881 inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br /></td></tr>
 <tr class="separator:aac2018bce087a1174de1b0a1a416b881 inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb4193ce19739e1e9203b9889875e7e inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a9eb4193ce19739e1e9203b9889875e7e">Bad</a> () const =0</td></tr>
+<tr class="memdesc:a9eb4193ce19739e1e9203b9889875e7e inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not a critical error was detected in a previous operation in the stream.  <a href="#a9eb4193ce19739e1e9203b9889875e7e">More...</a><br /></td></tr>
+<tr class="separator:a9eb4193ce19739e1e9203b9889875e7e inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5138d6023de078cd07a3902a7f2c219e inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a5138d6023de078cd07a3902a7f2c219e">ClearErrors</a> ()=0</td></tr>
+<tr class="memdesc:a5138d6023de078cd07a3902a7f2c219e inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any stored error state on the stream.  <a href="#a5138d6023de078cd07a3902a7f2c219e">More...</a><br /></td></tr>
+<tr class="separator:a5138d6023de078cd07a3902a7f2c219e inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a008551c90272e9ba965532ebe7e34f0b inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a008551c90272e9ba965532ebe7e34f0b">EoF</a> () const =0</td></tr>
 <tr class="memdesc:a008551c90272e9ba965532ebe7e34f0b inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the current position is at the end of the stream.  <a href="#a008551c90272e9ba965532ebe7e34f0b">More...</a><br /></td></tr>
 <tr class="separator:a008551c90272e9ba965532ebe7e34f0b inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a575a6a2d7ae6a63c791e30970817f09f inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a575a6a2d7ae6a63c791e30970817f09f">Fail</a> () const =0</td></tr>
+<tr class="memdesc:a575a6a2d7ae6a63c791e30970817f09f inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not an otherwise silent and recoverable error was detected in a previous operation in the stream.  <a href="#a575a6a2d7ae6a63c791e30970817f09f">More...</a><br /></td></tr>
+<tr class="separator:a575a6a2d7ae6a63c791e30970817f09f inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0877e47816b9ada695fe4a101696dee9 inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1Resource.html#a57c319fb1991c37cb3ee0473ba973235">StreamSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a0877e47816b9ada695fe4a101696dee9">GetSize</a> () const =0</td></tr>
 <tr class="memdesc:a0877e47816b9ada695fe4a101696dee9 inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of the stream.  <a href="#a0877e47816b9ada695fe4a101696dee9">More...</a><br /></td></tr>
 <tr class="separator:a0877e47816b9ada695fe4a101696dee9 inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e13d9a9414ff5175c7619e274445bc inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1iStreamBase.html#a22e13d9a9414ff5175c7619e274445bc">IsValid</a> () const =0</td></tr>
+<tr class="memdesc:a22e13d9a9414ff5175c7619e274445bc inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this stream is intact and ready for operations.  <a href="#a22e13d9a9414ff5175c7619e274445bc">More...</a><br /></td></tr>
+<tr class="separator:a22e13d9a9414ff5175c7619e274445bc inherit pub_methods_classMezzanine_1_1Resource_1_1iStreamBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface class for output (write) streams. </p>
 
-<p>Definition at line <a class="el" href="datastream_8h_source.html#l00145">145</a> of file <a class="el" href="datastream_8h_source.html">datastream.h</a>.</p>
+<p>Definition at line <a class="el" href="datastream_8h_source.html#l00156">156</a> of file <a class="el" href="datastream_8h_source.html">datastream.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a5252d6df119538bf927ae4a0c2ee00c0"></a>
 <div class="memitem">
@@ -173,7 +185,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets the current write position in this stream. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a StreamPos representing the current write position. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a00e71dfae560851a1bb59365b7881281">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#aee3ac533fbef7e1baeb15c43ea5be692">Mezzanine::Resource::OStream</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a6a2764129aa9320e4d249c9eb069a97a">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a80980b15723a8a17a9cac458ed320b1d">Mezzanine::Resource::OStream</a>.</p>
 
 </div>
 </div>
@@ -207,7 +219,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#ada8cb1755e9425aeb62c8dcab6e0cdb8">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a19a8abc0989aed9bea52ce3703a8bf34">Mezzanine::Resource::OStream</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a7fcac404b0c4dac4859d4def22974b8e">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a86245e5cc0438b09867102a546fda095">Mezzanine::Resource::OStream</a>.</p>
 
 </div>
 </div>
@@ -252,7 +264,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#ab5c22f9f1323c69d272534c9546f05fb">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a3359d77bb71ee18e283bf59d5b0fb3c2">Mezzanine::Resource::OStream</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a7a88f514cbf5a108ca2276c3a29956ca">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a4097f459764c8c1d723a74db13bface0">Mezzanine::Resource::OStream</a>.</p>
 
 </div>
 </div>
@@ -298,7 +310,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of bytes successfully written. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#a00f4a198216aaa20e32807d7f5cdeed4">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a76323cf3d7ad0513143a44022103d5de">Mezzanine::Resource::OStream</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Resource_1_1IOStream.html#ac02134cda127888cdb6681001558f611">Mezzanine::Resource::IOStream</a>, and <a class="el" href="classMezzanine_1_1Resource_1_1OStream.html#a96d1aa2019ad5eb446b05a2157a55c0d">Mezzanine::Resource::OStream</a>.</p>
 
 </div>
 </div>
@@ -309,7 +321,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:04 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:46 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

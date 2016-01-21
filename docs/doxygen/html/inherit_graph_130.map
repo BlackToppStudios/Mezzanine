@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structMezzanine_1_1Internal_1_1EventManagerInternalData.html" title="Used to increase encapsulation, just a bit. " alt="" coords="5,5,191,47"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html" title="Mezzanine::Graphics\l::Procedural::MeshGenerator\l\&lt; IcoSphereGenerator \&gt;" alt="" coords="5,5,195,61"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1IcoSphereGenerator.html" title="A generator class for a sphere mesh where all triangles are the same size. " alt="" coords="243,13,459,54"/>
 </map>

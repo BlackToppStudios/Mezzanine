@@ -39,6 +39,7 @@ var searchData=
   ['direction',['Direction',['../classMezzanine_1_1FieldOfForce.html#a58db238eb7b943ce9585b8bb9a751906',1,'Mezzanine::FieldOfForce']]],
   ['dirty',['Dirty',['../classMezzanine_1_1UI_1_1Renderable.html#a5d97d9c60300d22359d6bfcdc9a4daf7',1,'Mezzanine::UI::Renderable::Dirty()'],['../classMezzanine_1_1UI_1_1SimpleRenderer.html#a974d53f042d02d9d252f414ad1a9c2f4',1,'Mezzanine::UI::SimpleRenderer::Dirty()']]],
   ['distance',['Distance',['../classMezzanine_1_1Plane.html#a434b3f31159b9c4ee75bb1f855e340a9',1,'Mezzanine::Plane']]],
+  ['divisor',['Divisor',['../classMezzanine_1_1Graphics_1_1Procedural_1_1ConvolutionModifier.html#a486b2cbf68d96c2f7df337731465522b',1,'Mezzanine::Graphics::Procedural::ConvolutionModifier']]],
   ['doautomatictest',['DoAutomaticTest',['../classMezzanine_1_1Testing_1_1UnitTestGroup.html#a2e67df04c32e499545e983a9b61c4d8d',1,'Mezzanine::Testing::UnitTestGroup']]],
   ['documentencoding',['DocumentEncoding',['../structMezzanine_1_1XML_1_1ParseResult.html#aa07a67b8d20ec14ce34bae5f4e969f13',1,'Mezzanine::XML::ParseResult']]],
   ['dointeractivetest',['DoInteractiveTest',['../classMezzanine_1_1Testing_1_1UnitTestGroup.html#a3640312762203e840261d392ff580024',1,'Mezzanine::Testing::UnitTestGroup']]],

@@ -115,9 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a95ce9d2d865b0d8d9468448969b0ade2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a95ce9d2d865b0d8d9468448969b0ade2">EventManager</a> ()</td></tr>
 <tr class="memdesc:a95ce9d2d865b0d8d9468448969b0ade2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a95ce9d2d865b0d8d9468448969b0ade2">More...</a><br /></td></tr>
 <tr class="separator:a95ce9d2d865b0d8d9468448969b0ade2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf3650bfe862473ed2418dddbd83eec3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#abf3650bfe862473ed2418dddbd83eec3">EventManager</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
-<tr class="memdesc:abf3650bfe862473ed2418dddbd83eec3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#abf3650bfe862473ed2418dddbd83eec3">More...</a><br /></td></tr>
-<tr class="separator:abf3650bfe862473ed2418dddbd83eec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e88d28d092d344ff919dbb4bb6c80d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a43e88d28d092d344ff919dbb4bb6c80d">EventManager</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
+<tr class="memdesc:a43e88d28d092d344ff919dbb4bb6c80d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#a43e88d28d092d344ff919dbb4bb6c80d">More...</a><br /></td></tr>
+<tr class="separator:a43e88d28d092d344ff919dbb4bb6c80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39b9e0f783c2ab0d39f5574a7a106141"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39b9e0f783c2ab0d39f5574a7a106141"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a39b9e0f783c2ab0d39f5574a7a106141">~EventManager</a> ()</td></tr>
 <tr class="memdesc:a39b9e0f783c2ab0d39f5574a7a106141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Deconstructor. <br /></td></tr>
@@ -301,37 +301,38 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>EventWorkUnit</b></t
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_types_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br />
-&#160;&#160;<b>MT_AudioManager</b> = 1, 
-<b>MT_AnimationManager</b>, 
-<b>MT_CollisionShapeManager</b>, 
-<b>MT_CompositorManager</b>, 
+&#160;&#160;<b>MT_Undefined</b> = 0, 
+<b>MT_AudioManager</b> = 1, 
+<b>MT_AnimationManager</b> = 2, 
+<b>MT_CollisionShapeManager</b> = 3, 
 <br />
-&#160;&#160;<b>MT_GraphicsManager</b>, 
-<b>MT_EventManager</b>, 
-<b>MT_InputManager</b>, 
-<b>MT_LogManager</b>, 
+&#160;&#160;<b>MT_CompositorManager</b> = 4, 
+<b>MT_GraphicsManager</b> = 5, 
+<b>MT_EventManager</b> = 6, 
+<b>MT_InputManager</b> = 7, 
 <br />
-&#160;&#160;<b>MT_MaterialManager</b>, 
-<b>MT_MeshManager</b>, 
-<b>MT_NetworkManager</b>, 
-<b>MT_ResourceManager</b>, 
+&#160;&#160;<b>MT_LogManager</b> = 8, 
+<b>MT_MaterialManager</b> = 9, 
+<b>MT_MeshManager</b> = 10, 
+<b>MT_NetworkManager</b> = 11, 
 <br />
-&#160;&#160;<b>MT_ScriptingManager</b>, 
-<b>MT_TextureManager</b>, 
-<b>MT_UIManager</b>, 
-<b>MT_ActorManager</b> = 100, 
+&#160;&#160;<b>MT_ResourceManager</b> = 12, 
+<b>MT_ScriptingManager</b> = 13, 
+<b>MT_TextureManager</b> = 14, 
+<b>MT_UIManager</b> = 15, 
 <br />
-&#160;&#160;<b>MT_AreaEffectManager</b>, 
-<b>MT_DebrisManager</b>, 
-<b>MT_PagingManager</b>, 
-<b>MT_PhysicsManager</b>, 
+&#160;&#160;<b>MT_ActorManager</b> = 101, 
+<b>MT_AreaEffectManager</b> = 102, 
+<b>MT_DebrisManager</b> = 103, 
+<b>MT_PagingManager</b> = 104, 
 <br />
-&#160;&#160;<b>MT_SceneManager</b>, 
-<b>MT_SoundScapeManager</b>, 
-<b>MT_TerrainManager</b>, 
-<b>MT_VehicleManager</b>, 
+&#160;&#160;<b>MT_PhysicsManager</b> = 105, 
+<b>MT_SceneManager</b> = 106, 
+<b>MT_SoundScapeManager</b> = 107, 
+<b>MT_TerrainManager</b> = 108, 
 <br />
-&#160;&#160;<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
+&#160;&#160;<b>MT_VehicleManager</b> = 109, 
+<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br />
  }</td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -413,20 +414,20 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </div><div class="memdoc">
 
 <p>Default constructor. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data. ">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data. ">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
 
 <p>Definition at line <a class="el" href="eventmanager_8cpp_source.html#l00276">276</a> of file <a class="el" href="eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="abf3650bfe862473ed2418dddbd83eec3"></a>
+<a class="anchor" id="a43e88d28d092d344ff919dbb4bb6c80d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::EventManager::EventManager </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
           <td class="paramname"><em>XMLNode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -440,7 +441,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>This class currently doesn't initialize anything from <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a>, if that changes this constructor needs to be expanded. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>This class currently doesn't initialize anything from <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a>, if that changes this constructor needs to be expanded. </dd></dl>
 
 <p>Definition at line <a class="el" href="eventmanager_8cpp_source.html#l00293">293</a> of file <a class="el" href="eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
@@ -1352,7 +1353,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:02 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:41 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

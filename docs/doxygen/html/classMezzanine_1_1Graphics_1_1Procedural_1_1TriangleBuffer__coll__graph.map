@@ -1,0 +1,8 @@
+<map id="Mezzanine::Graphics::Procedural::TriangleBuffer" name="Mezzanine::Graphics::Procedural::TriangleBuffer">
+<area shape="rect" id="node3" href="$structMezzanine_1_1Graphics_1_1Procedural_1_1BufferSection.html" title="A convenience class used to describe a small portion of the mesh/buffer. " alt="" coords="453,14,632,55"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="211,21,291,48"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="5,14,132,55"/>
+<area shape="rect" id="node7" href="$structMezzanine_1_1Graphics_1_1Procedural_1_1Vertex.html" title="A simple definition for a Vertex to be used when procedurally generating meshes. " alt="" coords="470,191,615,233"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="181,168,320,195"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="181,228,320,255"/>
+</map>

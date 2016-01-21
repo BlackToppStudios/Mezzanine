@@ -63,10 +63,10 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classMezzanine_1_1Resource_1_1iIStream.html" target="_top" xlink:title="Interface class for input (read) streams. ">
+<g id="a_node2"><a xlink:href="classMezzanine_1_1Resource_1_1iInStream.html" target="_top" xlink:title="Interface class for input (read) streams. ">
 <polygon fill="white" stroke="black" points="148,-73.5 148,-103.5 260,-103.5 260,-73.5 148,-73.5"/>
 <text text-anchor="start" x="156" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Resource</text>
-<text text-anchor="middle" x="204" y="-80.5" font-family="Helvetica,sans-Serif" font-size="10.00">::iIStream</text>
+<text text-anchor="middle" x="204" y="-80.5" font-family="Helvetica,sans-Serif" font-size="10.00">::iInStream</text>
 </a>
 </g>
 </g>
@@ -77,10 +77,10 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classMezzanine_1_1Resource_1_1iOStream.html" target="_top" xlink:title="Interface class for output (write) streams. ">
+<g id="a_node7"><a xlink:href="classMezzanine_1_1Resource_1_1iOutStream.html" target="_top" xlink:title="Interface class for output (write) streams. ">
 <polygon fill="white" stroke="black" points="148,-24.5 148,-54.5 260,-54.5 260,-24.5 148,-24.5"/>
 <text text-anchor="start" x="156" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Resource</text>
-<text text-anchor="middle" x="204" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">::iOStream</text>
+<text text-anchor="middle" x="204" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">::iOutStream</text>
 </a>
 </g>
 </g>
@@ -133,7 +133,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classMezzanine_1_1Resource_1_1MemoryStream.html" target="_top" xlink:title="This represents a stream to a buffer in memory. ">
+<g id="a_node5"><a xlink:href="classMezzanine_1_1Resource_1_1MemoryStream.html" target="_top" xlink:title="An I/O stream to a buffer of memory. ">
 <polygon fill="white" stroke="black" points="444,-24.5 444,-54.5 556,-54.5 556,-24.5 444,-24.5"/>
 <text text-anchor="start" x="452" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="500" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">::MemoryStream</text>

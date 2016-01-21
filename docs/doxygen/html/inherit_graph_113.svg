@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-35 113,-35 113,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a xlink:href="classMezzanine_1_1Graphics_1_1ParticleAffector.html" target="_top" xlink:title="This class defines how particles of a given particle effect behave during their lifetime. ">
+<g id="a_node1"><a xlink:href="structMezzanine_1_1Graphics_1_1MeshInfo.html" target="_top" xlink:title="A convenience class for the storage of rendering data in a Mesh/SubMesh. ">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 109,-30.5 109,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="54.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ParticleAffector</text>
+<text text-anchor="middle" x="54.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::MeshInfo</text>
 </a>
 </g>
 </g>

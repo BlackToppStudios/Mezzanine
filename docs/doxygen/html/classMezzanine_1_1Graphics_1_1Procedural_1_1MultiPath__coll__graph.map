@@ -1,0 +1,6 @@
+<map id="Mezzanine::Graphics::Procedural::MultiPath" name="Mezzanine::Graphics::Procedural::MultiPath">
+<area shape="rect" id="node3" title="STL class. " alt="" coords="545,83,661,110"/>
+<area shape="rect" id="node6" href="$structMezzanine_1_1Graphics_1_1Procedural_1_1PathCoordinate.html" title="A convenience class for tracking points in a MultiPath. " alt="" coords="508,5,699,47"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1Path.html" title="A collection of interconnected 3D points used to express path through 3D space. " alt="" coords="531,147,676,188"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="5,154,144,181"/>
+</map>

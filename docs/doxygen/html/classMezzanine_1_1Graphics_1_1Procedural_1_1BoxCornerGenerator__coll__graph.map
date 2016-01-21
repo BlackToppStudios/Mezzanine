@@ -1,0 +1,6 @@
+<map id="Mezzanine::Graphics::Procedural::BoxCornerGenerator" name="Mezzanine::Graphics::Procedural::BoxCornerGenerator">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html" title="Mezzanine::Graphics\l::Procedural::MeshGenerator\l\&lt; BoxCornerGenerator \&gt;" alt="" coords="277,60,467,116"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="14,56,153,83"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="14,139,153,165"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space. " alt="" coords="5,5,161,32"/>
+</map>

@@ -138,37 +138,38 @@ typedef std::map&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf
 <tr class="separator:ad42a88feb72f7d2f2965db21be7d7edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br />
-&#160;&#160;<b>MT_AudioManager</b> = 1, 
-<b>MT_AnimationManager</b>, 
-<b>MT_CollisionShapeManager</b>, 
-<b>MT_CompositorManager</b>, 
+&#160;&#160;<b>MT_Undefined</b> = 0, 
+<b>MT_AudioManager</b> = 1, 
+<b>MT_AnimationManager</b> = 2, 
+<b>MT_CollisionShapeManager</b> = 3, 
 <br />
-&#160;&#160;<b>MT_GraphicsManager</b>, 
-<b>MT_EventManager</b>, 
-<b>MT_InputManager</b>, 
-<b>MT_LogManager</b>, 
+&#160;&#160;<b>MT_CompositorManager</b> = 4, 
+<b>MT_GraphicsManager</b> = 5, 
+<b>MT_EventManager</b> = 6, 
+<b>MT_InputManager</b> = 7, 
 <br />
-&#160;&#160;<b>MT_MaterialManager</b>, 
-<b>MT_MeshManager</b>, 
-<b>MT_NetworkManager</b>, 
-<b>MT_ResourceManager</b>, 
+&#160;&#160;<b>MT_LogManager</b> = 8, 
+<b>MT_MaterialManager</b> = 9, 
+<b>MT_MeshManager</b> = 10, 
+<b>MT_NetworkManager</b> = 11, 
 <br />
-&#160;&#160;<b>MT_ScriptingManager</b>, 
-<b>MT_TextureManager</b>, 
-<b>MT_UIManager</b>, 
-<b>MT_ActorManager</b> = 100, 
+&#160;&#160;<b>MT_ResourceManager</b> = 12, 
+<b>MT_ScriptingManager</b> = 13, 
+<b>MT_TextureManager</b> = 14, 
+<b>MT_UIManager</b> = 15, 
 <br />
-&#160;&#160;<b>MT_AreaEffectManager</b>, 
-<b>MT_DebrisManager</b>, 
-<b>MT_PagingManager</b>, 
-<b>MT_PhysicsManager</b>, 
+&#160;&#160;<b>MT_ActorManager</b> = 101, 
+<b>MT_AreaEffectManager</b> = 102, 
+<b>MT_DebrisManager</b> = 103, 
+<b>MT_PagingManager</b> = 104, 
 <br />
-&#160;&#160;<b>MT_SceneManager</b>, 
-<b>MT_SoundScapeManager</b>, 
-<b>MT_TerrainManager</b>, 
-<b>MT_VehicleManager</b>, 
+&#160;&#160;<b>MT_PhysicsManager</b> = 105, 
+<b>MT_SceneManager</b> = 106, 
+<b>MT_SoundScapeManager</b> = 107, 
+<b>MT_TerrainManager</b> = 108, 
 <br />
-&#160;&#160;<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
+&#160;&#160;<b>MT_VehicleManager</b> = 109, 
+<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br />
  }</td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,9 +179,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1368e83f74067d5e6dc6a62138634a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectManager.html#ad1368e83f74067d5e6dc6a62138634a7">AreaEffectManager</a> (<a class="el" href="classMezzanine_1_1World.html">World</a> *Creator)</td></tr>
 <tr class="memdesc:ad1368e83f74067d5e6dc6a62138634a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#ad1368e83f74067d5e6dc6a62138634a7">More...</a><br /></td></tr>
 <tr class="separator:ad1368e83f74067d5e6dc6a62138634a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0faab987c8cb97df550e0a1654d2d76"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectManager.html#af0faab987c8cb97df550e0a1654d2d76">AreaEffectManager</a> (<a class="el" href="classMezzanine_1_1World.html">World</a> *Creator, <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
-<tr class="memdesc:af0faab987c8cb97df550e0a1654d2d76"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#af0faab987c8cb97df550e0a1654d2d76">More...</a><br /></td></tr>
-<tr class="separator:af0faab987c8cb97df550e0a1654d2d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2af9575fe8f96d60ae0397ad46dd023"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectManager.html#aa2af9575fe8f96d60ae0397ad46dd023">AreaEffectManager</a> (<a class="el" href="classMezzanine_1_1World.html">World</a> *Creator, const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
+<tr class="memdesc:aa2af9575fe8f96d60ae0397ad46dd023"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#aa2af9575fe8f96d60ae0397ad46dd023">More...</a><br /></td></tr>
+<tr class="separator:aa2af9575fe8f96d60ae0397ad46dd023"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f0f4c0c1d1a3363510f88874e329929"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f0f4c0c1d1a3363510f88874e329929"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffectManager.html#a4f0f4c0c1d1a3363510f88874e329929">~AreaEffectManager</a> ()</td></tr>
 <tr class="memdesc:a4f0f4c0c1d1a3363510f88874e329929"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br /></td></tr>
@@ -407,7 +408,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af0faab987c8cb97df550e0a1654d2d76"></a>
+<a class="anchor" id="aa2af9575fe8f96d60ae0397ad46dd023"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -420,7 +421,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
           <td class="paramname"><em>XMLNode</em>&#160;</td>
         </tr>
         <tr>
@@ -1579,7 +1580,7 @@ Additional Inherited Members</h2></td></tr>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:02 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:41 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

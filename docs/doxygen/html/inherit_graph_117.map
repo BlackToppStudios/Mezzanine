@@ -1,3 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Graphics_1_1SceneManagerData.html" title="Stores internal data for the SCeneManager to keep it from cluttering the Header file. " alt="" coords="5,5,151,47"/>
+<area shape="rect" id="node1" href="$structMezzanine_1_1Graphics_1_1Procedural_1_1BufferSection.html" title="A convenience class used to describe a small portion of the mesh/buffer. " alt="" coords="5,5,184,47"/>
 </map>

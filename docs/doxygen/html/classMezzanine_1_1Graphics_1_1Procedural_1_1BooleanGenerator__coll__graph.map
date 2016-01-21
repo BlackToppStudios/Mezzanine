@@ -1,0 +1,11 @@
+<map id="Mezzanine::Graphics::Procedural::BooleanGenerator" name="Mezzanine::Graphics::Procedural::BooleanGenerator">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html" title="Mezzanine::Graphics\l::Procedural::MeshGenerator\l\&lt; BooleanGenerator \&gt;" alt="" coords="471,36,660,92"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="190,76,329,103"/>
+<area shape="rect" id="node12" href="$structMezzanine_1_1Graphics_1_1Procedural_1_1Vertex.html" title="A simple definition for a Vertex to be used when procedurally generating meshes. " alt="" coords="493,171,638,213"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="190,187,329,213"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space. " alt="" coords="181,5,337,32"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1TriangleBuffer.html" title="A convenience buffer that stores vertices and indices of a mesh to be generated. " alt="" coords="1056,173,1237,214"/>
+<area shape="rect" id="node8" href="$structMezzanine_1_1Graphics_1_1Procedural_1_1BufferSection.html" title="A convenience class used to describe a small portion of the mesh/buffer. " alt="" coords="476,295,655,337"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="219,303,299,329"/>
+<area shape="rect" id="node10" title="STL class. " alt="" coords="5,295,132,337"/>
+</map>

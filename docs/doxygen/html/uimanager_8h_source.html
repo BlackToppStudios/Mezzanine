@@ -314,7 +314,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1UIManager.html">UIManager</a>();<span class="comment"></span></div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">            /// @brief XML constructor.</span></div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">            /// @param XMLNode The node of the xml document to construct from.</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1UIManager.html">UIManager</a>(<a class="code" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a>&amp; XMLNode);<span class="comment"></span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1UIManager.html">UIManager</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a>&amp; XMLNode);<span class="comment"></span></div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">            /// @brief Class Destructor.</span></div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1UI_1_1UIManager.html">UIManager</a>();</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment"></span></div>
@@ -534,10 +534,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;<span class="comment">            /// @copydoc ManagerFactory::GetManagerType() const</span></div>
 <div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> GetManagerType() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::CreateManager(NameValuePairList&amp;)</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>* CreateManager(<a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a>&amp; Params);<span class="comment"></span></div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::CreateManager(XML::Node&amp;)</span></div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>* CreateManager(<a class="code" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a>&amp; XMLNode);<span class="comment"></span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&amp;)</span></div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>* CreateManager(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a>&amp; Params);<span class="comment"></span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&amp;)</span></div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>* CreateManager(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a>&amp; XMLNode);<span class="comment"></span></div>
 <div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)</span></div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> DestroyManager(<a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>* ToBeDestroyed);</div>
 <div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;        };<span class="comment">//DefaultUIManagerFactory</span></div>
@@ -605,7 +605,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:00 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:38 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

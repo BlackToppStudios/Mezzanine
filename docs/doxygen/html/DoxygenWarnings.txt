@@ -1,17 +1,13 @@
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:229: warning: Example LogStream was already documented. Ignoring documentation found here.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:240: warning: Example LogStream was already documented. Ignoring documentation found here.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:251: warning: Example LogStream was already documented. Ignoring documentation found here.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:262: warning: Example LogStream was already documented. Ignoring documentation found here.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:309: warning: Example cout was already documented. Ignoring documentation found here.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:320: warning: Example cout was already documented. Ignoring documentation found here.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:331: warning: Example cout was already documented. Ignoring documentation found here.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:342: warning: Example cout was already documented. Ignoring documentation found here.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/rect.h:49: warning: Compound Mezzanine::RectBase is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:329: warning: Example cout was already documented. Ignoring documentation found here.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:340: warning: Example cout was already documented. Ignoring documentation found here.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:351: warning: Example cout was already documented. Ignoring documentation found here.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:362: warning: Example cout was already documented. Ignoring documentation found here.
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/pugixml.h:935: warning: Compound pugi::xpath_parse_result is not documented.
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/pugixml.h:1098: warning: Compound pugi::xpath_node is not documented.
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/pugixml.h:853: warning: Compound pugi::xml_document is not documented.
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/pugixml.h:1020: warning: Compound pugi::xpath_query is not documented.
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/pugixml.h:247: warning: Compound pugi::xml_writer_file is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/vertexnormalsmodifier.h:83: warning: Compound Mezzanine::Graphics::Procedural::VertexNormalsModifier is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textureatlas.h:70: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/assethandler.h:52: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trie.h:499: warning: Compound Mezzanine::Node::iterator is not documented.
@@ -45,15 +41,13 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:62: warning: Documentation for undefined enum `ManagerTypeName' found.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:90: warning: Documentation for undefined enum `AutoScaleMode' found.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/uienumerations.h:102: warning: Documentation for undefined enum `RepositionFlags' found.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.cpp:303: warning: documented symbol `Mezzanine::Resource::DataStream::~DataStream' was not declared or defined.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.cpp:309: warning: no uniquely matching class member found for 
-  StreamSize Mezzanine::Resource::DataStream::GetSize() const
-
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.cpp:312: warning: documented symbol `Boole Mezzanine::Resource::DataStream::IsReadable' was not declared or defined.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.cpp:315: warning: documented symbol `Boole Mezzanine::Resource::DataStream::IsWriteable' was not declared or defined.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:108: warning: documented symbol `Mezzanine::Graphics::Procedural::PointIterator' was not declared or defined.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:111: warning: documented symbol `Mezzanine::Graphics::Procedural::ConstPointIterator' was not declared or defined.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:118: warning: documented symbol `Mezzanine::Graphics::Procedural::PointIterator' was not declared or defined.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:121: warning: documented symbol `Mezzanine::Graphics::Procedural::ConstPointIterator' was not declared or defined.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:145: warning: documented symbol `Mezzanine::Graphics::Procedural::IndexList' was not declared or defined.
 error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exist!
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:306: warning: included file cout is not found. Check your EXAMPLE_PATH
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:226: warning: included file LogStream is not found. Check your EXAMPLE_PATH
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:326: warning: included file cout is not found. Check your EXAMPLE_PATH
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:100: warning: @copybrief or @copydoc target 'Mezzanine::WorldObject::ApplyEffect()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:169: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::GetTypeName() const' not found
@@ -138,16 +132,38 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/spherecollisionshape.h:83: warning: @copybrief or @copydoc target 'CollisionShape::GetBulletShape' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/meshcollisionshape.h:77: warning: @copybrief or @copydoc target 'CollisionShape::GetBulletShape' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/universalconstraint.h:67: warning: @copybrief or @copydoc target 'TypedConstraint::_GetConstraintBase() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:232: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:232: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:148: warning: @copybrief or @copydoc target 'DataStream::Write(const void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:161: warning: @copybrief or @copydoc target 'DataStream::Close()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:159: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:146: warning: @copybrief or @copydoc target 'DataStream::Read(void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:335: warning: @copybrief or @copydoc target 'DataStream::Read(void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:347: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:337: warning: @copybrief or @copydoc target 'DataStream::Write(const void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:349: warning: @copybrief or @copydoc target 'DataStream::Close()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:202: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:245: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:200: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:284: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:280: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:243: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:247: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:241: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:198: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:288: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:206: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:239: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:282: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:286: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:204: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:202: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:245: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:200: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:284: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:280: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:243: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:247: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:241: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:198: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:288: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:206: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:239: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:282: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:286: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:204: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:117: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:285: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:375: warning: Found unknown command `\detail'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:379: warning: Found unknown command `\detail'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/button.h:113: warning: @copybrief or @copydoc target 'QuadRenderable::CreateLayoutStrat()' not found
@@ -182,6 +198,8 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.h:3049: warning: unable to resolve reference to `ExceptionBase::ExceptionCodes' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:58: warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:53: warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:392: warning: Member IStreamPtr (typedef) of namespace Mezzanine::Resource is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:395: warning: Member OStreamPtr (typedef) of namespace Mezzanine::Resource is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.cpp:63: warning: Member luaopen_Mezzanine(lua_State *L) (function) of file lua51script.cpp is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:66: warning: Member luaopen_Mezzanine(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:78: warning: Member luaopen_MezzanineMathTools(lua_State *L) (function) of file lua51scriptingengine.cpp is not documented.
@@ -391,16 +409,15 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trie.h:95: warning: Member operator==(NodeItemClass const &oth) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trie.h:107: warning: Member set(T const &key) (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:519: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const ManagerVec &ManagersToBeAdded)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:171: warning: Found unknown command `\TODO'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:765: warning: argument 'WorldToAdd' of command @param is not found in the argument list of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:765: warning: The following parameters of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:106: warning: Found unknown command `\TODO'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:642: warning: argument 'WorldToAdd' of command @param is not found in the argument list of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:642: warning: The following parameters of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded) are not documented:
   parameter 'WorldToBeAdded'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:746: warning: argument 'Managers' of command @param is not found in the argument list of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:746: warning: The following parameters of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:623: warning: argument 'Managers' of command @param is not found in the argument list of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:623: warning: The following parameters of Mezzanine::Entresol::CreateWorld(const String &WorldName, const std::vector< WorldManager * > &ManagerToBeAdded) are not documented:
   parameter 'ManagerToBeAdded'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:773: warning: argument 'WorldIndex' of command @param is not found in the argument list of Mezzanine::Entresol::GetWorld(const Whole Index)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:773: warning: The following parameters of Mezzanine::Entresol::GetWorld(const Whole Index) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:650: warning: argument 'WorldIndex' of command @param is not found in the argument list of Mezzanine::Entresol::GetWorld(const Whole Index)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:650: warning: The following parameters of Mezzanine::Entresol::GetWorld(const Whole Index) are not documented:
   parameter 'Index'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventgamewindow.h:110: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
@@ -557,8 +574,8 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managedptr.h:171: warning: return type of member Mezzanine::ManagedPtr::operator= is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 <ManagerType>:1: warning: parameters of member Mezzanine::ManagerBase::ManagerType are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:145: warning: parameters of member Mezzanine::ManagerBase::GetTypeAsString are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:148: warning: parameters of member Mezzanine::ManagerBase::GetTypeFromString are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:149: warning: parameters of member Mezzanine::ManagerBase::GetTypeAsString are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:152: warning: parameters of member Mezzanine::ManagerBase::GetTypeFromString are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/matrix3x3.h:78: warning: parameters of member Mezzanine::Matrix3x3::Matrix3x3 are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/matrix3x3.h:225: warning: return type of member Mezzanine::Matrix3x3::Transpose is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/matrix4x4.h:75: warning: parameters of member Mezzanine::Matrix4x4::Matrix4x4 are not (all) documented
@@ -722,8 +739,8 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourcemanager.cpp:63: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/uimanager.cpp:71: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisionshapemanager.cpp:81: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:84: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/graphicsmanager.cpp:84: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:100: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.cpp:270: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:234: warning: parameters of member Mezzanine::SmoothTrackIterator::operator+ are not (all) documented
@@ -736,7 +753,7 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/timer.h:200: warning: return type of member Mezzanine::StopWatchTimer::GoalReached is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trie.h:795: warning: Member operator()(const T &c) const  (function) of class Mezzanine::SymbolToIndexMapper is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/terrainmanager.h:81: warning: The following parameters of Mezzanine::TerrainManager::TerrainManager(World *Creator, XML::Node &XMLNode) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/terrainmanager.h:81: warning: The following parameters of Mezzanine::TerrainManager::TerrainManager(World *Creator, const XML::Node &XMLNode) are not documented:
   parameter 'Creator'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/terrainmanager.h:115: warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::TerrainManager::DestroyTerrain(TerrainBase *ToBeDestroyed)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/terrainmanager.h:115: warning: The following parameters of Mezzanine::TerrainManager::DestroyTerrain(TerrainBase *ToBeDestroyed) are not documented:
@@ -827,12 +844,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/skeleton.cpp:59: warning: Member GraphicsSkeleton (variable) of class Mezzanine::Graphics::InternalSkeletonData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/material.h:68: warning: Member MID (variable) of class Mezzanine::Graphics::Material is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/mesh.h:68: warning: Member ConstSubMeshIterator (typedef) of class Mezzanine::Graphics::Mesh is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/mesh.h:66: warning: Member SubMeshContainer (typedef) of class Mezzanine::Graphics::Mesh is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/mesh.h:67: warning: Member SubMeshIterator (typedef) of class Mezzanine::Graphics::Mesh is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/mesh.h:70: warning: Member IMD (variable) of class Mezzanine::Graphics::Mesh is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/mesh.h:71: warning: Member MeshSkel (variable) of class Mezzanine::Graphics::Mesh is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/mesh.h:72: warning: Member SubMeshes (variable) of class Mezzanine::Graphics::Mesh is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< MeshManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/particleaffector.h:92: warning: return type of member Mezzanine::Graphics::ParticleAffector::GetCustomParam is not documented
@@ -874,6 +885,65 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/texturemanager.h:144: warning: argument 'MeshName' of command @param is not found in the argument list of Mezzanine::Graphics::TextureManager::UnloadTexture(const String &TextureName)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/texturemanager.h:144: warning: The following parameters of Mezzanine::Graphics::TextureManager::UnloadTexture(const String &TextureName) are not documented:
   parameter 'TextureName'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:113: warning: Member ConstPoint2DIterator (typedef) of namespace Mezzanine::Graphics::Procedural is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:123: warning: Member ConstPoint3DIterator (typedef) of namespace Mezzanine::Graphics::Procedural is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:147: warning: Member IndexContainer (typedef) of namespace Mezzanine::Graphics::Procedural is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:110: warning: Member Point2DIterator (typedef) of namespace Mezzanine::Graphics::Procedural is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:120: warning: Member Point3DIterator (typedef) of namespace Mezzanine::Graphics::Procedural is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< BooleanGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< BoxCornerGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxcornergenerator.h:129: warning: argument 'Size' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::BoxCornerGenerator::SetHalfExtents(const Vector3 &HalfExtents)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxcornergenerator.h:129: warning: The following parameters of Mezzanine::Graphics::Procedural::BoxCornerGenerator::SetHalfExtents(const Vector3 &HalfExtents) are not documented:
+  parameter 'HalfExtents'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxcornergenerator.h:114: warning: argument 'SizeX' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::BoxCornerGenerator::SetHalfSizeX(const Real HalfSizeX)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxcornergenerator.h:114: warning: The following parameters of Mezzanine::Graphics::Procedural::BoxCornerGenerator::SetHalfSizeX(const Real HalfSizeX) are not documented:
+  parameter 'HalfSizeX'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxcornergenerator.h:119: warning: argument 'SizeY' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::BoxCornerGenerator::SetHalfSizeY(const Real HalfSizeY)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxcornergenerator.h:119: warning: The following parameters of Mezzanine::Graphics::Procedural::BoxCornerGenerator::SetHalfSizeY(const Real HalfSizeY) are not documented:
+  parameter 'HalfSizeY'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxcornergenerator.h:124: warning: argument 'SizeZ' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::BoxCornerGenerator::SetHalfSizeZ(const Real HalfSizeZ)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxcornergenerator.h:124: warning: The following parameters of Mezzanine::Graphics::Procedural::BoxCornerGenerator::SetHalfSizeZ(const Real HalfSizeZ) are not documented:
+  parameter 'HalfSizeZ'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< BoxGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxgenerator.h:163: warning: argument 'SegX' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::BoxGenerator::SetNumSegY(const Whole SegY)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxgenerator.h:163: warning: The following parameters of Mezzanine::Graphics::Procedural::BoxGenerator::SetNumSegY(const Whole SegY) are not documented:
+  parameter 'SegY'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxgenerator.h:169: warning: argument 'SegX' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::BoxGenerator::SetNumSegZ(const Whole SegZ)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/boxgenerator.h:169: warning: The following parameters of Mezzanine::Graphics::Procedural::BoxGenerator::SetNumSegZ(const Whole SegZ) are not documented:
+  parameter 'SegZ'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< CapsuleGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< ConeGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< CylinderGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< Extruder > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< IcoSphereGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Texture/invertmodifier.h:105: warning: return type of member Mezzanine::Graphics::Procedural::InvertModifier::SetIncludeAlpha is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< Lathe > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< MeshLoader > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Texture/oilpaintmodifier.h:116: warning: argument 'Radius' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::OilPaintModifier::SetRadius(const UInt8 SampleRadius)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Texture/oilpaintmodifier.h:116: warning: The following parameters of Mezzanine::Graphics::Procedural::OilPaintModifier::SetRadius(const UInt8 SampleRadius) are not documented:
+  parameter 'SampleRadius'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/path.h:201: warning: The following parameters of Mezzanine::Graphics::Procedural::Path::InsertPoint(const Whole Index, const Real X, const Real Y, const Real Z) are not documented:
+  parameter 'Z'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< PlaneGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/planegenerator.h:127: warning: argument 'SizeX' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::PlaneGenerator::SetSizeY(const Real SizeY)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/planegenerator.h:127: warning: The following parameters of Mezzanine::Graphics::Procedural::PlaneGenerator::SetSizeY(const Real SizeY) are not documented:
+  parameter 'SizeY'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< RoundedBoxGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< SphereGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< TorusGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/torusgenerator.h:134: warning: argument 'ToroidalSegThe' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::TorusGenerator::SetNumToroidalSeg(const Whole ToroidalSeg)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/torusgenerator.h:134: warning: The following parameters of Mezzanine::Graphics::Procedural::TorusGenerator::SetNumToroidalSeg(const Whole ToroidalSeg) are not documented:
+  parameter 'ToroidalSeg'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< TorusKnotGenerator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/torusknotgenerator.h:156: warning: argument 'ToroidalSegThe' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::TorusKnotGenerator::SetNumToroidalSeg(const Whole ToroidalSeg)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/torusknotgenerator.h:156: warning: The following parameters of Mezzanine::Graphics::Procedural::TorusKnotGenerator::SetNumToroidalSeg(const Whole ToroidalSeg) are not documented:
+  parameter 'ToroidalSeg'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/trianglebuffer.h:306: warning: argument 'Sect' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::TriangleBuffer::EndSection()
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< Triangulator > is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/triangulator.h:340: warning: argument 'RemoveOutside' of command @param is not found in the argument list of Mezzanine::Graphics::Procedural::Triangulator::SetRemoveOutside(const Boole Remove)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/triangulator.h:340: warning: The following parameters of Mezzanine::Graphics::Procedural::Triangulator::SetRemoveOutside(const Boole Remove) are not documented:
+  parameter 'Remove'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/meshgenerator.h:93: warning: Member GeneratorOptions (enumeration) of class MeshGenerator< TubeGenerator > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:85: warning: Member InternalControlIterator (typedef) of namespace Mezzanine::Input is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:84: warning: Member InternalControlPair (typedef) of namespace Mezzanine::Input is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:64: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
@@ -999,6 +1069,14 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/linegroup.cpp:129: warning: argument 'index' of command @param is not found in the argument list of Mezzanine::Internal::Line3D::GetPoint(const Whole Index) const
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/linegroup.cpp:129: warning: The following parameters of Mezzanine::Internal::Line3D::GetPoint(const Whole Index) const are not documented:
   parameter 'Index'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/uri.cpp:60: warning: Member BuildURIPath(String &ToBuild, const StringVector &Segments) (function) of namespace Mezzanine::Network is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/uri.cpp:75: warning: Member MergeURIPaths(const String &Base, const String &Relative) (function) of namespace Mezzanine::Network is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/httpresponse.h:82: warning: argument 'Request' of command @param is not found in the argument list of Mezzanine::Network::HTTPResponse::Decompose(const String &Response)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/httpresponse.h:82: warning: The following parameters of Mezzanine::Network::HTTPResponse::Decompose(const String &Response) are not documented:
+  parameter 'Response'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/uri.h:324: warning: argument 'Other' of command @param is not found in the argument list of Mezzanine::Network::URI::Resolve(const URI &Relative) const
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/uri.h:324: warning: The following parameters of Mezzanine::Network::URI::Resolve(const URI &Relative) const are not documented:
+  parameter 'Relative'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/rigidproxy.h:59: warning: Member StickyConstraint (typedef) of namespace Mezzanine::Physics is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsenumerations.h:158: warning: Member ProxyType (enumeration) of namespace Mezzanine::Physics is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisionshape.h:156: warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::Physics::CreateShape(CollisionShape::ShapeType ShapeToCreate, const String &Name_, btCollisionShape *ShapeToModel)
@@ -1250,7 +1328,7 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
   parameter 'ThreadInterface'
   parameter 'MaxNumTasks'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsmanager.h:409: warning: The following parameters of Mezzanine::Physics::PhysicsManager::PhysicsManager(World *Creator, XML::Node &XMLNode) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsmanager.h:409: warning: The following parameters of Mezzanine::Physics::PhysicsManager::PhysicsManager(World *Creator, const XML::Node &XMLNode) are not documented:
   parameter 'Creator'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsmanager.h:864: warning: return type of member Mezzanine::Physics::PhysicsManager::_GetPhysicsWorldPointer is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsmanager.h:867: warning: return type of member Mezzanine::Physics::PhysicsManager::_GetPhysicsWorldPointer is not documented
@@ -1345,61 +1423,90 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/universalconstraint.h:67: warning: @copydetails or @copydoc target 'TypedConstraint::_GetConstraintBase() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/universalconstraint.h:67: warning: return type of member Mezzanine::Physics::UniversalConstraint::Universal is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsmanager.h:195: warning: return type of member Mezzanine::Physics::WorldTriggerUpdateWorkUnit::operator= is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:392: warning: Member IStreamPtr (typedef) of namespace Mezzanine::Resource is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:395: warning: Member OStreamPtr (typedef) of namespace Mezzanine::Resource is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourceutilities.h:128: warning: parameters of member Mezzanine::Resource::Which are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourceutilities.h:128: warning: return type of member Mezzanine::Resource::Which is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/assetgroup.h:102: warning: return type of member Mezzanine::Resource::AssetGroup::OpenAssetStream is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:161: warning: @copybrief or @copydoc target 'DataStream::Close()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:159: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:146: warning: @copybrief or @copydoc target 'DataStream::Read(void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:148: warning: @copybrief or @copydoc target 'DataStream::Write(const void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:129: warning: Member StandardStream (variable) of class Mezzanine::Resource::FileStream is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:131: warning: argument 'Mode' of command @param is not found in the argument list of Mezzanine::Resource::FileStream::FileStream(std::fstream *Stream, const UInt16 Flags=DataStream::SF_Read)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:131: warning: The following parameters of Mezzanine::Resource::FileStream::FileStream(std::fstream *Stream, const UInt16 Flags=DataStream::SF_Read) are not documented:
-  parameter 'Flags'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:135: warning: argument 'Mode' of command @param is not found in the argument list of Mezzanine::Resource::FileStream::FileStream(const String &FileName, const String &Path, const UInt16 Flags=DataStream::SF_Read)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:135: warning: The following parameters of Mezzanine::Resource::FileStream::FileStream(const String &FileName, const String &Path, const UInt16 Flags=DataStream::SF_Read) are not documented:
-  parameter 'Flags'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:161: warning: @copybrief or @copydoc target 'DataStream::Close()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:161: warning: @copydetails or @copydoc target 'DataStream::Close()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:159: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:159: warning: @copydetails or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:159: warning: return type of member Mezzanine::Resource::FileStream::EoF is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:146: warning: @copybrief or @copydoc target 'DataStream::Read(void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:146: warning: @copydetails or @copydoc target 'DataStream::Read(void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:146: warning: parameters of member Mezzanine::Resource::FileStream::Read are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:146: warning: return type of member Mezzanine::Resource::FileStream::Read is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:148: warning: @copybrief or @copydoc target 'DataStream::Write(const void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:148: warning: @copydetails or @copydoc target 'DataStream::Write(const void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:148: warning: parameters of member Mezzanine::Resource::FileStream::Write are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:148: warning: return type of member Mezzanine::Resource::FileStream::Write is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:232: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:232: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:232: warning: @copydetails or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:232: warning: return type of member Mezzanine::Resource::IOStream::EoF is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:349: warning: @copybrief or @copydoc target 'DataStream::Close()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:347: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:335: warning: @copybrief or @copydoc target 'DataStream::Read(void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:337: warning: @copybrief or @copydoc target 'DataStream::Write(const void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:300: warning: Member BufferEnd (variable) of class Mezzanine::Resource::MemoryStream is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:299: warning: Member BufferPos (variable) of class Mezzanine::Resource::MemoryStream is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:298: warning: Member BufferStart (variable) of class Mezzanine::Resource::MemoryStream is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:297: warning: Member FreeBuffer (variable) of class Mezzanine::Resource::MemoryStream is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:349: warning: @copybrief or @copydoc target 'DataStream::Close()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:349: warning: @copydetails or @copydoc target 'DataStream::Close()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:347: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:347: warning: @copydetails or @copydoc target 'StreamBase::EoF() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:347: warning: return type of member Mezzanine::Resource::MemoryStream::EoF is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:335: warning: @copybrief or @copydoc target 'DataStream::Read(void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:335: warning: @copydetails or @copydoc target 'DataStream::Read(void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:335: warning: parameters of member Mezzanine::Resource::MemoryStream::Read are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:335: warning: return type of member Mezzanine::Resource::MemoryStream::Read is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:328: warning: argument 'True' of command @param is not found in the argument list of Mezzanine::Resource::MemoryStream::SetFreeOnClose(Boole FreeOnClose)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:328: warning: The following parameters of Mezzanine::Resource::MemoryStream::SetFreeOnClose(Boole FreeOnClose) are not documented:
-  parameter 'FreeOnClose'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:337: warning: @copybrief or @copydoc target 'DataStream::Write(const void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:337: warning: @copydetails or @copydoc target 'DataStream::Write(const void* Buffer, const size_t& Count)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:337: warning: parameters of member Mezzanine::Resource::MemoryStream::Write are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:337: warning: return type of member Mezzanine::Resource::MemoryStream::Write is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:117: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:282: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:288: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:280: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:284: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:286: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:117: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:117: warning: @copydetails or @copydoc target 'StreamBase::GetSize() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:117: warning: return type of member Mezzanine::Resource::FileStream::GetSize is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:282: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:288: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:280: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:284: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:286: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:282: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:282: warning: @copydetails or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:282: warning: return type of member Mezzanine::Resource::IOStream::Bad is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:288: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:288: warning: @copydetails or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:280: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:280: warning: @copydetails or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:280: warning: return type of member Mezzanine::Resource::IOStream::EoF is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:284: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:284: warning: @copydetails or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:284: warning: return type of member Mezzanine::Resource::IOStream::Fail is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:286: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:286: warning: @copydetails or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:286: warning: return type of member Mezzanine::Resource::IOStream::IsValid is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:200: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:206: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:198: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:202: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:204: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:200: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:200: warning: @copydetails or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:200: warning: return type of member Mezzanine::Resource::IStream::Bad is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:206: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:206: warning: @copydetails or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:198: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:198: warning: @copydetails or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:198: warning: return type of member Mezzanine::Resource::IStream::EoF is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:202: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:202: warning: @copydetails or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:202: warning: return type of member Mezzanine::Resource::IStream::Fail is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:204: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:204: warning: @copydetails or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:204: warning: return type of member Mezzanine::Resource::IStream::IsValid is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:285: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:282: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:288: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:280: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:284: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:286: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:235: warning: The following parameters of Mezzanine::Resource::MemoryStream::MemoryStream(const void *Buffer, const Whole BufferSize, const Whole Mode=Resource::SF_Read|Resource::SF_Write) are not documented:
+  parameter 'Buffer'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:285: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:285: warning: @copydetails or @copydoc target 'StreamBase::GetSize() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:285: warning: return type of member Mezzanine::Resource::MemoryStream::GetSize is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:178: warning: argument 'Mode' of command @param is not found in the argument list of Mezzanine::Resource::MemoryStreamBuffer::CreateBuffer(const Whole Size)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:123: warning: return type of member Mezzanine::Resource::MemoryStreamBuffer::sync is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:241: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:247: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:239: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:243: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:245: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:241: warning: @copybrief or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:241: warning: @copydetails or @copydoc target 'StreamBase::Bad() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:241: warning: return type of member Mezzanine::Resource::OStream::Bad is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:247: warning: @copybrief or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:247: warning: @copydetails or @copydoc target 'StreamBase::ClearErrors()' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:239: warning: @copybrief or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:239: warning: @copydetails or @copydoc target 'StreamBase::EoF() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:239: warning: return type of member Mezzanine::Resource::OStream::EoF is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:243: warning: @copybrief or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:243: warning: @copydetails or @copydoc target 'StreamBase::Fail() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:243: warning: return type of member Mezzanine::Resource::OStream::Fail is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:245: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:245: warning: @copydetails or @copydoc target 'StreamBase::IsValid() const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:245: warning: return type of member Mezzanine::Resource::OStream::IsValid is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< ResourceManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourcemanager.h:116: warning: argument 'ArchiveType' of command @param is not found in the argument list of Mezzanine::Resource::ResourceManager::ResourceManager(const String &EngineDataPath=".", const ArchiveType ArchType=AT_FileSystem)
@@ -1462,11 +1569,8 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: warning: argument 'FreshScript' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd) are not documented:
   parameter 'ScriptToAdd'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/stringtool.h:62: warning: Member Blank (variable) of namespace Mezzanine::StringTools is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/stringtool.h:158: warning: The following parameters of Mezzanine::StringTools::ConvertToBool(const String &ToConvert, const Boole Default=false) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/stringtool.h:209: warning: The following parameters of Mezzanine::StringTools::ConvertToBool(const String &ToConvert, const Boole Default=false) are not documented:
   parameter 'Default'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/stringtool.h:87: warning: parameters of member Mezzanine::StringTools::LowerCaseCopy are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/stringtool.h:81: warning: parameters of member Mezzanine::StringTools::UpperCaseCopy are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/consolestringmanipulation.cpp:86: warning: Member AllLower(String StringToConvert) (function) of namespace Mezzanine::Testing is not documented.
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdatatools.h:73: warning: return type of member Mezzanine::Testing::CompareEqualityWithEpsilon is not documented
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/consolelogic.h:71: warning: parameters of member Mezzanine::Testing::GetCommandResults are not (all) documented

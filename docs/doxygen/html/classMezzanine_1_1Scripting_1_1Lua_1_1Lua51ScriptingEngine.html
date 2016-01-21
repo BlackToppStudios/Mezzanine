@@ -152,37 +152,38 @@ typedef <a class="el" href="classMezzanine_1_1Trie.html">Mezzanine::Trie</a>&lt;
 <tr class="separator:af5f659bdebb9db9021605a6e82685cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br />
-&#160;&#160;<b>MT_AudioManager</b> = 1, 
-<b>MT_AnimationManager</b>, 
-<b>MT_CollisionShapeManager</b>, 
-<b>MT_CompositorManager</b>, 
+&#160;&#160;<b>MT_Undefined</b> = 0, 
+<b>MT_AudioManager</b> = 1, 
+<b>MT_AnimationManager</b> = 2, 
+<b>MT_CollisionShapeManager</b> = 3, 
 <br />
-&#160;&#160;<b>MT_GraphicsManager</b>, 
-<b>MT_EventManager</b>, 
-<b>MT_InputManager</b>, 
-<b>MT_LogManager</b>, 
+&#160;&#160;<b>MT_CompositorManager</b> = 4, 
+<b>MT_GraphicsManager</b> = 5, 
+<b>MT_EventManager</b> = 6, 
+<b>MT_InputManager</b> = 7, 
 <br />
-&#160;&#160;<b>MT_MaterialManager</b>, 
-<b>MT_MeshManager</b>, 
-<b>MT_NetworkManager</b>, 
-<b>MT_ResourceManager</b>, 
+&#160;&#160;<b>MT_LogManager</b> = 8, 
+<b>MT_MaterialManager</b> = 9, 
+<b>MT_MeshManager</b> = 10, 
+<b>MT_NetworkManager</b> = 11, 
 <br />
-&#160;&#160;<b>MT_ScriptingManager</b>, 
-<b>MT_TextureManager</b>, 
-<b>MT_UIManager</b>, 
-<b>MT_ActorManager</b> = 100, 
+&#160;&#160;<b>MT_ResourceManager</b> = 12, 
+<b>MT_ScriptingManager</b> = 13, 
+<b>MT_TextureManager</b> = 14, 
+<b>MT_UIManager</b> = 15, 
 <br />
-&#160;&#160;<b>MT_AreaEffectManager</b>, 
-<b>MT_DebrisManager</b>, 
-<b>MT_PagingManager</b>, 
-<b>MT_PhysicsManager</b>, 
+&#160;&#160;<b>MT_ActorManager</b> = 101, 
+<b>MT_AreaEffectManager</b> = 102, 
+<b>MT_DebrisManager</b> = 103, 
+<b>MT_PagingManager</b> = 104, 
 <br />
-&#160;&#160;<b>MT_SceneManager</b>, 
-<b>MT_SoundScapeManager</b>, 
-<b>MT_TerrainManager</b>, 
-<b>MT_VehicleManager</b>, 
+&#160;&#160;<b>MT_PhysicsManager</b> = 105, 
+<b>MT_SceneManager</b> = 106, 
+<b>MT_SoundScapeManager</b> = 107, 
+<b>MT_TerrainManager</b> = 108, 
 <br />
-&#160;&#160;<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
+&#160;&#160;<b>MT_VehicleManager</b> = 109, 
+<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br />
  }</td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,9 +193,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2f9f487a0d5a4015c991b39ac79eba38"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#a2f9f487a0d5a4015c991b39ac79eba38">Lua51ScriptingEngine</a> (<a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0">Lua51Libraries</a> LibrariesToOpen=<a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0ad39af1120b8ef56b64518406b75d9bde">DefaultLibs</a>)</td></tr>
 <tr class="memdesc:a2f9f487a0d5a4015c991b39ac79eba38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="namespaceMezzanine_1_1Scripting.html" title="This namespace is for all the classes belonging to the Scripting Subsystem. ">Scripting</a> engine with a set of libraries preloaded.  <a href="#a2f9f487a0d5a4015c991b39ac79eba38">More...</a><br /></td></tr>
 <tr class="separator:a2f9f487a0d5a4015c991b39ac79eba38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac30716ae129f990a44228b9ea4ba09b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#ac30716ae129f990a44228b9ea4ba09b5">Lua51ScriptingEngine</a> (<a class="el" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a> &amp;Params)</td></tr>
-<tr class="memdesc:ac30716ae129f990a44228b9ea4ba09b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a from name value pairs.  <a href="#ac30716ae129f990a44228b9ea4ba09b5">More...</a><br /></td></tr>
-<tr class="separator:ac30716ae129f990a44228b9ea4ba09b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a065a8fbd83c2df23e187205400b006e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#a065a8fbd83c2df23e187205400b006e2">Lua51ScriptingEngine</a> (const <a class="el" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a> &amp;Params)</td></tr>
+<tr class="memdesc:a065a8fbd83c2df23e187205400b006e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a from name value pairs.  <a href="#a065a8fbd83c2df23e187205400b006e2">More...</a><br /></td></tr>
+<tr class="separator:a065a8fbd83c2df23e187205400b006e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81f28c9b4ccccbfaef1edc15cca68a18"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#a81f28c9b4ccccbfaef1edc15cca68a18">Lua51ScriptingEngine</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
 <tr class="memdesc:a81f28c9b4ccccbfaef1edc15cca68a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct by deserializing.  <a href="#a81f28c9b4ccccbfaef1edc15cca68a18">More...</a><br /></td></tr>
 <tr class="separator:a81f28c9b4ccccbfaef1edc15cca68a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -804,7 +805,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac30716ae129f990a44228b9ea4ba09b5"></a>
+<a class="anchor" id="a065a8fbd83c2df23e187205400b006e2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -814,7 +815,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Lua51ScriptingEngine </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28">NameValuePairList</a> &amp;&#160;</td>
           <td class="paramname"><em>Params</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1216,7 +1217,7 @@ To ensure Tab completion works this also creates an alias/reference in the globa
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000116">Todo:</a></b></dt><dd>fill in the kind of exception thrown. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000118">Todo:</a></b></dt><dd>fill in the kind of exception thrown. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.html#ab973d282891d8f046cf979c5b8661044">Mezzanine::Scripting::iScriptingManager</a>.</p>
 
@@ -2570,7 +2571,7 @@ A String containing "Lua51ScriptingEngine". </dd></dl>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:04 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:46 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

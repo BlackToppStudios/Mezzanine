@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1ManagedPtr.html" title="This is used to get RAII semantics when not provided inherently. " alt="" coords="5,5,168,47"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html" title="Mezzanine::Graphics\l::Procedural::MeshGenerator\l\&lt; Triangulator \&gt;" alt="" coords="5,5,195,61"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html" title="A generator class that implements the Delaunay Triangulation algorithm. " alt="" coords="243,13,411,54"/>
 </map>

@@ -1,0 +1,4 @@
+<map id="Mezzanine::Graphics::Procedural::VertexUVModifier" name="Mezzanine::Graphics::Procedural::VertexUVModifier">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshModifier.html" title="A base class for modifying the contents of an already populated triangle buffer. " alt="" coords="5,5,184,47"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="208,13,347,39"/>
+</map>

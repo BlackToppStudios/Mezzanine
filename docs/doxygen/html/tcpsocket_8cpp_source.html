@@ -145,8 +145,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        TransportLayerProtocol TCPSocket::GetTransportLayerProtocol()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> Network::TLP_TCP; }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Network.html#a7a4e5dd68177b3b5fc4f428676e84387">TransportLayerProtocol</a> TCPSocket::GetTransportLayerProtocol()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1Network.html#a7a4e5dd68177b3b5fc4f428676e84387ab63e28030e2b79e28a5370d0d8f4454c">Network::TLP_TCP</a>; }</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span>        <span class="comment">// Core Operations</span></div>
@@ -158,9 +158,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        {</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            PlatformSocket* SockPtr = this-&gt;InternalSocket-&gt;Accept(Address);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">if</span>( SockPtr != NULL ) {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">if</span>( this-&gt;GetNetworkLayerProtocol() == Network::NLP_IPv4 ) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">if</span>( this-&gt;GetNetworkLayerProtocol() == <a class="code" href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5">Network::NLP_IPv4</a> ) {</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> TCPv4Socket( SockPtr );</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                }<span class="keywordflow">else</span> <span class="keywordflow">if</span>( this-&gt;GetNetworkLayerProtocol() == Network::NLP_IPv6 ) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                }<span class="keywordflow">else</span> <span class="keywordflow">if</span>( this-&gt;GetNetworkLayerProtocol() == <a class="code" href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18acc4ee00e3926184c02d1b40f053812c6">Network::NLP_IPv6</a> ) {</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> TCPv6Socket( SockPtr );</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                }</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            }</div>
@@ -205,12 +205,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
 <div class="ttc" id="namespaceMezzanine_html_a7d765759d1196aae20197055f00498f8"><div class="ttname"><a href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00181">datatypes.h:181</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ac3576e52af3c62d13dde94829e0c5465"><div class="ttname"><a href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Mezzanine::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdoc">A datatype used to represent any integer close to. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00157">datatypes.h:157</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Network_html_a2cc9dfa328c8f701096a4d61abfb3f18acc4ee00e3926184c02d1b40f053812c6"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18acc4ee00e3926184c02d1b40f053812c6">Mezzanine::Network::NLP_IPv6</a></div><div class="ttdoc">Internet Protocol version 6. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00171">networkenumerations.h:171</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Network_html_a7a4e5dd68177b3b5fc4f428676e84387"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a7a4e5dd68177b3b5fc4f428676e84387">Mezzanine::Network::TransportLayerProtocol</a></div><div class="ttdeci">TransportLayerProtocol</div><div class="ttdoc">This is an enum listing for recognized protocols on Layer 4 of the OSI model. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00185">networkenumerations.h:185</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Network_html_a7a4e5dd68177b3b5fc4f428676e84387ab63e28030e2b79e28a5370d0d8f4454c"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a7a4e5dd68177b3b5fc4f428676e84387ab63e28030e2b79e28a5370d0d8f4454c">Mezzanine::Network::TLP_TCP</a></div><div class="ttdoc">Transmission Control Protocol. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00189">networkenumerations.h:189</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Network_html_a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5">Mezzanine::Network::NLP_IPv4</a></div><div class="ttdoc">Internet Protocol version 4. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00170">networkenumerations.h:170</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:22:58 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:36 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

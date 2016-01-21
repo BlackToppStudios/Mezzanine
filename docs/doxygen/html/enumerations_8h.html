@@ -113,12 +113,6 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a25d7f893350196fa99e164f78df3538b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a25d7f893350196fa99e164f78df3538b">Mezzanine::ArchiveType</a> { <a class="el" href="namespaceMezzanine.html#a25d7f893350196fa99e164f78df3538bae0f6ba7e60a408f888d1c616ca20e266">Mezzanine::AT_FileSystem</a> = 0, 
-<a class="el" href="namespaceMezzanine.html#a25d7f893350196fa99e164f78df3538ba862f05e0ae2e48bb4a0ef951fd5a7cba">Mezzanine::AT_Zip</a> = 1, 
-<a class="el" href="namespaceMezzanine.html#a25d7f893350196fa99e164f78df3538ba5e0cba92dbb56959caf59ddea6b1184f">Mezzanine::AT_Invalid</a> = 32768
- }</td></tr>
-<tr class="memdesc:a25d7f893350196fa99e164f78df3538b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to indicate what kind of resources the Entrosol should look for.  <a href="namespaceMezzanine.html#a25d7f893350196fa99e164f78df3538b">More...</a><br /></td></tr>
-<tr class="separator:a25d7f893350196fa99e164f78df3538b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d10a79e11a2031df10af540eede12fa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa">Mezzanine::AttenuationStyle</a> { <a class="el" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa548ff9c1d108b12ea6323d39c41856f5">Mezzanine::Att_None</a>, 
 <a class="el" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faaaecc4b0547a61e5b2abd5401182c9470">Mezzanine::Att_Linear</a>, 
 <a class="el" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12faa7f0c2854461a843af7eb21c036375e83">Mezzanine::Att_Quadratic</a>
@@ -140,9 +134,9 @@ Enumerations</h2></td></tr>
 <tr class="separator:a8892173bd6aaf7d0e34a07b2b30aad33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84bd521b90ded70d55bbc6ae3ec9723f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84bd521b90ded70d55bbc6ae3ec9723f"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a84bd521b90ded70d55bbc6ae3ec9723f">Mezzanine::PauseLevel</a> { <br />
 &#160;&#160;<b>PL_Unpaused</b> = 0, 
-<b>PL_PausePhysics</b> = 1, 
-<b>PL_PauseParticles</b> = 2, 
-<b>PL_PauseAnimations</b> = 4, 
+<b>PL_PausePhysics</b> = ( 1u &lt;&lt; 0 ), 
+<b>PL_PauseParticles</b> = ( 1u &lt;&lt; 1 ), 
+<b>PL_PauseAnimations</b> = ( 1u &lt;&lt; 2 ), 
 <br />
 &#160;&#160;<b>PL_PauseAll</b> = PL_PausePhysics | PL_PauseParticles | PL_PauseAnimations
 <br />
@@ -202,47 +196,47 @@ Enumerations</h2></td></tr>
 <tr class="memdesc:ad81c74de3529f1e643bd145173924ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to define what frame of reference is to be used when positioning or rotating objects.  <a href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3">More...</a><br /></td></tr>
 <tr class="separator:ad81c74de3529f1e643bd145173924ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30335416fc857844e8360c84d1d1b56c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">Mezzanine::WorldObjectType</a> { <br />
-&#160;&#160;<b>WO_TerrainFirst</b> = 1, 
-<b>WO_MeshTerrain</b> = 1, 
-<b>WO_HeightfieldTerrain</b> = 2, 
-<b>WO_VectorFieldTerrain</b> = 4, 
+&#160;&#160;<b>WO_TerrainFirst</b> = ( 1u &lt;&lt; 0 ), 
+<b>WO_MeshTerrain</b> = ( 1u &lt;&lt; 0 ), 
+<b>WO_HeightfieldTerrain</b> = ( 1u &lt;&lt; 1 ), 
+<b>WO_VectorFieldTerrain</b> = ( 1u &lt;&lt; 2 ), 
 <br />
-&#160;&#160;<b>WO_VoxelTerrain</b> = 8, 
-<b>WO_MarchingCubeTerrain</b> = 16, 
-<b>WO_UnknownTerrain</b> = 32, 
-<b>WO_TerrainLast</b> = 32, 
+&#160;&#160;<b>WO_VoxelTerrain</b> = ( 1u &lt;&lt; 3 ), 
+<b>WO_MarchingCubeTerrain</b> = ( 1u &lt;&lt; 4 ), 
+<b>WO_UnknownTerrain</b> = ( 1u &lt;&lt; 5 ), 
+<b>WO_TerrainLast</b> = ( 1u &lt;&lt; 5 ), 
 <br />
-&#160;&#160;<b>WO_DebrisFirst</b> = 64, 
-<b>WO_DebrisRigid</b> = 64, 
-<b>WO_DebrisSoft</b> = 128, 
-<b>WO_DebrisUnknown</b> = 256, 
+&#160;&#160;<b>WO_DebrisFirst</b> = ( 1u &lt;&lt; 6 ), 
+<b>WO_DebrisRigid</b> = ( 1u &lt;&lt; 6 ), 
+<b>WO_DebrisSoft</b> = ( 1u &lt;&lt; 7 ), 
+<b>WO_DebrisUnknown</b> = ( 1u &lt;&lt; 8 ), 
 <br />
-&#160;&#160;<b>WO_DebrisLast</b> = 256, 
-<b>WO_AreaEffectFirst</b> = 512, 
-<b>WO_AreaEffectGravityField</b> = 512, 
-<b>WO_AreaEffectGravityWell</b> = 1024, 
+&#160;&#160;<b>WO_DebrisLast</b> = ( 1u &lt;&lt; 8 ), 
+<b>WO_AreaEffectFirst</b> = ( 1u &lt;&lt; 9 ), 
+<b>WO_AreaEffectGravityField</b> = ( 1u &lt;&lt; 9 ), 
+<b>WO_AreaEffectGravityWell</b> = ( 1u &lt;&lt; 10 ), 
 <br />
-&#160;&#160;<b>WO_AreaEffectFieldOfForce</b> = 2048, 
-<b>WO_AreaEffectPlaceHolder1</b> = 4069, 
-<b>WO_AreaEffectPlaceHolder2</b> = 8192, 
-<b>WO_AreaEffectUnknown</b> = 16384, 
+&#160;&#160;<b>WO_AreaEffectFieldOfForce</b> = ( 1u &lt;&lt; 11 ), 
+<b>WO_AreaEffectPlaceHolder1</b> = ( 1u &lt;&lt; 12 ), 
+<b>WO_AreaEffectPlaceHolder2</b> = ( 1u &lt;&lt; 13 ), 
+<b>WO_AreaEffectUnknown</b> = ( 1u &lt;&lt; 14 ), 
 <br />
-&#160;&#160;<b>WO_AreaEffectLast</b> = 16384, 
-<b>WO_ActorFirst</b> = 32768, 
-<b>WO_ActorPlaceHolder1</b> = 32768, 
-<b>WO_ActorPlaceHolder2</b> = 65536, 
+&#160;&#160;<b>WO_AreaEffectLast</b> = ( 1u &lt;&lt; 14 ), 
+<b>WO_ActorFirst</b> = ( 1u &lt;&lt; 15 ), 
+<b>WO_ActorPlaceHolder1</b> = ( 1u &lt;&lt; 15 ), 
+<b>WO_ActorPlaceHolder2</b> = ( 1u &lt;&lt; 16 ), 
 <br />
-&#160;&#160;<b>WO_ActorPlaceHolder3</b> = 131072, 
-<b>WO_ActorLast</b> = 131072, 
-<b>WO_VehicleFirst</b> = 262144, 
-<b>WO_VehiclePlaceHolder1</b> = 262144, 
+&#160;&#160;<b>WO_ActorPlaceHolder3</b> = ( 1u &lt;&lt; 17 ), 
+<b>WO_ActorLast</b> = ( 1u &lt;&lt; 17 ), 
+<b>WO_VehicleFirst</b> = ( 1u &lt;&lt; 18 ), 
+<b>WO_VehiclePlaceHolder1</b> = ( 1u &lt;&lt; 18 ), 
 <br />
-&#160;&#160;<b>WO_VehiclePlaceHolder2</b> = 524288, 
-<b>WO_VehiclePlaceHolder3</b> = 1048576, 
-<b>WO_VehiclePlaceHolder4</b> = 2097152, 
-<b>WO_VehiclePlaceHolder5</b> = 4194304, 
+&#160;&#160;<b>WO_VehiclePlaceHolder2</b> = ( 1u &lt;&lt; 19 ), 
+<b>WO_VehiclePlaceHolder3</b> = ( 1u &lt;&lt; 20 ), 
+<b>WO_VehiclePlaceHolder4</b> = ( 1u &lt;&lt; 21 ), 
+<b>WO_VehiclePlaceHolder5</b> = ( 1u &lt;&lt; 22 ), 
 <br />
-&#160;&#160;<b>WO_VehicleLast</b> = 4194304
+&#160;&#160;<b>WO_VehicleLast</b> = ( 1u &lt;&lt; 22 )
 <br />
  }</td></tr>
 <tr class="memdesc:a30335416fc857844e8360c84d1d1b56c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by various classes to help identify what class an object is.  <a href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">More...</a><br /></td></tr>
@@ -256,7 +250,7 @@ Enumerations</h2></td></tr>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Tue Jan 19 2016 23:23:01 for BlackTopp Studios inc by
+            Generated on Thu Jan 21 2016 01:49:40 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>
