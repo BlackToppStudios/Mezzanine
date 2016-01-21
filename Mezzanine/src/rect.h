@@ -44,6 +44,8 @@
 
 namespace Mezzanine
 {
+    /// @brief A class for tracking a rectangle by tracking two corners Top, Left and
+    /// Right, Bottom.
     template<typename NumType>
     class RectBase
     {
