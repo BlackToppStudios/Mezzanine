@@ -135,6 +135,7 @@ span.SelectionMark {
     font-family: monospace;
     outline-style: none;
     text-decoration: none;
+    background: none;
 }
 
 /* Magnifier Menu text entries*/

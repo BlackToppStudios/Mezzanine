@@ -3,15 +3,16 @@
 * {
   margin: 0;
   padding: 0;
-  color:#EEE;
+  color: #EEE;
   background-color: #222;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Fix the color on some things. */
-table, tr, td, dl, dt, dd, p, b, em,
-.memproto, .return, .memdoc, .memitem, .contents, .textblock,
-.mlabels, .mlabel, .paramtype, .paramname, .memtemplate{
+table, tr, td, dl, dt, dd, p, b, em, span,
+.memproto, .return, .memdoc, .memitem, .contents, .textblock, .contents li, .contents a,
+.contents ul, .contents ol, center, .center, .dynheader,
+.mlabels, .mlabel, .paramtype, .paramname, .memtemplate, .directory, .ah, .levels{
     background-color: #111;
 }
 
@@ -20,11 +21,7 @@ body {
     margin-right: 6%;
 }
 
-p {
-    margin-top: 0.3em;
-}
-
-
+/* Most page contents */
 
 .contents {
     border-width: 2px;
@@ -33,6 +30,24 @@ p {
     border-top-right-radius: 1em;
     border-bottom-left-radius: 1em;
     padding: 2%;
+    margin-top: 0.5em;
+}
+
+.center {
+    text-align: center;
+}
+
+.dynheader {
+    margin-top: 0.5em;
+}
+
+.contents ul, .contents ol{
+    margin-left: 2em;
+    margin-top: 1em;
+}
+
+.contents li{
+    margin-top: 0.5em;
 }
 
 .smaller {
@@ -41,13 +56,28 @@ p {
     color: #528f6c;
 }
 
+.icona {
+    margin-left: 0em;
+    margin-right: 0em
+}
+
+span.icon {
+    display: none;
+}
+
 hr.footer {
     margin-top: 1em;
 }
 
+p {
+    margin-top: 0.3em;
+}
+
+/* Member doxygen output */
 .memItemRight, .memItemLeft {
     border-top: 1px solid #444;
-    padding-top: 0.2em;
+    padding-top: 0.4em;
+    white-space: nowrap;
 }
 
 .memSeparator {
@@ -56,11 +86,7 @@ hr.footer {
 
 .textblock {
     border-top: 1px solid #444;
-}
-
-/* Many links */
-.el, td a, p a {
-    background-color: #111;
+    padding-top: 0.3em;
 }
 
 /* Member Prototype */
@@ -119,6 +145,26 @@ dt {
     margin-top: 0.3em;
 }
 
+/* Verbatim and Code Sections */
+pre.fragment {
+    font-family: monospace, fixed;
+    font-size: 90%;
+
+    margin-top: 0.5em;
+    margin-left 1em;
+    margin-right 2em;
+    margin-bottom 0.5em;
+    padding: 0.5em;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #8dd3ab;
+    border-top-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+
+/* Headings and Titles */
 .pagetitle {
     font-size: 250%;
     color: #528f6c;
@@ -131,7 +177,7 @@ dt {
     color: #528f6c;
     font-weight: bold;
     margin-bottom: -5px;
-    margin-top: 1em;
+    margin-top: 0.4em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -181,6 +227,12 @@ h6 {
     color: #bdf8d6;
 }
 
+/* Chart */
+polygon {
+    display: block;
+}
+
+/* Search results */
 iframe {
     border: 2px;
     border-style: solid;
@@ -190,8 +242,17 @@ iframe {
     transition: display 2s;
 }
 
-/* Hover over links */
-p a, td a, a.el {
+/* Hover over links and buttons*/
+
+.el, td a, p a {
+    background-color: #111;
+}
+
+td .el {
+    display: inline;
+}
+
+p a, td a, .content a.el, div.levels span {
     transition: border 1s, border-color 1s, border-top-left-radius 1s,
         border-bottom-right-radius 1s, background-color 1s, text-decoration 1s, color 1s;
     padding-left: 0.5ex;
@@ -200,7 +261,9 @@ p a, td a, a.el {
 
 p a:focus, p a:hover,
 td a:focus, td a:hover,
-a.el:focus, a.el:hover{
+.content a.el:focus, .content a.el:hover,
+div.levels span:focus, div.levels span:hover{
+    cursor: pointer;
     border: 1px;
     border-color: #8dd3ab;
     border-top-left-radius: 0.25em;
@@ -212,23 +275,99 @@ a.el:focus, a.el:hover{
 
 /* Nav bars */
 
-.tablist {
+.tablist, .navpath, .summary {
         display: table;
 }
 
-.tablist li {
+.tablist li, .navpath li, .summary a{
         float: left;
         display: table-cell;
-        line-height: 4ex;
         list-style: none;
 }
 
-.tablist a {
-        border-top-left-radius: 1em;
-        border-bottom-right-radius: 1em;
-        display: block;
-        padding: 0 1em;
-        font-weight: bold;
-        text-decoration: none;
-        outline: none;
+.summary {
+    color: #222;
+}
+
+#navrow1 .tablist a[href*=".html"] /* To skip the search items */
+{
+    font-size: 100%;
+}
+
+#navrow2 .tablist a {
+    font-size: 95%;
+}
+
+#navrow3 .tablist a, div.navpath a {
+    font-size: 90%;
+}
+
+#navrow4 .tablist a, .summary a{
+    font-size: 85%;
+}
+
+#navrow1 .tablist a[href*=".html"],
+#navrow2 .tablist a,
+#navrow3 .tablist a, div.navpath a,
+#navrow4 .tablist a, .summary a{
+    border: 2px;
+    border-color: #8dd3ab;
+    background: none;
+    border-style: solid;
+
+    margin-top: 0.5em;
+    margin-right: 1em;
+
+    padding-top: 0.2em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: 0.2em;
+
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    outline: none;
+
+    transition: border 1s, border-color 1s, background-color 1s, color 1s;
+}
+
+
+#navrow1 .tablist a[href*=".html"]:hover,
+#navrow1 .tablist a[href*=".html"]:focus,
+#navrow2 .tablist a:hover,
+#navrow2 .tablist a:focus,
+#navrow3 .tablist a:hover, div.navpath a:hover,
+#navrow3 .tablist a:focus, div.navpath a:focus,
+#navrow4 .tablist a:hover,
+#navrow4 .tablist a:focus {
+    background-color: #8dd3ab;
+    border-color: #528f6c;
+}
+
+#navrow1 .tablist a[href*=".html"] {
+    border-top-left-radius: 0.7em;
+    border-bottom-right-radius: 0.7em;
+}
+
+#navrow2 .tablist a {
+    border-top-right-radius: 0.7em;
+    border-bottom-left-radius: 0.7em;
+}
+
+#navrow3 .tablist a, div.navpath a {
+    border-top-left-radius: 0.7em;
+    border-bottom-right-radius: 0.7em;
+}
+
+#navrow4 .tablist a, .summary a {
+    border-top-right-radius: 0.7em;
+    border-bottom-left-radius: 0.7em;
+}
+
+.current span {
+    color: #15e86e;
+}
+
+.tablist span{
+    background: none;
 }
