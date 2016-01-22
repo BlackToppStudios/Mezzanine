@@ -55,10 +55,21 @@
 /// @brief This file has the interface for the Lua based implementation of the Scripting system.
 
 /// @page LuaManual Mezzanine::Scripting Lua Manual
-/// The file that SWIG generated was made with the following command run on an ubuntu machine from the Mezzananine/src directory:
-/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp mezzanine.h
-/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
-/// Need to document "Mezzanine.", nspaces, calling conventions
+/// The files that are SWIG generated are made with the following commands run on an ubuntu machine
+/// from the Mezzananine/src directory:
+/// @code
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_PHYSICS -o Scripting/Lua51/scriptbindingphysicslua51.cpp Physics/physics.h
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp Physics/physics.h
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_MATHTOOLS -o Scripting/Lua51/scriptbindingmathtoolslua51.cpp
+/// swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_MATHTOOLS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmathtoolslua51unsafe.cpp MathTools/mathtools.h
+/// @endcode
+///  Need to document "Mezzanine.", nspaces, calling conventions
 ///
 /// script class compilation
 ///
