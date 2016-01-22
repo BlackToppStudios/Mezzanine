@@ -46,6 +46,8 @@
 #include "vector2.h"
 #include "exception.h"
 
+#include "Internal/iostreamwrapper.h.cpp"
+
 #include <Ogre.h>
 
 namespace Mezzanine
@@ -94,6 +96,28 @@ namespace Mezzanine
             return this->_WrapInternalMesh( this->_GetInternalManager()->load(MeshName,Group) );
         }
 
+        Mesh* MeshManager::LoadMesh(const String& FilePathAndName)
+        {
+            size_t Slash = FilePathAndName.find_last_of("\\/");
+            if( Slash != String::npos ) {
+                std::ifstream Stream;
+                Stream.open(FilePathAndName.c_str());
+                Ogre::MeshSerializer OgreSerializer;
+                Ogre::DataStreamPtr OgreStreamPtr(new Internal::IStreamWrapper(&Stream,false));
+                Ogre::MeshPtr NewMesh = Ogre::MeshManager::getSingleton().createManual(FilePathAndName.substr(Slash+1),Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+                OgreSerializer.importMesh(OgreStreamPtr,NewMesh.get());
+                return this->_WrapInternalMesh(NewMesh);
+            }
+            return NULL;
+        }
+
+        Mesh* MeshManager::LoadMesh(std::istream* Stream)
+        {
+            /*Ogre::MeshPtr NewMesh = Ogre::MeshManager::getSingleton().createManual();
+            Ogre::MeshSerializer OgreSerializer;//*/
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Loading Meshes via exclusively a standard stream is not supported yet.");
+        }
+
         void MeshManager::UnloadMesh(const String& MeshName)
         {
             MeshIterator MeshIt = this->Meshes.find(MeshName);
@@ -103,6 +127,32 @@ namespace Mezzanine
             this->_GetInternalManager()->unload(MeshName);
             delete (*MeshIt).second;
             this->Meshes.erase(MeshIt);
+        }
+
+        void MeshManager::UnloadAllMeshes()
+        {
+            for( MeshIterator MeshIt = this->Meshes.begin() ; MeshIt != this->Meshes.end() ; ++MeshIt )
+                { delete (*MeshIt).second; }
+            this->Meshes.clear();
+            this->_GetInternalManager()->unloadAll();
+        }
+
+        void MeshManager::SaveMesh(Mesh* ToSave, const String& FileName, const String& GroupName)
+        {
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Saving Meshes via asset groups is not supported yet.");
+        }
+
+        void MeshManager::SaveMesh(Mesh* ToSave, const String& FilePathAndName)
+        {
+            Ogre::MeshSerializer OgreSerializer;
+            OgreSerializer.exportMesh(ToSave->_GetInternalMesh().get(),FilePathAndName);
+        }
+
+        void MeshManager::SaveMesh(Mesh* ToSave, std::ostream* Stream)
+        {
+            Ogre::MeshSerializer OgreSerializer;
+            Ogre::DataStreamPtr OgreStreamPtr(new Internal::OStreamWrapper(Stream,false));
+            OgreSerializer.exportMesh(ToSave->_GetInternalMesh().get(),OgreStreamPtr);
         }
 
         Mesh* MeshManager::GetMesh(const String& MeshName)
@@ -117,14 +167,6 @@ namespace Mezzanine
         Whole MeshManager::GetNumMeshes()
         {
             return this->Meshes.size();
-        }
-
-        void MeshManager::UnloadAllMeshes()
-        {
-            for( MeshIterator MeshIt = this->Meshes.begin() ; MeshIt != this->Meshes.end() ; ++MeshIt )
-                { delete (*MeshIt).second; }
-            this->Meshes.clear();
-            this->_GetInternalManager()->unloadAll();
         }
 
         ///////////////////////////////////////////////////////////////////////////////

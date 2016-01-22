@@ -49,6 +49,9 @@ namespace Mezzanine
 {
     namespace Internal
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // IOStreamWrapper Methods
+
         IOStreamWrapper::IOStreamWrapper(std::iostream* ToBeWrapped, const Boole Clean) :
             Stream(ToBeWrapped),
             CleanUp(Clean)
@@ -91,6 +94,86 @@ namespace Mezzanine
             { return this->Stream->eof(); }
 
         void IOStreamWrapper::close()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // IStreamWrapper Methods
+
+        IStreamWrapper::IStreamWrapper(std::istream* ToBeWrapped, const Boole Clean) :
+            Stream(ToBeWrapped),
+            CleanUp(Clean)
+            {  }
+
+        IStreamWrapper::~IStreamWrapper()
+            { if( this->CleanUp ) delete this->Stream; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        size_t IStreamWrapper::read(void* buf, size_t count)
+        {
+            this->Stream->read(static_cast<char*>(buf),count);
+            return this->Stream->gcount();
+        }
+
+        size_t IStreamWrapper::write(const void* buf, size_t count)
+        {
+            return 0;
+        }
+
+        void IStreamWrapper::skip(long count)
+            { this->Stream->seekg(count,std::ios_base::cur);  }
+
+        void IStreamWrapper::seek(size_t pos)
+            { this->Stream->seekg(pos); }
+
+        size_t IStreamWrapper::tell() const
+            { return this->Stream->tellg(); }
+
+        bool IStreamWrapper::eof() const
+            { return this->Stream->eof(); }
+
+        void IStreamWrapper::close()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // OStreamWrapper Methods
+
+        OStreamWrapper::OStreamWrapper(std::ostream* ToBeWrapped, const Boole Clean) :
+            Stream(ToBeWrapped),
+            CleanUp(Clean)
+            {  }
+
+        OStreamWrapper::~OStreamWrapper()
+            { if( this->CleanUp ) delete this->Stream; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        size_t OStreamWrapper::read(void* buf, size_t count)
+        {
+            return 0;
+        }
+
+        size_t OStreamWrapper::write(const void* buf, size_t count)
+        {
+            this->Stream->write(static_cast<const char*>(buf),count);
+            return ( this->Stream->fail() ? 0 : count );
+        }
+
+        void OStreamWrapper::skip(long count)
+            {  this->Stream->seekp(count,std::ios_base::cur); }
+
+        void OStreamWrapper::seek(size_t pos)
+            { this->Stream->seekp(pos); }
+
+        size_t OStreamWrapper::tell() const
+            { return this->Stream->tellp(); }
+
+        bool OStreamWrapper::eof() const
+            { return this->Stream->eof(); }
+
+        void OStreamWrapper::close()
             {  }
     }//Internal
 }//Nezzanine

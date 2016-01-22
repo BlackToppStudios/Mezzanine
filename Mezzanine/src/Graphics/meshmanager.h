@@ -109,23 +109,49 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Mesh Management
 
-            /// @brief Loads a Mesh file from disk and prepares it for use.
-            /// @param MeshName The name of the Mesh file to be loaded.
-            /// @param Group The resource group from which the Mesh file should be loaded.
+            /// @brief Loads a Mesh file from an asset group and prepares it for use.
+            /// @param ResourceName The name of the Mesh file to be loaded.
+            /// @param ResourceGroup The resource group from which the Mesh file should be loaded.
             /// @return Returns a pointer to the loaded Mesh.
-            virtual Mesh* LoadMesh(const String& MeshName, const String& Group);
-            /// @brief Unloads a Mesh file.
+            Mesh* LoadMesh(const String& ResourceName, const String& ResourceGroup);
+            /// @brief Loads a Mesh file from disk and prepares it for use.
+            /// @param FilePathAndName The full path and filename of the Mesh to be read.
+            /// @return Returns a pointer to the loaded Mesh.
+            Mesh* LoadMesh(const String& FilePathAndName);
+
+            /// @brief Loads an Mesh from an input stream.
+            /// @param Stream A pointer to the stream to load the Mesh from.
+            /// @return Returns a pointer to the loaded Mesh.
+            Mesh* LoadMesh(std::istream* Stream);
+
+            /// @brief Unloads a Mesh from memory.
             /// @param MeshName The name of the Mesh to be unloaded.
-            virtual void UnloadMesh(const String& MeshName);
+            void UnloadMesh(const String& MeshName);
+            /// @brief Unloads every Mesh that is currently loaded.
+            void UnloadAllMeshes();
+
+            /// @brief Writes a Mesh to the asset group.
+            /// @param ToSave The Mesh to be saved.
+            /// @param FileName The name of the file to save the Mesh as.
+            /// @param GroupName The name of the asset group to save the Mesh to.
+            void SaveMesh(Mesh* ToSave, const String& FileName, const String& GroupName);
+            /// @brief Writes a Mesh to the disk.
+            /// @param ToSave The Mesh to be saved.
+            /// @param FilePathAndName The full path and filename of the Mesh to be written.
+            void SaveMesh(Mesh* ToSave, const String& FilePathAndName);
+
+            /// @brief Writes a Mesh in a final serializable form to an output stream.
+            /// @param ToSave The Mesh to be saved.
+            /// @param Stream A pointer to the stream to save the Mesh to.
+            void SaveMesh(Mesh* ToSave, std::ostream* Stream);
+
             /// @brief Gets a Mesh stored in this manager.
             /// @param MeshName The name of the Mesh to retrieve.
             /// @return Returns a pointer to the requested Mesh.
             Mesh* GetMesh(const String& MeshName);
             /// @brief Gets the number of currently loaded meshes.
             /// @return Returns a Whole representing the number of meshes currently loaded.
-            virtual Whole GetNumMeshes();
-            /// @brief Unloads every Mesh that is currently loaded.
-            virtual void UnloadAllMeshes();
+            Whole GetNumMeshes();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -150,7 +176,7 @@ namespace Mezzanine
             /// @brief Wraps and stores an Ogre Mesh instance.
             /// @param ToWrap The Ogre Mesh to get wrapped.
             /// @return Returns a pointer to the wrapped Mesh.
-            virtual Mesh* _WrapInternalMesh(Ogre::MeshPtr ToWrap);
+            Mesh* _WrapInternalMesh(Ogre::MeshPtr ToWrap);
             /// @internal
             /// @brief Gets the internal MeshManager.
             /// @return Returns a pointer to the internal MeshManager.

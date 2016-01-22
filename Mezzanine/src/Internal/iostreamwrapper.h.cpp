@@ -51,6 +51,10 @@ namespace Mezzanine
 {
     namespace Internal
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A class for wrapping standard I/O wrappers to be used by the Ogre resource system.
+        /// @details
+        ///////////////////////////////////////
         class MEZZ_LIB IOStreamWrapper : public Ogre::DataStream
         {
         protected:
@@ -88,6 +92,90 @@ namespace Mezzanine
             /// @copydoc Ogre::DataStream::close()
             void close();
         };//IOStreamWrapper
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A class for wrapping standard Input streams to be used by the Ogre resource system.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB IStreamWrapper : public Ogre::DataStream
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the Input stream being wrapped.
+            std::istream* Stream;
+            /// @internal
+            /// @brief Stores whether or not the stream should be deleted when this wrapper is destroyed.
+            Boole CleanUp;
+        public:
+            /// @brief Class constructor.
+            /// @param ToBeWrapped A pointer to the Input stream to be wrapped.
+            /// @param Clean Whether or not the stream should be deleted when this wrapper is destroyed.
+            IStreamWrapper(std::istream* ToBeWrapped, const Boole Clean);
+            /// @brief Class destructor.
+            virtual ~IStreamWrapper();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc Ogre::DataStream::read(void*, size_t)
+            size_t read(void* buf, size_t count);
+            /// @copydoc Ogre::DataStream::write(const void*, size_t)
+            size_t write(const void* buf, size_t count);
+
+            /// @copydoc Ogre::DataStream::skip(long)
+            void skip(long count);
+            /// @copydoc Ogre::DataStream::seek(size_t)
+            void seek(size_t pos);
+
+            /// @copydoc Ogre::DataStream::tell() const
+            size_t tell() const;
+            /// @copydoc Ogre::DataStream::eof() const
+            bool eof() const;
+            /// @copydoc Ogre::DataStream::close()
+            void close();
+        };//IStreamWrapper
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A class for wrapping standard Output streams to be used by the Ogre resource system.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB OStreamWrapper : public Ogre::DataStream
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the Output stream being wrapped.
+            std::ostream* Stream;
+            /// @internal
+            /// @brief Stores whether or not the stream should be deleted when this wrapper is destroyed.
+            Boole CleanUp;
+        public:
+            /// @brief Class constructor.
+            /// @param ToBeWrapped A pointer to the Output stream to be wrapped.
+            /// @param Clean Whether or not the stream should be deleted when this wrapper is destroyed.
+            OStreamWrapper(std::ostream* ToBeWrapped, const Boole Clean);
+            /// @brief Class destructor.
+            virtual ~OStreamWrapper();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc Ogre::DataStream::read(void*, size_t)
+            size_t read(void* buf, size_t count);
+            /// @copydoc Ogre::DataStream::write(const void*, size_t)
+            size_t write(const void* buf, size_t count);
+
+            /// @copydoc Ogre::DataStream::skip(long)
+            void skip(long count);
+            /// @copydoc Ogre::DataStream::seek(size_t)
+            void seek(size_t pos);
+
+            /// @copydoc Ogre::DataStream::tell() const
+            size_t tell() const;
+            /// @copydoc Ogre::DataStream::eof() const
+            bool eof() const;
+            /// @copydoc Ogre::DataStream::close()
+            void close();
+        };//OStreamWrapper
     }//Internal
 }//Nezzanine
 
