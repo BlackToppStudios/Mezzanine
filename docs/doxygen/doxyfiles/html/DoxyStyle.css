@@ -296,20 +296,39 @@ iframe {
     transition: display 2s;
 }
 
+/* Detail levels */
+
+div.levels {
+    color: #528f6c;
+    float: block;
+    margin-top: 0.2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.2em;
+}
+
+.levels span {
+    border: 2px;
+    border-color: #8dd3ab;
+    background: none;
+    border-style: solid;
+
+    border-top-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+
+    margin-top: 0.2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.2em;
+}
+
 /* Hover over links and buttons*/
 
-.el, td a, p a {
-    background-color: #111;
-}
-
-td .el {
-    display: inline;
-}
 
 p a,
 td a,
-.content a.el,
-div.levels span,
+.contents a,
+.levels span,
 .ttc a,
 code a {
     transition: border 1s, border-color 1s, border-top-left-radius 1s,
@@ -320,10 +339,9 @@ code a {
 
 p a:focus, p a:hover,
 td a:focus, td a:hover,
-.content a.el:focus, .content a.el:hover,
-div.levels span:focus, div.levels span:hover
+.contents a:focus, .contents a:hover,
 .ttc a:focus, .ttc a:hover,
-code a:focus, code a:hover{
+code a:focus, code a:hover {
     cursor: pointer;
     border: 1px;
     border-color: #8dd3ab;
@@ -332,6 +350,10 @@ code a:focus, code a:hover{
     background-color: #8dd3ab;
     text-decoration: none;
     color: #222;
+}
+
+.anchor {
+    display: none;
 }
 
 /* Nav bars */
@@ -400,7 +422,9 @@ code a:focus, code a:hover{
 #navrow3 .tablist a:hover, div.navpath a:hover,
 #navrow3 .tablist a:focus, div.navpath a:focus,
 #navrow4 .tablist a:hover, .summary a:hover,
-#navrow4 .tablist a:focus, .summary a:focus {
+#navrow4 .tablist a:focus, .summary a:focus,
+.levels span:focus, .levels span:hover {
+    cursor: pointer;
     background-color: #8dd3ab;
     border-color: #528f6c;
 }
