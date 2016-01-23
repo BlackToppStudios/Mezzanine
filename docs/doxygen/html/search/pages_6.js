@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['simple_20trie',['Simple Trie',['../simple_trie.html',1,'']]]
+  ['original_20pugixml_20license',['Original pugixml License',['../OriginalpugixmlLicense.html',1,'']]]
 ];

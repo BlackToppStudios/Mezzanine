@@ -27,12 +27,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -398,57 +397,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">/// @example cout &lt;&lt; LogTrace &lt;&lt; &quot;Entering function int MeaningOfLifeUniverseAndEverything(42).&quot;;</span></div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogTrace(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Trace); }</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment">/// @brief The messages following the insertion of this into a standard stream will be treated as debug messages.</span></div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">/// @tparam CharType This is used as type inference to allow type safety when inserting this into a stream.</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="comment">/// @tparam CharTraits This is used as type inference to allow type safety when inserting this into a stream.</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment">/// @example cout &lt;&lt; LogDebug &lt;&lt; &quot;Opening file foo.txt.&quot;;</span></div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogDebug(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Debug); }</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="comment">/// @brief The messages following the insertion of this into a standard stream will be treated as warnings.</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="comment">/// @tparam CharType This is used as type inference to allow type safety when inserting this into a stream.</span></div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="comment">/// @tparam CharTraits This is used as type inference to allow type safety when inserting this into a stream.</span></div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment">/// @example cout &lt;&lt; LogWarn &lt;&lt; &quot;Danger Will Robinson, Danger!!!&quot;;</span></div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogWarn(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Warn); }</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment">/// @brief The messages following the insertion of this into a standard stream will be treated as Errors.</span></div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment">/// @tparam CharType This is used as type inference to allow type safety when inserting this into a stream.</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment">/// @tparam CharTraits This is used as type inference to allow type safety when inserting this into a stream.</span></div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="comment">/// @example cout &lt;&lt; LogError &lt;&lt; &quot;The System is dowm, the system is down, Bwoo Dee boo do do.&quot;;</span></div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogError(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Error); }</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="comment">/// @brief The messages following the insertion of this into a standard stream will be treated as fatal.</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment">/// @tparam CharType This is used as type inference to allow type safety when inserting this into a stream.</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">/// @tparam CharTraits This is used as type inference to allow type safety when inserting this into a stream.</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment">/// @example cout &lt;&lt; LogFatal &lt;&lt; &quot;The Tuna contains too much Flipper!!!&quot;;</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogFatal(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Fatal); }</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="preprocessor">#endif //_logging_h</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">/// @details Here is a sample of use:</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">/// @code</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment">/// cout &lt;&lt; LogTrace &lt;&lt; &quot;Entering function int MeaningOfLifeUniverseAndEverything(42).&quot;;</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment">/// @endcode</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogTrace(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Trace); }</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">/// @brief The messages following the insertion of this into a standard stream will be treated as debug messages.</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="comment">/// @tparam CharType This is used as type inference to allow type safety when inserting this into a stream.</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment">/// @tparam CharTraits This is used as type inference to allow type safety when inserting this into a stream.</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment">/// @details Here is a sample of use:</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="comment">/// @code</span></div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="comment">/// cout &lt;&lt; LogDebug &lt;&lt; &quot;Opening file foo.txt.&quot;;</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="comment">/// @endcode</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogDebug(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Debug); }</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment">/// @brief The messages following the insertion of this into a standard stream will be treated as warnings.</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment">/// @tparam CharType This is used as type inference to allow type safety when inserting this into a stream.</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="comment">/// @tparam CharTraits This is used as type inference to allow type safety when inserting this into a stream.</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment">/// @details Here is a sample of use:</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment">/// @code</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="comment">/// cout &lt;&lt; LogWarn &lt;&lt; &quot;Danger Will Robinson, Danger!!!&quot;;</span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="comment">/// @endcode</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogWarn(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Warn); }</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="comment">/// @brief The messages following the insertion of this into a standard stream will be treated as Errors.</span></div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="comment">/// @tparam CharType This is used as type inference to allow type safety when inserting this into a stream.</span></div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="comment">/// @tparam CharTraits This is used as type inference to allow type safety when inserting this into a stream.</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">/// @details Here is a sample of use:</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">/// @code</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment">/// cout &lt;&lt; LogError &lt;&lt; &quot;The System is dowm, the system is down, Bwoo Dee boo do do.&quot;;</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="comment">/// @endcode</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogError(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Error); }</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">/// @brief The messages following the insertion of this into a standard stream will be treated as fatal.</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="comment">/// @tparam CharType This is used as type inference to allow type safety when inserting this into a stream.</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">/// @tparam CharTraits This is used as type inference to allow type safety when inserting this into a stream.</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="comment">/// @param OutputStream This is the stream to be modified and is the left hand operand of operator&lt;&lt;.</span></div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<span class="comment">/// @return A reference to the stream being modified.</span></div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="comment">/// @note When inserted into any standard this affects all standard streams.</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">/// @details Here is a sample of use:</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="comment">/// @code</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="comment">/// cout &lt;&lt; LogFatal &lt;&lt; &quot;The Tuna contains too much Flipper!!!&quot;;</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="comment">/// @endcode</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">class</span> CharType, <span class="keyword">class</span> CharTraits&gt;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;std::basic_ostream&lt;CharType, CharTraits&gt;&amp; LogFatal(std::basic_ostream&lt;CharType, CharTraits&gt;&amp; OutputStream)</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    { <span class="keywordflow">return</span> MessageLogLevel(OutputStream, LL_Fatal); }</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="preprocessor">#endif //_logging_h</span></div>
 <div class="ttc" id="classLogStream_html"><div class="ttname"><a href="classLogStream.html">LogStream</a></div><div class="ttdoc">A stream that tracks its own level of logging. </div><div class="ttdef"><b>Definition:</b> <a href="streamlogging_8h_source.html#l00159">streamlogging.h:159</a></div></div>
 <div class="ttc" id="crossplatformexport_8h_html"><div class="ttname"><a href="crossplatformexport_8h.html">crossplatformexport.h</a></div><div class="ttdoc">This file is used on some platforms to determine what data should be read and written to and from a s...</div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace. </div></div>
@@ -460,7 +474,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 09:36:19 for BlackTopp Studios inc by
+            Generated on Sat Jan 23 2016 16:08:44 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

@@ -1,8 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title="STL class. " alt="" coords="5,553,109,580"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="173,553,323,580"/>
-<area shape="rect" id="node49" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,503,339,529"/>
-<area shape="rect" id="node50" href="$classpugi_1_1xpath__exception.html" title="pugi::xpath_exception" alt="" coords="173,604,323,631"/>
+<area shape="rect" id="node1" title="STL class. " alt="" coords="5,528,109,555"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="173,503,323,529"/>
+<area shape="rect" id="node49" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,553,339,580"/>
 <area shape="rect" id="node3" href="$classMezzanine_1_1ArithmeticException.html" title="Thrown when Math has failed. " alt="" coords="397,503,608,529"/>
 <area shape="rect" id="node4" href="$classMezzanine_1_1InstanceIdentityException.html" title="Thrown when an unknown error with using an Identifier and it is invalid. " alt="" coords="409,202,596,243"/>
 <area shape="rect" id="node8" href="$classMezzanine_1_1InternalException.html" title="Thrown when an unknown internal error occurred. " alt="" coords="405,604,600,631"/>

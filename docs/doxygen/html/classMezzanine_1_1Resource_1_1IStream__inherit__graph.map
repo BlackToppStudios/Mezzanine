@@ -1,5 +1,5 @@
 <map id="Mezzanine::Resource::IStream" name="Mezzanine::Resource::IStream">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1iIStream.html" title="Interface class for input (read) streams. " alt="" coords="15,244,164,285"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1iInStream.html" title="Interface class for input (read) streams. " alt="" coords="15,244,164,285"/>
 <area shape="rect" id="node3" href="$classMezzanine_1_1Resource_1_1iStreamBase.html" title="Base class interface for resource streams. " alt="" coords="5,155,155,196"/>
 <area shape="rect" id="node4" title="STL class. " alt="" coords="192,251,283,278"/>
 <area shape="rect" id="node5" title="STL class. " alt="" coords="178,155,307,196"/>
