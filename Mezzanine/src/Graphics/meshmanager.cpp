@@ -114,7 +114,7 @@ namespace Mezzanine
         Mesh* MeshManager::LoadMesh(std::istream* Stream)
         {
             /*Ogre::MeshPtr NewMesh = Ogre::MeshManager::getSingleton().createManual();
-            Ogre::MeshSerializer OgreSerializer;//*/
+            Ogre::MeshSerializer OgreSerializer;// */
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Loading Meshes via exclusively a standard stream is not supported yet.");
         }
 

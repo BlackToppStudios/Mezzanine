@@ -315,7 +315,10 @@ std::basic_ostream<CharType, CharTraits>& MessageLogLevel(std::basic_ostream<Cha
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example cout << LogTrace << "Entering function int MeaningOfLifeUniverseAndEverything(42).";
+/// @details Here is a sample of use:
+/// @code
+/// cout << LogTrace << "Entering function int MeaningOfLifeUniverseAndEverything(42).";
+/// @endcode
 template<class CharType, class CharTraits>
 std::basic_ostream<CharType, CharTraits>& LogTrace(std::basic_ostream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Trace); }
@@ -326,7 +329,10 @@ std::basic_ostream<CharType, CharTraits>& LogTrace(std::basic_ostream<CharType, 
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example cout << LogDebug << "Opening file foo.txt.";
+/// @details Here is a sample of use:
+/// @code
+/// cout << LogDebug << "Opening file foo.txt.";
+/// @endcode
 template<class CharType, class CharTraits>
 std::basic_ostream<CharType, CharTraits>& LogDebug(std::basic_ostream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Debug); }
@@ -337,7 +343,10 @@ std::basic_ostream<CharType, CharTraits>& LogDebug(std::basic_ostream<CharType, 
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example cout << LogWarn << "Danger Will Robinson, Danger!!!";
+/// @details Here is a sample of use:
+/// @code
+/// cout << LogWarn << "Danger Will Robinson, Danger!!!";
+/// @endcode
 template<class CharType, class CharTraits>
 std::basic_ostream<CharType, CharTraits>& LogWarn(std::basic_ostream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Warn); }
@@ -348,7 +357,10 @@ std::basic_ostream<CharType, CharTraits>& LogWarn(std::basic_ostream<CharType, C
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example cout << LogError << "The System is dowm, the system is down, Bwoo Dee boo do do.";
+/// @details Here is a sample of use:
+/// @code
+/// cout << LogError << "The System is dowm, the system is down, Bwoo Dee boo do do.";
+/// @endcode
 template<class CharType, class CharTraits>
 std::basic_ostream<CharType, CharTraits>& LogError(std::basic_ostream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Error); }
@@ -359,7 +371,10 @@ std::basic_ostream<CharType, CharTraits>& LogError(std::basic_ostream<CharType, 
 /// @param OutputStream This is the stream to be modified and is the left hand operand of operator<<.
 /// @return A reference to the stream being modified.
 /// @note When inserted into any standard this affects all standard streams.
-/// @example cout << LogFatal << "The Tuna contains too much Flipper!!!";
+/// @details Here is a sample of use:
+/// @code
+/// cout << LogFatal << "The Tuna contains too much Flipper!!!";
+/// @endcode
 template<class CharType, class CharTraits>
 std::basic_ostream<CharType, CharTraits>& LogFatal(std::basic_ostream<CharType, CharTraits>& OutputStream)
     { return MessageLogLevel(OutputStream, LL_Fatal); }
