@@ -475,7 +475,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    {</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="preprocessor">        #ifdef MEZZ_LINUX</span></div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="comment">// Fail is SDL is de-intialized before Ogre, but only if Ogre has been initialized.</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        assert( NULL == Ogre::Root::GetSingletonPtr() <span class="comment">// ( (SDL_WasInit(0) | SDL_INIT_VIDEO)</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        assert( NULL == Ogre ::Root::getSingletonPtr() <span class="comment">// ( (SDL_WasInit(0) | SDL_INIT_VIDEO)</span></div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                &amp;&amp; <span class="stringliteral">&quot;SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it&#39;s shutdown.&quot;</span> );</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="preprocessor">        #endif</span></div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        SDL_Quit();</div>
@@ -1119,7 +1119,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 00:04:13 for BlackTopp Studios inc by
+            Generated on Sat Jan 23 2016 09:36:18 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

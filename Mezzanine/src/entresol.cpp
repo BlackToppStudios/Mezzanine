@@ -392,7 +392,7 @@ namespace Mezzanine
     {
         #ifdef MEZZ_LINUX
         // Fail is SDL is de-intialized before Ogre, but only if Ogre has been initialized.
-        assert( NULL == Ogre::Root::GetSingletonPtr() // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
+        assert( NULL == Ogre::Root::getSingletonPtr() // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
                 && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
         #endif
         SDL_Quit();
