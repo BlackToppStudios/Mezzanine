@@ -11,10 +11,44 @@
 /* Fix the color on some things. */
 table, tr, td, dl, dt, dd, p, b, em, span,
 .memproto, .return, .memdoc, .memitem, .contents, .textblock, .contents li, .contents a,
-.contents ul, .contents ol, center, .center, .dynheader, .line, .lineno,
-.ttname, .ttc, .ttdef, .ttdoc, .ttdeci, div.fragment, code,
+.contents ul, .contents ol, center, .center, .dynheader, .qindex,
+.ttname, .ttc, .ttdef, .ttdoc, .ttdeci, code,
 .mlabels, .mlabel, .paramtype, .paramname, .memtemplate, .directory, .ah, .levels{
     background-color: #111;
+}
+
+div.image {
+    border: 2px;
+    border-color: #528f6c;
+    background-color: #000;
+    border-style: solid;
+
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+
+
+    padding-top: 0.2em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: 0.2em;
+
+    float: left;
+    display: block;
+    outline: none;
+
+    border-top-right-radius: 0.7em;
+    border-bottom-left-radius: 0.7em;
+}
+
+div.caption {
+   background: none;
+   text-align: center;
+}
+
+img {
+    background: none;
 }
 
 body {
@@ -156,7 +190,7 @@ dt {
 }
 
 /* Verbatim and Code Sections */
-pre.fragment {
+pre.fragment, div.fragment {
     font-family: monospace, fixed;
     font-size: 90%;
 
@@ -173,6 +207,13 @@ pre.fragment {
     border-bottom-right-radius: 1em;
 }
 
+pre.fragment{
+    background-color: #000;
+}
+
+div.fragment {
+    background-color: #222;
+}
 
 /* Headings and Titles */
 .pagetitle {
@@ -249,6 +290,7 @@ span.lineno, span.lineno{
 .line, .line span, .line a, .lineno {
     font-family: monospace, fixed;
     font-size: 85%;
+    background: none;
 }
 
 .comment        { color: #9EFEA5; }
@@ -256,6 +298,7 @@ span.lineno, span.lineno{
 .keyword        { color: #FEF197; }
 .code           { color: #F3C7FE; }
 .keywordflow    { color: #FEC86A; }
+.keywordtype    { color: #bddfff; }
 
 code {
     white-space: nowrap;
@@ -264,9 +307,21 @@ code {
 
 /* .ttname, .ttc, .ttdef, .ttdoc, .ttdeci, */
 
-.ttname {
-    border-top: 1px solid #444;
+.ttc {
     margin-top: 1em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+
+    border: 2px;
+    border-style: solid;
+    border-color: #444;
+
+    border-top-right-radius: 0.7em;
+    border-bottom-left-radius: 0.7em;
+}
+
+.ttname {
+
 }
 
 .ttdef, .ttdoc, .ttdeci {
@@ -296,20 +351,39 @@ iframe {
     transition: display 2s;
 }
 
+/* Detail levels */
+
+div.levels {
+    color: #528f6c;
+    float: block;
+    margin-top: 0.2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.2em;
+}
+
+.levels span {
+    border: 2px;
+    border-color: #8dd3ab;
+    background: none;
+    border-style: solid;
+
+    border-top-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+
+    margin-top: 0.2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.2em;
+}
+
 /* Hover over links and buttons*/
 
-.el, td a, p a {
-    background-color: #111;
-}
-
-td .el {
-    display: inline;
-}
 
 p a,
 td a,
-.content a.el,
-div.levels span,
+.contents a,
+.levels span,
 .ttc a,
 code a {
     transition: border 1s, border-color 1s, border-top-left-radius 1s,
@@ -320,10 +394,9 @@ code a {
 
 p a:focus, p a:hover,
 td a:focus, td a:hover,
-.content a.el:focus, .content a.el:hover,
-div.levels span:focus, div.levels span:hover
+.contents a:focus, .contents a:hover,
 .ttc a:focus, .ttc a:hover,
-code a:focus, code a:hover{
+code a:focus, code a:hover {
     cursor: pointer;
     border: 1px;
     border-color: #8dd3ab;
@@ -334,13 +407,17 @@ code a:focus, code a:hover{
     color: #222;
 }
 
+.anchor {
+    display: none;
+}
+
 /* Nav bars */
 
-.tablist, .navpath, .summary {
+.tablist, .navpath, .navpath b, .summary {
         display: table;
 }
 
-.tablist li, .navpath li, .summary a{
+.tablist li, .navpath li, .navpath li b, .summary a{
         float: left;
         display: table-cell;
         list-style: none;
@@ -359,7 +436,7 @@ code a:focus, code a:hover{
     font-size: 95%;
 }
 
-#navrow3 .tablist a, div.navpath a {
+#navrow3 .tablist a, div.navpath a, div.navpath b {
     font-size: 90%;
 }
 
@@ -369,7 +446,7 @@ code a:focus, code a:hover{
 
 #navrow1 .tablist a[href*=".html"],
 #navrow2 .tablist a,
-#navrow3 .tablist a, div.navpath a,
+#navrow3 .tablist a, div.navpath a, div.navpath b,
 #navrow4 .tablist a, .summary a{
     border: 2px;
     border-color: #8dd3ab;
@@ -400,7 +477,9 @@ code a:focus, code a:hover{
 #navrow3 .tablist a:hover, div.navpath a:hover,
 #navrow3 .tablist a:focus, div.navpath a:focus,
 #navrow4 .tablist a:hover, .summary a:hover,
-#navrow4 .tablist a:focus, .summary a:focus {
+#navrow4 .tablist a:focus, .summary a:focus,
+.levels span:focus, .levels span:hover {
+    cursor: pointer;
     background-color: #8dd3ab;
     border-color: #528f6c;
 }
@@ -415,7 +494,7 @@ code a:focus, code a:hover{
     border-bottom-left-radius: 0.7em;
 }
 
-#navrow3 .tablist a, div.navpath a {
+#navrow3 .tablist a, div.navpath a, div.navpath b {
     border-top-left-radius: 0.7em;
     border-bottom-right-radius: 0.7em;
 }

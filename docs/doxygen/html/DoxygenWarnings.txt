@@ -1,3 +1,4 @@
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/meshmanager.cpp:240: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 117, 116)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:329: warning: Example cout was already documented. Ignoring documentation found here.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:340: warning: Example cout was already documented. Ignoring documentation found here.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:351: warning: Example cout was already documented. Ignoring documentation found here.
@@ -46,6 +47,14 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:118: warning: documented symbol `Mezzanine::Graphics::Procedural::PointIterator' was not declared or defined.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:121: warning: documented symbol `Mezzanine::Graphics::Procedural::ConstPointIterator' was not declared or defined.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/proceduraldatatypes.h:145: warning: documented symbol `Mezzanine::Graphics::Procedural::IndexList' was not declared or defined.
+error: Extra file 'img/tab_a.png' specified in HTML_EXTRA_FILES does not exist!
+error: Extra file 'img/tab_b.png' specified in HTML_EXTRA_FILES does not exist!
+error: Extra file 'img/tab_h.png' specified in HTML_EXTRA_FILES does not exist!
+error: Extra file 'img/tab_s.png' specified in HTML_EXTRA_FILES does not exist!
+error: Extra file 'img/tab_a.png' specified in HTML_EXTRA_FILES does not exist!
+error: Extra file 'img/tab_b.png' specified in HTML_EXTRA_FILES does not exist!
+error: Extra file 'img/tab_h.png' specified in HTML_EXTRA_FILES does not exist!
+error: Extra file 'img/tab_s.png' specified in HTML_EXTRA_FILES does not exist!
 error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exist!
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/streamlogging.h:326: warning: included file cout is not found. Check your EXAMPLE_PATH
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
@@ -164,8 +173,8 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:204: warning: @copybrief or @copydoc target 'StreamBase::IsValid() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/filestream.h:117: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:285: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:375: warning: Found unknown command `\detail'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:379: warning: Found unknown command `\detail'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:386: warning: Found unknown command `\detail'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:390: warning: Found unknown command `\detail'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/button.h:113: warning: @copybrief or @copydoc target 'QuadRenderable::CreateLayoutStrat()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/editbox.h:83: warning: @copybrief or @copydoc target 'QuadRenderable::CreateLayoutStrat()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/gridcontainer.h:192: warning: @copybrief or @copydoc target 'PagedLayoutContainer::UpdateContainerDimensionsImpl(const Rect&,const Rect&)' not found
@@ -733,7 +742,7 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trie.h:1036: warning: Member mEndSymbol (variable) of class Mezzanine::SetItems is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trie.h:1037: warning: Member mItems (variable) of class Mezzanine::SetItems is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/texturemanager.cpp:50: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/meshmanager.cpp:53: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/meshmanager.cpp:55: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:56: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Audio/audiomanager.cpp:62: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourcemanager.cpp:63: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
@@ -1552,18 +1561,18 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:197: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber) are not documented:
   parameter 'ArgNumber'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:375: warning: Found unknown command `\detail'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:379: warning: Found unknown command `\detail'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:265: warning: return type of member Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:282: warning: argument 'ScriptToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:282: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:386: warning: Found unknown command `\detail'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:390: warning: Found unknown command `\detail'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:276: warning: return type of member Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:293: warning: argument 'ScriptToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:293: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun) are not documented:
   parameter 'ScriptToRun'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:286: warning: argument 'ScriptToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script *ScriptToRun)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:286: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script *ScriptToRun) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:297: warning: argument 'ScriptToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script *ScriptToRun)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:297: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script *ScriptToRun) are not documented:
   parameter 'ScriptToRun'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:326: warning: return type of member Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IsLibraryOpen is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:375: warning: Found unknown command `\detail'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:379: warning: Found unknown command `\detail'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:337: warning: return type of member Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IsLibraryOpen is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:386: warning: Found unknown command `\detail'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:390: warning: Found unknown command `\detail'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:167: warning: Member Lua51StringArgument(String InitialValue=String()) (function) of class Mezzanine::Scripting::Lua::Lua51StringArgument is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:147: warning: Member Lua51WholeArgument(Whole InitialValue=0) (function) of class Mezzanine::Scripting::Lua::Lua51WholeArgument is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: warning: argument 'FreshScript' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd)

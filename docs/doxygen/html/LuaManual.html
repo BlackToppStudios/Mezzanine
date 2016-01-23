@@ -71,14 +71,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title"><a class="el" href="namespaceMezzanine_1_1Scripting.html" title="This namespace is for all the classes belonging to the Scripting Subsystem. ">Mezzanine::Scripting</a> Lua Manual </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The file that SWIG generated was made with the following command run on an ubuntu machine from the Mezzananine/src directory: swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp <a class="el" href="mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. ">mezzanine.h</a> swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp <a class="el" href="mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. ">mezzanine.h</a> Need to document "Mezzanine.", nspaces, calling conventions</p>
+<div class="textblock"><p>The files that are SWIG generated are made with the following commands run on an ubuntu machine from the Mezzananine/src directory: </p><div class="fragment"><div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_PHYSICS -o Scripting/Lua51/scriptbindingphysicslua51.cpp Physics/physics.h</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp Physics/physics.h</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_MATHTOOLS -o Scripting/Lua51/scriptbindingmathtoolslua51.cpp</div>
+<div class="line">swig -c++ -v -Wall -lua -includeall -DMEZZLUA51 -DSWIG_MATHTOOLS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmathtoolslua51unsafe.cpp MathTools/mathtools.h</div>
+</div><!-- fragment --><p> Need to document "Mezzanine.", nspaces, calling conventions</p>
 <p>script class compilation</p>
 <p>This attempts to create "safe" and "open" version Lua binding to the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a>. The safe version should be suitable for scripts that can be trusted with the state of the simulation, but not the state of the calling system. Said another way, script run against the "safe" version of the runtime cannot call function or create objects that load modules, read files, write files, access a system shell or access any <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> facility that can indirectly grant access to features like these (the LuaScriptingEngine for example.) </p>
 </div></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Thu Jan 21 2016 01:49:40 for BlackTopp Studios inc by
+            Generated on Sat Jan 23 2016 00:04:17 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>
