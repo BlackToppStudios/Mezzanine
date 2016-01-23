@@ -1020,7 +1020,8 @@ option(Mezz_Audio_UseOALS "Use OpenAL-Soft as the audio provider for the engine.
 
 if(Mezz_Audio_UseOALS)
     if(AudioProviderSet)
-        message(FATAL_ERROR "A provider for the Audio subsystem has already been set.  Only one provider may be selected.")
+        message(FATAL_ERROR "A provider for the Audio subsystem has already been set "
+                            "Only one provider may be selected.")
     endif(AudioProviderSet)
     set(AudioProviderSet 1)
 
@@ -1107,7 +1108,8 @@ if(Mezz_Audio_EnableFlacEncoding)
     set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_FLAC_ENCODE")
 endif(Mezz_Audio_EnableFlacEncoding)
 
-option(Mezz_Audio_EnableVorbisEncoding "Enable the encoding and decoding of .ogg (vorbis) encoded data." ON)
+option(Mezz_Audio_EnableVorbisEncoding
+        "Enable the encoding and decoding of .ogg (vorbis) encoded data." ON)
 if(Mezz_Audio_EnableVorbisEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling .ogg (vorbis) encoding.")
     set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_VORBIS_ENCODE")
@@ -1181,14 +1183,19 @@ endif(${Mezz_BuildRenderSystemOpenGLES2})
 ###############################################################################
 # Functions for Later use
 
-#Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
-#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+#Description: This function copies items from the Data/lib directory into it's expected location in
+#   the output directory During build time. It does not need leading slashes
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called,
+#   otherwise it will fail silently
 function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
     add_custom_command(
         TARGET ${PROJECT_NAME}
         PRE_LINK
-        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_LIBBINARY_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+        COMMAND ${CMAKE_COMMAND} -E echo
+            "Preparing File: ${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${${PROJECT_NAME}_LIBBINARY_DIR}${SourceFileInDataTree}"
+            "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
         VERBATIM
     )
 endfunction(CopyFilesDuringBuild)
@@ -1242,30 +1249,34 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
         add_definitions( -DMACOSX)
-    #set_source_files_properties("${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTIES COMPILE_FLAGS "-x objective-c++")
-    set_property(SOURCE "${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTY COMPILE_FLAGS "-x objective-c++")
+    #set_source_files_properties("${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTIES
+    #   COMPILE_FLAGS "-x objective-c++")
+    set_property(SOURCE "${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTY
+                    COMPILE_FLAGS "-x objective-c++")
     message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
 # Common Library Configuration items
 
+set(BulletSrcDir "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/")
+
 include_directories( ${${PROJECT_NAME}_SRC_DIR}
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
+    "${BulletSrcDir}src"
+    "${BulletSrcDir}src/LinearMath"
+    "${BulletSrcDir}Extras/ConvexDecomposition"
+    "${BulletSrcDir}Extras/Serialize/BulletWorldImporter"
 
-        "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
+    "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
 
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
-        #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
+    #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
 
-        ${OgreConfigHeaderIncludeDir}
-        ${OgreHeaderIncludeDir}
+    ${OgreConfigHeaderIncludeDir}
+    ${OgreHeaderIncludeDir}
 )
 
 
@@ -1294,7 +1305,8 @@ if(${WIN32})
 endif(${WIN32})
 
 # This was moved to below the sub-libraries so the directX includes in the lines above will work.
-# This is necessary because of static linking and the lack of foresight on the part of the people that wrote those rendersystems.
+# This is necessary because of static linking and the lack of foresight on the part of the people
+# that wrote those rendersystems.
 # It's a hack and makes me a sad panda.
 ###############################################################################
 # Prepare the actual Build
@@ -1332,8 +1344,10 @@ endif(${Mezz_Ruby})
 set(SWIG_PROJECT "")
 if(${Mezz_SWIG})
     # Here are the original lines describing the commands from lua51scriptengine.h
-    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp mezzanine.h
-    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
+    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp
+    #   mezzanine.h
+    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o
+    #   Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
 
     set(SWIG_PROJECT "SWIG_${PROJECT_NAME}")
     #add_library(${SWIG_PROJECT} SHARED "${${PROJECT_NAME}_SRC_DIR}blank.cpp" )
@@ -1348,16 +1362,23 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_MainLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Main library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_target(
             ${SWIG_PROJECT}_MainLua51Unsafe
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Main library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted (do not use with untrusted scripts) Mezzanine Main library"
+                "for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp
+                mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
@@ -1365,16 +1386,23 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_XMLLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine XML library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_target(
             ${SWIG_PROJECT}_XMLLua51Unsafe
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library "
+                "for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp
+                XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
@@ -1382,16 +1410,24 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_ThreadingLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Threading library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp
+                Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_target(
             ${SWIG_PROJECT}_ThreadingLua51Unsafe
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading "
+                "library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_THREADING -DSWIG_UNSAFE -o
+                Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
@@ -1399,16 +1435,23 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_PhysicsLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Physics library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -o Scripting/Lua51/scriptbindingphysicslua51.cpp Physics/physics.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_PHYSICS -o Scripting/Lua51/scriptbindingphysicslua51.cpp Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_target(
             ${SWIG_PROJECT}_PhysicsLua51Unsafe
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp Physics/physics.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics "
+                "library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp
+                Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
@@ -1416,16 +1459,24 @@ if(${Mezz_SWIG})
         add_custom_target(
             ${SWIG_PROJECT}_MathToolsLua51
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine MathTools library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MATHTOOLS -o Scripting/Lua51/scriptbindingmathtoolslua51.cpp MathTools/mathtools.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_MATHTOOLS -o Scripting/Lua51/scriptbindingmathtoolslua51.cpp
+                MathTools/mathtools.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_target(
             ${SWIG_PROJECT}_MathToolsLua51Unsafe
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine MathTools library for Lua."
-            COMMAND ${CMAKE_COMMAND} -E echo "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MATHTOOLS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmathtoolslua51unsafe.cpp MathTools/mathtools.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine MathTools "
+                "library for Lua."
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Using special arguments for SWIG - ${Mezz_Lua51_Arguments}"
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments}
+                -DSWIG_MATHTOOLS -DSWIG_UNSAFE -o
+                Scripting/Lua51/scriptbindingmathtoolslua51unsafe.cpp MathTools/mathtools.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
@@ -1454,40 +1505,60 @@ if(${Mezz_SWIG})
         # mezzanine.h
         add_custom_target(
             ${SWIG_PROJECT}_MainRuby
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Main library for Ruby."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingmainrubyunsafe.cpp mezzanine.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Main library "
+                "for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments}
+                -autorename -DSWIG_MAIN -DSWIG_UNSAFE -o
+                Scripting/Ruby/scriptbindingmainrubyunsafe.cpp mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # XML/xml.h
         add_custom_target(
             ${SWIG_PROJECT}_XMLRuby
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library for Ruby."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingxmlrubyunsafe.cpp XML/xml.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library "
+                "for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments}
+                -autorename -DSWIG_XML -DSWIG_UNSAFE -o
+                Scripting/Ruby/scriptbindingxmlrubyunsafe.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # Threading/dagframescheduler.h
         add_custom_target(
             ${SWIG_PROJECT}_ThreadingRuby
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading library for Ruby."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingthreadingrubyunsafe.cpp Threading/dagframescheduler.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading "
+                "library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments}
+                -autorename -DSWIG_THREADING -DSWIG_UNSAFE -o
+                Scripting/Ruby/scriptbindingthreadingrubyunsafe.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # Physics/physics.h
         add_custom_target(
             ${SWIG_PROJECT}_PhysicsRuby
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Ruby."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingphysicsrubyunsafe.cpp Physics/physics.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics "
+                "library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments}
+                -autorename -DSWIG_PHYSICS -DSWIG_UNSAFE -o
+                Scripting/Ruby/scriptbindingphysicsrubyunsafe.cpp Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         # MathTools/mathtools.h
         add_custom_target(
             ${SWIG_PROJECT}_MathToolsRuby
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Ruby."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingphysicsrubyunsafe.cpp MathTools/mathtools.h
+            COMMAND ${CMAKE_COMMAND} -E echo
+                "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics "
+                "library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments}
+                -autorename -DSWIG_PHYSICS -DSWIG_UNSAFE -o
+                Scripting/Ruby/scriptbindingphysicsrubyunsafe.cpp MathTools/mathtools.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
@@ -1526,7 +1597,8 @@ if(${Mezz_Exception})
 
         COMMAND ${CMAKE_COMMAND} ${ExceptionWorkingDirectory} ${ExceptionProjectFolder}
         COMMAND ${CMAKE_COMMAND} -E echo "Storing Exceptions at ${ExceptionResults}."
-        COMMAND ${CMAKE_COMMAND} -E copy ${ExceptionWorkingDirectory}GeneratedExceptions.h ${ExceptionResults}
+        COMMAND ${CMAKE_COMMAND} -E copy ${ExceptionWorkingDirectory}GeneratedExceptions.h
+                ${ExceptionResults}
         WORKING_DIRECTORY ${ExceptionWorkingDirectory}
         VERBATIM
         SOURCES ${ExceptionProjectFolder}CMakeLists.txt
@@ -1540,7 +1612,8 @@ endif(${Mezz_Exception})
 
 #######################################
 # Library Link Dependencies
-add_dependencies( ${PROJECT_NAME} ${Bullet_LibraryNames}  ${SDLLibraryNames} ${SoundLibraryNames} "lua" ${SWIG_PROJECT} ${ExceptionProject})
+add_dependencies( ${PROJECT_NAME} ${Bullet_LibraryNames}  ${SDLLibraryNames} ${SoundLibraryNames}
+                    "lua" ${SWIG_PROJECT} ${ExceptionProject})
 
 if(${Mezz_Exception})
     add_dependencies( ${PROJECT_NAME} ${ExceptionProject})
@@ -1594,9 +1667,12 @@ CopyFilesDuringBuild( common/cAudio-ZLIBLicense.txt data/common/cAudio-ZLIBLicen
 
 
 # Ogre
-#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL} data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
-#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginParticle} data/${BuildPlatform}/ogre/${OgrePluginParticle} )
-#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginCGPM} data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
+#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL}
+#       data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
+#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginParticle}
+#       data/${BuildPlatform}/ogre/${OgrePluginParticle} )
+#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginCGPM}
+#       data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
 #CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
 #CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/${BuildPlatform}/plugins.cfg )
 
@@ -1606,9 +1682,14 @@ CopyFilesDuringBuild( common/cAudio-ZLIBLicense.txt data/common/cAudio-ZLIBLicen
 # Windows File Copy Specific Items
 if(${WIN32})
         message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-        set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")                                         # remove lib prefix from DLL outputs
-        #CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
-        #CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
+
+        # remove lib prefix from DLL outputs
+        set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
+
+        #CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll
+        #       data/${BuildPlatform}/ogre/cg${OgresD}.dll )
+        #CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll
+        #       libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
         #CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
         #CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
 
