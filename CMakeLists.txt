@@ -51,14 +51,14 @@
 # build scripts, that can be set as cmake options:
 #
 # That affect/add/remove behavior of the Mezzanine engine
-#        Mezz_BuildTypeDebug                - False - The Engine will be compiled with debug symbols by setting CMAKE_BUILD_TYPE. MEZZDEBUG will be passed as a preprocessor macro causing more logging messages to be included. All libraries will also include debug symbols.
-#        Mezz_BuildTypeRelease              - False - The Engine will be compiled with optimizations by setting CMAKE_BUILD_TYPE. MEZZRELEASE will be passed into the source via a preprocessor macro.
-#        Mezz_BuildTypeSmall                - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
-#        Mezz_Lua51                         - True if Lua is to be included and link against. False if Lua was not selected to be compiled in.
-#        Mezz_Ruby                          - True if Ruby is to be included and link against. False if Ruby was not selected to be compiled in.
-#        Mezz_SWIG                          - Rebuild Scripting interfaces with SWIG each build
-#        Mezz_Network                       - Enable or disable networking support
-#        Mezz_AllWarnings                   - Enable all compiler warnings
+#   Mezz_BuildTypeDebug     - False - The Engine will be compiled with debug symbols by setting CMAKE_BUILD_TYPE. MEZZDEBUG will be passed as a preprocessor macro causing more logging messages to be included. All libraries will also include debug symbols.
+#   Mezz_BuildTypeRelease   - False - The Engine will be compiled with optimizations by setting CMAKE_BUILD_TYPE. MEZZRELEASE will be passed into the source via a preprocessor macro.
+#   Mezz_BuildTypeSmall     - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
+#   Mezz_Lua51              - True if Lua is to be included and link against. False if Lua was not selected to be compiled in.
+#   Mezz_Ruby               - True if Ruby is to be included and link against. False if Ruby was not selected to be compiled in.
+#   Mezz_SWIG               - Rebuild Scripting interfaces with SWIG each build
+#   Mezz_Network            - Enable or disable networking support
+#   Mezz_AllWarnings        - Enable all compiler warnings
 #
 # Build Extra Features alongside the Mezzanine
 #        Mezz_Doc                           - Check for Doxygen on the system and force a doxygen build as part of a full build when it is present.
@@ -554,6 +554,7 @@ if(Mezz_Doc)
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
             COMMENT "Generating API documentation with Doxygen" VERBATIM
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/layout.xml
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/DoxyStyle.css
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/search.css
