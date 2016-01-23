@@ -37,62 +37,13 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _dox_mainpage_h
-#define _dox_mainpage_h
+
+#ifndef building_the_engine_h
+#define building_the_engine_h
 
 /**
-    @mainpage BlackTopp Studios Documentation
-
-    @ref tech_doc_index - Walkthroughs, How-Tos, and other descriptions of technical procedures.
-    @n @n
-    @ref blog - Includes historical references that might be useful
-    @n @n
-
-
-    @htmlonly
-    @endhtmlonly
+    @page building_the_engine Building the Mezzanine Engine
+    asf
 */
-
-// The pages below are intended to be put into their own files as they are worked on.
-// All of these have links pointing to them.
-
-/**
-    @page blog BTS blog
-
-
-
-    - @htmlonly<a href="">@endhtmlonly
-    TITLE
-    @htmlonly</a>@endhtmlonly
-    — DEsc
-*/
-
-/**
-    @page cxx_training C++ Training
-
-
-    C++!
-
-*/
-
-/**
-    @page engine_dependencies Mezzanine Engine Dependencies
-
-
-    C++!
-*/
-
-/**
-    @page mezzanine_engine Mezzanine Engine
-    Describe engine here
-*/
-
-/**
-    @page catch_bang Catch!
-    describe catch here
-*/
-
-
-
 
 #endif

@@ -37,62 +37,13 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _dox_mainpage_h
-#define _dox_mainpage_h
+#ifndef _dox_dev_tools_macosx_h
+#define _dox_dev_tools_macosx_h
 
 /**
-    @mainpage BlackTopp Studios Documentation
-
-    @ref tech_doc_index - Walkthroughs, How-Tos, and other descriptions of technical procedures.
-    @n @n
-    @ref blog - Includes historical references that might be useful
-    @n @n
-
-
-    @htmlonly
-    @endhtmlonly
+    @page dev_tools_mac Mac OS X Development Tools
+    frame works or something hurr duur. Hodor?!
 */
-
-// The pages below are intended to be put into their own files as they are worked on.
-// All of these have links pointing to them.
-
-/**
-    @page blog BTS blog
-
-
-
-    - @htmlonly<a href="">@endhtmlonly
-    TITLE
-    @htmlonly</a>@endhtmlonly
-    — DEsc
-*/
-
-/**
-    @page cxx_training C++ Training
-
-
-    C++!
-
-*/
-
-/**
-    @page engine_dependencies Mezzanine Engine Dependencies
-
-
-    C++!
-*/
-
-/**
-    @page mezzanine_engine Mezzanine Engine
-    Describe engine here
-*/
-
-/**
-    @page catch_bang Catch!
-    describe catch here
-*/
-
-
 
 
 #endif

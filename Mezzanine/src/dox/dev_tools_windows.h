@@ -37,24 +37,12 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _dox_dev_tools_h
-#define _dox_dev_tools_h
 
-
-/**
-    @page tech_docs Technical documents
-    Walkthroughs and human level explanations of our tools, processes and anything else useful.
-    @section dev_tools Development Tools
-    @ref windows_dev_tools
-    @n @n
-    @ref linux_dev_tools
-    @n @n
-    @ref mac_dev_tools
-
-*/
+#ifndef _dox_dev_tools_windows_h
+#define _dox_dev_tools_windows_h
 
 /**
-    @page windows_dev_tools Windows Development Tools
+    @page dev_tools_windows Windows Development Tools
     This is a walk-through that Sqeaky, MakoEnergy and HydroWolfy have made for so other people can
     use the same tools as them. If anyone cares to make Project files for Visual Studio, Eclipse or
     any other development platform please let us know your steps, and where possible please allow us
@@ -316,20 +304,8 @@
     If you aren’t comfortable with your codings skills @ref cxx_training is a good idea. If you are
     comfortable with you coding skill and have the tools installed check out the
     @ref engine_dependencies, if you already have what you need from that you could take a look at
-    what it takes for @ref building_the_engine.
-
+    what it takes for @ref building_the_engine_menu.
 
 */
-
-/**
-    @page linux_dev_tools Linux Development Tools
-    adsf
-*/
-
-/**
-    @page mac_dev_tools Mac OS X Development Tools
-    adsf
-*/
-
 
 #endif

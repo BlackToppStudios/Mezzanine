@@ -37,62 +37,29 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _dox_mainpage_h
-#define _dox_mainpage_h
+#ifndef _dox_tech_doc_index_h
+#define _dox_tech_doc_index_h
+
 
 /**
-    @mainpage BlackTopp Studios Documentation
+    @page tech_doc_index Technical documents
+    Walkthroughs and human level explanations of our tools, processes and anything else useful.
 
-    @ref tech_doc_index - Walkthroughs, How-Tos, and other descriptions of technical procedures.
-    @n @n
-    @ref blog - Includes historical references that might be useful
-    @n @n
+    @section dev_tools_menu Development Tools
+    What tools do you need to work on the Mezzanine and/or compile it yourself.
+     - @ref dev_tools_windows
+     - @ref dev_tools_linux
+     - @ref dev_tools_mac
 
+    @section building_the_engine_menu Building The Engine
+    Installing The required dependencies differs greatly by platform.
+     - @ref installing_engine_deps_windows
+     - @ref installing_engine_deps_linux
+     - @ref installing_engine_deps_macosx
 
-    @htmlonly
-    @endhtmlonly
-*/
-
-// The pages below are intended to be put into their own files as they are worked on.
-// All of these have links pointing to them.
-
-/**
-    @page blog BTS blog
-
-
-
-    - @htmlonly<a href="">@endhtmlonly
-    TITLE
-    @htmlonly</a>@endhtmlonly
-    — DEsc
-*/
-
-/**
-    @page cxx_training C++ Training
-
-
-    C++!
+    Building the Engine differs is pretty similar on most platforms.
+     - @ref building_the_engine
 
 */
-
-/**
-    @page engine_dependencies Mezzanine Engine Dependencies
-
-
-    C++!
-*/
-
-/**
-    @page mezzanine_engine Mezzanine Engine
-    Describe engine here
-*/
-
-/**
-    @page catch_bang Catch!
-    describe catch here
-*/
-
-
-
 
 #endif
