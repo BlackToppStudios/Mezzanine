@@ -94,9 +94,18 @@ namespace Mezzanine
             }
             // Response Description
             this->ResponseDescription.clear();
-            this->GetMessageComponent(CurrIt,EndIt,this->ResponseDescription);
-            // Handle extra trash
-            //this->AdvanceToNewline(CurrIt,EndIt);
+            while( CurrIt != EndIt )
+            {
+                if( (*CurrIt) == '\r' ) {
+                    // Skip
+                }else if( (*CurrIt) == '\n' ) {
+                    ++CurrIt;
+                    break;
+                }else{
+                    this->ResponseDescription.push_back( *CurrIt );
+                }
+                ++CurrIt;
+            }
             return true;
         }
 
@@ -138,11 +147,9 @@ namespace Mezzanine
                 this->MessageBody.clear();
                 if( this->GetField("transfer-encoding") != "chunked" ) {
                     String Length = this->GetContentLengthHeader();
-                    if( Length.empty() ) {
-                        return false;
-                        //MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"HTTP Response does not contain a \"Content-Length\" nor \"Transfer-Encoding\" header.  Must contain one of these to be valid.");
+                    if( !Length.empty() ) {
+                        this->MessageBody.reserve( StringTools::ConvertToWhole( Length ) );
                     }
-                    this->MessageBody.reserve( StringTools::ConvertToWhole( Length ) );
                     this->MessageBody.assign(CurrIt,EndIt);
                 }else{
                     String ChunkSizeStr;

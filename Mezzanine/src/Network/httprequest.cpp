@@ -86,8 +86,6 @@ namespace Mezzanine
             HeaderTemp.clear();
             this->GetMessageComponent(CurrIt,EndIt,HeaderTemp);
             this->ParseHTTPVersion(HeaderTemp);
-            // Handle extra trash
-            //this->AdvanceToNewline(CurrIt,EndIt);
             return true;
         }
 
@@ -172,6 +170,10 @@ namespace Mezzanine
                     return false;
                 }
                 this->MessageBody.clear();
+                String Length = this->GetContentLengthHeader();
+                if( !Length.empty() ) {
+                    this->MessageBody.reserve(StringTools::ConvertToWhole(Length));
+                }
                 this->MessageBody.assign(CurrIt,EndIt);
 
                 return true;

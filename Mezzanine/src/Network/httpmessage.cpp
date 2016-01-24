@@ -155,7 +155,11 @@ namespace Mezzanine
                     }
                     case ':':
                     {
-                        PreColon = false;
+                        if( PreColon ) {
+                            PreColon = false;
+                        }else{
+                            FieldValue.push_back( *CurrIt );
+                        }
                         break;
                     }
                     default:
