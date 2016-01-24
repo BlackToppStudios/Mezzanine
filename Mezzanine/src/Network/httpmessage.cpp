@@ -50,6 +50,42 @@ namespace
     /// @internal
     /// @brief Convenience String for Header Field returns that fail.
     const Mezzanine::String BlankStr = "";
+
+    /*
+    /// @brief A comparison method between individual chars that is case-insensitive.
+    /// @param First The first char to be compared.
+    /// @param Second The second char to be compared.
+    /// @return Returns true if the first char is less than the second char when disregarding case.
+    Mezzanine::Boole LowerCaseCompare(const Mezzanine::Char8 First, const Mezzanine::Char8 Second)
+        { return ( tolower(First) < tolower(Second) ); }
+
+    /// @brief A comparison method that will compare the names of HeaderFields lexicographically in a case-insensitive way.
+    /// @param First The first HeaderField to be compared.
+    /// @param Second The second HeaderField to be compared.
+    /// @return Returns true if the First HeaderField is less than the Second HeaderField.
+    Mezzanine::Boole HeaderFieldCompare(const Mezzanine::Network::HeaderField& First, const Mezzanine::Network::HeaderField& Second)
+        { return std::lexicographical_compare(First.HeaderName.begin(),First.HeaderName.end(),Second.HeaderName.begin(),Second.HeaderName.end(),LowerCaseCompare); }
+    // */
+
+    /// @brief Compares two Strings to see if they are equal in a case-insensitive way.
+    /// @param First The first String to be compared.
+    /// @param Second The second String to be compared.
+    /// @return Returns true if the two Strings are equal when not counting casing, false otherwise.
+    Mezzanine::Boole IsEqualCaseInsensitive(const Mezzanine::String& First, const Mezzanine::String& Second)
+    {
+        if( First.size() != Second.size() ) {
+            return false;
+        }
+
+        for( Mezzanine::Whole Index = 0 ; Index < First.size() ; ++Index )
+        {
+            if( tolower( First[Index] ) != tolower( Second[Index] ) ) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
 
 namespace Mezzanine
@@ -89,7 +125,7 @@ namespace Mezzanine
 
         Boole HTTPMessage::ParseHTTPFields(StringIterator& CurrIt, const StringIterator EndIt)
         {
-            this->MessageFields.clear();
+            this->RemoveAllFields();
             Boole PreColon = true;
             String FieldName;
             String FieldValue;
@@ -105,10 +141,10 @@ namespace Mezzanine
                     case '\n':
                     {
                         PreColon = true;
-                        StringTools::ToLowerCase(FieldName);
+                        //StringTools::ToLowerCase(FieldName);
                         StringTools::Trim(FieldName,true,true);
                         StringTools::Trim(FieldValue,true,true);
-                        this->MessageFields.insert(std::pair<String,String>(FieldName,FieldValue));
+                        this->SetField(FieldName,FieldValue);
                         FieldName.clear();
                         FieldValue.clear();
                         if( *(CurrIt + 1) == '\r' && *(CurrIt + 2) == '\n' ) {
@@ -204,29 +240,66 @@ namespace Mezzanine
 
         void HTTPMessage::SetField(const String& FieldName, const String& FieldValue)
         {
-            this->MessageFields[ StringTools::LowerCaseCopy(FieldName) ] = FieldValue;
+            // Code for using std::map
+            /*this->MessageFields[ StringTools::LowerCaseCopy(FieldName) ] = FieldValue;// */
+
+            for( HeaderFieldIterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
+            {
+                if( IsEqualCaseInsensitive( (*FieldIt).HeaderName, FieldName ) ) {
+                    (*FieldIt).HeaderValue = FieldValue;
+                    return;
+                }
+            }
+            this->MessageFields.push_back( HeaderField(FieldName,FieldValue) );
         }
 
         const String& HTTPMessage::GetField(const String& FieldName) const
         {
-            NameValuePairMap::const_iterator FieldIt = this->MessageFields.find( StringTools::LowerCaseCopy(FieldName) );
+            // Code for using std::map
+            /*NameValuePairMap::const_iterator FieldIt = this->MessageFields.find( StringTools::LowerCaseCopy(FieldName) );
             if( FieldIt != this->MessageFields.end() ) {
                 return (*FieldIt).second;
+            }
+            return BlankStr;// */
+
+            for( ConstHeaderFieldIterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
+            {
+                if( IsEqualCaseInsensitive( (*FieldIt).HeaderName, FieldName ) ) {
+                    return (*FieldIt).HeaderValue;
+                }
             }
             return BlankStr;
         }
 
         Boole HTTPMessage::HasField(const String& FieldName) const
         {
-            NameValuePairMap::const_iterator FieldIt = this->MessageFields.find( StringTools::LowerCaseCopy(FieldName) );
-            return ( FieldIt != this->MessageFields.end() );
+            // Code for using std::map
+            /*NameValuePairMap::const_iterator FieldIt = this->MessageFields.find( StringTools::LowerCaseCopy(FieldName) );
+            return ( FieldIt != this->MessageFields.end() );// */
+
+            for( ConstHeaderFieldIterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
+            {
+                if( IsEqualCaseInsensitive( (*FieldIt).HeaderName, FieldName ) ) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         void HTTPMessage::RemoveField(const String& FieldName)
         {
-            NameValuePairMap::iterator FieldIt = this->MessageFields.find( StringTools::LowerCaseCopy(FieldName) );
+            // Code for using std::map
+            /*NameValuePairMap::iterator FieldIt = this->MessageFields.find( StringTools::LowerCaseCopy(FieldName) );
             if( FieldIt != this->MessageFields.end() ) {
                 this->MessageFields.erase(FieldIt);
+            }// */
+
+            for( HeaderFieldIterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
+            {
+                if( IsEqualCaseInsensitive( (*FieldIt).HeaderName, FieldName ) ) {
+                    this->MessageFields.erase(FieldIt);
+                    return;
+                }
             }
         }
 

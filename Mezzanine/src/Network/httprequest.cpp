@@ -148,9 +148,9 @@ namespace Mezzanine
             RequestStream << HTTPRequest::ConvertRequestMethod( this->RequestMethod ) << " " << this->RequestURI.ConvertToString() << " ";
             RequestStream << "HTTP/" << this->MessageVersion.Major << "." << this->MessageVersion.Minor << "\r\n";
             // Fields
-            for( NameValuePairMap::const_iterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
+            for( HeaderFieldContainer::const_iterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
             {
-                RequestStream << (*FieldIt).first << ": " << (*FieldIt).second << "\r\n";
+                RequestStream << (*FieldIt).HeaderName << ": " << (*FieldIt).HeaderValue << "\r\n";
             }
             RequestStream << "\r\n";
             // Body

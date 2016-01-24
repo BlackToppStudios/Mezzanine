@@ -49,6 +49,26 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
+        /// @class HeaderField
+        /// @brief Convenience class for storing Header fields in internet messaging protocols.
+        ///////////////////////////////////////
+        struct MEZZ_LIB HeaderField
+        {
+            /// @brief The name of the header field.
+            String HeaderName;
+            /// @brief The value of the header field.
+            String HeaderValue;
+
+            /// @brief Constructor.
+            /// @param Name The name of the Header Field.
+            /// @param Value The value of the Header Field.
+            HeaderField(const String& Name, const String& Value) :
+                HeaderName(Name),
+                HeaderValue(Value)
+                {  }
+        };//HeaderField
+
+        ///////////////////////////////////////////////////////////////////////////////
         /// @class HTTPMessage
         /// @brief A base class for HTTP text parsing classes.
         ///////////////////////////////////////
@@ -56,7 +76,13 @@ namespace Mezzanine
         {
         public:
             /// @brief Convenience typedef for String iterators.
-            typedef String::const_iterator StringIterator;
+            typedef String::const_iterator                StringIterator;
+            /// @brief Container type for Header Fields in this class.
+            typedef std::vector<HeaderField>              HeaderFieldContainer;
+            /// @brief Iterator type for Header Fields in this class.
+            typedef HeaderFieldContainer::iterator        HeaderFieldIterator;
+            /// @brief Const Iterator type for Header Fields in this class.
+            typedef HeaderFieldContainer::const_iterator  ConstHeaderFieldIterator;
         protected:
             /// @internal
             /// @brief The maximum number of allowed header fields in this message.
@@ -69,7 +95,7 @@ namespace Mezzanine
             String MessageBody;
             /// @internal
             /// @brief A container of fields to populate the message header with.
-            NameValuePairMap MessageFields;
+            HeaderFieldContainer MessageFields;
 
             /// @internal
             /// @brief Parses the HTTP version from a provided string.

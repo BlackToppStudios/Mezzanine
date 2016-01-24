@@ -110,9 +110,9 @@ namespace Mezzanine
             ResponseStream << "HTTP/" << this->MessageVersion.Major << "." << this->MessageVersion.Minor << " ";
             ResponseStream << StringTools::ConvertToString( this->ResponseCode ) << " " << this->ResponseDescription << "\r\n";
             // Fields
-            for( NameValuePairMap::const_iterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
+            for( HeaderFieldContainer::const_iterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
             {
-                ResponseStream << (*FieldIt).first << ": " << (*FieldIt).second << "\r\n";
+                ResponseStream << (*FieldIt).HeaderName << ": " << (*FieldIt).HeaderValue << "\r\n";
             }
             ResponseStream << "\r\n";
             // Body
@@ -137,12 +137,12 @@ namespace Mezzanine
                 // The message body may or may not be chunked
                 this->MessageBody.clear();
                 if( this->GetField("transfer-encoding") != "chunked" ) {
-                    NameValuePairMap::iterator FieldIt = this->MessageFields.find("content-length");
-                    if( FieldIt == this->MessageFields.end() ) {
+                    String Length = this->GetContentLengthHeader();
+                    if( Length.empty() ) {
                         return false;
                         //MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"HTTP Response does not contain a \"Content-Length\" nor \"Transfer-Encoding\" header.  Must contain one of these to be valid.");
                     }
-                    this->MessageBody.reserve( StringTools::ConvertToWhole( (*FieldIt).second ) );
+                    this->MessageBody.reserve( StringTools::ConvertToWhole( Length ) );
                     this->MessageBody.assign(CurrIt,EndIt);
                 }else{
                     String ChunkSizeStr;
