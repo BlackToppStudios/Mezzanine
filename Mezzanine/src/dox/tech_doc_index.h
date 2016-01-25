@@ -42,7 +42,7 @@
 
 
 /**
-    @page tech_doc_index Technical documents
+    @page tech_doc_index Technical Document Index
     Walkthroughs and human level explanations of our tools, processes and anything else useful.
 
     @section dev_tools_menu Development Tools

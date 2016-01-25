@@ -37,56 +37,35 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _dox_mainpage_h
-#define _dox_mainpage_h
+#ifndef _dox_mezzanine_engine_h
+#define _dox_mezzanine_engine_h
+
 
 /**
-    @mainpage BlackTopp Studios Documentation
+    @page mezzanine_engine Mezzanine Engine
 
-    BlackTopp Studios inc. makes video games and video game components. Our flagship library game
-    component is the @ref mezzanine_engine. Some components of the can be used on their own, like
-    the @ref ThreadingManual "DAGFrameScheduler" a high performance multithreaded replacement for
-    single threaded game loops.
+    The %Mezzanine Engine is Framework for building 3d physics enabled video games. It is written in
+    and intended for C++ development. The Mezzanine Engine is designed to be re-usable and genre
+    agnostic, so that it can be used in as many games as possible.
 
-    @n Here are some useful link:
-    - @ref tech_doc_index
-    - @ref blog
-*/
-
-// The pages below are intended to be put into their own files as they are worked on.
-// All of these have links pointing to them.
-
-/**
-    @page blog BTS blog
-
-
-
-    - @htmlonly<a href="">@endhtmlonly
-    TITLE
+    @n
+    It is released
+    under an open source license, the GPLv3 and can readily be used by hobbyists or for educational.
+    For licensing without GPL restrictions, including commercial licensing, please
+    mailto:contact@blacktoppstudios.com
+    @htmlonly<a href="mailto:contact@blacktoppstudios.com">@endhtmlonly
+    contact us
     @htmlonly</a>@endhtmlonly
-    — DEsc
+    All of the dependencies are open source as well enabling you or your team to investigate and
+    understand every single bit of what our engine is doing.
+    @n
+    Unlike many other libraries out there we do not expect snooping through source code to be the
+    only method of understanding the library. We have rigorously documented all the components of
+    our engine and have made available @ref tech_doc_index "Doxygen generated documentation" to help
+    you understand our code. We’ve even included a couple extra manuals and articles about some
+    higher level usage of parts of our engine, and plan to include more articles for other parts of
+    the engine as it is developed and matures.
 */
-
-/**
-    @page cxx_training C++ Training
-
-
-    C++!
-
-*/
-
-/**
-    @page engine_dependencies Mezzanine Engine Dependencies
-
-
-    C++!
-*/
-
-/**
-    @page catch_bang Catch!
-    describe catch here
-*/
-
 
 
 

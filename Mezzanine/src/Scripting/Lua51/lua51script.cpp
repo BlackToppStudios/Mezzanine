@@ -60,6 +60,8 @@ extern "C"
     #include "lualib.h"         // for opening the base state
     #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
 
+    /// @internal
+    /// @brief Entry point into Swig bindings, required to initialize Lua.
     int luaopen_Mezzanine(lua_State* L);
 }
 

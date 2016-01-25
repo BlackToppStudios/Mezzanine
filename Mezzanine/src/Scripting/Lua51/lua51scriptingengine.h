@@ -275,7 +275,11 @@ namespace Mezzanine
             // Execution
                 /// @brief Compile and execute a passed string.
                 /// @param ScriptSource A String containing the source code to be executed.
-                /// @details This will create a CountPtr to a Lua51Script and assign both its Source and Byte code
+                /// @details This will create a CountPtr to a Lua51Script and assign both its Source
+                /// and Byte code
+                /// @return A CountedPtr to the script executed. This lets the caller retain a
+                /// pointer to the compiled script or this, whichever chooses to hold it longer and
+                /// allow for more advance caching
                 virtual CountedPtr<iScript> Execute(const String& ScriptSource);
 
                 /// @brief Implements a required for iScriptManager, Calls Execute(CountedPtr<Lua51Script>)
@@ -291,11 +295,11 @@ namespace Mezzanine
                 virtual void Execute(CountedPtr<Lua51Script>& ScriptToRun);
 
                 /// @brief Performs the compilation on a script reference
-                /// @param ScriptToCompile A reference to the Lua51Script to compile.
+                /// @param ScripScriptToRuntToCompile A reference to the Lua51Script to compile and run.
                 virtual void Execute(Lua51Script& ScriptToRun);
 
                 /// @brief Performs the compilation on a raw pointer
-                /// @param ScriptToCompile A pointer to the Lua51Script to compile.
+                /// @param ScriptToRun A pointer to the Lua51Script to compile and run.
                 virtual void Execute(Lua51Script* ScriptToRun);
 
             ///////////////////////////////////////////////////////////////////////////////////////
@@ -335,7 +339,8 @@ namespace Mezzanine
                 /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to loads
                 virtual void OpenLibraries(int LibrariesToOpen);
                 /// @brief Check the Lua state to see if a table exists.
-                /// @param LibToCheck Indicator of which library to ch
+                /// @param LibToCheck Indicator of which library to check
+                /// @return True if the library is ready for use and false otherwise.
                 virtual Boole IsLibraryOpen(Lua51Libraries LibToCheck);
 
                 /// @brief Nest Lua modules to put libraries in more clean positions
@@ -383,11 +388,11 @@ namespace Mezzanine
                 /// @details The Lua manual at http://www.lua.org/manual/5.1/manual.html#5.6 as further details.
                 virtual void OpenMathLibrary();
                 /// @brief Enable Input/Output in lua scripts for reading and writing files
-                /// @detail See http://www.lua.org/manual/5.1/manual.html#5.7 in the Lua manual for details
-                /// @warning This makes file IO available to scripts. This is not suitable if untrustedscripts will be run.
+                /// @details See http://www.lua.org/manual/5.1/manual.html#5.7 in the Lua manual for details
+                /// @warning This makes file IO available to scripts. This is not suitable if untrusted scripts will be run.
                 virtual void OpenIOLibrary();
                 /// @brief EnableOS facilities in lua scriptsm such as file managements, time and shell execution.
-                /// @detail See http://www.lua.org/manual/5.1/manual.html#5.7 in the Lua manual for details
+                /// @details See http://www.lua.org/manual/5.1/manual.html#5.7 in the Lua manual for details
                 /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
                 virtual void OpenOSLibrary();
                 /// @brief Enable Debugging Lua features.

@@ -63,19 +63,39 @@ extern "C"
     #include "lualib.h"         // for opening the base state
     #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
 
+    /// @internal
+    /// @brief Entry to Swig binding for loading the core Mezzanine library.
     int luaopen_Mezzanine(lua_State* L);
+    /// @internal
+    /// @brief Entry to Swig binding for loading the safe versions of the core Mezzanine library.
     int luaopen_MezzanineSafe(lua_State* L);
 
+    /// @internal
+    /// @brief Entry to Swig binding for loading the XML library
     int luaopen_MezzanineXML(lua_State* L);
+    /// @internal
+    /// @brief Entry to Swig binding for loading the safe version XML library
     int luaopen_MezzanineXMLSafe(lua_State* L);
 
+    /// @internal
+    /// @brief Entry to Swig binding for loading the FrameScheduler.
     int luaopen_MezzanineThreading(lua_State* L);
+    /// @internal
+    /// @brief Entry to Swig binding for loading the safe version of the FrameScheduler
     int luaopen_MezzanineThreadingSafe(lua_State* L);
 
+    /// @internal
+    /// @brief Entry to Swig binding for loading the Physics system.
     int luaopen_MezzaninePhysics(lua_State* L);
+    /// @internal
+    /// @brief Entry to Swig binding for loading the safe version of the Physics system.
     int luaopen_MezzaninePhysicsSafe(lua_State* L);
 
+    /// @internal
+    /// @brief Entry to Swig binding for loading the MathTools.
     int luaopen_MezzanineMathTools(lua_State* L);
+    /// @internal
+    /// @brief Entry to Swig binding for loading the safe version of the MathTools.
     int luaopen_MezzanineMathToolsSafe(lua_State* L);
 }
 
