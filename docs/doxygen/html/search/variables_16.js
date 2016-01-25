@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['value',['value',['../structpugi_1_1xml__attribute__struct.html#ae652627d56cb9dcc0afdd1fbf6570364',1,'pugi::xml_attribute_struct::value()'],['../structpugi_1_1xml__node__struct.html#a191e708864fccda17bb66157afdadd2d',1,'pugi::xml_node_struct::value()']]],
   ['valuedisplay',['ValueDisplay',['../classMezzanine_1_1UI_1_1Spinner.html#a89f5583f415c71a7e457c61f2a83eaba',1,'Mezzanine::UI::Spinner']]],
   ['valuetype',['ValueType',['../classMezzanine_1_1XML_1_1XPathVariable.html#aef55bdc98f5a29113a0c753952eb27f6',1,'Mezzanine::XML::XPathVariable']]],
   ['vert',['Vert',['../structMezzanine_1_1UI_1_1VertexData.html#aba0c89686da51f19dbcd963fd165240b',1,'Mezzanine::UI::VertexData']]],

@@ -76,11 +76,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">pugixml.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -88,159 +83,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this should probably not be used by the tests.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="pugixml_8h_source.html">pugixml.h</a>&quot;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;assert.h&gt;</code><br />
-<code>#include &lt;wchar.h&gt;</code><br />
-<code>#include &lt;math.h&gt;</code><br />
-<code>#include &lt;float.h&gt;</code><br />
-<code>#include &lt;istream&gt;</code><br />
-<code>#include &lt;ostream&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
-<code>#include &lt;new&gt;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
-</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for pugixml.cpp:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="pugixml_8cpp__incl.svg" width="100%" height="395"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-</div>
+
 <p><a href="pugixml_8cpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpugi_1_1xml__attribute__struct.html">pugi::xml_attribute_struct</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 'name=value' XML attribute structure.  <a href="structpugi_1_1xml__attribute__struct.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpugi_1_1xml__node__struct.html">pugi::xml_node_struct</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An XML document tree node.  <a href="structpugi_1_1xml__node__struct.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a3a72d0b2c0e7f99940ce8fbcc69e532f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a72d0b2c0e7f99940ce8fbcc69e532f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>ENDSWITH</b>(c,  e)&#160;&#160;&#160;((c) == (e) || ((c) == 0 &amp;&amp; endch == (e)))</td></tr>
-<tr class="separator:a3a72d0b2c0e7f99940ce8fbcc69e532f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03531d9b3c74f0843567257537edfd53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03531d9b3c74f0843567257537edfd53"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__CHECK_ERROR</b>(err,  m)&#160;&#160;&#160;{ if (*s == 0) PUGI__THROW_ERROR(err, m); }</td></tr>
-<tr class="separator:a03531d9b3c74f0843567257537edfd53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88b7ffa81185df00606d7f2f1dad938b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88b7ffa81185df00606d7f2f1dad938b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__DMC_VOLATILE</b></td></tr>
-<tr class="separator:a88b7ffa81185df00606d7f2f1dad938b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39554337dd1d0fef32ddf9926ee4e4ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39554337dd1d0fef32ddf9926ee4e4ae"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__ENDSEG</b>()&#160;&#160;&#160;{ ch = *s; *s = 0; ++s; }</td></tr>
-<tr class="separator:a39554337dd1d0fef32ddf9926ee4e4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82c335af3ca48cdb209c506bf8dd6ad2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82c335af3ca48cdb209c506bf8dd6ad2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__FN</b></td></tr>
-<tr class="separator:a82c335af3ca48cdb209c506bf8dd6ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c7ac48a50c2216e26d1c089d42b0b86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c7ac48a50c2216e26d1c089d42b0b86"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__FN_NO_INLINE</b>&#160;&#160;&#160;PUGI__NO_INLINE</td></tr>
-<tr class="separator:a7c7ac48a50c2216e26d1c089d42b0b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2adf5ae9b7505408a18e9f3bb1b3d332"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2adf5ae9b7505408a18e9f3bb1b3d332"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__IS_CHARTYPE</b>(c,  ct)&#160;&#160;&#160;PUGI__IS_CHARTYPE_IMPL(c, ct, chartype_table)</td></tr>
-<tr class="separator:a2adf5ae9b7505408a18e9f3bb1b3d332"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc4e05b3f9f04b44e6bd3ba6a7f1b24d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc4e05b3f9f04b44e6bd3ba6a7f1b24d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__IS_CHARTYPE_IMPL</b>(c,  ct,  table)&#160;&#160;&#160;(table[static_cast&lt;unsigned char&gt;(c)] &amp; (ct))</td></tr>
-<tr class="separator:abc4e05b3f9f04b44e6bd3ba6a7f1b24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce684b35edc78e6fda91e836f29a46c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ce684b35edc78e6fda91e836f29a46c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__IS_CHARTYPEX</b>(c,  ct)&#160;&#160;&#160;PUGI__IS_CHARTYPE_IMPL(c, ct, chartypex_table)</td></tr>
-<tr class="separator:a4ce684b35edc78e6fda91e836f29a46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd532a3c78b5b7c68f199a24fbc4adb5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd532a3c78b5b7c68f199a24fbc4adb5"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__NO_INLINE</b></td></tr>
-<tr class="separator:afd532a3c78b5b7c68f199a24fbc4adb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e613f6e5b9aa563d9d2d1f079d9be29"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e613f6e5b9aa563d9d2d1f079d9be29"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__NS_BEGIN</b>&#160;&#160;&#160;namespace pugi { namespace impl { namespace {</td></tr>
-<tr class="separator:a7e613f6e5b9aa563d9d2d1f079d9be29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa426d55daea96845bc154f5a7a71ecc4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa426d55daea96845bc154f5a7a71ecc4"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__NS_END</b>&#160;&#160;&#160;} } }</td></tr>
-<tr class="separator:aa426d55daea96845bc154f5a7a71ecc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06966692c7864407ceffff065b4d7da2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06966692c7864407ceffff065b4d7da2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__OPTSET</b>(OPT)&#160;&#160;&#160;( optmsk &amp; (OPT) )</td></tr>
-<tr class="separator:a06966692c7864407ceffff065b4d7da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82f13ed99cc2d22c5ecb6e18b5dfe17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab82f13ed99cc2d22c5ecb6e18b5dfe17"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__POPNODE</b>()&#160;&#160;&#160;{ cursor = cursor-&gt;parent; }</td></tr>
-<tr class="separator:ab82f13ed99cc2d22c5ecb6e18b5dfe17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accdd212cd2831662c3c2dda668246f8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accdd212cd2831662c3c2dda668246f8a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__PUSHNODE</b>(TYPE)&#160;&#160;&#160;{ cursor = append_node(cursor, alloc, TYPE); if (!cursor) PUGI__THROW_ERROR(status_out_of_memory, s); }</td></tr>
-<tr class="separator:accdd212cd2831662c3c2dda668246f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98386e86f2c7e7e477939d209a5bbf7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98386e86f2c7e7e477939d209a5bbf7e"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__SCANFOR</b>(X)&#160;&#160;&#160;{ while (*s != 0 &amp;&amp; !(X)) ++s; }</td></tr>
-<tr class="separator:a98386e86f2c7e7e477939d209a5bbf7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfcdc54e9f7e0f2d3927b4a7690abf2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfcdc54e9f7e0f2d3927b4a7690abf2a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__SCANWHILE</b>(X)&#160;&#160;&#160;{ while ((X)) ++s; }</td></tr>
-<tr class="separator:adfcdc54e9f7e0f2d3927b4a7690abf2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87d9805caf644d370bb8e8faa2a1f887"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87d9805caf644d370bb8e8faa2a1f887"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__SKIPWS</b>()&#160;&#160;&#160;{ while (PUGI__IS_CHARTYPE(*s, ct_space)) ++s; }</td></tr>
-<tr class="separator:a87d9805caf644d370bb8e8faa2a1f887"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d1280c499f3355965242c431435a695"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d1280c499f3355965242c431435a695"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__STATIC_ASSERT</b>(cond)&#160;&#160;&#160;{ static const char condition_failed[(cond) ? 1 : -1] = {0}; (void)condition_failed[0]; }</td></tr>
-<tr class="separator:a7d1280c499f3355965242c431435a695"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8af02d87a10272f03f96ab93a96d7202"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8af02d87a10272f03f96ab93a96d7202"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PUGI__THROW_ERROR</b>(err,  m)&#160;&#160;&#160;return error_offset = m, error_status = err, static_cast&lt;char_t*&gt;(0)</td></tr>
-<tr class="separator:a8af02d87a10272f03f96ab93a96d7202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af68359a5202c930fd4beb740e86b6e96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af68359a5202c930fd4beb740e86b6e96"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SOURCE_PUGIXML_CPP</b></td></tr>
-<tr class="separator:af68359a5202c930fd4beb740e86b6e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a1dc06a684ad55358be288c15a7d0148c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc06a684ad55358be288c15a7d0148c"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ast_type_t</b> </td></tr>
-<tr class="separator:a1dc06a684ad55358be288c15a7d0148c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ab6acb075db3a3ce6209e8ef21b3903"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ab6acb075db3a3ce6209e8ef21b3903"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>axis_t</b> </td></tr>
-<tr class="separator:a3ab6acb075db3a3ce6209e8ef21b3903"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79fa702bd2c1c60ad4659e3949725ac1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79fa702bd2c1c60ad4659e3949725ac1"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>chartype_t</b> </td></tr>
-<tr class="separator:a79fa702bd2c1c60ad4659e3949725ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af32980cad1c64f4640cd89de20eab89d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af32980cad1c64f4640cd89de20eab89d"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>chartypex_t</b> </td></tr>
-<tr class="separator:af32980cad1c64f4640cd89de20eab89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55ceeaa2747556c7ad75cdeacd8cee1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55ceeaa2747556c7ad75cdeacd8cee1b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>lexeme_t</b> </td></tr>
-<tr class="separator:a55ceeaa2747556c7ad75cdeacd8cee1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f4f05e99a3661442581bec9e7a27ae3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f4f05e99a3661442581bec9e7a27ae3"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>nodetest_t</b> </td></tr>
-<tr class="separator:a4f4f05e99a3661442581bec9e7a27ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ac66598a65cc30aa7a3f439fa5ad0f876"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac66598a65cc30aa7a3f439fa5ad0f876"></a>
-std::string PUGIXML_FUNCTION&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::as_utf8</b> (const wchar_t *str)</td></tr>
-<tr class="separator:ac66598a65cc30aa7a3f439fa5ad0f876"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fb47cdbd57ba9fd60e7e9bcfeb2b986"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fb47cdbd57ba9fd60e7e9bcfeb2b986"></a>
-std::string PUGIXML_FUNCTION&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::as_utf8</b> (const std::basic_string&lt; wchar_t &gt; &amp;str)</td></tr>
-<tr class="separator:a5fb47cdbd57ba9fd60e7e9bcfeb2b986"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d81684aed79a89df6e7c215cb81d54e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d81684aed79a89df6e7c215cb81d54e"></a>
-std::basic_string&lt; wchar_t &gt; PUGIXML_FUNCTION&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::as_wide</b> (const char *str)</td></tr>
-<tr class="separator:a0d81684aed79a89df6e7c215cb81d54e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc71756aa312d8d21a6aa30ad5c89bf1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc71756aa312d8d21a6aa30ad5c89bf1"></a>
-std::basic_string&lt; wchar_t &gt; PUGIXML_FUNCTION&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::as_wide</b> (const std::string &amp;str)</td></tr>
-<tr class="separator:acc71756aa312d8d21a6aa30ad5c89bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d3d42320b07fe1865feb5e8e7c01e38"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d3d42320b07fe1865feb5e8e7c01e38"></a>
-allocation_function PUGIXML_FUNCTION&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::get_memory_allocation_function</b> ()</td></tr>
-<tr class="separator:a0d3d42320b07fe1865feb5e8e7c01e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0823c1cb767482d9d72d1df055be3b67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0823c1cb767482d9d72d1df055be3b67"></a>
-deallocation_function PUGIXML_FUNCTION&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::get_memory_deallocation_function</b> ()</td></tr>
-<tr class="separator:a0823c1cb767482d9d72d1df055be3b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc67229fed7dbe24a410d83b9233f916"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc67229fed7dbe24a410d83b9233f916"></a>
-void PUGIXML_FUNCTION&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::set_memory_management_functions</b> (allocation_function allocate, deallocation_function deallocate)</td></tr>
-<tr class="separator:abc67229fed7dbe24a410d83b9233f916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e6a356f4228f84866db8f559695761a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e6a356f4228f84866db8f559695761a"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::unspecified_bool_xml_attribute</b> (xml_attribute ***)</td></tr>
-<tr class="separator:a1e6a356f4228f84866db8f559695761a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d06b2b4ef0fb678f1591531e8c1ab87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d06b2b4ef0fb678f1591531e8c1ab87"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::unspecified_bool_xml_node</b> (xml_node ***)</td></tr>
-<tr class="separator:a7d06b2b4ef0fb678f1591531e8c1ab87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2a3ab772e0f75c84cfa18a21fd69d40"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2a3ab772e0f75c84cfa18a21fd69d40"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::unspecified_bool_xml_text</b> (xml_text ***)</td></tr>
-<tr class="separator:af2a3ab772e0f75c84cfa18a21fd69d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a734a3a9fe65f7794072750f230ad5a6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a734a3a9fe65f7794072750f230ad5a6c"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::unspecified_bool_xpath_node</b> (xpath_node ***)</td></tr>
-<tr class="separator:a734a3a9fe65f7794072750f230ad5a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26c008b2f22ece0b9d587b006b064835"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26c008b2f22ece0b9d587b006b064835"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::unspecified_bool_xpath_query</b> (xpath_query ***)</td></tr>
-<tr class="separator:a26c008b2f22ece0b9d587b006b064835"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this should probably not be used by the tests. </p>
 <h2>pugixml parser - version 1.2 </h2>
@@ -253,7 +97,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>pugi::unspecif
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 16:08:46 for BlackTopp Studios inc by
+            Generated on Mon Jan 25 2016 01:19:59 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

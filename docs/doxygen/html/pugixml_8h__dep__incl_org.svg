@@ -11,9 +11,9 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-303 641.5,-303 641.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="304,-268.5 304,-298.5 459,-298.5 459,-268.5 304,-268.5"/>
-<text text-anchor="start" x="312" y="-286.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="381.5" y="-275.5" font-family="Helvetica,sans-Serif" font-size="10.00">Fresh/UnitTests/src/pugixml.h</text>
+<polygon fill="#bfbfbf" stroke="black" points="217,-268.5 217,-298.5 372,-298.5 372,-268.5 217,-268.5"/>
+<text text-anchor="start" x="225" y="-286.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="middle" x="294.5" y="-275.5" font-family="Helvetica,sans-Serif" font-size="10.00">Fresh/UnitTests/src/pugixml.h</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
@@ -26,22 +26,8 @@
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M354.286,-262.168C340.982,-252.228 325.304,-240.514 313.341,-231.577"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="352.516,-265.215 362.622,-268.396 356.706,-259.607 352.516,-265.215"/>
-</g>
-<!-- Node10 -->
-<g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="pugixml_8cpp.html" target="_top" xlink:title="To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this ...">
-<polygon fill="white" stroke="black" points="390,-201.5 390,-231.5 549,-231.5 549,-201.5 390,-201.5"/>
-<text text-anchor="start" x="398" y="-219.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="469.5" y="-208.5" font-family="Helvetica,sans-Serif" font-size="10.00">Fresh/UnitTests/src/pugixml.cpp</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node10 -->
-<g id="edge11" class="edge"><title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M408.643,-262.451C422.181,-252.452 438.227,-240.6 450.443,-231.577"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="406.559,-259.639 400.595,-268.396 410.718,-265.27 406.559,-259.639"/>
+<path fill="none" stroke="midnightblue" d="M294.5,-258.108C294.5,-249.154 294.5,-239.323 294.5,-231.577"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="291,-258.396 294.5,-268.396 298,-258.396 291,-258.396"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
