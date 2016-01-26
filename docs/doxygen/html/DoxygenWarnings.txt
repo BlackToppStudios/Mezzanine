@@ -183,26 +183,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/datastream.h:395: warning: Member OStreamPtr (typedef) of namespace Mezzanine::Resource is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.cpp:63: warning: parameters of member luaopen_Mezzanine are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.cpp:63: warning: return type of member luaopen_Mezzanine is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:66: warning: parameters of member luaopen_Mezzanine are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:66: warning: return type of member luaopen_Mezzanine is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:94: warning: parameters of member luaopen_MezzanineMathTools are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:94: warning: return type of member luaopen_MezzanineMathTools is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:97: warning: parameters of member luaopen_MezzanineMathToolsSafe are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:97: warning: return type of member luaopen_MezzanineMathToolsSafe is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:87: warning: parameters of member luaopen_MezzaninePhysics are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:87: warning: return type of member luaopen_MezzaninePhysics is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:90: warning: parameters of member luaopen_MezzaninePhysicsSafe are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:90: warning: return type of member luaopen_MezzaninePhysicsSafe is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:69: warning: parameters of member luaopen_MezzanineSafe are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:69: warning: return type of member luaopen_MezzanineSafe is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:80: warning: parameters of member luaopen_MezzanineThreading are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:80: warning: return type of member luaopen_MezzanineThreading is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:83: warning: parameters of member luaopen_MezzanineThreadingSafe are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:83: warning: return type of member luaopen_MezzanineThreadingSafe is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:73: warning: parameters of member luaopen_MezzanineXML are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:73: warning: return type of member luaopen_MezzanineXML is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:76: warning: parameters of member luaopen_MezzanineXMLSafe are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.cpp:76: warning: return type of member luaopen_MezzanineXMLSafe is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:141: warning: Member catch(...) (function) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:149: warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:150: warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
