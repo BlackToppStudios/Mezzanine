@@ -65,37 +65,67 @@ extern "C"
 
     /// @internal
     /// @brief Entry to Swig binding for loading the core Mezzanine library.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_Mezzanine(lua_State* L);
     /// @internal
     /// @brief Entry to Swig binding for loading the safe versions of the core Mezzanine library.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzanineSafe(lua_State* L);
 
     /// @internal
-    /// @brief Entry to Swig binding for loading the XML library
+    /// @brief Entry to Swig binding for loading the XML library.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzanineXML(lua_State* L);
     /// @internal
-    /// @brief Entry to Swig binding for loading the safe version XML library
+    /// @brief Entry to Swig binding for loading the safe version XML library.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzanineXMLSafe(lua_State* L);
 
     /// @internal
     /// @brief Entry to Swig binding for loading the FrameScheduler.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzanineThreading(lua_State* L);
     /// @internal
-    /// @brief Entry to Swig binding for loading the safe version of the FrameScheduler
+    /// @brief Entry to Swig binding for loading the safe version of the FrameScheduler.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzanineThreadingSafe(lua_State* L);
 
     /// @internal
     /// @brief Entry to Swig binding for loading the Physics system.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzaninePhysics(lua_State* L);
     /// @internal
     /// @brief Entry to Swig binding for loading the safe version of the Physics system.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzaninePhysicsSafe(lua_State* L);
 
     /// @internal
     /// @brief Entry to Swig binding for loading the MathTools.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzanineMathTools(lua_State* L);
     /// @internal
     /// @brief Entry to Swig binding for loading the safe version of the MathTools.
+    /// @param L the lua_State to load the library into.
+    /// @return A Lua error code capable of being converted to an exception by
+    /// Lua51ScriptingEngine::ThrowFromLuaErrorCode(int).
     int luaopen_MezzanineMathToolsSafe(lua_State* L);
 }
 

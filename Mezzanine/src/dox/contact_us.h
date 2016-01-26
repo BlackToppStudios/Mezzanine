@@ -37,58 +37,30 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _dox_mainpage_h
-#define _dox_mainpage_h
+#ifndef _contact_us_h
+#define _contact_us_h
 
 /**
-    @mainpage BlackTopp Studios Documentation
+    @page contact_us Contact Us
+    We won't bite, we promise!
 
-    BlackTopp Studios inc. makes video games and video game components. Our flagship library game
-    component is the @ref mezzanine_engine. Some components of the can be used on their own, like
-    the @ref ThreadingManual "DAGFrameScheduler" a high performance multithreaded replacement for
-    single threaded game loops.
-
-    @n Here are some useful link:
-    - @ref tech_doc_index
-    - @ref blog
-*/
-
-// The pages below are intended to be put into their own files as they are worked on.
-// All of these have links pointing to them.
-
-
-/**
-    @page blog BTS blog
-
-
-
-    - @htmlonly<a href="">@endhtmlonly
-    TITLE
+    @n
+    The easiest way to contact us is by emailing us at:
+    @htmlonly<a href="mailto:contact@blacktoppstudios.com">@endhtmlonly
+    contact@blacktoppstudios.com
     @htmlonly</a>@endhtmlonly
-    — DEsc
+
+    @n
+    If you feel the need to contact someone specific:
+    - @htmlonly<a href="mailto:toppij@blacktoppstudios.com">@endhtmlonly
+    toppij@blacktoppstudios.com
+    @htmlonly</a>@endhtmlonly – Joseph Toppi
+    - @htmlonly<a href="mailto:blackwoodj@blacktoppstudios.com">@endhtmlonly
+    blackwoodj@blacktoppstudios.com
+    @htmlonly</a>@endhtmlonly – Jason Halder
+    - @htmlonly<a href="mailto:halderj@blacktoppstudios.com">@endhtmlonly
+    halderj@blacktoppstudios.com
+    @htmlonly</a>@endhtmlonly – Jason Halder
 */
-
-/**
-    @page cxx_training C++ Training
-
-
-    C++!
-
-*/
-
-/**
-    @page engine_dependencies Mezzanine Engine Dependencies
-
-
-    C++!
-*/
-
-/**
-    @page catch_bang Catch!
-    describe catch here
-*/
-
-
-
 
 #endif

@@ -42,7 +42,7 @@
 
 
 /**
-    @page mezzanine_engine Mezzanine Engine
+    @page mezzanine_engine %Mezzanine Engine
 
     The %Mezzanine Engine is Framework for building 3d physics enabled video games. It is written in
     and intended for C++ development. The Mezzanine Engine is designed to be re-usable and genre
@@ -51,13 +51,10 @@
     @n
     It is released
     under an open source license, the GPLv3 and can readily be used by hobbyists or for educational.
-    For licensing without GPL restrictions, including commercial licensing, please
-    mailto:contact@blacktoppstudios.com
-    @htmlonly<a href="mailto:contact@blacktoppstudios.com">@endhtmlonly
-    contact us
-    @htmlonly</a>@endhtmlonly
+    For licensing without GPL restrictions, including commercial licensing, please @ref contact_us
     All of the dependencies are open source as well enabling you or your team to investigate and
     understand every single bit of what our engine is doing.
+
     @n
     Unlike many other libraries out there we do not expect snooping through source code to be the
     only method of understanding the library. We have rigorously documented all the components of
@@ -65,6 +62,26 @@
     you understand our code. We’ve even included a couple extra manuals and articles about some
     higher level usage of parts of our engine, and plan to include more articles for other parts of
     the engine as it is developed and matures.
+
+    @section mezzanine_engine_goals Goals
+    We have a number of goals going into this when we started this project:
+
+    - Provide every major library/resource a typical A+ quality game needs
+        - 3d Graphics
+        - Real time physics
+        - 3d surround sound
+        - Intelligent Multithreading
+    - User input
+        - Keyboard
+        - Mouse
+        - Joystick
+    - Work on every major gaming platform
+        - PC – Currently works on Windows, Linux and Mac OS X
+        - Mobile Platforms – Working on Android and iOS Support
+        - Active research into obscure platforms (NaCL, Other mobile, etc)
+    - Completely insulate games built with this from needing any platform specific code.
+    - Maintain backward compatibility as long as technically feasible.
+    - Modular reusable design
 */
 
 
