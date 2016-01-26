@@ -51,6 +51,8 @@
 #ifndef TRIE_H
 #define TRIE_H
 
+/// @cond false
+
 #include "datatypes.h"
 
 namespace Mezzanine
@@ -1573,5 +1575,7 @@ private:
 };
 
 }
+
+/// @endcond
 
 #endif

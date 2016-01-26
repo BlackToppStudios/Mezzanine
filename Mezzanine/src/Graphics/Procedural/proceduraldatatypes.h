@@ -80,75 +80,56 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Curve Types
 
-            /// @typedef LinearCurve1D
             /// @brief A track of 1 dimensional points that are linearly interpolated between.
             typedef Track< LinearInterpolator< Real > >     LinearCurve1D;
-            /// @typedef LinearCurve2D
             /// @brief A track of 2 dimensional points that are linearly interpolated between.
             typedef Track< LinearInterpolator< Vector2 > >  LinearCurve2D;
-            /// @typedef LinearCurve3D
             /// @brief A track of 3 dimensional points that are linearly interpolated between.
             typedef Track< LinearInterpolator< Vector3 > >  LinearCurve3D;
-            /// @typedef BezierCurve1D
             /// @brief A track of 1 dimentional points that are interpolated between with a Bezier interpolator.
             typedef Track< BezierInterpolator< Real > >     BezierCurve1D;
-            /// @typedef BezierCurve2D
             /// @brief A track of 2 dimentional points that are interpolated between with a Bezier interpolator.
             typedef Track< BezierInterpolator< Vector2 > >  BezierCurve2D;
-            /// @typedef BezierCurve3D
             /// @brief A track of 3 dimentional points that are interpolated between with a Bezier interpolator.
             typedef Track< BezierInterpolator< Vector3 > >  BezierCurve3D;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Container and Iterator Types
 
-            /// @typedef Point2DContainer
             /// @brief Basic container type for the storage of 2D points.
             typedef std::vector<Vector2>                Point2DContainer;
-            /// @typedef PointIterator
             /// @brief Iterator type for a Point2DContainer.
             typedef Point2DContainer::iterator          Point2DIterator;
-            /// @typedef ConstPointIterator
             /// @brief Const Iterator type for a Point2DContainer.
             typedef Point2DContainer::const_iterator    ConstPoint2DIterator;
 
-            /// @typedef Point3DContainer
             /// @brief Basic container type for the storage of 3D points.
             typedef std::vector<Vector3>                Point3DContainer;
-            /// @typedef PointIterator
             /// @brief Iterator type for a Point3DContainer.
             typedef Point3DContainer::iterator          Point3DIterator;
-            /// @typedef ConstPointIterator
             /// @brief Const Iterator type for a Point3DContainer.
             typedef Point3DContainer::const_iterator    ConstPoint3DIterator;
 
-            /// @typedef LineSeg2DVec
             /// @brief Basic container type for the storage of 2D line segments.
             typedef std::vector<LineSegment2D>          LineSeg2DVec;
-            /// @typedef LineSeg2DIterator
             /// @brief Iterator type for a LineSeg2DVec.
             typedef LineSeg2DVec::iterator              LineSeg2DIterator;
-            /// @typedef ConstLineSeg2DIterator
             /// @brief Const Iterator type for a LineSeg2DVec.
             typedef LineSeg2DVec::const_iterator        ConstLineSeg2DIterator;
 
-            /// @typedef LineSeg3DVec
             /// @brief Basic container type for the storage of 3D line segments.
             typedef std::vector<LineSegment3D>          LineSeg3DVec;
-            /// @typedef LineSeg3DIterator
             /// @brief Iterator type for a LineSeg3DVec.
             typedef LineSeg3DVec::iterator              LineSeg3DIterator;
             /// @typedef ConstLineSeg3DIterator
             /// @brief Const Iterator type for a LineSeg3DVec.
             typedef LineSeg3DVec::const_iterator        ConstLineSeg3DIterator;
 
-            /// @typedef IndexList
             /// @brief A container of Integers used to represent the indicies of a shape.
             typedef std::vector<Integer>                IndexContainer;
-            /// @typedef IndexIterator
             /// @brief Iterator type for a IndexContainer.
             typedef IndexContainer::iterator            IndexIterator;
-            /// @typedef ConstIndexIterator
+
             /// @brief Const Iterator type for a IndexContainer.
             typedef IndexContainer::const_iterator      ConstIndexIterator;
         }//Procedural

@@ -95,8 +95,12 @@
     fluent with 3D Studio Max, Gary helps with the creation of 3D art for Catch!.
 
     @section mezzanine_contributors Mezzanine Contributors
+    - Bryc2k
+    - Ducky
+    - Taylor Grote
     - Kirk Miller
     - Mike Romeu
+
 
 
 */

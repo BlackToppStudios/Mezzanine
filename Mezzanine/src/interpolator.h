@@ -210,7 +210,7 @@ namespace Mezzanine
             }
 
             /// @brief This does not create or change the object it deserializes, but it does verify type info.
-            /// @param The node to read serialized data from.
+            /// @param OneNode The node to read serialized data from.
             static void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(GetSerializableName()) )

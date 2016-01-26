@@ -50,7 +50,6 @@ namespace Mezzanine
 {
     class Entresol;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ManagerBase
     /// @headerfile managerbase.h
     /// @brief This is the base class from which all the Entresol and World Managers inherit.
     /// @details This creates a base set of functions that Managers are all
@@ -59,7 +58,6 @@ namespace Mezzanine
     class MEZZ_LIB ManagerBase
     {
     public:
-        /// @enum ManagerTypeName
         /// @brief A listing of Manager TypeNames
         /// @details These will be returned by ManagerBase::GetType(), and will allow
         /// code using this to determine what type of Manager class they are working with

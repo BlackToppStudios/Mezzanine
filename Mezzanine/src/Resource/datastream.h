@@ -195,15 +195,15 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
 
-            /// @copydoc StreamBase::EoF() const
+            /// @copydoc iStreamBase::EoF() const
             virtual Boole EoF() const;
-            /// @copydoc StreamBase::Bad() const
+            /// @copydoc iStreamBase::Bad() const
             virtual Boole Bad() const;
-            /// @copydoc StreamBase::Fail() const
+            /// @copydoc iStreamBase::Fail() const
             virtual Boole Fail() const;
-            /// @copydoc StreamBase::IsValid() const
+            /// @copydoc iStreamBase::IsValid() const
             virtual Boole IsValid() const;
-            /// @copydoc StreamBase::ClearErrors()
+            /// @copydoc iStreamBase::ClearErrors()
             virtual void ClearErrors();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -236,15 +236,15 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
 
-            /// @copydoc StreamBase::EoF() const
+            /// @copydoc iStreamBase::EoF() const
             virtual Boole EoF() const;
-            /// @copydoc StreamBase::Bad() const
+            /// @copydoc iStreamBase::Bad() const
             virtual Boole Bad() const;
-            /// @copydoc StreamBase::Fail() const
+            /// @copydoc iStreamBase::Fail() const
             virtual Boole Fail() const;
-            /// @copydoc StreamBase::IsValid() const
+            /// @copydoc iStreamBase::IsValid() const
             virtual Boole IsValid() const;
-            /// @copydoc StreamBase::ClearErrors()
+            /// @copydoc iStreamBase::ClearErrors()
             virtual void ClearErrors();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -277,15 +277,15 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
 
-            /// @copydoc StreamBase::EoF() const
+            /// @copydoc iStreamBase::EoF() const
             virtual Boole EoF() const;
-            /// @copydoc StreamBase::Bad() const
+            /// @copydoc iStreamBase::Bad() const
             virtual Boole Bad() const;
-            /// @copydoc StreamBase::Fail() const
+            /// @copydoc iStreamBase::Fail() const
             virtual Boole Fail() const;
-            /// @copydoc StreamBase::IsValid() const
+            /// @copydoc iStreamBase::IsValid() const
             virtual Boole IsValid() const;
-            /// @copydoc StreamBase::ClearErrors()
+            /// @copydoc iStreamBase::ClearErrors()
             virtual void ClearErrors();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -377,23 +377,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Pointer Types
 
-        /// @typedef StdInputStreamPtr
         /// @brief Convenience type for a standard input stream in a CountedPtr.
         typedef CountedPtr<StdInputStream> StdInputStreamPtr;
-        /// @typedef StdOutputStreamPtr
         /// @brief Convenience type for a standard output stream in a CountedPtr.
         typedef CountedPtr<StdOutputStream> StdOutputStreamPtr;
-        /// @typedef StdStreamPtr
         /// @brief Convenience type for a standard input/output stream in a CountedPtr.
         typedef CountedPtr<StdStream> StdStreamPtr;
 
-        /// @typedef StdInputStreamPtr
         /// @brief Convenience type for a standard input stream in a CountedPtr.
         typedef CountedPtr<IStream> IStreamPtr;
-        /// @typedef StdOutputStreamPtr
         /// @brief Convenience type for a standard output stream in a CountedPtr.
         typedef CountedPtr<OStream> OStreamPtr;
-        /// @typedef DataStreamPtr
         /// @brief This is a convenience type for a data stream in a counted pointer.
         typedef CountedPtr<DataStream> DataStreamPtr;
     }//Resource
