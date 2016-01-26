@@ -127,11 +127,29 @@ namespace Mezzanine
 
         void Trim(String& Source, Boole Left, Boole Right)
         {
-            static const String Delims = " \t\r";
-            if(Right)
-                Source.erase(Source.find_last_not_of(Delims)+1);
-            if(Left)
-                Source.erase(0,Source.find_first_not_of(Delims));
+            const String Delims = " \t\r";
+            if( Left ) {
+                Whole Forward = 0;
+                while( Forward < Source.size() )
+                {
+                    if( Delims.find( Source[Forward] ) == String::npos ) {
+                        break;
+                    }
+                    ++Forward;
+                }
+                Source.erase(0,Forward);
+            }
+            if( Right ) {
+                Whole Reverse = Source.size();
+                while( Reverse > 0 )
+                {
+                    if( Delims.find( Source[Reverse-1] ) == String::npos ) {
+                        break;
+                    }
+                    --Reverse;
+                }
+                Source.erase(Reverse);
+            }
         }
 
         StringVector Split(const String& Source, const String& Delims, const Whole MaxSplits)

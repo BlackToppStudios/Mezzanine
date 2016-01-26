@@ -153,7 +153,7 @@ namespace Mezzanine
             XML::Node SelfRoot = ParentNode.AppendChild( SystemAddress::GetSerializableName() );
 
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
-                SelfRoot.AppendAttribute("Port").SetValue( this->Port ) &&
+                SelfRoot.AppendAttribute("Port").SetValue( this->GetPort() ) &&
                 SelfRoot.AppendAttribute("V6Flow").SetValue( this->V6Flow ) &&
                 SelfRoot.AppendAttribute("V6Scope").SetValue( this->V6Scope ) )
             {
@@ -173,7 +173,7 @@ namespace Mezzanine
                 if( SelfRoot.GetAttribute("Version").AsInt() == 1 ) {
                     CurrAttrib = SelfRoot.GetAttribute("Port");
                     if( !CurrAttrib.Empty() )
-                        this->Port = static_cast<UInt16>( CurrAttrib.AsUint() );
+                        this->SetPort( static_cast<UInt16>( CurrAttrib.AsUint() ) );
 
                     CurrAttrib = SelfRoot.GetAttribute("V6Flow");
                     if( !CurrAttrib.Empty() )

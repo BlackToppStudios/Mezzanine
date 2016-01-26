@@ -227,11 +227,11 @@ public:
                 Boole BodyTestFirst = RequestTestFirst.GetBody().empty();
 
                 TEST(MethodTestFirst && URITestFirst && VersionTestFirst && HostTestFirst && UserAgentTestFirst && BodyTestFirst,"HTTPRequest_Decompose_First");
-                String ComposeTestResult = RequestTestFirst.Compose();
-                TEST(ComposeTestResult == SourceStringFirst,"HTTPRequest_Compose_First");
+                TEST(RequestTestFirst.Compose() == SourceStringFirst,"HTTPRequest_Compose_First");
 
                 String SourceStringSecond( "POST http://www.blacktoppstudios.com/forums HTTP/1.0\r\n"
                                            "Host: www.blacktoppstudios.com\r\n"
+                                           "Content-Length: 13\r\n"
                                            "\r\n"
                                            "Hello Server!" );
                 Network::HTTPRequest RequestTestSecond(SourceStringSecond);
@@ -247,8 +247,41 @@ public:
             }//Request
 
             {//Response
-                String SourceStringFirst(  );
-                String SourceStringSecond(  );
+                String SourceStringFirst( "HTTP/1.1 200 OK\r\n"
+                                          "Date: Sun, 24 Jan 2016 4:15 GMT\r\n"
+                                          "Server: Server\r\n"
+                                          "Content-Length: 21\r\n"
+                                          "\r\n"
+                                          "YES.  THIS IS SERVER." );
+                Network::HTTPResponse ResponseTestFirst(SourceStringFirst);
+
+                Boole VersionTestFirst = ResponseTestFirst.GetHTTPVersion() == SimpleVersion(1,1);
+                Boole StatusCodeTestFirst = ResponseTestFirst.GetStatusCode() == 200;
+                Boole StatusDescriptionTestFirst = ResponseTestFirst.GetResponseDescription() == "OK";
+                Boole DateTestFirst = ResponseTestFirst.GetDateHeader() == "Sun, 24 Jan 2016 4:15 GMT";
+                Boole ServerTestFirst = ResponseTestFirst.GetServerHeader() == "Server";
+                Boole BodyTestFirst = ResponseTestFirst.GetBody() == "YES.  THIS IS SERVER.";
+
+                TEST(VersionTestFirst && StatusCodeTestFirst && StatusDescriptionTestFirst && DateTestFirst && ServerTestFirst && BodyTestFirst,"HTTPResponse_Decompose_First");
+                TEST(ResponseTestFirst.Compose() == SourceStringFirst,"HTTPResponse_Compose_First");
+
+                String SourceStringSecond( "HTTP/1.0 404 Not Found\r\n"
+                                           "Date: Fri, 1 Jan 2010 22:00 GMT\r\n"
+                                           "Allow: POST\r\n"
+                                           "Content-Length: 33\r\n"
+                                           "\r\n"
+                                           "Specified Resource doesn't exist." );
+                Network::HTTPResponse ResponseTestSecond(SourceStringSecond);
+
+                Boole VersionTestSecond = ResponseTestSecond.GetHTTPVersion() == SimpleVersion(1,0);
+                Boole StatusCodeTestSecond = ResponseTestSecond.GetStatusCode() == 404;
+                Boole StatusDescriptionTestSecond = ResponseTestSecond.GetResponseDescription() == "Not Found";
+                Boole DateTestSecond = ResponseTestSecond.GetDateHeader() == "Fri, 1 Jan 2010 22:00 GMT";
+                Boole AllowTestSecond = ResponseTestSecond.GetAllowHeader() == "POST";
+                Boole BodyTestSecond = ResponseTestSecond.GetBody() == "Specified Resource doesn't exist.";
+
+                TEST(VersionTestSecond && StatusCodeTestSecond && StatusDescriptionTestSecond && DateTestSecond && AllowTestSecond && BodyTestSecond,"HTTPResponse_Decompose_Second");
+                TEST(ResponseTestSecond.Compose() == SourceStringSecond,"HTTPResponse_Compose_Second");
             }//Response
         }//HTTP
     }

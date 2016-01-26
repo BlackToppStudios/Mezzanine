@@ -86,8 +86,6 @@ namespace Mezzanine
             HeaderTemp.clear();
             this->GetMessageComponent(CurrIt,EndIt,HeaderTemp);
             this->ParseHTTPVersion(HeaderTemp);
-            // Handle extra trash
-            //this->AdvanceToNewline(CurrIt,EndIt);
             return true;
         }
 
@@ -148,9 +146,9 @@ namespace Mezzanine
             RequestStream << HTTPRequest::ConvertRequestMethod( this->RequestMethod ) << " " << this->RequestURI.ConvertToString() << " ";
             RequestStream << "HTTP/" << this->MessageVersion.Major << "." << this->MessageVersion.Minor << "\r\n";
             // Fields
-            for( NameValuePairMap::const_iterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
+            for( HeaderFieldContainer::const_iterator FieldIt = this->MessageFields.begin() ; FieldIt != this->MessageFields.end() ; ++FieldIt )
             {
-                RequestStream << (*FieldIt).first << ": " << (*FieldIt).second << "\r\n";
+                RequestStream << (*FieldIt).HeaderName << ": " << (*FieldIt).HeaderValue << "\r\n";
             }
             RequestStream << "\r\n";
             // Body
@@ -172,6 +170,10 @@ namespace Mezzanine
                     return false;
                 }
                 this->MessageBody.clear();
+                String Length = this->GetContentLengthHeader();
+                if( !Length.empty() ) {
+                    this->MessageBody.reserve(StringTools::ConvertToWhole(Length));
+                }
                 this->MessageBody.assign(CurrIt,EndIt);
 
                 return true;
