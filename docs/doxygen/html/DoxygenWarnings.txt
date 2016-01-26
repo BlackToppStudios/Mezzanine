@@ -1,3 +1,4 @@
+error: the type 'contact_us' is not supported for the entry tag within a navindex! Check your layout file!
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/vertexnormalsmodifier.h:83: warning: Compound Mezzanine::Graphics::Procedural::VertexNormalsModifier is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textureatlas.h:70: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/assethandler.h:52: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
