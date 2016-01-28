@@ -54,6 +54,5 @@ var searchData=
   ['isound',['iSound',['../classMezzanine_1_1Audio_1_1iSound.html',1,'Mezzanine::Audio']]],
   ['istream',['IStream',['../classMezzanine_1_1Resource_1_1IStream.html',1,'Mezzanine::Resource']]],
   ['istreambase',['iStreamBase',['../classMezzanine_1_1Resource_1_1iStreamBase.html',1,'Mezzanine::Resource']]],
-  ['iterator',['iterator',['../classMezzanine_1_1Node_1_1iterator.html',1,'Mezzanine::Node']]],
   ['iworkunit',['iWorkUnit',['../classMezzanine_1_1Threading_1_1iWorkUnit.html',1,'Mezzanine::Threading']]]
 ];

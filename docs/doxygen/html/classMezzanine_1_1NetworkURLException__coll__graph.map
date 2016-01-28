@@ -1,7 +1,6 @@
 <map id="Mezzanine::NetworkURLException" name="Mezzanine::NetworkURLException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail. " alt="" coords="75,229,275,256"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="93,155,258,181"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="5,80,156,107"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="123,5,227,32"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="181,80,362,107"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail. " alt="" coords="19,229,219,256"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="36,155,201,181"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="28,80,209,107"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="67,5,171,32"/>
 </map>

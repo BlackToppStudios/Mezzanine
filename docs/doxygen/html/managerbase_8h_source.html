@@ -132,131 +132,129 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">class </span>Entresol;<span class="comment"></span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    /// @class ManagerBase</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    /// @headerfile managerbase.h</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    /// @brief This is the base class from which all the Entresol and World Managers inherit.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    /// @details This creates a base set of functions that Managers are all</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    /// expected to implement.</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html">   59</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">        /// @enum ManagerTypeName</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">        /// @brief A listing of Manager TypeNames</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">        /// @details These will be returned by ManagerBase::GetType(), and will allow</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">        /// code using this to determine what type of Manager class they are working with</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">        /// and use this information to more safely cast to the correct manager if needed.</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">   67</a></span>&#160;<span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="comment">// Utility Types</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    /// @headerfile managerbase.h</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    /// @brief This is the base class from which all the Entresol and World Managers inherit.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    /// @details This creates a base set of functions that Managers are all</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    /// expected to implement.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html">   58</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">        /// @brief A listing of Manager TypeNames</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">        /// @details These will be returned by ManagerBase::GetType(), and will allow</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">        /// code using this to determine what type of Manager class they are working with</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">        /// and use this information to more safely cast to the correct manager if needed.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">   65</a></span>&#160;<span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="comment">// Utility Types</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            MT_Undefined              = 0,</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            MT_Undefined              = 0,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// Entresol Managers             // Namespaces</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="comment">// Entresol Managers             // Namespaces</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            MT_AudioManager           = 1,   <span class="comment">// Audio</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            MT_AnimationManager       = 2,   <span class="comment">// Graphics</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            MT_CollisionShapeManager  = 3,   <span class="comment">// Physics</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            MT_CompositorManager      = 4,   <span class="comment">// Graphics</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            MT_GraphicsManager        = 5,   <span class="comment">// Graphics</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            MT_EventManager           = 6,   <span class="comment">// Mezzanine</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            MT_InputManager           = 7,   <span class="comment">// Input</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            MT_LogManager             = 8,   <span class="comment">// Mezzanine</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            MT_MaterialManager        = 9,   <span class="comment">// Graphics</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            MT_MeshManager            = 10,  <span class="comment">// Graphics</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            MT_NetworkManager         = 11,  <span class="comment">// Network</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            MT_ResourceManager        = 12,  <span class="comment">// Resource</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            MT_ScriptingManager       = 13,  <span class="comment">// Scripting</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            MT_TextureManager         = 14,  <span class="comment">// Graphics</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            MT_UIManager              = 15,  <span class="comment">// UI</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            MT_AudioManager           = 1,   <span class="comment">// Audio</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            MT_AnimationManager       = 2,   <span class="comment">// Graphics</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            MT_CollisionShapeManager  = 3,   <span class="comment">// Physics</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            MT_CompositorManager      = 4,   <span class="comment">// Graphics</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            MT_GraphicsManager        = 5,   <span class="comment">// Graphics</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            MT_EventManager           = 6,   <span class="comment">// Mezzanine</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            MT_InputManager           = 7,   <span class="comment">// Input</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            MT_LogManager             = 8,   <span class="comment">// Mezzanine</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            MT_MaterialManager        = 9,   <span class="comment">// Graphics</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            MT_MeshManager            = 10,  <span class="comment">// Graphics</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            MT_NetworkManager         = 11,  <span class="comment">// Network</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            MT_ResourceManager        = 12,  <span class="comment">// Resource</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            MT_ScriptingManager       = 13,  <span class="comment">// Scripting</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            MT_TextureManager         = 14,  <span class="comment">// Graphics</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            MT_UIManager              = 15,  <span class="comment">// UI</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="comment">// World Managers                // Namespaces</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="comment">// World Managers                // Namespaces</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            MT_ActorManager           = 101, <span class="comment">// Mezzanine</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            MT_AreaEffectManager      = 102, <span class="comment">// Mezzanine</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            MT_DebrisManager          = 103, <span class="comment">// Mezzanine</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            MT_PagingManager          = 104, <span class="comment">// Paging</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            MT_PhysicsManager         = 105, <span class="comment">// Physics</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            MT_SceneManager           = 106, <span class="comment">// Graphics</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            MT_SoundScapeManager      = 107, <span class="comment">// Audio</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            MT_TerrainManager         = 108, <span class="comment">// Mezzanine</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            MT_VehicleManager         = 109, <span class="comment">// Mezzanine</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            MT_ActorManager           = 101, <span class="comment">// Mezzanine</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            MT_AreaEffectManager      = 102, <span class="comment">// Mezzanine</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            MT_DebrisManager          = 103, <span class="comment">// Mezzanine</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            MT_PagingManager          = 104, <span class="comment">// Paging</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            MT_PhysicsManager         = 105, <span class="comment">// Physics</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            MT_SceneManager           = 106, <span class="comment">// Graphics</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            MT_SoundScapeManager      = 107, <span class="comment">// Audio</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            MT_TerrainManager         = 108, <span class="comment">// Mezzanine</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            MT_VehicleManager         = 109, <span class="comment">// Mezzanine</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="comment">// Other Managers                // Namespaces</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="comment">// Other Managers                // Namespaces</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">  105</a></span>&#160;            MT_UserCreated            = 512  <span class="comment">///&lt; This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"></span>        };</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">        /// @internal</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">        /// @brief The actual pointer to the Entresol core class.</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html#ae619b4bd732d7345e0ef59ecde6d03cc">  110</a></span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1Entresol.html">Entresol</a>* <a class="code" href="classMezzanine_1_1ManagerBase.html#ae619b4bd732d7345e0ef59ecde6d03cc">TheEntresol</a>;<span class="comment"></span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">        /// @internal</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">        /// @brief Simple Boole indicating whether or not this manager has been initialized.</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html#a74e19db0ea2164127295a95f30e2e105">  113</a></span>&#160;<span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> <a class="code" href="classMezzanine_1_1ManagerBase.html#a74e19db0ea2164127295a95f30e2e105">Initialized</a>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">        /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a>();<span class="comment"></span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">        /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a>();</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"></span>        <span class="comment">// Initialization Methods</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">        /// @brief Configures this manager for use prior to entering the main loop.</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize() = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">        /// @brief Removes this manager from any necessary configuration so it can be safely disposed of.</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> Deinitialize() = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">        /// @brief Gets whether or not this manager has been initialized.</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">        /// @return Returns true if this manager has been initialized, false otherwise.</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> IsInitialized() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment"></span>        <span class="comment">// Type Identifier Methods</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">        /// @brief This returns the type of this manager.</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">        /// @details This is intended to make using and casting from Manager base easier. With this is is possible to cast from</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">        /// ManagerBase to the correct Manager Type.</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">        /// @return This returns a ManagerTypeName to identify what this can be safely cast to.</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> GetInterfaceType() <span class="keyword">const</span> = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">        /// @brief This Allows any manager name to be sent to a stream. Primarily used for logging</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">        /// @return This returns a String that contains the name.</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> GetImplementationTypeName() <span class="keyword">const</span> = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">        /// @brief Gets a string of the interface type of this manager.</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">        /// @return Returns a string containing the interface name of this manager.</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> GetInterfaceTypeAsString() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">        /// @brief Gets the string form of the type of manager.</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">        /// @return Returns a string containing the name of the requested type of manager.</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment"></span>        <span class="keyword">static</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> GetTypeAsString(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&amp; <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>);<span class="comment"></span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">        /// @brief Gets the type of manager requested from a string.</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">        /// @remarks This function does not try to compare the full string for the sake of speed.  Instead it&#39;ll check the first couple letters for a potential match.</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">        /// This function is also not case sensative.  Providing the string &quot;ac&quot; will return an ActorManager value, for example.  Additionally if it does not find a</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">        /// match it will throw an exception.  So be careful about what you put into this.</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">        /// @return Returns a ManagerTypeName cooresponding to the string provided.</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment"></span>        <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> GetTypeFromString(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&amp; ManagerName);</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    };<span class="comment">//ManagerBase</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">  103</a></span>&#160;            MT_UserCreated            = 512  <span class="comment">///&lt; This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span>        };</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">protected</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">        /// @internal</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">        /// @brief The actual pointer to the Entresol core class.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html#ae619b4bd732d7345e0ef59ecde6d03cc">  108</a></span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1Entresol.html">Entresol</a>* <a class="code" href="classMezzanine_1_1ManagerBase.html#ae619b4bd732d7345e0ef59ecde6d03cc">TheEntresol</a>;<span class="comment"></span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">        /// @internal</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">        /// @brief Simple Boole indicating whether or not this manager has been initialized.</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ManagerBase.html#a74e19db0ea2164127295a95f30e2e105">  111</a></span>&#160;<span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> <a class="code" href="classMezzanine_1_1ManagerBase.html#a74e19db0ea2164127295a95f30e2e105">Initialized</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">        /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">        /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a>();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span>        <span class="comment">// Initialization Methods</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">        /// @brief Configures this manager for use prior to entering the main loop.</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize() = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">        /// @brief Removes this manager from any necessary configuration so it can be safely disposed of.</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> Deinitialize() = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">        /// @brief Gets whether or not this manager has been initialized.</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">        /// @return Returns true if this manager has been initialized, false otherwise.</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"></span>        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> IsInitialized() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"></span>        <span class="comment">// Type Identifier Methods</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">        /// @brief This returns the type of this manager.</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">        /// @details This is intended to make using and casting from Manager base easier. With this is is possible to cast from</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">        /// ManagerBase to the correct Manager Type.</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">        /// @return This returns a ManagerTypeName to identify what this can be safely cast to.</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> GetInterfaceType() <span class="keyword">const</span> = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">        /// @brief This Allows any manager name to be sent to a stream. Primarily used for logging</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">        /// @return This returns a String that contains the name.</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> GetImplementationTypeName() <span class="keyword">const</span> = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">        /// @brief Gets a string of the interface type of this manager.</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">        /// @return Returns a string containing the interface name of this manager.</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> GetInterfaceTypeAsString() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">        /// @brief Gets the string form of the type of manager.</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">        /// @return Returns a string containing the name of the requested type of manager.</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"></span>        <span class="keyword">static</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> GetTypeAsString(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&amp; <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>);<span class="comment"></span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">        /// @brief Gets the type of manager requested from a string.</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">        /// @remarks This function does not try to compare the full string for the sake of speed.  Instead it&#39;ll check the first couple letters for a potential match.</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">        /// This function is also not case sensative.  Providing the string &quot;ac&quot; will return an ActorManager value, for example.  Additionally if it does not find a</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">        /// match it will throw an exception.  So be careful about what you put into this.</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">        /// @return Returns a ManagerTypeName cooresponding to the string provided.</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment"></span>        <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> GetTypeFromString(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&amp; ManagerName);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    };<span class="comment">//ManagerBase</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="namespaceMezzanine_html_a7d765759d1196aae20197055f00498f8"><div class="ttname"><a href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00181">datatypes.h:181</a></div></div>
 <div class="ttc" id="crossplatformexport_8h_html"><div class="ttname"><a href="crossplatformexport_8h.html">crossplatformexport.h</a></div><div class="ttdoc">This file is used on some platforms to determine what data should be read and written to and from a s...</div></div>
-<div class="ttc" id="classMezzanine_1_1ManagerBase_html_a9a6f3e238f66cbc68dfec11e4160aa6c"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">Mezzanine::ManagerBase::ManagerType</a></div><div class="ttdeci">ManagerType</div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00067">managerbase.h:67</a></div></div>
+<div class="ttc" id="classMezzanine_1_1ManagerBase_html_a9a6f3e238f66cbc68dfec11e4160aa6c"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">Mezzanine::ManagerBase::ManagerType</a></div><div class="ttdeci">ManagerType</div><div class="ttdoc">A listing of Manager TypeNames. </div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00065">managerbase.h:65</a></div></div>
 <div class="ttc" id="datatypes_8h_html"><div class="ttname"><a href="datatypes_8h.html">datatypes.h</a></div><div class="ttdoc">All the definitions for datatypes as well as some basic conversion functions are defined here...</div></div>
 <div class="ttc" id="namespaceMezzanine_html_acf9fcc130e6ebf08e3d8491aebcf1c86"><div class="ttname"><a href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a></div><div class="ttdeci">std::string String</div><div class="ttdoc">A datatype used to a series of characters. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00163">datatypes.h:163</a></div></div>
-<div class="ttc" id="classMezzanine_1_1ManagerBase_html_ae619b4bd732d7345e0ef59ecde6d03cc"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html#ae619b4bd732d7345e0ef59ecde6d03cc">Mezzanine::ManagerBase::TheEntresol</a></div><div class="ttdeci">Entresol * TheEntresol</div><div class="ttdoc">The actual pointer to the Entresol core class. </div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00110">managerbase.h:110</a></div></div>
+<div class="ttc" id="classMezzanine_1_1ManagerBase_html_ae619b4bd732d7345e0ef59ecde6d03cc"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html#ae619b4bd732d7345e0ef59ecde6d03cc">Mezzanine::ManagerBase::TheEntresol</a></div><div class="ttdeci">Entresol * TheEntresol</div><div class="ttdoc">The actual pointer to the Entresol core class. </div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00108">managerbase.h:108</a></div></div>
 <div class="ttc" id="classMezzanine_1_1Entresol_html"><div class="ttname"><a href="classMezzanine_1_1Entresol.html">Mezzanine::Entresol</a></div><div class="ttdoc">This is the main entry point for the entire library. </div><div class="ttdef"><b>Definition:</b> <a href="entresol_8h_source.html#l00324">entresol.h:324</a></div></div>
 <div class="ttc" id="crossplatformexport_8h_html_a455f91aab9e6a1cf4286f5cdfa74c7bc"><div class="ttname"><a href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a></div><div class="ttdeci">#define MEZZ_LIB</div><div class="ttdoc">Some platforms require special decorations to denote what is exported/imported in a share library...</div><div class="ttdef"><b>Definition:</b> <a href="crossplatformexport_8h_source.html#l00124">crossplatformexport.h:124</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
-<div class="ttc" id="classMezzanine_1_1ManagerBase_html"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></div><div class="ttdoc">This is the base class from which all the Entresol and World Managers inherit. </div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00059">managerbase.h:59</a></div></div>
-<div class="ttc" id="classMezzanine_1_1ManagerBase_html_a74e19db0ea2164127295a95f30e2e105"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html#a74e19db0ea2164127295a95f30e2e105">Mezzanine::ManagerBase::Initialized</a></div><div class="ttdeci">Boole Initialized</div><div class="ttdoc">Simple Boole indicating whether or not this manager has been initialized. </div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00113">managerbase.h:113</a></div></div>
+<div class="ttc" id="classMezzanine_1_1ManagerBase_html"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html">Mezzanine::ManagerBase</a></div><div class="ttdoc">This is the base class from which all the Entresol and World Managers inherit. </div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00058">managerbase.h:58</a></div></div>
+<div class="ttc" id="classMezzanine_1_1ManagerBase_html_a74e19db0ea2164127295a95f30e2e105"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html#a74e19db0ea2164127295a95f30e2e105">Mezzanine::ManagerBase::Initialized</a></div><div class="ttdeci">Boole Initialized</div><div class="ttdoc">Simple Boole indicating whether or not this manager has been initialized. </div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00111">managerbase.h:111</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Jan 25 2016 23:59:28 for BlackTopp Studios inc by
+            Generated on Wed Jan 27 2016 18:31:28 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

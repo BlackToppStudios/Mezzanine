@@ -1,7 +1,6 @@
 <map id="Mezzanine::ParametersException" name="Mezzanine::ParametersException">
-<area shape="rect" id="node5" href="$classMezzanine_1_1ParametersCastException.html" title="Thrown when a pointer parameter is checked at runtime and cannot be cast as expected. " alt="" coords="5,229,193,271"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1ParametersRangeException.html" title="Thrown when a passed parameter is checked at runtime and not in the expected range. " alt="" coords="217,229,416,271"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="37,80,188,107"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ParametersCastException.html" title="Thrown when a pointer parameter is checked at runtime and cannot be cast as expected. " alt="" coords="5,229,193,271"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1ParametersRangeException.html" title="Thrown when a passed parameter is checked at runtime and not in the expected range. " alt="" coords="217,229,416,271"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="117,80,298,107"/>
 <area shape="rect" id="node3" title="STL class. " alt="" coords="155,5,259,32"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="213,80,394,107"/>
 </map>

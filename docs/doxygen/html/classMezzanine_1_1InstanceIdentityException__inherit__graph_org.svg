@@ -15,75 +15,60 @@
 <text text-anchor="start" x="294" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::InstanceIdentity</text>
 <text text-anchor="middle" x="356" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classMezzanine_1_1InstanceIdentityDuplicateException.html" target="_top" xlink:title="Thrown when duplicates of teh same identity string exist. ">
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="classMezzanine_1_1InstanceIdentityDuplicateException.html" target="_top" xlink:title="Thrown when duplicates of teh same identity string exist. ">
 <polygon fill="white" stroke="black" points="462,-98.5 462,-128.5 602,-128.5 602,-98.5 462,-98.5"/>
 <text text-anchor="start" x="470" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::InstanceIdentity</text>
 <text text-anchor="middle" x="532" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">DuplicateException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge5" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M435.782,-79.9626C457.173,-85.8465 479.234,-92.4672 496.727,-98.3504"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="436.587,-76.5545 426.019,-77.3163 434.755,-83.3107 436.587,-76.5545"/>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M420.284,-82.3212C439.07,-87.6118 459.455,-93.3522 477.552,-98.4484"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="421.2,-78.9432 410.626,-79.6014 419.302,-85.6811 421.2,-78.9432"/>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge6" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M400.583,-82.7125C419.115,-88.6864 441.181,-95.1281 461.844,-100.647"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="401.555,-79.3479 390.962,-79.545 399.366,-85.9968 401.555,-79.3479"/>
-</g>
-<!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classMezzanine_1_1InstanceIdentityInvalidException.html" target="_top" xlink:title="Thrown when the identity string wasn&#39;t valid at all. ">
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="classMezzanine_1_1InstanceIdentityInvalidException.html" target="_top" xlink:title="Thrown when the identity string wasn&#39;t valid at all. ">
 <polygon fill="white" stroke="black" points="462,-49.5 462,-79.5 602,-79.5 602,-49.5 462,-49.5"/>
 <text text-anchor="start" x="470" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::InstanceIdentity</text>
 <text text-anchor="middle" x="532" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">InvalidException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge7" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M436.035,-57.7752C444.625,-57.7207 453.319,-57.7546 461.779,-57.8769"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="435.982,-54.2755 426.019,-57.8798 436.055,-61.2751 435.982,-54.2755"/>
+<!-- Node1&#45;&gt;Node5 -->
+<g id="edge4" class="edge"><title>Node1&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M436.035,-64.5C444.625,-64.5 453.319,-64.5 461.779,-64.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="436.019,-61.0001 426.019,-64.5 436.019,-68.0001 436.019,-61.0001"/>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge8" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M436.035,-71.2248C444.625,-71.2793 453.319,-71.2454 461.779,-71.1231"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="436.055,-67.7249 426.019,-71.1202 435.982,-74.7245 436.055,-67.7249"/>
-</g>
-<!-- Node7 -->
-<g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classMezzanine_1_1InstanceIdentityNotFoundException.html" target="_top" xlink:title="Thrown when the requested identity could not be found. ">
+<!-- Node6 -->
+<g id="node6" class="node"><title>Node6</title>
+<g id="a_node6"><a xlink:href="classMezzanine_1_1InstanceIdentityNotFoundException.html" target="_top" xlink:title="Thrown when the requested identity could not be found. ">
 <polygon fill="white" stroke="black" points="462,-0.5 462,-30.5 602,-30.5 602,-0.5 462,-0.5"/>
 <text text-anchor="start" x="470" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::InstanceIdentity</text>
 <text text-anchor="middle" x="532" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">NotFoundException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node7 -->
-<g id="edge9" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M400.583,-46.2875C419.115,-40.3136 441.181,-33.8719 461.844,-28.3528"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="399.366,-43.0032 390.962,-49.455 401.555,-49.6521 399.366,-43.0032"/>
-</g>
-<!-- Node1&#45;&gt;Node7 -->
-<g id="edge10" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M435.782,-49.0374C457.173,-43.1535 479.234,-36.5328 496.727,-30.6496"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="434.755,-45.6893 426.019,-51.6837 436.587,-52.4455 434.755,-45.6893"/>
+<!-- Node1&#45;&gt;Node6 -->
+<g id="edge5" class="edge"><title>Node1&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M420.284,-46.6788C439.07,-41.3882 459.455,-35.6478 477.552,-30.5516"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="419.302,-43.3189 410.626,-49.3986 421.2,-50.0568 419.302,-43.3189"/>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">
-<polygon fill="white" stroke="black" points="125.5,-74 125.5,-93 238.5,-93 238.5,-74 125.5,-74"/>
-<text text-anchor="middle" x="182" y="-81" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Exception</text>
+<g id="a_node2"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
+<polygon fill="white" stroke="black" points="114,-55 114,-74 250,-74 250,-55 114,-55"/>
+<text text-anchor="middle" x="182" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M248.871,-76.2235C260.994,-74.8844 273.683,-73.4827 285.898,-72.1334"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="248.399,-72.7543 238.843,-77.3312 249.167,-79.712 248.399,-72.7543"/>
+<path fill="none" stroke="midnightblue" d="M260.62,-64.5C268.99,-64.5 277.467,-64.5 285.729,-64.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="260.485,-61.0001 250.485,-64.5 260.485,-68.0001 260.485,-61.0001"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
@@ -95,26 +80,8 @@
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M88.3443,-71.0145C100.257,-72.6198 113.109,-74.3516 125.338,-75.9994"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="88.5345,-67.5086 78.1566,-69.6417 87.5996,-74.4459 88.5345,-67.5086"/>
-</g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
-<polygon fill="white" stroke="black" points="114,-36 114,-55 250,-55 250,-36 114,-36"/>
-<text text-anchor="middle" x="182" y="-43" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
-</a>
-</g>
-</g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge4" class="edge"><title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M88.2794,-57.9943C96.4907,-56.8878 105.15,-55.7209 113.745,-54.5628"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="87.5996,-54.5541 78.1566,-59.3583 88.5345,-61.4914 87.5996,-54.5541"/>
-</g>
-<!-- Node4&#45;&gt;Node1 -->
-<g id="edge3" class="edge"><title>Node4&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M260.62,-54.0743C268.99,-54.9989 277.467,-55.9353 285.729,-56.848"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="260.809,-50.574 250.485,-52.9548 260.041,-57.5317 260.809,-50.574"/>
+<path fill="none" stroke="midnightblue" d="M88.2794,-64.5C96.4907,-64.5 105.15,-64.5 113.745,-64.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="88.1567,-61.0001 78.1566,-64.5 88.1566,-68.0001 88.1567,-61.0001"/>
 </g>
 </g>
 </svg>

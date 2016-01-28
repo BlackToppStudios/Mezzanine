@@ -1,5 +1,4 @@
 <map id="Mezzanine::ArithmeticException" name="Mezzanine::ArithmeticException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="5,80,156,107"/>
-<area shape="rect" id="node3" title="STL class. " alt="" coords="123,5,227,32"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="181,80,362,107"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="20,80,201,107"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="59,5,163,32"/>
 </map>

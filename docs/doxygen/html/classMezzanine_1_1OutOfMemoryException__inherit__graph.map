@@ -1,6 +1,5 @@
 <map id="Mezzanine::OutOfMemoryException" name="Mezzanine::OutOfMemoryException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1MemoryManagementException.html" title="Thrown when an unknown memory management exception occurs. " alt="" coords="68,155,283,196"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="5,80,156,107"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="123,5,227,32"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="181,80,362,107"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1MemoryManagementException.html" title="Thrown when an unknown memory management exception occurs. " alt="" coords="15,155,229,196"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="31,80,213,107"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="70,5,174,32"/>
 </map>

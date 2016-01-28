@@ -1,5 +1,4 @@
 <map id="Mezzanine::ParametersException" name="Mezzanine::ParametersException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="5,80,156,107"/>
-<area shape="rect" id="node3" title="STL class. " alt="" coords="123,5,227,32"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="181,80,362,107"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="24,80,205,107"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="63,5,167,32"/>
 </map>

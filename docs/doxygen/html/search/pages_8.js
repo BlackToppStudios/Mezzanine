@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['technical_20document_20index',['Technical Document Index',['../tech_doc_index.html',1,'']]],
-  ['todo_20list',['Todo List',['../todo.html',1,'']]]
+  ['windows_20development_20tools',['Windows Development Tools',['../dev_tools_windows.html',1,'']]]
 ];

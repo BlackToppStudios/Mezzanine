@@ -1,7 +1,6 @@
 <map id="Mezzanine::MemoryManagementException" name="Mezzanine::MemoryManagementException">
-<area shape="rect" id="node5" href="$classMezzanine_1_1MemoryOutOfBoundsException.html" title="Thrown when attempted to access something that really should note be accessed. " alt="" coords="5,244,224,285"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1OutOfMemoryException.html" title="Thrown when A memory allocation was attempted and failed. " alt="" coords="249,251,482,278"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="70,80,221,107"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1MemoryOutOfBoundsException.html" title="Thrown when attempted to access something that really should note be accessed. " alt="" coords="5,244,224,285"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1OutOfMemoryException.html" title="Thrown when A memory allocation was attempted and failed. " alt="" coords="249,251,482,278"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="149,80,331,107"/>
 <area shape="rect" id="node3" title="STL class. " alt="" coords="188,5,292,32"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="245,80,427,107"/>
 </map>

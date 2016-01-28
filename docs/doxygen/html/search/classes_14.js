@@ -44,7 +44,5 @@ var searchData=
   ['triangle3d',['Triangle3D',['../classMezzanine_1_1Triangle3D.html',1,'Mezzanine']]],
   ['trianglebuffer',['TriangleBuffer',['../classMezzanine_1_1Graphics_1_1Procedural_1_1TriangleBuffer.html',1,'Mezzanine::Graphics::Procedural']]],
   ['triangulator',['Triangulator',['../classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html',1,'Mezzanine::Graphics::Procedural']]],
-  ['trie',['Trie',['../classMezzanine_1_1Trie.html',1,'Mezzanine']]],
-  ['trie_3c_20input_3a_3ametacode_2c_20int32_20_3e',['Trie&lt; Input::MetaCode, Int32 &gt;',['../classMezzanine_1_1Trie.html',1,'Mezzanine']]],
   ['tubegenerator',['TubeGenerator',['../classMezzanine_1_1Graphics_1_1Procedural_1_1TubeGenerator.html',1,'Mezzanine::Graphics::Procedural']]]
 ];

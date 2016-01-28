@@ -5,7 +5,7 @@ var searchData=
   ['datastream',['DataStream',['../namespaceMezzanine_1_1Resource.html#a0ab367bb733ee143adc127085ab0da6a',1,'Mezzanine::Resource']]],
   ['datastreamcontainer',['DataStreamContainer',['../classMezzanine_1_1Resource_1_1ResourceManager.html#abfafe948e27fe87a36f95fdb940226bf',1,'Mezzanine::Resource::ResourceManager']]],
   ['datastreamiterator',['DataStreamIterator',['../classMezzanine_1_1Resource_1_1ResourceManager.html#a1f5f7f269548bc0206c67a09199962fa',1,'Mezzanine::Resource::ResourceManager']]],
-  ['datastreamptr',['DataStreamPtr',['../namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52',1,'Mezzanine::Resource']]],
+  ['datastreamptr',['DataStreamPtr',['../namespaceMezzanine_1_1Resource.html#a279346ac682291422761811eeadbfe2e',1,'Mezzanine::Resource']]],
   ['deallocationfunction',['DeAllocationFunction',['../namespaceMezzanine_1_1XML.html#aace53499991b285a1430b371287f4bc1',1,'Mezzanine::XML']]],
   ['debriscontainer',['DebrisContainer',['../classMezzanine_1_1DebrisManager.html#a21a72ec420f5653a447ca7fc0a89ae5a',1,'Mezzanine::DebrisManager']]],
   ['debrisiterator',['DebrisIterator',['../classMezzanine_1_1DebrisManager.html#a41eaec563d25e739838823f1c14e532b',1,'Mezzanine::DebrisManager']]],

@@ -113,7 +113,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a033db47748906e92f027bc74cf5136bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a033db47748906e92f027bc74cf5136bb"></a>
-typedef <a class="el" href="classMezzanine_1_1Trie.html">Mezzanine::Trie</a>&lt; char, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#a033db47748906e92f027bc74cf5136bb">CommandTrie</a></td></tr>
+typedef Mezzanine::Trie&lt; char, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#a033db47748906e92f027bc74cf5136bb">CommandTrie</a></td></tr>
 <tr class="memdesc:a033db47748906e92f027bc74cf5136bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">A type for efficiently storing the kinds of Lexigraphical data aboutthe <a class="el" href="namespaceMezzanine_1_1Scripting_1_1Lua.html" title="This contains the Lua51 and Lua52 resources. ">Lua</a> runtime. <br /></td></tr>
 <tr class="separator:a033db47748906e92f027bc74cf5136bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5f659bdebb9db9021605a6e82685cd0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0">Lua51Libraries</a> { <br />
@@ -185,6 +185,7 @@ typedef <a class="el" href="classMezzanine_1_1Trie.html">Mezzanine::Trie</a>&lt;
 <a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br />
  }</td></tr>
+<tr class="memdesc:a9a6f3e238f66cbc68dfec11e4160aa6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A listing of Manager TypeNames.  <a href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">More...</a><br /></td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -318,7 +319,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:a9df9b4565bd3b4f265ea83d224bd29c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable <a class="el" href="namespaceMezzanine_1_1Scripting_1_1Lua.html" title="This contains the Lua51 and Lua52 resources. ">Lua</a> table manipulation functionality.  <a href="#a9df9b4565bd3b4f265ea83d224bd29c1">More...</a><br /></td></tr>
 <tr class="separator:a9df9b4565bd3b4f265ea83d224bd29c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb17023a3b8fcea0161f5567fc053b9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#abb17023a3b8fcea0161f5567fc053b9c">PopulateTabCompletionTrie</a> (<a class="el" href="classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#a033db47748906e92f027bc74cf5136bb">CommandTrie</a> &amp;CommandGroup, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;TableName=&quot;&quot;, std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &gt; AlreadyDidTables=std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &gt;())</td></tr>
-<tr class="memdesc:abb17023a3b8fcea0161f5567fc053b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate a <a class="el" href="classMezzanine_1_1Trie.html" title="Trie main class. ">Trie</a> with all the members and types in the current lua runtime.  <a href="#abb17023a3b8fcea0161f5567fc053b9c">More...</a><br /></td></tr>
+<tr class="memdesc:abb17023a3b8fcea0161f5567fc053b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate a Trie with all the members and types in the current lua runtime.  <a href="#abb17023a3b8fcea0161f5567fc053b9c">More...</a><br /></td></tr>
 <tr class="separator:abb17023a3b8fcea0161f5567fc053b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1Scripting_1_1iScriptCompilationManager"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1Scripting_1_1iScriptCompilationManager')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilationManager.html">Mezzanine::Scripting::iScriptCompilationManager</a></td></tr>
 <tr class="memitem:aaef71aa805e0c69e031370fd9ed992eb inherit pub_methods_classMezzanine_1_1Scripting_1_1iScriptCompilationManager"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaef71aa805e0c69e031370fd9ed992eb"></a>
@@ -953,7 +954,7 @@ To ensure Tab completion works this also creates an alias/reference in the globa
 <p>Checks the internal <a class="el" href="namespaceMezzanine_1_1Scripting_1_1Lua.html" title="This contains the Lua51 and Lua52 resources. ">Lua</a> to see if memory was correctly allocated during its creation. </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">If</td><td><a class="el" href="namespaceMezzanine_1_1Scripting_1_1Lua.html" title="This contains the Lua51 and Lua52 resources. ">Lua</a> could not get enouugh memory this throws an <a class="el" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a80e2fc80bf2a8558a4a42f7bed4db0b1" title="When used a instance of OutOfMemoryException is thrown. Thrown when A memory allocation was attempted...">Exception::MM_OUT_OF_MEMORY_EXCEPTION</a> </td></tr>
+    <tr><td class="paramname">If</td><td><a class="el" href="namespaceMezzanine_1_1Scripting_1_1Lua.html" title="This contains the Lua51 and Lua52 resources. ">Lua</a> could not get enouugh memory this throws an Exception::MM_OUT_OF_MEMORY_EXCEPTION </td></tr>
   </table>
   </dd>
 </dl>
@@ -1216,7 +1217,7 @@ To ensure Tab completion works this also creates an alias/reference in the globa
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000118">Todo:</a></b></dt><dd>fill in the kind of exception thrown. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000108">Todo:</a></b></dt><dd>fill in the kind of exception thrown. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.html#ab973d282891d8f046cf979c5b8661044">Mezzanine::Scripting::iScriptingManager</a>.</p>
 
@@ -2330,12 +2331,12 @@ A String containing "Lua51ScriptingEngine". </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Populate a <a class="el" href="classMezzanine_1_1Trie.html" title="Trie main class. ">Trie</a> with all the members and types in the current lua runtime. </p>
+<p>Populate a Trie with all the members and types in the current lua runtime. </p>
 <dl class="section return"><dt>Returns</dt><dd>The return value is provided in the CommandGroup argument. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CommandGroup</td><td>The <a class="el" href="classMezzanine_1_1Trie.html" title="Trie main class. ">Trie</a> to be populated. </td></tr>
-    <tr><td class="paramname">TableName</td><td>the name of the table to iterate over and populate the <a class="el" href="classMezzanine_1_1Trie.html" title="Trie main class. ">Trie</a> with. </td></tr>
+    <tr><td class="paramname">CommandGroup</td><td>The Trie to be populated. </td></tr>
+    <tr><td class="paramname">TableName</td><td>the name of the table to iterate over and populate the Trie with. </td></tr>
     <tr><td class="paramname">AlreadyDidTables</td><td>To break cycles a list tables to skip descending into can be provided. </td></tr>
   </table>
   </dd>
@@ -2571,7 +2572,7 @@ A String containing "Lua51ScriptingEngine". </dd></dl>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Jan 25 2016 23:59:38 for BlackTopp Studios inc by
+            Generated on Wed Jan 27 2016 18:31:37 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

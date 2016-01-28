@@ -68,7 +68,6 @@ var searchData=
   ['trianglebuffer',['TriangleBuffer',['../classMezzanine_1_1Graphics_1_1Procedural_1_1TriangleBuffer.html#a63dba9d98ea4a91596a65431d7b2c2a4',1,'Mezzanine::Graphics::Procedural::TriangleBuffer']]],
   ['triangulate',['Triangulate',['../classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a3b98950ea6908758d078f81d3dcf1dae',1,'Mezzanine::Graphics::Procedural::Triangulator']]],
   ['triangulator',['Triangulator',['../classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a84b2668d073ea40dab84d39ebc6c7f39',1,'Mezzanine::Graphics::Procedural::Triangulator']]],
-  ['trie',['Trie',['../classMezzanine_1_1Trie.html#ad7376e936e82653cbab401ed7d687491',1,'Mezzanine::Trie']]],
   ['trim',['Trim',['../namespaceMezzanine_1_1StringTools.html#a5478653ca578cc7c24a4b2164f5d8d43',1,'Mezzanine::StringTools']]],
   ['trylock',['TryLock',['../classMezzanine_1_1Threading_1_1Mutex.html#a871a715362aac0fb6a582061f4c17b31',1,'Mezzanine::Threading::Mutex::TryLock()'],['../classMezzanine_1_1Threading_1_1SpinLock.html#a2659487f9df5247575ebe8400389829b',1,'Mezzanine::Threading::SpinLock::TryLock()']]],
   ['trylockforread',['TryLockForRead',['../classMezzanine_1_1Threading_1_1ReadWriteSpinLock.html#a058d9e5c16c663dabadfb94348b0b5ac',1,'Mezzanine::Threading::ReadWriteSpinLock']]],

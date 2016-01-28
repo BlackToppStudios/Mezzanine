@@ -15,55 +15,45 @@
 <text text-anchor="start" x="103.5" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::MemoryManagement</text>
 <text text-anchor="middle" x="176" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classMezzanine_1_1MemoryOutOfBoundsException.html" target="_top" xlink:title="Thrown when attempted to access something that really should note be accessed. ">
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="classMezzanine_1_1MemoryOutOfBoundsException.html" target="_top" xlink:title="Thrown when attempted to access something that really should note be accessed. ">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 164,-30.5 164,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::MemoryOutOfBounds</text>
 <text text-anchor="middle" x="82" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge5" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M141.148,-61.7337C125.8,-51.6755 108.656,-39.6847 96.682,-30.5765"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="139.625,-64.9158 149.925,-67.396 143.419,-59.0337 139.625,-64.9158"/>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M147.006,-61.4511C132.545,-51.4517 115.405,-39.5995 102.357,-30.5765"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="145.388,-64.5872 155.603,-67.396 149.369,-58.8296 145.388,-64.5872"/>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge6" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M152.907,-61.1677C139.284,-51.2283 122.132,-39.5144 108.032,-30.5765"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="151.169,-64.2369 161.282,-67.396 155.346,-58.6199 151.169,-64.2369"/>
-</g>
-<!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classMezzanine_1_1OutOfMemoryException.html" target="_top" xlink:title="Thrown when A memory allocation was attempted and failed. ">
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="classMezzanine_1_1OutOfMemoryException.html" target="_top" xlink:title="Thrown when A memory allocation was attempted and failed. ">
 <polygon fill="white" stroke="black" points="182.5,-6 182.5,-25 357.5,-25 357.5,-6 182.5,-6"/>
 <text text-anchor="middle" x="270" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::OutOfMemoryException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge7" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M198.904,-61.3056C215.621,-49.0999 237.723,-34.1772 252.964,-25.007"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="196.652,-58.6187 190.718,-67.396 200.83,-64.2348 196.652,-58.6187"/>
-</g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge8" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M210.687,-61.8417C229.344,-49.6218 250.695,-34.5155 262.2,-25.1945"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="208.582,-59.0346 202.075,-67.396 212.376,-64.9172 208.582,-59.0346"/>
+<!-- Node1&#45;&gt;Node5 -->
+<g id="edge4" class="edge"><title>Node1&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M204.719,-61.6409C222.459,-49.3742 244.314,-34.2613 257.698,-25.007"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="202.631,-58.8296 196.397,-67.396 206.612,-64.5872 202.631,-58.8296"/>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">
-<polygon fill="white" stroke="black" points="48.5,-134.5 48.5,-153.5 161.5,-153.5 161.5,-134.5 48.5,-134.5"/>
-<text text-anchor="middle" x="105" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Exception</text>
+<g id="a_node2"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
+<polygon fill="white" stroke="black" points="108,-134.5 108,-153.5 244,-153.5 244,-134.5 108,-134.5"/>
+<text text-anchor="middle" x="176" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M122.993,-127.921C134.141,-118.579 148.362,-106.662 159.267,-97.523"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="120.589,-125.369 115.173,-134.475 125.085,-130.735 120.589,-125.369"/>
+<path fill="none" stroke="midnightblue" d="M176,-124.235C176,-115.586 176,-105.497 176,-97.523"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="172.5,-124.475 176,-134.475 179.5,-124.475 172.5,-124.475"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
@@ -75,26 +65,8 @@
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M156.41,-184.101C143.632,-174.382 127.387,-162.027 116.615,-153.834"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="154.514,-187.056 164.593,-190.324 158.752,-181.484 154.514,-187.056"/>
-</g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
-<polygon fill="white" stroke="black" points="180,-134.5 180,-153.5 316,-153.5 316,-134.5 180,-134.5"/>
-<text text-anchor="middle" x="248" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
-</a>
-</g>
-</g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge4" class="edge"><title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M195.866,-184.101C208.823,-174.382 225.297,-162.027 236.221,-153.834"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="193.468,-181.524 187.568,-190.324 197.668,-187.124 193.468,-181.524"/>
-</g>
-<!-- Node4&#45;&gt;Node1 -->
-<g id="edge3" class="edge"><title>Node4&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M229.754,-127.921C218.449,-118.579 204.027,-106.662 192.969,-97.523"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="227.746,-130.803 237.684,-134.475 232.205,-125.407 227.746,-130.803"/>
+<path fill="none" stroke="midnightblue" d="M176,-179.805C176,-170.91 176,-160.78 176,-153.751"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="172.5,-180.083 176,-190.083 179.5,-180.083 172.5,-180.083"/>
 </g>
 </g>
 </svg>

@@ -33,7 +33,6 @@ var searchData=
   ['conecollisionshape',['ConeCollisionShape',['../classMezzanine_1_1Physics_1_1ConeCollisionShape.html',1,'Mezzanine::Physics']]],
   ['conegenerator',['ConeGenerator',['../classMezzanine_1_1Graphics_1_1Procedural_1_1ConeGenerator.html',1,'Mezzanine::Graphics::Procedural']]],
   ['conetwistconstraint',['ConeTwistConstraint',['../classMezzanine_1_1Physics_1_1ConeTwistConstraint.html',1,'Mezzanine::Physics']]],
-  ['const_5fiterator',['const_iterator',['../classMezzanine_1_1Node_1_1const__iterator.html',1,'Mezzanine::Node']]],
   ['constraint',['Constraint',['../classMezzanine_1_1Physics_1_1Constraint.html',1,'Mezzanine::Physics']]],
   ['controller',['Controller',['../classMezzanine_1_1Input_1_1Controller.html',1,'Mezzanine::Input']]],
   ['convexhullcollisionshape',['ConvexHullCollisionShape',['../classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html',1,'Mezzanine::Physics']]],

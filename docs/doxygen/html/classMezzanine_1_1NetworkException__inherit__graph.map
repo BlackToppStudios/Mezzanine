@@ -1,11 +1,10 @@
 <map id="Mezzanine::NetworkException" name="Mezzanine::NetworkException">
-<area shape="rect" id="node6" href="$classMezzanine_1_1NetworkNotFoundException.html" title="Thrown when no network connection is available. " alt="" coords="864,5,1063,47"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1NetworkPermissionException.html" title="Thrown when permision was denied to a network interface or network resource. " alt="" coords="860,71,1067,112"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1NetworkReadException.html" title="Thrown when data could not be read from the network (downloads) " alt="" coords="848,137,1079,163"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1NetworkURLException.html" title="Thrown when an address is invalid or could not be found. " alt="" coords="850,187,1077,214"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1NetworkWriteException.html" title="Thrown when data could not be read from the network (iloads) " alt="" coords="848,238,1079,265"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1NetworkNotFoundException.html" title="Thrown when no network connection is available. " alt="" coords="864,5,1063,47"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1NetworkPermissionException.html" title="Thrown when permision was denied to a network interface or network resource. " alt="" coords="860,71,1067,112"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1NetworkReadException.html" title="Thrown when data could not be read from the network (downloads) " alt="" coords="848,137,1079,163"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1NetworkURLException.html" title="Thrown when an address is invalid or could not be found. " alt="" coords="850,187,1077,214"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1NetworkWriteException.html" title="Thrown when data could not be read from the network (iloads) " alt="" coords="848,238,1079,265"/>
 <area shape="rect" id="node2" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="387,137,552,163"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="173,111,323,138"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,137,339,163"/>
 <area shape="rect" id="node4" title="STL class. " alt="" coords="5,137,109,163"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,162,339,189"/>
 </map>

@@ -151,7 +151,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:af465352b16cf658e9e517067857e14af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html">Triangulator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#af465352b16cf658e9e517067857e14af">SetShapeToTriangulate</a> (const <a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Shape.html">Shape</a> *TriShape)</td></tr>
 <tr class="memdesc:af465352b16cf658e9e517067857e14af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets shape to triangulate.  <a href="#af465352b16cf658e9e517067857e14af">More...</a><br /></td></tr>
 <tr class="separator:af465352b16cf658e9e517067857e14af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b98950ea6908758d078f81d3dcf1dae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a3b98950ea6908758d078f81d3dcf1dae">Triangulate</a> (IndexContainer &amp;Indexes, <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a94d245db54f818e65a942ecd68060cff">Point2DContainer</a> &amp;Vertices) const </td></tr>
+<tr class="memitem:a3b98950ea6908758d078f81d3dcf1dae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a3b98950ea6908758d078f81d3dcf1dae">Triangulate</a> (<a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#ac77679639ab4f4cb3a60b32bc6f24822">IndexContainer</a> &amp;Indexes, <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a2662af82bc071c1c7dbe75788f2cc39f">Point2DContainer</a> &amp;Vertices) const </td></tr>
 <tr class="memdesc:a3b98950ea6908758d078f81d3dcf1dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the Constrained Delaunay Triangulation algorithm. </p><dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">An</td><td>INVALID_STATE_EXCEPTION will be thrown if either a <a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Shape.html" title="A collection of interconnected 2D points used to express an arbitrary 2D shape. ">Shape</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1MultiShape.html" title="A grouping of individual 2D shapes used to express more elaborate shapes. ">MultiShape</a>, or Segment List is not set when this is called. </td></tr>
@@ -220,13 +220,13 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a72840c9c9a5027cf01ceb6cae1914762"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a72840c9c9a5027cf01ceb6cae1914762">_AddConstraints</a> (<a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a4d0859cc27d78ede5441c8fe1f3805a9">DelaunayTriangleBuffer</a> &amp;TriBuf, const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a94d245db54f818e65a942ecd68060cff">Point2DContainer</a> &amp;List, const IndexContainer &amp;SegmentListIndices) const </td></tr>
+<tr class="memitem:a72840c9c9a5027cf01ceb6cae1914762"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a72840c9c9a5027cf01ceb6cae1914762">_AddConstraints</a> (<a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a4d0859cc27d78ede5441c8fe1f3805a9">DelaunayTriangleBuffer</a> &amp;TriBuf, const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a2662af82bc071c1c7dbe75788f2cc39f">Point2DContainer</a> &amp;List, const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#ac77679639ab4f4cb3a60b32bc6f24822">IndexContainer</a> &amp;SegmentListIndices) const </td></tr>
 <tr class="memdesc:a72840c9c9a5027cf01ceb6cae1914762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces specific segments to be present in the resulting triangulation.  <a href="#a72840c9c9a5027cf01ceb6cae1914762">More...</a><br /></td></tr>
 <tr class="separator:a72840c9c9a5027cf01ceb6cae1914762"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8864ab841a7d29e4d9df400b965a383"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#ab8864ab841a7d29e4d9df400b965a383">_RecursiveTriangulatePolygon</a> (const <a class="el" href="structMezzanine_1_1Graphics_1_1Procedural_1_1DelaunaySegment.html">DelaunaySegment</a> &amp;CuttingSeg, const IndexContainer &amp;InputPoints, <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a4d0859cc27d78ede5441c8fe1f3805a9">DelaunayTriangleBuffer</a> &amp;TriBuf, const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a94d245db54f818e65a942ecd68060cff">Point2DContainer</a> &amp;List) const </td></tr>
+<tr class="memitem:ab8864ab841a7d29e4d9df400b965a383"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#ab8864ab841a7d29e4d9df400b965a383">_RecursiveTriangulatePolygon</a> (const <a class="el" href="structMezzanine_1_1Graphics_1_1Procedural_1_1DelaunaySegment.html">DelaunaySegment</a> &amp;CuttingSeg, const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#ac77679639ab4f4cb3a60b32bc6f24822">IndexContainer</a> &amp;InputPoints, <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a4d0859cc27d78ede5441c8fe1f3805a9">DelaunayTriangleBuffer</a> &amp;TriBuf, const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a2662af82bc071c1c7dbe75788f2cc39f">Point2DContainer</a> &amp;List) const </td></tr>
 <tr class="memdesc:ab8864ab841a7d29e4d9df400b965a383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively generates a Delaunay triangle from a container of points.  <a href="#ab8864ab841a7d29e4d9df400b965a383">More...</a><br /></td></tr>
 <tr class="separator:ab8864ab841a7d29e4d9df400b965a383"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16b733ab7af7993abf94528342574dc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a16b733ab7af7993abf94528342574dc2">Delaunay</a> (<a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a94d245db54f818e65a942ecd68060cff">Point2DContainer</a> &amp;List, <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a4d0859cc27d78ede5441c8fe1f3805a9">DelaunayTriangleBuffer</a> &amp;TriBuf) const </td></tr>
+<tr class="memitem:a16b733ab7af7993abf94528342574dc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a16b733ab7af7993abf94528342574dc2">Delaunay</a> (<a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a2662af82bc071c1c7dbe75788f2cc39f">Point2DContainer</a> &amp;List, <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a4d0859cc27d78ede5441c8fe1f3805a9">DelaunayTriangleBuffer</a> &amp;TriBuf) const </td></tr>
 <tr class="memdesc:a16b733ab7af7993abf94528342574dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a Delaunay Triangulation on a provided list of points in 2D space and populates a triangle buffer with the results.  <a href="#a16b733ab7af7993abf94528342574dc2">More...</a><br /></td></tr>
 <tr class="separator:a16b733ab7af7993abf94528342574dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html">Mezzanine::Graphics::Procedural::MeshGenerator&lt; Triangulator &gt;</a></td></tr>
@@ -299,13 +299,13 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a94d245db54f818e65a942ecd68060cff">Point2DContainer</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a2662af82bc071c1c7dbe75788f2cc39f">Point2DContainer</a> &amp;&#160;</td>
           <td class="paramname"><em>List</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const IndexContainer &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#ac77679639ab4f4cb3a60b32bc6f24822">IndexContainer</a> &amp;&#160;</td>
           <td class="paramname"><em>SegmentListIndices</em>&#160;</td>
         </tr>
         <tr>
@@ -351,7 +351,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const IndexContainer &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#ac77679639ab4f4cb3a60b32bc6f24822">IndexContainer</a> &amp;&#160;</td>
           <td class="paramname"><em>InputPoints</em>, </td>
         </tr>
         <tr>
@@ -363,7 +363,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a94d245db54f818e65a942ecd68060cff">Point2DContainer</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a2662af82bc071c1c7dbe75788f2cc39f">Point2DContainer</a> &amp;&#160;</td>
           <td class="paramname"><em>List</em>&#160;</td>
         </tr>
         <tr>
@@ -440,7 +440,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Mezzanine::Graphics::Procedural::Triangulator::Delaunay </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a94d245db54f818e65a942ecd68060cff">Point2DContainer</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a2662af82bc071c1c7dbe75788f2cc39f">Point2DContainer</a> &amp;&#160;</td>
           <td class="paramname"><em>List</em>, </td>
         </tr>
         <tr>
@@ -621,13 +621,13 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Mezzanine::Graphics::Procedural::Triangulator::Triangulate </td>
           <td>(</td>
-          <td class="paramtype">IndexContainer &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#ac77679639ab4f4cb3a60b32bc6f24822">IndexContainer</a> &amp;&#160;</td>
           <td class="paramname"><em>Indexes</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a94d245db54f818e65a942ecd68060cff">Point2DContainer</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine_1_1Graphics_1_1Procedural.html#a2662af82bc071c1c7dbe75788f2cc39f">Point2DContainer</a> &amp;&#160;</td>
           <td class="paramname"><em>Vertices</em>&#160;</td>
         </tr>
         <tr>
@@ -790,7 +790,7 @@ Protected Attributes</h2></td></tr>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Jan 25 2016 23:59:36 for BlackTopp Studios inc by
+            Generated on Wed Jan 27 2016 18:31:35 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>
