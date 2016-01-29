@@ -48,10 +48,16 @@
     the @ref ThreadingManual "DAGFrameScheduler" a high performance multithreaded replacement for
     single threaded game loops.
 
-    @n Here are some useful link:
+    @n Here are some useful links:
     - @ref tech_doc_index
     - @ref blog
     - @ref team_and_credits
+
+    @n
+    Currently we are working on a project to modularize the @ref mezzanine_engine. We are calling
+    this the Jagati refactor and the project will be split into several
+    @page jagati_package "Jagata Packages"
+
 */
 
 // The pages below are intended to be put into their own files as they are worked on.
