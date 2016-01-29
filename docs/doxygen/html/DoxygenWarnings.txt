@@ -157,12 +157,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:53: warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.cpp:63: warning: parameters of member luaopen_Mezzanine are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.cpp:63: warning: return type of member luaopen_Mezzanine is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:141: warning: Member catch(...) (function) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:149: warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:150: warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:156: warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:134: warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:136: warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/transform.h:165: warning: Member operator<<(std::ostream &stream, const Mezzanine::Transform &x) (function) of file transform.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/consolestringmanipulation.cpp:86: warning: Member AllLower(String StringToConvert) (function) of namespace Mezzanine::Testing is not documented.
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/consolestringmanipulation.cpp:86: warning: Member AllLower(String StringToConvert) (function) of namespace Mezzanine::Testing is not documented.
@@ -1119,13 +1113,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdata.h:257: warning: The following parameters of Mezzanine::Testing::UnitTestGroup::Test(bool TestCondition, const String &TestName, TestResult IfFalse=Testing::Failed, TestResult IfTrue=Testing::Success, const String &FuncName="", const String &File="", Mezzanine::Whole Line=0) are not documented:
   parameter 'File'
   parameter 'Line'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:141: warning: Member catch(...) (function) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:149: warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:150: warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:156: warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:134: warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/thread.cpp:136: warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
-<try>:1: warning: parameters of member Mezzanine::Threading::try are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/framescheduler.h:548: warning: Member ChangeLogTarget(std::ostream *LogTarget) (function) of class Mezzanine::Threading::FrameScheduler is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/framescheduler.h:551: warning: Member InstallLog(std::ostream *LogTarget) (function) of class Mezzanine::Threading::FrameScheduler is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/framescheduler.h:552: warning: Member RemoveLog() (function) of class Mezzanine::Threading::FrameScheduler is not documented.

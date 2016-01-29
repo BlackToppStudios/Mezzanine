@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linux_20development_20tools',['Linux Development Tools',['../dev_tools_linux.html',1,'']]]
+  ['jagati_20package',['Jagati Package',['../jagati_package.html',1,'']]]
 ];

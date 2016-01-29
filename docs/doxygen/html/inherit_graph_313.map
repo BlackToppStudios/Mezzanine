@@ -1,5 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1TextLine.html" title="This represents a single line of text to be rendered by a TextLayer. " alt="" coords="5,46,171,73"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1LeftToRightTextLine.html" title="This is a TextLine specialization class for text read from the left to the right. ..." alt="" coords="219,5,401,47"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1RightToLeftTextLine.html" title="This is a TextLine specialization class for text read from the right to the left. ..." alt="" coords="219,71,401,112"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1TextToken.html" title="This class represents a normal text segment from the source string. " alt="" coords="5,42,183,69"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1TagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="231,42,404,69"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1InsertTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="472,5,643,47"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1RangeTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="452,71,663,98"/>
 </map>

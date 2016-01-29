@@ -41,7 +41,7 @@
 #define _jagati_package_h
 
 /**
-    @page jagati_package Jagata Package
+    @page jagati_package Jagati Package
     This page describes the contents of one package.
 
     @section jagati_package_files Files and Folders in a package
