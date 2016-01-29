@@ -56,7 +56,7 @@
     @n
     Currently we are working on a project to modularize the @ref mezzanine_engine. We are calling
     this the Jagati refactor and the project will be split into several
-    @page jagati_package "Jagata Packages"
+    @ref jagati_package "Jagati Packages".
 
 */
 
