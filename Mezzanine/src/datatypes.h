@@ -43,7 +43,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Any Special data types that we need will get declared right here
 /// @file
-/// @brief All the definitions for datatypes as well as some basic conversion functions are defined here. Additionally, this is where all of the other singular header inclusions go as well.
+/// @brief All the definitions for datatypes as well as some basic conversion functions are defined
+/// here. Additionally, this is where all of the other singular header inclusions go as well.
 ///////////////////////////////////////
 
 /// @def MEZZANINE_CORE
@@ -56,8 +57,9 @@
 //#include "pstdint.h" // A reimplimentation of the C99 stdint.h for all compilers
 
 // Standard Headers are not included in SWIG preprocessing
-// Most std includes are centralized here to make modifying this list as simple as possible. Other standard includes that
-// are not included here are in places that they are required and conditionally may not be compiled in. For example,
+// Most std includes are centralized here to make modifying this list as simple as possible. Other
+// standard includes that are not included here are in places that they are required and
+// conditionally may not be compiled in. For example,
 
 #ifndef SWIG
     #if defined( _MSC_VER )
@@ -98,13 +100,15 @@ namespace Mezzanine
         #ifndef SWIG
             //#include <cstdint>
         #endif
-        /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
+        /// @brief A type that any pointer can be converted to and back from, and insures after the
+        /// conversion back it will be identical.
         typedef std::intptr_t ConvertiblePointer;
     #else
         #ifndef SWIG
             //#include <stdint.h>
         #endif
-        /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
+        /// @brief A type that any pointer can be converted to and back from, and insures after the
+        /// conversion back it will be identical.
         typedef intptr_t ConvertiblePointer;
     #endif
 
@@ -141,9 +145,14 @@ namespace Mezzanine
     /// there is no theoretical reason why this could not be changed to a
     /// double, or even something more extreme like a GMP datatype. Most likely this
     /// switch would require atleast some troubleshooting.
+    /// @n @n
+    /// This type will be word aligned and fast
     typedef float Real;
     /// @typedef PreciseReal
-    /// @brief A Real number that is at least as precise as the Real and could be considerabll moreso
+    /// @brief A Real number that is at least as precise as the Real and could be considerably
+    /// moreso, perhaps Doubly precise.
+    /// @n @n
+    /// This type might be poorly aligned but very precise.
     typedef double PreciseReal;
 
     /// @typedef Whole

@@ -58,6 +58,7 @@
         - @ref jagati_package_src_dir
         - @ref jagati_package_swig_dir
             - @ref jagati_package_swig_config_h
+        - @ref jagati_package_test_dir
 
     @section jagati_package_root / – Package Root
     The root folder,
@@ -107,6 +108,10 @@
     @subsection jagati_package_swig_config_h swig/SwigConfig.h – SWIG Entry Point.
     If this file is present it is the entry point for swig. This should include all the headers
     that SWIG is to read and prepare bindings for.
+
+    @section jagati_package_test_dir test/ – Test Headers
+    A directory full of files that each contain one class describing tests for one part of the
+    system
 
 */
 
