@@ -104,6 +104,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}dox/tech_doc_index.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/mainpage.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/mezzanine_engine.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/running_doxygen.h"
         "${${PROJECT_NAME}_SRC_DIR}entresol.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanagerfactory.h"
