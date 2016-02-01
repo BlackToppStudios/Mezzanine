@@ -171,12 +171,19 @@ namespace Mezzanine
                 virtual void RunTests();
 
             protected:
-                /// @brief
+                /// @brief This launches all the automated tests on the derived class if the flag is
+                /// set to run them otherwise it checks if tests exist via HasAutomaticTests() and
+                /// marks them as skipped if they do.
                 void LaunchAutomaticTest();
-                /// @brief
+                /// @brief This launches all the interactice tests on the derived class if the flag
+                /// is set to run them otherwise it checks if tests exist via HasAutomaticTests()
+                /// and marksthem as skipped if they do.
                 void LaunchInteractiveTest();
 
-                /// @brief Tests should use this to
+                /// @brief Tests should use this to launch things that need sheltering from
+                /// segfaults and similar faults
+                /// @param Argument A string combined with the command to be run, this must be
+                /// sanitized before being called, do not pass untrusted data.
                 /// @return The output to stdout from the subprocess.
                 String LaunchSubProcessTest(const String& Argument = String(""));
 
@@ -219,9 +226,10 @@ namespace Mezzanine
 
                 /// @brief Its expected that tests will be inserted using this
                 /// @details This will automate tracking of the most and least successful tests
-                /// @param FreshMeat The New test results and name
-                /// @param Behavior An OverWriteResults that defines the overwirte behavior of this function, defaults to OverWriteIfLessSuccessful
-                void AddTestResult(TestData CurrentTest, OverWriteResults Behavior=OverWriteIfLessSuccessful);
+                /// @param CurrentTest The New test results and name
+                /// @param Behavior An OverWriteResults that defines the overwrite behavior of this function, defaults to OverWriteIfLessSuccessful
+                void AddTestResult( TestData CurrentTest,
+                                    OverWriteResults Behavior=OverWriteIfLessSuccessful);
 
                 /// @brief Add a test results without having to to construct a TestData first
                 /// @details This prepends the name of this UnitTestGroup and "::" to the
@@ -261,8 +269,17 @@ namespace Mezzanine
                 /// @param IfFalse Defaults to Testing::Failed but can be whatever Testing::TestResult you want if a false passed as the TestCondition.
                 /// @param IfTrue Defaults to Testing::Success but can be whatever Testing::TestResult you want if a true passed as the TestCondition.
                 /// @param FuncName The function the test was called from, if blank
-                virtual void Test(bool TestCondition, const String& TestName, TestResult IfFalse = Testing::Failed, TestResult IfTrue = Testing::Success,
-                                  const String& FuncName = "", const String& File = "", Mezzanine::Whole Line = 0);
+                /// @param File To make tracking down failures easier the file name of the test can
+                /// be passed in, if not set an empty string is used
+                /// @param Line To make tracking down failures easier the line number of the test
+                /// can  be passed in, if not set an empty string is used
+                virtual void Test(  bool TestCondition,
+                                    const String& TestName,
+                                    TestResult IfFalse = Testing::Failed,
+                                    TestResult IfTrue = Testing::Success,
+                                    const String& FuncName = "",
+                                    const String& File = "",
+                                    Mezzanine::Whole Line = 0);
         };
 
         /// @internal

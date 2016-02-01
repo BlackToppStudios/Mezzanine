@@ -46,7 +46,8 @@
     Walkthroughs and human level explanations of our tools, processes and anything else useful.
 
     @section best_practices_menu Best Practices
-    Advice that we try to follow on using our
+    Advice that we try to follow on using our tools to make the best of the complex situations we
+    deal with when writing software.
      - @ref best_practices_doxygen
 
     @section dev_tools_menu Development Tools
