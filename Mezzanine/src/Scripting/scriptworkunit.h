@@ -69,17 +69,19 @@ namespace Mezzanine
         {
             public:
                 /// @brief This adds a script to list to be run each frame.
-                /// @param SCriptToAdd A CountedPtr to a script
+                /// @param ScriptToAdd A CountedPtr to a script
                 virtual void AddScript(CountedPtr<iScript> ScriptToAdd) = 0;
 
                 /// @brief Remove a Script.
-                /// @param ArScriptToRemoveg A CountedPtr matching the one to be removed.
+                /// @param ScriptToRemove A CountedPtr matching the one to be removed.
                 virtual void RemoveScript(CountedPtr<iScript> ScriptToRemove) = 0;
 
                 /// @brief Remove Script based on index.
-                /// @details This removes the specified Script from the internal list. This should be treated as taking linear
-                /// time, relative to the total count of svripts assigned to this workunit, to run.
-                /// @param Index The number of the Script to be removed. This behaves similar to an array or vector as it starts counting at 0.
+                /// @details This removes the specified Script from the internal list. This should
+                /// be treated as taking linear time, relative to the total count of scripts
+                /// assigned to this workunit, to run.
+                /// @param Index The number of the Script to be removed. This behaves similar to an
+                /// array or vector as it starts counting at 0.
                 virtual void RemoveScript(Whole Index) = 0;
 
                 /// @brief How many Scripts have been added to this workunit

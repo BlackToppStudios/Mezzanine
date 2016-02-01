@@ -318,7 +318,8 @@ namespace Mezzanine
                 virtual ArgumentGroup GetAllReturns() const = 0;
 
                 /// @brief Add another value to be returned.
-                /// @param A copy assignable script argument that conveys type information to the specific language runtime
+                /// @param ReturnArg A copy assignable script argument that conveys type information
+                /// to the specific language runtime
                 /// @details Some scripting languages (Lua51) require knowledge of the return types
                 /// of the scripts in order to extract them from the language runtime. Pointers to
                 /// classes derived from iScriptArgument should convey that typing information to

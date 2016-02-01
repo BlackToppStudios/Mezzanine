@@ -645,7 +645,7 @@ namespace Mezzanine
 
     /// @brief A compile time cast that uses only the implicit conversion of the underlying raw pointers
     /// @tparam ReturnType The type to be returned, must be specified
-    /// @ptaram OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
+    /// @tparam OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a compilation error
     template <typename ReturnType, typename OtherPointerTargetType>

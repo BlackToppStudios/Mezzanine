@@ -295,7 +295,7 @@ namespace Mezzanine
                 virtual void Execute(CountedPtr<Lua51Script>& ScriptToRun);
 
                 /// @brief Performs the compilation on a script reference
-                /// @param ScripScriptToRuntToCompile A reference to the Lua51Script to compile and run.
+                /// @param ScriptToRun A reference to the Lua51Script to compile and run.
                 virtual void Execute(Lua51Script& ScriptToRun);
 
                 /// @brief Performs the compilation on a raw pointer

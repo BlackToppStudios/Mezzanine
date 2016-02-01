@@ -93,8 +93,8 @@ namespace Mezzanine
                 /// @return The argument value lexographically converted as an @ref Real
                 virtual Real GetReal() const = 0;
 
-                /// @brief Get the Argument as a Bool
-                /// @return The argument value lexographically converted as an @ref Bool
+                /// @brief Get the Argument as a Boole
+                /// @return The argument value lexographically converted as an @ref Boole
                 virtual Boole GetBoole() const = 0;
 
                 /// @brief Is this value representing a Null/Nil value.
@@ -174,8 +174,8 @@ namespace Mezzanine
                 virtual Real GetReal() const
                     { return ToReal(Datum); }
 
-                /// @brief Get the Argument as a Bool
-                /// @return The argument value lexographically converted as an @ref Bool
+                /// @brief Get the Argument as a Boole
+                /// @return The argument value lexographically converted as an @ref Boole
                 virtual Boole GetBoole() const
                     { return ToBool(Datum); }
 
@@ -250,8 +250,8 @@ namespace Mezzanine
                 virtual Real GetReal() const
                     { return Real(Datum); }
 
-                /// @brief Get the Integer as a Bool
-                /// @return The argument value lexographically converted as an @ref Bool
+                /// @brief Get the Integer as a Boole
+                /// @return The argument value lexographically converted as an @ref Boole
                 virtual Boole GetBoole() const
                     { return Boole(Datum); }
 
@@ -326,8 +326,8 @@ namespace Mezzanine
                 virtual Real GetReal() const
                     { return Real(Datum); }
 
-                /// @brief Get the Whole Number as a Bool
-                /// @return The argument value lexographically converted as an @ref Bool
+                /// @brief Get the Whole Number as a Boole
+                /// @return The argument value lexographically converted as an @ref Boole
                 virtual Boole GetBoole() const
                     { return Boole(Datum); }
 
@@ -402,8 +402,8 @@ namespace Mezzanine
                 virtual Real GetReal() const
                     { return ConvertTo<Real>(Datum); }
 
-                /// @brief Get the String as a Bool
-                /// @return The argument value lexographically converted as an @ref Bool
+                /// @brief Get the String as a Boole
+                /// @return The argument value lexographically converted as an @ref Boole
                 virtual Boole GetBoole() const
                     { return ToBool(Datum); }
 
@@ -478,8 +478,8 @@ namespace Mezzanine
                 virtual Real GetReal() const
                     { return Datum; }
 
-                /// @brief Get the Real as a Bool
-                /// @return The Real value lexographically converted as an @ref Bool
+                /// @brief Get the Real as a Boole
+                /// @return The Real value lexographically converted as an @ref Boole
                 virtual Boole GetBoole() const
                     { return Boole(Datum); }
 

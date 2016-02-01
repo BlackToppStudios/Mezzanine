@@ -92,6 +92,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}datatypes.h"
         "${${PROJECT_NAME}_SRC_DIR}debris.h"
         "${${PROJECT_NAME}_SRC_DIR}debrismanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/best_practices_doxygen.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/building_the_engine.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/contact_us.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_linux.h"

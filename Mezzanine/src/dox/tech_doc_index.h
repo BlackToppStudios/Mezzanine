@@ -45,6 +45,10 @@
     @page tech_doc_index Technical Document Index
     Walkthroughs and human level explanations of our tools, processes and anything else useful.
 
+    @section best_practices_menu Best Practices
+    Advice that we try to follow on using our
+     - @ref best_practices_doxygen
+
     @section dev_tools_menu Development Tools
     What tools do you need to work on the Mezzanine and/or compile it yourself.
      - @ref dev_tools_windows
@@ -60,6 +64,8 @@
     Building the Engine differs is pretty similar on most platforms.
      - @ref building_the_engine
 
+    @section other_docs_menu Other Documents.
+     - @ref running_doxygen
 */
 
 #endif

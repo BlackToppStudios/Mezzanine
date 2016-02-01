@@ -105,7 +105,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::IsInWorld() const
             virtual Boole IsInWorld() const;
 
-            /// @copydoc PhysicsProxy::GetCreator() const
+            /// @copydoc WorldProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////

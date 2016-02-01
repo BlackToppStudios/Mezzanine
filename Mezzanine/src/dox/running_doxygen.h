@@ -73,31 +73,50 @@
     @htmlonly</a>@endhtmlonly
 
 
-    Windows users will have to manually install these. Linux users may be able to automatically
-    install these tools from their distro’s repository with a command similar to:
-
+    Windows and Mac OS X users will have to manually install these. Linux users may be able to
+    automatically install these tools from their distro’s repository with their package manager.
+    Here is an example on Ubuntu:
     @code
     sudo apt-get install doxygen graphviz
     @endcode
 
     @section running_doxygen_cmake Cmake and the Build Target
-    When configuring CMake enabling the Mezz_Doc will cause doxygen documentation to be built with
-    any full build or any build of the “MezzanineDocumentation” build target. In Code::Blocks You can build the documentation by simply selecting this from the “Build target:” menu, then clicking the gear icon to build. If you generated build files that use make, you should be able to build the documentation with:
-make MezzanineDocumentation
-Any of these documentation build processes will read the doxygen config file, found at ‘docs/doxygen/doxyfiles/Doxyfile’ relative to the root of the source repo. They will output html documentation to ‘docs/doxygen/html’ which you can browse in any web browser by opening ‘docs/doxygen/html/index.html’.
+    When configuring CMake enabling the "Mezz_Doc" will cause doxygen documentation to be built with
+    any full build or any build of the “MezzanineDocumentation” build target. Either check the box
+    from the cmake-gui and from the command prompt you can use:
 
-If you use a modern IDE and wish to update documenation, any warnings or errors should be presented much the same compiler warnings or errors. In the Code::Blocks ‘Build Messages’ tab or Qt Creator ‘Issues’ panel you should be able to click or double click a specific item and have it take you to the documentation problem in the source code.
+    @code
+    cmake ../Mezzanine/ -DMezz_Doc:boolean=true
+    @endcode
 
+    For more details on how to use cmake see the section on @ref building_the_engine_using_cmake
+    in the @ref building_the_engine page.
 
+    @n
+    In Code::Blocks You can build the documentation by simply selecting this from the
+    “Build target:” menu, then clicking the gear icon to build. If you generated build files that
+    use make, you should be able to build the documentation with:
 
+    @code
+    make MezzanineDocumentation
+    @endcode
 
+    Or if you had cmake emit ninja build scripts
 
+    @code
+    ninja MezzanineDocumentation
+    @endcode
 
+    Any of these documentation build processes will read the doxygen config file, found at
+    ‘docs/doxygen/doxyfiles/Doxyfile’ relative to the root of the source repo. They will output html
+    documentation to ‘docs/doxygen/html’ which you can browse in any web browser by opening
+    ‘docs/doxygen/html/index.html’.
 
-    If you are planning on developing software too it may be a good idea to install a copy of
-    @htmlonly<a href="">@endhtmlonly
-    XXX
-    @htmlonly</a>@endhtmlonly
+    If you use a modern IDE and wish to update documenation, any warnings or errors should be
+    presented much the same compiler warnings or errors. In the Code::Blocks ‘Build Messages’ tab or
+    Qt Creator ‘Issues’ panel you should be able to click or double click a specific item and have
+    it take you to the documentation problem in the source code.
+
 */
 
 #endif

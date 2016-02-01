@@ -186,6 +186,7 @@
 
     - Mezz_Debug – Enables Debuging symbols in the Mezzanine library and enable extra logging
         message. Defaults to false.
+    - Mezz_Doc – Enable Bulding the doxygen documentation
     - Mezz_Lua51 – Enable/Disable the whole Lua system. Defaults to true/enabled.
     - Mezz_Network – Enable Networking support. Defaults to true.
     - Mezz_BuildRenderSystemDirectX9 – This controls support for DirectX 9 a common RenderSystem on

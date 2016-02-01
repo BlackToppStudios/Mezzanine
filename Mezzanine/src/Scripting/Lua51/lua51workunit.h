@@ -64,12 +64,17 @@ namespace Mezzanine
             // foraward declarations
             class Lua51ScriptingEngine;
 
-            /// @brief This is a simple Container of script that will execute every script it is given in order each frame
-            /// @details This WorkUnit starts with no dependencies, the developer using this must set those, (see
-            /// @ref Threading::DefaultWorkUnit::AddDependency for details). This is not automatically added to the
-            /// WorkScheduler on the Entresol, and must be added manually. @n @n
-            /// Internally this uses an std::vector to store scripts and each frame it will iterate over them and execute
-            /// them one at a time. This exposes iterators and a few convience fucntion to make the script manageable. @n @n
+            /// @brief This is a simple Container of script that will execute every script it is
+            /// given in order each frame.
+            /// @details This WorkUnit starts with no dependencies, the developer using this must
+            /// set those, (see  @ref Threading::DefaultWorkUnit::AddDependency for details). This
+            /// is not automatically added to the WorkScheduler on the Entresol, and must be added
+            /// manually.
+            /// @n @n
+            /// Internally this uses an std::vector to store scripts and each frame it will iterate
+            /// over them and execute them one at a time. This exposes iterators and a few convience
+            /// function to make the script manageable.
+            /// @n @n
             /// All scripts are stored in CountedPtr to allow for shared ownership.
             class MEZZ_LIB Lua51WorkUnit : public Scripting::iScriptWorkUnit
             {
@@ -93,7 +98,7 @@ namespace Mezzanine
                     virtual ~Lua51WorkUnit();
 
                     /// @brief Adds a script to be run once each frame.
-                    /// @param FreshScript A CountedPtr to a script that should be run each Frame.
+                    /// @param ScriptToAdd A CountedPtr to a script that should be run each Frame.
                     /// @note Consider this as Invalidating all iterators to this container.
                     void push_back(CountedPtr<Lua51Script> ScriptToAdd);
                     /// @brief Adds a script similar to push_back.
