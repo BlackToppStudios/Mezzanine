@@ -54,8 +54,13 @@
 
 
     @section best_practices_doxygen_minimum D2 Minimum Amount to Document
-    decribesom stuff.
+    It is easy to document too much or too little. Too much and it will easily fall out of date when
+    the code changes and developers ignore the wall of text. Too little and people using the code
+    and documentation go WTF?! and use some other code or write from scratch.
 
+    @n
+    Here is what we do. We probably tend to go a little too heavily, but we are writing an API and
+    we feel clarity is worth some maintanence cost.
 
     @subsection best_practices_doxygen_minimum_function Function/Methods Minimum Amount to Document
     Each function/method should get:
@@ -69,6 +74,88 @@
     noted.
     - \@details Should be added anytime
 
+    Here are some examples of Bad and Good doxygen comments on bad code. This code is terrible to
+    highlight how much of a difference good and bad documentation can make. In a real situation it
+    it likely that even good code with good variable names might still be complex enough to allow
+    misconceptions in.
+
+    @n
+    Bad Dox:
+    @code
+    int sqrt(int x);
+
+    /// \@brief calculates absolute value
+    int abs(int x);
+
+    /// \@param Accepts a float.
+    /// \@return Returns a float.
+    float log(float x)
+    @endcode
+
+    Good Dox:
+    @code
+    /// \@param x An Integer to take the square root of
+    /// \@return An int containing the square root of x. Any floating part is truncated
+    int sqrt(int x);
+
+    /// \@brief Calculates absolute value, the distance from zero
+    /// \@param x An int that might be postive or negative.
+    /// \@return A positive int (or 0) that is the same as x but with an minus sign removed.
+    int abs(int x);
+
+    /// \@brief Calculate the natural logorithm of a value.
+    /// \@param x A float to calculate the log2 of.
+    /// \@return Returns a floatX.
+    float log(float x)
+    @endcode
+
+    @subsection best_practices_doxygen_minimum_enum Enum Minimum Amount to Document
+    Most enums just need an \@brief and if the options are not self explanatory a using ///< seems
+    to be the easiest way to document them. You don't need \@enum unless you are placing the dox
+    far away from the enum. Here is an example:
+
+
+    @n
+    Bad Dox:
+    @code
+    @enum dir A direction
+    enum dir
+    {
+        MN, MS, MW, ME,
+        N, W, S, E
+    };
+    @endcode
+
+    Good Dox:
+    @code
+    @brief A Compass direction
+    enum dir
+    {
+        MN, ///< Magnetic North
+        MS, ///< Magnetic South
+        MW, ///< Magnetic West
+        ME, ///< Magnetic East
+
+        N, W, S, E
+    };
+    @endcode
+
+    Good Code and Dox:
+    @code
+    @brief A Compass direction
+    enum CompassDirection
+    {
+        MagneticNorth,
+        MagneticSouth,
+        MagneticWest,
+        MagneticEast,
+
+        North,
+        West,
+        South,
+        East
+    };
+    @endcode
 
     Add more describing how to document Enums, classes, files
 
