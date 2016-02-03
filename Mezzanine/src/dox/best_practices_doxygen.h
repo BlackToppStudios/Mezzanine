@@ -52,7 +52,6 @@
     Errors can't be fixed if you cannot see them. Try to use tools that will show you the errors
     that running the build process creates. Using.... describe more about IDEs here.
 
-
     @section best_practices_doxygen_minimum D2 Minimum Amount to Document
     It is easy to document too much or too little. Too much and it will easily fall out of date when
     the code changes and developers ignore the wall of text. Too little and people using the code
@@ -72,7 +71,8 @@
     - \@return Unless it returns void then the return tty and value shoud be documented.
     - \@throw If an exception is thrown, its type and conditions for causing the throw should be
     noted.
-    - \@details Should be added anytime
+    - \@details Should be added anytime the function has special preconditions. changes state on
+    a class that is not obvious or is otherwise complex.
 
     Here are some examples of Bad and Good doxygen comments on bad code. This code is terrible to
     highlight how much of a difference good and bad documentation can make. In a real situation it
@@ -118,7 +118,7 @@
     @n
     Bad Dox:
     @code
-    @enum dir A direction
+    /// @enum dir A direction
     enum dir
     {
         MN, MS, MW, ME,
@@ -128,7 +128,7 @@
 
     Good Dox:
     @code
-    @brief A Compass direction
+    /// @brief A Compass direction
     enum dir
     {
         MN, ///< Magnetic North
@@ -142,7 +142,7 @@
 
     Good Code and Dox:
     @code
-    @brief A Compass direction
+    /// @brief A Compass direction
     enum CompassDirection
     {
         MagneticNorth,
@@ -157,10 +157,45 @@
     };
     @endcode
 
-    Add more describing how to document Enums, classes, files
 
+    @subsection best_practices_doxygen_minimum_class Class Minimum Amount to Document
+    Most classes should have an \@brief providing a simple overview, an \@details providing
+    additional rationle and perhaps a few examples in \@code/\@endcode or \@verbatim/\@endverbatim
+    sections if their use is complicated. Since every method should be well named and well
+    documented hopefully class documentation can be small.
 
+    @n
+    Try to docuent classes in the header file just ahead of the class keyword and \@class will not
+    be needed.
 
+    @n
+    Example:
+    @code
+    /// @brief A 3x3 matrix intended for use in rotating 3d points.
+    /// @details This supports normal math operations via operator overloads and is contructable
+    /// to a unit matrix or accepts all 9 values in row major order:
+    /// @verbatim
+    /// Matrix UnitMatrix;
+    /// Matrix OtherMatrix(1,2,3,4,5,6,7,8,9);
+    /// Matrix Product = UnitMatrix * OtherMatrix;
+    /// @endverbatim
+    class Matrix
+    {
+    // Omitted
+    @endcode
+
+    @subsection best_practices_doxygen_minimum_file File Minimum Amount to Document
+    All Files get an \@file and an \@brief describing a little more than the name of the file could
+    desribe. This mostly provides a link in doxygen that might not otherwise have been generated.
+    The \@file command accepts a filename, leave it out the document the current file otherwise it
+    will break when the file is renamed.
+
+    @n
+    Example in foo.h:
+    @code
+        /// @file
+        /// @brief This defines the class foo intended for use with @ref bar.
+    @endcode
 
     @section best_practices_doxygen_copydoc D3 \@copydoc Should Follow inheritance
     The \@copydoc directive should primarily be used by following up inheritance heiarchies. When
@@ -218,9 +253,39 @@
 
     @section best_practices_doxygen_identifier D4 Identifier Commands
     \@enum, \@typedef, \@class, and other specifiers of things to be documented should be used
-    when documenting things out of line. If the documentation comments
+    when documenting things out of line. If the documentation comments precede what you are
+    documenting then these can be omitted. This makes documentation shorter and easier to maintain.
 
+    @n
+    Some of our older and more stale dox have some of these dangling from when we did not know
+    better.
 
+    @section best_practices_doxygen_ref D5 References
+    Use \@ref often. Anytime you define a class, page, function, section or any other code or
+    documentation structure you can refer to it with \@ref. If you simple put \@ref followed by the
+    class, function, section or page name you will get a link with the text of the name text from
+    the refferred item. If you want different text include link text in quotes. See some examples:
+
+    To make:
+    @n
+    @ref Mezzanine::Vector3 and @ref best_practices_doxygen
+    @n
+    Use:
+    @code
+    @ref Mezzanine::Vector3 and @ref best_practices_doxygen
+    @endcode
+
+    @n
+    To provide custom text like this:
+    @n
+    @ref Mezzanine::Vector3 "X/Y/Z Thingy" and
+    @ref best_practices_doxygen  "Lexicographer's hate him"
+    @n
+    Use:
+    @code
+    @ref Mezzanine::Vector3 "X/Y/Z Thingy" and
+    @ref best_practices_doxygen "Lexicographer's hate him"
+    @endcode
 */
 
 #endif

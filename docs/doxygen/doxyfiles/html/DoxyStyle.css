@@ -295,6 +295,11 @@ span.lineno, span.lineno{
     background: none;
 }
 
+div.line {
+    white-space: pre;
+    padding: 1px;
+}
+
 .comment        { color: #9EFEA5; }
 .preprocessor   { color: #B9F3FE; }
 .keyword        { color: #FEF197; }

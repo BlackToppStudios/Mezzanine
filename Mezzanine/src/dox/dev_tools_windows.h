@@ -301,8 +301,8 @@
     engine would be appreciated.
 
     @section windows_dev_tools_next What’s next
-    If you aren’t comfortable with your codings skills @ref cxx_training is a good idea. If you are
-    comfortable with you coding skill and have the tools installed check out the
+    If you aren’t comfortable with your codings skills @ref cxx_training_and_tools is a good idea.
+    If you are comfortable with you coding skill and have the tools installed check out the
     @ref engine_dependencies, if you already have what you need from that you could take a look at
     what it takes for @ref building_the_engine_menu.
 

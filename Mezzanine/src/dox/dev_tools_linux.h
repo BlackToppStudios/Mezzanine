@@ -66,8 +66,8 @@
     @endcode
 
     @section dev_tools_linux_summary What Are the Tools
-    Most of the Tools are explained on the @ref cxx_training page, but some we have included here
-    because they seem to get more use on Linux workstations.
+    Most of the Tools are explained on the @ref cxx_training_and_tools page, but some we have
+    included here because they seem to get more use on Linux workstations.
 
     - @htmlonly<a href="https://gcc.gnu.org/">@endhtmlonly
     GCC — G++
@@ -163,9 +163,9 @@
     @ref installing_engine_deps_linux for more details.
 
     @section dev_tools_linux_what_next What’s next
-    If you aren’t comfortable with your coding skills you should read about @ref cxx_training. If
-    you are comfortable with your coding skills and have the tools installed reading up on the
-    @ref engine_dependencies could be useful or you could go right onto
+    If you aren’t comfortable with your coding skills you should read about
+    @ref cxx_training_and_tools. If you are comfortable with your coding skills and have the tools
+    installed reading up on the @ref engine_dependencies could be useful or you could go right onto
     @ref building_the_engine if you think already have all the software installed.
 
 */
