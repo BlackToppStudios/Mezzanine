@@ -2649,212 +2649,210 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 #define SWIGTYPE_p_CollisionIterator swig_types[5]
 #define SWIGTYPE_p_CollisionMap swig_types[6]
 #define SWIGTYPE_p_CollisionMapIterator swig_types[7]
-#define SWIGTYPE_p_CollisionShapeManager swig_types[8]
-#define SWIGTYPE_p_CollisionSortPair swig_types[9]
-#define SWIGTYPE_p_ConstCollisionIterator swig_types[10]
-#define SWIGTYPE_p_ConstCollisionMapIterator swig_types[11]
-#define SWIGTYPE_p_ConstConstraintIterator swig_types[12]
-#define SWIGTYPE_p_ConstProxyIterator swig_types[13]
-#define SWIGTYPE_p_ConstShapeMapIterator swig_types[14]
-#define SWIGTYPE_p_ConstShapeVectorIterator swig_types[15]
-#define SWIGTYPE_p_ConstWorldTriggerIterator swig_types[16]
-#define SWIGTYPE_p_Constraint swig_types[17]
-#define SWIGTYPE_p_ConstraintContainer swig_types[18]
-#define SWIGTYPE_p_ConstraintIterator swig_types[19]
-#define SWIGTYPE_p_EntresolManager swig_types[20]
-#define SWIGTYPE_p_ManagerBase__ManagerType swig_types[21]
-#define SWIGTYPE_p_ManagerConstructionInfo swig_types[22]
-#define SWIGTYPE_p_Mezzanine__ArithmeticException swig_types[23]
-#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[24]
-#define SWIGTYPE_p_Mezzanine__DirectoryException swig_types[25]
-#define SWIGTYPE_p_Mezzanine__DirectoryNotFoundException swig_types[26]
-#define SWIGTYPE_p_Mezzanine__DirectoryPermissionException swig_types[27]
-#define SWIGTYPE_p_Mezzanine__DirectoryReadException swig_types[28]
-#define SWIGTYPE_p_Mezzanine__DirectoryWriteException swig_types[29]
-#define SWIGTYPE_p_Mezzanine__ExceptionBase swig_types[30]
-#define SWIGTYPE_p_Mezzanine__FileException swig_types[31]
-#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[32]
-#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[33]
-#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[34]
-#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[35]
-#define SWIGTYPE_p_Mezzanine__Graphics__Mesh swig_types[36]
-#define SWIGTYPE_p_Mezzanine__IOException swig_types[37]
-#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[38]
-#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[39]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[40]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[41]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[42]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[43]
-#define SWIGTYPE_p_Mezzanine__InternalException swig_types[44]
-#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[45]
-#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[46]
-#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[47]
-#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[48]
-#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[49]
-#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[50]
-#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[51]
-#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[52]
-#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[53]
-#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[54]
-#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[55]
-#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[56]
-#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[57]
-#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[58]
-#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[59]
-#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[60]
-#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[61]
-#define SWIGTYPE_p_Mezzanine__Physics__BoxCollisionShape swig_types[62]
-#define SWIGTYPE_p_Mezzanine__Physics__CapsuleCollisionShape swig_types[63]
-#define SWIGTYPE_p_Mezzanine__Physics__CollidablePair swig_types[64]
-#define SWIGTYPE_p_Mezzanine__Physics__CollidableProxy swig_types[65]
-#define SWIGTYPE_p_Mezzanine__Physics__Collision swig_types[66]
-#define SWIGTYPE_p_Mezzanine__Physics__CollisionShape swig_types[67]
-#define SWIGTYPE_p_Mezzanine__Physics__CollisionShapeDeSerializer swig_types[68]
-#define SWIGTYPE_p_Mezzanine__Physics__CollisionShapeManager swig_types[69]
-#define SWIGTYPE_p_Mezzanine__Physics__CompoundCollisionShape swig_types[70]
-#define SWIGTYPE_p_Mezzanine__Physics__ConeCollisionShape swig_types[71]
-#define SWIGTYPE_p_Mezzanine__Physics__ConeTwistConstraint swig_types[72]
-#define SWIGTYPE_p_Mezzanine__Physics__Constraint swig_types[73]
-#define SWIGTYPE_p_Mezzanine__Physics__ConvexHullCollisionShape swig_types[74]
-#define SWIGTYPE_p_Mezzanine__Physics__CylinderCollisionShape swig_types[75]
-#define SWIGTYPE_p_Mezzanine__Physics__DebugDrawWorkUnit swig_types[76]
-#define SWIGTYPE_p_Mezzanine__Physics__DefaultCollisionShapeManagerFactory swig_types[77]
-#define SWIGTYPE_p_Mezzanine__Physics__DefaultPhysicsManagerFactory swig_types[78]
-#define SWIGTYPE_p_Mezzanine__Physics__DualTransformConstraint swig_types[79]
-#define SWIGTYPE_p_Mezzanine__Physics__DynamicMeshCollisionShape swig_types[80]
-#define SWIGTYPE_p_Mezzanine__Physics__FieldCollisionShape swig_types[81]
-#define SWIGTYPE_p_Mezzanine__Physics__GearConstraint swig_types[82]
-#define SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint swig_types[83]
-#define SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint swig_types[84]
-#define SWIGTYPE_p_Mezzanine__Physics__GhostProxy swig_types[85]
-#define SWIGTYPE_p_Mezzanine__Physics__HeightfieldCollisionShape swig_types[86]
-#define SWIGTYPE_p_Mezzanine__Physics__Hinge2Constraint swig_types[87]
-#define SWIGTYPE_p_Mezzanine__Physics__HingeConstraint swig_types[88]
-#define SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo swig_types[89]
-#define SWIGTYPE_p_Mezzanine__Physics__MeshCollisionShape swig_types[90]
-#define SWIGTYPE_p_Mezzanine__Physics__MultiSphereCollisionShape swig_types[91]
-#define SWIGTYPE_p_Mezzanine__Physics__PhysicsManager swig_types[92]
-#define SWIGTYPE_p_Mezzanine__Physics__PlaneCollisionShape swig_types[93]
-#define SWIGTYPE_p_Mezzanine__Physics__Point2PointConstraint swig_types[94]
-#define SWIGTYPE_p_Mezzanine__Physics__PrimitiveCollisionShape swig_types[95]
-#define SWIGTYPE_p_Mezzanine__Physics__RigidProxy swig_types[96]
-#define SWIGTYPE_p_Mezzanine__Physics__SimulationMonopolyWorkUnit swig_types[97]
-#define SWIGTYPE_p_Mezzanine__Physics__SimulationWorkUnit swig_types[98]
-#define SWIGTYPE_p_Mezzanine__Physics__SliderConstraint swig_types[99]
-#define SWIGTYPE_p_Mezzanine__Physics__SoftCollisionShape swig_types[100]
-#define SWIGTYPE_p_Mezzanine__Physics__SoftProxy swig_types[101]
-#define SWIGTYPE_p_Mezzanine__Physics__SphereCollisionShape swig_types[102]
-#define SWIGTYPE_p_Mezzanine__Physics__StaticMeshCollisionShape swig_types[103]
-#define SWIGTYPE_p_Mezzanine__Physics__StickyConstraintConstructionInfo swig_types[104]
-#define SWIGTYPE_p_Mezzanine__Physics__StickyData swig_types[105]
-#define SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint swig_types[106]
-#define SWIGTYPE_p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit swig_types[107]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[108]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[109]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[110]
-#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[111]
-#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[112]
-#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[113]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[114]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[115]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[116]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[117]
-#define SWIGTYPE_p_Mezzanine__SingletonT_CollisionShapeManager_t swig_types[118]
-#define SWIGTYPE_p_Mezzanine__Sphere swig_types[119]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[120]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[121]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[122]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[123]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[124]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[125]
-#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[126]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[127]
-#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[128]
-#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[129]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[130]
-#define SWIGTYPE_p_Mezzanine__Vector3LengthCompare swig_types[131]
-#define SWIGTYPE_p_Mezzanine__World swig_types[132]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[133]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[134]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[135]
-#define SWIGTYPE_p_Mezzanine__WorldTrigger swig_types[136]
-#define SWIGTYPE_p_Ogre__Plane swig_types[137]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[138]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[139]
-#define SWIGTYPE_p_ParamList swig_types[140]
-#define SWIGTYPE_p_ProxyContainer swig_types[141]
-#define SWIGTYPE_p_ProxyIterator swig_types[142]
-#define SWIGTYPE_p_RayTestResult swig_types[143]
-#define SWIGTYPE_p_SDL_Event swig_types[144]
-#define SWIGTYPE_p_ShapeMap swig_types[145]
-#define SWIGTYPE_p_ShapeMapIterator swig_types[146]
-#define SWIGTYPE_p_ShapeVector swig_types[147]
-#define SWIGTYPE_p_ShapeVectorIterator swig_types[148]
-#define SWIGTYPE_p_StandardAxis swig_types[149]
-#define SWIGTYPE_p_Transform swig_types[150]
-#define SWIGTYPE_p_WorldManager swig_types[151]
-#define SWIGTYPE_p_WorldTriggerContainer swig_types[152]
-#define SWIGTYPE_p_WorldTriggerIterator swig_types[153]
-#define SWIGTYPE_p_XML__Node swig_types[154]
-#define SWIGTYPE_p_bool swig_types[155]
-#define SWIGTYPE_p_btBoxShape swig_types[156]
-#define SWIGTYPE_p_btBvhTriangleMeshShape swig_types[157]
-#define SWIGTYPE_p_btCapsuleShape swig_types[158]
-#define SWIGTYPE_p_btCollisionObject swig_types[159]
-#define SWIGTYPE_p_btCollisionShape swig_types[160]
-#define SWIGTYPE_p_btCompoundShape swig_types[161]
-#define SWIGTYPE_p_btConcaveShape swig_types[162]
-#define SWIGTYPE_p_btConeShape swig_types[163]
-#define SWIGTYPE_p_btConvexHullShape swig_types[164]
-#define SWIGTYPE_p_btConvexInternalShape swig_types[165]
-#define SWIGTYPE_p_btCylinderShape swig_types[166]
-#define SWIGTYPE_p_btGImpactMeshShape swig_types[167]
-#define SWIGTYPE_p_btHeightfieldTerrainShape swig_types[168]
-#define SWIGTYPE_p_btMultiSphereShape swig_types[169]
-#define SWIGTYPE_p_btPairCachingGhostObject swig_types[170]
-#define SWIGTYPE_p_btQuaternion swig_types[171]
-#define SWIGTYPE_p_btRigidBody swig_types[172]
-#define SWIGTYPE_p_btSoftBody swig_types[173]
-#define SWIGTYPE_p_btSoftBodyCollisionShape swig_types[174]
-#define SWIGTYPE_p_btSphereShape swig_types[175]
-#define SWIGTYPE_p_btStaticPlaneShape swig_types[176]
-#define SWIGTYPE_p_btTransform swig_types[177]
-#define SWIGTYPE_p_btTypedConstraint swig_types[178]
-#define SWIGTYPE_p_btVector3 swig_types[179]
-#define SWIGTYPE_p_char swig_types[180]
-#define SWIGTYPE_p_double swig_types[181]
-#define SWIGTYPE_p_float swig_types[182]
-#define SWIGTYPE_p_int swig_types[183]
-#define SWIGTYPE_p_long_long swig_types[184]
-#define SWIGTYPE_p_short swig_types[185]
-#define SWIGTYPE_p_signed_char swig_types[186]
-#define SWIGTYPE_p_std__exception swig_types[187]
-#define SWIGTYPE_p_std__istream swig_types[188]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[189]
-#define SWIGTYPE_p_std__mapT_CollidablePair_Mezzanine__Physics__Collision_p_t__iterator swig_types[190]
-#define SWIGTYPE_p_std__mapT_std__string_Mezzanine__Physics__CollisionShape_p_t__iterator swig_types[191]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[192]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[193]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[194]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[195]
-#define SWIGTYPE_p_std__string swig_types[196]
-#define SWIGTYPE_p_std__stringstream swig_types[197]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__CollisionShape_p_t swig_types[198]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__ConstraintParam_t swig_types[199]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__Generic6DofConstraint_p_t swig_types[200]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__StickyConstraintConstructionInfo_t swig_types[201]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Vector3_t swig_types[202]
-#define SWIGTYPE_p_std__vectorT_float_t swig_types[203]
-#define SWIGTYPE_p_std__vectorT_int_t swig_types[204]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[205]
-#define SWIGTYPE_p_std__wstring swig_types[206]
-#define SWIGTYPE_p_unsigned_char swig_types[207]
-#define SWIGTYPE_p_unsigned_int swig_types[208]
-#define SWIGTYPE_p_unsigned_long swig_types[209]
-#define SWIGTYPE_p_unsigned_long_long swig_types[210]
-#define SWIGTYPE_p_unsigned_short swig_types[211]
-static swig_type_info *swig_types[213];
-static swig_module_info swig_module = {swig_types, 212, 0, 0, 0, 0};
+#define SWIGTYPE_p_CollisionSortPair swig_types[8]
+#define SWIGTYPE_p_ConstCollisionIterator swig_types[9]
+#define SWIGTYPE_p_ConstCollisionMapIterator swig_types[10]
+#define SWIGTYPE_p_ConstConstraintIterator swig_types[11]
+#define SWIGTYPE_p_ConstProxyIterator swig_types[12]
+#define SWIGTYPE_p_ConstShapeMapIterator swig_types[13]
+#define SWIGTYPE_p_ConstShapeVectorIterator swig_types[14]
+#define SWIGTYPE_p_ConstWorldTriggerIterator swig_types[15]
+#define SWIGTYPE_p_Constraint swig_types[16]
+#define SWIGTYPE_p_ConstraintContainer swig_types[17]
+#define SWIGTYPE_p_ConstraintIterator swig_types[18]
+#define SWIGTYPE_p_EntresolManager swig_types[19]
+#define SWIGTYPE_p_ManagerBase__ManagerType swig_types[20]
+#define SWIGTYPE_p_ManagerConstructionInfo swig_types[21]
+#define SWIGTYPE_p_Mezzanine__ArithmeticException swig_types[22]
+#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[23]
+#define SWIGTYPE_p_Mezzanine__DirectoryException swig_types[24]
+#define SWIGTYPE_p_Mezzanine__DirectoryNotFoundException swig_types[25]
+#define SWIGTYPE_p_Mezzanine__DirectoryPermissionException swig_types[26]
+#define SWIGTYPE_p_Mezzanine__DirectoryReadException swig_types[27]
+#define SWIGTYPE_p_Mezzanine__DirectoryWriteException swig_types[28]
+#define SWIGTYPE_p_Mezzanine__ExceptionBase swig_types[29]
+#define SWIGTYPE_p_Mezzanine__FileException swig_types[30]
+#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[31]
+#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[32]
+#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[33]
+#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[34]
+#define SWIGTYPE_p_Mezzanine__Graphics__Mesh swig_types[35]
+#define SWIGTYPE_p_Mezzanine__IOException swig_types[36]
+#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[37]
+#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[38]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[39]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[40]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[41]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[42]
+#define SWIGTYPE_p_Mezzanine__InternalException swig_types[43]
+#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[44]
+#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[45]
+#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[46]
+#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[47]
+#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[48]
+#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[49]
+#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[50]
+#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[51]
+#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[52]
+#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[53]
+#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[54]
+#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[55]
+#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[56]
+#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[57]
+#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[58]
+#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[59]
+#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[60]
+#define SWIGTYPE_p_Mezzanine__Physics__BoxCollisionShape swig_types[61]
+#define SWIGTYPE_p_Mezzanine__Physics__CapsuleCollisionShape swig_types[62]
+#define SWIGTYPE_p_Mezzanine__Physics__CollidablePair swig_types[63]
+#define SWIGTYPE_p_Mezzanine__Physics__CollidableProxy swig_types[64]
+#define SWIGTYPE_p_Mezzanine__Physics__Collision swig_types[65]
+#define SWIGTYPE_p_Mezzanine__Physics__CollisionShape swig_types[66]
+#define SWIGTYPE_p_Mezzanine__Physics__CollisionShapeDeSerializer swig_types[67]
+#define SWIGTYPE_p_Mezzanine__Physics__CollisionShapeManager swig_types[68]
+#define SWIGTYPE_p_Mezzanine__Physics__CompoundCollisionShape swig_types[69]
+#define SWIGTYPE_p_Mezzanine__Physics__ConeCollisionShape swig_types[70]
+#define SWIGTYPE_p_Mezzanine__Physics__ConeTwistConstraint swig_types[71]
+#define SWIGTYPE_p_Mezzanine__Physics__Constraint swig_types[72]
+#define SWIGTYPE_p_Mezzanine__Physics__ConvexHullCollisionShape swig_types[73]
+#define SWIGTYPE_p_Mezzanine__Physics__CylinderCollisionShape swig_types[74]
+#define SWIGTYPE_p_Mezzanine__Physics__DebugDrawWorkUnit swig_types[75]
+#define SWIGTYPE_p_Mezzanine__Physics__DefaultCollisionShapeManagerFactory swig_types[76]
+#define SWIGTYPE_p_Mezzanine__Physics__DefaultPhysicsManagerFactory swig_types[77]
+#define SWIGTYPE_p_Mezzanine__Physics__DualTransformConstraint swig_types[78]
+#define SWIGTYPE_p_Mezzanine__Physics__DynamicMeshCollisionShape swig_types[79]
+#define SWIGTYPE_p_Mezzanine__Physics__FieldCollisionShape swig_types[80]
+#define SWIGTYPE_p_Mezzanine__Physics__GearConstraint swig_types[81]
+#define SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint swig_types[82]
+#define SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint swig_types[83]
+#define SWIGTYPE_p_Mezzanine__Physics__GhostProxy swig_types[84]
+#define SWIGTYPE_p_Mezzanine__Physics__HeightfieldCollisionShape swig_types[85]
+#define SWIGTYPE_p_Mezzanine__Physics__Hinge2Constraint swig_types[86]
+#define SWIGTYPE_p_Mezzanine__Physics__HingeConstraint swig_types[87]
+#define SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo swig_types[88]
+#define SWIGTYPE_p_Mezzanine__Physics__MeshCollisionShape swig_types[89]
+#define SWIGTYPE_p_Mezzanine__Physics__MultiSphereCollisionShape swig_types[90]
+#define SWIGTYPE_p_Mezzanine__Physics__PhysicsManager swig_types[91]
+#define SWIGTYPE_p_Mezzanine__Physics__PlaneCollisionShape swig_types[92]
+#define SWIGTYPE_p_Mezzanine__Physics__Point2PointConstraint swig_types[93]
+#define SWIGTYPE_p_Mezzanine__Physics__PrimitiveCollisionShape swig_types[94]
+#define SWIGTYPE_p_Mezzanine__Physics__RigidProxy swig_types[95]
+#define SWIGTYPE_p_Mezzanine__Physics__SimulationMonopolyWorkUnit swig_types[96]
+#define SWIGTYPE_p_Mezzanine__Physics__SimulationWorkUnit swig_types[97]
+#define SWIGTYPE_p_Mezzanine__Physics__SliderConstraint swig_types[98]
+#define SWIGTYPE_p_Mezzanine__Physics__SoftCollisionShape swig_types[99]
+#define SWIGTYPE_p_Mezzanine__Physics__SoftProxy swig_types[100]
+#define SWIGTYPE_p_Mezzanine__Physics__SphereCollisionShape swig_types[101]
+#define SWIGTYPE_p_Mezzanine__Physics__StaticMeshCollisionShape swig_types[102]
+#define SWIGTYPE_p_Mezzanine__Physics__StickyConstraintConstructionInfo swig_types[103]
+#define SWIGTYPE_p_Mezzanine__Physics__StickyData swig_types[104]
+#define SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint swig_types[105]
+#define SWIGTYPE_p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit swig_types[106]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[107]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[108]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[109]
+#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[110]
+#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[111]
+#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[112]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[113]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[114]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[115]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[116]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[117]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[118]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[119]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[120]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[121]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[122]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[123]
+#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[124]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[125]
+#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[126]
+#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[127]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[128]
+#define SWIGTYPE_p_Mezzanine__Vector3LengthCompare swig_types[129]
+#define SWIGTYPE_p_Mezzanine__World swig_types[130]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[131]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[132]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[133]
+#define SWIGTYPE_p_Mezzanine__WorldTrigger swig_types[134]
+#define SWIGTYPE_p_Ogre__Plane swig_types[135]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[136]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[137]
+#define SWIGTYPE_p_ParamList swig_types[138]
+#define SWIGTYPE_p_ProxyContainer swig_types[139]
+#define SWIGTYPE_p_ProxyIterator swig_types[140]
+#define SWIGTYPE_p_RayTestResult swig_types[141]
+#define SWIGTYPE_p_SDL_Event swig_types[142]
+#define SWIGTYPE_p_ShapeMap swig_types[143]
+#define SWIGTYPE_p_ShapeMapIterator swig_types[144]
+#define SWIGTYPE_p_ShapeVector swig_types[145]
+#define SWIGTYPE_p_ShapeVectorIterator swig_types[146]
+#define SWIGTYPE_p_StandardAxis swig_types[147]
+#define SWIGTYPE_p_Transform swig_types[148]
+#define SWIGTYPE_p_WorldManager swig_types[149]
+#define SWIGTYPE_p_WorldTriggerContainer swig_types[150]
+#define SWIGTYPE_p_WorldTriggerIterator swig_types[151]
+#define SWIGTYPE_p_XML__Node swig_types[152]
+#define SWIGTYPE_p_bool swig_types[153]
+#define SWIGTYPE_p_btBoxShape swig_types[154]
+#define SWIGTYPE_p_btBvhTriangleMeshShape swig_types[155]
+#define SWIGTYPE_p_btCapsuleShape swig_types[156]
+#define SWIGTYPE_p_btCollisionObject swig_types[157]
+#define SWIGTYPE_p_btCollisionShape swig_types[158]
+#define SWIGTYPE_p_btCompoundShape swig_types[159]
+#define SWIGTYPE_p_btConcaveShape swig_types[160]
+#define SWIGTYPE_p_btConeShape swig_types[161]
+#define SWIGTYPE_p_btConvexHullShape swig_types[162]
+#define SWIGTYPE_p_btConvexInternalShape swig_types[163]
+#define SWIGTYPE_p_btCylinderShape swig_types[164]
+#define SWIGTYPE_p_btGImpactMeshShape swig_types[165]
+#define SWIGTYPE_p_btHeightfieldTerrainShape swig_types[166]
+#define SWIGTYPE_p_btMultiSphereShape swig_types[167]
+#define SWIGTYPE_p_btPairCachingGhostObject swig_types[168]
+#define SWIGTYPE_p_btQuaternion swig_types[169]
+#define SWIGTYPE_p_btRigidBody swig_types[170]
+#define SWIGTYPE_p_btSoftBody swig_types[171]
+#define SWIGTYPE_p_btSoftBodyCollisionShape swig_types[172]
+#define SWIGTYPE_p_btSphereShape swig_types[173]
+#define SWIGTYPE_p_btStaticPlaneShape swig_types[174]
+#define SWIGTYPE_p_btTransform swig_types[175]
+#define SWIGTYPE_p_btTypedConstraint swig_types[176]
+#define SWIGTYPE_p_btVector3 swig_types[177]
+#define SWIGTYPE_p_char swig_types[178]
+#define SWIGTYPE_p_double swig_types[179]
+#define SWIGTYPE_p_float swig_types[180]
+#define SWIGTYPE_p_int swig_types[181]
+#define SWIGTYPE_p_long_long swig_types[182]
+#define SWIGTYPE_p_short swig_types[183]
+#define SWIGTYPE_p_signed_char swig_types[184]
+#define SWIGTYPE_p_std__exception swig_types[185]
+#define SWIGTYPE_p_std__istream swig_types[186]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[187]
+#define SWIGTYPE_p_std__mapT_CollidablePair_Mezzanine__Physics__Collision_p_t__iterator swig_types[188]
+#define SWIGTYPE_p_std__mapT_std__string_Mezzanine__Physics__CollisionShape_p_t__iterator swig_types[189]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[190]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[191]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[192]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[193]
+#define SWIGTYPE_p_std__string swig_types[194]
+#define SWIGTYPE_p_std__stringstream swig_types[195]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__CollisionShape_p_t swig_types[196]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__ConstraintParam_t swig_types[197]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__Generic6DofConstraint_p_t swig_types[198]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__StickyConstraintConstructionInfo_t swig_types[199]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Vector3_t swig_types[200]
+#define SWIGTYPE_p_std__vectorT_float_t swig_types[201]
+#define SWIGTYPE_p_std__vectorT_int_t swig_types[202]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[203]
+#define SWIGTYPE_p_std__wstring swig_types[204]
+#define SWIGTYPE_p_unsigned_char swig_types[205]
+#define SWIGTYPE_p_unsigned_int swig_types[206]
+#define SWIGTYPE_p_unsigned_long swig_types[207]
+#define SWIGTYPE_p_unsigned_long_long swig_types[208]
+#define SWIGTYPE_p_unsigned_short swig_types[209]
+static swig_type_info *swig_types[211];
+static swig_module_info swig_module = {swig_types, 210, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -9608,106 +9606,6 @@ static swig_lua_namespace swig_CollisionShapeDeSerializer_Sf_SwigStatic = {
 static swig_lua_class *swig_CollisionShapeDeSerializer_bases[] = {0};
 static const char *swig_CollisionShapeDeSerializer_base_names[] = {0};
 static swig_lua_class _wrap_class_CollisionShapeDeSerializer = { "CollisionShapeDeSerializer", "CollisionShapeDeSerializer", &SWIGTYPE_p_Mezzanine__Physics__CollisionShapeDeSerializer,_proxy__wrap_new_CollisionShapeDeSerializer, swig_delete_CollisionShapeDeSerializer, swig_CollisionShapeDeSerializer_methods, swig_CollisionShapeDeSerializer_attributes, &swig_CollisionShapeDeSerializer_Sf_SwigStatic, swig_CollisionShapeDeSerializer_meta, swig_CollisionShapeDeSerializer_bases, swig_CollisionShapeDeSerializer_base_names };
-
-static int _wrap_new_SingletonCollisionShapeManager(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Singleton< CollisionShapeManager > *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Singleton< CollisionShapeManager >::Singleton",0,0)
-  result = (Mezzanine::Singleton< CollisionShapeManager > *)new Mezzanine::Singleton< CollisionShapeManager >();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SingletonT_CollisionShapeManager_t,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SingletonCollisionShapeManager_GetSingletonPtr(lua_State* L) {
-  int SWIG_arg = 0;
-  CollisionShapeManager *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Singleton< CollisionShapeManager >::GetSingletonPtr",0,0)
-  result = (CollisionShapeManager *)Mezzanine::Singleton< CollisionShapeManager >::SWIGTEMPLATEDISAMBIGUATOR GetSingletonPtr();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_CollisionShapeManager,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SingletonCollisionShapeManager_SingletonValid(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Boole result;
-  
-  SWIG_check_num_args("Mezzanine::Singleton< CollisionShapeManager >::SingletonValid",0,0)
-  result = (Mezzanine::Boole)Mezzanine::Singleton< CollisionShapeManager >::SWIGTEMPLATEDISAMBIGUATOR SingletonValid();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_SingletonCollisionShapeManager(void *obj) {
-Mezzanine::Singleton< CollisionShapeManager > *arg1 = (Mezzanine::Singleton< CollisionShapeManager > *) obj;
-delete arg1;
-}
-static int _proxy__wrap_new_SingletonCollisionShapeManager(lua_State *L) {
-    assert(lua_istable(L,1));
-    lua_pushcfunction(L,_wrap_new_SingletonCollisionShapeManager);
-    assert(!lua_isnil(L,-1));
-    lua_replace(L,1); /* replace our table with real constructor */
-    lua_call(L,lua_gettop(L)-1,1);
-    return 1;
-}
-static swig_lua_attribute swig_SingletonCollisionShapeManager_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_SingletonCollisionShapeManager_methods[]= {
-    {0,0}
-};
-static swig_lua_method swig_SingletonCollisionShapeManager_meta[] = {
-    {0,0}
-};
-
-static swig_lua_attribute swig_SingletonCollisionShapeManager_Sf_SwigStatic_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_const_info swig_SingletonCollisionShapeManager_Sf_SwigStatic_constants[]= {
-    {0,0,0,0,0,0}
-};
-static swig_lua_method swig_SingletonCollisionShapeManager_Sf_SwigStatic_methods[]= {
-    { "GetSingletonPtr", _wrap_SingletonCollisionShapeManager_GetSingletonPtr},
-    { "SingletonValid", _wrap_SingletonCollisionShapeManager_SingletonValid},
-    {0,0}
-};
-static swig_lua_class* swig_SingletonCollisionShapeManager_Sf_SwigStatic_classes[]= {
-    0
-};
-
-static swig_lua_namespace swig_SingletonCollisionShapeManager_Sf_SwigStatic = {
-    "SingletonCollisionShapeManager",
-    swig_SingletonCollisionShapeManager_Sf_SwigStatic_methods,
-    swig_SingletonCollisionShapeManager_Sf_SwigStatic_attributes,
-    swig_SingletonCollisionShapeManager_Sf_SwigStatic_constants,
-    swig_SingletonCollisionShapeManager_Sf_SwigStatic_classes,
-    0
-};
-static swig_lua_class *swig_SingletonCollisionShapeManager_bases[] = {0};
-static const char *swig_SingletonCollisionShapeManager_base_names[] = {0};
-static swig_lua_class _wrap_class_SingletonCollisionShapeManager = { "SingletonCollisionShapeManager", "SingletonCollisionShapeManager", &SWIGTYPE_p_Mezzanine__SingletonT_CollisionShapeManager_t,_proxy__wrap_new_SingletonCollisionShapeManager, swig_delete_SingletonCollisionShapeManager, swig_SingletonCollisionShapeManager_methods, swig_SingletonCollisionShapeManager_attributes, &swig_SingletonCollisionShapeManager_Sf_SwigStatic, swig_SingletonCollisionShapeManager_meta, swig_SingletonCollisionShapeManager_bases, swig_SingletonCollisionShapeManager_base_names };
 
 static int _wrap_CollisionShapeManager_ImplementationName_get(lua_State* L) {
   int SWIG_arg = 0;
@@ -62175,8 +62073,6 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "InternalShapeTypeToShapeType", _wrap_InternalShapeTypeToShapeType},
     { "ShapeTypeToString", _wrap_ShapeTypeToString},
     { "StringToShapeType", _wrap_StringToShapeType},
-    { "SingletonCollisionShapeManager_GetSingletonPtr", _wrap_SingletonCollisionShapeManager_GetSingletonPtr},
-    { "SingletonCollisionShapeManager_SingletonValid", _wrap_SingletonCollisionShapeManager_SingletonValid},
     { "PrimitiveCollisionShape_GetSerializableName", _wrap_PrimitiveCollisionShape_GetSerializableName},
     { "BoxCollisionShape_GetSerializableName", _wrap_BoxCollisionShape_GetSerializableName},
     { "CapsuleCollisionShape_GetSerializableName", _wrap_CapsuleCollisionShape_GetSerializableName},
@@ -62237,7 +62133,6 @@ static swig_lua_class* swig_SwigModule_classes[]= {
 &_wrap_class_DefaultPhysicsManagerFactory,
 &_wrap_class_CollisionShape,
 &_wrap_class_CollisionShapeDeSerializer,
-&_wrap_class_SingletonCollisionShapeManager,
 &_wrap_class_CollisionShapeManager,
 &_wrap_class_DefaultCollisionShapeManagerFactory,
 &_wrap_class_PrimitiveCollisionShape,
@@ -62958,7 +62853,6 @@ static swig_type_info _swigt__p_CollisionContainer = {"_p_CollisionContainer", "
 static swig_type_info _swigt__p_CollisionIterator = {"_p_CollisionIterator", "CollisionIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CollisionMap = {"_p_CollisionMap", "CollisionMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CollisionMapIterator = {"_p_CollisionMapIterator", "CollisionMapIterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_CollisionShapeManager = {"_p_CollisionShapeManager", "CollisionShapeManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CollisionSortPair = {"_p_CollisionSortPair", "CollisionSortPair *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ConstCollisionIterator = {"_p_ConstCollisionIterator", "ConstCollisionIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ConstCollisionMapIterator = {"_p_ConstCollisionMapIterator", "ConstCollisionMapIterator *", 0, 0, (void*)0, 0};
@@ -63068,7 +62962,6 @@ static swig_type_info _swigt__p_Mezzanine__ScriptLuaErrErrException = {"_p_Mezza
 static swig_type_info _swigt__p_Mezzanine__ScriptLuaException = {"_p_Mezzanine__ScriptLuaException", "Mezzanine::ScriptLuaException *", 0, 0, (void*)&_wrap_class_ScriptLuaException, 0};
 static swig_type_info _swigt__p_Mezzanine__ScriptLuaRuntimeException = {"_p_Mezzanine__ScriptLuaRuntimeException", "Mezzanine::ScriptLuaRuntimeException *", 0, 0, (void*)&_wrap_class_ScriptLuaRuntimeException, 0};
 static swig_type_info _swigt__p_Mezzanine__ScriptLuaYieldException = {"_p_Mezzanine__ScriptLuaYieldException", "Mezzanine::ScriptLuaYieldException *", 0, 0, (void*)&_wrap_class_ScriptLuaYieldException, 0};
-static swig_type_info _swigt__p_Mezzanine__SingletonT_CollisionShapeManager_t = {"_p_Mezzanine__SingletonT_CollisionShapeManager_t", "Mezzanine::Singleton< CollisionShapeManager > *", 0, 0, (void*)&_wrap_class_SingletonCollisionShapeManager, 0};
 static swig_type_info _swigt__p_Mezzanine__Sphere = {"_p_Mezzanine__Sphere", "Mezzanine::Sphere *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorException = {"_p_Mezzanine__SyntaxErrorException", "Mezzanine::SyntaxErrorException *", 0, 0, (void*)&_wrap_class_SyntaxErrorException, 0};
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorLuaException = {"_p_Mezzanine__SyntaxErrorLuaException", "Mezzanine::SyntaxErrorLuaException *", 0, 0, (void*)&_wrap_class_SyntaxErrorLuaException, 0};
@@ -63172,7 +63065,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_CollisionIterator,
   &_swigt__p_CollisionMap,
   &_swigt__p_CollisionMapIterator,
-  &_swigt__p_CollisionShapeManager,
   &_swigt__p_CollisionSortPair,
   &_swigt__p_ConstCollisionIterator,
   &_swigt__p_ConstCollisionMapIterator,
@@ -63282,7 +63174,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__ScriptLuaException,
   &_swigt__p_Mezzanine__ScriptLuaRuntimeException,
   &_swigt__p_Mezzanine__ScriptLuaYieldException,
-  &_swigt__p_Mezzanine__SingletonT_CollisionShapeManager_t,
   &_swigt__p_Mezzanine__Sphere,
   &_swigt__p_Mezzanine__SyntaxErrorException,
   &_swigt__p_Mezzanine__SyntaxErrorLuaException,
@@ -63386,7 +63277,6 @@ static swig_cast_info _swigc__p_CollisionContainer[] = {  {&_swigt__p_CollisionC
 static swig_cast_info _swigc__p_CollisionIterator[] = {  {&_swigt__p_CollisionIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CollisionMap[] = {  {&_swigt__p_CollisionMap, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CollisionMapIterator[] = {  {&_swigt__p_CollisionMapIterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CollisionShapeManager[] = {  {&_swigt__p_CollisionShapeManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CollisionSortPair[] = {  {&_swigt__p_CollisionSortPair, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ConstCollisionIterator[] = {  {&_swigt__p_ConstCollisionIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ConstCollisionMapIterator[] = {  {&_swigt__p_ConstCollisionMapIterator, 0, 0, 0},{0, 0, 0, 0}};
@@ -63496,7 +63386,6 @@ static swig_cast_info _swigc__p_Mezzanine__ScriptLuaErrErrException[] = {  {&_sw
 static swig_cast_info _swigc__p_Mezzanine__ScriptLuaException[] = {  {&_swigt__p_Mezzanine__ScriptLuaException, 0, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ScriptLuaRuntimeException[] = {  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ScriptLuaYieldException[] = {  {&_swigt__p_Mezzanine__ScriptLuaYieldException, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__SingletonT_CollisionShapeManager_t[] = {  {&_swigt__p_Mezzanine__SingletonT_CollisionShapeManager_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Sphere[] = {  {&_swigt__p_Mezzanine__Sphere, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorException, 0, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, _p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorLuaException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, 0, 0, 0},{0, 0, 0, 0}};
@@ -63600,7 +63489,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_CollisionIterator,
   _swigc__p_CollisionMap,
   _swigc__p_CollisionMapIterator,
-  _swigc__p_CollisionShapeManager,
   _swigc__p_CollisionSortPair,
   _swigc__p_ConstCollisionIterator,
   _swigc__p_ConstCollisionMapIterator,
@@ -63710,7 +63598,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__ScriptLuaException,
   _swigc__p_Mezzanine__ScriptLuaRuntimeException,
   _swigc__p_Mezzanine__ScriptLuaYieldException,
-  _swigc__p_Mezzanine__SingletonT_CollisionShapeManager_t,
   _swigc__p_Mezzanine__Sphere,
   _swigc__p_Mezzanine__SyntaxErrorException,
   _swigc__p_Mezzanine__SyntaxErrorLuaException,

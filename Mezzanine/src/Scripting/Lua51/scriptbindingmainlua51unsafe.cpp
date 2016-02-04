@@ -47818,23 +47818,6 @@ static swig_lua_class *swig_EntresolManagerFactory_bases[] = {0,0};
 static const char *swig_EntresolManagerFactory_base_names[] = {"Mezzanine::ManagerFactory *",0};
 static swig_lua_class _wrap_class_EntresolManagerFactory = { "EntresolManagerFactory", "EntresolManagerFactory", &SWIGTYPE_p_Mezzanine__EntresolManagerFactory,0, swig_delete_EntresolManagerFactory, swig_EntresolManagerFactory_methods, swig_EntresolManagerFactory_attributes, &swig_EntresolManagerFactory_Sf_SwigStatic, swig_EntresolManagerFactory_meta, swig_EntresolManagerFactory_bases, swig_EntresolManagerFactory_base_names };
 
-static int _wrap_new_SingletonEventManager(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Singleton< Mezzanine::EventManager > *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Singleton< Mezzanine::EventManager >::Singleton",0,0)
-  result = (Mezzanine::Singleton< Mezzanine::EventManager > *)new Mezzanine::Singleton< Mezzanine::EventManager >();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SingletonT_Mezzanine__EventManager_t,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_SingletonEventManager_GetSingletonPtr(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EventManager *result = 0 ;
@@ -47873,14 +47856,6 @@ static void swig_delete_SingletonEventManager(void *obj) {
 Mezzanine::Singleton< Mezzanine::EventManager > *arg1 = (Mezzanine::Singleton< Mezzanine::EventManager > *) obj;
 delete arg1;
 }
-static int _proxy__wrap_new_SingletonEventManager(lua_State *L) {
-    assert(lua_istable(L,1));
-    lua_pushcfunction(L,_wrap_new_SingletonEventManager);
-    assert(!lua_isnil(L,-1));
-    lua_replace(L,1); /* replace our table with real constructor */
-    lua_call(L,lua_gettop(L)-1,1);
-    return 1;
-}
 static swig_lua_attribute swig_SingletonEventManager_attributes[] = {
     {0,0,0}
 };
@@ -47916,7 +47891,7 @@ static swig_lua_namespace swig_SingletonEventManager_Sf_SwigStatic = {
 };
 static swig_lua_class *swig_SingletonEventManager_bases[] = {0};
 static const char *swig_SingletonEventManager_base_names[] = {0};
-static swig_lua_class _wrap_class_SingletonEventManager = { "SingletonEventManager", "SingletonEventManager", &SWIGTYPE_p_Mezzanine__SingletonT_Mezzanine__EventManager_t,_proxy__wrap_new_SingletonEventManager, swig_delete_SingletonEventManager, swig_SingletonEventManager_methods, swig_SingletonEventManager_attributes, &swig_SingletonEventManager_Sf_SwigStatic, swig_SingletonEventManager_meta, swig_SingletonEventManager_bases, swig_SingletonEventManager_base_names };
+static swig_lua_class _wrap_class_SingletonEventManager = { "SingletonEventManager", "SingletonEventManager", &SWIGTYPE_p_Mezzanine__SingletonT_Mezzanine__EventManager_t,0, swig_delete_SingletonEventManager, swig_SingletonEventManager_methods, swig_SingletonEventManager_attributes, &swig_SingletonEventManager_Sf_SwigStatic, swig_SingletonEventManager_meta, swig_SingletonEventManager_bases, swig_SingletonEventManager_base_names };
 
 static int _wrap_new_EventPumpWorkUnit__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
