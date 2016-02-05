@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead. " alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Track.html" title="A base type that provides container features for different tracks. " alt="" coords="5,5,208,47"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1TrackLooped.html" title="A track that keeps an extra data point in the track to make sure it loops. " alt="" coords="256,5,424,47"/>
 </map>

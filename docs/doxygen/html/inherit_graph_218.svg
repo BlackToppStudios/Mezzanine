@@ -11,11 +11,11 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-46 145,-46 145,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1Lua_1_1Lua51RealArgument_01_4.html" target="_top" xlink:title="Marks Lua51RealArgument for internal reference counting if a CountedPtr checks. ">
+<g id="a_node1"><a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1Lua_1_1LuaArgument_01_4.html" target="_top" xlink:title="Marks LuaArgument for internal reference counting if a CountedPtr checks. ">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-41.5 141,-41.5 141,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ReferenceCount</text>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Traits&lt; Scripting::Lua</text>
-<text text-anchor="middle" x="70.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Lua51RealArgument &gt;</text>
+<text text-anchor="middle" x="70.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::LuaArgument &gt;</text>
 </a>
 </g>
 </g>

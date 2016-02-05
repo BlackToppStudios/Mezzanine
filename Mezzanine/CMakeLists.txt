@@ -1,4 +1,4 @@
-# © Copyright 2010 - 2015 BlackTopp Studios Inc.
+# © Copyright 2010 - 2016 BlackTopp Studios Inc.
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -92,15 +92,20 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}datatypes.h"
         "${${PROJECT_NAME}_SRC_DIR}debris.h"
         "${${PROJECT_NAME}_SRC_DIR}debrismanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/best_practices_doxygen.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/building_the_engine.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/contact_us.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_linux.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_macosx.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_windows.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_linux.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_macosx.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_windows.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/jagati_package.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/tech_doc_index.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/mainpage.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/mezzanine_engine.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/running_doxygen.h"
         "${${PROJECT_NAME}_SRC_DIR}entresol.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanagerfactory.h"

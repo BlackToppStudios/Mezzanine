@@ -67,15 +67,222 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Building the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> Engine </div>  </div>
+<div class="title">Building the Mezzanine Engine </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>asf </p>
-</div></div><!-- contents -->
+<div class="textblock"><h1><a class="anchor" id="building_the_engine_tools"></a>
+Build Tools</h1>
+<p>First thing you will want to do is get the right tools for building and working with the <a class="el" href="mezzanine_engine.html">Mezzanine Engine</a>. We have pages for each supported platforms tool set, pick the appropriate set for your uses:</p><ul>
+<li><a class="el" href="dev_tools_windows.html">Windows Development Tools</a></li>
+<li><a class="el" href="dev_tools_linux.html">Linux Development Tools</a></li>
+<li><a class="el" href="dev_tools_mac.html">Mac OS X Development Tools</a></li>
+</ul>
+<p>If you are planning on developing software too it may be a good idea to install a copy of  <a href="http://www.codeblocks.org/downloads/26"> Code::blocks IDE  </a> ,  <a href="http://www.qt.io/ide/"> Qt Creator  </a> or another IDE (Integrated Development Environment). You can use any IDE you like, but if you want to ask us IDE questions we will only have answers for the ones we have used. On Mac OS x you will probably want to use xcode.</p>
+<h1><a class="anchor" id="building_the_engine_get_source"></a>
+Get the Source Code</h1>
+<p>From a command prompt you can run a few commands to get a copy of the source on your workstation. If you are using windows you could use the  <a href="https://git-scm.com/"> git bash prompt  </a> , and on Mac OS or Linux the normal terminal or bash prompts should work. If you are using some  <a href="https://desktop.github.com/"> graphical tool  </a> the steps are the same, but you will have to figure out how to make the software you use perform them. <br />
+ <br />
+These commands if copied verbatim on windows will navigate to your C: Drive and create a folder called “Mezzanine” with the source code in it. The actual commands you will type are in italics/highlighted. You can change “c:” to a directory of your choice, such as your desktop or documents folder. You will have to change it if you are not using windows. One thing to note is that one of the linker’s used, windres.exe, does not like spaces in the paths that are passed to it. If you place the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> repo in a path that has a space in one of the folder names your compile will fail. Avoid paths with spaces in directory names. I.E., a folder named “Documents/Mezzanine” will be ok, but “My Documents/Mezzanine” will fail during compilation. </p><div class="fragment"><div class="line">dev@DEV-PC ~</div>
+<div class="line">$ cd c:</div>
+<div class="line">dev@DEV-PC /c</div>
+<div class="line">$ git clone git:<span class="comment">//github.com/BlackToppStudios/Mezzanine.git</span></div>
+<div class="line">Cloning into <a class="code" href="namespaceMezzanine.html">Mezzanine</a>...</div>
+<div class="line">remote: Counting objects: 117277, done.</div>
+<div class="line">remote: Compressing objects: 100% (51597/51597), done.</div>
+<div class="line">remote: Total 117277 (delta 65098), reused 114360 (delta 62444)</div>
+<div class="line">Receiving objects: 100% (117277/117277), 572.91 MiB | 1.60 MiB/s, done.</div>
+<div class="line">Resolving deltas: 100% (65098/65098), done.</div>
+</div><!-- fragment --><p><br />
+Here is an example of similar commands on Linux:</p>
+<div class="fragment"><div class="line">sqeaky@Tachyon:~$ mkdir projects</div>
+<div class="line">sqeaky@Tachyon:~$ cd projects/</div>
+<div class="line">sqeaky@Tachyon:~/projects$ git clone git:<span class="comment">//github.com/BlackToppStudios/Mezzanine.git</span></div>
+<div class="line">Cloning into <span class="stringliteral">&#39;Mezzanine&#39;</span>...</div>
+<div class="line">remote: Counting objects: 117277, done.</div>
+<div class="line">remote: Compressing objects: 100% (51597/51597), done.</div>
+<div class="line">remote: Total 117277 (delta 65102), reused 114356 (delta 62444)</div>
+<div class="line">Receiving objects: 100% (117277/117277), 572.90 MiB | 1.94 MiB/s, done.</div>
+<div class="line">Resolving deltas: 100% (65102/65102), done.</div>
+</div><!-- fragment --><h1><a class="anchor" id="building_the_engine_git_urls"></a>
+Git URLs</h1>
+<p>There are a few places and ways you can download the source code. The ones that provide “read only” access refer only to the ability to upload to changes. With any of these methods you can make as many changes as you like to the copy on your machine:</p>
+<ul>
+<li>git://github.com/BlackToppStudios/Mezzanine.git – For read only access.</li>
+<li><a href="#" onclick="location.href='mai'+'lto:'+'git'+'@g'+'ith'+'ub'+'.co'+'m'; return false;">git@g<span style="display: none;">.nosp@m.</span>ithu<span style="display: none;">.nosp@m.</span>b.com</a>:BlackToppStudios/Mezzanine.git – For read/write access (must as us to get write access). <br />
+When using git “git://”, “https://” and “http://” URLs will work with no extra configuration but generally will be read-only. To use a URL that starts with “git", an SSH URL, you will need an account with the people maintaining the URL (like  <a href="https://github.com/join?source=header"> github.com  </a> ), setup an RSA-Keypair, and upload your public key to them. See the  <a href="https://help.github.com/articles/set-up-git/"> Github setup page  </a> setup page for more info, and be certain that the RSA fingerprint matches if it asks you. Additionally, to upload changes a BTS administrator will have to give you permissions on Github to contribute.</li>
+</ul>
+<p><br />
+Once you have cloned the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> repository (or physgame repository if from the older Gitorious backup) the URL setting is stored in “.git/config” and it can be changed with any text editor. The “.git” folder is hidden by default.</p>
+<p><br />
+You can also download a zip archive of the source from <a href="https://github.com/BlackToppStudios/Mezzanine/">https://github.com/BlackToppStudios/Mezzanine/</a>. You may have to adjust certain steps if this is the case.</p>
+<h2><a class="anchor" id="building_the_engine_git_urls_gitorious"></a>
+Gitorious is dead</h2>
+<p> <a href="https://gitorious.org/"> Gitorious  </a> , the original hosting site for BTS source code seemed to be non longer functional at the time of this writing. For historic interest here are the old links to those repositories.</p><ul>
+<li>git://gitorious.org/physgame/physgame.git – Read only access to the backup</li>
+<li><a href="#" onclick="location.href='mai'+'lto:'+'git'+'@g'+'ito'+'ri'+'ous'+'.o'+'rg'; return false;">git@g<span style="display: none;">.nosp@m.</span>itor<span style="display: none;">.nosp@m.</span>ious.<span style="display: none;">.nosp@m.</span>org</a>:physgame/physgame.git – Read/write access to the backup</li>
+<li><a href="http://git.gitorious.org/physgame/physgame.git">http://git.gitorious.org/physgame/physgame.git</a> – Read Only</li>
+</ul>
+<h1><a class="anchor" id="building_the_engine_deps"></a>
+Dependencies</h1>
+<p>After you get the source code there may be some steps you need to take to get any software the <a class="el" href="mezzanine_engine.html">Mezzanine Engine</a> depends on installed and configured. Please take a look at any appropriate steps for your platform:</p>
+<ul>
+<li><a class="el" href="installing_engine_deps_windows.html">Installing Windows Engine Dependencies</a></li>
+<li><a class="el" href="installing_engine_deps_linux.html">Installing Linux Engine Dependencies</a></li>
+<li><a class="el" href="installing_engine_deps_macosx.html">Installing Mac OS X Engine Dependencies</a></li>
+</ul>
+<h2><a class="anchor" id="building_the_engine_deps_building"></a>
+Building the Shipped Dependencies</h2>
+<p>In the past this was a significantly complex procedure, now almost all of our dependencies have been integrated tightly. <a class="el" href="namespaceOgre.html">Ogre</a>, SDL, Bullet3d and a few others are all built during the CMake build process.</p>
+<p>The <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> source ships with a copy of SDL and Ogre3d (and a few other) libraries source code that are used internally by it. You won’t need to use these unless you are making advanced changes to the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> itself, but they will need to be compiled. This will be handled automatically as part of the main source build process.</p>
+<h1><a class="anchor" id="building_the_engine_using_cmake"></a>
+Using CMake</h1>
+<p>Cmake will create a set of project files that will tell the compiler how to compile the source you just downloaded. The steps listed here assume that you have the source files in “c:\<a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a>\” and want to have your compiled binaries in “c:\Mezzbuild\”. There are a couple of way to do this. You can use the graphical Cmake program or the command line tool.</p>
+<h2><a class="anchor" id="building_the_engine_cmake_options"></a>
+CMake Options</h2>
+<p>In the graphical version these appear as series of checkboxes, in the command line version you can use the “-D” flag to set these:</p>
+<ul>
+<li>Mezz_Debug – Enables Debuging symbols in the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> library and enable extra logging message. Defaults to false.</li>
+<li>Mezz_Lua51 – Enable/Disable the whole Lua system. Defaults to true/enabled.</li>
+<li>Mezz_Network – Enable Networking support. Defaults to true.</li>
+<li>Mezz_BuildRenderSystemDirectX9 – This controls support for DirectX 9 a common RenderSystem on all microsoft operating systems. This is experimental.</li>
+<li>Mezz_BuildRenderSystemDirectX11 – Controls support DirectX 11 a more advanced RenderSystem only available on newer microsoft operating systems. This is experimental.</li>
+<li>Mezz_BuildRenderSystemOpenGL – This is default Render system on Windows, Linux and Mac OS X.</li>
+<li>Mezz_BuildRenderSystemOpenGLES – Experimental, this is the render that will be used on some mobiles platforms.</li>
+<li>Mezz_BuildRenderSystemOpenGLES2 – Experimental, this is the render that will be used on some mobiles platforms.</li>
+</ul>
+<h3><a class="anchor" id="building_the_engine_advanced_cmake_options"></a>
+Advanced CMake Options</h3>
+<p>Here are some of the advanced features:</p>
+<ul>
+<li>Mezz_Profile – Enable compiler level profiling support. Defaults to false.</li>
+<li>Mezz_ForceBuildType – Forces The CMake build type to match the Mezz_Debug flag, useful if you to not have debug symbols but want the extra logging Mezz_Debug enables.</li>
+<li>Mezz_ThrowOnSingletonFetch – Controls whether getting a singleton when it is invalid throws or returns null.</li>
+<li>Mezz_UseOgreVersion – This must be set to match the Ogre3d version if you want to use one not integrated you will need to adjust this.</li>
+</ul>
+<h3><a class="anchor" id="building_the_engine_cmake_option_caveats"></a>
+CMake Option Caveats</h3>
+<p>Currently the Mezz_Profile cmake flag does not work on windows, and will give errors while trying to compile it. Avoid enabling it on windows. <br />
+Mezz_XML Has been deprecated and removed. The XML system is central to many other features, and maintaining this option takes too much time for the value it adds.</p>
+<h2><a class="anchor" id="building_the_engine_cmake_graphical"></a>
+Graphical Tool</h2>
+<p>First thing to do is open Cmake. The default installation in windows should have put a Cmake icon on you desktop, and another in your start menu. In Ubuntu (and most other modern Linux distributions) when you install “cmake-gui” an entry will be made in the KDE or Gnome menu or Unity panel. Use that icon or menu entry to start it or use "cmake-gui" from a terminal. <br />
+The first box at the top of the screen is called “Where is the source code:”. Select the folder using the “Browse Source” button, or manully type in “c:/Mezzanine”. The next box asks “Where to build binaries:” enter “c:/Mezzbuild”. After that click the configure button in the lower left corner. This will prompt you for what kind of project files to make. If you just want to build the engine and not work with it’s source directly select “Unix Makefiles” or “MinGW Makefiles”, if you do directly want to work with the source code select “Codeblocks – Unix Makefiles” or “Codeblocks – MinGW Makefiles”. When you click finish on this screen Cmake will have figured out most of the information it needs to make the files. <br />
+The last information required before creating project files is any options you want to select. Read below about “The Options” then click “Configure” again after you have made your choice. Then click “Generate” to actually make the project files.</p>
+<h2><a class="anchor" id="building_the_engine_cmake_cmd"></a>
+Command Line Tool</h2>
+<p>There are a few different ways to use CMake from the command line. Ideally this should be run from the directory the compiled binaries are desired in, this is called the build directory. Cmake should be passed the directory with the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> repository. On Linux, but otherwise similar to our previous example, you could:</p>
+<div class="fragment"><div class="line">cmake ../<a class="code" href="namespaceMezzanine.html">Mezzanine</a>/</div>
+</div><!-- fragment --><p><br />
+When run from windows it might look the same if run from a Git bash prompt, or it could like the following if run from a DOS prompt:</p>
+<div class="fragment"><div class="line">cmake ..\\Mezzanine\\</div>
+</div><!-- fragment --><h3><a class="anchor" id="building_the_engine_cmake_generators"></a>
+CMake Generators</h3>
+<p>There are many kinds of files CMake can output. The way you select these are by passing cmake a generator. Most commonly we will recommend Makefiles or Codeblocks project files. There are several other kinds of files available for creation, but they are beyond the scope of this document. The most common generators we use are: <br />
+On Linux:</p>
+<ul>
+<li>CodeBlocks - Unix Makefiles</li>
+<li>CodeBlocks - Ninja</li>
+<li>Unix Makefiles</li>
+<li>Ninja</li>
+</ul>
+<p><br />
+On Windows:</p>
+<ul>
+<li>Codeblocks – MinGW Makefiles</li>
+<li>MinGW Makefiles</li>
+</ul>
+<p><br />
+These can be entered with the “-G” switch (also called an argument) for example:</p>
+<div class="fragment"><div class="line">cmake ../<a class="code" href="namespaceMezzanine.html">Mezzanine</a>/ -G<span class="stringliteral">&quot;CodeBlocks - Unix Makefiles&quot;</span></div>
+</div><!-- fragment --><h2><a class="anchor" id="building_the_engine_entering_option"></a>
+Entering options</h2>
+<p>All of the options listed above can be entered with the “-D” switch. After the name of the name of the option you need to include either “:boolean=true” or “:boolean=false”, for example:</p>
+<div class="fragment"><div class="line">cmake ../<a class="code" href="namespaceMezzanine.html">Mezzanine</a>/ -G<span class="stringliteral">&quot;CodeBlocks - Unix Makefiles&quot;</span> -DMezz_Debug:<span class="keywordtype">boolean</span>=<span class="keyword">true</span></div>
+</div><!-- fragment --><p> Game Developers will probably want the default options, which leave Profiling support and debugging support off.</p>
+<p>If you read the output of cmake, it will tell you what is enabled or disabled in plain English. With messages being similar to</p>
+<div class="fragment"><div class="line">-- MezzanineAndCatch - Disabling gcc profiling and unsetting MEZZPROFILE</div>
+<div class="line">-- MezzanineAndCatch - Enabling Network subsystem, and setting MEZZNETWORK</div>
+<div class="line">-- MezzanineAndCatch - Enabling Support <span class="keywordflow">for</span> Lua Scripting Language, and setting MEZZLUA51</div>
+<div class="line">-- MezzanineAndCatch - Disabling Support <span class="keywordflow">for</span> Ruby Scripting Language, and unsetting MEZZRUBY</div>
+<div class="line">-- MezzanineAndCatch - Disabling Swig execution each build.</div>
+<div class="line">-- MezzanineAndCatch - Enabling EntreLua build.</div>
+</div><!-- fragment --><p>You might want to disable an option, or use multiple. Here is an example of enabling debug support and disabling DirectX 11.</p>
+<div class="fragment"><div class="line">cmake ../<a class="code" href="namespaceMezzanine.html">Mezzanine</a>/ -G<span class="stringliteral">&quot;CodeBlocks - Unix Makefiles&quot;</span> -DMezz_Debug:<span class="keywordtype">boolean</span>=<span class="keyword">true</span> -DMezz_BuildRenderSystemDirectX11:<span class="keywordtype">boolean</span>=<span class="keyword">false</span></div>
+</div><!-- fragment --><h2><a class="anchor" id="building_the_engine_common_cmake_issues"></a>
+Common Issues with CMake</h2>
+<p>On windows, if CMake complains about finding “sh.exe” in the system path then you will need to edit the system path variable to remove “c:\program files\git\bin” from your PATH. See above for instructions on Editing your PATH variable.</p>
+<h1><a class="anchor" id="building_the_engine_actually"></a>
+Compiling the Engine</h1>
+<p>Once you have your project files or makefiles you can compile the engine. There are two way to do this. People interested in the engine code can use the Code::Blocks IDE to compile the engine (Engine Developers and some Game Developers). People who aren’t interested in engine code can use make or ninja from a command line (some Game Developers, people installing the engine and Package Maintainers)</p>
+<p><br />
+This can take anywhere from 10 seconds to a couple of hourse depending on the speed of your computer. Various netbooks have taken between 30 and 45 minutes for a fresh compile all build targets, and 20 seconds to 90 seconds for a partial compile of one build target that uses the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a>. Our i7 machine took around two minutes for a full build and less than a second for a partial build.</p>
+<h2><a class="anchor" id="building_the_engine_using_codeblocks"></a>
+Build with Code::Blocks</h2>
+<p>All you have to do is open Code::Blocks by double clicking on the “MezzanineAndCatch.cbp” icon in your build directory, selecting the Build Target you want to build, and finally clicking on the green gear to compile.</p>
+<p><br />
+To speed this up or better understand the process here is a little more information that might be useful.</p>
+<h2><a class="anchor" id="building_the_engine_using_codeblocks_cpus"></a>
+Code::Blocks and Multiple CPUs</h2>
+<p>When Code::Blocks is already open you can go to the “Settings” menu and select “Compiler and Debugger”, which will open a screen with a “Build Options” tab (you may need to scroll left or right to see it), which will have the “Number of parallel builds” option. This should be set to on or around the amount of hardware threads (CPUs + hyperthreading cores) your computer supports. On our i7 it is set to 9 and on the netbooks it was set to two or three.</p>
+<p><br />
+In an IDE that uses make for the build process, you just add an argument in the menu that defines how make is called. In QT Creator, for example, you can configure it “-j9” for nine compilation threads, in the “Projects” Sidebar in the “Build Steps” section. You can use any amount of threads that you see fit, try numbers around the amount of “Cores” your CPU provides.</p>
+<h2><a class="anchor" id="building_the_engine_terminal"></a>
+Build with Command Line</h2>
+<p>If you open a Git Bash prompt on a window, or terminal on Mac OS X or Linux, then cd to your build directory and enter the “make” command, you have started the engine compiling. (This only works if using GCC, MinGW or Clang compilers)</p>
+<p><br />
+This runs slightly faster than a compilation from Code::Blocks, but not by much. The easiest way to speed this up is to tell make to use multiple thread to perform the compilation. This can be done with the “-j” switch, and the number of threads you want to run.</p>
+<p><br />
+The following examples will run the compilition in 4 threads which would be suitable for a typical quad-core machine:</p>
+<p><br />
+ On Linux or Mac OS X: </p><div class="fragment"><div class="line">make -j4</div>
+</div><!-- fragment --><p><br />
+ On windows: </p><div class="fragment"><div class="line">mingw32-make -j4</div>
+</div><!-- fragment --><p><br />
+ On any OS with ninja installed: </p><div class="fragment"><div class="line">ninja -j4</div>
+</div><!-- fragment --><h1><a class="anchor" id="building_the_engine_build_targets"></a>
+Build Targets</h1>
+<p>There are many build targets to choose from, here is a brief synopsis of the interesting ones.</p>
+<ul>
+<li>All – Builds Everything</li>
+<li><a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> – The engine and what it requires</li>
+<li>Catch – Just the Catch game and the engine if the files present aren’t current</li>
+<li>UnitTests – the Testing suite and the engine if the files present aren’t current</li>
+<li>EngineDemo – A simple Engine Demo and the engine if the files present aren’t current</li>
+<li>/fast – (Code::Blocks only) Builds whatever * is, but skips any checks of the engine</li>
+<li>Anything else – A component of the engine</li>
+</ul>
+<p><br />
+ In Code::Blocks you can just select these from the build menu, from the command prompt you can add these to the end the build command to build just one target. For example these will all build the EngineDemo and only what it requires (So it won't build Catch!):</p>
+<p><br />
+ On Linux or Mac OS X: </p><div class="fragment"><div class="line">make -j4 EngineDemo</div>
+</div><!-- fragment --><p><br />
+ On windows: </p><div class="fragment"><div class="line">mingw32-make -j4 EngineDemo</div>
+</div><!-- fragment --><p><br />
+ On any OS with ninja installed: </p><div class="fragment"><div class="line">ninja -j4 EngineDemo</div>
+</div><!-- fragment --><h1><a class="anchor" id="building_the_engine_compilation_issues"></a>
+Compilation Issues</h1>
+<p>The are a ton of waystis can fail, here are some.</p>
+<h2><a class="anchor" id="building_the_engine_issue_ogre_endian"></a>
+Ogre Little Endian issue</h2>
+<p>If you get the following warning, there is a workaround. This seems to have stopped happening since the release of the 1.7 branch of cmake.</p>
+<div class="fragment"><div class="line">libincludes/linux/ogresrc/include/OgreBuildSettings.h:19:1: warning: <span class="stringliteral">&quot;OGRE_CONFIG_LITTLE_ENDIAN&quot;</span> redefined</div>
+<div class="line">: warning: <span class="keyword">this</span> is the location of the previous definition</div>
+</div><!-- fragment --><p>You could remark our one of those definitions like this one on line 19 of OgreBuildSettings.h. Double clicking on the warning message in the Messages Window which is at the bottom of Code::Blocks will open the file to the error by default.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define OGRE_CONFIG_LITTLE_ENDIAN</span></div>
+<div class="line">All you need to <span class="keywordflow">do</span> is change the line like <span class="keyword">this</span>:</div>
+<div class="line"><span class="comment">//#define OGRE_CONFIG_LITTLE_ENDIAN</span></div>
+</div><!-- fragment --><p>Then any time you compile the engine you won’t get anymore warnings for these bugs in the <a class="el" href="namespaceOgre.html">Ogre</a> build process.</p>
+<h2><a class="anchor" id="building_the_engine_issue_rendersystem_copy"></a>
+Rendersystem copy errors</h2>
+<p>Sometimes it is possible for <a class="el" href="namespaceOgre.html">Ogre</a> to skip building a rendersystem, but does not to let you know in a clear way. In general this happens if it have been tricked into compiling against a software open renderer. The Error looks something like:</p>
+<div class="fragment"><div class="line">Preparing File: /home/sqeaky/Projects/MezzanineCurrent/Build/<a class="code" href="namespaceMezzanine.html">Mezzanine</a>/bin/data/linux/ogre/RenderSystem_GL.so</div>
+<div class="line">Error copying file (<span class="keywordflow">if</span> different) from “/home/sqeaky/Projects/MezzanineCurrent/<a class="code" href="namespaceMezzanine.html">Mezzanine</a>/<a class="code" href="namespaceMezzanine.html">Mezzanine</a>/data/linux/ogre/RenderSystem_GL.so” to “/home/sqeaky/Projects/MezzanineCurrent/Build/<a class="code" href="namespaceMezzanine.html">Mezzanine</a>/bin/data/linux/ogre/RenderSystem_GL.so”.</div>
+</div><!-- fragment --><p>This has only been experience on Ubuntu and installing the Mesa GL headers fixes it: </p><div class="fragment"><div class="line">sudo apt-<span class="keyword">get</span> install libgles1-mesa-dev</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 16:08:46 for BlackTopp Studios inc by
+            Generated on Fri Jan 29 2016 03:41:40 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

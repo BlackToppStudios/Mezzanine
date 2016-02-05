@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2015 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,7 +50,6 @@ namespace Mezzanine
 {
     class Entresol;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ManagerBase
     /// @headerfile managerbase.h
     /// @brief This is the base class from which all the Entresol and World Managers inherit.
     /// @details This creates a base set of functions that Managers are all

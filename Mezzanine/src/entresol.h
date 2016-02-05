@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2015 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -227,7 +227,7 @@
   source and header file in the engine:
   \n \n
   @verbatim
-  © Copyright 2010 - 2015 BlackTopp Studios Inc.
+  © Copyright 2010 - 2016 BlackTopp Studios Inc.
    This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify

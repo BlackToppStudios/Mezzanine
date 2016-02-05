@@ -132,9 +132,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8943bb35b8724621deea8c3e9dffb7eb"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#a8943bb35b8724621deea8c3e9dffb7eb">hardware_concurrency</a> ()</td></tr>
-<tr class="memdesc:a8943bb35b8724621deea8c3e9dffb7eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the number of threads which can possibly execute concurrently.  <a href="#a8943bb35b8724621deea8c3e9dffb7eb">More...</a><br /></td></tr>
-<tr class="separator:a8943bb35b8724621deea8c3e9dffb7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39361363b82ded3819fecf2233c3e815"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#a39361363b82ded3819fecf2233c3e815">hardware_concurrency</a> ()</td></tr>
+<tr class="memdesc:a39361363b82ded3819fecf2233c3e815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the number of threads which can possibly execute concurrently.  <a href="#a39361363b82ded3819fecf2233c3e815">More...</a><br /></td></tr>
+<tr class="separator:a39361363b82ded3819fecf2233c3e815"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A small wrapper around the system thread. </p>
@@ -202,8 +202,6 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="thread_8cpp_source.html#l00159">159</a> of file <a class="el" href="thread_8cpp_source.html">thread.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a09d3ed5c70b364cc7c6df264228bb382"></a>
@@ -241,8 +239,6 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This constructor is not fully compatible with the standard C++ thread class. It is more similar to the pthread_create() (POSIX) and CreateThread() (Windows) functions. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8cpp_source.html#l00190">190</a> of file <a class="el" href="thread_8cpp_source.html">thread.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a0460c275cc2f38d1bccaa0d509afdc6b"></a>
@@ -260,8 +256,6 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Destructor. </p>
 <dl class="section note"><dt>Note</dt><dd>If the thread is joinable upon destruction, <code>std::terminate()</code> will be called, which terminates the process. It is always wise to do <code><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#a0414b6839a3027fd14e244f4d3ada7d3" title="Wait for the thread to finish (join execution flows). ">join()</a></code> before deleting a thread object. </dd></dl>
-
-<p>Definition at line <a class="el" href="thread_8cpp_source.html#l00221">221</a> of file <a class="el" href="thread_8cpp_source.html">thread.cpp</a>.</p>
 
 </div>
 </div>
@@ -282,8 +276,6 @@ Static Public Member Functions</h2></td></tr>
 <p>Detach from the thread. </p>
 <p>After calling <code><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ae2bd84e420ce68d503b07947987d44c9" title="Detach from the thread. ">detach()</a></code>, the thread object is no longer assicated with a thread of execution (i.e. it is not joinable). The thread continues execution without the calling thread blocking, and when the thread ends execution, any owned resources are released. </p>
 
-<p>Definition at line <a class="el" href="thread_8cpp_source.html#l00248">248</a> of file <a class="el" href="thread_8cpp_source.html">thread.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a6d41e1113e49ceebd7af0713101d8fa3"></a>
@@ -302,11 +294,9 @@ Static Public Member Functions</h2></td></tr>
 <p>Return the thread ID of a thread object. </p>
 <dl class="section return"><dt>Returns</dt><dd>A platform specific handle for the thread. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8cpp_source.html#l00263">263</a> of file <a class="el" href="thread_8cpp_source.html">thread.cpp</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a8943bb35b8724621deea8c3e9dffb7eb"></a>
+<a class="anchor" id="a39361363b82ded3819fecf2233c3e815"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -314,7 +304,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned Mezzanine::Threading::Thread::hardware_concurrency </td>
+          <td class="memname">static unsigned Mezzanine::Threading::Thread::hardware_concurrency </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -330,8 +320,6 @@ Static Public Member Functions</h2></td></tr>
 <p>Determine the number of threads which can possibly execute concurrently. </p>
 <p>This function is useful for determining the optimal number of threads to use for a task. </p><dl class="section return"><dt>Returns</dt><dd>The number of hardware thread contexts in the system. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If this value is not defined, the function returns zero (0). </dd></dl>
-
-<p>Definition at line <a class="el" href="thread_8cpp_source.html#l00274">274</a> of file <a class="el" href="thread_8cpp_source.html">thread.cpp</a>.</p>
 
 </div>
 </div>
@@ -351,8 +339,6 @@ Static Public Member Functions</h2></td></tr>
 <p>Wait for the thread to finish (join execution flows). </p>
 <p>After calling <code><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#a0414b6839a3027fd14e244f4d3ada7d3" title="Wait for the thread to finish (join execution flows). ">join()</a></code>, the thread object is no longer associated with a thread of execution (i.e. it is not joinable, and you may not join with it nor detach from it). </p>
 
-<p>Definition at line <a class="el" href="thread_8cpp_source.html#l00227">227</a> of file <a class="el" href="thread_8cpp_source.html">thread.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aa36b3de22ce213ef67f147a56b286c88"></a>
@@ -370,8 +356,6 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Check if the thread is joinable. </p>
 <p>A thread object is joinable if it has an associated thread of execution. </p><dl class="section return"><dt>Returns</dt><dd>A bool, false if the thread has been detached, joined or otherwise made unjoinable by exceptional circumstances, true otherwise. </dd></dl>
-
-<p>Definition at line <a class="el" href="thread_8cpp_source.html#l00240">240</a> of file <a class="el" href="thread_8cpp_source.html">thread.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,15 +388,14 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/<a class="el" href="thread_8h_source.html">thread.h</a></li>
-<li>/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/<a class="el" href="thread_8cpp_source.html">thread.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 16:08:50 for BlackTopp Studios inc by
+            Generated on Fri Jan 29 2016 03:41:44 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

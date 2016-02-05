@@ -1,6 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1TextToken.html" title="This class represents a normal text segment from the source string. " alt="" coords="5,42,183,69"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1TagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="231,42,404,69"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1InsertTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="472,5,643,47"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1RangeTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="452,71,663,98"/>
+<area shape="rect" id="node1" href="$structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered. " alt="" coords="5,5,187,32"/>
 </map>

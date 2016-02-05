@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2015 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -167,9 +167,10 @@ namespace Mezzanine
             }
 
             /// @brief Assigns the Target but invalidates Other ManagedPtr
-            /// @details This transfer ownership (who will deconstruct the handle) from the Other ManagedPtr to this one. This
-            /// Does not call Construct().
+            /// @details This transfer ownership (who will deconstruct the handle) from the Other
+            /// ManagedPtr to this one. This Does not call Construct().
             /// @param Other The ManagedPtr to copy then invalidate.
+            /// @return A reference to this ManagedPtr to allow operator chaining.
             ManagedPtr& operator= (ManagedPtr& Other)
             {
                 Copy(Other.Target);

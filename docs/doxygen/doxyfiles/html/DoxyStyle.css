@@ -197,7 +197,7 @@ pre.fragment, div.fragment {
     margin-top: 0.5em;
     margin-left 1em;
     margin-right 2em;
-    margin-bottom 0.5em;
+    margin-bottom 1em;
     padding: 0.5em;
 
     border-width: 2px;
@@ -237,39 +237,40 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 185%;
-    text-indent: 0px;
+    font-size: 180%;
+    text-indent: 0em;
     color: #528f6c;
 }
 
 h2 {
-    font-size: 170%;
-    text-indent: 20px;
+    font-size: 145%;
+    text-indent: 2em;
     color: #528f6c;
 }
 
 h3 {
-    font-size: 155%;
-    text-indent: 40px;
+    font-size: 110%;
+    text-indent: 4em;
     color: #528f6c;
 }
 
+/* unused headings */
 h4 {
     font-size: 140%;
     text-indent: 60px;
-    color: #528f6c;
+    color: #FF0000;
 }
 
 h5 {
     font-size: 125%;
     text-indent: 80px;
-    color: #528f6c;
+    color: #FF0000;
 }
 
 h6 {
     font-size: 110%;
     text-indent: 100px;
-    color: #528f6c;
+    color: #FF0000;
 }
 
 /* C++ Keywords and display */
@@ -303,6 +304,7 @@ span.lineno, span.lineno{
 code {
     white-space: nowrap;
     font-family: monospace, fixed;
+    margin-bottom: 1em;
 }
 
 /* .ttname, .ttc, .ttdef, .ttdoc, .ttdeci, */

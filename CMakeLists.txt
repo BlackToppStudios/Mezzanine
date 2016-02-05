@@ -1,4 +1,4 @@
-# © Copyright 2010 - 2015 BlackTopp Studios Inc.
+# © Copyright 2010 - 2016 BlackTopp Studios Inc.
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -539,7 +539,7 @@ if(Mezz_Doc)
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clclosed.png
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/open.png
-                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clopen.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/open.png
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/open.png
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clopen.png

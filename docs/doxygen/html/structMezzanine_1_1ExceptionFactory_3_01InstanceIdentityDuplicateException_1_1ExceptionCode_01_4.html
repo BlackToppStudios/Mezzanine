@@ -93,9 +93,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ac2e76b0484d4d37e24710d1a17d0d330"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2e76b0484d4d37e24710d1a17d0d330"></a>
-typedef <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException.html">InstanceIdentityDuplicateException</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b></td></tr>
-<tr class="separator:ac2e76b0484d4d37e24710d1a17d0d330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2e76b0484d4d37e24710d1a17d0d330"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException.html">InstanceIdentityDuplicateException</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityDuplicateException_1_1ExceptionCode_01_4.html#ac2e76b0484d4d37e24710d1a17d0d330">Type</a></td></tr>
 <tr class="memdesc:ac2e76b0484d4d37e24710d1a17d0d330"><td class="mdescLeft">&#160;</td><td class="mdescRight">This allows parameterized uses of this type when, so exception can be throw without directly using the type system.  <a href="#ac2e76b0484d4d37e24710d1a17d0d330">More...</a><br /></td></tr>
 <tr class="separator:ac2e76b0484d4d37e24710d1a17d0d330"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,9 +102,7 @@ typedef <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException
 struct Mezzanine::ExceptionFactory&lt; InstanceIdentityDuplicateException::ExceptionCode &gt;</h3>
 
 <p>Template class that serves as the base for exception factories. </p>
-<p>A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException.html" title="Thrown when duplicates of teh same identity string exist. ">InstanceIdentityDuplicateException</a> can be created at compile time if the compiler is clever.</p>
-<p>Additional exceptions and their factories have to specialize from this template changing the type value to the new exception type.This allows our exception macro to find the appropriate factory at compile when template are being resolved. So this system can be extended with additional exceptions wherever desired. Attempting to create an unknown exception simply won't compile because the base exception class being abstract.</p>
-<p>Additional exceptions and their factories have to specialize from this template changing the type value to the new exception type. This allows our exception macro to find the appropriate factory and be extendable with additional exceptions. Attempting to create an unknown exception simply won't compile on account of the base exception class being abstract. </p>
+<p>Additional exceptions and their factories have to specialize from this template changing the type value to the new exception type.This allows our exception macro to find the appropriate factory at compile when template are being resolved. So this system can be extended with additional exceptions wherever desired. Attempting to create an unknown exception simply won't compile because the base exception class being abstract. </p>
 
 <p>Definition at line <a class="el" href="exception_8h_source.html#l01615">1615</a> of file <a class="el" href="exception_8h_source.html">exception.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -116,7 +111,7 @@ struct Mezzanine::ExceptionFactory&lt; InstanceIdentityDuplicateException::Excep
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException.html">InstanceIdentityDuplicateException</a> <a class="el" href="structMezzanine_1_1ExceptionFactory.html">Mezzanine::ExceptionFactory</a>&lt; <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException.html#ae960c5342f5a0e48c0530dd22d44f54c">InstanceIdentityDuplicateException::ExceptionCode</a> &gt;::<a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityDuplicateException_1_1ExceptionCode_01_4.html#ac2e76b0484d4d37e24710d1a17d0d330">Type</a></td>
+          <td class="memname">typedef <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException.html">InstanceIdentityDuplicateException</a> <a class="el" href="structMezzanine_1_1ExceptionFactory.html">Mezzanine::ExceptionFactory</a>&lt; <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException.html#af8ec296f4fe24d203c85e5d2c70b66c5">InstanceIdentityDuplicateException::ExceptionCode</a> &gt;::<a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityDuplicateException_1_1ExceptionCode_01_4.html#ac2e76b0484d4d37e24710d1a17d0d330">Type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -127,15 +122,14 @@ struct Mezzanine::ExceptionFactory&lt; InstanceIdentityDuplicateException::Excep
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following files:<ul>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/<a class="el" href="exception_8h_source.html">exception.h</a></li>
-<li>/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/<a class="el" href="exception_8old_8h_source.html">exception.old.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 16:08:47 for BlackTopp Studios inc by
+            Generated on Fri Jan 29 2016 03:41:41 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2015 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -105,7 +105,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::IsInWorld() const
             virtual Boole IsInWorld() const;
 
-            /// @copydoc PhysicsProxy::GetCreator() const
+            /// @copydoc WorldProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////

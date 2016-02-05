@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['renderingapi_5fexception',['RENDERINGAPI_EXCEPTION',['../classMezzanine_1_1ExceptionBase.html#ae5b4b8f3303a461acf0d6cf83985ef2aa27705f596c03b0d019e49c8cf8a8388a',1,'Mezzanine::ExceptionBase::RENDERINGAPI_EXCEPTION()'],['../classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420ab4c00120cb10d40d40db2c375d1e1e4d',1,'Mezzanine::Exception::RENDERINGAPI_EXCEPTION()']]],
+  ['renderingapi_5fexception',['RENDERINGAPI_EXCEPTION',['../classMezzanine_1_1ExceptionBase.html#ae5b4b8f3303a461acf0d6cf83985ef2aa27705f596c03b0d019e49c8cf8a8388a',1,'Mezzanine::ExceptionBase']]],
   ['rlt_5fline',['RLT_Line',['../namespaceMezzanine_1_1UI.html#a8506374bf0b6f51434c318d6c245a771a415aa4bb90d2ce01eb7b43b6051e0455',1,'Mezzanine::UI']]],
   ['rlt_5fmultiimage',['RLT_MultiImage',['../namespaceMezzanine_1_1UI.html#a8506374bf0b6f51434c318d6c245a771aff26eb451588d3274514ead86cc9eff0',1,'Mezzanine::UI']]],
   ['rlt_5fmultilinetext',['RLT_MultiLineText',['../namespaceMezzanine_1_1UI.html#a8506374bf0b6f51434c318d6c245a771aecc42efc98b6b2d82a594f2aad318c3d',1,'Mezzanine::UI']]],
@@ -14,6 +14,6 @@ var searchData=
   ['ro_5ftrianglefan',['RO_TriangleFan',['../namespaceMezzanine_1_1Graphics.html#a147c963294dd737b8a4dea1ead1507abad082fa74dc3ffc53f83b460fc8eacfed',1,'Mezzanine::Graphics']]],
   ['ro_5ftrianglelist',['RO_TriangleList',['../namespaceMezzanine_1_1Graphics.html#a147c963294dd737b8a4dea1ead1507aba87b7b23af5010560994414d2416e3417',1,'Mezzanine::Graphics']]],
   ['ro_5ftrianglestrip',['RO_TriangleStrip',['../namespaceMezzanine_1_1Graphics.html#a147c963294dd737b8a4dea1ead1507abadae06fb8594f69547a0218ebb4db8c3d',1,'Mezzanine::Graphics']]],
-  ['rt_5fassertion_5fexception',['RT_ASSERTION_EXCEPTION',['../classMezzanine_1_1ExceptionBase.html#ae5b4b8f3303a461acf0d6cf83985ef2aaf4f50494a0d4b382465f4f7f928c611a',1,'Mezzanine::ExceptionBase::RT_ASSERTION_EXCEPTION()'],['../classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a7f6cc67e367ca079f92049798dab3886',1,'Mezzanine::Exception::RT_ASSERTION_EXCEPTION()']]],
+  ['rt_5fassertion_5fexception',['RT_ASSERTION_EXCEPTION',['../classMezzanine_1_1ExceptionBase.html#ae5b4b8f3303a461acf0d6cf83985ef2aaf4f50494a0d4b382465f4f7f928c611a',1,'Mezzanine::ExceptionBase']]],
   ['running',['Running',['../namespaceMezzanine_1_1Threading.html#a1a21883adf1ed757a3926c29a5486a8eafe9d54e5a334f99e969e519c35d590e4',1,'Mezzanine::Threading']]]
 ];

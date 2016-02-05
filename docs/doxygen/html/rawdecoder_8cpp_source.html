@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">rawdecoder.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2015 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2016 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -133,7 +133,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">namespace </span>Audio</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        RawDecoder::RawDecoder(<a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> Stream, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Freq, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> Config) :</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        RawDecoder::RawDecoder(<a class="code" href="namespaceMezzanine_1_1Resource.html#a279346ac682291422761811eeadbfe2e">Resource::DataStreamPtr</a> Stream, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Freq, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Audio::BitConfig</a> Config) :</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            RawStream(Stream),</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            RawStreamSize(0),</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            RawStreamPos(0),</div>
@@ -183,7 +183,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">return</span> this-&gt;Frequency;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Resource::DataStreamPtr</a> RawDecoder::GetStream()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Resource.html#a279346ac682291422761811eeadbfe2e">Resource::DataStreamPtr</a> RawDecoder::GetStream()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">        </span>{</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">return</span> this-&gt;RawStream;</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
@@ -239,18 +239,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="namespaceMezzanine_html_a7d765759d1196aae20197055f00498f8"><div class="ttname"><a href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00181">datatypes.h:181</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a590a2f3eb4a187e1b25209e546e540e1"><div class="ttname"><a href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Mezzanine::Int32</a></div><div class="ttdeci">int32_t Int32</div><div class="ttdoc">An 32-bit integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00125">datatypes.h:125</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a62a315666b8e56a64640c813ac400b52"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a62a315666b8e56a64640c813ac400b52">Mezzanine::Resource::DataStreamPtr</a></div><div class="ttdeci">CountedPtr&lt; DataStream &gt; DataStreamPtr</div><div class="ttdoc">This is a convenience type for a data stream in a counted pointer. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00398">datastream.h:398</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_abea3b8e8e9b03d2547b2800284ba682d"><div class="ttname"><a href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">Mezzanine::UInt32</a></div><div class="ttdeci">uint32_t UInt32</div><div class="ttdoc">An 32-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00128">datatypes.h:128</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a726731b1a7df72bf3583e4a97282c6f6"><div class="ttname"><a href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Mezzanine::Real</a></div><div class="ttdeci">float Real</div><div class="ttdoc">A Datatype used to represent a real floating point number. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00144">datatypes.h:144</a></div></div>
 <div class="ttc" id="namespaceMezzanine_1_1Audio_html_abbdf7b0c5dd3a09710208089436bdbee"><div class="ttname"><a href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbee">Mezzanine::Audio::Encoding</a></div><div class="ttdeci">Encoding</div><div class="ttdoc">The encoding to use when reading or writing an audio buffer. </div><div class="ttdef"><b>Definition:</b> <a href="audioenumerations_8h_source.html#l00064">audioenumerations.h:64</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
 <div class="ttc" id="namespaceMezzanine_1_1Audio_html_abbdf7b0c5dd3a09710208089436bdbeeab1ab265e188be6904b824675b56eecfa"><div class="ttname"><a href="namespaceMezzanine_1_1Audio.html#abbdf7b0c5dd3a09710208089436bdbeeab1ab265e188be6904b824675b56eecfa">Mezzanine::Audio::Enc_RAW</a></div><div class="ttdoc">Unknown or error condition. </div><div class="ttdef"><b>Definition:</b> <a href="audioenumerations_8h_source.html#l00066">audioenumerations.h:66</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Resource_html_a279346ac682291422761811eeadbfe2e"><div class="ttname"><a href="namespaceMezzanine_1_1Resource.html#a279346ac682291422761811eeadbfe2e">Mezzanine::Resource::DataStreamPtr</a></div><div class="ttdeci">CountedPtr&lt; DataStream &gt; DataStreamPtr</div><div class="ttdoc">This is a convenience type for a data stream in a counted pointer. </div><div class="ttdef"><b>Definition:</b> <a href="datastream_8h_source.html#l00392">datastream.h:392</a></div></div>
 <div class="ttc" id="namespaceMezzanine_1_1Audio_html_a9978d2013313ec7bf6978c622e80d782"><div class="ttname"><a href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">Mezzanine::Audio::BitConfig</a></div><div class="ttdeci">BitConfig</div><div class="ttdoc">Used to describe the different bit configurations supported by this audio system. ...</div><div class="ttdef"><b>Definition:</b> <a href="audioenumerations_8h_source.html#l00052">audioenumerations.h:52</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 16:08:42 for BlackTopp Studios inc by
+            Generated on Fri Jan 29 2016 03:41:36 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2015 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -78,7 +78,7 @@ namespace Mezzanine
             /// @param Colour The colour to be given to the new point.
             void AddPoint(const Vector3& NewPoint, const ColourValue& Colour);
             /// @brief Access points by order they were added.
-            /// @details This returns the point indicated by index. They start at 0, and increment from there.
+            /// @return Returns the point indicated by index. They start at 0, and increment from there.
             /// @param Index A Whole number which indicates which point to retrieve.
             const Vector3 GetPoint(const Whole Index) const;
             /// @brief Get the amount of points used to define Line Segments.

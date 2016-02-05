@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1XML_1_1Writer.html" title="Interface for node printing (see Node::Print) " alt="" coords="5,56,168,83"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1XML_1_1WriterFile.html" title="An implementation of Writer intended for writing to FILEs as defined in stdio. " alt="" coords="227,5,411,32"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1XML_1_1WriterStream.html" title="An implementation of Writer intended for writing std::ostreams. " alt="" coords="216,56,421,83"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1XML_1_1XMLStreamWrapper.html" title="This represents a simple wrapper that makes data streams compatible with the XML API. " alt="" coords="220,107,417,149"/>
 </map>

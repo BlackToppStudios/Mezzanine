@@ -1,7 +1,8 @@
 <map id="Mezzanine::Network::HTTPRequest" name="Mezzanine::Network::HTTPRequest">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Network_1_1HTTPMessage.html" title="A base class for HTTP text parsing classes. " alt="" coords="207,389,350,431"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="187,96,267,123"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Network_1_1URI.html" title="A helper class for the reading and using of Uniform Resource Identifiers. " alt="" coords="467,339,642,365"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="163,5,290,47"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1SimpleVersion.html" title="A very basic class for expressing an API or syntax version. " alt="" coords="339,288,517,315"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Network_1_1HTTPMessage.html" title="A base class for HTTP text parsing classes. " alt="" coords="205,493,347,535"/>
+<area shape="rect" id="node4" href="$structMezzanine_1_1Network_1_1HeaderField.html" title="Convenience class for storing Header fields in internet messaging protocols. " alt="" coords="37,288,179,329"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="181,96,261,123"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Network_1_1URI.html" title="A helper class for the reading and using of Uniform Resource Identifiers. " alt="" coords="351,353,526,380"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="158,5,285,47"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1SimpleVersion.html" title="A very basic class for expressing an API or syntax version. " alt="" coords="259,404,437,431"/>
 </map>

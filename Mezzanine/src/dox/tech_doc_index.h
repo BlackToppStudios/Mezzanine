@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2015 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,8 +42,12 @@
 
 
 /**
-    @page tech_doc_index Technical documents
+    @page tech_doc_index Technical Document Index
     Walkthroughs and human level explanations of our tools, processes and anything else useful.
+
+    @section best_practices_menu Best Practices
+    Advice that we try to follow on using our
+     - @ref best_practices_doxygen
 
     @section dev_tools_menu Development Tools
     What tools do you need to work on the Mezzanine and/or compile it yourself.
@@ -60,6 +64,8 @@
     Building the Engine differs is pretty similar on most platforms.
      - @ref building_the_engine
 
+    @section other_docs_menu Other Documents.
+     - @ref running_doxygen
 */
 
 #endif

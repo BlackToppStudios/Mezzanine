@@ -1,24 +1,10 @@
 var searchData=
 [
-  ['weighedlerpmodifier',['WeighedLerpModifier',['../classMezzanine_1_1Graphics_1_1Procedural_1_1WeighedLerpModifier.html',1,'Mezzanine::Graphics::Procedural']]],
-  ['weightedrollingaverage',['WeightedRollingAverage',['../classMezzanine_1_1WeightedRollingAverage.html',1,'Mezzanine']]],
-  ['weldverticesmodifier',['WeldVerticesModifier',['../classMezzanine_1_1Graphics_1_1Procedural_1_1WeldVerticesModifier.html',1,'Mezzanine::Graphics::Procedural']]],
-  ['widget',['Widget',['../classMezzanine_1_1UI_1_1Widget.html',1,'Mezzanine::UI']]],
-  ['widgeteventarguments',['WidgetEventArguments',['../classMezzanine_1_1UI_1_1WidgetEventArguments.html',1,'Mezzanine::UI']]],
-  ['widgetfactory',['WidgetFactory',['../classMezzanine_1_1UI_1_1WidgetFactory.html',1,'Mezzanine::UI']]],
-  ['widgetupdateworkunit',['WidgetUpdateWorkUnit',['../classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.html',1,'Mezzanine::UI']]],
-  ['windowsettings',['WindowSettings',['../structMezzanine_1_1Graphics_1_1WindowSettings.html',1,'Mezzanine::Graphics']]],
-  ['woodgenerator',['WoodGenerator',['../classMezzanine_1_1Graphics_1_1Procedural_1_1WoodGenerator.html',1,'Mezzanine::Graphics::Procedural']]],
-  ['worksorter',['WorkSorter',['../classMezzanine_1_1Threading_1_1WorkSorter.html',1,'Mezzanine::Threading']]],
-  ['workunitkey',['WorkUnitKey',['../classMezzanine_1_1Threading_1_1WorkUnitKey.html',1,'Mezzanine::Threading']]],
-  ['world',['World',['../classMezzanine_1_1World.html',1,'Mezzanine']]],
-  ['worldmanager',['WorldManager',['../classMezzanine_1_1WorldManager.html',1,'Mezzanine']]],
-  ['worldmanagerfactory',['WorldManagerFactory',['../classMezzanine_1_1WorldManagerFactory.html',1,'Mezzanine']]],
-  ['worldobject',['WorldObject',['../classMezzanine_1_1WorldObject.html',1,'Mezzanine']]],
-  ['worldproxy',['WorldProxy',['../classMezzanine_1_1WorldProxy.html',1,'Mezzanine']]],
-  ['worldtrigger',['WorldTrigger',['../classMezzanine_1_1WorldTrigger.html',1,'Mezzanine']]],
-  ['worldtriggerupdateworkunit',['WorldTriggerUpdateWorkUnit',['../classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html',1,'Mezzanine::Physics']]],
-  ['writer',['Writer',['../classMezzanine_1_1XML_1_1Writer.html',1,'Mezzanine::XML']]],
-  ['writerfile',['WriterFile',['../classMezzanine_1_1XML_1_1WriterFile.html',1,'Mezzanine::XML']]],
-  ['writerstream',['WriterStream',['../classMezzanine_1_1XML_1_1WriterStream.html',1,'Mezzanine::XML']]]
+  ['xmlstreamwrapper',['XMLStreamWrapper',['../classMezzanine_1_1XML_1_1XMLStreamWrapper.html',1,'Mezzanine::XML']]],
+  ['xpathnode',['XPathNode',['../classMezzanine_1_1XML_1_1XPathNode.html',1,'Mezzanine::XML']]],
+  ['xpathnodeset',['XPathNodeSet',['../classMezzanine_1_1XML_1_1XPathNodeSet.html',1,'Mezzanine::XML']]],
+  ['xpathparseresult',['XPathParseResult',['../structMezzanine_1_1XML_1_1XPathParseResult.html',1,'Mezzanine::XML']]],
+  ['xpathquery',['XPathQuery',['../classMezzanine_1_1XML_1_1XPathQuery.html',1,'Mezzanine::XML']]],
+  ['xpathvariable',['XPathVariable',['../classMezzanine_1_1XML_1_1XPathVariable.html',1,'Mezzanine::XML']]],
+  ['xpathvariableset',['XPathVariableSet',['../classMezzanine_1_1XML_1_1XPathVariableSet.html',1,'Mezzanine::XML']]]
 ];

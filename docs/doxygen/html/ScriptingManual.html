@@ -110,8 +110,8 @@ Lua Code: </p><div class="fragment"><div class="line">Vec=MezzanineSafe.ConvertT
 </p>
 <h2><a class="anchor" id="CApiLuaEnumsFlattened"></a>
 Enums Are Flattened</h2>
-<p>In C++ enumerations might hold values useful in the scope of class. For example the <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">Mezzanine::Exception</a> holds ExceptionCodes that are useful categorizing types of errors. Because each C++ class is represented in Lua as a function that returns a class instance, the syntax "MezzanineSafe.Exception.IO_EXCEPTION" could not work. Enums that are part of a class are instead defined in the same table as the class function and have the class name concatenated to theirs. <br />
-This is different than enums A few example can explain better: C++ code: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> x = <a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420adbce825510a297fc244e97d65a84760b">Mezzanine::Exception::IO_EXCEPTION</a> <span class="comment">// An enum value on a class</span></div>
+<p>In C++ enumerations might hold values useful in the scope of class. For example the Mezzanine::Exception holds ExceptionCodes that are useful categorizing types of errors. Because each C++ class is represented in Lua as a function that returns a class instance, the syntax "MezzanineSafe.Exception.IO_EXCEPTION" could not work. Enums that are part of a class are instead defined in the same table as the class function and have the class name concatenated to theirs. <br />
+This is different than enums A few example can explain better: C++ code: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> x = Mezzanine::Exception::IO_EXCEPTION <span class="comment">// An enum value on a class</span></div>
 <div class="line"><span class="keywordtype">int</span> y = <a class="code" href="namespaceMezzanine_1_1Threading.html#a1a21883adf1ed757a3926c29a5486a8eabbce5705b2c11ab3749cd3081e760233">Mezzanine::Threading::NotStarted</a> <span class="comment">// An enum value in the Threading namespace</span></div>
 </div><!-- fragment --><p> <br />
  <br />
@@ -125,7 +125,7 @@ Lua Code: </p><div class="fragment"><div class="line">x = MezzanineSafe.Exceptio
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 16:08:46 for BlackTopp Studios inc by
+            Generated on Fri Jan 29 2016 03:41:40 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

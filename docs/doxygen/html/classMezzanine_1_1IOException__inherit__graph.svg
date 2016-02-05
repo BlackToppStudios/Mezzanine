@@ -60,108 +60,83 @@ var sectionId = 'dynsection-0';
 <polygon fill="#bfbfbf" stroke="black" points="286,-235.5 286,-254.5 410,-254.5 410,-235.5 286,-235.5"/>
 <text text-anchor="middle" x="348" y="-242.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::IOException</text>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classMezzanine_1_1DirectoryException.html" target="_top" xlink:title="Thrown when there is an unknown issue with a file. ">
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="classMezzanine_1_1DirectoryException.html" target="_top" xlink:title="Thrown when there is an unknown issue with a file. ">
 <polygon fill="white" stroke="black" points="446,-432.5 446,-451.5 599,-451.5 599,-432.5 446,-432.5"/>
 <text text-anchor="middle" x="522.5" y="-439.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::DirectoryException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge5" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M367.578,-261.835C405.895,-301.945 492.068,-400.924 515.514,-432.482"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="370.064,-259.371 360.586,-254.636 365.042,-264.248 370.064,-259.371"/>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M363.97,-262.096C398.965,-302.062 485.251,-400.603 512.857,-432.13"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="366.541,-259.719 357.32,-254.502 361.275,-264.331 366.541,-259.719"/>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge14" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M361.256,-262.68C393.154,-303.219 478.442,-400.599 509.758,-432.207"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="364.009,-260.519 355.139,-254.723 358.459,-264.785 364.009,-260.519"/>
-</g>
-<!-- Node10 -->
-<g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="classMezzanine_1_1FileException.html" target="_top" xlink:title="Thrown when there is an unknown issue with a file. ">
+<!-- Node9 -->
+<g id="node9" class="node"><title>Node9</title>
+<g id="a_node9"><a xlink:href="classMezzanine_1_1FileException.html" target="_top" xlink:title="Thrown when there is an unknown issue with a file. ">
 <polygon fill="white" stroke="black" points="458,-273.5 458,-292.5 587,-292.5 587,-273.5 458,-273.5"/>
 <text text-anchor="middle" x="522.5" y="-280.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::FileException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node10 -->
-<g id="edge15" class="edge"><title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M420.243,-254.036C448.672,-259.948 479.344,-267.359 499.39,-273.434"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="420.8,-250.577 410.303,-252.012 419.403,-257.437 420.8,-250.577"/>
+<!-- Node1&#45;&gt;Node9 -->
+<g id="edge8" class="edge"><title>Node1&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M402.351,-256.753C426.742,-262.126 455.263,-268.409 478.284,-273.48"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="403.048,-253.322 392.529,-254.589 401.542,-260.158 403.048,-253.322"/>
 </g>
-<!-- Node1&#45;&gt;Node10 -->
-<g id="edge24" class="edge"><title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M380.817,-257.384C402.366,-263.405 431.58,-270.23 457.803,-275.509"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="381.777,-254.018 371.198,-254.592 379.827,-260.741 381.777,-254.018"/>
-</g>
-<!-- Node15 -->
-<g id="node15" class="node"><title>Node15</title>
-<g id="a_node15"><a xlink:href="classMezzanine_1_1IOReadException.html" target="_top" xlink:title="Thrown when a read is happening but something has prevented the underlying code from knowing what was...">
+<!-- Node14 -->
+<g id="node14" class="node"><title>Node14</title>
+<g id="a_node14"><a xlink:href="classMezzanine_1_1IOReadException.html" target="_top" xlink:title="Thrown when a read is happening but something has prevented the underlying code from knowing what was...">
 <polygon fill="white" stroke="black" points="449,-235.5 449,-254.5 596,-254.5 596,-235.5 449,-235.5"/>
 <text text-anchor="middle" x="522.5" y="-242.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::IOReadException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node15 -->
-<g id="edge25" class="edge"><title>Node1&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M420.397,-238.34C429.808,-238.225 439.462,-238.22 448.893,-238.326"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="420.243,-234.842 410.303,-238.507 420.36,-241.841 420.243,-234.842"/>
+<!-- Node1&#45;&gt;Node14 -->
+<g id="edge13" class="edge"><title>Node1&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M420.397,-245C429.808,-245 439.462,-245 448.893,-245"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="420.303,-241.5 410.303,-245 420.303,-248.5 420.303,-241.5"/>
 </g>
-<!-- Node1&#45;&gt;Node15 -->
-<g id="edge26" class="edge"><title>Node1&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M420.397,-251.66C429.808,-251.775 439.462,-251.78 448.893,-251.674"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="420.36,-248.159 410.303,-251.493 420.243,-255.158 420.36,-248.159"/>
-</g>
-<!-- Node16 -->
-<g id="node16" class="node"><title>Node16</title>
-<g id="a_node16"><a xlink:href="classMezzanine_1_1IOWriteException.html" target="_top" xlink:title="Thrown when a write is happening but something has prevented the underlying code from knowing what wa...">
+<!-- Node15 -->
+<g id="node15" class="node"><title>Node15</title>
+<g id="a_node15"><a xlink:href="classMezzanine_1_1IOWriteException.html" target="_top" xlink:title="Thrown when a write is happening but something has prevented the underlying code from knowing what wa...">
 <polygon fill="white" stroke="black" points="449,-197.5 449,-216.5 596,-216.5 596,-197.5 449,-197.5"/>
 <text text-anchor="middle" x="522.5" y="-204.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::IOWriteException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node16 -->
-<g id="edge27" class="edge"><title>Node1&#45;&gt;Node16</title>
-<path fill="none" stroke="midnightblue" d="M380.894,-232.595C400.041,-227.247 425.22,-221.269 448.974,-216.303"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="379.827,-229.26 371.198,-235.408 381.777,-235.983 379.827,-229.26"/>
+<!-- Node1&#45;&gt;Node15 -->
+<g id="edge14" class="edge"><title>Node1&#45;&gt;Node15</title>
+<path fill="none" stroke="midnightblue" d="M402.351,-233.247C426.742,-227.874 455.263,-221.591 478.284,-216.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="401.542,-229.842 392.529,-235.411 403.048,-236.678 401.542,-229.842"/>
 </g>
-<!-- Node1&#45;&gt;Node16 -->
-<g id="edge28" class="edge"><title>Node1&#45;&gt;Node16</title>
-<path fill="none" stroke="midnightblue" d="M420.243,-235.964C448.672,-230.052 479.344,-222.641 499.39,-216.566"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="419.403,-232.563 410.303,-237.988 420.8,-239.423 419.403,-232.563"/>
-</g>
-<!-- Node17 -->
-<g id="node17" class="node"><title>Node17</title>
-<g id="a_node17"><a xlink:href="classMezzanine_1_1NetworkException.html" target="_top" xlink:title="Thrown when something unknown causes network IO to fail. ">
+<!-- Node16 -->
+<g id="node16" class="node"><title>Node16</title>
+<g id="a_node16"><a xlink:href="classMezzanine_1_1NetworkException.html" target="_top" xlink:title="Thrown when something unknown causes network IO to fail. ">
 <polygon fill="white" stroke="black" points="447.5,-98.5 447.5,-117.5 597.5,-117.5 597.5,-98.5 447.5,-98.5"/>
 <text text-anchor="middle" x="522.5" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::NetworkException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node17 -->
-<g id="edge29" class="edge"><title>Node1&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M364.972,-228.196C397.376,-199.001 470.606,-140.794 504.14,-117.525"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="362.279,-225.92 357.32,-235.283 367.035,-231.056 362.279,-225.92"/>
-</g>
-<!-- Node1&#45;&gt;Node17 -->
-<g id="edge40" class="edge"><title>Node1&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M374.884,-229.43C414.635,-200.729 488.7,-141.273 513.312,-117.59"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="372.62,-226.744 366.49,-235.385 376.671,-232.453 372.62,-226.744"/>
+<!-- Node1&#45;&gt;Node16 -->
+<g id="edge15" class="edge"><title>Node1&#45;&gt;Node16</title>
+<path fill="none" stroke="midnightblue" d="M368.997,-229.118C404.991,-200.532 479.678,-141.215 509.153,-117.806"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="366.784,-226.406 361.13,-235.366 371.137,-231.888 366.784,-226.406"/>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">
-<polygon fill="white" stroke="black" points="125.5,-254.5 125.5,-273.5 238.5,-273.5 238.5,-254.5 125.5,-254.5"/>
-<text text-anchor="middle" x="182" y="-261.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Exception</text>
+<g id="a_node2"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
+<polygon fill="white" stroke="black" points="114,-235.5 114,-254.5 250,-254.5 250,-235.5 114,-235.5"/>
+<text text-anchor="middle" x="182" y="-242.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M248.695,-256.389C260.977,-254.966 273.767,-253.484 285.903,-252.078"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="248.054,-252.94 238.523,-257.567 248.859,-259.893 248.054,-252.94"/>
+<path fill="none" stroke="midnightblue" d="M260.258,-245C268.892,-245 277.596,-245 285.985,-245"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="260.178,-241.5 250.178,-245 260.178,-248.5 260.178,-241.5"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
@@ -173,267 +148,184 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M88.3443,-251.514C100.257,-253.12 113.109,-254.852 125.338,-256.499"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="88.5345,-248.009 78.1566,-250.142 87.5996,-254.946 88.5345,-248.009"/>
+<path fill="none" stroke="midnightblue" d="M88.2794,-245C96.4907,-245 105.15,-245 113.745,-245"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="88.1567,-241.5 78.1566,-245 88.1566,-248.5 88.1567,-241.5"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
-<polygon fill="white" stroke="black" points="114,-216.5 114,-235.5 250,-235.5 250,-216.5 114,-216.5"/>
-<text text-anchor="middle" x="182" y="-223.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
-</a>
-</g>
-</g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge4" class="edge"><title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M88.2794,-238.494C96.4907,-237.388 105.15,-236.221 113.745,-235.063"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="87.5996,-235.054 78.1566,-239.858 88.5345,-241.991 87.5996,-235.054"/>
-</g>
-<!-- Node4&#45;&gt;Node1 -->
-<g id="edge3" class="edge"><title>Node4&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M260.258,-234.951C268.892,-235.951 277.596,-236.959 285.985,-237.931"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="260.515,-231.457 250.178,-233.783 259.709,-238.411 260.515,-231.457"/>
-</g>
-<!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classMezzanine_1_1DirectoryNotFoundException.html" target="_top" xlink:title="Thrown when a directory was expected to be there, but was not. ">
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="classMezzanine_1_1DirectoryNotFoundException.html" target="_top" xlink:title="Thrown when a directory was expected to be there, but was not. ">
 <polygon fill="white" stroke="black" points="645.5,-525 645.5,-555 797.5,-555 797.5,-525 645.5,-525"/>
 <text text-anchor="start" x="653.5" y="-543" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::DirectoryNotFound</text>
 <text text-anchor="middle" x="721.5" y="-532" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node5&#45;&gt;Node6 -->
-<g id="edge6" class="edge"><title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M552.123,-457.193C573.816,-471.874 604.929,-493.216 635,-507 651.398,-514.516 670.666,-520.175 686.756,-524.964"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="553.972,-454.218 543.721,-451.542 550.065,-460.027 553.972,-454.218"/>
+<!-- Node4&#45;&gt;Node5 -->
+<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M543.136,-457.81C564.575,-474.384 600.474,-500.174 635,-516 642.288,-519.341 650.143,-522.314 658.034,-524.932"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="545.167,-454.954 535.139,-451.534 540.845,-460.461 545.167,-454.954"/>
 </g>
-<!-- Node5&#45;&gt;Node6 -->
-<g id="edge7" class="edge"><title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M537.036,-458.902C557.227,-478.012 596.947,-507.558 635,-525 638.364,-526.542 641.848,-528.005 645.401,-529.385"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="539.382,-456.297 529.858,-451.656 534.409,-461.224 539.382,-456.297"/>
-</g>
-<!-- Node7 -->
-<g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classMezzanine_1_1DirectoryPermissionException.html" target="_top" xlink:title="Thrown when permission is denied to a directory. ">
+<!-- Node6 -->
+<g id="node6" class="node"><title>Node6</title>
+<g id="a_node6"><a xlink:href="classMezzanine_1_1DirectoryPermissionException.html" target="_top" xlink:title="Thrown when permission is denied to a directory. ">
 <polygon fill="white" stroke="black" points="642.5,-476 642.5,-506 800.5,-506 800.5,-476 642.5,-476"/>
 <text text-anchor="start" x="650.5" y="-494" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::DirectoryPermission</text>
 <text text-anchor="middle" x="721.5" y="-483" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node5&#45;&gt;Node7 -->
-<g id="edge8" class="edge"><title>Node5&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M597.502,-453.846C626.293,-460.554 658.066,-468.818 682.105,-475.972"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="597.99,-450.367 587.46,-451.542 596.425,-457.189 597.99,-450.367"/>
+<!-- Node4&#45;&gt;Node6 -->
+<g id="edge5" class="edge"><title>Node4&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M571.802,-454.014C598.42,-460.635 631.714,-468.916 660.045,-475.963"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="572.5,-450.581 561.951,-451.564 570.811,-457.374 572.5,-450.581"/>
 </g>
-<!-- Node5&#45;&gt;Node7 -->
-<g id="edge9" class="edge"><title>Node5&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M554.342,-454.737C577.896,-462.028 611.438,-470.89 642.225,-478.152"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="555.173,-451.329 544.582,-451.614 553.04,-457.996 555.173,-451.329"/>
-</g>
-<!-- Node8 -->
-<g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="classMezzanine_1_1DirectoryReadException.html" target="_top" xlink:title="Thrown when a directory could be read and it wasn&#39;t a permission issue. ">
+<!-- Node7 -->
+<g id="node7" class="node"><title>Node7</title>
+<g id="a_node7"><a xlink:href="classMezzanine_1_1DirectoryReadException.html" target="_top" xlink:title="Thrown when a directory could be read and it wasn&#39;t a permission issue. ">
 <polygon fill="white" stroke="black" points="655,-427 655,-457 788,-457 788,-427 655,-427"/>
 <text text-anchor="start" x="663" y="-445" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::DirectoryRead</text>
 <text text-anchor="middle" x="721.5" y="-434" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node5&#45;&gt;Node8 -->
-<g id="edge10" class="edge"><title>Node5&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M609.517,-435.298C624.679,-435.18 640.243,-435.278 654.739,-435.593"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="609.062,-431.803 599.102,-435.415 609.14,-438.803 609.062,-431.803"/>
+<!-- Node4&#45;&gt;Node7 -->
+<g id="edge6" class="edge"><title>Node4&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M609.517,-442C624.679,-442 640.243,-442 654.739,-442"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="609.102,-438.5 599.102,-442 609.102,-445.5 609.102,-438.5"/>
 </g>
-<!-- Node5&#45;&gt;Node8 -->
-<g id="edge11" class="edge"><title>Node5&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M609.517,-448.702C624.679,-448.82 640.243,-448.722 654.739,-448.407"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="609.14,-445.197 599.102,-448.585 609.062,-452.197 609.14,-445.197"/>
-</g>
-<!-- Node9 -->
-<g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a xlink:href="classMezzanine_1_1DirectoryWriteException.html" target="_top" xlink:title="Thrown when a directory could be written to and it wasn&#39;t a permission issue. ">
+<!-- Node8 -->
+<g id="node8" class="node"><title>Node8</title>
+<g id="a_node8"><a xlink:href="classMezzanine_1_1DirectoryWriteException.html" target="_top" xlink:title="Thrown when a directory could be written to and it wasn&#39;t a permission issue. ">
 <polygon fill="white" stroke="black" points="655,-378 655,-408 788,-408 788,-378 655,-378"/>
 <text text-anchor="start" x="663" y="-396" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::DirectoryWrite</text>
 <text text-anchor="middle" x="721.5" y="-385" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node5&#45;&gt;Node9 -->
-<g id="edge12" class="edge"><title>Node5&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M554.169,-429.316C580.947,-421.019 620.728,-410.673 654.671,-402.965"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="553.039,-426.003 544.582,-432.386 555.173,-432.669 553.039,-426.003"/>
+<!-- Node4&#45;&gt;Node8 -->
+<g id="edge7" class="edge"><title>Node4&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M571.802,-429.986C598.42,-423.365 631.714,-415.084 660.045,-408.037"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="570.811,-426.626 561.951,-432.436 572.5,-433.419 570.811,-426.626"/>
 </g>
-<!-- Node5&#45;&gt;Node9 -->
-<g id="edge13" class="edge"><title>Node5&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M597.502,-430.154C626.293,-423.446 658.066,-415.182 682.105,-408.028"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="596.425,-426.811 587.46,-432.458 597.99,-433.633 596.425,-426.811"/>
-</g>
-<!-- Node11 -->
-<g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a xlink:href="classMezzanine_1_1FileNotFoundException.html" target="_top" xlink:title="Thrown when a file was expected to be there, but was not. ">
+<!-- Node10 -->
+<g id="node10" class="node"><title>Node10</title>
+<g id="a_node10"><a xlink:href="classMezzanine_1_1FileNotFoundException.html" target="_top" xlink:title="Thrown when a file was expected to be there, but was not. ">
 <polygon fill="white" stroke="black" points="635.5,-339.5 635.5,-358.5 807.5,-358.5 807.5,-339.5 635.5,-339.5"/>
 <text text-anchor="middle" x="721.5" y="-346.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::FileNotFoundException</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node11 -->
-<g id="edge16" class="edge"><title>Node10&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M571.201,-296.323C590.715,-304.005 613.679,-313.158 635,-320 658.805,-327.639 687.199,-333.699 704.533,-339.434"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="572.218,-292.962 561.631,-292.573 569.665,-299.48 572.218,-292.962"/>
+<!-- Node9&#45;&gt;Node10 -->
+<g id="edge9" class="edge"><title>Node9&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M553.302,-296.839C575.483,-306.757 606.689,-319.915 635,-329 647.338,-332.959 660.909,-336.495 673.533,-339.45"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="554.64,-293.603 544.086,-292.672 551.756,-299.981 554.64,-293.603"/>
 </g>
-<!-- Node10&#45;&gt;Node11 -->
-<g id="edge17" class="edge"><title>Node10&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M541.708,-297.993C563.508,-310.604 601.305,-327.187 635,-338 636.452,-338.466 637.92,-338.926 639.402,-339.379"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="543.489,-294.979 533.146,-292.686 539.802,-300.929 543.489,-294.979"/>
-</g>
-<!-- Node12 -->
-<g id="node12" class="node"><title>Node12</title>
-<g id="a_node12"><a xlink:href="classMezzanine_1_1FilePermissionException.html" target="_top" xlink:title="Thrown when permission was denied to a file. ">
+<!-- Node11 -->
+<g id="node11" class="node"><title>Node11</title>
+<g id="a_node11"><a xlink:href="classMezzanine_1_1FilePermissionException.html" target="_top" xlink:title="Thrown when permission was denied to a file. ">
 <polygon fill="white" stroke="black" points="654.5,-290 654.5,-320 788.5,-320 788.5,-290 654.5,-290"/>
 <text text-anchor="start" x="662.5" y="-308" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::FilePermission</text>
 <text text-anchor="middle" x="721.5" y="-297" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node12 -->
-<g id="edge18" class="edge"><title>Node10&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M597.16,-284.671C615.919,-286.466 635.963,-288.751 654.322,-291.194"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="597.467,-281.184 587.188,-283.752 596.825,-288.155 597.467,-281.184"/>
+<!-- Node9&#45;&gt;Node11 -->
+<g id="edge10" class="edge"><title>Node9&#45;&gt;Node11</title>
+<path fill="none" stroke="midnightblue" d="M597.16,-291.226C615.919,-293.321 635.963,-295.559 654.322,-297.61"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="597.515,-287.744 587.188,-290.112 596.738,-294.701 597.515,-287.744"/>
 </g>
-<!-- Node10&#45;&gt;Node12 -->
-<g id="edge19" class="edge"><title>Node10&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M570.512,-294.103C595.515,-297.856 626.675,-301.525 654.105,-304.006"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="570.974,-290.632 560.554,-292.549 569.895,-297.549 570.974,-290.632"/>
-</g>
-<!-- Node13 -->
-<g id="node13" class="node"><title>Node13</title>
-<g id="a_node13"><a xlink:href="classMezzanine_1_1FileReadException.html" target="_top" xlink:title="Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware iss...">
+<!-- Node12 -->
+<g id="node12" class="node"><title>Node12</title>
+<g id="a_node12"><a xlink:href="classMezzanine_1_1FileReadException.html" target="_top" xlink:title="Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware iss...">
 <polygon fill="white" stroke="black" points="645.5,-251.5 645.5,-270.5 797.5,-270.5 797.5,-251.5 645.5,-251.5"/>
 <text text-anchor="middle" x="721.5" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::FileReadException</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node13 -->
-<g id="edge20" class="edge"><title>Node10&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M570.456,-271.906C592.817,-268.548 620.113,-265.257 645.263,-262.822"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="569.895,-268.451 560.554,-273.451 570.974,-275.367 569.895,-268.451"/>
+<!-- Node9&#45;&gt;Node12 -->
+<g id="edge11" class="edge"><title>Node9&#45;&gt;Node12</title>
+<path fill="none" stroke="midnightblue" d="M597.352,-274.753C613.041,-273 629.622,-271.149 645.359,-269.391"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="596.738,-271.299 587.188,-275.888 597.515,-278.256 596.738,-271.299"/>
 </g>
-<!-- Node10&#45;&gt;Node13 -->
-<g id="edge21" class="edge"><title>Node10&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M597.458,-281.301C626.913,-278.476 659.496,-274.449 683.729,-270.503"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="596.825,-277.844 587.188,-282.248 597.467,-284.815 596.825,-277.844"/>
-</g>
-<!-- Node14 -->
-<g id="node14" class="node"><title>Node14</title>
-<g id="a_node14"><a xlink:href="classMezzanine_1_1FileWriteException.html" target="_top" xlink:title="Thrown when a file could not be written and perimssions seem not to be an issue. ">
+<!-- Node13 -->
+<g id="node13" class="node"><title>Node13</title>
+<g id="a_node13"><a xlink:href="classMezzanine_1_1FileWriteException.html" target="_top" xlink:title="Thrown when a file could not be written and perimssions seem not to be an issue. ">
 <polygon fill="white" stroke="black" points="645.5,-213.5 645.5,-232.5 797.5,-232.5 797.5,-213.5 645.5,-213.5"/>
 <text text-anchor="middle" x="721.5" y="-220.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::FileWriteException</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node14 -->
-<g id="edge22" class="edge"><title>Node10&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M549.869,-270.484C564.664,-266.324 583.256,-261.611 599,-255 616.289,-247.74 617.612,-240.018 635,-233 638.384,-231.634 641.885,-230.357 645.452,-229.172"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="548.464,-267.25 539.862,-273.435 550.444,-273.964 548.464,-267.25"/>
+<!-- Node9&#45;&gt;Node13 -->
+<g id="edge12" class="edge"><title>Node9&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M580.751,-270.553C586.999,-268.618 593.193,-266.438 599,-264 616.289,-256.74 617.612,-249.018 635,-242 644.447,-238.187 654.806,-235.068 664.952,-232.542"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="579.569,-267.252 570.937,-273.395 581.515,-273.976 579.569,-267.252"/>
 </g>
-<!-- Node10&#45;&gt;Node14 -->
-<g id="edge23" class="edge"><title>Node10&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M596.881,-273.872C597.592,-273.585 598.299,-273.294 599,-273 616.289,-265.74 617.612,-258.018 635,-251 656.715,-242.236 683.245,-237.14 700.938,-232.512"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="595.559,-270.629 587.391,-277.378 597.984,-277.195 595.559,-270.629"/>
-</g>
-<!-- Node18 -->
-<g id="node18" class="node"><title>Node18</title>
-<g id="a_node18"><a xlink:href="classMezzanine_1_1NetworkNotFoundException.html" target="_top" xlink:title="Thrown when no network connection is available. ">
+<!-- Node17 -->
+<g id="node17" class="node"><title>Node17</title>
+<g id="a_node17"><a xlink:href="classMezzanine_1_1NetworkNotFoundException.html" target="_top" xlink:title="Thrown when no network connection is available. ">
 <polygon fill="white" stroke="black" points="647,-164 647,-194 796,-194 796,-164 647,-164"/>
 <text text-anchor="start" x="655" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::NetworkNotFound</text>
 <text text-anchor="middle" x="721.5" y="-171" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node18 -->
-<g id="edge30" class="edge"><title>Node17&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M572.576,-121.19C591.859,-128.699 614.296,-137.726 635,-145 654.114,-151.716 676.055,-158.105 692.924,-163.949"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="573.686,-117.867 563.097,-117.53 571.165,-124.397 573.686,-117.867"/>
+<!-- Node16&#45;&gt;Node17 -->
+<g id="edge16" class="edge"><title>Node16&#45;&gt;Node17</title>
+<path fill="none" stroke="midnightblue" d="M553.867,-121.559C576.097,-131.231 607.12,-144.205 635,-154 644.922,-157.486 655.605,-160.884 665.946,-163.995"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="555.178,-118.312 544.614,-117.503 552.368,-124.723 555.178,-118.312"/>
 </g>
-<!-- Node17&#45;&gt;Node18 -->
-<g id="edge31" class="edge"><title>Node17&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M541.815,-122.675C563.718,-134.981 601.613,-151.27 635,-163 638.794,-164.333 642.699,-165.653 646.653,-166.939"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="543.582,-119.654 533.208,-117.501 539.975,-125.653 543.582,-119.654"/>
-</g>
-<!-- Node19 -->
-<g id="node19" class="node"><title>Node19</title>
-<g id="a_node19"><a xlink:href="classMezzanine_1_1NetworkPermissionException.html" target="_top" xlink:title="Thrown when permision was denied to a network interface or network resource. ">
+<!-- Node18 -->
+<g id="node18" class="node"><title>Node18</title>
+<g id="a_node18"><a xlink:href="classMezzanine_1_1NetworkPermissionException.html" target="_top" xlink:title="Thrown when permision was denied to a network interface or network resource. ">
 <polygon fill="white" stroke="black" points="644,-115 644,-145 799,-145 799,-115 644,-115"/>
 <text text-anchor="start" x="652" y="-133" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::NetworkPermission</text>
 <text text-anchor="middle" x="721.5" y="-122" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node19 -->
-<g id="edge32" class="edge"><title>Node17&#45;&gt;Node19</title>
-<path fill="none" stroke="midnightblue" d="M607.966,-110.744C620.296,-112.013 632.925,-113.458 645.06,-114.992"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="607.994,-107.23 597.697,-109.722 607.301,-114.195 607.994,-107.23"/>
+<!-- Node16&#45;&gt;Node18 -->
+<g id="edge17" class="edge"><title>Node16&#45;&gt;Node18</title>
+<path fill="none" stroke="midnightblue" d="M607.674,-117.4C619.652,-118.738 631.919,-120.108 643.745,-121.428"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="608.023,-113.917 597.697,-116.286 607.246,-120.874 608.023,-113.917"/>
 </g>
-<!-- Node17&#45;&gt;Node19 -->
-<g id="edge33" class="edge"><title>Node17&#45;&gt;Node19</title>
-<path fill="none" stroke="midnightblue" d="M570.56,-119.11C592.42,-122.39 618.978,-125.605 643.634,-128.019"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="570.974,-115.632 560.554,-117.549 569.895,-122.549 570.974,-115.632"/>
-</g>
-<!-- Node20 -->
-<g id="node20" class="node"><title>Node20</title>
-<g id="a_node20"><a xlink:href="classMezzanine_1_1NetworkReadException.html" target="_top" xlink:title="Thrown when data could not be read from the network (downloads) ">
+<!-- Node19 -->
+<g id="node19" class="node"><title>Node19</title>
+<g id="a_node19"><a xlink:href="classMezzanine_1_1NetworkReadException.html" target="_top" xlink:title="Thrown when data could not be read from the network (downloads) ">
 <polygon fill="white" stroke="black" points="635,-76.5 635,-95.5 808,-95.5 808,-76.5 635,-76.5"/>
 <text text-anchor="middle" x="721.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::NetworkReadException</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node20 -->
-<g id="edge34" class="edge"><title>Node17&#45;&gt;Node20</title>
-<path fill="none" stroke="midnightblue" d="M570.59,-96.8857C589.911,-93.9872 612.9,-91.1393 634.999,-88.8508"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="569.896,-93.4516 560.554,-98.4505 570.974,-100.368 569.896,-93.4516"/>
+<!-- Node16&#45;&gt;Node19 -->
+<g id="edge18" class="edge"><title>Node16&#45;&gt;Node19</title>
+<path fill="none" stroke="midnightblue" d="M607.82,-98.5836C616.862,-97.5737 626.068,-96.5457 635.122,-95.5346"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="607.246,-95.1258 597.697,-99.7141 608.023,-102.083 607.246,-95.1258"/>
 </g>
-<!-- Node17&#45;&gt;Node20 -->
-<g id="edge35" class="edge"><title>Node17&#45;&gt;Node20</title>
-<path fill="none" stroke="midnightblue" d="M607.769,-105.276C634.273,-102.553 662.181,-99.0082 683.598,-95.5248"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="607.301,-101.805 597.697,-106.278 607.994,-108.771 607.301,-101.805"/>
-</g>
-<!-- Node21 -->
-<g id="node21" class="node"><title>Node21</title>
-<g id="a_node21"><a xlink:href="classMezzanine_1_1NetworkURLException.html" target="_top" xlink:title="Thrown when an address is invalid or could not be found. ">
+<!-- Node20 -->
+<g id="node20" class="node"><title>Node20</title>
+<g id="a_node20"><a xlink:href="classMezzanine_1_1NetworkURLException.html" target="_top" xlink:title="Thrown when an address is invalid or could not be found. ">
 <polygon fill="white" stroke="black" points="636.5,-38.5 636.5,-57.5 806.5,-57.5 806.5,-38.5 636.5,-38.5"/>
 <text text-anchor="middle" x="721.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::NetworkURLException</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node21 -->
-<g id="edge36" class="edge"><title>Node17&#45;&gt;Node21</title>
-<path fill="none" stroke="midnightblue" d="M542.774,-93.4928C564.795,-82.1063 602.05,-67.6721 635,-58 635.438,-57.8715 635.877,-57.7434 636.317,-57.6158"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="540.838,-90.5644 533.798,-98.4819 544.238,-96.6828 540.838,-90.5644"/>
+<!-- Node16&#45;&gt;Node20 -->
+<g id="edge19" class="edge"><title>Node16&#45;&gt;Node20</title>
+<path fill="none" stroke="midnightblue" d="M556.217,-94.6554C578.235,-86.0021 608.056,-74.909 635,-67 646.964,-63.4881 660.036,-60.2766 672.278,-57.5334"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="554.69,-91.4957 546.688,-98.4394 557.274,-98.0015 554.69,-91.4957"/>
 </g>
-<!-- Node17&#45;&gt;Node21 -->
-<g id="edge37" class="edge"><title>Node17&#45;&gt;Node21</title>
-<path fill="none" stroke="midnightblue" d="M577.099,-95.1577C595.303,-88.831 615.876,-81.6135 635,-76 658.928,-68.9762 687.287,-63.154 704.581,-57.5103"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="575.841,-91.8894 567.536,-98.468 578.131,-98.5043 575.841,-91.8894"/>
-</g>
-<!-- Node22 -->
-<g id="node22" class="node"><title>Node22</title>
-<g id="a_node22"><a xlink:href="classMezzanine_1_1NetworkWriteException.html" target="_top" xlink:title="Thrown when data could not be read from the network (iloads) ">
+<!-- Node21 -->
+<g id="node21" class="node"><title>Node21</title>
+<g id="a_node21"><a xlink:href="classMezzanine_1_1NetworkWriteException.html" target="_top" xlink:title="Thrown when data could not be read from the network (iloads) ">
 <polygon fill="white" stroke="black" points="635,-0.5 635,-19.5 808,-19.5 808,-0.5 635,-0.5"/>
 <text text-anchor="middle" x="721.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::NetworkWriteException</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node22 -->
-<g id="edge38" class="edge"><title>Node17&#45;&gt;Node22</title>
-<path fill="none" stroke="midnightblue" d="M535.931,-90.8875C555.503,-70.3174 595.371,-37.5807 635,-20 635.278,-19.8767 635.557,-19.7541 635.837,-19.6323"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="533.3,-88.5788 529.257,-98.372 538.525,-93.2373 533.3,-88.5788"/>
-</g>
-<!-- Node17&#45;&gt;Node22 -->
-<g id="edge39" class="edge"><title>Node17&#45;&gt;Node22</title>
-<path fill="none" stroke="midnightblue" d="M549.688,-92.1444C571.186,-76.0188 603.17,-52.1207 635,-38 655.849,-28.7506 681.62,-23.8172 699.387,-19.5071"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="547.34,-89.5298 541.428,-98.3212 551.532,-95.1359 547.34,-89.5298"/>
+<!-- Node16&#45;&gt;Node21 -->
+<g id="edge20" class="edge"><title>Node16&#45;&gt;Node21</title>
+<path fill="none" stroke="midnightblue" d="M541.762,-91.5315C562.757,-73.485 598.977,-44.9809 635,-29 643.618,-25.1769 653.076,-22.0912 662.463,-19.61"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="539.21,-89.1142 533.992,-98.3351 543.821,-94.3807 539.21,-89.1142"/>
 </g>
 </g>
 </svg>

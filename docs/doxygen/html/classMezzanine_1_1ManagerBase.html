@@ -98,16 +98,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ManagerBase__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ManagerBase__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::ManagerBase:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ManagerBase__coll__graph.svg" width="363" height="142"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ManagerBase__coll__graph.svg" width="363" height="142"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -147,6 +145,7 @@ Public Types</h2></td></tr>
 <a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br />
  }</td></tr>
+<tr class="memdesc:a9a6f3e238f66cbc68dfec11e4160aa6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A listing of Manager TypeNames.  <a href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">More...</a><br /></td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -202,7 +201,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>This is the base class from which all the <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a> and <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. ">World</a> Managers inherit. </p>
 <p>This creates a base set of functions that Managers are all expected to implement. </p>
 
-<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00059">59</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00058">58</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a9a6f3e238f66cbc68dfec11e4160aa6c"></a>
 <div class="memitem">
@@ -213,13 +212,16 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A listing of Manager TypeNames. </p>
+<p>These will be returned by ManagerBase::GetType(), and will allow code using this to determine what type of Manager class they are working with and use this information to more safely cast to the correct manager if needed. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e"></a>MT_UserCreated&#160;</td><td class="fielddoc">
 <p>This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals. </p>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00067">67</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00065">65</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -408,7 +410,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Simple Boole indicating whether or not this manager has been initialized. </p>
 
-<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00113">113</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00111">111</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -432,7 +434,7 @@ Protected Attributes</h2></td></tr>
 
 <p>The actual pointer to the <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. ">Entresol</a> core class. </p>
 
-<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00110">110</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="managerbase_8h_source.html#l00108">108</a> of file <a class="el" href="managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -444,7 +446,7 @@ Protected Attributes</h2></td></tr>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 16:08:47 for BlackTopp Studios inc by
+            Generated on Fri Jan 29 2016 03:41:41 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

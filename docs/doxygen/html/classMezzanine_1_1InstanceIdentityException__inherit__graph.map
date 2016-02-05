@@ -1,8 +1,7 @@
 <map id="Mezzanine::InstanceIdentityException" name="Mezzanine::InstanceIdentityException">
-<area shape="rect" id="node5" href="$classMezzanine_1_1InstanceIdentityDuplicateException.html" title="Thrown when duplicates of teh same identity string exist. " alt="" coords="621,5,808,47"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1InstanceIdentityInvalidException.html" title="Thrown when the identity string wasn&#39;t valid at all. " alt="" coords="621,71,808,112"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1InstanceIdentityNotFoundException.html" title="Thrown when the requested identity could not be found. " alt="" coords="621,136,808,177"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="173,53,323,79"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1InstanceIdentityDuplicateException.html" title="Thrown when duplicates of teh same identity string exist. " alt="" coords="621,5,808,47"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1InstanceIdentityInvalidException.html" title="Thrown when the identity string wasn&#39;t valid at all. " alt="" coords="621,71,808,112"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1InstanceIdentityNotFoundException.html" title="Thrown when the requested identity could not be found. " alt="" coords="621,136,808,177"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,78,339,105"/>
 <area shape="rect" id="node3" title="STL class. " alt="" coords="5,78,109,105"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,103,339,130"/>
 </map>

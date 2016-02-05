@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2015 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -87,19 +87,24 @@ namespace Mezzanine
                         {}
             };
 
-            ///////////////////////////////////////////////////////////////////////////////////////
-            /// @brief This class is used to store a Lua script and in its source and compiled state.
-            /// @details To execute this script use @ref LuaScriptingEngine::compile
-            class MEZZ_LIB Lua51Script : public virtual Mezzanine::Scripting::iScriptCompilable, public virtual Mezzanine::Scripting::iScriptMultipleReturn
+            ////////////////////////////////////////////////////////////////////////////////////////
+            /// @brief This class is used to store a Lua script and in its source and compiled
+            /// state.
+            /// @details To execute this script use @ref LuaScriptingEngine::Compile
+            class MEZZ_LIB Lua51Script
+                : public virtual Mezzanine::Scripting::iScriptCompilable,
+                  public virtual Mezzanine::Scripting::iScriptMultipleReturn
             {
                 private:
-                    /// @brief Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
+                    /// @brief Makes passing internal data much easier and all Lua51 are logically
+                    /// encapsulated as a single system still.
                     friend class Lua51ScriptingEngine;
 
                     /// @brief A set of the arguments being passed into the Lua script
                     ArgumentGroup Args;
 
-                    /// @brief A set of all the values the Lua script returned the last time it was executed.
+                    /// @brief A set of all the values the Lua script returned the last time it was
+                    /// executed.
                     ArgumentGroup Returns;
 
                     /// @brief This will contain the source of the script
@@ -122,15 +127,31 @@ namespace Mezzanine
                     Lua51Script();
 
                     /// @brief Compiling Constructor
-                    /// @param SourceCode The source of the script to be used in this.
-                    /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid LuaScriptingEngine then that engine is used to compile (but not run) this script.
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0, Boole JustAFunctionCall = false, String ScriptName = "?");
+                    /// @param InitialSourceCode The source of the script to be used in this.
+                    /// @param Compiler Defaults to a null pointer. If passed a null pointer this
+                    /// does nothing. If passed a valid LuaScriptingEngine then that engine is used
+                    /// to compile (but not run) this script.
+                    /// @param JustAFunctionCall Defaults to false, when true this optimizes the
+                    /// calling process and simply calls a function.
+                    /// @param ScriptName For tracking and recalling scripts by name, defaults to
+                    /// "?"
+                    Lua51Script(const String& InitialSourceCode,
+                                Lua51ScriptingEngine* Compiler=0,
+                                Boole JustAFunctionCall = false,
+                                String ScriptName = "?");
 
                     /// @brief Compiling Cosntructor without pointer
-                    /// @param SourceCode The source of the script to be used in this.
-                    /// @param
-                    /// @param
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Boole JustAFunctionCall = false, String ScriptName = "?");
+                    /// @param InitialSourceCode The source of the script to be used in this.
+                    /// @param Compiler A reference to a valid LuaScriptingEngine then that engine
+                    /// is used to compile (but not run) this script.
+                    /// @param JustAFunctionCall Defaults to false, when true this optimizes the
+                    /// calling process and simply calls a function.
+                    /// @param ScriptName For tracking and recalling scripts by name, defaults to
+                    /// "?"
+                    Lua51Script(const String& InitialSourceCode,
+                                Lua51ScriptingEngine& Compiler,
+                                Boole JustAFunctionCall = false,
+                                String ScriptName = "?");
 
                     /// @brief Virtual destructor
                     virtual ~Lua51Script();

@@ -14,74 +14,59 @@
 <polygon fill="#bfbfbf" stroke="black" points="286,-50 286,-69 451,-69 451,-50 286,-50"/>
 <text text-anchor="middle" x="368.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::SyntaxErrorException</text>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="classMezzanine_1_1SyntaxErrorLuaException.html" target="_top" xlink:title="Thrown when lua code in incorrect. ">
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="classMezzanine_1_1SyntaxErrorLuaException.html" target="_top" xlink:title="Thrown when lua code in incorrect. ">
 <polygon fill="white" stroke="black" points="511,-88.5 511,-118.5 648,-118.5 648,-88.5 511,-88.5"/>
 <text text-anchor="start" x="519" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::SyntaxErrorLua</text>
 <text text-anchor="middle" x="579.5" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge5" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M455.663,-70.9828C482.565,-76.3703 511.141,-82.7235 533.956,-88.477"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="456.329,-67.5469 445.841,-69.0445 454.974,-74.4144 456.329,-67.5469"/>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M424.705,-71.122C451.169,-76.6934 483.104,-83.4166 511,-89.2895"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="425.356,-67.6826 414.85,-69.0473 423.914,-74.5325 425.356,-67.6826"/>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge6" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M403.484,-71.7919C432.413,-79.4823 474.858,-88.8274 510.702,-95.5923"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="404.045,-68.3163 393.475,-69.0413 402.19,-75.0661 404.045,-68.3163"/>
-</g>
-<!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="classMezzanine_1_1SyntaxErrorXMLException.html" target="_top" xlink:title="Thrown when and XML document is being parsed but is invalid. ">
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="classMezzanine_1_1SyntaxErrorXMLException.html" target="_top" xlink:title="Thrown when and XML document is being parsed but is invalid. ">
 <polygon fill="white" stroke="black" points="487,-50 487,-69 672,-69 672,-50 487,-50"/>
 <text text-anchor="middle" x="579.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::SyntaxErrorXMLException</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge7" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M461.415,-52.7937C469.844,-52.7349 478.384,-52.7354 486.812,-52.7953"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="461.168,-49.2959 451.203,-52.8948 461.237,-56.2955 461.168,-49.2959"/>
+<!-- Node1&#45;&gt;Node5 -->
+<g id="edge4" class="edge"><title>Node1&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M461.415,-59.5C469.844,-59.5 478.384,-59.5 486.812,-59.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="461.203,-56.0001 451.203,-59.5 461.203,-63.0001 461.203,-56.0001"/>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge8" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M461.415,-66.2063C469.844,-66.2651 478.384,-66.2646 486.812,-66.2047"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="461.237,-62.7045 451.203,-66.1052 461.168,-69.7041 461.237,-62.7045"/>
-</g>
-<!-- Node7 -->
-<g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="classMezzanine_1_1SyntaxErrorXPathException.html" target="_top" xlink:title="Thrown when an XPath query is being parsed but is invalid. ">
+<!-- Node6 -->
+<g id="node6" class="node"><title>Node6</title>
+<g id="a_node6"><a xlink:href="classMezzanine_1_1SyntaxErrorXPathException.html" target="_top" xlink:title="Thrown when an XPath query is being parsed but is invalid. ">
 <polygon fill="white" stroke="black" points="505,-0.5 505,-30.5 654,-30.5 654,-0.5 505,-0.5"/>
 <text text-anchor="start" x="513" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::SyntaxErrorXPath</text>
 <text text-anchor="middle" x="579.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Exception</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node7 -->
-<g id="edge9" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M403.324,-47.2508C430.665,-39.9756 470.155,-31.2101 504.723,-24.5484"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="402.189,-43.9327 393.475,-49.9587 404.045,-50.6823 402.189,-43.9327"/>
-</g>
-<!-- Node1&#45;&gt;Node7 -->
-<g id="edge10" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M455.663,-48.0172C482.565,-42.6297 511.141,-36.2765 533.956,-30.523"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="454.974,-44.5856 445.841,-49.9555 456.329,-51.4531 454.974,-44.5856"/>
+<!-- Node1&#45;&gt;Node6 -->
+<g id="edge5" class="edge"><title>Node1&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M424.941,-47.8282C450.082,-42.5355 480.122,-36.2111 506.94,-30.5654"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="423.914,-44.4675 414.85,-49.9527 425.356,-51.3174 423.914,-44.4675"/>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">
-<polygon fill="white" stroke="black" points="125.5,-69 125.5,-88 238.5,-88 238.5,-69 125.5,-69"/>
-<text text-anchor="middle" x="182" y="-76" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Exception</text>
+<g id="a_node2"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
+<polygon fill="white" stroke="black" points="114,-50 114,-69 250,-69 250,-50 114,-50"/>
+<text text-anchor="middle" x="182" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M248.913,-71.7122C260.856,-70.4823 273.441,-69.1863 285.772,-67.9164"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="248.195,-68.2675 238.606,-72.7736 248.912,-75.2307 248.195,-68.2675"/>
+<path fill="none" stroke="midnightblue" d="M260.352,-59.5C268.818,-59.5 277.456,-59.5 285.97,-59.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="260.131,-56.0001 250.131,-59.5 260.131,-63.0001 260.131,-56.0001"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
@@ -93,26 +78,8 @@
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M88.3443,-66.0145C100.257,-67.6198 113.109,-69.3516 125.338,-70.9994"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="88.5345,-62.5086 78.1566,-64.6417 87.5996,-69.4459 88.5345,-62.5086"/>
-</g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="classMezzanine_1_1ExceptionBase.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ...">
-<polygon fill="white" stroke="black" points="114,-31 114,-50 250,-50 250,-31 114,-31"/>
-<text text-anchor="middle" x="182" y="-38" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::ExceptionBase</text>
-</a>
-</g>
-</g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge4" class="edge"><title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M88.2794,-52.9943C96.4907,-51.8878 105.15,-50.7209 113.745,-49.5628"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="87.5996,-49.5541 78.1566,-54.3583 88.5345,-56.4914 87.5996,-49.5541"/>
-</g>
-<!-- Node4&#45;&gt;Node1 -->
-<g id="edge3" class="edge"><title>Node4&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M260.352,-48.4658C268.818,-49.3376 277.456,-50.2272 285.97,-51.104"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="260.437,-44.9561 250.131,-47.4132 259.719,-51.9193 260.437,-44.9561"/>
+<path fill="none" stroke="midnightblue" d="M88.2794,-59.5C96.4907,-59.5 105.15,-59.5 113.745,-59.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="88.1567,-56.0001 78.1566,-59.5 88.1566,-63.0001 88.1567,-56.0001"/>
 </g>
 </g>
 </svg>

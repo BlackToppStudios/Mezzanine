@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">countedptr.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="countedptr_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2015 BlackTopp Studios Inc.</span></div>
+<a href="countedptr_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2016 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -315,7 +315,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.html#a8514b1b631b47de54f148026bf2c714b">  233</a></span>&#160;<span class="comment"></span>            <span class="keyword">typedef</span> <a class="code" href="classMezzanine_1_1IntrusiveRefCount.html">IntrusiveRefCount</a> <a class="code" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.html#a8514b1b631b47de54f148026bf2c714b">RefCountType</a>;</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">            /// @brief Because The reference count is allocated when the caller created the target this does not need to allocate a Reference count separetaly.</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">            /// @param The create object to manage.</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">            /// @param Target The already created object to manage.</span></div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">            /// @return This is expected to return a valid reference count, since the reference count is in the target, this returns whatever was passed in,</span></div>
 <div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.html#ab13974a9bf7e7b4363ec09d28e6845cc">  238</a></span>&#160;<span class="comment"></span>            <span class="keyword">static</span> RefCountType* <a class="code" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.html#ab13974a9bf7e7b4363ec09d28e6845cc">ConstructionPointer</a>(RefCountType* Target)</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                { <span class="keywordflow">return</span> Target; }</div>
@@ -590,9 +590,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="comment"></span><span class="comment">    /// @code</span></div>
 <div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="comment"></span><span class="comment">    /// enum { IsCastable = CastStaticVirtual };</span></div>
 <div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="comment"></span><span class="comment">    /// @endcode</span></div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="comment"></span><span class="comment">    /// @param ReturnPointer The type of pointer that the functions on the CountedPtr must return</span></div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;<span class="comment"></span><span class="comment">    /// @param OriginalPointer The actual type the CountedPtr is maintaining as a target.</span></div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="comment"></span><span class="comment">    /// @param CountedPointerCastingState Any value in the @ref CountedPointerCastingState to indicate kind of casting.</span></div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="comment"></span><span class="comment">    /// @tparam ReturnPointer The type of pointer that the functions on the CountedPtr must return</span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;<span class="comment"></span><span class="comment">    /// @tparam OriginalPointer The actual type the CountedPtr is maintaining as a target.</span></div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="comment"></span><span class="comment">    /// @tparam CountedPointerCastingState Any value in the @ref CountedPointerCastingState to indicate kind of casting.</span></div>
 <div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="comment"></span><span class="comment">    /// @details For any case that uses CastNoneError including the default.</span></div>
 <div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ReturnPo<span class="keywordtype">int</span>er, <span class="keyword">typename</span> OriginalPo<span class="keywordtype">int</span>er, CountedPo<span class="keywordtype">int</span>erCastingState&gt;</div>
 <div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="keyword">class </span>CountedPtrCastImpl</div>
@@ -612,7 +612,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;<span class="comment">    /// @internal</span></div>
 <div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="comment">    /// @brief An implementation of the CountedPtrCast that always return the pointer passed reached via CastNoneError in the ReferenceCountTraits of the target class.</span></div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="comment">    /// @param OriginalPointer The type of the original pointer and return value must match exactly</span></div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="comment">    /// @tparam OriginalPointer The type of the original pointer and return value must match exactly</span></div>
 <div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;<span class="comment">    /// @note Since this requires both matching pointer types and CastNoneError to be present in the ReferenceCountTraits This should produce a compilation error when somethign is set wrong.</span></div>
 <div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> OriginalPo<span class="keywordtype">int</span>er&gt;</div>
 <div class="line"><a name="l00536"></a><span class="lineno"><a class="line" href="classMezzanine_1_1CountedPtrCastImpl_3_01OriginalPointer_00_01OriginalPointer_00_01CastNoneError_01_4.html">  536</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classMezzanine_1_1CountedPtrCastImpl.html">CountedPtrCastImpl</a> &lt;OriginalPointer, OriginalPointer, <a class="code" href="namespaceMezzanine.html#ad937b4d169586b963a9545c39fe66739a80b6e8497f1239b63fb0bac739f5618f">CastNoneError</a>&gt;</div>
@@ -693,8 +693,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;<span class="comment">    /// @internal</span></div>
 <div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;<span class="comment">    /// @brief Used internally by CounterPtr to abstract away casts in the case where the return type would *NOT* match the input type.</span></div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;<span class="comment">    /// @param ReturnPointer The type of the pointer to target after using the Casting Strategy described in the classes ReferenceCountTraits.</span></div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;<span class="comment">    /// @param OriginalPointer The type of the pointer prior to casting.</span></div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;<span class="comment">    /// @tparam ReturnPointer The type of the pointer to target after using the Casting Strategy described in the classes ReferenceCountTraits.</span></div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;<span class="comment">    /// @tparam OriginalPointer The type of the pointer prior to casting.</span></div>
 <div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;<span class="comment">    /// @note The function argument Original is of type const OriginalPointer. When search for possible matching functions an template a compiler prioritizes functions that are off by just a CV qualifier ahead of those that it would need to implicitly cast to call. So if the to pointer types match exactly this will not be called.</span></div>
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;<span class="comment">    /// @param Original The Pointer to cast which must be exactly of the type OriginalPointer(Which might be inferable).</span></div>
 <div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;<span class="comment">    /// @return A pointer of the type ReturnPointer after the desired casting strategy has been used.</span></div>
@@ -718,7 +718,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;<span class="comment">    /// @brief Used internally by CounterPtr to abstract away casts in the case where the return type would match the input type.</span></div>
 <div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;<span class="comment">    /// @details This enforces the logic that cast should only be performed inside the CountedPtr when a cast is required. This</span></div>
 <div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;<span class="comment">    /// also has the advantage of not performing meaningless extra casts if a runtime cast is used, so it coudl enhance performance.</span></div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;<span class="comment">    /// @param Pointer The only type of pointers involved.</span></div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;<span class="comment">    /// @tparam Pointer The only type of pointers involved.</span></div>
 <div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;<span class="comment">    /// @param Original The pointer that needs to be checked to see if it should be cast and this compilation case does not require it.</span></div>
 <div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;<span class="comment">    /// @return The value passed in Original.</span></div>
 <div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Po<span class="keywordtype">int</span>er&gt;</div>
@@ -726,8 +726,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;        { <span class="keywordflow">return</span>  Original; }</div>
 <div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;<span class="comment">    /// @brief A compile time cast that uses only the implicit conversion of the underlying raw pointers</span></div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;<span class="comment">    /// @param ReturnType The type to be returned, must be specified</span></div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="comment">    /// @param OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.</span></div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;<span class="comment">    /// @tparam ReturnType The type to be returned, must be specified</span></div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="comment">    /// @ptaram OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.</span></div>
 <div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;<span class="comment">    /// @param Original The pointer to convert.</span></div>
 <div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;<span class="comment">    /// @return Either a pointer of the desired or a compilation error</span></div>
 <div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ReturnType, <span class="keyword">typename</span> OtherPo<span class="keywordtype">int</span>erTargetType&gt;</div>
@@ -735,8 +735,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;        { <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1CountedPtr.html">CountedPtr&lt;ReturnType&gt;</a>(Original); }</div>
 <div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;<span class="comment">    /// @brief A compile time cast that uses static casting conversion of the underlying raw pointers but only works on internally reference count types</span></div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;<span class="comment">    /// @param ReturnType The type to be returned, must be specified</span></div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;<span class="comment">    /// @param OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.</span></div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;<span class="comment">    /// @tparam ReturnType The type to be returned, must be specified</span></div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;<span class="comment">    /// @tparam OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.</span></div>
 <div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;<span class="comment">    /// @param Original The pointer to convert.</span></div>
 <div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;<span class="comment">    /// @return Either a pointer of the desired or a compilation error</span></div>
 <div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ReturnType, <span class="keyword">typename</span> OtherPo<span class="keywordtype">int</span>erTargetType&gt;</div>
@@ -744,8 +744,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;        { <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1CountedPtr.html">CountedPtr&lt;ReturnType&gt;</a>(<span class="keyword">static_cast&lt;</span>ReturnType*<span class="keyword">&gt;</span>(Original.GetReferenceCount())); }</div>
 <div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;<span class="comment">    /// @brief A Runtime cast that uses dynamic casting conversion of the underlying raw pointers but only works on internally reference count types</span></div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;<span class="comment">    /// @param ReturnType The type to be returned, must be specified</span></div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;<span class="comment">    /// @param OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.</span></div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;<span class="comment">    /// @tparam ReturnType The type to be returned, must be specified</span></div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;<span class="comment">    /// @tparam OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.</span></div>
 <div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;<span class="comment">    /// @param Original The pointer to convert.</span></div>
 <div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;<span class="comment">    /// @return Either a pointer of the desired or a 0 if casting is not possible.</span></div>
 <div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ReturnType, <span class="keyword">typename</span> OtherPo<span class="keywordtype">int</span>erTargetType&gt;</div>
@@ -830,7 +830,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Jan 23 2016 16:08:42 for BlackTopp Studios inc by
+            Generated on Fri Jan 29 2016 03:41:36 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>
