@@ -163,7 +163,7 @@
         #else
             #define MEZZ_DEPRECATED
         #endif
-    #endifC:\Program Files\Java\jdk1.8.0_65\jre\bin\server
+    #endif
 
     /// @def MEZZ_USEATOMICSTODECACHECOMPLETEWORK
     /// @brief This is used to configure whether to atomically store a shortcut to skip checking all
