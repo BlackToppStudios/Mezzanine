@@ -120,22 +120,54 @@ namespace Mezzanine
 
         Network::HTTPRequestMethod HTTPRequest::ConvertRequestMethod(const String& Method)
         {
-            if( Method == "GET" )       { return Network::HRM_GET; }
-            if( Method == "HEAD" )      { return Network::HRM_HEAD; }
-            if( Method == "POST" )      { return Network::HRM_POST; }
-            if( Method == "OPTIONS" )   { return Network::HRM_OPTIONS; }
-            if( Method == "PUT" )       { return Network::HRM_PUT; }
-            if( Method == "DELETE" )    { return Network::HRM_DELETE; }
-            if( Method == "TRACE" )     { return Network::HRM_TRACE; }
-            if( Method == "CONNECT" )   { return Network::HRM_CONNECT; }
-            if( Method == "PATCH" )     { return Network::HRM_PATCH; }
-            if( Method == "PROPFIND" )  { return Network::HRM_PROPFIND; }
-            if( Method == "PROPPATCH" ) { return Network::HRM_PROPPATCH; }
-            if( Method == "MKCOL" )     { return Network::HRM_MKCOL; }
-            if( Method == "COPY" )      { return Network::HRM_COPY; }
-            if( Method == "MOVE" )      { return Network::HRM_MOVE; }
-            if( Method == "LOCK" )      { return Network::HRM_LOCK; }
-            if( Method == "UNLOCK" )    { return Network::HRM_UNLOCK; }
+            // 3 characters is the shortest length for any Request Method
+            if( Method.size() >= 3 ) {
+                switch( Method[0] )
+                {
+                    case 'C':
+                    {
+                        switch( Method[2] )
+                        {
+                            case 'N':   return Network::HRM_CONNECT;    break;
+                            case 'P':   return Network::HRM_COPY;       break;
+                        }
+                    }
+                    case 'D':   return Network::HRM_DELETE;   break;
+                    case 'G':   return Network::HRM_GET;      break;
+                    case 'H':   return Network::HRM_HEAD;     break;
+                    case 'L':   return Network::HRM_LOCK;     break;
+                    case 'M':
+                    {
+                        switch( Method[1] )
+                        {
+                            case 'K':   return Network::HRM_MKCOL;      break;
+                            case 'O':   return Network::HRM_MOVE;       break;
+                        }
+                    }
+                    case 'O':   return Network::HRM_OPTIONS;  break;
+                    case 'P':
+                    {
+                        switch( Method[1] )
+                        {
+                            case 'A':   return Network::HRM_PATCH;      break;
+                            case 'O':   return Network::HRM_POST;       break;
+                            case 'R':
+                            {
+                                if( Method.size() >= 5 ) {
+                                    switch( Method[4] )
+                                    {
+                                        case 'F':   return Network::HRM_PROPFIND;  break;
+                                        case 'P':   return Network::HRM_PROPPATCH; break;
+                                    }
+                                }
+                            }
+                            case 'U':   return Network::HRM_PUT;        break;
+                        }
+                    }
+                    case 'T':   return Network::HRM_TRACE;    break;
+                    case 'U':   return Network::HRM_UNLOCK;   break;
+                }
+            }
             return Network::HRM_Invalid;
         }
 
