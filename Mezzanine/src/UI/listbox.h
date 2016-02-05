@@ -66,7 +66,6 @@ namespace Mezzanine
             /// @brief Convenience typedef for objects that will be used to represent list items in this ListBox.
             typedef Widget ListItem;
 
-            /// @enum ListItemOrdering
             /// @brief This enum is used to describe how new ListItems are inserted into the list.
             enum ListItemOrdering
             {

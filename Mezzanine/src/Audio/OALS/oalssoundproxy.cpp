@@ -90,7 +90,6 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            /// @enum ProxyState
             /// @brief This enum describes a set of Boole options common for objects playing back audio in a 3D world.
             enum ProxyState
             {

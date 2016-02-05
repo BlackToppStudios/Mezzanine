@@ -82,7 +82,6 @@ namespace Mezzanine
             class MEZZ_LIB FlipModifier : public TextureModifier
             {
             public:
-                /// @enum PixelFlipAxis
                 /// @brief An enum used to describe which axis (or both) to flip pixels along.
                 enum PixelFlipAxis
                 {

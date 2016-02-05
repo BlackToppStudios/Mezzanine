@@ -86,7 +86,6 @@ namespace Mezzanine
             class MEZZ_LIB CrackModifier : public TextureModifier
             {
             public:
-                /// @enum LengthMode
                 /// @brief An enum used to set how the length of each generated crack is to be determined.
                 enum LengthMode
                 {
@@ -94,7 +93,6 @@ namespace Mezzanine
                     LM_Random        = 2,  ///< The modifier will randomize the pixel length of the cracks between zero and double the configured length.
                     LM_NormalBased   = 3   ///< The modifier will generate the pixel length of a crack between the configured value and a value larger based on the normal length set in the parameter texture.
                 };
-                /// @enum QualityMode
                 /// @brief An enum used to set the quality
                 enum QualityMode
                 {

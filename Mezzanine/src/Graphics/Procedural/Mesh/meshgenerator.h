@@ -87,7 +87,6 @@ namespace Mezzanine
             class MeshGenerator
             {
             public:
-                /// @enum GeneratorOptions
                 /// @brief A convenience enum used to describe boolean options for a generator.
                 enum GeneratorOptions
                 {

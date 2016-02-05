@@ -361,7 +361,6 @@ namespace Mezzanine
         ///////////////////////////////////////
         struct ChorusParameters
         {
-            /// @enum ChorusWaveform
             /// @brief The shape of the wave if it were viewed on an oscillator.
             enum ChorusWaveform
             {
@@ -493,7 +492,6 @@ namespace Mezzanine
         ///////////////////////////////////////
         struct FlangerParameters
         {
-            /// @enum FlangerWaveform
             /// @brief The shape of the wave if it were viewed on an oscillator.
             enum FlangerWaveform
             {
@@ -544,7 +542,6 @@ namespace Mezzanine
         ///////////////////////////////////////
         struct FrequencyShiftParameters
         {
-            /// @enum ShiftDirection
             /// @brief An enum describing the direction the frequency of the input signal will be shifted.
             enum ShiftDirection
             {
@@ -582,7 +579,6 @@ namespace Mezzanine
         ///////////////////////////////////////
         struct VocalMorpherParameters
         {
-            /// @enum MorpherPhoneme
             /// @brief An enum describing the basic phoneme's of the english language.
             enum MorpherPhoneme
             {
@@ -618,7 +614,6 @@ namespace Mezzanine
                 EMP_Z
             };
 
-            /// @enum MorpherWaveform
             /// @brief The shape of the wave if it were viewed on an oscillator.
             enum MorpherWaveform
             {
@@ -693,7 +688,6 @@ namespace Mezzanine
         ///////////////////////////////////////
         struct RingModulatorParameters
         {
-            /// @enum ModulatorWaveform
             /// @brief The shape of the wave if it were viewed on an oscillator.
             enum ModulatorWaveform
             {

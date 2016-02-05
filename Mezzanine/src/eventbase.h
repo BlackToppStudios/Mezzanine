@@ -61,7 +61,6 @@ namespace Mezzanine
     class MEZZ_LIB EventBase
     {
         public:
-            /// @enum EventType
             /// @brief A listing of values that can be used to identify Events.
             /// @details A listing of values that can be used to identify Events.
             enum EventType

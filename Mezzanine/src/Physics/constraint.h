@@ -56,7 +56,6 @@ namespace Mezzanine
         class RigidProxy;
         class PhysicsManager;
 
-        /// @enum ConstraintParam
         /// @brief Used by constraints for setting some parameters.
         /// @details See the constraint class documentation for more details.
         enum ConstraintParam

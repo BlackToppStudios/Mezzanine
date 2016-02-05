@@ -55,13 +55,11 @@ namespace Mezzanine
         class MEZZ_LIB CheckBox : public Button
         {
         public:
-            /// @enum WidgetStateExt
             /// @brief Enum describing extended widget states for the CheckBox widget.
             enum WidgetStateExt
             {
                 WS_Selected = Widget::WS_Mezzanine_Reserved_1
             };
-            /// @enum WidgetGroupIDExt
             /// @brief Enum describing additional pre-initialized RenderLayerGroups created by the Checkbox widget.
             enum WidgetGroupIDExt
             {

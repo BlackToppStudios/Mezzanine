@@ -84,7 +84,6 @@ namespace Mezzanine
             class MEZZ_LIB EdgeDetectionModifier : public TextureModifier
             {
             public:
-                /// @enum DetectionMode
                 /// @brief An enum describing which algorithm to use for edge detection.
                 enum DetectionMode
                 {

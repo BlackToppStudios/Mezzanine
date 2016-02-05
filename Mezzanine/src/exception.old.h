@@ -53,13 +53,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     class MEZZ_LIB Exception : public std::exception
     {
-        public:
-            /// @enum ExceptionCodes
-            /// @brief This enum provides mapping/naming for all the core exceptions of Mezzanine.
-            /// @details The numbers listed here must be unique to each exception. If an error code does not identify
-            /// the problem exactly it should be considered 'Unknown' for as much as it does specify. For example,
-            /// if there is an error opening a file for reading and writing, and we don't know why it failed, useing
-            /// @ref IO_EXCEPTION would make sense
+    public:
+        /// @brief This enum provides mapping/naming for all the core exceptions of Mezzanine.
+        /// @details The numbers listed here must be unique to each exception. If an error code does not identify
+        /// the problem exactly it should be considered 'Unknown' for as much as it does specify. For example,
+        /// if there is an error opening a file for reading and writing, and we don't know why it failed, useing
+        /// @ref IO_EXCEPTION would make sense.
         enum ExceptionCodes
         {
             IO_EXCEPTION                         = 0x01F00F00,    ///< When used a instance of IOException is thrown. Thrown when there was an issue with IO but very little was known about it.

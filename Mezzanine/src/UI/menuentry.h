@@ -64,7 +64,6 @@ namespace Mezzanine
             /// @brief Const Iterator type for child MenuEntry instances stored by this class.
             typedef MenuEntryContainer::const_iterator    ConstMenuEntryIterator;
 
-            /// @enum ButtonConfig
             /// @brief An enum describing how the MenuButton for this MenuEntry is configured and being used.
             enum ButtonConfig
             {

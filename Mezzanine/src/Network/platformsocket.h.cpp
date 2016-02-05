@@ -116,7 +116,6 @@ namespace Mezzanine
         #endif
         };
 
-        /// @enum SocketOptionLevel
         /// @brief An enum for the different configurable levels of socket options.
         enum SocketOptionLevel
         {
@@ -127,7 +126,6 @@ namespace Mezzanine
             Sol_Socket    = SOL_SOCKET
         };
 
-        /// @enum SocketLevelOptions
         /// @brief An enum for the configurable options that exist on the socket level.
         enum SocketLevelOptions
         {
@@ -143,21 +141,18 @@ namespace Mezzanine
             SockOpts_SendBufSize    = SO_SNDBUF
         };
 
-        /// @enum TCPLevelOptions
         /// @brief An enum for the configurable options that exist on the TCP protocol level.
         enum TCPLevelOptions
         {
             TCPOpts_NoDelay = TCP_NODELAY
         };
 
-        /// @enum UDPLevelOptions
         /// @brief An enum for the configurable options that exist on the UDP protocol level.
         enum UDPLevelOptions
         {
             // Heh
         };
 
-        /// @enum IPv4LevelOptions
         /// @brief An enum for the configurable options that exist on the IPv4 protocol level.
         enum IPv4LevelOptions
         {
@@ -179,7 +174,6 @@ namespace Mezzanine
             IPv4Opts_TimeToLive       = IP_TTL
         };
 
-        /// @enum MsgFragValues
         /// @brief An enum for the easy mapping of the actual values needed to toggle IPv4 fragmentation.
         enum MsgFragValues
         {
@@ -194,7 +188,6 @@ namespace Mezzanine
         #endif
         };
 
-        /// @enum IPv6LevelOptions
         /// @brief An enum for the configurable options that exist on the IPv6 protocol level.
         enum IPv6LevelOptions
         {

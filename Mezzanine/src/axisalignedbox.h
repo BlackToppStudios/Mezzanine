@@ -63,7 +63,6 @@ namespace Mezzanine
     class MEZZ_LIB AxisAlignedBox
     {
     public:
-        /// @enum AxisExtent
         /// @brief This enum is used to help make querys for data on the AABB.
         enum AxisExtent
         {

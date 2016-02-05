@@ -63,7 +63,6 @@ namespace Mezzanine
         /// @brief Convenience define for the stream size datatype.
         typedef std::streamsize StreamSize;
 
-        /// @enum StreamFlags
         /// @brief This enum describes the flags that control certain behaviors of a stream.
         /// @details It is important to note that not all of these flags are used by all streams.
         enum StreamFlags
@@ -77,7 +76,6 @@ namespace Mezzanine
             SF_Truncate     = std::ios_base::trunc   ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
         };
 
-        /// @enum SeekOrigin
         /// @brief An enum describing which position should be considered the origin for changing the current position in a stream.
         enum SeekOrigin
         {

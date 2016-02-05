@@ -56,7 +56,6 @@ namespace Mezzanine
         class MEZZ_LIB TextToken
         {
         public:
-            /// @enum TokenType
             /// @brief The type of token this class represents.
             enum TokenType
             {

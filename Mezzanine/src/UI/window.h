@@ -58,7 +58,6 @@ namespace Mezzanine
             protected:
                 friend class ExtendedRenderableFactory;
                 /// @internal
-                /// @enum ResizeMode
                 /// @brief Internal enum for handling a resizing via mouse.
                 enum ResizeMode
                 {

@@ -47,7 +47,6 @@ namespace Mezzanine
 {
     namespace Resource
     {
-        /// @enum ArchiveType
         /// @brief Used to indicate what kind of resources the Entrosol should look for
         enum ArchiveType
         {
@@ -56,7 +55,6 @@ namespace Mezzanine
             AT_Invalid     = 32768 ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
         };
 
-        /// @enum LoadingState
         /// @brief This enum describes the current state of loading for an asset.
         enum LoadingState
         {

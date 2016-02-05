@@ -49,7 +49,6 @@
 
 namespace Mezzanine
 {
-    /// @enum AttenuationStyle
     /// @brief These values represent the kind of attenuation applied to the field strength over a distance.
     /// @details None is the default, where the force is constant in all area's of the field.  @n
     /// Linear is where the force applied drops by the attenuation value times the distance (strength - (attenuation amount * distance to AE center)).  @n
@@ -61,7 +60,6 @@ namespace Mezzanine
         Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
     };
 
-    /// @enum OrientationMode
     /// @brief Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering.
     /// @details This enum is used by the UI and graphics sub-systems for when a change in orientation is detected.  Under normal circumstances
     /// this kind of thing should only occur in mobile devices such as SmartPhones and Tablets.  However this can be forced on other devices/platforms.
@@ -77,7 +75,6 @@ namespace Mezzanine
         OM_LandscapeLeft = OM_Degree_270
     };
 
-    /// @enum PauseLevel
     /// @brief Used by the world class to describe the extent of pausing a world.
     enum PauseLevel
     {
@@ -90,7 +87,6 @@ namespace Mezzanine
         PL_PauseAll          = PL_PausePhysics | PL_PauseParticles | PL_PauseAnimations
     };
 
-    /// @enum ProxyType
     /// @brief Used by all World proxies to describe what their derived types are.
     enum ProxyType
     {
@@ -118,7 +114,6 @@ namespace Mezzanine
         PT_Physics_All_Proxies          = ( PT_Physics_GhostProxy | PT_Physics_RigidProxy | PT_Physics_SoftProxy )
     };
 
-    /// @enum StandardAxis
     /// @brief Used to identify different Axis in a 3d coordinate system.
     /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
     enum StandardAxis
@@ -131,7 +126,6 @@ namespace Mezzanine
         Axis_Max       = Axis_Y     ///< For mathematical shortcuts this can be used as the upper limit
     };
 
-    /// @enum TrackType
     /// @brief Used by Track classes to define the type of curves the track has.
     enum TrackType
     {

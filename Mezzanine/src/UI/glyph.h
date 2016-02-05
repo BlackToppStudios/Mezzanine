@@ -63,7 +63,6 @@ namespace Mezzanine
             typedef KerningContainer::iterator         KerningIterator;
             typedef KerningContainer::const_iterator   ConstKerningIterator;
 
-            /// @enum Whitespace
             /// @brief This enum represents the common whitespace characters found in Ascii/UTF-8.
             enum Whitespace
             {

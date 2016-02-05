@@ -87,7 +87,6 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            /// @enum PlaybackState
             /// @brief This enum describes a set of Boole options common for objects playing back audio.
             enum PlaybackState
             {

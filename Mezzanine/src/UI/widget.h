@@ -126,7 +126,6 @@ namespace Mezzanine
         class MEZZ_LIB Widget : public QuadRenderable, public EventPublisher, public EventSubscriber
         {
         public:
-            /// @enum WidgetState
             /// @brief Enum describing the current state of the widget.
             enum WidgetState
             {
@@ -145,7 +144,6 @@ namespace Mezzanine
                 WS_User_State_3 = 512,
                 WS_User_State_4 = 1024
             };
-            /// @enum WidgetGroupID
             /// @brief Enum used to conveniently track the pre-made RenderLayerGroups used by Widgets.
             enum WidgetGroupID
             {
