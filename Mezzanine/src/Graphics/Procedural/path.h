@@ -83,7 +83,6 @@ namespace Mezzanine
             class Path;
             class Shape;
 
-            /// @typedef PathContainer
             /// @brief Basic container type for the storage of Paths.
             typedef std::vector< Path >                 PathContainer;
 

@@ -203,7 +203,6 @@ namespace Mezzanine
                 Boole operator==(const DelaunayTriangle& Other) const;
             };//DelaunayTriangle
 
-            /// @typedef DelaunayTriangleBuffer
             /// @brief A container type for the storage of DelaunayTriangles.
             typedef std::list<DelaunayTriangle> DelaunayTriangleBuffer;
 

@@ -53,13 +53,10 @@ namespace Mezzanine
 {
     namespace Resource
     {
-        /// @typedef StreamPos
         /// @brief Convenience define for the stream position datatype.
         typedef std::streampos StreamPos;
-        /// @typedef StreamOff
         /// @brief Convenience define for the stream offset datatype.
         typedef std::streamoff StreamOff;
-        /// @typedef StreamSize
         /// @brief Convenience define for the stream size datatype.
         typedef std::streamsize StreamSize;
 
@@ -355,20 +352,16 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Compatibility Types
 
-        /// @typedef DataStream
         /// @brief Convenience type for compatibility.
         typedef IOStream DataStream;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Standard Types
 
-        /// @typedef StdInputStream
         /// @brief Convenience type for a standard input stream.
         typedef std::istream StdInputStream;
-        /// @typedef StdOutputStream
         /// @brief Convenience type for a standard output stream.
         typedef std::ostream StdOutputStream;
-        /// @typedef StdStream
         /// @brief Convenience type for a standard input/output stream.
         typedef std::iostream StdStream;
 

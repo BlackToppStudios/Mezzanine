@@ -93,10 +93,8 @@ namespace Mezzanine
                     DM_Canny          = 4    ///< Use the Canny multi-stage algorthm to detect edges.
                 };
 
-                /// @typedef VectorContainer
                 /// @brief Convenience typedef for an array of Vector3's.
                 typedef std::vector<Vector3> VectorContainer;
-                /// @typedef VectorBlock
                 /// @brief Convenience typedef for returning a 3x3 matrix of Vector3's containing colour data.
                 typedef VectorContainer VectorBlock;
             protected:

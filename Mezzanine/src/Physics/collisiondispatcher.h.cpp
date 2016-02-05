@@ -52,7 +52,6 @@ namespace Mezzanine
         // internal forward declarations
         class PhysicsManager;
 
-        /// @typedef AlgoList
         /// @brief Convenience datatype for a collection of Collision Algorithms.
         typedef std::list<btCollisionAlgorithm*> AlgoList;
 
