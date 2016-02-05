@@ -53,9 +53,9 @@
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Singleton
     /// @headerfile singleton.h
-    /// @brief This is a convenient base class intended to be used with classes that need to be singletons.
+    /// @brief This is a convenience base class intended to be used with classes that need to be
+    /// singletons.
     /// @details This is based on the Ogre Singleton class.
     ///////////////////////////////////////
     template<class Type>
@@ -67,20 +67,26 @@ namespace Mezzanine
             /// @brief Made private because copying a singleton is a no-no.
             Singleton& operator=(const Singleton<Type> &) {}
         protected:
+            /// @brief The one and only pointer to the single object.
+            /// @details the base class is
             static Type* SingletonPtr;
-        public:
             /// @brief Class constructor.
             Singleton()
             {
                 if(SingletonPtr)
-                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Singleton class already exists. Cannot make multiple singletons");
+                {
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,
+                        "Singleton class already exists. Cannot make multiple singletons");
+                }
                 #if defined( _MSC_VER ) && _MSC_VER < 1200
                 int offset = (int)(Type*)1 - (int)(Singleton <Type>*)(Type*)1;
                 SingletonPtr = (Type*)((int)this + offset);
                 #else
                 SingletonPtr = static_cast<Type*>(this);
                 #endif
-            };
+            }
+
+        public:
             /// @brief Class destructor.
             ~Singleton()
             {
@@ -92,7 +98,10 @@ namespace Mezzanine
             {
                 #ifdef THROW_ON_FETCH_FAIL
                 if(!SingletonPtr)
-                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to fetch invalid Singleton pointer");
+                {
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,
+                        "Attempting to fetch invalid Singleton pointer");
+                }
                 #endif
                 return SingletonPtr;
             }

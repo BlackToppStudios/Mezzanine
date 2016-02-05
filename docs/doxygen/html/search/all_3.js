@@ -642,7 +642,7 @@ var searchData=
   ['customsubscriberslot',['CustomSubscriberSlot',['../classMezzanine_1_1CustomSubscriberSlot.html',1,'Mezzanine']]],
   ['customsubscriberslot',['CustomSubscriberSlot',['../classMezzanine_1_1CustomSubscriberSlot.html#af33bfc02d98071faf7f71db8e18a8ef9',1,'Mezzanine::CustomSubscriberSlot']]],
   ['customsystemparameters',['CustomSystemParameters',['../classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html#a5498240d8c650c76f180ab8507317d34',1,'Mezzanine::Graphics::ParticleSystemProxy']]],
-  ['c_2b_2b_20training',['C++ Training',['../cxx_training.html',1,'']]],
+  ['c_2b_2b_20training_20and_20tools',['C++ Training and Tools',['../cxx_training_and_tools.html',1,'']]],
   ['cyan',['Cyan',['../classMezzanine_1_1ColourValue.html#a64cbddd02ae19f551796a4669a94783f',1,'Mezzanine::ColourValue']]],
   ['cycloidcenter',['CycloidCenter',['../classMezzanine_1_1Graphics_1_1Procedural_1_1CycloidModifier.html#a69feb43bed32f1678e2b66c32043597a',1,'Mezzanine::Graphics::Procedural::CycloidModifier']]],
   ['cycloidcolour',['CycloidColour',['../classMezzanine_1_1Graphics_1_1Procedural_1_1CycloidModifier.html#ac5eff42bf363a1b642ee98f5d67b952f',1,'Mezzanine::Graphics::Procedural::CycloidModifier']]],

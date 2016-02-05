@@ -28,7 +28,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="pages.html"><span>All&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -127,11 +127,12 @@ class Mezzanine::BezierInterpolator&lt; T &gt;</h3>
 <li>Data points, might not be valid interpolated values</li>
 <li>There are no "Corners".</li>
 <li>Execution could be as bad as O^N.</li>
-<li>This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.</li>
-<li>Will be able to provide interpolated values for a small set of data points. There might be corners when connecting 2 different bezier curves if not careful, any bezier implementation taking a finite amount of points cannot help this. </li>
+<li>This shape defined by interpolating a set of these will not leave a Convex Hull (or Axis Aligned Bounding Box) that could contain the data.</li>
+<li>Will be able to provide interpolated values for a small set of data points. <br />
+There might be corners when connecting 2 different bezier curves if not careful, any bezier implementation taking a finite amount of points cannot help this. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00252">252</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00261">261</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="abd10a4c8ba03aac9474c4e6012ea0146"></a>
 <div class="memitem">
@@ -148,7 +149,7 @@ template&lt;typename T&gt; </div>
 <p>The type this will interpolate. </p>
 <dl class="section note"><dt>Note</dt><dd>All Interpolators need to declare an InterpolatableType </dd></dl>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00257">257</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00266">266</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 
 </div>
 </div>
@@ -179,7 +180,7 @@ template&lt;typename T&gt; </div>
 <p>get the name of this class for serialization purposes </p>
 <dl class="section return"><dt>Returns</dt><dd>A String containing "BezierInterpolator" </dd></dl>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00341">341</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00359">359</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 
 </div>
 </div>
@@ -230,14 +231,14 @@ template&lt;typename TIterator &gt; </div>
   <table class="params">
     <tr><td class="paramname">Begin</td><td>An Iterator to the begining of the range of the instances of the type to be Interpolated </td></tr>
     <tr><td class="paramname">End</td><td>The end (not one past the end) of the range that Begin started. </td></tr>
-    <tr><td class="paramname">A</td><td>value between 0.0 and 1.0 indicate what point on the beziear spline defined by Begin and End you want. </td></tr>
+    <tr><td class="paramname">Location</td><td>A value between 0.0 and 1.0 indicate what point on the bezier spline defined by Begin and End you want. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Value equal or near to Begin if 0.0 is passed, equal to or near to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>This is implemented as a recursive function with the only termination condition being the Edn iterator. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This is implemented as a recursive function with the only termination condition being the end iterator. </dd></dl>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00275">275</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00290">290</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 
 </div>
 </div>
@@ -268,12 +269,12 @@ template&lt;typename T&gt; </div>
 <p>This does not create or change the object it deserializes, but it does verify type info. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">The</td><td>node to read serialized data from. </td></tr>
+    <tr><td class="paramname">OneNode</td><td>The node to read serialized data from. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00318">318</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00336">336</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 
 </div>
 </div>
@@ -305,12 +306,12 @@ template&lt;typename T&gt; </div>
 <dl class="section note"><dt>Note</dt><dd>Very little data is actually serialized, most of it is type information that is not easily deserialized. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>A node to act as the parent for the serialized version of this one </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>A node to act as the parent for the serialized version of this one. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00292">292</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00309">309</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 
 </div>
 </div>
@@ -321,7 +322,7 @@ template&lt;typename T&gt; </div>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Fri Jan 29 2016 03:41:41 for BlackTopp Studios inc by
+            Generated on Thu Feb 4 2016 23:17:22 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

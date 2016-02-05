@@ -72,7 +72,6 @@ namespace Mezzanine
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class CollisionShapeManager
         /// @headerfile collisionshapemanager.h
         /// @brief This manager is for the storage of all shapes and creation of mesh shapes.
         /// @details Collision shapes do not need to be stored in this manager, but can be re-used

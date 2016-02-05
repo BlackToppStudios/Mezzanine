@@ -28,7 +28,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="pages.html"><span>All&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -184,13 +184,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a75b222a0601bdad2ec9eb6c11fe27661"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will direct any output that would have gone to an external process via cout to TestOutput Instead. <br /></td></tr>
 <tr class="separator:a75b222a0601bdad2ec9eb6c11fe27661"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a093d8385f999e99c1c29fc7426827fa8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a093d8385f999e99c1c29fc7426827fa8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>LaunchAutomaticTest</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Testing_1_1UnitTestGroup.html#a093d8385f999e99c1c29fc7426827fa8">LaunchAutomaticTest</a> ()</td></tr>
+<tr class="memdesc:a093d8385f999e99c1c29fc7426827fa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This launches all the automated tests on the derived class if the flag is set to run them otherwise it checks if tests exist via <a class="el" href="classMezzanine_1_1Testing_1_1UnitTestGroup.html#a37f71a30295800c1a29c2b55d826718f" title="Used only to report skipped tests. ">HasAutomaticTests()</a> and marks them as skipped if they do. <br /></td></tr>
 <tr class="separator:a093d8385f999e99c1c29fc7426827fa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d6aa2df5e65657c169ce09551dd8733"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d6aa2df5e65657c169ce09551dd8733"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>LaunchInteractiveTest</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Testing_1_1UnitTestGroup.html#a0d6aa2df5e65657c169ce09551dd8733">LaunchInteractiveTest</a> ()</td></tr>
+<tr class="memdesc:a0d6aa2df5e65657c169ce09551dd8733"><td class="mdescLeft">&#160;</td><td class="mdescRight">This launches all the interactice tests on the derived class if the flag is set to run them otherwise it checks if tests exist via <a class="el" href="classMezzanine_1_1Testing_1_1UnitTestGroup.html#a37f71a30295800c1a29c2b55d826718f" title="Used only to report skipped tests. ">HasAutomaticTests()</a> and marksthem as skipped if they do. <br /></td></tr>
 <tr class="separator:a0d6aa2df5e65657c169ce09551dd8733"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49c65d54009d32c7ddbb1659b0ea987b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Testing_1_1UnitTestGroup.html#a49c65d54009d32c7ddbb1659b0ea987b">LaunchSubProcessTest</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Argument=<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>(&quot;&quot;))</td></tr>
-<tr class="memdesc:a49c65d54009d32c7ddbb1659b0ea987b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests should use this to.  <a href="#a49c65d54009d32c7ddbb1659b0ea987b">More...</a><br /></td></tr>
+<tr class="memdesc:a49c65d54009d32c7ddbb1659b0ea987b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests should use this to launch things that need sheltering from segfaults and similar faults.  <a href="#a49c65d54009d32c7ddbb1659b0ea987b">More...</a><br /></td></tr>
 <tr class="separator:a49c65d54009d32c7ddbb1659b0ea987b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dd199863d6066f62b7aaf401d3f368e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dd199863d6066f62b7aaf401d3f368e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Testing_1_1UnitTestGroup.html#a7dd199863d6066f62b7aaf401d3f368e">RestoreOutputBuffers</a> ()</td></tr>
@@ -301,8 +303,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>OutputCaptureManager
 <p>Its expected that tests will be inserted using this. </p>
 <p>This will automate tracking of the most and least successful tests </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">FreshMeat</td><td>The New test results and name </td></tr>
-    <tr><td class="paramname">Behavior</td><td>An OverWriteResults that defines the overwirte behavior of this function, defaults to OverWriteIfLessSuccessful </td></tr>
+    <tr><td class="paramname">CurrentTest</td><td>The New test results and name </td></tr>
+    <tr><td class="paramname">Behavior</td><td>An OverWriteResults that defines the overwrite behavior of this function, defaults to OverWriteIfLessSuccessful </td></tr>
   </table>
   </dd>
 </dl>
@@ -574,7 +576,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>OutputCaptureManager
 </table>
 </div><div class="memdoc">
 
-<p>Tests should use this to. </p>
+<p>Tests should use this to launch things that need sheltering from segfaults and similar faults. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Argument</td><td>A string combined with the command to be run, this must be sanitized before being called, do not pass untrusted data. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>The output to stdout from the subprocess. </dd></dl>
 
 <p>Definition at line <a class="el" href="testdata_8cpp_source.html#l00198">198</a> of file <a class="el" href="testdata_8cpp_source.html">testdata.cpp</a>.</p>
@@ -773,6 +781,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>OutputCaptureManager
     <tr><td class="paramname">IfFalse</td><td>Defaults to <a class="el" href="namespaceMezzanine_1_1Testing.html#a4bd484323eb90fa235e23a4d78b4bf65aec96095f397a8c161c5a80422f8187e1" title="Known failure. ">Testing::Failed</a> but can be whatever <a class="el" href="namespaceMezzanine_1_1Testing.html#a4bd484323eb90fa235e23a4d78b4bf65" title="Return values from tests. ">Testing::TestResult</a> you want if a false passed as the TestCondition. </td></tr>
     <tr><td class="paramname">IfTrue</td><td>Defaults to <a class="el" href="namespaceMezzanine_1_1Testing.html#a4bd484323eb90fa235e23a4d78b4bf65aa6bafccde2f7af9dda4b1e5b46546976" title="Test was ran and appeared to work. ">Testing::Success</a> but can be whatever <a class="el" href="namespaceMezzanine_1_1Testing.html#a4bd484323eb90fa235e23a4d78b4bf65" title="Return values from tests. ">Testing::TestResult</a> you want if a true passed as the TestCondition. </td></tr>
     <tr><td class="paramname">FuncName</td><td>The function the test was called from, if blank </td></tr>
+    <tr><td class="paramname">File</td><td>To make tracking down failures easier the file name of the test can be passed in, if not set an empty string is used </td></tr>
+    <tr><td class="paramname">Line</td><td>To make tracking down failures easier the line number of the test can be passed in, if not set an empty string is used </td></tr>
   </table>
   </dd>
 </dl>
@@ -789,7 +799,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>OutputCaptureManager
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Fri Jan 29 2016 03:41:44 for BlackTopp Studios inc by
+            Generated on Thu Feb 4 2016 23:17:27 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

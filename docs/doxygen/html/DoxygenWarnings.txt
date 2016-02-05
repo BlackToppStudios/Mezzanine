@@ -1,3 +1,5 @@
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/dox/mainpage.h:97: warning: multiple use of section label 'asdf' while adding section, (first occurrence: /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/dox/mainpage.h, line 92)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/dox/mainpage.h:100: warning: multiple use of section label 'asdf' while adding section, (first occurrence: /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/dox/mainpage.h, line 92)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/vertexnormalsmodifier.h:83: warning: Compound Mezzanine::Graphics::Procedural::VertexNormalsModifier is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textureatlas.h:70: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/assethandler.h:52: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
@@ -6,28 +8,6 @@
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/quadrenderer.h:57: warning: Compound Mezzanine::UI::QuadRenderer is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textureatlas.cpp:67: warning: Compound Mezzanine::UI::TextureAtlasInternalData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:90: warning: Documentation for undefined enum `AutoScaleMode' found.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/uienumerations.h:102: warning: Documentation for undefined enum `RepositionFlags' found.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.cpp:54: warning: documented symbol `Mezzanine::Exception::Exception' was not declared or defined.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.cpp:70: warning: documented symbol `Mezzanine::Exception::~Exception' was not declared or defined.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.cpp:75: warning: no matching class member found for 
-  ConstString & Mezzanine::Exception::GetExceptionTypeName() const
-
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.cpp:78: warning: no uniquely matching class member found for 
-  ConstString & Mezzanine::Exception::GetFunction() const
-
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.cpp:81: warning: no uniquely matching class member found for 
-  ConstString & Mezzanine::Exception::GetFile() const
-
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.cpp:84: warning: no uniquely matching class member found for 
-  const Whole & Mezzanine::Exception::GetLine() const
-
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.cpp:87: warning: no matching class member found for 
-  String Mezzanine::Exception::GetCompleteMessage() const
-
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.old.cpp:99: warning: no matching class member found for 
-  String Mezzanine::Exception::what()
-
 error: Extra file 'img/tab_a.png' specified in HTML_EXTRA_FILES does not exist!
 error: Extra file 'img/tab_b.png' specified in HTML_EXTRA_FILES does not exist!
 error: Extra file 'img/tab_h.png' specified in HTML_EXTRA_FILES does not exist!
@@ -37,12 +17,10 @@ error: Extra file 'img/tab_b.png' specified in HTML_EXTRA_FILES does not exist!
 error: Extra file 'img/tab_h.png' specified in HTML_EXTRA_FILES does not exist!
 error: Extra file 'img/tab_s.png' specified in HTML_EXTRA_FILES does not exist!
 error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exist!
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:100: warning: @copybrief or @copydoc target 'Mezzanine::WorldObject::ApplyEffect()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:169: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::GetTypeName() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:186: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::CreateAreaEffect(const String&, World*, const NameValuePairMap&)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:190: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::DestroyAreaEffect(AreaEffect*)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravityfield.h:84: warning: @copybrief or @copydoc target 'Mezzanine::WorldObject::ApplyEffect()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravityfield.h:140: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::CreateAreaEffect(const String&, World*, const NameValuePairMap&)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravityfield.h:123: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::GetTypeName() const' not found
@@ -138,7 +116,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/radiobutton.h:203: warning: @copybrief or @copydoc target 'Checkbox::_OnSelected()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/radiobutton.h:205: warning: @copybrief or @copydoc target 'Checkbox::_OnDeselected()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/radiobutton.h:203: warning: @copybrief or @copydoc target 'Checkbox::_OnSelected()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/singlelinetextlayer.h:64: warning: @copybrief or @copydoc target 'TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/tabset.h:176: warning: @copybrief or @copydoc target 'StackedContainer::_NotifyButtonSelected(StackedButton*)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/tabset.h:133: warning: @copybrief or @copydoc target 'StackedContainer::SetButtonCongig(const UInt16, StackButton*)' not found
@@ -151,7 +128,7 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/verticalscrollbar.h:63: warning: @copybrief or @copydoc target 'Scrollbar::GetUpperScollLimit() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/verticalscrollbar.h:95: warning: @copybrief or @copydoc target 'QuadRenderable::SetScrollerValue(const Real&)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/verticalscrollbar.h:99: warning: @copybrief or @copydoc target 'QuadRenderable::SetScrollerSize(const Real&)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/crossplatformexport.h:136: warning: Member _MEZZ_PLATFORM_DEFINED_ (macro definition) of file crossplatformexport.h is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/crossplatformexport.h:153: warning: Member _MEZZ_PLATFORM_DEFINED_ (macro definition) of file crossplatformexport.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.h:3049: warning: unable to resolve reference to `ExceptionBase::ExceptionCodes' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:58: warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:53: warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
@@ -196,9 +173,8 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/XML/xml.h:711: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/mutex.h:82: warning: Found unknown command `\TODO'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/mutex.h:82: warning: explicit link request to 'IF' could not be resolved
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/countedptr.h:647: warning: Found unknown command `\ptaram'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:300: warning: return type of member Mezzanine::operator+ is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:306: warning: return type of member Mezzanine::operator- is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:308: warning: return type of member Mezzanine::operator- is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/hashedstring.h:157: warning: return type of member Mezzanine::operator<< is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/vector3.h:737: warning: Unsupported xml/html tag <Vector3> found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/actormanager.h:153: warning: parameters of member Mezzanine::ActorManager::CreateActor are not (all) documented
@@ -217,12 +193,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/attachable.h:62: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/axisalignedbox.h:185: warning: Member GetSideExtent(Side WhichSideExtent) const  (function) of class Mezzanine::AxisAlignedBox is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/axisalignedbox.h:186: warning: return type of member Mezzanine::AxisAlignedBox::GetSidePlane is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/interpolator.h:263: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::BezierInterpolator< T >::Interpolate(TIterator Begin, TIterator End, Real Location)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/interpolator.h:263: warning: The following parameters of Mezzanine::BezierInterpolator::Interpolate(TIterator Begin, TIterator End, Real Location) are not documented:
-  parameter 'Location'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/interpolator.h:316: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::BezierInterpolator< T >::ProtoDeSerialize(const XML::Node &OneNode)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/interpolator.h:316: warning: The following parameters of Mezzanine::BezierInterpolator::ProtoDeSerialize(const XML::Node &OneNode) are not documented:
-  parameter 'OneNode'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/countedptr.h:539: warning: parameters of member Mezzanine::CountedPtrCastImpl< OriginalPointer, OriginalPointer, CastNoneError >::Cast are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/cubicspline.h:160: warning: Member begin() (function) of class Mezzanine::CubicSpline is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/cubicspline.h:165: warning: Member begin() const  (function) of class Mezzanine::CubicSpline is not documented.
@@ -242,8 +212,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
   parameter 'Sub'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/debrismanager.h:193: warning: parameters of member Mezzanine::DebrisManager::CreateDebris are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/debrismanager.h:81: warning: return type of member Mezzanine::DebrisUpdateWorkUnit::operator= is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:106: warning: Found unknown command `\TODO'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:642: warning: argument 'WorldToAdd' of command @param is not found in the argument list of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:642: warning: The following parameters of Mezzanine::Entresol::AddWorld(World *WorldToBeAdded) are not documented:
   parameter 'WorldToBeAdded'
@@ -256,7 +224,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventgamewindow.h:110: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventgamewindow.cpp:62: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.h:186: warning: Member void::operator>>(const Mezzanine::XML::Node &OneNode, Mezzanine::EventManager &Mgr) (function) of class Mezzanine::EventManager is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< EventManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.h:366: warning: parameters of member Mezzanine::EventManager::GetAllSpecificEvents are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.h:373: warning: parameters of member Mezzanine::EventManager::RemoveAllSpecificEvents are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.h:118: warning: return type of member Mezzanine::EventPumpWorkUnit::operator= is not documented
@@ -382,7 +349,7 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
   parameter 'ObjectRay'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/script.h:211: warning: return type of member Mezzanine::ReferenceCountTraits< Scripting::iScript >::ConstructionPointer is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/script.h:282: warning: return type of member Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable >::ConstructionPointer is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/script.h:350: warning: return type of member Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn >::ConstructionPointer is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/script.h:351: warning: return type of member Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn >::ConstructionPointer is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/rigiddebris.h:227: warning: return type of member Mezzanine::RigidDebrisFactory::CreateRigidDebris is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/rigiddebris.h:232: warning: return type of member Mezzanine::RigidDebrisFactory::CreateRigidDebris is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/rigiddebris.h:239: warning: return type of member Mezzanine::RigidDebrisFactory::CreateRigidDebris is not documented
@@ -392,11 +359,10 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Audio/audiomanager.cpp:62: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourcemanager.cpp:63: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/uimanager.cpp:71: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisionshapemanager.cpp:81: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisionshapemanager.cpp:82: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/graphicsmanager.cpp:84: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.cpp:100: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/eventmanager.cpp:270: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:234: warning: parameters of member Mezzanine::SmoothTrackIterator::operator+ are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:253: warning: parameters of member Mezzanine::SmoothTrackIterator::operator+= are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:243: warning: parameters of member Mezzanine::SmoothTrackIterator::operator- are not (all) documented
@@ -438,21 +404,16 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/vector3.h:516: warning: Member __str__() (function) of class Mezzanine::Vector3 is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/world.h:100: warning: parameters of member Mezzanine::World::Construct are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/worldtrigger.h:56: warning: Member Name (variable) of class Mezzanine::WorldTrigger is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< AudioManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Audio/soundscapemanager.h:84: warning: The following parameters of Mezzanine::Audio::SoundScapeManager::SoundScapeManager(World *Creator, XML::Node &XMLNode) are not documented:
   parameter 'Creator'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/physicsmanager.cpp:133: warning: parameters of member Mezzanine::debug::InternalDebugDrawer::InternalDebugDrawer are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/graphicsenumerations.h:185: warning: Member OrientationMode (enumeration) of namespace Mezzanine::Graphics is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/billboardsetproxy.h:210: warning: return type of member Mezzanine::Graphics::BillboardSetProxy::GetMaterialName is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/billboardsetproxy.h:206: warning: parameters of member Mezzanine::Graphics::BillboardSetProxy::SetMaterialName are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/cameraproxy.h:137: warning: return type of member Mezzanine::Graphics::CameraProxy::GetCameraToViewportRay is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/gamewindow.h:145: warning: argument 'VeiwportCamera' of command @param is not found in the argument list of Mezzanine::Graphics::GameWindow::CreateViewport(CameraProxy *ViewportCamera, const Integer ZOrder)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/gamewindow.h:145: warning: The following parameters of Mezzanine::Graphics::GameWindow::CreateViewport(CameraProxy *ViewportCamera, const Integer ZOrder) are not documented:
   parameter 'ViewportCamera'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< GraphicsManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/graphicsmanager.h:183: warning: argument 'CurrentNode' of command @param is not found in the argument list of Mezzanine::Graphics::GraphicsManager::AppendCurrentSettings(XML::Node &SettingsRootNode)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/graphicsmanager.h:183: warning: The following parameters of Mezzanine::Graphics::GraphicsManager::AppendCurrentSettings(XML::Node &SettingsRootNode) are not documented:
   parameter 'SettingsRootNode'
@@ -463,18 +424,11 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/graphicsmanager.h:271: warning: return type of member Mezzanine::Graphics::GraphicsManager::GetDesktopSettings is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/material.cpp:61: warning: Member GraphicsMaterial (variable) of class Mezzanine::Graphics::InternalMaterialData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/skeleton.cpp:59: warning: Member GraphicsSkeleton (variable) of class Mezzanine::Graphics::InternalSkeletonData is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/material.h:68: warning: Member MID (variable) of class Mezzanine::Graphics::Material is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< MeshManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/particleaffector.h:92: warning: return type of member Mezzanine::Graphics::ParticleAffector::GetCustomParam is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/particleemitter.h:92: warning: return type of member Mezzanine::Graphics::ParticleEmitter::GetCustomParam is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/particlesystemproxy.h:106: warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::Graphics::ParticleSystemProxy::CreateParticleSystem(const String &Template)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/particlesystemproxy.h:162: warning: return type of member Mezzanine::Graphics::ParticleSystemProxy::GetCustomParam is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copybrief or @copydoc target 'PhysicsProxy::GetCreator() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: @copydetails or @copydoc target 'PhysicsProxy::GetCreator() const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/renderableproxy.h:108: warning: return type of member Mezzanine::Graphics::RenderableProxy::GetCreator is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/graphicsmanager.h:91: warning: argument 'WhichGraphicsManager' of command @param is not found in the argument list of Mezzanine::Graphics::RenderWorkUnit::RenderWorkUnit(GraphicsManager *Target)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/graphicsmanager.h:91: warning: The following parameters of Mezzanine::Graphics::RenderWorkUnit::RenderWorkUnit(GraphicsManager *Target) are not documented:
   parameter 'Target'
@@ -494,7 +448,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/skeleton.h:74: warning: Member Bones (variable) of class Mezzanine::Graphics::Skeleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/skeleton.h:73: warning: Member ISD (variable) of class Mezzanine::Graphics::Skeleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/skeleton.h:125: warning: return type of member Mezzanine::Graphics::Skeleton::_CreateBoneWrapper is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< TextureManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/texturemanager.h:121: warning: The following parameters of Mezzanine::Graphics::TextureManager::CreateManualTexture(const String &ResourceName, const String &ResourceGroup, const Graphics::TextureType Type, const Whole Width, const Whole Height, const Whole Depth, const Integer NumMipMaps, const Graphics::PixelFormat Format, const Whole Usage=Graphics::TU_Default, const Boole HWGammaCorrect=false, const Whole FSAA=0) are not documented:
   parameter 'Depth'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/texturemanager.h:147: warning: argument 'MeshName' of command @param is not found in the argument list of Mezzanine::Graphics::TextureManager::GetTexture(const String &TextureName)
@@ -596,7 +549,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:67: warning: parameters of member Mezzanine::Input::Controller::VerifySequenceImpl are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/device.h:59: warning: Member Sequences (variable) of class Mezzanine::Input::Device is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.h:75: warning: return type of member Mezzanine::Input::DeviceUpdateWorkUnit::operator= is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< InputManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.h:187: warning: parameters of member Mezzanine::Input::InputManager::GetController are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:71: warning: Member ConstControllerIterator (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:69: warning: Member ControllerContainer (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
@@ -728,12 +680,11 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collision.h:102: warning: return type of member Mezzanine::Physics::Collision::GetManifoldPoint is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisiondispatcher.h.cpp:74: warning: The following parameters of Mezzanine::Physics::CollisionDispatcher::CollisionDispatcher(PhysicsManager *PhysMan, btCollisionConfiguration *CollisionConfig) are not documented:
   parameter 'PhysMan'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< CollisionShapeManager > is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisionshapemanager.h:214: warning: The following parameters of Mezzanine::Physics::CollisionShapeManager::PerformConvexDecomposition(const String &Name, Graphics::Mesh *ObjectMesh, Whole Depth, Real CPercent, Real PPercent, Boole UseAllSubmeshes=false) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisionshapemanager.h:213: warning: The following parameters of Mezzanine::Physics::CollisionShapeManager::PerformConvexDecomposition(const String &Name, Graphics::Mesh *ObjectMesh, Whole Depth, Real CPercent, Real PPercent, Boole UseAllSubmeshes=false) are not documented:
   parameter 'Depth'
   parameter 'CPercent'
   parameter 'PPercent'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisionshapemanager.h:222: warning: The following parameters of Mezzanine::Physics::CollisionShapeManager::PerformConvexDecomposition(const String &Name, const String &MeshName, const String &Group, Whole Depth, Real CPercent, Real PPercent, Boole UseAllSubmeshes=false) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/collisionshapemanager.h:221: warning: The following parameters of Mezzanine::Physics::CollisionShapeManager::PerformConvexDecomposition(const String &Name, const String &MeshName, const String &Group, Whole Depth, Real CPercent, Real PPercent, Boole UseAllSubmeshes=false) are not documented:
   parameter 'Depth'
   parameter 'CPercent'
   parameter 'PPercent'
@@ -1048,55 +999,15 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:285: warning: return type of member Mezzanine::Resource::MemoryStream::GetSize is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:178: warning: argument 'Mode' of command @param is not found in the argument list of Mezzanine::Resource::MemoryStreamBuffer::CreateBuffer(const Whole Size)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:123: warning: return type of member Mezzanine::Resource::MemoryStreamBuffer::sync is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< ResourceManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourcemanager.h:116: warning: argument 'ArchiveType' of command @param is not found in the argument list of Mezzanine::Resource::ResourceManager::ResourceManager(const String &EngineDataPath=".", const ArchiveType ArchType=AT_FileSystem)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourcemanager.h:116: warning: The following parameters of Mezzanine::Resource::ResourceManager::ResourceManager(const String &EngineDataPath=".", const ArchiveType ArchType=AT_FileSystem) are not documented:
   parameter 'ArchType'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/resourcemanager.h:128: warning: return type of member Mezzanine::Resource::ResourceManager::OpenAssetStream is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptargument.h:96: warning: unable to resolve reference to `Bool' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/script.h:320: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Scripting::iScriptMultipleReturn::AddReturn(CountedPtr< iScriptArgument > ReturnArg)=0
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/script.h:320: warning: The following parameters of Mezzanine::Scripting::iScriptMultipleReturn::AddReturn(CountedPtr< iScriptArgument > ReturnArg)=0 are not documented:
-  parameter 'ReturnArg'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptworkunit.h:71: warning: argument 'SCriptToAdd' of command @param is not found in the argument list of Mezzanine::Scripting::iScriptWorkUnit::AddScript(CountedPtr< iScript > ScriptToAdd)=0
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptworkunit.h:71: warning: The following parameters of Mezzanine::Scripting::iScriptWorkUnit::AddScript(CountedPtr< iScript > ScriptToAdd)=0 are not documented:
-  parameter 'ScriptToAdd'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptworkunit.h:75: warning: argument 'ArScriptToRemoveg' of command @param is not found in the argument list of Mezzanine::Scripting::iScriptWorkUnit::RemoveScript(CountedPtr< iScript > ScriptToRemove)=0
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptworkunit.h:75: warning: The following parameters of Mezzanine::Scripting::iScriptWorkUnit::RemoveScript(CountedPtr< iScript > ScriptToRemove)=0 are not documented:
-  parameter 'ScriptToRemove'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptargument.h:177: warning: unable to resolve reference to `Bool' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptargument.h:253: warning: unable to resolve reference to `Bool' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptargument.h:481: warning: unable to resolve reference to `Bool' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptargument.h:405: warning: unable to resolve reference to `Bool' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/scriptargument.h:329: warning: unable to resolve reference to `Bool' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:187: warning: Member Lua51BoolArgument(Boole InitialValue=false) (function) of class Mezzanine::Scripting::Lua::Lua51BoolArgument is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:127: warning: Member Lua51RealArgument(Real InitialValue=0.0) (function) of class Mezzanine::Scripting::Lua::Lua51RealArgument is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:93: warning: unable to resolve reference to `LuaScriptingEngine::compile' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:124: warning: argument 'SourceCode' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine *Compiler=0, Boole JustAFunctionCall=false, String ScriptName="?")
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:124: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine *Compiler=0, Boole JustAFunctionCall=false, String ScriptName="?") are not documented:
-  parameter 'InitialSourceCode'
-  parameter 'JustAFunctionCall'
-  parameter 'ScriptName'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:129: warning: argument 'SourceCode' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine &Compiler, Boole JustAFunctionCall=false, String ScriptName="?")
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:131: warning: unexpected token in comment block while parsing the argument of command param
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:129: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::Lua51Script(const String &InitialSourceCode, Lua51ScriptingEngine &Compiler, Boole JustAFunctionCall=false, String ScriptName="?") are not documented:
-  parameter 'InitialSourceCode'
-  parameter 'Compiler'
-  parameter 'JustAFunctionCall'
-  parameter 'ScriptName'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:258: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::AddReturn(CountedPtr< iScriptArgument > ReturnArg)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:258: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::AddReturn(CountedPtr< iScriptArgument > ReturnArg) are not documented:
-  parameter 'ReturnArg'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:197: warning: argument 'Arg' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:197: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:93: warning: unable to resolve reference to `LuaScriptingEngine::Compile' for \ref command
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:218: warning: argument 'Arg' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51script.h:218: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51Script::RemoveArgument(Whole ArgNumber) are not documented:
   parameter 'ArgNumber'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:297: warning: argument 'ScripScriptToRuntToCompile' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptingengine.h:297: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51ScriptingEngine::Execute(Lua51Script &ScriptToRun) are not documented:
-  parameter 'ScriptToRun'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:167: warning: Member Lua51StringArgument(String InitialValue=String()) (function) of class Mezzanine::Scripting::Lua::Lua51StringArgument is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:147: warning: Member Lua51WholeArgument(Whole InitialValue=0) (function) of class Mezzanine::Scripting::Lua::Lua51WholeArgument is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: warning: argument 'FreshScript' of command @param is not found in the argument list of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51workunit.h:95: warning: The following parameters of Mezzanine::Scripting::Lua::Lua51WorkUnit::push_back(CountedPtr< Lua51Script > ScriptToAdd) are not documented:
-  parameter 'ScriptToAdd'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Scripting/Lua51/lua51scriptargument.h:174: warning: Member Lua51StringArgument(String InitialValue=String()) (function) of class Mezzanine::Scripting::Lua::Lua51StringArgument is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/stringtool.h:209: warning: The following parameters of Mezzanine::StringTools::ConvertToBool(const String &ToConvert, const Boole Default=false) are not documented:
   parameter 'Default'
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/consolestringmanipulation.cpp:86: warning: Member AllLower(String StringToConvert) (function) of namespace Mezzanine::Testing is not documented.
@@ -1104,20 +1015,9 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/consolelogic.h:71: warning: parameters of member Mezzanine::Testing::GetCommandResults are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/consolestringmanipulation.h:52: warning: argument 'If' of command @param is not found in the argument list of Mezzanine::Testing::rtrim(const Mezzanine::String &t)
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/consolestringmanipulation.h:52: warning: return type of member Mezzanine::Testing::rtrim is not documented
-/home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdata.h:175: warning: Member LaunchAutomaticTest() (function) of class Mezzanine::Testing::UnitTestGroup is not documented.
-/home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdata.h:177: warning: Member LaunchInteractiveTest() (function) of class Mezzanine::Testing::UnitTestGroup is not documented.
-/home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdata.h:222: warning: argument 'FreshMeat' of command @param is not found in the argument list of Mezzanine::Testing::UnitTestGroup::AddTestResult(TestData CurrentTest, OverWriteResults Behavior=OverWriteIfLessSuccessful)
-/home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdata.h:222: warning: The following parameters of Mezzanine::Testing::UnitTestGroup::AddTestResult(TestData CurrentTest, OverWriteResults Behavior=OverWriteIfLessSuccessful) are not documented:
-  parameter 'CurrentTest'
-/home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdata.h:179: warning: parameters of member Mezzanine::Testing::UnitTestGroup::LaunchSubProcessTest are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdata.h:257: warning: The following parameters of Mezzanine::Testing::UnitTestGroup::Test(bool TestCondition, const String &TestName, TestResult IfFalse=Testing::Failed, TestResult IfTrue=Testing::Success, const String &FuncName="", const String &File="", Mezzanine::Whole Line=0) are not documented:
-  parameter 'File'
-  parameter 'Line'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/framescheduler.h:548: warning: Member ChangeLogTarget(std::ostream *LogTarget) (function) of class Mezzanine::Threading::FrameScheduler is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/framescheduler.h:551: warning: Member InstallLog(std::ostream *LogTarget) (function) of class Mezzanine::Threading::FrameScheduler is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/framescheduler.h:552: warning: Member RemoveLog() (function) of class Mezzanine::Threading::FrameScheduler is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/uienumerations.h:110: warning: Member PositioningFlags (enumeration) of namespace Mezzanine::UI is not documented.
-<PositioningFlags>:1: warning: parameters of member Mezzanine::UI::PositioningFlags are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/action.h:130: warning: The following parameters of Mezzanine::UI::Action::Action(const String &Name, ActionHandler *Handler) are not documented:
   parameter 'Handler'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/actionhandler.h:59: warning: Member ActionContainer (typedef) of class Mezzanine::UI::ActionHandler is not documented.
@@ -1205,7 +1105,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/menuentry.h:165: warning: parameters of member Mezzanine::UI::MenuEntry::SetButtonConfig are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/multiimagelayer.h:108: warning: parameters of member Mezzanine::UI::MultiImageLayer::RedrawImpl are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/multilinetextlayer.h:61: warning: @copybrief or @copydoc target 'TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:93: warning: Member ScalingMode (enumeration) of class Mezzanine::UI::TextLayer is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/multilinetextlayer.h:61: warning: @copybrief or @copydoc target 'TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/multilinetextlayer.h:61: warning: @copydetails or @copydoc target 'TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/multilinetextlayer.h:61: warning: parameters of member Mezzanine::UI::MultiLineTextLayer::GetIndexAtOffsetImpl are not (all) documented
@@ -1271,7 +1170,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/simplerenderer.h:69: warning: parameters of member Mezzanine::UI::SimpleRenderer::RedrawImpl are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/singleimagelayer.h:64: warning: parameters of member Mezzanine::UI::SingleImageLayer::RedrawImpl are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/singlelinetextlayer.h:64: warning: @copybrief or @copydoc target 'TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:93: warning: Member ScalingMode (enumeration) of class Mezzanine::UI::TextLayer is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/singlelinetextlayer.h:64: warning: @copybrief or @copydoc target 'TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/singlelinetextlayer.h:64: warning: @copydetails or @copydoc target 'TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/singlelinetextlayer.h:64: warning: parameters of member Mezzanine::UI::SingleLineTextLayer::GetIndexAtOffsetImpl are not (all) documented
@@ -1287,13 +1185,11 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/tabset.h:133: warning: @copybrief or @copydoc target 'StackedContainer::SetButtonCongig(const UInt16, StackButton*)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/tabset.h:133: warning: @copydetails or @copydoc target 'StackedContainer::SetButtonCongig(const UInt16, StackButton*)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/tabset.h:133: warning: parameters of member Mezzanine::UI::TabSet::SetButtonConfig are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:93: warning: Member ScalingMode (enumeration) of class Mezzanine::UI::TextLayer is not documented.
-<ScalingMode>:1: warning: parameters of member Mezzanine::UI::TextLayer::ScalingMode are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:158: warning: parameters of member Mezzanine::UI::TextLayer::GetIndexAtOffsetImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:158: warning: return type of member Mezzanine::UI::TextLayer::GetIndexAtOffsetImpl is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:161: warning: parameters of member Mezzanine::UI::TextLayer::GetOffsetAtIndexImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:161: warning: return type of member Mezzanine::UI::TextLayer::GetOffsetAtIndexImpl is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:149: warning: parameters of member Mezzanine::UI::TextLayer::RedrawImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:157: warning: parameters of member Mezzanine::UI::TextLayer::GetIndexAtOffsetImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:157: warning: return type of member Mezzanine::UI::TextLayer::GetIndexAtOffsetImpl is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:160: warning: parameters of member Mezzanine::UI::TextLayer::GetOffsetAtIndexImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:160: warning: return type of member Mezzanine::UI::TextLayer::GetOffsetAtIndexImpl is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textlayer.h:148: warning: parameters of member Mezzanine::UI::TextLayer::RedrawImpl are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textline.h:103: warning: parameters of member Mezzanine::UI::TextLine::AppendToBack are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textline.h:106: warning: parameters of member Mezzanine::UI::TextLine::AppendToBack are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/texttoken.h:81: warning: parameters of member Mezzanine::UI::TextToken::ConvertRenderIndexToRawIndex are not (all) documented
@@ -1317,7 +1213,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textureatlas.cpp:71: warning: Member Pass2D (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textureatlas.cpp:72: warning: Member Pass3D (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/textureatlas.cpp:68: warning: Member TATexture (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< UIManager > is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/uimanager.h:265: warning: return type of member Mezzanine::UI::UIManager::CreateScreen is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/uimanager.h:271: warning: parameters of member Mezzanine::UI::UIManager::GetScreen are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/uimanager.h:274: warning: parameters of member Mezzanine::UI::UIManager::GetScreen are not (all) documented

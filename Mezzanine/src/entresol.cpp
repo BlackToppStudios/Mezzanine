@@ -103,7 +103,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Entresol Constructors and Destructors
 
-    /// @TODO In the Entrosol, reomves all references to a plugins file
+    /// @todo In the Entrosol, remove all references to a plugins file
     Entresol::Entresol()
     {
         ManagerVec temp;

@@ -13,7 +13,8 @@ table, tr, td, dl, dt, dd, p, b, em, span,
 .memproto, .return, .memdoc, .memitem, .contents, .textblock, .contents li, .contents a,
 .contents ul, .contents ol, center, .center, .dynheader, .qindex,
 .ttname, .ttc, .ttdef, .ttdoc, .ttdeci, code,
-.mlabels, .mlabel, .paramtype, .paramname, .memtemplate, .directory, .ah, .levels{
+.mlabels, .mlabel, .paramtype, .paramname, .memtemplate, .directory, .ah, .levels,
+div.textblock div{
     background-color: #111;
 }
 
@@ -292,6 +293,11 @@ span.lineno, span.lineno{
     font-family: monospace, fixed;
     font-size: 85%;
     background: none;
+}
+
+div.line {
+    white-space: pre;
+    padding: 1px;
 }
 
 .comment        { color: #9EFEA5; }

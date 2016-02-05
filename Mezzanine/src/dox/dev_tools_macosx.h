@@ -42,7 +42,38 @@
 
 /**
     @page dev_tools_mac Mac OS X Development Tools
-    frame works or something hurr duur. Hodor?!
+
+    @todo This page need a Mac OS Maintainer
+
+    @section dev_tools_mac_ide IDE - Integrated Development Environment
+
+    @htmlonly<a href="https://developer.apple.com/xcode/">@endhtmlonly
+    XCode
+    @htmlonly</a>@endhtmlonly
+    is the de facto IDE on Mac OS X, but
+    @htmlonly<a href="http://www.codeblocks.org/downloads/26">@endhtmlonly
+    Code::blocks IDE
+    @htmlonly</a>@endhtmlonly
+    works as well. Installation should be straightforward. In the past there was a problem with one
+    of it’s plugins that made it highly unstable. If you are still experiencing this, go in to the
+    plugins menu and disable the keyboard shortcut plugin. Overall, codeblocks is less stable on the
+    , but it is still usable.
+
+    @section dev_tools_mac_gcc GCC or Clang
+    Gcc or Clang are found in the xcode development pack, which should just come with your system,
+    but I couldn’t find it so I had to download it from
+    @htmlonly<a href="https://developer.apple.com/">@endhtmlonly
+     apple’s development site
+    @htmlonly</a>@endhtmlonly. You can find it in development tools. You have to register, but it
+    there is no monetary cost for it.
+
+    @section dev_tools_mac_git Git
+    You can download the latest git for mac from the
+    @htmlonly<a href="http://git-scm.com/download/mac">@endhtmlonly
+    Git scm site
+    @htmlonly</a>@endhtmlonly.
+
+    @todo Something should be said about sublime text and what about GUIs for git?
 */
 
 

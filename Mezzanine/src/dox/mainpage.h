@@ -84,6 +84,29 @@
 */
 
 
+/**
+    @page bst_practices_cmake Best Practices CMake
 
+    CMake is a tool for making dependency graphs.
+
+    @section asdf
+    describe "Driving target" pattern
+    https://cmake.org/pipermail/cmake/2015-January/059732.html
+
+
+    @section asdf
+    COMMAND last issue
+
+    @section asdf
+    Target and all
+    Build steps requiring multiple input files will not be rerun if by add_custom_command
+    if it is a normal file (not exe, not lib not target name)
+
+*/
+
+/**
+    @page best_practices_cxx Best Practices C++
+    don'tuse std::bind https://www.youtube.com/watch?v=zt7ThwVfap0&index=30&list=PLHTh1InhhwT75gykhs7pqcR_uSiG601oh
+*/
 
 #endif

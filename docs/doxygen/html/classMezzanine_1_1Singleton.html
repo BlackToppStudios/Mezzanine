@@ -28,7 +28,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="pages.html"><span>All&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -89,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>This is a convenient base class intended to be used with classes that need to be singletons.  
+<p>This is a convenience base class intended to be used with classes that need to be singletons.  
  <a href="classMezzanine_1_1Singleton.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="singleton_8h_source.html">singleton.h</a>&gt;</code></p>
@@ -103,10 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7174af94e201bdaeab717cdbcbb2e565"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7174af94e201bdaeab717cdbcbb2e565"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a7174af94e201bdaeab717cdbcbb2e565">Singleton</a> ()</td></tr>
-<tr class="memdesc:a7174af94e201bdaeab717cdbcbb2e565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br /></td></tr>
-<tr class="separator:a7174af94e201bdaeab717cdbcbb2e565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e45fc3969b0fae3d095676cc515da1d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e45fc3969b0fae3d095676cc515da1d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a5e45fc3969b0fae3d095676cc515da1d">~Singleton</a> ()</td></tr>
 <tr class="memdesc:a5e45fc3969b0fae3d095676cc515da1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br /></td></tr>
@@ -123,6 +119,10 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a7174af94e201bdaeab717cdbcbb2e565"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7174af94e201bdaeab717cdbcbb2e565"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a7174af94e201bdaeab717cdbcbb2e565">Singleton</a> ()</td></tr>
+<tr class="memdesc:a7174af94e201bdaeab717cdbcbb2e565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br /></td></tr>
+<tr class="separator:a7174af94e201bdaeab717cdbcbb2e565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae95720b0acce09b29a9a4a6686a51258"><td class="memTemplParams" colspan="2"><a class="anchor" id="ae95720b0acce09b29a9a4a6686a51258"></a>
 template&lt;&gt; </td></tr>
 <tr class="memitem:ae95720b0acce09b29a9a4a6686a51258"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Graphics_1_1TextureManager.html">Graphics::TextureManager</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>SingletonPtr</b></td></tr>
@@ -166,16 +166,16 @@ template&lt;&gt; </td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr class="memitem:a0db9959ccd7daa1345f4567aa0b0655d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0db9959ccd7daa1345f4567aa0b0655d"></a>
-static Type *&#160;</td><td class="memItemRight" valign="bottom"><b>SingletonPtr</b></td></tr>
+<tr class="memitem:a0db9959ccd7daa1345f4567aa0b0655d"><td class="memItemLeft" align="right" valign="top">static Type *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.html#a0db9959ccd7daa1345f4567aa0b0655d">SingletonPtr</a></td></tr>
+<tr class="memdesc:a0db9959ccd7daa1345f4567aa0b0655d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The one and only pointer to the single object.  <a href="#a0db9959ccd7daa1345f4567aa0b0655d">More...</a><br /></td></tr>
 <tr class="separator:a0db9959ccd7daa1345f4567aa0b0655d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class Type&gt;<br />
 class Mezzanine::Singleton&lt; Type &gt;</h3>
 
-<p>This is a convenient base class intended to be used with classes that need to be singletons. </p>
-<p>This is based on the <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Singleton.html" title="This is a convenient base class intended to be used with classes that need to be singletons. ">Singleton</a> class. </p>
+<p>This is a convenience base class intended to be used with classes that need to be singletons. </p>
+<p>This is based on the <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Singleton.html" title="This is a convenience base class intended to be used with classes that need to be singletons...">Singleton</a> class. </p>
 
 <p>Definition at line <a class="el" href="singleton_8h_source.html#l00062">62</a> of file <a class="el" href="singleton_8h_source.html">singleton.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -205,7 +205,7 @@ template&lt;class Type&gt; </div>
 <p>Fetches a pointer to the singleton. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the type of singleton this is. </dd></dl>
 
-<p>Definition at line <a class="el" href="singleton_8h_source.html#l00091">91</a> of file <a class="el" href="singleton_8h_source.html">singleton.h</a>.</p>
+<p>Definition at line <a class="el" href="singleton_8h_source.html#l00097">97</a> of file <a class="el" href="singleton_8h_source.html">singleton.h</a>.</p>
 
 </div>
 </div>
@@ -235,7 +235,35 @@ template&lt;class Type&gt; </div>
 <p>Checks to see if the singleton pointer is valid. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the singleton is valid, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="singleton_8h_source.html#l00101">101</a> of file <a class="el" href="singleton_8h_source.html">singleton.h</a>.</p>
+<p>Definition at line <a class="el" href="singleton_8h_source.html#l00110">110</a> of file <a class="el" href="singleton_8h_source.html">singleton.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a0db9959ccd7daa1345f4567aa0b0655d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Type&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Type* <a class="el" href="classMezzanine_1_1Singleton.html">Mezzanine::Singleton</a>&lt; Type &gt;::SingletonPtr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The one and only pointer to the single object. </p>
+<p>the base class is </p>
+
+<p>Definition at line <a class="el" href="singleton_8h_source.html#l00072">72</a> of file <a class="el" href="singleton_8h_source.html">singleton.h</a>.</p>
 
 </div>
 </div>
@@ -246,7 +274,7 @@ template&lt;class Type&gt; </div>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Fri Jan 29 2016 03:41:42 for BlackTopp Studios inc by
+            Generated on Thu Feb 4 2016 23:17:23 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

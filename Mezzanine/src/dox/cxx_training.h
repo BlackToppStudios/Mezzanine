@@ -107,7 +107,7 @@
     @htmlonly</a>@endhtmlonly
     for some very useful information.
 
-    @subsection cxx_training_and_beyond_tutorials Beyond
+    @subsection cxx_training_and_beyond_tutorials Beyond Tutorials
     To expand on basic knowledge or round
     - @htmlonly<a href="https://github.com/isocpp/CppCoreGuidelines">@endhtmlonly
     C++ Core Guidelines

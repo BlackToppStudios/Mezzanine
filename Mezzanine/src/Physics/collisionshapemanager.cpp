@@ -78,6 +78,7 @@
 
 namespace Mezzanine
 {
+    /// @brief the backing for the pointer declared in singleton.h
     template<> Physics::CollisionShapeManager* Singleton<Physics::CollisionShapeManager>::SingletonPtr = NULL;
 
     namespace Physics

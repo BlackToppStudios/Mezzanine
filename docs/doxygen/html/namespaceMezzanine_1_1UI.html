@@ -28,7 +28,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="pages.html"><span>All&#160;Pages</span></a></li>
       <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -537,6 +537,7 @@ Enumerations</h2></td></tr>
 <a class="el" href="namespaceMezzanine_1_1UI.html#a284c10d86b679ec8cc3ca478ae91460baa5cb08a39e48fa0a56daaff8b0ebd843">PF_Anchor_Center</a> = (PF_Anchor_TopLeft | PF_Anchor_BottomRight)
 <br />
  }</td></tr>
+<tr class="memdesc:a284c10d86b679ec8cc3ca478ae91460b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by UI container classes to determine their movement behavior when the container is resized.  <a href="namespaceMezzanine_1_1UI.html#a284c10d86b679ec8cc3ca478ae91460b">More...</a><br /></td></tr>
 <tr class="separator:a284c10d86b679ec8cc3ca478ae91460b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61a42a62e4838bc93b194886a363fe36"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1UI.html#a61a42a62e4838bc93b194886a363fe36">QuadCorner</a> { <b>QC_TopLeft</b> = 0, 
 <b>QC_TopRight</b> = 1, 
@@ -618,7 +619,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00052">52</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00051">51</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -635,7 +636,7 @@ Enumerations</h2></td></tr>
 <p>Used by various basic renderables for border effects. </p>
 <p>Internally border information is stored in small arrays, and this facilitates the proper index being called every time. </p>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00063">63</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00061">61</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -652,7 +653,7 @@ Enumerations</h2></td></tr>
 <p>An enum describing the status and boolean traits a <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a> can have. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ac6e893d709cbd08ea8610fafb9be08b5ad2d0c630a950974416d6ac8ff9e5ea87"></a>CS_Clickable&#160;</td><td class="fielddoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000113">Todo:</a></b></dt><dd>When additional fonts are no longer needed for bold, italics, etc. style font and such, add those basic properties here. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000117">Todo:</a></b></dt><dd>When additional fonts are no longer needed for bold, italics, etc. style font and such, add those basic properties here. </dd></dl>
 </td></tr>
 </table>
 
@@ -673,7 +674,7 @@ Enumerations</h2></td></tr>
 <p>Used by various basic renderables for applying a gradient effect to a colour or texture on a quad. </p>
 <p>Details regarding the colour or texture depends on the individual settings of the renderable the gradient is being applied to. Gradients simply allow one colour on one portion of a quad to fade into another. </p>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00075">75</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00072">72</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -690,7 +691,7 @@ Enumerations</h2></td></tr>
 <p>Used by various <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> classes to determine the alignment of their child objects, such as text in text lines, or quads in a layout container. </p>
 <p>This enum is only ever used to describe one axis at a time. Thus the values do not represent corners, but rather the appropriate side on the axis in question. </p>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00087">87</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00083">83</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -703,6 +704,11 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used by <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> container classes to determine their movement behavior when the container is resized. </p>
+<p>These flags are not used if the container object is simply repositioned. Only when a new position is needed after the container is resized. If rules for one axis isn't covered, the Unified position is used. <br />
+ <br />
+If PF_Anchor_Prev_Offset, PF_Anchor_ParentSize, or PF_Anchor_SelfSize are not specified in the positioning bitfield for a quad, an offset of 0 will be used on the specified edge. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a284c10d86b679ec8cc3ca478ae91460ba39aa63f7f32c3515124db2a2a6c29068"></a>PF_Unified_Pos&#160;</td><td class="fielddoc">
 <p>Does not anchor to any side, using only the provided unified dimensions. </p>
@@ -751,7 +757,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00109">109</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00103">103</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -768,7 +774,7 @@ Enumerations</h2></td></tr>
 <p>Used by Sprites and Glyphs for tracking their placement on a <a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">TextureAtlas</a>. </p>
 <p>This helps to ensure the proper indexs are accessed at all times when getting UV information. </p>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00134">134</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00127">127</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -801,7 +807,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00144">144</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00136">136</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -818,7 +824,7 @@ Enumerations</h2></td></tr>
 <p>Used by the scrollbar class to determine what styling should be used for the scrollbar. </p>
 <p>These values are mostly self explanitory, the scrollbar class documentation has more details. </p>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00158">158</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00149">149</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -854,7 +860,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00168">168</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00158">158</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -871,7 +877,7 @@ Enumerations</h2></td></tr>
 <p>Used by the spinner class to determine what styling should be used for the spinner. </p>
 <p>In the case of the buttons being together, the increment button will be above the decrement button. </p>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00181">181</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00170">170</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -895,7 +901,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00191">191</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="uienumerations_8h_source.html#l00179">179</a> of file <a class="el" href="uienumerations_8h_source.html">uienumerations.h</a>.</p>
 
 </div>
 </div>
@@ -903,7 +909,7 @@ Enumerations</h2></td></tr>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Fri Jan 29 2016 03:41:44 for BlackTopp Studios inc by
+            Generated on Thu Feb 4 2016 23:17:27 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>
