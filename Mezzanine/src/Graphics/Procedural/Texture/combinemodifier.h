@@ -96,7 +96,6 @@ namespace Mezzanine
             class MEZZ_LIB CombineModifier : public TextureModifier
             {
             public:
-                /// @enum CombineMode
                 /// @brief An enum used to describe how a texture is to be combined with the other textures in the queue.
                 /// @details Unless explicitly stated, modes in this enum do not operate on the Alpha Channel.
                 enum CombineMode

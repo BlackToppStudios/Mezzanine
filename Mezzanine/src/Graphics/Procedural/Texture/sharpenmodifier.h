@@ -82,7 +82,6 @@ namespace Mezzanine
             class MEZZ_LIB SharpenModifier : public TextureModifier
             {
             public:
-                /// @enum SharpenType
                 /// @brief An enum used to describe the type of sharpening operation to be performed.
                 enum SharpenType
                 {

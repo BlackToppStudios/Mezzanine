@@ -77,7 +77,6 @@ namespace Mezzanine
     class MEZZ_LIB CameraController
     {
     public:
-        /// @enum MovementMode
         /// @brief Possible options for determining how the camera should move relative to the world.
         enum MovementMode
         {

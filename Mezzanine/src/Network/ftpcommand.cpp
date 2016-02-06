@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,34 +37,18 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourceenumerations_h
-#define _resourceenumerations_h
-///////////////////////////////////////////////////////////////////////////////
-//Any global enumerations shared between multiple classes in the Resource namespace is to be declared here.
-///////////////////////////////////////
+
+#ifndef _networkftpcommand_cpp
+#define _networkftpcommand_cpp
+
+#include "Network/ftpcommand.h"
 
 namespace Mezzanine
 {
-    namespace Resource
+    namespace Network
     {
-        /// @brief Used to indicate what kind of resources the Entrosol should look for
-        enum ArchiveType
-        {
-            AT_FileSystem  = 0,    ///< Look for raw files
-            AT_Zip         = 1,    ///< Look for stuff in zip files even if the extension is not '.zip'.
-            AT_Invalid     = 32768 ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
-        };
 
-        /// @brief This enum describes the current state of loading for an asset.
-        enum LoadingState
-        {
-            LS_Uninitialized = 0,
-            LS_Initializing = 1,
-            LS_Initialized = 2,
-            LS_Loading = 3,
-            LS_Loaded = 4
-        };
-    }//Resource
+    }//Network
 }//Mezzanine
 
 #endif

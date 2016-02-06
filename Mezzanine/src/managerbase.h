@@ -58,7 +58,7 @@ namespace Mezzanine
     class MEZZ_LIB ManagerBase
     {
     public:
-        /// @brief A listing of Manager TypeNames
+        /// @brief A listing of Manager Types.
         /// @details These will be returned by ManagerBase::GetType(), and will allow
         /// code using this to determine what type of Manager class they are working with
         /// and use this information to more safely cast to the correct manager if needed.

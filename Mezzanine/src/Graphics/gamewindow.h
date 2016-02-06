@@ -74,7 +74,6 @@ namespace Mezzanine
             /// @brief Const Reverse Iterator type for Viewport instances stored by this class.
             typedef ViewportContainer::const_reverse_iterator ConstReverseViewportIterator;
 
-            /// @enum WindowFlags
             /// @brief A listing of potential options for configuring a game window during construction.
             enum WindowFlags
             {

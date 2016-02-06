@@ -156,7 +156,6 @@ namespace Mezzanine
         class MEZZ_LIB Socket
         {
         /*public:
-            /// @enum SocketStatus
             /// @brief This enum is used to describe the current working status of the socket.
             enum SocketStatus
             {

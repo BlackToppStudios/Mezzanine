@@ -53,7 +53,6 @@ namespace Mezzanine
     class MEZZ_LIB Timer
     {
     public:
-        /// @enum TimerType
         /// @brief The style of timer to be used.
         enum TimerType
         {
@@ -61,7 +60,6 @@ namespace Mezzanine
             StopWatch,  ///< Counts down, respecting any goal and autoreset
             Alarm       ///< Counts up, respecting any goal and autoreset
         };
-        /// @enum TimeFormat
         /// @brief An enum describing how the text output of a timer should be formatted.
         enum TimeFormat
         {

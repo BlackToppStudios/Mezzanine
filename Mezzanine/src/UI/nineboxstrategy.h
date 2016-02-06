@@ -48,7 +48,6 @@ namespace Mezzanine
 {
     namespace UI
     {
-        /// @enum NineBoxPartition
         /// @brief Enum describing the different 9-Box partitions of a screen.
         enum NineBoxPartition
         {

@@ -82,7 +82,6 @@ namespace Mezzanine
             class MEZZ_LIB ThresholdModifier : public TextureModifier
             {
             public:
-                /// @enum ThresholdMode
                 /// @brief An enum to describe when to replace the colour of a pixel.
                 enum ThresholdMode
                 {
@@ -90,7 +89,6 @@ namespace Mezzanine
                     TM_Below = 2,                            ///< Uses only the lower limit.  Any pixel with an intensity below the set lower limit will be replaced.
                     TM_OutsideRange = TM_Below | TM_Above    ///< Uses both the upper and lower limits.  Any pixel with an intensity outside their range will be replaced.
                 };
-                /// @enum ReplaceMode
                 /// @brief An enum to describe with what granularity pixels will be checked and replaced.
                 enum ReplaceMode
                 {

@@ -47,7 +47,6 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        /// @enum AspectRatio
         /// @brief This is used primarily by the GraphicsManager to keep track of the supported and currently used aspect ratios.
         enum AspectRatio
         {
@@ -62,7 +61,6 @@ namespace Mezzanine
             AR_2_39_By_1 = 9    ///< 2.39
         };
 
-        /// @enum BillboardOrigin
         /// @brief This is used by the BillboardSetProxy to describe which part of the billboard will be treated as the local origin for placement and rotation.
         enum BillboardOrigin
         {
@@ -77,7 +75,6 @@ namespace Mezzanine
             BBO_Bottom_Right     ///< Position/Rotate around the Bottom-Right corner of the billboard.
         };
 
-        /// @enum BillboardRotation
         /// @brief This is used by the BillboardSetProxy to decide how billboards should be rotated when they are requested to rotate.
         enum BillboardRotation
         {
@@ -85,7 +82,6 @@ namespace Mezzanine
             BBR_TexureCoord    ///< Rotates the texture coordinates of the billboard when rotated, preserving the vertex positions.
         };
 
-        /// @enum BillboardType
         /// @brief This is used by BillboardSetProxies to describe how the billboards are to be oriented.
         enum BillboardType
         {
@@ -96,7 +92,6 @@ namespace Mezzanine
             BBT_Perpendicular_Self      ///< Billboards are oriented around their own individually set direction axis, which will act as their local Z axis.  Common Up Vector needs to be defined for this setting.
         };
 
-        /// @enum CameraPolyMode
         /// @brief This is used by CameraProxies to quickly set a different render mode that is useful for debugging graphics renders.
         enum CameraPolyMode
         {
@@ -105,7 +100,6 @@ namespace Mezzanine
             CPM_Solid     = 3         ///< Normal rendering.
         };
 
-        /// @enum ImageFileFormat
         /// @brief This enum describes the various file formats for images supported by the Mezzanine.
         /// @details Every format mentioned here has read support.  Many do not have write support.  Those that do will say so explicitly. @n @n
         /// In addition to the formats listed here there are also a TON of unlisted raw image formats made and used by digital camera's that can be read.  The list for those formats is extremely large
@@ -170,7 +164,6 @@ namespace Mezzanine
             IFF_Ext_pvr   = 49    ///< PowerVR image.  Lossy compression format that supports 2-bit or 4-bit integer pixels formats.  This is dominately used on iOS devices to store simple images and in some cases can stay compressed in video memory.  Does not support Alpha channel.
         };
 
-        /// @enum LightType
         /// @brief This is used by LightProxies to describe how light is emitted from the proxy source.
         enum LightType
         {
@@ -179,7 +172,6 @@ namespace Mezzanine
             LT_Spotlight   = 2     ///< From a point emanating in a cone, like a flashlight, hooded lantern, really bright computer screens, flood lights, older style space heaters, Concert lights, camera flashes, etc...
         };
 
-        /// @enum OrientationMode
         /// @brief This is used by CameraProxies to determine the orientation of the camera frustrum.
         enum OrientationMode
         {
@@ -193,7 +185,6 @@ namespace Mezzanine
             OM_LandscapeLeft  = OM_Degree_270
         };
 
-        /// @enum PixelFormat
         /// @brief This is used to describe how bits are arraged for each pixel in an image.
         enum PixelFormat
         {
@@ -312,7 +303,6 @@ namespace Mezzanine
             PF_Count = 95
         };
 
-        /// @enum ProjectionType
         /// @brief Values for storing how perspective should be interpretted
         enum ProjectionType
         {
@@ -320,7 +310,6 @@ namespace Mezzanine
             PT_Perspective     = 1         ///< Normal (realistic) perspective.
         };
 
-        /// @enum RenderOperation
         /// @brief Used to describe low level assembly of Meshes.  Mostly for internal use.
         enum RenderOperation
         {
@@ -332,7 +321,6 @@ namespace Mezzanine
             RO_TriangleFan    = 6   ///< Similar to RO_TriangleString, first triangle defined with 3 Vertices and each triangle after requires one additional Vertex.
         };
 
-        /// @enum RenderSystem
         /// @brief Used primarily by the graphics manager class during initialization.
         /// @details This enum specifies which Rendersystem is to be used for rendering.
         enum RenderSystem
@@ -347,7 +335,6 @@ namespace Mezzanine
             RS_OpenGLES2   = 7
         };
 
-        /// @enum TextureType
         /// @brief An enum used to describe the various types of supported textures.
         enum TextureType
         {
@@ -360,7 +347,6 @@ namespace Mezzanine
             TT_2D_Rect  = 6   ///< A non-square 2D texture used in conjunction with 2D coordinates.
         };
 
-        /// @enum TextureUsage
         /// @brief An enum used to describe how the buffer of a texture will be used.
         enum TextureUsage
         {

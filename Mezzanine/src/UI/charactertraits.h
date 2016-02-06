@@ -50,7 +50,6 @@ namespace Mezzanine
     {
         class FontData;
 
-        /// @typedef CharacterStatus
         /// @brief An enum describing the status and boolean traits a Character can have.
         enum CharacterStatus
         {
@@ -113,7 +112,6 @@ namespace Mezzanine
             static String GetSerializableName();
         };//CharacterTraits
 
-        /// @typedef CharacterTraitsPtr
         /// @brief Convenience typedef for counted pointers to CharacterTraits.
         typedef CountedPtr<CharacterTraits> CharacterTraitsPtr;
     }//UI

@@ -82,14 +82,12 @@ namespace Mezzanine
             class MEZZ_LIB CellGenerator : public TextureGenerator
             {
             public:
-                /// @enum CellMode
                 /// @brief An enum to describe how the cells are layed out.
                 enum CellMode
                 {
                     CM_Grid,        ///< Cells are layed out in a normal grid pattern with their centers coloured in according to the set CellPattern.
                     CM_Chessboard   ///< Cells are layed out in a normal grid pattern, but will alternate the cell colour and background colour with each successive cell.
                 };
-                /// @enum CellPattern
                 /// @brief An enum to describe how the cells are coloured.
                 enum CellPattern
                 {

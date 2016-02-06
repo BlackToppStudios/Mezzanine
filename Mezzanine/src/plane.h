@@ -65,7 +65,6 @@ namespace Mezzanine
     class MEZZ_LIB Plane
     {
     public:
-        /// @enum Side
         /// @brief An enum used to describe which side of the plane the result of a query is on.
         enum Side
         {

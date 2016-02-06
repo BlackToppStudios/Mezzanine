@@ -58,7 +58,6 @@ namespace Mezzanine
         class MEZZ_LIB Renderable
         {
         public:
-            /// @enum RenderableType
             /// @brief A small enum to describe the type of renderable this is.
             enum RenderableType
             {

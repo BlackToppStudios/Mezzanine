@@ -82,7 +82,6 @@ namespace Mezzanine
             class MEZZ_LIB ChannelModifier : public TextureModifier
             {
             public:
-                /// @enum ChannelSelect
                 /// @brief An enum describing the operation to be taken.
                 enum ChannelSelect
                 {

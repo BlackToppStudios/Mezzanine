@@ -112,32 +112,23 @@ namespace Mezzanine
         typedef intptr_t ConvertiblePointer;
     #endif
 
-    /// @typedef Int8
     /// @brief An 8-bit integer.
     typedef int8_t Int8;
-    /// @typedef UInt8
     /// @brief An 8-bit unsigned integer.
     typedef uint8_t UInt8;
-    /// @typedef Int16
     /// @brief An 16-bit integer.
     typedef int16_t Int16;
-    /// @typedef UInt16
     /// @brief An 16-bit unsigned integer.
     typedef uint16_t UInt16;
-    /// @typedef Int32
     /// @brief An 32-bit integer.
     typedef int32_t Int32;
-    /// @typedef UInt32
     /// @brief An 32-bit unsigned integer.
     typedef uint32_t UInt32;
-    /// @typedef Int64
     /// @brief An 64-bit integer.
     typedef int64_t Int64;
-    /// @typedef UInt64
     /// @brief An 64-bit unsigned integer.
     typedef uint64_t UInt64;
 
-    /// @typedef Real
     /// @brief A Datatype used to represent a real floating point number.
     /// @details This Datatype is currently a typedef to a float, This is to match
     /// our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics
@@ -148,48 +139,39 @@ namespace Mezzanine
     /// @n @n
     /// This type will be word aligned and fast
     typedef float Real;
-    /// @typedef PreciseReal
     /// @brief A Real number that is at least as precise as the Real and could be considerably
     /// moreso, perhaps Doubly precise.
     /// @n @n
     /// This type might be poorly aligned but very precise.
     typedef double PreciseReal;
 
-    /// @typedef Whole
     /// @brief Whole is an unsigned integer, it will be at least 32bits in size.
     /// @details This is a typedef to unsigned Long. but could be smaller in some situations.  In
     /// general it will be the most efficient unsigned type for math.
     typedef unsigned long Whole;
-    /// @typedef Integer
     /// @brief A datatype used to represent any integer close to.
     /// @details This is a typedef to int, but could int16 or smaller to improve performance in some situtations, In general it will be the most efficient signed type for math.
     typedef int Integer;
 
-    /// @typedef String
     /// @brief A datatype used to a series of characters.
     /// @details This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is
     /// changed, The Character typedef should be adjusted accordingly.
     typedef std::string String;
-    /// @typedef WideString
     /// @brief A wide version of the String typedef.
     /// @details Wide strings are seldom used, but often come in handy when dealing with Unicode strings.
     typedef std::wstring WideString;
-    /// @typedef ConstString
     /// @brief A Datatype used to a series of imutable characters.
     /// @details This is a typedef to const String, but could change.
     typedef const String ConstString;
 
-    /// @typedef Char8
     /// @brief A datatype to represent one character.
     /// @details This should be a char if String is an std::string.
     typedef char Char8;
 
-    /// @typedef Boole
     /// @brief Generally acts a single bit, true or false
     /// @details Normally just a bool, but on some platform alignment matters more than size, so this could be as large as one cpu word in size.
     typedef bool Boole;
 
-    /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.
     typedef std::stringstream StringStream;
 
@@ -208,7 +190,6 @@ namespace Mezzanine
         typedef long long MaxInt;
     #endif
 
-    /// @typedef TimeMarker
     /// @brief A datatype used to indicate a specific point in time, or a timestamp.
     /// @details This is made into it's own datatype in case we want to tweak the possible size for a timestamp.
     typedef UInt32 TimeMarker;
@@ -217,30 +198,22 @@ namespace Mezzanine
     // Complex Data types
     ///////////////////////////////////////
 
-    /// @typedef NameValuePair
     /// @brief This is a pair for the generic storage of a value and it's associated name.
     typedef std::pair< String, String > NameValuePair;
 
-    /// @typedef NameValuePairList
     /// @brief This is a datatype mostly used for describing settings or parameters that can't be declared in advance.
     /// @details This datatype uses the std::list container for it's storage.
     typedef std::list< NameValuePair > NameValuePairList;
-
-    /// @typedef NameValuePairMap
     /// @brief This is a datatype mostly used for describing settings or parameters that can't be declared in advance.
     /// @details This datatype uses the std::map container for it's storage.
     typedef std::map< String, String > NameValuePairMap;
 
-    /// @typedef StringVector
     /// @brief This is a simple datatype for a vector container of strings.
     typedef std::vector< String > StringVector;
-
-    /// @typedef StringSet
     /// @brief This is a simple datatype for a set container of strings.
     typedef std::set< String > StringSet;
 
     /// @internal
-    /// @typedef RawEvent
     /// @brief This is an internal datatype use to communicate with the User input Subsystem.
     /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details.
     typedef SDL_Event RawEvent;

@@ -128,7 +128,6 @@ namespace Mezzanine
             /// @brief Const Iterator type for Visible @ref Widget instances stored by this class.
             typedef VisibleChildContainer::const_iterator  ConstVisibleChildIterator;
 
-            /// @enum ProviderMode
             /// @brief An enum describing how the providers for this container are configured and being used.
             /// @details Depending on the method returning the values, these values can mean slightly different things.
             /// The documentation provided below describes the meaning when querying the overall configuration first, and

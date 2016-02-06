@@ -73,7 +73,6 @@ namespace Mezzanine
     {
         namespace Procedural
         {
-            /// @enum BooleanOperation
             /// @brief An enum used to describe which boolean operation to take when processing two triangle buffers.
             enum BooleanOperation
             {
@@ -82,7 +81,6 @@ namespace Mezzanine
                 BO_Difference     ///< Gets only the parts of the two buffers that aren't overlapping.
             };
 
-            /// @enum ColourChannelIndex
             /// @brief Convenience enum that stores the colour placement in a word according to endianness.
             enum ColourChannelIndex
             {
@@ -100,7 +98,6 @@ namespace Mezzanine
             #endif
             };
 
-            /// @enum NoiseType
             /// @brief An enum used to describe the different types of noise generators.
             enum NoiseType
             {
@@ -108,7 +105,6 @@ namespace Mezzanine
                 NT_Perlin         ///< Perlin noise.
             };
 
-            /// @enum ShapeSide
             /// @brief An enum used to express which side to work with in Shape operations.
             enum ShapeSide
             {

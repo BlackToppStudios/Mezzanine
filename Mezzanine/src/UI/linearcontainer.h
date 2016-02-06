@@ -55,7 +55,6 @@ namespace Mezzanine
         class MEZZ_LIB LinearContainer : public PagedContainer
         {
         public:
-            /// @enum SizeEnforcement
             /// @brief This enum is used to determine if and when a child should be forced to a specific size for this container.
             enum SizeEnforcement
             {

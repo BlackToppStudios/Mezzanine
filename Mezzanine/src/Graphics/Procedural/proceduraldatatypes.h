@@ -121,7 +121,6 @@ namespace Mezzanine
             typedef std::vector<LineSegment3D>          LineSeg3DVec;
             /// @brief Iterator type for a LineSeg3DVec.
             typedef LineSeg3DVec::iterator              LineSeg3DIterator;
-            /// @typedef ConstLineSeg3DIterator
             /// @brief Const Iterator type for a LineSeg3DVec.
             typedef LineSeg3DVec::const_iterator        ConstLineSeg3DIterator;
 

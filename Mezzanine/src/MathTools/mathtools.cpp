@@ -54,7 +54,6 @@
 /// @cond DontDocumentInternal
 namespace
 {
-    /// @typedef SegmentPosPair
     /// @brief This is an std::pair that stores the near and far segement points for ray-aabb intersections.
     typedef std::pair<Mezzanine::Real,Mezzanine::Real> SegmentPosPair;
 

@@ -56,7 +56,6 @@ namespace Mezzanine
         class MEZZ_LIB ManagerConstructionInfo
         {
         public:
-            /// @enum ManagerConstructionFlags
             /// @brief This is an enum used by the physics manager to determine what internal
             /// classes should be used when creating the world.
             enum ManagerConstructionFlags

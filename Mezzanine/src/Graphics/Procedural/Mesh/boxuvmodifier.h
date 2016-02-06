@@ -94,7 +94,6 @@ namespace Mezzanine
             class MEZZ_LIB BoxUVModifier : public MeshModifier
             {
             public:
-                /// @enum MappingType
                 /// @brief An enum describing how the quads for the cube are expected to be laid out on the texture.
                 enum MappingType
                 {

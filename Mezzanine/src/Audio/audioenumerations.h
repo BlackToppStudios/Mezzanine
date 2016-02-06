@@ -47,7 +47,6 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        /// @enum BitConfig
 		/// @brief Used to describe the different bit configurations supported by this audio system.
 		enum BitConfig
 		{
@@ -59,7 +58,6 @@ namespace Mezzanine
 		    BC_24Bit_Stereo
 		};
 
-        /// @enum Encoding
         /// @brief The encoding to use when reading or writing an audio buffer.
         enum Encoding
         {
@@ -72,7 +70,6 @@ namespace Mezzanine
             Enc_OPUS   = 7   ///< Used in .opus files.
         };
 
-		/// @enum EffectType
 		/// @brief Used by the iEffect class to describe what type of effect it is.
         enum EffectType
         {
@@ -92,7 +89,6 @@ namespace Mezzanine
             ET_Equalizer          ///< See @ref EqualizerParameters.
         };
 
-		/// @enum FilterType
 		/// @brief Used by the iFilter class to describe what type of filter it is.
         enum FilterType
         {
@@ -102,7 +98,6 @@ namespace Mezzanine
             FT_BandPass     ///< Filters out both high and low frequency audio from a sound outside of specified thresholds.
         };
 
-        /// @enum SoundType
         /// @brief Used by the iSound class to describe what type of sound it is.
         enum SoundType
         {

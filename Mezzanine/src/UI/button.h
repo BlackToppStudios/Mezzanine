@@ -73,7 +73,6 @@ namespace Mezzanine
             /// @brief Const Iterator type for Activation Codes stored by this class.
             typedef ActivationCodeContainer::const_iterator  ConstActivationCodeIterator;
 
-            /// @enum ActivationState
             /// @brief This enum describes the different possible states for the activation of a button.
             /// @details The first two states should be self explanitory.  Button is made but not interacted with, it's deactivated.
             /// If the button is pressed it becomes activated for the duration of the press.  The third state is a special state that

@@ -103,7 +103,6 @@ namespace Mezzanine
             class MEZZ_LIB CycloidModifier : public TextureModifier
             {
             public:
-                /// @enum CycloidType
                 /// @brief The type of Cycloid to draw.
                 enum CycloidType
                 {
@@ -114,7 +113,6 @@ namespace Mezzanine
                     CT_RoseCurve       = 5,  ///< Sets defaults for drawing a Rose Curve.  See class detailed description for more information.
                     CT_LissajousCurve  = 6   ///< Sets defaults for drawing a Lissajous Curve.  See class detailed description for more information.
                 };
-                /// @enum CycloidParameter
                 /// @brief An enum describing the parameters that can be altered for each type of Cycloid.
                 enum CycloidParameter
                 {

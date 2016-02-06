@@ -45,18 +45,196 @@ namespace Mezzanine
 {
     namespace Network
     {
-        /// @enum HighLevelProtocol
         /// @brief This is an enum listing for protocols used and recognized by software.
         enum HighLevelProtocol
         {
             HLP_Invalid = 0,  ///< Used for error conditions.
             HLP_FTP     = 1,  ///< File Transfer Protocol.
-            HLP_HTTP    = 2,  ///< Hyper-Text Transfer Protocol.
-            HLP_HTTPS   = 4,  ///< Hyper-Text Transfer Protocol Secure.
-            HLP_SMTP    = 8   ///< Simple Mail Transfer Protocol.
+            HLP_FTPS    = 2,  ///< File Transfer Protocol Secure.
+            HLP_HTTP    = 4,  ///< Hyper-Text Transfer Protocol.
+            HLP_HTTPS   = 8,  ///< Hyper-Text Transfer Protocol Secure.
+            HLP_SMTP    = 16  ///< Simple Mail Transfer Protocol.
         };
 
-        /// @enum HTTPRequestMethod
+        /// @brief This enum is a listing of the commands that can be issued to an FTP server.
+        /// @details This is a complete listing of the commands listed for the FTP standard in RFCs 959, 1639, 2228, 2389, 2428, 2640, 7151, and
+        /// 3659.  Some commands expect arguments, some do not.  FTP connections must start with the command connection, from the client to the
+        /// server.  Once established, the client needs to authenticate with the server using a login.  In most cases using an "anonymous" account
+        /// is sufficient.  Once authenticated some information for the data connection is needed.  FTP can operate in active or passive mode.  In
+        /// active mode you would send a PORT command providing the IP address and Port number to connect to for the data transfer.  Due to NATs
+        /// and Proxies however this is rarely used, instead opting for passive mode.  In passive mode you send a PASV command.  The server will
+        /// then respond with an IP address and Port number on which it is listening and will expect an incoming connection.  Once the data
+        /// connection is established actual transfers can take place.
+        enum FTPCommandList
+        {
+            FCL_Invalid = 0,   ///< Not an actual command.  Used for error conditions.
+            // Access Control Commands
+            FCL_ACCT = 1,      ///< Account.  Identifies the users account.  While similar sounding to the USER command, some servers differentiate the two when determining access.
+            FCL_CDUP,          ///< Change to Parent Directory.  Changes the directory for file/folder operations to the parent of the current directory.
+            FCL_CWD,           ///< Change Working Directory.  Changes the current directory for file/folder operations.
+            FCL_HOST,          ///< Host.  Similar to HTTP Host header, allows an FTP client to provide an FTP URI Authority to specify a sub-server(virtual machine, for example) to be directed to.
+            FCL_PASS,          ///< Password.  The users password for authentication.
+            FCL_QUIT,          ///< Logout.  Logs out of the FTP server and closes all connections.  Pending transfers are allowed to finish and be responded to first.
+            FCL_REIN,          ///< Reinitialize.  Sets the connection back to a starting state.  User is logged out but the command connection is preserved.
+            FCL_SMNT,          ///< Structure Mount.  Allows the user to mount a file system data structure without requiring the connection to be restarted.  See FTPStructureMount enum.
+            FCL_USER,          ///< User Name.  The user name to be used for authentication to the FTP server.  In most cases the user name provided can/will be "anonymous".
+            // Transfer Parameter Commands
+            FCL_EPRT,          ///< Extended Port.  This is similar to LPRT, but with friendlier syntax.  Takes a "|" delimited String starting with 1(IPv4) or 2(IPv6), then the printable address, then the printable port number.
+            FCL_EPSV,          ///< Extended Passive.  This is similar to LPSV, but with friendlier syntax.  The format is identical to the EPRT command.
+            FCL_MODE,          ///< Transfer Mode.  Sets how the data will be transferred from the source to destination.  See FTPTransferMode enum.
+            FCL_PASV,          ///< Passive.  Requests the server go into passive mode for the connection.  Going into passive mode tells the server to expect an incoming connection from the client, instead of creating one itself.  Format is expressed the same way as the PORT command.
+            FCL_PORT,          ///< Data Port.  Specifies the IP/Port on which to establish the data connection.  Expressed in 6 comma separated sections of values 0-255.  First four are IP address, last two are the port bits.
+            FCL_STRU,          ///< File Structure.  Specifies the structure being transferred.  Will almost never need to be used as the default is for files.  Can also be set to Record or Page structure.  See FTPStructureMount enum.
+            FCL_TYPE,          ///< Data Type.  Sets the type of data requested the file be in for downloads or the type of data that the file being uploaded is in, depending on the operation.  See FTPDataType enum.
+            // Data Connection Opening Commands
+            FCL_APPE,          ///< Append.  Appends the contents of the transfer to an existing file at the destination.  If the file does not exist it will be created.
+            FCL_DELE,          ///< Delete.  Deletes the file specified in the argument.
+            FCL_LIST,          ///< List.  Gets information on the current directory.  Either files or directories other than the current one may be specified, in which case it will return information on the specified file/directory.  Format is undefined.
+            FCL_NLST,          ///< Name List.  Same as the LIST command, but only specifying names so as to make it easier to parse for machine parsing.
+            FCL_RETR,          ///< Retrieve.  Downloads a file from the server, expecting a filename at the source as the argument.
+            FCL_STOR,          ///< Store.  Uploads a file to the server, expecting a filename to be given to the file at the destination as the argument.
+            FCL_STOU,          ///< Store Unique.  This is the same as STOR (Store), but forces the name of the file at the destination to be unique.
+            // Other FTP Service Commands
+            FCL_ABOR,          ///< Abort.  Aborts the currently active file transfer.
+            FCL_ALLO,          ///< Allocate.  Requests the server allocate space for a file in advance.  Many servers don't require this.  Expects a decimal number expressing the size to allocate as the argument.
+            FCL_FEAT,          ///< Features.  Requests a listing of the available features/extensions on the server.  No argument needed.  Format defined in RFC 2389.
+            FCL_HELP,          ///< Help.  Another command may be specified as an argument to get details on it's implementation status on the server.  If no argument is specified then it should return a listing of supported commands.
+            FCL_LANG,          ///< Language.  Requests the server change it's response message language to a different language.  Use the FEAT command to determine supported languages.
+            FCL_MDTM,          ///< Modification Time.  Gets the time a file was last modified.  Argument should be a file name.  The format for the time returned in the response is "YYYYMMDDHHMMSS" with an optional decimal separated fraction of a second.
+            FCL_MKD,           ///< Make Directory.  Creates a new directory on the server with the name provided in the argument.
+            FCL_MLSD,          ///< Machine List Directory.  Gets a machine friendly listing of all the files in the specified directory.  If no directory is specified the current directory is used.  The format is defined in RFC 3659, section 7.2.
+            FCL_MLST,          ///< Machine List.  Gets a machine friendly listing of information on the specified file.  The format is defined in RFC 3659, section 7.2.
+            FCL_NOOP,          ///< No Operation.  This command does nothing and asks the server to do nothing but send a basic response.  Used to keep connections alive and not timeout.
+            FCL_OPTS,          ///< Options.  Enables command specific options for the next command issued.  Argument must be the command name followed by the options to be applied, separated by a space.
+            FCL_PWD,           ///< Print Working Directory.  Requests the pathname of the current directory for FTP operations.
+            FCL_REST,          ///< Restart.  The point where the file transfer is to begin.  For files, the argument should an integer representing the byte position where the transfer should start.
+            FCL_RMD,           ///< Remove Directory.  Deletes the directory (and all files under it) specified in the argument from the server.
+            FCL_RNFR,          ///< Rename From.  The pathname of the file to be renamed.  This simple selects the file the operation is to be performed on.  Must be followed by a RNTO command.
+            FCL_RNTO,          ///< Rename To.  The new pathname of the file being renamed.  This command must be preceded by a RNFR command to select which file should be renamed.
+            FCL_SITE,          ///< Site.  Executes a command that is not in the standard specific to the connected server.  The argument is the command to be executed.
+            FCL_SIZE,          ///< File Size.  Gets the size of a specified file.  Argument is a file and the response will contain the size in bytes it would be if it were transferred.  The actual value can change based on the TYPE setting.
+            FCL_STAT,          ///< Status.  Requests the current status of the FTP server or the current executing FTP operation on the server.  If a file is specified as an argument then it can act like LIST.
+            FCL_SYST,          ///< System.  Requests an identifier for the type of system the server is operating on as well as the default transfer mode used by the server.
+            // Security Commands
+            FCL_ADAT,          ///< Authentication/Security Data.  A String of Base64 encoded data necessary to complete the authentication/verify the user.
+            FCL_AUTH,          ///< Authentication/Security Mechanism.  Declares the desired means of protection on the FTP connection(s), such as "TLS" or "SSL".
+            FCL_CCC,           ///< Clear Command Channel.  Clears the command stream of protected status, reverting to plain-text transmissions.  Useful if AUTH is used just to verify identity.
+            FCL_CONF,          ///< Confidentiality Protected Command.  Generic command for allowing the configuration of confidentiality settings on the specified security mechanism.  Not used with SSL/TLS.
+            FCL_ENC,           ///< Privacy Protected Command.  Generic command for allowing the configuration of privacy settings on the specified security mechanism.  Not used with SSL/TLS.
+            FCL_MIC,           ///< Integrity Protected Command.  Generic command for allowing the configuration of integrity settings on the specified security mechanism.  Not used with SSL/TLS.
+            FCL_PBSZ,          ///< Protection BufferSize.  Sets the maximum size (in bytes, max of 32-bit UInt) of the encoded blocks to be sent over the command channel.  Must occur after an AUTH command and before a PROT command.
+            FCL_PROT,          ///< Data Channel Protection Level.  Sets the security to be used on the data channel.  See FTPSecurityLevel enum.
+            // Obsolete/Alias Commands
+            FCL_LPRT,          ///< Long Port.  Obsolete command.  Similar to the PORT command, but permits larger addresses.  The format is comma separated bytes.  Starts with an address family, then address size followed by address bytes, then port size followed by port bytes.
+            FCL_LPSV,          ///< Long Passive.  Obsolete command.  Similar to the PASV command, but permits larger addresses.  Format is identical to the LPRT command.
+            FCL_XCUP,          ///< Change to Parent Directory.  Obsolete command, but can be used an an alias for CDUP to provide backwards compatibility.
+            FCL_XCWD,          ///< Change Working Directory.  Obsolete command, but can be used an an alias for CWD to provide backwards compatibility.
+            FCL_XMKD,          ///< Make Directory.  Obsolete command, but can be used an an alias for MKD to provide backwards compatibility.
+            FCL_XPWD,          ///< Print Working Directory.  Obsolete command, but can be used an an alias for PWD to provide backwards compatibility.
+            FCL_XRCP,          ///< Unknown Meaning.  Obsolete command, do not use.  Listed here for error detection server side.  Use of this command is always an error.
+            FCL_XRMD,          ///< Remove Directory.  Obsolete command, but can be used an an alias for RMD to provide backwards compatibility.
+            FCL_XRSQ,          ///< Unknown Meaning.  Obsolete command, do not use.  Listed here for error detection server side.  Use of this command is always an error.
+            FCL_XSEM,          ///< Send to Mail.  Obsolete command, do not use.  Listed here for error detection server side.  Use of this command is always an error.
+            FCL_XSEN           ///< Send to Terminal.  Obsolete command, do not use.  Listed here for error detection server side.  Use of this command is always an error.
+        };
+
+        /// @brief This enum is a listing of the available data types to transfer as with FTP.
+        enum FTPDataType
+        {
+            FDT_ASCII  = 'A',  ///< Plain text data.  This is the default type.
+            FDT_EBCDIC = 'E',  ///< Extended Binary Coded Decimal Interchange Code.  That was a mouthful.  An 8-bit IBM encoding.  FTP supports it, sorta.  So it's here.
+            FDT_Binary = 'I',  ///< Binary data.  The "I" is for Image, which when FTP was made was figured to be the most common and often exclusive use of binary transfers with FTP.
+            FDT_Local  = 'L'   ///< The local binary type.  Is immediately followed by a number indicating the byte size of the system.  "L8" for example.
+        };
+
+        /// @brief This enum is a listing of the response codes that can be used in response to FTP commands.
+        enum FTPResponseCode
+        {
+            FRC_Invalid                    = 0,    ///< Not an actual return code, used in error conditions.
+            // 100 Series - The requested action is being initiated, expect another reply before proceeding with a new command.
+            FRC_RestartMarker              = 110,  ///< Restart marker replay.
+            FRC_ServiceReadySoon           = 120,  ///< Service ready in nnn minutes.
+            FRC_DataConnAlreadyOpen        = 125,  ///< Data connection already open; transfer starting.
+            FRC_FileStatusOk               = 150,  ///< File status okay; about to open data connection.
+            // 200 Series - The requested action has been successfully completed.
+            FRC_UnknownCommand             = 202,  ///< Command not implemented, superfluous at this site.
+            FRC_SysStatus                  = 211,  ///< System status, or system help reply.
+            FRC_DirectoryStatus            = 212,  ///< Directory status.
+            FRC_FileStatus                 = 213,  ///< File status.
+            FRC_Help                       = 214,  ///< Help message.On how to use the server or the meaning of a particular non-standard command.
+            FRC_SysType                    = 215,  ///< Name of system type.
+            FRC_ServiceReady               = 220,  ///< Service ready for new user.
+            FRC_ServiceClosing             = 221,  ///< Service closing control connection.
+            FRC_DataConnOpen               = 225,  ///< Data connection open; no transfer in progress.
+            FRC_ClosingDataConn            = 226,  ///< Closing data connection.  Requested file action successful (for example, file transfer or file abort).
+            FRC_EnteringPassive            = 227,  ///< Entering Passive Mode.
+            FRC_EnteringLongPassive        = 228,  ///< Entering Long Passive Mode.
+            FRC_EnteringExtendedPassive    = 229,  ///< Entering Extended Passive Mode.
+            FRC_UserLoggedIn               = 230,  ///< User logged in, proceed.
+            FRC_UserLoggedOut              = 231,  ///< User logged out; service terminated.
+            FRC_LogoutAcknowledged         = 232,  ///< Logout command noted, will complete when transfer done.
+            FRC_AuthenticationSuccess      = 234,  ///< Specifies that the server accepts the authentication mechanism specified by the client, and the exchange of security data is complete.
+            FRC_FileActionComplete         = 250,  ///< Requested file action okay, completed.
+            FRC_PathnameCreated            = 257,  ///< The file or directory was successfully created.
+            // 300 Series - The command has been accepted, but the requested action is on hold, pending receipt of further information.
+            FRC_NeedPassword               = 331,  ///< User name okay, need password.
+            FRC_NeedAccount                = 332,  ///< Need account for login.
+            FRC_FileActionPending          = 350,  ///< Requested file action pending further information.
+            // 400 Series - The command was not accepted and the requested action did not take place, but the error condition is temporary and the action may be requested again.
+            FRC_ServiceUnavailable         = 421,  ///< Service not available, closing control connection.
+            FRC_DataConnFailed             = 425,  ///< Can't open data connection.
+            FRC_ConnClosedUnexpectedly     = 426,  ///< Connection closed; transfer aborted.
+            FRC_BadUserOrPass              = 430,  ///< Invalid username or password
+            FRC_HostUnavailable            = 434,  ///< Requested host unavailable.
+            FRC_FileActionFailed           = 450,  ///< Requested file action not taken.
+            FRC_ActionAborted              = 451,  ///< Requested action aborted.  Local error in processing.
+            FRC_ActionNotTaken             = 452,  ///< Requested action not taken.
+            // 500 Series - Syntax error, command unrecognized and the requested action did not take place. This may include errors such as command line too long.
+            FRC_SyntaxError                = 501,  ///< Syntax error in parameters or arguments.
+            FRC_BadCommand                 = 502,  ///< Command not implemented.
+            FRC_BadCommandSequence         = 503,  ///< Bad sequence of commands.  A command is issued without a prerequisite command being completed can cause this.
+            FRC_BadParameter               = 504,  ///< Command not implemented for that parameter.
+            FRC_NotLoggedIn                = 530,  ///< Not logged in.
+            FRC_InsufficientPermissions    = 532,  ///< Need account for storing files.
+            FRC_FileUnavailable            = 550,  ///< Requested action not taken.  File unavailable.
+            FRC_PageTypeUnknown            = 551,  ///< Requested action aborted.  Page type unknown.
+            FRC_ExceededAllocation         = 552,  ///< Requested file action aborted.  Exceeded storage allocation (for current directory or dataset).
+            FRC_NameNotAllowed             = 553,  ///< Requested action not taken.  File name not allowed.
+            // 600 Series - Replies regarding confidentiality and integrity.
+            FRC_IntegrityReply             = 631,  ///< Integrity protected reply.
+            FRC_ConfAndIntegReply          = 632,  ///< Confidentiality and integrity protected reply.
+            FRC_ConfidentialityReply       = 633   ///< Confidentiality protected reply.
+        };
+
+        /// @brief This enum is a listing of the potential security levels that can be used on an FTPS data channel.
+        enum FTPSecurityLevel
+        {
+            FSL_Clear        = 'C',   ///< No security on the data channel.  This is the default setting.
+            FSL_Safe         = 'S',   ///< Data will be integrity protected.  Not used by TLS/SSL.
+            FSL_Confidential = 'E',   ///< Data will be confidentiality protected.  Not used by TLS/SSL.
+            FSL_Private      = 'P'    ///< Data will be both integrity and confidentiality protected.
+        };
+
+        /// @brief This enum is a listing of the available file system structures to be transferred, as recognized by FTP.
+        /// @details I'll level with you here...even after some research I'm not sure what exactly the Record and Page values are for.  I mean...I
+        /// could guess, but I'd rather document my ignorance than a guess.  In almost all cases (and I say "almost" strictly because once I say
+        /// 100% that one case will slap me in the face) File is the only setting you'll use.  This enum exists for completions sake.  I cannot,
+        /// and will not, be stopped.
+        enum FTPStructureMount
+        {
+            FSM_File   = 'F',  ///< Configure the FTP server for file transfer.  This is the default setting.
+            FSM_Record = 'R',  ///< See detailed description.
+            FSM_Page   = 'P'   ///< See detailed description.
+        };
+
+        /// @brief This enum is a listing of the available ways data can be transferred over FTP.
+        enum FTPTransferMode
+        {
+            FTM_Stream     = 'S',  ///< Stream the file from the source.  This is the default mode.
+            FTM_Block      = 'B',  ///< Send the file over in pre-sized blocks.
+            FTM_Compressed = 'C'   ///< Compress the file and then stream it from the source.
+        };
+
         /// @brief This enum is a listing of commonly supported HTTP request methods.
         /// @details GET and HEAD are expected to be implemented by all HTTP servers, and generally can be used without much issue.  OPTIONS is also
         /// expected to be available but is a little less often.  Other requests may or may not be available.  OPTIONS can be used to see what is
@@ -86,7 +264,6 @@ namespace Mezzanine
             HRM_UNLOCK    = 16   ///< Unlocks a resource, freeing it for other purposes.
         };
 
-        /// @enum HTTPStatusCode
         /// @brief This enum is a listing of HTTP status codes that can be returned in response to a request.
         enum HTTPStatusCode
         {
@@ -159,7 +336,6 @@ namespace Mezzanine
             HSC_NetAuthenticationRequired   = 511   ///< Available in RFC 6585.  The client needs to authenticate in order to the connected network.  Intended to be used by proxies.
         };
 
-        /// @enum NetworkLayerProtocol
         /// @brief This is an enum listing for recognized protocols on Layer 3 of the OSI model.
         enum NetworkLayerProtocol
         {
@@ -171,7 +347,6 @@ namespace Mezzanine
             NLP_IPv6    = 16   ///< Internet Protocol version 6.
         };
 
-        /// @enum SocketShutdown
         /// @brief This is a small enum used for socket shutdown parameters.
         enum SocketShutdown
         {
@@ -180,7 +355,6 @@ namespace Mezzanine
             SS_DontSendOrReceive = 2   ///< Both "SS_DontReceive" and "SS_DontSend".
         };
 
-        /// @enum TransportLayerProtocol
         /// @brief This is an enum listing for recognized protocols on Layer 4 of the OSI model.
         enum TransportLayerProtocol
         {
@@ -190,25 +364,24 @@ namespace Mezzanine
             TLP_UDP     = 4    ///< User Datagram Protocol.
         };
 
-        /// @enum WellKnownPorts
         /// @brief A listing of commonly used ports for various frequently used protocols.
         enum WellKnownPorts
         {
-            WKP_FTPData = 20,
-            WKP_FTPControl = 21,
-            WKP_SSH = 22,
-            WKP_Telnet = 23,
-            WKP_SMTP = 25,
-            WKP_HTTP = 80,
-            WKP_NNTP = 119,
-            WKP_LDAP = 389,
-            WKP_HTTPS = 443,
-            WKP_RTSP = 554,
-            WKP_FTPSData = 989,
-            WKP_FTPSControl = 990,
-            WKP_SIP = 5060,
-            WKP_SIPS = 5061,
-            WKP_XMPP = 5222
+            WKP_FTPData      = 20,
+            WKP_FTPControl   = 21,
+            WKP_SSH          = 22,
+            WKP_Telnet       = 23,
+            WKP_SMTP         = 25,
+            WKP_HTTP         = 80,
+            WKP_NNTP         = 119,
+            WKP_LDAP         = 389,
+            WKP_HTTPS        = 443,
+            WKP_RTSP         = 554,
+            WKP_FTPSData     = 989,
+            WKP_FTPSControl  = 990,
+            WKP_SIP          = 5060,
+            WKP_SIPS         = 5061,
+            WKP_XMPP         = 5222
         };
     }//Network
 }//Mezzanine
