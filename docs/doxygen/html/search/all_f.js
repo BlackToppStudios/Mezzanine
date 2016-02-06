@@ -98,7 +98,7 @@ var searchData=
   ['orderingpriority',['OrderingPriority',['../namespaceMezzanine_1_1UI.html#a6c09a42efd042d4ec683e95458030d3a',1,'Mezzanine::UI']]],
   ['orderpriority',['OrderPriority',['../classMezzanine_1_1UI_1_1Spinner.html#a00cef10b2c52060dbf3c12735dcc53f5',1,'Mezzanine::UI::Spinner']]],
   ['orientation',['Orientation',['../classMezzanine_1_1UI_1_1Screen.html#a7a77f0c30cfc0a643b56ce110b10f655',1,'Mezzanine::UI::Screen::Orientation()'],['../classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html#a0fb1b3db36175e26c9f69029dcec3c78',1,'Mezzanine::Graphics::Procedural::MeshGenerator::Orientation()']]],
-  ['orientationmode',['OrientationMode',['../namespaceMezzanine.html#a8892173bd6aaf7d0e34a07b2b30aad33',1,'Mezzanine']]],
+  ['orientationmode',['OrientationMode',['../namespaceMezzanine.html#a8892173bd6aaf7d0e34a07b2b30aad33',1,'Mezzanine::OrientationMode()'],['../namespaceMezzanine_1_1Graphics.html#a40aaff1495c1ac487c9cc64d840c4654',1,'Mezzanine::Graphics::OrientationMode()']]],
   ['origin',['Origin',['../classMezzanine_1_1Ray.html#aa2e73f84b1137ec1db312fbdfdefac05',1,'Mezzanine::Ray']]],
   ['original_20pugixml_20license',['Original pugixml License',['../OriginalpugixmlLicense.html',1,'']]],
   ['oslib',['OSLib',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af5f659bdebb9db9021605a6e82685cd0a5ab6dacce43bc165b8717e616b271fea',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],

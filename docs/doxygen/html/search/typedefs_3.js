@@ -2,7 +2,7 @@ var searchData=
 [
   ['datacontainertype',['DataContainerType',['../classMezzanine_1_1Track.html#a6d7f595c43debe6db8270f4b321766ca',1,'Mezzanine::Track::DataContainerType()'],['../classMezzanine_1_1TrackLooped.html#a565995c13210020530cd7ba58eb36d5a',1,'Mezzanine::TrackLooped::DataContainerType()']]],
   ['dataiteratortype',['DataIteratorType',['../classMezzanine_1_1Track.html#a856f35183b20e89192278c66c198a37c',1,'Mezzanine::Track::DataIteratorType()'],['../classMezzanine_1_1TrackLooped.html#a44fd11639736d77fe96f4611896c6109',1,'Mezzanine::TrackLooped::DataIteratorType()']]],
-  ['datastream',['DataStream',['../namespaceMezzanine_1_1Resource.html#a0ab367bb733ee143adc127085ab0da6a',1,'Mezzanine::Resource']]],
+  ['datastream',['DataStream',['../namespaceMezzanine_1_1Resource.html#adbc515279232b88da334ef4674efdce2',1,'Mezzanine::Resource']]],
   ['datastreamcontainer',['DataStreamContainer',['../classMezzanine_1_1Resource_1_1ResourceManager.html#abfafe948e27fe87a36f95fdb940226bf',1,'Mezzanine::Resource::ResourceManager']]],
   ['datastreamiterator',['DataStreamIterator',['../classMezzanine_1_1Resource_1_1ResourceManager.html#a1f5f7f269548bc0206c67a09199962fa',1,'Mezzanine::Resource::ResourceManager']]],
   ['datastreamptr',['DataStreamPtr',['../namespaceMezzanine_1_1Resource.html#a279346ac682291422761811eeadbfe2e',1,'Mezzanine::Resource']]],
@@ -13,7 +13,7 @@ var searchData=
   ['decoderfactorycontainer',['DecoderFactoryContainer',['../classMezzanine_1_1Audio_1_1AudioManager.html#a6971c7f71f9690d4c704fb1eed7561ce',1,'Mezzanine::Audio::AudioManager']]],
   ['decoderfactoryiterator',['DecoderFactoryIterator',['../classMezzanine_1_1Audio_1_1AudioManager.html#a3acc5dfecc6c387ce326e0dba21e38bd',1,'Mezzanine::Audio::AudioManager']]],
   ['delaunaysegmentcontainer',['DelaunaySegmentContainer',['../classMezzanine_1_1Graphics_1_1Procedural_1_1Triangulator.html#a812883d14c94da8b9d18881d08f080c4',1,'Mezzanine::Graphics::Procedural::Triangulator']]],
-  ['delaunaytrianglebuffer',['DelaunayTriangleBuffer',['../namespaceMezzanine_1_1Graphics_1_1Procedural.html#a4d0859cc27d78ede5441c8fe1f3805a9',1,'Mezzanine::Graphics::Procedural']]],
+  ['delaunaytrianglebuffer',['DelaunayTriangleBuffer',['../namespaceMezzanine_1_1Graphics_1_1Procedural.html#ac55c6c7e09069a3e9a54e76891716977',1,'Mezzanine::Graphics::Procedural']]],
   ['dependentgraphtype',['DependentGraphType',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#af4a05091447afb8186d6fe46878d3de6',1,'Mezzanine::Threading::FrameScheduler']]],
   ['devicecompare',['DeviceCompare',['../classMezzanine_1_1Input_1_1MetaCodeKey.html#abd45faee530349caf1c35c3e3e2e6002',1,'Mezzanine::Input::MetaCodeKey']]],
   ['difference_5ftype',['difference_type',['../classMezzanine_1_1SmoothTrackIterator.html#a1719f9e638c0609226941e9800d8c343',1,'Mezzanine::SmoothTrackIterator::difference_type()'],['../classMezzanine_1_1XML_1_1AttributeIterator.html#a415e23c95873eb273f39a949dd46ba8b',1,'Mezzanine::XML::AttributeIterator::difference_type()'],['../classMezzanine_1_1XML_1_1NodeIterator.html#aa67cff5244fe7ae1af4df71053a328c8',1,'Mezzanine::XML::NodeIterator::difference_type()'],['../classMezzanine_1_1XML_1_1NamedNodeIterator.html#a131c05d0965132f0be4f1fdda2e3c887',1,'Mezzanine::XML::NamedNodeIterator::difference_type()']]],

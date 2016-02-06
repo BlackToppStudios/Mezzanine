@@ -70,12 +70,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Installing Linux Engine Dependencies </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>asf </p>
+<div class="textblock"><p>This projects relies on a number of third party packages. Software packages that you must install are kept to a minimum and should be available from your distribution's package manager.</p>
+<h1><a class="anchor" id="installing_engine_deps_linux_included"></a>
+Included Dependencies</h1>
+<p>These are included and built automatically as part of a normal <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> build. These require no configuration beyond setting cmake options.</p>
+<ul>
+<li>Bullet3d – This provides 3d physics.</li>
+<li>SDL – This can do a number of low level game tasks, but we use it for user input.</li>
+<li>Ogre3d – This provides us with high performance 3d graphics.</li>
+<li>OpenAL-Soft – A software based implementation of OpenAL</li>
+<li>Ogg and Vorbis – Sound encoding and containers.</li>
+<li>Lua - A scripting language suitable for game development.</li>
+</ul>
+<h1><a class="anchor" id="installing_engine_deps_linux_external"></a>
+Required External Dependencies</h1>
+<ul>
+<li>libxaw7-dev — A set of simple X11 widgets, this is mandatory for <a class="el" href="namespaceOgre.html">Ogre</a>.</li>
+<li>libxrandr-dev — Somethings to do with X11, someone please put a real explanation here.</li>
+<li>libglu1-mesa-dev and libgles1-mesa-dev — Opengl Rendersystem support (may not be required in all situations)</li>
+<li>Any sound library that OpenAL-Soft can find, like libpulse-dev</li>
+</ul>
+<h1><a class="anchor" id="installing_engine_deps_linux_install"></a>
+Ubuntu Installation</h1>
+<p>Installing the required libraries is normally easy on Ubuntu. Run the following command: </p><div class="fragment"><div class="line">sudo apt-<span class="keyword">get</span> install libxaw7-dev libxrandr-dev libglu1-mesa-dev libgles1-mesa-dev libpulse-dev</div>
+</div><!-- fragment --><p>I have not needed to go out of way to include a sound dependency. Sometimes I do have issues with OpenGL and that is why mesa is included.</p>
+<h1><a class="anchor" id="installing_engine_deps_linux_optional"></a>
+Optional External Dependencies</h1>
+<h2><a class="anchor" id="installing_engine_deps_linux_optiona_bullet"></a>
+Bullet3d</h2>
+<p>You can optionally install <b>libglu-dev</b> or <b>freeglut3-dev</b> to allow building the bullet demos.</p>
+<h2><a class="anchor" id="installing_engine_deps_linux_optiona_ogre"></a>
+Ogre3d</h2>
+<p><a class="el" href="namespaceOgre.html">Ogre</a> has a large number of of optional dependencies that can be installed, the most relevant ones are listed below. <a class="el" href="namespaceOgre.html">Ogre</a> 3d is included in the source distribution, and does not need to be installed at the OS level. Dependencies required by <a class="el" href="namespaceOgre.html">Ogre</a> (in Ubuntu names):</p>
+<ul>
+<li>libfreeimage-dev — Used to allow automated load and handling of common image formats (jpg, gif, tga, etc…), so they can be used as 3d textures.</li>
+<li>libfreetype6-dev — Works with fonts</li>
+<li>nvidia-cg-toolkit — Adds support for Cg shaders, which we removed because they aren’t very good.</li>
+<li>libboost-thread-dev — This adds support for multhreading into <a class="el" href="namespaceOgre.html">Ogre</a>, This allows for experimentation, on many linux distrobutions, but introduces a bug in the version of boost shipped with Ubuntu 11.04 when using c++0x threads. This should be avoided unless you are explicitly experimenting with threads.</li>
+<li>libois-dev — The Object-oriented Input System, is used by many <a class="el" href="namespaceOgre.html">Ogre</a> projects and by the <a class="el" href="namespaceOgre.html">Ogre</a> Demos.</li>
+<li>libcppunit-dev — For <a class="el" href="namespaceOgre.html">Ogre</a> unit testing.</li>
+<li>libopengl-es-dev — Not sure on the name, this might be it, But there is a Package that enables Opengl 2.0 shaders in <a class="el" href="namespaceOgre.html">Ogre</a></li>
+<li>x11proto-core-dev and libx11-dev — For certain window integration features on some systems are required as well. These are core components and will likely be installed with some of the other development libraries. </li>
+</ul>
 </div></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Thu Feb 4 2016 23:17:21 for BlackTopp Studios inc by
+            Generated on Sat Feb 6 2016 00:08:42 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

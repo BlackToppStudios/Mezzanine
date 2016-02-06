@@ -139,7 +139,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        UDPv6Socket::UDPv6Socket(PlatformSocket* InternalSock)</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            { this-&gt;InternalSocket = InternalSock; }</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        UDPv6Socket::UDPv6Socket(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Port)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        UDPv6Socket::UDPv6Socket(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">UInt16</a> Port)</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            { this-&gt;InternalSocket = <span class="keyword">new</span> PlatformSocket(PF_INET6,SOCK_DGRAM,0,Port); }</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        UDPv6Socket::~UDPv6Socket()</div>
@@ -151,7 +151,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>        <span class="comment">// Configuration</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> UDPv6Socket::SetNumMulticastHops(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Hops)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> UDPv6Socket::SetNumMulticastHops(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> Hops)</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">            #if defined(MEZZ_WINDOWS)</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            DWORD Value = ( Hops &lt; 0 ? 0 : Hops );</div>
@@ -161,7 +161,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">            #endif</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> UDPv6Socket::GetNumMulticastHops()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> UDPv6Socket::GetNumMulticastHops()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">        </span>{</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">            #if defined(MEZZ_WINDOWS)</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            DWORD Value = 0;</div>
@@ -170,16 +170,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">            #endif</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            AddrLen Size;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            this-&gt;InternalSocket-&gt;GetSocketOption(Network::Sol_IPv6,Network::IPv6Opts_MulticastHops,(<span class="keywordtype">char</span>*)&amp;Value,&amp;Size);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a><span class="keyword">&gt;</span>(Value);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a><span class="keyword">&gt;</span>(Value);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">void</span> UDPv6Socket::SetMulticastLoop(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Loop)</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">void</span> UDPv6Socket::SetMulticastLoop(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> Loop)</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        {</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordtype">int</span> Value = ( Loop ? 1 : 0 );</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            this-&gt;InternalSocket-&gt;SetSocketOption(Network::Sol_IPv6,Network::IPv6Opts_MulticastLoop,(<span class="keywordtype">char</span>*)&amp;Value,<span class="keyword">sizeof</span>(Value));</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> UDPv6Socket::GetMulticastLoop()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> UDPv6Socket::GetMulticastLoop()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">        </span>{</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordtype">int</span> Value = 0;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            AddrLen Size;</div>
@@ -192,15 +192,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
-<div class="ttc" id="namespaceMezzanine_html_a7d765759d1196aae20197055f00498f8"><div class="ttname"><a href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00190">datatypes.h:190</a></div></div>
-<div class="ttc" id="namespaceMezzanine_html_ac3576e52af3c62d13dde94829e0c5465"><div class="ttname"><a href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Mezzanine::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdoc">A datatype used to represent any integer close to. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00166">datatypes.h:166</a></div></div>
-<div class="ttc" id="namespaceMezzanine_html_a1b6c09063432c7ddd87011c88306c767"><div class="ttname"><a href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">Mezzanine::UInt16</a></div><div class="ttdeci">uint16_t UInt16</div><div class="ttdoc">An 16-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00126">datatypes.h:126</a></div></div>
+<div class="ttc" id="namespaceMezzanine_html_ac358283f927fd1135643c26dfc75c9cf"><div class="ttname"><a href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00173">datatypes.h:173</a></div></div>
+<div class="ttc" id="namespaceMezzanine_html_ad03e394cd98434cc30bc665e8f2ba30f"><div class="ttname"><a href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Mezzanine::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdoc">A datatype used to represent any integer close to. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00154">datatypes.h:154</a></div></div>
+<div class="ttc" id="namespaceMezzanine_html_adab7bb4dd72bbb8ddb8b1b5470ce99c8"><div class="ttname"><a href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">Mezzanine::UInt16</a></div><div class="ttdeci">uint16_t UInt16</div><div class="ttdoc">An 16-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00122">datatypes.h:122</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Thu Feb 4 2016 23:17:17 for BlackTopp Studios inc by
+            Generated on Sat Feb 6 2016 00:08:39 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

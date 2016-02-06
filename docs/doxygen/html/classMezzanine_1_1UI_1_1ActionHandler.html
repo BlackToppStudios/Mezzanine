@@ -103,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:ab37afa82011d0a1d9646c0a334623e9e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab37afa82011d0a1d9646c0a334623e9e"></a>
-typedef std::map&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>, <a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ActionContainer</b></td></tr>
+typedef std::map&lt; <a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a>, <a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ActionContainer</b></td></tr>
 <tr class="separator:ab37afa82011d0a1d9646c0a334623e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a426ce26b04d636214d22ba3d2c3dc046"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a426ce26b04d636214d22ba3d2c3dc046"></a>
 typedef ActionContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>ActionIterator</b></td></tr>
@@ -173,7 +173,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5656a31dc01cfa267872cc64e6d45c13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ActionHandler.html#a5656a31dc01cfa267872cc64e6d45c13">Bind</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">Input::MetaCode</a> &amp;Code, <a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> *ToBind, bool ForceUnique=true)</td></tr>
 <tr class="memdesc:a5656a31dc01cfa267872cc64e6d45c13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a MetaCode to an action, making the action fire when this handler recieves the code.  <a href="#a5656a31dc01cfa267872cc64e6d45c13">More...</a><br /></td></tr>
 <tr class="separator:a5656a31dc01cfa267872cc64e6d45c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54f80090613752f7252cb4eee2f73080"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ActionHandler.html#a54f80090613752f7252cb4eee2f73080">CreateAction</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
+<tr class="memitem:a54f80090613752f7252cb4eee2f73080"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ActionHandler.html#a54f80090613752f7252cb4eee2f73080">CreateAction</a> (const <a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> &amp;Name)</td></tr>
 <tr class="memdesc:a54f80090613752f7252cb4eee2f73080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classMezzanine_1_1UI_1_1Action.html" title="This class represents an action to be taken. Can have multiple inputs bound to it. ">Action</a> that can be bound to a MetaCode.  <a href="#a54f80090613752f7252cb4eee2f73080">More...</a><br /></td></tr>
 <tr class="separator:a54f80090613752f7252cb4eee2f73080"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e65711ccbe2c2422154149e6839c13a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ActionHandler.html#a7e65711ccbe2c2422154149e6839c13a">DestroyAction</a> (<a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> *ToBeDestroyed)</td></tr>
@@ -195,7 +195,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aac2932f475fba0894a07a887023928dd"><td class="memItemLeft" align="right" valign="top">ConstBindingIterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ActionHandler.html#aac2932f475fba0894a07a887023928dd">EndBinding</a> () const </td></tr>
 <tr class="memdesc:aac2932f475fba0894a07a887023928dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a const iterator to one-passed-the-last Binding.  <a href="#aac2932f475fba0894a07a887023928dd">More...</a><br /></td></tr>
 <tr class="separator:aac2932f475fba0894a07a887023928dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38ddbdb610592b4778185bb6356e2285"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ActionHandler.html#a38ddbdb610592b4778185bb6356e2285">GetAction</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
+<tr class="memitem:a38ddbdb610592b4778185bb6356e2285"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ActionHandler.html#a38ddbdb610592b4778185bb6356e2285">GetAction</a> (const <a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> &amp;Name)</td></tr>
 <tr class="memdesc:a38ddbdb610592b4778185bb6356e2285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an <a class="el" href="classMezzanine_1_1UI_1_1Action.html" title="This class represents an action to be taken. Can have multiple inputs bound to it. ">Action</a> by name.  <a href="#a38ddbdb610592b4778185bb6356e2285">More...</a><br /></td></tr>
 <tr class="separator:a38ddbdb610592b4778185bb6356e2285"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5815fb99343e573e9e38750009c9e492"><td class="memItemLeft" align="right" valign="top">ConstBindingRange&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ActionHandler.html#a5815fb99343e573e9e38750009c9e492">GetActionsBoundToCode</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">Input::MetaCode</a> &amp;Code)</td></tr>
@@ -436,7 +436,7 @@ BindingContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Bindings<
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> * Mezzanine::UI::ActionHandler::CreateAction </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> &amp;&#160;</td>
           <td class="paramname"><em>Name</em></td><td>)</td>
           <td></td>
         </tr>
@@ -569,7 +569,7 @@ BindingContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Bindings<
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1UI_1_1Action.html">Action</a> * Mezzanine::UI::ActionHandler::GetAction </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> &amp;&#160;</td>
           <td class="paramname"><em>Name</em></td><td>)</td>
           <td></td>
         </tr>
@@ -698,7 +698,7 @@ BindingContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Bindings<
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Thu Feb 4 2016 23:17:27 for BlackTopp Studios inc by
+            Generated on Sat Feb 6 2016 00:08:46 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

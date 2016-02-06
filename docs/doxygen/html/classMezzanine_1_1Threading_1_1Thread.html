@@ -95,10 +95,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ae035051c0e066c9665ce17d4829c4ff3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae035051c0e066c9665ce17d4829c4ff3"></a>
-typedef pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ae035051c0e066c9665ce17d4829c4ff3">native_handle_type</a></td></tr>
-<tr class="memdesc:ae035051c0e066c9665ce17d4829c4ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The native handle type, made available with requiring specific knowledge of whether it is a posix or win32 handle. <br /></td></tr>
-<tr class="separator:ae035051c0e066c9665ce17d4829c4ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae05d8358b17f314eb6d6b4b4c8f33774"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae05d8358b17f314eb6d6b4b4c8f33774"></a>
+typedef pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ae05d8358b17f314eb6d6b4b4c8f33774">native_handle_type</a></td></tr>
+<tr class="memdesc:ae05d8358b17f314eb6d6b4b4c8f33774"><td class="mdescLeft">&#160;</td><td class="mdescRight">The native handle type, made available with requiring specific knowledge of whether it is a posix or win32 handle. <br /></td></tr>
+<tr class="separator:ae05d8358b17f314eb6d6b4b4c8f33774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -126,7 +126,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa36b3de22ce213ef67f147a56b286c88"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#aa36b3de22ce213ef67f147a56b286c88">joinable</a> () const </td></tr>
 <tr class="memdesc:aa36b3de22ce213ef67f147a56b286c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the thread is joinable.  <a href="#aa36b3de22ce213ef67f147a56b286c88">More...</a><br /></td></tr>
 <tr class="separator:aa36b3de22ce213ef67f147a56b286c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0787f7fb3d50789851f7b57c7b598acd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ae035051c0e066c9665ce17d4829c4ff3">native_handle_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#a0787f7fb3d50789851f7b57c7b598acd">native_handle</a> ()</td></tr>
+<tr class="memitem:a0787f7fb3d50789851f7b57c7b598acd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ae05d8358b17f314eb6d6b4b4c8f33774">native_handle_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#a0787f7fb3d50789851f7b57c7b598acd">native_handle</a> ()</td></tr>
 <tr class="memdesc:a0787f7fb3d50789851f7b57c7b598acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the native handle for this thread.  <a href="#a0787f7fb3d50789851f7b57c7b598acd">More...</a><br /></td></tr>
 <tr class="separator:a0787f7fb3d50789851f7b57c7b598acd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -166,7 +166,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Default constructor. </p>
 <p>Construct a <code>thread</code> object without an associated thread of execution (i.e. non-joinable). </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00114">114</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00112">112</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -367,7 +367,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ae035051c0e066c9665ce17d4829c4ff3">native_handle_type</a> Mezzanine::Threading::Thread::native_handle </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ae05d8358b17f314eb6d6b4b4c8f33774">native_handle_type</a> Mezzanine::Threading::Thread::native_handle </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -384,7 +384,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Under Windows, this is a <code>HANDLE</code>, and under POSIX systems, this is a <code>pthread_t</code>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The native handle for the thread in case it is desired to use it with OS APIs. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00167">167</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00165">165</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -395,7 +395,7 @@ Static Public Member Functions</h2></td></tr>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Thu Feb 4 2016 23:17:27 for BlackTopp Studios inc by
+            Generated on Sat Feb 6 2016 00:08:46 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

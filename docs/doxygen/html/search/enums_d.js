@@ -8,5 +8,5 @@ var searchData=
   ['positioningflags',['PositioningFlags',['../namespaceMezzanine_1_1UI.html#a284c10d86b679ec8cc3ca478ae91460b',1,'Mezzanine::UI']]],
   ['projectiontype',['ProjectionType',['../namespaceMezzanine_1_1Graphics.html#aa0dad9a68dd619d2a4bd4a6825505961',1,'Mezzanine::Graphics']]],
   ['providermode',['ProviderMode',['../classMezzanine_1_1UI_1_1PagedContainer.html#a4ed03622922e53f7de689b701f1a5841',1,'Mezzanine::UI::PagedContainer']]],
-  ['proxytype',['ProxyType',['../namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b',1,'Mezzanine']]]
+  ['proxytype',['ProxyType',['../namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b',1,'Mezzanine::ProxyType()'],['../namespaceMezzanine_1_1Physics.html#a80c4fbe8d2b2c4817756af89056a769c',1,'Mezzanine::Physics::ProxyType()']]]
 ];
