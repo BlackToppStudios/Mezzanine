@@ -106,8 +106,6 @@ namespace Mezzanine
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Action
-        /// @headerfile action.h
         /// @brief This class represents an action to be taken.  Can have multiple inputs bound to it.
         /// @details
         ///////////////////////////////////////
@@ -129,6 +127,7 @@ namespace Mezzanine
         //public:
             /// @brief Class constructor.
             /// @param Name The name to be given to the action.
+            /// @param Handler A pointer to this actions creator.
             Action(const String& Name, ActionHandler* Handler);
             /// @brief Class destructor.
             ~Action();

@@ -61,7 +61,7 @@ namespace Mezzanine
 
             /// @copydoc TextLayer::PopulateTextLinesImpl(const Real)
             virtual void PopulateTextLinesImpl(const Real MaxWidth);
-            /// @copydoc TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)
+            /// @copydoc TextLayer::GetIndexAtOffsetImpl(const Vector2& Offset)
             virtual CharIndexPair GetIndexAtOffsetImpl(const Vector2& Offset);
             /// @copydoc TextLayer::GetOffsetAtIndex(const Integer Index)
             virtual CharOffsetPair GetOffsetAtIndexImpl(const Integer Index);

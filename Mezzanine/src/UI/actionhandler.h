@@ -48,29 +48,45 @@ namespace Mezzanine
     {
         class Action;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ActionHandler
-        /// @headerfile actionhandler.h
         /// @brief This class is the core class responsible for the management of actions.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ActionHandler
         {
         public:
+            /// @brief Container type for Action instances that are stored by this class.
             typedef std::map< String,Action* >                   ActionContainer;
+            /// @brief Iterator type for Action instances that are stored in this class.
             typedef ActionContainer::iterator                    ActionIterator;
+            /// @brief Const Iterator type for Action instances that are stored in this class.
             typedef ActionContainer::const_iterator              ConstActionIterator;
+            /// @brief Container type for in-progress Action instances that are stored by this class.
             typedef std::vector< Action* >                       ActivatedContainer;
+            /// @brief Iterator type for in-progress Action instances that are stored in this class.
             typedef ActivatedContainer::iterator                 ActivatedIterator;
+            /// @brief Const Iterator type for in-progress Action instances that are stored in this class.
             typedef ActivatedContainer::const_iterator           ConstActivatedIterator;
+            /// @brief Container for bindings that connect to input codes to actions.
             typedef std::multimap< Input::MetaCodeKey,Action* >  BindingContainer;
+            /// @brief Iterator type for input-action bindings stored in this class.
             typedef BindingContainer::iterator                   BindingIterator;
+            /// @brief Const Iterator type for input-action bindings stored in this class.
             typedef BindingContainer::const_iterator             ConstBindingIterator;
+            /// @brief A convenience type for the actual input-action binding.
             typedef std::pair< Input::MetaCodeKey,Action* >      BindingPair;
+            /// @brief A convenience type for an iterator range of bindings.
             typedef std::pair<BindingIterator,BindingIterator>   BindingRange;
+            /// @brief A convenience type for a const iterator range of bindings.
             typedef std::pair<ConstBindingIterator,ConstBindingIterator>  ConstBindingRange;
         protected:
+            /// @internal
+            /// @brief Container storing all registered actions.
             ActionContainer Actions;
+            /// @internal
+            /// @brief Container storing all the bindings that connect inputs to actions.
             BindingContainer Bindings;
+            /// @internal
+            /// @brief Container storing all the actions that are in-progress.
             ActivatedContainer ActivatedActions;
         public:
             /// @brief Class constructor.

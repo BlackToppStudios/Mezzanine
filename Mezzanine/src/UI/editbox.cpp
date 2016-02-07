@@ -119,9 +119,6 @@ namespace Mezzanine
         EditBox::~EditBox()
             {  }
 
-        void EditBox::CreateLayoutStrat()
-            { this->LayoutStrat = NULL; }
-
         Boole EditBox::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Verify we can consume inputs.

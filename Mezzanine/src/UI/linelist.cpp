@@ -53,15 +53,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // LineListRenderer Methods
 
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a renderer class specifically designed to draw lines.
+        /// @details
+        ///////////////////////////////////////
         class MEZZ_LIB LineListRenderer : public SimpleRenderer
         {
         protected:
+            /// @brief a pointer to the LineList this rendered is rendering for.
             LineList* Parent;
+
             /// @copydoc SimpleRenderer::RedrawImpl(Boole)
             virtual void RedrawImpl(Boole Force)
             {
-                if(!this->Parent->IsVisible())
-                {
+                if( !this->Parent->IsVisible() ) {
                     this->Dirty = false;
                     return;
                 }
@@ -78,7 +83,7 @@ namespace Mezzanine
                 Real HalfThickness = Thickness * 0.5;
                 Vector2 PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = this->Parent->GetScreen()->GetWhitePixel(PriAtlas);
                 size_t Index = 1;
-                for(  ; Index < Positions.size() ; Index++ )
+                while( Index < Positions.size() )
                 {
                     PerpNorm  = (Positions[Index] - Positions[Index - 1]).Perpendicular().Normalize();
                     LastLeft  = Positions[Index -1 ] - PerpNorm * HalfThickness;
@@ -94,10 +99,11 @@ namespace Mezzanine
                     this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
                     this->PushVertex(ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);      // Right/Bottom
                     this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
+
+                    ++Index;
                 }
 
-                if(IsClosed)
-                {
+                if(IsClosed) {
                     Index = Positions.size() - 1;
                     PerpNorm  = (Positions[0] - Positions[Index]).Perpendicular().Normalize();
                     LastLeft  = Positions[Index] - PerpNorm * HalfThickness;

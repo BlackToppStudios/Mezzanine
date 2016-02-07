@@ -63,14 +63,28 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////
         // TextureAtlasInternalData class and functions
+
+        // Keeps this file form being documented by doxygen
+        /// @cond DontDocumentInternal
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A struct storing all the internal render data for a UI::TextureAtlas.
+        /// @details
+        ///////////////////////////////////////
         struct MEZZ_LIB TextureAtlasInternalData
         {
+            /// @brief A shared pointer to the actual texture of this atlas.
             Ogre::TexturePtr TATexture;
+            /// @brief A material used for 2D rendering of items on this atlas.
             Ogre::MaterialPtr Mat2D;
+            /// @brief A material used for 3D rendering of items on this atlas.
             Ogre::MaterialPtr Mat3D;
+            /// @brief A convenience pointer to the primary pass for 2D rendering of items.
             Ogre::Pass* Pass2D;
+            /// @brief A convenience pointer to the primary pass for 3D rendering of items.
             Ogre::Pass* Pass3D;
 
+            /// @brief Class constructor.
             TextureAtlasInternalData()
             {
                 TATexture.setNull();
@@ -80,6 +94,8 @@ namespace Mezzanine
                 Pass3D = NULL;
             }
         };//TextureAtlasInternalData
+
+        /// @endcond
 
         ///////////////////////////////////////////////////////////
         // TextureAtlas functions
@@ -544,9 +560,9 @@ namespace Mezzanine
             return this->Fonts;
         }
 
-        Sprite* TextureAtlas::GetSprite(const String& Name) const
+        Sprite* TextureAtlas::GetSprite(const String& SpriteName) const
         {
-            ConstSpriteIterator it = this->Sprites.find(Name);
+            ConstSpriteIterator it = this->Sprites.find(SpriteName);
             if( it == this->Sprites.end() )
                 return NULL;
             return (*it).second;

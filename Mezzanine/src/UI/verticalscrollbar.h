@@ -60,7 +60,7 @@ namespace Mezzanine
             /// @brief Constructor helper function for creating a vertically aligned scrollbar.
             /// @param ScrollStyle The button style to be applied to this scrollbar.
             virtual void ConstructVerticalScrollbar(const UI::ScrollbarStyle& ScrollStyle);
-            /// @copydoc Scrollbar::GetUpperScollLimit() const
+            /// @copydoc Scrollbar::GetUpperScrollLimit() const
             virtual Real GetUpperScrollLimit() const;
             /// @copydoc Scrollbar::GetLowerScrollLimit() const
             virtual Real GetLowerScrollLimit() const;
@@ -92,13 +92,13 @@ namespace Mezzanine
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
 
-            /// @copydoc QuadRenderable::SetScrollerValue(const Real&)
+            /// @copydoc Scrollbar::SetScrollerValue(const Real&)
             virtual void SetScrollerValue(const Real& Value);
-            /// @copydoc QuadRenderable::GetScrollerValue() const
+            /// @copydoc Scrollbar::GetScrollerValue() const
             virtual Real GetScrollerValue() const;
-            /// @copydoc QuadRenderable::SetScrollerSize(const Real&)
+            /// @copydoc Scrollbar::SetScrollerSize(const Real&)
             virtual void SetScrollerSize(const Real& Size);
-            /// @copydoc QuadRenderable::GetScrollerSize() const
+            /// @copydoc Scrollbar::GetScrollerSize() const
             virtual Real GetScrollerSize() const;
             /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
             virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);

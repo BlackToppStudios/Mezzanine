@@ -77,6 +77,8 @@ namespace Mezzanine
 
             /// @internal
             /// @brief The container specific logic for updating it's dimensions.
+            /// @param OldSelfRect The pre-update size of this widget.
+            /// @param NewSelfRect The post-update size of this widget.
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect) = 0;
         public:
             /// @brief Blank constructor.
