@@ -56,7 +56,7 @@ namespace Mezzanine
         {
         public:
             /// @brief Class constructor.
-            /// @brief The name to be given to this sprite.
+            /// @param SpriteName The name to be given to this sprite.
             /// @param UVTop The top position of this sprite on the Atlas.
             /// @param UVLeft The left position of this sprite on the Atlas.
             /// @param UVBottom The bottom position of this sprite on the Atlas.

@@ -130,7 +130,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // TabSet Configuration
 
-            /// @copydoc StackedContainer::SetButtonCongig(const UInt16, StackButton*)
+            /// @copydoc StackedContainer::SetButtonConfig(const UInt16, StackButton*)
             /// @note The UInt16 passed into this method should represent the ZOrder of the TabbedSubSet it will make visible.
             virtual void SetButtonConfig(const UInt16 Config, StackButton* ConfigButton);
             /// @copydoc StackedContainer::GetButtonConfig(const StackButton*) const
@@ -173,7 +173,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc StackedContainer::_NotifyButtonSelected(StackedButton*)
+            /// @copydoc StackedContainer::_NotifyButtonSelected(StackButton*)
             virtual void _NotifyButtonSelected(StackButton* Selected);
         };//TabSet
 

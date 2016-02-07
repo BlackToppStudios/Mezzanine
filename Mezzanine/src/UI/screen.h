@@ -127,6 +127,7 @@ namespace Mezzanine
             void Append(ScreenRenderData& OtherData);
             /// @brief Array access operator spanning all 3 Vertex vectors.
             /// @param Index The index to access.
+            /// @return Returns a reference to the VertexData at the specified index.
             VertexData& operator[](const Whole& Index);
         };//ScreenRenderData
 

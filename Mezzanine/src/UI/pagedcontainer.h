@@ -170,6 +170,8 @@ namespace Mezzanine
             virtual void HandleChildStateChangeImpl(Widget* Child, const UInt32& OldState, const UInt32& NewState);
             /// @internal
             /// @brief The container specific logic for updating it's dimensions.
+            /// @param OldSelfRect The pre-update size of this widget.
+            /// @param NewSelfRect The post-update size of this widget.
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect) = 0;
         public:
             /// @brief Blank constructor.
@@ -291,7 +293,7 @@ namespace Mezzanine
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
             /// @brief Take the data stored in an XML Node and overwrite the PageProvider data of this object with it.
-            /// @param SelfRoo tAn XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializePageData(const XML::Node& SelfRoot);
             /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);

@@ -104,7 +104,7 @@ namespace Mezzanine
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializePageData(XML::Node& SelfRoot) const;
             /// @brief Take the data stored in an XML Node and overwrite the PageProvider data of this object with it.
-            /// @param SelfRoo tAn XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializePageData(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////

@@ -49,8 +49,6 @@ namespace Mezzanine
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Rect
-        /// @headerfile rect.h
         /// @brief This class represents a box shaped area on the screen.
         /// @details
         ///////////////////////////////////////
@@ -90,6 +88,7 @@ namespace Mezzanine
             /// @param PosY The position of this rect on the Y axis.
             /// @param SizeX The size of this rect on the X axis.
             /// @param SizeY The size of this rect on the Y axis.
+            /// @param Relative Whether or not this Rect is expressing relative coordinates (0-1).
             Rect(const Real& PosX, const Real& PosY, const Real& SizeX, const Real& SizeY, Boole Relative)
             {
                 this->Position.SetValues(PosX,PosY);
@@ -249,6 +248,7 @@ namespace Mezzanine
             /// @brief Assignment Operator.
             /// @details Copys the contents of a Rect to another.
             /// @param Other The other Rect to copy from.
+            /// @return Returns a reference to this.
             inline Rect& operator=(const Rect& Other)
             {
                 this->Position = Other.Position;
@@ -259,6 +259,7 @@ namespace Mezzanine
             /// @brief Equality Comparison Operator.
             /// @details Checks to see if the two Rects are equal.
             /// @param Other The other Rect to compare against.
+            /// @return Returns true if this Rect is equal to the Other, false otherwise.
             inline Boole operator==(const Rect& Other)
             {
                 return ( this->Position == Other.Position && this->Size == Other.Size && this->Relative == Other.Relative );
@@ -266,6 +267,7 @@ namespace Mezzanine
             /// @brief Inequality Comparison Operator.
             /// @details Checks to see if the two rects are different.
             /// @param Other The other Rect to compare against.
+            /// @return Returns false of this Rect is equal to the other, true otherwise.
             inline Boole operator!=(const Rect& Other)
             {
                 return ( this->Position != Other.Position || this->Size != Other.Size || this->Relative != Other.Relative );

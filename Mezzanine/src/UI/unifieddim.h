@@ -725,7 +725,7 @@ namespace Mezzanine
             // Utility
 
             /// @brief Sets all data members of this unified rect explicitly.
-            /// @param Position The screen position of the rect.
+            /// @param Pos The screen position of the rect.
             /// @param Area The width and height of the rect.
             inline void SetValues(const UnifiedVec2& Pos, const UnifiedVec2& Area)
             {
@@ -766,6 +766,7 @@ namespace Mezzanine
 
             /// @brief Calculates the actual values when a Rect with actual dimensions has this unified rect applied to it.
             /// @param Actual A Rect containing the actual(pixel) position and size to use as a base for the calculation.
+            /// @param AsChild Whether or not the dimensions should be calculated assuming this is a child rect.
             /// @return Returns a Rect containing the result position and size in actual (pixel) units.
             inline Rect CalculateActualDimensions(const Rect& Actual, Boole AsChild = true) const
             {

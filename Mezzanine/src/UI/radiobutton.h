@@ -200,9 +200,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Event Methods
 
-            /// @copydoc Checkbox::_OnSelected()
+            /// @copydoc CheckBox::_OnSelected()
             virtual void _OnSelected();
-            /// @copydoc Checkbox::_OnDeselected()
+            /// @copydoc CheckBox::_OnDeselected()
             virtual void _OnDeselected();
 
             ///////////////////////////////////////////////////////////////////////////////

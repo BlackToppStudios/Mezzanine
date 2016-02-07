@@ -80,9 +80,6 @@ namespace Mezzanine
         Button::~Button()
             {  }
 
-        void Button::CreateLayoutStrat()
-            { this->LayoutStrat = NULL; }
-
         Boole Button::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Check to see if this is an activation code

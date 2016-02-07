@@ -59,8 +59,11 @@ namespace Mezzanine
         class MEZZ_LIB Glyph
         {
         public:
+            /// @brief Container type for Kerning information stored by this class.
             typedef std::vector<KerningInfo>           KerningContainer;
+            /// @brief Iterator type for Kerning information stored in this class.
             typedef KerningContainer::iterator         KerningIterator;
+            /// @brief Const Iterator type for Kerning information stored in this class.
             typedef KerningContainer::const_iterator   ConstKerningIterator;
 
             /// @brief This enum represents the common whitespace characters found in Ascii/UTF-8.

@@ -80,6 +80,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Takes a position of a renderable char and converts it to the respective position in the raw string.
             /// @note In cases where ASCII is used, this will always return the same number, this exists for when more exotic unicode characters/glyphs are used.
+            /// @param Index The index to be converted.
             /// @return Returns a UInt32 representing the Raw character index of the first character corresponding to the rendered character at the provided index.
             UInt32 ConvertRenderIndexToRawIndex(const UInt32 Index);
         public:
@@ -225,7 +226,7 @@ namespace Mezzanine
 
             /// @copydoc TextToken::InsertCharacter(const UInt32, UInt32)
             virtual UInt32 InsertCharacter(const UInt32 Index, UInt32 UChar);
-            /// @copydoc TextToken::InsertCharacters(const UInt32, Char8*, const UInt32)
+            /// @copydoc TextToken::InsertCharacters(const UInt32, const Char8*, const UInt32)
             virtual UInt32 InsertCharacters(const UInt32 Index, const Char8* Characters, const UInt32 Size);
             /// @copydoc TextToken::InsertCharacters(const UInt32, const UInt32*, const UInt32)
             virtual UInt32 InsertCharacters(const UInt32 Index, const UInt32* Characters, const UInt32 Size);
@@ -253,7 +254,6 @@ namespace Mezzanine
             /// @brief Descriptive constructor.
             /// @param RawText A string containing the raw text of this token.
             /// @param Name The name of this tag.
-            /// @param TType The type of text token to be created.
             InsertTagToken(const String& RawText, const String& Name);
             /// @brief Class destructor.
             virtual ~InsertTagToken();

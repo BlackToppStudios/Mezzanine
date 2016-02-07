@@ -156,9 +156,13 @@ namespace Mezzanine
             virtual void PopulateTextLinesImpl(const Real MaxWidth) = 0;
             /// @internal
             /// @brief Gets the index of the character at the specified offset position.
+            /// @param Position The position (in screen space) of the character to retrieve if one exists.
+            /// @return Returns an std::pair with the first member being whether or not a character was found, and the second member being it's index.  Index will be zero if first is false.
             virtual CharIndexPair GetIndexAtOffsetImpl(const Vector2& Position) = 0;
             /// @internal
             /// @brief Gets the position of the character at the specified index.
+            /// @param Index The character index to get the position offset of.
+            /// @return Returns an std::pair with the first member being whether or not the index was valid, and the second member being the top-left corner of the character specified.
             virtual CharOffsetPair GetOffsetAtIndexImpl(const Integer Index) = 0;
         //public:
             /// @brief No-Font constructor.

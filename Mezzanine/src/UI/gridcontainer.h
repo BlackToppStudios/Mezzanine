@@ -189,7 +189,7 @@ namespace Mezzanine
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
-            /// @copydoc PagedLayoutContainer::UpdateContainerDimensionsImpl(const Rect&,const Rect&)
+            /// @copydoc PagedContainer::UpdateContainerDimensionsImpl(const Rect&,const Rect&)
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect);
         public:
             /// @brief Blank constructor.
@@ -307,7 +307,7 @@ namespace Mezzanine
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
             /// @brief Take the data stored in an XML Node and overwrite the GridRects data of this object with it.
-            /// @param SelfRoo tAn XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializeGridRects(const XML::Node& SelfRoot);
             /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);

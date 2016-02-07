@@ -260,7 +260,7 @@ namespace Mezzanine
             }
         }
 
-        TextLine* MultiLineTextLayer::GetOrCreateTextLine(const UInt32& Index)
+        TextLine* MultiLineTextLayer::GetOrCreateTextLine(const UInt32 Index)
         {
             if( Index >= this->TextLines.size() ) return this->CreateTextLine();
             else return this->TextLines.at(Index);

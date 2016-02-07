@@ -58,13 +58,15 @@ namespace Mezzanine
         protected:
             /// @copydoc TextLayer::PopulateTextLinesImpl(const Real)
             virtual void PopulateTextLinesImpl(const Real MaxWidth);
-            /// @copydoc TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)
+            /// @copydoc TextLayer::GetIndexAtOffsetImpl(const Vector2& Offset)
             virtual CharIndexPair GetIndexAtOffsetImpl(const Vector2& Offset);
-            /// @copydoc TextLayer::GetOffsetAtIndex(const Integer Index)
+            /// @copydoc TextLayer::GetOffsetAtIndexImpl(const Integer Index)
             virtual CharOffsetPair GetOffsetAtIndexImpl(const Integer Index);
             /// @internal
             /// @brief Gets the TextLine at the requested index, or creates one if it doesn't exist.
-            virtual TextLine* GetOrCreateTextLine(const UInt32& Index);
+            /// @param Index The index of the TextLine to retrieve.  If it is not valid it will be created.
+            /// @return Returns a pointer to the TextLine at the specified index.
+            virtual TextLine* GetOrCreateTextLine(const UInt32 Index);
         public:
             /// @brief No-Font constructor.
             /// @param ParentRenderable The renderable that created this layer.

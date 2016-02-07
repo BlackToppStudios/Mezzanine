@@ -64,24 +64,44 @@ namespace Mezzanine
         class Sprite;
         class Glyph;
 
-        /// @brief
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a collection of smaller textures packed into a larger texture, intended to increase UI performance.
         /// @details
+        ///////////////////////////////////////
         class MEZZ_LIB TextureAtlas
         {
         public:
+            /// @brief Container type for storing fonts packed into this atlas.
             typedef std::map<String,FontData*>           FontDataContainer;
+            /// @brief Iterator type for fonts stored in this class.
             typedef FontDataContainer::iterator          FontDataIterator;
+            /// @brief Const Iterator type for fonts stored in this class.
             typedef FontDataContainer::const_iterator    ConstFontDataIterator;
+            /// @brief Container type for storing images packed into this atlas.
             typedef std::map<String,Sprite*>             SpriteContainer;
+            /// @brief Iterator type for images stored in this class.
             typedef SpriteContainer::iterator            SpriteIterator;
+            /// @brief Const Iterator type for images stored in this class.
             typedef SpriteContainer::const_iterator      ConstSpriteIterator;
         protected:
+            /// @internal
+            /// @brief A pointer to internal rendering data that cannot be exposed here.
             TextureAtlasInternalData* TAID;
+            /// @internal
+            /// @brief A container of the fonts packed into this atlas.
             FontDataContainer Fonts;
+            /// @internal
+            /// @brief A container of the images packed into this atlas.
             SpriteContainer Sprites;
-            Vector2 WhitePixel;
-            Vector2 InverseTextureSize;
+            /// @internal
+            /// @brief The name of this atlas.
             String AtlasName;
+            /// @internal
+            /// @brief A known position on the atlas where the pixel is flat white.  Surrounding pixels should also be white.
+            Vector2 WhitePixel;
+            /// @internal
+            /// @brief This is (Size / 1) on the X and Y.  Useful for doing math.
+            Vector2 InverseTextureSize;
 
             /// @brief Parses the texture section of the Texture Atlas.
             void ParseTexture(XML::Node& AtlasTextureNode);
@@ -126,16 +146,16 @@ namespace Mezzanine
             // Information Gathering
 
             /// @brief Gets the set of Glyphs of the specified name.
-            /// @param Name The name of the font as specified in the MTA file.
+            /// @param FontName The name of the font as specified in the MTA file.
             /// @return Returns a pointer to the GlyphData containing all the Glyphs.
             FontData* GetFont(const String& FontName) const;
             /// @brief Gets the full listing of all the FontData instances in this TextureAtlas.
             /// @return Returns a reference to the map storing all the FontData instances loaded for this TextureAtlas.
             FontDataContainer& GetFonts();
             /// @brief Gets a Sprite by name.
-            /// @param Name The name of the Sprite to get.
+            /// @param SpriteName The name of the Sprite to get.
             /// @return Returns a pointer to the named Sprite.
-            Sprite* GetSprite(const String& Name) const;
+            Sprite* GetSprite(const String& SpriteName) const;
             /// @brief Gets the full listing of all the Sprite's in this TextureAtlas.
             /// @return Returns a reference to the map storing all the Sprite's loaded for this TextureAtlas.
             SpriteContainer& GetSprites();
