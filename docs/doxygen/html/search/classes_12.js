@@ -4,7 +4,6 @@ var searchData=
   ['scenemanagerdata',['SceneManagerData',['../classMezzanine_1_1Graphics_1_1SceneManagerData.html',1,'Mezzanine::Graphics']]],
   ['scopedtimer',['ScopedTimer',['../classMezzanine_1_1Threading_1_1ScopedTimer.html',1,'Mezzanine::Threading']]],
   ['screen',['Screen',['../classMezzanine_1_1UI_1_1Screen.html',1,'Mezzanine::UI']]],
-  ['screeninternaldata',['ScreenInternalData',['../structMezzanine_1_1UI_1_1ScreenInternalData.html',1,'Mezzanine::UI']]],
   ['screenrenderdata',['ScreenRenderData',['../classMezzanine_1_1UI_1_1ScreenRenderData.html',1,'Mezzanine::UI']]],
   ['scriptargumentgeneric',['ScriptArgumentGeneric',['../classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric.html',1,'Mezzanine::Scripting']]],
   ['scriptargumentgeneric_3c_20boole_20_3e',['ScriptArgumentGeneric&lt; Boole &gt;',['../classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Boole_01_4.html',1,'Mezzanine::Scripting']]],

@@ -106,7 +106,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1UI_1_1UIManager__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1UI_1_1UIManager__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -287,10 +288,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:aaca6d24616fd2bc9cdeb0b8e46f5830e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of screens created and stored in this manager.  <a href="#aaca6d24616fd2bc9cdeb0b8e46f5830e">More...</a><br /></td></tr>
 <tr class="separator:aaca6d24616fd2bc9cdeb0b8e46f5830e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86716c2c554d47161b111cddf27162eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a86716c2c554d47161b111cddf27162eb">GetScreen</a> (const <a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> &amp;Name) const </td></tr>
-<tr class="memdesc:a86716c2c554d47161b111cddf27162eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an already created screen by name.  <a href="#a86716c2c554d47161b111cddf27162eb">More...</a><br /></td></tr>
+<tr class="memdesc:a86716c2c554d47161b111cddf27162eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a screen by name.  <a href="#a86716c2c554d47161b111cddf27162eb">More...</a><br /></td></tr>
 <tr class="separator:a86716c2c554d47161b111cddf27162eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae56938c22b129a9f4f2d03bfb77bff7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#ae56938c22b129a9f4f2d03bfb77bff7b">GetScreen</a> (const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> &amp;Index) const </td></tr>
-<tr class="memdesc:ae56938c22b129a9f4f2d03bfb77bff7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an already created screen by index.  <a href="#ae56938c22b129a9f4f2d03bfb77bff7b">More...</a><br /></td></tr>
+<tr class="memdesc:ae56938c22b129a9f4f2d03bfb77bff7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a screen by index.  <a href="#ae56938c22b129a9f4f2d03bfb77bff7b">More...</a><br /></td></tr>
 <tr class="separator:ae56938c22b129a9f4f2d03bfb77bff7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fafcbd96be2cf5e8f97d8ba9631879a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a5fafcbd96be2cf5e8f97d8ba9631879a">GetWidgetFocus</a> () const </td></tr>
 <tr class="memdesc:a5fafcbd96be2cf5e8f97d8ba9631879a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current widget being controlled.  <a href="#a5fafcbd96be2cf5e8f97d8ba9631879a">More...</a><br /></td></tr>
@@ -511,7 +512,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>This class is responsible for any and all user interactions with the User interface/HUD. </p>
 <p>Currently, you have to create the UI/HUD in code. Font and sprite data is loaded through a premade mta file(*.mta). </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00113">113</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00114">114</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab99509fa4670b35bbd68d671f58e9073"></a>
 <div class="memitem">
@@ -709,6 +710,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a>. </dd></dl>
 
 <p>Definition at line <a class="el" href="uimanager_8cpp_source.html#l00301">301</a> of file <a class="el" href="uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
@@ -1165,7 +1167,13 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
       </table>
 </div><div class="memdoc">
 
-<p>Gets an already created screen by name. </p>
+<p>Gets a screen by name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Name</td><td>The name of the <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a> to be retrieved. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the screen of the specified name. </dd></dl>
 
 <p>Definition at line <a class="el" href="uimanager_8cpp_source.html#l00317">317</a> of file <a class="el" href="uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
@@ -1186,7 +1194,13 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
       </table>
 </div><div class="memdoc">
 
-<p>Gets an already created screen by index. </p>
+<p>Gets a screen by index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Index</td><td>The index of the <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a> to be retrieved. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the screen at the specified index. </dd></dl>
 
 <p>Definition at line <a class="el" href="uimanager_8cpp_source.html#l00329">329</a> of file <a class="el" href="uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
@@ -2000,7 +2014,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>A pointer to the class responsible for Atlas tasks in the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00170">170</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00171">171</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2024,7 +2038,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>A container storing all of the Inputs buttons will be set to activate in response to. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00154">154</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00155">155</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2048,7 +2062,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>Stores whether or not newly created buttons will have activation codes binded to them automatically. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00182">182</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00183">183</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2072,7 +2086,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>Stores the <a class="el" href="namespaceMezzanine_1_1Input.html" title="This namespace is for all the classes belonging to the Input Subsystem. ">Input</a> that locked the current focus. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00161">161</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00162">162</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2096,7 +2110,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>A pointer to the class responsible for HotKey tasks in the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00173">173</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00174">174</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2120,7 +2134,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>A pointer to the current widget in the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system the mouse is hovered over. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00164">164</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00165">165</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2144,7 +2158,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>A container storing all of the Inputs generated/tracked during the last <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> update. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00157">157</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00158">158</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2168,7 +2182,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>A container storing all the registered/known markup parsers. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00148">148</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00149">149</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2192,7 +2206,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>Stores whether or not the mouse moved since the last time the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> was updated. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00185">185</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00186">186</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2216,7 +2230,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>A container storing all the Screens created in the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00151">151</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00152">152</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2240,7 +2254,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>Can be used for thread safe logging and other thread specific resources. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00179">179</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00180">180</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2264,7 +2278,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>A pointer to the widget that is currently holding the focus. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00167">167</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00168">168</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2288,7 +2302,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 
 <p>The work unit that updates all of the widgets in the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">UI</a> system. </p>
 
-<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00176">176</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
+<p>Definition at line <a class="el" href="uimanager_8h_source.html#l00177">177</a> of file <a class="el" href="uimanager_8h_source.html">uimanager.h</a>.</p>
 
 </div>
 </div>
@@ -2300,7 +2314,7 @@ Manager Default Setting: False. </p><dl class="params"><dt>Parameters</dt><dd>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Feb 6 2016 00:08:47 for BlackTopp Studios inc by
+            Generated on Sun Feb 7 2016 17:35:31 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

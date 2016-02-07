@@ -194,28 +194,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">            /// @param PartID The enum value to calculate the pixel size and position for.</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">            /// @param ScreenSize The current size of the screen the partition is on.</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">            /// @param Returns a Rect storing the actual size and position of the specified partition.</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1Rect.html">Rect</a> CalculatePartitionRect(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a2f9fa62b89673041439c7f35fe7f81cf">NineBoxPartition</a>&amp; PartID, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html">Vector2</a>&amp; ScreenSize);<span class="comment"></span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">            /// @brief Gets the partition that the provided position is in.</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">            /// @param MousePos The screen position used to determine which partition to retrieve.</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">            /// @return Returns a pointer to the PartitionData of the partition the provided mouse position is above.</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1PartitionData.html">PartitionData</a>* GetHoveredPartition(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html">Vector2</a>&amp; MousePos);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1NineBoxStrategy.html">NineBoxStrategy</a>();<span class="comment"></span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1UI_1_1NineBoxStrategy.html">NineBoxStrategy</a>();</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"></span>            <span class="comment">// Utility</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">            /// @copydoc MouseHoverStrategy::FindHoveredWidget(const Vector2&amp; MousePos)</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a>* FindHoveredWidget(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html">Vector2</a>&amp; MousePos);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        };<span class="comment">//NineBoxStrategy</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }<span class="comment">//UI</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classMezzanine_1_1UI_1_1Rect_html"><div class="ttname"><a href="classMezzanine_1_1UI_1_1Rect.html">Mezzanine::UI::Rect</a></div><div class="ttdoc">This class represents a box shaped area on the screen. </div><div class="ttdef"><b>Definition:</b> <a href="UI_2rect_8h_source.html#l00057">rect.h:57</a></div></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">            /// @return Returns a Rect containing the size and position of the partition requested.</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1Rect.html">Rect</a> CalculatePartitionRect(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a2f9fa62b89673041439c7f35fe7f81cf">NineBoxPartition</a>&amp; PartID, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html">Vector2</a>&amp; ScreenSize);<span class="comment"></span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">            /// @brief Gets the partition that the provided position is in.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">            /// @param MousePos The screen position used to determine which partition to retrieve.</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">            /// @return Returns a pointer to the PartitionData of the partition the provided mouse position is above.</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1PartitionData.html">PartitionData</a>* GetHoveredPartition(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html">Vector2</a>&amp; MousePos);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1NineBoxStrategy.html">NineBoxStrategy</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1UI_1_1NineBoxStrategy.html">NineBoxStrategy</a>();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"></span>            <span class="comment">// Utility</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">            /// @copydoc MouseHoverStrategy::FindHoveredWidget(const Vector2&amp; MousePos)</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a>* FindHoveredWidget(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html">Vector2</a>&amp; MousePos);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        };<span class="comment">//NineBoxStrategy</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }<span class="comment">//UI</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classMezzanine_1_1UI_1_1Rect_html"><div class="ttname"><a href="classMezzanine_1_1UI_1_1Rect.html">Mezzanine::UI::Rect</a></div><div class="ttdoc">This class represents a box shaped area on the screen. </div><div class="ttdef"><b>Definition:</b> <a href="UI_2rect_8h_source.html#l00055">rect.h:55</a></div></div>
 <div class="ttc" id="classMezzanine_1_1UI_1_1PartitionData_html_a7613fea295ce6e7f5a130a454bc83c92"><div class="ttname"><a href="classMezzanine_1_1UI_1_1PartitionData.html#a7613fea295ce6e7f5a130a454bc83c92">Mezzanine::UI::PartitionData::PartitionID</a></div><div class="ttdeci">NineBoxPartition PartitionID</div><div class="ttdoc">An enum value identifying which screen partition this is. </div><div class="ttdef"><b>Definition:</b> <a href="nineboxstrategy_8h_source.html#l00078">nineboxstrategy.h:78</a></div></div>
 <div class="ttc" id="classMezzanine_1_1UI_1_1PartitionData_html_a5261a76f23801be65e592e0a9a1cbea6"><div class="ttname"><a href="classMezzanine_1_1UI_1_1PartitionData.html#a5261a76f23801be65e592e0a9a1cbea6">Mezzanine::UI::PartitionData::WidgetContainer</a></div><div class="ttdeci">std::vector&lt; Widget * &gt; WidgetContainer</div><div class="ttdoc">Basic container type for Widget storage by this class. </div><div class="ttdef"><b>Definition:</b> <a href="nineboxstrategy_8h_source.html#l00075">nineboxstrategy.h:75</a></div></div>
 <div class="ttc" id="classMezzanine_1_1UI_1_1MouseHoverStrategy_html"><div class="ttname"><a href="classMezzanine_1_1UI_1_1MouseHoverStrategy.html">Mezzanine::UI::MouseHoverStrategy</a></div><div class="ttdoc">This is the base class for a method of finding which quad the mouse is hovered over. </div><div class="ttdef"><b>Definition:</b> <a href="mousehoverstrategy_8h_source.html#l00058">mousehoverstrategy.h:58</a></div></div>
@@ -236,7 +237,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Feb 6 2016 00:08:40 for BlackTopp Studios inc by
+            Generated on Sun Feb 7 2016 17:35:24 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

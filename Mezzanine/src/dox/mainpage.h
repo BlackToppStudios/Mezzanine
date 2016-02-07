@@ -85,7 +85,7 @@
 
 
 /**
-    @page bst_practices_cmake Best Practices CMake
+    @page best_practices_cmake Best Practices CMake
 
     CMake is a tool for making dependency graphs.
 
@@ -106,35 +106,10 @@
 
 /**
     @page best_practices_cxx Best Practices C++
+    Start with https://github.com/isocpp/CppCoreGuidelines
+
     don't use std::bind
     https://www.youtube.com/watch?v=zt7ThwVfap0&index=30&list=PLHTh1InhhwT75gykhs7pqcR_uSiG601oh
 */
-
-
-/**
-    @page path_on_windows Changing the Windows System PATH
-
-    @section path_on_windows_xp Window XP
-    1. Right-click “My Computer” or “Computer”, click “properties”.
-    2. Click “Advanced” Tab.
-    3. Click “Environment Variables” Button.
-    4. Find the “PATH” variable and add a semicolon and the path to the DirectX SDK to the end
-        (do not erase what is already in there, it _will_ screw your computer).
-    5. Click “OK” 3 times.
-
-    @section path_on_windows_7 Vista and Windows 7
-    1. Right-click “My Computer” or “Computer”, click “properties”.
-    2. Click “Advanced System Settings” Link.
-    3. If a UAC Prompt requests you permission to continue click “Continue”.
-    4. Click “Environment Variables” Button.
-    5. Find the “PATH” variable and add a semicolon and the path to the DirectX SDK to the end
-        (do not erase what is already in there, it _will_ screw your computer).
-    6. Click “OK” 3 times.
-
-    You may need to reboot for the variable to take effect. It is recommended that you
-    do so before you attempt a compile.
-
-*/
-
 
 #endif

@@ -102,6 +102,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_linux.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_macosx.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_windows.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/path_on_windows.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/jagati_package.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/team_and_credits.h"
         "${${PROJECT_NAME}_SRC_DIR}dox/tech_doc_index.h"

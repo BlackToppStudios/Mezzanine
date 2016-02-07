@@ -103,7 +103,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1UI_1_1RightToLeftTextLine__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1UI_1_1RightToLeftTextLine__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -119,6 +120,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:ad65c758d6a718facea7f1a9d4d3a8184"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a series of Characters to the end of this <a class="el" href="classMezzanine_1_1UI_1_1TextLine.html" title="This represents a single line of text to be rendered by a TextLayer. ">TextLine</a>.  <a href="#ad65c758d6a718facea7f1a9d4d3a8184">More...</a><br /></td></tr>
 <tr class="separator:ad65c758d6a718facea7f1a9d4d3a8184"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4da21781242cfe5c500bcf9446d3ae09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1TextLine.html#ac6a4284ccf3d275b657fb75b627c5ee0">CharacterIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1RightToLeftTextLine.html#a4da21781242cfe5c500bcf9446d3ae09">AppendFittingCharacters</a> (<a class="el" href="classMezzanine_1_1UI_1_1TextLine.html#ac6a4284ccf3d275b657fb75b627c5ee0">CharacterIterator</a> First, <a class="el" href="classMezzanine_1_1UI_1_1TextLine.html#ac6a4284ccf3d275b657fb75b627c5ee0">CharacterIterator</a> Last, const <a class="el" href="namespaceMezzanine.html#a38a160363dfb40a110a3b40c56a83ad6">Real</a> MaxWidth)</td></tr>
+<tr class="memdesc:a4da21781242cfe5c500bcf9446d3ae09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds as many Characters in a range as will fit to this <a class="el" href="classMezzanine_1_1UI_1_1TextLine.html" title="This represents a single line of text to be rendered by a TextLayer. ">TextLine</a>.  <a href="#a4da21781242cfe5c500bcf9446d3ae09">More...</a><br /></td></tr>
 <tr class="separator:a4da21781242cfe5c500bcf9446d3ae09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9f549b70c6cfeca50bfe5be0145a3c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a38a160363dfb40a110a3b40c56a83ad6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1RightToLeftTextLine.html#af9f549b70c6cfeca50bfe5be0145a3c4">GetCursorStartPosition</a> () const </td></tr>
 <tr class="memdesc:af9f549b70c6cfeca50bfe5be0145a3c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the offset position of the cursor based on the text order of the layer this text line belongs to.  <a href="#af9f549b70c6cfeca50bfe5be0145a3c4">More...</a><br /></td></tr>
@@ -292,7 +294,7 @@ typedef CharacterContainer::const_reverse_iterator&#160;</td><td class="memItemR
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is a <a class="el" href="classMezzanine_1_1UI_1_1TextLine.html" title="This represents a single line of text to be rendered by a TextLayer. ">TextLine</a> specialization class for text read from the right to the left. </p>
 
-<p>Definition at line <a class="el" href="textline_8h_source.html#l00320">320</a> of file <a class="el" href="textline_8h_source.html">textline.h</a>.</p>
+<p>Definition at line <a class="el" href="textline_8h_source.html#l00323">323</a> of file <a class="el" href="textline_8h_source.html">textline.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a7990df113aff9203f1bc47e5cfc56284"></a>
 <div class="memitem">
@@ -414,7 +416,16 @@ typedef CharacterContainer::const_reverse_iterator&#160;</td><td class="memItemR
 </table>
 </div><div class="memdoc">
 
-<p></p>
+<p>Adds as many Characters in a range as will fit to this <a class="el" href="classMezzanine_1_1UI_1_1TextLine.html" title="This represents a single line of text to be rendered by a TextLayer. ">TextLine</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">First</td><td>Iterator to the first <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a> in the series to be added. </td></tr>
+    <tr><td class="paramname">Last</td><td>Iterator to one passed the last <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a> in the series to be added. </td></tr>
+    <tr><td class="paramname">MaxWidth</td><td>The maximum line width to assume for all text lines that are to be populated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a CharacterIterator to the first character that was not added in the range. This can be the left-most non-added <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a> when added to Left-To-Right TextLines, or the right-most non-added <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a> in Right-To-Left TextLines. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1TextLine.html#a56d5d222f83259793f76e2104b3a7b87">Mezzanine::UI::TextLine</a>.</p>
 
@@ -445,6 +456,12 @@ typedef CharacterContainer::const_reverse_iterator&#160;</td><td class="memItemR
 </div><div class="memdoc">
 
 <p>Adds a character such that it becomes the last in the sequence. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ToAppend</td><td>The character to be appended. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1TextLine.html#a1228bdad4e4936db21fa8249c8427ff1">Mezzanine::UI::TextLine</a>.</p>
 
@@ -485,6 +502,13 @@ typedef CharacterContainer::const_reverse_iterator&#160;</td><td class="memItemR
 </div><div class="memdoc">
 
 <p>Adds a series of characters to the end of this line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">First</td><td>The first <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a> in a range to be appended. </td></tr>
+    <tr><td class="paramname">Last</td><td>The last <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a> in a range to be appended. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1TextLine.html#a5ee94d7c84a1051ab86fb07238cb3220">Mezzanine::UI::TextLine</a>.</p>
 
@@ -746,7 +770,7 @@ typedef CharacterContainer::const_reverse_iterator&#160;</td><td class="memItemR
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Feb 6 2016 00:08:47 for BlackTopp Studios inc by
+            Generated on Sun Feb 7 2016 17:35:30 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

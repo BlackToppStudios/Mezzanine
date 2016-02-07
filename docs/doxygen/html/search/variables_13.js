@@ -65,6 +65,7 @@ var searchData=
   ['sphereradius',['SphereRadius',['../classMezzanine_1_1Graphics_1_1Procedural_1_1IcoSphereGenerator.html#af8418bf67179557a743efb8a19fccdfc',1,'Mezzanine::Graphics::Procedural::IcoSphereGenerator::SphereRadius()'],['../classMezzanine_1_1Graphics_1_1Procedural_1_1SphereGenerator.html#a763093c7a97fcb9f99b5690f82bdbb1d',1,'Mezzanine::Graphics::Procedural::SphereGenerator::SphereRadius()'],['../classMezzanine_1_1Graphics_1_1Procedural_1_1SpherifyModifier.html#ab88ee060e703772cc0234d9e1d4888f0',1,'Mezzanine::Graphics::Procedural::SpherifyModifier::SphereRadius()']]],
   ['spinvalue',['SpinValue',['../classMezzanine_1_1UI_1_1Spinner.html#aca2fa4862d448ce46bf3a94d77f84619',1,'Mezzanine::UI::Spinner']]],
   ['spread',['Spread',['../structMezzanine_1_1Audio_1_1EchoParameters.html#a2db802e50794500d4dcdf3a36ee4bb99',1,'Mezzanine::Audio::EchoParameters']]],
+  ['sprites',['Sprites',['../classMezzanine_1_1UI_1_1TextureAtlas.html#a25fd491ea0cc20697b9b0646ab262e69',1,'Mezzanine::UI::TextureAtlas']]],
   ['startindex',['StartIndex',['../classMezzanine_1_1UI_1_1SingleLineTextLayer.html#af29160c93cb45b9727e03883afa4bec5',1,'Mezzanine::UI::SingleLineTextLayer']]],
   ['startrange',['StartRange',['../classMezzanine_1_1TimedTrackIterator.html#a0240c03470b1bedcfd07aa868599335a',1,'Mezzanine::TimedTrackIterator']]],
   ['startstamp',['StartStamp',['../classMezzanine_1_1Timer.html#a4dd8df2755b757a36dabdfa0fc713a31',1,'Mezzanine::Timer']]],

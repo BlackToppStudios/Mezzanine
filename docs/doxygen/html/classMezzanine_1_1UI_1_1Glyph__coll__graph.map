@@ -1,10 +1,9 @@
 <map id="Mezzanine::UI::Glyph" name="Mezzanine::UI::Glyph">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="310,393,449,420"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1TextureAtlas.html" title="Mezzanine::UI::TextureAtlas" alt="" coords="1773,216,1963,243"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1FontData.html" title="This class represents a collection of Glyphs in a common visual style. " alt="" coords="1199,244,1368,271"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="900,112,980,139"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad. " alt="" coords="2045,99,2195,125"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="603,105,730,146"/>
-<area shape="rect" id="node10" href="$structMezzanine_1_1UI_1_1TextureAtlasInternalData.html" title="Mezzanine::UI::TextureAtlas\lInternalData" alt="" coords="1492,234,1681,275"/>
-<area shape="rect" id="node13" href="$structMezzanine_1_1UI_1_1KerningInfo.html" title="Basic class used to describe Kerning for a given Glyph. " alt="" coords="5,299,187,325"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="310,396,449,423"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1TextureAtlas.html" title="This is a collection of smaller textures packed into a larger texture, intended to increase UI perfor..." alt="" coords="1773,224,1963,251"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1FontData.html" title="This class represents a collection of Glyphs in a common visual style. " alt="" coords="1199,303,1368,329"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="900,109,980,136"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad. " alt="" coords="2045,95,2195,121"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="603,102,730,143"/>
+<area shape="rect" id="node12" href="$structMezzanine_1_1UI_1_1KerningInfo.html" title="Basic class used to describe Kerning for a given Glyph. " alt="" coords="5,309,187,336"/>
 </map>

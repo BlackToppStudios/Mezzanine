@@ -1,10 +1,9 @@
 <map id="Mezzanine::UI::TextureAtlas" name="Mezzanine::UI::TextureAtlas">
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1FontData.html" title="This class represents a collection of Glyphs in a common visual style. " alt="" coords="853,188,1023,215"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations. ..." alt="" coords="1157,109,1307,136"/>
-<area shape="rect" id="node12" href="$classMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad. " alt="" coords="863,441,1013,468"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="207,76,345,103"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="236,389,316,416"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="5,382,132,423"/>
-<area shape="rect" id="node10" href="$structMezzanine_1_1UI_1_1KerningInfo.html" title="Basic class used to describe Kerning for a given Glyph. " alt="" coords="540,7,721,33"/>
-<area shape="rect" id="node13" href="$structMezzanine_1_1UI_1_1TextureAtlasInternalData.html" title="Mezzanine::UI::TextureAtlas\lInternalData" alt="" coords="181,145,371,186"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1FontData.html" title="This class represents a collection of Glyphs in a common visual style. " alt="" coords="803,273,972,300"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations. ..." alt="" coords="1107,352,1256,379"/>
+<area shape="rect" id="node12" href="$classMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad. " alt="" coords="813,36,962,63"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="181,411,320,437"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="211,92,291,119"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="5,85,132,126"/>
+<area shape="rect" id="node10" href="$structMezzanine_1_1UI_1_1KerningInfo.html" title="Basic class used to describe Kerning for a given Glyph. " alt="" coords="489,387,671,413"/>
 </map>
