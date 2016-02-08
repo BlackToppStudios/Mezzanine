@@ -179,7 +179,7 @@ namespace Mezzanine
         {
         #if defined(MEZZ_WINDOWS)
             MFV_Frag_Enable  = 0,
-            MFV_Frag_Disable = 1,
+            MFV_Frag_Disable = 1
         #elif defined(MEZZ_MACOSX)
             // No Support
         #elif defined(MEZZ_LINUX)

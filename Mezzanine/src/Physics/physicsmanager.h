@@ -323,6 +323,12 @@ namespace Mezzanine
             CollisionMap Collisions;
 
             /// @internal
+            /// @brief The amount of time (in seconds) a single simulation step should advance.
+            Real StepSize;
+            /// @internal
+            /// @brief A Multiplier that adjusts how fast physics runs relative to clock time.
+            Real TimeMultiplier;
+            /// @internal
             /// @brief The current rendering mode for the debug drawer.
             Integer DebugRenderMode;
             /// @internal
@@ -331,12 +337,6 @@ namespace Mezzanine
             /// @internal
             /// @brief The number of threads the internal thread providers should allocate.
             Whole ThreadCount;
-            /// @internal
-            /// @brief The amount of time (in seconds) a single simulation step should advance.
-            Real StepSize;
-            /// @internal
-            /// @brief A Multiplier that adjusts how fast physics runs relative to clock time.
-            Real TimeMultiplier;
             /// @internal
             /// @brief Whether or not the physics simulation is to step each frame.
             Boole SimulationPaused;
