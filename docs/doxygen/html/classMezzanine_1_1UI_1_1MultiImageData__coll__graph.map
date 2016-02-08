@@ -1,15 +1,14 @@
 <map id="Mezzanine::UI::MultiImageData" name="Mezzanine::UI::MultiImageData">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="539,173,703,200"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad. " alt="" coords="547,291,696,317"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="300,291,380,317"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1TextureAtlas.html" title="Mezzanine::UI::TextureAtlas" alt="" coords="1204,313,1393,340"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1FontData.html" title="This class represents a collection of Glyphs in a common visual style. " alt="" coords="2032,383,2201,409"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="32,283,159,325"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations. ..." alt="" coords="1497,428,1647,455"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="866,416,1005,443"/>
-<area shape="rect" id="node13" href="$structMezzanine_1_1UI_1_1KerningInfo.html" title="Basic class used to describe Kerning for a given Glyph. " alt="" coords="845,489,1026,516"/>
-<area shape="rect" id="node15" href="$structMezzanine_1_1UI_1_1TextureAtlasInternalData.html" title="Mezzanine::UI::TextureAtlas\lInternalData" alt="" coords="841,225,1030,266"/>
-<area shape="rect" id="node16" href="$classMezzanine_1_1UI_1_1UnifiedRect.html" title="This class represents a 2D rect which can express the size and position of a renderable on screen..." alt="" coords="529,21,713,48"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1UnifiedVec2.html" title="This class represents a point in 2D space using UnifiedDim&#39;s. " alt="" coords="247,21,433,48"/>
-<area shape="rect" id="node18" href="$classMezzanine_1_1UI_1_1UnifiedDim.html" title="This class represents both the relative and absolute values that can be expressed for the values on o..." alt="" coords="5,21,185,48"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="539,123,703,149"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad. " alt="" coords="547,331,696,357"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="300,331,380,357"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1TextureAtlas.html" title="This is a collection of smaller textures packed into a larger texture, intended to increase UI perfor..." alt="" coords="1204,371,1393,397"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1FontData.html" title="This class represents a collection of Glyphs in a common visual style. " alt="" coords="2032,267,2201,293"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="32,323,159,365"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations. ..." alt="" coords="1497,281,1647,308"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="866,281,1005,308"/>
+<area shape="rect" id="node13" href="$structMezzanine_1_1UI_1_1KerningInfo.html" title="Basic class used to describe Kerning for a given Glyph. " alt="" coords="845,229,1026,256"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1UnifiedRect.html" title="This class represents a 2D rect which can express the size and position of a renderable on screen..." alt="" coords="529,21,713,48"/>
+<area shape="rect" id="node16" href="$classMezzanine_1_1UI_1_1UnifiedVec2.html" title="This class represents a point in 2D space using UnifiedDim&#39;s. " alt="" coords="247,21,433,48"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1UnifiedDim.html" title="This class represents both the relative and absolute values that can be expressed for the values on o..." alt="" coords="5,21,185,48"/>
 </map>

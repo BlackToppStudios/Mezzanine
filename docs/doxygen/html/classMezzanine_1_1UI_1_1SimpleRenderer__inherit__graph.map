@@ -1,5 +1,5 @@
 <map id="Mezzanine::UI::SimpleRenderer" name="Mezzanine::UI::SimpleRenderer">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1LineListRenderer.html" title="Mezzanine::UI::LineListRenderer" alt="" coords="261,61,475,87"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1LineListRenderer.html" title="This is a renderer class specifically designed to draw lines. " alt="" coords="261,61,475,87"/>
 <area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="269,111,467,138"/>
 <area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ..." alt="" coords="523,111,712,138"/>
 <area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1ImageLayer.html" title="This layer is for placing images and basic colours in it&#39;s parents&#39; quad space. " alt="" coords="760,78,943,105"/>

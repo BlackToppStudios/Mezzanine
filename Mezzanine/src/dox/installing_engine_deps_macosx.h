@@ -43,7 +43,7 @@
 
 /**
     @page installing_engine_deps_macosx Installing Mac OS X Engine Dependencies
-    asf
+    We need to document this, but in short everything mandatory is included.
 */
 
 #endif

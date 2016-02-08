@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-35 137,-35 137,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a xlink:href="classMezzanine_1_1Vector3LengthCompare.html" target="_top" xlink:title="A compare fuctor that uses vector length. ">
+<g id="a_node1"><a xlink:href="classMezzanine_1_1XML_1_1AttributeIterator.html" target="_top" xlink:title="Attribute iterator (a bidirectional iterator over a collection of Attribute). ">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 133,-30.5 133,-0.5 0,-0.5"/>
-<text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::Vector3Length</text>
-<text text-anchor="middle" x="66.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Compare</text>
+<text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Mezzanine::XML::Attribute</text>
+<text text-anchor="middle" x="66.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Iterator</text>
 </a>
 </g>
 </g>

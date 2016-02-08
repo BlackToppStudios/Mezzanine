@@ -33,6 +33,7 @@ var searchData=
   ['interpolateamount',['InterpolateAmount',['../classMezzanine_1_1Graphics_1_1Procedural_1_1LerpGenerator.html#a2550cb84f7bc9ae94021e260da752031',1,'Mezzanine::Graphics::Procedural::LerpGenerator']]],
   ['intersections',['Intersections',['../classMezzanine_1_1Graphics_1_1Procedural_1_1MultiPath.html#a66ae8d3b4cf2c22067437b7f2a8e328d',1,'Mezzanine::Graphics::Procedural::MultiPath']]],
   ['inversesize',['InverseSize',['../classMezzanine_1_1UI_1_1Screen.html#ab6bf1fec879cf4a5a9abc22eeef00763',1,'Mezzanine::UI::Screen']]],
+  ['inversetexturesize',['InverseTextureSize',['../classMezzanine_1_1UI_1_1TextureAtlas.html#a82a0a82c463e003b5abee5356d59ec57',1,'Mezzanine::UI::TextureAtlas']]],
   ['inworld',['InWorld',['../classMezzanine_1_1Graphics_1_1RenderableProxy.html#aab6fe343856d113fcf2b27474e8a8358',1,'Mezzanine::Graphics::RenderableProxy']]],
   ['iolibname',['IOLibName',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#af854b8b9ecb61ee1168f1210e70a1a96',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],
   ['iotablename',['IOTableName',['../classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html#adfbfbd09248f690f62629e8ee1717d2b',1,'Mezzanine::Scripting::Lua::Lua51ScriptingEngine']]],

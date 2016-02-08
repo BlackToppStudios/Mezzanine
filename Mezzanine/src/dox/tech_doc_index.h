@@ -68,6 +68,7 @@
     @section other_docs_menu Other Documents.
      - @ref running_doxygen
      - @ref cxx_training_and_tools
+     - @ref path_on_windows
 */
 
 #endif

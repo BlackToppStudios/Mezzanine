@@ -51,6 +51,12 @@
      - @ref dev_tools_linux
      - @ref dev_tools_mac
 
+    And be sure you have any optional dependencies installed that you want or need
+
+     - @ref installing_engine_deps_windows
+     - @ref installing_engine_deps_linux
+     - @ref installing_engine_deps_macosx
+
     If you are planning on developing software too it may be a good idea to install a copy of
     @htmlonly<a href="http://www.codeblocks.org/downloads/26">@endhtmlonly
     Code::blocks IDE

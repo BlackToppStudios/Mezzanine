@@ -130,6 +130,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a648bdb355c9fc76c004f851f1dc51819"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a single UTF-32 size character into this token.  <a href="#a648bdb355c9fc76c004f851f1dc51819">More...</a><br /></td></tr>
 <tr class="separator:a648bdb355c9fc76c004f851f1dc51819"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca124fed6ce7904a59a034a39f1f0ea2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1RangeTagToken.html#aca124fed6ce7904a59a034a39f1f0ea2">InsertCharacters</a> (const <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a> Index, const <a class="el" href="namespaceMezzanine.html#a10bb7ef95ad2afa0e59ef9d44127f5f7">Char8</a> *Characters, const <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a> Size)</td></tr>
+<tr class="memdesc:aca124fed6ce7904a59a034a39f1f0ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts multiple characters into this token.  <a href="#aca124fed6ce7904a59a034a39f1f0ea2">More...</a><br /></td></tr>
 <tr class="separator:aca124fed6ce7904a59a034a39f1f0ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab093a66b959068722a197c59ab451bc3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1RangeTagToken.html#ab093a66b959068722a197c59ab451bc3">InsertCharacters</a> (const <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a> Index, const <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a> *Characters, const <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a> Size)</td></tr>
 <tr class="memdesc:ab093a66b959068722a197c59ab451bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts multiple characters into this token.  <a href="#ab093a66b959068722a197c59ab451bc3">More...</a><br /></td></tr>
@@ -244,7 +245,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>This struct represents a markup tag segment from the source string. </p>
 <p>Tag tokens are tokens that represent text that isn't intended to be rendered, but instead alter other text around it or create special characters of their own. The render size on tag token should never never match the text size, instead being 0 or 1. </p>
 
-<p>Definition at line <a class="el" href="texttoken_8h_source.html#l00199">199</a> of file <a class="el" href="texttoken_8h_source.html">texttoken.h</a>.</p>
+<p>Definition at line <a class="el" href="texttoken_8h_source.html#l00200">200</a> of file <a class="el" href="texttoken_8h_source.html">texttoken.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac41731a875d243a1c54db030608cec38"></a>
 <div class="memitem">
@@ -427,7 +428,16 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
+<p>Inserts multiple characters into this token. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Index</td><td>The index at which the characters will be inserted. </td></tr>
+    <tr><td class="paramname">Characters</td><td>An array of Char8's encoded in UTF-8 to be inserted. </td></tr>
+    <tr><td class="paramname">Size</td><td>The size of the array of Char8's passed in. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the number of characters successfully inserted. Note: This is not rendered characters, as they don't get generated until the tokens are re-parsed. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1UI_1_1TextToken.html#ac6555394031c1d24444cd0fac771b59d">Mezzanine::UI::TextToken</a>.</p>
 
@@ -583,7 +593,7 @@ Additional Inherited Members</h2></td></tr>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Feb 6 2016 00:08:47 for BlackTopp Studios inc by
+            Generated on Sun Feb 7 2016 17:35:30 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

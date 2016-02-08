@@ -107,7 +107,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1UI_1_1GridContainer__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1UI_1_1GridContainer__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -1140,6 +1141,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:ab9d425952631c07b7e259d2f4edd11a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation method for serializing additional sets of data.  <a href="#ab9d425952631c07b7e259d2f4edd11a8">More...</a><br /></td></tr>
 <tr class="separator:ab9d425952631c07b7e259d2f4edd11a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d46acf1df41e1b62f1111f30ba40c4c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1GridContainer.html#a9d46acf1df41e1b62f1111f30ba40c4c">UpdateContainerDimensionsImpl</a> (const <a class="el" href="classMezzanine_1_1UI_1_1Rect.html">Rect</a> &amp;OldSelfRect, const <a class="el" href="classMezzanine_1_1UI_1_1Rect.html">Rect</a> &amp;NewSelfRect)</td></tr>
+<tr class="memdesc:a9d46acf1df41e1b62f1111f30ba40c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The container specific logic for updating it's dimensions.  <a href="#a9d46acf1df41e1b62f1111f30ba40c4c">More...</a><br /></td></tr>
 <tr class="separator:a9d46acf1df41e1b62f1111f30ba40c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classMezzanine_1_1UI_1_1PagedContainer"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1UI_1_1PagedContainer')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html">Mezzanine::UI::PagedContainer</a></td></tr>
 <tr class="memitem:ab67a4d49866583170e79c8d35b9a5e17 inherit pro_methods_classMezzanine_1_1UI_1_1PagedContainer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ab67a4d49866583170e79c8d35b9a5e17">HandleChildStateChangeImpl</a> (<a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *Child, const <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a> &amp;OldState, const <a class="el" href="namespaceMezzanine.html#a9c46fe425c99a5352f0c4391c31c0602">UInt32</a> &amp;NewState)</td></tr>
@@ -1842,7 +1844,7 @@ Protected Attributes</h2></td></tr>
 <p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> Node and overwrite the GridRects data of this object with it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">SelfRoo</td><td>tAn <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> containing the data to populate this class with. </td></tr>
+    <tr><td class="paramname">SelfRoot</td><td>An <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> containing the data to populate this class with. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2494,7 +2496,14 @@ Relative portion of the cell size is relative to this containers view size. </dd
 </table>
 </div><div class="memdoc">
 
-<p></p>
+<p>The container specific logic for updating it's dimensions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OldSelfRect</td><td>The pre-update size of this widget. </td></tr>
+    <tr><td class="paramname">NewSelfRect</td><td>The post-update size of this widget. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a1c2b9c3e9648140ef11469bb1eeec07e">Mezzanine::UI::PagedContainer</a>.</p>
 
@@ -2613,7 +2622,7 @@ Relative portion of the cell size is relative to this containers view size. </dd
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sat Feb 6 2016 00:08:46 for BlackTopp Studios inc by
+            Generated on Sun Feb 7 2016 17:35:30 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

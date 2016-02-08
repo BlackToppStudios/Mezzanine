@@ -16,7 +16,6 @@ var searchData=
   ['texture',['Texture',['../classMezzanine_1_1Graphics_1_1Texture.html',1,'Mezzanine::Graphics']]],
   ['textureatlas',['TextureAtlas',['../classMezzanine_1_1UI_1_1TextureAtlas.html',1,'Mezzanine::UI']]],
   ['textureatlashandler',['TextureAtlasHandler',['../classMezzanine_1_1UI_1_1TextureAtlasHandler.html',1,'Mezzanine::UI']]],
-  ['textureatlasinternaldata',['TextureAtlasInternalData',['../structMezzanine_1_1UI_1_1TextureAtlasInternalData.html',1,'Mezzanine::UI']]],
   ['texturebuffer',['TextureBuffer',['../classMezzanine_1_1Graphics_1_1Procedural_1_1TextureBuffer.html',1,'Mezzanine::Graphics::Procedural']]],
   ['texturegenerator',['TextureGenerator',['../classMezzanine_1_1Graphics_1_1Procedural_1_1TextureGenerator.html',1,'Mezzanine::Graphics::Procedural']]],
   ['texturemanager',['TextureManager',['../classMezzanine_1_1Graphics_1_1TextureManager.html',1,'Mezzanine::Graphics']]],
