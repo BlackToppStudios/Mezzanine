@@ -368,12 +368,12 @@ namespace Mezzanine
 
         PhysicsManager::PhysicsManager(World* Creator) :
             WorldManager(Creator),
-            SimulationPaused(false),
+            StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
             DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
-            StepSize(1.0/60.0),
-            TimeMultiplier(1.0),
+            SimulationPaused(false),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),
@@ -396,12 +396,12 @@ namespace Mezzanine
 
         PhysicsManager::PhysicsManager(World* Creator, const ManagerConstructionInfo& Info) :
             WorldManager(Creator),
-            SimulationPaused(false),
+            StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
             DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
-            StepSize(1.0/60.0),
-            TimeMultiplier(1.0),
+            SimulationPaused(false),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),
@@ -422,12 +422,12 @@ namespace Mezzanine
 
         PhysicsManager::PhysicsManager(World* Creator, const XML::Node& XMLNode) :
             WorldManager(Creator),
-            SimulationPaused(false),
+            StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
             DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
-            StepSize(1.0/60.0),
-            TimeMultiplier(1.0),
+            SimulationPaused(false),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),

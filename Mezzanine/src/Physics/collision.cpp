@@ -136,7 +136,7 @@ namespace Mezzanine
 
         void Collision::UpdatePenetrationDistances()
         {
-            if( this->InternalData->Manifolds.size() > this->PenetrationDistances.size() )
+            if( this->InternalData->Manifolds.size() > static_cast<int>( this->PenetrationDistances.size() ) )
                 this->PenetrationDistances.resize( this->InternalData->Manifolds.size() );
             this->PenetrationDistances.clear();
             for( Integer X = 0 ; X < this->InternalData->Manifolds.size() ; ++X )

@@ -53,15 +53,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////
         // CollisionDispatcher functions
 
-        CollisionDispatcher::CollisionDispatcher(PhysicsManager * PhysMan, btCollisionConfiguration* CollisionConfig) : 
-            PhysMan( PhysMan ), 
-            btCollisionDispatcher(CollisionConfig)
-        {
-        }
+        CollisionDispatcher::CollisionDispatcher(PhysicsManager * PhysMan, btCollisionConfiguration* CollisionConfig) :
+            btCollisionDispatcher(CollisionConfig),
+            PhysMan( PhysMan )
+            {  }
 
         CollisionDispatcher::~CollisionDispatcher()
-        {
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // New Implementation based on Algorithm creation
@@ -174,8 +172,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////
         // ParallelCollisionDispatcher functions
 
-        ParallelCollisionDispatcher::ParallelCollisionDispatcher(PhysicsManager * PhysMan, btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig) : 
-            PhysMan( PhysMan ), 
+        ParallelCollisionDispatcher::ParallelCollisionDispatcher(PhysicsManager * PhysMan, btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig) :
+            PhysMan( PhysMan ),
             SpuGatheringCollisionDispatcher(ThreadInterface,MaxNumTasks,CollisionConfig)
         {
         }
