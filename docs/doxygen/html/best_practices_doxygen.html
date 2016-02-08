@@ -73,8 +73,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><p>Doxygen is a tool for extracting API documentation from source code. Doxygen reads source code the same way a C, C++ or Java compiler would, but can also read special comments to include extra information. This page is about making the most of doxygen by entering high quality information. If you want to learn how to run doxygen see the page on <a class="el" href="running_doxygen.html">Running Doxygen</a> or if you want to know how to install it see the appropriate page about our <a class="el" href="tech_doc_index.html#dev_tools_menu">Development Tools</a>.</p>
 <h1><a class="anchor" id="best_practices_doxygen_visibility"></a>
 D1 Improve Errors visibilty during builds</h1>
-<p>Errors can't be fixed if you cannot see them. Try to use tools that will show you the errors that running the build process creates. Using.... describe more about IDEs here.</p>
-<h1><a class="anchor" id="best_practices_doxygen_minimum"></a>
+<p>Errors can't be fixed if you cannot see them. Try to use tools that will show you the errors that running the build process creates. When running doxygen you might redirect the errors to a file and review the file to assist in troubleshooting syntax errors in documentation. Here is a simple way to make "results.txt" from the warnings and errors doxygen emits:</p>
+<pre class="fragment">$ doxygen doxygen.config 2&gt; results.txt
+</pre><p>Another way to get good visibility is to read the doxygen logfile, but is needs to be set in the doygen configuration. Use the "WARN_LOGFILE" directive to set this. You can also set the "WARN_FORMAT" directive to something your IDE understands and get warnings your IDE understands. With Qt Creator and Code::Blocks this allows a developer to click on the warnings in the build results panel or windows and have an editor windows show them the offending file and line. Here is the configuration required to do that:</p>
+<pre class="fragment">WARN_FORMAT            = "$file:$line: $text"
+WARN_LOGFILE           = ../html/DoxygenWarnings.txt
+</pre><h1><a class="anchor" id="best_practices_doxygen_minimum"></a>
 D2 Minimum Amount to Document</h1>
 <p>It is easy to document too much or too little. Too much and it will easily fall out of date when the code changes and developers ignore the wall of text. Too little and people using the code and documentation go WTF?! and use some other code or write from scratch.</p>
 <p><br />
@@ -87,30 +91,31 @@ Function/Methods Minimum Amount to Document</h2>
 <li>One @param for each parameter describing its type, accepted values and any default values.</li>
 <li>@return Unless it returns void then the return tty and value shoud be documented.</li>
 <li>@throw If an exception is thrown, its type and conditions for causing the throw should be noted.</li>
-<li>@details Should be added anytime the function has special preconditions. changes state on a class that is not obvious or is otherwise complex.</li>
+<li>@details or add @remarks Should be added anytime the function has special preconditions. Changes state on a class that is not obvious or is otherwise complex.</li>
 </ul>
-<p>Here are some examples of Bad and Good doxygen comments on bad code. This code is terrible to highlight how much of a difference good and bad documentation can make. In a real situation it it likely that even good code with good variable names might still be complex enough to allow misconceptions in.</p>
+<p><br />
+Here are some examples of Bad and Good doxygen comments on bad code. This code is terrible to highlight how much of a difference good and bad documentation can make. In a real situation it it likely that even good code with good variable names might still be complex enough to allow misconceptions in.</p>
 <p><br />
 Bad Dox: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> sqrt(<span class="keywordtype">int</span> x);</div>
 <div class="line"><span class="comment"></span></div>
-<div class="line"><span class="comment">/// \@brief calculates absolute value</span></div>
+<div class="line"><span class="comment">/// @brief calculates absolute value</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">int</span> abs(<span class="keywordtype">int</span> x);</div>
 <div class="line"><span class="comment"></span></div>
-<div class="line"><span class="comment">/// \@param Accepts a float.</span></div>
-<div class="line"><span class="comment">/// \@return Returns a float.</span></div>
+<div class="line"><span class="comment">/// @param Accepts a float.</span></div>
+<div class="line"><span class="comment">/// @return Returns a float.</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">float</span> log(<span class="keywordtype">float</span> x)</div>
-</div><!-- fragment --><p>Good Dox: </p><div class="fragment"><div class="line"><span class="comment">/// \@param x An Integer to take the square root of</span></div>
-<div class="line"><span class="comment"></span><span class="comment">/// \@return An int containing the square root of x. Any floating part is truncated</span></div>
+</div><!-- fragment --><p>Good Dox: </p><div class="fragment"><div class="line"><span class="comment">/// @param x An Integer to take the square root of</span></div>
+<div class="line"><span class="comment"></span><span class="comment">/// @return An int containing the square root of x. Any floating part is truncated</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">int</span> sqrt(<span class="keywordtype">int</span> x);</div>
 <div class="line"><span class="comment"></span></div>
-<div class="line"><span class="comment">/// \@brief Calculates absolute value, the distance from zero</span></div>
-<div class="line"><span class="comment">/// \@param x An int that might be postive or negative.</span></div>
-<div class="line"><span class="comment">/// \@return A positive int (or 0) that is the same as x but with an minus sign removed.</span></div>
+<div class="line"><span class="comment">/// @brief Calculates absolute value, the distance from zero</span></div>
+<div class="line"><span class="comment">/// @param x An int that might be postive or negative.</span></div>
+<div class="line"><span class="comment">/// @return A positive int (or 0) that is the same as x but with an minus sign removed.</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">int</span> abs(<span class="keywordtype">int</span> x);</div>
 <div class="line"><span class="comment"></span></div>
-<div class="line"><span class="comment">/// \@brief Calculate the natural logorithm of a value.</span></div>
-<div class="line"><span class="comment">/// \@param x A float to calculate the log2 of.</span></div>
-<div class="line"><span class="comment">/// \@return Returns a floatX.</span></div>
+<div class="line"><span class="comment">/// @brief Calculate the natural logorithm of a value.</span></div>
+<div class="line"><span class="comment">/// @param x A float to calculate the log2 of.</span></div>
+<div class="line"><span class="comment">/// @return Returns a floatX.</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">float</span> log(<span class="keywordtype">float</span> x)</div>
 </div><!-- fragment --><h2><a class="anchor" id="best_practices_doxygen_minimum_enum"></a>
 Enum Minimum Amount to Document</h2>
@@ -135,21 +140,21 @@ Bad Dox: </p><div class="fragment"><div class="line"><span class="comment">/// @
 </div><!-- fragment --><p>Good Code and Dox: </p><div class="fragment"><div class="line"><span class="comment">/// @brief A Compass direction</span></div>
 <div class="line"><span class="comment"></span><span class="keyword">enum</span> CompassDirection</div>
 <div class="line">{</div>
-<div class="line">    MagneticNorth,</div>
-<div class="line">    MagneticSouth,</div>
-<div class="line">    MagneticWest,</div>
-<div class="line">    MagneticEast,</div>
-<div class="line"></div>
-<div class="line">    North,</div>
-<div class="line">    West,</div>
-<div class="line">    South,</div>
-<div class="line">    East</div>
-<div class="line">};</div>
+<div class="line">    MagneticNorth,  <span class="comment">///&lt; Magnetic North</span></div>
+<div class="line"><span class="comment"></span>    MagneticSouth,  <span class="comment">///&lt; Magnetic South</span></div>
+<div class="line"><span class="comment"></span>    MagneticWest,   <span class="comment">///&lt; Magnetic West</span></div>
+<div class="line"><span class="comment"></span>    MagneticEast,   <span class="comment">///&lt; Magnetic East</span></div>
+<div class="line"><span class="comment"></span></div>
+<div class="line">    North,          <span class="comment">///&lt; Geographic North</span></div>
+<div class="line"><span class="comment"></span>    South,          <span class="comment">///&lt; Geographic South</span></div>
+<div class="line"><span class="comment"></span>    West,           <span class="comment">///&lt; Geographic West</span></div>
+<div class="line"><span class="comment"></span>    East            <span class="comment">///&lt; Geographic East</span></div>
+<div class="line"><span class="comment"></span>};</div>
 </div><!-- fragment --><h2><a class="anchor" id="best_practices_doxygen_minimum_class"></a>
 Class Minimum Amount to Document</h2>
-<p>Most classes should have an @brief providing a simple overview, an @details providing additional rationle and perhaps a few examples in @code/@endcode or @verbatim/@endverbatim sections if their use is complicated. Since every method should be well named and well documented hopefully class documentation can be small.</p>
+<p>Most classes should have an @brief providing a simple overview, an @details providing additional rationle and perhaps a few examples in @code/@endcode or @verbatim/@endverbatim sections if their use is complicated. Use @code when you want systax highlighting and a monospace font, use @verbatim when you don't need syntax hightlighting. Since every method should be well named and well documented hopefully class documentation can be small.</p>
 <p><br />
-Try to docuent classes in the header file just ahead of the class keyword and @class will not be needed.</p>
+Try to document classes in the header file just ahead of the class keyword and @class will not be needed.</p>
 <p><br />
 Example: </p><div class="fragment"><div class="line"><span class="comment">/// @brief A 3x3 matrix intended for use in rotating 3d points.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">/// @details This supports normal math operations via operator overloads and is contructable</span></div>
@@ -164,7 +169,7 @@ Example: </p><div class="fragment"><div class="line"><span class="comment">/// @
 <div class="line"><span class="comment">// Omitted</span></div>
 </div><!-- fragment --><h2><a class="anchor" id="best_practices_doxygen_minimum_file"></a>
 File Minimum Amount to Document</h2>
-<p>All Files get an @file and an @brief describing a little more than the name of the file could desribe. This mostly provides a link in doxygen that might not otherwise have been generated. The @file command accepts a filename, leave it out the document the current file otherwise it will break when the file is renamed.</p>
+<p>All Files get an @file and an @brief describing a little more than the name of the file could desribe. This mostly provides a link in doxygen that might not otherwise have been generated. The @file command accepts a filename, leave it out. If specified doxygen will interpret that block as documentation for some other file which might not existor otherwise break when the file is renamed.</p>
 <p><br />
 Example in foo.h: </p><div class="fragment"><div class="line"><span class="comment">/// @file</span></div>
 <div class="line"><span class="comment"></span><span class="comment">/// @brief This defines the class foo intended for use with @ref bar.</span></div>
@@ -180,17 +185,17 @@ Because the Lizard and the Cat have little to do with each other in code they wi
 <p><br />
 A more reasonable solution is to have Lizard copy documentation from Reptile and Cat from Mammal. This makes it easy for someone changing code and documentation to know what other documentation should be updated. Following a rule like this also implies that someone changing a class has some responsibility to verify the documentation in each derived class.</p>
 <p><br />
-Bad: </p><div class="fragment"><div class="line"><span class="comment">/// \@brief All lizards have 4 legs.</span></div>
-<div class="line"><span class="comment"></span><span class="comment">/// \@return An integer of value 4</span></div>
+Bad: </p><div class="fragment"><div class="line"><span class="comment">/// @brief All lizards have 4 legs.</span></div>
+<div class="line"><span class="comment"></span><span class="comment">/// @return An integer of value 4</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">int</span> Lizard::LegCount() <span class="keyword">const</span>;</div>
 <div class="line"><span class="comment"></span></div>
-<div class="line"><span class="comment">/// \@copydoc Lizard::LegCount() const</span></div>
+<div class="line"><span class="comment">/// @copydoc Lizard::LegCount() const</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">int</span> Cat::LegCount() <span class="keyword">const</span>;</div>
 </div><!-- fragment --><p><br />
-Good: </p><div class="fragment"><div class="line"><span class="comment">/// \@return All Mammals have 4 limbs so this returns an integer of value 4.</span></div>
+Good: </p><div class="fragment"><div class="line"><span class="comment">/// @return All Mammals have 4 limbs so this returns an integer of value 4.</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">int</span> Mammal::LegCount() <span class="keyword">const</span>;</div>
 <div class="line"><span class="comment"></span></div>
-<div class="line"><span class="comment">/// \@copydoc Mammal::LegCount() const</span></div>
+<div class="line"><span class="comment">/// @copydoc Mammal::LegCount() const</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">int</span> Cat::LegCount() <span class="keyword">const</span>;</div>
 </div><!-- fragment --><h1><a class="anchor" id="best_practices_doxygen_identifier"></a>
 D4 Identifier Commands</h1>
@@ -212,7 +217,7 @@ Use: </p><div class="fragment"><div class="line">@ref <a class="code" href="clas
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sun Feb 7 2016 17:35:26 for BlackTopp Studios inc by
+            Generated on Sun Feb 7 2016 20:09:06 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

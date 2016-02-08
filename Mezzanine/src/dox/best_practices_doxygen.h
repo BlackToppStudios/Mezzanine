@@ -50,7 +50,25 @@
 
     @section best_practices_doxygen_visibility D1 Improve Errors visibilty during builds
     Errors can't be fixed if you cannot see them. Try to use tools that will show you the errors
-    that running the build process creates. Using.... describe more about IDEs here.
+    that running the build process creates. When running doxygen you might redirect the errors to a
+    file and review the file to assist in troubleshooting syntax errors in documentation. Here is a
+    simple way to make "results.txt" from the warnings and errors doxygen emits:
+
+    @verbatim
+    $ doxygen doxygen.config 2> results.txt
+    @endverbatim
+
+    Another way to get good visibility is to read the doxygen logfile, but is needs to be set in the
+    doygen configuration. Use the "WARN_LOGFILE" directive to set this. You can also set the
+    "WARN_FORMAT" directive to something your IDE understands and get warnings your IDE understands.
+    With Qt Creator and Code::Blocks this allows a developer to click on the warnings in the build
+    results panel or windows and have an editor windows show them the offending file and line. Here
+    is the configuration required to do that:
+
+    @verbatim
+    WARN_FORMAT            = "$file:$line: $text"
+    WARN_LOGFILE           = ../html/DoxygenWarnings.txt
+    @endverbatim
 
     @section best_practices_doxygen_minimum D2 Minimum Amount to Document
     It is easy to document too much or too little. Too much and it will easily fall out of date when
@@ -71,9 +89,10 @@
     - \@return Unless it returns void then the return tty and value shoud be documented.
     - \@throw If an exception is thrown, its type and conditions for causing the throw should be
     noted.
-    - \@details Should be added anytime the function has special preconditions. changes state on
-    a class that is not obvious or is otherwise complex.
+    - \@details or add \@remarks Should be added anytime the function has special preconditions.
+    Changes state on a class that is not obvious or is otherwise complex.
 
+    @n
     Here are some examples of Bad and Good doxygen comments on bad code. This code is terrible to
     highlight how much of a difference good and bad documentation can make. In a real situation it
     it likely that even good code with good variable names might still be complex enough to allow
@@ -84,28 +103,28 @@
     @code
     int sqrt(int x);
 
-    /// \@brief calculates absolute value
+    /// @brief calculates absolute value
     int abs(int x);
 
-    /// \@param Accepts a float.
-    /// \@return Returns a float.
+    /// @param Accepts a float.
+    /// @return Returns a float.
     float log(float x)
     @endcode
 
     Good Dox:
     @code
-    /// \@param x An Integer to take the square root of
-    /// \@return An int containing the square root of x. Any floating part is truncated
+    /// @param x An Integer to take the square root of
+    /// @return An int containing the square root of x. Any floating part is truncated
     int sqrt(int x);
 
-    /// \@brief Calculates absolute value, the distance from zero
-    /// \@param x An int that might be postive or negative.
-    /// \@return A positive int (or 0) that is the same as x but with an minus sign removed.
+    /// @brief Calculates absolute value, the distance from zero
+    /// @param x An int that might be postive or negative.
+    /// @return A positive int (or 0) that is the same as x but with an minus sign removed.
     int abs(int x);
 
-    /// \@brief Calculate the natural logorithm of a value.
-    /// \@param x A float to calculate the log2 of.
-    /// \@return Returns a floatX.
+    /// @brief Calculate the natural logorithm of a value.
+    /// @param x A float to calculate the log2 of.
+    /// @return Returns a floatX.
     float log(float x)
     @endcode
 
@@ -145,15 +164,15 @@
     /// @brief A Compass direction
     enum CompassDirection
     {
-        MagneticNorth,
-        MagneticSouth,
-        MagneticWest,
-        MagneticEast,
+        MagneticNorth,  ///< Magnetic North
+        MagneticSouth,  ///< Magnetic South
+        MagneticWest,   ///< Magnetic West
+        MagneticEast,   ///< Magnetic East
 
-        North,
-        West,
-        South,
-        East
+        North,          ///< Geographic North
+        South,          ///< Geographic South
+        West,           ///< Geographic West
+        East            ///< Geographic East
     };
     @endcode
 
@@ -161,11 +180,12 @@
     @subsection best_practices_doxygen_minimum_class Class Minimum Amount to Document
     Most classes should have an \@brief providing a simple overview, an \@details providing
     additional rationle and perhaps a few examples in \@code/\@endcode or \@verbatim/\@endverbatim
-    sections if their use is complicated. Since every method should be well named and well
-    documented hopefully class documentation can be small.
+    sections if their use is complicated. Use \@code when you want systax highlighting and a
+    monospace font, use \@verbatim when you don't need syntax hightlighting. Since every method
+    should be well named and well documented hopefully class documentation can be small.
 
     @n
-    Try to docuent classes in the header file just ahead of the class keyword and \@class will not
+    Try to document classes in the header file just ahead of the class keyword and \@class will not
     be needed.
 
     @n
@@ -187,8 +207,9 @@
     @subsection best_practices_doxygen_minimum_file File Minimum Amount to Document
     All Files get an \@file and an \@brief describing a little more than the name of the file could
     desribe. This mostly provides a link in doxygen that might not otherwise have been generated.
-    The \@file command accepts a filename, leave it out the document the current file otherwise it
-    will break when the file is renamed.
+    The \@file command accepts a filename, leave it out. If specified doxygen will interpret that
+    block as documentation for some other file which might not existor otherwise break when the file
+    is renamed.
 
     @n
     Example in foo.h:
@@ -232,21 +253,21 @@
     @n
     Bad:
     @code
-    /// \@brief All lizards have 4 legs.
-    /// \@return An integer of value 4
+    /// @brief All lizards have 4 legs.
+    /// @return An integer of value 4
     int Lizard::LegCount() const;
 
-    /// \@copydoc Lizard::LegCount() const
+    /// @copydoc Lizard::LegCount() const
     int Cat::LegCount() const;
     @endcode
 
     @n
     Good:
     @code
-    /// \@return All Mammals have 4 limbs so this returns an integer of value 4.
+    /// @return All Mammals have 4 limbs so this returns an integer of value 4.
     int Mammal::LegCount() const;
 
-    /// \@copydoc Mammal::LegCount() const
+    /// @copydoc Mammal::LegCount() const
     int Cat::LegCount() const;
     @endcode
 

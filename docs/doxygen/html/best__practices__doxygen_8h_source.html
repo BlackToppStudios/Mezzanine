@@ -132,250 +132,271 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">    @section best_practices_doxygen_visibility D1 Improve Errors visibilty during builds</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">    Errors can&#39;t be fixed if you cannot see them. Try to use tools that will show you the errors</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    that running the build process creates. Using.... describe more about IDEs here.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    @section best_practices_doxygen_minimum D2 Minimum Amount to Document</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    It is easy to document too much or too little. Too much and it will easily fall out of date when</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    the code changes and developers ignore the wall of text. Too little and people using the code</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    and documentation go WTF?! and use some other code or write from scratch.</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">    @n</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">    Here is what we do. We probably tend to go a little too heavily, but we are writing an API and</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">    we feel clarity is worth some maintanence cost.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    @subsection best_practices_doxygen_minimum_function Function/Methods Minimum Amount to Document</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">    Each function/method should get:</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">    - \@brief Every function and method should get one of these unless the \@return or \@param</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    describe it so completely adding this would hurt. (leave \@brief off the int GetX() method on</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">    2D point class for example).</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">    - One \@param for each parameter describing its type, accepted values and any default values.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">    - \@return Unless it returns void then the return tty and value shoud be documented.</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">    - \@throw If an exception is thrown, its type and conditions for causing the throw should be</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    noted.</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">    - \@details Should be added anytime the function has special preconditions. changes state on</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">    a class that is not obvious or is otherwise complex.</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">    Here are some examples of Bad and Good doxygen comments on bad code. This code is terrible to</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">    highlight how much of a difference good and bad documentation can make. In a real situation it</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">    it likely that even good code with good variable names might still be complex enough to allow</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">    misconceptions in.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    that running the build process creates. When running doxygen you might redirect the errors to a</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    file and review the file to assist in troubleshooting syntax errors in documentation. Here is a</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    simple way to make &quot;results.txt&quot; from the warnings and errors doxygen emits:</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    @verbatim</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    $ doxygen doxygen.config 2&gt; results.txt</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    @endverbatim</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">    Another way to get good visibility is to read the doxygen logfile, but is needs to be set in the</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">    doygen configuration. Use the &quot;WARN_LOGFILE&quot; directive to set this. You can also set the</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    &quot;WARN_FORMAT&quot; directive to something your IDE understands and get warnings your IDE understands.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    With Qt Creator and Code::Blocks this allows a developer to click on the warnings in the build</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">    results panel or windows and have an editor windows show them the offending file and line. Here</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    is the configuration required to do that:</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    @verbatim</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">    WARN_FORMAT            = &quot;$file:$line: $text&quot;</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">    WARN_LOGFILE           = ../html/DoxygenWarnings.txt</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">    @endverbatim</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    @section best_practices_doxygen_minimum D2 Minimum Amount to Document</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">    It is easy to document too much or too little. Too much and it will easily fall out of date when</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">    the code changes and developers ignore the wall of text. Too little and people using the code</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">    and documentation go WTF?! and use some other code or write from scratch.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">    @n</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">    Here is what we do. We probably tend to go a little too heavily, but we are writing an API and</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">    we feel clarity is worth some maintanence cost.</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">    @n</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">    Bad Dox:</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">    @code</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">    int sqrt(int x);</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span><span class="comment"></span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">    /// \@brief calculates absolute value</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"></span>    int abs(int x);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">    /// \@param Accepts a float.</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">    /// \@return Returns a float.</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span>    float log(float x)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    @endcode</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    Good Dox:</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    @code<span class="comment"></span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">    /// \@param x An Integer to take the square root of</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">    /// \@return An int containing the square root of x. Any floating part is truncated</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"></span>    int sqrt(int x);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">    @subsection best_practices_doxygen_minimum_function Function/Methods Minimum Amount to Document</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">    Each function/method should get:</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">    - \@brief Every function and method should get one of these unless the \@return or \@param</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">    describe it so completely adding this would hurt. (leave \@brief off the int GetX() method on</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">    2D point class for example).</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">    - One \@param for each parameter describing its type, accepted values and any default values.</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">    - \@return Unless it returns void then the return tty and value shoud be documented.</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">    - \@throw If an exception is thrown, its type and conditions for causing the throw should be</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">    noted.</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">    - \@details or add \@remarks Should be added anytime the function has special preconditions.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">    Changes state on a class that is not obvious or is otherwise complex.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">    @n</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">    Here are some examples of Bad and Good doxygen comments on bad code. This code is terrible to</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">    highlight how much of a difference good and bad documentation can make. In a real situation it</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">    it likely that even good code with good variable names might still be complex enough to allow</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">    misconceptions in.</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">    /// \@brief Calculates absolute value, the distance from zero</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">    /// \@param x An int that might be postive or negative.</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">    /// \@return A positive int (or 0) that is the same as x but with an minus sign removed.</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span>    int abs(int x);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">    /// \@brief Calculate the natural logorithm of a value.</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">    /// \@param x A float to calculate the log2 of.</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">    /// \@return Returns a floatX.</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"></span>    float log(float x)</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    @endcode</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    @subsection best_practices_doxygen_minimum_enum Enum Minimum Amount to Document</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    Most enums just need an \@brief and if the options are not self explanatory a using ///&lt; seems</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    to be the easiest way to document them. You don&#39;t need \@enum unless you are placing the dox</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    far away from the enum. Here is an example:</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    @n</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    Bad Dox:</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    @code<span class="comment"></span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">    /// @enum dir A direction</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span>    enum dir</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        MN, MS, MW, ME,</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        N, W, S, E</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    };</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    @endcode</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    Good Dox:</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    @code<span class="comment"></span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">    /// @brief A Compass direction</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"></span>    enum dir</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        MN, ///&lt; Magnetic North</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        MS, ///&lt; Magnetic South</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        MW, ///&lt; Magnetic West</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        ME, ///&lt; Magnetic East</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        N, W, S, E</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    };</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    @endcode</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    Good Code and Dox:</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    @code<span class="comment"></span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">    /// @brief A Compass direction</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"></span>    enum CompassDirection</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        MagneticNorth,</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        MagneticSouth,</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        MagneticWest,</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        MagneticEast,</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        North,</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        West,</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        South,</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        East</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    };</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    @endcode</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    @subsection best_practices_doxygen_minimum_class Class Minimum Amount to Document</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    Most classes should have an \@brief providing a simple overview, an \@details providing</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    additional rationle and perhaps a few examples in \@code/\@endcode or \@verbatim/\@endverbatim</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    sections if their use is complicated. Since every method should be well named and well</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    documented hopefully class documentation can be small.</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    @n</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    Try to docuent classes in the header file just ahead of the class keyword and \@class will not</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    be needed.</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    @n</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    Example:</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    @code<span class="comment"></span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">    /// @brief A 3x3 matrix intended for use in rotating 3d points.</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">    /// @details This supports normal math operations via operator overloads and is contructable</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">    /// to a unit matrix or accepts all 9 values in row major order:</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">    /// @verbatim</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">    /// Matrix UnitMatrix;</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">    /// Matrix OtherMatrix(1,2,3,4,5,6,7,8,9);</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">    /// Matrix Product = UnitMatrix * OtherMatrix;</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">    /// @endverbatim</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment"></span>    class Matrix</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    // Omitted</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    @endcode</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">    @n</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">    Bad Dox:</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">    @code</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">    int sqrt(int x);</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"></span><span class="comment"></span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">    /// @brief calculates absolute value</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"></span>    int abs(int x);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">    /// @param Accepts a float.</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">    /// @return Returns a float.</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"></span>    float log(float x)</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    @endcode</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    Good Dox:</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    @code<span class="comment"></span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">    /// @param x An Integer to take the square root of</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">    /// @return An int containing the square root of x. Any floating part is truncated</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span>    int sqrt(int x);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">    /// @brief Calculates absolute value, the distance from zero</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">    /// @param x An int that might be postive or negative.</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">    /// @return A positive int (or 0) that is the same as x but with an minus sign removed.</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span>    int abs(int x);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">    /// @brief Calculate the natural logorithm of a value.</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">    /// @param x A float to calculate the log2 of.</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">    /// @return Returns a floatX.</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"></span>    float log(float x)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    @endcode</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    @subsection best_practices_doxygen_minimum_enum Enum Minimum Amount to Document</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    Most enums just need an \@brief and if the options are not self explanatory a using ///&lt; seems</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    to be the easiest way to document them. You don&#39;t need \@enum unless you are placing the dox</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    far away from the enum. Here is an example:</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    @n</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    Bad Dox:</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    @code<span class="comment"></span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">    /// @enum dir A direction</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment"></span>    enum dir</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        MN, MS, MW, ME,</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        N, W, S, E</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    };</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    @endcode</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    Good Dox:</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    @code<span class="comment"></span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">    /// @brief A Compass direction</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment"></span>    enum dir</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        MN, ///&lt; Magnetic North</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        MS, ///&lt; Magnetic South</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        MW, ///&lt; Magnetic West</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        ME, ///&lt; Magnetic East</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        N, W, S, E</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    };</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    @endcode</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    Good Code and Dox:</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    @code<span class="comment"></span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">    /// @brief A Compass direction</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment"></span>    enum CompassDirection</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        MagneticNorth,  ///&lt; Magnetic North</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        MagneticSouth,  ///&lt; Magnetic South</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        MagneticWest,   ///&lt; Magnetic West</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        MagneticEast,   ///&lt; Magnetic East</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        North,          ///&lt; Geographic North</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        South,          ///&lt; Geographic South</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        West,           ///&lt; Geographic West</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        East            ///&lt; Geographic East</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    };</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    @endcode</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    @subsection best_practices_doxygen_minimum_class Class Minimum Amount to Document</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    Most classes should have an \@brief providing a simple overview, an \@details providing</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    additional rationle and perhaps a few examples in \@code/\@endcode or \@verbatim/\@endverbatim</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    sections if their use is complicated. Use \@code when you want systax highlighting and a</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    monospace font, use \@verbatim when you don&#39;t need syntax hightlighting. Since every method</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    should be well named and well documented hopefully class documentation can be small.</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    @subsection best_practices_doxygen_minimum_file File Minimum Amount to Document</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    All Files get an \@file and an \@brief describing a little more than the name of the file could</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    desribe. This mostly provides a link in doxygen that might not otherwise have been generated.</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    The \@file command accepts a filename, leave it out the document the current file otherwise it</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    will break when the file is renamed.</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    @n</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    Example in foo.h:</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    @code<span class="comment"></span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">        /// @file</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">        /// @brief This defines the class foo intended for use with @ref bar.</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment"></span>    @endcode</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    @section best_practices_doxygen_copydoc D3 \@copydoc Should Follow inheritance</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    The \@copydoc directive should primarily be used by following up inheritance heiarchies. When</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    used to in other ways it can creates logical dependencines in the documentation that do not</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    match the code which increases future maintanence effort. Consider the follow inheritance tree</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    of classes:</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    @dot Sample inheritance tree</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    digraph interop {</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        Animal [shape=box];</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        Mammal [shape=box];</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        Reptile [shape=box];</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        Cat [shape=box];</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        Dog [shape=box];</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        Lizard [shape=box];</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        Animal -&gt; Mammal -&gt; Cat;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        Mammal -&gt; Dog;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        Animal -&gt; Reptile -&gt; Lizard;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    }</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    @enddot</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    @n</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    Because the Lizard and the Cat have little to do with each other in code they will change in</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    different in the future. Even if they each have an int LegCount() const member function that</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    return 4, they should not copy documentation from eachother. Someone updating the lizard to have</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    6 legs is unlikely to be concerned the Cat class.</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    @n</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    A more reasonable solution is to have Lizard copy documentation from Reptile and Cat from</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    Mammal. This makes it easy for someone changing code and documentation to know what other</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    documentation should be updated. Following a rule like this also implies that someone changing</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    a class has some responsibility to verify the documentation in each derived class.</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    @n</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    Bad:</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    @code<span class="comment"></span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">    /// \@brief All lizards have 4 legs.</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">    /// \@return An integer of value 4</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment"></span>    int Lizard::LegCount() const;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">    /// \@copydoc Lizard::LegCount() const</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment"></span>    int Cat::LegCount() const;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    @endcode</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    @n</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    Good:</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    @code<span class="comment"></span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">    /// \@return All Mammals have 4 limbs so this returns an integer of value 4.</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment"></span>    int Mammal::LegCount() const;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">    /// \@copydoc Mammal::LegCount() const</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment"></span>    int Cat::LegCount() const;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    @endcode</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    @n</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    Try to document classes in the header file just ahead of the class keyword and \@class will not</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    be needed.</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    @n</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    Example:</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    @code<span class="comment"></span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">    /// @brief A 3x3 matrix intended for use in rotating 3d points.</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">    /// @details This supports normal math operations via operator overloads and is contructable</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">    /// to a unit matrix or accepts all 9 values in row major order:</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">    /// @verbatim</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">    /// Matrix UnitMatrix;</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">    /// Matrix OtherMatrix(1,2,3,4,5,6,7,8,9);</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">    /// Matrix Product = UnitMatrix * OtherMatrix;</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">    /// @endverbatim</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment"></span>    class Matrix</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    // Omitted</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    @endcode</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    @subsection best_practices_doxygen_minimum_file File Minimum Amount to Document</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    All Files get an \@file and an \@brief describing a little more than the name of the file could</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    desribe. This mostly provides a link in doxygen that might not otherwise have been generated.</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    The \@file command accepts a filename, leave it out. If specified doxygen will interpret that</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    block as documentation for some other file which might not existor otherwise break when the file</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    is renamed.</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    @n</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    Example in foo.h:</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    @code<span class="comment"></span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">        /// @file</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">        /// @brief This defines the class foo intended for use with @ref bar.</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment"></span>    @endcode</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    @section best_practices_doxygen_copydoc D3 \@copydoc Should Follow inheritance</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    The \@copydoc directive should primarily be used by following up inheritance heiarchies. When</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    used to in other ways it can creates logical dependencines in the documentation that do not</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    match the code which increases future maintanence effort. Consider the follow inheritance tree</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    of classes:</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    @dot Sample inheritance tree</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    digraph interop {</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        Animal [shape=box];</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        Mammal [shape=box];</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        Reptile [shape=box];</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        Cat [shape=box];</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        Dog [shape=box];</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        Lizard [shape=box];</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        Animal -&gt; Mammal -&gt; Cat;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        Mammal -&gt; Dog;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        Animal -&gt; Reptile -&gt; Lizard;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    @enddot</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    @n</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    Because the Lizard and the Cat have little to do with each other in code they will change in</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    different in the future. Even if they each have an int LegCount() const member function that</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    return 4, they should not copy documentation from eachother. Someone updating the lizard to have</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    6 legs is unlikely to be concerned the Cat class.</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    @n</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    A more reasonable solution is to have Lizard copy documentation from Reptile and Cat from</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    Mammal. This makes it easy for someone changing code and documentation to know what other</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    documentation should be updated. Following a rule like this also implies that someone changing</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    a class has some responsibility to verify the documentation in each derived class.</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    @section best_practices_doxygen_identifier D4 Identifier Commands</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    \@enum, \@typedef, \@class, and other specifiers of things to be documented should be used</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    when documenting things out of line. If the documentation comments precede what you are</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    documenting then these can be omitted. This makes documentation shorter and easier to maintain.</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    @n</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    Some of our older and more stale dox have some of these dangling from when we did not know</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    better.</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    @section best_practices_doxygen_ref D5 References</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    Use \@ref often. Anytime you define a class, page, function, section or any other code or</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    documentation structure you can refer to it with \@ref. If you simple put \@ref followed by the</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    class, function, section or page name you will get a link with the text of the name text from</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    the refferred item. If you want different text include link text in quotes. See some examples:</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    To make:</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    @n</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    @ref Mezzanine::Vector3 and @ref best_practices_doxygen</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    @n</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    Use:</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    @code</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    @ref Mezzanine::Vector3 and @ref best_practices_doxygen</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    @endcode</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    @n</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    To provide custom text like this:</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    @n</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    Bad:</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    @code<span class="comment"></span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">    /// @brief All lizards have 4 legs.</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">    /// @return An integer of value 4</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment"></span>    int Lizard::LegCount() const;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">    /// @copydoc Lizard::LegCount() const</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment"></span>    int Cat::LegCount() const;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    @endcode</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    @n</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    Good:</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    @code<span class="comment"></span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">    /// @return All Mammals have 4 limbs so this returns an integer of value 4.</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment"></span>    int Mammal::LegCount() const;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="comment">    /// @copydoc Mammal::LegCount() const</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="comment"></span>    int Cat::LegCount() const;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    @endcode</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    @section best_practices_doxygen_identifier D4 Identifier Commands</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    \@enum, \@typedef, \@class, and other specifiers of things to be documented should be used</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    when documenting things out of line. If the documentation comments precede what you are</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    documenting then these can be omitted. This makes documentation shorter and easier to maintain.</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    @n</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    @ref Mezzanine::Vector3 &quot;X/Y/Z Thingy&quot; and</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    @ref best_practices_doxygen  &quot;Lexicographer&#39;s hate him&quot;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    @n</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    Use:</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    @code</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    @ref Mezzanine::Vector3 &quot;X/Y/Z Thingy&quot; and</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    @ref best_practices_doxygen &quot;Lexicographer&#39;s hate him&quot;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    @endcode</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;*/</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    Some of our older and more stale dox have some of these dangling from when we did not know</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    better.</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    @section best_practices_doxygen_ref D5 References</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    Use \@ref often. Anytime you define a class, page, function, section or any other code or</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    documentation structure you can refer to it with \@ref. If you simple put \@ref followed by the</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    class, function, section or page name you will get a link with the text of the name text from</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    the refferred item. If you want different text include link text in quotes. See some examples:</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    To make:</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    @n</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    @ref Mezzanine::Vector3 and @ref best_practices_doxygen</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    @n</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    Use:</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    @code</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    @ref Mezzanine::Vector3 and @ref best_practices_doxygen</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    @endcode</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    @n</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    To provide custom text like this:</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    @n</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    @ref Mezzanine::Vector3 &quot;X/Y/Z Thingy&quot; and</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    @ref best_practices_doxygen  &quot;Lexicographer&#39;s hate him&quot;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    @n</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    Use:</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    @code</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    @ref Mezzanine::Vector3 &quot;X/Y/Z Thingy&quot; and</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    @ref best_practices_doxygen &quot;Lexicographer&#39;s hate him&quot;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    @endcode</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;*/</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Sun Feb 7 2016 17:35:22 for BlackTopp Studios inc by
+            Generated on Sun Feb 7 2016 20:09:02 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>
