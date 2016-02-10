@@ -543,6 +543,13 @@ if(Mezz_Doc)
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/open.png
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clopen.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/red_x.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/close.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/Magnifier.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/mag_sel.png
+
             COMMAND ${CMAKE_COMMAND} -E remove
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/tab_a.png
             COMMAND ${CMAKE_COMMAND} -E remove
@@ -551,6 +558,14 @@ if(Mezz_Doc)
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/tab_h.png
             COMMAND ${CMAKE_COMMAND} -E remove
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/tab_s.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search_m.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search_l.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search_r.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search_r.png
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
             COMMENT "Generating API documentation with Doxygen" VERBATIM
             SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
