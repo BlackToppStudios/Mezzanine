@@ -42,14 +42,30 @@
 
 /**
     @page jagati_package Jagati Package
-    This page describes the contents of one package.
+    Currently the Mezzanine engine is one monolithic code base. Many of the libaries can work
+    independently and still be extemely useful. The Jagati Refactor is the modularizing of these
+    libraries.
+
+    @n
+    This page describes the contents of one Jagati package. We wil pull a piece of the Mezzanine out
+    and make a package from it. It will be refactored and adjusted to meet the standards here.
+
+    @n
+    Each package will compile under Clang, GCC, MinGW, TDM-gcc and Visual Studio. Each compilation
+    will enable "-werror" or whatever compiler flag turns all warnings into errors. A slew of extra
+    compiler warnings will be enabled to minimize the chance of writing bugs.
+
+    @n
+    We will keep our current level of documentation. We will keep out curent level of coverage for
+    our automated generation
 
     @section jagati_package_files Files and Folders in a package
+    A rough file hiearchy:
 
     - @ref jagati_package_root – Package Root
         - @ref jagati_package_cmake "CMakeLists.txt"
         - @ref jagati_package_license
-        - @ref jagati_package_manifest
+        - @ref jagati_package_ci
         - @ref jagati_package_readme
         - @ref jagati_package_dox_dir
             - @ref jagati_package_dox_h
@@ -61,19 +77,20 @@
         - @ref jagati_package_test_dir
 
     @section jagati_package_root / – Package Root
-    The root folder,
+    The root folder.
 
     @section jagati_package_cmake CMakeLists.txt and Jagati CMake API
-    We need to describe variables the variables that the root CMakeLists.txt
+    We need to describe variables the variables that the root CMakeLists.txt. This is still being
+    decided on and will likely be determined by ruslo/hunter.
 
-    @section jagati_package_manifest Manifest.xml – Technical details for machines
-    Need to decide and describe how to define dependencies and other meta-data
+    @section jagati_package_ci .travis.yml and appveyor.yml – Coninuous Integration Config
+    Each Jagati package
 
     @section jagati_package_readme Readme.md – Technical details for Humans
     This should have an overview
 
     @section jagati_package_license COPYING.md
-    This file will have legal details about copying the files and resources in the pacakge. The
+    This file will have legal details about copying the files and resources in the package. The
     Default for most Jagati packages is the
     @htmlonly<a href="">@endhtmlonly
     GPL v3
@@ -103,12 +120,13 @@
 
     @section jagati_package_swig_dir swig/ – Special Considerations for SWIG.
     Most people do not want to build their whole game or application in C++. Swig reads the C/C++
-    source of
+    source code of the package and generates bindings for other languages to be able to use the
+    Mezzanine.
 
     @subsection jagati_package_swig_config_h swig/SwigConfig.h – SWIG Entry Point.
-    If this file is present it is the entry point for swig. This should include all the headers
+    If this file is present it is the entry point for Swig. This should include all the headers
     that SWIG is to read and prepare bindings for.
-
+s
     @section jagati_package_test_dir test/ – Test Headers
     A directory full of files that each contain one class describing tests for one part of the
     system

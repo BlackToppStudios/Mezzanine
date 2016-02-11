@@ -69,6 +69,7 @@
      - @ref running_doxygen
      - @ref cxx_training_and_tools
      - @ref path_on_windows
+     - @ref jagati_package
 */
 
 #endif
