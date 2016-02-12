@@ -3,8 +3,8 @@
   <!-- Navigation index tabs for HTML output -->
   <navindex>
     <tab type="mainpage" visible="yes" title="Main"/>
-    <tab type="pages" visible="yes" title="All Pages" intro=""/>
-    <tab type="modules" visible="yes" title="" intro=""/>
+    <tab type="pages" visible="no" title="All Pages" intro=""/>
+    <tab type="modules" visible="no" title="" intro=""/>
     <tab type="namespaces" visible="yes" title="">
       <tab type="namespacelist" visible="yes" title="" intro=""/>
       <tab type="namespacemembers" visible="yes" title="" intro=""/>
