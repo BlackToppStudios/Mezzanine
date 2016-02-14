@@ -119,6 +119,38 @@
 
 */
 
+/**
+    @page suppressing_compiler_warnings Suppressing Compiler warning
+
+    http://en.cppreference.com/w/cpp/preprocessor/impl
+
+    @code
+    #ifndef SWIG
+        #ifdef _MSC_VER // The intel compiler might act up here
+            #define SAVE_WARNING_STATE PRAGMA(warning(push))
+            #define SUPPRESS_VC_WARNING(suppress) PRAGMA(warning(disable: ## suppress ## ))
+            #define SUPPRESS_GCC_WARNING(suppress)
+            #define RESTORE_WARNING_STATE PRAGMA(warning(pop))
+            #define PRAGMA(x) __pragma(x)
+        #else
+            #define SAVE_WARNING_STATE PRAGMA(GCC diagnostic push)
+            #define SUPPRESS_VC_WARNING(X)
+            #define SUPPRESS_GCC_WARNING(X) PRAGMA(GCC diagnostic ignored X)
+            #define RESTORE_WARNING_STATE PRAGMA(GCC diagnostic pop)
+            #define PRAGMA(x) _Pragma(#x)
+        #endif
+    #endif
+    @endcode
+
+
+
+    http://en.cppreference.com/w/cpp/preprocessor/impl
+
+
+
+
+*/
+
 
 
 #endif

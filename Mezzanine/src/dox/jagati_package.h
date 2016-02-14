@@ -41,7 +41,7 @@
 #define _jagati_package_h
 
 /**
-    @page jagati_package Jagati Package
+    @page jagati_package Jagati Package and Refactor
     Currently the Mezzanine engine is one monolithic code base. Many of the libaries can work
     independently and still be extemely useful. The Jagati Refactor is the modularizing of these
     libraries.
@@ -58,6 +58,72 @@
     @n
     We will keep our current level of documentation. We will keep out curent level of coverage for
     our automated generation
+
+    @section jagati_package_package Modules after Jagati Refactor
+
+    @dot Jagati Packages and Dependencies
+    digraph JagatiPackages {
+
+        EntreLua [shape=box];
+        Armadillo [shape=box];
+
+        Lua51Bindings [shape=box];
+        RubyBindings [shape=box];
+        JavaBindings [shape=box];
+
+        Scripting [shape=box];
+        Input [shape=box];
+        Network [shape=box];
+        Resource [shape=box];
+
+        Graphics [shape=box];
+        UI [shape=box];
+        Physics [shape=box];
+        Noise [shape=box];
+        Audio [shape=box];
+
+        Entresol [shape=box];
+        Threading [shape=box];
+        Base [shape=box];
+        Math [shape=box];
+
+        StaticFoundation [shape=box];
+        Testing [shape=box];
+        Foundation [shape=box];
+
+        EntreLua -> Lua51Bindings;
+        Armadillo -> UI;
+
+        Lua51Bindings -> Scripting;
+        RubyBindings -> Scripting;
+        JavaBindings -> Scripting;
+
+        Scripting -> Base;
+        Input -> Base;
+        Network -> Base;
+        Resource -> Base;
+
+        UI -> Graphics;
+        Graphics -> Base;
+        Graphics -> Math;
+        Audio -> Base;
+        Audio -> Math;
+        Physics -> Base;
+        Physics -> Math;
+        Noise -> Base;
+        Noise -> Math;
+
+        Entresol -> Threading;
+        Entresol -> Base;
+        Threading -> Foundation;
+        Base -> Foundation;
+        Math -> Foundation;
+
+        Foundation -> Testing;
+        Testing -> StaticFoundation;
+        Foundation -> StaticFoundation;
+    }
+    @enddot
 
     @section jagati_package_files Files and Folders in a package
     A rough file hiearchy:
