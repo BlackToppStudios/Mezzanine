@@ -98,6 +98,7 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/memorystream.h:285: warning: @copybrief or @copydoc target 'StreamBase::GetSize() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/texttoken.h:266: warning: @copybrief or @copydoc target 'TextToken::InsertCharacters(const UInt32, Char8*, const UInt32)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/crossplatformexport.h:153: warning: Member _MEZZ_PLATFORM_DEFINED_ (macro definition) of file crossplatformexport.h is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/crossplatformexport.h:240: warning: Member PRAGMA(x) (macro definition) of file crossplatformexport.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/exception.h:3048: warning: unable to resolve reference to `ExceptionBase::ExceptionCodes' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:58: warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/macros.h:53: warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.

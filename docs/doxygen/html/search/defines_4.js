@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['test',['TEST',['../testdatatools_8h.html#ae96f07afab7113ef60208b411a870678',1,'testdatatools.h']]],
-  ['test_5fequal_5fepsilon',['TEST_EQUAL_EPSILON',['../testdatatools_8h.html#ab09f96448548954fcfa37a55e173e2e6',1,'testdatatools.h']]],
-  ['test_5fequal_5fmulti_5fepsilon',['TEST_EQUAL_MULTI_EPSILON',['../testdatatools_8h.html#aac363ac18c68cad167d145d7c1ec8ead',1,'testdatatools.h']]],
-  ['test_5fresult',['TEST_RESULT',['../testdatatools_8h.html#a7b8fc734ff3f9bcbcc93129678816b95',1,'testdatatools.h']]],
-  ['test_5fthrow',['TEST_THROW',['../testdatatools_8h.html#a19d0db217e34f822c9ac8d9ba1fa0e07',1,'testdatatools.h']]],
-  ['test_5ftimed',['TEST_TIMED',['../testdatatools_8h.html#ad8e25892547e045eacdd1a39df59512f',1,'testdatatools.h']]],
-  ['test_5fwarn',['TEST_WARN',['../testdatatools_8h.html#aa10ce649e5640d8333dad16680299a2e',1,'testdatatools.h']]]
+  ['save_5fwarning_5fstate',['SAVE_WARNING_STATE',['../crossplatformexport_8h.html#a255afb92e7dbfd4aa7af81ae6fe13b99',1,'crossplatformexport.h']]],
+  ['scopedtimer',['SCOPEDTIMER',['../logtools_8h.html#a27e7af4b1451128deef353932b73317a',1,'logtools.h']]],
+  ['suppress_5fgcc_5fwarning',['SUPPRESS_GCC_WARNING',['../crossplatformexport_8h.html#ae7a90d9ef52a275df468aee6294353b4',1,'crossplatformexport.h']]],
+  ['suppress_5fvc_5fwarning',['SUPPRESS_VC_WARNING',['../crossplatformexport_8h.html#a069f2f2b32eea7acf1a94ca3eae28ccf',1,'crossplatformexport.h']]]
 ];
