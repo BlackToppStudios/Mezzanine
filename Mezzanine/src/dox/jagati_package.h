@@ -149,10 +149,13 @@
     We need to describe variables the variables that the root CMakeLists.txt. This is still being
     decided on and will likely be determined by ruslo/hunter.
 
-    @section jagati_package_ci .travis.yml and appveyor.yml – Coninuous Integration Config
-    Each Jagati package
+    @section jagati_package_gitignores .gitignore
+    This file tells git what does not need to be included in the build.
 
-    @section jagati_package_readme Readme.md – Technical details for Humans
+    @section jagati_package_ci .travis.yml and appveyor.yml – Coninuous Integration Config
+    Each Jagati package will be built and run automatically on a variety of platforms automatically.
+
+    @section jagati_package_readme README.md – Technical details for Humans
     This should have an overview
 
     @section jagati_package_license COPYING.md
@@ -192,7 +195,7 @@
     @subsection jagati_package_swig_config_h swig/SwigConfig.h – SWIG Entry Point.
     If this file is present it is the entry point for Swig. This should include all the headers
     that SWIG is to read and prepare bindings for.
-s
+
     @section jagati_package_test_dir test/ – Test Headers
     A directory full of files that each contain one class describing tests for one part of the
     system
