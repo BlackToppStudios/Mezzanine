@@ -529,26 +529,29 @@ if(Mezz_Doc)
             COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
             COMMAND ${CatCommand} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt 1>&2
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/search.css
-                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search.css
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/closed.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clclosed.png
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/closed.png
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/closed.png
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/closed.png
-                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clclosed.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/open.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clopen.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/favicon.ico
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/favicon.ico
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/open.png
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/open.png
-            COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/open.png
-                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clopen.png
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/red_x.png
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/close.png
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/Magnifier.png
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/mag_sel.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/search.css
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search.css
 
             COMMAND ${CMAKE_COMMAND} -E remove
                     ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/tab_a.png
