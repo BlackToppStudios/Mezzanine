@@ -85,7 +85,11 @@
     CMake
     @htmlonly</a>@endhtmlonly
     — Cmake is a tool to aid in the compiling of specially setup programs, like the configuration of
-    the Ogre 3d library.
+    the Ogre 3d library. If you are building any of the libraries that require CMake 3.2 and are
+    using Ubuntu 14.04 you will need to get a newer version of CMake than what the default Ubuntu
+    repos ship. The PPA https://launchpad.net/~george-edison55/+archive/ubuntu/cmake-3.x has 3.2
+    and some newer builds, you also have the option of building CMake from source or using another
+    PPA.
 
     - @htmlonly<a href="http://www.codeblocks.org/">@endhtmlonly
     Code::Blocks
