@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -72,7 +72,7 @@ namespace Mezzanine
             typedef BillboardContainer::const_iterator   ConstBillboardIterator;
         protected:
             /// @internal
-            /// @brief Container storing all of the Billboard instances created by this manager.
+            /// @brief Container storing all of the Billboard instances created by this proxy.
             BillboardContainer Billboards;
             /// @internal
             /// @brief A pointer to the internal BillboardSet this proxy is based on.
@@ -91,9 +91,10 @@ namespace Mezzanine
             virtual void DestroyBillboardSet();
         public:
             /// @brief Class constructor.
+            /// @param ID The unique ID assigned to this BillboardSetProxy.
             /// @param InitialPoolSize The number of billboards to reserve space for.
             /// @param Creator A pointer to the manager that created this proxy.
-            BillboardSetProxy(const UInt32 InitialPoolSize, SceneManager* Creator);
+            BillboardSetProxy(const UInt32 ID, const UInt32 InitialPoolSize, SceneManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

@@ -1,4 +1,4 @@
 <map id="Mezzanine::ScriptException" name="Mezzanine::ScriptException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="23,83,172,112"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="45,5,149,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="7,80,189,107"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="46,5,150,32"/>
 </map>

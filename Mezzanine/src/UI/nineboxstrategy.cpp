@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -144,7 +144,7 @@ namespace Mezzanine
                 case NBP_BottomCenter:  return Rect(Vector2(ThirdSize.X * 1,ThirdSize.Y * 2),ThirdSize);  break;
                 case NBP_BottomRight:   return Rect(Vector2(ThirdSize.X * 2,ThirdSize.Y * 2),ThirdSize);  break;
                 default:
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid Partition ID used to calculate a Partition Rect.");  break; }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid Partition ID used to calculate a Partition Rect.");  break; }
             }
         }
 

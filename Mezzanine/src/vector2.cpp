@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@
 #include "serialization.h"
 #include "stringtool.h"
 #include "vector2.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 //#include <memory>
@@ -79,6 +79,21 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Prebuilt Vectors
+
+    Vector2 Vector2::Unit_X()
+        { return Vector2(1,0); }
+
+    Vector2 Vector2::Unit_Y()
+        { return Vector2(0,1); }
+
+    Vector2 Vector2::Neg_Unit_X()
+        { return Vector2(-1,0); }
+
+    Vector2 Vector2::Neg_Unit_Y()
+        { return Vector2(0,-1); }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
     void Vector2::SetIdentity()
@@ -91,6 +106,11 @@ namespace Mezzanine
     {
         this->X = x;
         this->Y = y;
+    }
+
+    Boole Vector2::IsZero() const
+    {
+        return ( this->X == 0.0 && this->Y == 0.0 );
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -113,6 +133,12 @@ namespace Mezzanine
 
     Boole Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X >= Vec.X && this->Y >= Vec.Y); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Unary Operators
+
+    Vector2 Vector2::operator- ()
+        { return Vector2( -(this->X), -(this->Y) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector2 Arithmetic with Real
@@ -216,17 +242,35 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Fancy Math
 
+    Real Vector2::CrossProduct(const Vector2& Other) const
+        { return ( this->X * Other.Y ) - ( this->Y * Other.X ); }
+
+    Real Vector2::DotProduct(const Vector2& Other) const
+        { return ( this->X * Other.X ) + ( this->Y * Other.Y ); }
+
+    Real Vector2::Distance(const Vector2& Other) const
+        { return ( *this - Other ).Length(); }
+
+    Real Vector2::SquaredDistance(const Vector2& Other) const
+        { return ( *this - Other ).SquaredLength(); }
+
+    Real Vector2::Length() const
+        { return MathTools::Sqrt( this->SquaredLength() ); }
+
+    Real Vector2::SquaredLength() const
+        { return ( this->X * this->X + this->Y * this->Y ); }
+
     Vector2 Vector2::Perpendicular() const
-    {
-        return Vector2(-Y,X);
-    }
+        { return Vector2(-Y,X); }
+
+    Vector2 Vector2::Reflect(const Vector2& Normal) const
+        { return Vector2( *this - ( Normal * ( 2 * this->DotProduct(Normal) ) ) ); }
 
     Vector2& Vector2::Normalize()
     {
-        Real Length = MathTools::Sqrt( X * X + Y * Y );
+        Real Length = this->Length();
 
-        if ( Length > 1e-08 )
-        {
+        if( Length > 1e-08 ) {
             Real InvLength = 1.0 / Length;
             X *= InvLength;
             Y *= InvLength;
@@ -235,13 +279,42 @@ namespace Mezzanine
         return *this;
     }
 
+    Vector2 Vector2::GetNormal() const
+    {
+        Vector2 Ret( *this );
+        return Ret.Normalize();
+    }
+
+    Real Vector2::AngleTo(const Vector2& Other) const
+    {
+        Real Angle = this->AngleBetween(Other);
+
+		if( this->CrossProduct(Other) < 0 )
+			Angle = MathTools::GetTwoPi() - Angle;
+
+		return Angle;
+    }
+
+    Real Vector2::AngleBetween(const Vector2& Other) const
+    {
+        Real LenProduct = this->Length() * Other.Length();
+		// Divide by zero check
+		if( LenProduct < 1e-6f )
+			LenProduct = 1e-6f;
+
+		Real f = this->DotProduct(Other) / LenProduct;
+
+		f = MathTools::Clamp( f, (Real)-1.0, (Real)1.0 );
+		return MathTools::ACos(f);
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
     void Vector2::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
-        VecNode.SetName(SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(GetSerializableName());
+        VecNode.SetName(GetSerializableName());
 
         Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
         Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
@@ -252,31 +325,43 @@ namespace Mezzanine
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values", SerializableName(),true);
+                SerializeError("Create XML Attribute Values", GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Attributes", SerializableName(),true);
+            SerializeError("Create XML Attributes", GetSerializableName(),true);
         }
     }
 
     void Vector2::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(GetSerializableName()) )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 this->X=OneNode.GetAttribute("X").AsReal();
                 this->Y=OneNode.GetAttribute("Y").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 
-    String Vector2::SerializableName()
-    { return String("Vector2"); }
+    String Vector2::GetSerializableName()
+        { return String("Vector2"); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Vector2LengthCompare methods
+
+    Boole Vector2LengthCompare::operator()(const Vector2& First, const Vector2& Second) const
+    {
+        if( ( First - Second ).SquaredLength() < 1e-6 )
+			return false;
+		if( MathTools::Abs( First.X - Second.X ) > 1e-3 )
+			return ( First.X < Second.X );
+		return ( First.Y < Second.Y );
+    }
 }//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////

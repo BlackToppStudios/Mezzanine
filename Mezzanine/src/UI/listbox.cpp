@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -236,7 +236,7 @@ namespace Mezzanine
         ListBox::ListItem* ListBox::CreateSingleLineListItem(const String& ItemName, const String& Text)
         {
             if( this->ListItemFont == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Font is not set when creating ListItem \"" + ItemName + "\" in ListBox \"" + this->Name + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Font is not set when creating ListItem \"" + ItemName + "\" in ListBox \"" + this->Name + "\".");
             }
             ListItem* NewItem = this->CreateListItem(ItemName);
             SingleLineTextLayer* ItemLayer = NewItem->CreateSingleLineTextLayer();
@@ -254,7 +254,7 @@ namespace Mezzanine
         ListBox::ListItem* ListBox::CreateMultiLineListItem(const String& ItemName, const String& Text)
         {
             if( this->ListItemFont == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Font is not set when creating ListItem \"" + ItemName + "\" in ListBox \"" + this->Name + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Font is not set when creating ListItem \"" + ItemName + "\" in ListBox \"" + this->Name + "\".");
             }
             ListItem* NewItem = this->CreateListItem(ItemName);
             MultiLineTextLayer* ItemLayer = NewItem->CreateMultiLineTextLayer();
@@ -341,10 +341,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetListItemOrdering( static_cast<ListBox::ListItemOrdering>( CurrAttrib.AsWhole() ) );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ListBox::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ListBox::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ListBox::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ListBox::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -355,13 +355,13 @@ namespace Mezzanine
             // Assign the ListScroll
             this->ListScroll = static_cast<VerticalScrollbar*>( this->GetChild(this->Name+".Scroll") );
             if( this->ListScroll == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"List scrollbar not found after ListBox deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"List scrollbar not found after ListBox deserialization.");
             }
 
             // Assign the ListContainer
             this->ListContainer = static_cast<VerticalContainer*>( this->GetChild(this->Name+".Container") );
             if( this->ListContainer == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"List container not found after ListBox deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"List container not found after ListBox deserialization.");
             }
         }
 

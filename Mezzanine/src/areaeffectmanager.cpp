@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,6 +50,7 @@
 
 #include "actormanager.h"
 #include "entresol.h"
+#include "world.h"
 
 #include <sstream>
 #include <algorithm>
@@ -86,7 +87,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // AreaEffectManager Methods
 
-    AreaEffectManager::AreaEffectManager() :
+    const String AreaEffectManager::ImplementationName = "DefaultAreaEffectManager";
+    const ManagerBase::ManagerType AreaEffectManager::InterfaceType = ManagerBase::MT_AreaEffectManager;
+
+    AreaEffectManager::AreaEffectManager(World* Creator) :
+        WorldManager(Creator),
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
     {
@@ -97,7 +102,8 @@ namespace Mezzanine
         this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
     }
 
-    AreaEffectManager::AreaEffectManager(XML::Node& XMLNode) :
+    AreaEffectManager::AreaEffectManager(World* Creator, const XML::Node& XMLNode) :
+        WorldManager(Creator),
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
     {
@@ -133,7 +139,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
         }
     }
 
@@ -148,7 +154,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
         }
     }
 
@@ -160,7 +166,7 @@ namespace Mezzanine
             this->AreaEffects.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
         }
     }
 
@@ -175,7 +181,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
         }
     }
 
@@ -190,7 +196,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
         }
     }
 
@@ -202,7 +208,7 @@ namespace Mezzanine
             this->AreaEffects.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
         }
     }
 
@@ -217,7 +223,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
         }
     }
 
@@ -232,7 +238,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
         }
     }
 
@@ -244,7 +250,7 @@ namespace Mezzanine
             this->AreaEffects.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
         }
     }
 
@@ -262,7 +268,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
         }
     }
 
@@ -274,7 +280,7 @@ namespace Mezzanine
             this->AreaEffects.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
         }
     }
 
@@ -307,7 +313,7 @@ namespace Mezzanine
             if( AEFactIt != this->AreaEffectFactories.end() ) {
                 (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
             }
 
             this->AreaEffects.erase(AEIt);
@@ -323,7 +329,7 @@ namespace Mezzanine
             if( AEFactIt != this->AreaEffectFactories.end() ) {
                 (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
             }
 
             this->AreaEffects.erase(AEIt);
@@ -338,7 +344,7 @@ namespace Mezzanine
             if( AEFactIt != this->AreaEffectFactories.end() ) {
                 (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
             }
         }
         this->AreaEffects.clear();
@@ -418,17 +424,17 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
-            //WorldManager::Initialize();
+            WorldManager::Initialize();     // Verify we have a world
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork, "AreaEffectUpdateWork" );
 
-            Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
             if( PhysicsMan ) {
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetWorldTriggerUpdateWork() );
             }
 
-            Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
+            Mezzanine::ActorManager* ActorMan = static_cast<ActorManager*>( this->ParentWorld->GetManager(ManagerBase::MT_ActorManager) );
             if( ActorMan ) {
                 this->AreaEffectUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
             }
@@ -455,10 +461,10 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType AreaEffectManager::GetInterfaceType() const
-        { return ManagerBase::MT_AreaEffectManager; }
+        { return AreaEffectManager::InterfaceType; }
 
     String AreaEffectManager::GetImplementationTypeName() const
-        { return "DefaultAreaEffectManager"; }
+        { return AreaEffectManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultAreaEffectManagerFactory Methods
@@ -469,16 +475,19 @@ namespace Mezzanine
     DefaultAreaEffectManagerFactory::~DefaultAreaEffectManagerFactory()
         {  }
 
-    String DefaultAreaEffectManagerFactory::GetManagerTypeName() const
-        { return "DefaultAreaEffectManager"; }
+    String DefaultAreaEffectManagerFactory::GetManagerImplName() const
+        { return AreaEffectManager::ImplementationName; }
 
-    ManagerBase* DefaultAreaEffectManagerFactory::CreateManager(NameValuePairList& Params)
-        { return new AreaEffectManager(); }
+    ManagerBase::ManagerType DefaultAreaEffectManagerFactory::GetManagerType() const
+        { return AreaEffectManager::InterfaceType; }
 
-    ManagerBase* DefaultAreaEffectManagerFactory::CreateManager(XML::Node& XMLNode)
-        { return new AreaEffectManager(XMLNode); }
+    WorldManager* DefaultAreaEffectManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
+        { return new AreaEffectManager(Creator); }
 
-    void DefaultAreaEffectManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    WorldManager* DefaultAreaEffectManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
+        { return new AreaEffectManager(Creator,XMLNode); }
+
+    void DefaultAreaEffectManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

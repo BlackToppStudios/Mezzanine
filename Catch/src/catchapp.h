@@ -47,6 +47,7 @@ protected:
     Scripting::Lua::Lua51WorkUnit* LuaScriptWork;
 
     Entresol* TheEntresol;
+    World* TheWorld;
     ProfileManager* Profiles;
     LevelManager* LevelMan;
     LevelScorer* Scorer;
@@ -64,8 +65,9 @@ protected:
     ThrowableContainer ThrownItems;
     StartAreaContainer StartAreas;
 
-    void InitializeFromXML(const String& CatchDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile);
+    void InitializeFromXML(const String& CatchDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile);
 
+    void CreateWorld();
     void MakeGUI();
     void CreateLoadingScreen();
     void InitMusic();
@@ -105,6 +107,7 @@ public:
     Scripting::Lua::Lua51WorkUnit* GetLuaScriptWork() const;
 
     Entresol* GetTheEntresol() const;
+    World* GetTheWorld() const;
 
     ThrowableContainer& GetThrowables();
     LevelManager* GetLevelManager() const;

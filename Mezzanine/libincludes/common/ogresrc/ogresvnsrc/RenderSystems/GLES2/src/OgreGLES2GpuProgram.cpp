@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,14 +35,14 @@ GLenum getGLShaderType(GpuProgramType programType);
 
 GLenum getGLShaderType(GpuProgramType programType)
 {
-	switch (programType)
-	{
-		case GPT_VERTEX_PROGRAM:
-		default:
-			return GL_VERTEX_SHADER;
-		case GPT_FRAGMENT_PROGRAM:
-			return GL_FRAGMENT_SHADER;
-	}
+    switch (programType)
+    {
+        case GPT_VERTEX_PROGRAM:
+        default:
+            return GL_VERTEX_SHADER;
+        case GPT_FRAGMENT_PROGRAM:
+            return GL_FRAGMENT_SHADER;
+    }
 }
 
 GLES2GpuProgram::GLES2GpuProgram(ResourceManager* creator, const String& name, 
@@ -63,4 +63,18 @@ GLES2GpuProgram::~GLES2GpuProgram()
     unload(); 
 }
 
-	
+//-----------------------------------------------------------------------------
+size_t GLES2GpuProgram::calculateSize(void) const
+{
+    size_t memSize = 0;
+
+    // Delegate Names
+    memSize += sizeof(GLuint);
+    memSize += sizeof(GLenum);
+    memSize += GpuProgram::calculateSize();
+
+    return memSize;
+}
+
+
+    

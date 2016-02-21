@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -54,15 +54,15 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        GhostProxy::GhostProxy(PhysicsManager* Creator) :
-            CollidableProxy(Creator),
+        GhostProxy::GhostProxy(const UInt32 ID, PhysicsManager* Creator) :
+            CollidableProxy(ID,Creator),
             PhysicsGhostBody(NULL)
         {
             this->CreateGhostObject();
         }
 
-        GhostProxy::GhostProxy(CollisionShape* Shape, PhysicsManager* Creator) :
-            CollidableProxy(Creator),
+        GhostProxy::GhostProxy(const UInt32 ID, CollisionShape* Shape, PhysicsManager* Creator) :
+            CollidableProxy(ID,Creator),
             PhysicsGhostBody(NULL)
         {
             this->CreateGhostObject();

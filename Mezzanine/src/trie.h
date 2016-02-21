@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,6 +50,8 @@
 
 #ifndef TRIE_H
 #define TRIE_H
+
+/// @cond false
 
 #include "datatypes.h"
 
@@ -1038,7 +1040,7 @@ protected:
 };
 
 /*!
- * @mainpage Simple Trie
+ * @page simple_trie Simple Trie
  * @section trie_intro_sec Introduction
  * This is an implementation of prefix Trie data structure. This implementation is in C++ and using template.
  * @section trie_features Features
@@ -1573,5 +1575,7 @@ private:
 };
 
 }
+
+/// @endcond
 
 #endif

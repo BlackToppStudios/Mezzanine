@@ -12,22 +12,22 @@
 void LoadFerris()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", AT_Zip, FerrisGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", Resource::AT_Zip, FerrisGroup, false);
     ResourceMan->InitAssetGroup(FerrisGroup);
 
     // Scoring and Shop Setup
@@ -35,7 +35,7 @@ void LoadFerris()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -141,26 +141,35 @@ void LoadFerris()
     Tray8->AddToWorld();// */
 
     // Create world anchor for the wheel, which will allow it to spin.
-    Physics::HingeConstraint* WheelAnchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1),true);
-    PhysMan->AddConstraint(WheelAnchor,false);// */
+    Physics::HingeConstraint* WheelAnchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1));
+    WheelAnchor->SetAllowCollisions(false);
+    WheelAnchor->EnableConstraint(true);// */
 
     // Create the series of hinges for connecting the 8 trays to the wheel
-    Physics::HingeConstraint* Tray1Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(-69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray1Anchor,true);
-    Physics::HingeConstraint* Tray2Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray2Anchor,true);
-    Physics::HingeConstraint* Tray3Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray3->GetRigidProxy(),Vector3(-69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray3Anchor,true);
-    Physics::HingeConstraint* Tray4Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray4->GetRigidProxy(),Vector3(69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray4Anchor,true);
-    Physics::HingeConstraint* Tray5Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray5->GetRigidProxy(),Vector3(-28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray5Anchor,true);
-    Physics::HingeConstraint* Tray6Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray6->GetRigidProxy(),Vector3(28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray6Anchor,true);
-    Physics::HingeConstraint* Tray7Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray7->GetRigidProxy(),Vector3(-28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray7Anchor,true);
-    Physics::HingeConstraint* Tray8Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray8->GetRigidProxy(),Vector3(28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    PhysMan->AddConstraint(Tray8Anchor,true);// */
+    Physics::HingeConstraint* Tray1Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(-69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray1Anchor->SetAllowCollisions(false);
+    Tray1Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray2Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray2Anchor->SetAllowCollisions(false);
+    Tray2Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray3Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray3->GetRigidProxy(),Vector3(-69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray3Anchor->SetAllowCollisions(false);
+    Tray3Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray4Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray4->GetRigidProxy(),Vector3(69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray4Anchor->SetAllowCollisions(false);
+    Tray4Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray5Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray5->GetRigidProxy(),Vector3(-28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray5Anchor->SetAllowCollisions(false);
+    Tray5Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray6Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray6->GetRigidProxy(),Vector3(28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray6Anchor->SetAllowCollisions(false);
+    Tray6Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray7Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray7->GetRigidProxy(),Vector3(-28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray7Anchor->SetAllowCollisions(false);
+    Tray7Anchor->EnableConstraint(true);
+    Physics::HingeConstraint* Tray8Anchor = PhysMan->CreateHingeConstraint(FerrisWheel->GetRigidProxy(),Tray8->GetRigidProxy(),Vector3(28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1));
+    Tray8Anchor->SetAllowCollisions(false);
+    Tray8Anchor->EnableConstraint(true);// */
 
     // Create some throwable objects
     ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
@@ -224,7 +233,7 @@ void LoadFerris()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",FerrisGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(11.0);
     StartZone->SetParticleMaximumTimeToLive(15.0);
     StartZone->SetLocation(-170,0,0);
@@ -238,7 +247,7 @@ void LoadFerris()
 
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
-    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",FerrisGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(100,0,0);
     ScoreZone->AddToWorld();// */
 
@@ -248,7 +257,7 @@ void LoadFerris()
     BonusZoneParams["SizeY"] = StringTools::ConvertToString(BonusScoreSize.Y);
     BonusZoneParams["SizeZ"] = StringTools::ConvertToString(BonusScoreSize.Z);
     Physics::CollisionShape* BonusScoreShape = new Physics::BoxCollisionShape("BonusAreaShape",BonusScoreSize);
-    Graphics::Mesh* BonusScoreMesh = MeshMan->CreateBoxCornerMesh("BonusAreaMesh",ColourValue(0.50,0.15,0.65,0.8),BonusScoreSize,4.0);
+    Graphics::Mesh* BonusScoreMesh = Graphics::Procedural::BoxCornerGenerator(BonusScoreSize,4.0).GenerateMesh("BonusAreaMesh",FerrisGroup,"Basic/Purple",CommonGroup);
 
     ScoreArea* BonusZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea1",BonusZoneParams,false) );
     BonusZone1->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
@@ -283,22 +292,22 @@ void LoadFerris()
 void LoadBigCurve()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", AT_Zip, BigCurveGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", Resource::AT_Zip, BigCurveGroup, false);
     ResourceMan->InitAssetGroup(BigCurveGroup);
 
     // Scoring and Shop Setup
@@ -306,7 +315,7 @@ void LoadBigCurve()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -387,7 +396,7 @@ void LoadBigCurve()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",BigCurveGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(8.0);
     StartZone->SetParticleMaximumTimeToLive(10.0);
     StartZone->SetLocation(-180,-60,0);
@@ -401,7 +410,7 @@ void LoadBigCurve()
 
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
-    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",BigCurveGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(120,-20,-10);
     ScoreZone->AddToWorld();// */
 }
@@ -409,22 +418,22 @@ void LoadBigCurve()
 void LoadBlowsNotSucks()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", AT_Zip, BlowsNotSucksGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", Resource::AT_Zip, BlowsNotSucksGroup, false);
     ResourceMan->InitAssetGroup(BlowsNotSucksGroup);
 
     // Scoring and Shop Setup
@@ -432,7 +441,7 @@ void LoadBlowsNotSucks()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -497,11 +506,12 @@ void LoadBlowsNotSucks()
     FanButton->AddToWorld();
 
     // Create the series of constraints for assembling the fan
-    Physics::HingeConstraint* FanToBody = new Physics::HingeConstraint(FanBody->GetRigidProxy(),Fan->GetRigidProxy(),Vector3(-12,-6,-17.5),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0),false);
-    PhysMan->AddConstraint(FanToBody,true);
-    FanToBody->SetLimit(1.0,-1.0);
+    Physics::HingeConstraint* FanToBody = PhysMan->CreateHingeConstraint(FanBody->GetRigidProxy(),Fan->GetRigidProxy(),Vector3(-12,-6,-17.5),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0));
+    FanToBody->SetLimits(1.0,-1.0);
+    FanToBody->SetAllowCollisions(false);
+    FanToBody->EnableConstraint(true);
 
-    Physics::Generic6DofSpringConstraint* ButtonToBody = new Physics::Generic6DofSpringConstraint(FanBody->GetRigidProxy(),FanButton->GetRigidProxy(),Vector3(-143,-52,-25.5),Vector3(0,0,0),Quaternion(0,0,0,1),Quaternion(0,0,0,1),true);
+    Physics::Generic6DofSpringConstraint* ButtonToBody = PhysMan->CreateGeneric6DofSpringConstraint(FanBody->GetRigidProxy(),FanButton->GetRigidProxy(),Transform(Vector3(-143,-52,-25.5),Quaternion(0,0,0,1)),Transform(Vector3(0,0,0),Quaternion(0,0,0,1)));
     ButtonToBody->SetLinearLimitUpper(Vector3(0,15,0));
     ButtonToBody->SetLinearLimitLower(Vector3(0,0,0));
     ButtonToBody->SetAngularLimitUpper(Vector3(0,0,0));
@@ -509,7 +519,8 @@ void LoadBlowsNotSucks()
     ButtonToBody->SetSpringEnabled(1,true);
     ButtonToBody->SetSpringStiffness(1,500.f);
     ButtonToBody->CalculateSpringEquilibriumPoint(1);
-    PhysMan->AddConstraint(ButtonToBody,true);
+    ButtonToBody->SetAllowCollisions(false);
+    ButtonToBody->EnableConstraint(true);
 
     // Create the field of force for the wind generated by the fan
     Vector3 FanWindSize(60,115,60);
@@ -588,7 +599,7 @@ void LoadBlowsNotSucks()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",BlowsNotSucksGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(6.0);
     StartZone->SetParticleMaximumTimeToLive(9.0);
     StartZone->SetLocation(-170,-70,0);
@@ -600,7 +611,7 @@ void LoadBlowsNotSucks()
     ScoreZone1Params["SizeY"] = StringTools::ConvertToString(Score1Size.Y);
     ScoreZone1Params["SizeZ"] = StringTools::ConvertToString(Score1Size.Z);
     Physics::CollisionShape* ScoreArea1Shape = new Physics::BoxCollisionShape("ScoreArea1Shape",Score1Size);
-    Graphics::Mesh* ScoreArea1Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.8),Score1Size,4.0);
+    Graphics::Mesh* ScoreArea1Mesh = Graphics::Procedural::BoxCornerGenerator(Score1Size,4.0).GenerateMesh("ScoreArea1Mesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
 
     ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZone1Params,false) );
     ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreArea1Shape);
@@ -614,7 +625,7 @@ void LoadBlowsNotSucks()
     ScoreZone2Params["SizeY"] = StringTools::ConvertToString(Score2Size.Y);
     ScoreZone2Params["SizeZ"] = StringTools::ConvertToString(Score2Size.Z);
     Physics::CollisionShape* ScoreArea2Shape = new Physics::BoxCollisionShape("ScoreArea2Shape",Score2Size);
-    Graphics::Mesh* ScoreArea2Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.8),Score2Size,4.0);
+    Graphics::Mesh* ScoreArea2Mesh = Graphics::Procedural::BoxCornerGenerator(Score2Size,4.0).GenerateMesh("ScoreArea2Mesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
 
     ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea2",ScoreZone2Params,false) );
     ScoreZone2->GetGhostProxy()->SetCollisionShape(ScoreArea2Shape);
@@ -626,22 +637,22 @@ void LoadBlowsNotSucks()
 void LoadJustice()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String JusticeGroup("Justice");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", AT_Zip, JusticeGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", Resource::AT_Zip, JusticeGroup, false);
     ResourceMan->InitAssetGroup(JusticeGroup);
 
     // Scoring and Shop Setup
@@ -649,7 +660,7 @@ void LoadJustice()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -755,30 +766,39 @@ void LoadJustice()
 
     // Create the series of constraints for connecting all the pieces of the scale together
     // Starting with creating the anchor for the scale
-    Physics::HingeConstraint* ScaleAnchor = new Physics::HingeConstraint(LadyJustice->GetRigidProxy(),JusticeScale->GetRigidProxy(),Vector3(-12,127.4,103.35),Vector3(0,30,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    ScaleAnchor->SetLimit( -(MathTools::GetPi() * 0.20),(MathTools::GetPi() * 0.20) );
-    PhysMan->AddConstraint(ScaleAnchor,true);
+    Physics::HingeConstraint* ScaleAnchor = PhysMan->CreateHingeConstraint(LadyJustice->GetRigidProxy(),JusticeScale->GetRigidProxy(),Vector3(-12,127.4,103.35),Vector3(0,30,0),Vector3(0,0,1),Vector3(0,0,1));
+    ScaleAnchor->SetLimits( -(MathTools::GetPi() * 0.20),(MathTools::GetPi() * 0.20) );
+    ScaleAnchor->SetAllowCollisions(false);
+    ScaleAnchor->EnableConstraint(true);
 
     // Original X distance from pivot on scale is 112.7, but space was needed to prevent collsions.
     // Create the scale-to-union constraints
-    Physics::Point2PointConstraint* U1S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union1->GetRigidProxy(),Vector3(-112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,-16.4
-    PhysMan->AddConstraint(U1S,true);
-    Physics::Point2PointConstraint* U2S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union2->GetRigidProxy(),Vector3(-112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,16.4
-    PhysMan->AddConstraint(U2S,true);
-    Physics::Point2PointConstraint* U3S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union3->GetRigidProxy(),Vector3(112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,-16.4
-    PhysMan->AddConstraint(U3S,true);
-    Physics::Point2PointConstraint* U4S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union4->GetRigidProxy(),Vector3(112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,16.4
-    PhysMan->AddConstraint(U4S,true);
+    Physics::Point2PointConstraint* U1S = PhysMan->CreatePoint2PointConstraint(JusticeScale->GetRigidProxy(),Union1->GetRigidProxy(),Vector3(-112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,-16.4
+    U1S->SetAllowCollisions(false);
+    U1S->EnableConstraint(true);
+    Physics::Point2PointConstraint* U2S = PhysMan->CreatePoint2PointConstraint(JusticeScale->GetRigidProxy(),Union2->GetRigidProxy(),Vector3(-112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,16.4
+    U2S->SetAllowCollisions(false);
+    U2S->EnableConstraint(true);
+    Physics::Point2PointConstraint* U3S = PhysMan->CreatePoint2PointConstraint(JusticeScale->GetRigidProxy(),Union3->GetRigidProxy(),Vector3(112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,-16.4
+    U3S->SetAllowCollisions(false);
+    U3S->EnableConstraint(true);
+    Physics::Point2PointConstraint* U4S = PhysMan->CreatePoint2PointConstraint(JusticeScale->GetRigidProxy(),Union4->GetRigidProxy(),Vector3(112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,16.4
+    U4S->SetAllowCollisions(false);
+    U4S->EnableConstraint(true);
 
     // Create the union-to-tray constraints
-    Physics::Point2PointConstraint* U1T = new Physics::Point2PointConstraint(Union1->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// -54,10.2,-16.4 // -54,-25,0
-    PhysMan->AddConstraint(U1T,true);
-    Physics::Point2PointConstraint* U2T = new Physics::Point2PointConstraint(Union2->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// -54,10.2,16.4 // -54,-25,0
-    PhysMan->AddConstraint(U2T,true);
-    Physics::Point2PointConstraint* U3T = new Physics::Point2PointConstraint(Union3->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// 170,10.2,-16.4 // 170,-25,0
-    PhysMan->AddConstraint(U3T,true);
-    Physics::Point2PointConstraint* U4T = new Physics::Point2PointConstraint(Union4->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// 170,10.2,16.4 // 170,-25,0
-    PhysMan->AddConstraint(U4T,true);
+    Physics::Point2PointConstraint* U1T = PhysMan->CreatePoint2PointConstraint(Union1->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// -54,10.2,-16.4 // -54,-25,0
+    U1T->SetAllowCollisions(false);
+    U1T->EnableConstraint(true);
+    Physics::Point2PointConstraint* U2T = PhysMan->CreatePoint2PointConstraint(Union2->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// -54,10.2,16.4 // -54,-25,0
+    U2T->SetAllowCollisions(false);
+    U2T->EnableConstraint(true);
+    Physics::Point2PointConstraint* U3T = PhysMan->CreatePoint2PointConstraint(Union3->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// 170,10.2,-16.4 // 170,-25,0
+    U3T->SetAllowCollisions(false);
+    U3T->EnableConstraint(true);
+    Physics::Point2PointConstraint* U4T = PhysMan->CreatePoint2PointConstraint(Union4->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// 170,10.2,16.4 // 170,-25,0
+    U4T->SetAllowCollisions(false);
+    U4T->EnableConstraint(true);
 
     // Create some throwable objects
     //ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
@@ -806,7 +826,7 @@ void LoadJustice()
     StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
     StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
     Physics::CollisionShape* StartAreaShape = new Physics::BoxCollisionShape("StartArea1Shape",StartSize);
-    Graphics::Mesh* StartAreaMesh = MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0);
+    Graphics::Mesh* StartAreaMesh = Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",JusticeGroup,"Basic/Green",CommonGroup);
 
     StartArea* StartZone1 = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone1->GetGhostProxy()->SetCollisionShape(StartAreaShape);
@@ -829,7 +849,7 @@ void LoadJustice()
     ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
     ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
     Physics::CollisionShape* ScoreAreaShape = new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize);
-    Graphics::Mesh* ScoreAreaMesh = MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0);
+    Graphics::Mesh* ScoreAreaMesh = Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",JusticeGroup,"Basic/Blue",CommonGroup);
 
     ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreAreaShape);
@@ -846,22 +866,22 @@ void LoadJustice()
 void LoadRollers()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String RollersGroup("Rollers");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", AT_Zip, RollersGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", Resource::AT_Zip, RollersGroup, false);
     ResourceMan->InitAssetGroup(RollersGroup);
 
     // Scoring and Shop Setup
@@ -869,7 +889,7 @@ void LoadRollers()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -910,7 +930,7 @@ void LoadRollers()
     for( Whole X = 0 ; X < 7 ; ++X )
     {
         Vector3 Location(112.4+(XStride*X),-20,0);
-        std::stringstream Namestream;
+        StringStream Namestream;
         Namestream << "Roller" << (X+1);
         RigidDebris* Roller = DebrisMan->CreateRigidDebris(Namestream.str(),10,false);
         Roller->GetRigidProxy()->SetCollisionShape(RollerShape);
@@ -919,11 +939,11 @@ void LoadRollers()
         Roller->SetLocation(Location);
         Roller->AddToWorld();
 
-        Physics::HingeConstraint* RollerAnchor = new Physics::HingeConstraint(Roller->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1),true);
-        RollerAnchor->SetLimit(1.0,-1.0);
+        Physics::HingeConstraint* RollerAnchor = PhysMan->CreateHingeConstraint(Roller->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1));
+        RollerAnchor->SetLimits(1.0,-1.0);
         RollerAnchor->SetMaxMotorImpulse(1500.0);
-        RollerAnchor->EnableMotor(true);
-        PhysMan->AddConstraint(RollerAnchor,false);
+        RollerAnchor->SetMotorEnabled(true);
+        RollerAnchor->EnableConstraint(true);
 
         TheRollers.push_back(RollerAnchor);
     }
@@ -967,7 +987,7 @@ void LoadRollers()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","ScoreArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",RollersGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(5.0);
     StartZone->SetParticleMaximumTimeToLive(6.0);
     StartZone->SetLocation(-140,60,0);
@@ -981,7 +1001,7 @@ void LoadRollers()
 
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
-    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",RollersGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(140,20,0);
     ScoreZone->AddToWorld();// */
 }
@@ -989,22 +1009,22 @@ void LoadRollers()
 void LoadJustBounce()
 {
     // Get our major roots
-    Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
+    World* CatchWorld = GameApp->GetTheWorld();
     // Get managers
     Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
+    //Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( CatchWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( CatchWorld->GetManager(ManagerBase::MT_SceneManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( CatchWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( CatchWorld->GetManager(ManagerBase::MT_DebrisManager) );
 
     // Init Resources
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", AT_Zip, JustBounceGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", Resource::AT_Zip, JustBounceGroup, false);
     ResourceMan->InitAssetGroup(JustBounceGroup);
 
     // Scoring and Shop Setup
@@ -1012,7 +1032,7 @@ void LoadJustBounce()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    Graphics::CameraProxy* DefCamera = SceneMan->CreateCamera();
     DefCamera->SetLocation(Vector3(0,0,425));
     DefCamera->LookAt(Vector3(0,0,0));
 
@@ -1087,7 +1107,7 @@ void LoadJustBounce()
     // Create some throwable objects
     //ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
     ThrowableData* WoodData = ThrowableGenerator::GetThrowableData("Wood");
-    Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);// ©ShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
+    Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);// CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
     Physics::CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */
 
     RigidDebris* Rubber1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );
@@ -1121,7 +1141,7 @@ void LoadJustBounce()
 
     StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams,false) );
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
-    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",JustBounceGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(5.0);
     StartZone->SetParticleMaximumTimeToLive(6.0);
     StartZone->SetLocation(-170,90,0);
@@ -1135,7 +1155,7 @@ void LoadJustBounce()
 
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams,false) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
-    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->GetEntityProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",JustBounceGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(158,-25,0);
     ScoreZone->AddToWorld();// */
 }
@@ -1301,7 +1321,7 @@ LevelManager::~LevelManager()
     {  }
 
 Resource::ResourceManager* LevelManager::GetResourceManager() const
-    { return this->TheEntresol->GetResourceManager(); }
+    { return static_cast<Resource::ResourceManager*>( this->TheEntresol->GetManager(ManagerBase::MT_ResourceManager) ); }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Utility
@@ -1320,7 +1340,7 @@ Whole LevelManager::DetectLevels()
 
             const String AssetGroupName = FileName.substr(0,FileName.find_last_of('.'));
             const String CompletePath = this->LevelPath + FileName;
-            ResourceMan->AddAssetLocation(CompletePath,Mezzanine::AT_Zip,AssetGroupName);
+            ResourceMan->AddAssetLocation(CompletePath,Resource::AT_Zip,AssetGroupName);
 
             LevelDoc.Reset();
             Resource::DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);
@@ -1338,7 +1358,7 @@ void LevelManager::PopulateLevelSelectUI()
     const String LevelNameFont = "Ubuntu-18";
     const Real LevelNameScale = 0.85;
 
-    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
     UI::Screen* MainMenuScreen = UIMan->GetScreen("MainMenuScreen");
     UI::GridContainer* LevelSelect = static_cast<UI::GridContainer*>( MainMenuScreen->GetWidget("MS_LevelSelectGrid") );
 
@@ -1506,9 +1526,6 @@ LevelManager::ConstGameLevelIterator LevelManager::EndGameLevel() const
 
 void LevelManager::LoadNextLevel()
 {
-    //if( "MainMenu" == this->LevelToLoad->GetName() )
-    //    return;
-
     /// @todo The if(Level) statements need to removed in favor of something that will parse an XML file of the level.
     if( "Ferris" == this->LevelToLoad->GetName() )
         LoadFerris();
@@ -1529,35 +1546,16 @@ void LevelManager::LoadNextLevel()
 
 void LevelManager::UnloadLevel()
 {
-    /// @todo This should be populated with the appropriate logic after the world restructuring and engine state refactors are done.
-    //Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
-    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActorMan = this->TheEntresol->GetActorManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+    // World Cleanup
+    this->TheEntresol->GetWorld(0)->Clear();
 
-    PhysMan->DestroyAllConstraints();
-    ActorMan->DestroyAllActors();
-    AreaEffectMan->DestroyAllAreaEffects();
-    DebrisMan->DestroyAllDebris();
-    SceneMan->DestroyAllProxies();
-    SceneMan->DisableSky();
-    PhysMan->DestroyAllProxies();
-    PhysMan->DestroyAllWorldTriggers();
+    // Entresol Cleanup
+    /// @todo This should be populated with the appropriate logic after the engine state refactors are done.
+    Physics::CollisionShapeManager* CShapeMan = static_cast<Physics::CollisionShapeManager*>( this->TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) );
+    Graphics::MeshManager* MeshMan = static_cast<Graphics::MeshManager*>( this->TheEntresol->GetManager(ManagerBase::MT_MeshManager) );
+
     CShapeMan->DestroyAllShapes();
-    MeshMan->DestroyAllGeneratedMeshes();
-
-    //ResMan->DestroyAssetGroup(LevelMan->GetCurrentLevel()->GetGroupName());
-    PhysMan->ClearPhysicsMetaData();
-
-    UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
-    GameScreen->GetWidget("GS_LevelReport")->Hide();
-    GameScreen->GetWidget("GS_MenuRoot")->Hide();
-    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();
+    MeshMan->UnloadAllMeshes();
 }
 
 #endif

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -79,9 +79,6 @@ namespace Mezzanine
 
         Button::~Button()
             {  }
-
-        void Button::CreateLayoutStrat()
-            { this->LayoutStrat = NULL; }
 
         Boole Button::HandleInputImpl(const Input::MetaCode& Code)
         {
@@ -201,7 +198,7 @@ namespace Mezzanine
             if( this->VertifyActivationCode( Code.GetCode() ) ) {
                 this->ActivationCodes.insert(Input::MetaCodeKey(Code));
             }else{
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to bind an unsupported InputCode to a button.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to bind an unsupported InputCode to a button.");
             }
         }
 
@@ -312,10 +309,10 @@ namespace Mezzanine
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Button::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Button::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Button::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Button::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

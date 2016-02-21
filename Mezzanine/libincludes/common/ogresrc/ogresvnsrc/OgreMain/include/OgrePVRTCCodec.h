@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,8 +48,8 @@ namespace Ogre {
     protected:
         String mType;
 
-    	void flipEndian(void * pData, size_t size, size_t count) const;
-	    void flipEndian(void * pData, size_t size) const;
+		static void flipEndian(void * pData, size_t size, size_t count);	// invokes Bitwise::bswapChunks() if OGRE_ENDIAN_BIG
+		static void flipEndian(void * pData, size_t size);					// invokes Bitwise::bswapBuffer() if OGRE_ENDIAN_BIG
 
 		/// Single registered codec instance
 		static PVRTCCodec* msInstance;
@@ -58,10 +58,10 @@ namespace Ogre {
         PVRTCCodec();
         virtual ~PVRTCCodec() { }
 
-        /// @copydoc Codec::code
-        DataStreamPtr code(MemoryDataStreamPtr& input, CodecDataPtr& pData) const;
-        /// @copydoc Codec::codeToFile
-        void codeToFile(MemoryDataStreamPtr& input, const String& outFileName, CodecDataPtr& pData) const;
+        /// @copydoc Codec::encode
+        DataStreamPtr encode(MemoryDataStreamPtr& input, CodecDataPtr& pData) const;
+        /// @copydoc Codec::encodeToFile
+        void encodeToFile(MemoryDataStreamPtr& input, const String& outFileName, CodecDataPtr& pData) const;
         /// @copydoc Codec::decode
         DecodeResult decode(DataStreamPtr& input) const;
 		/// @copydoc Codec::magicNumberToFileExt
@@ -74,6 +74,12 @@ namespace Ogre {
 		/// Static method to shutdown and unregister the PVRTC codec
 		static void shutdown(void);
 
+	private:
+		/// Decode PVRTCV2 image format
+		DecodeResult decodeV2(DataStreamPtr& stream) const;
+
+		/// Decode PVRTCV3 image format
+		DecodeResult decodeV3(DataStreamPtr& stream) const;
     };
 	/** @} */
 	/** @} */

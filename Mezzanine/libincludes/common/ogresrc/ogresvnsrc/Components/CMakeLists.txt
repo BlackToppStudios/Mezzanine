@@ -16,6 +16,10 @@ if (OGRE_BUILD_COMPONENT_PAGING)
   add_subdirectory(Paging)
 endif ()
 
+if (OGRE_BUILD_COMPONENT_MESHLODGENERATOR)
+  add_subdirectory(MeshLodGenerator)
+endif ()
+
 if (OGRE_BUILD_COMPONENT_PROPERTY)
   add_subdirectory(Property)
 endif ()
@@ -26,4 +30,16 @@ endif ()
 
 if (OGRE_BUILD_COMPONENT_RTSHADERSYSTEM)
 	add_subdirectory(RTShaderSystem)
+endif ()
+
+if (OGRE_BUILD_COMPONENT_VOLUME)
+	add_subdirectory(Volume)
+endif ()
+
+if (OGRE_BUILD_COMPONENT_OVERLAY)
+	add_subdirectory(Overlay)
+endif ()
+
+if (OGRE_BUILD_COMPONENT_HLMS)
+	add_subdirectory(HLMS)
 endif ()

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -74,7 +74,6 @@ namespace Mezzanine
             /// @brief Const Reverse Iterator type for Viewport instances stored by this class.
             typedef ViewportContainer::const_reverse_iterator ConstReverseViewportIterator;
 
-            /// @enum WindowFlags
             /// @brief A listing of potential options for configuring a game window during construction.
             enum WindowFlags
             {

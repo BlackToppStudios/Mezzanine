@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,8 +44,8 @@
 /// @brief This file contains the implementation for the World proxy wrapping camera functionality.
 
 #include "Graphics/cameraproxy.h"
-#include "Graphics/cameramanager.h"
 #include "Graphics/scenemanager.h"
+#include "Graphics/viewport.h"
 
 #include "exception.h"
 #include "serialization.h"
@@ -147,42 +147,42 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        CameraProxy::CameraProxy(const String& Name, CameraManager* Creator) :
-            RenderableProxy(Creator->GetScene()),
-            CamManager(Creator),
+        CameraProxy::CameraProxy(const UInt32 ID, SceneManager* Creator) :
+            RenderableProxy(ID,Creator),
             GraphicsCamera(NULL),
             CameraVP(NULL),
             UseFixedYaw(true)
-            { this->CreateCamera(Name); }
+            { this->CreateCamera(); }
 
-        CameraProxy::CameraProxy(const XML::Node& SelfRoot, CameraManager* Creator) :
-            RenderableProxy(Creator->GetScene()),
-            CamManager(Creator),
+        CameraProxy::CameraProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
+            RenderableProxy(Creator),
             GraphicsCamera(NULL),
             CameraVP(NULL),
             UseFixedYaw(true)
         {
-            this->CreateCamera("");
+            this->CreateCamera();
             this->ProtoDeSerialize(SelfRoot);
         }
 
         CameraProxy::~CameraProxy()
             { this->DestroyCamera(); }
 
-        void CameraProxy::CreateCamera(const String& Name)
+        void CameraProxy::CreateCamera()
         {
             this->GraphicsCamera = this->Manager->_GetGraphicsWorldPointer()->createCamera( CameraProxy::GenerateName() );
             this->GraphicsNode->attachObject( this->GraphicsCamera );
             this->GraphicsCamera->MovableObject::setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
             this->GraphicsCamera->setVisibilityFlags(0);
             this->GraphicsCamera->setQueryFlags(0);
-
-            this->CamName = Name;
         }
 
         void CameraProxy::DestroyCamera()
         {
             if( this->GraphicsCamera ) {
+                if( this->CameraVP ) {
+                    this->CameraVP->SetCamera(NULL);
+                }
+
                 this->GraphicsNode->detachObject( this->GraphicsCamera );
                 this->Manager->_GetGraphicsWorldPointer()->destroyCamera( this->GraphicsCamera );
             }
@@ -201,9 +201,6 @@ namespace Mezzanine
 
         Mezzanine::ProxyType CameraProxy::GetProxyType() const
             { return Mezzanine::PT_Graphics_CameraProxy; }
-
-        WorldManager* CameraProxy::GetCreator() const
-            { return this->CamManager; }
 
         Viewport* CameraProxy::GetViewport() const
             { return this->CameraVP; }
@@ -228,9 +225,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Camera Properties
-
-        const String& CameraProxy::GetName() const
-            { return this->CamName; }
 
         void CameraProxy::SetPolygonMode(const Graphics::CameraPolyMode PolyMode)
             { this->GraphicsCamera->setPolygonMode( ConvertPolygonMode(PolyMode) ); }
@@ -309,7 +303,6 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( CameraProxy::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("Name").SetValue( this->GetName() ) &&
                 PropertiesNode.AppendAttribute("PolygonMode").SetValue( this->GetPolygonMode() ) &&
                 PropertiesNode.AppendAttribute("ProjectionType").SetValue( this->GetProjectionType() ) &&
                 PropertiesNode.AppendAttribute("OrientationMode").SetValue( this->GetOrientationMode() ) &&
@@ -342,10 +335,6 @@ namespace Mezzanine
                     Boole UseFixed = true;
                     Vector3 FixedYaw = Vector3::Unit_Y();
                     Real OrthoWidth = 0, OrthoHeight = 0;
-
-                    CurrAttrib = PropertiesNode.GetAttribute("Name");
-                    if( !CurrAttrib.Empty() )
-                        this->CamName = CurrAttrib.AsString();
 
                     CurrAttrib = PropertiesNode.GetAttribute("PolygonMode");
                     if( !CurrAttrib.Empty() )
@@ -396,10 +385,10 @@ namespace Mezzanine
 
                     this->SetFixedYawAxis(UseFixed,FixedYaw);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (CameraProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (CameraProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,CameraProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,CameraProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

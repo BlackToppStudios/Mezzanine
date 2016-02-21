@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,23 +50,50 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class GearConstraint
-        /// @headerfile gearconstraint.h
         /// @brief This is a constraint that duplicate the angular motion of one object to another, adjusted by the provided ratio.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB GearConstraint : public Constraint
         {
         protected:
+            /// @internal
             /// @brief Bullet constraint that this class encapsulates.
             btGearConstraint* Gear;
+
+            /// @internal
+            /// @brief Creates the internal constraint.
+            /// @remarks This methods exists primarily as a convenience for serialization, and shouldn't be called unless it is known to be safe.
+            /// @param RigidA A pointer to the first Proxy to be constrained.
+            /// @param RigidB A pointer to the second Proxy to be constrained.
+            /// @param AxisA The offset to place the constraint in the first proxys local space.
+            /// @param AxisB The offset to place the constraint in the second proxys local space.
+            virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Vector3& AxisA, const Vector3& AxisB);
+            /// @internal
+            /// @brief Destroys the internal constraint.
+            /// @remarks This methods exists primarily as a convenience for serialization, and shouldn't be called unless it is known to be safe.
+            virtual void DestroyConstraint();
         public:
             /// @brief Double body constructor.  Binds the two bodies.
+            /// @param ID The unique identifier assigned to this constraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The axis in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The axis in ProxyB's local space to apply the constraint to.
+            /// @param Creator A pointer to the manager that created this constraint.
+            GearConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, PhysicsManager* Creator);
+            /// @brief Double body constructor.  Binds the two bodies.
+            /// @param ID The unique identifier assigned to this constraint.
             /// @param ProxyA The first proxy to apply this constraint to.
             /// @param ProxyB The second proxy to apply this constraint to.
             /// @param PivotA The axis in ProxyA's local space to apply the constraint to.
             /// @param PivotB The axis in ProxyB's local space to apply the constraint to.
             /// @param Ratio The amount the rotation from ProxyA that shall be used to be applied to ProxyB.
-            GearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio);
+            /// @param Creator A pointer to the manager that created this constraint.
+            GearConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio, PhysicsManager* Creator);
+            /// @brief XML constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param Creator A pointer to the manager that created this constraint.
+            GearConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.
             virtual ~GearConstraint();
 
@@ -99,34 +126,39 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Parameter Configuration
 
-            /// @copydoc Constraint::ValidParamOnAxis(int) const
-            virtual Constraint::ParamList ValidParamOnAxis(int Axis) const;
-            /// @copydoc Constraint::ValidLinearAxis() const
-            virtual Constraint::AxisList ValidLinearAxis() const;
-            /// @copydoc Constraint::ValidAngularAxis() const
-            virtual Constraint::AxisList ValidAngularAxis() const;
+            /// @copydoc Constraint::GetValidParamsOnAxis(int) const
+            virtual Constraint::ParamList GetValidParamsOnAxis(int Axis) const;
+            /// @copydoc Constraint::GetValidLinearAxes() const
+            virtual Constraint::AxisList GetValidLinearAxes() const;
+            /// @copydoc Constraint::GetValidAngularAxes() const
+            virtual Constraint::AxisList GetValidAngularAxes() const;
             /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
             virtual Boole HasParamBeenSet(ConstraintParam Param, int Axis) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "Point2PointConstraint"
-            static String SerializableName();
+            /// @copydoc Constraint::ProtoSerializeInitData(XML::Node&) const
+            virtual void ProtoSerializeInitData(XML::Node& SelfRoot) const;
+            /// @copydoc Constraint::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+
+            /// @copydoc Constraint::ProtoDeSerializeInitData(const XML::Node&)
+            virtual void ProtoDeSerializeInitData(const XML::Node& SelfRoot);
+            /// @copydoc Constraint::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc Constraint::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc Constraint::GetConstraintBase() const
-            virtual btTypedConstraint* GetConstraintBase() const;
+            /// @copydoc Constraint::_GetConstraintBase() const
+            virtual btTypedConstraint* _GetConstraintBase() const;
         };//GearConstraint
     }//Physics
 }//Mezzanine

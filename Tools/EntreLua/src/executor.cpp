@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -86,7 +86,7 @@ ExecutionResults Executor::Do(Mezzanine::String CommandLine)
             Results.Returns.push_back( (*Iter)->GetString() );
             cout << (*Iter)->GetString() << endl;
         }
-    } catch (Exception& e) {
+    } catch (Mezzanine::ExceptionBase& e) {
         Results.Output = e.what();
     }
 

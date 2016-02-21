@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -81,14 +81,14 @@ namespace Mezzanine
             btQuaternion rotation = this->PhysicsSoftBody->m_clusters[0]->m_framexform.getRotation();
             this->GraphicsNode->setPosition(position.x(), position.y(), position.z());
             this->GraphicsNode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-        }//*/
+        }// */
 
 
-        SoftProxy::SoftProxy(const Real Mass, PhysicsManager* Creator) :
-            CollidableProxy(Creator),
+        SoftProxy::SoftProxy(const UInt32 ID, const Real Mass, PhysicsManager* Creator) :
+            CollidableProxy(ID,Creator),
             PhysicsSoftBody(NULL)
         {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
             this->CreateSoftObject(Mass);
         }
 
@@ -96,7 +96,7 @@ namespace Mezzanine
             CollidableProxy(Creator),
             PhysicsSoftBody(NULL)
         {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
             this->CreateSoftObject(1);
             this->ProtoDeSerialize(SelfRoot);
         }
@@ -135,7 +135,7 @@ namespace Mezzanine
             Ogre::Any OgreRef( (WorldObject*)this );
             GraphicsObject->setUserAny(OgreRef);
 
-            this->PhysicsSoftBody->m_clusters[0]->m_collide = true;//*/
+            this->PhysicsSoftBody->m_clusters[0]->m_collide = true;// */
 
             // CreateManualMesh
             /*Ogre::ManualObject* ManualEntity = new Ogre::ManualObject(TheMesh.Name);
@@ -156,7 +156,7 @@ namespace Mezzanine
             }
             ManualEntity->end();
             ManualEntity->convertToMesh(TheMesh.Name + "M", TheMesh.Group);
-            delete ManualEntity;//*/
+            delete ManualEntity;// */
         }
 
         ///////////////////////////////////////////////////////////////////////////////

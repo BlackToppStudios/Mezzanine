@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -212,7 +212,7 @@ namespace Mezzanine
                 AfterStreamError("Beyond Stream Bounds: After end of known stream")
                 {
                     #ifdef MEZZDEBUG
-                    Entresol::GetSingletonPtr()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
+                    //Entresol::GetSingletonPtr()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
                     #endif
                 }
 

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -56,6 +56,9 @@ namespace Mezzanine
         /// @internal
         /// @brief Pointer to the Object this proxy belongs to.
         WorldObject* ParentObject;
+        /// @internal
+        /// @brief The unique ID assigned to the type of proxy an instance is.
+        UInt32 ProxyID;
 
         /// @internal
         /// @brief Implementation method for serializing additional sets of data.
@@ -66,8 +69,11 @@ namespace Mezzanine
         /// @param SelfRoot An XML::Node containing the data to populate this class with.
         virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
     public:
-        /// @brief Class constructor.
+        /// @brief Blank constructor.
         WorldProxy();
+        /// @brief Normal/ID constructor.
+        /// @param ID The unique ID assigned to the type of proxy an instance is.
+        WorldProxy(const UInt32 ID);
         /// @brief Class destructor.
         virtual ~WorldProxy();
 
@@ -88,6 +94,10 @@ namespace Mezzanine
         /// @brief Gets a pointer to the parent object controlling this proxy.
         /// @return Returns a pointer to the WorldObject controlling this proxy, or NULL if this proxy isn't bound to a WorldObject.
         virtual WorldObject* GetParentObject() const;
+        /// @brief Gets the unique ID of this proxy.
+        /// @remarks Proxy IDs are only unique to their family of proxies belonging to a specific subsystem.  Across subsystems IDs can be reused.
+        /// @return Returns a UInt32 containing the unique ID for this proxy.
+        virtual UInt32 GetProxyID() const;
         /// @brief Gets a pointer to this proxies creator.
         /// @return Returns a pointer to the WorldManager that created this WorldProxy.
         virtual WorldManager* GetCreator() const = 0;

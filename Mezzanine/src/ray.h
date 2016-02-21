@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,6 +42,9 @@
 
 #include "crossplatformexport.h"
 #include "vector3.h"
+#ifndef SWIG
+    #include "MathTools/mathtools.h"
+#endif
 
 namespace Ogre
 {
@@ -56,7 +59,11 @@ namespace Mezzanine
     class Sphere;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This represents a line placed in 3D space and is used with spacial queries.
-    /// @details
+    /// @details This is made of Two Vector3 instances. The Origin of a Ray can be thought
+    /// of as its starting location. The Normal of the Ray will be another point defined
+    /// as a Vector3 that is always 1 unit away, as mathematical precision allows. This
+    /// normal is used to indicate direction and from the two points any other points on
+    /// the Ray can be calculated.
     class MEZZ_LIB Ray
     {
     public:
@@ -65,15 +72,15 @@ namespace Mezzanine
         typedef std::pair<Boole,Vector3> PlaneRayTestResult;
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Ray> GeometryRayTestResult;
-
+        //typedef MathTools::PointPointInterection GeometryRayTestResult;
+        typedef MathTools::GeometryRayTestResult GeometryRayTestResult;
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
         /// @brief The origin point of the Vector.
         Vector3 Origin;
-        /// @brief The direction of this ray or end point of this ray depending on mode.
-        Vector3 Destination;
+        /// @brief The direction this ray is pointing.
+        Vector3 Normal;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
@@ -86,12 +93,12 @@ namespace Mezzanine
         Ray(const Ray& Other);
         /// @brief Destination constructor.
         /// @details This keeps the origin at 0,0,0.
-        /// @param To The destination vector for the ray.
-        Ray(const Vector3& To);
+        /// @param Dir The direction this Ray is pointing in.
+        Ray(const Vector3& Dir);
         /// @brief Descriptive constructor.
         /// @param From The origin for the new Ray.
-        /// @param To A point along the line for the destination line.
-        Ray(const Vector3& From, const Vector3& To);
+        /// @param Dir The direction this Ray is pointing in. This will be normalizedprior to use.
+        Ray(const Vector3& From, const Vector3& Dir);
         /// @brief Internal constructor.
         /// @param InternalRay This is the Ogre::Ray to copy from.
         explicit Ray(const Ogre::Ray& InternalRay);
@@ -101,19 +108,25 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Measures the distance of this ray.
-        /// @return This returns a real value which contains the distance from the origin to the destination.
-        Real Length() const;
-        /// @brief Gets the normal of this ray.
-        /// @return Returns a vector3 that is the direction from it's origin to it's destination.
-        Vector3 GetDirection() const;
+        /// @brief Gets the normal of this Ray.
+        /// @return Returns a Vector3 that is the direction this ray is pointing.
+        const Vector3& GetNormal() const;
+        /// @brief Sets the normal of this Ray.
+        /// @param FreshNormal A Vector3 that will be normalized and is the direction this Ray is pointing.
+        void SetNormal(const Vector3& FreshNormal);
 
-        /// @brief Gets a copy of this ray with a unit length of 1.
-        /// @return Returns a ray that is a normalized copy of this array.
-        Ray GetNormal() const;
-        /// @brief Reduces the length of this ray to 1 unit.
-        /// @return Returns a reference to this.
-        Ray& Normalize();
+        /// @brief Gets the origin of this ray.
+        /// @return Returns a Vector3 containing the origin of this Ray.
+        const Vector3& GetOrigin() const;
+        /// @brief Sets the origin of this ray.
+        /// @param FreshOrigin A Vector3 that will become the origin of this Ray.
+        void SetOrigin(const Vector3& FreshOrigin);
+
+        /// @brief Gets a point on the ray at a distance.
+        /// @param Distance The distance from the origin to get the position of.
+        /// @return Returns a point in 3D space that is on the ray at the specified distance from the origin.
+        Vector3 GetPointAtDistance(const Real& Distance);
+
 
         /// @brief Checks to see if this ray intersects a plane.
         /// @param ToCheck The plane to check for a hit.
@@ -158,23 +171,6 @@ namespace Mezzanine
         /// @brief Assignment operator.
         /// @param Other The other Ray to copy from.
         void operator=(const Ray& Other);
-
-        /// @brief Gets a Ray with a length longer than this one by the specified factor.
-        /// @param Factor That factor by which to increase the length of this Ray.
-        /// @return Returns a new lengthened Ray.
-        Ray operator*(const Real Factor) const;
-        /// @brief Gets a Ray with a length shorter than this one by the specified factor.
-        /// @param Factor That factor by which to decrease the length of this Ray.
-        /// @return Returns a new lengthened Ray.
-        Ray operator/(const Real Factor) const;
-        /// @brief Increases the length of this Ray by the factor provided.
-        /// @param Factor That factor by which to increase the length of this Ray.
-        /// @return Returns a reference to this.
-        Ray& operator*=(const Real Factor);
-        /// @brief Decreases the length of this Ray by the factor provided.
-        /// @param Factor That factor by which to decrease the length of this Ray.
-        /// @return Returns a reference to this.
-        Ray& operator/=(const Real Factor);
 
         /// @brief Equality operator.
         /// @param Other The other Ray to compare with.

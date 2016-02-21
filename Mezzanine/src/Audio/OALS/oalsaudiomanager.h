@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -193,6 +193,11 @@ namespace Mezzanine
                 typedef SoundScapeManagerContainer::iterator        SoundScapeManagerIterator;
                 /// @brief Const Iterator type for @ref OALS::SoundScapeManager instances registered to this class.
                 typedef SoundScapeManagerContainer::const_iterator  ConstSoundScapeManagerIterator;
+
+                /// @brief A String containing the name of this manager implementation.
+                static const String ImplementationName;
+                /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+                static const ManagerBase::ManagerType InterfaceType;
             protected:
                 friend class BufferUpdate2DWorkUnit;
                 friend class EffectFilterCleanWorkUnit;
@@ -288,7 +293,7 @@ namespace Mezzanine
                 AudioManager();
                 /// @brief XML constructor.
                 /// @param XMLNode The node of the xml document to construct from.
-                AudioManager(XML::Node& XMLNode);
+                AudioManager(const XML::Node& XMLNode);
                 /// @brief Class Destructor.
                 virtual ~AudioManager();
 

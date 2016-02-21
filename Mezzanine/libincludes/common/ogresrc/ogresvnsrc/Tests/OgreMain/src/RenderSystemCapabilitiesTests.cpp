@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,39 +32,54 @@ THE SOFTWARE.
 #include "OgreStringConverter.h"
 #include "OgreRenderSystemCapabilitiesSerializer.h"
 #include "OgreArchiveManager.h"
-#include "macUtils.h"
+#include "OgreLogManager.h"
+
+#include "UnitTestSuite.h"
+
 #include <fstream>
 #include <algorithm>
 
+#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE || OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS
+#include "macUtils.h"
+#endif
 
-// Regsiter the suite
-CPPUNIT_TEST_SUITE_REGISTRATION( RenderSystemCapabilitiesTests );
+// Register the test suite
+CPPUNIT_TEST_SUITE_REGISTRATION(RenderSystemCapabilitiesTests);
 
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::setUp()
 {
+    UnitTestSuite::getSingletonPtr()->startTestSetup(__FUNCTION__);
+    
     using namespace Ogre;
 
-    // we need to be able to create FileSystem archives to load .rendercaps
+    // We need to be able to create FileSystem archives to load .rendercaps
     mFileSystemArchiveFactory = OGRE_NEW FileSystemArchiveFactory();
 
     mArchiveManager = OGRE_NEW ArchiveManager();
-    ArchiveManager::getSingleton().addArchiveFactory( mFileSystemArchiveFactory );
+    ArchiveManager::getSingleton().addArchiveFactory(mFileSystemArchiveFactory);
 
     mRenderSystemCapabilitiesManager = OGRE_NEW RenderSystemCapabilitiesManager();
-    // actual parsing happens here. test methods confirm parse results only
-    mRenderSystemCapabilitiesManager->parseCapabilitiesFromArchive(macBundlePath() + "/Contents/Resources/Media/CustomCapabilities", "FileSystem", true);
-}
 
+    // Actual parsing happens here. The following test methods confirm parse results only.
+#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE || OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS
+    mRenderSystemCapabilitiesManager->parseCapabilitiesFromArchive(macBundlePath() + "/Contents/Resources/Media/CustomCapabilities", "FileSystem", true);
+#else
+    mRenderSystemCapabilitiesManager->parseCapabilitiesFromArchive("../../Tests/Media/CustomCapabilities", "FileSystem", true);
+#endif
+}
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::tearDown()
 {
     OGRE_DELETE mRenderSystemCapabilitiesManager;
     OGRE_DELETE mArchiveManager;
     OGRE_DELETE mFileSystemArchiveFactory;
-
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testIsShaderProfileSupported(void)
 {
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
+
     // create a new RSC
     Ogre::RenderSystemCapabilities rsc;
 
@@ -88,10 +103,10 @@ void RenderSystemCapabilitiesTests::testIsShaderProfileSupported(void)
     // check that empty string is not supported
     CPPUNIT_ASSERT(!rsc.isShaderProfileSupported(""));
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testHasCapability()
 {
-    using namespace Ogre;
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     RenderSystemCapabilities rsc;
 
@@ -117,6 +132,7 @@ void RenderSystemCapabilitiesTests::testHasCapability()
     CPPUNIT_ASSERT(rsc.hasCapability(RSC_FRAGMENT_PROGRAM));
     CPPUNIT_ASSERT(rsc.hasCapability(RSC_TEXTURE_COMPRESSION));
     CPPUNIT_ASSERT(rsc.hasCapability(RSC_FBO_ATI));
+
     // check that the non-set caps are NOT supported
     CPPUNIT_ASSERT(!rsc.hasCapability(RSC_BLENDING));
     CPPUNIT_ASSERT(!rsc.hasCapability(RSC_TWO_SIDED_STENCIL));
@@ -124,10 +140,10 @@ void RenderSystemCapabilitiesTests::testHasCapability()
     CPPUNIT_ASSERT(!rsc.hasCapability(RSC_TEXTURE_COMPRESSION_VTC));
     CPPUNIT_ASSERT(!rsc.hasCapability(RSC_PBUFFER));
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testSerializeBlank()
 {
-    using namespace Ogre;
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     RenderSystemCapabilitiesManager* rscManager = RenderSystemCapabilitiesManager::getSingletonPtr();
 
@@ -136,44 +152,46 @@ void RenderSystemCapabilitiesTests::testSerializeBlank()
     // if we have a non-NULL it's good enough
     CPPUNIT_ASSERT(rsc != 0);
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testSerializeEnumCapability()
 {
-    using namespace Ogre;
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     RenderSystemCapabilitiesManager* rscManager = RenderSystemCapabilitiesManager::getSingletonPtr();
 
     RenderSystemCapabilities* rsc = rscManager->loadParsedCapabilities("TestCaps enum Capabilities");
+
     // confirm that RSC was loaded
     CPPUNIT_ASSERT(rsc != 0);
 
-    // confirm that the contents are rhe same as in .rendercaps file
+    // confirm that the contents are the same as in .rendercaps file
     CPPUNIT_ASSERT(rsc->hasCapability(RSC_AUTOMIPMAP));
     CPPUNIT_ASSERT(rsc->hasCapability(RSC_FBO_ARB));
 }
-
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testSerializeStringCapability()
 {
-    using namespace Ogre;
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     RenderSystemCapabilitiesManager* rscManager = RenderSystemCapabilitiesManager::getSingletonPtr();
 
     RenderSystemCapabilities* rsc = rscManager->loadParsedCapabilities("TestCaps set String");
+
     // confirm that RSC was loaded
     CPPUNIT_ASSERT(rsc != 0);
 
     CPPUNIT_ASSERT(rsc->isShaderProfileSupported("vs99"));
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testSerializeBoolCapability()
 {
-    using namespace Ogre;
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     RenderSystemCapabilitiesManager* rscManager = RenderSystemCapabilitiesManager::getSingletonPtr();
 
     RenderSystemCapabilities* rscTrue = rscManager->loadParsedCapabilities("TestCaps set bool (true)");
     RenderSystemCapabilities* rscFalse = rscManager->loadParsedCapabilities("TestCaps set bool (false)");
+
     // confirm that RSC was loaded
     CPPUNIT_ASSERT(rscTrue != 0);
     CPPUNIT_ASSERT(rscFalse != 0);
@@ -181,41 +199,44 @@ void RenderSystemCapabilitiesTests::testSerializeBoolCapability()
     CPPUNIT_ASSERT(rscTrue->getVertexTextureUnitsShared() == true);
     CPPUNIT_ASSERT(rscFalse->getVertexTextureUnitsShared() == false);
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testSerializeIntCapability()
 {
-    using namespace Ogre;
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     RenderSystemCapabilitiesManager* rscManager = RenderSystemCapabilitiesManager::getSingletonPtr();
 
     RenderSystemCapabilities* rsc = rscManager->loadParsedCapabilities("TestCaps set int");
+
     // confirm that RSC was loaded
     CPPUNIT_ASSERT(rsc != 0);
 
     // TODO: why no get?
     CPPUNIT_ASSERT(rsc->getNumMultiRenderTargets() == 99);
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testSerializeRealCapability()
 {
-    using namespace Ogre;
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     RenderSystemCapabilitiesManager* rscManager = RenderSystemCapabilitiesManager::getSingletonPtr();
 
     RenderSystemCapabilities* rsc = rscManager->loadParsedCapabilities("TestCaps set Real");
+
     // confirm that RSC was loaded
     CPPUNIT_ASSERT(rsc != 0);
 
     CPPUNIT_ASSERT(rsc->getMaxPointSize() == 99.5);
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testSerializeShaderCapability()
 {
-    using namespace Ogre;
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     RenderSystemCapabilitiesManager* rscManager = RenderSystemCapabilitiesManager::getSingletonPtr();
 
     RenderSystemCapabilities* rsc = rscManager->loadParsedCapabilities("TestCaps addShaderProfile");
+
     // confirm that RSC was loaded
     CPPUNIT_ASSERT(rsc != 0);
 
@@ -223,11 +244,13 @@ void RenderSystemCapabilitiesTests::testSerializeShaderCapability()
     CPPUNIT_ASSERT(rsc->isShaderProfileSupported("vs_1_1"));
     CPPUNIT_ASSERT(rsc->isShaderProfileSupported("ps_99"));
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testWriteSimpleCapabilities()
 {
     using namespace Ogre;
-	using namespace std;
+    using namespace std;
+
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     String name = "simple caps";
     String filename = "simpleCapsTest.rendercaps";
@@ -254,8 +277,9 @@ void RenderSystemCapabilitiesTests::testWriteSimpleCapabilities()
 
     capsfile.getline(buff, 255);
     CPPUNIT_ASSERT_EQUAL(String("{"), String(buff));
+
     // scan every line and find the set capabilities it them
-	std::vector <String> lines;
+    std::vector <String> lines;
     while(capsfile.good())
     {
         capsfile.getline(buff, 255);
@@ -268,17 +292,19 @@ void RenderSystemCapabilitiesTests::testWriteSimpleCapabilities()
     CPPUNIT_ASSERT_EQUAL(String(""), lines.back());
 
     // check that all the set caps are there
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "automipmap true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "max_point_size 10.5") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "shader_profile sp999") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_texture_units_shared true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "num_world_matrices 777") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tautomipmap true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tmax_point_size 10.5") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tshader_profile sp999") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_texture_units_shared true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tnum_world_matrices 777") != lines.end());
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testWriteAllFalseCapabilities()
 {
     using namespace Ogre;
     using namespace std;
+
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     String name = "all false caps";
     String filename = "allFalseCapsTest.rendercaps";
@@ -302,6 +328,7 @@ void RenderSystemCapabilitiesTests::testWriteAllFalseCapabilities()
 
     capsfile.getline(buff, 255);
     CPPUNIT_ASSERT_EQUAL(String("{"), String(buff));
+
     // scan every line and find the set capabilities it them
     std::vector <String> lines;
     while(capsfile.good())
@@ -316,54 +343,59 @@ void RenderSystemCapabilitiesTests::testWriteAllFalseCapabilities()
     CPPUNIT_ASSERT_EQUAL(String(""), lines.back());
 
     // confirm every caps
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "automipmap false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "blending false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "anisotropy false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "dot3 false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "cubemapping false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "hwstencil false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tautomipmap false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tblending false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tanisotropy false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tdot3 false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tcubemapping false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\thwstencil false") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vbo false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_program false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "fragment_program false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "scissor_test false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "two_sided_stencil false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "stencil_wrap false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvbo false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_program false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tfragment_program false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tscissor_test false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttwo_sided_stencil false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tstencil_wrap false") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "hwocclusion false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "user_clip_planes false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_format_ubyte4 false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "infinite_far_plane false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "hwrender_to_texture false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_float false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\thwocclusion false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tuser_clip_planes false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_format_ubyte4 false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tinfinite_far_plane false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\thwrender_to_texture false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_float false") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "non_power_of_2_textures false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_3d false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "point_sprites false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "point_extended_parameters false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_texture_fetch false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "mipmap_lod_bias false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tnon_power_of_2_textures false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_3d false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tpoint_sprites false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tpoint_extended_parameters false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_texture_fetch false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tmipmap_lod_bias false") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_compression false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_compression_dxt false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_compression_vtc false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "fbo false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "fbo_arb false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_dxt false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_vtc false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_pvrtc false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_bc4_bc5 false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_bc6h_bc7 false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tfbo false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tfbo_arb false") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "fbo_ati false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "pbuffer false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "perstageconstant false") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "separate_shader_objects false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tfbo_ati false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tpbuffer false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tperstageconstant false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tseparate_shader_objects false") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvao false") != lines.end());
 
     // bool caps
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_texture_units_shared false") != lines.end());
-
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_texture_units_shared false") != lines.end());
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testWriteAllTrueCapabilities()
 {
     using namespace Ogre;
     using namespace std;
+
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     String name = "all false caps";
     String filename = "allFalseCapsTest.rendercaps";
@@ -406,6 +438,9 @@ void RenderSystemCapabilitiesTests::testWriteAllTrueCapabilities()
     caps.setCapability(RSC_TEXTURE_COMPRESSION);
     caps.setCapability(RSC_TEXTURE_COMPRESSION_DXT);
     caps.setCapability(RSC_TEXTURE_COMPRESSION_VTC);
+    caps.setCapability(RSC_TEXTURE_COMPRESSION_PVRTC);
+    caps.setCapability(RSC_TEXTURE_COMPRESSION_BC4_BC5);
+    caps.setCapability(RSC_TEXTURE_COMPRESSION_BC6H_BC7);
     caps.setCapability(RSC_FBO);
     caps.setCapability(RSC_FBO_ARB);
 
@@ -413,6 +448,7 @@ void RenderSystemCapabilitiesTests::testWriteAllTrueCapabilities()
     caps.setCapability(RSC_PBUFFER);
     caps.setCapability(RSC_PERSTAGECONSTANT);
     caps.setCapability(RSC_SEPARATE_SHADER_OBJECTS);
+    caps.setCapability(RSC_VAO);
 
     // write them to file
     serializer.writeScript(&caps, name, filename);
@@ -426,6 +462,7 @@ void RenderSystemCapabilitiesTests::testWriteAllTrueCapabilities()
 
     capsfile.getline(buff, 255);
     CPPUNIT_ASSERT_EQUAL(String("{"), String(buff));
+
     // scan every line and find the set capabilities it them
     std::vector <String> lines;
     while(capsfile.good())
@@ -434,60 +471,65 @@ void RenderSystemCapabilitiesTests::testWriteAllTrueCapabilities()
         lines.push_back(String(buff));
     }
 
-      // check that the file is closed nicely
+    // check that the file is closed nicely
     String closeBracket = *(lines.end() - 2);
     CPPUNIT_ASSERT_EQUAL(String("}"), closeBracket);
     CPPUNIT_ASSERT_EQUAL(String(""), lines.back());
 
     // confirm all caps
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "automipmap true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "blending true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "anisotropy true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "dot3 true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "cubemapping true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "hwstencil true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tautomipmap true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tblending true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tanisotropy true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tdot3 true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tcubemapping true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\thwstencil true") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vbo true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_program true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "fragment_program true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "scissor_test true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "two_sided_stencil true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "stencil_wrap true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvbo true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_program true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tfragment_program true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tscissor_test true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttwo_sided_stencil true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tstencil_wrap true") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "hwocclusion true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "user_clip_planes true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_format_ubyte4 true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "infinite_far_plane true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "hwrender_to_texture true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_float true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\thwocclusion true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tuser_clip_planes true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_format_ubyte4 true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tinfinite_far_plane true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\thwrender_to_texture true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_float true") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "non_power_of_2_textures true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_3d true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "point_sprites true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "point_extended_parameters true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_texture_fetch true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "mipmap_lod_bias true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tnon_power_of_2_textures true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_3d true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tpoint_sprites true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tpoint_extended_parameters true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_texture_fetch true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tmipmap_lod_bias true") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_compression true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_compression_dxt true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "texture_compression_vtc true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "fbo true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "fbo_arb true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_dxt true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_vtc true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_pvrtc true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_bc4_bc5 true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\ttexture_compression_bc6h_bc7 true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tfbo true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tfbo_arb true") != lines.end());
 
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "fbo_ati true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "pbuffer true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "perstageconstant true") != lines.end());
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "separate_shader_objects true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tfbo_ati true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tpbuffer true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tperstageconstant true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tseparate_shader_objects true") != lines.end());
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvao true") != lines.end());
 
     // bool caps
-    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "vertex_texture_units_shared true") != lines.end());
-
+    CPPUNIT_ASSERT(find(lines.begin(), lines.end(), "\tvertex_texture_units_shared true") != lines.end());
 }
-
+//--------------------------------------------------------------------------
 void RenderSystemCapabilitiesTests::testWriteAndReadComplexCapabilities()
 {
     using namespace Ogre;
     using namespace std;
+
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
     String name = "complex caps";
     String filename = "complexCapsTest.rendercaps";
@@ -518,8 +560,12 @@ void RenderSystemCapabilitiesTests::testWriteAndReadComplexCapabilities()
     caps.setCapability(RSC_TEXTURE_COMPRESSION);
     caps.setCapability(RSC_TEXTURE_COMPRESSION_DXT);
     caps.setCapability(RSC_TEXTURE_COMPRESSION_VTC);
+    caps.setCapability(RSC_TEXTURE_COMPRESSION_PVRTC);
+    caps.setCapability(RSC_TEXTURE_COMPRESSION_BC4_BC5);
+    caps.setCapability(RSC_TEXTURE_COMPRESSION_BC6H_BC7);
     caps.setCapability(RSC_PERSTAGECONSTANT);
     caps.setCapability(RSC_SEPARATE_SHADER_OBJECTS);
+    caps.setCapability(RSC_VAO);
 
     caps.setNumWorldMatrices(11);
     caps.setNumTextureUnits(22);
@@ -528,6 +574,7 @@ void RenderSystemCapabilitiesTests::testWriteAndReadComplexCapabilities()
     caps.setNumMultiRenderTargets(23);
 
     caps.addShaderProfile("99foo100");
+
     // try out stranger names
     caps.addShaderProfile("..f(_)specialsymbolextravaganza!@#$%^&*_but_no_spaces");
 
@@ -543,17 +590,17 @@ void RenderSystemCapabilitiesTests::testWriteAndReadComplexCapabilities()
     caps.setNonPOW2TexturesLimited(true);
     caps.setVertexTextureUnitsShared(true);
 
-	DriverVersion driverversion;
-	driverversion.major = 11;
-	driverversion.minor = 13;
-	driverversion.release = 17;
-	driverversion.build = 0;
+    DriverVersion driverversion;
+    driverversion.major = 11;
+    driverversion.minor = 13;
+    driverversion.release = 17;
+    driverversion.build = 0;
 
-	caps.setDriverVersion(driverversion);
+    caps.setDriverVersion(driverversion);
     caps.setDeviceName("Dummy Device");
     caps.setRenderSystemName("Dummy RenderSystem");
 
-     // write them to file
+    // write them to file
     serializer.writeScript(&caps, name, filename);
 
     FileStreamDataStream* fdatastream = new FileStreamDataStream(filename,
@@ -570,7 +617,7 @@ void RenderSystemCapabilitiesTests::testWriteAndReadComplexCapabilities()
     // confirm that RSC was loaded
     CPPUNIT_ASSERT(rsc != 0);
 
-    // create a reference, so that were're working with two refs
+    // create a reference, so that were are working with two refs
     RenderSystemCapabilities& caps2 = *rsc;
 
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_AUTOMIPMAP), caps2.hasCapability(RSC_AUTOMIPMAP));
@@ -604,6 +651,9 @@ void RenderSystemCapabilitiesTests::testWriteAndReadComplexCapabilities()
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_TEXTURE_COMPRESSION), caps2.hasCapability(RSC_TEXTURE_COMPRESSION));
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_TEXTURE_COMPRESSION_DXT), caps2.hasCapability(RSC_TEXTURE_COMPRESSION_DXT));
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_TEXTURE_COMPRESSION_VTC), caps2.hasCapability(RSC_TEXTURE_COMPRESSION_VTC));
+    CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_TEXTURE_COMPRESSION_PVRTC), caps2.hasCapability(RSC_TEXTURE_COMPRESSION_PVRTC));
+    CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_TEXTURE_COMPRESSION_BC4_BC5), caps2.hasCapability(RSC_TEXTURE_COMPRESSION_BC4_BC5));
+    CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_TEXTURE_COMPRESSION_BC6H_BC7), caps2.hasCapability(RSC_TEXTURE_COMPRESSION_BC6H_BC7));
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_FBO), caps2.hasCapability(RSC_FBO));
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_FBO_ARB), caps2.hasCapability(RSC_FBO_ARB));
 
@@ -611,6 +661,7 @@ void RenderSystemCapabilitiesTests::testWriteAndReadComplexCapabilities()
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_PBUFFER), caps2.hasCapability(RSC_PBUFFER));
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_PERSTAGECONSTANT), caps2.hasCapability(RSC_PERSTAGECONSTANT));
     CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_SEPARATE_SHADER_OBJECTS), caps2.hasCapability(RSC_SEPARATE_SHADER_OBJECTS));
+    CPPUNIT_ASSERT_EQUAL(caps.hasCapability(RSC_VAO), caps2.hasCapability(RSC_VAO));
 
     CPPUNIT_ASSERT_EQUAL(caps.getNumWorldMatrices(), caps2.getNumWorldMatrices());
     CPPUNIT_ASSERT_EQUAL(caps.getNumTextureUnits(), caps2.getNumTextureUnits());
@@ -629,14 +680,14 @@ void RenderSystemCapabilitiesTests::testWriteAndReadComplexCapabilities()
     CPPUNIT_ASSERT_EQUAL(caps.getMaxPointSize(), caps2.getMaxPointSize());
     CPPUNIT_ASSERT_EQUAL(caps.getNonPOW2TexturesLimited(), caps2.getNonPOW2TexturesLimited());
     CPPUNIT_ASSERT_EQUAL(caps.getVertexTextureUnitsShared(), caps2.getVertexTextureUnitsShared());
-	
-	// test versions
-	CPPUNIT_ASSERT_EQUAL(caps.getDriverVersion().major, caps2.getDriverVersion().major);
-	CPPUNIT_ASSERT_EQUAL(caps.getDriverVersion().minor, caps2.getDriverVersion().minor);
-	CPPUNIT_ASSERT_EQUAL(caps.getDriverVersion().release, caps2.getDriverVersion().release);
-	CPPUNIT_ASSERT_EQUAL(0, caps2.getDriverVersion().build);
+    
+    // test versions
+    CPPUNIT_ASSERT_EQUAL(caps.getDriverVersion().major, caps2.getDriverVersion().major);
+    CPPUNIT_ASSERT_EQUAL(caps.getDriverVersion().minor, caps2.getDriverVersion().minor);
+    CPPUNIT_ASSERT_EQUAL(caps.getDriverVersion().release, caps2.getDriverVersion().release);
+    CPPUNIT_ASSERT_EQUAL(0, caps2.getDriverVersion().build);
 
     dataStreamPtr.setNull();
 }
-
+//--------------------------------------------------------------------------
 

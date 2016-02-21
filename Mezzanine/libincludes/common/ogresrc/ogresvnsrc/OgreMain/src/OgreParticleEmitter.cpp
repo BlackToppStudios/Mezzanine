@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,13 +32,14 @@ THE SOFTWARE.
 
 namespace Ogre
 {
-	// Define static members
+    // Define static members
     EmitterCommands::CmdAngle ParticleEmitter::msAngleCmd;
     EmitterCommands::CmdColour ParticleEmitter::msColourCmd;
     EmitterCommands::CmdColourRangeStart ParticleEmitter::msColourRangeStartCmd;
     EmitterCommands::CmdColourRangeEnd ParticleEmitter::msColourRangeEndCmd;
     EmitterCommands::CmdDirection ParticleEmitter::msDirectionCmd;
-    EmitterCommands::CmdUp ParticleEmitter::msUpCmd;    
+    EmitterCommands::CmdUp ParticleEmitter::msUpCmd;
+    EmitterCommands::CmdDirPositionRef ParticleEmitter::msDirPositionRefCmd;
     EmitterCommands::CmdEmissionRate ParticleEmitter::msEmissionRateCmd;
     EmitterCommands::CmdMaxTTL ParticleEmitter::msMaxTTLCmd;
     EmitterCommands::CmdMaxVelocity ParticleEmitter::msMaxVelocityCmd;
@@ -60,6 +61,8 @@ namespace Ogre
     //-----------------------------------------------------------------------
     ParticleEmitter::ParticleEmitter(ParticleSystem* psys)
       : mParent(psys),
+        mUseDirPositionRef(false),
+        mDirPositionRef(Vector3::ZERO),
         mStartTime(0),
         mDurationMin(0),
         mDurationMax(0),
@@ -79,9 +82,9 @@ namespace Ogre
         mColourRangeStart = mColourRangeEnd = ColourValue::White;
         mEnabled = true;
         mRemainder = 0;
-		mName = StringUtil::BLANK;
-		mEmittedEmitter = StringUtil::BLANK;
-		mEmitted = false;
+        mName = BLANKSTRING;
+        mEmittedEmitter = BLANKSTRING;
+        mEmitted = false;
     }
     //-----------------------------------------------------------------------
     ParticleEmitter::~ParticleEmitter() 
@@ -123,6 +126,22 @@ namespace Ogre
         return mUp; 
     }
     //-----------------------------------------------------------------------
+    void ParticleEmitter::setDirPositionReference( const Vector3& nposition, bool enable )
+    { 
+    mUseDirPositionRef  = enable;
+        mDirPositionRef     = nposition;
+    }
+    //-----------------------------------------------------------------------
+    const Vector3& ParticleEmitter::getDirPositionReference() const
+    {
+        return mDirPositionRef;
+    }
+    //-----------------------------------------------------------------------
+    bool ParticleEmitter::getDirPositionReferenceEnabled() const
+    {
+        return mUseDirPositionRef;
+    }
+    //-----------------------------------------------------------------------
     void ParticleEmitter::setAngle(const Radian& angle)
     {
         // Store as radians for efficiency
@@ -157,11 +176,14 @@ namespace Ogre
     //-----------------------------------------------------------------------
     void ParticleEmitter::setTimeToLive(Real ttl)
     {
+        assert (ttl >= 0 && "Time to live can not be negative");
         mMinTTL = mMaxTTL = ttl;
     }
     //-----------------------------------------------------------------------
     void ParticleEmitter::setTimeToLive(Real minTtl, Real maxTtl)
     {
+        assert (minTtl >= 0 && "Time to live can not be negative");
+        assert (maxTtl >= 0 && "Time to live can not be negative");
         mMinTTL = minTtl;
         mMaxTTL = maxTtl;
     }
@@ -176,56 +198,77 @@ namespace Ogre
         mColourRangeStart = colourStart;
         mColourRangeEnd = colourEnd;
     }
-	//-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
     const String& ParticleEmitter::getName(void) const
     {
         return mName;
     }
-	//-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
     void ParticleEmitter::setName(const String& newName)
     {
-		mName = newName;
+        mName = newName;
     }
-	//-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
     const String& ParticleEmitter::getEmittedEmitter(void) const
     {
         return mEmittedEmitter;
     }
-	//-----------------------------------------------------------------------
+    //-----------------------------------------------------------------------
     void ParticleEmitter::setEmittedEmitter(const String& emittedEmitter)
     {
         mEmittedEmitter = emittedEmitter;
     }
-	//-----------------------------------------------------------------------
-	bool ParticleEmitter::isEmitted(void) const
+    //-----------------------------------------------------------------------
+    bool ParticleEmitter::isEmitted(void) const
     {
-		return mEmitted;
+        return mEmitted;
     }
-	//-----------------------------------------------------------------------
-	void ParticleEmitter::setEmitted(bool emitted)
+    //-----------------------------------------------------------------------
+    void ParticleEmitter::setEmitted(bool emitted)
     {
         mEmitted = emitted;
     }
     //-----------------------------------------------------------------------
-    void ParticleEmitter::genEmissionDirection(Vector3& destVector)
+    void ParticleEmitter::genEmissionDirection( const Vector3 &particlePos, Vector3& destVector )
     {
-        if (mAngle != Radian(0))
+        if( mUseDirPositionRef )
         {
-            // Randomise angle
-            Radian angle = Math::UnitRandom() * mAngle;
+            Vector3 particleDir = particlePos - mDirPositionRef;
+            particleDir.normalise();
 
-            // Randomise direction
-            destVector = mDirection.randomDeviant(angle, mUp);
+            if (mAngle != Radian(0))
+            {
+                // Randomise angle
+                Radian angle = Math::UnitRandom() * mAngle;
+
+                // Randomise direction
+                destVector = particleDir.randomDeviant( angle );
+            }
+            else
+            {
+                // Constant angle
+                destVector = particleDir;
+            }
         }
         else
         {
-            // Constant angle
-            destVector = mDirection;
+            if (mAngle != Radian(0))
+            {
+                // Randomise angle
+                Radian angle = Math::UnitRandom() * mAngle;
+
+                // Randomise direction
+                destVector = mDirection.randomDeviant(angle, mUp);
+            }
+            else
+            {
+                // Constant angle
+                destVector = mDirection;
+            }
         }
 
         // Don't normalise, we can assume that it will still be a unit vector since
         // both direction and 'up' are.
-
     }
     //-----------------------------------------------------------------------
     void ParticleEmitter::genEmissionVelocity(Vector3& destVector)
@@ -346,7 +389,12 @@ namespace Ogre
 
         dict->addParameter(ParameterDef("up", 
             "The up vector of the emitter." , PT_VECTOR3),
-            &msUpCmd);            
+            &msUpCmd);
+
+        dict->addParameter(ParameterDef("direction_position_reference", 
+            "The reference position to calculate the direction of emitted particles "
+            "based on their position. Good for explosions and implosions (use negative velocity)" , PT_COLOURVALUE),
+            &msDirPositionRefCmd);
 
         dict->addParameter(ParameterDef("emission_rate", 
             "The number of particles emitted per second." , PT_REAL),
@@ -404,13 +452,13 @@ namespace Ogre
             "If set, after disabling an emitter will repeat (reenable) after this maximum number of seconds." , PT_REAL),
             &msMaxRepeatDelayCmd);
 
-		dict->addParameter(ParameterDef("name", 
-			"This is the name of the emitter" , PT_STRING),
-			&msNameCmd);
-		
-		dict->addParameter(ParameterDef("emit_emitter", 
-			"If set, this emitter will emit other emitters instead of visual particles" , PT_STRING),
-			&msEmittedEmitterCmd);
+        dict->addParameter(ParameterDef("name", 
+            "This is the name of the emitter" , PT_STRING),
+            &msNameCmd);
+        
+        dict->addParameter(ParameterDef("emit_emitter", 
+            "If set, this emitter will emit other emitters instead of visual particles" , PT_STRING),
+            &msEmittedEmitterCmd);
     }
     //-----------------------------------------------------------------------
     Real ParticleEmitter::getParticleVelocity(void) const

@@ -61,6 +61,132 @@ vertex_program Ogre/Instancing/shadow_caster_dq_two_weights_glsl_vs glsl
 	includes_skeletal_animation true
 }
 
+//--------------------------------------------------------------
+// GLSL ES Programs
+//--------------------------------------------------------------
+vertex_program Ogre/Instancing/ShaderBased_glsles_vs glsles
+{
+	source ShaderInstancing.vert
+	
+	preprocessor_defines DEPTH_SHADOWRECEIVER=1
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/shadow_caster_glsles_vs glsles
+{
+	source ShaderInstancing.vert
+	preprocessor_defines DEPTH_SHADOWCASTER=1
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/ShaderBased_dq_glsles_vs glsles
+{
+	source ShaderInstancing.vert
+
+	preprocessor_defines ST_DUAL_QUATERNION,DEPTH_SHADOWRECEIVER=1
+
+	includes_skeletal_animation true
+
+}
+
+vertex_program Ogre/Instancing/shadow_caster_dq_glsles_vs glsles
+{
+	source ShaderInstancing.vert
+
+	preprocessor_defines ST_DUAL_QUATERNION,DEPTH_SHADOWCASTER=1
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/ShaderBased_dq_two_weights_glsles_vs glsles
+{
+	source ShaderInstancing.vert
+
+	preprocessor_defines ST_DUAL_QUATERNION,BONE_TWO_WEIGHTS,DEPTH_SHADOWRECEIVER=1
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/shadow_caster_dq_two_weights_glsles_vs glsles
+{
+	source ShaderInstancing.vert
+
+	preprocessor_defines ST_DUAL_QUATERNION,BONE_TWO_WEIGHTS,DEPTH_SHADOWCASTER=1
+
+	includes_skeletal_animation true
+}
+
+//--------------------------------------------------------------
+// hlsl Programs
+//--------------------------------------------------------------
+vertex_program Ogre/Instancing/ShaderBased_hlsl_vs hlsl
+{
+	source ShaderInstancing.hlsl
+	entry_point main_vs
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
+
+	preprocessor_defines DEPTH_SHADOWRECEIVER
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/shadow_caster_hlsl_vs hlsl
+{
+	source ShaderInstancing.hlsl
+	entry_point main_vs
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
+	
+	preprocessor_defines DEPTH_SHADOWCASTER
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/ShaderBased_dq_hlsl_vs hlsl
+{
+	source ShaderInstancing.hlsl
+	entry_point main_vs
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
+
+	preprocessor_defines DEPTH_SHADOWRECEIVER,ST_DUAL_QUATERNION
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/shadow_caster_dq_hlsl_vs hlsl
+{
+	source ShaderInstancing.hlsl
+	entry_point main_vs
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
+	
+	preprocessor_defines DEPTH_SHADOWCASTER,ST_DUAL_QUATERNION
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/ShaderBased_dq_two_weights_hlsl_vs hlsl
+{
+	source ShaderInstancing.hlsl
+	entry_point main_vs
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
+
+	preprocessor_defines DEPTH_SHADOWRECEIVER,ST_DUAL_QUATERNION,BONE_TWO_WEIGHTS
+
+	includes_skeletal_animation true
+}
+
+vertex_program Ogre/Instancing/shadow_caster_dq_two_weights_hlsl_vs hlsl
+{
+	source ShaderInstancing.hlsl
+	entry_point main_vs
+	target vs_4_0 vs_4_0_level_9_1 vs_4_0_level_9_3
+	
+	preprocessor_defines DEPTH_SHADOWCASTER,ST_DUAL_QUATERNION,BONE_TWO_WEIGHTS
+
+	includes_skeletal_animation true
+}
+
 
 //--------------------------------------------------------------
 // CG Programs
@@ -69,7 +195,7 @@ vertex_program Ogre/Instancing/ShaderBased_cg_vs cg
 {
 	source ShaderInstancing.cg
 	entry_point main_vs
-	profiles vs_3_0 vs_2_0 vp40
+	profiles  vs_3_0 vs_2_0 vp40
 
 	compile_arguments -DDEPTH_SHADOWRECEIVER
 
@@ -80,7 +206,7 @@ vertex_program Ogre/Instancing/shadow_caster_cg_vs cg
 {
 	source ShaderInstancing.cg
 	entry_point main_vs
-	profiles vs_3_0 vs_2_0 vp40
+	profiles  vs_3_0 vs_2_0 vp40
 	
 	compile_arguments -DDEPTH_SHADOWCASTER
 
@@ -91,7 +217,7 @@ vertex_program Ogre/Instancing/ShaderBased_dq_cg_vs cg
 {
 	source ShaderInstancing.cg
 	entry_point main_vs
-	profiles vs_3_0 vs_2_0 vp40
+	profiles  vs_3_0 vs_2_0 vp40
 
 	compile_arguments -DDEPTH_SHADOWRECEIVER -DST_DUAL_QUATERNION
 
@@ -102,7 +228,7 @@ vertex_program Ogre/Instancing/shadow_caster_dq_cg_vs cg
 {
 	source ShaderInstancing.cg
 	entry_point main_vs
-	profiles vs_3_0 vs_2_0 vp40
+	profiles  vs_3_0 vs_2_0 vp40
 	
 	compile_arguments -DDEPTH_SHADOWCASTER -DST_DUAL_QUATERNION
 
@@ -113,7 +239,7 @@ vertex_program Ogre/Instancing/ShaderBased_dq_two_weights_cg_vs cg
 {
 	source ShaderInstancing.cg
 	entry_point main_vs
-	profiles vs_3_0 vs_2_0 vp40
+	profiles  vs_3_0 vs_2_0 vp40
 
 	compile_arguments -DDEPTH_SHADOWRECEIVER -DST_DUAL_QUATERNION -DBONE_TWO_WEIGHTS
 
@@ -124,7 +250,7 @@ vertex_program Ogre/Instancing/shadow_caster_dq_two_weights_cg_vs cg
 {
 	source ShaderInstancing.cg
 	entry_point main_vs
-	profiles vs_3_0 vs_2_0 vp40
+	profiles  vs_3_0 vs_2_0 vp40
 	
 	compile_arguments -DDEPTH_SHADOWCASTER -DST_DUAL_QUATERNION -DBONE_TWO_WEIGHTS
 
@@ -138,6 +264,8 @@ vertex_program Ogre/Instancing/shadow_caster_dq_two_weights_cg_vs cg
 vertex_program Ogre/Instancing/ShaderBased_vs unified
 {
 	delegate Ogre/Instancing/ShaderBased_glsl_vs
+	delegate Ogre/Instancing/ShaderBased_glsles_vs
+	delegate Ogre/Instancing/ShaderBased_hlsl_vs
 	delegate Ogre/Instancing/ShaderBased_cg_vs
 
 	default_params
@@ -153,6 +281,8 @@ vertex_program Ogre/Instancing/ShaderBased_vs unified
 vertex_program Ogre/Instancing/shadow_caster_vs unified
 {
 	delegate Ogre/Instancing/shadow_caster_glsl_vs
+	delegate Ogre/Instancing/shadow_caster_glsles_vs
+	delegate Ogre/Instancing/shadow_caster_hlsl_vs
 	delegate Ogre/Instancing/shadow_caster_cg_vs
 
 	default_params
@@ -166,6 +296,8 @@ vertex_program Ogre/Instancing/shadow_caster_vs unified
 vertex_program Ogre/Instancing/ShaderBased_dq_vs unified
 {
 	delegate Ogre/Instancing/ShaderBased_dq_glsl_vs
+	delegate Ogre/Instancing/ShaderBased_dq_glsles_vs
+	delegate Ogre/Instancing/ShaderBased_dq_hlsl_vs
 	delegate Ogre/Instancing/ShaderBased_dq_cg_vs
 
 	default_params
@@ -180,6 +312,8 @@ vertex_program Ogre/Instancing/ShaderBased_dq_vs unified
 vertex_program Ogre/Instancing/shadow_caster_dq_vs unified
 {
 	delegate Ogre/Instancing/shadow_caster_dq_glsl_vs
+	delegate Ogre/Instancing/shadow_caster_dq_glsles_vs
+	delegate Ogre/Instancing/shadow_caster_dq_hlsl_vs
 	delegate Ogre/Instancing/shadow_caster_dq_cg_vs
 
 	default_params
@@ -193,6 +327,8 @@ vertex_program Ogre/Instancing/shadow_caster_dq_vs unified
 vertex_program Ogre/Instancing/ShaderBased_dq_two_weights_vs unified
 {
 	delegate Ogre/Instancing/ShaderBased_dq_two_weights_glsl_vs
+	delegate Ogre/Instancing/ShaderBased_dq_two_weights_glsles_vs
+	delegate Ogre/Instancing/ShaderBased_dq_two_weights_hlsl_vs
 	delegate Ogre/Instancing/ShaderBased_dq_two_weights_cg_vs
 
 	default_params
@@ -207,6 +343,8 @@ vertex_program Ogre/Instancing/ShaderBased_dq_two_weights_vs unified
 vertex_program Ogre/Instancing/shadow_caster_dq_two_weights_vs unified
 {
 	delegate Ogre/Instancing/shadow_caster_dq_two_weights_glsl_vs
+	delegate Ogre/Instancing/shadow_caster_dq_two_weights_glsles_vs
+	delegate Ogre/Instancing/shadow_caster_dq_two_weights_hlsl_vs
 	delegate Ogre/Instancing/shadow_caster_dq_two_weights_cg_vs
 
 	default_params

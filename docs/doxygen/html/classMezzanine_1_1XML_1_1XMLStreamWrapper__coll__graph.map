@@ -1,4 +1,7 @@
 <map id="Mezzanine::XML::XMLStreamWrapper" name="Mezzanine::XML::XMLStreamWrapper">
-<area shape="rect" id="node2" href="$classMezzanine_1_1XML_1_1Writer.html" title="Interface for node printing (see Node::Print) " alt="" coords="5,15,168,44"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Resource_1_1DataStream.html" title="This represents a stream to a piece of data, usually a file. " alt="" coords="192,6,341,53"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1XML_1_1Writer.html" title="Interface for node printing (see Node::Print) " alt="" coords="5,194,168,221"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Resource_1_1IOStream.html" title="Base class for streams that support both read and write operations. " alt="" coords="192,187,341,228"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Resource_1_1iInStream.html" title="Interface class for input (read) streams. " alt="" coords="19,96,168,137"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Resource_1_1iStreamBase.html" title="Base class interface for resource streams. " alt="" coords="121,5,271,47"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Resource_1_1iOutStream.html" title="Interface class for output (write) streams. " alt="" coords="192,96,341,137"/>
 </map>

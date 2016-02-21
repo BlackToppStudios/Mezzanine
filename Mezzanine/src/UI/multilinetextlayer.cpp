@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -260,7 +260,7 @@ namespace Mezzanine
             }
         }
 
-        TextLine* MultiLineTextLayer::GetOrCreateTextLine(const UInt32& Index)
+        TextLine* MultiLineTextLayer::GetOrCreateTextLine(const UInt32 Index)
         {
             if( Index >= this->TextLines.size() ) return this->CreateTextLine();
             else return this->TextLines.at(Index);

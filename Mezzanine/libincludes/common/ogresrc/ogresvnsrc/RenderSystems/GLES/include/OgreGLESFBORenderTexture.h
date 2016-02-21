@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,7 @@ THE SOFTWARE.
 #include "OgreGLESRenderTexture.h"
 #include "OgreGLESContext.h"
 #include "OgreGLESFrameBufferObject.h"
+#include "OgreGLESManagedResource.h"
 
 namespace Ogre {
     class GLESFBOManager;
@@ -38,22 +39,30 @@ namespace Ogre {
 
     /** RenderTexture for GL ES FBO
     */
-    class _OgreGLESExport GLESFBORenderTexture: public GLESRenderTexture
+    class _OgreGLESExport GLESFBORenderTexture: public GLESRenderTexture MANAGED_RESOURCE
     {
     public:
         GLESFBORenderTexture(GLESFBOManager *manager, const String &name, const GLESSurfaceDesc &target, bool writeGamma, uint fsaa);
 
         virtual void getCustomAttribute(const String& name, void* pData);
 
-		/// Override needed to deal with multisample buffers
-		virtual void swapBuffers(bool waitForVSync = true);
+        /// Override needed to deal with multisample buffers
+        virtual void swapBuffers();
 
-		/// Override so we can attach the depth buffer to the FBO
-		virtual bool attachDepthBuffer( DepthBuffer *depthBuffer );
-		virtual void detachDepthBuffer();
-		virtual void _detachDepthBuffer();
+        /// Override so we can attach the depth buffer to the FBO
+        virtual bool attachDepthBuffer( DepthBuffer *depthBuffer );
+        virtual void detachDepthBuffer();
+        virtual void _detachDepthBuffer();
     protected:
         GLESFrameBufferObject mFB;
+        
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID
+        /** See AndroidResource. */
+        virtual void notifyOnContextLost();
+        
+        /** See AndroidResource. */
+        virtual void notifyOnContextReset();
+#endif
     };
     
     /** Factory for GL Frame Buffer Objects, and related things.
@@ -62,7 +71,7 @@ namespace Ogre {
     {
     public:
         GLESFBOManager();
-		~GLESFBOManager();
+        ~GLESFBOManager();
         
         /** Bind a certain render target if it is a FBO. If it is not a FBO, bind the
             main frame buffer.
@@ -80,11 +89,11 @@ namespace Ogre {
         /** Create a texture rendertarget object
         */
         virtual GLESFBORenderTexture *createRenderTexture(const String &name, 
-			const GLESSurfaceDesc &target, bool writeGamma, uint fsaa);
+            const GLESSurfaceDesc &target, bool writeGamma, uint fsaa);
 
-		/** Create a multi render target 
-		*/
-		virtual MultiRenderTarget* createMultiRenderTarget(const String & name);
+        /** Create a multi render target 
+        */
+        virtual MultiRenderTarget* createMultiRenderTarget(const String & name);
         
         /** Request a render buffer. If format is GL_NONE, return a zero buffer.
         */
@@ -104,6 +113,10 @@ namespace Ogre {
         /** Get a FBO without depth/stencil for temporary use, like blitting between textures.
         */
         GLuint getTemporaryFBO() { return mTempFBO; }
+        
+        /** Detects all supported fbo's and recreates the tempory fbo */
+        void _reload();
+        
     private:
         /** Frame Buffer Object properties for a certain texture format.
         */
@@ -137,7 +150,7 @@ namespace Ogre {
             GLenum format;
             size_t width;
             size_t height;
-			uint samples;
+            uint samples;
             // Overloaded comparison operator for usage in map
             bool operator < (const RBFormat &other) const
             {
@@ -155,11 +168,11 @@ namespace Ogre {
                     {
                         if(height < other.height)
                             return true;
-						else if (height == other.height)
-						{
-							if (samples < other.samples)
-								return true;
-						}
+                        else if (height == other.height)
+                        {
+                            if (samples < other.samples)
+                                return true;
+                        }
                     }
                 }
                 return false;

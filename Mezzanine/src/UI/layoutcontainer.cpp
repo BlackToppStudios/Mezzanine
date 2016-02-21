@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ namespace Mezzanine
 
             /*// Update the children, if any
             if( this->VisibleChildren.empty() == false )
-                this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->VisibleChildren);//*/
+                this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->VisibleChildren);// */
 
             // We done got icky
             this->_MarkAllLayersDirty();

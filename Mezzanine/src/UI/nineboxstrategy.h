@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -48,7 +48,6 @@ namespace Mezzanine
 {
     namespace UI
     {
-        /// @enum NineBoxPartition
         /// @brief Enum describing the different 9-Box partitions of a screen.
         enum NineBoxPartition
         {
@@ -113,6 +112,7 @@ namespace Mezzanine
             /// @param PartID The enum value to calculate the pixel size and position for.
             /// @param ScreenSize The current size of the screen the partition is on.
             /// @param Returns a Rect storing the actual size and position of the specified partition.
+            /// @return Returns a Rect containing the size and position of the partition requested.
             Rect CalculatePartitionRect(const NineBoxPartition& PartID, const Vector2& ScreenSize);
             /// @brief Gets the partition that the provided position is in.
             /// @param MousePos The screen position used to determine which partition to retrieve.

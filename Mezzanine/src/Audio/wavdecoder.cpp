@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -53,16 +53,29 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        WavDecoder::WavDecoder(Resource::DataStreamPtr Stream)
-            : WavStream(Stream),
-              Valid(false),
-              Channels(0),
-              BlockAlign(0),
-              BitsPerSample(0),
-              SampleRate(0),
-              ByteRate(0),
-              DataSize(0),
-              DataOffset(0)
+        WavDecoder::WavDecoder(Resource::DataStreamPtr Stream) :
+            WavStream(Stream),
+            WavStreamSize(0),
+            WavStreamPos(0),
+            SampleRate(0),
+            ByteRate(0),
+            DataSize(0),
+            DataOffset(0),
+            Channels(0),
+            BlockAlign(0),
+            BitsPerSample(0),
+            Valid(false)
+        {
+            this->WavStream->seekg(0,std::ios_base::end);
+            this->WavStreamSize = this->WavStream->tellg();
+
+            this->ReadWavMetaData(Stream);
+        }
+
+        WavDecoder::~WavDecoder()
+            {  }
+
+        void WavDecoder::ReadWavMetaData(Resource::DataStreamPtr Stream)
         {
             const char* RIFFTAG = "RIFF";
             const char* WAVETAG = "WAVE";
@@ -76,64 +89,56 @@ namespace Mezzanine
             UInt32 StartOffset = 0;
 
             // Read the first 4 bytes
-            this->WavStream->SetStreamPosition(0);
-            this->WavStream->Read(Ident,4);
+            this->WavStream->seekg(0);
+            this->WavStream->read(Ident,4);
             // Check to see if it is a valid RIFF file
-            if( strncmp(Ident,RIFFTAG,4) == 0 )
-            {
-                this->WavStream->Read(&Temp32,4);
+            if( strncmp(Ident,RIFFTAG,4) == 0 ) {
+                this->WavStream->read((char*)&Temp32,4);
                 // Check to see if the file is big enough to be valid (not completely accurate)
-                if( Temp32 >= 44 )
-                {
-                    this->WavStream->Read(Ident,4);
+                if( Temp32 >= 44 ) {
+                    this->WavStream->read(Ident,4);
                     // Check that it is a wave file
-                    if( strncmp(Ident,WAVETAG,4) == 0 )
-                    {
+                    if( strncmp(Ident,WAVETAG,4) == 0 ) {
                         // Save our position
-                        StartOffset = this->WavStream->GetStreamPosition();
+                        StartOffset = this->WavStream->tellg();
                         // Scan for the first fmt chuck (not necessarily right after)
                         do{
-                            this->WavStream->Read(Ident,4);
-                        } while( ( strncmp(Ident,FORMATTAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
+                            this->WavStream->read(Ident,4);
+                        } while( ( strncmp(Ident,FORMATTAG,4) != 0 ) && ( this->WavStream->tellg() < this->WavStreamSize ) );
                         //Did we find it?
-                        if( this->WavStream->GetStreamPosition() < ( this->WavStream->GetSize() - 16 ) )
-                        {
+                        if( this->WavStream->tellg() < ( this->WavStreamSize - 16 ) ) {
                             //Yes, read it in
-                            this->WavStream->Read(&Temp32,4);
-                            if( Temp32 >= 16 )
-                            {
+                            this->WavStream->read((char*)&Temp32,4);
+                            if( Temp32 >= 16 ) {
                                 // Check that it is in PCM format, we don't support compressed wavs
-                                this->WavStream->Read(&Temp16,2);
+                                this->WavStream->read((char*)&Temp16,2);
                                 this->Channels = Temp16;
                                 // We only support mono or stereo wavs
-                                if( this->Channels == 1 || this->Channels == 2 )
-                                {
-                                    this->WavStream->Read(&Temp32,4);
+                                if( this->Channels == 1 || this->Channels == 2 ) {
+                                    this->WavStream->read((char*)&Temp32,4);
                                     this->SampleRate = Temp32;
-                                    this->WavStream->Read(&Temp32,4);
+                                    this->WavStream->read((char*)&Temp32,4);
                                     this->ByteRate = Temp32;
-                                    this->WavStream->Read(&Temp16,2);
+                                    this->WavStream->read((char*)&Temp16,2);
                                     this->BlockAlign = Temp16;
-                                    this->WavStream->Read(&Temp16,2);
+                                    this->WavStream->read((char*)&Temp16,2);
                                     this->BitsPerSample = Temp16;
 
                                     // We only support 8 bit or 16 bit wavs
-                                    if( this->BitsPerSample == 8 || this->BitsPerSample == 16 )
-                                    {
+                                    if( this->BitsPerSample == 8 || this->BitsPerSample == 16 ) {
                                         // Reset our pointer to start scanning for the data block
-                                        this->WavStream->SetStreamPosition(StartOffset);
+                                        this->WavStream->seekg(StartOffset);
                                         // Scan for the first data chuck (not necessarily right after)
                                         do{
-                                            this->WavStream->Read(Ident,4);
-                                        } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
+                                            this->WavStream->read(Ident,4);
+                                        } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->tellg() < this->WavStreamSize ) );
 
                                         // Did we find it?
-                                        if( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() )
-                                        {
+                                        if( this->WavStream->tellg() < this->WavStreamSize ) {
                                             // Get size of data block
-                                            this->WavStream->Read(&Temp32,4);
+                                            this->WavStream->read((char*)&Temp32,4);
                                             this->DataSize = Temp32;
-                                            this->DataOffset = this->WavStream->GetStreamPosition();
+                                            this->DataOffset = this->WavStream->tellg();
                                             this->Valid = true;
                                         }
                                     }
@@ -145,8 +150,11 @@ namespace Mezzanine
             }
         }
 
-        WavDecoder::~WavDecoder()
+        void WavDecoder::ClearStreamErrors()
         {
+            if( this->WavStream->eof() ) {
+                this->WavStream->clear( this->WavStream->rdstate() ^ ( std::ios::eofbit | std::ios::failbit ) );
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -191,9 +199,14 @@ namespace Mezzanine
             return this->WavStream;
         }
 
-        Boole WavDecoder::SetPosition(Int32 Position, Boole Relative)
+        Boole WavDecoder::IsEndOfStream() const
         {
-            Int32 CurrPos = this->WavStream->GetStreamPosition();
+            return ( this->WavStream->eof() || this->WavStream->tellg() >= this->WavStreamSize );
+        }
+
+        Boole WavDecoder::SetPosition(Int32 Position, const Boole Relative)
+        {
+            Int32 CurrPos = this->WavStream->tellg();
             Int32 StartPos = this->DataOffset;
             Int32 EndPos = this->DataOffset + this->DataSize;
 
@@ -205,11 +218,11 @@ namespace Mezzanine
                 else if( Position > EndPos ) Position = EndPos;
             }
 
-            this->WavStream->SetStreamPosition(Position);
+            this->WavStream->seekg(Position);
             return true;
         }
 
-        Boole WavDecoder::Seek(const Real Seconds, Boole Relative)
+        Boole WavDecoder::Seek(const Real Seconds, const Boole Relative)
         {
             Int32 SeekInBytes = ( Seconds * static_cast<Real>(this->SampleRate) * static_cast<Real>(this->Channels) * (static_cast<Real>(this->BitsPerSample) / 8.0) );
             return this->SetPosition(SeekInBytes,Relative);
@@ -217,18 +230,18 @@ namespace Mezzanine
 
         UInt32 WavDecoder::ReadAudioData(void* Output, UInt32 Amount)
         {
-            Int32 CurrPos = this->WavStream->GetStreamPosition();
+            Int32 CurrPos = this->WavStream->tellg();
             Int32 StartPos = this->DataOffset;
             Int32 EndPos = this->DataOffset + this->DataSize;
             Int32 ReadClamped = Amount;
 
-            if( CurrPos > EndPos )
+            if( CurrPos > EndPos ) {
                 return 0;
+            }
 
-            if( CurrPos < StartPos )
-            {
-                this->WavStream->SetStreamPosition(StartPos);
-                CurrPos = this->WavStream->GetStreamPosition();
+            if( CurrPos < StartPos ) {
+                this->WavStream->seekg(StartPos);
+                CurrPos = this->WavStream->tellg();
             }
 
             if( CurrPos + ReadClamped > EndPos )
@@ -237,7 +250,8 @@ namespace Mezzanine
             if( ReadClamped < 0 )
                 return 0;
 
-            return this->WavStream->Read(Output,ReadClamped);
+            this->WavStream->read(static_cast<char*>(Output),ReadClamped);
+            return this->WavStream->gcount();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -246,33 +260,33 @@ namespace Mezzanine
         Real WavDecoder::GetTotalTime() const
         {
             Real Second = ( static_cast<Real>(this->SampleRate) * static_cast<Real>(this->Channels) * (static_cast<Real>(this->BitsPerSample) / 8.0) );
-            return static_cast<Real>(this->WavStream->GetSize()) / Second;
+            return static_cast<Real>(this->WavStreamSize) / Second;
         }
 
         Real WavDecoder::GetCurrentTime() const
         {
             Real Second = ( static_cast<Real>(this->SampleRate) * static_cast<Real>(this->Channels) * (static_cast<Real>(this->BitsPerSample) / 8.0) );
-            return static_cast<Real>(this->WavStream->GetStreamPosition()) / Second;
+            return static_cast<Real>(this->WavStream->tellg()) / Second;
         }
 
         UInt32 WavDecoder::GetTotalSize() const
         {
-            return this->WavStream->GetSize();
+            return this->WavStreamSize;
         }
 
         UInt32 WavDecoder::GetCompressedSize() const
         {
-            return this->WavStream->GetSize();
+            return this->WavStreamSize;
         }
 
         UInt32 WavDecoder::GetCurrentPosition() const
         {
-            return this->WavStream->GetStreamPosition();
+            return this->WavStream->tellg();
         }
 
         UInt32 WavDecoder::GetCurrentCompressedPosition() const
         {
-            return this->WavStream->GetStreamPosition();
+            return this->WavStream->tellg();
         }
     }//Audio
 }//Mezzanine

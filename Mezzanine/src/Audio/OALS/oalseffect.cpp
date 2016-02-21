@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -411,12 +411,12 @@ namespace Mezzanine
                     }
                     case Audio::ET_Chorus:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Chorus Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Chorus Audio Effect.");
                         break;
                     }
                     case Audio::ET_Distortion:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Distortion Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Distortion Audio Effect.");
                         break;
                     }
                     case Audio::ET_Echo:
@@ -426,22 +426,22 @@ namespace Mezzanine
                     }
                     case Audio::ET_Flanger:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Flanger Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Flanger Audio Effect.");
                         break;
                     }
                     case Audio::ET_Frequency_Shifter:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Frequency Shift Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Frequency Shift Audio Effect.");
                         break;
                     }
                     case Audio::ET_Vocal_Morpher:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Vocal Morpher Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Vocal Morpher Audio Effect.");
                         break;
                     }
                     case Audio::ET_Pitch_Shifter:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Pitch Shifter Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Pitch Shifter Audio Effect.");
                         break;
                     }
                     case Audio::ET_Ring_Modulator:
@@ -451,17 +451,17 @@ namespace Mezzanine
                     }
                     case Audio::ET_Autowah:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Autowah Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Autowah Audio Effect.");
                         break;
                     }
                     case Audio::ET_Compressor:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Compressor Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Compressor Audio Effect.");
                         break;
                     }
                     case Audio::ET_Equalizer:
                     {
-                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Equalizer Audio Effect.");
+                        MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"OpenAL-Soft does not have an implementation for the Equalizer Audio Effect.");
                         break;
                     }
                 }

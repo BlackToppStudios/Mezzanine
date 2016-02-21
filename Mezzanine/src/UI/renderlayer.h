@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -52,8 +52,6 @@ namespace Mezzanine
         class QuadRenderable;
         class Screen;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class RenderLayer
-        /// @headerfile renderlayer.h
         /// @brief This is the base class for the types of layers that can be added to a renderable.
         /// @details
         ///////////////////////////////////////
@@ -76,7 +74,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Applies rotation to a point in 2D space.
-            /// @param Pointer A point in 2D space that will be rotated around another point.
+            /// @param Point A point in 2D space that will be rotated around another point.
             /// @param RotationCenter The point that will be rotated around.
             virtual void RotationTransform(Vector2& Point, const Vector2& RotationCenter);
             /// @internal

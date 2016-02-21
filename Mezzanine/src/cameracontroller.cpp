@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,25 +41,40 @@
 #define _cameracontroller_cpp
 
 #include "cameracontroller.h"
-#include "Graphics/cameraproxy.h"
-#include "mathtool.h"
-#include "rayquerytool.h"
-#include "ray.h"
+
 #include "enumerations.h"
-#include "actor.h"
+#include "ray.h"
+#include "rayquerytool.h"
+#include "worldmanager.h"
+#include "worldobject.h"
+
+#include "Graphics/cameraproxy.h"
+#include "MathTools/mathtools.h"
 
 namespace Mezzanine
 {
-    CameraController::CameraController(Graphics::CameraProxy* ToBeControlled) :
-        Controlled(ToBeControlled),
-        CurrentMMode(CCM_Fly),
+    CameraController::CameraController() :
+        Controlled(NULL),
+        YawLimits(NULL),
+        PitchLimits(NULL),
+        RollLimits(NULL),
         HoverHeight(2),
         YawRad(0),
         PitchRad(0),
         RollRad(0),
+        CurrentMMode(CCM_Fly)
+        {  }
+
+    CameraController::CameraController(Graphics::CameraProxy* ToBeControlled) :
+        Controlled(ToBeControlled),
         YawLimits(NULL),
         PitchLimits(NULL),
-        RollLimits(NULL)
+        RollLimits(NULL),
+        HoverHeight(2),
+        YawRad(0),
+        PitchRad(0),
+        RollRad(0),
+        CurrentMMode(CCM_Fly)
         {  }
 
     CameraController::~CameraController()
@@ -72,31 +87,31 @@ namespace Mezzanine
     void CameraController::CheckAngleRollover(Real Angle)
     {
         Real Pi = MathTools::GetPi();
-        if(Angle > Pi) {
+        if( Angle > Pi ) {
             Angle = -Pi + (Angle - Pi);
-        }else if(Angle < -Pi) {
+        }else if( Angle < -Pi ) {
             Angle = Pi + (Angle + Pi);
         }
     }
 
     void CameraController::CheckAngleLimits()
     {
-        if(this->YawLimits) {
-            if(YawRad > this->YawLimits->Upper)
+        if( this->YawLimits ) {
+            if( YawRad > this->YawLimits->Upper )
                 YawRad = this->YawLimits->Upper;
-            if(YawRad < this->YawLimits->Lower)
+            if( YawRad < this->YawLimits->Lower )
                 YawRad = this->YawLimits->Lower;
         }
-        if(this->PitchLimits) {
-            if(PitchRad > this->PitchLimits->Upper)
+        if( this->PitchLimits ) {
+            if( PitchRad > this->PitchLimits->Upper )
                 PitchRad = this->PitchLimits->Upper;
-            if(PitchRad < this->PitchLimits->Lower)
+            if( PitchRad < this->PitchLimits->Lower )
                 PitchRad = this->PitchLimits->Lower;
         }
-        if(this->YawLimits) {
-            if(RollRad > this->RollLimits->Upper)
+        if( this->YawLimits ) {
+            if( RollRad > this->RollLimits->Upper )
                 RollRad = this->RollLimits->Upper;
-            if(RollRad < this->RollLimits->Lower)
+            if( RollRad < this->RollLimits->Lower )
                 RollRad = this->RollLimits->Lower;
         }
     }
@@ -122,8 +137,8 @@ namespace Mezzanine
 
     Real CameraController::FindDistanceToGround()
     {
-        Vector3 Loc(this->Controlled->GetLocation());
-        Vector3 Dest(Loc + Vector3(0,-2000,0));
+        Vector3 Loc( this->Controlled->GetLocation() );
+        Vector3 Dest( Vector3::Neg_Unit_Y() );
         Ray GroundRay(Loc,Dest);
         UInt32 flags = Mezzanine::WO_MeshTerrain | Mezzanine::WO_HeightfieldTerrain | Mezzanine::WO_VectorFieldTerrain | Mezzanine::WO_VoxelTerrain;
         if( !RayCaster.GetFirstObjectOnRayByPolygon(GroundRay,flags) )
@@ -134,6 +149,12 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
+
+    void CameraController::SetControlledCamera(Graphics::CameraProxy* ToBeControlled)
+    {
+        this->Controlled = ToBeControlled;
+        this->RayCaster.SetWorld( this->Controlled->GetCreator()->GetWorld() );
+    }
 
     Graphics::CameraProxy* CameraController::GetControlledCamera() const
         { return this->Controlled; }

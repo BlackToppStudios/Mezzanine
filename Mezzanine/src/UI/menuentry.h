@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -64,7 +64,6 @@ namespace Mezzanine
             /// @brief Const Iterator type for child MenuEntry instances stored by this class.
             typedef MenuEntryContainer::const_iterator    ConstMenuEntryIterator;
 
-            /// @enum ButtonConfig
             /// @brief An enum describing how the MenuButton for this MenuEntry is configured and being used.
             enum ButtonConfig
             {
@@ -162,7 +161,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Menu Configuration
 
-            /// @copydoc StackedContainer::SetButtonCongig(const UInt16, StackButton*)
+            /// @copydoc StackedContainer::SetButtonConfig(const UInt16, StackButton*)
             /// @note This method accepts values from the ButtonConfig enum.  Other values will throw an exception.
             virtual void SetButtonConfig(const UInt16 Config, StackButton* ConfigButton);
             /// @copydoc StackedContainer::GetButtonConfig(const StackButton*) const
@@ -212,7 +211,7 @@ namespace Mezzanine
             /// @brief Notifies this MenuEntry and all if it's Entry children a new MenuStack is being applied to the menu tree.
             /// @param NewStack the new stack to be applied.  Can be NULL to remove the stack from all children.
             virtual void _NotifyStack(MenuEntryContainer* NewStack);
-            /// @copydoc StackedContainer::_NotifyButtonSelected(StackedButton*)
+            /// @copydoc StackedContainer::_NotifyButtonSelected(StackButton*)
             virtual void _NotifyButtonSelected(StackButton* Selected);
             /// @copydoc QuadRenderable::_NotifyParenthood(QuadRenderable*)
             virtual void _NotifyParenthood(QuadRenderable* NewParent);

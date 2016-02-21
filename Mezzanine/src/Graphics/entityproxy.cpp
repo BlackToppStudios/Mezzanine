@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -59,8 +59,8 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        EntityProxy::EntityProxy(SceneManager* Creator) :
-            RenderableProxy(Creator),
+        EntityProxy::EntityProxy(const UInt32 ID, SceneManager* Creator) :
+            RenderableProxy(ID,Creator),
             GraphicsEntity(NULL),
             ProxyMesh(NULL),
             RenderDist(0),
@@ -69,8 +69,8 @@ namespace Mezzanine
             CanCastShadows(true)
             { this->CreateEntity(NULL); }
 
-        EntityProxy::EntityProxy(Mesh* TheMesh, SceneManager* Creator) :
-            RenderableProxy(Creator),
+        EntityProxy::EntityProxy(const UInt32 ID, Mesh* TheMesh, SceneManager* Creator) :
+            RenderableProxy(ID,Creator),
             GraphicsEntity(NULL),
             ProxyMesh(NULL),
             RenderDist(0),
@@ -79,8 +79,8 @@ namespace Mezzanine
             CanCastShadows(true)
             { this->CreateEntity(TheMesh); }
 
-        EntityProxy::EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator) :
-            RenderableProxy(Creator),
+        EntityProxy::EntityProxy(const UInt32 ID, const String& MeshName, const String& GroupName, SceneManager* Creator) :
+            RenderableProxy(ID,Creator),
             GraphicsEntity(NULL),
             ProxyMesh(NULL),
             RenderDist(0),

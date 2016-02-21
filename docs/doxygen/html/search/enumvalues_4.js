@@ -38,5 +38,8 @@ var searchData=
   ['et_5fpitch_5fshifter',['ET_Pitch_Shifter',['../namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bba113b4210d7123ea9191ea9635e6f2d46',1,'Mezzanine::Audio']]],
   ['et_5freverb',['ET_Reverb',['../namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bbaee7b0ed20ece445b8bc434b8eee85596',1,'Mezzanine::Audio']]],
   ['et_5fring_5fmodulator',['ET_Ring_Modulator',['../namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bba6a86549d141f9bb0efa7be6fa55d1e4d',1,'Mezzanine::Audio']]],
-  ['et_5fvocal_5fmorpher',['ET_Vocal_Morpher',['../namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bbae07c5630bad7dfef9080228b89fb2732',1,'Mezzanine::Audio']]]
+  ['et_5fvocal_5fmorpher',['ET_Vocal_Morpher',['../namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bbae07c5630bad7dfef9080228b89fb2732',1,'Mezzanine::Audio']]],
+  ['exitfailure',['ExitFailure',['../namespaceMezzanine_1_1Testing.html#a146e496fc0a5025946dbdcca979dd1eba712691c191b5d1083c451990b53092f4',1,'Mezzanine::Testing']]],
+  ['exitinvalidarguments',['ExitInvalidArguments',['../namespaceMezzanine_1_1Testing.html#a146e496fc0a5025946dbdcca979dd1eba4c2b7fb87f9a0cf239236c157e86aae8',1,'Mezzanine::Testing']]],
+  ['exitsuccess',['ExitSuccess',['../namespaceMezzanine_1_1Testing.html#a146e496fc0a5025946dbdcca979dd1ebaca5b7e8e4ddcf124c15604fb921ba533',1,'Mezzanine::Testing']]]
 ];

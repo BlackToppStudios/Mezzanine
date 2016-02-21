@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -54,8 +54,8 @@ namespace Mezzanine
 #include "Graphics/graphicsenumerations.h"
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/scenemanager.h"
-#include "Graphics/cameramanager.h"
 #include "Graphics/meshmanager.h"
+#include "Graphics/texturemanager.h"
 
 #include "Graphics/billboard.h"
 #include "Graphics/billboardsetproxy.h"
@@ -63,6 +63,7 @@ namespace Mezzanine
 #include "Graphics/cameraproxy.h"
 #include "Graphics/entityproxy.h"
 #include "Graphics/gamewindow.h"
+#include "Graphics/image.h"
 #include "Graphics/lightproxy.h"
 #include "Graphics/material.h"
 #include "Graphics/mesh.h"

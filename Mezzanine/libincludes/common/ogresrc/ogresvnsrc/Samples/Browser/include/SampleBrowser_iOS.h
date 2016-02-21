@@ -4,7 +4,7 @@
  (Object-oriented Graphics Rendering Engine)
  For the latest info, see http://www.ogre3d.org/
  
- Copyright (c) 2000-2013 Torus Knot Software Ltd
+ Copyright (c) 2000-2014 Torus Knot Software Ltd
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,6 +37,11 @@
 
 #import <UIKit/UIKit.h> 
 #import <QuartzCore/QuartzCore.h>
+#import "SampleBrowser.h"
+
+// Defaulting to 2 means that we run at 30 frames per second. For 60 frames, use a value of 1.
+// 30 FPS is usually sufficient and results in lower power consumption.
+#define DISPLAYLINK_FRAME_INTERVAL      2
 
 #ifdef __OBJC__
 
@@ -44,11 +49,7 @@
 {
     OgreBites::SampleBrowser sb;
 
-    // Use of the CADisplayLink class is the preferred method for controlling your animation timing.
-    // CADisplayLink will link to the main display and fire every vsync when added to a given run-loop.
-    // The NSTimer class is used only as fallback when running on a pre 3.1 device where CADisplayLink
-    // isn't available.
-    id mDisplayLink;
+    CADisplayLink *mDisplayLink;
     NSDate* mDate;
     NSTimeInterval mLastFrameTime;
 }
@@ -93,28 +94,18 @@
         Ogre::Root::getSingleton().getRenderSystem()->_initRenderTargets();
 
         // Clear event times
-		Ogre::Root::getSingleton().clearEventTimes();
+        Ogre::Root::getSingleton().clearEventTimes();
     } catch( Ogre::Exception& e ) {
         std::cerr << "An exception has occurred: " <<
         e.getFullDescription().c_str() << std::endl;
     }
-
-    // CADisplayLink is API new to iPhone SDK 3.1. Compiling against earlier versions will result in a warning, but can be dismissed
-    // if the system version runtime check for CADisplayLink exists in -initWithCoder:. The runtime check ensures this code will
-    // not be called in system versions earlier than 3.1.
-    mDate = [[NSDate alloc] init];
-    mLastFrameTime = -[mDate timeIntervalSinceNow];
-    
-    mDisplayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(renderOneFrame:)];
-    [mDisplayLink setFrameInterval:mLastFrameTime];
-    [mDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 
     [pool release];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    mLastFrameTime = 1;
+    mLastFrameTime = DISPLAYLINK_FRAME_INTERVAL;
     mDisplayLink = nil;
 
     [self go];
@@ -124,20 +115,30 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    Ogre::Root::getSingleton().queueEndRendering();
+    sb.shutdown();
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    // Reset event times and reallocate the date and displaylink objects
+    Ogre::Root::getSingleton().clearEventTimes();
+    mDate = [[NSDate alloc] init];
+    mLastFrameTime = DISPLAYLINK_FRAME_INTERVAL; // Reset the timer
+
+    mDisplayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(renderOneFrame:)];
+    [mDisplayLink setFrameInterval:mLastFrameTime];
+    [mDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    Ogre::Root::getSingleton().saveConfig();
 
     [mDate release];
     mDate = nil;
     
     [mDisplayLink invalidate];
     mDisplayLink = nil;
-
-    sb.shutdown();
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    Ogre::Root::getSingleton().saveConfig();
 }
 
 - (void)renderOneFrame:(id)sender

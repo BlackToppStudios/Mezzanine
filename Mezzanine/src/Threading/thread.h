@@ -1,5 +1,5 @@
 // The DAGFrameScheduler is a Multi-Threaded lock free and wait free scheduling library.
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The DAGFrameScheduler.
 
     The DAGFrameScheduler is free software: you can redistribute it and/or modify
@@ -95,12 +95,10 @@ namespace Mezzanine
         {
             public:
             #if defined(_MEZZ_THREAD_WIN32_)
-                /// @typedef HANDLE
                 /// @brief Currently windows defines this to be a void pointer. This might have to be adjusted in the future.
                 typedef void* HANDLE;
             #endif
 
-            /// @typedef native_handle_type
             /// @brief The native handle type, made available with requiring specific knowledge of whether it is a posix or win32 handle.
             #if defined(_MEZZ_THREAD_WIN32_)
                 typedef HANDLE native_handle_type;

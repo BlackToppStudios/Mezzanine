@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -69,14 +69,14 @@ namespace Mezzanine
 
         void MeshCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node CollisionNode = CurrentRoot.AppendChild(this->MeshCollisionShape::SerializableName());
-            if (!CollisionNode) { SerializeError("create CollisionNode",this->MeshCollisionShape::SerializableName());}
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->MeshCollisionShape::GetSerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->MeshCollisionShape::GetSerializableName());}
 
             XML::Attribute Version = CollisionNode.AppendAttribute("Version");
             if (Version)
                 { Version.SetValue(1); }
             else
-                { SerializeError("Create Version Attribute", SerializableName()); }
+                { SerializeError("Create Version Attribute", GetSerializableName()); }
 
             this->CollisionShape::ProtoSerialize(CollisionNode);
 
@@ -84,23 +84,23 @@ namespace Mezzanine
 
         void MeshCollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->MeshCollisionShape::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->MeshCollisionShape::GetSerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
                     XML::Node CollisionNode = OneNode.GetChild("CollisionShape");
                     if(!CollisionNode)
-                        { DeSerializeError("locate CollisionShape node",SerializableName()); }
+                        { DeSerializeError("locate CollisionShape node",GetSerializableName()); }
                     this->CollisionShape::ProtoDeSerialize(CollisionNode);
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    DeSerializeError("find usable serialization version",GetSerializableName());
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),GetSerializableName());
             }
         }
 
-        String MeshCollisionShape::SerializableName()
+        String MeshCollisionShape::GetSerializableName()
             {   return String("MeshCollisionShape"); }
     }//Physics
 }//Mezzanine

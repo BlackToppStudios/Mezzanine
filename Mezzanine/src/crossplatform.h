@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -59,9 +59,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 //Unremark one of these when not compiling with code::blocks or cmake
-//#define LINUX
-//#define MACOSX
-//#define WINDOWS
+//#define MEZZ_LINUX
+//#define MEZZ_MACOSX
+//#define MEZZ_WINDOWS
 
 //End Choose Your Platform
 ///////////////////////////////////////////////////////////////////////////////

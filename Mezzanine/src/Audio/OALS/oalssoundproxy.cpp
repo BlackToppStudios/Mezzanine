@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -90,7 +90,6 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            /// @enum ProxyState
             /// @brief This enum describes a set of Boole options common for objects playing back audio in a 3D world.
             enum ProxyState
             {
@@ -104,7 +103,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Methods
 
-            OALS::SoundProxy::SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts, SoundScapeManager* Creator) :
+            OALS::SoundProxy::SoundProxy(const UInt16 Type, const UInt32 ID, iDecoder* Decode, const ContextContainer& Contexts, SoundScapeManager* Creator) :
+                Audio::SoundProxy(ID),
                 Manager(Creator),
                 SoundFilter(NULL),
                 SoundDecoder(Decode),
@@ -196,29 +196,23 @@ namespace Mezzanine
                     {
                         Char8 TempBuffer2[OALS_SOURCE_BUFFER_SIZE];
                         UInt32 ActualRead = this->SoundDecoder->ReadAudioData(TempBuffer2,OALS_SOURCE_BUFFER_SIZE - TotalRead);
-                        if(ActualRead > 0)
-                        {
+                        if( ActualRead > 0 ) {
                             memcpy(TempBuffer+TotalRead,TempBuffer2,ActualRead);
                             TotalRead += ActualRead;
-                        }
-                        else if(ActualRead < 0)
-                        {
+                        }else if(ActualRead < 0) {
                             ++ErrorCount;
-                            if(ErrorCount >= 3)
-                            {
+                            if( ErrorCount >= 3 ) {
                                 this->Stop();
-                                break;
+                                return false;
+                                //break;
                             }
-                        }
-                        else if(ActualRead == 0)
-                        {
+                        }else if(ActualRead == 0 ) {
                             if(this->IsLooping()) this->SoundDecoder->SetPosition(0,false);
                             else break;
                         }
                     }
 
-                    if(TotalRead == 0)
-                    {
+                    if( TotalRead == 0 ) {
                         return false;
                     }
                     alBufferData(Buffer,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),TempBuffer,TotalRead,this->SoundDecoder->GetFrequency());
@@ -360,43 +354,45 @@ namespace Mezzanine
                     return false;
 
                 // Setup the buffers for playback
-                if( !this->IsPaused() ) {
-                    UInt32 QueueSize = 0;
-                    /// @todo Currently in this method we iterate over all the sources for each context twice due to the order in which these
-                    /// operations have to be done.  Purge the buffers before refreshing them and making them available to the sources, otherwise
-                    /// audio artifacts may surface.  If this can be refactored more cleanly somehow, it should be done.
-                    for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
-                    {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
-                            this->MakeCurrent( (*CSI).first );
-                            alSourcei((*CSI).second,AL_BUFFER,0);
+                if( !this->IsPlaying() ) {
+                    if( !this->IsPaused() ) {
+                        UInt32 QueueSize = 0;
+                        /// @todo Currently in this method we iterate over all the sources for each context twice due to the order in which these
+                        /// operations have to be done.  Purge the buffers before refreshing them and making them available to the sources, otherwise
+                        /// audio artifacts may surface.  If this can be refactored more cleanly somehow, it should be done.
+                        for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
+                        {
+                            if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                                this->MakeCurrent( (*CSI).first );
+                                alSourcei((*CSI).second,AL_BUFFER,0);
+                            }
+                        }
+                        for( UInt32 BuffIndex = 0 ; BuffIndex < Buffers.size() ; ++BuffIndex )
+                        {
+                            if( this->StreamToBuffer(Buffers[BuffIndex]) ) ++QueueSize;
+                            else return false;
+                        }
+                        for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
+                        {
+                            if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                                this->MakeCurrent( (*CSI).first );
+                                alSourceQueueBuffers((*CSI).second,QueueSize,&Buffers[0]);
+                            }
                         }
                     }
-                    for( UInt32 BuffIndex = 0 ; BuffIndex < Buffers.size() ; ++BuffIndex )
-                    {
-                        if( this->StreamToBuffer(Buffers[BuffIndex]) ) ++QueueSize;
-                        else return false;
-                    }
-                    for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
-                    {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
-                            this->MakeCurrent( (*CSI).first );
-                            alSourceQueueBuffers((*CSI).second,QueueSize,&Buffers[0]);
-                        }
-                    }
-                }
 
-                for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
-                {
-                    if( (*CSI).first != NULL && (*CSI).second != 0 ) {
-                        this->MakeCurrent( (*CSI).first );
-                        alSourcePlay((*CSI).second);
+                    for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
+                    {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            this->MakeCurrent( (*CSI).first );
+                            alSourcePlay((*CSI).second);
+                        }
                     }
+                    // Remove Stopped state if it exists
+                    this->State = ( this->State & ~(OALS::PS_Stopped | OALS::PS_Paused) );
+                    // Add the Playing state
+                    this->State = ( this->State | OALS::PS_Playing );
                 }
-                // Remove Stopped state if it exists
-                this->State = ( this->State & ~(OALS::PS_Stopped | OALS::PS_Paused) );
-                // Add the Playing state
-                this->State = ( this->State | OALS::PS_Playing );
                 return true;
             }
 
@@ -412,6 +408,7 @@ namespace Mezzanine
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
                         if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            this->MakeCurrent( (*CSI).first );
                             alSourcePause((*CSI).second);
                         }
                     }
@@ -429,11 +426,19 @@ namespace Mezzanine
 
             void OALS::SoundProxy::Stop()
             {
-                if( !(this->IsStopped()) ) {
+                if( !this->IsStopped() ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
                         if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            this->MakeCurrent( (*CSI).first );
+                            // Stop the source
                             alSourceStop((*CSI).second);
+                            // Unbind the buffers
+                            Int32 BufferCount;
+                            ALuint TempBuffer;
+                            alGetSourcei((*CSI).second,AL_BUFFERS_PROCESSED,&BufferCount);
+                            for( Int32 BuffIndex = 0 ; BuffIndex < BufferCount ; ++BuffIndex )
+                                { alSourceUnqueueBuffers((*CSI).second,1,&TempBuffer); }
                         }
                     }
                     // Inform the decoder
@@ -981,17 +986,17 @@ namespace Mezzanine
 
             void OALS::SoundProxy::ProtoSerializeDecoder(XML::Node& SelfRoot) const
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoSerializeFilter(XML::Node& SelfRoot) const
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoSerializeEffects(XML::Node& SelfRoot) const
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
@@ -1072,32 +1077,32 @@ namespace Mezzanine
                             this->SetDopplerVelocity(DopVel);
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (OALS::SoundProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (OALS::SoundProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,OALS::SoundProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,OALS::SoundProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
                 }
             }
 
             void OALS::SoundProxy::ProtoDeSerializeDecoder(const XML::Node& SelfRoot)
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoDeSerializeFilter(const XML::Node& SelfRoot)
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
             }
 
             void OALS::SoundProxy::ProtoDeSerializeEffects(const XML::Node& SelfRoot)
             {
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
             }
 
             String OALS::SoundProxy::GetDerivedSerializableName() const
-                { return this->OALS::SoundProxy::SerializableName(); }
+                { return this->OALS::SoundProxy::GetSerializableName(); }
 
-            String OALS::SoundProxy::SerializableName()
+            String OALS::SoundProxy::GetSerializableName()
                 { return "OALSSoundProxy"; }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -1191,7 +1196,7 @@ namespace Mezzanine
                     //UInt32 SourceID = this->ContextsAndSources[Index].second;
 
                     if( OldContext != NULL )
-                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to write over an existing context."); }
+                        { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to write over an existing context."); }
 
                     this->MakeCurrent(Context);
                     this->ContextsAndSources[Index].first = Context;

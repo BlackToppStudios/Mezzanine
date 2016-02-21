@@ -1,4 +1,4 @@
 <map id="Mezzanine::UI::SizingInfo" name="Mezzanine::UI::SizingInfo">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1UnifiedVec2.html" title="This class represents a point in 2D space using UnifiedDim&#39;s. " alt="" coords="5,117,192,147"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1UnifiedDim.html" title="This class represents both the relative and absolute values that can be expressed for the values on o..." alt="" coords="9,5,188,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1UnifiedVec2.html" title="This class represents a point in 2D space using UnifiedDim&#39;s. " alt="" coords="5,109,192,136"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1UnifiedDim.html" title="This class represents both the relative and absolute values that can be expressed for the values on o..." alt="" coords="9,5,189,32"/>
 </map>

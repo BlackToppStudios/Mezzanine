@@ -1,5 +1,5 @@
 // The DAGFrameScheduler is a Multi-Threaded lock free and wait free scheduling library.
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The DAGFrameScheduler.
 
     The DAGFrameScheduler is free software: you can redistribute it and/or modify
@@ -54,11 +54,15 @@ namespace Mezzanine
     namespace Threading
     {
 
-        LogAggregator::LogAggregator() : AggregationTarget(NULL)
-        {}
+        LogAggregator::LogAggregator() : AggregationTarget(NULL), ForcedLog(false)
+            {}
 
         LogAggregator::~LogAggregator()
-        {}
+            {}
+
+        void LogAggregator::NextFlushForced(Boole Force)
+            { ForcedLog = Force; }
+
 
         void LogAggregator::DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
@@ -72,7 +76,15 @@ namespace Mezzanine
                 Iter!=AggregationTarget->Resources.end();
                 ++Iter)
             {
-                Log << "<Thread Main=\"" << (AggregationTarget->Resources.begin()==Iter?1:0)<< "\">" << std::endl
+
+                String Forced;
+                if(ForcedLog)
+                {
+                    Forced = (" Forced=\"True\"");
+                    NextFlushForced(false);
+                }
+
+                Log << "<Thread Main=\"" << (AggregationTarget->Resources.begin()==Iter?1:0) << "\"" << Forced << " >" << std::endl
                     << (*Iter)->GetResource<DoubleBufferedLogger>(DBRLogger).GetCommittable().str()
                     << "</Thread>" << std::endl;
                 (*Iter)->GetResource<DoubleBufferedLogger>(DBRLogger).GetCommittable().str("");

@@ -1,5 +1,5 @@
 <map id="Mezzanine::Scripting::Lua::Lua51Script" name="Mezzanine::Scripting::Lua::Lua51Script">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScriptCompilable.html" title="The interface for a script that can be compiled to bytecode. " alt="" coords="201,5,345,51"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script. " alt="" coords="5,39,149,86"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.html" title="This script can return simple group of values. " alt="" coords="199,74,348,121"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScriptCompilable.html" title="The interface for a script that can be compiled to bytecode. " alt="" coords="201,5,345,47"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script. " alt="" coords="5,39,149,80"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.html" title="This script can return simple group of values. " alt="" coords="197,71,348,112"/>
 </map>

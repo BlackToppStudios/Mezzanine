@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -153,19 +153,19 @@ namespace Mezzanine
         /// @brief Gets a vector representing the X unit of a Vector3.
         /// @return A Vector3(1,0,0).
         static Vector3 Unit_X();
-        /// @brief Gets a vector representing the Y unit of a vector.
+        /// @brief Gets a vector representing the Y unit of a Vector3.
         /// @return A Vector3(0,1,0).
         static Vector3 Unit_Y();
-        /// @brief Gets a vector representing the Z unit of a vector.
+        /// @brief Gets a vector representing the Z unit of a Vector3.
         /// @return A Vector3(0,0,1).
         static Vector3 Unit_Z();
-        /// @brief Gets a vector representing the negative X unit of a vector.
+        /// @brief Gets a vector representing the negative X unit of a Vector3.
         /// @return A Vector3(-1,0,0).
         static Vector3 Neg_Unit_X();
-        /// @brief Gets a vector representing the negative Y unit of a vector.
+        /// @brief Gets a vector representing the negative Y unit of a Vector3.
         /// @return A Vector3(0,-1,0).
         static Vector3 Neg_Unit_Y();
-        /// @brief Gets a vector representing the negative Z unit of a vector.
+        /// @brief Gets a vector representing the negative Z unit of a Vector3.
         /// @return A Vector3(0,0,-1).
         static Vector3 Neg_Unit_Z();
 
@@ -276,22 +276,39 @@ namespace Mezzanine
         /// @details Allows for addition from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         /// @return A copy of the calculated Vector3 to allow chained expresions.
-        Vector3 operator+ (const Vector3 &Vec) const;
+        Vector3 operator+ (const Vector3& Vec) const;
         /// @brief Subraction Operator
         /// @details Allows for subtraction from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         /// @return A copy of the calculated Vector3 to allow chained expresions.
-        Vector3 operator- (const Vector3 &Vec) const;
+        Vector3 operator- (const Vector3& Vec) const;
         /// @brief Multiplaction Operator
         /// @details Allows for multiplaction from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         /// @return A copy of the calculated Vector3 to allow chained expresions.
-        Vector3 operator* (const Vector3 &Vec) const;
+        Vector3 operator* (const Vector3& Vec) const;
         /// @brief Division Operator
         /// @details Allows for division from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         /// @return A copy of the calculated Vector3 to allow chained expresions.
-        Vector3 operator/ (const Vector3 &Vec) const;
+        Vector3 operator/ (const Vector3& Vec) const;
+
+        /// @brief Addition Assignment Operator.
+        /// @param Vec The other Vector3 to be added.
+        /// @return Returns a reference to this.
+        Vector3& operator+= (const Vector3& Vec);
+        /// @brief Subraction Assignment Operator.
+        /// @param Vec The other Vector3 to be subtracted.
+        /// @return Returns a reference to this.
+        Vector3& operator-= (const Vector3& Vec);
+        /// @brief Multiplaction Assignment Operator.
+        /// @param Vec The other Vector3 to be multiplied.
+        /// @return Returns a reference to this.
+        Vector3& operator*= (const Vector3& Vec);
+        /// @brief Division Assignment Operator.
+        /// @param Vec The other Vector3 to be divided.
+        /// @return Returns a reference to this.
+        Vector3& operator/= (const Vector3& Vec);
 
         /////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with btVector3
@@ -361,22 +378,50 @@ namespace Mezzanine
         Real DotProduct(const Vector3& Vec) const;
         /// @brief This will change this point into it's own normal relative to the origin
         /// @details This will change this vector into one that is the same direction from the origin, but only one unit a away.
-        /// @return Returns a reference to the normalized vector.
+        /// @return Returns a reference to this after being altered.
         Vector3& Normalize();
         /// @brief This returns the normal for this relative to the origin
         /// @details This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through
         /// both the normal and the original point.
         /// @return At a vector3 that is the normal of this Vector3 or 0,0,0 if the current Vector is all 0s
         Vector3 GetNormal() const;
+        /// @brief Gets the angle between this and another vector assuming both are directional vectors.
+        /// @note The vectors provided do not need to be normalized.
+        /// @param Direction The other directional vector to get the angular distance from.
+        /// @return Returns the angle between both directional vectors.
+        Real AngleBetween(const Vector3& Direction) const;
+        /// @brief Shifts all of the components to the right.
+        /// @details This assigns the Z component to X, the X component to Y, and the Y component to Z.
+        /// @return Returns a reference to this after being altered.
+        Vector3& Permute();
+        /// @brief Gets a permuted copy of this vector.
+        /// @return Returns a new Vector3 that has the values this vector would have if it were permuted.
+        Vector3 GetPermute() const;
+        /// @brief Shifts all of the components to the left.
+        /// @details This assigns the Y component to X, the Z component to Y, and the X component to Z.
+        /// @return Returns a reference to this after being altered.
+        Vector3& AntiPermute();
+        /// @brief Gets a anti-permuted copy of this vector.
+        /// @return Returns a new Vector3 that has the values this vector would have if it were anti-permuted.
+        Vector3 GetAntiPermute() const;
         /// @brief This will get the direction between two points.
         /// @details This returns the direction expressed as a vector between this vector
         /// and another provided vector.
         /// @param Destination The point in space to determine the direction for.
         /// @return A normalized Vector3 that indicates the direction from this vector to another.
         Vector3 GetDirection(const Vector3& Destination) const;
+        /// @brief Gets a vector that is perpendicular to this one.
+        /// @remarks There are an infinite number of possibilities for 3 dimensions but this method will guarantee to generate one of them.
+        /// @return Returns a Vector3 that is guarenteed to be perpendicular to this vector.
+        Vector3 Perpendicular() const;
+        /// @brief Gets whether or not a vector is perpendicular to this one.
+        /// @remarks This simply checks if the dot product between these two vectors is zero.
+        /// @param Perp The other Vector3 to compare with.
+        /// @return Returns true if the provided vector is perpendicular to this one.
+        Boole IsPerpendicular(const Vector3& Perp) const;
         /// @brief This will inverse the reals in the vector.
         /// @details This function will inverse all the reals in the vector.
-        /// @return A copy of of the current Vector3
+        /// @return A copy of of the current Vector3.
         Vector3 Inverse();
         /// @brief Gets a reflection vector to the plane with the given normal.
         /// @param Normal The normal of the plane being reflected off of.
@@ -417,6 +462,9 @@ namespace Mezzanine
         /// @param Y Value to set for Y.
         /// @param Z Value to set for Z.
         void SetValues(const Real& X, const Real& Y, const Real& Z);
+        /// @brief Checks to see if the values of this vector are all zero.
+        /// @return Returns true if all components of this vector are zero, false otherwise.
+        Boole IsZero() const;
 
         /// @brief Sets each member of this Vector3 to the higher value between the two vector3s.
         /// @param Other The other Vector to compare with.
@@ -453,7 +501,7 @@ namespace Mezzanine
         // Serialization
 
         // void DeSerializableClass::ProtoDeSerialize(const XML::Node&);
-        // static String DeSerializableClass::SerializableName();
+        // static String DeSerializableClass::GetSerializableName();
         /// @brief Convert this class to an XML::Node ready for serialization
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
         void ProtoSerialize(XML::Node& CurrentRoot) const;
@@ -462,12 +510,26 @@ namespace Mezzanine
         void ProtoDeSerialize(const XML::Node& OneNode);
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "Vector3"
-        static String SerializableName();
+        static String GetSerializableName();
 
         /// @brief
         const char* __str__();
 
     };//Vector3
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A compare fuctor that uses vector length.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB Vector3LengthCompare
+    {
+    public:
+        /// @brief Compares two Vector3's to determine which has the greater length/magnitude.
+        /// @param First The first Vector3 to compare with.
+        /// @param Second The second Vector3 to compare with.
+        /// @return Returns true if the first Vector3 has a smaller length/magnitude than the second, false otherwise.
+        Boole operator()(const Vector3& First, const Vector3& Second) const;
+    };//Vector3LengthCompare
 }//Mezzanine
 
 namespace std

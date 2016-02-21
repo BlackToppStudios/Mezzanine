@@ -1,6 +1,7 @@
-<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/atomicoperations.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/atomicoperations.cpp">
-<area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="712,117,803,147"/>
-<area shape="rect" id="node39" href="$crossplatformincludes_8h.html" title="This file determines what features are offered by the compiler that this library can take advantage o..." alt="" coords="1529,117,1689,147"/>
-<area shape="rect" id="node5" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1355,195,1501,224"/>
-<area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1272,195,1331,224"/>
+<map id="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/atomicoperations.cpp" name="/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/atomicoperations.cpp">
+<area shape="rect" id="node2" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically. " alt="" coords="705,109,837,136"/>
+<area shape="rect" id="node21" href="$crossplatformincludes_8h.html" title="This file determines what features are offered by the compiler that this library can take advantage o..." alt="" coords="1054,109,1214,136"/>
+<area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="710,184,801,211"/>
+<area shape="rect" id="node4" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1368,259,1516,285"/>
+<area shape="rect" id="node20" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1284,259,1344,285"/>
 </map>

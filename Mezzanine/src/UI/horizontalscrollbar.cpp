@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@
 #include "UI/horizontallayoutstrategy.h"
 
 #include "stringtool.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "Input/metacode.h"
 
 #include <algorithm>
@@ -363,13 +363,13 @@ namespace Mezzanine
             // Assign the ScrollBack
             this->ScrollBack = static_cast<Button*>( this->GetChild(this->Name+".ScrollBack") );
             if( this->ScrollBack == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"ScrollBack button not found after HorizontalScrollbar deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"ScrollBack button not found after HorizontalScrollbar deserialization.");
             }
 
             // Assign the Scroller
             this->Scroller = static_cast<Button*>( this->GetChild(this->Name+".Scroller") );
             if( this->Scroller == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Scroller button not found after HorizontalScrollbar deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Scroller button not found after HorizontalScrollbar deserialization.");
             }
 
             if( this->GetNumChildren() > 2 )
@@ -377,13 +377,13 @@ namespace Mezzanine
                 // Assign the LeftButton
                 this->UpLeftButton = static_cast<Button*>( this->GetChild(this->Name+".LeftButton") );
                 if( this->UpLeftButton == NULL ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"LeftButton button not found after HorizontalScrollbar deserialization.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"LeftButton button not found after HorizontalScrollbar deserialization.");
                 }
 
                 // Assign the RightButton
                 this->DownRightButton = static_cast<Button*>( this->GetChild(this->Name+".RightButton") );
                 if( this->DownRightButton == NULL ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"RightButton button not found after HorizontalScrollbar deserialization.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"RightButton button not found after HorizontalScrollbar deserialization.");
                 }
             }
 
@@ -415,7 +415,7 @@ namespace Mezzanine
                     }else{
                         this->Show();
                     }
-                }//*/
+                }// */
             }
         }
 

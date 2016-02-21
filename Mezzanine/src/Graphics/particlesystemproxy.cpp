@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -58,8 +58,8 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        ParticleSystemProxy::ParticleSystemProxy(const String& Template, SceneManager* Creator) :
-            RenderableProxy(Creator),
+        ParticleSystemProxy::ParticleSystemProxy(const UInt32 ID, const String& Template, SceneManager* Creator) :
+            RenderableProxy(ID,Creator),
             GraphicsParticleSystem(NULL),
             SpeedFactor(1.0),
             Paused(false)
@@ -367,10 +367,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetSpeedFactor( CurrAttrib.AsReal() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ParticleSystemProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ParticleSystemProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ParticleSystemProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ParticleSystemProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -390,7 +390,7 @@ namespace Mezzanine
                     if( !TemplateName.empty() ) {
                         this->CreateParticleSystem(TemplateName);
                     }else{
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to DeSerialize a ParticleSystemProxy with an empty name or template.");
+                        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to DeSerialize a ParticleSystemProxy with an empty name or template.");
                     }
                 }
             }
@@ -424,10 +424,10 @@ namespace Mezzanine
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ParticleSystemProxy::GetSerializableName() + "CustomParameters" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ParticleSystemProxy::GetSerializableName() + "CustomParameters" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ParticleSystemProxy::GetSerializableName() + "CustomParameters" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ParticleSystemProxy::GetSerializableName() + "CustomParameters" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -448,7 +448,7 @@ namespace Mezzanine
                         if( !CurrAttrib.Empty() ) {
                             Index = static_cast<UInt16>( CurrAttrib.AsWhole() );
                         }else{
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to DeSerialize a ParticleEmitter without a valid Index.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to DeSerialize a ParticleEmitter without a valid Index.");
                         }
 
                         XML::Node EmitterNode = (*EmitIt).GetFirstChild();
@@ -475,7 +475,7 @@ namespace Mezzanine
                         if( !CurrAttrib.Empty() ) {
                             Index = static_cast<UInt16>( CurrAttrib.AsWhole() );
                         }else{
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to DeSerialize a ParticleAffector without a valid Index.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to DeSerialize a ParticleAffector without a valid Index.");
                         }
 
                         XML::Node AffectorNode = (*AffectIt).GetFirstChild();

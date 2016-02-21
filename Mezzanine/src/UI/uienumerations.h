@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -47,7 +47,6 @@ namespace Mezzanine
 {
     namespace UI
     {
-        /// @enum AspectRatioLock
         /// @brief Used by sizing behavior classes to determine how resizes that preserve aspect ratio should behave.
         enum AspectRatioLock
         {
@@ -57,7 +56,6 @@ namespace Mezzanine
             ARL_Ratio_Locked_Shrinking = 3   ///< The aspect ratio is locked.  When multiple axes are resized the axis with less growth is used to determine the size of the other axis.
         };
 
-        /// @enum Border
         /// @brief Used by various basic renderables for border effects.
         /// @details Internally border information is stored in small arrays, and this facilitates the proper index being called every time.
         enum Border
@@ -68,7 +66,6 @@ namespace Mezzanine
             Border_West  = 3
         };
 
-        /// @enum Gradient
         /// @brief Used by various basic renderables for applying a gradient effect to a colour or texture on a quad.
         /// @details Details regarding the colour or texture depends on the individual settings of the renderable the gradient is being applied to.
         /// Gradients simply allow one colour on one portion of a quad to fade into another.
@@ -80,7 +77,6 @@ namespace Mezzanine
             Gradient_Diagonal_2 = 3
         };
 
-        /// @enum LinearAlignment
         /// @brief Used by various UI classes to determine the alignment of their child objects, such as text in text lines, or quads in a layout container.
         /// @details This enum is only ever used to describe one axis at a time.  Thus the values do not represent
         /// corners, but rather the appropriate side on the axis in question.
@@ -91,7 +87,6 @@ namespace Mezzanine
             LA_BottomRight
         };
 
-        /// @enum OrderingPriority
         /// @brief Used by container widgets to determine which axis is considered primary for children/pages.
         enum OrderingPriority
         {
@@ -99,7 +94,6 @@ namespace Mezzanine
             OP_Vertical_Horizontal = 2
         };
 
-        /// @enum RepositionFlags
         /// @brief Used by UI container classes to determine their movement behavior when the container is resized.
         /// @details These flags are not used if the container object is simply repositioned.  Only when a new position
         /// is needed after the container is resized.  If rules for one axis isn't covered, the Unified position is used.
@@ -126,9 +120,8 @@ namespace Mezzanine
             PF_Anchor_HorizontalCenter = (PF_Anchor_Left | PF_Anchor_Right),          ///< Centers along the X axis of the quad.
 
             PF_Anchor_Center           = (PF_Anchor_TopLeft | PF_Anchor_BottomRight)  ///< Centers within the quad.
-        };//*/
+        };// */
 
-        /// @enum QuadCorner
         /// @brief Used by Sprites and Glyphs for tracking their placement on a TextureAtlas.
         /// @details This helps to ensure the proper indexs are accessed at all times when getting UV information.
         enum QuadCorner
@@ -139,7 +132,6 @@ namespace Mezzanine
             QC_BottomLeft  = 3
         };
 
-        /// @enum RenderLayerType
         /// @brief This enum describes the type of RenderLayer this is for use in casting.
         enum RenderLayerType
         {
@@ -152,7 +144,6 @@ namespace Mezzanine
             //RLT_RenderTarget
         };
 
-        /// @enum ScrollbarStyle
         /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.
         /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.
         enum ScrollbarStyle
@@ -163,7 +154,6 @@ namespace Mezzanine
             SB_TogetherDownRight
         };
 
-        /// @enum SizingRules
         /// @brief Used by UI container classes to determine their resize behavior on a given axis when the container is resized.
         enum SizingRules
         {
@@ -175,7 +165,6 @@ namespace Mezzanine
             SR_Fixed_Size                 = 16  ///< No resizing of any kind will take place.
         };
 
-        /// @enum SpinnerStyle
         /// @brief Used by the spinner class to determine what styling should be used for the spinner.
         /// @details In the case of the buttons being together, the increment button will be above the decrement button.
         enum SpinnerStyle
@@ -186,7 +175,6 @@ namespace Mezzanine
             Spn_Together_Right
         };
 
-        /// @enum TextOrdering
         /// @brief This enum describes the direction of advancing characters or lines along the X axis.
         enum TextOrdering
         {

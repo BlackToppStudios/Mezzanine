@@ -27,13 +27,13 @@ StartArea::~StartArea()
 void StartArea::CreateStartArea(const Vector3& HalfAreaSize)
 {
     CatchApp::GetCatchAppPointer()->RegisterStartArea(this);
-    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
-    //Graphics::MeshManager* MeshMan = Entresol::GetSingletonPtr()->GetMeshManager();
-    //Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-    //Physics::CollisionShapeMananger* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
+    //Graphics::MeshManager* MeshMan = this->ParentWorld->GetMeshManager();
+    //Physics::PhysicsManager* PhysMan = this->ParentWorld->GetPhysicsManager();
+    //Physics::CollisionShapeMananger* CSMan = this->ParentWorld->GetCollisionShapeManager();
 
     if( SceneMan != NULL ) {
-        this->ParSysProx = SceneMan->CreateParticleSystemProxy("StartVortex");
+        this->ParSysProx = SceneMan->CreateParticleSystemProxy("StartVortex",false);
         this->ParSysProx->_Bind(this);
 
         Graphics::ParticleEmitter* ParSysEmit = this->ParSysProx->GetEmitter(0);
@@ -51,13 +51,13 @@ void StartArea::CreateStartArea(const Vector3& HalfAreaSize)
     if( this->Ghost != NULL && CSMan != NULL ) {
         Physics::CollisionShape* StartCS = new Physics::BoxCollisionShape("StartAreaShape",HalfAreaSize);
         this->Ghost->SetCollisionShape( StartCS );
-    }//*/
+    }// */
 }
 
 void StartArea::DestroyStartArea()
 {
     this->RemoveFromWorld();
-    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
     if( this->ParSysProx != NULL && SceneMan != NULL ) {
         SceneMan->DestroyProxy( this->ParSysProx );
         this->ParSysProx = NULL;
@@ -111,8 +111,7 @@ Real StartArea::GetParticleMaximumTimeToLive() const
 void StartArea::ApplyEffect()
 {
     static const Vector3 ZeroGrav(0,0,0);
-    if( !this->AddedObjects.empty() )
-    {
+    if( !this->AddedObjects.empty() ) {
         for( ObjectIterator ObjIt = this->AddedObjects.begin() ; ObjIt != this->AddedObjects.end() ; ObjIt++ )
         {
             ProxyContainer ColProxies;
@@ -127,9 +126,8 @@ void StartArea::ApplyEffect()
         }
     }
 
-    if( !this->RemovedObjects.empty() )
-    {
-        const Vector3 WorldGrav = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetWorldGravity();
+    if( !this->RemovedObjects.empty() ) {
+        const Vector3 WorldGrav = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) )->GetWorldGravity();
         for( ObjectIterator ObjIt = this->RemovedObjects.begin() ; ObjIt != this->RemovedObjects.end() ; ObjIt++ )
         {
             ProxyContainer ColProxies;
@@ -335,17 +333,17 @@ void StartArea::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
 
             XML::Node ParSysProxNode = ProxiesNode.GetChild("ParSysProx").GetFirstChild();
             if( !ParSysProxNode.Empty() ) {
-                Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
                 if( SceneMan ) {
                     this->ParSysProx = SceneMan->CreateParticleSystemProxy(ParSysProxNode);
                     this->ParSysProx->_Bind( this );
                 }
             }
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (StartArea::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (StartArea::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
         }
     }else{
-        MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,StartArea::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+        MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,StartArea::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
     }
 }
 

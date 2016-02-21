@@ -11,6 +11,11 @@
  * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
  */
 
+/// @file
+/// @brief To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this should probably not be used by the tests
+
+/// @cond FALSE
+
 #ifndef PUGIXML_VERSION
 // Define version macro; evaluates to major * 100 + minor so that it's safe to use in less-than comparisons
 #	define PUGIXML_VERSION 120
@@ -1263,3 +1268,5 @@ namespace std
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
+
+/// @endcond

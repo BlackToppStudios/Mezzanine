@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -97,11 +97,11 @@ namespace Mezzanine
             return;
         /*if( ( this->GetType() >= Mezzanine::WSO_AEFirst && this->GetType() <= Mezzanine::WSO_AELast ) &&
             ( Target->GetType() >= Mezzanine::WSO_AEFirst && Target->GetType() <= Mezzanine::WSO_AELast ) ) //do not permit AE's to attach to other AE's
-            Entresol::GetSingletonPtr()->LogAndThrow(Exception("Cannot attach AreaEffects to other AreaEffects."));//*/
+            Entresol::GetSingletonPtr()->LogAndThrow(Exception("Cannot attach AreaEffects to other AreaEffects.")); */
         if(Target->Parent)
         {
             if(Target->Parent == this) return;
-            else MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot attach object to multiple AttachableParent instances.");
+            else MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot attach object to multiple AttachableParent instances.");
         }
 
         Attached.push_back(Target);
@@ -220,7 +220,7 @@ namespace Mezzanine
 
     // The coding that goes into pure virtual functions is not for inexperienced eyes such
     // as yours. Take your training to the Mountaintop monanstary and learn the ancient ways of
-    // c++ from the Tibetan monks you find there.  Godspeed. //*/
+    // c++ from the Tibetan monks you find there.  Godspeed.
 }//Mezzanine
 
 #endif

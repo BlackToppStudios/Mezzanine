@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -67,48 +67,48 @@ namespace Ogre {
 
     }
 
-	void SDLWindow::create(const String& name, unsigned int width, unsigned int height,
-	            bool fullScreen, const NameValuePairList *miscParams)
+    void SDLWindow::create(const String& name, unsigned int width, unsigned int height,
+                bool fullScreen, const NameValuePairList *miscParams)
     {
-		int colourDepth = 32;
-		String title = name;
-		if(miscParams)
-		{
-			// Parse miscellenous parameters
-			NameValuePairList::const_iterator opt;
-			// Bit depth
-			opt = miscParams->find("colourDepth");
-			if(opt != miscParams->end()) //check for FSAA parameter, if not ignore it...
-				colourDepth = StringConverter::parseUnsignedInt(opt->second);
-			// Full screen antialiasing
-			opt = miscParams->find("FSAA");
-			if(opt != miscParams->end()) //check for FSAA parameter, if not ignore it...
-			{
-				size_t fsaa_x_samples = StringConverter::parseUnsignedInt(opt->second);
-				if(fsaa_x_samples>1) {
-					// If FSAA is enabled in the parameters, enable the MULTISAMPLEBUFFERS
-					// and set the number of samples before the render window is created.
-					SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,1);
-					SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,fsaa_x_samples);
-				}
-			}
-			// Window title
-			opt = miscParams->find("title");
-			if(opt != miscParams->end()) //check for FSAA parameter, if not ignore it...
-				title = opt->second;
-		}   
-	
+        int colourDepth = 32;
+        String title = name;
+        if(miscParams)
+        {
+            // Parse miscellenous parameters
+            NameValuePairList::const_iterator opt;
+            // Bit depth
+            opt = miscParams->find("colourDepth");
+            if(opt != miscParams->end()) //check for FSAA parameter, if not ignore it...
+                colourDepth = StringConverter::parseUnsignedInt(opt->second);
+            // Full screen antialiasing
+            opt = miscParams->find("FSAA");
+            if(opt != miscParams->end()) //check for FSAA parameter, if not ignore it...
+            {
+                size_t fsaa_x_samples = StringConverter::parseUnsignedInt(opt->second);
+                if(fsaa_x_samples>1) {
+                    // If FSAA is enabled in the parameters, enable the MULTISAMPLEBUFFERS
+                    // and set the number of samples before the render window is created.
+                    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,1);
+                    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,fsaa_x_samples);
+                }
+            }
+            // Window title
+            opt = miscParams->find("title");
+            if(opt != miscParams->end()) //check for FSAA parameter, if not ignore it...
+                title = opt->second;
+        }   
+    
         LogManager::getSingleton().logMessage("SDLWindow::create", LML_TRIVIAL);
         SDL_Surface* screen;
         int flags = SDL_OPENGL | SDL_HWPALETTE | SDL_RESIZABLE;
-		
+        
         SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
         // request good stencil size if 32-bit colour
         if (colourDepth == 32)
         {
             SDL_GL_SetAttribute( SDL_GL_STENCIL_SIZE, 8);
         }
-		
+        
         if (fullScreen)
             flags |= SDL_FULLSCREEN;
 
@@ -167,7 +167,7 @@ namespace Ogre {
     {
         SDL_Surface* screen;
         int flags = SDL_OPENGL | SDL_HWPALETTE | SDL_RESIZABLE;
-		
+        
         LogManager::getSingleton().logMessage("Updating window", LML_TRIVIAL);
         screen = SDL_SetVideoMode(width, height, mScreen->format->BitsPerPixel, flags);
         if (!screen)
@@ -190,9 +190,19 @@ namespace Ogre {
         }
     }
 
-    void SDLWindow::swapBuffers(bool waitForVSync)
+    void SDLWindow::setVSyncEnabled(bool vsync)
     {
-        if ( waitForVSync && glXGetVideoSyncSGI && glXWaitVideoSyncSGI )
+        mVSync = vsync;
+    }
+
+    bool SDLWindow::isVSyncEnabled() const
+    {
+        return mVSync;
+    }
+
+    void SDLWindow::swapBuffers()
+    {
+        if ( mVSync && glXGetVideoSyncSGI && glXWaitVideoSyncSGI )
         {
             unsigned int retraceCount;
             glXGetVideoSyncSGI( &retraceCount );
@@ -203,63 +213,50 @@ namespace Ogre {
         // XXX More?
     }
 
-	void SDLWindow::copyContentsToMemory(const PixelBox &dst, FrameBuffer buffer)
-	{
-		if ((dst.left < 0) || (dst.right > mWidth) ||
-			(dst.top < 0) || (dst.bottom > mHeight) ||
-			(dst.front != 0) || (dst.back != 1))
-		{
-			OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
-						"Invalid box.",
-						"SDLWindow::copyContentsToMemory" );
-		}
-	
-		if (buffer == FB_AUTO)
-		{
-			buffer = mIsFullScreen? FB_FRONT : FB_BACK;
-		}
-	
-		GLenum format = Ogre::GLPixelUtil::getGLOriginFormat(dst.format);
-		GLenum type = Ogre::GLPixelUtil::getGLOriginDataType(dst.format);
-	
-		if ((format == GL_NONE) || (type == 0))
-		{
-			OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
-						"Unsupported format.",
-						"SDLWindow::copyContentsToMemory" );
-		}
-	
-		// Switch context if different from current one
-		RenderSystem* rsys = Root::getSingleton().getRenderSystem();
-		rsys->_setViewport(this->getViewport(0));
-	
-		// Must change the packing to ensure no overruns!
-		glPixelStorei(GL_PACK_ALIGNMENT, 1);
-	
-		glReadBuffer((buffer == FB_FRONT)? GL_FRONT : GL_BACK);
-		glReadPixels((GLint)dst.left, (GLint)dst.top,
-					 (GLsizei)dst.getWidth(), (GLsizei)dst.getHeight(),
-					 format, type, dst.data);
-	
-		// restore default alignment
-		glPixelStorei(GL_PACK_ALIGNMENT, 4);
-	
-		//vertical flip
-		{
-			size_t rowSpan = dst.getWidth() * PixelUtil::getNumElemBytes(dst.format);
-			size_t height = dst.getHeight();
-			uchar *tmpData = new uchar[rowSpan * height];
-			uchar *srcRow = (uchar *)dst.data, *tmpRow = tmpData + (height - 1) * rowSpan;
-	
-			while (tmpRow >= tmpData)
-			{
-				memcpy(tmpRow, srcRow, rowSpan);
-				srcRow += rowSpan;
-				tmpRow -= rowSpan;
-			}
-			memcpy(dst.data, tmpData, rowSpan * height);
-	
-			delete [] tmpData;
-		}
-	}
+    void SDLWindow::copyContentsToMemory(const PixelBox &dst, FrameBuffer buffer)
+    {
+        if (dst.getWidth() > mWidth ||
+            dst.getHeight() > mHeight ||
+            dst.front != 0 || dst.back != 1)
+        {
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
+                        "Invalid box.",
+                        "SDLWindow::copyContentsToMemory" );
+        }
+    
+        if (buffer == FB_AUTO)
+        {
+            buffer = mIsFullScreen? FB_FRONT : FB_BACK;
+        }
+    
+        GLenum format = Ogre::GLPixelUtil::getGLOriginFormat(dst.format);
+        GLenum type = Ogre::GLPixelUtil::getGLOriginDataType(dst.format);
+    
+        if ((format == GL_NONE) || (type == 0))
+        {
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
+                        "Unsupported format.",
+                        "SDLWindow::copyContentsToMemory" );
+        }
+    
+        // Switch context if different from current one
+        RenderSystem* rsys = Root::getSingleton().getRenderSystem();
+        rsys->_setViewport(this->getViewport(0));
+    
+        if(dst.getWidth() != dst.rowPitch)
+            glPixelStorei(GL_PACK_ROW_LENGTH, dst.rowPitch);
+        // Must change the packing to ensure no overruns!
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+    
+        glReadBuffer((buffer == FB_FRONT)? GL_FRONT : GL_BACK);
+        glReadPixels((GLint)0, (GLint)(mHeight - dst.getHeight()),
+                     (GLsizei)dst.getWidth(), (GLsizei)dst.getHeight(),
+                     format, type, dst.getTopLeftFrontPixelPtr());
+    
+        // restore default alignment
+        glPixelStorei(GL_PACK_ALIGNMENT, 4);
+        glPixelStorei(GL_PACK_ROW_LENGTH, 0);
+        
+        PixelUtil::bulkPixelVerticalFlip(dst);
+    }
 }

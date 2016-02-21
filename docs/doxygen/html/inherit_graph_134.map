@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together. " alt="" coords="5,5,157,35"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html" title="Mezzanine::Graphics\l::Procedural::MeshGenerator\l\&lt; RoundedBoxGenerator \&gt;" alt="" coords="5,5,195,61"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1RoundedBoxGenerator.html" title="A generator class for a rounded box mesh. " alt="" coords="243,13,475,54"/>
 </map>

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -69,17 +69,17 @@ namespace Mezzanine
 
         void PrimitiveCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node CollisionNode = CurrentRoot.AppendChild(this->PrimitiveCollisionShape::SerializableName());
-            if (!CollisionNode) { SerializeError("create CollisionNode",this->PrimitiveCollisionShape::SerializableName());}
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->PrimitiveCollisionShape::GetSerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->PrimitiveCollisionShape::GetSerializableName());}
 
             XML::Attribute Version = CollisionNode.AppendAttribute("Version");
             if (!Version)
-                { SerializeError("Create Version Attribute", SerializableName()); }
+                { SerializeError("Create Version Attribute", GetSerializableName()); }
             Version.SetValue(1);
 
             XML::Node ImplicitShape = CollisionNode.AppendChild("ImplicitShape");
             if (!ImplicitShape)
-                { SerializeError("Create ImplicitShape Node", SerializableName()); }
+                { SerializeError("Create ImplicitShape Node", GetSerializableName()); }
             Vector3(GetBulletConvexShape()->getImplicitShapeDimensions()).ProtoSerialize(ImplicitShape);
 
             this->CollisionShape::ProtoSerialize(CollisionNode);
@@ -88,28 +88,28 @@ namespace Mezzanine
 
         void PrimitiveCollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->PrimitiveCollisionShape::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->PrimitiveCollisionShape::GetSerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
                     XML::Node CollisionNode = OneNode.GetChild("CollisionShape");
                     if(!CollisionNode)
-                        { DeSerializeError("locate CollisionShape node",SerializableName()); }
+                        { DeSerializeError("locate CollisionShape node",GetSerializableName()); }
                     this->CollisionShape::ProtoDeSerialize(CollisionNode);
 
                     XML::Node ImplicitShape = OneNode.GetChild("ImplicitShape").GetFirstChild();
                     if(!ImplicitShape)
-                        { DeSerializeError("locate ImplicitShape node",SerializableName()); }
+                        { DeSerializeError("locate ImplicitShape node",GetSerializableName()); }
                     GetBulletConvexShape()->setImplicitShapeDimensions(Vector3(ImplicitShape).GetBulletVector3());
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    DeSerializeError("find usable serialization version",GetSerializableName());
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),GetSerializableName());
             }
         }
 
-        String PrimitiveCollisionShape::SerializableName()
+        String PrimitiveCollisionShape::GetSerializableName()
             {   return String("PrimitiveCollisionShape"); }
 
     }//Physics

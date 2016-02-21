@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -159,6 +159,8 @@ namespace Mezzanine
         // InputManager Methods
 
         //template<> InputManager* Singleton<InputManager>::SingletonPtr = NULL;
+        const String InputManager::ImplementationName = "DefaultInputManager";
+        const ManagerBase::ManagerType InputManager::InterfaceType = ManagerBase::MT_InputManager;
 
         InputManager::InputManager() :
             IMID(NULL),
@@ -172,12 +174,12 @@ namespace Mezzanine
             if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
             {
                 if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
             }
             if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
             {
                 if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
             this->IMID = new InputManagerInternalData();
@@ -188,7 +190,7 @@ namespace Mezzanine
             this->DeviceUpdateWork = new DeviceUpdateWorkUnit(this);
         }
 
-        InputManager::InputManager(XML::Node& XMLNode) :
+        InputManager::InputManager(const XML::Node& XMLNode) :
             IMID(NULL),
             SystemMouse(NULL),
             SystemKeyboard(NULL),
@@ -200,12 +202,12 @@ namespace Mezzanine
             if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
             {
                 if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
             }
             if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
             {
                 if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
-                    { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
+                    { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
             this->IMID = new InputManagerInternalData();
@@ -337,49 +339,44 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType InputManager::GetInterfaceType() const
-            { return ManagerBase::MT_InputManager; }
+            { return InputManager::InterfaceType; }
 
         String InputManager::GetImplementationTypeName() const
-            { return "DefaultInputManager"; }
+            { return InputManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultInputManagerFactory Methods
 
         DefaultInputManagerFactory::DefaultInputManagerFactory()
-        {
-        }
+            {  }
 
         DefaultInputManagerFactory::~DefaultInputManagerFactory()
-        {
-        }
+            {  }
 
-        String DefaultInputManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultInputManager";
-        }
+        String DefaultInputManagerFactory::GetManagerImplName() const
+            { return InputManager::ImplementationName; }
 
-        ManagerBase* DefaultInputManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultInputManagerFactory::GetManagerType() const
+            { return InputManager::InterfaceType; }
+
+        EntresolManager* DefaultInputManagerFactory::CreateManager(const NameValuePairList& Params)
         {
-            if(InputManager::SingletonValid())
-            {
+            if( InputManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return InputManager::GetSingletonPtr();
             }else return new InputManager();
         }
 
-        ManagerBase* DefaultInputManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultInputManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
-            if(InputManager::SingletonValid())
-            {
+            if( InputManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return InputManager::GetSingletonPtr();
             }else return new InputManager(XMLNode);
         }
 
-        void DefaultInputManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
+        void DefaultInputManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+            { delete ToBeDestroyed; }
     }//Input
 }//Mezzanine
 

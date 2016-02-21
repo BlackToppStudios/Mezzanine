@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -117,14 +117,16 @@ namespace Mezzanine
             virtual void CreateRigidObject(const Real Mass);
         public:
             /// @brief Class Constructor.
+            /// @param ID The unique ID assigned to this proxy.
             /// @param Mass The mass of the rigid body.
             /// @param Creator A pointer to the manager that created this proxy.
-            RigidProxy(const Real Mass, PhysicsManager* Creator);
+            RigidProxy(const UInt32 ID, const Real Mass, PhysicsManager* Creator);
             /// @brief Class Constructor.
+            /// @param ID The unique ID assigned to this proxy.
             /// @param Mass The mass of the rigid body.
             /// @param Shape A pointer to the collision shape that will be applied to this proxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            RigidProxy(const Real Mass, CollisionShape* Shape, PhysicsManager* Creator);
+            RigidProxy(const UInt32 ID, const Real Mass, CollisionShape* Shape, PhysicsManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.
@@ -237,7 +239,7 @@ namespace Mezzanine
             virtual void ClearStickyContacts();
             /// @brief Gets the struct storing the data related to sticky behavior.
             /// @return Returns a pointer to the struct storing the sticky data for this proxy.
-            virtual StickyData* GetStickyData() const;//*/
+            virtual StickyData* GetStickyData() const;// */
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Syncronization

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -123,7 +123,7 @@ namespace Mezzanine
         btManifoldPoint& Collision::GetManifoldPoint(const Whole& Index)
         {
             if( static_cast<Integer>( Index ) >= this->InternalData->Manifolds.size() )
-                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to access invalid index in Collision.");
+                MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to access invalid index in Collision.");
 
             if( Index > 3 ) {
                 Whole SuperIndex = Index/4;
@@ -136,7 +136,7 @@ namespace Mezzanine
 
         void Collision::UpdatePenetrationDistances()
         {
-            if( this->InternalData->Manifolds.size() > this->PenetrationDistances.size() )
+            if( this->InternalData->Manifolds.size() > static_cast<int>( this->PenetrationDistances.size() ) )
                 this->PenetrationDistances.resize( this->InternalData->Manifolds.size() );
             this->PenetrationDistances.clear();
             for( Integer X = 0 ; X < this->InternalData->Manifolds.size() ; ++X )
@@ -182,9 +182,10 @@ namespace Mezzanine
 
         void Collision::Update()
         {
+            this->InternalData->Manifolds.clear();
             this->InternalAlgo->getAllContactManifolds(this->InternalData->Manifolds);
             Whole NumManifolds = this->InternalData->Manifolds.size();
-            if( this->PenetrationDistances.size() != NumManifolds )
+            if( NumManifolds != 0 && this->PenetrationDistances.size() != NumManifolds )
             {
                 this->UpdatePenetrationDistances();
 
@@ -257,9 +258,7 @@ namespace Mezzanine
 
         void Collision::_SetProxyA(CollidableProxy* A)
         {
-            if( this->ProxyA ) {
-                Entresol::GetSingletonPtr()->Log("Attepting to change Proxy pointer Member in Collision.  This is not permitted.");
-            }else{
+            if( !this->ProxyA ) {
                 this->ProxyA = A;
                 WorldObject* ObjectA = this->ProxyA->GetParentObject();
                 if( ObjectA ) {
@@ -270,9 +269,7 @@ namespace Mezzanine
 
         void Collision::_SetProxyB(CollidableProxy* B)
         {
-            if( this->ProxyB ) {
-                Entresol::GetSingletonPtr()->Log("Attepting to change Proxy pointer Member in Collision.  This is not permitted.");
-            }else{
+            if( !this->ProxyB ) {
                 this->ProxyB = B;
                 WorldObject* ObjectB = this->ProxyB->GetParentObject();
                 if( ObjectB ) {

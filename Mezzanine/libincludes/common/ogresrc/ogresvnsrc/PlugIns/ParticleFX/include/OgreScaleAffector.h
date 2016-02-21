@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace Ogre {
     /** This plugin subclass of ParticleAffector allows you to alter the scale of particles.
     @remarks
         This class supplies the ParticleAffector implementation required to make the particle expand
-		or contract in mid-flight.
+        or contract in mid-flight.
     */
     class _OgreParticleFXExport ScaleAffector : public ParticleAffector
     {
@@ -59,7 +59,7 @@ namespace Ogre {
         void _affectParticles(ParticleSystem* pSystem, Real timeElapsed);
 
         /** Sets the scale adjustment to be made per second to particles. 
-        @param Rate
+        @param rate
             Sets the adjustment to be made to the x and y scale components per second. These
             values will be added to the scale of all particles every second, scaled over each frame
             for a smooth adjustment.

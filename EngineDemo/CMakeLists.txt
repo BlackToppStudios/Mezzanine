@@ -1,4 +1,4 @@
-# © Copyright 2010 - 2014 BlackTopp Studios Inc.
+# © Copyright 2010 - 2016 BlackTopp Studios Inc.
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -151,10 +151,12 @@ CopyFilesDuringBuild( common/test.zip data/common/test.zip )
 CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
 CopyFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomefun-1.ogg )
+CopyFilesDuringBuild( common/sounds/welcomefun-1-edit.ogg data/common/sounds/welcomefun-1-edit.ogg )
 
 CopyLicenseFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt BulletZLibLicense.txt )
 CopyLicenseFromMezzanineDuringBuild( data/common/gpl-2.0.txt gpl-2.0.txt )
 CopyLicenseFromMezzanineDuringBuild( data/common/gpl-3.0.txt gpl-3.0.txt)
+CopyLicenseFromMezzanineDuringBuild( data/common/lgpl-2.1.txt lgpl-2.1.tx)
 CopyLicenseFromMezzanineDuringBuild( data/common/lgpl-3.0.txt lgpl-3.0.tx)
 CopyLicenseFromMezzanineDuringBuild( data/common/Licenses.txt Licenses.txt)
 CopyLicenseFromMezzanineDuringBuild( data/common/Lua-MIT.txt Lua-MIT.txt)

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,17 +50,26 @@ namespace Mezzanine
         class CameraProxy;
     }
 
-    ///@brief Boundaries for rotation on one axis
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @struct AngleLimits
+    /// @brief Boundaries for rotation on one axis.
+    ///////////////////////////////////////
     struct AngleLimits
     {
+        /// @brief The upper limit for rotation, in radians.
         Real Upper;
+        /// @brief The lower limit for rotation, in radians.
         Real Lower;
-        AngleLimits() : Upper(0),Lower(0) {}
-    };
+
+        /// @brief Class constructor.
+        AngleLimits() :
+            Upper(0),
+            Lower(0)
+            {  }
+    };//AngleLimits
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraController
-    /// @headerfile cameracontroller.h
     /// @brief This is a simplified controller class for use with cameras.
     /// @details This class is useful for manipulating cameras to move around in simple ways,
     /// such as flying through a scene.
@@ -68,7 +77,6 @@ namespace Mezzanine
     class MEZZ_LIB CameraController
     {
     public:
-        /// @enum MovementMode
         /// @brief Possible options for determining how the camera should move relative to the world.
         enum MovementMode
         {
@@ -76,27 +84,58 @@ namespace Mezzanine
             CCM_Walk        ///< CCM_Walk: This forces the camera to be only a certain distance above the terrain.
         };
     protected:
+        /// @internal
+        /// @brief A ray casting tool used to determine surrounding geometry to limit movement.
         RayQueryTool RayCaster;
-
+        /// @internal
+        /// @brief A pointer to the Camera being controlled.
         Graphics::CameraProxy* Controlled;
-        MovementMode CurrentMMode;
-        Real HoverHeight;
-
-        Real YawRad;
-        Real PitchRad;
-        Real RollRad;
-
+        /// @internal
+        /// @brief A pointer to the angle limits for rotations on the Y axis.
         AngleLimits* YawLimits;
+        /// @internal
+        /// @brief A pointer to the angle limits for rotations on the X axis.
         AngleLimits* PitchLimits;
+        /// @internal
+        /// @brief A pointer to the angle limits for rotations on the Z axis.
         AngleLimits* RollLimits;
+        /// @internal
+        /// @brief The height at which the camera is to remain above the terrain.
+        Real HoverHeight;
+        /// @internal
+        /// @brief The current rotation of the camera on the Y axis.
+        Real YawRad;
+        /// @internal
+        /// @brief The current rotation of the camera on the X axis.
+        Real PitchRad;
+        /// @internal
+        /// @brief The current rotation of the camera on the Z axis.
+        Real RollRad;
+        /// @internal
+        /// @brief The mode with which the camera should move around the scene.
+        MovementMode CurrentMMode;
 
+        /// @internal
+        /// @brief Wraps an angle value if it goes outside the range of [-pi,+pi].
+        /// @param Angle The angle to be checked.
         void CheckAngleRollover(Real Angle);
+        /// @internal
+        /// @brief Clamps all current rotation values to their set limits.
         void CheckAngleLimits();
+        /// @internal
+        /// @brief Calls CheckAngleLimits() and CheckAngleRollover(Real).
         void CheckAllAngles();
+        /// @internal
+        /// @brief Ensures the camera position is at the desired height above any world terrain.
         void CheckHeight();
+        /// @internal
+        /// @brief Performs a raycast to get the distance to any terrain beneath the camera.
+        /// @return Returns the distance from the camera to terrain in world units.
         Real FindDistanceToGround();
     public:
-        /// @brief Class constructor.
+        /// @brief Blank constructor.
+        CameraController();
+        /// @brief Camera constructor.
         /// @param ToBeControlled The camera this controller is controlling.
         CameraController(Graphics::CameraProxy* ToBeControlled);
         /// @brief Class destructor.
@@ -105,6 +144,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        /// @brief Sets the camera being controlled by this controller.
+        /// @param ToBeControlled The camera this controller is controlling.
+        void SetControlledCamera(Graphics::CameraProxy* ToBeControlled);
         /// @brief Gets the camera this controller is controlling.
         /// @return Returns a camera pointer for the camera this controller is applied to.
         Graphics::CameraProxy* GetControlledCamera() const;

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -57,90 +57,120 @@ namespace Mezzanine
         class MEZZ_LIB Point2PointConstraint : public Constraint
         {
         protected:
-            /// @brief Bullet constraint that this class encapsulates.
+            /// @internal
+            /// @brief The internal constraint that this class encapsulates.
             btPoint2PointConstraint* Point2Point;
-        public:
-            ////////////////////////////////////////////////////////////////////////////////
-            // Point2PointConstraint Construction and Destruction
 
+            /// @internal
+            /// @brief Creates the internal constraint.
+            /// @remarks This methods exists primarily as a convenience for serialization, and shouldn't be called unless it is known to be safe.
+            /// @param RigidA A pointer to the first Proxy to be constrained.
+            /// @param RigidB A pointer to the second Proxy to be constrained.
+            /// @param PivotA The location in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The location in ProxyB's local space to apply the constraint to.
+            virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Vector3& PivotA, const Vector3& PivotB);
+            /// @internal
+            /// @brief Destroys the internal constraint.
+            /// @remarks This methods exists primarily as a convenience for serialization, and shouldn't be called unless it is known to be safe.
+            virtual void DestroyConstraint();
+        public:
             /// @brief Double body constructor.  Binds the two bodies.
+            /// @param ID The unique identifier assigned to this constraint.
             /// @param ProxyA The first proxy to apply this constraint to.
             /// @param ProxyB The second proxy to apply this constraint to.
             /// @param PivotA The location in ProxyA's local space to apply the constraint to.
             /// @param PivotB The location in ProxyB's local space to apply the constraint to.
-            Point2PointConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotA, const Vector3& PivotB);
+            /// @param Creator A pointer to the manager that created this constraint.
+            Point2PointConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotA, const Vector3& PivotB, PhysicsManager* Creator);
             /// @brief Single body constructor.  Binds the body to world space.
+            /// @param ID The unique identifier assigned to this constraint.
             /// @param ProxyA The proxy to apply this constraint to.
             /// @param PivotA The position relative to ProxyA's center of gravity to "Pin" to the world.
-            Point2PointConstraint(RigidProxy* ProxyA, const Vector3& PivotA);
+            /// @param Creator A pointer to the manager that created this constraint.
+            Point2PointConstraint(const UInt32 ID, RigidProxy* ProxyA, const Vector3& PivotA, PhysicsManager* Creator);
+            /// @brief XML constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param Creator A pointer to the manager that created this constraint.
+            Point2PointConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.
             virtual ~Point2PointConstraint();
 
             ////////////////////////////////////////////////////////////////////////////////
-            // Point2PointConstraint Position and Orientation
+            // Position and Orientation
 
             /// @brief Set offset of the first proxy.
             /// @param PivotA The offset as a Vector3 relative to the center of mass of ProxyA.
-            virtual void SetPivotALocation(const Vector3& PivotA);
+            virtual void SetPivotA(const Vector3& PivotA);
             /// @brief Set offset of the second proxy.
             /// @param PivotB The offset as a Vector3 relative to the center of mass of ProxyB.
-            virtual void SetPivotBLocation(const Vector3& PivotB);
+            virtual void SetPivotB(const Vector3& PivotB);
             /// @brief Get offset of the first proxy.
             /// @return The offset as a Vector3 relative to the center of mass of ProxyA.
-            virtual Vector3 GetPivotALocation() const;
+            virtual Vector3 GetPivotA() const;
             /// @brief Get offset of the second proxy.
             /// @return The offset as a Vector3 relative to the center of mass of ProxyB.
-            virtual Vector3 GetPivotBLocation() const;
+            virtual Vector3 GetPivotB() const;
 
             ////////////////////////////////////////////////////////////////////////////////
-            // Point2PointConstraint Specific Physics Settings
+            // Specific Physics Settings
 
-            /// @brief Set the current impulse clamping on the constraint
+            /// @brief Set the current impulse clamping on the constraint.
             /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
-            virtual void SetImpulseClamping(Real Clamping);
-            /// @brief get the current impulse clamping value
-            /// @return A real with the Clamping
+            virtual void SetImpulseClamping(const Real Clamping);
+            /// @brief get the current impulse clamping value.
+            /// @return A real with the Clamping.
             virtual Real GetImpulseClamping() const;
-            /// @brief Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance
-            /// @param Damping A real with the desired values
-            virtual void SetDamping(Real Damping);
-            /// @brief Get the current Damping
+            /// @brief Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance.
+            /// @param Damping A real with the desired values.
+            virtual void SetDamping(const Real Damping);
+            /// @brief Get the current Damping.
             /// @return A Real with the Damping value.
             virtual Real GetDamping() const;
-            /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum
-            /// @todo Research this more carefully
+            /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum.
+            /// @todo Research this more carefully.
             /// @details This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and
             /// a basic understanding of torque ( see http://en.wikipedia.org/wiki/Torque ) It is highly likely that it is a value to adjust how torque affects momentum.
-            virtual void SetTAU(Real TAU);
-            /// @brief Retrieve the Tau Setting
-            /// @return The Tau value as a Real
+            virtual void SetTAU(const Real TAU);
+            /// @brief Retrieve the Tau Setting.
+            /// @return The Tau value as a Real.
             virtual Real GetTAU() const;
 
-            /// @copydoc Constraint::ValidParamOnAxis(int) const
-            virtual Constraint::ParamList ValidParamOnAxis(int Axis) const;
-            /// @copydoc Constraint::ValidLinearAxis() const
-            virtual Constraint::AxisList ValidLinearAxis() const;
-            /// @copydoc Constraint::ValidAngularAxis() const
-            virtual Constraint::AxisList ValidAngularAxis() const;
+            ///////////////////////////////////////////////////////////////////////////////
+            // Parameter Configuration
+
+            /// @copydoc Constraint::GetValidParamsOnAxis(int) const
+            virtual Constraint::ParamList GetValidParamsOnAxis(int Axis) const;
+            /// @copydoc Constraint::GetValidLinearAxes() const
+            virtual Constraint::AxisList GetValidLinearAxes() const;
+            /// @copydoc Constraint::GetValidAngularAxes() const
+            virtual Constraint::AxisList GetValidAngularAxes() const;
             /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
             virtual Boole HasParamBeenSet(ConstraintParam Param, int Axis) const;
-
-            /// @copydoc Constraint::GetConstraintBase() const
-            virtual btTypedConstraint* GetConstraintBase() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "Point2PointConstraint"
-            static String SerializableName();
+            /// @copydoc Constraint::ProtoSerializeInitData(XML::Node&) const
+            virtual void ProtoSerializeInitData(XML::Node& SelfRoot) const;
+            /// @copydoc Constraint::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+
+            /// @copydoc Constraint::ProtoDeSerializeInitData(const XML::Node&)
+            virtual void ProtoDeSerializeInitData(const XML::Node& SelfRoot);
+            /// @copydoc Constraint::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc Constraint::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal
+
+            /// @copydoc Constraint::_GetConstraintBase() const
+            virtual btTypedConstraint* _GetConstraintBase() const;
         };//Point2PointConstraint
     }//Physics
 }//Mezzanine

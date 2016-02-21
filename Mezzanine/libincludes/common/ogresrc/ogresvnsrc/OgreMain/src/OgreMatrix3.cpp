@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,6 @@ THE SOFTWARE.
 */
 #include "OgreStableHeaders.h"
 #include "OgreMatrix3.h"
-
-#include "OgreMath.h"
 
 // Adapted from Matrix math by Wild Magic http://www.geometrictools.com/
 
@@ -391,7 +389,7 @@ namespace Ogre
         Real fY = kA[0][0] - (Math::Abs(fRoot1-fT22) <=
             Math::Abs(fRoot2-fT22) ? fRoot1 : fRoot2);
         Real fZ = kA[0][1];
-		Real fInvLength = Math::InvSqrt(fY*fY+fZ*fZ);
+        Real fInvLength = Math::InvSqrt(fY*fY+fZ*fZ);
         Real fSin = fZ*fInvLength;
         Real fCos = -fY*fInvLength;
 
@@ -484,8 +482,8 @@ namespace Ogre
         Matrix3& kR) const
     {
         // temas: currently unused
-        // ©onst int iMax = 16;
-		size_t iRow, iCol;
+        //const int iMax = 16;
+        size_t iRow, iCol;
 
         Matrix3 kA = *this;
         Bidiagonalize(kA,kL,kR);
@@ -722,8 +720,7 @@ namespace Ogre
         // U stores the entries U[0] = u01, U[1] = u02, U[2] = u12
 
         // build orthogonal matrix Q
-        Real fInvLength = m[0][0]*m[0][0] + m[1][0]*m[1][0] + m[2][0]*m[2][0];
-		if (!Ogre::Math::RealEqual(fInvLength,0)) fInvLength = Math::InvSqrt(fInvLength);
+        Real fInvLength = Math::InvSqrt(m[0][0]*m[0][0] + m[1][0]*m[1][0] + m[2][0]*m[2][0]);
 
         kQ[0][0] = m[0][0]*fInvLength;
         kQ[1][0] = m[1][0]*fInvLength;
@@ -734,8 +731,7 @@ namespace Ogre
         kQ[0][1] = m[0][1]-fDot*kQ[0][0];
         kQ[1][1] = m[1][1]-fDot*kQ[1][0];
         kQ[2][1] = m[2][1]-fDot*kQ[2][0];
-		fInvLength = kQ[0][1]*kQ[0][1] + kQ[1][1]*kQ[1][1] + kQ[2][1]*kQ[2][1];
-		if (!Ogre::Math::RealEqual(fInvLength,0)) fInvLength = Math::InvSqrt(fInvLength);
+        fInvLength = Math::InvSqrt(kQ[0][1]*kQ[0][1] + kQ[1][1]*kQ[1][1] + kQ[2][1]*kQ[2][1]);
         
         kQ[0][1] *= fInvLength;
         kQ[1][1] *= fInvLength;
@@ -751,10 +747,9 @@ namespace Ogre
         kQ[0][2] -= fDot*kQ[0][1];
         kQ[1][2] -= fDot*kQ[1][1];
         kQ[2][2] -= fDot*kQ[2][1];
-        fInvLength = kQ[0][2]*kQ[0][2] + kQ[1][2]*kQ[1][2] + kQ[2][2]*kQ[2][2];
-		if (!Ogre::Math::RealEqual(fInvLength,0)) fInvLength = Math::InvSqrt(fInvLength);
+        fInvLength = Math::InvSqrt(kQ[0][2]*kQ[0][2] + kQ[1][2]*kQ[1][2] + kQ[2][2]*kQ[2][2]);
 
-		kQ[0][2] *= fInvLength;
+        kQ[0][2] *= fInvLength;
         kQ[1][2] *= fInvLength;
         kQ[2][2] *= fInvLength;
 

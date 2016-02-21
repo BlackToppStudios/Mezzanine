@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -79,6 +79,12 @@ namespace Mezzanine
             ///     - An iterator type
             typedef typename InterpolatorType::Storage DataContainerType;
 
+            /// @brief An iterator type for the elements stored and interpolated within this track.
+            typedef typename DataContainerType::iterator DataIteratorType;
+
+            /// @brief A const iterator type for the elements stored and interpolated within this track.
+            typedef typename DataContainerType::const_iterator ConstDataIteratorType;
+
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatorType> SmoothIteratorType;
 
@@ -93,8 +99,8 @@ namespace Mezzanine
             /// @brief Create a Track from a range of data points
             /// @param Begin An iterator pointing to the beginning of a range to copy
             /// @param End an iterator pointing to one past the rang to copy.
-            Track(typename DataContainerType::iterator Begin,
-                  typename DataContainerType::iterator End)
+            Track(DataIteratorType Begin,
+                  DataIteratorType End)
                 : DataPoints(Begin,End)
                 {}
             /// @brief Create a track from a DataContainerType instance, likely a vector and copthe data from it.
@@ -168,16 +174,31 @@ namespace Mezzanine
                 { return end(Steps); }
 
             /// @brief Get a value from somewhere on the track with 0.0 being the beginning and 1.0 being the end.
-            /// @param Percentage A Value between 0and 1 that the interpolator will use to pick a point on or
-            /// between the datapoints.
+            /// @param Percentage A Value between 0 and 1 that the interpolator will use to pick a point on or between the datapoints.
             /// @return InterpolatableType that is Percentage from through the track.
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
                 return InterpolatorType::Interpolate(
-                           DataPoints.begin(),
-                           DataPoints.end(),
+                           this->DataPoints.begin(),
+                           this->DataPoints.end(),
                            Percentage
                        );
+            }
+
+            /// @brief Get a value between two points on the track with 0.0 being a specified datapoint and 1.0 being the next datapoint.
+            /// @param Index The Nth datapoint which will define the start of the range to interpolate.  Max allowed value is: size - 2.
+            /// @param Percentage A Value between 0 and 1 that the interpolator will use to pick a point on or between the datapoints.
+            /// @return Returns a InterpolatableType that is the interpolated value between the two data points starting at the specified index.
+            virtual InterpolatableType GetInterpolated(size_t Index, Real Percentage) const
+            {
+                if( Index <= this->Size() - 2 ) {
+                    ConstDataIteratorType RangeBegin = this->DataPoints.begin(), RangeEnd = this->DataPoints.begin();
+                    std::advance( RangeBegin, Index );
+                    std::advance( RangeEnd, Index + 2 );
+                    return InterpolatorType::Interpolate(RangeBegin,RangeEnd,Percentage);
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Attempting to get the interpolated value of a datapoint that is not in the valid range.");
+                }
             }
 
             /// @brief Set the name for serialization.
@@ -285,12 +306,12 @@ namespace Mezzanine
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
                         Mezzanine::XML::Node InterpolatorNode = OneNode.GetChild("Interpolator").GetFirstChild();
-                        if(InterpolatorNode.Name() == InterpolatorType::SerializableName())
+                        if(InterpolatorNode.Name() == InterpolatorType::GetSerializableName())
                         {
                             InterpolatorType::ProtoDeSerialize(InterpolatorNode);
                         }else{
                             //DeSerializeError(); // Maybe use this instead?
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + DerivedSerializableName() + ": Not " + InterpolatorType::SerializableName());
+                            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + DerivedSerializableName() + ": Not " + InterpolatorType::GetSerializableName());
                         }
 
                         SetTrackNameUnique(OneNode.GetAttribute("Name").AsString());
@@ -307,10 +328,10 @@ namespace Mezzanine
                             }
                         }// No else the track could be empty
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + DerivedSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + DerivedSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + DerivedSerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + DerivedSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }
@@ -318,11 +339,11 @@ namespace Mezzanine
             /// @Polymorphicaly get the classnae at runtime
             /// @return A String Containing a class name,likely"Track" or "TrackLooped"
             virtual String DerivedSerializableName() const
-                { return Track::SerializableName(); }
+                { return Track::GetSerializableName(); }
 
             /// @brief Get the name of this class "Track"
             /// @return A string containing "Track"
-            static String SerializableName()
+            static String GetSerializableName()
                 { return String("Track"); }
 
 
@@ -344,14 +365,16 @@ namespace Mezzanine
             typedef typename InterpolatorType::InterpolatableType InterpolatableType;
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
             typedef std::vector<InterpolatableType> DataContainerType;
+            /// @brief The iterator type for the interpolated data stored in this track.
+            typedef typename DataContainerType::iterator DataIteratorType;
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
             /// @brief Create a Track from a range of data points, and enforce its being a loop.
             /// @param Begin An iterator pointing to the beginning of a range to copy.
             /// @param End an iterator pointing to one past the rang to copy.
-            TrackLooped(typename DataContainerType::iterator Begin,
-                        typename DataContainerType::iterator End)
+            TrackLooped(DataIteratorType Begin,
+                        DataIteratorType End)
                 : BaseType(Begin,End)
                 { EnforceLoop(); }
             /// @brief Create a track from a DataContainerType instance, likely a vector and copy the data from it, and enforce it being a loop
@@ -393,11 +416,11 @@ namespace Mezzanine
             /// @Polymorphicaly get the classnae at runtime
             /// @return A String Containing a class name,likely"Track" or "TrackLooped"
             virtual String DerivedSerializableName() const
-                { return TrackLooped::SerializableName(); }
+                { return TrackLooped::GetSerializableName(); }
 
             /// @brief Get the name of this class "TrackLooped"
             /// @return A string containing "TrackLooped"
-            static String SerializableName()
+            static String GetSerializableName()
                 { return String("TrackLooped"); }
     };
 

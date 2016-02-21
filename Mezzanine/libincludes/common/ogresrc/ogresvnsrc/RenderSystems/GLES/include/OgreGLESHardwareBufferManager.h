@@ -5,7 +5,7 @@ This source file is part of OGRE
 For the latest info, see http://www.ogre3d.org/
 
 Copyright (c) 2008 Renato Araujo Oliveira Filho <renatox@gmail.com>
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@ THE SOFTWARE.
 
 #include "OgreGLESPrerequisites.h"
 #include "OgreHardwareBufferManager.h"
+#include "Threading/OgreThreadHeaders.h"
 
 namespace Ogre {
     // Default threshold at which glMapBuffer becomes more efficient than glBufferSubData (32k?)
@@ -42,7 +43,7 @@ namespace Ogre {
     {
         protected:
             char* mScratchBufferPool;
-            OGRE_MUTEX(mScratchMutex)
+            OGRE_MUTEX(mScratchMutex);
             size_t mMapBufferThreshold;
 
         public:
@@ -55,8 +56,8 @@ namespace Ogre {
             HardwareIndexBufferSharedPtr createIndexBuffer(
                 HardwareIndexBuffer::IndexType itype, size_t numIndexes,
                 HardwareBuffer::Usage usage, bool useShadowBuffer = false);
-	        /// Create a render to vertex buffer
-    	    RenderToVertexBufferSharedPtr createRenderToVertexBuffer();
+            /// Create a render to vertex buffer
+            RenderToVertexBufferSharedPtr createRenderToVertexBuffer();
 
             /// Utility function to get the correct GL usage based on HBU's
             static GLenum getGLUsage(unsigned int usage);
@@ -76,65 +77,70 @@ namespace Ogre {
             /// @see allocateScratch
             void deallocateScratch(void* ptr);
 
-    		/** Threshold after which glMapBuffer is used and not glBufferSubData
+            /** Threshold after which glMapBuffer is used and not glBufferSubData
             */
             size_t getGLMapBufferThreshold() const;
             void setGLMapBufferThreshold( const size_t value );
+            HardwareUniformBufferSharedPtr
+            createUniformBuffer(size_t sizeBytes, HardwareBuffer::Usage usage,bool useShadowBuffer, const String& name = "");
+            HardwareCounterBufferSharedPtr createCounterBuffer(size_t sizeBytes,
+                                                               HardwareBuffer::Usage usage = HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+                                                               bool useShadowBuffer = false, const String& name = "");
     };
 
-	/// GLESHardwareBufferManagerBase as a Singleton
-	class _OgreGLESExport GLESHardwareBufferManager : public HardwareBufferManager
-	{
-	public:
-		GLESHardwareBufferManager()
-			: HardwareBufferManager(OGRE_NEW GLESHardwareBufferManagerBase()) 
-		{
+    /// GLESHardwareBufferManagerBase as a Singleton
+    class _OgreGLESExport GLESHardwareBufferManager : public HardwareBufferManager
+    {
+    public:
+        GLESHardwareBufferManager()
+            : HardwareBufferManager(OGRE_NEW GLESHardwareBufferManagerBase()) 
+        {
 
-		}
-		~GLESHardwareBufferManager()
-		{
-			OGRE_DELETE mImpl;
-		}
+        }
+        ~GLESHardwareBufferManager()
+        {
+            OGRE_DELETE mImpl;
+        }
 
 
 
-		/// Utility function to get the correct GL usage based on HBU's
-		static GLenum getGLUsage(unsigned int usage) 
-		{ return GLESHardwareBufferManagerBase::getGLUsage(usage); }
+        /// Utility function to get the correct GL usage based on HBU's
+        static GLenum getGLUsage(unsigned int usage) 
+        { return GLESHardwareBufferManagerBase::getGLUsage(usage); }
 
-		/// Utility function to get the correct GL type based on VET's
-		static GLenum getGLType(unsigned int type)
-		{ return GLESHardwareBufferManagerBase::getGLType(type); }
+        /// Utility function to get the correct GL type based on VET's
+        static GLenum getGLType(unsigned int type)
+        { return GLESHardwareBufferManagerBase::getGLType(type); }
 
-		/** Allocator method to allow us to use a pool of memory as a scratch
-		area for hardware buffers. This is because glMapBuffer is incredibly
-		inefficient, seemingly no matter what options we give it. So for the
-		period of lock/unlock, we will instead allocate a section of a local
-		memory pool, and use glBufferSubDataARB / glGetBufferSubDataARB
-		instead.
-		*/
-		void* allocateScratch(uint32 size)
-		{
-			return static_cast<GLESHardwareBufferManagerBase*>(mImpl)->allocateScratch(size);
-		}
+        /** Allocator method to allow us to use a pool of memory as a scratch
+        area for hardware buffers. This is because glMapBuffer is incredibly
+        inefficient, seemingly no matter what options we give it. So for the
+        period of lock/unlock, we will instead allocate a section of a local
+        memory pool, and use glBufferSubDataARB / glGetBufferSubDataARB
+        instead.
+        */
+        void* allocateScratch(uint32 size)
+        {
+            return static_cast<GLESHardwareBufferManagerBase*>(mImpl)->allocateScratch(size);
+        }
 
-		/// @see allocateScratch
-		void deallocateScratch(void* ptr)
-		{
-			static_cast<GLESHardwareBufferManagerBase*>(mImpl)->deallocateScratch(ptr);
-		}
+        /// @see allocateScratch
+        void deallocateScratch(void* ptr)
+        {
+            static_cast<GLESHardwareBufferManagerBase*>(mImpl)->deallocateScratch(ptr);
+        }
         /** Threshold after which glMapBuffer is used and not glBufferSubData
-		*/
-		size_t getGLMapBufferThreshold() const
-		{
-			return static_cast<GLESHardwareBufferManagerBase*>(mImpl)->getGLMapBufferThreshold();
-		}
-		void setGLMapBufferThreshold( const size_t value )
-		{
-			static_cast<GLESHardwareBufferManagerBase*>(mImpl)->setGLMapBufferThreshold(value);
-		}
+        */
+        size_t getGLMapBufferThreshold() const
+        {
+            return static_cast<GLESHardwareBufferManagerBase*>(mImpl)->getGLMapBufferThreshold();
+        }
+        void setGLMapBufferThreshold( const size_t value )
+        {
+            static_cast<GLESHardwareBufferManagerBase*>(mImpl)->setGLMapBufferThreshold(value);
+        }
 
-	};
+    };
 
 }
 

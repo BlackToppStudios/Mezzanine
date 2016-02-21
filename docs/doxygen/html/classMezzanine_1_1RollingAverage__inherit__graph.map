@@ -1,4 +1,4 @@
 <map id="Mezzanine::RollingAverage&lt; RecordType &gt;" name="Mezzanine::RollingAverage&lt; RecordType &gt;">
-<area shape="rect" id="node3" href="$classMezzanine_1_1BufferedRollingAverage.html" title="A RollingAverage that stores a copy of each record. and does the math when queried. " alt="" coords="239,5,420,51"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1WeightedRollingAverage.html" title="A weighted average that does math with every insertion and stores nothing. " alt="" coords="236,74,423,121"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1BufferedRollingAverage.html" title="A RollingAverage that stores a copy of each record. and does the math when queried. " alt="" coords="237,5,420,47"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1WeightedRollingAverage.html" title="A weighted average that does math with every insertion and stores nothing. " alt="" coords="235,71,423,112"/>
 </map>

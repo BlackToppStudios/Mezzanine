@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -80,7 +80,7 @@ namespace Mezzanine
             this->Playing = true;
             if( !this->CurrTrack ) {
                 if( this->MusicPlaylist->empty() ) {
-                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to play a song in MusicPlayer with an empty playlist");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to play a song in MusicPlayer with an empty playlist");
                 }else{
                     this->CurrTrack = *(this->MusicPlaylist->begin());
                 }
@@ -129,7 +129,7 @@ namespace Mezzanine
                     return;
                 }
             }
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to switch to song not contained within the current Playlist.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to switch to song not contained within the current Playlist.");
         }
 
         Boole MusicPlayer::IsPlaying() const

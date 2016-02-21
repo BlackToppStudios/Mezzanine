@@ -1,4 +1,4 @@
 <map id="Mezzanine::MemoryManagementException" name="Mezzanine::MemoryManagementException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="37,83,187,112"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="60,5,164,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="22,80,203,107"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="61,5,165,32"/>
 </map>

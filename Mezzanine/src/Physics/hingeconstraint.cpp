@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -55,53 +55,84 @@ namespace Mezzanine
         ////////////////////////////////////////////////////////////////////////////////
         // Hinge Constraint Functions
 
-        btTypedConstraint* HingeConstraint::GetConstraintBase() const
-            { return this->Hinge; }
+        HingeConstraint::HingeConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, PhysicsManager* Creator) :
+            DualTransformConstraint(ID,ProxyA,ProxyB,Creator),
+            Hinge(NULL)
+            { this->CreateConstraint(ProxyA,ProxyB,PivotInA,PivotInB,AxisInA,AxisInB); }
 
-        ////////////////////////////////////////////////////////////////////////////////
-        // HingeConstraint Construction and Destruction
+        HingeConstraint::HingeConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator) :
+            DualTransformConstraint(ID,ProxyA,ProxyB,Creator),
+            Hinge(NULL)
+            { this->CreateConstraint(ProxyA,ProxyB,TransA.GetBulletTransform(),TransB.GetBulletTransform()); }
 
-        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, Boole UseReferenceFrameA)
-        {
-            this->SetBodies(ProxyA,ProxyB);
+        HingeConstraint::HingeConstraint(const UInt32 ID, RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, PhysicsManager* Creator) :
+            DualTransformConstraint(ID,ProxyA,Creator),
+            Hinge(NULL)
+            { this->CreateConstraint(ProxyA,NULL,PivotInA,Vector3(),AxisInA,Vector3()); }
 
-            btVector3 tempA(AxisInA.GetBulletVector3());
-            btVector3 tempB(AxisInB.GetBulletVector3());
-            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, Boole(UseReferenceFrameA));
-        }
+        HingeConstraint::HingeConstraint(const UInt32 ID, RigidProxy* ProxyA, const Transform& TransA, PhysicsManager* Creator) :
+            DualTransformConstraint(ID,ProxyA,Creator),
+            Hinge(NULL)
+            { this->CreateConstraint(ProxyA,NULL,TransA.GetBulletTransform(),Transform()); }
 
-        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, Boole UseReferenceFrameA)
-        {
-            this->SetBodies(ProxyA);
-
-            btVector3 tempA(AxisInA.GetBulletVector3());
-            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), PivotInA.GetBulletVector3(), tempA, Boole(UseReferenceFrameA));
-        }
-
-        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boole UseReferenceFrameA)
-        {
-            this->SetBodies(ProxyA,ProxyB);
-
-            btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
-            btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), transa, transb, UseReferenceFrameA);
-        }
-
-        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boole UseReferenceFrameA)
-        {
-            this->SetBodies(ProxyA,ProxyB);
-            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseReferenceFrameA);
-        }
-
+        HingeConstraint::HingeConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator) :
+            DualTransformConstraint(0,NULL,Creator),
+            Hinge(NULL)
+            { this->ProtoDeSerialize(SelfRoot); }
 
         HingeConstraint::~HingeConstraint()
+            { this->DestroyConstraint(); }
+
+        void HingeConstraint::CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB)
         {
-            if(this->Hinge)
+            if( this->Hinge == NULL ) {
+                if( RigidA && RigidB ) {
+                    this->Hinge = new btHingeConstraint(*(RigidA->_GetPhysicsObject()),*(RigidB->_GetPhysicsObject()),TransA.GetBulletTransform(),TransB.GetBulletTransform(),false);
+                }else if( RigidA ) {
+                    this->Hinge = new btHingeConstraint(*(RigidA->_GetPhysicsObject()),TransA.GetBulletTransform(),false);
+                }
+            }
+        }
+
+        void HingeConstraint::CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB)
+        {
+            if( this->Hinge == NULL ) {
+                if( RigidA && RigidB ) {
+                    this->Hinge = new btHingeConstraint(*(RigidA->_GetPhysicsObject()),*(RigidB->_GetPhysicsObject()),PivotInA.GetBulletVector3(),PivotInB.GetBulletVector3(),AxisInA.GetBulletVector3(),AxisInB.GetBulletVector3(),false);
+                }else if( RigidA ) {
+                    this->Hinge = new btHingeConstraint(*(RigidA->_GetPhysicsObject()),PivotInA.GetBulletVector3(),AxisInA.GetBulletVector3(),false);
+                }
+            }
+        }
+
+        void HingeConstraint::DestroyConstraint()
+        {
+            this->EnableConstraint(false);
+            if( this->Hinge != NULL ) {
                 delete this->Hinge;
+                this->Hinge = NULL;
+            }
+            this->ProxA = NULL;
+            this->ProxB = NULL;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
-        // HingeConstraint Position and Orientation
+        // Position and Orientation
+
+        void HingeConstraint::SetPivotTransforms(const Transform& TransA, const Transform& TransB)
+            { this->Hinge->setFrames(TransA.GetBulletTransform(),TransB.GetBulletTransform()); }
+
+        void HingeConstraint::SetPivotATransform(const Transform& TransA)
+            { this->Hinge->setFrames(TransA.GetBulletTransform(),this->Hinge->getBFrame()); }
+
+        void HingeConstraint::SetPivotBTransform(const Transform& TransB)
+            { this->Hinge->setFrames(this->Hinge->getAFrame(),TransB.GetBulletTransform()); }
+
+        Transform HingeConstraint::GetPivotATransform() const
+            { return Transform(this->Hinge->getAFrame()); }
+
+        Transform HingeConstraint::GetPivotBTransform() const
+            { return Transform(this->Hinge->getBFrame()); }
 
         void HingeConstraint::SetPivotALocation(const Vector3& Location)
             { this->Hinge->getAFrame().setOrigin(Location.GetBulletVector3()); }
@@ -127,52 +158,31 @@ namespace Mezzanine
         Quaternion HingeConstraint::GetBPivotRotation() const
             { return Quaternion(this->Hinge->getBFrame().getRotation()); }
 
-        void HingeConstraint::SetPivotATransform(const Transform& TranA)
-            { this->Hinge->getAFrame() << TranA; }
+        ////////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-        void HingeConstraint::SetPivotBTransform(const Transform& TranB)
-            { this->Hinge->getBFrame() << TranB; }
+        void HingeConstraint::SetAxis(const Vector3& AxisInA)
+            { btVector3 Temp = AxisInA.GetBulletVector3();  this->Hinge->setAxis(Temp); }
 
-        Transform HingeConstraint::GetPivotATransform() const
-            { return Transform(this->Hinge->getAFrame()); }
+        Real HingeConstraint::GetHingeAngle()
+            { return this->Hinge->getHingeAngle(); }
 
-        Transform HingeConstraint::GetPivotBTransform() const
-            { return Transform(this->Hinge->getBFrame()); }
+        void HingeConstraint::SetUseFrameOffset(const Boole FrameOffset)
+            { this->Hinge->setUseFrameOffset(FrameOffset); }
+
+        Boole HingeConstraint::GetUseFrameOffset() const
+            { return this->Hinge->getUseFrameOffset(); }
+
+        void HingeConstraint::SetUseReferenceFrameA(const Boole UseReferenceFrameA)
+            { this->Hinge->setUseReferenceFrameA(UseReferenceFrameA); }
+
+        Boole HingeConstraint::GetUseReferenceFrameA() const
+            { return this->Hinge->getUseReferenceFrameA(); }
 
         ////////////////////////////////////////////////////////////////////////////////
-        // HingeConstraint Angular Motor
+        // Limits
 
-        void HingeConstraint::EnableMotor(Boole EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
-            { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
-
-        void HingeConstraint::EnableMotor(Boole EnableMotor)
-            { this->Hinge->enableMotor(EnableMotor); }
-
-        Boole HingeConstraint::GetMotorEnabled() const
-            { return this->Hinge->getEnableAngularMotor(); }
-
-        void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
-            { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); }
-
-        Real HingeConstraint::GetMaxMotorImpulse() const
-            { return this->Hinge->getMaxMotorImpulse(); }
-
-        void HingeConstraint::SetMotorTarget(const Quaternion& QuatAInB, Real Dt)
-            { this->Hinge->setMotorTarget(QuatAInB.GetBulletQuaternion(), Dt); }
-
-        void HingeConstraint::SetMotorTarget(Real TargetAngle, Real Dt)
-            { this->Hinge->setMotorTarget(TargetAngle, Dt); }
-
-        void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
-            { this->Hinge->setMotorTargetVelocity(TargetVelocity); }
-
-        Real HingeConstraint::GetMotorTargetVelocity() const
-            { return this->Hinge->getMotorTargetVelosity(); }
-
-        ////////////////////////////////////////////////////////////////////////////////
-        // HingeConstraint Limits
-
-        void HingeConstraint::SetLimit(Real Low, Real High, Real Softness, Real BiasFactor, Real RelaxationFactor)
+        void HingeConstraint::SetLimits(Real Low, Real High, Real Softness, Real BiasFactor, Real RelaxationFactor)
             { this->Hinge->setLimit(Low, High, Softness, BiasFactor, RelaxationFactor); }
 
         Real HingeConstraint::GetLimitLow() const
@@ -191,24 +201,42 @@ namespace Mezzanine
             { return this->Hinge->getLimitRelaxationFactor(); }
 
         ////////////////////////////////////////////////////////////////////////////////
-        // HingeConstraint Details
+        // Angular Motor
 
-        void HingeConstraint::SetAxis(const Vector3& AxisInA)
-        {
-            btVector3 temp(AxisInA.GetBulletVector3());
-            this->Hinge->setAxis(temp);
-        }
+        void HingeConstraint::EnableMotor(const Boole EnableMotor, const Real TargetVelocity, const Real MaxMotorImpulse)
+            { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
-        Real HingeConstraint::GetHingeAngle()
-        {
-            return this->Hinge->getHingeAngle();
-        }
+        void HingeConstraint::SetMotorEnabled(const Boole EnableMotor)
+            { this->Hinge->enableMotor(EnableMotor); }
 
-        Constraint::ParamList HingeConstraint::ValidParamOnAxis(int Axis) const
+        Boole HingeConstraint::GetMotorEnabled() const
+            { return this->Hinge->getEnableAngularMotor(); }
+
+        void HingeConstraint::SetMaxMotorImpulse(const Real MaxMotorImpulse)
+            { this->Hinge->setMaxMotorImpulse(MaxMotorImpulse); }
+
+        Real HingeConstraint::GetMaxMotorImpulse() const
+            { return this->Hinge->getMaxMotorImpulse(); }
+
+        void HingeConstraint::SetMotorTargetVelocity(const Real TargetVelocity)
+            { this->Hinge->setMotorTargetVelocity(TargetVelocity); }
+
+        Real HingeConstraint::GetMotorTargetVelocity() const
+            { return this->Hinge->getMotorTargetVelosity(); }
+
+        void HingeConstraint::SetMotorTarget(const Quaternion& QuatAInB, const Real Delta)
+            { this->Hinge->setMotorTarget(QuatAInB.GetBulletQuaternion(),Delta); }
+
+        void HingeConstraint::SetMotorTarget(const Real TargetAngle, const Real Delta)
+            { this->Hinge->setMotorTarget(TargetAngle,Delta); }
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // Parameter Configuration
+
+        Constraint::ParamList HingeConstraint::GetValidParamsOnAxis(int Axis) const
         {
             Constraint::ParamList Results;
-            if(-1==Axis||5==Axis)
-            {
+            if( -1 == Axis || 5 == Axis ) {
                 Results.push_back(Con_Stop_ERP);
                 Results.push_back(Con_CFM);
                 Results.push_back(Con_Stop_CFM);
@@ -216,14 +244,14 @@ namespace Mezzanine
             return Results;
         }
 
-        Constraint::AxisList HingeConstraint::ValidLinearAxis() const
+        Constraint::AxisList HingeConstraint::GetValidLinearAxes() const
         {
             Constraint::AxisList Results;
             Results.push_back(-1);
             return Results;
         }
 
-        Constraint::AxisList HingeConstraint::ValidAngularAxis() const
+        Constraint::AxisList HingeConstraint::GetValidAngularAxes() const
         {
             Constraint::AxisList Results;
             Results.push_back(5);
@@ -240,122 +268,108 @@ namespace Mezzanine
                     ( Con_CFM==Param      && this->Hinge->getFlags() & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
         }
 
-        Boole HingeConstraint::GetUseReferenceFrameA() const
-            { return this->Hinge->getUseReferenceFrameA(); }
-
-        void HingeConstraint::SetUseReferenceFrameA(Boole UseReferenceFrameA)
-            { this->Hinge->setUseReferenceFrameA(UseReferenceFrameA); }
-
-        Boole HingeConstraint::GetUseFrameOffset() const
-            { return this->Hinge->getUseFrameOffset(); }
-
-        void HingeConstraint::SetUseFrameOffset(Boole FrameOffset)
-            { this->Hinge->setUseFrameOffset(FrameOffset); }
-
         ////////////////////////////////////////////////////////////////////////////////
-        // HingeConstraint Serialization
+        // Serialization
 
-        void HingeConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
+        void HingeConstraint::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            XML::Node HingeNode = CurrentRoot.AppendChild(SerializableName());          // The base node all the base constraint stuff will go in
-            if (!HingeNode)
-                { SerializeError("Create HingeNode", SerializableName()); }
+            this->Constraint::ProtoSerializeProperties(SelfRoot);
 
-            XML::Attribute VerAttr = HingeNode.AppendAttribute("Version");              // Base Attributes
-            XML::Attribute RefA = HingeNode.AppendAttribute("ReferenceInA");
-            XML::Attribute FrameOff = HingeNode.AppendAttribute("UseFrameOffset");
-            if( VerAttr && RefA && FrameOff )
+            XML::Node PropertiesNode = SelfRoot.AppendChild( HingeConstraint::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("UseFrameOffset").SetValue( this->GetUseFrameOffset() ) &&
+                PropertiesNode.AppendAttribute("UseReferenceFrameA").SetValue( this->GetUseReferenceFrameA() ) &&
+                PropertiesNode.AppendAttribute("LimitLow").SetValue( this->GetLimitLow() ) &&
+                PropertiesNode.AppendAttribute("LimitHigh").SetValue( this->GetLimitHigh() ) &&
+                PropertiesNode.AppendAttribute("LimitSoftness").SetValue( this->GetLimitSoftness() ) &&
+                PropertiesNode.AppendAttribute("LimitBiasFactor").SetValue( this->GetLimitBiasFactor() ) &&
+                PropertiesNode.AppendAttribute("LimitRelaxationFactor").SetValue( this->GetLimitRelaxationFactor() ) &&
+                PropertiesNode.AppendAttribute("MotorEnabled").SetValue( this->GetMotorEnabled() ) &&
+                PropertiesNode.AppendAttribute("MaxMotorImpulse").SetValue( this->GetMaxMotorImpulse() ) &&
+                PropertiesNode.AppendAttribute("MotorTargetVelocity").SetValue( this->GetMotorTargetVelocity() ) )
             {
-                VerAttr.SetValue(1);
-                RefA.SetValue(this->GetUseReferenceFrameA());
-                FrameOff.SetValue(this->GetUseFrameOffset());
+                return;
             }else{
-                SerializeError("Create HingeNode Attributes", SerializableName());
+                SerializeError("Create XML Attribute Values",HingeConstraint::GetSerializableName() + "Properties",true);
             }
-
-            XML::Node MotorNode = HingeNode.AppendChild("Motor");                       // Motor Node
-            if (!MotorNode)
-                { SerializeError("Create MotorNode", SerializableName()); }
-
-            XML::Attribute MotEnabled = MotorNode.AppendAttribute("Enabled");           // Motor Attributes
-            XML::Attribute MotImpulse = MotorNode.AppendAttribute("MaxImpulse");
-            XML::Attribute MotTarget = MotorNode.AppendAttribute("TargetVelocity");
-            if( MotEnabled && MotImpulse && MotTarget )
-            {
-                MotEnabled.SetValue(this->GetMotorEnabled());
-                MotImpulse.SetValue(this->GetMaxMotorImpulse());
-                MotTarget.SetValue(this->GetMotorTargetVelocity());
-            }else{
-                SerializeError("Create MotorNode Attributes", SerializableName());
-            }
-
-            XML::Node LimitNode =  HingeNode.AppendChild("Limits");                      // Limits Node
-            if (!LimitNode)
-                { SerializeError("Create LimitNode", SerializableName()); }
-
-            XML::Attribute LimLow = LimitNode.AppendAttribute("Low");                   // Limits Attributes
-            XML::Attribute LimHigh = LimitNode.AppendAttribute("High");
-            XML::Attribute LimSoft = LimitNode.AppendAttribute("Softness");
-            XML::Attribute LimBias = LimitNode.AppendAttribute("BiasFactor");
-            XML::Attribute LimRelax = LimitNode.AppendAttribute("RelaxationFactor");
-            if( LimLow && LimHigh && LimSoft && LimBias && LimRelax )
-            {
-                LimLow.SetValue(this->GetLimitLow());
-                LimHigh.SetValue(this->GetLimitHigh());
-                LimSoft.SetValue(this->GetLimitSoftness());
-                LimBias.SetValue(this->GetLimitBiasFactor());
-                LimRelax.SetValue(this->GetLimitRelaxationFactor());
-            }else{
-                SerializeError("Create MotorNode Attributes", SerializableName());
-            }
-
-            DualTransformConstraint::ProtoSerialize(HingeNode);
         }
 
-        void HingeConstraint::ProtoDeSerialize(const XML::Node& OneNode)
+        void HingeConstraint::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->HingeConstraint::SerializableName() )
-            {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    XML::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
-                    if(!DualTranny)
-                        { DeSerializeError("locate DualTransforn node",SerializableName()); }
-                    this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
+            this->Constraint::ProtoDeSerializeProperties(SelfRoot);
 
-                    XML::Node MotorNode = OneNode.GetChild("Motor");
-                    if(!MotorNode)
-                        { DeSerializeError("locate Motor node",SerializableName()); }
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( HingeConstraint::GetSerializableName() + "Properties" );
 
-                    XML::Node LimitNode = OneNode.GetChild("Limits");
-                    if(!LimitNode)
-                        { DeSerializeError("locate Limits node",SerializableName()); }
+            if( !PropertiesNode.Empty() ) {
+                if( PropertiesNode.GetAttribute("Version").AsInt() == 1 ) {
+                    Real LimitLow = 0.0;
+                    Real LimitHigh = 0.0;
+                    Real LimitSoftness = 0.9;
+                    Real LimitBiasFactor = 0.3;
+                    Real LimitRelaxationFactor = 1.0;
 
-                    this->SetUseReferenceFrameA(OneNode.GetAttribute("ReferenceInA").AsBool());
-                    this->SetUseFrameOffset(OneNode.GetAttribute("UseFrameOffset").AsBool());
+                    CurrAttrib = PropertiesNode.GetAttribute("UseFrameOffset");
+                    if( !CurrAttrib.Empty() )
+                        this->SetUseFrameOffset( CurrAttrib.AsBool() );
 
-                    this->EnableMotor(
-                        MotorNode.GetAttribute("Enabled").AsBool(),
-                        MotorNode.GetAttribute("TargetVelocity").AsReal(),
-                        MotorNode.GetAttribute("MaxImpulse").AsReal() );
+                    CurrAttrib = PropertiesNode.GetAttribute("UseReferenceFrameA");
+                    if( !CurrAttrib.Empty() )
+                        this->SetUseReferenceFrameA( CurrAttrib.AsBool() );
 
-                    this->SetLimit(
-                        LimitNode.GetAttribute("Low").AsReal(),
-                        LimitNode.GetAttribute("High").AsReal(),
-                        LimitNode.GetAttribute("Softness").AsReal(),
-                        LimitNode.GetAttribute("BiasFactor").AsReal(),
-                        LimitNode.GetAttribute("RelaxationFactor").AsReal() );
+                    CurrAttrib = PropertiesNode.GetAttribute("LimitLow");
+                    if( !CurrAttrib.Empty() )
+                        LimitLow = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("LimitHigh");
+                    if( !CurrAttrib.Empty() )
+                        LimitHigh = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("LimitSoftness");
+                    if( !CurrAttrib.Empty() )
+                        LimitSoftness = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("LimitBiasFactor");
+                    if( !CurrAttrib.Empty() )
+                        LimitBiasFactor = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("LimitRelaxationFactor");
+                    if( !CurrAttrib.Empty() )
+                        LimitRelaxationFactor = CurrAttrib.AsReal();
+
+                    this->SetLimits(LimitLow,LimitHigh,LimitSoftness,LimitBiasFactor,LimitRelaxationFactor);
+
+                    CurrAttrib = PropertiesNode.GetAttribute("MotorEnabled");
+                    if( !CurrAttrib.Empty() )
+                        this->SetMotorEnabled( CurrAttrib.AsBool() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("MaxMotorImpulse");
+                    if( !CurrAttrib.Empty() )
+                        this->SetMaxMotorImpulse( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("MotorTargetVelocity");
+                    if( !CurrAttrib.Empty() )
+                        this->SetMotorTargetVelocity( CurrAttrib.AsReal() );
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( HingeConstraint::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,HingeConstraint::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
-        String HingeConstraint::SerializableName()
-            { return String("HingeConstraint"); }
+        String HingeConstraint::GetDerivedSerializableName() const
+            { return HingeConstraint::GetSerializableName(); }
 
+        String HingeConstraint::GetSerializableName()
+            { return "HingeConstraint"; }
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // Internal
+
+        btTypedConstraint* HingeConstraint::_GetConstraintBase() const
+            { return this->Hinge; }
     }//Physics
 }//Mezzanine
 

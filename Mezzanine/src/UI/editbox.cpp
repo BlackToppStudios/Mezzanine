@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -119,9 +119,6 @@ namespace Mezzanine
         EditBox::~EditBox()
             {  }
 
-        void EditBox::CreateLayoutStrat()
-            { this->LayoutStrat = NULL; }
-
         Boole EditBox::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Verify we can consume inputs.
@@ -231,7 +228,7 @@ namespace Mezzanine
             }else if( EditLayerType == UI::RLT_MultiLineText ) {
                 EditLayer = this->CreateMultiLineTextLayer();
             }else{
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid RenderLayer type passed in to EditBox constructor.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid RenderLayer type passed in to EditBox constructor.");
             }
 
             // Set the font separately since setting the font on construction can only be done via string. todo?
@@ -352,10 +349,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetEditingEnabled( CurrAttrib.AsBool() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (EditBox::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (EditBox::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,EditBox::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,EditBox::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

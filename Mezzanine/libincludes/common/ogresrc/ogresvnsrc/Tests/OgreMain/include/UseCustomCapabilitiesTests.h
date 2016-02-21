@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
+
+#ifndef __UseCustomCapabilitiesTests_H__
+#define __UseCustomCapabilitiesTests_H__
+
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
@@ -38,24 +42,31 @@ THE SOFTWARE.
 #include "OgreResourceGroupManager.h"
 
 
-using namespace Ogre;
+#ifdef OGRE_STATIC_LIB
+#include "../../../Samples/Common/include/OgreStaticPluginLoader.h"
+#endif
 
+using namespace Ogre;
 
 class UseCustomCapabilitiesTests : public CppUnit::TestFixture
 {
     // CppUnit macros for setting up the test suite
-    CPPUNIT_TEST_SUITE( UseCustomCapabilitiesTests );
-
+    CPPUNIT_TEST_SUITE(UseCustomCapabilitiesTests);
     CPPUNIT_TEST(testCustomCapabilitiesGL);
     CPPUNIT_TEST(testCustomCapabilitiesD3D9);
-
     CPPUNIT_TEST_SUITE_END();
+
+#ifdef OGRE_STATIC_LIB
+    Ogre::StaticPluginLoader mStaticPluginLoader;
+#endif
+
 public:
     void setUp();
     void tearDown();
 
-    // Test the full stack of custom capabilities use (including config file and initializatio)
+    // Test the full stack of custom capabilities use (including config file and initialization)
     void testCustomCapabilitiesGL();
     void testCustomCapabilitiesD3D9();
-
 };
+
+#endif

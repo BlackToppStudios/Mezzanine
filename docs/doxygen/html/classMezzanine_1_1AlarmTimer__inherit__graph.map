@@ -1,4 +1,4 @@
 <map id="Mezzanine::AlarmTimer" name="Mezzanine::AlarmTimer">
-<area shape="rect" id="node2" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="9,83,161,112"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers. " alt="" coords="23,5,148,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="9,80,162,107"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers. " alt="" coords="22,5,149,32"/>
 </map>

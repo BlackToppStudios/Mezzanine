@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -66,8 +66,17 @@ namespace Mezzanine
             /// @brief This is a shared pointer to the stream being decoded.
             Resource::DataStreamPtr VorbisStream;
             /// @internal
+            /// @brief This is used to cache the total size of the stream used by this decoder.
+            Integer VorbisStreamSize;
+            /// @internal
+            /// @brief This is used to cache the current stream position for this decoder.
+            Integer VorbisStreamPos;
+            /// @internal
             /// @brief Tracks and stores the validity of the Vorbis stream.
             Boole Valid;
+
+            /// @copydoc iDecoder::ClearStreamErrors()
+            void ClearStreamErrors();
         public:
             /// @brief Class constructor.
             /// @param Stream The stream to decode.
@@ -81,50 +90,52 @@ namespace Mezzanine
             /// @brief Gets a vorbis file comment by index.
             /// @param Index The index of the vorbis file comment to retrieve.
             /// @return Returns a string containing the vorbis file comment at the specified index.
-            virtual String GetUserComment(const UInt32 Index);
+            String GetUserComment(const UInt32 Index);
             /// @brief Gets the number of user comments that have been inserted into this vorbis file.
             /// @return Returns the number of user comments in this vorbis file.
-            virtual UInt32 GetNumUserComments() const;
+            UInt32 GetNumUserComments() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             /// @copydoc iDecoder::IsValid()
-            virtual Boole IsValid();
+            Boole IsValid();
             /// @copydoc iDecoder::GetEncoding() const
-            virtual Audio::Encoding GetEncoding() const;
+            Audio::Encoding GetEncoding() const;
             /// @copydoc iDecoder::IsSeekingSupported()
-            virtual Boole IsSeekingSupported();
+            Boole IsSeekingSupported();
             /// @copydoc iDecoder::GetBitConfiguration() const
-            virtual Audio::BitConfig GetBitConfiguration() const;
+            Audio::BitConfig GetBitConfiguration() const;
             /// @copydoc iDecoder::GetFrequency() const
-            virtual UInt32 GetFrequency() const;
+            UInt32 GetFrequency() const;
             /// @copydoc iDecoder::GetStream() const
-            virtual Resource::DataStreamPtr GetStream() const;
+            Resource::DataStreamPtr GetStream() const;
+            /// @copydoc iDecoder::IsEndOfStream() const
+            Boole IsEndOfStream() const;
 
-            /// @copydoc iDecoder::SetPosition(Int32 Position, Boole Relative)
-            virtual Boole SetPosition(Int32 Position, Boole Relative);
-            /// @copydoc iDecoder::Seek(const Real Seconds, Boole Relative)
-            virtual Boole Seek(const Real Seconds, Boole Relative);
+            /// @copydoc iDecoder::SetPosition(Int32, const Boole)
+            Boole SetPosition(Int32 Position, const Boole Relative);
+            /// @copydoc iDecoder::Seek(const Real, const Boole)
+            Boole Seek(const Real Seconds, const Boole Relative);
 
-            /// @copydoc iDecoder::ReadAudioData(void* Output, UInt32 Amount)
-            virtual UInt32 ReadAudioData(void* Output, UInt32 Amount);
+            /// @copydoc iDecoder::ReadAudioData(void*, UInt32)
+            UInt32 ReadAudioData(void* Output, UInt32 Amount);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Stats
 
             /// @copydoc iDecoder::GetTotalTime() const
-            virtual Real GetTotalTime() const;
+            Real GetTotalTime() const;
             /// @copydoc iDecoder::GetCurrentTime() const
-            virtual Real GetCurrentTime() const;
+            Real GetCurrentTime() const;
             /// @copydoc iDecoder::GetTotalSize() const
-            virtual UInt32 GetTotalSize() const;
+            UInt32 GetTotalSize() const;
             /// @copydoc iDecoder::GetCompressedSize() const
-            virtual UInt32 GetCompressedSize() const;
+            UInt32 GetCompressedSize() const;
             /// @copydoc iDecoder::GetCurrentPosition() const
-            virtual UInt32 GetCurrentPosition() const;
+            UInt32 GetCurrentPosition() const;
             /// @copydoc iDecoder::GetCurrentCompressedPosition() const
-            virtual UInt32 GetCurrentCompressedPosition() const;
+            UInt32 GetCurrentCompressedPosition() const;
         };//VorbisDecoder
     }//Audio
 }//Mezzanine

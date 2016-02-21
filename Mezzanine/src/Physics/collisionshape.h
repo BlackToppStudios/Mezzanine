@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -66,24 +66,23 @@ namespace Mezzanine
         class MEZZ_LIB CollisionShape
         {
         public:
-            /// @enum ShapeType
             /// @brief This enum describes what kind of shape you are currently working with.
             /// @note These are number primarily for Serialization purposes. These corresponding numbers could vary wildly. Any use of corresponding raw number in serialization will be done with object serialization version in mind.
             enum ShapeType
             {
-                ST_Box = 0,               ///< Indicates the class is a BoxCollisionShape
-                ST_Capsule = 1,           ///< Indicates the class is a CapsuleCollisionShape
-                ST_Compound = 2,          ///< Indicates the class is a CompoundCollisionShape
-                ST_Cone = 3,              ///< Indicates the class is a ConeCollisionShape
-                ST_ConvexHull = 4,        ///< Indicates the class is a ConvexHullCollisionShape
-                ST_Cylinder = 5,          ///< Indicates the class is a CylinderCollisionShape
-                ST_MultiSphere = 6,       ///< Indicates the class is a MultiSphereCollisionShape
-                ST_Sphere = 7,            ///< Indicates the class is a SphereCollisionShape
-                ST_DynamicTriMesh = 8,    ///< Indicates the class is a DynamicMeshCollisionShape
-                ST_Heightfield = 9,       ///< Indicates the class is a HeightfieldCollisionShape
-                ST_Plane = 10,            ///< Indicates the class is a PlaneCollisionShape
-                ST_Soft = 11,             ///< Indicates the class is a SoftCollisionShape
-                ST_StaticTriMesh = 12     ///< Indicates the class is a StaticMeshCollisionShape
+                ST_Box             = 0,  ///< Indicates the class is a BoxCollisionShape
+                ST_Capsule         = 1,  ///< Indicates the class is a CapsuleCollisionShape
+                ST_Compound        = 2,  ///< Indicates the class is a CompoundCollisionShape
+                ST_Cone            = 3,  ///< Indicates the class is a ConeCollisionShape
+                ST_ConvexHull      = 4,  ///< Indicates the class is a ConvexHullCollisionShape
+                ST_Cylinder        = 5,  ///< Indicates the class is a CylinderCollisionShape
+                ST_MultiSphere     = 6,  ///< Indicates the class is a MultiSphereCollisionShape
+                ST_Sphere          = 7,  ///< Indicates the class is a SphereCollisionShape
+                ST_DynamicTriMesh  = 8,  ///< Indicates the class is a DynamicMeshCollisionShape
+                ST_Heightfield     = 9,  ///< Indicates the class is a HeightfieldCollisionShape
+                ST_Plane           = 10, ///< Indicates the class is a PlaneCollisionShape
+                ST_Soft            = 11, ///< Indicates the class is a SoftCollisionShape
+                ST_StaticTriMesh   = 12  ///< Indicates the class is a StaticMeshCollisionShape
             };
         protected:
             /// @brief A pointer to the bullet collision this uses.
@@ -134,7 +133,7 @@ namespace Mezzanine
             virtual void ProtoDeSerialize(const XML::Node& OneNode);
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "CollisionShape"
-            static String SerializableName();
+            static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

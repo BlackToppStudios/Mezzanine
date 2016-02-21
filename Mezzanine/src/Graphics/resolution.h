@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -191,10 +191,10 @@ namespace Mezzanine
                         if( !CurrAttrib.Empty() )
                             this->Height = CurrAttrib.AsWhole();
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Resolution::GetSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Resolution::GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Resolution::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Resolution::GetSerializableName() + " was not found in the provided XML node, which was expected.");
                 }
             }
             /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.

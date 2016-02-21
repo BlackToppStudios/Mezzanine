@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,8 +49,6 @@ namespace Mezzanine
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Rect
-        /// @headerfile rect.h
         /// @brief This class represents a box shaped area on the screen.
         /// @details
         ///////////////////////////////////////
@@ -90,6 +88,7 @@ namespace Mezzanine
             /// @param PosY The position of this rect on the Y axis.
             /// @param SizeX The size of this rect on the X axis.
             /// @param SizeY The size of this rect on the Y axis.
+            /// @param Relative Whether or not this Rect is expressing relative coordinates (0-1).
             Rect(const Real& PosX, const Real& PosY, const Real& SizeX, const Real& SizeY, Boole Relative)
             {
                 this->Position.SetValues(PosX,PosY);
@@ -249,6 +248,7 @@ namespace Mezzanine
             /// @brief Assignment Operator.
             /// @details Copys the contents of a Rect to another.
             /// @param Other The other Rect to copy from.
+            /// @return Returns a reference to this.
             inline Rect& operator=(const Rect& Other)
             {
                 this->Position = Other.Position;
@@ -259,6 +259,7 @@ namespace Mezzanine
             /// @brief Equality Comparison Operator.
             /// @details Checks to see if the two Rects are equal.
             /// @param Other The other Rect to compare against.
+            /// @return Returns true if this Rect is equal to the Other, false otherwise.
             inline Boole operator==(const Rect& Other)
             {
                 return ( this->Position == Other.Position && this->Size == Other.Size && this->Relative == Other.Relative );
@@ -266,6 +267,7 @@ namespace Mezzanine
             /// @brief Inequality Comparison Operator.
             /// @details Checks to see if the two rects are different.
             /// @param Other The other Rect to compare against.
+            /// @return Returns false of this Rect is equal to the other, true otherwise.
             inline Boole operator!=(const Rect& Other)
             {
                 return ( this->Position != Other.Position || this->Size != Other.Size || this->Relative != Other.Relative );
@@ -316,10 +318,10 @@ namespace Mezzanine
                         if( !CurrAttrib.Empty() )
                             this->Size.X = CurrAttrib.AsReal();
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Rect::GetSerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Rect::GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Rect::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Rect::GetSerializableName() + " was not found in the provided XML node, which was expected.");
                 }
             }
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -69,12 +69,11 @@
 
 #include "Graphics/gamewindow.h"
 #include "Graphics/viewport.h"
-#include "Graphics/cameramanager.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/scenemanager.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 #include <OgreRoot.h>
@@ -92,19 +91,27 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Child Processing Functors
 
+        // Keeps this file form being documented by doxygen
+        /// @cond DontDocumentInternal
+
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class VertexCollectFunctor
-        /// @headerfile screen.cpp
         /// @brief Simple functor for appending all vertices in the renderable tree to a vector.
+        /// @details
         ///////////////////////////////////////
         class VertexCollectFunctor
         {
             public:
+                /// @brief A pointer to the buffer storing Vertex data to be rendered.
                 ScreenRenderData* Data;
 
+                /// @brief Class constructor.
+                /// @param pData A pointer to the buffer that Vertex data will be appended to.
                 VertexCollectFunctor(ScreenRenderData* pData) : Data(pData) {}
+                /// @brief Class constructor.
                 ~VertexCollectFunctor() {}
 
+                /// @brief Function Operator.
+                /// @param Quad The QuadRenderable to have it's Vertex data appended to the buffer.
                 Boole operator()(QuadRenderable* Quad)
                 {
                     Quad->_AppendRenderData(*Data);
@@ -116,16 +123,52 @@ namespace Mezzanine
         // OgreVertex
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @struct OgreVertex
-        /// @headerfile screen.cpp
         /// @brief Simple class that facilitates conversions when inserting vertex's into the video buffer.
+        /// @details
         ///////////////////////////////////////
         struct OgreVertex
         {
+            /// @brief Vertex Position.  Z component should almost always be 0.
             Ogre::Vector3 Position;
+            /// @brief Vertex Colour.  Can tint Quads using images or be used as a flat colour.
             Ogre::ColourValue Colour;
+            /// @brief Texture Coordinates.  How a texture should be mapped onto the quad.
             Ogre::Vector2 UV;
         };
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // ScreenInternalData Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief Basic struct holding some of the internal bits of this class that could not be placed on the class directly.
+        /// @details
+        ///////////////////////////////////////
+        struct ScreenInternalData : public Ogre::RenderQueueListener
+        {
+            /// @brief A pointer to the Screen this is listening for.
+            Screen* ParentScreen;
+            /// @brief The render operation to be passed into the render system to draw the Screen.
+            Ogre::RenderOperation RenderOp;
+            /// @brief A pointer to the actual render system that will be doing the rendering.
+            Ogre::RenderSystem* RenderSys;
+            /// @brief A pointer to the hardware buffer containing the UI vertex data.
+            Ogre::HardwareVertexBufferSharedPtr VertexBuffer;
+
+            /// @brief Callback for when a specific group in the render queue has started render operations.
+            void renderQueueStarted(Ogre::uint8, const Ogre::String&, bool&) {  }
+            /// @brief Callback for when a specific group in the render queue has ended render operations.
+            /// @param queueGroupId The render queue group that has ended rendering.
+            void renderQueueEnded(Ogre::uint8 queueGroupId, const Ogre::String& invocation, bool& repeatThisInvocation)
+            {
+                if( queueGroupId == Ogre::RENDER_QUEUE_OVERLAY && this->RenderSys->_getViewport() == this->ParentScreen->GetViewport()->_GetOgreViewport() ) {
+                    if( this->ParentScreen->IsVisible() ) {
+                        this->ParentScreen->_RenderScreen();
+                    }
+                }
+            }
+        };//ScreenInternalData
+
+        /// @endcond
 
         ///////////////////////////////////////////////////////////////////////////////
         // ScreenRenderData Methods
@@ -141,31 +184,6 @@ namespace Mezzanine
 
         VertexData& ScreenRenderData::operator[](const Whole& Index)
             { return this->Vertices.at(Index); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // ScreenInternalData Methods
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @struct ScreenInternalData
-        /// @headerfile screen.cpp
-        /// @brief Basic struct holding some of the internal bits of this class that could not be placed on the class directly.
-        ///////////////////////////////////////
-        struct ScreenInternalData : public Ogre::RenderQueueListener
-        {
-            Screen* ParentScreen;
-            Ogre::RenderOperation RenderOp;
-            Ogre::RenderSystem* RenderSys;
-            Ogre::HardwareVertexBufferSharedPtr VertexBuffer;
-
-            void renderQueueStarted(Ogre::uint8, const Ogre::String&, bool&) {  }
-            void renderQueueEnded(Ogre::uint8 queueGroupId, const Ogre::String& invocation, bool& repeatThisInvocation)
-            {
-                if( this->RenderSys->_getViewport() != this->ParentScreen->GetViewport()->_GetOgreViewport() || queueGroupId != Ogre::RENDER_QUEUE_OVERLAY )
-                    return;
-                if( this->ParentScreen->IsVisible() )
-                    this->ParentScreen->_RenderScreen();
-            }
-        };//ScreenInternalData
 
         ///////////////////////////////////////////////////////////////////////////////
         // Screen Methods
@@ -187,7 +205,7 @@ namespace Mezzanine
             /*this->ActDims.Size.X = (Real)this->GameViewport->GetActualWidth();
             this->ActDims.Size.Y = (Real)this->GameViewport->GetActualHeight();
             this->InverseSize.X = 1 / this->ActDims.Size.X;
-            this->InverseSize.Y = 1 / this->ActDims.Size.Y;//*/
+            this->InverseSize.Y = 1 / this->ActDims.Size.Y;// */
 
             this->SID = new ScreenInternalData();
             this->SID->RenderSys = Ogre::Root::getSingletonPtr()->getRenderSystem();
@@ -245,7 +263,7 @@ namespace Mezzanine
             if( GameViewport ) {
                 Graphics::CameraProxy* Cam = this->GameViewport->GetCamera();
                 if( Cam ) {
-                    Graphics::SceneManager* SceneMan = static_cast<Graphics::CameraManager*>( Cam->GetCreator() )->GetScene();
+                    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( Cam->GetCreator() );
                     if( SceneMan ) return SceneMan;
                     else return NULL;
                 }else return NULL;
@@ -258,7 +276,7 @@ namespace Mezzanine
             if( WidFactIt  != this->WidgetFactories.end() ) {
                 return (*WidFactIt).second;
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a " + WidgetTypeName + " Widget without it's factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a " + WidgetTypeName + " Widget without it's factory registered.");
             }
         }
 
@@ -267,7 +285,7 @@ namespace Mezzanine
             String WidgetName = ToInsert->GetName();
             std::pair<WidgetIterator,Boole> InsertReturn = this->Widgets.insert( std::pair<String,Widget*>(WidgetName,ToInsert) );
             if( !InsertReturn.second )
-                { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + WidgetName + "\" already exists."); }
+                { MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + WidgetName + "\" already exists."); }
             return ToInsert;
         }
 
@@ -528,7 +546,7 @@ namespace Mezzanine
             if( FactIt != this->WidgetFactories.end() ) {
                 return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(WidgetNode,this) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
             }
         }
 
@@ -538,7 +556,7 @@ namespace Mezzanine
             if( FactIt != this->WidgetFactories.end() ) {
                 return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(RendName,Params,this) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
             }
         }
 
@@ -548,7 +566,7 @@ namespace Mezzanine
             if( FactIt != this->WidgetFactories.end() ) {
                 return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(RendName,RendRect,Params,this) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
             }
         }
 
@@ -851,7 +869,7 @@ namespace Mezzanine
         /*Window* Screen::CreateWidgetWindow(ConstString& Name, const Rect& RendRect)
         {
             return static_cast<Window*>( this->CheckAndInsert( ExtendedRenderableFactory::CreateWidgetWindow(Name,RendRect) ) );
-        }//*/
+        }// */
 
         ///////////////////////////////////////////////////////////////////////////////
         // Atlas Query
@@ -961,19 +979,19 @@ namespace Mezzanine
                                 this->InverseSize.X = 1 / this->ActDims.Size.X;
                                 this->InverseSize.Y = 1 / this->ActDims.Size.Y;
                             }else{
-                                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The Viewport specified via ZOrder was not found in the named GameWindow.");
+                                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The Viewport specified via ZOrder was not found in the named GameWindow.");
                             }
                         }else{
-                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The named GameWindow to be used by UI Screen was not found.");
+                            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"The named GameWindow to be used by UI Screen was not found.");
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"A GameWindow Title/Caption was not specified for UI Screen.");
+                        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"A GameWindow Title/Caption was not specified for UI Screen.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Screen::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Screen::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Screen::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Screen::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -1093,7 +1111,7 @@ namespace Mezzanine
             for( Whole Index = 0 ; Index < TempVertexCache.Size() ; ++Index )
             {
                 if( TempVertexCache[Index].Atlas.empty() ) {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Null or Empty String Atlas found when rendering UI.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Null or Empty String Atlas found when rendering UI.");
                 }
                 if( TempVertexCache[Index].Atlas != CurrentName ) {
                     if( Index != 0 ) {

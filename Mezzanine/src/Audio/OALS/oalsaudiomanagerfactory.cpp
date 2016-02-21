@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,40 +50,35 @@ namespace Mezzanine
         namespace OALS
         {
             OALSAudioManagerFactory::OALSAudioManagerFactory()
-            {
-            }
+                {  }
 
             OALSAudioManagerFactory::~OALSAudioManagerFactory()
-            {
-            }
+                {  }
 
-            String OALSAudioManagerFactory::GetManagerTypeName() const
-            {
-                return "OALSAudioManager";
-            }
+            String OALSAudioManagerFactory::GetManagerImplName() const
+                { return OALS::AudioManager::ImplementationName; }
 
-            ManagerBase* OALSAudioManagerFactory::CreateManager(NameValuePairList& Params)
+            ManagerBase::ManagerType OALSAudioManagerFactory::GetManagerType() const
+                { return OALS::AudioManager::InterfaceType; }
+
+            EntresolManager* OALSAudioManagerFactory::CreateManager(const NameValuePairList& Params)
             {
-                if(AudioManager::SingletonValid())
-                {
+                if( AudioManager::SingletonValid() ) {
                     /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                     return AudioManager::GetSingletonPtr();
                 }else return new OALS::AudioManager();
             }
 
-            ManagerBase* OALSAudioManagerFactory::CreateManager(XML::Node& XMLNode)
+            EntresolManager* OALSAudioManagerFactory::CreateManager(const XML::Node& XMLNode)
             {
-                if(AudioManager::SingletonValid())
-                {
+                if( AudioManager::SingletonValid() ) {
                     /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                     return AudioManager::GetSingletonPtr();
                 }else return new OALS::AudioManager(XMLNode);
             }
 
-            void OALSAudioManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-            {
-                delete ToBeDestroyed;
-            }
+            void OALSAudioManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+                { delete ToBeDestroyed; }
         }//OALS
     }//Audio
 }//Mezzanine

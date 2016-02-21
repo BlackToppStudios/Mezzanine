@@ -27,9 +27,9 @@ LevelZone::~LevelZone()
 
 void LevelZone::CreateLevelZone()
 {
-    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
     if( SceneMan != NULL ) {
-        this->EntProx = SceneMan->CreateEntityProxy();
+        this->EntProx = SceneMan->CreateEntityProxy(false);
         this->EntProx->_Bind(this);
     }
 }
@@ -37,7 +37,7 @@ void LevelZone::CreateLevelZone()
 void LevelZone::DestroyLevelZone()
 {
     this->RemoveFromWorld();
-    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
     if( this->EntProx != NULL && SceneMan != NULL ) {
         SceneMan->DestroyProxy( this->EntProx );
         this->EntProx = NULL;
@@ -249,10 +249,10 @@ void LevelZone::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
                 this->ZoneSize.ProtoDeSerialize( ZoneSizeNode );
             }
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (LevelZone::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (LevelZone::GetSerializableName() + "Properties" ) + ": Not Version 1.");
         }
     }else{
-        MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,LevelZone::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+        MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,LevelZone::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
     }
 }
 
@@ -271,17 +271,17 @@ void LevelZone::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
 
             XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
             if( !EntProxNode.Empty() ) {
-                Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
                 if( SceneMan ) {
                     this->EntProx = SceneMan->CreateEntityProxy(EntProxNode);
                     this->EntProx->_Bind( this );
                 }
             }
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (LevelZone::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (LevelZone::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
         }
     }else{
-        MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,LevelZone::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+        MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,LevelZone::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
     }
 }
 

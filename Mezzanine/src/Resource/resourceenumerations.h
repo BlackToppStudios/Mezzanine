@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -47,7 +47,14 @@ namespace Mezzanine
 {
     namespace Resource
     {
-        /// @enum LoadingState
+        /// @brief Used to indicate what kind of resources the Entrosol should look for
+        enum ArchiveType
+        {
+            AT_FileSystem  = 0,    ///< Look for raw files
+            AT_Zip         = 1,    ///< Look for stuff in zip files even if the extension is not '.zip'.
+            AT_Invalid     = 32768 ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
+        };
+
         /// @brief This enum describes the current state of loading for an asset.
         enum LoadingState
         {

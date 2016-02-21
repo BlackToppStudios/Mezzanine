@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -55,6 +55,7 @@ namespace Ogre
         else if(CFStringCompare(pixEnc, CFSTR(IO8BitIndexedPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
             depth = 8;
 
+        CFRelease(pixEnc);
         return depth;
     }
 #endif
@@ -75,9 +76,9 @@ namespace Ogre
     //-------------------------------------------------------------------------------------------------//
     void OSXWindow::copyContentsToMemory(const PixelBox &dst, FrameBuffer buffer)
     {
-        if ((dst.right > mWidth) ||
-            (dst.bottom > mHeight) ||
-            (dst.front != 0) || (dst.back != 1))
+        if (dst.getWidth() > mWidth ||
+            dst.getHeight() > mHeight ||
+            dst.front != 0 || dst.back != 1)
         {
             OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
                         "Invalid box.",
@@ -100,9 +101,13 @@ namespace Ogre
         }
         
         // Switch context if different from current one
-		RenderSystem* rsys = Root::getSingleton().getRenderSystem();
-		rsys->_setViewport(this->getViewport(0));
+        RenderSystem* rsys = Root::getSingleton().getRenderSystem();
+        rsys->_setViewport(this->getViewport(0));
 
+        if(dst.getWidth() != dst.rowPitch)
+        {
+            glPixelStorei(GL_PACK_ROW_LENGTH, static_cast<GLint>(dst.rowPitch));
+        }
         if((dst.getWidth()*Ogre::PixelUtil::getNumElemBytes(dst.format)) & 3)
         {
             // Standard alignment of 4 is not right
@@ -110,29 +115,14 @@ namespace Ogre
         }
         
         glReadBuffer((buffer == FB_FRONT)? GL_FRONT : GL_BACK);
-        glReadPixels((GLint)dst.left, (GLint)dst.top,
+        glReadPixels((GLint)0, (GLint)(mHeight - dst.getHeight()),
                      (GLsizei)dst.getWidth(), (GLsizei)dst.getHeight(),
-                     format, type, dst.data);
+                     format, type, dst.getTopLeftFrontPixelPtr());
         
         glPixelStorei(GL_PACK_ALIGNMENT, 4);
+        glPixelStorei(GL_PACK_ROW_LENGTH, 0);
         
-        //vertical flip
-        {
-            size_t rowSpan = dst.getWidth() * PixelUtil::getNumElemBytes(dst.format);
-            size_t height = dst.getHeight();
-            uchar *tmpData = (uchar *)OGRE_MALLOC_ALIGN(rowSpan * height, MEMCATEGORY_GENERAL, false);
-            uchar *srcRow = (uchar *)dst.data, *tmpRow = tmpData + (height - 1) * rowSpan;
-            
-            while (tmpRow >= tmpData)
-            {
-                memcpy(tmpRow, srcRow, rowSpan);
-                srcRow += rowSpan;
-                tmpRow -= rowSpan;
-            }
-            memcpy(dst.data, tmpData, rowSpan * height);
-            
-            OGRE_FREE_ALIGN(tmpData, MEMCATEGORY_GENERAL, false);
-        }
+        PixelUtil::bulkPixelVerticalFlip(dst);
     }
     
     //-------------------------------------------------------------------------------------------------//
@@ -140,7 +130,7 @@ namespace Ogre
     {
         // Find the best match to what was requested
         boolean_t exactMatch = 0;
-        unsigned int reqWidth = 0, reqHeight = 0, reqDepth = 0;
+        size_t reqWidth = 0, reqHeight = 0, reqDepth = 0;
         CGLError cglErr = kCGLNoError;
         CGError cgErr = kCGErrorSuccess;
         
@@ -271,6 +261,33 @@ namespace Ogre
         CG_CHECK_ERROR(cgErr)
         
         // Get a pixel format that best matches what we are looking for
+#if OGRE_NO_QUAD_BUFFER_STEREO == 0
+        int attribsSize = 17;
+        if (mStereoEnabled)
+            attribsSize++;
+
+        CGLPixelFormatAttribute* attribs = (CGLPixelFormatAttribute*) malloc(attribsSize * sizeof(CGLPixelFormatAttribute));
+        attribs[0] = kCGLPFADoubleBuffer;
+        attribs[1] = kCGLPFAAlphaSize;
+        attribs[2] = (CGLPixelFormatAttribute)8;
+        attribs[3] = kCGLPFADepthSize;
+        attribs[4] = (CGLPixelFormatAttribute)reqDepth;
+        attribs[5] = kCGLPFAStencilSize;
+        attribs[6] = (CGLPixelFormatAttribute)8;
+        attribs[7] = kCGLPFASampleBuffers;
+        attribs[8] = (CGLPixelFormatAttribute)0;
+        attribs[9] = kCGLPFASamples;
+        attribs[10] = (CGLPixelFormatAttribute)0;
+        attribs[11] = kCGLPFAFullScreen;
+        attribs[12] = kCGLPFASingleRenderer;
+        attribs[13] = kCGLPFAAccelerated;
+        attribs[14] = kCGLPFADisplayMask;
+        attribs[15] = (CGLPixelFormatAttribute)CGDisplayIDToOpenGLDisplayMask(kCGDirectMainDisplay);
+        if (mStereoEnabled)
+            attribs[16] = kCGLPFAStereo;
+
+        attribs[attribsSize - 1] = (CGLPixelFormatAttribute)0;
+#else
         CGLPixelFormatAttribute attribs[] = { 
             kCGLPFADoubleBuffer,
             kCGLPFAAlphaSize,     (CGLPixelFormatAttribute)8,
@@ -284,7 +301,8 @@ namespace Ogre
             kCGLPFADisplayMask,   (CGLPixelFormatAttribute)CGDisplayIDToOpenGLDisplayMask(kCGDirectMainDisplay),
             (CGLPixelFormatAttribute)0
         };
-        
+#endif
+
         // Set up FSAA if it was requested
         if(fsaa > 1)
         {
@@ -352,9 +370,9 @@ namespace Ogre
         }
 
         // Set some other variables.  Just in case we got a different value from CGDisplayBestModeForParameters than we requested
-        mWidth = reqWidth;
-        mHeight = reqHeight;
-        mColourDepth = reqDepth;
+        mWidth = static_cast<uint32>(reqWidth);
+        mHeight = static_cast<uint32>(reqHeight);
+        mColourDepth = static_cast<uint32>(reqDepth);
 
         cgErr = CGAcquireDisplayFadeReservation(kCGMaxDisplayReservationInterval,
                                                 &reservationToken);

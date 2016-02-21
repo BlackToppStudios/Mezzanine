@@ -1,5 +1,5 @@
 // The DAGFrameScheduler is a Multi-Threaded lock free and wait free scheduling library.
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The DAGFrameScheduler.
 
     The DAGFrameScheduler is free software: you can redistribute it and/or modify
@@ -52,10 +52,6 @@
 #include "rollingaverage.h"
 #endif
 
-#ifdef MEZZ_USEBARRIERSEACHFRAME
-    #include "barrier.h"
-#endif
-
 /// @file
 /// @brief This file has the Declarations for the main FrameScheduler class.
 
@@ -77,7 +73,9 @@ namespace Mezzanine
             friend class LogAggregator;
             friend class WorkSorter;
 
-            friend void TerminateHandler();
+            #ifndef SWIG
+                friend void TerminateHandler();
+            #endif
 
             protected:
                 ////////////////////////////////////////////////////////////////////////////////
@@ -165,19 +163,6 @@ namespace Mezzanine
                 /// @brief If this pointer is non-zero then the @ref WorkSorter it points at will be used to sort WorkUnits.
                 WorkSorter* Sorter;
 
-                #ifdef MEZZ_USEBARRIERSEACHFRAME
-            public:
-                /// @brief Used to synchronize the starting an stopping of all threads before the frame starts.
-                Barrier StartFrameSync;
-
-                /// @brief Used to synchronize the starting and stopping of all threads after work is done before the frame ends.
-                Barrier EndFrameSync;
-
-                /// @brief When using barriers instead of thread creation for synchronization this is what tells the threads to end.
-                Int32 LastFrame;
-            protected:
-                #endif
-
                 /// @brief Protects DoubleBufferedResources during creation and error handling from being accessed by the LogAggregator.
                 SpinLock LogResources;
 
@@ -262,6 +247,7 @@ namespace Mezzanine
                         Whole StartingThreadCount = GetCPUCount()
                     );
 
+                /// @brief When Things crash the logs still needs to be flushed and other resources cleaned. This sets a function for when std::terminate is called.
                 void SetErrorHandler();
 
                 /// @brief Destructor
@@ -452,15 +438,6 @@ namespace Mezzanine
                 /// resources.
                 /// @n @n
                 /// If the build option
-                /// @ref MEZZ_USEBARRIERSEACHFRAME Mezz_MinimizeThreadsEachFrame was enabled then this will reuse threads from previous frames,
-                /// otherwise this will re-use thread specific resources and create a new set of threads. Re-use of threads is synchronized
-                /// with the @ref Barrier StartFrameSync member variable. It is unclear, and likely platform specific, which option has
-                /// better performance characteristics.
-                /// @warning While this is running any changes to the @ref FrameScheduler must be made with an atomic operation like the
-                /// @ref AtomicCompareAndSwap32 "AtomicCompareAndSwap32" or @ref AtomicAdd "AtomicAdd". Any other threads
-                /// workunit may be accessed as any normal shared data, but Thread specific Resources should not be accessed while this runs.
-                /// @warning This uses a Spinlock to prevent accesss to ThreadSpecificResources that the LogAggregator needs. This is unlocked
-                /// in RunMainThreadWork.
                 virtual void CreateThreads();
 
                 // If it must be run on the main thread and must be run first each frame it could go here, but I think you should
@@ -565,16 +542,31 @@ namespace Mezzanine
 
                 /// @warning This is not thread safe at all. Any time during the frame using this can send gibberish to the log. Use GetThreadUsableLogger instead.
                 /// @brief Get the endpoint for the logs.
-                /// @return An std:ostream reference which can be streamed to commit log entries.
+                /// @return An std::ostream reference which can be streamed to commit log entries.
                 std::ostream& GetLog();
 
+                void ChangeLogTarget(std::ostream* LogTarget);
+
             protected:
+                void InstallLog(std::ostream* LogTarget);
+                void RemoveLog();
+
                 /// @warning This is not thread safe at all. Any time during the frame using this can break everything.
                 /// @brief Get the Log aggregation work unit if one exists for emergency loggin purposes only
                 /// @details Use by the termination handler in the even of an uncaught exception. This should also be avoided because
                 /// It is is implemented a linear search over every workunit and returns the first one derived from LogAggregator.
                 /// @return A null pointer or a pointer to a workunit that aggregates if it exists.
                 virtual LogAggregator* GetLogAggregator();
+
+            public:
+                /// @warning This is not thread safe at all. Any time during the frame using this can break everything.
+                /// @brief Forces the FrameScheduler to find Its LogAggregator and make it flush the logs if it can
+                /// @return This return True if it flushed the logs and false otherwise.
+                virtual Boole ForceLogFlush();
+
+                /// @warning This is not thread safe at all. Any time during the frame using this can break everything.
+                /// @brief This takes all active buffered resources offline (therfore available for async processing) and makes all the offline resources active for normal thread use.
+                void SwapBufferedResources();
 
         };//FrameScheduler
     } // \Threading

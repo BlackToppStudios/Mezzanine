@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,16 +51,16 @@
 #include "serialization.h"
 #include "exception.h"
 
-#ifdef WINDOWS
+#ifdef MEZZ_WINDOWS
 #include <windows.h>
 #endif
 
-#ifdef LINUX
+#ifdef MEZZ_LINUX
 #include <X11/X.h>      //x11proto-core-dev
 #include <X11/Xlib.h>   //libx11-dev
 #endif
 
-#ifdef MACOSX
+#ifdef MEZZ_MACOSX
 #include <Cocoa/Cocoa.h>
 #endif
 
@@ -144,24 +144,24 @@ namespace Mezzanine
 
             }
 
-            #ifdef MACOSX
+            #ifdef MEZZ_MACOSX
 			Opts["macAPI"] = "cocoa";
             #endif
 
-            //#ifdef LINUX
+            //#ifdef MEZZ_LINUX
             //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(ResourceManager::GetSingletonPtr()->GetEngineDataDirectory(),"FileSystem");
             //#endif
-            this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.WinRes.Width, this->Settings.WinRes.Height, this->Settings.Fullscreen, &Opts);//*/
+            this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.WinRes.Width, this->Settings.WinRes.Height, this->Settings.Fullscreen, &Opts);// */
             this->RequestedFSAA = this->GetActualFSAALevel();
 
             if( !(WF_Hidden & Flags) ) {
-                #ifdef WINDOWS
+                #ifdef MEZZ_WINDOWS
                 HWND Data = 0;
                 #endif
-                #ifdef LINUX
+                #ifdef MEZZ_LINUX
                 Window Data = 0;
                 #endif
-                #ifdef MACOSX
+                #ifdef MEZZ_MACOSX
                 NSWindow* Data = 0;
                 #endif
                 this->OgreWindow->getCustomAttribute("WINDOW",&Data);
@@ -347,7 +347,7 @@ namespace Mezzanine
                     FSDisplayMode.h = this->Settings.WinRes.Height;
                     FSDisplayMode.refresh_rate = Settings.RefreshRate;
                     SDL_SetWindowDisplayMode(SDLWindow,&FSDisplayMode);
-                }//*/
+                }// */
 
                 if(SDL_SetWindowFullscreen(SDLWindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0) {
                     this->OgreWindow->setFullscreen(Fullscreen,this->Settings.WinRes.Width,this->Settings.WinRes.Height);
@@ -453,7 +453,7 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("Borderless").SetValue( this->IsBorderless() ) &&
                 PropertiesNode.AppendAttribute("FSAA").SetValue( this->GetFSAALevel() ) )
                 /// @todo Currently the maximized setting does nothing in the gamewindow.  If it gets implemented, so does this.
-                //PropertiesNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );//*/ )
+                //PropertiesNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );// */ )
             {
                 return;
             }else{
@@ -544,10 +544,10 @@ namespace Mezzanine
 
                     this->CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GameWindow::GetSerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GameWindow::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GameWindow::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,GameWindow::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -566,7 +566,7 @@ namespace Mezzanine
                         this->AddViewport(NewViewport);
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for RenderLayers: Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for RenderLayers: Not Version 1.");
                 }
             }
         }

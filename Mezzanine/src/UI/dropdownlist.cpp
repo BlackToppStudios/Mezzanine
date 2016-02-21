@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -261,19 +261,19 @@ namespace Mezzanine
             // Assign the SelectionDisplay
             this->SelectionDisplay = static_cast<Widget*>( this->GetChild(this->Name+".Display") );
             if( this->SelectionDisplay == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Selection Display not found after DropDownList deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Selection Display not found after DropDownList deserialization.");
             }
 
             // Assign the ListToggle
             this->ListToggle = static_cast<CheckBox*>( this->GetChild(this->Name+".Toggle") );
             if( this->ListToggle == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"List Toggle not found after DropDownList deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"List Toggle not found after DropDownList deserialization.");
             }
 
             // Assign the SelectionList
             this->SelectionList = static_cast<ListBox*>( this->GetChild(this->Name+".List") );
             if( this->SelectionList == NULL ) {
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Selection List not found after DropDownList deserialization.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Selection List not found after DropDownList deserialization.");
             }
 
             this->ListToggle->Subscribe(CheckBox::EventSelected,this);

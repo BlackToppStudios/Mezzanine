@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -97,9 +97,10 @@ namespace Mezzanine
                 void MakeCurrent();
             public:
                 /// @brief Internal constructor.
+                /// @param ID The unique ID of this listener.
                 /// @param ListenContext The context this listener belongs to.
                 /// @param Creator A pointer to the manager that created this listener.
-                Listener(ALCcontext* ListenContext, OALS::SoundScapeManager* Creator);
+                Listener(const UInt32 ID, ALCcontext* ListenContext, OALS::SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~Listener();
 
@@ -186,7 +187,7 @@ namespace Mezzanine
                 virtual String GetDerivedSerializableName() const;
                 /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
                 /// @return A string containing the name of this class.
-                static String SerializableName();
+                static String GetSerializableName();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

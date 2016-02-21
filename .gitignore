@@ -1,8 +1,35 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
 # QT Creator Items
 CMakeLists.txt.user*
 
 # Doxygen Temp Files
 *.tmp
+doxygen_sqlite3.db
 
 # Editor Temp Files
 *~
@@ -13,7 +40,6 @@ CMakeLists.txt.user*
 *.dll
 *.so
 *.so.*
-
 
 # Mac OS X spotlight
 .DS_Store

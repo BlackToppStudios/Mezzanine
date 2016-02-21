@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -652,16 +652,16 @@ namespace Mezzanine
             ConstChildIterator ChildrenEnd() const;
 
             /// @brief Gets an iterator to the last Widget.
-            /// @param Returns an iterator to the last Widget being stored by this QuadRenderable.
+            /// @return Returns an iterator to the last Widget being stored by this QuadRenderable.
             ReverseChildIterator RChildrenBegin();
             /// @brief Gets an iterator to one before the first child Widget.
-            /// @param Returns an iterator to one before the first child Widget being stored by this QuadRenderable.
+            /// @return Returns an iterator to one before the first child Widget being stored by this QuadRenderable.
             ReverseChildIterator RChildrenEnd();
             /// @brief Gets a const iterator to the last Widget.
-            /// @param Returns a const iterator to the last Widget being stored by this QuadRenderable.
+            /// @return Returns a const iterator to the last Widget being stored by this QuadRenderable.
             ConstReverseChildIterator RChildrenBegin() const;
             /// @brief Gets a const iterator to one before the first child Widget.
-            /// @param Returns a const iterator to one before the first child Widget being stored by this QuadRenderable.
+            /// @return Returns a const iterator to one before the first child Widget being stored by this QuadRenderable.
             ConstReverseChildIterator RChildrenEnd() const;
 
             ///////////////////////////////////////////////////////////////////////////////

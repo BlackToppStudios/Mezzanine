@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -61,7 +61,7 @@ namespace Mezzanine
     // This returns the value of a bit at the specified index. Passing in zero returns one.
     /*#ifndef MEZZ_BITMASK_INDEX(X)
     #define MEZZ_BITMASK_INDEX(X) ( 1u << X )
-    #endif//*/
+    #endif// */
 }//Mezzanine
 
 #endif

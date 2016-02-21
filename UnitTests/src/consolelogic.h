@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,7 +51,6 @@ namespace Mezzanine
 {
     namespace Testing
     {
-
         /// @brief Print a message for the user onf the standard output that briefly describes hwo to use this.
         /// @param ThisName The name of the current executable
         /// @param TestGroups This is searched for the current list of valid test names.

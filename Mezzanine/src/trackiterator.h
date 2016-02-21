@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -301,13 +301,18 @@ namespace Mezzanine
     /// @param Steps The Integer on the left.
     /// @param Iter The SmoothTrackIterator on the right.
     template<typename InterpolatableType>
-    SmoothTrackIterator<InterpolatableType>&  operator+(Integer Steps, SmoothTrackIterator<InterpolatableType>& Iter)
+    SmoothTrackIterator<InterpolatableType>&  operator+(
+        Integer Steps,
+        SmoothTrackIterator<InterpolatableType>& Iter)
         { return Iter + Steps; }
-    /// @brief This allows for subtraction with and an Integer on the Left hand side, such as: 2 + Iter
+    /// @brief This allows for subtraction with and an Integer on the Left hand side, such as:
+    /// 2 + Iter
     /// @param Steps The Integer on the left.
     /// @param Iter The SmoothTrackIterator on the right.
     template<typename InterpolatableType>
-    SmoothTrackIterator<InterpolatableType>&  operator-(Integer Steps, SmoothTrackIterator<InterpolatableType>& Iter)
+    SmoothTrackIterator<InterpolatableType>&  operator-(
+        Integer Steps,
+        SmoothTrackIterator<InterpolatableType>& Iter)
         { return Iter - Steps; }
 
 

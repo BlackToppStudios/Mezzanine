@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file has the interfaces for Scripting managers and the associated dependency chain
 
-#include "managerbase.h"
+#include "entresolmanager.h"
 #include "Scripting/scriptargument.h"
 #include "Scripting/script.h"
 #include "singleton.h"
@@ -61,7 +61,7 @@ namespace Mezzanine
         /// If a scripting language does not support compilation It should implement
         /// this
         ///////////////////////////////////////
-        class MEZZ_LIB iScriptingManager : public ManagerBase
+        class MEZZ_LIB iScriptingManager : public EntresolManager
         {
             protected:
 

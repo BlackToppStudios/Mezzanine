@@ -1,0 +1,11 @@
+<map id="Mezzanine::Graphics::TextureManager" name="Mezzanine::Graphics::TextureManager">
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; TextureManager \&gt;" alt="" coords="1119,134,1265,175"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EntresolManager.html" title="This is the base class for all managers that do no describe properties of a single world..." alt="" coords="554,69,745,96"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="275,5,448,32"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="7,51,149,77"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="288,57,435,98"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Graphics_1_1Texture.html" title="This class represents a texture loaded into video memory. " alt="" coords="289,122,434,163"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Graphics_1_1InternalTextureData.html" title="This class is used to store the internal structures needed by the Texture class. " alt="" coords="5,122,151,163"/>
+<area shape="rect" id="node10" title="STL class. " alt="" coords="321,207,401,233"/>
+<area shape="rect" id="node11" title="STL class. " alt="" coords="15,199,141,241"/>
+</map>

@@ -10,6 +10,7 @@
 
 #include "gamebase.h"       //Game Include
 #include <mezzanine.h>      //Mezzanine include
+#include <world.h>
 
 #include <iostream>
 #include <fstream>            //Only used for testing
@@ -27,16 +28,26 @@ Entresol* TheEntresol = NULL;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
-std::vector<Audio::iSound*>* Announcer = NULL;
-std::vector<Audio::iSound*>* Soundtrack = NULL;
+std::vector<Audio::iSound*> Announcer;
+std::vector<Audio::iSound*> Soundtrack;
 
 RigidDebris* Robot7 = NULL;
 RigidDebris* Robot8 = NULL;
 
-DemoPreEventWorkUnit* DemoPreEventWork = NULL;
-DemoPostInputWorkUnit* DemoPostInputWork = NULL;
-DemoPostRenderWorkUnit* DemoPostRenderWork = NULL;
-DemoPostPhysicsWorkUnit* DemoPostPhysicsWork = NULL;
+DemoPreEventWorkUnit*       DemoPreEventWork     = NULL;
+DemoPostInputWorkUnit*      DemoPostInputWork    = NULL;
+DemoPostRenderWorkUnit*     DemoPostRenderWork   = NULL;
+DemoPostPhysicsWorkUnit*    DemoPostPhysicsWork  = NULL;
+
+World* DemoWorld = NULL;
+
+Graphics::GameWindow* FirstWindow = NULL;
+Graphics::CameraProxy* MainCam = NULL;
+
+CameraController* CamControl = NULL;
+
+void CreateDemoWorld();
+void DestroyDemoWorld();
 
 class DemoPreEventWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -47,13 +58,14 @@ public:
     void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
         //this will either set the pointer to 0 or return a valid pointer to work with.
-        EventUserInput* OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
+        EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
+        EventUserInput* OneInput = EventMan->PopNextUserInputEvent();
 
         //We check each Event
-        while(0 != OneInput)
+        while( 0 != OneInput )
         {
-            if(OneInput->GetType()!=EventBase::UserInput)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
+            if( OneInput->GetType() != EventBase::UserInput )
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
             //we check each MetaCode in each Event
             for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
@@ -64,192 +76,187 @@ public:
             }
 
             delete OneInput;
-            OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
+            OneInput = EventMan->PopNextUserInputEvent();
         }
 
-        EventGameWindow* OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
+        EventGameWindow* OneWindowEvent = EventMan->PopNextGameWindowEvent();
         while(0 != OneWindowEvent)
         {
             if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
-            if(!OneWindowEvent->IsEventIDValid())
-            {
+            if( !OneWindowEvent->IsEventIDValid() ) {
                 StringStream ExceptionStream;
                 ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
-            }
-
-            if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
-            {
-                Audio::iSound* Welcome = NULL;
-                Welcome = Announcer->front();
-                if(Welcome)
-                    { Welcome->Play(); }
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
             }
 
             delete OneWindowEvent;
-            OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
+            OneWindowEvent = EventMan->PopNextGameWindowEvent();
         }
     }
 };//DemoPreEventWorkUnit
 
 class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
-        RayQueryTool RayCaster;
-    public:
-        DemoPostInputWorkUnit() {  }
-        virtual ~DemoPostInputWorkUnit() {  }
+protected:
+    World* OneWorld;
+    RayQueryTool RayCaster;
+public:
+    DemoPostInputWorkUnit(World* TheWorld) : OneWorld(TheWorld), RayCaster(TheWorld) {  }
+    virtual ~DemoPostInputWorkUnit() {  }
 
-        void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            //User Input through a WorldQueryTool
-            Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-            Input::Mouse* SysMouse = InputMan->GetSystemMouse();
-            Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-            Input::Controller* Controller1 = NULL;
-            if( InputMan->GetNumControllers() > 0 )
-                Controller1 = InputMan->GetController(0);
+    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+    {
+        //User Input through a WorldQueryTool
+        Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
+        Input::Mouse* SysMouse = InputMan->GetSystemMouse();
+        Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
+        Input::Controller* Controller1 = NULL;
+        if( InputMan->GetNumControllers() > 0 )
+            Controller1 = InputMan->GetController(0);
 
-            CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
-            if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
-                { DefaultControl->StrafeLeft(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
+            { CamControl->StrafeLeft( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
-                { DefaultControl->StrafeRight(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
+            { CamControl->StrafeRight( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
-                { DefaultControl->MoveForward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
+            { CamControl->MoveForward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
-                { DefaultControl->MoveBackward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
+            { CamControl->MoveBackward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-            static bool MouseCam = false;
-            if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
-                { MouseCam = true; }
+        static bool MouseCam = false;
+        if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
+            { MouseCam = true; }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_END))
-                { MouseCam = false; }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_END))
+            { MouseCam = false; }
 
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->OneWorld->GetManager(ManagerBase::MT_PhysicsManager) );
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_BACKSLASH) )
-                { Entresol::GetSingletonPtr()->GetPhysicsManager()->SetTimeMultiplier(1.0); }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_BACKSLASH) )
+            { PhysMan->SetTimeMultiplier(1.0); }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHTBRACKET) )
-            {
-                Real Factor = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetTimeMultiplier() * 1.5;
-                if(Factor>2.0)
-                    { Factor = 2.0; }
-                Entresol::GetSingletonPtr()->GetPhysicsManager()->SetTimeMultiplier(Factor);
-            }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHTBRACKET) ) {
+            Real Factor = PhysMan->GetTimeMultiplier() * 1.5;
+            if( Factor > 2.0 )
+                { Factor = 2.0; }
+            PhysMan->SetTimeMultiplier(Factor);
+        }
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_LEFTBRACKET) )
-            {
-                Real Factor = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetTimeMultiplier() * .75;
-                if(Factor<0.01)
-                    { Factor = 0.01; }
-                Entresol::GetSingletonPtr()->GetPhysicsManager()->SetTimeMultiplier(Factor);
-            }
+        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFTBRACKET) ) {
+            Real Factor = PhysMan->GetTimeMultiplier() * .75;
+            if( Factor < 0.01 )
+                { Factor = 0.01; }
+            PhysMan->SetTimeMultiplier(Factor);
+        }
 
-            Vector2 Offset = SysMouse->GetMouseDelta();
-            if( MouseCam && Vector2(0,0) != Offset )
-                DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+        Vector2 Offset = SysMouse->GetMouseDelta();
+        if( MouseCam && Vector2(0,0) != Offset )
+            CamControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
-            if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
-            {
-                Audio::iSound* Theme = Soundtrack->at(1);
-                if(!Theme->IsPlaying())
-                    { Theme->Play(); }
-            }
-
-            if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
-            {
-                Audio::iSound* Theme = Soundtrack->at(1);
-                if(Theme->IsPlaying())
-                    { Theme->Stop(); }
-            }
-
-            // Make a declaration for a static constrain so it survives the function lifetime
-            static Physics::Point2PointConstraint* Dragger=NULL;
-
-            if( SysMouse->IsButtonPressed(1) )
-            {
-                UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-                if(UIMan->MouseIsInUISystem())
-                {
-                    //UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
-                    UI::Widget* Hover = UIMan->GetHoveredWidget();
-                    if(Hover) {
-                        Hover = Hover->GetBottomMostHoveredWidget();
-                        if( "D_Exit" == Hover->GetName() ) {
-                            TheEntresol->BreakMainLoop();
-                        }
-                    }
-                }else{
-                    Ray MouseRay = RayQueryTool::GetMouseRay(5000);
-                    RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid);
-
-                    bool firstframe=false;
-                    if (0 == RayCaster.LastQueryResultsObjectPtr())
-                    {
-                        #ifdef MEZZDEBUG
-                        //TheEntresol->Log("No Object Clicked on");
-                        #endif
-                    }else{
-                        #ifdef MEZZDEBUG
-                        //TheEntresol->Log("Object Clicked on"); TheEntresol->Log(*ClickOnActor);
-                        //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
-                        //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
-                        //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
-                        #endif
-                        if( !( RayCaster.LastQueryResultsObjectPtr()->IsStatic() || RayCaster.LastQueryResultsObjectPtr()->IsKinematic() ) )
-                        {
-                            if(!Dragger) //If we have a dragger, then this is dragging, not clicking
-                            {
-                                if(RayCaster.LastQueryResultsObjectPtr()->GetType() == Mezzanine::WO_DebrisRigid) //This is Dragging let's do some checks for sanity
-                                {
-                                    Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                                    RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
-                                    rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
-                                    //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                                    Dragger = new Physics::Point2PointConstraint(rigid->GetRigidProxy(), LocalPivot);
-                                    Dragger->SetTAU(0.001);
-                                    TheEntresol->GetPhysicsManager()->AddConstraint(Dragger);
-                                    Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                                    Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                                    firstframe=true;
-                                }else{  // since we don't
-                                    #ifdef MEZZDEBUG
-                                    //TheEntresol->Log("Object is not an ActorRigid.  Aborting.");
-                                    #endif
-                                }
-                            }
-                        }else{
-                            #ifdef MEZZDEBUG
-                            //TheEntresol->Log("Object is Static/Kinematic.  Aborting.");
-                            #endif
-                        }
-                    }
-
-                    // This chunk of code calculates the 3d point that the actor needs to be dragged to
-                    if (RayCaster.RayPlaneIntersection(MouseRay, PlaneOfPlay))
-                    {
-                        if(Dragger&&!firstframe)
-                            { Dragger->SetPivotBLocation(RayCaster.LastQueryResultsOffset()); }
-                    }
-                }
-
-            }else{  //Since we are no longer clicking we need to setup for the next clicking
-                if(Dragger)
-                {
-                    Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                    TheEntresol->GetPhysicsManager()->RemoveConstraint(Dragger);
-                    delete Dragger;
-                    Dragger = NULL;
-                    Prox->SetActivationState(Physics::AS_Active);
-                }
+        if( SysKeyboard->IsButtonPressing(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) ) {
+            Audio::iSound* Theme = Soundtrack.at(1);
+            if( !Theme->IsPlaying() ) {
+                Theme->Play();
             }
         }
+
+        if( SysKeyboard->IsButtonPressing(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) ) {
+            Audio::iSound* Theme = Soundtrack.at(1);
+            if( Theme->IsPlaying() ) {
+                Theme->Stop();
+            }
+        }
+
+        // Audio test fun
+        if( SysKeyboard->IsButtonPressing(Input::KEY_T) ) {
+            static Boole Toggle = true;
+            Audio::iSound* Welcome = ( Announcer.size() >= 2 ? ( Toggle ? Announcer[1] : Announcer[0] ) : NULL );
+            if( Welcome != NULL ) {
+                if( Welcome->IsPlaying() ) {
+                    Welcome->Stop();
+                }
+                Welcome->Play();
+            }
+            Toggle = !Toggle;
+        }
+
+        // Make a declaration for a static constrain so it survives the function lifetime
+        static Physics::Point2PointConstraint* Dragger = NULL;
+
+        if( SysMouse->IsButtonPressed(1) ) {
+            UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+            if( UIMan->MouseIsInUISystem() ) {
+                //UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
+                UI::Widget* Hover = UIMan->GetHoveredWidget();
+                if(Hover) {
+                    Hover = Hover->GetBottomMostHoveredWidget();
+                    if( "D_Exit" == Hover->GetName() ) {
+                        TheEntresol->BreakMainLoop();
+                    }
+                }
+            }else{
+                Ray MouseRay = RayQueryTool::GetMouseRay();
+                RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid);
+
+                bool firstframe=false;
+                if( 0 == RayCaster.LastQueryResultsObjectPtr() ) {
+                    #ifdef MEZZDEBUG
+                    //TheEntresol->Log("No Object Clicked on");
+                    #endif
+                }else{
+                    #ifdef MEZZDEBUG
+                    //TheEntresol->Log("Object Clicked on"); TheEntresol->Log(*ClickOnActor);
+                    //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
+                    //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
+                    //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
+                    #endif
+                    if( !( RayCaster.LastQueryResultsObjectPtr()->IsStatic() || RayCaster.LastQueryResultsObjectPtr()->IsKinematic() ) ) {
+                        if(!Dragger) { //If we have a dragger, then this is dragging, not clicking
+                            if(RayCaster.LastQueryResultsObjectPtr()->GetType() == Mezzanine::WO_DebrisRigid) { //This is Dragging let's do some checks for sanity
+                                Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
+                                RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
+                                rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
+                                //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
+                                Dragger = PhysMan->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
+                                Dragger->SetTAU(0.001);
+                                Dragger->EnableConstraint(true);
+                                Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
+                                Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
+                                firstframe=true;
+                            }else{  // since we don't
+                                #ifdef MEZZDEBUG
+                                //TheEntresol->Log("Object is not an ActorRigid.  Aborting.");
+                                #endif
+                            }
+                        }
+                    }else{
+                        #ifdef MEZZDEBUG
+                        //TheEntresol->Log("Object is Static/Kinematic.  Aborting.");
+                        #endif
+                    }
+                }
+
+                // This chunk of code calculates the 3d point that the actor needs to be dragged to
+                if( RayCaster.RayPlaneIntersection(MouseRay, PlaneOfPlay) ) {
+                    if(Dragger&&!firstframe)
+                        { Dragger->SetPivotB(RayCaster.LastQueryResultsOffset()); }
+                }
+            }
+
+        }else{  //Since we are no longer clicking we need to setup for the next clicking
+            if( Dragger ) {
+                Physics::RigidProxy* Prox = Dragger->GetProxyA();
+                PhysMan->DestroyConstraint(Dragger);
+                Dragger = NULL;
+                Prox->SetActivationState(Physics::AS_Active);
+            }
+        }
+    }
 };//DemoPostInputWorkUnit
 
 class DemoPostRenderWorkUnit : public Threading::DefaultWorkUnit
@@ -270,31 +277,17 @@ public:
         if( Deb2->IsAnimated() )
         {
             Deb2->AdvanceAnimation((Real)0.0001 * TheEntresol->GetLastFrameTimeMilliseconds() );
-        }//*/
-
-        static bool notplayed = true;
-        //if (1000<gametime && notplayed)
-        if( notplayed )
-        {
-            notplayed = false;
-            Audio::iSound* Welcome = NULL;
-            Welcome = Announcer->front();
-            if(Welcome)
-                { Welcome->Play(); }
-            #ifdef MEZZDEBUG
-            //TheEntresol->Log("Played Welcome Fun:");
-            #endif
-
-        }
+        }// */
 
         // Update Stat information
-        UI::Screen* DScreen = TheEntresol->GetUIManager()->GetScreen("DefaultScreen");
+        Graphics::GameWindow* MainWindow = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) )->GetGameWindow(0);
+        UI::Screen* DScreen = static_cast<UI::UIManager*>( TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("DefaultScreen");
         UI::Widget* CurFPS = static_cast<UI::Widget*>(DScreen->GetWidget("D_CurFPS"));
         UI::Widget* AvFPS = static_cast<UI::Widget*>(DScreen->GetWidget("D_AvFPS"));
         StringStream CFPSstream;
         StringStream AFPSstream;
-        CFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetLastFPS();
-        AFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetAverageFPS();
+        CFPSstream << MainWindow->GetLastFPS();
+        AFPSstream << MainWindow->GetAverageFPS();
         String CFPS = CFPSstream.str();
         String AFPS = AFPSstream.str();
         static_cast<UI::SingleLineTextLayer*>(CurFPS->GetRenderLayer(0))->SetText(CFPS);
@@ -326,95 +319,127 @@ public:
     }
 };//DemoPostPhysicsWorkUnit
 
-
 int main(int argc, char **argv)
 {
     // Temporary Hack
-    #ifdef MACOSX
+    #ifdef MEZZ_MACOSX
     String ExeDir = Mezzanine::Resource::GetExecutableDirFromArg(argc,argv);
     Mezzanine::Resource::ChangeWorkingDirectory(ExeDir);
     #endif
 
+    Physics::ManagerConstructionInfo Info;
+    Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
+
     try
     {
-        Physics::ManagerConstructionInfo Info;
-        Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
-        Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
-        Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
-        Info.MaxProxies = 60;
-        TheEntresol = new Entresol( Info, "DefaultSceneManager", "data/common/");
-    }catch(...){
+        TheEntresol = new Entresol( "data/common/", "EngineDemoLog.txt");
+        TheEntresol->SetTargetFrameRate(60);
+
+        TheEntresol->Initialize(false);
+
+        CreateDemoWorld();
+        DestroyDemoWorld();
+        CreateDemoWorld();
+
+        //Generate the UI
+        MakeGUI();
+
+        // Greet our viewers
+        Audio::iSound* Welcome = Announcer.at(0);
+        if( Welcome ) {
+            Welcome->Play();
+        }
+        #ifdef MEZZDEBUG
+        TheEntresol->_Log("Played Welcome Fun.");
+        #endif
+
+        //Start the Main Loop
+        TheEntresol->MainLoop();
+
+        DestroyDemoWorld();
+        delete TheEntresol;
+    }catch(std::exception& excep){
+        std::cerr << "Exception: " << excep.what() << std::endl;
         return 1;
-        // ©ould not create the perfect worldending program
+    }catch(...){
+        std::cerr << "Unknown exception" << std::endl;
+        return 1;
+        // Could not create the perfect world ending program
     }
-    TheEntresol->SetTargetFrameRate(60);
+    return 0;
+}
 
-    //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
-    //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXSeconds,5);
-    //TheEntresol->SetLoggingFrequency(Entresol::LogNever);
+void CreateDemoWorld()
+{
+    Physics::ManagerConstructionInfo Info;
+    Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
 
-    Graphics::GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
+    // Create World and all it's lovely Managers
+    DemoWorld = TheEntresol->CreateWorld( "DemoWorld", Info, "DefaultSceneManager" );
 
-    // ©reate the windows!
-    Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
-    Graphics::CameraProxy* FirstCam = TheEntresol->GetCameraManager()->CreateCamera("FirstCam");
-    //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
-    FirstWindow->CreateViewport(FirstCam,0);
-    FirstCam->SetLocation( Vector3(0,50,900) );
-    FirstCam->LookAt( Vector3(0,0,0) );
+    if( DemoWorld == NULL ) {
+        throw RuntimeAssertionException(
+            "Failed to Create New Demo World",
+            __func__,
+            __FILE__,
+            __LINE__
+        );
+    }
 
-    /*Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
-    Camera* SecondCam = TheEntresol->GetCameraManager()->CreateCamera("SecondCam");
-    Graphics::Viewport* SecondViewport = SecondWindow->CreateViewport(SecondCam);
-    SecondCam->SetLocation( Vector3(-300,50,-50) );
-    SecondCam->LookAt( Vector3(0,0,0) );//*/
+    DemoWorld->Initialize();
+
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( DemoWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
+    Graphics::GraphicsManager* GraphMan = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( DemoWorld->GetManager(ManagerBase::MT_SceneManager) );
+    Input::InputManager* InputMan = static_cast<Input::InputManager*>( TheEntresol->GetManager(ManagerBase::MT_InputManager) );
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( DemoWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+
+    MainCam = SceneMan->CreateCamera();
+    MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
+    MainCam->LookAt(Vector3(0,0,0));
+
+    CamControl = new CameraController(MainCam);
+    //CamControl->SetMovementMode(CameraController::CCM_Walk);
+    //CamControl->SetHoverHeight(75);
+
+    // Create the window(s)!
+    FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
+    FirstWindow->CreateViewport(MainCam,0);
 
     // Setup our workunits
     DemoPreEventWork = new DemoPreEventWorkUnit();
-    TheEntresol->GetEventManager()->GetEventPumpWork()->AddDependency( DemoPreEventWork );
+    EventMan->GetEventPumpWork()->AddDependency( DemoPreEventWork );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork, "DemoPreEventWork" );
 
-    DemoPostInputWork = new DemoPostInputWorkUnit();
-    DemoPostInputWork->AddDependency( TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
+    DemoPostInputWork = new DemoPostInputWorkUnit(DemoWorld);
+    DemoPostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork, "DemoPostInputWork" );
 
     DemoPostRenderWork = new DemoPostRenderWorkUnit();
-    DemoPostRenderWork->AddDependency( TheEntresol->GetGraphicsManager()->GetRenderWork() );
-    DemoPostRenderWork->AddDependency( TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    DemoPostRenderWork->AddDependency( GraphMan->GetRenderWork() );
+    DemoPostRenderWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostRenderWork, "DemoPostRenderWork" );
 
     DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();
-    DemoPostPhysicsWork->AddDependency( TheEntresol->GetPhysicsManager()->GetSimulationWork() );
+    DemoPostPhysicsWork->AddDependency( PhysMan->GetSimulationWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostPhysicsWork, "DemoPostPhysicsWork" );
 
-    // Init
-    TheEntresol->EngineInit(false);
-
     // Configure Shadows
-    TheEntresol->GetSceneManager()->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
-    TheEntresol->GetSceneManager()->SetShadowFarDistance(3000);
+    SceneMan->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
+    SceneMan->SetShadowFarDistance(3000);
 
     //Set up polling for the letter Q
-    TheEntresol->GetEventManager()->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
+    EventMan->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
 
     //Actually Load the game stuff
     LoadContent();
 
-    //Generate the UI
-    MakeGUI();
-
-    // ©onfigure the wireframe Drawer
+    // Configure the wireframe Drawer
     //TheEntresol->GetPhysicsManager()->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
-    TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
+    //TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
 
-    //Setup some camera tricks
-    Graphics::CameraProxy* MainCam = TheEntresol->GetCameraManager()->GetCamera(0);
-    MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
-    MainCam->LookAt(Vector3(0,0,0));
-    // ©ameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
-    //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
-    //DefaultControl->SetHoverHeight(75);
-    Graphics::LightProxy* Headlight = TheEntresol->GetSceneManager()->CreateLightProxy(Graphics::LT_Directional);
+    Graphics::LightProxy* Headlight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 LightLoc(200,300,0);
     Headlight->SetLocation(LightLoc);
     LightLoc.X = -LightLoc.X;
@@ -426,24 +451,58 @@ int main(int argc, char **argv)
     Headlight->SetLocation(Vector3(0,150,0));
     Headlight->AddToWorld();
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
-    // ©ameraNode->AttachObject(Headlight);
+    // CameraNode->AttachObject(Headlight);
 
-    //Start the Main Loop
-    TheEntresol->MainLoop();
+    std::cerr << "Finished Creating World\n";
+}
 
-    delete Soundtrack;
-    delete Announcer;
-    delete TheEntresol;
-    //delete DemoPostInputWork;
-    //delete DemoPostPhysicsWork;
-    //delete DemoPostRenderWork;
-    //delete DemoPreEventWork;
-    return 0;
+void DestroyDemoWorld()
+{
+    // Make sure everything is dead before starting again
+
+    // Check if Threaded Workunits are still alive
+    // RemoveWorkUnitMain
+    if( DemoPreEventWork ) {
+        TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPreEventWork );
+        DemoPreEventWork = NULL;
+    }
+    if( DemoPostInputWork ) {
+        TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostInputWork );
+        DemoPostInputWork = NULL;
+    }
+    if( DemoPostRenderWork ) {
+        TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostRenderWork );
+        DemoPostRenderWork = NULL;
+    }
+    if( DemoPostPhysicsWork ) {
+        TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostPhysicsWork );
+        DemoPostPhysicsWork = NULL;
+    }
+
+    MainCam = NULL;
+
+    // Destory the World Last, ya dumbby!
+    if( DemoWorld ) {
+        TheEntresol->DestroyWorld( DemoWorld );
+        DemoWorld = NULL;
+    }
+
+    static_cast<Physics::CollisionShapeManager*>( TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) )->DestroyAllShapes();
+
+    if( FirstWindow ) {
+        static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) )->DestroyGameWindow( FirstWindow );
+        FirstWindow = NULL;
+    }
 }
 
 void LoadContent()
 {
-    TheEntresol->GetSceneManager()->SetAmbientLight(0.10,0.10,0.10,0.10);
+    DebrisManager* DebrisMan = static_cast<DebrisManager*>( DemoWorld->GetManager(ManagerBase::MT_DebrisManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( DemoWorld->GetManager(ManagerBase::MT_SceneManager) );
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( DemoWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( TheEntresol->GetManager(ManagerBase::MT_ResourceManager) );
+
+    SceneMan->SetAmbientLight(0.10,0.10,0.10,0.10);
 
     RigidDebris* object1;
     RigidDebris* object2;
@@ -459,23 +518,23 @@ void LoadContent()
 
     Real mass = 15.0;
     /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", AT_FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", AT_FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/sounds", AT_FileSystem, groupname, false);
-    //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("", AT_FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
+    ResourceMan->AddAssetLocation("data/common", Resource::AT_FileSystem, groupname, false);
+    ResourceMan->AddAssetLocation("data/common/music", Resource::AT_FileSystem, groupname, false);
+    ResourceMan->AddAssetLocation("data/common/sounds", Resource::AT_FileSystem, groupname, false);
+    //ResourceMan->AddAssetLocation(zipname.str(), "Zip", groupname, false);
+    ResourceMan->AddAssetLocation("", Resource::AT_FileSystem, groupname, false);
+    ResourceMan->InitAssetGroup(groupname);
 
     Vector3 grav( 0.0, -400.0, 0.0 );
-    TheEntresol->GetPhysicsManager()->SetWorldGravity(grav);
-    TheEntresol->GetPhysicsManager()->SetWorldSoftGravity(grav);
+    PhysMan->SetWorldGravity(grav);
+    PhysMan->SetWorldSoftGravity(grav);
 
-    //ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
+    //ParticleEffect *GreenPart = SceneMan->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
     //GreenPart->SetLocation(Vector3(-70,70,-100));
 
-    Physics::CollisionShapeManager* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
+    Physics::CollisionShapeManager* CSMan = static_cast<Physics::CollisionShapeManager*>( TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) );
     Physics::CollisionShape* RobitCH = CSMan->GenerateConvexHull("RobitConvexHull",filerobot,groupname);
-    Physics::CollisionShape* RobitCD = CSMan->PerformConvexDecomposition("RobitConvexDecomp",filerobot,groupname,5.0,5.0,10.0);
+    //Physics::CollisionShape* RobitCD = CSMan->PerformConvexDecomposition("RobitConvexDecomp",filerobot,groupname,5.0,5.0,10.0);
     Physics::CollisionShape* PlaneStatic = CSMan->GenerateStaticTriMesh("PlaneShape","Plane.mesh",groupname);
     Physics::CollisionShape* WoodenSphere = new Physics::SphereCollisionShape("WoodSphere",250.0);
     Physics::CollisionShape* MetalSphere = new Physics::SphereCollisionShape("MetalSphere",250.0);
@@ -488,8 +547,8 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
-        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCD);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
         RigDeb->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
@@ -500,8 +559,8 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
-        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCD);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
         RigDeb->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
@@ -513,7 +572,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         RigDeb->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
@@ -526,54 +585,54 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass,false);
+    RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
     RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
     RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
     RigDeb->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
     RigDeb->AddToWorld();
 
-    object5 = TheEntresol->GetDebrisManager()->CreateRigidDebris("Plane",0,false);
+    object5 = DebrisMan->CreateRigidDebris("Plane",0,false);
     object5->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object5->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object5->SetLocation(Vector3(0.0,-100,-300.0));
     object5->AddToWorld();
 
-    object6 = TheEntresol->GetDebrisManager()->CreateRigidDebris("Ramp",0,false);
+    object6 = DebrisMan->CreateRigidDebris("Ramp",0,false);
     object6->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object6->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object6->SetLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
     object6->AddToWorld();
 
-    object1 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontRight",mass,false);
+    object1 = DebrisMan->CreateRigidDebris("RobotWayUpFrontRight",mass,false);
     object1->GetRigidProxy()->SetCollisionShape(RobitCH);
     object1->GetEntityProxy()->SetMesh(filerobot,groupname);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->AddToWorld();
 
-    object2 = TheEntresol->GetDebrisManager()->CreateRigidDebris("WoodSphere",150.0,false);
+    object2 = DebrisMan->CreateRigidDebris("WoodSphere",150.0,false);
     object2->GetRigidProxy()->SetCollisionShape(WoodenSphere);
     object2->GetEntityProxy()->SetMesh("Sphere_Wood.mesh",groupname);
     object2->SetScale(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
     object2->AddToWorld();
 
-    object3 = TheEntresol->GetDebrisManager()->CreateRigidDebris("MetalSphere",200.0,false);
+    object3 = DebrisMan->CreateRigidDebris("MetalSphere",200.0,false);
     object3->GetRigidProxy()->SetCollisionShape(MetalSphere);
     object3->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object3->SetScale(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
     object3->AddToWorld();
 
-    object4 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontLeft",mass,false);
-    object4->GetRigidProxy()->SetCollisionShape(RobitCD);
+    object4 = DebrisMan->CreateRigidDebris("RobotWayUpFrontLeft",mass,false);
+    object4->GetRigidProxy()->SetCollisionShape(RobitCH);
     object4->GetEntityProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->AddToWorld();
 
-    object7 = TheEntresol->GetDebrisManager()->CreateRigidDebris("MetalSphere2",800.0,false);
+    object7 = DebrisMan->CreateRigidDebris("MetalSphere2",800.0,false);
     object7->GetRigidProxy()->SetCollisionShape(MetalSphere2);
     object7->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object7->SetScale(Vector3(0.3,0.3,0.3));
@@ -585,7 +644,7 @@ void LoadContent()
     /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
     Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
-    TheEntresol->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
+    PhysMan->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
     //GravityWell
     /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
@@ -594,34 +653,34 @@ void LoadContent()
     BlackHole->SetFieldStrength(1000.0);
     BlackHole->SetAttenuation(3.000,Mezzanine::Att_Linear);
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
-    TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
+    PhysMan->AddAreaEffect(BlackHole);// */
 
-    Physics::RigidProxy* InvisFloor = TheEntresol->GetPhysicsManager()->CreateRigidProxy(10,0,false);
+    Physics::RigidProxy* InvisFloor = PhysMan->CreateRigidProxy(0,NULL,false);
     InvisFloor->SetCollisionShape( new Physics::PlaneCollisionShape("InvisFloor",Plane(Vector3::Unit_Y(),Vector3(0,-300,0))) );
     InvisFloor->AddToWorld();
 
     //Final Steps
-    Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
-    Announcer = new std::vector<Audio::iSound*>();
-    Soundtrack = new std::vector<Audio::iSound*>();
-    Audio::AudioManager* AudioMan = TheEntresol->GetAudioManager();
-    sound1 = AudioMan->CreateDialogSound("welcomefun-1.ogg", groupname);
-    Announcer->push_back(sound1);
+    Audio::iSound* Sound = NULL;
+    Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
+    Sound = AudioMan->CreateDialogSound("welcomefun-1-edit.ogg", groupname);
+    Announcer.push_back(Sound);
+    Sound = AudioMan->CreateDialogSound("welcomefun-1-edit.ogg", groupname);
+    Announcer.push_back(Sound);
 
-    music1 = AudioMan->CreateMusicSound("cAudioTheme1.ogg", groupname);
-    Soundtrack->push_back(music1);
-    music2 = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
-    Soundtrack->push_back(music2);
+    Sound = AudioMan->CreateMusicSound("cAudioTheme1.ogg", groupname);
+    Soundtrack.push_back(Sound);
+    Sound = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
+    Soundtrack.push_back(Sound);
 
-    TheEntresol->Log("Debris Count ");
-    TheEntresol->Log( TheEntresol->GetDebrisManager()->GetNumDebris() );
+    TheEntresol->_Log("Debris Count ");
+    TheEntresol->_Log( DebrisMan->GetNumDebris() );
 }
 
 void MakeGUI()
 {
     String DefaultScreen = "DefaultScreen";
-    UI::UIManager* GUI = TheEntresol->GetUIManager();
-    Graphics::Viewport* UIViewport = TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0);
+    UI::UIManager* GUI = static_cast<UI::UIManager*>( TheEntresol->GetManager(ManagerBase::MT_UIManager) );
+    Graphics::Viewport* UIViewport = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) )->GetGameWindow(0)->GetViewport(0);
     GUI->LoadMTA("EngineDemo_Menu.mta","Group1");
     GUI->AddAutoRegisterCode(Input::MetaCode(Input::BUTTON_PRESSING,Input::MOUSEBUTTON_1));
     GUI->EnableButtonAutoRegister(true);
@@ -1003,7 +1062,7 @@ void TestsToSave()
         TheEntresol->Log("End of testing XML and Streaming test 3");
         #endif
     }
-    //*/
+    // */
 }
-//*/
+// */
 #endif

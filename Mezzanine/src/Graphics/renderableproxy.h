@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -80,9 +80,13 @@ namespace Mezzanine
             /// @brief This stores whether the proxy is currently in the graphics world or not.
             Boole InWorld;
         public:
-            /// @brief Class constructor.
+            /// @brief XML-assist Constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             RenderableProxy(SceneManager* Creator);
+            /// @brief Normal Constructor.
+            /// @param ID The unique ID assigned to this proxy.
+            /// @param Creator A pointer to the manager that created this proxy.
+            RenderableProxy(const UInt32 ID, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~RenderableProxy();
 
@@ -101,7 +105,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::IsInWorld() const
             virtual Boole IsInWorld() const;
 
-            /// @copydoc PhysicsProxy::GetCreator() const
+            /// @copydoc WorldProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
 #define _matrix3x3_cpp
 
 #include "matrix3x3.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "entresol.h"
 
 #include "btBulletDynamicsCommon.h"
@@ -130,7 +130,7 @@ namespace Mezzanine
     {
         Real Dist = Rot.LengthSqrd();
         if(Dist == Real(0.0))
-            { MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Attempting to set Matrix3x3 with zero length Quaternion, this is bad."); }
+            { MEZZ_EXCEPTION(ExceptionBase::ARITHMETIC_EXCEPTION,"Attempting to set Matrix3x3 with zero length Quaternion, this is bad."); }
         Real Sc = Real(2.0) / Dist;
         Real XS = Rot.X * Sc,  YS = Rot.Y * Sc,  ZS = Rot.Z * Sc;
         Real WX = Rot.W * XS,  WY = Rot.W * YS,  WZ = Rot.W * ZS;
@@ -443,6 +443,12 @@ namespace Mezzanine
         return Ret;
     }
 
+    Real* Matrix3x3::operator[](const Whole Row)
+        { return this->Matrix[Row]; }
+
+    const Real* Matrix3x3::operator[](const Whole Row) const
+        { return this->Matrix[Row]; }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Fancy Math
 
@@ -480,7 +486,7 @@ namespace Mezzanine
         Real Det = Matrix[0][0] * Ret.Matrix[0][0] + Matrix[0][1] * Ret.Matrix[1][0] + Matrix[0][2] * Ret.Matrix[2][0];
 
         if( 0 == Det )
-            { MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Determinant calculated in Matrix3x3::Inverse is zero.  Avoiding divide by zero."); }
+            { MEZZ_EXCEPTION(ExceptionBase::ARITHMETIC_EXCEPTION,"Determinant calculated in Matrix3x3::Inverse is zero.  Avoiding divide by zero."); }
 
         Real InvDet = 1.0 / Det;
         for( Whole Row = 0 ; Row < 3 ; Row++)

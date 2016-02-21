@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,6 +49,7 @@
 
 #include "Physics/physicsmanager.h"
 #include "entresol.h"
+#include "world.h"
 
 namespace Mezzanine
 {
@@ -81,7 +82,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // DebrisManager Methods
 
-    DebrisManager::DebrisManager()
+    const String DebrisManager::ImplementationName = "DefaultDebrisManager";
+    const ManagerBase::ManagerType DebrisManager::InterfaceType = ManagerBase::MT_DebrisManager;
+
+    DebrisManager::DebrisManager(World* Creator) :
+        WorldManager(Creator)
     {
         this->AddDebrisFactory( new RigidDebrisFactory() );
         this->AddDebrisFactory( new SoftDebrisFactory() );
@@ -89,7 +94,8 @@ namespace Mezzanine
         this->DebrisUpdateWork = new DebrisUpdateWorkUnit(this);
     }
 
-    DebrisManager::DebrisManager(XML::Node& XMLNode)
+    DebrisManager::DebrisManager(World* Creator, const XML::Node& XMLNode) :
+        WorldManager(Creator)
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
 
@@ -122,7 +128,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
         }
     }
 
@@ -137,7 +143,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
         }
     }
 
@@ -149,7 +155,7 @@ namespace Mezzanine
             this->Debriss.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
         }
     }
 
@@ -164,7 +170,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
         }
     }
 
@@ -176,7 +182,7 @@ namespace Mezzanine
             this->Debriss.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
         }
     }
 
@@ -194,7 +200,7 @@ namespace Mezzanine
             }
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an Debris of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an Debris of unknown type.");
         }
     }
 
@@ -206,7 +212,7 @@ namespace Mezzanine
             this->Debriss.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a Debris of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a Debris of unknown type.");
         }
     }
 
@@ -239,7 +245,7 @@ namespace Mezzanine
             if( DebFactIt != this->DebrisFactories.end() ) {
                 (*DebFactIt).second->DestroyDebris( (*DebIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
             }
 
             this->Debriss.erase(DebIt);
@@ -255,7 +261,7 @@ namespace Mezzanine
             if( DebFactIt != this->DebrisFactories.end() ) {
                 (*DebFactIt).second->DestroyDebris( (*DebIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
             }
 
             this->Debriss.erase(DebIt);
@@ -270,7 +276,7 @@ namespace Mezzanine
             if( DebFactIt != this->DebrisFactories.end() ) {
                 (*DebFactIt).second->DestroyDebris( (*DebIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Debris of unknown type.");
             }
         }
         this->Debriss.clear();
@@ -339,12 +345,11 @@ namespace Mezzanine
 
     void DebrisManager::Initialize()
     {
-        if( !this->Initialized )
-        {
-            //WorldManager::Initialize();
+        if( !this->Initialized ) {
+            WorldManager::Initialize();
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->DebrisUpdateWork, "DebrisUpdateWork" );
-            Physics::PhysicsManager* PhysicsMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
             if( PhysicsMan ) {
                 this->DebrisUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
             }
@@ -355,8 +360,7 @@ namespace Mezzanine
 
     void DebrisManager::Deinitialize()
     {
-        if( this->Initialized )
-        {
+        if( this->Initialized ) {
             this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebrisUpdateWork );
             this->DebrisUpdateWork->ClearDependencies();
 
@@ -371,10 +375,10 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType DebrisManager::GetInterfaceType() const
-        { return ManagerBase::MT_DebrisManager; }
+        { return DebrisManager::InterfaceType; }
 
     String DebrisManager::GetImplementationTypeName() const
-        { return "DefaultDebrisManager"; }
+        { return DebrisManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultDebrisManagerFactory Methods
@@ -385,16 +389,19 @@ namespace Mezzanine
     DefaultDebrisManagerFactory::~DefaultDebrisManagerFactory()
         {  }
 
-    String DefaultDebrisManagerFactory::GetManagerTypeName() const
-        { return "DefaultDebrisManager"; }
+    String DefaultDebrisManagerFactory::GetManagerImplName() const
+        { return DebrisManager::ImplementationName; }
 
-    ManagerBase* DefaultDebrisManagerFactory::CreateManager(NameValuePairList& Params)
-        { return new DebrisManager(); }
+    ManagerBase::ManagerType DefaultDebrisManagerFactory::GetManagerType() const
+        { return DebrisManager::InterfaceType; }
 
-    ManagerBase* DefaultDebrisManagerFactory::CreateManager(XML::Node& XMLNode)
-        { return new DebrisManager(XMLNode); }
+    WorldManager* DefaultDebrisManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
+        { return new DebrisManager(Creator); }
 
-    void DefaultDebrisManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    WorldManager* DefaultDebrisManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
+        { return new DebrisManager(Creator,XMLNode); }
+
+    void DefaultDebrisManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

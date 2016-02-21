@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -55,13 +55,11 @@ namespace Mezzanine
         class MEZZ_LIB CheckBox : public Button
         {
         public:
-            /// @enum WidgetStateExt
             /// @brief Enum describing extended widget states for the CheckBox widget.
             enum WidgetStateExt
             {
                 WS_Selected = Widget::WS_Mezzanine_Reserved_1
             };
-            /// @enum WidgetGroupIDExt
             /// @brief Enum describing additional pre-initialized RenderLayerGroups created by the Checkbox widget.
             enum WidgetGroupIDExt
             {

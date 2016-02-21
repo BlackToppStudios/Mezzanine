@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ void REPLLineNoise::PopulateCommmandTrie()
     {
         PossibleCommands.clear();
         Doer.LuaEngine.PopulateTabCompletionTrie(PossibleCommands);
-    } catch (Exception& e) {
+    } catch (Mezzanine::ExceptionBase& e) {
         PossibleCommands.clear();
         cout << "\r\n" << e.what() << "\r\n";
     }

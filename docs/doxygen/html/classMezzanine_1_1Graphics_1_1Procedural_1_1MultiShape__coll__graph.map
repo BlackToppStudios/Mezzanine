@@ -1,0 +1,4 @@
+<map id="Mezzanine::Graphics::Procedural::MultiShape" name="Mezzanine::Graphics::Procedural::MultiShape">
+<area shape="rect" id="node3" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1Shape.html" title="A collection of interconnected 2D points used to express an arbitrary 2D shape. " alt="" coords="15,184,161,225"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="19,5,157,32"/>
+</map>

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -102,9 +102,12 @@ namespace Mezzanine
             virtual void RecalculateOffsets() = 0;
             /// @internal
             /// @brief Adds a character such that it becomes the last in the sequence.
+            /// @param ToAppend The character to be appended.
             virtual void AppendToBack(Character* ToAppend) = 0;
             /// @internal
             /// @brief Adds a series of characters to the end of this line.
+            /// @param First The first Character in a range to be appended.
+            /// @param Last The last Character in a range to be appended.
             virtual void AppendToBack(CharacterIterator First, CharacterIterator Last) = 0;
         public:
             /// @brief Class constructor.
@@ -276,9 +279,9 @@ namespace Mezzanine
             Character* GetSecondFromLastCharacter() const;
             /// @copydoc TextLine::RecalculateOffsets()
             void RecalculateOffsets();
-            /// @copydoc TextLine::AppendToBack(Character* ToAppend)
+            /// @copydoc TextLine::AppendToBack(Character*)
             void AppendToBack(Character* ToAppend);
-            /// @copydoc TextLine::AppendToBack(CharacterIterator First, CharacterIterator Last)
+            /// @copydoc TextLine::AppendToBack(CharacterIterator, CharacterIterator)
             void AppendToBack(CharacterIterator First, CharacterIterator Last);
         public:
             /// @brief Class constructor.
@@ -298,7 +301,7 @@ namespace Mezzanine
 
             /// @copydoc TextLine::AppendCharacters(CharacterIterator, CharacterIterator, const Real)
             Boole AppendCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth);
-            /// @copydoc TextLine::AppendCharactersAppendFittingCharacters(CharacterIterator, CharacterIterator, const Real)
+            /// @copydoc TextLine::AppendFittingCharacters(CharacterIterator, CharacterIterator, const Real)
             CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth);
 
             /// @copydoc TextLine::GetFirstCharacter()
@@ -324,9 +327,9 @@ namespace Mezzanine
             Character* GetSecondFromLastCharacter() const;
             /// @copydoc TextLine::RecalculateOffsets()
             void RecalculateOffsets();
-            /// @copydoc TextLine::AppendToBack(Character* ToAppend)
+            /// @copydoc TextLine::AppendToBack(Character*)
             void AppendToBack(Character* ToAppend);
-            /// @copydoc TextLine::AppendToBack(CharacterIterator First, CharacterIterator Last)
+            /// @copydoc TextLine::AppendToBack(CharacterIterator, CharacterIterator)
             void AppendToBack(CharacterIterator First, CharacterIterator Last);
         public:
             /// @brief Class constructor.
@@ -346,7 +349,7 @@ namespace Mezzanine
 
             /// @copydoc TextLine::AppendCharacters(CharacterIterator, CharacterIterator, const Real)
             Boole AppendCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth);
-            /// @copydoc TextLine::AppendCharactersAppendFittingCharacters(CharacterIterator, CharacterIterator, const Real)
+            /// @copydoc TextLine::AppendFittingCharacters(CharacterIterator, CharacterIterator, const Real)
             CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth);
 
             /// @copydoc TextLine::GetFirstCharacter()

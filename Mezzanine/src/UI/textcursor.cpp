@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@
 #include "UI/textcursor.h"
 #include "UI/textline.h"
 #include "UI/character.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "stringtool.h"
 #include "XML/xml.h"
 
@@ -78,7 +78,7 @@ namespace Mezzanine
         }
 
         Boole TextCursor::GetFlicker() const
-            { return !( this->FlickerTimer->IsStopped() ); }//*/
+            { return !( this->FlickerTimer->IsStopped() ); }// */
 
         void TextCursor::SetCursorIndex(const Integer& Index)
         {
@@ -177,7 +177,7 @@ namespace Mezzanine
         void TextCursor::MoveCursorRight()
         {
             Whole NumChars = this->Layer->GetNumCharacters();
-            if( this->IndexPosition >= 0 && this->IndexPosition < NumChars ) {
+            if( this->IndexPosition >= 0 && static_cast<Whole>( this->IndexPosition ) < NumChars ) {
                 ++(this->IndexPosition);
                 this->Layer->_MarkDirty();
             }
@@ -269,10 +269,10 @@ namespace Mezzanine
                     if( !CursorColourNode.Empty() )
                         this->CursorColour.ProtoDeSerialize(CursorColourNode);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + TextCursor::GetSerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + TextCursor::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,TextCursor::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,TextCursor::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 

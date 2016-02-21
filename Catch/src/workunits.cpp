@@ -87,7 +87,7 @@ void AudioSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
                         AudioDeviceList->UpdateChildDimensions();
                     }
                     AudioDeviceList->UpdateCurrentSelection( DeviceContainer->GetListItem( AudioMan->GetCurrentPlaybackDeviceName() ) );
-                }//*/
+                }// */
             }
         }
     }
@@ -154,7 +154,7 @@ void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
                     NewSettings.WinRes.Width = StringTools::ConvertToWhole(StrWidth);
                     NewSettings.WinRes.Height = StringTools::ConvertToWhole(StrHeight);
                     // Apply the resolution and fullscreen settings
-                    CatchWindow->SetRenderOptions(NewSettings);//*/
+                    CatchWindow->SetRenderOptions(NewSettings);// */
                     // Now get the FSAA setting and pass it along
                     String FSAASetting = static_cast<UI::DropDownList*>( EventScreen->GetWidget(NamePrefix + "_FSAAList") )->GetSelectionText();
                     CatchWindow->SetFSAALevel( StringTools::ConvertToWhole( FSAASetting.substr(1,1) ) );
@@ -162,7 +162,7 @@ void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
                     // Apply other settings
                     UI::CheckBox* FPSStatsBox = static_cast<UI::CheckBox*>( EventScreen->GetWidget(NamePrefix + "_StatsBox") );
                     StatsScreen->GetWidget("SS_CurrentFPS")->SetVisible( FPSStatsBox->IsSelected() );
-                    StatsScreen->GetWidget("SS_AverageFPS")->SetVisible( FPSStatsBox->IsSelected() );//*/
+                    StatsScreen->GetWidget("SS_AverageFPS")->SetVisible( FPSStatsBox->IsSelected() );// */
                 }
             }else if( WidArgs->EventName == UI::Widget::EventVisibilityShown ) {
                 if( StringTools::EndsWith( WidArgs->WidgetName, "_FSAAList", true ) ) {
@@ -239,7 +239,7 @@ void CatchPreInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
     while(0 != OneInput)
     {
         if(OneInput->GetType()!=EventBase::UserInput)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
+            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
         //we check each MetaCode in each Event
         /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
@@ -257,11 +257,11 @@ void CatchPreInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
     while(0 != OneWindowEvent)
     {
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
+            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
         if(!OneWindowEvent->IsEventIDValid())
         {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
         }
 
         delete OneWindowEvent;
@@ -278,31 +278,32 @@ CatchPostInputWorkUnit::CatchPostInputWorkUnit(CatchApp* Target) :
 CatchPostInputWorkUnit::~CatchPostInputWorkUnit()
     {  }
 
+CameraController& CatchPostInputWorkUnit::GetDefaultControl()
+    { return this->DefaultControl; }
+
 void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     // Setup our pointers
-    Graphics::CameraManager* CamMan = Entresol::GetSingletonPtr()->GetCameraManager();
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-    CameraController* DefaultControl = CamMan->GetOrCreateCameraController(CamMan->GetCamera(0));
     // Determine our camera linear movement
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A) )
-        DefaultControl->StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
+        DefaultControl.StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D) )
-        DefaultControl->StrafeRight(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
+        DefaultControl.StrafeRight(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W) )
-        DefaultControl->MoveForward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
+        DefaultControl.MoveForward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
-        DefaultControl->MoveBackward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
+        DefaultControl.MoveBackward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     // Determine our camera angular movement
     Vector2 Offset = SysMouse->GetMouseDelta();
     if( SysMouse->IsButtonPressed(Input::MOUSEBUTTON_2) && Vector2(0,0) != Offset ) {
-        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+        DefaultControl.Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
     }
     // Determine our Debug drawer visibility
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) ) {
-        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->CatchApplication->GetTheWorld()->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan->GetDebugRenderingMode() == Physics::DDM_NoDebug ) {
             PhysMan->SetDebugRenderingMode( Physics::DDM_DrawWireframe );
         }else{
@@ -314,7 +315,7 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     if( SysKeyboard->IsButtonPressing(Input::KEY_F4) ) {
         Boole Toggled = !HideUI;
         if( Toggled ) {
-            this->CatchApplication->TheEntresol->GetUIManager()->HideAllScreens();
+            static_cast<UI::UIManager*>( this->CatchApplication->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->HideAllScreens();
         }else{
             this->CatchApplication->SetVisibleScreens( this->CatchApplication->GetState() );
         }
@@ -326,7 +327,9 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
 // CatchPostUIWorkUnit Methods
 
 CatchPostUIWorkUnit::CatchPostUIWorkUnit(CatchApp* Target) :
-    CatchApplication(Target) {  }
+    CatchApplication(Target),
+    RayCaster(Target->GetTheWorld())
+    {  }
 
 CatchPostUIWorkUnit::~CatchPostUIWorkUnit()
     {  }
@@ -335,13 +338,12 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
 {
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
+    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->CatchApplication->GetTheWorld()->GetManager(ManagerBase::MT_PhysicsManager) );
     static Physics::Point2PointConstraint* Dragger = NULL;
 
-    if( SysMouse->IsButtonPressed(1) )
-    {
-        if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() )
-        {
-            Ray MouseRay = RayQueryTool::GetMouseRay(5000);
+    if( SysMouse->IsButtonPressed(1) ) {
+        if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() ) {
+            Ray MouseRay = RayQueryTool::GetMouseRay();
 
             Boole firstframe = false;
             if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid | Mezzanine::WO_DebrisSoft) ) {
@@ -355,9 +357,9 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                     {
                         RigidDebris* rigid = static_cast<RigidDebris*>( RayCaster.LastQueryResultsObjectPtr() );
                         rigid->GetRigidProxy()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-                        Dragger = new Physics::Point2PointConstraint(rigid->GetRigidProxy(), LocalPivot);
+                        Dragger = PhysMan->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
                         Dragger->SetTAU(0.001);
-                        Entresol::GetSingletonPtr()->GetPhysicsManager()->AddConstraint(Dragger);
+                        Dragger->EnableConstraint(true);
                         Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
                         Dragger->SetParam(Physics::Con_CFM,0.8,-1);
                         //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
@@ -370,16 +372,16 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                 }
             }
 
-            if(Dragger && RayCaster.RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay))
-            {
+            if(Dragger && RayCaster.RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay)) {
                 if( !firstframe ) {
-                    Dragger->SetPivotBLocation( RayCaster.LastQueryResultsOffset() );
+                    Dragger->SetPivotB( RayCaster.LastQueryResultsOffset() );
                 }
             }
 
             if(Dragger && !this->CatchApplication->IsInsideAnyStartZone( this->CatchApplication->LastObjectThrown ) ) {
                 Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
+                PhysMan->DestroyConstraint(Dragger);
+                Dragger = NULL;
                 Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
             }
         }
@@ -387,8 +389,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
     }else{  //Since we are no longer clicking we need to setup for the next clicking
         if( Dragger ) {
             Physics::RigidProxy* Prox = Dragger->GetProxyA();
-            Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
-            delete Dragger;
+            PhysMan->DestroyConstraint(Dragger);
             Dragger = NULL;
             Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
         }
@@ -438,7 +439,7 @@ void CatchPauseWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& C
 
         }else if( (*EvIt)->EventName == UI::Button::EventDeactivated ) {
 
-        }//*/
+        }// */
     }// For each event
     this->PauseSubscriber->ClearEvents();
     this->PauseSubscriber->EndUpdate();
@@ -457,8 +458,8 @@ void CatchHUDUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
 {
     if( this->CatchApplication->GetState() == CatchApp::Catch_GameScreen ) {
         // Get our UI pointers
-        Graphics::GraphicsManager* GraphicsMan = this->CatchApplication->TheEntresol->GetGraphicsManager();
-        UI::UIManager* UIMan = this->CatchApplication->TheEntresol->GetUIManager();
+        Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->CatchApplication->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
+        UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->CatchApplication->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
         UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
         UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
 

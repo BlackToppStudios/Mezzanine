@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,8 +40,8 @@
 #ifndef _uiuimanager_h
 #define _uiuimanager_h
 
-#include "managerbase.h"
-#include "managerfactory.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
 #include "UI/rect.h"
 #include "Input/metacode.h"
@@ -83,6 +83,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            /// @return Returns a reference to this.  WHICH WILL NEVER HAPPEN.
             WidgetUpdateWorkUnit& operator=(const WidgetUpdateWorkUnit& Other);
         public:
             /// @brief Class constructor.
@@ -110,7 +111,7 @@ namespace Mezzanine
         /// @brief This class is responsible for any and all user interactions with the User interface/HUD.
         /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade mta file(*.mta).
         ///////////////////////////////////////
-        class MEZZ_LIB UIManager : public ManagerBase, public Singleton<UIManager>
+        class MEZZ_LIB UIManager : public EntresolManager, public Singleton<UIManager>
         {
         public:
             /// @brief Basic container type for @ref MarkupParser storage by this class.
@@ -137,6 +138,11 @@ namespace Mezzanine
             typedef InputContainer::const_iterator                 ConstInputIterator;
             /// @brief An std::pair type for returning the result of a font suggestion.
             typedef std::pair< String, Real >                      FontResult;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             /// @internal
             /// @brief A container storing all the registered/known markup parsers.
@@ -226,7 +232,7 @@ namespace Mezzanine
             UIManager();
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            UIManager(XML::Node& XMLNode);
+            UIManager(const XML::Node& XMLNode);
             /// @brief Class Destructor.
             virtual ~UIManager();
 
@@ -262,11 +268,14 @@ namespace Mezzanine
             /// @param Atlas The name of a previously loaded mta file to be used with this screen.
             /// @param WindowViewport The viewport to create this screen in.
             /// @param ZOrder The ZOrder determining the position relative to the other screens.
+            /// @return Returns a pointer to the created Screen.
             Screen* CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport, const UInt16 ZOrder);
-            /// @brief Gets an already created screen by name.
+            /// @brief Gets a screen by name.
+            /// @param Name The name of the Screen to be retrieved.
             /// @return Returns a pointer to the screen of the specified name.
             Screen* GetScreen(const String& Name) const;
-            /// @brief Gets an already created screen by index.
+            /// @brief Gets a screen by index.
+            /// @param Index The index of the Screen to be retrieved.
             /// @return Returns a pointer to the screen at the specified index.
             Screen* GetScreen(const Whole& Index) const;
             /// @brief Gets the number of screens created and stored in this manager.
@@ -433,7 +442,7 @@ namespace Mezzanine
         /// @headerfile uimanager.h
         /// @brief A factory responsible for the creation and destruction of the default uimanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultUIManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultUIManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -441,15 +450,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultUIManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+            EntresolManager* CreateManager(const NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+            EntresolManager* CreateManager(const XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultUIManagerFactory
     }//UI
 }//Mezzanine

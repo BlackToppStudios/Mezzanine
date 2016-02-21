@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -55,6 +55,8 @@
 
 namespace Mezzanine
 {
+    /// @namespace Mezzanine::Testing
+    /// @brief This contains all the items (except the tests themselves) that make the unit tests work.
     namespace Testing
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -143,9 +145,6 @@ namespace Mezzanine
                 /// @brief Some basic variable for tracking simple statistics
                 unsigned int LongestNameLength;
 
-                /// @brief The output of the last subprocess if any was executed.
-                String SubProcessOutput;
-
                 /// @brief Set to false if subprocess tests should not be executed. True if they should
                 bool DoSubProcessTest;
                 /// @brief Set the flag to run automatic tests
@@ -155,8 +154,6 @@ namespace Mezzanine
 
                 /// @brief Used while running a test to see if
                 Int32 Completed;
-
-
 
             public:
                 /// @brief Default constructor
@@ -174,14 +171,21 @@ namespace Mezzanine
                 virtual void RunTests();
 
             protected:
-                /// @brief
+                /// @brief This launches all the automated tests on the derived class if the flag is
+                /// set to run them otherwise it checks if tests exist via HasAutomaticTests() and
+                /// marks them as skipped if they do.
                 void LaunchAutomaticTest();
-                /// @brief
+                /// @brief This launches all the interactice tests on the derived class if the flag
+                /// is set to run them otherwise it checks if tests exist via HasAutomaticTests()
+                /// and marksthem as skipped if they do.
                 void LaunchInteractiveTest();
 
-                /// @brief This is used by the normal sequence of test execution to launch test specific subprocesses.
+                /// @brief Tests should use this to launch things that need sheltering from
+                /// segfaults and similar faults
+                /// @param Argument A string combined with the command to be run, this must be
+                /// sanitized before being called, do not pass untrusted data.
                 /// @return The output to stdout from the subprocess.
-                String LaunchSubProcessTest();
+                String LaunchSubProcessTest(const String& Argument = String(""));
 
             public:
                 /// @brief This should be overloaded to run all tests that do require not user interaction
@@ -202,8 +206,9 @@ namespace Mezzanine
 
                 /// @brief Does nothing by default, tests which need to run code in a subprocess should override this.
                 /// @details This will be executed in a subprocess before HasAutomaticTests() and RunInteractiveTests();
+                /// @param Arg An argument from the calling test.
                 /// @return Whatever was sent to stdout via C++ streams will be captured and sent here instead.
-                virtual void RunSubprocessTest();
+                virtual void RunSubprocessTest(const Mezzanine::String& Arg);
                 /// @brief If this returns false then the test suite treats it like any other test, if true then it enables some features for launching subprocess tests
                 /// @details This will cause an extra command line option to be created (as "debug" + testname). The function SubprocessTest() will be executed in the
                 /// process that the new option is passed into. This allows for subprocess debugging. This will automatically be passed to the test process that will
@@ -221,9 +226,10 @@ namespace Mezzanine
 
                 /// @brief Its expected that tests will be inserted using this
                 /// @details This will automate tracking of the most and least successful tests
-                /// @param FreshMeat The New test results and name
-                /// @param Behavior An OverWriteResults that defines the overwirte behavior of this function, defaults to OverWriteIfLessSuccessful
-                void AddTestResult(TestData CurrentTest, OverWriteResults Behavior=OverWriteIfLessSuccessful);
+                /// @param CurrentTest The New test results and name
+                /// @param Behavior An OverWriteResults that defines the overwrite behavior of this function, defaults to OverWriteIfLessSuccessful
+                void AddTestResult( TestData CurrentTest,
+                                    OverWriteResults Behavior=OverWriteIfLessSuccessful);
 
                 /// @brief Add a test results without having to to construct a TestData first
                 /// @details This prepends the name of this UnitTestGroup and "::" to the
@@ -263,8 +269,17 @@ namespace Mezzanine
                 /// @param IfFalse Defaults to Testing::Failed but can be whatever Testing::TestResult you want if a false passed as the TestCondition.
                 /// @param IfTrue Defaults to Testing::Success but can be whatever Testing::TestResult you want if a true passed as the TestCondition.
                 /// @param FuncName The function the test was called from, if blank
-                virtual void Test(bool TestCondition, const String& TestName, TestResult IfFalse = Testing::Failed, TestResult IfTrue = Testing::Success,
-                                  const String& FuncName = "", const String& File = "", Mezzanine::Whole Line = 0);
+                /// @param File To make tracking down failures easier the file name of the test can
+                /// be passed in, if not set an empty string is used
+                /// @param Line To make tracking down failures easier the line number of the test
+                /// can  be passed in, if not set an empty string is used
+                virtual void Test(  bool TestCondition,
+                                    const String& TestName,
+                                    TestResult IfFalse = Testing::Failed,
+                                    TestResult IfTrue = Testing::Success,
+                                    const String& FuncName = "",
+                                    const String& File = "",
+                                    Mezzanine::Whole Line = 0);
         };
 
         /// @internal

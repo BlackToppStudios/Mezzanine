@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,7 @@ THE SOFTWARE.
 */
 
 #include "OgreEAGLES2Context.h"
+#include "OgreEAGL2Support.h"
 #include "OgreGLES2RenderSystem.h"
 #include "OgreRoot.h"
 
@@ -40,21 +41,26 @@ namespace Ogre {
         mDepthRenderbuffer(0),
         mIsMultiSampleSupported(false),
         mNumSamples(0),
-        mFSAAFramebuffer(0),
-        mFSAARenderbuffer(0)
+        mSampleFramebuffer(0),
+        mSampleRenderbuffer(0)
     {
 
         mDrawable = [drawable retain];
 
+#if OGRE_NO_GLES3_SUPPORT == 0
+        EAGLRenderingAPI renderingAPI = kEAGLRenderingAPIOpenGLES3;
+#else
+        EAGLRenderingAPI renderingAPI = kEAGLRenderingAPIOpenGLES2;
+#endif
         // If the group argument is not NULL, then we assume that an externally created EAGLSharegroup
         // is to be used and a context is created using that group.
         if(group)
         {
-            mContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2 sharegroup:group];
+            mContext = [[EAGLContext alloc] initWithAPI:renderingAPI sharegroup:group];
         }
         else
         {
-            mContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+            mContext = [[EAGLContext alloc] initWithAPI:renderingAPI];
         }
 
         if (!mContext || ![EAGLContext setCurrentContext:mContext])
@@ -63,6 +69,13 @@ namespace Ogre {
                         "Unable to create a suitable EAGLContext",
                         __FUNCTION__);
         }
+
+#ifdef __IPHONE_7_1
+        OGRE_IF_IOS_VERSION_IS_GREATER_THAN(7.1)
+        {
+            [mContext setMultiThreaded:YES];
+        }
+#endif
     }
 
     EAGLES2Context::~EAGLES2Context()
@@ -83,75 +96,72 @@ namespace Ogre {
         [mDrawable release];
     }
 
+    void EAGLES2Context::bindSampleFramebuffer()
+    {
+        if(mIsMultiSampleSupported && mNumSamples > 0)
+        {
+            // Bind the FSAA buffer if we're doing multisampling
+            OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mSampleFramebuffer));
+        }
+    }
+
     bool EAGLES2Context::createFramebuffer()
     {
         destroyFramebuffer();
 
-        glGenFramebuffers(1, &mViewFramebuffer);
-        GL_CHECK_ERROR
-        glGenRenderbuffers(1, &mViewRenderbuffer);
-        GL_CHECK_ERROR
-        
-        glBindFramebuffer(GL_FRAMEBUFFER, mViewFramebuffer);
-        GL_CHECK_ERROR
-        glBindRenderbuffer(GL_RENDERBUFFER, mViewRenderbuffer);
-        GL_CHECK_ERROR
+        OGRE_CHECK_GL_ERROR(glGenFramebuffers(1, &mViewFramebuffer));
+        OGRE_CHECK_GL_ERROR(glGenRenderbuffers(1, &mViewRenderbuffer));
+        OGRE_CHECK_GL_ERROR(glLabelObjectEXT(GL_BUFFER_OBJECT_EXT, mViewFramebuffer, 0, "View Framebuffer"));
+        OGRE_CHECK_GL_ERROR(glLabelObjectEXT(GL_BUFFER_OBJECT_EXT, mViewRenderbuffer, 0, "View Renderbuffer"));
+
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mViewFramebuffer));
+        OGRE_CHECK_GL_ERROR(glBindRenderbuffer(GL_RENDERBUFFER, mViewRenderbuffer));
 
         if(![mContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:(id<EAGLDrawable>) mDrawable])
         {
-            GL_CHECK_ERROR
+            glGetError();
             OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR,
                         "Failed to bind the drawable to a renderbuffer object",
                         __FUNCTION__);
             return false;
         }
 
-        glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &mBackingWidth);
-        GL_CHECK_ERROR
-        glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &mBackingHeight);
-        GL_CHECK_ERROR
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, mViewRenderbuffer);
-        GL_CHECK_ERROR
+        OGRE_CHECK_GL_ERROR(glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &mBackingWidth));
+        OGRE_CHECK_GL_ERROR(glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &mBackingHeight));
+        OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, mViewRenderbuffer));
 
-#if GL_APPLE_framebuffer_multisample
+#if GL_APPLE_framebuffer_multisample || OGRE_NO_GLES3_SUPPORT == 0
         if(mIsMultiSampleSupported && mNumSamples > 0)
         {
-            // Determine how many MSAS samples to use
+            // Determine how many MSAA samples to use
             GLint maxSamplesAllowed;
             glGetIntegerv(GL_MAX_SAMPLES_APPLE, &maxSamplesAllowed);
             int samplesToUse = (mNumSamples > maxSamplesAllowed) ? maxSamplesAllowed : mNumSamples;
             
             // Create the FSAA framebuffer (offscreen)
-            glGenFramebuffers(1, &mFSAAFramebuffer);
-            GL_CHECK_ERROR
-            glBindFramebuffer(GL_FRAMEBUFFER, mFSAAFramebuffer);
-            GL_CHECK_ERROR
-            
+            OGRE_CHECK_GL_ERROR(glGenFramebuffers(1, &mSampleFramebuffer));
+            OGRE_CHECK_GL_ERROR(glLabelObjectEXT(GL_BUFFER_OBJECT_EXT, mSampleFramebuffer, 0, "FSAA Framebuffer"));
+            OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mSampleFramebuffer));
+
             /* Create the offscreen MSAA color buffer.
              * After rendering, the contents of this will be blitted into mFSAAFramebuffer */
-            glGenRenderbuffers(1, &mFSAARenderbuffer);
-            GL_CHECK_ERROR
-            glBindRenderbuffer(GL_RENDERBUFFER, mFSAARenderbuffer);
-            GL_CHECK_ERROR
-            glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, samplesToUse, GL_RGBA8_OES, mBackingWidth, mBackingHeight);
-            GL_CHECK_ERROR
-            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, mFSAARenderbuffer);
-            GL_CHECK_ERROR
-            
+            OGRE_CHECK_GL_ERROR(glGenRenderbuffers(1, &mSampleRenderbuffer));
+            OGRE_CHECK_GL_ERROR(glLabelObjectEXT(GL_BUFFER_OBJECT_EXT, mSampleRenderbuffer, 0, "FSAA Colour Renderbuffer"));
+            OGRE_CHECK_GL_ERROR(glBindRenderbuffer(GL_RENDERBUFFER, mSampleRenderbuffer));
+            OGRE_CHECK_GL_ERROR(glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, samplesToUse, GL_RGBA8_OES, mBackingWidth, mBackingHeight));
+            OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, mSampleRenderbuffer));
+
             // Create the FSAA depth buffer
-            glGenRenderbuffers(1, &mDepthRenderbuffer);
-            GL_CHECK_ERROR
-            glBindRenderbuffer(GL_RENDERBUFFER, mDepthRenderbuffer);
-            GL_CHECK_ERROR
-            glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, samplesToUse, GL_DEPTH_COMPONENT24_OES, mBackingWidth, mBackingHeight);
-            GL_CHECK_ERROR
-            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthRenderbuffer);
-            GL_CHECK_ERROR
+            OGRE_CHECK_GL_ERROR(glGenRenderbuffers(1, &mDepthRenderbuffer));
+            OGRE_CHECK_GL_ERROR(glLabelObjectEXT(GL_BUFFER_OBJECT_EXT, mDepthRenderbuffer, 0, "Depth Renderbuffer"));
+            OGRE_CHECK_GL_ERROR(glBindRenderbuffer(GL_RENDERBUFFER, mDepthRenderbuffer));
+            OGRE_CHECK_GL_ERROR(glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, samplesToUse, GL_DEPTH_COMPONENT16, mBackingWidth, mBackingHeight));
+            OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthRenderbuffer));
 
             // Validate the FSAA framebuffer
             if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             {
-                GL_CHECK_ERROR
+                glGetError();
                 OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR,
                             "Failed to make a complete FSAA framebuffer object",
                             __FUNCTION__);
@@ -161,20 +171,18 @@ namespace Ogre {
         else
 #endif
         {
-            glGenRenderbuffers(1, &mDepthRenderbuffer);
-            GL_CHECK_ERROR
-            glBindRenderbuffer(GL_RENDERBUFFER, mDepthRenderbuffer);
-            GL_CHECK_ERROR
-            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, mBackingWidth, mBackingHeight);
-            GL_CHECK_ERROR
-            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthRenderbuffer);
-            GL_CHECK_ERROR
+            OGRE_CHECK_GL_ERROR(glGenRenderbuffers(1, &mDepthRenderbuffer));
+            OGRE_CHECK_GL_ERROR(glLabelObjectEXT(GL_BUFFER_OBJECT_EXT, mDepthRenderbuffer, 0, "Depth Renderbuffer"));
+            OGRE_CHECK_GL_ERROR(glBindRenderbuffer(GL_RENDERBUFFER, mDepthRenderbuffer));
+            OGRE_CHECK_GL_ERROR(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, mBackingWidth, mBackingHeight));
+            OGRE_CHECK_GL_ERROR(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthRenderbuffer));
         }
 
-        glBindFramebuffer(GL_FRAMEBUFFER, mViewFramebuffer);
+        OGRE_CHECK_GL_ERROR(glBindRenderbuffer(GL_RENDERBUFFER, mViewRenderbuffer));
+        OGRE_CHECK_GL_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, mViewFramebuffer));
         if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         {
-            GL_CHECK_ERROR
+            glGetError();
             OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR,
                         "Failed to make a complete framebuffer object",
                         __FUNCTION__);
@@ -186,26 +194,26 @@ namespace Ogre {
 
     void EAGLES2Context::destroyFramebuffer()
     {
-        glDeleteFramebuffers(1, &mViewFramebuffer);
+        OGRE_CHECK_GL_ERROR(glDeleteFramebuffers(1, &mViewFramebuffer));
         mViewFramebuffer = 0;
-        glDeleteRenderbuffers(1, &mViewRenderbuffer);
+        OGRE_CHECK_GL_ERROR(glDeleteRenderbuffers(1, &mViewRenderbuffer));
         mViewRenderbuffer = 0;
         
-        if(mFSAARenderbuffer)
+        if(mSampleRenderbuffer)
         {
-            glDeleteRenderbuffers(1, &mFSAARenderbuffer);
-            mFSAARenderbuffer = 0;
+            OGRE_CHECK_GL_ERROR(glDeleteRenderbuffers(1, &mSampleRenderbuffer));
+            mSampleRenderbuffer = 0;
         }
 
-        if(mFSAAFramebuffer)
+        if(mSampleFramebuffer)
         {
-            glDeleteFramebuffers(1, &mFSAAFramebuffer);
-            mFSAAFramebuffer = 0;
+            OGRE_CHECK_GL_ERROR(glDeleteFramebuffers(1, &mSampleFramebuffer));
+            mSampleFramebuffer = 0;
         }
         
         if(mDepthRenderbuffer)
         {
-            glDeleteRenderbuffers(1, &mDepthRenderbuffer);
+            OGRE_CHECK_GL_ERROR(glDeleteRenderbuffers(1, &mDepthRenderbuffer));
             mDepthRenderbuffer = 0;
         }
     }
@@ -228,7 +236,7 @@ namespace Ogre {
 
     GLES2Context * EAGLES2Context::clone() const
     {
-        return const_cast<EAGLES2Context *>(this);
+		return new EAGLES2Context(mDrawable, [mContext sharegroup]);
     }
 
 	CAEAGLLayer * EAGLES2Context::getDrawable() const

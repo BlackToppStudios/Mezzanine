@@ -4,7 +4,7 @@
  (Object-oriented Graphics Rendering Engine)
  For the latest info, see http://www.ogre3d.org/
  
- Copyright (c) 2000-2013 Torus Knot Software Ltd
+ Copyright (c) 2000-2014 Torus Knot Software Ltd
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,8 @@
 #if OGRE_PLATFORM != OGRE_PLATFORM_NACL
 #error This header is for use with NaCl only
 #endif
+
+#include "SampleBrowser.h"
 
 #include <pthread.h>
 #include <map>
@@ -631,11 +633,11 @@ namespace Ogre {
             
         void initOgre(uint32 width, uint32 height)
         {
-            	        /* Initialize SDL */
-	        /*if ( SDL_Init(SDL_INIT_VIDEO) < 0 ) {
-		        fprintf(stderr, "Couldn't initialize SDL: %s\n",SDL_GetError());
-		        return(1);
-	        }*/
+                        /* Initialize SDL */
+            /*if ( SDL_Init(SDL_INIT_VIDEO) < 0 ) {
+                fprintf(stderr, "Couldn't initialize SDL: %s\n",SDL_GetError());
+                return(1);
+            }*/
 
         
             try 
@@ -752,9 +754,9 @@ namespace Ogre {
                         const pp::WheelInputEvent * wheelEvent =
                             reinterpret_cast<const pp::WheelInputEvent*>(&event);
 
-			            mState.Z.rel = wheelEvent->GetDelta().y();
-		                if( mListener )
-			                mListener->mouseMoved( OIS::MouseEvent( this, mState ) );
+                        mState.Z.rel = wheelEvent->GetDelta().y();
+                        if( mListener )
+                            mListener->mouseMoved( OIS::MouseEvent( this, mState ) );
 
                         return false;
                     }
@@ -785,8 +787,8 @@ namespace Ogre {
                     case PP_INPUTEVENT_TYPE_MOUSEDOWN:
                         if (button != OIS::MB_Button3) 
                         {
-			                mState.X.rel = 0;
-			                mState.Y.rel = 0;
+                            mState.X.rel = 0;
+                            mState.Y.rel = 0;
                             mState.buttons |= 1 << button;
                             if( mListener )
                                 return mListener->mousePressed( OIS::MouseEvent( this, mState ), button );
@@ -795,8 +797,8 @@ namespace Ogre {
                     case PP_INPUTEVENT_TYPE_MOUSEUP:
                         if (button != -1) 
                         {
-			                mState.X.rel = 0;
-			                mState.Y.rel = 0;
+                            mState.X.rel = 0;
+                            mState.Y.rel = 0;
                             mState.buttons &= ~(1 << button);
                             if( mListener )
                                 return mListener->mouseReleased( OIS::MouseEvent( this, mState ), button );
@@ -805,12 +807,12 @@ namespace Ogre {
                     case PP_INPUTEVENT_TYPE_MOUSEMOVE:
                         if(mState.X.abs != point.x() && mState.Y.abs != point.y())
                         {
-			                mState.X.rel = point.x() - mState.X.abs;
-			                mState.Y.rel = point.y() - mState.Y.abs;
-			                mState.X.abs = point.x();
-			                mState.Y.abs = point.y();
-		                    if( mListener )
-			                    mListener->mouseMoved( OIS::MouseEvent( this, mState ) );
+                            mState.X.rel = point.x() - mState.X.abs;
+                            mState.Y.rel = point.y() - mState.Y.abs;
+                            mState.X.abs = point.x();
+                            mState.Y.abs = point.y();
+                            if( mListener )
+                                mListener->mouseMoved( OIS::MouseEvent( this, mState ) );
                         }
                         break;
                     case PP_INPUTEVENT_TYPE_MOUSEENTER:
@@ -838,7 +840,7 @@ namespace Ogre {
                 OIS::Interface* queryInterface(OIS::Interface::IType) {return NULL;};
                 void _initialize(){};
                 bool isKeyDown(OIS::KeyCode){return false;};
-                const std::string& getAsString(OIS::KeyCode){return "";};
+                const std::string& getAsString(OIS::KeyCode){static const std::string res; return res;};
                 void copyKeyStates(char*){};
                 bool HandleInputEvent(const pp::InputEvent& event)
                 {
@@ -898,17 +900,17 @@ namespace Ogre {
             /** @copydoc FactoryCreator::createObject */
             OIS::Object* createObject(OIS::InputManager* creator, OIS::Type iType, bool bufferMode, const std::string & vendor = "")
             {
-	            switch( iType )
-	            {
-		            case OIS::OISKeyboard: 
+                switch( iType )
+                {
+                    case OIS::OISKeyboard: 
                         return &mOISKeyboard;
                         break;
-		            case OIS::OISMouse: 
+                    case OIS::OISMouse: 
                         return &mOISMouse;
                         break;
-		            case OIS::OISJoyStick: 
-		            default: return NULL;
-	            }
+                    case OIS::OISJoyStick: 
+                    default: return NULL;
+                }
             }
 
             /** @copydoc FactoryCreator::destroyObject */

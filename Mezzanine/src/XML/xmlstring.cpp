@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -119,7 +119,7 @@ namespace Mezzanine
             if(!Doc->Load(OneTag.c_str()))
             {
                 delete Doc;
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not Deserialize XML Stream which should contain:" + ClassName + "\n XML looked Like: " + OneTag + ".");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Could not Deserialize XML Stream which should contain:" + ClassName + "\n XML looked Like: " + OneTag + ".");
             }
 
             Node InputNode = Doc->GetFirstChild();
@@ -130,11 +130,11 @@ namespace Mezzanine
                     return Doc;
                 }else{
                     delete Doc;
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,NameSpace + ClassName + " not next item in stream, failed to deserialize.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,NameSpace + ClassName + " not next item in stream, failed to deserialize.");
                 }
             }else{
                 delete Doc;
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"No valid XML element in stream, when attempting to deserialize " + NameSpace + ClassName + ".");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"No valid XML element in stream, when attempting to deserialize " + NameSpace + ClassName + ".");
             }
         }
 

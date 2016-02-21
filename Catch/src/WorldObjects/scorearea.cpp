@@ -42,7 +42,7 @@ void ScoreArea::CreateScoreArea(const Vector3& HalfAreaSize)
     if( this->Ghost != NULL && CSMan != NULL ) {
         Physics::CollisionShape* StartCS = new Physics::BoxCollisionShape("StartAreaShape",HalfAreaSize);
         this->Ghost->SetCollisionShape( StartCS );
-    }//*/
+    }// */
 }
 
 void ScoreArea::DestroyScoreArea()
@@ -115,10 +115,10 @@ void ScoreArea::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             if( !CurrAttrib.Empty() )
                 this->SetScoreMultiplier( CurrAttrib.AsReal() );
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ScoreArea::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ScoreArea::GetSerializableName() + "Properties" ) + ": Not Version 1.");
         }
     }else{
-        MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ScoreArea::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+        MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ScoreArea::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
     }
 }
 

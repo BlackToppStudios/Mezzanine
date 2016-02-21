@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,8 +44,8 @@
 //There will be an instance of this class in the world.
 ///////////////////////////////////////
 
-#include "managerbase.h"
-#include "managerfactory.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
 #include "eventbase.h"
 #include "singleton.h"
 #include "vector2.h"
@@ -157,9 +157,14 @@ namespace Mezzanine
     /// the events.
     /// @warning Currently this is not thread safe, even though it should be.
     ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB EventManager: public ManagerBase, public Singleton<EventManager>
+    class MEZZ_LIB EventManager: public EntresolManager, public Singleton<EventManager>
     {
-    private:
+    public:
+        /// @brief A String containing the name of this manager implementation.
+        static const String ImplementationName;
+        /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+        static const ManagerBase::ManagerType InterfaceType;
+    protected:
         /// @internal
         /// @brief All the internal data for this EventManager
         Internal::EventManagerInternalData* _Data;
@@ -179,13 +184,12 @@ namespace Mezzanine
         friend std::ostream& MEZZ_LIB ::operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr);
         friend std::istream& MEZZ_LIB ::operator >> (std::istream& stream, Mezzanine::EventManager& Mgr);
         friend void MEZZ_LIB ::operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
-
     public:
         /// @brief Default constructor.
         EventManager();
         /// @brief XML constructor.
         /// @param XMLNode The node of the xml document to construct from.
-        EventManager(XML::Node& XMLNode);
+        EventManager(const XML::Node& XMLNode);
         /// @brief Default Deconstructor.
         virtual ~EventManager();
 
@@ -413,7 +417,7 @@ namespace Mezzanine
     /// @headerfile eventmanager.h
     /// @brief A factory responsible for the creation and destruction of the default eventmanager.
     ///////////////////////////////////////
-    class MEZZ_LIB DefaultEventManagerFactory : public ManagerFactory
+    class MEZZ_LIB DefaultEventManagerFactory : public EntresolManagerFactory
     {
     public:
         /// @brief Class constructor.
@@ -421,15 +425,17 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~DefaultEventManagerFactory();
 
-        /// @copydoc ManagerFactory::GetManagerTypeName()
-        String GetManagerTypeName() const;
+        /// @copydoc ManagerFactory::GetManagerImplName()
+        String GetManagerImplName() const;
+        /// @copydoc ManagerFactory::GetManagerType() const
+        ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-        ManagerBase* CreateManager(NameValuePairList& Params);
-        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-        ManagerBase* CreateManager(XML::Node& XMLNode);
-        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-        void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+        EntresolManager* CreateManager(const NameValuePairList& Params);
+        /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+        EntresolManager* CreateManager(const XML::Node& XMLNode);
+        /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+        void DestroyManager(EntresolManager* ToBeDestroyed);
     };//DefaultEventManagerFactory
 }//Mezzanine
 

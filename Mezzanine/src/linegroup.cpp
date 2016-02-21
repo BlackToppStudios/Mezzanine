@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,6 +43,7 @@
 #include "linegroup.h"
 #include "Graphics/scenemanager.h"
 #include "entresol.h"
+#include "world.h"
 
 #include <Ogre.h>
 #include <vector>
@@ -111,10 +112,12 @@ namespace Mezzanine
             /// @internal
             /// @brief Pointer to the node that will be used exclusively for this renderable.
             Ogre::SceneNode* SelfNode;
+            /// @brief Parent World to locate SceneManager
+            World * ParentWorld;
         public:
             /// @internal
             /// @brief Default Constructor
-            Line3D();
+            Line3D(World * ParentWorld);
             /// @internal
             /// @brief Destructor
             ~Line3D();
@@ -169,10 +172,11 @@ namespace Mezzanine
             Ogre::SceneNode* GetNode() const;
         };//Line3D
 
-        Line3D::Line3D()
+        Line3D::Line3D(World * ParentWorldArg)
+            : ParentWorld(ParentWorldArg)
         {
             mRenderOp.vertexData = new Ogre::VertexData();
-            this->SelfNode = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+            this->SelfNode = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) )->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
 
             // Initialization stuff
             mRenderOp.indexData = 0;
@@ -206,7 +210,7 @@ namespace Mezzanine
 
         Line3D::~Line3D()
         {
-            Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
+            static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) )->_GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
             delete mRenderOp.vertexData;
         }
 
@@ -289,7 +293,7 @@ namespace Mezzanine
 
                     mRenderOp.vertexData->vertexStart = 0;
                     mRenderOp.vertexData->vertexBufferBinding->setBinding(0,this->VertexBuffer);
-                }//*/
+                }// */
 
                 Vector3 vaabMin = this->Points[0].Position;
                 Vector3 vaabMax = this->Points[0].Position;
@@ -354,9 +358,10 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Mezzanine::LineGroup
 
-    LineGroup::LineGroup()
+    LineGroup::LineGroup(World * ParentWorld)
+        : ParentWorld(ParentWorld)
     {
-        this->LineData = new Internal::Line3D();
+        this->LineData = new Internal::Line3D(this->ParentWorld);
     }
 
     LineGroup::~LineGroup(void)

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -121,10 +121,14 @@ namespace Mezzanine
             };
 
             /// @brief A Real that can readily be passed into lua scripts
-            class MEZZ_LIB Lua51RealArgument : public LuaArgument, public ScriptArgumentGeneric<Real>
+            class MEZZ_LIB Lua51RealArgument
+                : public LuaArgument, public ScriptArgumentGeneric<Real>
             {
                 public:
-                    Lua51RealArgument(Real InitialValue = 0.0) : ScriptArgumentGeneric<Real>(InitialValue)
+                    /// @brief Initializing constructor
+                    /// @param InitialValue Deafaults to 0.0
+                    Lua51RealArgument(Real InitialValue = 0.0)
+                        : ScriptArgumentGeneric<Real>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;
@@ -144,7 +148,10 @@ namespace Mezzanine
             class MEZZ_LIB Lua51WholeArgument : public LuaArgument, public ScriptArgumentGeneric<Whole>
             {
                 public:
-                    Lua51WholeArgument(Whole InitialValue = 0) : ScriptArgumentGeneric<Whole>(InitialValue)
+                    /// @brief Initializing Constructor
+                    /// @param InitialValue Defaults to 0.
+                    Lua51WholeArgument(Whole InitialValue = 0)
+                        : ScriptArgumentGeneric<Whole>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;
@@ -180,11 +187,16 @@ namespace Mezzanine
                         { return this; }
             };
 
-            /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
-            class MEZZ_LIB Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Boole>
+            /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is
+            /// used.
+            class MEZZ_LIB Lua51BoolArgument
+                : public LuaArgument, public ScriptArgumentGeneric<Boole>
             {
                 public:
-                    Lua51BoolArgument(Boole InitialValue = false) : ScriptArgumentGeneric<Boole>(InitialValue)
+                    /// @brief Setting Constructor
+                    /// @param InitialValue Defaults to false
+                    Lua51BoolArgument(Boole InitialValue = false)
+                        : ScriptArgumentGeneric<Boole>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;

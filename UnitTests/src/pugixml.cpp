@@ -11,6 +11,11 @@
  * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
  */
 
+/// @file
+/// @brief To allow this test harness to be used without the mezzanine it uses pugixml for xml parsing and this should probably not be used by the tests
+
+/// @cond false
+
 #ifndef SOURCE_PUGIXML_CPP
 #define SOURCE_PUGIXML_CPP
 
@@ -10223,7 +10228,7 @@ namespace pugi
 #undef PUGI__CHECK_ERROR
 
 #endif
-
+/// @endcond
 /**
  * Copyright (c) 2006-2012 Arseny Kapoulkine
  *

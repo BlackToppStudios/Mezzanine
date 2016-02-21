@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -56,7 +56,7 @@ namespace Mezzanine
         void MultiSphereCollisionShape::Construct(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii)
         {
             if(Locations.size() != Radii.size())
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Vector size mismatch between Locations and Radii in MultiSphereCollisionShape constructor."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Vector size mismatch between Locations and Radii in MultiSphereCollisionShape constructor."); }
             Whole Spheres = Locations.size();
             btVector3* BulletLocs = new btVector3[Spheres];
             btScalar* BulletRadii = new btScalar[Spheres];
@@ -96,11 +96,11 @@ namespace Mezzanine
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-                if(!OneName) { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
+                if(!OneName) { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
 
                 XML::Node Spheres = OneNode.GetChild("Spheres");
                 if(!Spheres)
-                    { DeSerializeError("locate Spheres node",SerializableName()); }
+                    { DeSerializeError("locate Spheres node",GetSerializableName()); }
 
                 std::vector<Vector3> Locations;
                 std::vector<Real> Radii;
@@ -117,7 +117,7 @@ namespace Mezzanine
 
                 this->ProtoDeSerialize(OneNode);
             }else{
-                DeSerializeError("find usable serialization version",MultiSphereCollisionShape::SerializableName());
+                DeSerializeError("find usable serialization version",MultiSphereCollisionShape::GetSerializableName());
             }
         }
 
@@ -152,25 +152,25 @@ namespace Mezzanine
 
         void MultiSphereCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node CollisionNode = CurrentRoot.AppendChild(this->MultiSphereCollisionShape::SerializableName());
-            if (!CollisionNode) { SerializeError("create CollisionNode",this->MultiSphereCollisionShape::SerializableName());}
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->MultiSphereCollisionShape::GetSerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->MultiSphereCollisionShape::GetSerializableName());}
 
             XML::Attribute Version = CollisionNode.AppendAttribute("Version");
             if (Version)
                 { Version.SetValue(1); }
             else
-                { SerializeError("Create Version Attribute", SerializableName()); }
+                { SerializeError("Create Version Attribute", GetSerializableName()); }
 
             XML::Node PointsNode = CollisionNode.AppendChild("Spheres");
-            if (!PointsNode) { SerializeError("create Spheres",this->MultiSphereCollisionShape::SerializableName());}
+            if (!PointsNode) { SerializeError("create Spheres",this->MultiSphereCollisionShape::GetSerializableName());}
 
             for(Whole c=0; c<this->GetNumSpheres(); ++c)
             {
                 XML::Node Sphere = PointsNode.AppendChild("Sphere");
-                if (!Sphere) { SerializeError(String("create Sphere ")+ToString(c),this->MultiSphereCollisionShape::SerializableName());}
+                if (!Sphere) { SerializeError(String("create Sphere ")+ToString(c),this->MultiSphereCollisionShape::GetSerializableName());}
 
                 XML::Attribute Radius = Sphere.AppendAttribute("Radius");
-                if (!Radius) { SerializeError(String("Append readius to Sphere ")+ToString(c),this->MultiSphereCollisionShape::SerializableName());}
+                if (!Radius) { SerializeError(String("Append readius to Sphere ")+ToString(c),this->MultiSphereCollisionShape::GetSerializableName());}
                 Radius.SetValue( this->GetSphereRadius(c) );
 
                 this->GetSphereLocation(c).ProtoSerialize(Sphere);
@@ -181,24 +181,24 @@ namespace Mezzanine
 
         void MultiSphereCollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->MultiSphereCollisionShape::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->MultiSphereCollisionShape::GetSerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    XML::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                    XML::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::GetSerializableName());
                     if(!CollisionNode)
-                        { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                        { DeSerializeError("locate PrimitiveCollisionShape node",GetSerializableName()); }
                     this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
 
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    DeSerializeError("find usable serialization version",GetSerializableName());
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),GetSerializableName());
             }
         }
 
-        String MultiSphereCollisionShape::SerializableName()
+        String MultiSphereCollisionShape::GetSerializableName()
             {   return String("MultiSphereCollisionShape"); }
     }//Physics
 }//Mezzanine

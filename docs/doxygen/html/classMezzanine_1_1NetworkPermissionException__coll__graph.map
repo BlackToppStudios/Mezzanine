@@ -1,6 +1,6 @@
 <map id="Mezzanine::NetworkPermissionException" name="Mezzanine::NetworkPermissionException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail. " alt="" coords="8,237,208,267"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="25,160,191,189"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="33,83,183,112"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="56,5,160,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail. " alt="" coords="9,229,209,256"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it. " alt="" coords="26,155,191,181"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="18,80,199,107"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="57,5,161,32"/>
 </map>

@@ -1,9 +1,8 @@
 <map id="Mezzanine::Input::ButtonDevice" name="Mezzanine::Input::ButtonDevice">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="1117,75,1288,104"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1SequenceContainer.html" title="This class stores and provides utilities for sequenced inputs and their operations. " alt="" coords="812,66,999,113"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Trie.html" title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;" alt="" coords="464,5,619,51"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time. " alt="" coords="447,75,636,104"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="185,75,337,104"/>
-<area shape="rect" id="node12" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers. " alt="" coords="7,75,132,104"/>
-<area shape="rect" id="node14" title="STL class. " alt="" coords="484,128,599,157"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="90,371,261,398"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1SequenceContainer.html" title="This class stores and provides utilities for sequenced inputs and their operations. " alt="" coords="81,260,269,301"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time. " alt="" coords="5,171,196,197"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="24,81,177,108"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers. " alt="" coords="37,5,164,32"/>
+<area shape="rect" id="node7" title="STL class. " alt="" coords="220,171,336,197"/>
 </map>

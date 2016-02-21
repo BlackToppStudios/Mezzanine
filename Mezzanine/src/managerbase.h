@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,7 +50,6 @@ namespace Mezzanine
 {
     class Entresol;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ManagerBase
     /// @headerfile managerbase.h
     /// @brief This is the base class from which all the Entresol and World Managers inherit.
     /// @details This creates a base set of functions that Managers are all
@@ -59,46 +58,49 @@ namespace Mezzanine
     class MEZZ_LIB ManagerBase
     {
     public:
-        /// @enum ManagerTypeName
-        /// @brief A listing of Manager TypeNames
+        /// @brief A listing of Manager Types.
         /// @details These will be returned by ManagerBase::GetType(), and will allow
         /// code using this to determine what type of Manager class they are working with
         /// and use this information to more safely cast to the correct manager if needed.
         enum ManagerType
         {
-            // Entresol Managers       // Namespaces
+            // Utility Types
 
-            MT_AudioManager = 1,       // Audio
-            MT_AnimationManager,       // Graphics
-            MT_CollisionShapeManager,  // Physics
-            MT_CompositorManager,      // Gtaphics
-            MT_GraphicsManager,        // Graphics
-            MT_EventManager,           // Mezzanine
-            MT_InputManager,           // Input
-            MT_LogManager,             // Mezzanine
-            MT_MaterialManager,        // Graphics
-            MT_MeshManager,            // Graphics
-            MT_NetworkManager,         // Network
-            MT_ResourceManager,        // Resource
-            MT_ScriptingManager,       // Scripting
-            MT_UIManager,              // UI
+            MT_Undefined              = 0,
 
-            // World Managers          // Namespaces
+            // Entresol Managers             // Namespaces
 
-            MT_ActorManager = 100,     // Mezzanine
-            MT_AreaEffectManager,      // Mezzanine
-            MT_CameraManager,          // Graphics
-            MT_DebrisManager,          // Mezzanine
-            MT_PagingManager,          // Paging
-            MT_PhysicsManager,         // Physics
-            MT_SceneManager,           // Graphics
-            MT_SoundScapeManager,      // Audio
-            MT_TerrainManager,         // Mezzanine
-            MT_VehicleManager,         // Mezzanine
+            MT_AudioManager           = 1,   // Audio
+            MT_AnimationManager       = 2,   // Graphics
+            MT_CollisionShapeManager  = 3,   // Physics
+            MT_CompositorManager      = 4,   // Graphics
+            MT_GraphicsManager        = 5,   // Graphics
+            MT_EventManager           = 6,   // Mezzanine
+            MT_InputManager           = 7,   // Input
+            MT_LogManager             = 8,   // Mezzanine
+            MT_MaterialManager        = 9,   // Graphics
+            MT_MeshManager            = 10,  // Graphics
+            MT_NetworkManager         = 11,  // Network
+            MT_ResourceManager        = 12,  // Resource
+            MT_ScriptingManager       = 13,  // Scripting
+            MT_TextureManager         = 14,  // Graphics
+            MT_UIManager              = 15,  // UI
 
-            // Other Managers
+            // World Managers                // Namespaces
 
-            MT_UserCreated     = 512         ///< This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
+            MT_ActorManager           = 101, // Mezzanine
+            MT_AreaEffectManager      = 102, // Mezzanine
+            MT_DebrisManager          = 103, // Mezzanine
+            MT_PagingManager          = 104, // Paging
+            MT_PhysicsManager         = 105, // Physics
+            MT_SceneManager           = 106, // Graphics
+            MT_SoundScapeManager      = 107, // Audio
+            MT_TerrainManager         = 108, // Mezzanine
+            MT_VehicleManager         = 109, // Mezzanine
+
+            // Other Managers                // Namespaces
+
+            MT_UserCreated            = 512  ///< This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
         };
     protected:
         /// @internal

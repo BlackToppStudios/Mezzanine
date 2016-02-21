@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
 #ifndef _graphicssubmesh_h
 #define _graphicssubmesh_h
 
-#include "datatypes.h"
+#include "Graphics/meshinfo.h"
 
 namespace Ogre
 {
@@ -53,8 +53,6 @@ namespace Mezzanine
     namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class SubMesh
-        /// @headerfile submesh.h
         /// @brief This class represents a sub-section of an overall mesh.
         /// @details Every mesh has at least one SubMesh.  Most meshes have only 1 or 2.  SubMeshes are often
         /// implemented in cases where one portion of the mesh needs to be animated or given a different
@@ -62,12 +60,74 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB SubMesh
         {
-            protected:
-            public:
-                /// @brief Class Constructor.
-                SubMesh();
-                /// @brief Class Destructor.
-                ~SubMesh();
+        protected:
+            /// @internal
+            /// @brief A pointer to the internal SubMesh this is based on.
+            Ogre::SubMesh* InternalSubMesh;
+        public:
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Internal The internal SubMesh this SubMesh class is based on.
+            SubMesh(Ogre::SubMesh* Internal);
+            /// @brief Class Destructor.
+            ~SubMesh();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            /// @brief Sets the name of the Material to be used by this SubMesh.
+            /// @param MatName The name of the Material to be applied to this SubMesh.
+            void SetMaterialName(const String& MatName);
+            /// @brief Gets the name of the Material being used by this SubMesh.
+            /// @return Returns a const reference to a String containing the name of the Material to be used with this SubMesh.
+            const String& GetMaterialName() const;
+
+            /// @brief Gets whether or not this SubMesh shares a Vertex Buffer with other SubMeshes.
+            /// @remarks A Mesh can only have a single shared buffer across all SubMeshes.  So if any SubMesh does use a shared buffer,
+            /// all of the SubMeshes that do share one, share the same buffer.
+            /// @return Returns true if this SubMesh uses a shared Vertex Buffer with other SubMeshes.
+            Boole UsesSharedVertices() const;
+            /// @brief Gets the number of Vertices in this SubMesh.
+            /// @return Returns the number of Vertices that make up this SubMesh.
+            Whole GetVertexCount() const;
+            /// @brief Gets the number of Indices in this SubMesh.
+            /// @return Returns the number of Indices used to assemble the vertices in this SubMesh.
+            Whole GetIndexCount() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // SubMesh Information Methods
+
+            /// @brief Gets the information used to render this SubMesh.
+            /// @remarks This method makes no attempt to clear any pre-existing data on the MeshInfo struct before use.  Relevant data will be overwritten.
+            /// @param ToFill The MeshInfo struct to be populated with data from this SubMesh.
+            void GetInfo(MeshInfo& ToFill) const;
+            /// @brief Gets the vertex information of this SubMesh and appends it to the VertexInfo provided.
+            /// @param ToFill The VertexInfo struct to have this SubMesh vertex information added to.
+            void AppendVertexInfo(VertexInfo& ToFill) const;
+
+            /// @brief Gets the vertex position information of this SubMesh and appends it to the container provided.
+            /// @param ToFill The container to append this SubMeshes vertex position info to.
+            void AppendVertexPositionInfo(Vector3Vec& ToFill) const;
+            /// @brief Gets the vertex texture coordinate information of this SubMesh and appends it to the container provided.
+            /// @param ToFill The container to append this SubMeshes vertex texture coordinate info to.
+            void AppendVertexTexCoordInfo(Vector2Vec& ToFill) const;
+            /// @brief Gets the vertex normal information of this SubMesh and appends it to the container provided.
+            /// @param ToFill The container to append this SubMeshes vertex normal info to.
+            void AppendVertexNormalInfo(Vector3Vec& ToFill) const;
+            /// @brief Gets the vertex tangent information of this SubMesh and appends it to the container provided.
+            /// @param ToFill The container to append this SubMeshes vertex tangent info to.
+            void AppendVertexTangentInfo(Vector3Vec& ToFill) const;
+            /// @brief Gets the Index information of this SubMesh and appends it to the container provided.
+            /// @param ToFill The container to append this SubMeshes Index info to.
+            void AppendIndexInfo(IntVec& ToFill) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Gets the internal SubMesh pointer.
+            /// @return Returns a pointer pointing to the internal SubMesh.
+            Ogre::SubMesh* _GetInternalSubMesh() const;
         };//SubMesh
     }//Graphics
 }//Mezzanine

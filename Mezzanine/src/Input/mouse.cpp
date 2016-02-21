@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -177,7 +177,7 @@ namespace Mezzanine
             for( ConstMetaCodeIterator MCIt = Sequence.begin() ; MCIt != Sequence.end() ; ++MCIt )
             {
                 if( !MCIt->IsMouseEvent() )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-Mouse MetaCode detected when attempting to insert an Input Sequence into Mouse input device.") }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Non-Mouse MetaCode detected when attempting to insert an Input Sequence into Mouse input device.") }
             }
         }
 
@@ -203,7 +203,7 @@ namespace Mezzanine
                 case Input::MOUSEBUTTON_2: return Input::COMPOUNDINPUT_MOUSERIGHTMULTICLICK; break;
                 default:
                 {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert unsupported mouse button code into a multiclick code.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to convert unsupported mouse button code into a multiclick code.");
                 }
             }
         }
@@ -275,10 +275,10 @@ namespace Mezzanine
             { return SDL_GetRelativeMouseMode(); }
 
         void Mouse::SetMouseCursor()
-            { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mouse cursor setting is currently not implemented."); } /// @todo Implement this.
+            { MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Mouse cursor setting is currently not implemented."); } /// @todo Implement this.
 
         void Mouse::GetMouseCursor()
-            { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mouse cursor getting is currently not implemented."); } /// @todo Implement this.
+            { MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Mouse cursor getting is currently not implemented."); } /// @todo Implement this.
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods

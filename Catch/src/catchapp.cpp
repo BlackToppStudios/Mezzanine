@@ -24,6 +24,7 @@ CatchApp::CatchApp() :
     EndLevelWork(NULL),
 
     TheEntresol(NULL),
+    TheWorld(NULL),
     Profiles(NULL),
     LevelMan(NULL),
     Scorer(NULL),
@@ -41,10 +42,12 @@ CatchApp::CatchApp() :
     CatchApp::TheRealCatchApp = this;
 
     // Initialize the engine
-    this->TheEntresol = new Entresol( "Data/", Mezzanine::AT_FileSystem );
+    this->TheEntresol = new Entresol( "Data/", Resource::AT_FileSystem );
+    //this->TheWorld = this->TheEntresol->CreateWorld("Catching");
+    this->CreateWorld();
 
     // Now initialize game specific stuff
-    this->InitializeFromXML( "Data/", Mezzanine::AT_FileSystem, "Catch.mxi" );
+    this->InitializeFromXML( "Data/", Resource::AT_FileSystem, "Catch.mxi" );
 
     this->LevelMan = new LevelManager( this->TheEntresol, "Levels/" );
     this->Scorer = new LevelScorer( this, this->TheEntresol );
@@ -86,6 +89,8 @@ CatchApp::~CatchApp()
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->EndLevelWork );
     delete this->EndLevelWork;
 
+    this->TheEntresol->DestroyWorld(this->TheWorld);
+
     delete this->Profiles;
     delete this->LevelMan;
     delete this->Scorer;
@@ -94,24 +99,22 @@ CatchApp::~CatchApp()
     CatchApp::TheRealCatchApp = NULL;
 }
 
-void CatchApp::InitializeFromXML(const String& CatchDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
+void CatchApp::InitializeFromXML(const String& CatchDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
 {
     // Start with the XML initializer file
     Resource::FileStream InitStream(InitializerFile,CatchDataPath);
     XML::Document InitDoc;
     XML::ParseResult DocResult = InitDoc.Load(InitStream);
-    if( DocResult.Status != XML::StatusOk )
-    {
+    if( DocResult.Status != XML::StatusOk ) {
         StringStream ExceptionStream;
         ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
-        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+        MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
     }
     XML::Node InitRoot = InitDoc.GetChild("InitializerRoot");
-    if( InitRoot.Empty() )
-    {
+    if( InitRoot.Empty() ) {
         StringStream ExceptionStream;
         ExceptionStream << "Failed to find expected Root node in \"" << InitializerFile << "\".";
-        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+        MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
     }
 
     // Create the requested managers and set their necessary values.
@@ -122,6 +125,16 @@ void CatchApp::InitializeFromXML(const String& CatchDataPath, const Mezzanine::A
             this->Profiles = new ProfileManager(this->TheEntresol,(*ManIt));
         }
     }
+}
+
+void CatchApp::CreateWorld()
+{
+    Physics::ManagerConstructionInfo Info;
+    Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
+
+    this->TheWorld = this->TheEntresol->CreateWorld("CatchWorld",Info,"DefaultSceneManager");
+
+    static_cast<Physics::PhysicsManager*>( this->TheWorld->GetManager(ManagerBase::MT_PhysicsManager) )->SetSimulationSubstepModifier(2);
 }
 
 void CatchApp::MakeGUI()
@@ -342,7 +355,7 @@ void CatchApp::MakeGUI()
     MMProfilesDestroyText->VerticallyAlign(UI::LA_Center);
     MMProfilesDestroyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
     //MMLevelStart->Subscribe(UI::Button::EventDeactivated,new MSLevelStart(MMLevelSelectGrid),true);
-    MMProfilesWin->AddChild(MMProfilesDestroy,5);//*/
+    MMProfilesWin->AddChild(MMProfilesDestroy,5);// */
 
     // Create the button that will confirm the switch to another profile
     //UI::Button* MMProfilesSelect = MainMenuScreen->CreateButton("MS_ProfilesSelect",UI::UnifiedRect(0.12,0.76,0.34,0.16));
@@ -762,7 +775,7 @@ void CatchApp::MakeGUI()
     MMAudioDeviceOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
     // Wrap up listing configuration
     MMAudioDeviceList->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
-    MMAudioSet->AddChild(MMAudioDeviceList,10);//*/
+    MMAudioSet->AddChild(MMAudioDeviceList,10);// */
 
     // Create the checkbox for enabling or disabling FPS stats display
     UI::CheckBox* MMMuteBox = MainMenuScreen->CreateCheckBox("MS_MuteBox",UI::UnifiedRect(0.655,0.695,0,0.12));
@@ -1300,7 +1313,7 @@ void CatchApp::MakeGUI()
     GSAudioDeviceOptionsScroll->GetScrollBack()->CreateSingleImageLayer("GSListScrollBackground",0,0);
     // Wrap up listing configuration
     GSAudioDeviceList->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
-    GSAudioSet->AddChild(GSAudioDeviceList,10);//*/
+    GSAudioSet->AddChild(GSAudioDeviceList,10);// */
 
     // Create the checkbox for enabling or disabling FPS stats display
     UI::CheckBox* GSMuteBox = GameScreen->CreateCheckBox("GS_MuteBox",UI::UnifiedRect(0.655,0.695,0,0.12));
@@ -1510,7 +1523,7 @@ void CatchApp::CreateLoadingScreen()
 
     GUI->LoadMTA("Catch_Loading.mta","Common");
     Graphics::Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
-    UIViewport->SetCamera(this->TheEntresol->GetCameraManager()->CreateCamera("Main"));
+    UIViewport->SetCamera(static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) )->CreateCamera());
 
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen","Catch_Loading",UIViewport,9);
     UI::Widget* BackgroundWidget = LoadScreen->CreateWidget("LoadBackground",UI::UnifiedRect(0,0,1.7777,1,0,0,0,0));
@@ -1605,7 +1618,7 @@ void CatchApp::VerifySettings()
 
 void CatchApp::RegisterTypes()
 {
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->TheWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
     if( AEMan != NULL ) {
         AEMan->AddAreaEffectFactory( new ScoreAreaFactory() );
         AEMan->AddAreaEffectFactory( new StartAreaFactory() );
@@ -1618,6 +1631,14 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
         return;
 
     this->SetVisibleScreens(StateToSet);
+    if( StateToSet == CatchApp::Catch_MenuScreen ) {
+        // This code block was created due to cameras being destroyed on every level unload.
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) );
+        Graphics::CameraProxy* MainCam = static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+        if( MainCam == NULL ) {
+            SceneMan->CreateCamera();
+        }
+    }
     if( StateToSet == CatchApp::Catch_ScoreScreen ) {
         this->PauseGame(true);
         Whole LevelScore = this->Scorer->PresentFinalScore();
@@ -1673,8 +1694,8 @@ Boole CatchApp::AllStartZonesEmpty()
 
 void CatchApp::UnloadLevel()
 {
-    if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
-        return;
+    //if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
+    //    return;
 
     this->LevelMan->UnloadLevel();
 
@@ -1682,8 +1703,16 @@ void CatchApp::UnloadLevel()
     this->ThrownItems.clear();
 
     this->Scorer->ResetLevelData();
-    delete this->EndTimer;
-    this->EndTimer = NULL;
+    if( this->EndTimer != NULL ) {
+        delete this->EndTimer;
+        this->EndTimer = NULL;
+    }
+
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+    UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
+    GameScreen->GetWidget("GS_LevelReport")->Hide();
+    GameScreen->GetWidget("GS_MenuRoot")->Hide();
+    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();// */
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
@@ -1697,61 +1726,77 @@ int CatchApp::GetCatchin()
     // Verify all the settings are there, and generate defaults if they aren't.
     this->VerifySettings();
 
+    // Get our manager pointers we'll use.
+    EventManager* EventMan = static_cast<EventManager*>( this->TheEntresol->GetManager(ManagerBase::MT_EventManager) );
+    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( this->TheWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
+    Audio::SoundScapeManager* SoundScapeMan = static_cast<Audio::SoundScapeManager*>( this->TheWorld->GetManager(ManagerBase::MT_SoundScapeManager) );
+    Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
+    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) );
+    Input::InputManager* InputMan = static_cast<Input::InputManager*>( this->TheEntresol->GetManager(ManagerBase::MT_InputManager) );
+    Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->TheWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+    Scripting::Lua::Lua51ScriptingEngine* ScriptingMan = static_cast<Scripting::Lua::Lua51ScriptingEngine*>( this->TheEntresol->GetManager(ManagerBase::MT_ScriptingManager) );
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
+
     // WorkUnit configuration
-    this->AudioSettingsWork = new AudioSettingsWorkUnit(this->TheEntresol->GetUIManager(),this->TheEntresol->GetAudioManager());
-    this->AudioSettingsWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->TheEntresol->GetAudioManager()->GetBufferUpdate2DWork()->AddDependency( this->AudioSettingsWork );
-    Audio::SoundScapeManager* SoundScapeMan = this->TheEntresol->GetSoundScapeManager();
+    this->AudioSettingsWork = new AudioSettingsWorkUnit(UIMan,AudioMan);
+    this->AudioSettingsWork->AddDependency( UIMan->GetWidgetUpdateWork() );
+    AudioMan->GetBufferUpdate2DWork()->AddDependency( this->AudioSettingsWork );
     if( SoundScapeMan != NULL ) {
         SoundScapeMan->GetBufferUpdate3DWork()->AddDependency( this->AudioSettingsWork );
     }
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AudioSettingsWork, "AudioSettingsWork" );
 
-    this->VideoSettingsWork = new VideoSettingsWorkUnit(this->TheEntresol->GetUIManager(),this->TheEntresol->GetGraphicsManager());
-    this->VideoSettingsWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
+    this->VideoSettingsWork = new VideoSettingsWorkUnit(UIMan,GraphicsMan);
+    this->VideoSettingsWork->AddDependency( UIMan->GetWidgetUpdateWork() );
     // Add a line here setting the graphics monopoly as a dependency?
     this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->VideoSettingsWork, "VideoSettingsWork" );
 
     this->PreInputWork = new CatchPreInputWorkUnit(this);
-    this->TheEntresol->GetEventManager()->GetEventPumpWork()->AddDependency( this->PreInputWork );
+    EventMan->GetEventPumpWork()->AddDependency( this->PreInputWork );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PreInputWork, "PreInputWork" );
 
     this->PostInputWork = new CatchPostInputWorkUnit(this);
-    this->PostInputWork->AddDependency( this->TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
+    this->PostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostInputWork, "PostInputWork" );
 
     this->PostUIWork = new CatchPostUIWorkUnit(this);
-    this->PostUIWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->PostUIWork->AddDependency( this->TheEntresol->GetPhysicsManager()->GetSimulationWork() );
+    this->PostUIWork->AddDependency( UIMan->GetWidgetUpdateWork() );
+    this->PostUIWork->AddDependency( PhysicsMan->GetSimulationWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostUIWork, "PostUIWork" );
 
-    this->PauseWork = new CatchPauseWorkUnit(this,this->TheEntresol->GetUIManager());
-    this->PauseWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->PauseWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->PauseWork = new CatchPauseWorkUnit(this,UIMan);
+    this->PauseWork->AddDependency( UIMan->GetWidgetUpdateWork() );
+    this->PauseWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PauseWork, "PauseWork" );
 
     this->HUDUpdateWork = new CatchHUDUpdateWorkUnit(this);
-    this->HUDUpdateWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->HUDUpdateWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->HUDUpdateWork->AddDependency( UIMan->GetWidgetUpdateWork() );
+    this->HUDUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->HUDUpdateWork, "HUDUpdateWork" );
 
     this->EndLevelWork = new CatchEndLevelWorkUnit(this);
-    this->EndLevelWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->EndLevelWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->EndLevelWork, "EndLevelWork" );
 
     this->RegisterTypes();
 
     // Initialize the managers.
-    this->TheEntresol->EngineInit(false);
+    this->TheEntresol->Initialize(false);
+    this->TheWorld->Initialize();
 
-    this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( dynamic_cast<Scripting::Lua::Lua51ScriptingEngine*>(this->TheEntresol->GetScriptingManager()) );
-    this->LuaScriptWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( ScriptingMan );
+    this->LuaScriptWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "LuaWork" );
 
     this->Profiles->Initialize();
 
     this->CreateLoadingScreen();
-    this->TheEntresol->GetCameraManager()->GetCamera(0)->SetNearClipDistance(0.5);
+
+    Graphics::CameraProxy* DefaultCam = static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
+    DefaultCam->SetNearClipDistance(0.5);
+    this->PostInputWork->GetDefaultControl().SetControlledCamera(DefaultCam);
+
     this->ChangeState(CatchApp::Catch_Loading);
 
     // Setup the Music
@@ -1765,19 +1810,21 @@ int CatchApp::GetCatchin()
     this->Profiles->ApplyProfileDataToLevelSelect();
     this->Profiles->ApplyProfileDataToProfileList();
 
-    Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
+    AudioMan->GetMusicPlayer()->Play();
     this->LevelMan->SetNextLevel("MainMenu");
     do{
         this->ChangeState(CatchApp::Catch_Loading);
         this->PauseGame(false);
-        Graphics::GraphicsManager::GetSingletonPtr()->RenderOneFrame();
+        GraphicsMan->RenderOneFrame();
         //Actually Load the game stuff
+        this->TheEntresol->_Log( "Loading Level: " + this->GetLevelManager()->GetNextLevel()->GetName() + ".\n" );
         this->LevelMan->LoadNextLevel();
 
-        if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
-            this->ChangeState(CatchApp::Catch_MenuScreen);
-        else
-            this->ChangeState(CatchApp::Catch_GameScreen);
+        CatchApp::GameState NewState = ( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() ? CatchApp::Catch_MenuScreen : CatchApp::Catch_GameScreen );
+        this->ChangeState(NewState);
+
+        GraphicsMan->GetGameWindow(0)->GetViewport(0)->SetCamera( static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) ) );
+
         this->LevelTimer->Reset();
         this->LevelTimer->Start();
 
@@ -1808,7 +1855,7 @@ void CatchApp::PauseGame(Boole Pause)
         //if( !Pause && ( GameScreen->GetWidget("GS_MenuRoot")->IsVisible() || GameScreen->GetWidget("GS_ItemShopRoot")->IsVisible() ) ) {
         //    return;
         //}
-        this->TheEntresol->PauseWorld(Pause);
+        this->TheWorld->PauseWorld(Pause);
         if( Pause ) {
             this->LevelTimer->Stop();
         }else{
@@ -1829,7 +1876,7 @@ Boole CatchApp::GameIsPaused() const
 
 void CatchApp::SetVisibleScreens(const CatchApp::GameState State)
 {
-    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
     switch( State )
     {
         case CatchApp::Catch_GameScreen:
@@ -1935,6 +1982,9 @@ Scripting::Lua::Lua51WorkUnit* CatchApp::GetLuaScriptWork() const
 
 Entresol* CatchApp::GetTheEntresol() const
     { return this->TheEntresol; }
+
+World* CatchApp::GetTheWorld() const
+    { return this->TheWorld; }
 
 CatchApp::ThrowableContainer& CatchApp::GetThrowables()
     { return this->ThrownItems; }

@@ -1,4 +1,4 @@
 <map id="Mezzanine::Input::Keyboard" name="Mezzanine::Input::Keyboard">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons. " alt="" coords="13,83,181,130"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="12,5,183,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons. " alt="" coords="14,80,182,121"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="13,5,183,32"/>
 </map>

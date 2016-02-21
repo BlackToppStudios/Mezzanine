@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -347,7 +347,6 @@ class vector3tests : public UnitTestGroup
                 TEST(VecX==Vec1 && VecY==Vec2 && VecZ==Vec3, "Normalize()");
             }
 
-
             {
                 Vector3 Vec1(112.0,0.0,0.0);
                 Vector3 Vec2(0.0,23.0,0.0);
@@ -357,6 +356,38 @@ class vector3tests : public UnitTestGroup
                 Vector3 VecZ(0.0,0.0,-1.0);
 
                 TEST(VecX==Vec1.GetNormal() && VecY==Vec2.GetNormal() && VecZ==Vec3.GetNormal(), "GetNormal()");
+            }
+
+
+            {
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 VecX(3.0,1.0,2.0);
+
+                TEST(VecX==Vec1.Permute(), "Permute()");
+            }
+
+
+            {
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 VecX(3.0,1.0,2.0);
+
+                TEST(VecX==Vec1.GetPermute(), "GetPermute()");
+            }
+
+
+            {
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 VecX(2.0,3.0,1.0);
+
+                TEST(VecX==Vec1.AntiPermute(), "AntiPermute()");
+            }
+
+
+            {
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 VecX(2.0,3.0,1.0);
+
+                TEST(VecX==Vec1.GetAntiPermute(), "GetAntiPermute()");
             }
 
             {
@@ -369,6 +400,20 @@ class vector3tests : public UnitTestGroup
                 Vector3 VecD(0.0,0.0,0.0);
 
                 TEST(VecX==VecD.GetDirection(Vec1) && VecY==VecD.GetDirection(Vec2) && VecZ==VecD.GetDirection(Vec3), "GetDirection(Vector3)");
+            }
+
+            {
+                Vector3 Vec1(5.0,0.0,0.0);
+                Vector3 Vec2(0.0,0.0,5.0);
+                Vector3 VecX(-3.0,3.0,0.0);
+                Vector3 VecY(3.0,3.0,0.0);
+
+                Boole Result = Vec1.IsPerpendicular(Vec2) && VecX.IsPerpendicular(VecY);
+                TEST(Result, "IsPerpendicular(Vector3&)");
+
+                Vector3 PerpTest1(45.0,28.0,36.0);
+                Vector3 PerpTest2 = PerpTest1.Perpendicular();
+                TEST(Result && PerpTest1.IsPerpendicular(PerpTest2) ,"Perpendicular()");
             }
 
             {
@@ -469,7 +514,7 @@ class vector3tests : public UnitTestGroup
                     Vector3 VecStream;
                     XMLstream >> VecStream;
                     TEST(VecStream==Vec,"operator>>(istream,Vector3)");
-                }catch (Mezzanine::Exception& Ex){
+                }catch (Mezzanine::ExceptionBase& Ex){
                     TestError << "Failure in: Vector3::operator>>(istream,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     TEST_RESULT(Testing::Failed,"operator>>(istream,Vector3)");
                 }
@@ -481,7 +526,7 @@ class vector3tests : public UnitTestGroup
                     XMLdoc.Load("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\"/>");
                     XMLdoc.GetFirstChild()>>VecLoad;
                     TEST(VecLoad==Vec, "operator>>(XML::Node,Vector3)");
-                }catch (Mezzanine::Exception& Ex){
+                }catch (Mezzanine::ExceptionBase& Ex){
                     TestError << "Failure in: Vector3::operator>>(XML::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     TEST_RESULT(Testing::Failed,"operator>>(XML::Node,Vector3)");
                 }

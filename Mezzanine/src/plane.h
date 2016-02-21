@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -65,7 +65,6 @@ namespace Mezzanine
     class MEZZ_LIB Plane
     {
     public:
-        /// @enum Side
         /// @brief An enum used to describe which side of the plane the result of a query is on.
         enum Side
         {
@@ -97,7 +96,7 @@ namespace Mezzanine
         Plane(const Plane& Other);
         /// @brief Descriptive constructor.
         /// @param Norm The positive direction of the plane.
-        /// @param Constant The Constant with which to project the plane.
+        /// @param Constant The Constant distance of the origin with which to project the plane.
         Plane(const Vector3& Norm, const Real Constant);
         /// @brief Dual Vector constructor.
         /// @param Norm The positive direction of the plane.
@@ -145,6 +144,12 @@ namespace Mezzanine
         /// @param Point The point in 3D space to get the distance to.
         /// @return Returns the distance from the plane to the specified point.  Positive values mean the point is on the positive side, and vice versa.
         Real GetDistance(const Vector3& Point) const;
+
+        /// @brief Gets the overlap of two Planes expressed as a Ray.
+        /// @note The "IsOverlapping" method overload that accepts a Plane is a fairly quick and easy check you could perform prior to this method to ensure you get valid results.
+        /// @param Other The other Plane to compare with.
+        /// @return Returns a Ray expressing the overlapping portions of the two Planes, or a blank/default Ray if they don't overlap.
+        Ray GetOverlap(const Plane& Other) const;
 
         /// @brief Checks to see if a sphere overlaps with this Plane.
         /// @param ToCheck The sphere to check for overlap.

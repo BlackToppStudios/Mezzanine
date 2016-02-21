@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -78,8 +78,17 @@ namespace Mezzanine
 #endif
         }
 
-        AudioManager::AudioManager(XML::Node& XMLNode)
+        AudioManager::AudioManager(const XML::Node& XMLNode)
         {
+#ifdef ENABLE_RAW_ENCODE
+            this->AddDecoderFactory(new RawDecoderFactory());
+#endif
+#ifdef ENABLE_VORBIS_ENCODE
+            this->AddDecoderFactory(new VorbisDecoderFactory());
+#endif
+#ifdef ENABLE_WAV_ENCODE
+            this->AddDecoderFactory(new WavDecoderFactory());
+#endif
         }
 
         AudioManager::~AudioManager()

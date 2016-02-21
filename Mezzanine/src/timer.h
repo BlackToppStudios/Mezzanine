@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -53,7 +53,6 @@ namespace Mezzanine
     class MEZZ_LIB Timer
     {
     public:
-        /// @enum TimerType
         /// @brief The style of timer to be used.
         enum TimerType
         {
@@ -61,7 +60,6 @@ namespace Mezzanine
             StopWatch,  ///< Counts down, respecting any goal and autoreset
             Alarm       ///< Counts up, respecting any goal and autoreset
         };
-        /// @enum TimeFormat
         /// @brief An enum describing how the text output of a timer should be formatted.
         enum TimeFormat
         {

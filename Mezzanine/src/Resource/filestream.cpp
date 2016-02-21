@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,130 +51,88 @@ namespace Mezzanine
 {
     namespace Resource
     {
-#ifdef USENEWDATASTREAM
-        /// @todo Implement this
-#else //USENEWDATASTREAM
-        FileStream::FileStream(std::fstream* Stream, const UInt16 Mode)
-            : DataStream( Mode ),
-              StandardStream(Stream)
+        FileStream::FileStream() :
+            IOStream(&this->FileBuffer)
+            { /*this->init(&this->FileBuffer);*/ }
+
+        FileStream::FileStream(const String& File, const Whole Mode) :
+            IOStream(&this->FileBuffer)
+            { /*this->init(&this->FileBuffer);*/  this->OpenFile(File,Mode); }
+
+        FileStream::FileStream(const String& FileName, const String& FilePath, const Whole Mode) :
+            IOStream(&this->FileBuffer)
+            { /*this->init(&this->FileBuffer);*/  this->OpenFile(FileName,FilePath,Mode); }
+
+        FileStream::~FileStream()
+            { if( this->IsOpenToFile() ) this->CloseFile(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        void FileStream::OpenFile(const String& File, const Whole Mode)
         {
-            StandardStream->seekg(0,std::ios_base::end);
-            Size = (size_t)StandardStream->tellg();
-            StandardStream->flush();
+            //this->open(File.c_str(),static_cast<const std::ios_base::openmode>(Mode));
+            if( !this->FileBuffer.open(File.c_str(),static_cast<const std::ios_base::openmode>(Mode)) ) {
+                this->setstate(ios_base::failbit);
+            }else{
+                this->clear();
+            }
+
+            if( !this->IsOpenToFile() ) {
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \"" + File + "\".");
+            }
+
+            this->SetReadPosition(0,Resource::SO_End);
+            this->Size = (StreamSize)this->GetReadPosition();
+            this->flush();
             this->SetStreamPosition(0);
         }
 
-        FileStream::FileStream(const String& FileName, const String& Path, const UInt16 Mode)
-            : DataStream( Mode )
+        void FileStream::OpenFile(const String& FileName, const String& FilePath, const Whole Mode)
         {
-            StandardStream = new std::fstream();
-
-            std::ios_base::openmode Options = (std::ios_base::in | std::ios_base::out);
-            if(SFlags & DataStream::SF_Binary)
-            {
-                Options = (Options | std::ios_base::binary);
-            }
-            if(SFlags & DataStream::SF_Truncate)
-            {
-                Options = (Options | std::ios_base::trunc);
-            }
-
             String FullPath;
-            char Check = Path.at(Path.size() - 1);
-            #ifdef WINDOWS
+            char Check = FilePath.at(FilePath.size() - 1);
+            #ifdef MEZZ_WINDOWS
             char SysSlash = '\\';
             #else
             char SysSlash = '/';
             #endif
-            if( SysSlash != Check )
-                FullPath = Path+SysSlash+FileName;
-            else
-                FullPath = Path+FileName;
-            StandardStream->open(FullPath.c_str(),Options);
-
-            if(!StandardStream->is_open())
-            {
-                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+FileName+"\".");
+            if( SysSlash != Check ) {
+                FullPath = FilePath + SysSlash + FileName;
+            }else{
+                FullPath = FilePath + FileName;
             }
 
-            StandardStream->seekg(0,std::ios_base::end);
-            Size = (size_t)StandardStream->tellg();
-            StandardStream->flush();
-            this->SetStreamPosition(0);
+            this->OpenFile(FullPath,Mode);
         }
 
-        FileStream::~FileStream()
+        Boole FileStream::IsOpenToFile() const
         {
-            Close();
+            return this->FileBuffer.is_open();
         }
+
+        void FileStream::CloseFile()
+        {
+            this->OpenFileName.clear();
+            this->Flags = Resource::SF_None;
+
+            //this->close();
+            if( !this->FileBuffer.close() ) {
+                this->setstate(std::ios_base::failbit);
+            }
+        }
+
+        const String& FileStream::GetFilePathAndName() const
+            { return this->OpenFileName; }
+
+        Whole FileStream::GetSteamFlags() const
+            { return this->Flags; }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Stream Access and Manipulation
+        // Stream Base Operations
 
-        size_t FileStream::Read(void* Buffer, const size_t& Count)
-        {
-            if(IsReadable())
-            {
-                StandardStream->read(static_cast<char*>(Buffer),static_cast<std::streamsize>(Count));
-                StandardStream->seekp(static_cast<std::ifstream::pos_type>(StandardStream->gcount()),std::ios::cur);
-                return StandardStream->gcount();
-            }else{
-                return 0;
-            }
-        }
-
-        size_t FileStream::Write(const void* Buffer, const size_t& Count)
-        {
-            size_t Written = 0;
-            if(IsWriteable())
-            {
-                StandardStream->write(static_cast<const char*>(Buffer), static_cast<std::streamsize>(Count));
-                StandardStream->seekg(static_cast<std::ifstream::pos_type>(Count),std::ios::cur);
-                Written = Count;
-            }
-            return Written;
-        }
-
-        void FileStream::Advance(const StreamOff Count)
-        {
-            StandardStream->clear();
-            this->SetStreamPosition(Count,SO_Current);
-        }
-
-        void FileStream::SetStreamPosition(StreamPos Position)
-        {
-            StandardStream->clear();
-            StandardStream->seekg(Position);
-            StandardStream->seekp(Position);
-        }
-
-        void FileStream::SetStreamPosition(StreamOff Offset, SeekOrigin Origin)
-        {
-            StandardStream->clear();
-            StandardStream->seekg(Offset,std::ios::cur);
-            StandardStream->seekp(Offset,std::ios::cur);
-        }
-
-        StreamPos FileStream::GetStreamPosition(Boole Read)
-        {
-            if(Read) return StandardStream->tellg();
-            else return StandardStream->tellp();
-        }
-
-        Boole FileStream::EoF() const
-        {
-            return StandardStream->eof();
-        }
-
-        void FileStream::Close()
-        {
-            if(StandardStream->is_open())
-            {
-                StandardStream->flush();
-                StandardStream->close();
-            }
-        }
-#endif
+        StreamSize FileStream::GetSize() const
+            { return this->Size; }
     }//Resource
 }//Mezzanine
 

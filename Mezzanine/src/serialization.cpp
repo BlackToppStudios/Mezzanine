@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ namespace Mezzanine
 {
     void SerializeError(const String& FailedTo, const String& ClassName, Boole SOrD)
         /// @todo This may not be an appropriate type of exception to throw here, should evaluate if a new exception is needed at some point.
-        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not " + FailedTo + " during " + ClassName + (SOrD? " ":" De") + "Serialization."); }
+        { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not " + FailedTo + " during " + ClassName + (SOrD? " ":" De") + "Serialization."); }
 
     void DeSerializeError(const String& FailedTo, const String& ClassName, Boole SOrD)
         { SerializeError(FailedTo, ClassName, SOrD); }

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,6 +49,7 @@ namespace Mezzanine
 {
     // Just a few forward declarations to make wrapping some functionality to engine internals easier.
     class Entresol;
+    class World;
     namespace Internal
     {
         class Line3D;
@@ -63,9 +64,11 @@ namespace Mezzanine
     class MEZZ_LIB LineGroup
     {
         /// @todo TODO: This class really should support rotation, the underlying implementation does.
+        private:
+            World * ParentWorld;
         public:
             /// @brief Basic Constructor.
-            LineGroup();
+            LineGroup(World * ParentWorld);
             /// @brief Default Destructor.
             ~LineGroup();
 
@@ -75,7 +78,7 @@ namespace Mezzanine
             /// @param Colour The colour to be given to the new point.
             void AddPoint(const Vector3& NewPoint, const ColourValue& Colour);
             /// @brief Access points by order they were added.
-            /// @details This returns the point indicated by index. They start at 0, and increment from there.
+            /// @return Returns the point indicated by index. They start at 0, and increment from there.
             /// @param Index A Whole number which indicates which point to retrieve.
             const Vector3 GetPoint(const Whole Index) const;
             /// @brief Get the amount of points used to define Line Segments.

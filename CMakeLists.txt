@@ -1,4 +1,4 @@
-# @ Copyright 2010 - 2014 BlackTopp Studios Inc.
+# © Copyright 2010 - 2016 BlackTopp Studios Inc.
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -45,20 +45,20 @@
 #
 # This file primarily gathers information from the developer about the build environment
 # and desired game engine options. It makes this information available to the rest of
-# the include cmake files to minimizie duplicated effort.
+# the include cmake files to minimize duplicated effort.
 #
 # Here is a listing of some of the values that this files sets up for consumption by other
 # build scripts, that can be set as cmake options:
 #
 # That affect/add/remove behavior of the Mezzanine engine
-#        Mezz_BuildTypeDebug                - False - The Engine will be compiled with debug symbols by setting CMAKE_BUILD_TYPE. MEZZDEBUG will be passed as a preprocessor macro causing more logging messages to be included. All libraries will also include debug symbols.
-#        Mezz_BuildTypeRelease              - False - The Engine will be compiled with optimizations by setting CMAKE_BUILD_TYPE. MEZZRELEASE will be passed into the source via a preprocessor macro.
-#        Mezz_BuildTypeSmall                - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
-#        Mezz_Lua51                         - True if Lua is to be included and link against. False if Lua was not selected to be compiled in.
-#        Mezz_Ruby                          - True if Ruby is to be included and link against. False if Ruby was not selected to be compiled in.
-#        Mezz_SWIG                          - Rebuild Scripting interfaces with SWIG each build
-#        Mezz_Network                       - Enable or disable networking support
-#        Mezz_AllWarnings                   - Enable all compiler warnings
+#   Mezz_BuildTypeDebug     - False - The Engine will be compiled with debug symbols by setting CMAKE_BUILD_TYPE. MEZZDEBUG will be passed as a preprocessor macro causing more logging messages to be included. All libraries will also include debug symbols.
+#   Mezz_BuildTypeRelease   - False - The Engine will be compiled with optimizations by setting CMAKE_BUILD_TYPE. MEZZRELEASE will be passed into the source via a preprocessor macro.
+#   Mezz_BuildTypeSmall     - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
+#   Mezz_Lua51              - True if Lua is to be included and link against. False if Lua was not selected to be compiled in.
+#   Mezz_Ruby               - True if Ruby is to be included and link against. False if Ruby was not selected to be compiled in.
+#   Mezz_SWIG               - Rebuild Scripting interfaces with SWIG each build
+#   Mezz_Network            - Enable or disable networking support
+#   Mezz_AllWarnings        - Enable all compiler warnings
 #
 # Build Extra Features alongside the Mezzanine
 #        Mezz_Doc                           - Check for Doxygen on the system and force a doxygen build as part of a full build when it is present.
@@ -66,7 +66,6 @@
 # Advanced Mezzanine build options
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
-#        Mezz_MinimizeThreadsEachFrame      - On some platforms thread creation is expensive, on others it is cheap and atomics expensive. Use this with your favorite benchmark to maximize performance.
 #        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
 #        Mezz_FramesToTrack                 - How many frame should the runtime performance metrics be tracked for
 #        Mezz_Lua51IncludeDirectory         - Location of headers for lua 5.1
@@ -132,21 +131,27 @@ set(LibPostfix "")
 if(${WIN32})
     set(BuildPlatform windows)
     set(DynamicLibSuffix .dll)
-    add_definitions( -DWINDOWS )
+    add_definitions( -DMEZZ_WINDOWS )
+    if(MSVC)
+        add_definitions( -DMEZZ_WIN_MSVC )
+    endif(MSVC)
+    if(MINGW)
+        add_definitions( -DMEZZ_WIN_MINGW )
+    endif(MINGW)
 endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(BuildPlatform linux)
     set(DynamicLibPrefix lib)
     set(DynamicLibSuffix .so)
-    add_definitions( -DLINUX )
+    add_definitions( -DMEZZ_LINUX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(BuildPlatform macosx)
     set(DynamicLibPrefix lib)
     set(DynamicLibSuffix .dylib)
-    add_definitions( -DMACOSX )
+    add_definitions( -DMEZZ_MACOSX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 if(${WIN32})
@@ -341,13 +346,6 @@ endif(${Mezz_Tools_EntreLua})
 #How long should the default length on rolling averages and other multiframe periods be.
 set(Mezz_FramesToTrack 10 CACHE STRING "How long should frame durations be tracked for")
 
-# Allow the developer to select if New thread should be created each frame or if an atomic barrier should be used to synchronized threads.
-option(Mezz_MinimizeThreadsEachFrame "Used atomics to minimize thread creation" OFF)
-set(MinimizeThreads THREADSEACHFRAME)
-if (Mezz_MinimizeThreadsEachFrame)
-    set(MinimizeThreads MINTHREADS)
-endif (Mezz_MinimizeThreadsEachFrame)
-
 #When looking for work use atomics to advance iterators past complete work units.
 option(Mezz_DecacheWorkUnits "Use atomics to minimize how many WorkUnits are likely to be in CPU cache]." ON)
 set(DecacheWork NODECACHEWORKUNIT)
@@ -409,7 +407,7 @@ set(OgreLibraryAllNames ${OgreLinkName} Plugin_ParticleFX)
 set(Ogre_Arguments "")
 set(OgreHeaderIncludeDir "")
 
-# Detect available RenderSystems by abusing Ogre internal CMake variables
+# Setup rendersystem options
 option (Mezz_BuildRenderSystemDirectX9 "Include Support for DirectX 9" OFF)
 set(OGRE_BUILD_RENDERSYSTEM_D3D9 ${Mezz_BuildRenderSystemDirectX9} CACHE BOOL "Forcing Ogre option to match Mezzanine." FORCE)
 if(${OGRE_BUILD_RENDERSYSTEM_D3D9})
@@ -445,6 +443,18 @@ else(${OGRE_BUILD_RENDERSYSTEM_GL})
     message ( STATUS "${PROJECT_NAME} - Disabling OpenGL Rendering Support")
     set(Ogre_Arguments "${Ogre_Arguments} ${D}MEZZ_BUILD_OPENGL_SUPPORT_undefined")
 endif(${OGRE_BUILD_RENDERSYSTEM_GL})
+
+option (Mezz_BuildRenderSystemOpenGL3Plus "Include Support for OpenGL3+" ON)
+set(OGRE_BUILD_RENDERSYSTEM_GL3PLUS ${Mezz_BuildRenderSystemOpenGL3Plus} CACHE BOOL "Forcing Ogre option to match Mezzanine." FORCE)
+if(${OGRE_BUILD_RENDERSYSTEM_GL3PLUS})
+    message ( STATUS "${PROJECT_NAME} - Enabling OpenGL3+ Rendering Support")
+    set(Ogre_Arguments ${Ogre_Arguments} "${D}MEZZ_BUILD_OPENGL3PLUS_SUPPORT")
+    set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/GL3Plus/include")
+    set(OgreLibraryAllNames ${OgreLibraryAllNames} RenderSystem_GL3Plus)
+else(${OGRE_BUILD_RENDERSYSTEM_GL3PLUS})
+    message ( STATUS "${PROJECT_NAME} - Disabling OpenGL3+ Rendering Support")
+    set(Ogre_Arguments "${Ogre_Arguments} ${D}MEZZ_BUILD_OPENGL3PLUS_SUPPORT_undefined")
+endif(${OGRE_BUILD_RENDERSYSTEM_GL3PLUS})
 
 option (Mezz_BuildRenderSystemOpenGLES "Include Support for OpenGLES" OFF)
 set(OGRE_BUILD_RENDERSYSTEM_GLES ${Mezz_BuildRenderSystemOpenGLES} CACHE BOOL "Forcing Ogre option to match Mezzanine." FORCE)
@@ -483,7 +493,7 @@ else(${Mezz_BuildTypeDebug})
 endif(${Mezz_BuildTypeDebug})
 
 #This must be set manually each time ogre is upgraded.
-set(Mezz_UseOgreVersion 1.8.1 CACHE STRING "The version of the ogre libraries to link against")
+set(Mezz_UseOgreVersion 1.10 CACHE STRING "The version of the ogre libraries to link against")
 set(OgreDepName Ogre)
 set(OgreLibFileName ${StaticLibPrefix}${OgreLinkName}${StaticLibSuffix})
 set(OgreLinuxSoName ${OgreLibFileName}.${Mezz_UseOgreVersion})                #This value is gibberish on non-Linux platforms
@@ -507,12 +517,67 @@ option (Mezz_Doc "Refresh Doxygen documentation during a build" OFF)
 
 if(Mezz_Doc)
     Message(STATUS "Starting Doxygen Configuration.")
+    if(${WIN32})
+        set(CatCommand "type")
+    else(${WIN32})
+        set(CatCommand "cat")
+    endif(${WIN32})
+
     find_package(Doxygen)
     if(DOXYGEN_FOUND)
         add_custom_target(MezzanineDocumentation ALL
-            ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+            COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+            COMMAND ${CatCommand} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt 1>&2
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/closed.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clclosed.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/closed.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/closed.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/open.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/clopen.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/favicon.ico
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/favicon.ico
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/open.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/open.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/red_x.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/close.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/img/Magnifier.png
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/mag_sel.png
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/search.css
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search.css
+
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/tab_a.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/tab_b.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/tab_h.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/tab_s.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search_m.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search_l.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search/search_r.png
+            COMMAND ${CMAKE_COMMAND} -E remove
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/search_r.png
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
             COMMENT "Generating API documentation with Doxygen" VERBATIM
+            SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/layout.xml
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/html/DoxygenWarnings.txt
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/DoxyStyle.css
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/search.css
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/DoxyFooter.html
+                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/html/DoxyHeader.html
         )
     else(DOXYGEN_FOUND)
         Message(STATUS "Doxygen not found.")
@@ -554,18 +619,30 @@ set(SDLLibraryNames
 ###############################################################################
 # Perform Common Tasks for build options and configuration.
 
-set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Ogre_Arguments} ${FPIC}")
-#message(FATAL_ERROR ${CommonBuildFlags})
+# Check and set a macro for endianess.
+if(NOT MSVC AND NOT ANDROID)
+    # This doesn't work on VS 2010
+    # MSVC only builds for intel anyway
+    include(TestBigEndian)
+    test_big_endian(Mezz_Platform_Big_Endian)
+    if(Mezz_Platform_Big_Endian)
+        set(Mezz_Endian_Arguments "${D}MEZZ_BIG_ENDIAN")
+    else(Mezz_Platform_Big_Endian)
+        set(Mezz_Endian_Arguments "${D}MEZZ_LITTLE_ENDIAN")
+    endif(Mezz_Platform_Big_Endian)
+endif(NOT MSVC AND NOT ANDROID)
+
+set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} ${FPIC}")
 
 ###############################################################################
 # Perform Platform Specific Tasks for build options and configuration.
 
 # Force cmake to use Clang on MacOS
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    include(CMakeForceCompiler)
-    CMAKE_FORCE_C_COMPILER(clang GNU)
-    CMAKE_FORCE_CXX_COMPILER(clang++ GNU)
-    set(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "com.apple.compilers.llvm.clang.1_0")
+    #include(CMakeForceCompiler)
+    #CMAKE_FORCE_C_COMPILER(clang GNU)
+    #CMAKE_FORCE_CXX_COMPILER(clang++ GNU)
+    #set(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "com.apple.compilers.llvm.clang.1_0")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
@@ -631,7 +708,6 @@ mark_as_advanced( FORCE
     ARTS_CONFIG D_NAS_LIB XCURSOR_LIB XEXT_LIB XI_LIB XINERAMA_LIB XRANDR_LIB XRENDER_LIB XSS_LIB XXF86VM_LIB X11_LIB
 
     # Bullet options
-
     USE_DOUBLE_PRECISION
     USE_MSVC_RUNTIME_LIBRARY_DLL
     USE_MSVC_INCREMENTAL_LINKING
@@ -664,43 +740,6 @@ mark_as_advanced( FORCE
     INSTALL_LIBS
     INSTALL_EXTRA_LIBS
     BUILD_UNIT_TESTS
-
-    # Ogre indirect
-    Boost_DIR Boost_LIB_DIAGNOSTIC_DEFINITIONS OGRE_SET_USE_BOOST BOOST_THREAD_LIBRARY
-    DirectX_DINPUT8_LIBRARY
-    Cg_LIBRARY_REL Cg_LIBRARY_DBG Cg_INCLUDE_DIR
-
-    # Ogre
-    OGRE_STATIC
-    OGRE_BUILD_RENDERSYSTEM_D3D9
-    OGRE_BUILD_RENDERSYSTEM_D3D11
-    OGRE_BUILD_RENDERSYSTEM_GL
-    OGRE_BUILD_RENDERSYSTEM_GLES
-    OGRE_BUILD_RENDERSYSTEM_GLES2
-    OGRE_BUILD_PLATFORM_APPLE_IOS
-    OGRE_BUILD_PLATFORM_NACL
-    OGRE_BUILD_PLUGIN_BSP
-    OGRE_BUILD_PLUGIN_OCTREE
-    OGRE_BUILD_PLUGIN_PFX
-    OGRE_BUILD_PLUGIN_PCZ
-    OGRE_BUILD_COMPONENT_PAGING
-    OGRE_BUILD_COMPONENT_TERRAIN
-    OGRE_BUILD_COMPONENT_PROPERTY
-    OGREDEPS_BUILD_CG
-    OGRE_BUILD_PLUGIN_CG
-    OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
-    OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS
-    OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS
-    OGRE_BUILD_SAMPLES
-    OGRE_BUILD_TOOLS
-    OGRE_BUILD_XSIEXPORTER
-    OGRE_BUILD_TESTS
-    OGRE_CONFIG_DOUBLE
-    OGRE_COPY_DEPENDENCIES OGRE_INSTALL_DEPENDENCIES
-    OGRE_DEPENDENCIES_DIR
-    OGRE_CONFIG_THREADS OGRE_CONFIG_THREAD_PROVIDER
-    OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_STRING_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_MEMTRACK_DEBUG OGRE_CONFIG_MEMTRACK_RELEASE
-    OGRE_UNITY_BUILD OGRE_UNITY_FILES_PER_UNIT
 
     WINDRES WINE
 

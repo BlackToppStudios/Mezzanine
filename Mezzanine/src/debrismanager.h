@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@
 /// @brief This file contains the declaration for the manager that manages debris objects in a world.
 
 #include "worldmanager.h"
-#include "managerfactory.h"
+#include "worldmanagerfactory.h"
 #ifndef SWIG
     #include "Threading/workunit.h"
 #endif
@@ -116,6 +116,11 @@ namespace Mezzanine
         typedef DebrisContainer::iterator            DebrisIterator;
         /// @brief Const Iterator type for Debris instances stored by this class.
         typedef DebrisContainer::const_iterator      ConstDebrisIterator;
+
+        /// @brief A String containing the name of this manager implementation.
+        static const String ImplementationName;
+        /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+        static const ManagerBase::ManagerType InterfaceType;
     protected:
         friend class DebrisUpdateWorkUnit;
 
@@ -134,10 +139,12 @@ namespace Mezzanine
         Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
     public:
         /// @brief Class constructor.
-        DebrisManager();
+        /// @param Creator The parent world that is creating the manager.
+        DebrisManager(World* Creator);
         /// @brief XML constructor.
+        /// @param Creator The parent world that is creating the manager.
         /// @param XMLNode The node of the xml document to construct from.
-        DebrisManager(XML::Node& XMLNode);
+        DebrisManager(World* Creator, const XML::Node& XMLNode);
         /// @brief Class destructor.
         virtual ~DebrisManager();
 
@@ -270,9 +277,10 @@ namespace Mezzanine
     };//DebrisManager
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultDebrisManagerFactory
     /// @brief A factory responsible for the creation and destruction of the default DebrisManager.
     ///////////////////////////////////////
-    class DefaultDebrisManagerFactory : public ManagerFactory
+    class DefaultDebrisManagerFactory : public WorldManagerFactory
     {
     public:
         /// @brief Class constructor.
@@ -280,15 +288,17 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~DefaultDebrisManagerFactory();
 
-        /// @copydoc ManagerFactory::GetManagerTypeName()
-        String GetManagerTypeName() const;
+        /// @copydoc ManagerFactory::GetManagerImplName()
+        String GetManagerImplName() const;
+        /// @copydoc ManagerFactory::GetManagerType() const
+        ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-        ManagerBase* CreateManager(NameValuePairList& Params);
-        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-        ManagerBase* CreateManager(XML::Node& XMLNode);
-        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-        void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, const NameValuePairList&)
+        WorldManager* CreateManager(World* Creator, const NameValuePairList& Params);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, const XML::Node&)
+        WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode);
+        /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+        void DestroyManager(WorldManager* ToBeDestroyed);
     };//DefaultDebrisManagerFactory
 }//Mezzanine
 

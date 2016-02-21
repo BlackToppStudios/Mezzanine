@@ -78,7 +78,7 @@ SHOW_USED_FILES        = YES
 SHOW_FILES             = YES
 SHOW_NAMESPACES        = YES
 FILE_VERSION_FILTER    =
-LAYOUT_FILE            =
+LAYOUT_FILE            = layout.xml
 CITE_BIB_FILES         =
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages
@@ -93,7 +93,7 @@ WARN_LOGFILE           = ../html/DoxygenWarnings.txt
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/Scripting/Lua51 ../../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML
+INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/dox ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/Scripting/Lua51 ../../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML ../../../UnitTests/src ../../../Mezzanine/src/Graphics/Procedural/ ../../../Mezzanine/src/Graphics/Procedural/Mesh ../../../Mezzanine/src/Graphics/Procedural/Texture
 # ../../../Mezzanine/src/Internal
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
@@ -125,7 +125,7 @@ VERBATIM_HEADERS       = YES
 # configuration options related to the alphabetical class index
 #---------------------------------------------------------------------------
 ALPHABETICAL_INDEX     = YES
-COLS_IN_ALPHA_INDEX    = 5
+COLS_IN_ALPHA_INDEX    = 1
 IGNORE_PREFIX          =
 #---------------------------------------------------------------------------
 # configuration options related to the HTML output
@@ -135,8 +135,8 @@ HTML_OUTPUT            = html
 HTML_FILE_EXTENSION    = .html
 HTML_HEADER            = html/DoxyHeader.html
 HTML_FOOTER            = html/DoxyFooter.html
-HTML_STYLESHEET        = html/DoxyStyle.css
-HTML_EXTRA_FILES       = img/bc_s.png img/nav_f.png img/nav_h.png img/tab_a.png img/tab_b.png img/tab_h.png img/tab_s.png gpl-3.0.txt README.md img/bc_s.png img/nav_f.png img/nav_h.png img/tab_a.png img/tab_b.png img/tab_h.png img/tab_s.png
+HTML_EXTRA_STYLESHEET        = html/DoxyStyle.css
+HTML_EXTRA_FILES       = img/bc_s.png img/nav_f.png img/nav_h.png img/tab_a.png img/tab_b.png img/tab_h.png img/tab_s.png gpl-3.0.txt README.md img/bc_s.png img/nav_f.png img/nav_h.png img/tab_a.png img/tab_b.png img/tab_h.png img/tab_s.png img/search_l.png
 #doxyfiles/bc_s.png doxyfiles/nav_f.png doxyfiles/nav_h.png doxyfiles/tab_a.png doxyfiles/tab_b.png doxyfiles/tab_h.png doxyfiles/tab_s.png
 HTML_COLORSTYLE_HUE    = 220
 HTML_COLORSTYLE_SAT    = 100

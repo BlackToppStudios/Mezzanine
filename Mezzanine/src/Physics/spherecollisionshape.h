@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -86,7 +86,7 @@ namespace Mezzanine
             virtual void ProtoDeSerialize(const XML::Node& OneNode);
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "SphereCollisionShape"
-            static String SerializableName();
+            static String GetSerializableName();
         };//SphereCollisionShape
     }//Physics
 }//Mezzanine

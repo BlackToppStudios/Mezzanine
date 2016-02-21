@@ -1,5 +1,5 @@
 // The DAGFrameScheduler is a Multi-Threaded lock free and wait free scheduling library.
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The DAGFrameScheduler.
 
     The DAGFrameScheduler is free software: you can redistribute it and/or modify
@@ -71,7 +71,6 @@ namespace Mezzanine
 {
     namespace Threading
     {
-
         /// @cond false
 
         // Initializing static members
@@ -88,13 +87,7 @@ namespace Mezzanine
                 Iter++)
             {
                 FrameScheduler* CurrentFrameScheduler = *Iter;
-                LogAggregator* Pointer = CurrentFrameScheduler->GetLogAggregator();
-                if(Pointer)
-                {
-                    DefaultThreadSpecificStorage::Type Storage(CurrentFrameScheduler);
-                    Pointer->DoWork(Storage);
-                    CurrentFrameScheduler->GetLog().flush();
-                }
+                CurrentFrameScheduler->ForceLogFlush();
             }
             exit(1);
         }
@@ -107,27 +100,14 @@ namespace Mezzanine
             FrameScheduler& FS = *(Storage.GetFrameScheduler());
             iWorkUnit* CurrentUnit;
 
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            while(!FS.LastFrame)
+            do
             {
-                FS.StartFrameSync.Wait(); // Syncs with Main thread in CreateThreads()
-                if(FS.LastFrame)
-                    { break; }
-            #endif
-
-                do
+                while( (CurrentUnit = FS.GetNextWorkUnit()) ) /// @todo needs to skip ahead a unit instead of spinning
                 {
-                    while( (CurrentUnit = FS.GetNextWorkUnit()) ) /// @todo needs to skip ahead a unit instead of spinning
-                    {
-                        if(Starting==CurrentUnit->TakeOwnerShip())
-                            { CurrentUnit->operator()(Storage); }
-                    }
-                } while(!FS.AreAllWorkUnitsComplete());
-
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-                FS.EndFrameSync.Wait(); // Syncs with Main thread in JoinAllThreads()
-            }
-            #endif
+                    if(Starting==CurrentUnit->TakeOwnerShip())
+                        { CurrentUnit->operator()(Storage); }
+                }
+            } while(!FS.AreAllWorkUnitsComplete());
         }
 
         /// @brief This is the function that the main thread runs.
@@ -166,15 +146,7 @@ namespace Mezzanine
 
 
         void FrameScheduler::CleanUpThreads()
-        {
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            while(1!=AtomicCompareAndSwap32(&LastFrame,LastFrame,1));
-            StartFrameSync.SetThreadSyncCount(0);
-            EndFrameSync.SetThreadSyncCount(0); // Handle situations where Threads have not been created yet
-            #else
-            JoinAllThreads();
-            #endif
-        }
+            { JoinAllThreads(); }
 
         void FrameScheduler::DeleteThreads()
         {
@@ -207,13 +179,7 @@ namespace Mezzanine
             PauseTimeLog(MEZZ_FRAMESTOTRACK),
             CurrentFrameStart(GetTimeStamp()),
             CurrentPauseStart(GetTimeStamp()),
-            LogDestination(_LogDestination ? _LogDestination : new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc)),
             Sorter(0),
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            StartFrameSync(StartingThreadCount),
-            EndFrameSync(StartingThreadCount),
-            LastFrame(0),
-            #endif
             #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
             DecacheMain(0),
             DecacheAffinity(0),
@@ -226,7 +192,10 @@ namespace Mezzanine
             NeedToLogDeps(true)
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
-            GetLog() << "<MezzanineLog>" << std::endl;
+            if(_LogDestination)
+                { InstallLog(_LogDestination); }
+            else
+                { InstallLog(new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc)); }
             AddErrorScheduler(this);
             SetErrorHandler();
         }
@@ -236,13 +205,8 @@ namespace Mezzanine
             PauseTimeLog(MEZZ_FRAMESTOTRACK),
             CurrentFrameStart(GetTimeStamp()),
             CurrentPauseStart(GetTimeStamp()),
-            LogDestination(_LogDestination),
+
             Sorter(0),
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            StartFrameSync(StartingThreadCount),
-            EndFrameSync(StartingThreadCount),
-            LastFrame(0),
-            #endif
             #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
             DecacheMain(0),
             DecacheAffinity(0),
@@ -255,8 +219,7 @@ namespace Mezzanine
             NeedToLogDeps(true)
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
-            (*LogDestination) << "<MezzanineLog>" << std::endl;
-            LogDestination->flush();
+            InstallLog(_LogDestination);
             AddErrorScheduler(this);
             SetErrorHandler();
         }
@@ -270,15 +233,7 @@ namespace Mezzanine
         {
             RemoveErrorScheduler(this);
             CleanUpThreads();
-
-            (*LogDestination) << "</MezzanineLog>" << std::endl;
-            LogDestination->flush();
-
-            if(LoggingToAnOwnedFileStream)
-            {
-                ((std::fstream*)LogDestination)->close();
-                delete LogDestination;
-            }
+            RemoveLog();
             for(std::vector<WorkUnitKey>::iterator Iter=WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); ++Iter)
                 { delete Iter->Unit; }
             for(std::vector<MonopolyWorkUnit*>::iterator Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); ++Iter)
@@ -590,33 +545,11 @@ namespace Mezzanine
         void FrameScheduler::CreateThreads()
         {
             LogResources.Lock(); //Unlocks in FrameScheduler::RunMainThreadWork() after last resource is swapped
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-                StartFrameSync.SetThreadSyncCount(CurrentThreadCount);
-                EndFrameSync.SetThreadSyncCount(CurrentThreadCount);
-                for(Whole Count = 1; Count<CurrentThreadCount; ++Count)
-                {
-                    if(Count+1>Resources.size())
-                    {
-                        Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
-                        Resources[Count]->SwapAllBufferedResources();
-                        Threads.push_back(new Thread(ThreadWork, Resources[Count]));
-                    }
-                }
-                StartFrameSync.Wait();
-            #else
-                for(Whole Count = 1; Count<CurrentThreadCount; ++Count)
-                {
-                    if(Count+1>Resources.size())
-                        { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
-                    Resources[Count]->SwapAllBufferedResources();
-                    Threads.push_back(new Thread(ThreadWork, Resources[Count]));
-                }
-            #endif
+            SwapBufferedResources();
         }
 
         void FrameScheduler::RunMainThreadWork()
         {
-            Resources[0]->SwapAllBufferedResources();
             LogDependencies();
             LogResources.Unlock();
             ThreadWorkAffinity(Resources[0]); // Do work in this thread and get the units with affinity
@@ -625,9 +558,6 @@ namespace Mezzanine
 
         void FrameScheduler::JoinAllThreads()
         {
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            EndFrameSync.Wait();
-            #else
             for(std::vector<Thread*>::iterator Iter=Threads.begin(); Iter!=Threads.end(); ++Iter)
             {
                 (*Iter)->join();
@@ -635,7 +565,6 @@ namespace Mezzanine
             }
             Threads.clear();
             Threads.reserve(CurrentThreadCount);
-            #endif
 
             if(Sorter)
             {
@@ -767,6 +696,31 @@ namespace Mezzanine
         std::ostream& FrameScheduler::GetLog()
             { return *LogDestination; }
 
+        void FrameScheduler::ChangeLogTarget(std::ostream* LogTarget)
+        {
+            RemoveLog();
+            InstallLog(LogTarget);
+        }
+
+        void FrameScheduler::InstallLog(std::ostream* LogTarget)
+        {
+            LogDestination = LogTarget;
+            (*LogDestination)<< "<MezzanineLog>" << std::endl;
+            LogDestination->flush();
+        }
+
+        void FrameScheduler::RemoveLog()
+        {
+            (*LogDestination) << "</MezzanineLog>" << std::endl;
+            LogDestination->flush();
+
+            if(LoggingToAnOwnedFileStream)
+            {
+                ((std::fstream*)LogDestination)->close();
+                delete LogDestination;
+            }
+        }
+
         LogAggregator* FrameScheduler::GetLogAggregator()
         {
             LogAggregator* Results = NULL;
@@ -792,6 +746,35 @@ namespace Mezzanine
             }
             return NULL;
 
+        }
+
+        Boole FrameScheduler::ForceLogFlush()
+        {
+            LogAggregator* Pointer = GetLogAggregator();
+            if(Pointer)
+            {
+                DefaultThreadSpecificStorage::Type Storage(this);
+                Pointer->NextFlushForced();
+                Pointer->DoWork(Storage);
+                this->SwapBufferedResources();
+                Pointer->NextFlushForced();
+                Pointer->DoWork(Storage);
+                GetLog().flush();
+                return true;
+            }
+            return false;
+        }
+
+        void FrameScheduler::SwapBufferedResources()
+        {
+            Resources[0]->SwapAllBufferedResources();
+            for(Whole Count = 1; Count<CurrentThreadCount; ++Count)
+            {
+                if(Count+1>Resources.size())
+                    { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
+                Resources[Count]->SwapAllBufferedResources();
+                Threads.push_back(new Thread(ThreadWork, Resources[Count]));
+            }
         }
 
     } // \FrameScheduler

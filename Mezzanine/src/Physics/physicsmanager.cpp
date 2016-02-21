@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,14 +40,22 @@
 #ifndef _physicsphysicsmanager_cpp
 #define _physicsphysicsmanager_cpp
 
-using namespace std;
-
 #include "Physics/physicsmanager.h"
 #include "Physics/collision.h"
 
 #include "Physics/ghostproxy.h"
 #include "Physics/rigidproxy.h"
 #include "Physics/softproxy.h"
+
+#include "Physics/conetwistconstraint.h"
+#include "Physics/gearconstraint.h"
+#include "Physics/generic6dofconstraint.h"
+#include "Physics/generic6dofspringconstraint.h"
+#include "Physics/hingeconstraint.h"
+#include "Physics/hinge2constraint.h"
+#include "Physics/point2pointconstraint.h"
+#include "Physics/sliderconstraint.h"
+#include "Physics/universalconstraint.h"
 
 #include "Graphics/graphicsmanager.h"
 
@@ -63,6 +71,8 @@ using namespace std;
 #include "worldobject.h"
 #include "crossplatform.h"
 #include "entresol.h"
+#include "world.h"
+#include "timer.h"
 
 #include "Physics/collisiondispatcher.h.cpp"
 
@@ -78,7 +88,7 @@ using namespace std;
 // This define is needed to avoid a declaration collision for uint64_t between a bullet typedef and the one in stdint.h
 #define __PHYSICS_COMMON_H__ 1
 
-#ifdef WINDOWS
+#ifdef MEZZ_WINDOWS
 #include <BulletMultiThreaded/Win32ThreadSupport.h>
 #else
 #include <BulletMultiThreaded/PosixThreadSupport.h>
@@ -108,14 +118,21 @@ namespace Mezzanine
             /// @brief This stores the wireframe being used for rendering.
             Mezzanine::LineGroup* WireFrame;
             /// @internal
+            /// @brief A pointer to the safe logger for debug output.
+            Mezzanine::Logger* ErrorLogger;
+            /// @internal
             /// @brief This stores whether or not to render physics debug lines
             /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
             /// Later we will add support for contact drawing, individual modeling drawing, etc...
             int DebugDrawing;
+
+            /// @brief Parent World To draw in
+            World* ParentWorld;
+
         public:
             /// @internal
             /// @brief Basic Constructor
-            InternalDebugDrawer();
+            InternalDebugDrawer(World * ParentWorld);
             /// @internal
             /// @brief Destructor
             virtual ~InternalDebugDrawer();
@@ -163,6 +180,10 @@ namespace Mezzanine
             virtual int getDebugMode() const;
 
             /// @internal
+            /// @brief Sets the safe logger to sent debug output to.
+            /// @param Logger A pointer to the safe logger for debug output.
+            virtual void SetLogger(Mezzanine::Logger* Logger);
+            /// @internal
             /// @brief Used by the physics subsystem to report errors using the renderer
             /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
             /// Have redirected all input from this function to the Entresol::Log function.
@@ -170,9 +191,10 @@ namespace Mezzanine
             virtual void reportErrorWarning(const char* warningString);
         };
 
-        InternalDebugDrawer::InternalDebugDrawer() :
+        InternalDebugDrawer::InternalDebugDrawer(World * ParentWorld) :
             WireFrame(NULL),
-            DebugDrawing(Physics::DDM_NoDebug)
+            DebugDrawing(Physics::DDM_NoDebug),
+            ParentWorld(ParentWorld)
             {  }
 
         InternalDebugDrawer::~InternalDebugDrawer()
@@ -184,7 +206,7 @@ namespace Mezzanine
         void InternalDebugDrawer::PrepareForUpdate()
         {
             if( this->WireFrame == NULL ) {
-                this->WireFrame = new Mezzanine::LineGroup();
+                this->WireFrame = new Mezzanine::LineGroup(this->ParentWorld);
                 if( this->DebugDrawing != Physics::DDM_NoDebug ) {
                     this->WireFrame->AddToWorld();
                 }
@@ -202,10 +224,10 @@ namespace Mezzanine
             { this->WireFrame->DrawLine( Vector3(from), Vector3(to), ColourValue(color.getX(),color.getY(),color.getZ()) ); }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
-            {}
+            {  }
 
         void InternalDebugDrawer::draw3dText(const btVector3& location,const char* textString)
-            {}
+            {  }
 
         void InternalDebugDrawer::setDebugMode(int debugMode)
         {
@@ -222,11 +244,11 @@ namespace Mezzanine
         int InternalDebugDrawer::getDebugMode() const
             { return this->DebugDrawing; }
 
+        void InternalDebugDrawer::SetLogger(Mezzanine::Logger* Logger)
+            { this->ErrorLogger = Logger; }
+
         void InternalDebugDrawer::reportErrorWarning(const char* warningString)
-        {
-            String temp(warningString);
-            Mezzanine::Entresol::GetSingletonPtr()->Log(temp);
-        }
+            { (*this->ErrorLogger) << warningString << std::endl; }
     }// debug
 
     #ifdef GetObject
@@ -328,24 +350,30 @@ namespace Mezzanine
         {
             // No real logging necessary
             debug::InternalDebugDrawer* Drawer = this->TargetManager->BulletDrawer;
+            Drawer->SetLogger( &CurrentThreadStorage.GetUsableLogger() );
             if( Drawer && Drawer->getDebugMode() )        //this part is responsible for drawing the wireframes
             {
                 Drawer->PrepareForUpdate();
                 this->TargetManager->BulletDynamicsWorld->debugDrawWorld();
                 Drawer->FinalizeUpdate();
             }
+            Drawer->SetLogger(NULL);
         }
 
         ///////////////////////////////////////////////////////////
         // Physicsmanager functions
 
-        PhysicsManager::PhysicsManager() :
-            SimulationPaused(false),
+        const String PhysicsManager::ImplementationName = "DefaultPhysicsManager";
+        const ManagerBase::ManagerType PhysicsManager::InterfaceType = ManagerBase::MT_PhysicsManager;
+
+        PhysicsManager::PhysicsManager(World* Creator) :
+            WorldManager(Creator),
+            StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
             DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
-            StepSize(1.0/60.0),
-            TimeMultiplier(1.0),
+            SimulationPaused(false),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),
@@ -366,13 +394,14 @@ namespace Mezzanine
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(const ManagerConstructionInfo& Info) :
-            SimulationPaused(false),
+        PhysicsManager::PhysicsManager(World* Creator, const ManagerConstructionInfo& Info) :
+            WorldManager(Creator),
+            StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
             DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
-            StepSize(1.0/60.0),
-            TimeMultiplier(1.0),
+            SimulationPaused(false),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),
@@ -391,13 +420,14 @@ namespace Mezzanine
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(XML::Node& XMLNode) :
-            SimulationPaused(false),
+        PhysicsManager::PhysicsManager(World* Creator, const XML::Node& XMLNode) :
+            WorldManager(Creator),
+            StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
             DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
-            StepSize(1.0/60.0),
-            TimeMultiplier(1.0),
+            SimulationPaused(false),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),
@@ -417,11 +447,9 @@ namespace Mezzanine
             XML::Attribute CurrAttrib;
 
             XML::Node WorldSettings = XMLNode.GetChild("WorldSettings");
-            if(!WorldSettings.Empty())
-            {
+            if(!WorldSettings.Empty()) {
                 CurrAttrib = WorldSettings.GetAttribute("LimitlessWorld");
-                if(!CurrAttrib.Empty())
-                {
+                if(!CurrAttrib.Empty()) {
                     Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
                 }else{
                     CurrAttrib = WorldSettings.GetAttribute("WorldUpperBounds");
@@ -435,13 +463,11 @@ namespace Mezzanine
                         Info.MaxProxies = CurrAttrib.AsWhole();
                 }
                 CurrAttrib = WorldSettings.GetAttribute("SoftRigidWorld");
-                if(!CurrAttrib.Empty())
-                {
+                if(!CurrAttrib.Empty()) {
                     Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
                 }
                 CurrAttrib = WorldSettings.GetAttribute("MultiThreaded");
-                if(!CurrAttrib.Empty())
-                {
+                if(!CurrAttrib.Empty()) {
                     Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
                 }
             }
@@ -449,8 +475,7 @@ namespace Mezzanine
             this->Construct(Info);
 
             XML::Node StepModifier = XMLNode.GetChild("SubStepModifier");
-            if(!StepModifier.Empty())
-            {
+            if(!StepModifier.Empty()) {
                 CurrAttrib = WorldSettings.GetAttribute("Modifier");
                 if(!CurrAttrib.Empty()) {
                     SetSimulationSubstepModifier(CurrAttrib.AsWhole());
@@ -458,8 +483,7 @@ namespace Mezzanine
             }
 
             XML::Node DebugRender = XMLNode.GetChild("DebugRendering");
-            if(!DebugRender.Empty())
-            {
+            if(!DebugRender.Empty()) {
                 int RenderMode = 0;
                 CurrAttrib = WorldSettings.GetAttribute("RenderingMode");
                 if(!CurrAttrib.Empty())
@@ -499,8 +523,7 @@ namespace Mezzanine
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_LimitlessWorld ) {
                 this->BulletBroadphase = new btDbvtBroadphase();
             }else{
-                if( Info.MaxProxies < 65536 )
-                {
+                if( Info.MaxProxies < 65536 ) {
                     this->BulletBroadphase = new btAxisSweep3(Info.GeographyLowerBounds.GetBulletVector3(),
                                                               Info.GeographyUpperBounds.GetBulletVector3(),
                                                               Info.MaxProxies);
@@ -516,11 +539,11 @@ namespace Mezzanine
                 this->BulletCollisionConfiguration = new btSoftBodyRigidBodyCollisionConfiguration();
             /*}else{
                 this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
-            }//*/
+            }// */
 
             // Create the dispatcher (narrowphase)
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
-                #ifdef WINDOWS
+                #ifdef MEZZ_WINDOWS
                 Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "DispatcherThreads",
                                                                                   processCollisionTask,
                                                                                   createCollisionLocalStoreMemory,
@@ -533,20 +556,19 @@ namespace Mezzanine
                                                                              ThreadCount );
                 this->BulletDispatcherThreads = new PosixThreadSupport(BulletThreadInfo);
                 #endif //WINDOWS
-                this->BulletDispatcher = new ParallelCollisionDispatcher(this->BulletDispatcherThreads,ThreadCount,this->BulletCollisionConfiguration);
+                this->BulletDispatcher = new ParallelCollisionDispatcher(this, this->BulletDispatcherThreads,ThreadCount,this->BulletCollisionConfiguration);
             }else{
-                this->BulletDispatcher = new CollisionDispatcher(this->BulletCollisionConfiguration);
+                this->BulletDispatcher = new CollisionDispatcher(this, this->BulletCollisionConfiguration);
             }
 
             // Create the constraint solver
-            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
-                #ifdef WINDOWS
+            /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                #ifdef MEZZ_WINDOWS
                 Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
                                                                                   SolverThreadFunc,
                                                                                   SolverlsMemoryFunc,
                                                                                   ThreadCount );
                 this->BulletSolverThreads = new Win32ThreadSupport(BulletThreadInfo);
-                this->BulletSolverThreads->startSPU();
                 #else //WINDOWS
                 PosixThreadSupport::ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
                                                                              SolverThreadFunc,
@@ -554,11 +576,10 @@ namespace Mezzanine
                                                                              ThreadCount );
                 this->BulletSolverThreads = new PosixThreadSupport(BulletThreadInfo);
                 #endif //WINDOWS
-                //this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
+                this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
+            }else{// */
                 this->BulletSolver = new btSequentialImpulseConstraintSolver();
-            }else{
-                this->BulletSolver = new btSequentialImpulseConstraintSolver();
-            }
+            //}
 
             // Create the world
             //if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_SoftRigidWorld ) {
@@ -571,7 +592,7 @@ namespace Mezzanine
                                                                          this->BulletBroadphase,
                                                                          this->BulletSolver,
                                                                          this->BulletCollisionConfiguration);
-            }//*/
+            }// */
 
             // Set up the work units
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
@@ -620,15 +641,15 @@ namespace Mezzanine
             this->BulletBroadphase = NULL;
             delete this->GhostCallback;
             this->GhostCallback = NULL;
-            if(BulletDrawer) {
+            if( this->BulletDrawer ) {
                 delete this->BulletDrawer;
                 this->BulletDrawer = NULL;
             }
-            if(BulletSolverThreads) {
+            if( this->BulletSolverThreads ) {
                 delete this->BulletSolverThreads;
                 this->BulletSolverThreads = NULL;
             }
-            if(BulletDispatcherThreads) {
+            if( this->BulletDispatcherThreads ) {
                 delete this->BulletDispatcherThreads;
                 this->BulletDispatcherThreads = NULL;
             }
@@ -658,7 +679,7 @@ namespace Mezzanine
         void PhysicsManager::ProcessAllCollisions()
         {
             //Update the collisions that already exist as necessary
-            for( PhysicsManager::CollisionIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ColIt++ )
+            for( PhysicsManager::CollisionMapIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ColIt++ )
                 (*ColIt).second->Update();
             //Process the collisions that are in the creation queue
             AlgoList* AlgoQueue = ( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ?
@@ -670,11 +691,19 @@ namespace Mezzanine
             /*StringStream logstream;
             logstream << "Processing " << AlgoQueue->size() << " algorithms for collisions.";
             Entresol::GetSingletonPtr()->Log(logstream.str());
-            Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
+            Entresol::GetSingletonPtr()->DoMainLoopLogging();// */
             #endif
             btCollisionAlgorithm* NewAlgo = AlgoQueue->front();
             while( NewAlgo != NULL )
             {
+                /*for( PhysicsManager::CollisionMapIterator ColIt = this->Collisions.begin() ; ColIt != this->Collisions.end() ; ++ColIt )
+                {
+                    if( NewAlgo == (*ColIt).second->InternalAlgo ) {
+
+                        break;
+                    }
+                }// */
+                // Old method involving detecting the actual WorldObject pair
                 CollidableProxy* ProxA = NULL;
                 CollidableProxy* ProxB = NULL;
                 /// @todo This is an absurd round-about way to get the data we need,
@@ -682,8 +711,7 @@ namespace Mezzanine
                 btBroadphasePairArray& PairArray = BulletBroadphase->getOverlappingPairCache()->getOverlappingPairArray();
                 for( Integer X = 0 ; X < PairArray.size() ; ++X )
                 {
-                    if( NewAlgo == PairArray[X].m_algorithm )
-                    {
+                    if( NewAlgo == PairArray[X].m_algorithm ) {
                         btCollisionObject* COA = (btCollisionObject*)PairArray[X].m_pProxy0->m_clientObject;
                         ProxA = static_cast<CollidableProxy*>( COA->getUserPointer() );
                         btCollisionObject* COB = (btCollisionObject*)PairArray[X].m_pProxy1->m_clientObject;
@@ -692,23 +720,36 @@ namespace Mezzanine
                     }
                 }
 
-                if( ( ProxA != NULL && ProxA->GetCollisionResponse() ) && ( ProxB != NULL && ProxB->GetCollisionResponse() ) )
-                {
+                if( ( ProxA != NULL && ProxA->GetCollisionResponse() ) && ( ProxB != NULL && ProxB->GetCollisionResponse() ) ) {
                     // Create the collision
                     CollidablePair NewPair(ProxA,ProxB);
-                    PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
-                    if(ColIt == Collisions.end())
+                    /*PhysicsManager::CollisionMapIterator ColIt = Collisions.find(NewPair);
+                    if(ColIt == Collisions.end()) {
+                        Physics::Collision* NewCol = new Physics::Collision(ProxA,ProxB,NewAlgo);
+                        //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
+                        //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
+                        Collisions.insert( CollisionSortPair(NewPair,NewCol) );
+                    }// */
+                    PhysicsManager::CollisionMapIterator ColIt = this->Collisions.begin();
+                    while( ColIt != this->Collisions.end() )
                     {
+                        if( NewAlgo == (*ColIt).second->InternalAlgo )
+                            break;
+                        ++ColIt;
+                    }
+
+                    if( ColIt == this->Collisions.end() ) {
                         Physics::Collision* NewCol = new Physics::Collision(ProxA,ProxB,NewAlgo);
                         //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         Collisions.insert( CollisionSortPair(NewPair,NewCol) );
                     }
-                }
+                }// */
                 AlgoQueue->pop_front();
                 if(AlgoQueue->size() > 0) NewAlgo = AlgoQueue->front();
                 else NewAlgo = NULL;
-            }//*/
+            }// */
+            AlgoQueue->clear();
         }
 
         PhysicsManager* PhysicsManager::CallBackWorld;
@@ -760,14 +801,14 @@ namespace Mezzanine
 
         GhostProxy* PhysicsManager::CreateGhostProxy()
         {
-            GhostProxy* NewProxy = new GhostProxy(this);
+            GhostProxy* NewProxy = new GhostProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         GhostProxy* PhysicsManager::CreateGhostProxy(CollisionShape* Shape, const Boole AddToWorld)
         {
-            GhostProxy* NewProxy = new GhostProxy(Shape,this);
+            GhostProxy* NewProxy = new GhostProxy(this->ProxyIDGen.GenerateID(),Shape,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -778,20 +819,21 @@ namespace Mezzanine
         GhostProxy* PhysicsManager::CreateGhostProxy(const XML::Node& SelfRoot)
         {
             GhostProxy* NewProxy = new GhostProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass)
         {
-            RigidProxy* NewProxy = new RigidProxy(Mass,this);
+            RigidProxy* NewProxy = new RigidProxy(this->ProxyIDGen.GenerateID(),Mass,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass, CollisionShape* Shape, const Boole AddToWorld)
         {
-            RigidProxy* NewProxy = new RigidProxy(Mass,Shape,this);
+            RigidProxy* NewProxy = new RigidProxy(this->ProxyIDGen.GenerateID(),Mass,Shape,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -802,13 +844,14 @@ namespace Mezzanine
         RigidProxy* PhysicsManager::CreateRigidProxy(const XML::Node& SelfRoot)
         {
             RigidProxy* NewProxy = new RigidProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         SoftProxy* PhysicsManager::CreateSoftProxy(const Real Mass)
         {
-            SoftProxy* NewProxy = new SoftProxy(Mass,this);
+            SoftProxy* NewProxy = new SoftProxy(this->ProxyIDGen.GenerateID(),Mass,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -816,6 +859,7 @@ namespace Mezzanine
         SoftProxy* PhysicsManager::CreateSoftProxy(const XML::Node& SelfRoot)
         {
             SoftProxy* NewProxy = new SoftProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -825,6 +869,31 @@ namespace Mezzanine
 
         CollidableProxy* PhysicsManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
+
+        CollidableProxy* PhysicsManager::GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const
+        {
+            if( Mezzanine::PT_Physics_All_Proxies & Type ) {
+                for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+                {
+                    if( (*ProxIt)->GetProxyType() == Type ) {
+                        if( 0 == Which ) return (*ProxIt);
+                        else --Which;
+                    }
+                }
+            }
+            return NULL;
+        }
+
+        CollidableProxy* PhysicsManager::GetProxyByID(const UInt32 ID) const
+        {
+            for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( (*ProxIt)->GetProxyID() == ID ) {
+                    return (*ProxIt);
+                }
+            }
+            return NULL;
+        }
 
         UInt32 PhysicsManager::GetNumProxies() const
             { return this->Proxies.size(); }
@@ -838,6 +907,7 @@ namespace Mezzanine
                     if( Parent )
                         Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
+                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                     delete (*ProxIt);
                     this->Proxies.erase(ProxIt);
                     return;
@@ -853,6 +923,7 @@ namespace Mezzanine
                 if( Parent )
                     Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
+                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
                 delete (*ProxIt);
             }
             this->Proxies.clear();
@@ -871,27 +942,230 @@ namespace Mezzanine
             { return this->Proxies.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Constraint Management
+        // Constraint Creation
 
-        void PhysicsManager::AddConstraint(Physics::Constraint* Con, Boole DisableCollisions)
+        ConeTwistConstraint* PhysicsManager::CreateConeTwistConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
         {
-            this->BulletDynamicsWorld->addConstraint(Con->GetConstraintBase(), DisableCollisions);
-            this->Constraints.push_back(Con);
+            ConeTwistConstraint* NewConstraint = new ConeTwistConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
         }
 
-        Physics::Constraint* PhysicsManager::GetConstraint(const Whole& Index)
+        ConeTwistConstraint* PhysicsManager::CreateConeTwistConstraint(RigidProxy* ProxyA, const Transform& TransA)
+        {
+            ConeTwistConstraint* NewConstraint = new ConeTwistConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,TransA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        ConeTwistConstraint* PhysicsManager::CreateConeTwistConstraint(const XML::Node& SelfRoot)
+        {
+            ConeTwistConstraint* NewConstraint = new ConeTwistConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        GearConstraint* PhysicsManager::CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB)
+        {
+            GearConstraint* NewConstraint = new GearConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,AxisA,AxisB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        GearConstraint* PhysicsManager::CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio)
+        {
+            GearConstraint* NewConstraint = new GearConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,AxisA,AxisB,Ratio,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        GearConstraint* PhysicsManager::CreateGearConstraint(const XML::Node& SelfRoot)
+        {
+            GearConstraint* NewConstraint = new GearConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofConstraint* PhysicsManager::CreateGeneric6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            Generic6DofConstraint* NewConstraint = new Generic6DofConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofConstraint* PhysicsManager::CreateGeneric6DofConstraint(RigidProxy* ProxyB, const Transform& TransB)
+        {
+            Generic6DofConstraint* NewConstraint = new Generic6DofConstraint(this->ConstraintIDGen.GenerateID(),ProxyB,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofConstraint* PhysicsManager::CreateGeneric6DofConstraint(const XML::Node& SelfRoot)
+        {
+            Generic6DofConstraint* NewConstraint = new Generic6DofConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofSpringConstraint* PhysicsManager::CreateGeneric6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            Generic6DofSpringConstraint* NewConstraint = new Generic6DofSpringConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Generic6DofSpringConstraint* PhysicsManager::CreateGeneric6DofSpringConstraint(const XML::Node& SelfRoot)
+        {
+            Generic6DofSpringConstraint* NewConstraint = new Generic6DofSpringConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,PivotInA,PivotInB,AxisInA,AxisInB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,PivotInA,AxisInA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(RigidProxy* ProxyA, const Transform& TransA)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,TransA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        HingeConstraint* PhysicsManager::CreateHingeConstraint(const XML::Node& SelfRoot)
+        {
+            HingeConstraint* NewConstraint = new HingeConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Hinge2Constraint* PhysicsManager::CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        {
+            Hinge2Constraint* NewConstraint = new Hinge2Constraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,Anchor,Axis1,Axis2,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Hinge2Constraint* PhysicsManager::CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            Hinge2Constraint* NewConstraint = new Hinge2Constraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Hinge2Constraint* PhysicsManager::CreateHinge2Constraint(const XML::Node& SelfRoot)
+        {
+            Hinge2Constraint* NewConstraint = new Hinge2Constraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Point2PointConstraint* PhysicsManager::CreatePoint2PointConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotA, const Vector3& PivotB)
+        {
+            Point2PointConstraint* NewConstraint = new Point2PointConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,PivotA,PivotB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Point2PointConstraint* PhysicsManager::CreatePoint2PointConstraint(RigidProxy* ProxyA, const Vector3& PivotA)
+        {
+            Point2PointConstraint* NewConstraint = new Point2PointConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,PivotA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        Point2PointConstraint* PhysicsManager::CreatePoint2PointConstraint(const XML::Node& SelfRoot)
+        {
+            Point2PointConstraint* NewConstraint = new Point2PointConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        SliderConstraint* PhysicsManager::CreateSliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            SliderConstraint* NewConstraint = new SliderConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        SliderConstraint* PhysicsManager::CreateSliderConstraint(RigidProxy* ProxyA, const Transform& TransA)
+        {
+            SliderConstraint* NewConstraint = new SliderConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,TransA,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        SliderConstraint* PhysicsManager::CreateSliderConstraint(const XML::Node& SelfRoot)
+        {
+            SliderConstraint* NewConstraint = new SliderConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        UniversalConstraint* PhysicsManager::CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        {
+            UniversalConstraint* NewConstraint = new UniversalConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,Anchor,Axis1,Axis2,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        UniversalConstraint* PhysicsManager::CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            UniversalConstraint* NewConstraint = new UniversalConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        UniversalConstraint* PhysicsManager::CreateUniversalConstraint(const XML::Node& SelfRoot)
+        {
+            UniversalConstraint* NewConstraint = new UniversalConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Constraint Management
+
+        Constraint* PhysicsManager::GetConstraint(const Whole& Index)
             { return this->Constraints[Index]; }
 
         Whole PhysicsManager::GetNumConstraints()
             { return this->Constraints.size(); }
 
-        void PhysicsManager::RemoveConstraint(Physics::Constraint* Con)
+        void PhysicsManager::DestroyConstraint(Constraint* Con)
         {
-            this->BulletDynamicsWorld->removeConstraint(Con->GetConstraintBase());
             for( ConstraintIterator ConIt = this->Constraints.begin() ; ConIt < this->Constraints.end() ; ConIt++ )
             {
-                if( (*ConIt) == Con )
-                {
+                if( (*ConIt) == Con ) {
+                    (*ConIt)->EnableConstraint(false);
+                    this->ConstraintIDGen.ReleaseID((*ConIt)->GetConstraintID());
+                    delete (*ConIt);
                     this->Constraints.erase(ConIt);
                     return;
                 }
@@ -900,10 +1174,11 @@ namespace Mezzanine
 
         void PhysicsManager::DestroyAllConstraints()
         {
-            for( ConstraintIterator Con = this->Constraints.begin() ; Con != this->Constraints.end() ; Con++ )
+            for( ConstraintIterator ConIt = this->Constraints.begin() ; ConIt != this->Constraints.end() ; ConIt++ )
             {
-                this->BulletDynamicsWorld->removeConstraint((*Con)->GetConstraintBase());
-                delete (*Con);
+                (*ConIt)->EnableConstraint(false);
+                this->ConstraintIDGen.ReleaseID((*ConIt)->GetConstraintID());
+                delete (*ConIt);
             }
             this->Constraints.clear();
         }
@@ -918,8 +1193,7 @@ namespace Mezzanine
         {
             for( ConstWorldTriggerIterator Trig = this->Triggers.begin() ; Trig != this->Triggers.end() ; Trig++ )
             {
-                if( Name == (*Trig)->GetName() )
-                {
+                if( Name == (*Trig)->GetName() ) {
                     return *Trig;
                 }
             }
@@ -936,8 +1210,7 @@ namespace Mezzanine
         {
             for( WorldTriggerIterator T = this->Triggers.begin() ; T != this->Triggers.end() ; T++ )
             {
-                if( Trig == (*T) )
-                {
+                if( Trig == (*T) ) {
                     this->Triggers.erase(T);
                     return;
                 }
@@ -954,9 +1227,15 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Collision Management
 
+        Physics::Collision* PhysicsManager::GetCollision(CollidableProxy* A, CollidableProxy* B)
+        {
+            CollidablePair Pair(A,B);
+            return this->GetCollision(&Pair);
+        }
+
         Physics::Collision* PhysicsManager::GetCollision(CollidablePair* Pair)
         {
-            ConstCollisionIterator ColIt = this->Collisions.find(*Pair);
+            ConstCollisionMapIterator ColIt = this->Collisions.find(*Pair);
             if(ColIt != this->Collisions.end()) return (*ColIt).second;
             else return NULL;
         }
@@ -980,45 +1259,45 @@ namespace Mezzanine
 
         void PhysicsManager::RemoveCollisionsContainingProxy(CollidableProxy* Proxy)
         {
-            if( !Proxy->IsInWorld() )
-                return;
+            // A proxy not in the world can't have collisions
+            if( Proxy->IsInWorld() ) {
+                this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs( Proxy->_GetBasePhysicsObject()->getBroadphaseHandle(), this->BulletDispatcher );
 
-            this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs( Proxy->_GetBasePhysicsObject()->getBroadphaseHandle(), this->BulletDispatcher );
-
-            CollisionIterator ColIt = this->Collisions.begin();
-            while( ColIt != this->Collisions.end() )
-            {
-                Physics::Collision* ToBeDestroyed = (*ColIt).second;
-                if( Proxy == (*ColIt).second->ProxyA || Proxy == (*ColIt).second->ProxyB ) {
-                    CollisionIterator Delete = ColIt;
-                    ++ColIt;
-                    this->Collisions.erase(Delete);
-                    delete ToBeDestroyed;
-                }else{
-                    ++ColIt;
+                CollisionMapIterator ColIt = this->Collisions.begin();
+                while( ColIt != this->Collisions.end() )
+                {
+                    Physics::Collision* ToBeDestroyed = (*ColIt).second;
+                    if( Proxy == (*ColIt).second->ProxyA || Proxy == (*ColIt).second->ProxyB ) {
+                        CollisionMapIterator Delete = ColIt;
+                        ++ColIt;
+                        this->Collisions.erase(Delete);
+                        delete ToBeDestroyed;
+                    }else{
+                        ++ColIt;
+                    }
                 }
             }
         }
 
         void PhysicsManager::DestroyAllCollisions()
         {
-            for( CollisionIterator ColIt = this->Collisions.begin() ; ColIt != this->Collisions.end() ; ++ColIt )
+            for( CollisionMapIterator ColIt = this->Collisions.begin() ; ColIt != this->Collisions.end() ; ++ColIt )
             {
                 delete (*ColIt).second;
             }
             this->Collisions.clear();
         }
 
-        PhysicsManager::CollisionIterator PhysicsManager::BeginCollision()
+        PhysicsManager::CollisionMapIterator PhysicsManager::BeginCollision()
             { return this->Collisions.begin(); }
 
-        PhysicsManager::CollisionIterator PhysicsManager::EndCollision()
+        PhysicsManager::CollisionMapIterator PhysicsManager::EndCollision()
             { return this->Collisions.end(); }
 
-        PhysicsManager::ConstCollisionIterator PhysicsManager::BeginCollision() const
+        PhysicsManager::ConstCollisionMapIterator PhysicsManager::BeginCollision() const
             { return this->Collisions.begin(); }
 
-        PhysicsManager::ConstCollisionIterator PhysicsManager::EndCollision() const
+        PhysicsManager::ConstCollisionMapIterator PhysicsManager::EndCollision() const
             { return this->Collisions.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -1048,7 +1327,7 @@ namespace Mezzanine
             }
 
             if( this->Initialized && this->BulletDrawer == NULL ) {
-                this->BulletDrawer = new debug::InternalDebugDrawer();
+                this->BulletDrawer = new debug::InternalDebugDrawer(this->ParentWorld);
                 this->BulletDrawer->setDebugMode( this->DebugRenderMode );
                 this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
             }
@@ -1063,7 +1342,6 @@ namespace Mezzanine
             for( Integer X = 0 ; X < NumPairs ; X++ )
             {
                 btBroadphasePair& CurrPair = PairArray.at(X);
-                Pairs->cleanOverlappingPair(CurrPair,this->BulletDispatcher);
                 Pairs->removeOverlappingPair(CurrPair.m_pProxy0,CurrPair.m_pProxy1,this->BulletDispatcher);
             }
 
@@ -1104,12 +1382,11 @@ namespace Mezzanine
 
         void PhysicsManager::Initialize()
         {
-            if( !this->Initialized )
-            {
-                //WorldManager::Initialize();
+            if( !this->Initialized ) {
+                WorldManager::Initialize();
 
                 // Create the debugdrawer
-                this->BulletDrawer = new debug::InternalDebugDrawer();
+                this->BulletDrawer = new debug::InternalDebugDrawer(this->ParentWorld);
                 this->BulletDrawer->setDebugMode( this->DebugRenderMode );
                 this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
 
@@ -1119,13 +1396,13 @@ namespace Mezzanine
                 }else{
                     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork, "SimulationWorkMain" );
                 }
-                Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
+                Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
                 if( GraphicsMan )
                     this->SimulationWork->AddDependency( GraphicsMan->GetRenderWork() );
 
-                Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
-                Mezzanine::AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
-                Mezzanine::DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+                ActorManager* ActorMan = static_cast<ActorManager*>( this->ParentWorld->GetManager(ManagerBase::MT_ActorManager) );
+                AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->ParentWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+                DebrisManager* DebrisMan = static_cast<DebrisManager*>( this->ParentWorld->GetManager(ManagerBase::MT_DebrisManager) );
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
                 this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork, "DebugDrawWork" );
@@ -1149,8 +1426,7 @@ namespace Mezzanine
 
         void PhysicsManager::Deinitialize()
         {
-            if( this->Initialized )
-            {
+            if( this->Initialized ) {
                 // Destroy the debugdrawer
                 delete this->BulletDrawer;
                 this->BulletDrawer = NULL;
@@ -1164,18 +1440,10 @@ namespace Mezzanine
                 }
                 this->SimulationWork->ClearDependencies();
 
-                if(this->TheEntresol)
-                {
-                    if(this->ThreadCount){
-                        this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
-                    }else{
-                        this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
-                    }
+                if( this->TheEntresol ) {
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
                 }
-
-
 
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
@@ -1197,9 +1465,18 @@ namespace Mezzanine
 
             Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier(); // Convert from MicroSeconds to Seconds
             int MaxSteps = ( FloatTime < this->StepSize ) ? 1 : int( FloatTime / this->StepSize ) + 1;
+
+            Logger& ThreadLog = CurrentThreadStorage.GetUsableLogger();
+            ThreadLog << "Attempting to step the physics simulation by " << FloatTime << " seconds with " << MaxSteps << " maximum substeps." << std::endl;
+            Timer PhysicsTimer;
+            PhysicsTimer.Start();
+
             CallBackWorld = this;
             this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
             CallBackWorld = NULL;
+
+            PhysicsTimer.Stop();
+            ThreadLog << "StepSimulation took " << PhysicsTimer.GetCurrentTimeInMilliseconds() << " milliseconds." << std::endl;
         }
 
         Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
@@ -1215,10 +1492,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType PhysicsManager::GetInterfaceType() const
-            { return ManagerBase::MT_PhysicsManager; }
+            { return PhysicsManager::InterfaceType; }
 
         String PhysicsManager::GetImplementationTypeName() const
-            { return "DefaultPhysicsManager"; }
+            { return PhysicsManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
@@ -1233,64 +1510,66 @@ namespace Mezzanine
         // DefaultPhysicsManagerFactory Methods
 
         DefaultPhysicsManagerFactory::DefaultPhysicsManagerFactory()
-            {}
+            {  }
 
         DefaultPhysicsManagerFactory::~DefaultPhysicsManagerFactory()
-            {}
+            {  }
 
-        String DefaultPhysicsManagerFactory::GetManagerTypeName() const
-            { return "DefaultPhysicsManager"; }
+        String DefaultPhysicsManagerFactory::GetManagerImplName() const
+            { return PhysicsManager::ImplementationName; }
 
-        ManagerBase* DefaultPhysicsManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultPhysicsManagerFactory::GetManagerType() const
+            { return PhysicsManager::InterfaceType; }
+
+        WorldManager* DefaultPhysicsManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
         {
-            if(Params.empty()) return new PhysicsManager();
-            else
-            {
-                ManagerConstructionInfo PhysInfo;
-                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
-                {
-                    String Lower = (*ParIt).first;
-                    StringTools::ToLowerCase(Lower);
-                    if( "geographyupperbounds" == Lower )
-                    {
-                        PhysInfo.GeographyUpperBounds = StringTools::ConvertToVector3( (*ParIt).second );
-                    }
-                    else if( "geographylowerbounds" == Lower )
-                    {
-                        PhysInfo.GeographyLowerBounds = StringTools::ConvertToVector3( (*ParIt).second );
-                    }
-                    else if( "maxproxies" == Lower )
-                    {
-                        PhysInfo.MaxProxies = StringTools::ConvertToUInt32( (*ParIt).second );
-                    }
-                    else if( "gravity" == Lower )
-                    {
-                        PhysInfo.Gravity = StringTools::ConvertToVector3( (*ParIt).second );
-                    }
-                    else if( "softrigidworld" == Lower )
-                    {
-                        if(StringTools::ConvertToBool( (*ParIt).second ))
-                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
-                    }
-                    else if( "limitlessworld" == Lower )
-                    {
-                        if(StringTools::ConvertToBool( (*ParIt).second ))
-                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
-                    }
-                    else if( "multithreaded" == Lower )
-                    {
-                        if(StringTools::ConvertToBool( (*ParIt).second ))
-                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
-                    }
-                }
-                return new PhysicsManager(PhysInfo);
+            if( Params.empty() ) {
+                return new PhysicsManager(Creator);
             }
+            ManagerConstructionInfo PhysInfo;
+            for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            {
+                String Lower = (*ParIt).first;
+                StringTools::ToLowerCase(Lower);
+                if( "geographyupperbounds" == Lower )
+                {
+                    PhysInfo.GeographyUpperBounds = StringTools::ConvertToVector3( (*ParIt).second );
+                }
+                else if( "geographylowerbounds" == Lower )
+                {
+                    PhysInfo.GeographyLowerBounds = StringTools::ConvertToVector3( (*ParIt).second );
+                }
+                else if( "maxproxies" == Lower )
+                {
+                    PhysInfo.MaxProxies = StringTools::ConvertToUInt32( (*ParIt).second );
+                }
+                else if( "gravity" == Lower )
+                {
+                    PhysInfo.Gravity = StringTools::ConvertToVector3( (*ParIt).second );
+                }
+                else if( "softrigidworld" == Lower )
+                {
+                    if(StringTools::ConvertToBool( (*ParIt).second ))
+                        PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
+                }
+                else if( "limitlessworld" == Lower )
+                {
+                    if(StringTools::ConvertToBool( (*ParIt).second ))
+                        PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
+                }
+                else if( "multithreaded" == Lower )
+                {
+                    if(StringTools::ConvertToBool( (*ParIt).second ))
+                        PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
+                }
+            }
+            return new PhysicsManager(Creator,PhysInfo);
         }
 
-        ManagerBase* DefaultPhysicsManagerFactory::CreateManager(XML::Node& XMLNode)
-            { return new PhysicsManager(XMLNode); }
+        WorldManager* DefaultPhysicsManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
+            { return new PhysicsManager(Creator,XMLNode); }
 
-        void DefaultPhysicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultPhysicsManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
             { delete ToBeDestroyed; }
     }//Physics
 }//Mezzanine

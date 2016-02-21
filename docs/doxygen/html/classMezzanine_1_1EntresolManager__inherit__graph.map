@@ -1,0 +1,15 @@
+<map id="Mezzanine::EntresolManager" name="Mezzanine::EntresolManager">
+<area shape="rect" id="node3" href="$classMezzanine_1_1Audio_1_1AudioManager.html" title="This is the base manager class for the Audio subsystem and it&#39;s operations. " alt="" coords="465,5,683,32"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data. " alt="" coords="485,56,663,83"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user. " alt="" coords="501,107,647,149"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Graphics_1_1MeshManager.html" title="This manager handles the storage, generation, and query of of Graphics Meshes. " alt="" coords="501,173,647,214"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Graphics_1_1TextureManager.html" title="This manager handles the storage and query of of Graphics Textures. " alt="" coords="501,238,647,279"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Input_1_1InputManager.html" title="This is the manager responsible for the handling of input devices and events. " alt="" coords="469,304,679,331"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1CollisionShapeManager.html" title="This manager is for the storage of all shapes and creation of mesh shapes. " alt="" coords="491,355,657,397"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Resource_1_1ResourceManager.html" title="This is the manager responsible for the loading and unloading of files. " alt="" coords="499,421,649,462"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Scripting_1_1iScriptingManager.html" title="What a scripting manager should look like. " alt="" coords="502,486,646,527"/>
+<area shape="rect" id="node14" href="$classMezzanine_1_1UI_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD. " alt="" coords="485,552,663,579"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="5,275,179,301"/>
+<area shape="rect" id="node12" href="$classMezzanine_1_1Scripting_1_1iScriptCompilationManager.html" title="What a scripting manager should look like. " alt="" coords="731,486,917,527"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Scripting_1_1Lua_1_1Lua51ScriptingEngine.html" title="The workhorse of the Lua scripting system. All scripts come here to be executed. " alt="" coords="965,486,1151,527"/>
+</map>

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,6 +41,8 @@
 #define _graphicsmesh_cpp
 
 #include "Graphics/mesh.h"
+#include "Graphics/submesh.h"
+
 #include <Ogre.h>
 
 namespace Mezzanine
@@ -55,44 +57,99 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB InternalMeshData
         {
-            public:
-                Ogre::MeshPtr GraphicsMesh;
+        public:
+            /// @internal
+            /// @brief The internal representation of the Mesh.
+            Ogre::MeshPtr GraphicsMesh;
         };//InternalMeshData
 
         ///////////////////////////////////////////////////////////////////////////////
         // Mesh Methods
 
-        /*Mesh::Mesh()
-        {
-            this->IMD = new InternalMeshData();
-            this->IMD->GraphicsMesh.setNull();
-        }//*/
-
         Mesh::Mesh(Ogre::MeshPtr InternalMesh)
         {
             this->IMD = new InternalMeshData();
             this->IMD->GraphicsMesh = InternalMesh;
+
+            this->WrapAllSubMeshes();
         }
 
         Mesh::~Mesh()
         {
-            delete IMD;
+            delete this->IMD;
+            this->DestroyAllWrappedSubMeshes();
         }
+
+        void Mesh::WrapAllSubMeshes()
+        {
+            // Clear out our current SubMeshes if they exist.
+            this->DestroyAllWrappedSubMeshes();
+
+            // Go over each SubMesh and wrap them all.
+            Ogre::MeshPtr InternalMesh = this->IMD->GraphicsMesh;
+            if( !InternalMesh.isNull() ) {
+                Whole SubMeshCount = InternalMesh->getNumSubMeshes();
+                for( Whole SubMeshIndex = 0 ; SubMeshIndex < SubMeshCount ; ++SubMeshIndex )
+                {
+                    this->SubMeshes.push_back( new SubMesh( InternalMesh->getSubMesh(SubMeshIndex) ) );
+                }
+            }
+        }
+
+        void Mesh::DestroyAllWrappedSubMeshes()
+        {
+            for( SubMeshIterator SubMeshIt = this->SubMeshes.begin() ; SubMeshIt != this->SubMeshes.end() ; ++SubMeshIt )
+                { delete (*SubMeshIt); }
+            this->SubMeshes.clear();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        Whole Mesh::GetVertexCount() const
+        {
+            Whole Ret = 0;
+            for( ConstSubMeshIterator SubMeshIt = this->SubMeshes.begin() ; SubMeshIt != this->SubMeshes.end() ; ++SubMeshIt )
+                { Ret += (*SubMeshIt)->GetVertexCount(); }
+            return Ret;
+        }
+
+        Whole Mesh::GetIndexCount() const
+        {
+            Whole Ret = 0;
+            for( ConstSubMeshIterator SubMeshIt = this->SubMeshes.begin() ; SubMeshIt != this->SubMeshes.end() ; ++SubMeshIt )
+                { Ret += (*SubMeshIt)->GetIndexCount(); }
+            return Ret;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // SubMesh Methods
+
+        SubMesh* Mesh::GetSubMesh(const Whole Index) const
+            { return this->SubMeshes.at(Index); }
+
+        Whole Mesh::GetNumSubMeshes() const
+            { return this->SubMeshes.size(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Skeleton Methods
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Asset Methods
 
         ConstString& Mesh::GetName() const
-        {
-            return _GetInternalMesh()->getName();
-        }
+            { return this->_GetInternalMesh()->getName(); }
 
         ConstString& Mesh::GetGroup() const
-        {
-            return _GetInternalMesh()->getGroup();
-        }
+            { return this->_GetInternalMesh()->getGroup(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
 
         Ogre::MeshPtr Mesh::_GetInternalMesh() const
-        {
-            return this->IMD->GraphicsMesh;
-        }
+            { return this->IMD->GraphicsMesh; }
     }//Graphics
 }//Mezzanine
 

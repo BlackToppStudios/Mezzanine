@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -106,6 +106,10 @@ namespace Mezzanine
             /// @param AxisY The vector expressing the Y axis.
             /// @param AxisZ The vector expressing the Z axis.
             Quaternion(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
+            /// @brief Rotation To Z constructor.
+            /// @param DirectionAxis The axis to get the rotation to Z for.
+            /// @param UpAxis The up axis in local space.
+            Quaternion(const Vector3& DirectionAxis, const Vector3& UpAxis);
             /// @brief Bullet Quaternion constructor.
             /// @details Constructor that sets all values to match the Bullet quaternion.
             /// @param Theirs The quaternion to be copied to make this quaternion.
@@ -126,46 +130,50 @@ namespace Mezzanine
 
             /// @brief Sets default/identity values to the members of this quaternion.
             void SetIdentity();
-
             /// @brief Sets the individual values of this quaterion directly.
+            /// @param X The X component of the Axis.
+            /// @param Y The Y component of the Axis.
+            /// @param Z The Z component of the Axis.
+            /// @param W Rotation on the Axis X, Y and Z defined.
             void SetValues(const Real& X, const Real& Y, const Real& Z, const Real& W);
-
-            /// @brief Generates and sets the values of this quaternion to a rotation from an axis and angle on that axis.
+            /// @brief Generates and sets the values of this quaternion to describe a rotation from an axis and angle on that axis.
             /// @param Angle Real representing the angle to be applied along the axis in radians.
             /// @param Axis Vector3 representing the axis to apply the rotation.
             void SetFromAxisAngle(const Real& Angle, const Vector3& Axis);
-
             /// @brief Sets this quaternions values to express the same rotation as a Matrix3x3.
             /// @param Mat The matrix to set this quaternion from.
             void SetFromMatrix3x3(const Matrix3x3& Mat);
-
             /// @brief Generates and sets the values of this quaternion from 3 Axis vectors.
             /// @param AxisX The vector expressing the X axis.
             /// @param AxisY The vector expressing the Y axis.
             /// @param AxisZ The vector expressing the Z axis.
             void SetFromAxes(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
+            /// @brief Generates and sets the values of this quaternion to describe a rotation from the direction axis to the Z axis.
+            /// @param DirectionAxis The axis to get the rotation to Z for.
+            /// @param UpAxis The up axis in local space.
+            void SetFromAxisToZ(const Vector3& DirectionAxis, const Vector3& UpAxis);
+
+            /// @brief Converts the rotation expressed by this Quaternion into it's individual rotation and axis components.
+            /// @param Angle The amount of rotation to apply to the axis.
+            /// @param Axis The Axis this quaternions rotation is on.
+            void ConvertToAngleAxis(Real& Angle, Vector3& Axis) const;
 
             /// @brief Gets the Dot Product of this quaternion and another quaternion.
             /// @param Other The other quaternion to calculate the dot product from.
             /// @return Returns a Real that is the Dot Product of the two quaternions.
             Real DotProduct(const Quaternion& Other) const;
-
             /// @brief Gets the length of the quaternion.
             /// @return Returns a Real representing the length of the quaternion.
             Real Length() const;
-
             /// @brief Gets the squared length(len^2) of the quaternion.
             /// @return Returns a Real representing the squared length(len^2) of the quaternion.
             Real LengthSqrd() const;
-
             /// @brief Normalizes this Quaternion.
             /// @return Returns a normalized reference of this quaternion.
             Quaternion& Normalize();
-
             /// @brief Get a normalized copy of this Quaternion without changing this one.
             /// @return A Copy of this Quaternion after the copy has been normalized.
             Quaternion GetNormalizedCopy() const;
-
             /// @brief Inverses this Quaternion.
             /// @return Returns a quaternion that is a copy of this one after it has been inversed.
             Quaternion GetInverse() const;
@@ -382,7 +390,7 @@ namespace Mezzanine
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Quaternion"
-            static String SerializableName();
+            static String GetSerializableName();
 
     };//Quaternion
 }//Mezzanine

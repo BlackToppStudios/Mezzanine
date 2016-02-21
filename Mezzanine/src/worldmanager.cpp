@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -47,8 +47,8 @@
 
 namespace Mezzanine
 {
-    WorldManager::WorldManager() :
-        ParentWorld(NULL),
+    WorldManager::WorldManager(World * ParentWorld) :
+        ParentWorld(ParentWorld),
         OperationsPaused(false)
         {  }
 
@@ -70,20 +70,8 @@ namespace Mezzanine
     void WorldManager::Initialize()
     {
         if( this->ParentWorld == NULL ) {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot initialize a world manager without a valid world.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot initialize a world manager without a valid world.");
         }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal Methods
-
-    void WorldManager::_SetWorld(World* Parent)
-    {
-        if( this->IsInitialized() ) {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot assign new world while a world manager is in operation/initialized.");
-        }
-
-        this->ParentWorld = Parent;
     }
 }//Mezzanine
 

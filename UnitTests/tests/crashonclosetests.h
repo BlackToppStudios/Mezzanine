@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -70,7 +70,7 @@ class crashonclosetests : public UnitTestGroup
                     Mezzanine::Entresol Crasher;
                     TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
 
-                    Crasher.EngineInit(); // Cannot be optimized out because it logs so much
+                    Crasher.Initialize(false); // Cannot be optimized out because it logs so much
                 }
                 TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
@@ -80,7 +80,7 @@ class crashonclosetests : public UnitTestGroup
             ////////////////////////////////////////////////////////////////
             // Entresolused for timing when it doesn't exist crash
             {
-                Mezzanine::Physics::PhysicsManager Simulation;
+                Mezzanine::Physics::PhysicsManager Simulation(NULL);
                 Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
                 RigidA->SetGravity(Vector3(0,9.8,0));
                 FrameScheduler FS;

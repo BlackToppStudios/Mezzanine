@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,8 +41,8 @@
 #define _graphicsmanager_h
 
 #include "Threading/dagframescheduler.h"
-#include "managerbase.h"
-#include "managerfactory.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
 #include "Graphics/windowsettings.h"
 #include "Graphics/graphicsenumerations.h"
@@ -74,37 +74,37 @@ namespace Mezzanine
         /// @brief This does the main loop processing for required to make the Graphics Manager function
         class MEZZ_LIB RenderWorkUnit : public Threading::MonopolyWorkUnit
         {
-            private:
-                /// @internal
-                /// @brief The GraphicsManager this will work with
-                GraphicsManager* TargetManager;
+        private:
+            /// @internal
+            /// @brief The GraphicsManager this will work with
+            GraphicsManager* TargetManager;
 
-                /// @internal
-                /// @brief Private copy constructor to prevent useless copying of this,
-                RenderWorkUnit(const RenderWorkUnit&) {}
+            /// @internal
+            /// @brief Private copy constructor to prevent useless copying of this,
+            RenderWorkUnit(const RenderWorkUnit&) {}
 
-                /// @internal
-                /// @brief Private assignment operator to prevent useless assignment of this,
-                void operator=(RenderWorkUnit) {}
+            /// @internal
+            /// @brief Private assignment operator to prevent useless assignment of this,
+            void operator=(RenderWorkUnit) {}
 
-            public:
-                /// @brief Create a GraphicsWorkUnit
-                /// @param WhichGraphicsManager This is the Manager that this Work unit must work with.
-                RenderWorkUnit(GraphicsManager* Target);
+        public:
+            /// @brief Create a GraphicsWorkUnit
+            /// @param WhichGraphicsManager This is the Manager that this Work unit must work with.
+            RenderWorkUnit(GraphicsManager* Target);
 
-                /// @brief virtual deconstructor
-                virtual ~RenderWorkUnit();
+            /// @brief virtual deconstructor
+            virtual ~RenderWorkUnit();
 
-                /// @brief Once The graphics is properly multithread, this will set the amount of threads it should use
-                /// @param AmountToUse Currently Ignored.
-                virtual void UseThreads(const Whole& AmountToUse);
+            /// @brief Once The graphics is properly multithread, this will set the amount of threads it should use
+            /// @param AmountToUse Currently Ignored.
+            virtual void UseThreads(const Whole& AmountToUse);
 
-                /// @brief Get the amount of threads this will attempt to sue
-                /// @return 1, this will return 1 until this Ogre threading is implemented.
-                virtual Whole UsingThreadCount();
+            /// @brief Get the amount of threads this will attempt to sue
+            /// @return 1, this will return 1 until this Ogre threading is implemented.
+            virtual Whole UsingThreadCount();
 
-                /// @brief This does any required update of the Graphical Scene graph and REnders one frame
-                virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
         };//RenderWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ namespace Mezzanine
         /// complex graphics settings. We hope to eventually include other items like
         /// shader settings, rendering API, and maybe other settings too.
         ///////////////////////////////////////
-        class MEZZ_LIB GraphicsManager: public ManagerBase, public ObjectSettingsHandler, public Singleton<GraphicsManager>
+        class MEZZ_LIB GraphicsManager: public EntresolManager, public ObjectSettingsHandler, public Singleton<GraphicsManager>
         {
         public:
             /// @brief Basic container type for @ref GameWindow storage by this class.
@@ -131,20 +131,17 @@ namespace Mezzanine
             typedef ResolutionContainer::iterator         ResolutionIterator;
             /// @brief Const Iterator type for stored supported resolutions.
             typedef ResolutionContainer::const_iterator   ConstResolutionIterator;
-            /// @brief Basic container type for internal plugin storage by this class.
-            typedef std::vector<Ogre::Plugin*>            InternalPluginContainer;
             /// @brief Basic container type for registered rendersystem type storage by this class.
             typedef std::vector<RenderSystem>             RenderSystemTypeContainer;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             /// @internal
             /// @brief The RenderWorkUnit really is an extension of the GraphicsManager, it just exists as a Functor for the sake of simplicity.
             friend class RenderWorkUnit;
-            /// @internal
-            /// @brief Track all statically linked Ogre render systems, usually only one, but could be many.
-            InternalPluginContainer RenderSystems;
-            /// @internal
-            /// @brief A listing of the types of rendersystems Types that correspond to the entry in @ref RenderSystems.
-            RenderSystemTypeContainer RenderSystemTypes;
             /// @internal
             /// @brief A container storing all the game windows created by this manager.
             GameWindowContainer GameWindows;
@@ -193,7 +190,7 @@ namespace Mezzanine
             GraphicsManager();
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            GraphicsManager(XML::Node& XMLNode);
+            GraphicsManager(const XML::Node& XMLNode);
             /// @brief Class Destructor.
             virtual ~GraphicsManager();
 
@@ -321,7 +318,7 @@ namespace Mezzanine
         /// @headerfile graphicsmanager.h
         /// @brief A factory responsible for the creation and destruction of the default graphicsmanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultGraphicsManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultGraphicsManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -329,15 +326,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultGraphicsManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+            EntresolManager* CreateManager(const NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+            EntresolManager* CreateManager(const XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         }; // DefaultGraphicsManagerFactory
     } // Graphics namespace
 } // Mezzanine

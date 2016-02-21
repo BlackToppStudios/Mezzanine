@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -77,6 +77,8 @@ namespace Mezzanine
 
             /// @internal
             /// @brief The container specific logic for updating it's dimensions.
+            /// @param OldSelfRect The pre-update size of this widget.
+            /// @param NewSelfRect The post-update size of this widget.
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect) = 0;
         public:
             /// @brief Blank constructor.

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -96,48 +96,77 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void ColourValue::SetRedChannel(const Real& Red)
-        { RedChannel = Red; }
+    void ColourValue::SetRedChannel(const Real Red)
+        { this->RedChannel = Red; }
 
     Real ColourValue::GetRedChannel() const
-        { return RedChannel; }
+        { return this->RedChannel; }
 
-    void ColourValue::SetGreenChannel(const Real& Green)
-        { GreenChannel = Green; }
+    void ColourValue::SetGreenChannel(const Real Green)
+        { this->GreenChannel = Green; }
 
     Real ColourValue::GetGreenChannel() const
-        { return GreenChannel; }
+        { return this->GreenChannel; }
 
-    void ColourValue::SetBlueChannel(const Real& Blue)
-        { BlueChannel = Blue; }
+    void ColourValue::SetBlueChannel(const Real Blue)
+        { this->BlueChannel = Blue; }
 
     Real ColourValue::GetBlueChannel() const
-        { return BlueChannel; }
+        { return this->BlueChannel; }
 
-    void ColourValue::SetAlphaChannel(const Real& Alpha)
-        { AlphaChannel = Alpha; }
+    void ColourValue::SetAlphaChannel(const Real Alpha)
+        { this->AlphaChannel = Alpha; }
 
     Real ColourValue::GetAlphaChannel() const
-        { return AlphaChannel; }
+        { return this->AlphaChannel; }
+
+    void ColourValue::SetValues(const Real Red, const Real Green, const Real Blue, const Real Alpha)
+    {
+        this->RedChannel = Red;
+        this->GreenChannel = Green;
+        this->BlueChannel = Blue;
+        this->AlphaChannel = Alpha;
+    }
 
     ColourValue ColourValue::Average(const ColourValue& OtherColor) const
     {
-        return ColourValue( (this->RedChannel+OtherColor.RedChannel) * 0.5,
-                            (this->GreenChannel+OtherColor.GreenChannel) * 0.5,
-                            (this->BlueChannel+OtherColor.BlueChannel) * 0.5,
-                            (this->AlphaChannel+OtherColor.AlphaChannel) * 0.5 );
+        return ColourValue( ( this->RedChannel + OtherColor.RedChannel ) * 0.5,
+                            ( this->GreenChannel + OtherColor.GreenChannel ) * 0.5,
+                            ( this->BlueChannel + OtherColor.BlueChannel ) * 0.5,
+                            ( this->AlphaChannel + OtherColor.AlphaChannel ) * 0.5 );
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Overloaded Operators
 
-    Boole ColourValue::operator==(const ColourValue &Colour) const
+    ColourValue ColourValue::operator*(const Real Scalar)
+        { return ColourValue( this->RedChannel * Scalar, this->GreenChannel * Scalar, this->BlueChannel * Scalar, this->AlphaChannel * Scalar); }
+
+    ColourValue ColourValue::operator+(const ColourValue& Colour)
+        { return ColourValue( this->RedChannel + Colour.RedChannel, this->GreenChannel + Colour.GreenChannel, this->BlueChannel + Colour.BlueChannel, this->AlphaChannel + Colour.AlphaChannel ); }
+
+    ColourValue ColourValue::operator-(const ColourValue& Colour)
+        { return ColourValue( this->RedChannel - Colour.RedChannel, this->GreenChannel - Colour.GreenChannel, this->BlueChannel - Colour.BlueChannel, this->AlphaChannel - Colour.AlphaChannel ); }
+
+    ColourValue ColourValue::operator*(const ColourValue& Colour)
+        { return ColourValue( this->RedChannel * Colour.RedChannel, this->GreenChannel * Colour.GreenChannel, this->BlueChannel * Colour.BlueChannel, this->AlphaChannel * Colour.AlphaChannel ); }
+
+    ColourValue& ColourValue::operator+=(const ColourValue& Colour)
+        { this->SetValues( this->RedChannel + Colour.RedChannel, this->GreenChannel + Colour.GreenChannel, this->BlueChannel + Colour.BlueChannel, this->AlphaChannel + Colour.AlphaChannel );  return *this; }
+
+    ColourValue& ColourValue::operator-=(const ColourValue& Colour)
+        { this->SetValues( this->RedChannel - Colour.RedChannel, this->GreenChannel - Colour.GreenChannel, this->BlueChannel - Colour.BlueChannel, this->AlphaChannel - Colour.AlphaChannel );  return *this; }
+
+    ColourValue& ColourValue::operator*=(const ColourValue& Colour)
+        { this->SetValues( this->RedChannel * Colour.RedChannel, this->GreenChannel * Colour.GreenChannel, this->BlueChannel * Colour.BlueChannel, this->AlphaChannel * Colour.AlphaChannel );  return *this; }
+
+    Boole ColourValue::operator==(const ColourValue& Colour) const
         { return ( Colour.RedChannel == this->RedChannel && Colour.GreenChannel == this->GreenChannel && Colour.BlueChannel == this->BlueChannel && Colour.AlphaChannel == this->AlphaChannel ); }
 
-    Boole ColourValue::operator!=(const ColourValue &Colour) const
+    Boole ColourValue::operator!=(const ColourValue& Colour) const
         { return ( Colour.RedChannel != this->RedChannel || Colour.GreenChannel != this->GreenChannel || Colour.BlueChannel != this->BlueChannel || Colour.AlphaChannel != this->AlphaChannel ); }
 
-    void ColourValue::operator=(const ColourValue &OtherColour)
+    void ColourValue::operator=(const ColourValue& OtherColour)
     {
         this->RedChannel = OtherColour.RedChannel;
         this->GreenChannel = OtherColour.GreenChannel;
@@ -579,8 +608,8 @@ namespace Mezzanine
 
     void ColourValue::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(this->ColourValue::SerializableName());
-        VecNode.SetName(this->ColourValue::SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(this->ColourValue::GetSerializableName());
+        VecNode.SetName(this->ColourValue::GetSerializableName());
 
         Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
         Mezzanine::XML::Attribute RAttr = VecNode.AppendAttribute("Red");
@@ -593,17 +622,17 @@ namespace Mezzanine
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values", this->ColourValue::SerializableName(),true);
+                SerializeError("Create XML Attribute Values", this->ColourValue::GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Attributes", this->ColourValue::SerializableName(),true);
+            SerializeError("Create XML Attributes", this->ColourValue::GetSerializableName(),true);
         }
     }
 
     // DeSerializable
     void ColourValue::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if( Mezzanine::String(OneNode.Name())==this->ColourValue::SerializableName() )
+        if( Mezzanine::String(OneNode.Name())==this->ColourValue::GetSerializableName() )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
@@ -612,14 +641,14 @@ namespace Mezzanine
                 this->BlueChannel=OneNode.GetAttribute("Blue").AsReal();
                 this->AlphaChannel=OneNode.GetAttribute("Alpha").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->ColourValue::SerializableName()) + ": Not Version 1");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->ColourValue::GetSerializableName()) + ": Not Version 1");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->ColourValue::SerializableName()) + ", found a " + OneNode.Name());
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->ColourValue::GetSerializableName()) + ", found a " + OneNode.Name());
         }
     }
 
-    String ColourValue::SerializableName()
+    String ColourValue::GetSerializableName()
         { return String("ColourValue"); }
 }//Mezzanine
 

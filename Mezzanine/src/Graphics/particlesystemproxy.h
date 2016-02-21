@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -120,9 +120,10 @@ namespace Mezzanine
             /// @todo Create a non-template constructor so people can make particle effects entirely from c++.
 
             /// @brief Template constructor.
+            /// @param ID The unique ID assigned to this ParticleSystemProxy.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param Creator A pointer to the manager that created this proxy.
-            ParticleSystemProxy(const String& Template, SceneManager* Creator);
+            ParticleSystemProxy(const UInt32 ID, const String& Template, SceneManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

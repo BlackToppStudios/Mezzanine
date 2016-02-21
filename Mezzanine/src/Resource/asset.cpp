@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,20 +41,58 @@
 #define _resourceasset_cpp
 
 #include "Resource/asset.h"
+#include "Resource/resourceutilities.h"
+#include "Resource/resourcemanager.h"
+
+#include "exception.h"
 
 namespace Mezzanine
 {
     namespace Resource
     {
         Asset::Asset()
-        {
-
-        }
+            {  }
 
         Asset::~Asset()
-        {
+            {  }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Loading Methods
+
+        void Asset::LoadAsset(const String& FileName, const String& GroupName)
+        {
+            ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+            if( ResourceMan == NULL ) {
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to perform IO with AssetGroups when the resource system has not been created/initialized.");
+            }
+            // We should fetch the stream via the singleton pointer here, however may need to rethink how this is approached for large files or slow IO where loading may need to be split up between multiple frames.
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Loading via asset groups is not supported yet.");
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Saving Methods
+
+        void Asset::SaveAsset(const String& FileName, const String& GroupName)
+        {
+            ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+            if( ResourceMan == NULL ) {
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to perform IO with AssetGroups when the resource system has not been created/initialized.");
+            }
+            // This is awaiting the addition of write directories to asset groups.
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Saving via asset groups is not supported yet.");
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Loading Methods
+
+        void Asset::_LoadAsset(const String& FilePath, const String& FileName)
+            { this->_LoadAsset(Resource::CombinePathAndFileName(FilePath,FileName)); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Saving Methods
+
+        void Asset::_SaveAsset(const String& FilePath, const String& FileName)
+            { this->_SaveAsset(Resource::CombinePathAndFileName(FilePath,FileName)); }
     }//Resource
 }//Mezzanine
 

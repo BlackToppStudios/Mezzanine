@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -629,7 +629,7 @@ namespace Mezzanine
             if( ToSet != NULL ) {
                 this->SetActiveGroup( ToSet );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" does not exist in QuadRenderable: \"" + this->GetName() + "\"." );
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" does not exist in QuadRenderable: \"" + this->GetName() + "\"." );
             }
         }
 
@@ -698,7 +698,7 @@ namespace Mezzanine
             if( GroupCheck == NULL ) {
                 return this->CreateRenderLayerGroupNoCheck(GroupID);
             }else{
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" already exists in QuadRenderable: \"" + this->GetName() + "\"." );
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" already exists in QuadRenderable: \"" + this->GetName() + "\"." );
             }
             return NULL;//This should never happen, but compilation warnings are annoying.
         }
@@ -1152,10 +1152,10 @@ namespace Mezzanine
                     if( !SizingNode.Empty() )
                         this->SizingPolicy.ProtoDeSerialize(SizingNode);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (QuadRenderable::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (QuadRenderable::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,QuadRenderable::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,QuadRenderable::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -1193,11 +1193,11 @@ namespace Mezzanine
                             this->ResizeLayers( CurrLayer->GetIndex() );
                             this->RenderLayers[ CurrLayer->GetIndex() ] = CurrLayer;
                         }else{
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Unknown render layer name provided when deserializing.");
+                            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Unknown render layer name provided when deserializing.");
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for RenderLayers: Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for RenderLayers: Not Version 1.");
                 }
             }
         }
@@ -1227,13 +1227,13 @@ namespace Mezzanine
                                 if( IndexAttrib && ZOrderAttrib ) {
                                     CurrGroup->AddLayer( this->GetRenderLayer( IndexAttrib.AsWhole() ), ZOrderAttrib.AsWhole() );
                                 }else{
-                                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Index and/or ZOrder attributes were not found in the provided XML node, which was expected.");
+                                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Index and/or ZOrder attributes were not found in the provided XML node, which was expected.");
                                 }
                             }
                         }
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for RenderLayerGroups: Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for RenderLayerGroups: Not Version 1.");
                 }
             }
         }
@@ -1248,7 +1248,7 @@ namespace Mezzanine
                         this->AddChild( this->ParentScreen->CreateWidget( (*ChildNodeIt) ) );
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Children: Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Children: Not Version 1.");
                 }
             }
         }

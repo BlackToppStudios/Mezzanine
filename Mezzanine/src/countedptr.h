@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -233,7 +233,7 @@ namespace Mezzanine
             typedef IntrusiveRefCount RefCountType;
 
             /// @brief Because The reference count is allocated when the caller created the target this does not need to allocate a Reference count separetaly.
-            /// @param The create object to manage.
+            /// @param Target The already created object to manage.
             /// @return This is expected to return a valid reference count, since the reference count is in the target, this returns whatever was passed in,
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
@@ -508,9 +508,9 @@ namespace Mezzanine
     /// @code
     /// enum { IsCastable = CastStaticVirtual };
     /// @endcode
-    /// @param ReturnPointer The type of pointer that the functions on the CountedPtr must return
-    /// @param OriginalPointer The actual type the CountedPtr is maintaining as a target.
-    /// @param CountedPointerCastingState Any value in the @ref CountedPointerCastingState to indicate kind of casting.
+    /// @tparam ReturnPointer The type of pointer that the functions on the CountedPtr must return
+    /// @tparam OriginalPointer The actual type the CountedPtr is maintaining as a target.
+    /// @tparam CountedPointerCastingState Any value in the @ref CountedPointerCastingState to indicate kind of casting.
     /// @details For any case that uses CastNoneError including the default.
     template <typename ReturnPointer, typename OriginalPointer, CountedPointerCastingState>
     class CountedPtrCastImpl
@@ -530,7 +530,7 @@ namespace Mezzanine
 
     /// @internal
     /// @brief An implementation of the CountedPtrCast that always return the pointer passed reached via CastNoneError in the ReferenceCountTraits of the target class.
-    /// @param OriginalPointer The type of the original pointer and return value must match exactly
+    /// @tparam OriginalPointer The type of the original pointer and return value must match exactly
     /// @note Since this requires both matching pointer types and CastNoneError to be present in the ReferenceCountTraits This should produce a compilation error when somethign is set wrong.
     template <typename OriginalPointer>
     class CountedPtrCastImpl <OriginalPointer, OriginalPointer, CastNoneError>
@@ -611,8 +611,8 @@ namespace Mezzanine
 
     /// @internal
     /// @brief Used internally by CounterPtr to abstract away casts in the case where the return type would *NOT* match the input type.
-    /// @param ReturnPointer The type of the pointer to target after using the Casting Strategy described in the classes ReferenceCountTraits.
-    /// @param OriginalPointer The type of the pointer prior to casting.
+    /// @tparam ReturnPointer The type of the pointer to target after using the Casting Strategy described in the classes ReferenceCountTraits.
+    /// @tparam OriginalPointer The type of the pointer prior to casting.
     /// @note The function argument Original is of type const OriginalPointer. When search for possible matching functions an template a compiler prioritizes functions that are off by just a CV qualifier ahead of those that it would need to implicitly cast to call. So if the to pointer types match exactly this will not be called.
     /// @param Original The Pointer to cast which must be exactly of the type OriginalPointer(Which might be inferable).
     /// @return A pointer of the type ReturnPointer after the desired casting strategy has been used.
@@ -636,7 +636,7 @@ namespace Mezzanine
     /// @brief Used internally by CounterPtr to abstract away casts in the case where the return type would match the input type.
     /// @details This enforces the logic that cast should only be performed inside the CountedPtr when a cast is required. This
     /// also has the advantage of not performing meaningless extra casts if a runtime cast is used, so it coudl enhance performance.
-    /// @param Pointer The only type of pointers involved.
+    /// @tparam Pointer The only type of pointers involved.
     /// @param Original The pointer that needs to be checked to see if it should be cast and this compilation case does not require it.
     /// @return The value passed in Original.
     template <typename Pointer>
@@ -644,8 +644,8 @@ namespace Mezzanine
         { return  Original; }
 
     /// @brief A compile time cast that uses only the implicit conversion of the underlying raw pointers
-    /// @param ReturnType The type to be returned, must be specified
-    /// @param OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
+    /// @tparam ReturnType The type to be returned, must be specified
+    /// @tparam OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a compilation error
     template <typename ReturnType, typename OtherPointerTargetType>
@@ -653,8 +653,8 @@ namespace Mezzanine
         { return CountedPtr<ReturnType>(Original); }
 
     /// @brief A compile time cast that uses static casting conversion of the underlying raw pointers but only works on internally reference count types
-    /// @param ReturnType The type to be returned, must be specified
-    /// @param OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
+    /// @tparam ReturnType The type to be returned, must be specified
+    /// @tparam OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a compilation error
     template <typename ReturnType, typename OtherPointerTargetType>
@@ -662,8 +662,8 @@ namespace Mezzanine
         { return CountedPtr<ReturnType>(static_cast<ReturnType*>(Original.GetReferenceCount())); }
 
     /// @brief A Runtime cast that uses dynamic casting conversion of the underlying raw pointers but only works on internally reference count types
-    /// @param ReturnType The type to be returned, must be specified
-    /// @param OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
+    /// @tparam ReturnType The type to be returned, must be specified
+    /// @tparam OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a 0 if casting is not possible.
     template <typename ReturnType, typename OtherPointerTargetType>

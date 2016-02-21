@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@
 #include "datatypes.h"
 #include "vector3.h"
 #include "worldmanager.h"
-#include "managerfactory.h"
+#include "worldmanagerfactory.h"
 
 namespace Mezzanine
 {
@@ -66,15 +66,21 @@ namespace Mezzanine
         typedef TerrainContainer::iterator               TerrainIterator;
         /// @brief Const Iterator type for @ref TerrainBase instances stored by this class.
         typedef TerrainContainer::const_iterator         ConstTerrainIterator;
+
+        /// @brief A String containing the name of this manager implementation.
+        static const String ImplementationName;
+        /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+        static const ManagerBase::ManagerType InterfaceType;
     protected:
+        /// @internal
         /// @brief A container of all terrain instances.
         TerrainContainer Terrains;
     public:
         /// @brief Class constructor.
-        TerrainManager();
+        TerrainManager(World* Creator);
         /// @brief XML constructor.
         /// @param XMLNode The node of the xml document to construct from.
-        TerrainManager(XML::Node& XMLNode);
+        TerrainManager(World* Creator, const XML::Node& XMLNode);
         /// @brief Class destructor.
         virtual ~TerrainManager();
 
@@ -155,10 +161,9 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class DefaultTerrainManagerFactory
-    /// @headerfile terrainmanager.h
     /// @brief A factory responsible for the creation and destruction of the default terrainmanager.
     ///////////////////////////////////////
-    class MEZZ_LIB DefaultTerrainManagerFactory : public ManagerFactory
+    class MEZZ_LIB DefaultTerrainManagerFactory : public WorldManagerFactory
     {
     public:
         /// @brief Class constructor.
@@ -166,15 +171,17 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~DefaultTerrainManagerFactory();
 
-        /// @copydoc ManagerFactory::GetManagerTypeName()
-        String GetManagerTypeName() const;
+        /// @copydoc ManagerFactory::GetManagerImplName()
+        String GetManagerImplName() const;
+        /// @copydoc ManagerFactory::GetManagerType() const
+        ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-        ManagerBase* CreateManager(NameValuePairList& Params);
-        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-        ManagerBase* CreateManager(XML::Node& XMLNode);
-        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-        void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, const NameValuePairList&)
+        WorldManager* CreateManager(World* Creator, const NameValuePairList& Params);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, const XML::Node&)
+        WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode);
+        /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+        void DestroyManager(WorldManager* ToBeDestroyed);
     };//DefaultTerrainManagerFactory
 }//Mezzanine
 

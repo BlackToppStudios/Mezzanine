@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,8 +40,8 @@
 #ifndef _inputinputmanager_h
 #define _inputinputmanager_h
 
-#include "managerbase.h"
-#include "managerfactory.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
 #include "Input/metacode.h"
 #include "Input/sequencecontainer.h"
@@ -125,12 +125,20 @@ namespace Mezzanine
         /// the appropriate MetaCode(which could trigger something else in the UI system), but this also means great care must be
         /// taken when deciding on the ID's for each Input Sequence.
         ///////////////////////////////////////
-        class MEZZ_LIB InputManager : public ManagerBase, public Singleton<InputManager>
+        class MEZZ_LIB InputManager : public EntresolManager, public Singleton<InputManager>
         {
         public:
+            /// @brief Basic container type for game controller instances.
             typedef std::vector< Controller* >           ControllerContainer;
+            /// @brief Iterator type for game controller instances stored by this class.
             typedef ControllerContainer::iterator        ControllerIterator;
+            /// @brief Const Iterator type for game controller instances stored by this class.
             typedef ControllerContainer::const_iterator  ConstControllerIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             friend class DeviceUpdateWorkUnit;
 
@@ -162,7 +170,7 @@ namespace Mezzanine
             InputManager();
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            InputManager(XML::Node& XMLNode);
+            InputManager(const XML::Node& XMLNode);
             /// @brief Class destructor.
             virtual ~InputManager();
 
@@ -236,7 +244,7 @@ namespace Mezzanine
         /// @headerfile inputmanager.h
         /// @brief A factory responsible for the creation and destruction of the default inputmanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultInputManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultInputManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -244,15 +252,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultInputManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+            EntresolManager* CreateManager(const NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+            EntresolManager* CreateManager(const XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultInputManagerFactory
     }//Input
 }//Mezzanine

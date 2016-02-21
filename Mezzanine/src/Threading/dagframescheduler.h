@@ -1,5 +1,5 @@
 // The DAGFrameScheduler is a Multi-Threaded lock free and wait free scheduling library.
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The DAGFrameScheduler.
 
     The DAGFrameScheduler is free software: you can redistribute it and/or modify
@@ -127,12 +127,6 @@
 /// @brief The revision version number of the library. (This right/back number)
 #define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 1
 
-
-
-#ifndef MEZZANINE_CORE
-/// @mainpage Directed Acyclic Graph Frame Scheduler.
-/// For an in depth description please see the @ref ThreadingManual
-#endif
 
 /// @page ThreadingManual Directed Acyclic Graph Frame Scheduler
 /// @section dag_header The DAG Frame Scheduler Manual.

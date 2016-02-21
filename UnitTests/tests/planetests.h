@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -174,6 +174,8 @@ public:
             Plane Surface(Vector3(0.0,1.0,0.0),2);
             TEST( Surface.GetDistance(Point) == 8.0 ,"GetDistance(const_Vector3&)_const");
         }
+
+        /// @todo Write a unit test for "Ray GetOverlap(const Plane& Other) const"
 
         {
             Sphere PassBall(Vector3(-55.0,25,30.0),10);

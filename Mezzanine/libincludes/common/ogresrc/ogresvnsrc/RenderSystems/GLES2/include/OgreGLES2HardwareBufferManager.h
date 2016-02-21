@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,16 +33,17 @@ THE SOFTWARE.
 #include "OgreHardwareBufferManager.h"
 
 namespace Ogre {
-    // Default threshold at which glMapBuffer becomes more efficient than glBufferSubData (32k?)
-    #   define OGRE_GL_DEFAULT_MAP_BUFFER_THRESHOLD (1024 * 32)
+    class GLES2StateCacheManager;
 
     /** Implementation of HardwareBufferManager for OpenGL ES. */
     class _OgreGLES2Export GLES2HardwareBufferManagerBase : public HardwareBufferManagerBase
     {
         protected:
-            char* mScratchBufferPool;
-            OGRE_MUTEX(mScratchMutex)
-            size_t mMapBufferThreshold;
+            GLES2StateCacheManager* mStateCacheManager;
+            /// Internal method for creates a new vertex declaration, may be overridden by certain rendering APIs
+            VertexDeclaration* createVertexDeclarationImpl(void);
+            /// Internal method for destroys a vertex declaration, may be overridden by certain rendering APIs
+            void destroyVertexDeclarationImpl(VertexDeclaration* decl);
 
         public:
             GLES2HardwareBufferManagerBase();
@@ -54,8 +55,16 @@ namespace Ogre {
             HardwareIndexBufferSharedPtr createIndexBuffer(
                 HardwareIndexBuffer::IndexType itype, size_t numIndexes,
                 HardwareBuffer::Usage usage, bool useShadowBuffer = false);
-	        /// Create a render to vertex buffer
-    	    RenderToVertexBufferSharedPtr createRenderToVertexBuffer();
+            /// Create a render to vertex buffer
+            RenderToVertexBufferSharedPtr createRenderToVertexBuffer();
+            HardwareUniformBufferSharedPtr
+            createUniformBuffer(size_t sizeBytes, HardwareBuffer::Usage usage, bool useShadowBuffer, const String& name = "");
+            /// Create a uniform buffer
+            HardwareUniformBufferSharedPtr createUniformBuffer(size_t sizeBytes, HardwareBuffer::Usage usage,
+                                                               bool useShadowBuffer, size_t binding, const String& name = "");
+            HardwareCounterBufferSharedPtr createCounterBuffer(size_t sizeBytes,
+                                                               HardwareBuffer::Usage usage = HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+                                                               bool useShadowBuffer = false, const String& name = "");
 
             /// Utility function to get the correct GL usage based on HBU's
             static GLenum getGLUsage(unsigned int usage);
@@ -63,76 +72,31 @@ namespace Ogre {
             /// Utility function to get the correct GL type based on VET's
             static GLenum getGLType(unsigned int type);
 
-            /** Allocator method to allow us to use a pool of memory as a scratch
-                area for hardware buffers. This is because glMapBuffer is incredibly
-                inefficient, seemingly no matter what options we give it. So for the
-                period of lock/unlock, we will instead allocate a section of a local
-                memory pool, and use glBufferSubDataARB / glGetBufferSubDataARB
-                instead.
-            */
-            void* allocateScratch(uint32 size);
-
-            /// @see allocateScratch
-            void deallocateScratch(void* ptr);
-
-    		/** Threshold after which glMapBuffer is used and not glBufferSubData
-            */
-            size_t getGLMapBufferThreshold() const;
-            void setGLMapBufferThreshold( const size_t value );
+            GLES2StateCacheManager * getStateCacheManager() { return mStateCacheManager; }
     };
 
-	/// GLES2HardwareBufferManagerBase as a Singleton
-	class _OgreGLES2Export GLES2HardwareBufferManager : public HardwareBufferManager
-	{
-	public:
-		GLES2HardwareBufferManager()
-			: HardwareBufferManager(OGRE_NEW GLES2HardwareBufferManagerBase()) 
-		{
+    /// GLES2HardwareBufferManagerBase as a Singleton
+    class _OgreGLES2Export GLES2HardwareBufferManager : public HardwareBufferManager
+    {
+    public:
+        GLES2HardwareBufferManager()
+            : HardwareBufferManager(OGRE_NEW GLES2HardwareBufferManagerBase()) 
+        {
 
-		}
-		~GLES2HardwareBufferManager()
-		{
-			OGRE_DELETE mImpl;
-		}
+        }
+        ~GLES2HardwareBufferManager()
+        {
+            OGRE_DELETE mImpl;
+        }
 
-		/// Utility function to get the correct GL usage based on HBU's
-		static GLenum getGLUsage(unsigned int usage) 
+        /// Utility function to get the correct GL usage based on HBU's
+        static GLenum getGLUsage(unsigned int usage) 
             { return GLES2HardwareBufferManagerBase::getGLUsage(usage); }
 
-		/// Utility function to get the correct GL type based on VET's
-		static GLenum getGLType(unsigned int type)
+        /// Utility function to get the correct GL type based on VET's
+        static GLenum getGLType(unsigned int type)
             { return GLES2HardwareBufferManagerBase::getGLType(type); }
-
-		/** Allocator method to allow us to use a pool of memory as a scratch
-		area for hardware buffers. This is because glMapBuffer is incredibly
-		inefficient, seemingly no matter what options we give it. So for the
-		period of lock/unlock, we will instead allocate a section of a local
-		memory pool, and use glBufferSubDataARB / glGetBufferSubDataARB
-		instead.
-		*/
-		void* allocateScratch(uint32 size)
-		{
-			return static_cast<GLES2HardwareBufferManagerBase*>(mImpl)->allocateScratch(size);
-		}
-
-		/// @see allocateScratch
-		void deallocateScratch(void* ptr)
-		{
-			static_cast<GLES2HardwareBufferManagerBase*>(mImpl)->deallocateScratch(ptr);
-		}
-
-        /** Threshold after which glMapBuffer is used and not glBufferSubData
-		*/
-		size_t getGLMapBufferThreshold() const
-		{
-			return static_cast<GLES2HardwareBufferManagerBase*>(mImpl)->getGLMapBufferThreshold();
-		}
-		void setGLMapBufferThreshold( const size_t value )
-		{
-			static_cast<GLES2HardwareBufferManagerBase*>(mImpl)->setGLMapBufferThreshold(value);
-		}
-
-	};
+    };
 
 }
 

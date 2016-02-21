@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ namespace Mezzanine
             /*/// @internal
             /// @brief A vector3 storing the scaling applied to this body.
             /// @note This exists because in bullet scaling is a property of shapes instead of bodies.
-            Vector3 BodyScale;//*/
+            Vector3 BodyScale;// */
             /// @internal
             /// @brief The physics shape of this proxy.
             CollisionShape* ProxyShape;
@@ -91,9 +91,13 @@ namespace Mezzanine
             /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
         public:
-            /// @brief Standard Constructor.
+            /// @brief XML-assist Constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             CollidableProxy(PhysicsManager* Creator);
+            /// @brief Normal Constructor.
+            /// @param ID The unique ID assigned to this proxy.
+            /// @param Creator A pointer to the manager that created this proxy.
+            CollidableProxy(const UInt32 ID, PhysicsManager* Creator);
             /// @brief Class Destructor.
             virtual ~CollidableProxy();
 

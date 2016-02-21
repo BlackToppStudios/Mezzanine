@@ -1,9 +1,10 @@
 <map id="Mezzanine::Physics::CollisionShapeManager" name="Mezzanine::Physics::CollisionShapeManager">
-<area shape="rect" id="node9" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;" alt="" coords="1273,131,1455,178"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="635,5,808,35"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="352,52,493,81"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="648,59,795,106"/>
-<area shape="rect" id="node14" title="STL class. " alt="" coords="184,149,264,179"/>
-<area shape="rect" id="node18" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="353,191,492,238"/>
-<area shape="rect" id="node16" title="STL class. " alt="" coords="7,141,132,187"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;" alt="" coords="1445,143,1628,185"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EntresolManager.html" title="This is the base class for all managers that do no describe properties of a single world..." alt="" coords="804,59,995,85"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="447,5,620,32"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="181,49,323,76"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="460,58,607,99"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="212,179,292,205"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="463,241,603,282"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="5,171,132,213"/>
 </map>

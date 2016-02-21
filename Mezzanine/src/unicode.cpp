@@ -1,5 +1,5 @@
 // The UTF8 Conversion Library is a small library aiding in the converstion from raw text to UTF8 text.
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The UTF8 Conversion Library.
 
     The UTF8 Conversion Library is free software: you can redistribute it and/or modify

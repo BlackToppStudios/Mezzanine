@@ -24,7 +24,7 @@ Whole LevelScorer::GetItemScoreValue(Debris* Item)
 Real LevelScorer::FindHighestMultiplier(Debris* Throwable)
 {
     Real RetMulti = 0.0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -73,7 +73,7 @@ Whole LevelScorer::CalculateTimerScore()
         ThrowableContainer& Throwables = this->GameApp->GetThrowables();
         Whole ActorsInScoreZones = 0;
 
-        AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+        AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
         AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
         for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
         {
@@ -90,7 +90,7 @@ Whole LevelScorer::CalculateTimerScore()
 
         Real ThrowableRatio = ((Real)ActorsInScoreZones / (Real)Throwables.size());
         Real SubTotal = (((Real)LevelTargetTime - (Real)Time) * 10) * ThrowableRatio;
-        Real Margin = MathTools::Fmod(SubTotal,5.0);
+        Real Margin = MathTools::Mod(SubTotal,5.0);
         if( Margin >= 2.5 ) {
             SubTotal += (5.0 - Margin);
             TimeScore = (Whole)(SubTotal + 0.5);
@@ -122,7 +122,7 @@ Whole LevelScorer::PresentFinalScore()
     Whole TimerScore = this->CalculateTimerScore();
 
     // Update the UI to reflect the calculated scores
-    UI::Screen* GameScreen = this->TheEntresol->GetUIManager()->GetScreen("GameScreen");
+    UI::Screen* GameScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("GameScreen");
     UI::VerticalContainer* BreakdownList = static_cast<UI::VerticalContainer*>( GameScreen->GetWidget("GS_LevelReportBreakdown") );
 
     // Create the widget container for the normal score display
@@ -231,7 +231,7 @@ Whole LevelScorer::PresentFinalScore()
         //
         // Loop through special conditions from lua
         //
-    }//*/
+    }// */
 
     Whole TotalScore = NormalScore+BonusScore+ShopScore+TimerScore+ObjectiveScore;
     UI::Widget* ScoreDisplay = GameScreen->GetWidget("GS_LevelReportScore");
@@ -246,7 +246,7 @@ Whole LevelScorer::PresentFinalScore()
 Whole LevelScorer::GetNumScoreAreas() const
 {
     Whole ScoreAreaCount = 0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -260,7 +260,7 @@ Whole LevelScorer::GetNumScoreAreas() const
 Whole LevelScorer::GetNumAddedThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -280,7 +280,7 @@ Whole LevelScorer::GetNumAddedThrowables() const
 Whole LevelScorer::GetNumOverlappingThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -300,7 +300,7 @@ Whole LevelScorer::GetNumOverlappingThrowables() const
 Whole LevelScorer::GetNumRemovedThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
     AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
     for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
@@ -331,7 +331,7 @@ void LevelScorer::SetThrowableScore(const String& TypeName, const Whole& Score)
 
 void LevelScorer::ResetLevelData()
 {
-    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
     UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
     UI::VerticalContainer* BreakdownList = static_cast<UI::VerticalContainer*>( GameScreen->GetWidget("GS_LevelReportBreakdown") );
     BreakdownList->DestroyAllChildren();

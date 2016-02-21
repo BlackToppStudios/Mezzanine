@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -89,9 +89,6 @@ namespace Mezzanine
             case ManagerBase::MT_AudioManager:
                 return "AudioManager";
                 break;
-            case ManagerBase::MT_CameraManager:
-                return "CameraManager";
-                break;
             case ManagerBase::MT_CollisionShapeManager:
                 return "CollisionShapeManager";
                 break;
@@ -112,6 +109,9 @@ namespace Mezzanine
                 break;
             case ManagerBase::MT_LogManager:
                 return "LogManager";
+                break;
+            case ManagerBase::MT_MaterialManager:
+                return "MaterialManager";
                 break;
             case ManagerBase::MT_MeshManager:
                 return "MeshManager";
@@ -139,6 +139,9 @@ namespace Mezzanine
                 break;
             case ManagerBase::MT_TerrainManager:
                 return "TerrainManager";
+                break;
+            case ManagerBase::MT_TextureManager:
+                return "TextureManager";
                 break;
             case ManagerBase::MT_UIManager:
                 return "UIManager";
@@ -171,9 +174,7 @@ namespace Mezzanine
             }
             case 'c':
             {
-                if( 'a' == Lower.at(1) ) {
-                    return ManagerBase::MT_CameraManager;
-                }else if( 'o' == Lower.at(1) ) {
+                if( 'o' == Lower.at(1) ) {
                     if( 'l' == Lower.at(2) ) return ManagerBase::MT_CollisionShapeManager;
                     else if( 'm' == Lower.at(2) ) return ManagerBase::MT_CompositorManager;
                 }
@@ -206,7 +207,8 @@ namespace Mezzanine
             }
             case 'm':
             {
-                return ManagerBase::MT_MeshManager;
+                if( 'a' == Lower.at(1) ) return ManagerBase::MT_MaterialManager;
+                else if( 'e' == Lower.at(1) )return ManagerBase::MT_MeshManager;
                 break;
             }
             case 'n':
@@ -238,7 +240,8 @@ namespace Mezzanine
             }
             case 't':
             {
-                return ManagerBase::MT_TerrainManager;
+                if( 'r' == Lower.at(2) ) return ManagerBase::MT_TerrainManager;
+                else if( 'x' == Lower.at(2) ) return ManagerBase::MT_TextureManager;
                 break;
             }
             case 'u':
@@ -255,7 +258,7 @@ namespace Mezzanine
         }
 
         //If we got this far, there was a problem with the string provided.
-        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to get ManagerType from string, but no match was found.  Is the string valid?");
+        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to get ManagerType from string, but no match was found.  Is the string valid?");
     }
 }//Mezzanine
 

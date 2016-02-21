@@ -1,6 +1,6 @@
 <map id="Mezzanine::EventSubscriberSlot" name="Mezzanine::EventSubscriberSlot">
-<area shape="rect" id="node3" href="$classMezzanine_1_1CFunctionSubscriberSlot.html" title="This is a subscriber slot class that triggers a Free/C&#45;style function. " alt="" coords="268,5,505,35"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1CustomSubscriberSlot.html" title="This is a subscriber slot class that passes on the event firing to a custom subscriber class..." alt="" coords="275,59,499,88"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1FunctorSubscriberSlot.html" title="This is a subscriber slot class that makes the appropriate call on a functor. " alt="" coords="276,112,497,141"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1ScriptSubscriberSlot.html" title="This is a subscriber slot class that triggers a provided script. " alt="" coords="281,165,492,195"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1CFunctionSubscriberSlot.html" title="This is a subscriber slot class that triggers a Free/C&#45;style function. " alt="" coords="265,5,504,32"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1CustomSubscriberSlot.html" title="This is a subscriber slot class that passes on the event firing to a custom subscriber class..." alt="" coords="273,56,497,83"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1FunctorSubscriberSlot.html" title="This is a subscriber slot class that makes the appropriate call on a functor. " alt="" coords="273,107,496,133"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1ScriptSubscriberSlot.html" title="This is a subscriber slot class that triggers a provided script. " alt="" coords="279,157,491,184"/>
 </map>

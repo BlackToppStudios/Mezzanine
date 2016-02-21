@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -138,9 +138,9 @@ namespace Mezzanine
     /// create a DeSerializable:
     /// @code
     /// void DeSerializableClass::ProtoDeSerialize(const XML::Node&);
-    /// static String DeSerializableClass::SerializableName();
+    /// static String DeSerializableClass::GetSerializableName();
     /// @endcode
-    /// The SerializableName() is expected to simply return the name of the xml elements this class will DeSerialize. For example
+    /// The GetSerializableName() is expected to simply return the name of the xml elements this class will DeSerialize. For example
     /// A Mezzanine::Vector3 returns "Vector3", and a Mezzanine::ActorRigid return "ActorRigid". If a class is both DeSerializable and
     /// serializable it makes sense to call this function when assigning the name to the Serialized Node it creates.
     /// \n \n
@@ -170,9 +170,9 @@ namespace Mezzanine
     /// entered by the class itself. This data must be provided by another class or upon creation of the class. This other class
     /// can implement the Serializer, DeSerializer, or both interfaces to make working with large amounts of serialization easier.
     /// \n \n
-    /// For example actors can only accept a mesh upon construction. So overwriting an existing actor is impossible to do completely.
+    /// For example EntityProxy can only accept a mesh upon construction. So overwriting an existing EntityProxy is impossible to do completely.
     /// It expected to be partially implemented, to the extent possible, in the class members. But if you have the need to create
-    /// Actors on the fly from data stored in files it makes sense to have a dedicated class or interface than can create these.
+    /// EntityProxys on the fly from data stored in files it makes sense to have a dedicated class or interface than can create these.
     /// Here is what goes into a Serializer:
     /// @code
     /// template <class Serializable> class Serializer
@@ -241,20 +241,20 @@ namespace Mezzanine
     /// made into a template. That doesn't mean that they are difficult to implement. Here is a typical implemenation of stream
     /// insertion operators for XML serialization:
     /// @code
-    /// std::ostream& operator << (std::ostream& stream, const Mezzanine::ActorRigid& ActorToSerialize)
+    /// std::ostream& operator << (std::ostream& stream, const Mezzanine::RigidDebris& DebrisToSerialize)
     /// {
-    ///     Serialize(stream, ActorToSerialize);
+    ///     Serialize(stream, DebrisToSerialize);
     ///     return stream;
     /// }
     ///
-    /// std::istream& operator >> (std::istream& stream, Mezzanine::ActorRigid& x)
+    /// std::istream& operator >> (std::istream& stream, Mezzanine::RigidDebris& x)
     ///     { return DeSerialize(stream, x); }
     ///
-    /// void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigid& x)
+    /// void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::RigidDebris& x)
     ///     { x.ProtoDeSerialize(OneNode); }
     ///
     /// @endcode
-    /// You will want to implement these functions with the appropriate type. The type Mezzanine::ActorRigid is used purely as example
+    /// You will want to implement these functions with the appropriate type. The type Mezzanine::RigidDebris is used purely as example
     /// Though this is actual working code and was in the engine at one point, the current code is more sophiscticated
     /// \n \n
     /// The function operator<< simply calls Serialize and returns the stream, so it has all the pre and cost conditions of the Serialize
@@ -341,7 +341,7 @@ namespace Mezzanine
     /// @details Some classes Must have certain values available at the time of construction. This make deserializing them by overwriting an existing
     /// class instance impractical. \n \n
     /// This is expected to work with classes that have implemented the required DeSerializable functions. Specifically This makes use of
-    /// "static String SerializableName()", and it is expected that functions that must be implemented would call on "void ProtoDeSerialize(const XML::Node&)".
+    /// "static String GetSerializableName()", and it is expected that functions that must be implemented would call on "void ProtoDeSerialize(const XML::Node&)".
     /// The type of this template is expected to match what this is deserializing.
     /// \n \n
     /// This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be
@@ -392,7 +392,7 @@ namespace Mezzanine
         virtual std::istream& DeSerialize(std::istream& Stream)
         {
             Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(Stream) );
-            Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc(Mezzanine::XML::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );
+            Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc(Mezzanine::XML::PreParseClassFromSingleTag(DeSerializable::GetSerializableName(), OneTag) );
             ProtoDeSerialize(Doc->GetFirstChild());
             return Stream;
         }
@@ -419,7 +419,7 @@ namespace Mezzanine
     }
 
     /// @brief Deserialize the next xml tag in the stream into a specific in memory class instance.
-    /// @details "void ProtoDeSerialize(const XML::Node&)" and "static String SerializableName() const" must be implemented on
+    /// @details "void ProtoDeSerialize(const XML::Node&)" and "static String GetSerializableName() const" must be implemented on
     /// the class instance that is passed in for this to work
     /// @param Stream The istream to extract the required data from
     /// @param Converted The Class member that is deserialized.
@@ -428,7 +428,7 @@ namespace Mezzanine
     std::istream& DeSerialize(std::istream& Stream, T& Converted)
     {
         Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(Stream) );
-        Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", Converted.SerializableName(), OneTag) );
+        Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", Converted.GetSerializableName(), OneTag) );
 
         Converted.ProtoDeSerialize(Doc->GetFirstChild());
 

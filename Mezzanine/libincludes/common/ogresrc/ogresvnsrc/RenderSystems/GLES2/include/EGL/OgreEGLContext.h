@@ -5,7 +5,7 @@ This source file is part of OGRE
 For the latest info, see http://www.ogre3d.org/
 
 Copyright (c) 2008 Renato Araujo Oliveira Filho <renatox@gmail.com>
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,7 @@ THE SOFTWARE.
 #define __EGLContext_H__
 
 #include "OgreGLES2Context.h"
+#include <EGL/egl.h>
 
 namespace Ogre {
     class EGLSupport;
@@ -49,11 +50,14 @@ namespace Ogre {
 
             virtual ~EGLContext();
 
+            virtual void _createInternalResources(EGLDisplay eglDisplay, ::EGLConfig glconfig, ::EGLSurface drawable, ::EGLContext shareContext);
+            virtual void _destroyInternalResources();
+        
             virtual void setCurrent();
             virtual void endCurrent();
             virtual GLES2Context* clone() const = 0;
 
-	    EGLSurface getDrawable() const;
+        EGLSurface getDrawable() const;
 
     };
 }

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -57,9 +57,13 @@ namespace Mezzanine
         {
         public:
             /// @brief Class constructor.
-            iListener() {  }
+            /// @param ID The unique ID of this listener.
+            iListener(const UInt32 ID) :
+                WorldProxy(ID)
+                {  }
             /// @brief Class destructor.
-            virtual ~iListener() {  }
+            virtual ~iListener()
+                {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -89,7 +93,7 @@ namespace Mezzanine
 
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
-            static String SerializableName() { return "iListener"; }
+            static String GetSerializableName() { return "iListener"; }
         };//iListener
     }//Audio
 }//Mezzanine

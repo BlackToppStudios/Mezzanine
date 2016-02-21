@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,14 +49,28 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
 
-/// @todo Remove #include "mezzanine.h" and just include what is required. Waiting for multithreaded refactor, because we will have to do this again after that.
-#include "mezzanine.h"
+#include "entresol.h"
+#include "entresolmanager.h"
+#include "world.h"
+
+// Manager Includes
+#include "eventmanager.h"
+#include "Graphics/graphicsmanager.h"
+#include "Graphics/meshmanager.h"
+#include "Graphics/scenemanager.h"
+#include "Graphics/texturemanager.h"
+#include "Input/inputmanager.h"
+#include "Network/networkmanager.h"
+#include "Physics/collisionshapemanager.h"
+#include "Physics/physicsmanager.h"
+#include "Resource/resourcemanager.h"
+#include "UI/uimanager.h"
+
+#include "Resource/filestream.h"
 
 // Enabled implementation includes
 #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
-    // Permit the factories to be visible so they can be auto-added.
     #include "Audio/OALS/oalsaudiomanagerfactory.h"
-    #include "Audio/OALS/oalssoundscapemanagerfactory.h"
 #endif // ENABLE_OALS_AUDIO_IMPLEMENTATION
 
 #ifdef MEZZLUA51
@@ -79,219 +93,147 @@
 #include <string>
 #include <cassert>
 
-#include "world.h"
-#include "worldmanager.h"
-
 using namespace std;
 
 namespace Mezzanine
 {
     template<> Entresol* Singleton<Entresol>::SingletonPtr = NULL;
-
-    namespace
-    {
-        // Since there doesn't seem to be anyway to check if the ogre root exists yet.
-        // if a you haven't made an ogre root, then Ogre::Root::getSingletonPtr(); appears to return gibberish rather that a zero.
-        Ogre::Root* OgreCore = NULL;
-    }
-
+    Entresol::ManagerFactoryMap Entresol::ManagerFactories;
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Construction and Destruction Helpers
+    // Entresol Constructors and Destructors
 
-    void Entresol::SetupLogging(const String& LogFileName)
-    {
-        /// @todo Allow the FrameScheduler Log target to be inspected and changed here
-        Ogre::LogManager* OgreLogs = Ogre::LogManager::getSingletonPtr();
-        if( NULL == OgreLogs )
-            { OgreLogs = new Ogre::LogManager(); }
-
-        if(!LogFileName.empty())
-        {
-            OgreLogs->createLog(String("Graphics")+LogFileName,true,true);
-        }
-        else
-        {
-            OgreLogs->createLog("GraphicsMezzanine.log",true,true);
-        }
-        this->Aggregator = new Threading::LogAggregator();
-        Aggregator->SetAggregationTarget(&WorkScheduler);
-        this->WorkScheduler.AddWorkUnitMain(Aggregator, "LogAggregator");
-    }
-
-    void Entresol::DestroyLogging()
-    {
-        this->WorkScheduler.RemoveWorkUnitMain(Aggregator);
-        delete Aggregator;
-    }
-
-    void Entresol::SetupOgre()
-    {
-        if ( NULL == OgreCore )
-            { OgreCore = new Ogre::Root("","",""); }
-        else
-            { OgreCore = Ogre::Root::getSingletonPtr(); }
-    }
-
-    void Entresol::DestroyOgre()
-    {
-        #ifdef LINUX
-        //assert( !( SDL_WasInit(0) | SDL_INIT_VIDEO ) && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
-        #endif
-
-        delete Ogre::Root::getSingletonPtr();
-        OgreCore = 0;
-        delete SubSystemParticleFXPlugin;
-    }
-
-    void Entresol::DestroySDL()
-    {
-        #ifdef LINUX
-        // Fail is SDL is de-intialized before Ogre, but only if Ogre has been initialized.
-        assert( NULL==OgreCore // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
-                && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
-        #endif
-        SDL_Quit();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Mezzanine constructors
-
-    /// @TODO In the Entrosol, reomves all references to a plugins file
+    /// @todo In the Entrosol, remove all references to a plugins file
     Entresol::Entresol()
     {
-        Physics::ManagerConstructionInfo PhysicsInfo;
-        std::vector <ManagerBase*> temp;
-
-        this->Construct(PhysicsInfo,"DefaultSceneManager",".","Mezzanine.log",temp);
+        ManagerVec temp;
+        this->Construct(".","Mezzanine.log",temp);
     }
 
-
-    Entresol::Entresol(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
+    Entresol::Entresol(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
     {
-        if(String::npos != InitializerFile.find(".mxi"))
-            { ConstructFromXML(EngineDataPath, ArchType, InitializerFile); }
-        else
-            { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
+        if( String::npos != InitializerFile.find(".mxi") ) {
+            this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile);
+        }else{
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type.");
+        }
     }
 
-    Entresol::Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
+    Entresol::Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
     {
-        for(std::vector<ManagerFactory*>::iterator it = CustomFactories.begin(); it != CustomFactories.end(); ++it)
+        for(ManagerFactoryVec::iterator it = CustomFactories.begin(); it != CustomFactories.end(); ++it)
         {
-            AddManagerFactory( (*it) );
+            this->AddManagerFactory( (*it) );
         }
 
-        if(String::npos != InitializerFile.find(".mxi"))
-            { ConstructFromXML(EngineDataPath, ArchType, InitializerFile); }
-        else
-            { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
+        if( String::npos != InitializerFile.find(".mxi") ) {
+            this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile);
+        }else{
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type.");
+        }
     }
 
-
-    Entresol::Entresol( const Physics::ManagerConstructionInfo& PhysicsInfo,
-                        const String& SceneType,
-                        const String& EngineDataPath,
-                        const String& LogFileName)
+    Entresol::Entresol(const String& EngineDataPath, const String& LogFileName)
     {
-        std::vector <ManagerBase*> temp;
-        this->Construct(PhysicsInfo,
-                        SceneType,
-                        EngineDataPath,
-                        LogFileName,
-                        temp );
+        ManagerVec temp;
+        this->Construct(EngineDataPath, LogFileName, temp);
     }
 
-    Entresol::Entresol( const Physics::ManagerConstructionInfo& PhysicsInfo,
-                        const String& SceneType,
-                        const String& EngineDataPath,
-                        const String& LogFileName,
-                        const std::vector <ManagerBase*>& ManagerToBeAdded)
+    Entresol::Entresol(const String& EngineDataPath, const String& LogFileName, const ManagerVec& ManagersToBeAdded)
     {
-        this->Construct(PhysicsInfo,
-                        SceneType,
-                        EngineDataPath,
-                        LogFileName,
-                        ManagerToBeAdded );
-
+        this->Construct(EngineDataPath, LogFileName, ManagersToBeAdded);
     }
 
-    void Entresol::Construct(   const Physics::ManagerConstructionInfo& PhysicsInfo,
-                                const String& SceneType,
-                                const String& EngineDataPath,
-                                const String& LogFileName,
-                                const std::vector <ManagerBase*>& ManagerToBeAdded )
+    Entresol::~Entresol()
+    {
+        this->Deinitialize();
 
+        this->DestroyAllWorlds();
+        World::DestroyAllManagerFactories();
+        this->DestroyAllManagers();
+        Entresol::DestroyAllManagerFactories();
+        this->DestroyLogging();
+
+        this->DestroyOgre();
+        this->DestroySDL();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Initialization and Deinitialization Methods
+
+    void Entresol::Construct(const String& EngineDataPath, const String& GraphicsLogFileName, const ManagerVec& ManagersToBeAdded)
     {
         //Add default manager factories
-        AddAllEngineDefaultManagerFactories();
+        Entresol::AddAllEngineDefaultManagerFactories();
+        World::AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values
         this->ManualLoopBreak = 0;
 
-        SetupOgre();
-        SetupLogging(LogFileName);
+        this->SetupOgre();
+        this->SetupLogging(GraphicsLogFileName);
 
         // Load the necessary plugins.
         SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
         Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
 
         //add each manager that was passed in to the manager list
-        for(std::vector<ManagerBase*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
+        for( ConstManagerVecIterator iter = ManagersToBeAdded.begin() ; iter!= ManagersToBeAdded.end() ; iter++ )
             { this->AddManager(*iter); }
 
         //Dummy param list so we can use the auto-added manager types if needed
         NameValuePairList Params;
         // Create and add any managers that have not been taken care of yet.
-        if(this->GetActorManager()==0)
-            { this->AddManager(new ActorManager()); }
-        if(this->GetAreaEffectManager()==0)
-            { this->AddManager(new AreaEffectManager()); }
-        if(this->GetResourceManager()==0)
-            { this->AddManager(new Resource::ResourceManager(EngineDataPath)); }
-        if(this->GetGraphicsManager()==0)
-            { this->AddManager(new Graphics::GraphicsManager()); }
-        if(this->GetEventManager()==0)
-            { this->AddManager(new EventManager()); }
-        if(this->GetInputManager()==0)
-            { this->AddManager(new Input::InputManager()); }
-        if(this->GetPhysicsManager()==0)
-            { this->AddManager(new Physics::PhysicsManager(PhysicsInfo)); }
-        if(this->GetSceneManager()==0)
-            { this->AddManager(new Graphics::SceneManager(SceneType)); }
-        if(this->GetUIManager()==0)
-            { this->AddManager(new UI::UIManager()); }
-        if(this->GetMeshManager()==0)
-            { this->AddManager(new Graphics::MeshManager()); }
-        if(this->GetCollisionShapeManager()==0)
-            { this->AddManager(new Physics::CollisionShapeManager()); }
-        if(this->GetCameraManager()==0)
-            { this->AddManager(new Graphics::CameraManager()); }
-        if(this->GetDebrisManager()==0)
-            { this->AddManager(new DebrisManager()); }
+        if( this->GetManager(ManagerBase::MT_ResourceManager) == 0 ) {
+            Params.push_back( std::pair<String,String>("EngineDataPath",EngineDataPath) );
+            this->CreateManager( "DefaultResourceManager", Params );
+            Params.clear();
+        }
+        if( this->GetManager(ManagerBase::MT_GraphicsManager) == 0 ) {
+            this->CreateManager( "DefaultGraphicsManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_EventManager) == 0 ) {
+            this->CreateManager( "DefaultEventManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_InputManager) == 0 ) {
+            this->CreateManager( "DefaultInputManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_UIManager) == 0 ) {
+            this->CreateManager( "DefaultUIManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_MeshManager) == 0 ) {
+            this->CreateManager( "DefaultMeshManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_TextureManager) == 0 ) {
+            this->CreateManager( "DefaultTextureManager", Params );
+        }
+        if( this->GetManager(ManagerBase::MT_CollisionShapeManager) == 0 ) {
+            this->CreateManager( "DefaultCollisionShapeManager", Params );
+        }
+
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
-        if(this->GetAudioManager()==0)
-            { this->AddManager( this->CreateManager("OALSAudioManager",Params,false) ); }
-        if(this->GetSoundScapeManager()==0)
-            { this->AddManager( this->CreateManager("OALSSoundScapeManager",Params,false) ); }
+        if( this->GetManager(ManagerBase::MT_AudioManager) == 0 ) {
+            this->CreateManager("OALSAudioManager",Params);
+        }
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
         // This Tests various assumptions about the way the platform works, and will not act
-        SanityChecks();
+        this->SanityChecks();
     }
 
-    void Entresol::ConstructFromXML(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
+    void Entresol::ConstructFromXML(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
     {
         //Add default manager factories
-        AddAllEngineDefaultManagerFactories();
+        Entresol::AddAllEngineDefaultManagerFactories();
+        World::AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values.
         this->ManualLoopBreak = false;
 
         // Create Ogre.
-        SetupOgre();
+        this->SetupOgre();
 
         // Load the necessary plugins.
-        SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
-        Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
+        this->SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
+        Ogre::Root::getSingleton().installPlugin(this->SubSystemParticleFXPlugin);
 
         // Set up the data we'll be populating.
         XML::Attribute CurrAttrib;
@@ -301,136 +243,80 @@ namespace Mezzanine
         // Create or set the resource manager.
         /// @todo This currently forces our default resource manager to be constructed, which isn't in line with our factory/initiailzation design.
         /// This should be addressed somehow.
-        if(Resource::ResourceManager::SingletonValid())
-            { AddManager(Resource::ResourceManager::GetSingletonPtr()); }
-        else
-            { AddManager(new Resource::ResourceManager(EngineDataPath, ArchType)); }
+        if( Resource::ResourceManager::SingletonValid() ) {
+            this->AddManager( Resource::ResourceManager::GetSingletonPtr() );
+        }else{
+            this->AddManager( new Resource::ResourceManager(EngineDataPath, ArchType) );
+        }
 
         // Open and load the initializer doc.
-        Resource::ResourceManager* ResourceMan = GetResourceManager();
-        /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+        Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager) );
         Resource::FileStream InitStream(InitializerFile,EngineDataPath);
         XML::Document InitDoc;
         XML::ParseResult DocResult = InitDoc.Load(InitStream);
-        if( DocResult.Status != XML::StatusOk )
-        {
+        if( DocResult.Status != XML::StatusOk ) {
             StringStream ExceptionStream;
             ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
-            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+            MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
         }
         XML::Node InitRoot = InitDoc.GetChild("InitializerRoot");
-        if( InitRoot.Empty() )
-        {
+        if( InitRoot.Empty() ) {
             StringStream ExceptionStream;
             ExceptionStream << "Failed to find expected Root node in \"" << InitializerFile << "\".";
-            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+            MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
         }
 
         // Get the world settings and set them.
-        XML::Node WorldSettings = InitRoot.GetChild("WorldSettings");
-        for( XML::NodeIterator SetIt = WorldSettings.begin() ; SetIt != WorldSettings.end() ; ++SetIt )
+        XML::Node CoreConfig = InitRoot.GetChild("CoreConfig");
+        for( XML::NodeIterator SetIt = CoreConfig.begin() ; SetIt != CoreConfig.end() ; ++SetIt )
         {
             String SecName = (*SetIt).Name();
-            if( "FrameSettings" == SecName )
-            {
+            if( "FrameSettings" == SecName ) {
                 CurrAttrib = (*SetIt).GetAttribute("TargetFrameRate");
-                if(CurrAttrib.Empty())
-                {
+                if(CurrAttrib.Empty()) {
                     CurrAttrib = (*SetIt).GetAttribute("TargetFrameTime");
                     if(!CurrAttrib.Empty())
                         SetTargetFrameTimeMicroseconds(CurrAttrib.AsWhole());
                 }else{
                     this->SetTargetFrameRate(CurrAttrib.AsWhole());
                 }
-            }
-            else
-            {
-                MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,String("Unknown WorldSetting ")+SecName);
+            }else{
+                MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,String("Unknown WorldSetting ")+SecName);
             }
 
         }
 
-        SetupLogging(LogFileName);
+        this->SetupLogging(LogFileName);
 
         // Get the other initializer files we'll be using, since we'll need the plugins initializer.
         XML::Node InitFiles = InitRoot.GetChild("OtherInitializers");
         for( XML::NodeIterator InitIt = InitFiles.begin() ; InitIt != InitFiles.end() ; ++InitIt )
         {
             String InitFileName = (*InitIt).Name();
-            if( "PluginInit" == InitFileName )
-            {
+            if( "PluginInit" == InitFileName ) {
                 CurrAttrib = (*InitIt).GetAttribute("FileName");
                 if(!CurrAttrib.Empty())
                     PluginsInit = CurrAttrib.AsString();
-            }
-            else if( "ResourceInit" == InitFileName )
-            {
+            }else if( "ResourceInit" == InitFileName ) {
                 CurrAttrib = (*InitIt).GetAttribute("FileName");
                 if(!CurrAttrib.Empty())
                     ResourceInit = CurrAttrib.AsString();
-            }
-            else if( "GUIInit" == InitFileName )
-            {
+            }else if( "GUIInit" == InitFileName ) {
                 CurrAttrib = (*InitIt).GetAttribute("FileName");
                 if(!CurrAttrib.Empty())
                     GUIInit = CurrAttrib.AsString();
             }
         }
 
-        // Load additional resource groups
-        /*if(!ResourceInit.empty())
-        {
-            /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            Resource::FileStream ResourceStream(ResourceInit,EngineDataPath);
-            XML::Document ResourceDoc;
-            ResourceDoc.Load(ResourceStream);
-            // Get an iterator to the first resource group node, and declare them all.
-            XML::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
-            for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
-            {
-                String GroupName, GroupType, GroupPath;
-                Boole GroupRecursive = false;
-                // Get the group path
-                CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
-                if(!CurrAttrib.Empty())
-                    GroupPath = CurrAttrib.AsString();
-                // Get the group type
-                CurrAttrib = (*GroupIt).GetAttribute("GroupType");
-                if(!CurrAttrib.Empty())
-                    GroupType = CurrAttrib.AsString();
-                // Get the group name
-                CurrAttrib = (*GroupIt).GetAttribute("GroupName");
-                if(!CurrAttrib.Empty())
-                    GroupName = CurrAttrib.AsString();
-                // Get whether this is recursive
-                CurrAttrib = (*GroupIt).GetAttribute("Recursive");
-                if(!CurrAttrib.Empty())
-                    GroupRecursive = StringTool::ConvertToBool(CurrAttrib.AsString());
-                // Finally create the resource location.
-                ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
-            }
-            // Get what resource groups should be initialized.
-            XML::Node InitGroups = ResourceDoc.GetChild("InitGroups");
-            for( XML::NodeIterator InitIt = InitGroups.begin() ; InitIt != InitGroups.end() ; ++InitIt )
-            {
-                String GroupName;
-                CurrAttrib = (*InitIt).GetAttribute("GroupName");
-                if(!CurrAttrib.Empty())
-                    GroupName = CurrAttrib.AsString();
-                ResourceMan->InitAssetGroup(GroupName);
-            }
-        }//*/
-
         // Create the requested managers and set their necessary values.
         XML::Node Managers = InitRoot.GetChild("Managers");
         for( XML::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )
         {
-            CreateManager( (*ManIt).Name(), (*ManIt) );
+            this->CreateManager( (*ManIt).Name(), (*ManIt) );
         }
 
         // Load additional resource groups
-        if(!ResourceInit.empty())
-        {
+        if( !ResourceInit.empty() ) {
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
             Resource::FileStream ResourceStream(ResourceInit,EngineDataPath);
             XML::Document ResourceDoc;
@@ -440,7 +326,7 @@ namespace Mezzanine
             for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
             {
                 String GroupName, GroupPath;
-                ArchiveType GroupType = AT_Invalid;
+                Resource::ArchiveType GroupType = Resource::AT_Invalid;
                 Boole GroupRecursive = false;
                 // Get the group path
                 CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
@@ -474,14 +360,86 @@ namespace Mezzanine
         }
 
         // Configure the UI
-        if(!GUIInit.empty())
-        {
+        if(!GUIInit.empty()) {
             /// @todo This is currently not implemented.
         }
 
-        SanityChecks();
+        this->SanityChecks();
     }
 
+    void Entresol::SetupOgre()
+    {
+        if( Ogre::Root::getSingletonPtr() == NULL ) {
+            Ogre::Root* OgreCore = new Ogre::Root("","","");
+            // Sanity checks for Ogre here?  It's a singleton so don't need to worry about storing the pointer.
+        }
+    }
+
+    void Entresol::DestroyOgre()
+    {
+        #ifdef MEZZ_LINUX
+        //assert( !( SDL_WasInit(0) | SDL_INIT_VIDEO ) && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
+        #endif
+        if( Ogre::Root::getSingletonPtr() != NULL ) {
+            delete Ogre::Root::getSingletonPtr();
+        }
+        if( this->SubSystemParticleFXPlugin != NULL ) {
+            delete this->SubSystemParticleFXPlugin;
+        }
+    }
+
+    void Entresol::DestroySDL()
+    {
+        #ifdef MEZZ_LINUX
+        // Fail is SDL is de-intialized before Ogre, but only if Ogre has been initialized.
+        assert( NULL == Ogre::Root::getSingletonPtr() // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
+                && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
+        #endif
+        SDL_Quit();
+    }
+
+    void Entresol::SetupLogging(const String& OgreLogFileName)
+    {
+        this->SetupOgreLogging(OgreLogFileName);
+        this->SetupInternalLogging();
+    }
+
+    void Entresol::SetupOgreLogging(const String& OgreLogFileName)
+    {
+        /// @todo Allow the FrameScheduler Log target to be inspected and changed here
+        Ogre::LogManager* OgreLogs = Ogre::LogManager::getSingletonPtr();
+        if( NULL == OgreLogs ) {
+            OgreLogs = new Ogre::LogManager();
+        }
+
+        if(!OgreLogFileName.empty()) {
+            OgreLogs->createLog(String("Graphics")+OgreLogFileName,true,true,true);
+        }else{
+            OgreLogs->createLog("GraphicsMezzanine.log",true,true,true);
+        }
+    }
+
+    void Entresol::SetupInternalLogging()
+    {
+        this->Aggregator = new Threading::LogAggregator();
+        this->Aggregator->SetAggregationTarget(&WorkScheduler);
+        this->WorkScheduler.AddWorkUnitMain(Aggregator, "LogAggregator");
+    }
+
+    void Entresol::DestroyLogging()
+    {
+        // One last aggregation
+        /*Threading::DefaultThreadSpecificStorage::Type LogResource(&this->WorkScheduler);
+        this->Aggregator->DoWork(LogResource);// */
+        Threading::DefaultThreadSpecificStorage::Type* LogResource = this->WorkScheduler.GetThreadResource();
+        this->WorkScheduler.GetLog() << LogResource->GetUsableLogger().str();
+        LogResource->SwapAllBufferedResources();
+        this->WorkScheduler.GetLog() << LogResource->GetUsableLogger().str();
+        //this->WorkScheduler.ForceLogFlush();
+
+        this->WorkScheduler.RemoveWorkUnitMain(Aggregator);
+        delete this->Aggregator;
+    }
 
     void Entresol::SanityChecks()
     {
@@ -490,36 +448,31 @@ namespace Mezzanine
         /*Log("Verifying size of userinput events:");
         Log(sizeof(Input::InputCode));
         Log(sizeof(SDL_Scancode));
-        Log(sizeof(int));//*/
-        if(sizeof(Input::InputCode) != sizeof(SDL_Scancode))
-        {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
+        Log(sizeof(int));// */
+        if(sizeof(Input::InputCode) != sizeof(SDL_Scancode)) {
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
         }
 
-        if(sizeof(Input::InputCode) != sizeof(int))
-        {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
+        if(sizeof(Input::InputCode) != sizeof(int)) {
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
         }
     }
 
     Boole Entresol::VerifyManagerInitializations()
     {
         std::vector<String> ManagerNames;
-        for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
+        for( ManagerIterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
-            if(!(*Iter)->IsInitialized())
-            {
+            if(!(*Iter)->IsInitialized()) {
                 ManagerNames.push_back( (*Iter)->GetInterfaceTypeAsString() );
             }
         }
 
-        if(ManagerNames.empty())
-        {
+        if( ManagerNames.empty() ) {
             return true;
         }else{
             StringStream ExceptionStream;
-            if(1 == ManagerNames.size())
-            {
+            if( 1 == ManagerNames.size() ) {
                 ExceptionStream << "Manager: ";
                 ExceptionStream << ManagerNames.at(0);
                 ExceptionStream << "is not initialized.  All managers need to be initiailzed when entering the main loop.";
@@ -531,98 +484,77 @@ namespace Mezzanine
                 }
                 ExceptionStream << "are not initialized.  All managers need to be initiailzed when entering the main loop.";
             }
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,ExceptionStream.str());
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,ExceptionStream.str());
             return false;
         }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    //tears the world down
-    Entresol::~Entresol()
-    {
-        DestroyAllManagers();
-        DestroyAllManagerFactories();
-        DestroyLogging();
-
-        DestroyOgre();
-        DestroySDL();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void Entresol::PauseWorld(Boole Pause)
-    {
-        this->GetPhysicsManager()->PauseSimulation(Pause);
-        this->GetSceneManager()->PauseAllParticles(Pause);
-    }
+    Threading::FrameScheduler& Entresol::GetScheduler()
+        { return this->WorkScheduler; }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Logging
+    // Initialization and Deinitialization
 
-    void Entresol::LogString(const String& Message)
-    {
-        // if it is in the Audiologs then it has already happened so it needs to be logged first
-        if(Message.size()>0)
-            { this->GetLogStream() << Message; }
-    }
-
-    Logger& Entresol::GetLogStream(Threading::ThreadId ID)
-    {
-        Threading::FrameScheduler::Resource* AlmostResults = this->WorkScheduler.GetThreadResource(ID);
-        if(AlmostResults)
-            { return AlmostResults->GetUsableLogger(); }
-        else
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not access thread Specific Logger from invalid thread."); }
-    }
-
-    Threading::LogAggregator* Entresol::GetLogAggregator()
-        { return this->Aggregator; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Initialization
-    ///////////////////////////////////////
-
-    void Entresol::EngineInit( const Boole &CallMainLoop )
+    void Entresol::Initialize(const Boole InitWorlds)
     {
         Graphics::GraphicsManager::GetSingletonPtr()->Initialize();
-        for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
+        for( ManagerIterator Iter = this->ManagerList.begin() ; Iter != this->ManagerList.end() ; ++Iter )
         {
             StringStream InitStream;
-            InitStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << "." << endl;
-            this->Log(InitStream.str());
-            if((*Iter)->GetInterfaceType() != ManagerBase::MT_GraphicsManager)
-            {
+            InitStream << "Initializing " << (*Iter)->GetImplementationTypeName() << " as " << (*Iter)->GetInterfaceTypeAsString() << "." << endl;
+            this->_Log( InitStream.str() );
+            if( (*Iter)->GetInterfaceType() != ManagerBase::MT_GraphicsManager ) {
                 (*Iter)->Initialize();
             }
         }
+        // Worlds in part depend on Entresol manager functionality, so they must be second.
+        if( InitWorlds ) {
+            for( WorldIterator WorldIt = this->Worlds.begin() ; WorldIt != this->Worlds.end() ; ++WorldIt )
+            {
+                (*WorldIt)->Initialize();
+            }
+        }
+    }
 
-        if(CallMainLoop)
-            { this->MainLoop(); }
+    void Entresol::Deinitialize()
+    {
+        // Deinit the Worlds first due to dependencies.
+        for( WorldIterator WorldIt = this->Worlds.begin() ; WorldIt != this->Worlds.end() ; ++WorldIt )
+        {
+            (*WorldIt)->Deinitialize();
+        }
+        // Now the Entresol.
+        for( ManagerIterator Iter = this->ManagerList.begin() ; Iter != this->ManagerList.end() ; ++Iter )
+        {
+            StringStream DeinitStream;
+            DeinitStream << "Deinitializing " << (*Iter)->GetImplementationTypeName() << " as " << (*Iter)->GetInterfaceTypeAsString() << "." << endl;
+            this->_Log( DeinitStream.str() );
+            (*Iter)->Deinitialize();
+        }
+    }
+
+    void Entresol::PreMainLoopInit()
+    {
+        this->VerifyManagerInitializations();
+
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+            { (*it)->PreMainLoopInit(); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // MainLoop
-    ///////////////////////////////////////
-
-    Threading::FrameScheduler& Entresol::GetScheduler()
-        { return this->WorkScheduler; }
 
     void Entresol::MainLoop()
     {
         this->PreMainLoopInit();
 
-        while(!ManualLoopBreak)
-            { DoOneFrame(); } //Main loop
+        while( !this->ManualLoopBreak )
+            { this->DoOneFrame(); } //Main loop
 
-        ManualLoopBreak = 0;
-    }
-
-    void Entresol::PreMainLoopInit()
-    {
-        VerifyManagerInitializations();
-        this->GetPhysicsManager()->MainLoopInitialize();
-        this->GetAreaEffectManager()->MainLoopInitialize();
+        this->ManualLoopBreak = 0;
     }
 
     void Entresol::DoOneFrame()
@@ -646,18 +578,17 @@ namespace Mezzanine
 
     void Entresol::BreakMainLoop(Boole Break)
     {
-        if(Break)
-        {
-            while(!ManualLoopBreak)
-                { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,0,1); }
-        } else {
-            while(ManualLoopBreak)
-                { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,1,0); }
+        if(Break) {
+            while( !this->ManualLoopBreak )
+                { Threading::AtomicCompareAndSwap32(&this->ManualLoopBreak,0,1); }
+        }else{
+            while( this->ManualLoopBreak )
+                { Threading::AtomicCompareAndSwap32(&this->ManualLoopBreak,1,0); }
         }
     }
 
     Whole Entresol::GetFrameCount() const
-        { return WorkScheduler.GetFrameCount(); }
+        { return this->WorkScheduler.GetFrameCount(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Simple get and Set functions
@@ -670,161 +601,139 @@ namespace Mezzanine
         { this->SetTargetFrameTimeMicroseconds( NewTargetTime * 1000 ); }
 
     void Entresol::SetTargetFrameTimeMicroseconds(const Whole NewTargetTime)
-        { WorkScheduler.SetFrameLength(NewTargetTime); }
+        { this->WorkScheduler.SetFrameLength(NewTargetTime); }
 
     Whole Entresol::GetTargetFrameTimeMilliseconds() const
-        { return WorkScheduler.GetFrameLength()*0.001; }
+        { return this->WorkScheduler.GetFrameLength()*0.001; }
 
     Whole Entresol::GetTargetFrameTimeMicroseconds() const
-        { return WorkScheduler.GetFrameLength(); }
+        { return this->WorkScheduler.GetFrameLength(); }
 
     Whole Entresol::GetLastFrameTimeMilliseconds() const
-        { return WorkScheduler.GetLastFrameTime()*0.001; }
+        { return this->WorkScheduler.GetLastFrameTime()*0.001; }
 
     Whole Entresol::GetLastFrameTimeMicroseconds() const
-        { return WorkScheduler.GetLastFrameTime(); }
+        { return this->WorkScheduler.GetLastFrameTime(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Factory Management
 
-    void Entresol::AddManagerFactory(ManagerFactory* ToBeAdded)
+    void Entresol::AddManagerFactory(EntresolManagerFactory* ToBeAdded)
     {
-        this->ManagerFactories.insert(std::pair<String,ManagerFactory*>(ToBeAdded->GetManagerTypeName(),ToBeAdded));
+        Entresol::ManagerFactories.insert(std::pair<String,EntresolManagerFactory*>(ToBeAdded->GetManagerImplName(),ToBeAdded));
     }
 
-    void Entresol::RemoveManagerFactory(ManagerFactory* ToBeRemoved)
+    void Entresol::RemoveManagerFactory(EntresolManagerFactory* ToBeRemoved)
     {
-        this->RemoveManagerFactory(ToBeRemoved->GetManagerTypeName());
+        Entresol::RemoveManagerFactory(ToBeRemoved->GetManagerImplName());
     }
 
     void Entresol::RemoveManagerFactory(const String& ImplName)
     {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ImplName);
-        if( ManIt != this->ManagerFactories.end() )
-            { this->ManagerFactories.erase(ManIt); }
+        ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(ImplName);
+        if( ManIt != Entresol::ManagerFactories.end() )
+            { Entresol::ManagerFactories.erase(ManIt); }
     }
 
-    void Entresol::DestroyManagerFactory(ManagerFactory* ToBeRemoved)
+    void Entresol::DestroyManagerFactory(EntresolManagerFactory* ToBeRemoved)
     {
-        this->DestroyManagerFactory(ToBeRemoved->GetManagerTypeName());
+        Entresol::DestroyManagerFactory(ToBeRemoved->GetManagerImplName());
     }
 
     void Entresol::DestroyManagerFactory(const String& ImplName)
     {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ImplName);
-        if( ManIt != this->ManagerFactories.end() ) {
+        ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(ImplName);
+        if( ManIt != Entresol::ManagerFactories.end() ) {
             delete ManIt->second;
-            this->ManagerFactories.erase(ManIt);
+            Entresol::ManagerFactories.erase(ManIt);
         }
     }
 
     void Entresol::DestroyAllManagerFactories()
     {
-        for( ManagerFactoryIterator ManIt = this->ManagerFactories.begin() ; ManIt != this->ManagerFactories.end() ; ++ManIt )
+        for( ManagerFactoryIterator ManIt = Entresol::ManagerFactories.begin() ; ManIt != Entresol::ManagerFactories.end() ; ++ManIt )
             { delete (*ManIt).second; }
-        this->ManagerFactories.clear();
+        Entresol::ManagerFactories.clear();
     }
 
     void Entresol::AddAllEngineDefaultManagerFactories()
     {
         ManagerFactoryIterator ManIt;
-        //DefaultActorManager
-        ManIt = this->ManagerFactories.find("DefaultActorManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultActorManagerFactory());
-        //DefaultAreaEffectManager
-        ManIt = this->ManagerFactories.find("DefaultAreaEffectManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultAreaEffectManagerFactory());
-        //DefaultCameraManager
-        ManIt = this->ManagerFactories.find("DefaultCameraManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultCameraManagerFactory());
         //DefaultCollisionShapeManager
-        ManIt = this->ManagerFactories.find("DefaultCollisionShapeManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Physics::DefaultCollisionShapeManagerFactory());
-        //DefaultDebrisManager
-        ManIt = this->ManagerFactories.find("DefaultDebrisManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultDebrisManagerFactory());
+        ManIt = Entresol::ManagerFactories.find("DefaultCollisionShapeManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Physics::DefaultCollisionShapeManagerFactory());
         //DefaultEventManager
-        ManIt = this->ManagerFactories.find("DefaultEventManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultEventManagerFactory());
+        ManIt = Entresol::ManagerFactories.find("DefaultEventManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new DefaultEventManagerFactory());
         //DefaultGraphicsManager
-        ManIt = this->ManagerFactories.find("DefaultGraphicsManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultGraphicsManagerFactory());
+        ManIt = Entresol::ManagerFactories.find("DefaultGraphicsManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Graphics::DefaultGraphicsManagerFactory());
         //DefaultInputManager
-        ManIt = this->ManagerFactories.find("DefaultInputManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Input::DefaultInputManagerFactory());
+        ManIt = Entresol::ManagerFactories.find("DefaultInputManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Input::DefaultInputManagerFactory());
         //DefaultMeshManager
-        ManIt = this->ManagerFactories.find("DefaultMeshManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultMeshManagerFactory());
-        //DefaultNetworkManager
-        ManIt = this->ManagerFactories.find("DefaultNetworkManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultNetworkManagerFactory());
-        //DefaultPhysicsManager
-        ManIt = this->ManagerFactories.find("DefaultPhysicsManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Physics::DefaultPhysicsManagerFactory());
+        ManIt = Entresol::ManagerFactories.find("DefaultMeshManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Graphics::DefaultMeshManagerFactory());
         //DefaultResourceManager
-        ManIt = this->ManagerFactories.find("DefaultResourceManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Resource::DefaultResourceManagerFactory());
-        //DefaultSceneManager
-        ManIt = this->ManagerFactories.find("DefaultSceneManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultSceneManagerFactory());
-        //DefaultTerrainManager
-        ManIt = this->ManagerFactories.find("DefaultTerrainManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultTerrainManagerFactory());
+        ManIt = Entresol::ManagerFactories.find("DefaultResourceManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Resource::DefaultResourceManagerFactory());
+        //DefaultTextureManager
+        ManIt = Entresol::ManagerFactories.find("DefaultTextureManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Graphics::DefaultTextureManagerFactory());
         //DefaultUIManager
-        ManIt = this->ManagerFactories.find("DefaultUIManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new UI::DefaultUIManagerFactory());
+        ManIt = Entresol::ManagerFactories.find("DefaultUIManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new UI::DefaultUIManagerFactory());
 
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
         //OALSAudioManager
-        ManIt = this->ManagerFactories.find("OALSAudioManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Audio::OALS::OALSAudioManagerFactory());
-        //OALSSoundScapeManager
-        ManIt = this->ManagerFactories.find("OALSSoundScapeManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
+        ManIt = Entresol::ManagerFactories.find("OALSAudioManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Audio::OALS::OALSAudioManagerFactory());
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
-        #ifdef MEZZLUA51
-        ManIt = this->ManagerFactories.find("Lua51ScriptingEngine");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Scripting::Lua::Lua51ScriptingEngineFactory());
-        #endif
+        #ifdef MEZZNETWORK
+        //DefaultNetworkManager
+        ManIt = Entresol::ManagerFactories.find("DefaultNetworkManager");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Network::DefaultNetworkManagerFactory());
+        #endif //MEZZNETWORK
 
+        #ifdef MEZZLUA51
+        ManIt = Entresol::ManagerFactories.find("Lua51ScriptingEngine");
+        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Scripting::Lua::Lua51ScriptingEngineFactory());
+        #endif //MEZZLUA51
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
 
-    ManagerBase* Entresol::CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld)
+    EntresolManager* Entresol::CreateManager(const String& ManagerImplName, const NameValuePairList& Params, const Boole AddToWorld)
     {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
-        if( ManIt == this->ManagerFactories.end() )
-        {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+        ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(ManagerImplName);
+        if( ManIt == Entresol::ManagerFactories.end() ) {
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
-        ManagerBase* NewMan = (*ManIt).second->CreateManager(Params);
+        EntresolManager* NewMan = (*ManIt).second->CreateManager(Params);
         if(AddToWorld)
             this->AddManager(NewMan);
         return NewMan;
     }
 
-    ManagerBase* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToWorld)
+    EntresolManager* Entresol::CreateManager(const String& ManagerImplName, const XML::Node& XMLNode, const Boole AddToWorld)
     {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
-        if( ManIt == this->ManagerFactories.end() )
-        {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+        ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(ManagerImplName);
+        if( ManIt == Entresol::ManagerFactories.end() ) {
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
-        ManagerBase* NewMan = (*ManIt).second->CreateManager(XMLNode);
+        EntresolManager* NewMan = (*ManIt).second->CreateManager(XMLNode);
         if(AddToWorld)
             this->AddManager(NewMan);
         return NewMan;
     }
 
-    void Entresol::DestroyManager(ManagerBase* ToBeDestroyed)
+    void Entresol::DestroyManager(EntresolManager* ToBeDestroyed)
     {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
-        if( ManIt == this->ManagerFactories.end() )
-        {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
+        ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
+        if( ManIt == Entresol::ManagerFactories.end() ) {
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
         }
         this->RemoveManager(ToBeDestroyed);
         (*ManIt).second->DestroyManager(ToBeDestroyed);
@@ -840,39 +749,39 @@ namespace Mezzanine
             this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
             this->DoMainLoopLogging();
             #endif
-            ManagerFactoryIterator ManIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
-            if( ManIt == this->ManagerFactories.end() ) {
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+            ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(Current->GetImplementationTypeName());
+            if( ManIt == Entresol::ManagerFactories.end() ) {
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
             }else{
                 (*ManIt).second->DestroyManager(Current);
             }
         }
-        this->ManagerList.clear();//*/
+        this->ManagerList.clear();// */
         while( !(this->ManagerList.empty()) )
         {
-            ManagerBase* Current = this->ManagerList.front();
+            EntresolManager* Current = this->ManagerList.front();
             #ifdef MEZZDEBUG
-            this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
+            this->_Log("Deleting " + Current->GetInterfaceTypeAsString() + ".\n");
             #endif
 
-            ManagerFactoryIterator ManIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
-            if( ManIt == this->ManagerFactories.end() ) {
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+            ManagerFactoryIterator ManIt = Entresol::ManagerFactories.find(Current->GetImplementationTypeName());
+            if( ManIt == Entresol::ManagerFactories.end() ) {
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
             }else{
                 (*ManIt).second->DestroyManager(Current);
             }
 
             this->ManagerList.pop_front();
-        }//*/
+        }// */
     }
 
-    void Entresol::AddManager(ManagerBase* ManagerToAdd)
+    void Entresol::AddManager(EntresolManager* ManagerToAdd)
     {
         #ifdef MEZZDEBUG
-        this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".\n");
+        this->_Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".\n");
         #endif
-        // We have to verify the manager is unique.  A number of issues can arrise if a manager is double inserted.
-        for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
+        // We have to verify the manager is unique.  A number of issues can arise if a manager is double inserted.
+        for( ManagerIterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
         {
             if( (*ManIter) == ManagerToAdd )
                 return;
@@ -880,12 +789,11 @@ namespace Mezzanine
         this->ManagerList.push_back(ManagerToAdd);
     }
 
-    ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne)
+    EntresolManager* Entresol::GetManager(const Whole RetrieveType, UInt16 WhichOne)
     {
-        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+        for(ManagerIterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
-            if( (*ManIter)->GetInterfaceType() == RetrieveType )
-            {
+            if( (*ManIter)->GetInterfaceType() == RetrieveType ) {
                 if( 0 == WhichOne ) return *ManIter; // we use our copy of WhichOne as a countdown to 0
                 else --WhichOne;
             }
@@ -893,26 +801,23 @@ namespace Mezzanine
         return NULL;
     }
 
-    void Entresol::RemoveManager(ManagerBase* ManagerToRemove)
+    void Entresol::RemoveManager(EntresolManager* ManagerToRemove)
     {
-        for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
+        for( ManagerIterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
         {
-            if( *ManIter == ManagerToRemove )
-            {
+            if( *ManIter == ManagerToRemove ) {
                 this->ManagerList.erase(ManIter);
                 return;
             }
         }
     }
 
-    void Entresol::RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne)
+    void Entresol::RemoveManager(const Whole RemoveType, UInt16 WhichOne)
     {
-        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+        for( ManagerIterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
-            if( (*ManIter)->GetInterfaceType() == ManagersToRemoveType )
-            {
-                if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
-                {
+            if( (*ManIter)->GetInterfaceType() == RemoveType ) {
+                if( 0 == WhichOne ) {   // we use our copy of WhichOne as a countdown to 0
                     this->ManagerList.erase(ManIter);
                     return;
                 }else{
@@ -922,96 +827,8 @@ namespace Mezzanine
         }
     }
 
-    ActorManager* Entresol::GetActorManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager, WhichOne) );
-    }
-
-    AreaEffectManager* Entresol::GetAreaEffectManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager, WhichOne) );
-    }
-
-    Audio::AudioManager* Entresol::GetAudioManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Audio::AudioManager*>( this->GetManager(ManagerBase::MT_AudioManager, WhichOne) );
-    }
-
-    Graphics::CameraManager* Entresol::GetCameraManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager, WhichOne) );
-    }
-
-    Physics::CollisionShapeManager* Entresol::GetCollisionShapeManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Physics::CollisionShapeManager*>( this->GetManager(ManagerBase::MT_CollisionShapeManager, WhichOne) );
-    }
-
-    DebrisManager* Entresol::GetDebrisManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<DebrisManager*>( this->GetManager(ManagerBase::MT_DebrisManager, WhichOne) );
-    }
-
-    EventManager* Entresol::GetEventManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<EventManager*>( this->GetManager(ManagerBase::MT_EventManager, WhichOne) );
-    }
-
-    Graphics::GraphicsManager* Entresol::GetGraphicsManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::GraphicsManager*>( this->GetManager(ManagerBase::MT_GraphicsManager, WhichOne) );
-    }
-
-    Input::InputManager* Entresol::GetInputManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Input::InputManager*>( this->GetManager(ManagerBase::MT_InputManager, WhichOne) );
-    }
-
-    Graphics::MeshManager* Entresol::GetMeshManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::MeshManager*>( this->GetManager(ManagerBase::MT_MeshManager, WhichOne) );
-    }
-    #ifdef MEZZNETWORK
-    NetworkManager* Entresol::GetNetworkManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<NetworkManager*>( this->GetManager(ManagerBase::MT_NetworkManager, WhichOne) );
-    }
-    #endif
-    Physics::PhysicsManager* Entresol::GetPhysicsManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager, WhichOne) );
-    }
-
-    Graphics::SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager, WhichOne) );
-    }
-
-    Audio::SoundScapeManager* Entresol::GetSoundScapeManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager, WhichOne) );
-    }
-
-    Resource::ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager, WhichOne) );
-    }
-
-    UI::UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<UI::UIManager*>( this->GetManager(ManagerBase::MT_UIManager, WhichOne) );
-    }
-
-    Scripting::iScriptingManager* Entresol::GetScriptingManager(const UInt16 WhichOne)
-        { return dynamic_cast<Scripting::iScriptingManager*>( this->GetManager(ManagerBase::MT_ScriptingManager, WhichOne) ); }
-
     ///////////////////////////////////////////////////////////////////////////////
     // World Management
-
-    void Entresol::AddWorld(World* WorldToBeAdded)
-    {
-        Worlds.push_back(WorldToBeAdded);
-    }
 
     World* Entresol::CreateWorld(const String& WorldName)
     {
@@ -1042,9 +859,14 @@ namespace Mezzanine
         return NewWorld;
     }
 
+    void Entresol::AddWorld(World* WorldToBeAdded)
+    {
+        Worlds.push_back(WorldToBeAdded);
+    }
+
     World* Entresol::GetWorld(const String& WorldName)
     {
-        for( ConstWorldContainerIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
+        for( ConstWorldIterator it = this->Worlds.begin() ; it != this->Worlds.end() ; it++ )
         {
             World* w = (*it);
             if ( WorldName == w->GetName() ) {
@@ -1054,18 +876,23 @@ namespace Mezzanine
         return NULL;
     }
 
+    World* Entresol::GetWorld(const Whole Index)
+    {
+        return this->Worlds.at(Index);
+    }
+
     UInt16 Entresol::GetNumWorlds()
     {
-        return Worlds.size();
+        return this->Worlds.size();
     }
 
     World* Entresol::RemoveWorld(World* WorldToBeRemoved)
     {
-        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             World* w = (*it);
             if ( WorldToBeRemoved == w ) {
-                Worlds.erase(it);
+                this->Worlds.erase(it);
                 return w;
             }
         }
@@ -1074,11 +901,11 @@ namespace Mezzanine
 
     World* Entresol::RemoveWorldByName(const String& WorldName)
     {
-        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             World* w = (*it);
             if ( WorldName == w->GetName() ) {
-                Worlds.erase(it);
+                this->Worlds.erase(it);
                 return w;
             }
         }
@@ -1087,17 +914,17 @@ namespace Mezzanine
 
     void Entresol::RemoveAllWorlds()
     {
-        Worlds.clear();
+        this->Worlds.clear();
     }
 
     void Entresol::DestroyWorld(World* WorldToBeDestroyed)
     {
-        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             World* w = (*it);
             if ( WorldToBeDestroyed == w ) {
                 delete w;
-                Worlds.erase(it);
+                this->Worlds.erase(it);
                 return;
             }
         }
@@ -1105,12 +932,12 @@ namespace Mezzanine
 
     void Entresol::DestroyWorldByName(const String& WorldName)
     {
-        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             World* w = (*it);
             if ( WorldName == w->GetName() ) {
                 delete w;
-                Worlds.erase(it);
+                this->Worlds.erase(it);
                 return;
             }
         }
@@ -1118,53 +945,42 @@ namespace Mezzanine
 
     void Entresol::DestroyAllWorlds()
     {
-        for( WorldContainerIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
             World* w = (*it);
             delete w;
         }
-        Worlds.clear();
+        this->Worlds.clear();
     }
 
-    void Entresol::DestroyWorldManager(World* TargetWorld, WorldManager* ToBeDestroyed)
+    void Entresol::PauseAllWorlds(Boole Pause)
     {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
-        if( ManIt == this->ManagerFactories.end() )
+        for( WorldIterator it = this->Worlds.begin(); it != this->Worlds.end(); it++ )
         {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
-        }
-        TargetWorld->RemoveManager(ToBeDestroyed);
-        (*ManIt).second->DestroyManager(ToBeDestroyed);
-    }
-
-    void Entresol::DestroyWorldManagers(World* TargetWorld)
-    {
-        std::vector<WorldManager*> managers = TargetWorld->GetWorldManagers();
-        for( std::vector< WorldManager* >::iterator it = managers.begin(); it != managers.end(); it++ )
-        {
-            this->DestroyWorldManager(TargetWorld, (*it));
+            (*it)->PauseWorld(Pause);
         }
     }
 
-    void Entresol::DestroyAllWorldManagers()
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Logging
+
+    void Entresol::_LogString(const String& Message)
     {
-        for( WorldContainerIterator it = Worlds.begin(); it != Worlds.end(); it++ )
-        {
-            this->DestroyWorldManagers(*it);
-        }
+        // if it is in the Audiologs then it has already happened so it needs to be logged first
+        if( Message.size() > 0 )
+            { this->_GetLogStream() << Message; }
     }
 
-    WorldManager* Entresol::CreateWorldManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld, World* AddedTo)
+    Logger& Entresol::_GetLogStream(Threading::ThreadId ID)
     {
-        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
-        if( ManIt == this->ManagerFactories.end() )
-        {
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
-        }
-        WorldManager* NewMan = dynamic_cast<WorldManager*>( (*ManIt).second->CreateManager(Params) );
-        if(AddToWorld)
-            AddedTo->AddManager(NewMan);
-        return NewMan;
+        Threading::FrameScheduler::Resource* AlmostResults = this->WorkScheduler.GetThreadResource(ID);
+        if(AlmostResults)
+            { return AlmostResults->GetUsableLogger(); }
+        else
+            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION, "Could not access thread Specific Logger from invalid thread."); }
     }
+
+    Threading::LogAggregator* Entresol::_GetLogAggregator()
+        { return this->Aggregator; }
 }
 #endif

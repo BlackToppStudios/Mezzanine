@@ -5,7 +5,7 @@ This source file is part of OGRE
 For the latest info, see http://www.ogre3d.org/
 
 Copyright (c) 2008 Renato Araujo Oliveira Filho <renatox@gmail.com>
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ namespace Ogre {
     EGLSupport::EGLSupport()
         : mGLDisplay(0),
           mNativeDisplay(0),
-	  mRandr(false)
+      mRandr(false)
     {
     }
 
@@ -104,12 +104,12 @@ namespace Ogre {
         refreshConfig();
         if (!mSampleLevels.empty())
         {
-            StringVector::const_iterator value = mSampleLevels.begin();
-            StringVector::const_iterator end = mSampleLevels.end();
+            StringVector::const_iterator sampleValue = mSampleLevels.begin();
+            StringVector::const_iterator sampleEnd = mSampleLevels.end();
 
-            for (; value != end; value++)
+            for (; sampleValue != sampleEnd; sampleValue++)
             {
-                optFSAA.possibleValues.push_back(*value);
+                optFSAA.possibleValues.push_back(*sampleValue);
             }
 
             optFSAA.currentValue = optFSAA.possibleValues[0];
@@ -174,7 +174,7 @@ namespace Ogre {
     String EGLSupport::validateConfig(void)
     {
         // TODO
-        return StringUtil::BLANK;
+        return BLANKSTRING;
     }
 
     EGLDisplay EGLSupport::getGLDisplay(void)
@@ -204,7 +204,7 @@ namespace Ogre {
 
     String EGLSupport::getDisplayName(void)
     {
-		return "todo";
+        return "todo";
     }
 
     EGLConfig* EGLSupport::chooseGLConfig(const GLint *attribList, GLint *nElements)
@@ -386,8 +386,8 @@ namespace Ogre {
 
         if (!nConfigs)
         {
-			glConfigs = getConfigs(&nConfigs);
-		}
+            glConfigs = getConfigs(&nConfigs);
+        }
 
         if (!nConfigs)
         {
@@ -481,26 +481,30 @@ namespace Ogre {
     }
 
     ::EGLContext EGLSupport::createNewContext(EGLDisplay eglDisplay,
-					      ::EGLConfig glconfig,
+                          ::EGLConfig glconfig,
                                               ::EGLContext shareList) const 
     {
         EGLint contextAttrs[] = {
+#if OGRE_NO_GLES3_SUPPORT == 0
+            EGL_CONTEXT_CLIENT_VERSION, 3,
+#else
             EGL_CONTEXT_CLIENT_VERSION, 2,
+#endif
             EGL_NONE, EGL_NONE
         };
-	::EGLContext context = ((::EGLContext) 0);
-	if (eglDisplay == ((EGLDisplay) 0))
-	{
-		context = eglCreateContext(mGLDisplay, glconfig, shareList, contextAttrs);
-        EGL_CHECK_ERROR
-	}
-	else
-	{
-		context = eglCreateContext(eglDisplay, glconfig, 0, contextAttrs);
-        EGL_CHECK_ERROR
-	}
+        ::EGLContext context = ((::EGLContext) 0);
+        if (eglDisplay == ((EGLDisplay) 0))
+        {
+            context = eglCreateContext(mGLDisplay, glconfig, shareList, contextAttrs);
+            EGL_CHECK_ERROR
+        }
+        else
+        {
+            context = eglCreateContext(eglDisplay, glconfig, 0, contextAttrs);
+            EGL_CHECK_ERROR
+        }
 
-	if (context == ((::EGLContext) 0))
+        if (context == ((::EGLContext) 0))
         {
             OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR,
                         "Fail to create New context",
@@ -517,8 +521,8 @@ namespace Ogre {
 
     void EGLSupport::stop()
     {
-		eglTerminate(mGLDisplay);
-		EGL_CHECK_ERROR
+        eglTerminate(mGLDisplay);
+        EGL_CHECK_ERROR
     }
 
     void EGLSupport::setGLDisplay( EGLDisplay val )

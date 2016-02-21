@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,9 +42,17 @@
 
 #include "vector3.h"
 #include "colourvalue.h"
-#include "managerbase.h"
-#include "managerfactory.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
+
+namespace Ogre
+{
+    class Mesh;
+    template<typename T> class SharedPtr;
+    typedef SharedPtr<Mesh> MeshPtr;
+    class MeshManager;
+}
 
 namespace Mezzanine
 {
@@ -62,156 +70,88 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class MeshManager
-        /// @headerfile meshmanager.h
         /// @brief This manager handles the storage, generation, and query of of Graphics Meshes.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB MeshManager : public ManagerBase, public Singleton<MeshManager>
+        class MEZZ_LIB MeshManager : public EntresolManager, public Singleton<MeshManager>
         {
         public:
+            /// @brief Basic container type for Mesh storage in this class.
             typedef std::map< String, Mesh* >              MeshContainer;
+            /// @brief Iterator type for Mesh instances stored in this class.
             typedef MeshContainer::iterator                MeshIterator;
+            /// @brief Const Iterator type for Mesh instances stored in this class.
             typedef MeshContainer::const_iterator          ConstMeshIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
-            MeshContainer GeneratedMeshes;
-            MeshContainer LoadedMeshes;
+            /// @internal
+            /// @brief Container storing all of the currently loaded Meshes.
+            MeshContainer Meshes;
+
+            /// @internal
+            /// @brief Adds a Mesh to this manager.
+            /// @exception If the name of the Mesh being added is not unique a II_DUPLICATE_IDENTITY_EXCEPTION will be thrown.
+            /// @param ToAdd The Mesh to be added.
+            virtual void AddMesh(Mesh* ToAdd);
         public:
             /// @brief Class constructor.
             MeshManager();
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            MeshManager(XML::Node& XMLNode);
+            MeshManager(const XML::Node& XMLNode);
             /// @brief Class destructor.
             virtual ~MeshManager();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Generic Mesh Utility
+            // Mesh Management
 
-            /// @brief Gets a mesh stored in this manager.
-            /// @return Returns a pointer to the requested mesh.
-            /// @param MeshName The name of the mesh to retrieve.
+            /// @brief Loads a Mesh file from an asset group and prepares it for use.
+            /// @param ResourceName The name of the Mesh file to be loaded.
+            /// @param ResourceGroup The resource group from which the Mesh file should be loaded.
+            /// @return Returns a pointer to the loaded Mesh.
+            Mesh* LoadMesh(const String& ResourceName, const String& ResourceGroup);
+            /// @brief Loads a Mesh file from disk and prepares it for use.
+            /// @param FilePathAndName The full path and filename of the Mesh to be read.
+            /// @return Returns a pointer to the loaded Mesh.
+            Mesh* LoadMesh(const String& FilePathAndName);
+
+            /// @brief Loads an Mesh from an input stream.
+            /// @param Stream A pointer to the stream to load the Mesh from.
+            /// @return Returns a pointer to the loaded Mesh.
+            Mesh* LoadMesh(std::istream* Stream);
+
+            /// @brief Unloads a Mesh from memory.
+            /// @param MeshName The name of the Mesh to be unloaded.
+            void UnloadMesh(const String& MeshName);
+            /// @brief Unloads every Mesh that is currently loaded.
+            void UnloadAllMeshes();
+
+            /// @brief Writes a Mesh to the asset group.
+            /// @param ToSave The Mesh to be saved.
+            /// @param FileName The name of the file to save the Mesh as.
+            /// @param GroupName The name of the asset group to save the Mesh to.
+            void SaveMesh(Mesh* ToSave, const String& FileName, const String& GroupName);
+            /// @brief Writes a Mesh to the disk.
+            /// @param ToSave The Mesh to be saved.
+            /// @param FilePathAndName The full path and filename of the Mesh to be written.
+            void SaveMesh(Mesh* ToSave, const String& FilePathAndName);
+
+            /// @brief Writes a Mesh in a final serializable form to an output stream.
+            /// @param ToSave The Mesh to be saved.
+            /// @param Stream A pointer to the stream to save the Mesh to.
+            void SaveMesh(Mesh* ToSave, std::ostream* Stream);
+
+            /// @brief Gets a Mesh stored in this manager.
+            /// @param MeshName The name of the Mesh to retrieve.
+            /// @return Returns a pointer to the requested Mesh.
             Mesh* GetMesh(const String& MeshName);
-            /// @brief Clears this manager of all meshes, both loaded and generated.
-            void DestroyAllMeshes();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Non-Generated Mesh Management
-
-            /// @brief Loads a mesh file from disk and prepares it for use.
-            /// @return Returns a pointer to the loaded mesh.
-            /// @param MeshName The name of the mesh file to be loaded.
-            /// @param Group The resource group from which the mesh file should be loaded.
-            virtual Mesh* LoadMesh(const String& MeshName, const String& Group);
-            /// @brief Unloads a mesh file.
-            /// @param MeshName The name of the mesh to be unloaded.
-            virtual void UnloadMesh(const String& MeshName);
-            /// @brief Gets the number of currently loaded mesh files.
-            /// @return Returns a whole representing the number of mesh files currently loaded.
-            virtual Whole GetNumLoadedMeshes();
-            /// @brief Unloads every mesh that is currently loaded.
-            virtual void UnloadAllLoadedMeshes();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Generated Mesh Management
-
-            /// @brief Gets the number of meshes this generator has created and are in use.
-            /// @return Returns a Whole representing the number of meshes created by this generator.
-            virtual Whole GetNumGeneratedMeshes();
-            /// @brief Destroys a named Mesh, freeing it's resources.
-            /// @param MeshName The name of the mesh to be destroyed.
-            virtual void DestroyGeneratedMesh(const String& MeshName);
-            /// @brief Destroys all the meshes generated by this generator.
-            virtual void DestroyAllGeneratedMeshes();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Mesh Generation
-
-            /// @brief Creates a box graphical mesh.
-            /// @return Returns a pointer to the created Mesh.
-            /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
-            /// @param MaterialName The name of the material script which will be applied to this mesh.
-            /// @param HalfExtents Half of the full dimentions of the final object in world units.  This allows the objects origin to be it's center.
-            virtual Mesh* CreateBoxMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents);
-            /// @brief Creates a box graphical mesh.
-            /// @return Returns a pointer to the created Mesh.
-            /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
-            /// @param Colour The colour to generate the material with that will be applied to the mesh.  The created material's name will be autogenerated to "[Meshname]+Mat".
-            /// @param HalfExtents Half of the full dimentions of the final object in world units.  This allows the objects origin to be it's center.
-            virtual Mesh* CreateBoxMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents);
-            /// @brief Creates a cylinder graphical mesh.
-            /// @return Returns a pointer to the created Mesh.
-            /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
-            /// @param MaterialName The name of the material script which will be applied to this mesh.
-            /// @param HalfExtents Half of the full dimentions of the final object in world units.  This allows the objects origin to be it's center.
-            /// @param AxisOrientation Vector3 representing which axis the cylinder should be aligned on.  Should be one of the three: (1,0,0), (0,1,0), (0,0,1).
-            /// @param CircleRes The number of segments the circle should be comprised of.  Determines the "resolution" of the cylinder.
-            /// @param Segments Optional parameter to specify the number of segments the cylinder should be comprised of.  Mostly just useful if a special material is made for his.
-            virtual Mesh* CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes = 16, const Whole& Segments = 1);
-            /// @brief Creates a cylinder graphical mesh and simple material.
-            /// @return Returns a pointer to the created Mesh.
-            /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
-            /// @param Colour The colour to generate the material with that will be applied to the mesh.  The created material's name will be autogenerated to "[Meshname]+Mat".
-            /// @param HalfExtents Half of the full dimentions of the final object in world units.  This allows the objects origin to be it's center.
-            /// @param AxisOrientation Vector3 representing which axis the cylinder should be aligned on.  Should be one of the three: (1,0,0), (0,1,0), (0,0,1).
-            /// @param CircleRes The number of segments the circle should be comprised of.  Determines the "resolution" of the cylinder.
-            /// @param Segments Optional parameter to specify the number of segments the cylinder should be comprised of.  Mostly just useful if a special material is made for his.
-            virtual Mesh* CreateCylinderMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes = 16, const Whole& Segments = 1);
-            /// @brief Creates a sphere graphical mesh.
-            /// @return Returns a pointer to the created Mesh.
-            /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
-            /// @param MaterialName The name of the material script which will be applied to this mesh.
-            /// @param Radius The radius to generate the sphere with in world units.
-            /// @param Rings The number of horizontal rings the sphere is to be comprised of.
-            /// This along with the segments parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            /// @param Segments The number of vertical rings the sphere is to be comprised of.
-            /// This along with the rings parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            virtual Mesh* CreateSphereMesh(const String& MeshName, const String& MaterialName, const Real& Radius, const Real& Rings = 16, const Real& Segments = 16);
-            /// @brief Creates a sphere graphical mesh and simple material.
-            /// @return Returns a pointer to the created Mesh.
-            /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
-            /// @param Colour The colour to generate the material with that will be applied to the mesh.  The created material's name will be autogenerated to "[Meshname]+Mat".
-            /// @param Radius The radius to generate the sphere with in world units.
-            /// @param Rings The number of horizontal rings the sphere is to be comprised of.
-            /// This along with the segments parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            /// @param Segments The number of vertical rings the sphere is to be comprised of.
-            /// This along with the rings parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            virtual Mesh* CreateSphereMesh(const String& MeshName, const ColourValue& Colour, const Real& Radius, const Real& Rings = 16, const Real& Segments = 16);
-            /// @brief Creates a mesh composed of boxes that outline the corner edges of a larger box.
-            /// @return Returns a pointer to the created Mesh.
-            /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
-            /// @param MaterialName The name of the material script which will be applied to this mesh.
-            /// @param HalfExtents Half of the full dimentions of the final object in world units.  This allows the objects origin to be it's center.
-            /// @param BoxThickness The width/thickness of the smaller boxes that will outline the corners of the larger box.
-            virtual Mesh* CreateBoxCornerMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Real& BoxThickness);
-            /// @brief Creates a mesh composed of boxes that outline the corner edges of a larger box.
-            /// @return Returns a pointer to the created Mesh.
-            /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
-            /// @param Colour The colour to generate the material with that will be applied to the mesh.  The created material's name will be autogenerated to "[Meshname]+Mat".
-            /// @param HalfExtents Half of the full dimentions of the final object in world units.  This allows the objects origin to be it's center.
-            /// @param BoxThickness The width/thickness of the smaller boxes that will outline the corners of the larger box.
-            virtual Mesh* CreateBoxCornerMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents, const Real& BoxThickness);
-
-            /// @brief Generates a mesh based on a collision shape.
-            /// @remarks This is just a convenience function.  You can fetch the information and build the mesh yourself with greater flexability then what
-            /// this function has to offer.  This function only supports building the shapes this manager can generate, and it will only use default options
-            /// when deciding the parameters to use(if it's a parameter it can't get from the shape).
-            /// @return Returns a pointer to the created mesh.
-            /// @param MeshName The name that will be given to the generated mesh.
-            /// @param MaterialName The name of the material to use with this mesh.
-            /// @param Shape The shape to base the mesh on.
-            virtual Mesh* CreateMeshFromShape(const String& MeshName, const String& MaterialName, Physics::CollisionShape* Shape);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Material Utilities - Until we can get a Material Manager
-
-            /// @brief Creates a basic material in code using the provided colour.
-            /// @return Returns a string containing the name of the created Material.
-            /// This is actually the same string as whats passed in as the MatName,
-            /// just here as convenience when calling the function as an argument in other functions.
-            /// @param MatName The name to assign to the created material.
-            /// @param Colour The colour to assign to the created material.
-            /// @param Group The resource group where to place this material.  Will be placed in an internal resouce group if left blank.
-            virtual const String& CreateColouredMaterial(const String& MatName, const ColourValue& Colour, const String& Group = "");
+            /// @brief Gets the number of currently loaded meshes.
+            /// @return Returns a Whole representing the number of meshes currently loaded.
+            Whole GetNumMeshes();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -228,14 +168,26 @@ namespace Mezzanine
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Wraps and stores an Ogre Mesh instance.
+            /// @param ToWrap The Ogre Mesh to get wrapped.
+            /// @return Returns a pointer to the wrapped Mesh.
+            Mesh* _WrapInternalMesh(Ogre::MeshPtr ToWrap);
+            /// @internal
+            /// @brief Gets the internal MeshManager.
+            /// @return Returns a pointer to the internal MeshManager.
+            Ogre::MeshManager* _GetInternalManager() const;
         };//MeshManager
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultMeshManagerFactory
-        /// @headerfile meshmanager.h
-        /// @brief A factory responsible for the creation and destruction of the default meshmanager.
+        /// @brief A factory responsible for the creation and destruction of the default MeshManager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultMeshManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultMeshManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -243,15 +195,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultMeshManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+            EntresolManager* CreateManager(const NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+            EntresolManager* CreateManager(const XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultMeshManagerFactory
     }//Graphics
 }//Mezzanine

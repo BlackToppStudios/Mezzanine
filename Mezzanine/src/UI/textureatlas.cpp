@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,6 +49,7 @@
 
 #include <OgreTexture.h>
 #include <OgreMaterial.h>
+#include <OgreTechnique.h>
 #include <OgrePass.h>
 #include <OgreGpuProgram.h>
 #include <OgreMaterialManager.h>
@@ -62,14 +63,28 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////
         // TextureAtlasInternalData class and functions
+
+        // Keeps this file form being documented by doxygen
+        /// @cond DontDocumentInternal
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A struct storing all the internal render data for a UI::TextureAtlas.
+        /// @details
+        ///////////////////////////////////////
         struct MEZZ_LIB TextureAtlasInternalData
         {
+            /// @brief A shared pointer to the actual texture of this atlas.
             Ogre::TexturePtr TATexture;
+            /// @brief A material used for 2D rendering of items on this atlas.
             Ogre::MaterialPtr Mat2D;
+            /// @brief A material used for 3D rendering of items on this atlas.
             Ogre::MaterialPtr Mat3D;
+            /// @brief A convenience pointer to the primary pass for 2D rendering of items.
             Ogre::Pass* Pass2D;
+            /// @brief A convenience pointer to the primary pass for 3D rendering of items.
             Ogre::Pass* Pass3D;
 
+            /// @brief Class constructor.
             TextureAtlasInternalData()
             {
                 TATexture.setNull();
@@ -79,6 +94,8 @@ namespace Mezzanine
                 Pass3D = NULL;
             }
         };//TextureAtlasInternalData
+
+        /// @endcond
 
         ///////////////////////////////////////////////////////////
         // TextureAtlas functions
@@ -102,7 +119,7 @@ namespace Mezzanine
             if( !NameAttrib.Empty() ) {
                 this->AtlasName = NameAttrib.AsString();
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Empty string being used to set name of Texture Atlas being parsed from XML.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Empty string being used to set name of Texture Atlas being parsed from XML.");
             }
 
             XML::Node TextureNode = AtlasNode.GetChild("Texture");
@@ -146,7 +163,7 @@ namespace Mezzanine
             CurrAttrib = AtlasTextureNode.GetAttribute("TexFile");
             if( !CurrAttrib.Empty() )
                 FileName = CurrAttrib.AsString();
-            else{ MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Empty string parsed for texture file name when parsing Texture Atlas from XML."); }
+            else{ MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Empty string parsed for texture file name when parsing Texture Atlas from XML."); }
 
             // Get the resource group
             CurrAttrib = AtlasTextureNode.GetAttribute("TexFileGroup");
@@ -189,7 +206,7 @@ namespace Mezzanine
                 // Now that we have the name, quickly check if this is unique before we continue to parse
                 FontDataIterator FontIt = Fonts.find(Data->GetName());
                 if( FontIt == Fonts.end() ) { Fonts[Data->GetName()] = Data; }
-                else { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Duplicate name of font:\"" + Data->GetName() + "\", found in atlas:\"" + AtlasName + "\"." ); }
+                else { MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Duplicate name of font:\"" + Data->GetName() + "\", found in atlas:\"" + AtlasName + "\"." ); }
 
                 // Get the horizontal offset if there is any
                 CurrAttrib = (*FontNode).GetAttribute("OffsetX");
@@ -224,17 +241,17 @@ namespace Mezzanine
                 // Get the monowidth
                 /*CurrAttrib = (*FontNode).GetAttribute("MonoWidth");
                 if( !CurrAttrib.Empty() )
-                    Data->_SetMonoWidth( CurrAttrib.AsReal() );//*/
+                    Data->_SetMonoWidth( CurrAttrib.AsReal() );// */
 
                 // Get the start of the range
                 /*CurrAttrib = (*FontNode).GetAttribute("RangeBegin");
                 if( !CurrAttrib.Empty() )
-                    Data->_SetRangeBegin( CurrAttrib.AsReal() );//*/
+                    Data->_SetRangeBegin( CurrAttrib.AsReal() );// */
 
                 // Get the end of the range
                 /*CurrAttrib = (*FontNode).GetAttribute("RangeEnd");
                 if( !CurrAttrib.Empty() )
-                    Data->_SetRangeEnd( CurrAttrib.AsReal() );//*/
+                    Data->_SetRangeEnd( CurrAttrib.AsReal() );// */
 
                 // Generate the whitespaces
                 Data->_GenerateWhitespaceGlyphs();
@@ -414,7 +431,7 @@ namespace Mezzanine
                 }else{
                     StringStream ExceptionStream;
                     ExceptionStream << "Sprite named \"" << SpriteName << "\" already exists in Atlas: \"" << this->AtlasName << "\".";
-                    MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
                 }
             }
         }
@@ -543,9 +560,9 @@ namespace Mezzanine
             return this->Fonts;
         }
 
-        Sprite* TextureAtlas::GetSprite(const String& Name) const
+        Sprite* TextureAtlas::GetSprite(const String& SpriteName) const
         {
-            ConstSpriteIterator it = this->Sprites.find(Name);
+            ConstSpriteIterator it = this->Sprites.find(SpriteName);
             if( it == this->Sprites.end() )
                 return NULL;
             return (*it).second;

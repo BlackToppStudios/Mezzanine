@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -68,9 +68,12 @@ namespace Mezzanine
     ///     - All data points will be valid interpolated values.
     ///     - There are "corners".
     ///     - Interpolation will be constant/O(1) time (and as fast as reasonable).
-    ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data
-    /// Corners can be thought of as any non-smooth change, and may not be intuitively in some interpolatable
-    /// types.
+    ///     - This shape defined by interpolating a set of these will not leave a Convex Hull (or
+    ///         Axis Aligned Bounding Box) that could contain the data
+    ///
+    /// @n
+    /// Corners can be thought of as any non-smooth change, and may not be intuitively in some
+    /// interpolatable types.
     template <typename T>
     class MEZZ_LIB LinearInterpolator
     {
@@ -146,7 +149,7 @@ namespace Mezzanine
                 Whole LineSegmentCount = DataPointCount-1;
 
                 if(LineSegmentCount<1)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot GetPercentageThroughSegment in GenericLinearInterpolator without a data segment. There must be two or more data points."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Cannot GetPercentageThroughSegment in GenericLinearInterpolator without a data segment. There must be two or more data points."); }
                 if(1==LineSegmentCount)
                     { return InterpolateMath(*(Begin), *(Begin+1), Location); }
 
@@ -161,9 +164,10 @@ namespace Mezzanine
                                        LocalPercentage);                    // The percentage we are through this line segment
             }
 
-            /// @brief This will interpolates data points with GetInterpolatedFromMultiple or InterpolateMath a required
-            /// @details read about GetInterpolatedFromMultiple or InterpolateMath to see what kinds of results this
-            /// can produce.
+            /// @brief This will interpolates data point with @ref GetInterpolatedFromMultiple or
+            /// InterpolateMath as required.
+            /// @details read about @ref GetInterpolatedFromMultiple or @ref InterpolateMath to see
+            /// what kinds of results this can produce.
             /// @param Begin An iterator at the beginning of a range of data point
             /// @param End An iterator one past the end of the data range to interpolate.
             /// @param Location A value between 0.0 and 1.0 that represents
@@ -172,9 +176,9 @@ namespace Mezzanine
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
                 if(Begin==End)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 0."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 0."); }
                 if(Begin+1==End)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 1."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 1."); }
 
                 if(Begin+2==End)
                     { return InterpolateMath(*Begin, *(Begin+1), Location); }
@@ -183,11 +187,13 @@ namespace Mezzanine
             }
 
             /// @brief Append a node for with enough information to deserialize to the passed node
-            /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
-            /// @param CurrentRoot A node to act as the parent for the serialized version of this one
+            /// @note Very little data is actually serialized, most of it is type information that
+            /// is not easily deserialized.
+            /// @param CurrentRoot A node to act as the parent for the serialized version of this
+            /// one.
             static void ProtoSerialize(XML::Node& CurrentRoot)
             {
-                Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
+                Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(GetSerializableName());
 
                 if(LinearInterpolaterNode)
                 {
@@ -195,46 +201,47 @@ namespace Mezzanine
                     Mezzanine::XML::Attribute TypeAttr = LinearInterpolaterNode.AppendAttribute("InterpolatableType");
                     if( VersionAttr  )
                     {
-                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::SerializableName()) )
+                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::GetSerializableName()) )
                         {
                             return;
                         }else{
-                            SerializeError("Create XML Attribute Values", SerializableName(),true);
+                            SerializeError("Create XML Attribute Values", GetSerializableName(),true);
                         }
                     }else{
-                        SerializeError("Create XML Attributes", SerializableName(),true);
+                        SerializeError("Create XML Attributes", GetSerializableName(),true);
                     }
                 }else{
-                    SerializeError("Create XML Serialization Node", SerializableName(),true);
+                    SerializeError("Create XML Serialization Node", GetSerializableName(),true);
                 }
             }
 
-            /// @brief This does not create or change the object it deserializes, but it does verify type info.
-            /// @param The node to read serialized data from.
+            /// @brief This does not create or change the object it deserializes, but it does verify
+            /// type info.
+            /// @param OneNode The node to read serialized data from.
             static void ProtoDeSerialize(const XML::Node& OneNode)
             {
-                if ( String(OneNode.Name())==String(SerializableName()) )
+                if ( String(OneNode.Name())==String(GetSerializableName()) )
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::SerializableName())
+                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::GetSerializableName())
                         {
                             return; // Class currently stores no data.
                         }else{
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + SerializableName() + ": Not " + InterpolatableType::SerializableName());
+                            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + GetSerializableName() + ": Not " + InterpolatableType::GetSerializableName());
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }
 
             /// @brief get the name of this class for serialization purposes
             /// @return A String containing "BezierInterpolator"
-            static String SerializableName()
+            static String GetSerializableName()
                 { return String("LinearInterpolator"); }
     };
 
@@ -244,8 +251,10 @@ namespace Mezzanine
     ///     - Data points, might not be valid interpolated values
     ///     - There are no "Corners".
     ///     - Execution could be as bad as O^N.
-    ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
+    ///     - This shape defined by interpolating a set of these will not leave a Convex Hull (or
+    ///         Axis Aligned Bounding Box) that could contain the data.
     ///     - Will be able to provide interpolated values for a small set of data points.
+    /// @n
     /// There might be corners when connecting 2 different bezier curves if not careful, any
     /// bezier implementation taking a finite amount of points cannot help this.
     template <typename T>
@@ -261,21 +270,27 @@ namespace Mezzanine
             /// @brief Get a value at a given location between two others.
             /// @details This uses Linear interpolation recursively to produce a single curve
             /// following Bézier's curve algorithm. For example if interpolating the location 0.5
-            /// on a set of 3 data points A,B,C and therefor 2 data segments AB and BC, you can imagine this as
-            /// getting the point halfway down AB and the point halfway down down BC. Then this will
-            /// get return the halfway between each of those points. This produces smooth curves but could
-            /// perform slowly. For more details see the wikiedia pages on Bézier curves:
-            /// http://en.wikipedia.org/wiki/Bézier_curve or http://en.wikipedia.org/wiki/B%C3%A9zier_curve
-            /// @param Begin An Iterator to the begining of the range of the instances of the type to be Interpolated
+            /// on a set of 3 data points A,B,C and therefor 2 data segments AB and BC, you can
+            /// imagine this as getting the point halfway down AB and the point halfway down down
+            /// BC. Then this will get return the halfway between each of those points. This
+            /// produces smooth curves but could perform slowly. For more details see the wikiedia
+            /// pages on Bézier curves:
+            /// http://en.wikipedia.org/wiki/Bézier_curve or
+            /// http://en.wikipedia.org/wiki/B%C3%A9zier_curve
+            /// @param Begin An Iterator to the begining of the range of the instances of the type
+            /// to be Interpolated
             /// @param End The end (not one past the end) of the range that Begin started.
-            /// @param A value between 0.0 and 1.0 indicate what point on the beziear spline defined by Begin and End you want.
-            /// @return A Value equal or near to Begin if 0.0 is passed, equal to or near to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed.
-            /// @warning This is implemented as a recursive function with the only termination condition being the Edn iterator.
+            /// @param Location A value between 0.0 and 1.0 indicate what point on the bezier
+            /// spline defined by Begin and End you want.
+            /// @return A Value equal or near to Begin if 0.0 is passed, equal to or near to End if
+            /// 1.0 is passed equal to a point exactly in the middle if 0.5 is passed.
+            /// @warning This is implemented as a recursive function with the only termination
+            /// condition being the end iterator.
             template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
                 if(Begin==End || Begin+1==End)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 1 data points for bezier interpolation."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Requires at least 1 data points for bezier interpolation."); }
 
                 if(Begin+2==End)
                     { return LinearInterpolator<T>::Interpolate(Begin,End,Location); }
@@ -287,11 +302,13 @@ namespace Mezzanine
             }
 
             /// @brief Append a node for with enough information to deserialize to the passed node
-            /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
-            /// @param CurrentRoot A node to act as the parent for the serialized version of this one
+            /// @note Very little data is actually serialized, most of it is type information that
+            /// is not easily deserialized.
+            /// @param CurrentRoot A node to act as the parent for the serialized version of this
+            /// one.
             static void ProtoSerialize(XML::Node& CurrentRoot)
             {
-                Mezzanine::XML::Node BezierInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
+                Mezzanine::XML::Node BezierInterpolaterNode = CurrentRoot.AppendChild(GetSerializableName());
 
                 if(BezierInterpolaterNode)
                 {
@@ -299,46 +316,47 @@ namespace Mezzanine
                     Mezzanine::XML::Attribute TypeAttr = BezierInterpolaterNode.AppendAttribute("InterpolatableType");
                     if( VersionAttr  )
                     {
-                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::SerializableName()) )
+                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::GetSerializableName()) )
                         {
                             return;
                         }else{
-                            SerializeError("Create XML Attribute Values", SerializableName(),true);
+                            SerializeError("Create XML Attribute Values", GetSerializableName(),true);
                         }
                     }else{
-                        SerializeError("Create XML Attributes", SerializableName(),true);
+                        SerializeError("Create XML Attributes", GetSerializableName(),true);
                     }
                 }else{
-                    SerializeError("Create XML Serialization Node", SerializableName(),true);
+                    SerializeError("Create XML Serialization Node", GetSerializableName(),true);
                 }
             }
 
-            /// @brief This does not create or change the object it deserializes, but it does verify type info.
-            /// @param The node to read serialized data from.
+            /// @brief This does not create or change the object it deserializes, but it does verify
+            /// type info.
+            /// @param OneNode The node to read serialized data from.
             static void ProtoDeSerialize(const XML::Node& OneNode)
             {
-                if ( String(OneNode.Name())==String(SerializableName()) )
+                if ( String(OneNode.Name())==String(GetSerializableName()) )
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::SerializableName())
+                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::GetSerializableName())
                         {
                             return; // Class currently stores no data.
                         }else{
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + SerializableName() + ": Not " + InterpolatableType::SerializableName());
+                            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + GetSerializableName() + ": Not " + InterpolatableType::GetSerializableName());
                         }
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }
 
             /// @brief get the name of this class for serialization purposes
             /// @return A String containing "BezierInterpolator"
-            static String SerializableName()
+            static String GetSerializableName()
                 { return String("BezierInterpolator"); }
     };
 
@@ -348,9 +366,11 @@ namespace Mezzanine
     ///     - Data points, will be valid interpolated values.
     ///     - There are no "Corners".
     ///     - Execution time is O^N.
-    ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
+    ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull (or Axis
+    ///         Aligned Bounding Box) that could contain the data.
     ///     - Will be able to interpolated arbitrary sets of data points.
-    /// @warning This can interpolate cubic splines, but it cannot be used with the track at present.
+    /// @warning This can interpolate cubic splines, but it cannot be used with the track at
+    /// present.
     template <typename T>
     class MEZZ_LIB SlowSplineInterpolator
     {
@@ -364,8 +384,10 @@ namespace Mezzanine
             /// @brief Calculates the desired location on a cubic spline
             /// @param Begin An iterator to the beginning of points to interpolate
             /// @param End An iterator to the end of a data series, not one passed it.
-            /// @param Location A value between 0 and 1, that indicate how far along the curve the data point to retrieve is
-            /// @return This will return an value along a curve that passes smoothly through all the points passed.
+            /// @param Location A value between 0 and 1, that indicate how far along the curve the
+            /// data point to retrieve is
+            /// @return This will return an value along a curve that passes smoothly through all the
+            /// points passed.
             template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
@@ -417,9 +439,11 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::LinearInterpol
 /// @brief Used to de-serialize an Mezzanine::LinearInterpolator from a stream
 /// @details This does primarily type checking most interpolators have no data
 /// @param Lint The Mezzanine::LinearInterpolator that will accept the values from the xml
-/// @param stream The place to get the characters from, that define the Mezzanine::LinearInterpolator.
+/// @param stream The place to get the characters from, that define the
+/// @ref Mezzanine::LinearInterpolator.
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
-/// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
+/// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in
+/// addition to a @ref Mezzanine::ExceptionBase if the serialization version doesn't match.
 template<typename T>
 std::istream& operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint)
     { return DeSerialize(stream, Lint); }
@@ -440,9 +464,11 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::BezierInterpol
 /// @brief Used to de-serialize an Mezzanine::BezierInterpolator from a stream
 /// @details This does primarily type checking most interpolators have no data
 /// @param Lint The Mezzanine::BezierInterpolator that will accept the values from the xml
-/// @param stream The place to get the characters from, that define the Mezzanine::BezierInterpolator.
+/// @param stream The place to get the characters from, that define the
+/// Mezzanine::BezierInterpolator.
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
-/// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
+/// @throw Can throw any exception that any function in the @ref Mezzanine::XML namespace could
+/// throw in addition to a @ref Mezzanine::ExceptionBase if the serialization version doesn't match.
 template<typename T>
 std::istream& operator >> (std::istream& stream, Mezzanine::BezierInterpolator<T>& Lint)
     { return DeSerialize(stream, Lint); }

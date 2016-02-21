@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@
 
 #include "stringtool.h"
 #include "quaternion.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "serialization.h"
 #include "vector3.h"
 #include "matrix3x3.h"
@@ -59,25 +59,28 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Constructors
     Quaternion::Quaternion()
-        { SetIdentity(); }
+        { this->SetIdentity(); }
 
     Quaternion::Quaternion(const Real& X, const Real& Y, const Real& Z, const Real& W)
-        { SetValues(X,Y,Z,W); }
+        { this->SetValues(X,Y,Z,W); }
 
     Quaternion::Quaternion(const Real& Angle, const Vector3& Axis)
-        { SetFromAxisAngle(Angle,Axis); }
+        { this->SetFromAxisAngle(Angle,Axis); }
 
     Quaternion::Quaternion(const Matrix3x3& Mat)
-        { SetFromMatrix3x3(Mat); }
+        { this->SetFromMatrix3x3(Mat); }
 
     Quaternion::Quaternion(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ)
-        { SetFromAxes(AxisX,AxisY,AxisZ); }
+        { this->SetFromAxes(AxisX,AxisY,AxisZ); }
+
+    Quaternion::Quaternion(const Vector3& DirectionAxis, const Vector3& UpAxis)
+        { this->SetFromAxisToZ(DirectionAxis,UpAxis); }
 
     Quaternion::Quaternion(const btQuaternion& Other)
-        { ExtractBulletQuaternion(Other); }
+        { this->ExtractBulletQuaternion(Other); }
 
     Quaternion::Quaternion(const Ogre::Quaternion& Other)
-        { ExtractOgreQuaternion(Other); }
+        { this->ExtractOgreQuaternion(Other); }
 
     Quaternion::Quaternion(const Mezzanine::Quaternion& Other)
     {
@@ -166,7 +169,35 @@ namespace Mezzanine
         Mat3.Matrix[1][2] = AxisZ.Y;
         Mat3.Matrix[2][2] = AxisZ.Z;
 
-        SetFromMatrix3x3(Mat3);
+        this->SetFromMatrix3x3(Mat3);
+    }
+
+    void Quaternion::SetFromAxisToZ(const Vector3& DirectionAxis, const Vector3& UpAxis)
+    {
+        Quaternion q;
+        Vector3 zVec = DirectionAxis;
+        zVec.Normalize();
+        Vector3 xVec = UpAxis.CrossProduct( zVec );
+        if( xVec.IsZeroLength() ) {
+            xVec = Vector3::Unit_X();
+        }
+        xVec.Normalize();
+        Vector3 yVec = zVec.CrossProduct( xVec );
+        yVec.Normalize();
+        this->SetFromAxes( xVec, yVec, zVec );
+    }
+
+    void Quaternion::ConvertToAngleAxis(Real& Angle, Vector3& Axis) const
+    {
+        Real SquareLength = this->X * this->X + this->Y * this->Y + this->Z * this->Z;
+        if( SquareLength < 0.0 ) {
+            Angle = 2.0 * MathTools::ACos(this->W);
+            Real InvLength = 1 / MathTools::Sqrt(SquareLength);
+            Axis.SetValues(this->X * InvLength, this->Y * InvLength, this->Z * InvLength);
+        }else{
+            Angle = 0.0;
+            Axis.SetValues(1.0,0.0,0.0);
+        }
     }
 
     Real Quaternion::DotProduct(const Quaternion& Other) const
@@ -261,7 +292,7 @@ namespace Mezzanine
             case 2: return Z;
             case 3: return W;
             default:
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
+                { MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
         }
     }
 
@@ -274,7 +305,7 @@ namespace Mezzanine
             case 2: return Z;
             case 3: return W;
             default:
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
+                { MEZZ_EXCEPTION(ExceptionBase::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
         }
     }
 
@@ -289,7 +320,7 @@ namespace Mezzanine
     Quaternion Quaternion::operator/ (const Real& Scalar) const
     {
         if( 0 == Scalar )
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Dividing by zero in 'Quaternion::operator/', Quit it."); }
+            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Dividing by zero in 'Quaternion::operator/', Quit it."); }
         return *this * ( 1.0 / Scalar );
     }
 
@@ -470,8 +501,8 @@ namespace Mezzanine
     // Serializable
     void Quaternion::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
-        VecNode.SetName(SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(GetSerializableName());
+        VecNode.SetName(GetSerializableName());
 
         Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
         Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
@@ -484,17 +515,17 @@ namespace Mezzanine
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values", SerializableName(),true);
+                SerializeError("Create XML Attribute Values", GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Attributes", SerializableName(),true);
+            SerializeError("Create XML Attributes", GetSerializableName(),true);
         }
     }
 
     // DeSerializable
     void Quaternion::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(GetSerializableName()) )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
@@ -503,14 +534,14 @@ namespace Mezzanine
                 this->Z=OneNode.GetAttribute("Z").AsReal();
                 this->W=OneNode.GetAttribute("W").AsReal();
             }else{
-                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
         }
     }
 
-    String Quaternion::SerializableName()
+    String Quaternion::GetSerializableName()
         { return String("Quaternion"); }
 
 }

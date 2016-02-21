@@ -1,0 +1,60 @@
+///////////////////////////////////////////////////////////////////////////////
+/// @brief @BriefDox@
+/// @ingroup exception_heirarchy @ExceptionClass@
+/// @details When catching this in java look for @a @JavaExceptionDot@
+///////////////////
+class MEZZ_LIB @ExceptionClass@ : public @ExceptionParent@
+{
+    public:
+        /// @brief @BriefDox@
+        static const Whole ExceptionCode = @ExceptionParent@::@EnumName@;
+
+        /// @brief @ExceptionClass@ Name overwriting constructor.
+        /// @param TypeName The name of this class.
+        /// @param JavaTypeName When passed to Java what does this convert to?
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        /// @warning This probably shouldn't be called directly. Use @ref MEZZ_EXCEPTION if possible.
+        @ExceptionClass@(
+                const String& TypeName,
+                const String& JavaTypeName,
+                const String& Message,
+                const String& SrcFunction,
+                const String& SrcFile,
+                const Whole& FileLine)
+            : @ExceptionParent@(TypeName, JavaTypeName, Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief @ExceptionClass@ constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        /// @warning This probably shouldn't be called directly. Use @ref MEZZ_EXCEPTION if possible.
+        @ExceptionClass@(   const String& Message,
+                            const String& SrcFunction,
+                            const String& SrcFile,
+                            const Whole& FileLine)
+            :  @ExceptionParent@("@ExceptionClass@", "@JavaException@", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~@ExceptionClass@() throw() {}
+
+        /// @copydoc ExceptionBase::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return @ExceptionClass@::ExceptionCode; }
+//
+}; // \ @ExceptionClass@
+
+/// @internal
+/// @copydoc ExceptionFactory
+template<>
+struct ExceptionFactory< @ExceptionClass@::ExceptionCode>
+{
+    /// @internal
+    /// @copydoc ExceptionFactory::Type
+    typedef @ExceptionClass@ Type;
+};

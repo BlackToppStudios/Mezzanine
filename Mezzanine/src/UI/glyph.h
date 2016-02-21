@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -59,11 +59,13 @@ namespace Mezzanine
         class MEZZ_LIB Glyph
         {
         public:
+            /// @brief Container type for Kerning information stored by this class.
             typedef std::vector<KerningInfo>           KerningContainer;
+            /// @brief Iterator type for Kerning information stored in this class.
             typedef KerningContainer::iterator         KerningIterator;
+            /// @brief Const Iterator type for Kerning information stored in this class.
             typedef KerningContainer::const_iterator   ConstKerningIterator;
 
-            /// @enum Whitespace
             /// @brief This enum represents the common whitespace characters found in Ascii/UTF-8.
             enum Whitespace
             {

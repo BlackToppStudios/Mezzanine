@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,18 +41,31 @@
 #ifndef _world_cpp
 #define _world_cpp
 
+#include "entresol.h"
 #include "world.h"
-#include "Physics/physicsmanager.h"
-#include "Graphics/scenemanager.h"
+#include "worldmanager.h"
+#include "worldmanagerfactory.h"
+#include "stringtool.h"
+
 //#include "pagingmanager.h"
 #include "actormanager.h"
 #include "areaeffectmanager.h"
-#include "Graphics/cameramanager.h"
-#include "Audio/soundscapemanager.h"
+#include "debrismanager.h"
 #include "terrainmanager.h"
+
+#include "Audio/soundscapemanager.h"
+#include "Graphics/scenemanager.h"
+#include "Physics/physicsmanager.h"
+
+// Enabled implementation includes
+#ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+    #include "Audio/OALS/oalssoundscapemanagerfactory.h"
+#endif // ENABLE_OALS_AUDIO_IMPLEMENTATION
 
 namespace Mezzanine
 {
+    World::ManagerFactoryMap World::ManagerFactories;
+
     World::World(const String& WorldName) :
         Name(WorldName)
     {
@@ -91,31 +104,105 @@ namespace Mezzanine
 
     World::~World()
     {
-        this->Deinitialize();
+        this->DestroyAllManagers();
     }
 
-    void World::Construct(const Physics::ManagerConstructionInfo& PhysicsInfo,
-            const String& SceneType, const std::vector <WorldManager*>& ManagerToBeAdded  )
+    void World::Construct(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType, const WorldManagerContainer& ManagerToBeAdded  )
     {
         //add each manager that was passed in to the manager list
-        for(std::vector<WorldManager*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
+        for( ConstWorldManagerIterator iter = ManagerToBeAdded.begin() ; iter!= ManagerToBeAdded.end() ; ++iter )
             { this->AddManager(*iter); }
 
-        if(this->GetActorManager()==0)
-            { this->AddManager(new ActorManager()); }
-        if(this->GetAreaEffectManager()==0)
-            { this->AddManager(new AreaEffectManager()); }
-        if(this->GetCameraManager()==0)
-            { this->AddManager(new Graphics::CameraManager()); }
-        if(this->GetPhysicsManager()==0)
-            { this->AddManager(new Physics::PhysicsManager(PhysicsInfo)); }
-        if(this->GetSceneManager()==0)
-            { this->AddManager(new Graphics::SceneManager(SceneType)); }
+        //Dummy param list so we can use the auto-added manager types if needed
+        NameValuePairList Params;
+        if( this->GetManager(ManagerBase::MT_ActorManager) == 0 ) {
+            this->CreateManager("DefaultActorManager",Params,true);
+        }
+        if( this->GetManager(ManagerBase::MT_AreaEffectManager) == 0 ) {
+            this->CreateManager("DefaultAreaEffectManager",Params,true);
+        }
+        if( this->GetManager(ManagerBase::MT_DebrisManager) == 0 ) {
+            this->CreateManager("DefaultDebrisManager",Params,true);
+        }
+        if( this->GetManager(ManagerBase::MT_SceneManager) == 0 ) {
+            Params.push_back( std::make_pair( String("InternalManagerTypeName"),SceneType ) );
+            this->CreateManager("DefaultSceneManager",Params,true);
+            Params.clear();
+        }
+        if( this->GetManager(ManagerBase::MT_PhysicsManager) == 0 ) {
+            Params.push_back( std::make_pair( String("GeographyUpperBounds"),StringTools::ConvertToString( PhysicsInfo.GeographyUpperBounds ) ) );
+            Params.push_back( std::make_pair( String("GeogrpahyLowerBounds"),StringTools::ConvertToString( PhysicsInfo.GeographyLowerBounds ) ) );
+            Params.push_back( std::make_pair( String("MaxProxies"),StringTools::ConvertToString( PhysicsInfo.MaxProxies ) ) );
+            Params.push_back( std::make_pair( String("Gravity"),StringTools::ConvertToString( PhysicsInfo.Gravity ) ) );
+            Params.push_back( std::make_pair( String("SoftRigidWorld"),StringTools::ConvertToString( Boole(PhysicsInfo.PhysicsFlags & Physics::ManagerConstructionInfo::PCF_SoftRigidWorld) ) ) );
+            Params.push_back( std::make_pair( String("LimitlessWorld"),StringTools::ConvertToString( Boole(PhysicsInfo.PhysicsFlags & Physics::ManagerConstructionInfo::PCF_LimitlessWorld) ) ) );
+            Params.push_back( std::make_pair( String("MultiThreaded"),StringTools::ConvertToString( Boole(PhysicsInfo.PhysicsFlags & Physics::ManagerConstructionInfo::PCF_Multithreaded) ) ) );
+            this->CreateManager("DefaultPhysicsManager",Params,true);
+            Params.clear();
+        }
+
+        #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+        if( this->GetManager(ManagerBase::MT_SoundScapeManager) == 0 ) {
+            this->CreateManager("OALSSoundScapeManager",Params,true);
+        }
+        #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
     }
 
-    const String& World::GetName() const
+    Boole World::VerifyManagerInitializations()
     {
-        return this->Name;
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    const String& World::GetName() const
+        { return this->Name; }
+
+    void World::PauseWorld(const Boole Pause)
+    {
+        static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) )->PauseSimulation(Pause);
+    }
+
+    void World::Clear()
+    {
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
+        // Start with constraints and anything else that is linking the objects.
+        // Nuke the metadata while we're at it.
+        if( PhysMan != NULL ) {
+            PhysMan->DestroyAllConstraints();
+            PhysMan->DestroyAllWorldTriggers();
+            PhysMan->ClearPhysicsMetaData();
+        }
+
+        ActorManager* ActorMan = static_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) );
+        AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
+        DebrisManager* DebrisMan = static_cast<DebrisManager*>( this->GetManager(ManagerBase::MT_DebrisManager) );
+        // Now get the higher level world objects.  They'll take out their bound proxies as they go.
+        if( ActorMan != NULL ) {
+            ActorMan->DestroyAllActors();
+        }
+        if( AreaEffectMan != NULL ) {
+            AreaEffectMan->DestroyAllAreaEffects();
+        }
+        if( DebrisMan != NULL ) {
+            DebrisMan->DestroyAllDebris();
+        }
+
+        Audio::SoundScapeManager* SoundScapeMan = static_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
+        // Now deal with any dangling proxies.
+        // Any additional minor cleanup related to these managers can be done after proxy cleanup as well.
+        if( PhysMan != NULL ) {
+            PhysMan->DestroyAllProxies();
+        }
+        if( SceneMan != NULL ) {
+            SceneMan->DestroyAllProxies();
+            SceneMan->DisableSky();
+        }
+        if( SoundScapeMan != NULL ) {
+            SoundScapeMan->DestroyAllProxies();
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -125,6 +212,11 @@ namespace Mezzanine
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
+            #ifdef MEZZDEBUG
+            StringStream InitStream;
+            InitStream << "Initializing " << (*ManIter)->GetImplementationTypeName() << " as " << (*ManIter)->GetInterfaceTypeAsString() << "." << std::endl;
+            Entresol::GetSingletonPtr()->_Log( InitStream.str() );
+            #endif
             (*ManIter)->Initialize();
         }
     }
@@ -133,12 +225,89 @@ namespace Mezzanine
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
+            #ifdef MEZZDEBUG
+            StringStream DeinitStream;
+            DeinitStream << "Deinitializing " << (*ManIter)->GetImplementationTypeName() << " as " << (*ManIter)->GetInterfaceTypeAsString() << "." << std::endl;
+            Entresol::GetSingletonPtr()->_Log( DeinitStream.str() );
+            #endif
             (*ManIter)->Deinitialize();
         }
     }
 
+    void World::PreMainLoopInit()
+    {
+        static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) )->MainLoopInitialize();
+        static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) )->MainLoopInitialize();
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
+
+    WorldManager* World::CreateManager(const String& ManagerImplName, const NameValuePairList& Params, Boole AddToWorld)
+    {
+        ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ManagerImplName);
+        if( FactoryIt == World::ManagerFactories.end() ) {
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+        }
+        WorldManager* NewMan = (*FactoryIt).second->CreateManager(this,Params);
+        if(AddToWorld) {
+            this->AddManager(NewMan);
+        }
+        return NewMan;
+    }
+
+    WorldManager* World::CreateManager(const String& ManagerImplName, const XML::Node& XMLNode, Boole AddToWorld)
+    {
+        ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ManagerImplName);
+        if( FactoryIt == World::ManagerFactories.end() ) {
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
+        }
+        WorldManager* NewMan = (*FactoryIt).second->CreateManager(this,XMLNode);
+        if(AddToWorld) {
+            this->AddManager(NewMan);
+        }
+        return NewMan;
+    }
+
+    void World::DestroyManager(WorldManager* ToBeDestroyed)
+    {
+        String ImplName = ToBeDestroyed->GetImplementationTypeName();
+        ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ImplName);
+        if( FactoryIt == World::ManagerFactories.end() ) {
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ImplName + "\", which has no factory registered.");
+        }
+        this->RemoveManager(ToBeDestroyed);
+        (*FactoryIt).second->DestroyManager(ToBeDestroyed);
+    }
+
+    void World::DestroyAllManagers()
+    {
+        this->Clear();
+        this->Deinitialize();
+        /*std::list<WorldManager*> WorldManagerList(this->WorldManagers.begin(),this->WorldManagers.end());
+        while( !(WorldManagerList.empty()) )
+        {
+            WorldManager* Current = WorldManagerList.front();
+            ManagerFactoryIterator FactoryIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
+            if( FactoryIt == this->ManagerFactories.end() ) {
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+            }else{
+                (*FactoryIt).second->DestroyManager(Current);
+            }
+            WorldManagerList.pop_front();
+        }// */
+        for( WorldManagerIterator WorldManIt = this->WorldManagers.begin() ; WorldManIt != this->WorldManagers.end() ; ++WorldManIt )
+        {
+            String ImplName = (*WorldManIt)->GetImplementationTypeName();
+            ManagerFactoryIterator FactoryIt = World::ManagerFactories.find(ImplName);
+            if( FactoryIt == World::ManagerFactories.end() ) {
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ImplName + "\", which has no factory registered.");
+            }else{
+                (*FactoryIt).second->DestroyManager( (*WorldManIt) );
+            }
+        }// */
+        this->WorldManagers.clear();
+    }
 
     Boole World::AddManager(WorldManager* ManagerToAdd)
     {
@@ -152,7 +321,7 @@ namespace Mezzanine
         return true;
     }
 
-    WorldManager* World::GetManager(const ManagerBase::ManagerType ManagerToGet)
+    WorldManager* World::GetManager(const Whole ManagerToGet)
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
@@ -166,20 +335,18 @@ namespace Mezzanine
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
-            if( (*ManIter) == ToBeRemoved )
-            {
+            if( (*ManIter) == ToBeRemoved ) {
                 this->WorldManagers.erase(ManIter);
                 return;
             }
         }
     }
 
-    void World::RemoveManager(const ManagerBase::ManagerType ToBeRemoved)
+    void World::RemoveManager(const Whole ToBeRemoved)
     {
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
-            if( (*ManIter)->GetInterfaceType() == ToBeRemoved )
-            {
+            if( (*ManIter)->GetInterfaceType() == ToBeRemoved ) {
                 this->WorldManagers.erase(ManIter);
                 return;
             }
@@ -191,52 +358,109 @@ namespace Mezzanine
         WorldManagers.clear();
     }
 
-    std::vector<WorldManager*> World::GetWorldManagers()
+    World::WorldManagerContainer& World::GetWorldManagers()
     {
         return WorldManagers;
     }
 
-    ActorManager* World::GetActorManager()
+    ///////////////////////////////////////////////////////////////////////////////
+    // Factories Management
+
+    void World::AddManagerFactory(WorldManagerFactory* ToBeAdded)
     {
-        return static_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) );
-        //return NULL;
+        World::ManagerFactories.insert(std::pair<String,WorldManagerFactory*>(ToBeAdded->GetManagerImplName(),ToBeAdded));
     }
 
-    AreaEffectManager* World::GetAreaEffectManager()
+    void World::RemoveManagerFactory(WorldManagerFactory* ToBeRemoved)
     {
-        return static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
-        //return NULL;
+        World::RemoveManagerFactory(ToBeRemoved->GetManagerImplName());
     }
 
-    Graphics::CameraManager* World::GetCameraManager()
+    void World::RemoveManagerFactory(const String& ImplName)
     {
-        return static_cast<Graphics::CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager) );
-        //return NULL;
+        ManagerFactoryIterator ManIt = World::ManagerFactories.find(ImplName);
+        if( ManIt != World::ManagerFactories.end() )
+            { World::ManagerFactories.erase(ManIt); }
     }
 
-    Physics::PhysicsManager* World::GetPhysicsManager()
+    void World::DestroyManagerFactory(WorldManagerFactory* ToBeRemoved)
     {
-        return static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
-        //return NULL;
+        World::DestroyManagerFactory(ToBeRemoved->GetManagerImplName());
     }
 
-    Graphics::SceneManager* World::GetSceneManager()
+    void World::DestroyManagerFactory(const String& ImplName)
     {
-        return static_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
-        //return NULL;
+        ManagerFactoryIterator ManIt = World::ManagerFactories.find(ImplName);
+        if( ManIt != World::ManagerFactories.end() ) {
+            delete ManIt->second;
+            World::ManagerFactories.erase(ManIt);
+        }
     }
 
-    Audio::SoundScapeManager* World::GetSoundScapeManager()
+    void World::DestroyAllManagerFactories()
     {
-        return static_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
-        //return NULL;
+        for( ManagerFactoryIterator ManIt = World::ManagerFactories.begin() ; ManIt != World::ManagerFactories.end() ; ++ManIt )
+            { delete (*ManIt).second; }
+        World::ManagerFactories.clear();
     }
 
-    TerrainManager* World::GetTerrainManager()
+    void World::AddAllEngineDefaultManagerFactories()
     {
-        return static_cast<TerrainManager*>( this->GetManager(ManagerBase::MT_TerrainManager) );
-        //return NULL;
+        ManagerFactoryIterator ManIt;
+        //DefaultActorManager
+        ManIt = World::ManagerFactories.find("DefaultActorManager");
+        if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new DefaultActorManagerFactory());
+        //DefaultAreaEffectManager
+        ManIt = World::ManagerFactories.find("DefaultAreaEffectManager");
+        if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new DefaultAreaEffectManagerFactory());
+        //DefaultDebrisManager
+        ManIt = World::ManagerFactories.find("DefaultDebrisManager");
+        if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new DefaultDebrisManagerFactory());
+        //DefaultPhysicsManager
+        ManIt = World::ManagerFactories.find("DefaultPhysicsManager");
+        if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new Physics::DefaultPhysicsManagerFactory());
+        //DefaultSceneManager
+        ManIt = World::ManagerFactories.find("DefaultSceneManager");
+        if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new Graphics::DefaultSceneManagerFactory());
+        //DefaultTerrainManager
+        ManIt = World::ManagerFactories.find("DefaultTerrainManager");
+        if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new DefaultTerrainManagerFactory());
+
+        #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+        //OALSSoundScapeManager
+        ManIt = World::ManagerFactories.find("OALSSoundScapeManager");
+        if( ManIt == World::ManagerFactories.end() ) World::AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
+        #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void World::ProtoSerialize(XML::Node& ParentNode) const
+    {
+
+    }
+
+    void World::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    {
+
+    }
+
+    void World::ProtoDeSerialize(const XML::Node& SelfRoot)
+    {
+
+    }
+
+    void World::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    {
+
+    }
+
+    String World::GetDerivedSerializableName() const
+        { return World::GetSerializableName(); }
+
+    String World::GetSerializableName()
+        { return "World"; }
 }//Mezzanine
 
 #endif

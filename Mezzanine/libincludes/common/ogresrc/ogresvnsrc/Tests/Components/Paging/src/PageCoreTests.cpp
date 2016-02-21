@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,60 +27,78 @@ THE SOFTWARE.
 */
 #include "PageCoreTests.h"
 #include "OgrePaging.h"
+#include "OgreLogManager.h"
 
-CPPUNIT_TEST_SUITE_REGISTRATION( PageCoreTests );
+#include "UnitTestSuite.h"
 
+// Register the test suite
+CPPUNIT_TEST_SUITE_REGISTRATION(PageCoreTests);
+
+//--------------------------------------------------------------------------
 void PageCoreTests::setUp()
 {
-	mRoot = OGRE_NEW Root();
-	mPageManager = OGRE_NEW PageManager();
+    UnitTestSuite::getSingletonPtr()->startTestSetup(__FUNCTION__);
+    
+    mFSLayer = OGRE_NEW_T(Ogre::FileSystemLayer, Ogre::MEMCATEGORY_GENERAL)(OGRE_VERSION_NAME);
 
-	mRoot->addResourceLocation("./", "FileSystem");
+#ifdef OGRE_STATIC_LIB
+    mRoot = OGRE_NEW Root(BLANKSTRING);
+    mStaticPluginLoader.load();
+#else
+    String pluginsPath = mFSLayer->getConfigFilePath("plugins.cfg");
+    mRoot = OGRE_NEW Root(pluginsPath);
+#endif
 
-	mSceneMgr = mRoot->createSceneManager(ST_GENERIC);
+    mPageManager = OGRE_NEW PageManager();
 
+    // make certain the resource location is NOT read-only
+    ResourceGroupManager::getSingleton().addResourceLocation("./", "FileSystem",
+        ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, false, false);
+
+    mSceneMgr = mRoot->createSceneManager(ST_GENERIC);
 }
-
+//--------------------------------------------------------------------------
 void PageCoreTests::tearDown()
 {
-	OGRE_DELETE mPageManager;
-	OGRE_DELETE mRoot;
+    OGRE_DELETE mPageManager;
+    OGRE_DELETE mRoot;
+    OGRE_DELETE_T(mFSLayer, FileSystemLayer, Ogre::MEMCATEGORY_GENERAL);
+
+#if OGRE_STATIC_LIB
+    OGRE_DELETE mStaticPluginLoader;
+#endif
 }
-
-
+//--------------------------------------------------------------------------
 void PageCoreTests::testSimpleCreateSaveLoadWorld()
 {
-	String worldName = "MyWorld";
-	String filename = "myworld.world";
-	String sectionName1 = "Section1";
-	String sectionName2 = "Section2";
-	PagedWorld* world = mPageManager->createWorld(worldName);
-	PagedWorldSection* section = world->createSection("Grid2D", mSceneMgr, sectionName1);
-	section = world->createSection("Grid2D", mSceneMgr, sectionName2);
+    UnitTestSuite::getSingletonPtr()->startTestMethod(__FUNCTION__);
 
-	// Create a page
-	Page* p = section->loadOrCreatePage(Vector3::ZERO);
+    String worldName = "MyWorld";
+    String filename = "myworld.world";
+    String sectionName1 = "Section1";
+    String sectionName2 = "Section2";
+    PagedWorld* world = mPageManager->createWorld(worldName);
+    PagedWorldSection* section = world->createSection("Grid2D", mSceneMgr, sectionName1);
+    section = world->createSection("Grid2D", mSceneMgr, sectionName2);
 
-	SimplePageContentCollection* coll = static_cast<SimplePageContentCollection*>(
-		p->createContentCollection("Simple"));
+    // Create a page
+    Page* p = section->loadOrCreatePage(Vector3::ZERO);
 
+    p->createContentCollection("Simple");
 
-	world->save(filename);
+    world->save(filename);
 
-	mPageManager->destroyWorld(world);
-	world = 0;
+    mPageManager->destroyWorld(world);
+    world = 0;
+    world = mPageManager->loadWorld(filename);
 
-	world = mPageManager->loadWorld(filename);
+    CPPUNIT_ASSERT_EQUAL(worldName, world->getName());
+    CPPUNIT_ASSERT_EQUAL((size_t)2, world->getSectionCount());
 
-	CPPUNIT_ASSERT_EQUAL(worldName, world->getName());
-	CPPUNIT_ASSERT_EQUAL((size_t)2, world->getSectionCount());
-
-	section = world->getSection(sectionName1);
-	CPPUNIT_ASSERT(section != 0);
-	section = world->getSection(sectionName2);
-	CPPUNIT_ASSERT(section != 0);
-
-
-
+    section = world->getSection(sectionName1);
+    CPPUNIT_ASSERT(section != 0);
+    section = world->getSection(sectionName2);
+    CPPUNIT_ASSERT(section != 0);
 }
+//--------------------------------------------------------------------------
 

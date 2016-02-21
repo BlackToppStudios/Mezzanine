@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@
    them, so it is best to simply contact us or the Free Software Foundation, if
    you have any questions.
 
-   Joseph Toppi - toppij@gmail.com
+   Joseph Toppi - toppij@gmail.comrrelation are clear. People with a specific class of mental disordrrelation are clear. People with a specific class of mental disorder that hinders ones sense of empathy are more likely to be cruel. Clearly the er that hinders ones sense of empathy are more likely to be cruel. Clearly the
    John Blackwood - makoenergy02@gmail.com
 */
 #ifndef _frameschedulertests_h
@@ -46,6 +46,9 @@
 #include "workunittests.h"
 #include "pugixml.h"
 
+#include <exception>
+#include <exception.h>
+
 /// @file
 /// @brief Test the core Framescheduler
 
@@ -54,8 +57,10 @@ using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
+/// @brief A String to represent the PausesWorkUnit in the crash tests.
+const String CrashDoesNotWorkUnitName("PausesWorkUnit");
+
 /// @brief A samplework unit that that just block the thread it is in
-/// @details Used in @ref FrameSchedulerGetNext and other tests
 /// @warning Everything on these samples has a public access specifier, for production code that is poor form, encapsulate your stuff.
 class PausesWorkUnit : public DefaultWorkUnit
 {
@@ -185,6 +190,127 @@ class LoggerCheckWorkUnit : public DefaultWorkUnit
         }
 };
 
+/// @brief A workunit that reliably crashes
+class CrashesWorkUnit : public PausesWorkUnit
+{
+        Integer CrashOnIteration;
+    public:
+        CrashesWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+            PausesWorkUnit(Length_, Name_),
+            CrashOnIteration(CrashOnCount)
+            { }
+
+        virtual ~CrashesWorkUnit()
+            { }
+
+        virtual void Crash() = 0;
+
+        virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            PausesWorkUnit::DoWork(CurrentThreadStorage);
+            CrashOnIteration--;
+            if (CrashOnIteration<1)
+                { Crash(); }
+        }
+};
+
+
+/// @brief A String to represent the CrashUnhandledWorkUnit
+const String CrashUnhandledThrowWorkUnitName("UnhandledThrowWorkUnit");
+/// @brief A workunit that reliably crashes By throwing plain old data without catching it.
+class CrashUnhandledThrowWorkUnit : public CrashesWorkUnit
+{
+        Integer CrashOnIteration;
+    public:
+        CrashUnhandledThrowWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+            CrashesWorkUnit(CrashOnCount, Length_, Name_)
+            { }
+
+        virtual ~CrashUnhandledThrowWorkUnit()
+            { }
+
+        virtual void Crash()
+            { throw 0; }
+
+};
+
+/// @brief A String to represent the CrashDivZeroWorkUnit
+const String CrashDivZeroWorkUnitName("DivZeroWorkUnit");
+/// @brief A workunit that reliably crashes By throwing plain old data without catching it.
+class CrashDivZeroWorkUnit : public CrashesWorkUnit
+{
+        Integer CrashOnIteration;
+    public:
+        CrashDivZeroWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+            CrashesWorkUnit(CrashOnCount, Length_, Name_)
+            { }
+
+        virtual ~CrashDivZeroWorkUnit()
+            { }
+
+        virtual void Crash()
+        {
+            Integer Dividend=1;
+            Integer Dividor=0;
+            cout << Dividend/Dividor << endl;
+        }
+
+};
+
+/// @brief A String to represent the CrashDivZeroWorkUnit
+const String CrashMezzExceptionWorkUnitName("MezzExceptionWorkUnit");
+/// @brief A workunit that reliably crashes By throwing plain old data without catching it.
+class CrashMezzExceptionWorkUnit : public CrashesWorkUnit
+{
+        Integer CrashOnIteration;
+    public:
+        CrashMezzExceptionWorkUnit(Integer CrashOnCount=2, Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "CrashDefault") :
+            CrashesWorkUnit(CrashOnCount, Length_, Name_)
+            { }
+
+        virtual ~CrashMezzExceptionWorkUnit()
+            { }
+
+        virtual void Crash()
+        {
+            MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,"This test must crash!!!!!");
+        }
+
+};
+
+/// @brief A samplework unit that that just logs some unique message
+/// @warning Everything on these samples has a public access specifier, for production code that is poor form, encapsulate your stuff.
+class UniqueLogMessagesWorkUnit : public DefaultWorkUnit
+{
+    public:
+        /// @brief Name used for clarifying output and enhancing logging.
+        Mezzanine::String Name;
+
+        /// @brief This value is emitted and incremented to insure unique log messages
+        Mezzanine::MaxInt Counter;
+
+        /// @brief Create one of these workunit
+        /// @param Counter_ Defaults to 0 and is the number of Milliseconds to wait
+        /// @param Name Is passedby test to insure acceptable uniqueness.
+        UniqueLogMessagesWorkUnit(Mezzanine::String Name_, Mezzanine::Whole Counter_ = 0)
+            : Name(Name_), Counter(Counter_)
+            { }
+
+        /// @brief Empty Virtual Deconstructor
+        virtual ~UniqueLogMessagesWorkUnit()
+            { }
+
+        /// @brief Wait and log it.
+        /// @param CurrentThreadStorage used to retrieve a valid logger.
+        /// @brief CurrentFrameScheduler ignored
+        virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            DoubleBufferedLogger& CurrentLogger = CurrentThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger);
+            CurrentLogger.GetUsable() << "<Pause PauseLength=\"" << Counter++ << "\" WorkUnitName=\"" << Name << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << endl;
+        }
+};
+
+
 
 /// @brief Tests for the Framescheduler class
 class frameschedulertests : public UnitTestGroup
@@ -221,6 +347,30 @@ class frameschedulertests : public UnitTestGroup
 
         }
 
+        //DeconstructionCheckSchedulerLog(LogCache,1,1,"DeconstructionSanityWithLateLogging",true,"Extra Log message");
+        void DeconstructionCheckSchedulerLog(Mezzanine::Logger& Log, Whole ExpectedWorkUnitCount, Whole ExpectedIterationCount, String TestName, Boole HasTrailing = false, String TrailingExpected="")
+        {
+            String LogString(Log.str());
+            pugi::xml_document Doc;
+            Doc.load(Log);
+            pugi::xml_node TestFrame = Doc.child("MezzanineLog");
+            TEST(TestFrame, TestName+"::TestLog");
+
+            Whole ActualIterationCount = Doc.select_nodes("//MezzanineLog/FrameTimes").size();
+            TestOutput << "Found " << ActualIterationCount << " frames expected " << ExpectedIterationCount << "." << endl;
+            TEST(ExpectedIterationCount == ActualIterationCount,TestName+"WorkUnitCount");
+
+            Whole ActualWorkUnitCount = Doc.select_nodes("//MezzanineLog/WorkUnitMainInsertion").size();
+            TestOutput << "Found " << ActualWorkUnitCount << " frames expected " << ExpectedWorkUnitCount << "." << endl;
+            TEST(ExpectedWorkUnitCount == ActualWorkUnitCount,TestName+"WorkUnitCount");
+
+            if(HasTrailing)
+            {
+                TestOutput << "Checking if log contains \"" << TrailingExpected << "\"." << endl;
+                TEST(String::npos!=LogString.find(TrailingExpected), TestName+"IncludesExpectedText");
+            }
+        }
+
         /// @brief Converts anything streamable to a Mezzanine::String
         /// @details Used in @ref ThreadCreate
         /// @param Datum the item to convert
@@ -246,6 +396,36 @@ class frameschedulertests : public UnitTestGroup
             Converter >> Results;
             return Results;
         }
+
+        String CrashTest(const Mezzanine::String& WorkUnitName, Whole ExpectedUnique)
+        {
+            String CrashTestOutput;
+            TestOutput << endl << "Launching a subprocess which will(or won't') crash because of a " << WorkUnitName << ":" << endl;
+            CrashTestOutput = LaunchSubProcessTest(WorkUnitName);
+            TestOutput << "Raw Log" << endl
+                       << "=============================" << endl
+                       << CrashTestOutput << endl
+                       << "=============================" << endl
+                       << "Unique WorkUnits Found:" << endl;
+
+            pugi::xml_document CrashResultsDoc;
+            CrashResultsDoc.load_buffer(CrashTestOutput.c_str(), CrashTestOutput.size());
+            pugi::xpath_node_set CrashResultsParsed = CrashResultsDoc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/Pause/@WorkUnitName");
+            std::set<Mezzanine::String> CrashResultCounter;
+            for(pugi::xpath_node_set::const_iterator Iter = CrashResultsParsed.begin();
+                CrashResultsParsed.end() != Iter;
+                Iter++)
+            {
+                Mezzanine::String Temp(Iter->attribute().value());
+                CrashResultCounter.insert(Temp);
+                TestOutput << Temp << endl;
+            }
+            TestOutput << "Found " << CrashResultCounter.size() << " WorkUnits expected " << ExpectedUnique << "." << endl;
+            TEST(ExpectedUnique==CrashResultCounter.size(), "NoCrashTest");
+
+            return CrashTestOutput;
+        }
+
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
         /// @return Returns a String containing "FrameScheduler"
@@ -1001,7 +1181,7 @@ class frameschedulertests : public UnitTestGroup
                 TEST((3==PrepCount),"RemoveAffinity::MainCleanup");
 
                 delete EraseA; delete EraseB; delete EraseC; delete EraseE; delete EraseF;
-            }// \ Removal Affinity
+            } // \Removal Affinity
 
             { // Removal Monopoly
                 stringstream LogCache;
@@ -1100,7 +1280,7 @@ class frameschedulertests : public UnitTestGroup
                      ,"GetThreadUsableLogger");
             }
 
-            {
+            { // Timing accuracy
                 stringstream LogCache;
                 FrameScheduler Scheduler1(&LogCache);
                 MaxInt FrameLength=10000;
@@ -1124,15 +1304,101 @@ class frameschedulertests : public UnitTestGroup
                 TestOutput << "Without knowing the performance of this machine ahead of time, knowing the size of the pause is impossible, how it can be tested for sane values, it is: "
                      << PauseLength << "  microseconds." << endl;
                 TEST( (0<=PauseLength) && (PauseLength<=FrameLength+1),"LastPauseData" );
-
             }
 
+            { // Crash Tests
+                CrashTest(CrashDoesNotWorkUnitName, 3);         // Not a problem
+                CrashTest(CrashUnhandledThrowWorkUnitName, 2);  // Log everyting aftercrash
+                CrashTest(CrashDivZeroWorkUnitName, 0);         // Cannot recover from hardware traps so buffered logs are lost
+                CrashTest(CrashMezzExceptionWorkUnitName, 2);   // Unhandled exception using standard mezzanine exception generation techniques
+            }
+
+            { // Logs during deconstruction
+                stringstream LogCache;
+                {
+                    FrameScheduler Scheduler1(&LogCache);
+                    Scheduler1.SetFrameLength(0);
+                    Scheduler1.SetThreadCount(1);
+                    UniqueLogMessagesWorkUnit* Loggee = new UniqueLogMessagesWorkUnit("Loggee");
+                    Scheduler1.AddWorkUnitMain(Loggee,"Loggee");
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.DoOneFrame();
+                }
+                cout << std::endl << "Deconstruction Log Tests: " << std::endl << LogCache.str() << std::endl;
+                DeconstructionCheckSchedulerLog(LogCache,1,3,"DeconstructionSanity");
+            }
+
+            { // Logs during deconstruction with external additions
+                stringstream LogCache;
+                {
+                    FrameScheduler Scheduler1(&LogCache);
+                    Scheduler1.SetFrameLength(0);
+                    Scheduler1.SetThreadCount(1);
+                    UniqueLogMessagesWorkUnit* Loggee = new UniqueLogMessagesWorkUnit("Loggee");
+                    Scheduler1.AddWorkUnitMain(Loggee,"Loggee");
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.DoOneFrame();
+                    Scheduler1.GetLog() << "Extra Log message" << std::endl;
+                }
+                cout << std::endl << "Deconstruction Log Tests: " << std::endl << LogCache.str() << std::endl;
+                DeconstructionCheckSchedulerLog(LogCache,1,3,"DeconstructionSanityWithLateLogging",true,"Extra Log message");
+            }
 
         }
-
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const
+            { return true; }
+
+        /// @brief This will be launched in a sub sub process by the unit test framework.
+        virtual void RunSubprocessTest(const String& Arg)
+        {
+            // Please use automatic storage for your Frameschedulers, I did this to carefully manage
+            // lifetime to insure I could force crashes, this is not a good idea outside of tests.
+            FrameScheduler* Scheduler = new FrameScheduler(&std::cout);
+            //throw 0;
+
+            Scheduler->SetThreadCount(1);
+            PausesWorkUnit* A = new PausesWorkUnit(0,"WorkUnitA");
+            PausesWorkUnit* B = NULL;
+            PausesWorkUnit* C = new PausesWorkUnit(0,"WorkUnitC");
+            LogAggregator *Agg = new LogAggregator;
+
+            if(AllLower(CrashUnhandledThrowWorkUnitName) == AllLower(Arg))
+                { B = new CrashUnhandledThrowWorkUnit(0, 0,"WorkUnitB"); }
+            if(AllLower(CrashDoesNotWorkUnitName) == AllLower(Arg))
+                { B = new PausesWorkUnit(0, "WorkUnitB"); }
+            if(AllLower(CrashDivZeroWorkUnitName) == AllLower(Arg))
+                { B = new CrashDivZeroWorkUnit(0, 0,  "WorkUnitB"); }
+            if(AllLower(CrashMezzExceptionWorkUnitName) == AllLower(Arg))
+                { B = new CrashMezzExceptionWorkUnit(0, 0,  "WorkUnitB"); }
+
+
+            if(NULL == B)
+            {
+                printf("No workunit selected for tests");
+                exit(ExitFailure);
+            }
+
+            B->AddDependency(A);
+            C->AddDependency(B);
+            Agg->AddDependency(C);
+
+            Scheduler->AddWorkUnitMain(A, A->Name); // Now the FrameScheduler owns these, it gets to delete them
+            Scheduler->AddWorkUnitMain(B, B->Name);
+            Scheduler->AddWorkUnitMain(C, C->Name);
+            Scheduler->AddWorkUnitMain(Agg, "Aggregator");
+
+            // run the framescheduler and crash it here
+            Scheduler->DoOneFrame();
+            Scheduler->ForceLogFlush();
+
+            delete Scheduler;
+        }
+        /// @brief Needs subprocesses so it returns true.
+        virtual bool HasSubprocessTest() const
             { return true; }
 };
 

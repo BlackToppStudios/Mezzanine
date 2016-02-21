@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -61,7 +61,8 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Listener::Listener(ALCcontext* ListenContext, SoundScapeManager* Creator) :
+            Listener::Listener(const UInt32 ID, ALCcontext* ListenContext, SoundScapeManager* Creator) :
+                iListener(ID),
                 MPU(1.0),
                 VolumeModifier(1.0),
                 Manager(Creator),
@@ -73,8 +74,7 @@ namespace Mezzanine
             }
 
             Listener::~Listener()
-            {
-            }
+                {  }
 
             void Listener::ConvertBuffer(Real* OrientationArray)
             {
@@ -300,21 +300,21 @@ namespace Mezzanine
             void Listener::ProtoSerialize(XML::Node& ParentNode) const
             {
                 /// @todo Implement this.
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
             }
 
             void Listener::ProtoDeSerialize(const XML::Node& SelfRoot)
             {
                 /// @todo Implement this.
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
             }
 
             String Listener::GetDerivedSerializableName() const
             {
-                return this->Listener::SerializableName();
+                return this->Listener::GetSerializableName();
             }
 
-            String Listener::SerializableName()
+            String Listener::GetSerializableName()
             {
                 return "OALSListener";
             }

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ namespace Mezzanine
         /*/// @brief Deletes a file existing on the filesystem.
         /// @param PathAndFile A string containing both the path to the directory where the file is located, and the name of the file to be deleted.
         /// @return Returns true if the operation was successful, false if it failed.
-        Boole MEZZ_LIB RemoveFile(const String& PathAndFile);//*/
+        Boole MEZZ_LIB RemoveFile(const String& PathAndFile);// */
 
         ///////////////////////////////////////////////////////////////////////////////
         // Basic Directory Management
@@ -110,6 +110,12 @@ namespace Mezzanine
         /// @brief Get the character used to separate entries in the system PATH
         /// @return Semicolon ';' on windows and Forward slash ':' on other operating systems.
         Char8 MEZZ_LIB GetPathSeparator();
+
+        /// @brief Convenience method to verify the necessary system separator is present when concatenating.
+        /// @param FilePath The directory path to the file.
+        /// @param FileName The name of the file.
+        /// @return Returns a full string that is the concatenated path and filename.
+        String MEZZ_LIB CombinePathAndFileName(const String& FilePath, const String& FileName);
 
         ///////////////////////////////////////////////////////////////////////////////
         // System Path Utilities

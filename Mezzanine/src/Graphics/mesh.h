@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -45,7 +45,8 @@
 namespace Ogre
 {
     class Mesh;
-    class MeshPtr;
+    template<typename T> class SharedPtr;
+    typedef SharedPtr<Mesh> MeshPtr;
 }//Ogre
 
 namespace Mezzanine
@@ -61,52 +62,82 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Mesh
         {
-            public:
-                typedef std::vector<SubMesh*>             SubMeshContainer;
-                typedef SubMeshContainer::iterator        SubMeshIterator;
-                typedef SubMeshContainer::const_iterator  ConstSubMeshIterator;
-            protected:
-                InternalMeshData* IMD;
-                Skeleton* MeshSkel;
-                SubMeshContainer SubMeshes;
-            public:
-                /*/// @brief Class Constructor.
-                Mesh();//*/
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param InternalMesh The internal mesh this mesh class is based on.
-                Mesh(Ogre::MeshPtr InternalMesh);
-                /// @brief Class Destructor.
-                ~Mesh();
+        public:
+            /// @brief A convenience type for the storage of SubMeshes in this class.
+            typedef std::vector<SubMesh*>             SubMeshContainer;
+            /// @brief An iterator type for SubMeshes being stored by this class.
+            typedef SubMeshContainer::iterator        SubMeshIterator;
+            /// @brief A const iterator type for SubMeshes being stored by this class.
+            typedef SubMeshContainer::const_iterator  ConstSubMeshIterator;
+        protected:
+            /// @internal
+            /// @brief A pointer to the internal data this Mesh is based on.
+            InternalMeshData* IMD;
+            /// @internal
+            /// @brief If Skeletal animations are enabled on this Mesh, this is a pointer to the Skeleton being used.
+            Skeleton* MeshSkel;
+            /// @internal
+            /// @brief A container storing all the SubMeshes in this Mesh.
+            SubMeshContainer SubMeshes;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Submesh Methods
+            /// @internal
+            /// @brief Constructs a Mezzanine wrapper for every SubMesh in the internal Mesh.
+            void WrapAllSubMeshes();
+            /// @internal
+            /// @brief Destroys every wrapped (but not the underlying instance) SubMesh in this Mesh.
+            void DestroyAllWrappedSubMeshes();
+        public:
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param InternalMesh The internal Mesh this Mesh class is based on.
+            Mesh(Ogre::MeshPtr InternalMesh);
+            /// @brief Class Destructor.
+            ~Mesh();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            /// @brief Gets the number of Vertices in this Mesh.
+            /// @return Returns the number of Vertices that make up all SubMeshes in this Mesh.
+            Whole GetVertexCount() const;
+            /// @brief Gets the number of Indices in this Mesh.
+            /// @return Returns the number of Indices used to assemble the vertices in all SubMeshes in this Mesh.
+            Whole GetIndexCount() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // SubMesh Methods
+
+            /// @brief Gets a SubMesh by index.
+            /// @param Index The index of the SubMesh to retrieve.
+            /// @return Returns a pointer to the SubMesh at the specified index.
+            SubMesh* GetSubMesh(const Whole Index) const;
+            /// @brief Gets the number of SubMeshes in this Mesh.
+            /// @return Returns a Whole representing the number of SubMeshes that make up this Mesh.
+            Whole GetNumSubMeshes() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Skeleton Methods
 
 
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Skeleton Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Asset Methods
 
+            /// @brief Gets the Name of this Mesh.
+            /// @note If this Mesh originated from a file, usually the name of the Mesh will be the file name.
+            /// @return Returns a const string reference containing the name of this Mesh.
+            ConstString& GetName() const;
+            /// @brief Gets the resource group this Mesh belongs to.
+            /// @return Returns a const string reference containing the group this Mesh belongs to.
+            ConstString& GetGroup() const;
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Asset Methods
-
-                /// @brief Gets the Name of this mesh.
-                /// @note If this mesh originated from a file, usually the name of the mesh will be the file name.
-                /// @return Returns a const string reference containing the name of this mesh.
-                ConstString& GetName() const;
-                /// @brief Gets the resource group this mesh belongs to.
-                /// @return Returns a const string reference containing the group this mesh belongs to.
-                ConstString& GetGroup() const;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
-
-                /// @internal
-                /// @brief Gets the internal Mesh pointer.
-                /// @return Returns a shared pointer pointing to the internal Mesh.
-                Ogre::MeshPtr _GetInternalMesh() const;
+            /// @internal
+            /// @brief Gets the internal Mesh pointer.
+            /// @return Returns a shared pointer pointing to the internal Mesh.
+            Ogre::MeshPtr _GetInternalMesh() const;
         };//Mesh
     }//Graphics
 }//Mezzanine

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,7 +51,13 @@
 namespace Mezzanine
 {
     WorldProxy::WorldProxy() :
-        ParentObject(NULL)
+        ParentObject(NULL),
+        ProxyID(0)
+        {  }
+
+    WorldProxy::WorldProxy(const UInt32 ID) :
+        ParentObject(NULL),
+        ProxyID(ID)
         {  }
 
     WorldProxy::~WorldProxy()
@@ -68,6 +74,9 @@ namespace Mezzanine
 
     WorldObject* WorldProxy::GetParentObject() const
         { return this->ParentObject; }
+
+    UInt32 WorldProxy::GetProxyID() const
+        { return this->ProxyID; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -86,7 +95,8 @@ namespace Mezzanine
     {
         XML::Node PropertiesNode = SelfRoot.AppendChild( WorldProxy::GetSerializableName() + "Properties" );
 
-        if( PropertiesNode.AppendAttribute("Version").SetValue("1") )
+        if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+            PropertiesNode.AppendAttribute("ProxyID").SetValue(this->ProxyID) )
         {
             XML::Node LocationNode = PropertiesNode.AppendChild("Location");
             this->GetLocation().ProtoSerialize( LocationNode );
@@ -123,6 +133,10 @@ namespace Mezzanine
 
         if( !PropertiesNode.Empty() ) {
             if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                CurrAttrib = PropertiesNode.GetAttribute("ProxyID");
+                if( !CurrAttrib.Empty() )
+                    this->ProxyID = static_cast<UInt32>( CurrAttrib.AsUint() );
+
                 XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
                 if( !PositionNode.Empty() ) {
                     Vector3 Loc(PositionNode);
@@ -141,10 +155,10 @@ namespace Mezzanine
                     this->SetScale(Scale);
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
         }
     }
 
@@ -159,8 +173,7 @@ namespace Mezzanine
 
     void WorldProxy::_Bind(WorldObject* NewParent)
     {
-        if( ParentObject != NewParent )
-        {
+        if( ParentObject != NewParent ) {
             ParentObject = NewParent;
             /// @todo Notify something?  Perhaps use the new event system?
         }

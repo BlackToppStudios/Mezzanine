@@ -1,32 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1EventPublisher.html" title="This is the base class for any class that generates and publishes events to subscribers. " alt="" coords="251,157,432,187"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1Action.html" title="This class represents an action to be taken. Can have multiple inputs bound to it. " alt="" coords="513,96,665,125"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1RadioButtonGroup.html" title="This is a class designed to facilitate operations across an entire group of RadioButtons. " alt="" coords="496,149,683,195"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. " alt="" coords="512,219,667,248"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button. " alt="" coords="764,32,916,61"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1DropDownList.html" title="This is a widget that displays one selection from a list that can have it&#39;s visibility toggled..." alt="" coords="741,85,939,115"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1UI_1_1EditBox.html" title="Widget for handling the input and manipulation of text. " alt="" coords="760,139,920,168"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1UI_1_1LayoutContainer.html" title="This is the base class for container objects that automatically position it&#39;s children. " alt="" coords="735,192,945,221"/>
-<area shape="rect" id="node23" href="$classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box. " alt="" coords="761,245,919,275"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1UI_1_1PagedContainer.html" title="This is the base class for containers that have a render area and work area of different sizes..." alt="" coords="736,299,944,328"/>
-<area shape="rect" id="node35" href="$classMezzanine_1_1UI_1_1PageProvider.html" title="This is the base class for interpretting widget values to page positions. " alt="" coords="744,356,936,385"/>
-<area shape="rect" id="node45" href="$classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other..." alt="" coords="731,463,949,492"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value. " alt="" coords="1013,5,1189,35"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1StackButton.html" title="This is a button with additional data used to track the binding to a StackedContainer which can be se..." alt="" coords="1008,59,1195,88"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1RadioButton.html" title="This is a simple widget where only one of it&#39;s selections can be selected at a time. " alt="" coords="1268,5,1455,35"/>
-<area shape="rect" id="node27" href="$classMezzanine_1_1UI_1_1GridContainer.html" title="This is a container class for placing child objects on a 2 dimensional grid. " alt="" coords="1004,244,1199,273"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1UI_1_1LinearContainer.html" title="This is a container class for placing child objects in succession on a single axis. " alt="" coords="999,297,1204,327"/>
-<area shape="rect" id="node31" href="$classMezzanine_1_1UI_1_1HorizontalContainer.html" title="A layout container that aligns it&#39;s children along a common X axis. " alt="" coords="1275,226,1448,273"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1UI_1_1VerticalContainer.html" title="A layout container that aligns it&#39;s children along a common Y axis. " alt="" coords="1255,296,1468,325"/>
-<area shape="rect" id="node37" href="$classMezzanine_1_1UI_1_1Scrollbar.html" title="This is the scrollbar base class. " alt="" coords="1019,356,1184,385"/>
-<area shape="rect" id="node43" href="$classMezzanine_1_1UI_1_1Spinner.html" title="This is a simple widget for a numeric variable in a box. " alt="" coords="1023,409,1180,439"/>
-<area shape="rect" id="node39" href="$classMezzanine_1_1UI_1_1HorizontalScrollbar.html" title="This is a scrollbar class aligned on the X axis. " alt="" coords="1275,349,1448,395"/>
-<area shape="rect" id="node41" href="$classMezzanine_1_1UI_1_1VerticalScrollbar.html" title="This is a scrollbar class aligned on the Y axis. " alt="" coords="1256,419,1467,448"/>
-<area shape="rect" id="node47" href="$classMezzanine_1_1UI_1_1MenuEntry.html" title="This class is an entry for a single window/widget in a menu. " alt="" coords="1012,463,1191,492"/>
-<area shape="rect" id="node49" href="$classMezzanine_1_1UI_1_1TabSet.html" title="This is a widget that stores sets of renderables but only displays one at a time. ..." alt="" coords="1023,516,1180,545"/>
-<area shape="rect" id="node50" href="$classMezzanine_1_1EventSubscriber.html" title="This is a base class for all classes that subscribe to events. " alt="" coords="247,215,436,244"/>
-<area shape="rect" id="node52" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. " alt="" coords="5,295,187,324"/>
-<area shape="rect" id="node54" href="$classMezzanine_1_1UI_1_1LineList.html" title="This is an object comprised of a series of lines. " alt="" coords="261,268,421,297"/>
-<area shape="rect" id="node56" href="$classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. " alt="" coords="236,321,447,351"/>
-<area shape="rect" id="node58" href="$classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al..." alt="" coords="512,321,667,351"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Threading_1_1DoubleBufferedResource.html" title="A thread specific resource that uses double buffering to avoid multithreaded synchronization mechanis..." alt="" coords="5,5,213,47"/>
 </map>

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -52,6 +52,7 @@
 #include "Physics/rigidproxy.h"
 
 #include "entresol.h"
+#include "world.h"
 #include "exception.h"
 #include "stringtool.h"
 #include "serialization.h"
@@ -90,15 +91,15 @@ namespace Mezzanine
 
     void RigidDebris::CreateRigidDebris(const Real Mass)
     {
-        Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
             this->EntProx = SceneMan->CreateEntityProxy(false);
             this->EntProx->_Bind( this );
         }
 
-        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
-            this->RigProx = PhysMan->CreateRigidProxy(Mass,false);
+            this->RigProx = PhysMan->CreateRigidProxy(Mass);
             this->RigProx->_Bind( this );
         }
 
@@ -109,13 +110,13 @@ namespace Mezzanine
 
     void RigidDebris::CreateRigidDebris(const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
     {
-        Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
             this->EntProx = SceneMan->CreateEntityProxy(DebMesh,false);
             this->EntProx->_Bind( this );
         }
 
-        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
             this->RigProx = PhysMan->CreateRigidProxy(Mass,DebShape,false);
             this->RigProx->_Bind( this );
@@ -130,7 +131,7 @@ namespace Mezzanine
     {
         this->RemoveFromWorld();
         if( this->EntProx ) {
-            Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+            Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
             if( SceneMan ) {
                 SceneMan->DestroyProxy( this->EntProx );
                 this->EntProx = NULL;
@@ -138,7 +139,7 @@ namespace Mezzanine
         }
 
         if( this->RigProx ) {
-            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
             if( PhysMan ) {
                 PhysMan->DestroyProxy( this->RigProx );
                 this->RigProx = NULL;
@@ -358,7 +359,7 @@ namespace Mezzanine
 
                 XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
                 if( !EntProxNode.Empty() ) {
-                    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
                     if( SceneMan ) {
                         this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
                         this->EntProx->_Bind( this );
@@ -367,7 +368,7 @@ namespace Mezzanine
 
                 XML::Node RigProxNode = ProxiesNode.GetChild("RigProx").GetFirstChild();
                 if( !RigProxNode.Empty() ) {
-                    Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+                    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
                     if( PhysMan ) {
                         this->RigProx = PhysMan->CreateRigidProxy(RigProxNode);
                         this->RigProx->_Bind( this );
@@ -378,10 +379,10 @@ namespace Mezzanine
                     this->RigProx->AddSyncObject( this->EntProx );
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RigidDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RigidDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,RigidDebris::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,RigidDebris::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
         }
     }
 

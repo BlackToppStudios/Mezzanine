@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['original_20pugixml_20license',['Original pugixml License',['../OriginalpugixmlLicense.html',1,'']]]
+  ['directed_20acyclic_20graph_20frame_20scheduler',['Directed Acyclic Graph Frame Scheduler',['../ThreadingManual.html',1,'']]]
 ];

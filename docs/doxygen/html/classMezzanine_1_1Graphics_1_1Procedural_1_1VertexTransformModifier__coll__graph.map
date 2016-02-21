@@ -1,0 +1,5 @@
+<map id="Mezzanine::Graphics::Procedural::VertexTransformModifier" name="Mezzanine::Graphics::Procedural::VertexTransformModifier">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshModifier.html" title="A base class for modifying the contents of an already populated triangle buffer. " alt="" coords="5,5,184,47"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. " alt="" coords="25,71,164,98"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space. " alt="" coords="17,122,173,149"/>
+</map>

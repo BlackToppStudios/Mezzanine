@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,6 +44,7 @@
 #include "Physics/physicsmanager.h"
 #include "Physics/collision.h"
 #include "entresol.h"
+#include "world.h"
 
 namespace Mezzanine
 {
@@ -52,14 +53,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////
         // CollisionDispatcher functions
 
-        CollisionDispatcher::CollisionDispatcher(btCollisionConfiguration* CollisionConfig)
-            : btCollisionDispatcher(CollisionConfig)
-        {
-        }
+        CollisionDispatcher::CollisionDispatcher(PhysicsManager * PhysMan, btCollisionConfiguration* CollisionConfig) :
+            btCollisionDispatcher(CollisionConfig),
+            PhysMan( PhysMan )
+            {  }
 
         CollisionDispatcher::~CollisionDispatcher()
-        {
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // New Implementation based on Algorithm creation
@@ -88,8 +88,7 @@ namespace Mezzanine
                 }
             }
             // now check the already generated collisions
-            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-            for( Physics::PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
+            for( Physics::PhysicsManager::CollisionMapIterator ColIt = this->PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(Casted == (*ColIt).second->InternalAlgo)
                 {
@@ -97,7 +96,7 @@ namespace Mezzanine
                     //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     delete (*ColIt).second;
-                    PhysMan->Collisions.erase(ColIt);
+                    this->PhysMan->Collisions.erase(ColIt);
                     break;
                 }
             }
@@ -173,8 +172,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////
         // ParallelCollisionDispatcher functions
 
-        ParallelCollisionDispatcher::ParallelCollisionDispatcher(btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig)
-            : SpuGatheringCollisionDispatcher(ThreadInterface,MaxNumTasks,CollisionConfig)
+        ParallelCollisionDispatcher::ParallelCollisionDispatcher(PhysicsManager * PhysMan, btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig) :
+            PhysMan( PhysMan ),
+            SpuGatheringCollisionDispatcher(ThreadInterface,MaxNumTasks,CollisionConfig)
         {
         }
 
@@ -209,8 +209,7 @@ namespace Mezzanine
                 }
             }
             // now check the already generated collisions
-            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-            for( Physics::PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
+            for( Physics::PhysicsManager::CollisionMapIterator ColIt = this->PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(Casted == (*ColIt).second->InternalAlgo)
                 {
@@ -218,7 +217,7 @@ namespace Mezzanine
                     //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     delete (*ColIt).second;
-                    PhysMan->Collisions.erase(ColIt);
+                    this->PhysMan->Collisions.erase(ColIt);
                     break;
                 }
             }

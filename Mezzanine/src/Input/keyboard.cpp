@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ namespace Mezzanine
             for( ConstMetaCodeIterator MCIt = Sequence.begin() ; MCIt != Sequence.end() ; ++MCIt )
             {
                 if( !MCIt->IsKeyboardEvent() )
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-Keyboard MetaCode detected when attempting to insert an Input Sequence into Keyboard input device."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Non-Keyboard MetaCode detected when attempting to insert an Input Sequence into Keyboard input device."); }
             }
         }
 

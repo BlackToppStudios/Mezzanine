@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -39,6 +39,9 @@
 */
 #ifndef _dagdoubleinclude_h
 #define _dagdoubleinclude_h
+
+/// @file
+/// @brief This file is different between versions of the test framework for compatibility purposes and should be ignored
 
 #include "Threading/dagframescheduler.h"
 

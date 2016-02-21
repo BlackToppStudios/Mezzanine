@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@
 /// @details If you need to change the nature of the executable this is the
 /// file to change. This is where the simple (but robust) sub process
 /// mechanism is implemented. Very little of the rest of the code in the
-/// unit test frame work makes calls to file, and everything that does
+/// unit test frame work makes calls to this file, and everything that does
 /// does so through the UnitTestGroup class via polymorphism.
 
 /// @internal
@@ -82,6 +82,12 @@ Mezzanine::String GetExecutableName()
 ProcessDepth Depth;
 ProcessDepth GetCurrentProcessDepth()
     { return Depth; }
+
+/// @internal
+/// @brief A string intended for use by any subsubprocess test
+Mezzanine::String SubSubProcessArgument;
+Mezzanine::String GetSubSubProcessArgument()
+    { return SubSubProcessArgument; }
 
 
 /// @brief Write the passed UnitTestGroup to an XML temp file
@@ -212,17 +218,11 @@ class AllUnitTestGroups : public UnitTestGroup
         {
             for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName ) // Actually run the tests
             {
-                try{
-                    if(DoInteractiveTest)
-                        { TestGroups[*CurrentTestName]->ShouldRunInteractiveTests(); }
-                    if(DoAutomaticTest)
-                        { TestGroups[*CurrentTestName]->ShouldRunAutomaticTests(); }
-                    TestGroups[*CurrentTestName]->RunTests();
-                } catch (std::exception e) {
-                    TestError << std::endl << e.what() << std::endl;
-                    // maybe we should log or somehting.
-                }
-
+                if(DoInteractiveTest)
+                    { TestGroups[*CurrentTestName]->ShouldRunInteractiveTests(); }
+                if(DoAutomaticTest)
+                    { TestGroups[*CurrentTestName]->ShouldRunAutomaticTests(); }
+                TestGroups[*CurrentTestName]->RunTests();
                 (*this) += *(TestGroups[*CurrentTestName]);
             }
         }
@@ -231,14 +231,17 @@ class AllUnitTestGroups : public UnitTestGroup
         /// @brief this is used when there are test to execute and we need to loop over them and run each in a child process.
         void IterateSubtests()
         {
+            setvbuf (stdout, NULL, _IONBF, 0);
             for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
             {
                 ClearTempFile();
                 String SubprocessInvocation(CommandName + " " + *CurrentTestName + " " + MemSpaceArg + " " + Mezzanine::String(DoAutomaticTest?"automatic ":"") + Mezzanine::String(DoInteractiveTest?"interactive ":""));
                 if(system(SubprocessInvocation.c_str()))   // Run a single unit test as another process
                 {
+                    printf("%s", (SubprocessInvocation+String(" - Failure")).c_str() );
                     this->AddTestResult(String("Process::" + *CurrentTestName), Testing::Failed);
                 }else {
+                    printf("%s", (SubprocessInvocation+String(" - Success")).c_str() );
                     this->AddTestResult(String("Process::" + *CurrentTestName), Success);
                 }
 
@@ -302,6 +305,16 @@ class AllUnitTestGroups : public UnitTestGroup
         }
 };
 
+/// @brief Handles one argument at a time for main
+/// @details This should be the only place that configures global state in the test suite
+/// everywhere else should access global state through the accessors in mezztest.h
+/// @param Arg The argument
+void HandleSingleArgument(Mezzanine::String Arg)
+{
+
+
+}
+
 /// @brief This is the entry point for the unit test executable.
 /// @details This will contruct an AllUnitTestGroups with the listing of unit tests
 /// available from autodetect.h. It will then interpret any command line arguments
@@ -316,7 +329,7 @@ class AllUnitTestGroups : public UnitTestGroup
 /// process fails. If the main process cannot create child processes it will return EXIT_FAILURE.
 /// @param argc Is interpretted as the amount of passed arguments
 /// @param argv Is interpretted as the arguments passed in from the launching shell.
-int main (int argc, char** argv)
+int main(int argc, char** argv)
 {
     ArgC = argc;
     ArgV = argv;
@@ -387,15 +400,20 @@ int main (int argc, char** argv)
                     SearchResult->second->ShouldRunSubProcessTests();
                 }
             }
-            try
+            GlobalCoreTestGroup::iterator Found = TestGroups.find(String(ThisArg.c_str()));
+            if(Found != TestGroups.end())
             {
-                TestGroups.at(ThisArg.c_str());
                 Runner.DontRunAllTests();
                 Runner.TestGroupsToRun.push_back(ThisArg.c_str());
-            } catch(const std::out_of_range&) {
-                std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
-                Usage(CommandName, TestGroups);
-                return ExitInvalidArguments;
+            }else{
+                if(GetCurrentProcessDepth() == TestSubSubProcess)
+                {
+                    SubSubProcessArgument = String(ThisArg);
+                }else{
+                    std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
+                    Usage(CommandName, TestGroups);
+                    return ExitInvalidArguments;
+                }
             }
         }
     }

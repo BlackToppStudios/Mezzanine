@@ -1,10 +1,10 @@
 <map id="Mezzanine::UI::RenderLayer" name="Mezzanine::UI::RenderLayer">
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1ImageLayer.html" title="This layer is for placing images and basic colours in it&#39;s parents&#39; quad space. " alt="" coords="748,83,929,112"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1TextLayer.html" title="This is a base class for render layers that render text. " alt="" coords="752,152,925,181"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="263,117,460,147"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with. " alt="" coords="5,117,213,147"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1MultiImageLayer.html" title="This is an image layer that supports rendering of multiple images within it&#39;s space. " alt="" coords="983,5,1161,51"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1SingleImageLayer.html" title="This is an image layer that supports rendering only a single image/sprite. " alt="" coords="979,74,1165,121"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1MultiLineTextLayer.html" title="This is a render layer specializing in multi&#45;line text. " alt="" coords="989,143,1155,190"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1SingleLineTextLayer.html" title="This is a render layer specializing in single&#45;line text. " alt="" coords="985,213,1159,259"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1ImageLayer.html" title="This layer is for placing images and basic colours in it&#39;s parents&#39; quad space. " alt="" coords="745,78,928,105"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1TextLayer.html" title="This is a base class for render layers that render text. " alt="" coords="750,143,923,170"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="261,111,460,138"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with. " alt="" coords="5,111,213,138"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1MultiImageLayer.html" title="This is an image layer that supports rendering of multiple images within it&#39;s space. " alt="" coords="980,5,1159,47"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1SingleImageLayer.html" title="This is an image layer that supports rendering only a single image/sprite. " alt="" coords="976,71,1163,112"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1UI_1_1MultiLineTextLayer.html" title="This is a render layer specializing in multi&#45;line text. " alt="" coords="986,136,1153,177"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1SingleLineTextLayer.html" title="This is a render layer specializing in single&#45;line text. " alt="" coords="982,201,1157,243"/>
 </map>

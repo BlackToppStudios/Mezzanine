@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -53,7 +53,6 @@
 // includes for the creation and destruction of the global parser
 #include "UI/defaultmarkupparser.h"
 
-#include "Graphics/cameramanager.h"
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/viewport.h"
 #include "Input/inputmanager.h"
@@ -61,7 +60,7 @@
 #include "Resource/resourcemanager.h"
 #include "eventmanager.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "timer.h"
 #include "entresol.h"
 
@@ -97,6 +96,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // UIManager Methods
 
+        const String UIManager::ImplementationName = "DefaultUIManager";
+        const ManagerBase::ManagerType UIManager::InterfaceType = ManagerBase::MT_UIManager;
+
         UIManager::UIManager() :
             HoveredWidget(NULL),
             WidgetFocus(NULL),
@@ -120,7 +122,7 @@ namespace Mezzanine
             this->WidgetUpdateWork = new WidgetUpdateWorkUnit(this);
         }
 
-        UIManager::UIManager(XML::Node& XMLNode) :
+        UIManager::UIManager(const XML::Node& XMLNode) :
             HoveredWidget(NULL),
             WidgetFocus(NULL),
 
@@ -473,7 +475,7 @@ namespace Mezzanine
         {
             MarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
             if( MarkupIt != this->MarkupParsers.end() ) {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"A MarkupParser with the name \"" + ParserName + "\" is already registered.");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A MarkupParser with the name \"" + ParserName + "\" is already registered.");
             }else{
                 this->MarkupParsers.insert( std::pair<String,UI::MarkupParser*>(ParserName,ToAdd) );
             }
@@ -575,7 +577,7 @@ namespace Mezzanine
             TextureAtlas* TheAtlas = AtlasHandler->GetAtlas(Atlas);
             if(NULL == TheAtlas)
             {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to access TextureAtlas \"" + Atlas + "\", which does not exist or is not loaded.");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to access TextureAtlas \"" + Atlas + "\", which does not exist or is not loaded.");
             }
             TextureAtlas::FontDataContainer& Fonts = TheAtlas->GetFonts();
             String LargerMatch, SmallerMatch;
@@ -719,10 +721,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType UIManager::GetInterfaceType() const
-            { return ManagerBase::MT_UIManager; }
+            { return UIManager::InterfaceType; }
 
         String UIManager::GetImplementationTypeName() const
-            { return "DefaultUIManager"; }
+            { return UIManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultUIManagerFactory Methods
@@ -733,10 +735,13 @@ namespace Mezzanine
         DefaultUIManagerFactory::~DefaultUIManagerFactory()
             {  }
 
-        String DefaultUIManagerFactory::GetManagerTypeName() const
-            { return "DefaultUIManager"; }
+        String DefaultUIManagerFactory::GetManagerImplName() const
+            { return UIManager::ImplementationName; }
 
-        ManagerBase* DefaultUIManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultUIManagerFactory::GetManagerType() const
+            { return UIManager::InterfaceType; }
+
+        EntresolManager* DefaultUIManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( UIManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -744,7 +749,7 @@ namespace Mezzanine
             }else return new UIManager();
         }
 
-        ManagerBase* DefaultUIManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultUIManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
             if( UIManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
@@ -752,7 +757,7 @@ namespace Mezzanine
             }else return new UIManager(XMLNode);
         }
 
-        void DefaultUIManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultUIManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
             { delete ToBeDestroyed; }
     }//UI
 }//Mezzanine

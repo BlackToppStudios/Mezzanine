@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,10 +41,10 @@
 #define _resourcemanager_h
 
 #include "datatypes.h"
-#include "enumerations.h"
-#include "managerbase.h"
-#include "managerfactory.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
 #include "singleton.h"
+#include "Resource/resourceenumerations.h"
 #include "Resource/datastream.h"
 
 /// @file
@@ -73,7 +73,7 @@ namespace Mezzanine
         /// @details This class is responsible for the reading and writing of files of all kinds, be
         /// it graphical meshes, physics data, or XMl files.
         ///////////////////////////////////////
-        class MEZZ_LIB ResourceManager : public ManagerBase, public Singleton<ResourceManager>
+        class MEZZ_LIB ResourceManager : public EntresolManager, public Singleton<ResourceManager>
         {
         public:
             /// @brief Basic container type for AssetGroup storage in this class.
@@ -95,6 +95,11 @@ namespace Mezzanine
             typedef NamedDataStreamContainer::iterator         NamedDataStreamIterator;
             /// @brief Const Iterator type for named @ref DataStream instances stored by this class.
             typedef NamedDataStreamContainer::const_iterator   ConstNamedDataStreamIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             /// @internal
             /// @brief Container storing all of the asset groups created and managed by this manager.
@@ -113,7 +118,7 @@ namespace Mezzanine
             ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            ResourceManager(XML::Node& XMLNode);
+            ResourceManager(const XML::Node& XMLNode);
             /// @details Class Destructor.
             virtual ~ResourceManager();
 
@@ -224,11 +229,11 @@ namespace Mezzanine
             /// @brief Gets a string that describes an @ref ArchiveType.
             /// @param ArchType A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
             /// @return A String that represents the @ref ArchiveType passed.
-            static String GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType);
+            static String GetStringFromArchiveType(const Resource::ArchiveType ArchType);
             /// @brief Gets an @ref ArchiveType from a string.
             /// @param FromString The string to be converted to an archive type.
             /// @return Returns a @ref ArchiveType corresponding to the string provided, or AT_Invalid if it is invalid.
-            static ArchiveType GetArchiveTypeFromString(const String& FromString);
+            static Resource::ArchiveType GetArchiveTypeFromString(const String& FromString);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods
@@ -244,7 +249,7 @@ namespace Mezzanine
         /// @headerfile resourcemanager.h
         /// @brief A factory responsible for the creation and destruction of the default resourcemanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultResourceManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultResourceManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -252,15 +257,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultResourceManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+            EntresolManager* CreateManager(const NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+            EntresolManager* CreateManager(const XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultResourceManagerFactory
     }//Resource
 }//Mezzanine

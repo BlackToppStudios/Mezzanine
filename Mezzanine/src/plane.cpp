@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@
 #include "axisalignedbox.h"
 #include "sphere.h"
 #include "stringtool.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif
@@ -128,7 +128,7 @@ namespace Mezzanine
     Plane::Side Plane::GetSide(const Vector3& Center, const Vector3& HalfSize) const
     {
         Real CenterDist = this->GetDistance(Center);
-        Real MaxDist = MathTools::Fabs( this->Normal.DotProduct(HalfSize) );
+        Real MaxDist = MathTools::Abs( this->Normal.DotProduct(HalfSize) );
         if( CenterDist < -MaxDist ) {
             return Plane::S_Negative;
         }else if( CenterDist > +MaxDist ) {
@@ -140,6 +140,37 @@ namespace Mezzanine
 
     Real Plane::GetDistance(const Vector3& Point) const
         { return ( this->Normal.DotProduct(Point) + this->Distance ); }
+
+    Ray Plane::GetOverlap(const Plane& Other) const
+    {
+        //TODO : handle the case where the plane is perpendicular to T
+        Vector3 point1;
+        Vector3 direction = this->Normal.CrossProduct( Other.Normal );
+        if( direction.SquaredLength() < 1e-08 )
+            return Ray();
+
+        Real cp = this->Normal.X * Other.Normal.Y - Other.Normal.X * this->Normal.Y;
+        if( cp != 0 ) {
+            Real denom = 1.0 / cp;
+            point1.X = ( this->Normal.Y * Other.Distance - Other.Normal.Y * this->Distance ) * denom;
+            point1.Y = ( Other.Normal.X * this->Distance - this->Normal.X * Other.Distance ) * denom;
+            point1.Z = 0;
+        }else if( ( cp = this->Normal.Y * Other.Normal.Z - Other.Normal.Y * this->Normal.Z ) != 0 ) {
+            //special case #1
+            Real denom = 1.0 / cp;
+            point1.X = 0.0;
+            point1.Y = ( this->Normal.Z * Other.Distance - Other.Normal.Z * this->Distance ) * denom;
+            point1.Z = ( Other.Normal.Y * this->Distance - this->Normal.Y * Other.Distance ) * denom;
+        }else if( ( cp = this->Normal.X * Other.Normal.Z - Other.Normal.X * this->Normal.Z ) != 0 ) {
+            //special case #2
+            Real denom = 1.0 / cp;
+            point1.X = ( this->Normal.Z * Other.Distance - Other.Normal.Z * this->Distance ) * denom;
+            point1.Y = 0.0;
+            point1.Z = ( Other.Normal.X * this->Distance - this->Normal.X * Other.Distance ) * denom;
+        }
+
+        return Ray(point1,direction);
+    }
 
     Boole Plane::IsOverlapping(const Sphere& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
@@ -204,10 +235,10 @@ namespace Mezzanine
                 if( !NormalNode.Empty() )
                     this->Normal.ProtoDeSerialize(NormalNode);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Plane::GetSerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Plane::GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Plane::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Plane::GetSerializableName() + " was not found in the provided XML node, which was expected.");
         }
     }
 

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@
 #define _audiooalssoundscapemanager_h
 
 #include "Audio/soundscapemanager.h"
+#include "uidgenerator.h"
 
 // OALS forward declares
 #ifndef OALS_STRUCTS_DECLARED
@@ -115,9 +116,17 @@ namespace Mezzanine
                 typedef ProxyContainer::iterator                    ProxyIterator;
                 /// @brief Const Iterator type for @ref OALS::SoundProxy instances stored by this class.
                 typedef ProxyContainer::const_iterator              ConstProxyIterator;
+
+                /// @brief A String containing the name of this manager implementation.
+                static const String ImplementationName;
+                /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+                static const ManagerBase::ManagerType InterfaceType;
             protected:
                 friend class BufferUpdate3DWorkUnit;
 
+                /// @internal
+                /// @brief Generator responsible for creating unique IDs for @ref OALS::Listener and @ref OALS::SoundProxy instances.
+                UIDGenerator ProxyIDGen;
                 /// @internal
                 /// @brief Container storing all OALS context instances.
                 ContextContainer Contexts;
@@ -146,10 +155,12 @@ namespace Mezzanine
                 void DestroyAllContexts();
             public:
                 /// @brief Class constructor.
-                SoundScapeManager();
+                /// @param Creator The parent world that is creating the manager.
+                SoundScapeManager(World* Creator);
                 /// @brief XML constructor.
+                /// @param Creator The parent world that is creating the manager.
                 /// @param XMLNode The node of the xml document to construct from.
-                SoundScapeManager(XML::Node& XMLNode);
+                SoundScapeManager(World* Creator, const XML::Node& XMLNode);
                 /// @brief Class destructor.
                 virtual ~SoundScapeManager();
 
@@ -170,26 +181,29 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Proxy Management
 
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const Audio::Encoding, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, const String&, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const Audio::Encoding, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld = true);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const UInt32, const Audio::BitConfig, const Boole AddToWorld)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld = true);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const Audio::Encoding, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, const String&, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const Audio::Encoding, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const UInt32, const Audio::BitConfig, const Boole)
+                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld);
+
                 /// @copydoc Audio::SoundScapeManager::GetSoundProxy(const UInt32) const
-                virtual Audio::SoundProxy* GetSoundProxy(const UInt32 Index) const;
+                virtual Audio::SoundProxy* GetProxy(const UInt32 Index) const;
+                /// @copydoc Audio::SoundScapeManager::GetProxy(const Mezzanine::ProxyType, UInt32) const
+                virtual Audio::SoundProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
                 /// @copydoc Audio::SoundScapeManager::GetNumSoundProxies() const
-                virtual UInt32 GetNumSoundProxies() const;
+                virtual UInt32 GetNumProxies() const;
                 /// @copydoc Audio::SoundScapeManager::DestroySoundProxy(SoundProxy*)
-                virtual void DestroySoundProxy(Audio::SoundProxy* ToBeDestroyed);
-                /// @copydoc Audio::SoundScapeManager::DestroyAllSoundProxies()
-                virtual void DestroyAllSoundProxies();
+                virtual void DestroyProxy(Audio::SoundProxy* ToBeDestroyed);
+                /// @copydoc Audio::SoundScapeManager::DestroyAllProxies()
+                virtual void DestroyAllProxies();
 
                 #ifndef SWIG
                 /// @brief Gets an iterator to the first Sound Proxy in this manager.

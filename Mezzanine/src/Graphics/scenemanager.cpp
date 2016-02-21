@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,7 +40,6 @@
 #ifndef _graphicsscenemanager_cpp
 #define _graphicsscenemanager_cpp
 
-#include "Graphics/cameramanager.h"
 #include "Graphics/scenemanager.h"
 
 #include "Physics/physicsmanager.h"
@@ -52,8 +51,11 @@
 #include "worldobject.h"
 #include "stringtool.h"
 #include "entresol.h"
+#include "world.h"
+#include "exception.h"
 
 #include "Graphics/billboardsetproxy.h"
+#include "Graphics/cameraproxy.h"
 #include "Graphics/entityproxy.h"
 #include "Graphics/lightproxy.h"
 #include "Graphics/particlesystemproxy.h"
@@ -174,7 +176,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // SceneManager Methods
 
-        SceneManager::SceneManager(const String& InternalManagerTypeName) :
+        const String SceneManager::ImplementationName = "DefaultSceneManager";
+        const ManagerBase::ManagerType SceneManager::InterfaceType = ManagerBase::MT_SceneManager;
+
+        SceneManager::SceneManager(World* Creator, const String& InternalManagerTypeName) :
+            WorldManager(Creator),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -184,7 +190,8 @@ namespace Mezzanine
             //OgreManager->setShadowCameraSetup(ShadowCam);
         }
 
-        SceneManager::SceneManager(XML::Node& XMLNode) :
+        SceneManager::SceneManager(World* Creator, const XML::Node& XMLNode) :
+            WorldManager(Creator),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -405,9 +412,14 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Creating Proxies
 
+        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const Boole AddToWorld)
+        {
+            return this->CreateBillboardSetProxy(20,AddToWorld);
+        }
+
         BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const UInt32 InitialPoolSize, const Boole AddToWorld)
         {
-            BillboardSetProxy* NewProxy = new BillboardSetProxy(InitialPoolSize,this);
+            BillboardSetProxy* NewProxy = new BillboardSetProxy(this->ProxyIDGen.GenerateID(),InitialPoolSize,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -418,13 +430,29 @@ namespace Mezzanine
         BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const XML::Node& SelfRoot)
         {
             BillboardSetProxy* NewProxy = new BillboardSetProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        CameraProxy* SceneManager::CreateCamera()
+        {
+            CameraProxy* NewProxy = new CameraProxy(this->ProxyIDGen.GenerateID(),this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        CameraProxy* SceneManager::CreateCamera(const XML::Node& SelfRoot)
+        {
+            CameraProxy* NewProxy = new CameraProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         EntityProxy* SceneManager::CreateEntityProxy(const Boole AddToWorld)
         {
-            EntityProxy* NewProxy = new EntityProxy(this);
+            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -434,7 +462,7 @@ namespace Mezzanine
 
         EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh, const Boole AddToWorld)
         {
-            EntityProxy* NewProxy = new EntityProxy(TheMesh,this);
+            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),TheMesh,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -444,7 +472,7 @@ namespace Mezzanine
 
         EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName, const Boole AddToWorld)
         {
-            EntityProxy* NewProxy = new EntityProxy(MeshName,GroupName,this);
+            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),MeshName,GroupName,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -455,13 +483,14 @@ namespace Mezzanine
         EntityProxy* SceneManager::CreateEntityProxy(const XML::Node& SelfRoot)
         {
             EntityProxy* NewProxy = new EntityProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         LightProxy* SceneManager::CreateLightProxy(const Boole AddToWorld)
         {
-            LightProxy* NewProxy = new LightProxy(this);
+            LightProxy* NewProxy = new LightProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -471,7 +500,7 @@ namespace Mezzanine
 
         LightProxy* SceneManager::CreateLightProxy(const Graphics::LightType Type, const Boole AddToWorld)
         {
-            LightProxy* NewProxy = new LightProxy(Type,this);
+            LightProxy* NewProxy = new LightProxy(this->ProxyIDGen.GenerateID(),Type,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -482,13 +511,14 @@ namespace Mezzanine
         LightProxy* SceneManager::CreateLightProxy(const XML::Node& SelfRoot)
         {
             LightProxy* NewProxy = new LightProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
         ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template, const Boole AddToWorld)
         {
-            ParticleSystemProxy* NewProxy = new ParticleSystemProxy(Template,this);
+            ParticleSystemProxy* NewProxy = new ParticleSystemProxy(this->ProxyIDGen.GenerateID(),Template,this);
             this->Proxies.push_back(NewProxy);
             if( AddToWorld ) {
                 NewProxy->AddToWorld();
@@ -499,6 +529,7 @@ namespace Mezzanine
         ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const XML::Node& SelfRoot)
         {
             ParticleSystemProxy* NewProxy = new ParticleSystemProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -508,6 +539,20 @@ namespace Mezzanine
 
         RenderableProxy* SceneManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
+
+        RenderableProxy* SceneManager::GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const
+        {
+            if( Mezzanine::PT_Graphics_All_Proxies & Type ) {
+                for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+                {
+                    if( (*ProxIt)->GetProxyType() == Type ) {
+                        if( 0 == Which ) return (*ProxIt);
+                        else --Which;
+                    }
+                }
+            }
+            return NULL;
+        }
 
         UInt32 SceneManager::GetNumProxies() const
             { return this->Proxies.size(); }
@@ -521,6 +566,7 @@ namespace Mezzanine
                     if( Parent )
                         Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
+                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                     delete (*ProxIt);
                     this->Proxies.erase(ProxIt);
                     return;
@@ -536,6 +582,7 @@ namespace Mezzanine
                 if( Parent )
                     Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
+                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
                 delete (*ProxIt);
             }
             this->Proxies.clear();
@@ -592,15 +639,9 @@ namespace Mezzanine
 
         void SceneManager::Initialize()
         {
-            if( !this->Initialized )
-            {
+            if( !this->Initialized ) {
                 // Manager Initializations
-                //WorldManager::Initialize();
-
-                CameraManager* CamMan = this->TheEntresol->GetCameraManager();
-                if( CamMan ) {
-                    CamMan->Initialize();
-                }
+                WorldManager::Initialize();
 
                 this->Initialized = true;
             }
@@ -608,16 +649,8 @@ namespace Mezzanine
 
         void SceneManager::Deinitialize()
         {
-            if( this->Initialized )
-            {
+            if( this->Initialized ) {
                 this->DestroyAllProxies();
-
-                // Manager Initializations
-                CameraManager* CamMan = this->TheEntresol->GetCameraManager();
-                if( CamMan ) {
-                    CamMan->Deinitialize();
-                }
-
                 this->Initialized = false;
             }
         }
@@ -626,16 +659,16 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType SceneManager::GetInterfaceType() const
-            { return ManagerBase::MT_SceneManager; }
+            { return SceneManager::InterfaceType; }
 
         String SceneManager::GetImplementationTypeName() const
-            { return "DefaultSceneManager"; }
+            { return SceneManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal/Other
 
         Ogre::SceneManager* SceneManager::_GetGraphicsWorldPointer() const
-            { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
+            { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : NULL; }
 
         SceneManagerData* SceneManager::_GetRawInternalDataPointer() const
             { return this->SMD; }
@@ -644,43 +677,40 @@ namespace Mezzanine
         // DefaultSceneManagerFactory Methods
 
         DefaultSceneManagerFactory::DefaultSceneManagerFactory()
-        {
-        }
+            {  }
 
         DefaultSceneManagerFactory::~DefaultSceneManagerFactory()
-        {
-        }
+            {  }
 
-        String DefaultSceneManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultSceneManager";
-        }
+        String DefaultSceneManagerFactory::GetManagerImplName() const
+            { return SceneManager::ImplementationName; }
 
-        ManagerBase* DefaultSceneManagerFactory::CreateManager(NameValuePairList& Params)
+        ManagerBase::ManagerType DefaultSceneManagerFactory::GetManagerType() const
+            { return SceneManager::InterfaceType; }
+
+        WorldManager* DefaultSceneManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
         {
-            if(Params.empty()) return new SceneManager();
-            else
-            {
-                String InternalManagerTypeName;
-                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
-                {
-                    String Lower = (*ParIt).first;
-                    StringTools::ToLowerCase(Lower);
-                    if( "internalmanagertypename" == Lower )
-                    {
-                        InternalManagerTypeName = (*ParIt).second;
-                    }
-                }
-                return new SceneManager(InternalManagerTypeName);
+            if( Params.empty() ) {
+                return new SceneManager(Creator);
             }
+            String InternalManagerTypeName;
+            for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            {
+                String Lower = (*ParIt).first;
+                StringTools::ToLowerCase(Lower);
+                if( "internalmanagertypename" == Lower ) {
+                    InternalManagerTypeName = (*ParIt).second;
+                }
+            }
+            return new SceneManager(Creator,InternalManagerTypeName);
         }
 
-        ManagerBase* DefaultSceneManagerFactory::CreateManager(XML::Node& XMLNode)
+        WorldManager* DefaultSceneManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
         {
-            return new SceneManager(XMLNode);
+            return new SceneManager(Creator,XMLNode);
         }
 
-        void DefaultSceneManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        void DefaultSceneManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
         {
             delete ToBeDestroyed;
         }
@@ -818,10 +848,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                 Child.GetFirstChild() >> AllAroundUs;
                                 Ev.SetAmbientLight(AllAroundUs);
                             }else{
-                                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"" + Name + "\".");
+                                MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"" + Name + "\".");
                             }
                         }else{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
+                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
                         }
                         break;
                     case 'S': // Sky of some kind or "ShadowColor"
@@ -838,13 +868,13 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                             Child.GetFirstChild() >> InTheShade;
                                             Ev.SetShadowColour(InTheShade);
                                         }else{
-                                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element ShadowColour-\"" + Mezzanine::String(Child.GetFirstChild().Name()) + "\".");
+                                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element ShadowColour-\"" + Mezzanine::String(Child.GetFirstChild().Name()) + "\".");
                                         }
                                     }else{
-                                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: ShadowColour has no child");
+                                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: ShadowColour has no child");
                                     }
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
+                                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
                                 }
                                 break;
                             case 'B': // SkyBox
@@ -857,7 +887,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                         {
                                             Child.GetFirstChild().GetFirstChild() >> Orientation;
                                         }else{
-                                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Orientation-\"" + Name + "\".");
+                                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Orientation-\"" + Name + "\".");
                                         }
                                         Ev.CreateSkyBox( Child.GetAttribute("MaterialName").AsString(),
                                                          Child.GetAttribute("MaterialGroupName").AsString(),
@@ -865,10 +895,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                                          Child.GetAttribute("DrawFirst").AsBool(),
                                                          Orientation);
                                     }else{
-                                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyBox: Not Version 1.");
+                                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyBox: Not Version 1.");
                                     }
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SB-\"" + Name + "\".");
+                                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SB-\"" + Name + "\".");
                                 }
                                 break;
                             case 'D': // SkyDome
@@ -881,7 +911,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                         {
                                             Child.GetFirstChild().GetFirstChild() >> Orientation;
                                         }else{
-                                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Orientation-\"" + Name + "\".");
+                                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Orientation-\"" + Name + "\".");
                                         }
                                         Ev.CreateSkyDome( Child.GetAttribute("MaterialName").AsString(),
                                                           Child.GetAttribute("MaterialGroupName").AsString(),
@@ -894,10 +924,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                                           Child.GetAttribute("YSegments").AsInt());
 
                                     }else{
-                                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyDome: Not Version 1.");
+                                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyDome: Not Version 1.");
                                     }
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SD-\"" + Name + "\".");
+                                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SD-\"" + Name + "\".");
                                 }
                                 break;
                             case 'P': // SkyPlane
@@ -918,23 +948,23 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                                             Child.GetAttribute("XSegments").AsInt(),
                                                             Child.GetAttribute("YSegments").AsInt());
                                     }else{
-                                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyPlane: Not Version 1.");
+                                        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SkyPlane: Not Version 1.");
                                     }
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SP-\"" + Name + "\".");
+                                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element SP-\"" + Name + "\".");
                                 }
                                 break;
                         }
                         break;
                         default:
-                            { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element def-\"" + Name + "\"."); }
+                            { MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element def-\"" + Name + "\"."); }
                 }
             }
         }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for SceneManager: Not Version 1.");
+            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for SceneManager: Not Version 1.");
         }
     }else{
-        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a SceneManager, found a " + Mezzanine::String(OneNode.Name()));
+        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a SceneManager, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
 

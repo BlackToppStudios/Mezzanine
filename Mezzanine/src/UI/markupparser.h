@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -158,12 +158,21 @@ namespace Mezzanine
             /// @brief Populates the tag map with the tags recognized by this parser.
             virtual void Initialize() = 0;
             /// @brief Helper method for creating text tokens.
+            /// @param Text The text to generate a token for.
             virtual TextToken* CreateTextToken(const String& Text) const;
             /// @brief Helper method for creating tag tokens.
+            /// @param Text The text to generate a token for.
             virtual TextToken* CreateTagToken(const String& Text) const;
             /// @brief Helper method for converting text tokens into characters.
+            /// @param Token The token to be converted into renderable characters.
+            /// @param Layer A pointer to the layer this is parsing for.
+            /// @param Traits The character properties to use when generating characters.
+            /// @param Characters The character container to append any generated characters to.
             virtual void GenerateCharactersFromToken(const TextToken* Token, TextLayer* Layer, const CharacterTraits& Traits, CharacterContainer& Characters) const;
             /// @brief Helper method for regenerating current traits after a tag is disabled.
+            /// @param Traits The character properties to use when generating characters.
+            /// @param ActiveTags A container of the tags that are to be applied to characters.
+            /// @param Layer A pointer to the layer this is parsing for.
             virtual void RegenerateTraits(CharacterTraits& Traits, const TagVector& ActiveTags, TextLayer* Layer) const;
         public:
             /// @brief Class constructor.

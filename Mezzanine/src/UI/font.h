@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -55,9 +55,11 @@ namespace Mezzanine
         class MEZZ_LIB FontData
         {
         public:
-            //typedef std::vector<Glyph*>              GlyphContainer;
+            /// @brief Container type for Glyph storage in this class.
             typedef std::map<UInt32,Glyph*>          GlyphContainer;
+            /// @brief Iterator type for Glyphs stored by this class.
             typedef GlyphContainer::iterator         GlyphIterator;
+            /// @brief Const Iterator type for Glyphs stored by this class.
             typedef GlyphContainer::const_iterator   ConstGlyphIterator;
         protected:
             /// @internal
@@ -146,7 +148,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Adds a new glyph to this Font.
             /// @exception An exception will be thrown if a glyph with the same ID is already taken.
-            /// @param
+            /// @param NewGlyph A pointer to the new glyph to be added.
             void _AddGlyph(Glyph* NewGlyph);
             /// @brief Generates Whitespace Glyphs from this font's data for this font.
             void _GenerateWhitespaceGlyphs();

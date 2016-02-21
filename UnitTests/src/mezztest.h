@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -46,6 +46,8 @@
 #include "testdatatools.h"
 #include "testenumerations.h"
 
+#include <stdexcept> // Used to throw for TEST_THROW
+
 /// @brief Get the argument count as it was passed into Main.
 /// @return This is returned as an int
 int GetMainArgumentCount();
@@ -72,6 +74,10 @@ enum ProcessDepth {
 /// @brief Indicates what this test might attempt to do, based on what it thinks the process depth is.
 /// @return a ProcessDepth enum member
 ProcessDepth GetCurrentProcessDepth();
+
+/// @brief If a test needs to pass a string to a subsubprocess it will get stored here
+/// @return A string that a test group intends on passing into a subsubprocess test
+Mezzanine::String GetSubSubProcessArgument();
 
 /// @internal
 /// @brief If this is passed to the command line the test is executed without launching a separate processs.

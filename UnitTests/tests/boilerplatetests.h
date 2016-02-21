@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -55,68 +55,71 @@ const String SubSubMessage("This is output during a child process.");
 /// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
 class boilerplatetests : public UnitTestGroup
 {
-    public:
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "BoilerPlate"
-        virtual String Name()
-            { return String("BoilerPlate"); }
+public:
+    /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+    /// @return Returns a String containing "BoilerPlate".
+    virtual String Name()
+        { return String("BoilerPlate"); }
 
-        /// @brief This is called when Automatic tests are run
-        void RunAutomaticTests()
-        {
-            // The TEST macro will capture Line, function file Metadata while
-            TEST(true,"AutomaticTest");
-            //TEST(false,"AutomaticFail");
+    /// @brief This is called when Automatic tests are run.
+    void RunAutomaticTests()
+    {
+        // The TEST macro will capture Line, function file Metadata while
+        TEST(true,"AutomaticTest");
+        //TEST(false,"AutomaticFail");
 
-            TEST_WARN(true,"AutomaticDoNotWarn");
-            //TEST_WARN(false,"AutomaticWarn");
+        TEST_WARN(true,"AutomaticDoNotWarn");
+        //TEST_WARN(false,"AutomaticWarn");
 
-            TestResult Answer = Testing::Success;
-            TEST_RESULT(Answer, "AutomaticTestResult");
+        TestResult Answer = Testing::Success;
+        TEST_RESULT(Answer, "AutomaticTestResult");
 
-            // Multiline example
-            TEST_THROW  (
-                            std::runtime_error&,
-                            throw std::runtime_error("oh noes!");
-                            , "AutomaticTestThrow"
-                        );
-            //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
+        // Multiline example
+        TEST_THROW  (
+                        std::runtime_error&,
+                        throw std::runtime_error("oh noes!");
+                        , "AutomaticTestThrow"
+                    );
+        //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
 
-            TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
-
-            TestOutput  << "Expecting: " << SubSubMessage << endl
-                        << "Actual:    " << SubProcessOutput << endl;
-            TEST(SubSubMessage==SubProcessOutput, "SubProcess");
-        }
-        /// @brief Since RunAutomaticTests is implemented so is this.
-        /// @return returns true
-        virtual bool HasAutomaticTests() const
-            { return true; }
+        TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
 
 
-        /// @brief This is called when Interactive tests are run
-        void RunInteractiveTests()
-        {
-            TestResult Answer = GetTestAnswerFromStdin( "Is this a question? ");
-            TEST_RESULT(Answer, "Interactive");
-        }
-        /// @brief Since RunInteractiveTests is implemented so is this.
-        /// @return returns true
-        virtual bool HasInteractiveTests() const
-            { return true; }
+        String SubProcessOutput(LaunchSubProcessTest());
+        TestOutput  << "Expecting: " << SubSubMessage << endl
+                    << "Actual:    " << SubProcessOutput << endl;
+        TEST(SubSubMessage==SubProcessOutput, "SubProcess");
+    }
+    /// @brief Since RunAutomaticTests is implemented so is this.
+    /// @return Returns true.
+    virtual bool HasAutomaticTests() const
+        { return true; }
 
 
-        /// @brief This will be launched in a sub sub process by the unit test framework.
-        virtual void RunSubprocessTest()
-        {
-            // Please note that test macros mean nothing here. This is run in a subprocess
-            // with as little interference from the Unit Test framework as possible
-            cout << SubSubMessage;
-        }
-        /// @brief Returns true so that
-        virtual bool HasSubprocessTest() const
-            { return true; }
-};
+    /// @brief This is called when Interactive tests are run.
+    void RunInteractiveTests()
+    {
+        TestResult Answer = GetTestAnswerFromStdin( "Is this a question? ");
+        TEST_RESULT(Answer, "Interactive");
+    }
+    /// @brief Since RunInteractiveTests is implemented so is this.
+    /// @return Returns true.
+    virtual bool HasInteractiveTests() const
+        { return true; }
+
+
+    /// @brief This will be launched in a sub sub process by the unit test framework.
+    /// @param Arg Unused in this example.
+    virtual void RunSubprocessTest(const String&)
+    {
+        // Please note that test macros mean nothing here. This is run in a subprocess
+        // with as little interference from the Unit Test framework as possible
+        cout << SubSubMessage;
+    }
+    /// @brief Indicates this test will launch a subprocess.
+    /// @return Returns true to indicate this test will launch a subprocess of it's own.
+    virtual bool HasSubprocessTest() const
+        { return true; }
+};//boilerplatetests
 
 #endif
-

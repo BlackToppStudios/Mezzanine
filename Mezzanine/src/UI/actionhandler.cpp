@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ namespace Mezzanine
                 Actions.insert( std::pair<String,Action*>(Name,NewAction) );
                 return NewAction;
             }else{
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"An Action with the name \"" + Name + "\" already exists.");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"An Action with the name \"" + Name + "\" already exists.");
             }
         }
 

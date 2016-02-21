@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -60,6 +60,8 @@ extern "C"
     #include "lualib.h"         // for opening the base state
     #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
 
+    /// @internal
+    /// @brief Entry point into Swig bindings, required to initialize Lua.
     int luaopen_Mezzanine(lua_State* L);
 }
 

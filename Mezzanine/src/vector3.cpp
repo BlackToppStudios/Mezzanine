@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@
 #include "exception.h"
 #include "serialization.h"
 #include "stringtool.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif
@@ -71,7 +71,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -85,7 +85,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -153,7 +153,7 @@ namespace Mezzanine
             case 0: return Vector3::Unit_X();
             case 1: return Vector3::Unit_Y();
             case 2: return Vector3::Unit_Z();
-            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
         }
     }
 
@@ -171,7 +171,7 @@ namespace Mezzanine
             }
         }
         return Axis_Invalid;
-        //MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot convert Vector3 to StandardAxis, Vector3 may not be Axis Aligned or may not be Unit Length.");
+        //MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot convert Vector3 to StandardAxis, Vector3 may not be Axis Aligned or may not be Unit Length.");
     }
 
 
@@ -258,17 +258,49 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators
 
-    Vector3 Vector3::operator+ (const Vector3 &Vec) const
+    Vector3 Vector3::operator+ (const Vector3& Vec) const
         { return Vector3(X+Vec.X, Y+Vec.Y, Z+Vec.Z ); }
 
-    Vector3 Vector3::operator- (const Vector3 &Vec) const
+    Vector3 Vector3::operator- (const Vector3& Vec) const
         { return Vector3(X-Vec.X, Y-Vec.Y, Z-Vec.Z ); }
 
-    Vector3 Vector3::operator* (const Vector3 &Vec) const
+    Vector3 Vector3::operator* (const Vector3& Vec) const
         { return Vector3(X*Vec.X, Y*Vec.Y, Z*Vec.Z ); }
 
-    Vector3 Vector3::operator/ (const Vector3 &Vec) const
+    Vector3 Vector3::operator/ (const Vector3& Vec) const
         { return Vector3(X/Vec.X, Y/Vec.Y, Z/Vec.Z ); }
+
+    Vector3& Vector3::operator+= (const Vector3& Vec)
+    {
+        this->X += Vec.X;
+        this->Y += Vec.Y;
+        this->Z += Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator-= (const Vector3& Vec)
+    {
+        this->X -= Vec.X;
+        this->Y -= Vec.Y;
+        this->Z -= Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator*= (const Vector3& Vec)
+    {
+        this->X *= Vec.X;
+        this->Y *= Vec.Y;
+        this->Z *= Vec.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::operator/= (const Vector3& Vec)
+    {
+        this->X /= Vec.X;
+        this->Y /= Vec.Y;
+        this->Z /= Vec.Z;
+        return *this;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators with btVector3
@@ -319,25 +351,59 @@ namespace Mezzanine
 
     Vector3& Vector3::Normalize()
     {
-        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
-        if (0!=TempLength)
-        {
+        Real TempLength = this->Distance( Vector3(0.0f,0.0f,0.0f) );
+        if( 0 != TempLength ) {
              (*this) /= TempLength;
         }else{
-            MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Normalize Vector3(0,0,0).");
+            MEZZ_EXCEPTION(ExceptionBase::ARITHMETIC_EXCEPTION,"Cannot Normalize Vector3(0,0,0).");
         }
         return *this;
     }
 
     Vector3 Vector3::GetNormal() const
     {
-        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
-        if (0!=TempLength)
-        {
+        Real TempLength = this->Distance( Vector3(0.0f,0.0f,0.0f) );
+        if( 0 != TempLength ) {
             return (*this) / TempLength;
         }else{
-            MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Get the Normal of Vector3(0,0,0).");
+            MEZZ_EXCEPTION(ExceptionBase::ARITHMETIC_EXCEPTION,"Cannot Get the Normal of Vector3(0,0,0).");
         }
+    }
+
+    Real Vector3::AngleBetween(const Vector3& Direction) const
+    {
+        Real LengthProduct = this->Length() * Direction.Length();
+        // Divide by zero check
+        if( LengthProduct < 1e-6f ) {
+            LengthProduct = 1e-6f;
+        }
+
+        // Sorry about the variable name.  :(
+        Real Temp = this->DotProduct(Direction) / LengthProduct;
+        Temp = MathTools::Clamp(Temp, Real(-1.0), Real(1.0) );
+        return MathTools::ACos(Temp);
+    }
+
+    Vector3& Vector3::Permute()
+    {
+        *this = this->GetPermute();
+        return *this;
+    }
+
+    Vector3 Vector3::GetPermute() const
+    {
+        return Vector3(this->Z,this->X,this->Y);
+    }
+
+    Vector3& Vector3::AntiPermute()
+    {
+        *this = this->GetAntiPermute();
+        return *this;
+    }
+
+    Vector3 Vector3::GetAntiPermute() const
+    {
+        return Vector3(this->Y,this->Z,this->X);
     }
 
     Vector3 Vector3::GetDirection(const Vector3& Destination) const
@@ -345,14 +411,33 @@ namespace Mezzanine
         return (Destination - *this).Normalize();
     }
 
+    Vector3 Vector3::Perpendicular() const
+    {
+        static const Real fSquareZero = (Real)(1e-06 * 1e-06);
+
+        Vector3 Perp = this->CrossProduct( Vector3::Unit_X() );
+        if( Perp.SquaredLength() < fSquareZero ) {
+            // If we're here, then this is vector is on the X axis already.  Use another axis.
+            Perp = this->CrossProduct( Vector3::Unit_Y() );
+        }
+        Perp.Normalize();
+
+        return Perp;
+    }
+
+    Boole Vector3::IsPerpendicular(const Vector3& Perp) const
+    {
+        return ( this->DotProduct(Perp) == 0 );
+    }
+
     Vector3 Vector3::Inverse()
     {
-        if (X!=0)
-            X=1/X;
-        if (Y!=0)
-            Y=1/Y;
-        if (Z!=0)
-            Z=1/Z;
+        if( X != 0 )
+            X = 1 / X;
+        if( Y != 0 )
+            Y = 1 / Y;
+        if( Z != 0 )
+            Z = 1 / Z;
         return *this;
     }
 
@@ -443,6 +528,11 @@ namespace Mezzanine
         this->Z = Z;
     }
 
+    Boole Vector3::IsZero() const
+    {
+        return ( this->X == 0.0 && this->Y == 0.0 && this->Z == 0.0 );
+    }
+
     Vector3& Vector3::Ceil(const Vector3& Other)
     {
         if( Other.X > this->X ) this->X = Other.X;
@@ -497,7 +587,7 @@ namespace Mezzanine
 
     void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(GetSerializableName());
 
         if(VecNode)
         {
@@ -511,19 +601,19 @@ namespace Mezzanine
                 {
                     return;
                 }else{
-                    SerializeError("Create XML Attribute Values", SerializableName(),true);
+                    SerializeError("Create XML Attribute Values", GetSerializableName(),true);
                 }
             }else{
-                SerializeError("Create XML Attributes", SerializableName(),true);
+                SerializeError("Create XML Attributes", GetSerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Serialization Node", SerializableName(),true);
+            SerializeError("Create XML Serialization Node", GetSerializableName(),true);
         }
     }
 
     void Vector3::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(GetSerializableName()) )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
@@ -531,14 +621,14 @@ namespace Mezzanine
                 this->Y=OneNode.GetAttribute("Y").AsReal();
                 this->Z=OneNode.GetAttribute("Z").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 
-    String Vector3::SerializableName()
+    String Vector3::GetSerializableName()
         { return String("Vector3"); }
 
     const char* Vector3::__str__()
@@ -571,6 +661,20 @@ namespace Mezzanine
         { return lhs * Vec; }
     Mezzanine::Vector3 operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
         { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Vector2LengthCompare methods
+
+    Boole Vector3LengthCompare::operator()(const Vector3& First, const Vector3& Second) const
+    {
+        if( ( First - Second ).SquaredLength() < 1e-6 )
+			return false;
+		if( MathTools::Abs( First.X - Second.X ) > 1e-3 )
+			return ( First.X < Second.X );
+		if( MathTools::Abs( First.Y - Second.Y ) > 1e-3 )
+			return ( First.Y < Second.Y );
+		return ( First.Z < Second.Z );
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Class External << Operators for streaming or assignment

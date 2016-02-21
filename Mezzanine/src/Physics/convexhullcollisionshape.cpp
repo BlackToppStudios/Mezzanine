@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -81,7 +81,7 @@ namespace Mezzanine
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-                if(!OneName) { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
+                if(!OneName) { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
 
                 this->Name = OneName.AsString();
 
@@ -89,7 +89,7 @@ namespace Mezzanine
 
                 this->ProtoDeSerialize(OneNode);
             }else{
-                DeSerializeError("find usable serialization version", ConvexHullCollisionShape::SerializableName());
+                DeSerializeError("find usable serialization version", ConvexHullCollisionShape::GetSerializableName());
             }
         }
 
@@ -134,17 +134,17 @@ namespace Mezzanine
 
         void ConvexHullCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node CollisionNode = CurrentRoot.AppendChild(this->ConvexHullCollisionShape::SerializableName());
-            if (!CollisionNode) { SerializeError("create CollisionNode",this->ConvexHullCollisionShape::SerializableName());}
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->ConvexHullCollisionShape::GetSerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->ConvexHullCollisionShape::GetSerializableName());}
 
             XML::Attribute Version = CollisionNode.AppendAttribute("Version");
             if (Version)
                 { Version.SetValue(1); }
             else
-                { SerializeError("Create Version Attribute", SerializableName()); }
+                { SerializeError("Create Version Attribute", GetSerializableName()); }
 
             XML::Node PointsNode = CollisionNode.AppendChild("UnscaledPoints");
-            if (!PointsNode) { SerializeError("create UnscaledPoints",this->ConvexHullCollisionShape::SerializableName());}
+            if (!PointsNode) { SerializeError("create UnscaledPoints",this->ConvexHullCollisionShape::GetSerializableName());}
 
             for(Whole c=0; c<this->GetNumPoints(); ++c)
             {
@@ -156,18 +156,18 @@ namespace Mezzanine
 
         void ConvexHullCollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->ConvexHullCollisionShape::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->ConvexHullCollisionShape::GetSerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    XML::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                    XML::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::GetSerializableName());
                     if(!CollisionNode)
-                        { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                        { DeSerializeError("locate PrimitiveCollisionShape node",GetSerializableName()); }
                     this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
 
                     XML::Node UnscaledPoints = OneNode.GetChild("UnscaledPoints");
                     if(!UnscaledPoints)
-                        { DeSerializeError("locate UnscaledPoints node",SerializableName()); }
+                        { DeSerializeError("locate UnscaledPoints node",GetSerializableName()); }
 
                     XML::Node OnePoint = UnscaledPoints.GetFirstChild();
                     while (OnePoint)
@@ -177,14 +177,14 @@ namespace Mezzanine
                     }
 
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    DeSerializeError("find usable serialization version",GetSerializableName());
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),GetSerializableName());
             }
         }
 
-        String ConvexHullCollisionShape::SerializableName()
+        String ConvexHullCollisionShape::GetSerializableName()
             {   return String("ConvexHullCollisionShape"); }
 
     }//Physics

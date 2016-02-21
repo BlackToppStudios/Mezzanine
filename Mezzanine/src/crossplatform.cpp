@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@
 #include <stdio.h>
 
 //Selective Includes
-#ifdef WINDOWS
+#ifdef MEZZ_WINDOWS
     #include <windows.h>
     #include <cstdlib>//for sleep
     #include <Winuser.h>
@@ -77,13 +77,13 @@ namespace Mezzanine
     {
         String GetPlatform()
         {
-            #ifdef LINUX
+            #ifdef MEZZ_LINUX
                 return "Linux";
             #endif
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
                 return "Windows";
             #endif
-            #ifdef MACOSX
+            #ifdef MEZZ_MACOSX
                 return "MacOSX";
             #endif
         }

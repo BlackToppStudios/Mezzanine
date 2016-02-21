@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,63 +49,74 @@ namespace Mezzanine
 {
     namespace Resource
     {
-#ifdef USENEWDATASTREAM
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This represents a stream to a file on disk using the C++ file stream API.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB FileStream : public std::fstream, public DataStream
-        {
-        public:
-            /// @brief Class constructor.
-            FileStream();
-            /// @brief Class destructor.
-            ~FileStream();
-        };//FileStream
-#else //USENEWDATASTREAM
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This represents a stream to a file on disk using the C++ file stream API.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB FileStream : public DataStream
+        class MEZZ_LIB FileStream : public Mezzanine::Resource::IOStream
         {
         protected:
-            std::fstream* StandardStream;
+            /// @internal
+            /// @brief The buffer object containing most or all of the functionality for this stream.
+            std::filebuf FileBuffer;
+
+            /// @internal
+            /// @brief The path and name of the file this stream is currently open to.
+            String OpenFileName;
+            /// @internal
+            /// @brief The type of access this stream has to the file.
+            Whole Flags;
+            /// @internal
+            /// @brief The size of the stream.
+            StreamSize Size;
         public:
-            /// @brief Class constructor.
-            /// @param Stream The stream to the file being streamed to/from.
-            /// @param Mode The flags to use when initializing the stream.
-            FileStream(std::fstream* Stream, const UInt16 Flags = DataStream::SF_Read);
-            /// @brief Self loading constructor.
-            /// @param FileName The name of the file to be loaded.  This will also become the name of the stream.
-            /// @param Path The path to the file being loaded.
-            /// @param Mode The flags to use when initializing the stream.
-            FileStream(const String& FileName, const String& Path, const UInt16 Flags = DataStream::SF_Read);
+            /// @brief Blank constructor.
+            FileStream();
+            /// @brief Open constructor.
+            /// @param File The combined name and path to the file to be opened.
+            /// @param Mode The configuration to open the file with.
+            FileStream(const String& File, const Whole Mode = Resource::SF_Read | Resource::SF_Write);
+            /// @brief Split Open constructor.
+            /// @param FileName The name of the file to be opened.
+            /// @param FilePath The path to the file to be opened.
+            /// @param Mode The configuration to open the file with.
+            FileStream(const String& FileName, const String& FilePath, const Whole Mode = Resource::SF_Read | Resource::SF_Write);
             /// @brief Class destructor.
             virtual ~FileStream();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Stream Access and Manipulation
+            // Utility Methods
 
-            /// @copydoc DataStream::Read(void* Buffer, const size_t& Count)
-            virtual size_t Read(void* Buffer, const size_t& Count);
-            /// @copydoc DataStream::Write(const void* Buffer, const size_t& Count)
-            virtual size_t Write(const void* Buffer, const size_t& Count);
+            /// @brief Opens this stream to a file.
+            /// @exception If the stream fails to open the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown.
+            /// @param File The combined name and path to the file to be opened.
+            /// @param Mode The configuration to open the file with.
+            void OpenFile(const String& File, const Whole Mode = Resource::SF_Read | Resource::SF_Write);
+            /// @brief Opens this stream to a file.
+            /// @exception If the stream fails to open the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown.
+            /// @param FileName The name of the file to be opened.
+            /// @param FilePath The path to the file to be opened.
+            /// @param Mode The configuration to open the file with.
+            void OpenFile(const String& FileName, const String& FilePath, const Whole Mode = Resource::SF_Read | Resource::SF_Write);
+            /// @brief Gets whether or not this stream is currently open to a file.
+            /// @return Returns true if this is streaming to/from a file.  False otherwise.
+            Boole IsOpenToFile() const;
+            /// @brief Closes the file that is currently opened.
+            void CloseFile();
 
-            /// @copydoc DataStream::Advance(const StreamOff Count)
-            virtual void Advance(const StreamOff Count);
-            /// @copydoc DataStream::SetStreamPosition(StreamPos Position)
-            virtual void SetStreamPosition(StreamPos Position);
-            /// @copydoc DataStream::SetStreamPosition(StreamOff Offset, SeekOrigin Origin)
-            virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin);
-            /// @copydoc DataStream::GetStreamPosition(Boole Read = true)
-            virtual StreamPos GetStreamPosition(Boole Read = true);
-            /// @copydoc DataStream::EoF() const
-            virtual Boole EoF() const;
-            /// @copydoc DataStream::Close()
-            virtual void Close();
+            /// @brief Gets the path and name of the file that this stream is currently open to.
+            /// @return Returns a const String reference containing the path and name of the currently open file.
+            const String& GetFilePathAndName() const;
+            /// @brief Gets the flags that were used to open the file.
+            /// @return Returns a bitfield describing the flags used to open the file.  If this stream is not open to a file it will return Resource::SF_None.
+            Whole GetSteamFlags() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Base Operations
+
+            /// @copydoc StreamBase::GetSize() const
+            virtual StreamSize GetSize() const;
         };//FileStream
-#endif //USENEWDATASTREAM
     }//Resource
 }//Mezzanine
 

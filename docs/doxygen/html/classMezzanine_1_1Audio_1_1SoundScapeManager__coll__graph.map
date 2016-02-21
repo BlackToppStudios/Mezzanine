@@ -1,9 +1,10 @@
 <map id="Mezzanine::Audio::SoundScapeManager" name="Mezzanine::Audio::SoundScapeManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="376,209,552,239"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="377,111,551,140"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="499,5,640,35"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="583,102,729,149"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="401,429,527,459"/>
-<area shape="rect" id="node16" title="STL class. " alt="" coords="28,324,108,353"/>
-<area shape="rect" id="node18" title="STL class. " alt="" coords="5,201,131,247"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="513,193,691,219"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="515,102,689,129"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="637,5,778,32"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="721,95,867,136"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="328,393,455,420"/>
+<area shape="rect" id="node7" title="STL class. " alt="" coords="18,297,141,323"/>
+<area shape="rect" id="node11" title="STL class. " alt="" coords="165,297,245,323"/>
+<area shape="rect" id="node12" title="STL class. " alt="" coords="141,185,268,227"/>
 </map>

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -107,6 +107,7 @@ struct EntreLuaOptions
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzXMLSafeLibName);
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLibName);
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingSafeLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzMathToolsLibName);
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DefaultLibsName);
             LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::AllLibsName);
         }

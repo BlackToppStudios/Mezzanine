@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -106,8 +106,6 @@ namespace Mezzanine
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Action
-        /// @headerfile action.h
         /// @brief This class represents an action to be taken.  Can have multiple inputs bound to it.
         /// @details
         ///////////////////////////////////////
@@ -129,6 +127,7 @@ namespace Mezzanine
         //public:
             /// @brief Class constructor.
             /// @param Name The name to be given to the action.
+            /// @param Handler A pointer to this actions creator.
             Action(const String& Name, ActionHandler* Handler);
             /// @brief Class destructor.
             ~Action();

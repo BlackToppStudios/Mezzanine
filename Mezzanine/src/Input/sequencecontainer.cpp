@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -83,17 +83,17 @@ namespace Mezzanine
             const Input::MetaCode NullCode;
             if( Codes.size() < 3 )
             {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to add a Sequenced Input that is less then 3 MetaCodes long(including the Null MetaCode).  "
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to add a Sequenced Input that is less then 3 MetaCodes long(including the Null MetaCode).  "
                                                                        "A sequence with only one(or less) actual MetaCode isn't a sequence.");
             }
             if( NullCode != Codes.back() )
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to add a Sequenced Input that is not terminated with a null MetaCode."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to add a Sequenced Input that is not terminated with a null MetaCode."); }
         }
 
         void SequenceContainer::VerifyInputID(const Int32& ID) const
         {
             if( std::numeric_limits<Int32>::max() == ID )
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use max value of Int32 as an ID for an input sequence.  This value is reserved for error conditions."); }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to use max value of Int32 as an ID for an input sequence.  This value is reserved for error conditions."); }
         }
 
         MetaCode SequenceContainer::ProcessSequence(MetaCodeIterator First, MetaCodeIterator OneAfterLast)
@@ -142,7 +142,7 @@ namespace Mezzanine
 
             /*UInt32* Ret = SequencedInputs.get(Codes);
             if(Ret) return *Ret;
-            else return ULONG_MAX;//*/
+            else return ULONG_MAX;// */
         }
 
         void SequenceContainer::RemoveInputSequence(const MetaCodeContainer& Codes)
@@ -200,7 +200,7 @@ namespace Mezzanine
                     }
                     else if( this->MaxSequenceSize < this->CurrSequenceCache.size() )
                     {
-                        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Somehow managed to have the sequence cache in this SequenceContainer jump to more than 1 greater than the longest stored sequence.  "
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Somehow managed to have the sequence cache in this SequenceContainer jump to more than 1 greater than the longest stored sequence.  "
                                                                           "Don't know how that happened, but if you see this error then the class needs a patch.");
                     }
                     // Compare current cache to existing stored sequences

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -118,7 +118,7 @@ namespace Mezzanine
                 default:
                 {
                     if( Input::COMPOUNDINPUT_CUSTOMSEQUENCE == MCode.GetCode() ) { Compare = &SequenceCodeCompare; }
-                    else { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to construct a MetaCodeKey representing an unknown type."); }
+                    else { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to construct a MetaCodeKey representing an unknown type."); }
                 }
             }
         }

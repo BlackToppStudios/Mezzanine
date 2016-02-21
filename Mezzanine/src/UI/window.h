@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -58,7 +58,6 @@ namespace Mezzanine
             protected:
                 friend class ExtendedRenderableFactory;
                 /// @internal
-                /// @enum ResizeMode
                 /// @brief Internal enum for handling a resizing via mouse.
                 enum ResizeMode
                 {
@@ -113,7 +112,7 @@ namespace Mezzanine
                 /// @brief Gets the background object of this window.
                 /// @return Returns a pointer to the rectangle that is the background for this window.
                 virtual Rectangle* GetWindowBack();
-        };//Window//*/
+        };//Window// */
     }//UI
 }//Mezzanine
 

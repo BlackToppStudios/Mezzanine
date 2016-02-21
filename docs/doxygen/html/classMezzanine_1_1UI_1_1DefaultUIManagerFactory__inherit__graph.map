@@ -1,3 +1,4 @@
 <map id="Mezzanine::UI::DefaultUIManagerFactory" name="Mezzanine::UI::DefaultUIManagerFactory">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerFactory.html" title="This is a base class for factories that construct the managers the engine uses. " alt="" coords="23,5,209,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EntresolManagerFactory.html" title="This is a base class for factories that construct managers used by the Entresol class. " alt="" coords="21,80,211,121"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ManagerFactory.html" title="This is a base class for factories that construct the managers the engine uses. " alt="" coords="23,5,209,32"/>
 </map>

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,7 +49,9 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        /// @typedef AlgoList
+        // internal forward declarations
+        class PhysicsManager;
+
         /// @brief Convenience datatype for a collection of Collision Algorithms.
         typedef std::list<btCollisionAlgorithm*> AlgoList;
 
@@ -61,13 +63,16 @@ namespace Mezzanine
         class CollisionDispatcher : public btCollisionDispatcher
         {
         protected:
+            /// @brief Physics Manager
+            PhysicsManager * PhysMan;
+
             /// @internal
             /// @brief A list of all the algorithms that have been created and need processing.
             AlgoList AlgoCreationQueue;
         public:
             /// @brief Class constructor.
             /// @param CollisionConfig The collision configuration for the world being created.
-            CollisionDispatcher(btCollisionConfiguration* CollisionConfig);
+            CollisionDispatcher(PhysicsManager * PhysMan, btCollisionConfiguration* CollisionConfig);
             /// @brief Class destructor.
             virtual ~CollisionDispatcher();
 
@@ -102,13 +107,16 @@ namespace Mezzanine
         class ParallelCollisionDispatcher : public SpuGatheringCollisionDispatcher
         {
         protected:
+            /// @brief Physics Manager
+            PhysicsManager * PhysMan;
+
             /// @internal
             /// @brief A list of all the algorithms that have been created and need processing.
             AlgoList AlgoCreationQueue;
         public:
             /// @brief Class constructor.
             /// @param CollisionConfig The collision configuration for the world being created.
-            ParallelCollisionDispatcher(btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig);
+            ParallelCollisionDispatcher(PhysicsManager * PhysMan, btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig);
             /// @brief Class destructor.
             virtual ~ParallelCollisionDispatcher();
 

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,16 +51,21 @@
 
 namespace Mezzanine
 {
-    Exception::Exception(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+    ExceptionBase::ExceptionBase(   const String& TypeName,
+                                    const Mezzanine::String& JavaTypeName,
+                                    const String& Message,
+                                    const String& SrcFunction,
+                                    const String& SrcFile,
+                                    const Whole& FileLine)
         : ErrorMessage(Message),
+          ExceptionJavaTypeName(JavaTypeName),
           ExceptionTypeName(TypeName),
           Function(SrcFunction),
           File(SrcFile),
           Line(FileLine)
     {
-        if(Entresol::SingletonValid())
-        {
-            Entresol::GetSingletonPtr()->Log(GetCompleteMessage());
+        if( Entresol::SingletonValid() ) {
+            Entresol::GetSingletonPtr()->_Log( GetCompleteMessage() );
         }else{
             #ifdef MEZZDEBUG
             std::cerr << GetCompleteMessage();
@@ -68,37 +73,45 @@ namespace Mezzanine
         }
     }
 
-    Exception::~Exception() throw()
+    ExceptionBase::~ExceptionBase() throw()
         { }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Error Information
-    ConstString& Exception::GetExceptionTypeName() const throw()
+    ConstString& ExceptionBase::GetExceptionTypeName() const throw()
         { return ExceptionTypeName; }
 
-    ConstString& Exception::GetFunction() const throw()
+    ConstString& ExceptionBase::GetExceptionJavaTypeName() const throw()
+        { return ExceptionJavaTypeName; }
+
+    ConstString& ExceptionBase::GetFunction() const throw()
         { return Function; }
 
-    ConstString& Exception::GetFile() const throw()
+    ConstString& ExceptionBase::GetFile() const throw()
         { return File; }
 
-    const Whole& Exception::GetLine() const throw()
+    const Whole& ExceptionBase::GetLine() const throw()
         { return Line; }
 
-    String Exception::GetCompleteMessage() const throw()
+    String ExceptionBase::GetCompleteMessage() const throw()
     {
-        StringStream ErrorStream;
-        ErrorStream << "MEZZANINE EXCEPTION(" << ExceptionTypeName << "): "
-                    << ErrorMessage << "  In " << Function << ".  " << "At line "
-                    << (Line?StringTools::ConvertToString(Line):"Unknown") << " of "
-                    << File << ".";
-        return ErrorStream.str();
+        try
+        {
+            StringStream ErrorStream;
+            ErrorStream << "MEZZANINE EXCEPTION(" << ExceptionTypeName << "): "
+                        << ErrorMessage << "  In " << Function << ".  " << "At line "
+                        << (Line?StringTools::ConvertToString(Line):"Unknown") << " of "
+                        << File << ".";
+            return ErrorStream.str();
+        } catch(...) {
+            return "Error details unknown erro caught while generating exception message. :(";
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Error Checking
-    String Exception::what() throw()
-        { return GetCompleteMessage(); }
+    // Error Messages
+    const char* ExceptionBase::what() const throw()
+        { return GetCompleteMessage().c_str(); }
 }//Mezzanine
 
 #endif // \exception_cpp

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -67,7 +67,7 @@ class physicstests : public UnitTestGroup
             {
                 TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity." << endl;
                 // 0
-                Mezzanine::Physics::PhysicsManager Simulation;
+                Mezzanine::Physics::PhysicsManager Simulation(NULL);
                 Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
                 Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
                 Simulation.SetSimulationSubstepModifier(3);
@@ -93,7 +93,7 @@ class physicstests : public UnitTestGroup
                 for(Whole Counter=0; Counter<10000; Counter++)
                 {
                     // 0
-                    Mezzanine::Physics::PhysicsManager Simulation;
+                    Mezzanine::Physics::PhysicsManager Simulation(NULL);
                     Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
                     Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
                     Simulation.SetSimulationSubstepModifier(3);

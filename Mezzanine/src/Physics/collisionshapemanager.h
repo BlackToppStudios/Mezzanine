@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,8 +43,8 @@
 #include "datatypes.h"
 #include "Physics/collisionshape.h"
 #ifndef SWIG
-    #include "managerbase.h"
-    #include "managerfactory.h"
+    #include "entresolmanager.h"
+    #include "entresolmanagerfactory.h"
 #endif
 #include "singleton.h"
 
@@ -72,7 +72,6 @@ namespace Mezzanine
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class CollisionShapeManager
         /// @headerfile collisionshapemanager.h
         /// @brief This manager is for the storage of all shapes and creation of mesh shapes.
         /// @details Collision shapes do not need to be stored in this manager, but can be re-used
@@ -80,7 +79,7 @@ namespace Mezzanine
         /// recommended to store and re-use a collision shape anytime you need it in multiple objects,
         /// rather then re-creating the same shape again and again.
         ///////////////////////////////////////
-        class MEZZ_LIB CollisionShapeManager : public ManagerBase, public Singleton<CollisionShapeManager>
+        class MEZZ_LIB CollisionShapeManager : public EntresolManager, public Singleton<CollisionShapeManager>
         {
         public:
             /// @brief Map container type for CollisionShape storage by this class.
@@ -95,6 +94,11 @@ namespace Mezzanine
             typedef ShapeVector::iterator                 ShapeVectorIterator;
             /// @brief Const Vector Iterator type for CollisionShape instances stored by this class.
             typedef ShapeVector::const_iterator           ConstShapeVectorIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             /// @internal
             /// @brief This stores the names and collision Shapes
@@ -112,7 +116,7 @@ namespace Mezzanine
             CollisionShapeManager();
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            CollisionShapeManager(XML::Node& XMLNode);
+            CollisionShapeManager(const XML::Node& XMLNode);
             /// @brief Class destructor.
             virtual ~CollisionShapeManager();
 
@@ -289,10 +293,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultCollisionShapeManagerFactory
-        /// @headerfile collisionshapemanager.h
         /// @brief A factory responsible for the creation and destruction of the default collisionshapemanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultCollisionShapeManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultCollisionShapeManagerFactory : public EntresolManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -300,15 +303,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultCollisionShapeManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+            EntresolManager* CreateManager(const NameValuePairList& Params);
+            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+            EntresolManager* CreateManager(const XML::Node& XMLNode);
+            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+            void DestroyManager(EntresolManager* ToBeDestroyed);
         };//DefaultCollisionShapeManagerFactory
     }//Physics
 }//Mezzanine

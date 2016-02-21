@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -134,7 +134,7 @@ namespace Mezzanine
             /// @brief Gets the MetaCode from RawInput Data.
             /// @param RawEvent_ The event that contains only Joystick button data.
             /// @return a metacode that represents a button press.
-            MetaCode AddCodeFromSDLJoyStickButton(const RawEvent &RawEvent_);//*/
+            MetaCode AddCodeFromSDLJoyStickButton(const RawEvent &RawEvent_);// */
 
         public:
 

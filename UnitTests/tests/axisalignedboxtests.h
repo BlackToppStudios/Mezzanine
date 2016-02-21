@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -81,14 +81,16 @@ public:
     {
         {
             AxisAlignedBox Blank;
-            TEST( Blank.MinExt == Vector3(0.0,0.0,0.0) && Blank.MaxExt == Vector3(0.0,0.0,0.0) ,"AxisAlignedBox()");
+            TEST(Blank.MinExt == Vector3(0.0,0.0,0.0), "AxisAlignedBox()_min");
+            TEST(Blank.MaxExt == Vector3(0.0,0.0,0.0), "AxisAlignedBox()_max");
         }
 
         {
             Vector3 Min(-58.0,-34.0,-53.0);
             Vector3 Max(64.0,34.0,57.0);
             AxisAlignedBox Vector(Min,Max);
-            TEST( Vector.MinExt == Min && Vector.MaxExt == Max ,"AxisAlignedBox(const_Vector3&,_const_Vector3&)");
+            TEST(Vector.MinExt == Min, "AxisAlignedBox(const_Vector3&,_const_Vector3&)_min");
+            TEST(Vector.MaxExt == Max, "AxisAlignedBox(const_Vector3&,_const_Vector3&)_max");
         }
 
         {
@@ -96,7 +98,8 @@ public:
             Vector3 Max(38.0,16.0,15.0);
             AxisAlignedBox Box(Min,Max);
             AxisAlignedBox Copy(Box);
-            TEST( Copy.MinExt == Min && Copy.MaxExt == Max ,"AxisAlignedBox(const_AxisAlignedBox&)");
+            TEST(Copy.MinExt == Min, "AxisAlignedBox(const_AxisAlignedBox&)_min");
+            TEST(Copy.MaxExt == Max, "AxisAlignedBox(const_AxisAlignedBox&)_max");
         }
 
         {
@@ -104,52 +107,56 @@ public:
             Ogre::Vector3 Max(38.0,16.0,15.0);
             Ogre::AxisAlignedBox Box(Min,Max);
             AxisAlignedBox Copy(Box);
-            TEST( Copy.MinExt == Min && Copy.MaxExt == Max ,"AxisAlignedBox(const_Ogre::AxisAlignedBox&)");
+            TEST(Copy.MinExt == Min, "AxisAlignedBox(const_Ogre::AxisAlignedBox&)_min");
+            TEST(Copy.MaxExt == Max, "AxisAlignedBox(const_Ogre::AxisAlignedBox&)_max");
         }
 
         {
             AxisAlignedBox ZeroTest1(Vector3(2.0,2.0,3.0),Vector3(2.0,2.0,3.0));
             AxisAlignedBox ZeroTest2(Vector3(-2.0,-1.0,-1.0),Vector3(1.0,0.0,1.0));
-            TEST( ZeroTest1.IsZero() && !ZeroTest2.IsZero() ,"IsZero()_const");
+            TEST(ZeroTest1.IsZero(), "IsZero()_const_positive");
+            TEST(!ZeroTest2.IsZero(), "IsZero()_const_negative");
         }
 
         {
             AxisAlignedBox Volume(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
-            TEST( Volume.GetVolume() == 125.0 ,"GetVolume()_const");
+            TEST(Volume.GetVolume() == 125.0 ,"GetVolume()_const");
         }
 
         {
             AxisAlignedBox Overlap1(Vector3(-4.0,-4.0,-4.0),Vector3(1.0,1.0,1.0));
             AxisAlignedBox Overlap2(Vector3(-1.0,-1.0,-1.0),Vector3(4.0,4.0,4.0));
-            TEST( Overlap1.GetOverlap(Overlap2) == AxisAlignedBox(Vector3(-1.0,-1.0,-1.0),Vector3(1.0,1.0,1.0)) ,"GetOverlap(const_AxisAlignedBox&)_const");
+            TEST(Overlap1.GetOverlap(Overlap2) == AxisAlignedBox(Vector3(-1.0,-1.0,-1.0),Vector3(1.0,1.0,1.0)), "GetOverlap(const_AxisAlignedBox&)_const");
         }
 
         {
             Vector3 Point(-1.0,3.0,6.0);
             AxisAlignedBox Expanded(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
             Expanded.Expand(Point);
-            TEST( Expanded == AxisAlignedBox(Vector3(-1.0,0.0,0.0),Vector3(5.0,5.0,6.0)) ,"Expand(const_Vector3&)");
+            TEST(Expanded == AxisAlignedBox(Vector3(-1.0,0.0,0.0),Vector3(5.0,5.0,6.0)) ,"Expand(const_Vector3&)");
         }
 
         {
             AxisAlignedBox Box(Vector3(-3.0,-3.0,-3.0),Vector3(1.0,1.0,1.0));
             AxisAlignedBox Expanded(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
             Expanded.Expand(Box);
-            TEST( Expanded == AxisAlignedBox(Vector3(-3.0,-3.0,-3.0),Vector3(5.0,5.0,5.0)) ,"Expand(const_AxisAlignedBox&)");
+            TEST(Expanded == AxisAlignedBox(Vector3(-3.0,-3.0,-3.0),Vector3(5.0,5.0,5.0)) ,"Expand(const_AxisAlignedBox&)");
         }
 
         {
             Vector3 PassPoint(1.0,1.0,2.0);
             Vector3 FailPoint(-2.0,1.0,-3.0);
             AxisAlignedBox Box(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
-            TEST( Box.IsInside(PassPoint) && !Box.IsInside(FailPoint) ,"IsInside(const_Vector3&)_const");
+            TEST(Box.IsInside(PassPoint), "IsInside(const_Vector3&)_const_positive");
+            TEST(!Box.IsInside(FailPoint), "IsInside(const_Vector3&)_const_negative");
         }
 
         {
             Sphere PassBall(Vector3(-0.5,5.5,-0.5),2);
             Sphere FailBall(Vector3(10.0,10.0,10.0),3);
             AxisAlignedBox Box(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
-            TEST( Box.IsOverlapping(PassBall) && !Box.IsOverlapping(FailBall) ,"IsOverlapping(const_Sphere&)_const");
+            TEST(Box.IsOverlapping(PassBall), "IsOverlapping(const_Sphere&)_const_positive");
+            TEST(!Box.IsOverlapping(FailBall), "IsOverlapping(const_Sphere&)_const_negative");
         }
 
         {
@@ -157,23 +164,61 @@ public:
             AxisAlignedBox OverlapPass2(Vector3(-1.0,-1.0,-1.0),Vector3(4.0,4.0,4.0));
             AxisAlignedBox OverlapFail1(Vector3(-5.0,-5.0,-5.0),Vector3(1.0,1.0,1.0));
             AxisAlignedBox OverlapFail2(Vector3(2.0,2.0,2.0),Vector3(5.0,5.0,5.0));
-            TEST( OverlapPass1.IsOverlapping(OverlapPass2) && !OverlapFail1.IsOverlapping(OverlapFail2) ,"IsOverlapping(const_AxisAlignedBox&)_const");
+            TEST(OverlapPass1.IsOverlapping(OverlapPass2), "IsOverlapping(const_AxisAlignedBox&)_const_positive");
+            TEST(!OverlapFail1.IsOverlapping(OverlapFail2), "IsOverlapping(const_AxisAlignedBox&)_const_negative");
         }
 
         {
             Plane PassSurface(Vector3(1.0,-1.0,1.0).Normalize(),2);
             Plane FailSurface(Vector3(2.0,3.0,-1.0).Normalize(),10);
             AxisAlignedBox Box(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
-            TEST( Box.IsOverlapping(PassSurface) && !Box.IsOverlapping(FailSurface) ,"IsOverlapping(const_Plane&)_const");
+            TEST(Box.IsOverlapping(PassSurface), "IsOverlapping(const_Plane&)_const");
+            TEST(!Box.IsOverlapping(FailSurface), "IsOverlapping(const_Plane&)_const");
         }
 
         {
-            Ray PassRay(Vector3(-20.0,0.0,0.0),Vector3(20.0,0.0,0.0));
-            Ray FailRay(Vector3(100.0,40.0,50.0),Vector3(80.0,60.0,50.0));
             AxisAlignedBox Box(Vector3(-4.0,-4.0,-4.0),Vector3(4.0,4.0,4.0));
-            AxisAlignedBox::RayTestResult PassResult = Box.Intersects(PassRay);
+
+            Ray PassRayOriginInside(Vector3(1.0,1.0,1.0),Vector3(20.0,20.0,20.0));
+            AxisAlignedBox::RayTestResult PassResultOriginInside = Box.Intersects(PassRayOriginInside);
+            TEST(PassResultOriginInside.first,"IntersectsOriginInside(const_Ray&)_const_boole_positive");
+            TEST(PassResultOriginInside.second == Ray(Vector3(1.0,1.0,1.0),Vector3(4.0,4.0,4.0)), "IntersectsOriginInside(const_Ray&)_const_ray_positive");
+
+            Ray PassRayHighOnX(Vector3(-20.0,0.0,0.0),Vector3(20.0,0.0,0.0));
+            AxisAlignedBox::RayTestResult PassResultHighOnX = Box.Intersects(PassRayHighOnX);
+            TEST(PassResultHighOnX.first,"IntersectsHighOnX(const_Ray&)_const_boole_positive");
+            TEST(PassResultHighOnX.second == Ray(Vector3(-4.0,0.0,0.0),Vector3(4.0,0.0,0.0)), "IntersectsHighOnX(const_Ray&)_const_ray_positive");
+
+            Ray PassRayLowOnX(Vector3(20.0,0.0,0.0),Vector3(-20.0,0.0,0.0));
+            AxisAlignedBox::RayTestResult PassResultLowOnX = Box.Intersects(PassRayLowOnX);
+            TEST(PassResultLowOnX.first,"IntersectsHighOnX(const_Ray&)_const_boole_positive");
+            TEST(PassResultLowOnX.second == Ray(Vector3(4.0,0.0,0.0),Vector3(-4.0,0.0,0.0)), "IntersectsLowOnX(const_Ray&)_const_ray_positive");
+
+            Ray PassRayHighOnY(Vector3(0.0,-20.0,0.0),Vector3(0.0,20.0,0.0));
+            AxisAlignedBox::RayTestResult PassResultHighOnY = Box.Intersects(PassRayHighOnY);
+            TEST(PassResultHighOnY.first,"IntersectsHighOnY(const_Ray&)_const_boole_positive");
+            TEST(PassResultHighOnY.second == Ray(Vector3(0.0,-4.0,0.0),Vector3(0.0,4.0,0.0)), "IntersectsHighOnY(const_Ray&)_const_ray_positive");
+
+            Ray PassRayLowOnY(Vector3(0.0,20.0,0.0),Vector3(0.0,-20.0,0.0));
+            AxisAlignedBox::RayTestResult PassResultLowOnY = Box.Intersects(PassRayLowOnY);
+            TEST(PassResultLowOnY.first,"IntersectsHighOnY(const_Ray&)_const_boole_positive");
+            TEST(PassResultLowOnY.second == Ray(Vector3(0.0,4.0,0.0),Vector3(0.0,-4.0,0.0)), "IntersectsLowOnY(const_Ray&)_const_ray_positive");
+
+            Ray PassRayHighOnZ(Vector3(0.0,0.0,-20.0),Vector3(0.0,0.0,20.0));
+            AxisAlignedBox::RayTestResult PassResultHighOnZ = Box.Intersects(PassRayHighOnZ);
+            TEST(PassResultHighOnZ.first,"IntersectsHighOnZ(const_Ray&)_const_boole_positive");
+            TEST(PassResultHighOnZ.second == Ray(Vector3(0.0,0.0,-4.0),Vector3(0.0,0.0,4.0)), "IntersectsHighOnZ(const_Ray&)_const_ray_positive");
+
+            Ray PassRayLowOnZ(Vector3(0.0,0.0,20.0),Vector3(0.0,0.0,-20.0));
+            AxisAlignedBox::RayTestResult PassResultLowOnZ = Box.Intersects(PassRayLowOnZ);
+            TEST(PassResultLowOnZ.first,"IntersectsHighOnZ(const_Ray&)_const_boole_positive");
+            TEST(PassResultLowOnZ.second == Ray(Vector3(0.0,0.0,4.0),Vector3(0.0,0.0,-4.0)), "IntersectsLowOnZ(const_Ray&)_const_ray_positive");
+
+
+            Ray FailRay(Vector3(100.0,40.0,50.0),Vector3(80.0,60.0,50.0));
             AxisAlignedBox::RayTestResult FailResult = Box.Intersects(FailRay);
-            TEST( ( PassResult.first && PassResult.second == Ray(Vector3(-4.0,0.0,0.0),Vector3(4.0,0.0,0.0)) ) && ( !FailResult.first && FailResult.second == Ray() ) , "Intersects(const_Ray&)_const");
+            TEST(!FailResult.first, "Intersects(const_Ray&)_const_boole_negative");
+            TEST(FailResult.second == Ray(), "Intersects(const_Ray&)_const_ray_negative");
         }
 
         {
@@ -181,7 +226,8 @@ public:
             Vector3 Max(64.0,34.0,57.0);
             AxisAlignedBox Extents;
             Extents.SetExtents(Min,Max);
-            TEST( Extents.MinExt == Min && Extents.MaxExt == Max ,"SetExtents(const_Vector3&,_const_Vector3&)");
+            TEST(Extents.MinExt == Min, "SetExtents(const_Vector3&,_const_Vector3&)_min");
+            TEST(Extents.MaxExt == Max, "SetExtents(const_Vector3&,_const_Vector3&)_max");
         }
 
         {
@@ -201,7 +247,8 @@ public:
 
         {
             AxisAlignedBox Box(Vector3(-5.0,-8.0,-4.0),Vector3(3.0,10.0,4.0));
-            TEST( Box.GetCorner(AxisAlignedBox::AE_Min,AxisAlignedBox::AE_Max,AxisAlignedBox::AE_Min) == Vector3(-5.0,10.0,-4.0) ,"GetCorner(const_AxisExtent,_const_AxisExtent,_const_AxisExtent)_const");
+            TEST( Box.GetCorner(AxisAlignedBox::AE_Min,AxisAlignedBox::AE_Max,AxisAlignedBox::AE_Min) == Vector3(-5.0,10.0,-4.0),
+                  "GetCorner(const_AxisExtent,_const_AxisExtent,_const_AxisExtent)_const");
         }
 
         {
@@ -262,19 +309,22 @@ public:
             Ogre::AxisAlignedBox Box(Min,Max);
             AxisAlignedBox Copy;
             Copy = Box;
-            TEST( Copy.MinExt == Vector3(Min) && Copy.MaxExt == Vector3(Max) ,"operator=(const_Ogre::AxisAlignedBox&)");
+            TEST(Copy.MinExt == Vector3(Min), "operator=(const_Ogre::AxisAlignedBox&)_min");
+            TEST(Copy.MaxExt == Vector3(Max), "operator=(const_Ogre::AxisAlignedBox&)_max");
         }
 
         {
             AxisAlignedBox GreaterVolume(Vector3(0.0,0.0,0.0),Vector3(7.0,7.0,7.0));
             AxisAlignedBox LesserVolume(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
-            TEST( ( GreaterVolume > LesserVolume ) && !( LesserVolume > GreaterVolume ) ,"operator>(const_AxisAlignedBox&)_const");
+            TEST(GreaterVolume > LesserVolume, "operator>(const_AxisAlignedBox&)_const_positive");
+            TEST(!(LesserVolume > GreaterVolume), "operator>(const_AxisAlignedBox&)_const_negative");
         }
 
         {
             AxisAlignedBox GreaterVolume(Vector3(0.0,0.0,0.0),Vector3(6.0,6.0,6.0));
             AxisAlignedBox LesserVolume(Vector3(-3.0,-3.0,-3.0),Vector3(1.0,1.0,1.0));
-            TEST( ( LesserVolume < GreaterVolume ) && !( GreaterVolume < LesserVolume ) ,"operator<(const_AxisAlignedBox&)_const");
+            TEST(LesserVolume < GreaterVolume, "operator<(const_AxisAlignedBox&)_const_positive");
+            TEST(!(GreaterVolume < LesserVolume), "operator<(const_AxisAlignedBox&)_const_negative");
         }
 
         {
@@ -282,7 +332,9 @@ public:
             AxisAlignedBox GreaterVolume(Vector3(-3.0,-3.5,-4.0),Vector3(3.0,3.5,4.0));
             AxisAlignedBox EqualVolume(Vector3(-2.0,-2.0,-2.0),Vector3(2.0,2.0,2.0));
             AxisAlignedBox LesserVolume(Vector3(-1.0,-0.5,-1.0),Vector3(1.0,0.5,1.0));
-            TEST( ( GreaterVolume >= Box && EqualVolume >= Box ) && !( LesserVolume >= Box ) ,"operator>=(const_AxisAlignedBox&)_const");
+            TEST(GreaterVolume >= Box, "operator>=(const_AxisAlignedBox&)_const_positive_greater");
+            TEST(EqualVolume >= Box, "operator>=(const_AxisAlignedBox&)_const_positive_equal");
+            TEST(!(LesserVolume >= Box), "operator>=(const_AxisAlignedBox&)_const_negative");
         }
 
         {
@@ -290,21 +342,25 @@ public:
             AxisAlignedBox GreaterVolume(Vector3(-3.0,-3.5,-4.0),Vector3(3.0,3.5,4.0));
             AxisAlignedBox EqualVolume(Vector3(-2.0,-2.0,-2.0),Vector3(2.0,2.0,2.0));
             AxisAlignedBox LesserVolume(Vector3(-1.0,-0.5,-1.0),Vector3(1.0,0.5,1.0));
-            TEST( ( LesserVolume <= Box && EqualVolume <= Box ) && !( GreaterVolume <= Box ) ,"operator<=(const_AxisAlignedBox&)_const");
+            TEST(LesserVolume <= Box, "operator<=(const_AxisAlignedBox&)_const_greater");
+            TEST(EqualVolume <= Box, "operator<=(const_AxisAlignedBox&)_const_equal");
+            TEST(!(GreaterVolume <= Box), "operator<=(const_AxisAlignedBox&)_const_negative");
         }
 
         {
             AxisAlignedBox Box(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
             AxisAlignedBox BoxPass(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
             AxisAlignedBox BoxFail(Vector3(-4.0,-4.0,-4.0),Vector3(4.0,4.0,4.0));
-            TEST( ( Box == BoxPass ) && !( Box == BoxFail ) ,"operator==(const_AxisAlignedBox&)_const");
+            TEST(Box == BoxPass, "operator==(const_AxisAlignedBox&)_const_positive");
+            TEST(!(Box == BoxFail), "operator==(const_AxisAlignedBox&)_const_negative");
         }
 
         {
             AxisAlignedBox Box(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
             AxisAlignedBox BoxPass(Vector3(-4.0,-4.0,-4.0),Vector3(4.0,4.0,4.0));
             AxisAlignedBox BoxFail(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
-            TEST( ( Box != BoxPass ) && !( Box != BoxFail ) ,"operator!=(const_AxisAlignedBox&)_const");
+            TEST(Box != BoxPass, "operator!=(const_AxisAlignedBox&)_const_positive");
+            TEST(!(Box != BoxFail), "operator!=(const_AxisAlignedBox&)_const_negative");
         }
     }
 

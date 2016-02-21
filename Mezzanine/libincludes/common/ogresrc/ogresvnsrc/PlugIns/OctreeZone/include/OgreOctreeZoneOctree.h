@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,6 @@ begin                : Mon Sep 30 2002
 copyright            : (C) 2002 by Jon Anderson
 email                : janders@users.sf.net
 
-Enhancements 2003 - 2004 (C) The OGRE Team
-
 Modified slightly for use with PCZSceneManager Octree Zones by Eric Cha
 
 -----------------------------------------------------------------------------
@@ -40,8 +38,7 @@ Modified slightly for use with PCZSceneManager Octree Zones by Eric Cha
 #ifndef OCTREE_H
 #define OCTREE_H
 
-#include <OgreAxisAlignedBox.h>
-#include <OgreWireBoundingBox.h>
+#include "OgreAxisAlignedBox.h"
 
 #include <list>
 
@@ -134,7 +131,7 @@ public:
     void _findNodes(const AxisAlignedBox &t, 
                     PCZSceneNodeList &list, 
                     PCZSceneNode *exclude, 
-					bool includeVisitors,
+                    bool includeVisitors,
                     bool full );
 
     /* Recurse through the Octree to find the scene nodes which intersect a ray
@@ -142,7 +139,7 @@ public:
     void _findNodes(const Ray &t, 
                     PCZSceneNodeList &list, 
                     PCZSceneNode *exclude, 
-					bool includeVisitors,
+                    bool includeVisitors,
                     bool full );
 
     /* Recurse through the Octree to find the scene nodes which intersect a sphere
@@ -150,7 +147,7 @@ public:
     void _findNodes(const Sphere &t, 
                     PCZSceneNodeList &list, 
                     PCZSceneNode *exclude, 
-					bool includeVisitors,
+                    bool includeVisitors,
                     bool full );
 
     /* Recurse through the Octree to find the scene nodes which intersect a PBV
@@ -158,15 +155,15 @@ public:
     void _findNodes(const PlaneBoundedVolume &t, 
                     PCZSceneNodeList &list, 
                     PCZSceneNode *exclude, 
-					bool includeVisitors,
+                    bool includeVisitors,
                     bool full );
 
     /** Public list of SceneNodes attached to this particular octree
     */
     PCZSceneNodeList mNodes;
 
-	/* Zone that this octree is in */
-	PCZone * mZone;
+    /* Zone that this octree is in */
+    PCZone * mZone;
 
 protected:
 

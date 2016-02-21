@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -268,6 +268,8 @@ namespace Mezzanine
     // EventManager Methods
 
     template<> EventManager* Singleton<EventManager>::SingletonPtr = NULL;
+    const String EventManager::ImplementationName = "DefaultEventManager";
+    const ManagerBase::ManagerType EventManager::InterfaceType = ManagerBase::MT_EventManager;
 
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
@@ -277,29 +279,29 @@ namespace Mezzanine
         if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
         {
             if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
-                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+                { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
         }
         if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
         {
             if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
-                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
+                { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
         this->_Data = new Internal::EventManagerInternalData();
         this->_Data->EventPumpWork = new EventPumpWorkUnit(this);
     }
 
-    EventManager::EventManager(XML::Node& XMLNode)
+    EventManager::EventManager(const XML::Node& XMLNode)
     {
         UInt32 InitSDLSystems = SDL_WasInit(0);
         if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
         {
             if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
-                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+                { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
         }
         if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
         {
             if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
-                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
+                { MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
         this->_Data = new Internal::EventManagerInternalData();
         this->_Data->EventPumpWork = new EventPumpWorkUnit(this);
@@ -404,7 +406,7 @@ namespace Mezzanine
                 { FromSDLEvent->AddCode(Input::BUTTON_DOWN, Iter->first); }
             else
                 { FromSDLEvent->AddCode(Input::BUTTON_UP, Iter->first); }    //It must be just a polling check
-        }//*/
+        }// */
 
         /* Here is a list of SDL event which aren't coded yet.
         //event types
@@ -466,7 +468,7 @@ namespace Mezzanine
                 case SDL_WINDOWEVENT: {
                     EventGameWindow* React = new EventGameWindow(FromSDLRaw);
                     /*if(EventGameWindow::GAME_WINDOW_FOCUS_LOST==React->GetEventID())        //we dropp all keypresses when windows are switched
-                        { ClearKeyPresses = true; }//*/
+                        { ClearKeyPresses = true; }// */
                     this->AddEvent(React);
                     break; }
 
@@ -476,21 +478,21 @@ namespace Mezzanine
 
         // Error conditions
                 case SDL_FIRSTEVENT:  // Capture and ignore or throw error
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");  break; }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");  break; }
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager.");  break; }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager.");  break; }
 
                 default:                //Never thrown by SDL, but could be added by a user
                     //Entresol::GetSingletonPtr()->LogAndThrow("Unknown SDL Event Inserted.");
-                    Entresol::GetSingletonPtr()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
+                    //Entresol::GetSingletonPtr()->_Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
                     break;
             }
             //free(FromSDLRaw); //Does this need to Happen?
         }
 
         /*if(ClearKeyPresses)
-            { this->_Data->DropAllKeyPresses(); }//*/
+            { this->_Data->DropAllKeyPresses(); }// */
 
         #ifdef MEZZDEBUG
         /*Entresol::GetSingletonPtr()->Log("User Input entered this Frame");
@@ -499,7 +501,7 @@ namespace Mezzanine
             Entresol::GetSingletonPtr()->Log(*LIter);
         }
         Entresol::GetSingletonPtr()->Log("End Of User Input entered this Frame");
-        Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
+        Entresol::GetSingletonPtr()->DoMainLoopLogging();// */
         #endif
 
         // Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
@@ -636,7 +638,7 @@ namespace Mezzanine
         {
             this->_Data->AddInputCodeToManualCheck(InputToTryPolling.GetCode(), Internal::EventManagerInternalData::Polling);
         }else{
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
         }
     }
 
@@ -673,50 +675,44 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType EventManager::GetInterfaceType() const
-        { return ManagerBase::MT_EventManager; }
+        { return EventManager::InterfaceType; }
 
     String EventManager::GetImplementationTypeName() const
-        { return "DefaultEventManager"; }
+        { return EventManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultEventManagerFactory Methods
 
     DefaultEventManagerFactory::DefaultEventManagerFactory()
-    {
-    }
+        {  }
 
     DefaultEventManagerFactory::~DefaultEventManagerFactory()
-    {
-    }
+        {  }
 
-    String DefaultEventManagerFactory::GetManagerTypeName() const
-    {
-        return "DefaultEventManager";
-    }
+    String DefaultEventManagerFactory::GetManagerImplName() const
+        { return EventManager::ImplementationName; }
 
-    ManagerBase* DefaultEventManagerFactory::CreateManager(NameValuePairList& Params)
+    ManagerBase::ManagerType DefaultEventManagerFactory::GetManagerType() const
+        { return EventManager::InterfaceType; }
+
+    EntresolManager* DefaultEventManagerFactory::CreateManager(const NameValuePairList& Params)
     {
-        if(EventManager::SingletonValid())
-        {
+        if( EventManager::SingletonValid() ) {
             /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
             return EventManager::GetSingletonPtr();
         }else return new EventManager();
     }
 
-    ManagerBase* DefaultEventManagerFactory::CreateManager(XML::Node& XMLNode)
+    EntresolManager* DefaultEventManagerFactory::CreateManager(const XML::Node& XMLNode)
     {
-        if(EventManager::SingletonValid())
-        {
+        if( EventManager::SingletonValid() ) {
             /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
             return EventManager::GetSingletonPtr();
         }else return new EventManager(XMLNode);
     }
 
-    void DefaultEventManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-    {
-        delete ToBeDestroyed;
-    }
-
+    void DefaultEventManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+        { delete ToBeDestroyed; }
 }//Mezzanine
 
 
@@ -780,22 +776,22 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
                             Mgr.AddEvent(temp); }
                             break;
                         case 'O':{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize."); }
+                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize."); }
                             break;
                         default:{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize."); }
+                            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize."); }
                             break;
                     }
                 }else{
-                    MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Invalid event, name is not long enough to identify event.");
+                    MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"Invalid event, name is not long enough to identify event.");
                 } // end if name length
                 Child = Child.GetNextSibling();
             } // end while
         }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventManager: Not Version 1");
+            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventManager: Not Version 1");
         } // if version
     }else{
-        MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attempting to deserialize an EventManager, event mananger not found.");
+        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to deserialize an EventManager, event mananger not found.");
     }// if event
 }
 

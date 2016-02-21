@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
 #define _matrix4x4_cpp
 
 #include "matrix4x4.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "serialization.h"
 #include "entresol.h"
 
@@ -579,10 +579,10 @@ namespace Mezzanine
                 if( !CurrAttrib.Empty() )
                     this->Matrix[3][3] = CurrAttrib.AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + this->GetSerializableName() + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + this->GetSerializableName() + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + this->GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + this->GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 

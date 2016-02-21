@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -56,7 +56,6 @@ namespace Mezzanine
         class MEZZ_LIB ManagerConstructionInfo
         {
         public:
-            /// @enum ManagerConstructionFlags
             /// @brief This is an enum used by the physics manager to determine what internal
             /// classes should be used when creating the world.
             enum ManagerConstructionFlags

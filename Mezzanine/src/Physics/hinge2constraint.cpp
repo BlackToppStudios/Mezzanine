@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -52,31 +52,65 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        /////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
         // Hinge2 Constraint Functions
-        Hinge2Constraint::Hinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
-        {
-            this->SetBodies(ProxyA,ProxyB);
 
-            btVector3 temp1(Anchor.GetBulletVector3());
-            btVector3 temp2(Axis1.GetBulletVector3());
-            btVector3 temp3(Axis2.GetBulletVector3());
-            this->Hinge2 = new btHinge2Constraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), temp1, temp2, temp3);
-            this->Generic6dof = this->Hinge2;
-        }
+        Hinge2Constraint::Hinge2Constraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2, PhysicsManager* Creator) :
+            Generic6DofSpringConstraint(ID,ProxyA,ProxyB,Creator)
+            { this->CreateConstraint(ProxyA,ProxyB,Anchor,Axis1,Axis2); }
+
+        Hinge2Constraint::Hinge2Constraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator) :
+            Generic6DofSpringConstraint(ID,ProxyA,ProxyB,Creator)
+            { this->CreateConstraint(ProxyA,ProxyB,TransA,TransB); }
+
+        Hinge2Constraint::Hinge2Constraint(const XML::Node& SelfRoot, PhysicsManager* Creator) :
+            Generic6DofSpringConstraint(0,NULL,Creator)
+            { this->ProtoDeSerialize(SelfRoot); }
 
         Hinge2Constraint::~Hinge2Constraint()
+            { /* Generic6Dof class will handle the cleanup */ }
+
+        btHinge2Constraint* Hinge2Constraint::Hinge2() const
+            { return static_cast<btHinge2Constraint*>( this->Generic6dof ); }
+
+        void Hinge2Constraint::CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB)
         {
-            delete this->Hinge2;
-            this->Hinge2 = NULL;
-            this->Generic6dof = NULL;
+            if( this->Generic6dof == NULL ) {
+                btVector3 TempOrigin(0,0,0);
+                btVector3 TempAxis1(0,1,0);
+                btVector3 TempAxis2(1,0,0);
+                this->Generic6dof = new btHinge2Constraint(*(RigidA->_GetPhysicsObject()),*(RigidB->_GetPhysicsObject()),TempOrigin,TempAxis1,TempAxis2);
+                this->Generic6dof->setFrames(TransA.GetBulletTransform(),TransB.GetBulletTransform());
+            }
         }
 
-        void Hinge2Constraint::SetUpperLimit(Real Ang1Max)
-            { this->Hinge2->setUpperLimit(Ang1Max); }
+        void Hinge2Constraint::CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        {
+            if( this->Generic6dof == NULL ) {
+                btVector3 TempOrigin = Anchor.GetBulletVector3();
+                btVector3 TempAxis1 = Axis1.GetBulletVector3();
+                btVector3 TempAxis2 = Axis2.GetBulletVector3();
+                this->Generic6dof = new btHinge2Constraint(*(RigidA->_GetPhysicsObject()),*(RigidB->_GetPhysicsObject()),TempOrigin,TempAxis1,TempAxis2);
+            }
+        }
 
-        void Hinge2Constraint::SetLowerLimit(Real Ang1Min)
-            { this->Hinge2->setLowerLimit(Ang1Min); }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Limits
+
+        void Hinge2Constraint::SetUpperLimit(const Real Ang1Max)
+            { this->Hinge2()->setUpperLimit(Ang1Max); }
+
+        void Hinge2Constraint::SetLowerLimit(const Real Ang1Min)
+            { this->Hinge2()->setLowerLimit(Ang1Min); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        String Hinge2Constraint::GetDerivedSerializableName() const
+            { return Hinge2Constraint::GetSerializableName(); }
+
+        String Hinge2Constraint::GetSerializableName()
+            { return "Hinge2Constraint"; }
     }//Physics
 }//Mezzanine
 

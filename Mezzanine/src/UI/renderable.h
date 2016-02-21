@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -58,7 +58,6 @@ namespace Mezzanine
         class MEZZ_LIB Renderable
         {
         public:
-            /// @enum RenderableType
             /// @brief A small enum to describe the type of renderable this is.
             enum RenderableType
             {

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -64,7 +64,10 @@ namespace Mezzanine
 
     namespace Resource
     {
-        ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
+        const String ResourceManager::ImplementationName = "DefaultResourceManager";
+        const ManagerBase::ManagerType ResourceManager::InterfaceType = ManagerBase::MT_ResourceManager;
+
+        ResourceManager::ResourceManager(const String& EngineDataPath, const Resource::ArchiveType ArchType)
         {
             this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
             this->EngineDataDir = EngineDataPath;
@@ -72,7 +75,7 @@ namespace Mezzanine
             this->CreateAssetGroup("");
         }
 
-        ResourceManager::ResourceManager(XML::Node& XMLNode)
+        ResourceManager::ResourceManager(const XML::Node& XMLNode)
         {
             this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
             this->CreateAssetGroup("");
@@ -113,7 +116,7 @@ namespace Mezzanine
         {
             AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
             if( GroupIt != this->AssetGroups.end() ) {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"An AssetGroup with the name \"" + GroupName + "\" already exists.");
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"An AssetGroup with the name \"" + GroupName + "\" already exists.");
             }
 
             AssetGroup* NewGroup = new AssetGroup(GroupName);
@@ -143,7 +146,7 @@ namespace Mezzanine
         {
             AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
             if( GroupIt == this->AssetGroups.end() ) {
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"AssetGroup named \"" + GroupName + "\" not found.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"AssetGroup named \"" + GroupName + "\" not found.");
             }
             return (*GroupIt).second;
         }
@@ -203,11 +206,11 @@ namespace Mezzanine
 
         String ResourceManager::GetPluginExtension() const
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             return ".dll";
-            #elif LINUX
+            #elif MEZZ_LINUX
             return ".so";
-            #elif MACOSX
+            #elif MEZZ_MACOSX
             return ".dylib";
             #endif
         }
@@ -222,27 +225,27 @@ namespace Mezzanine
             Initialized = false;
         }
 
-        String ResourceManager::GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType)
+        String ResourceManager::GetStringFromArchiveType(const Resource::ArchiveType ArchType)
         {
             switch(ArchType)
             {
-                case Mezzanine::AT_FileSystem:
+                case Resource::AT_FileSystem:
                     return String("FileSystem");
-                case Mezzanine::AT_Zip:
+                case Resource::AT_Zip:
                     return String("Zip");
                 default:
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
                     return String("");
             }
         }
 
-        Mezzanine::ArchiveType ResourceManager::GetArchiveTypeFromString(const String& FromString)
+        Resource::ArchiveType ResourceManager::GetArchiveTypeFromString(const String& FromString)
         {
             if(String("FileSystem")==FromString)
-                { return Mezzanine::AT_FileSystem; }
+                { return Resource::AT_FileSystem; }
             if(String("Zip")==FromString)
-                { return Mezzanine::AT_Zip; }
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
+                { return Resource::AT_Zip; }
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
             return AT_Invalid;
         }
 
@@ -250,10 +253,10 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType ResourceManager::GetInterfaceType() const
-            { return ManagerBase::MT_ResourceManager; }
+            { return ResourceManager::InterfaceType; }
 
         String ResourceManager::GetImplementationTypeName() const
-            { return "DefaultResourceManager"; }
+            { return ResourceManager::ImplementationName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultResourceManagerFactory Methods
@@ -264,48 +267,48 @@ namespace Mezzanine
         DefaultResourceManagerFactory::~DefaultResourceManagerFactory()
             {  }
 
-        String DefaultResourceManagerFactory::GetManagerTypeName() const
-            { return "DefaultResourceManager"; }
+        String DefaultResourceManagerFactory::GetManagerImplName() const
+            { return ResourceManager::ImplementationName; }
 
-        ManagerBase* DefaultResourceManagerFactory::CreateManager(NameValuePairList& Params)
-        {
-            if(ResourceManager::SingletonValid())
-            {
-                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-                return ResourceManager::GetSingletonPtr();
-            }else{
-                if( Params.empty() ) {
-                    return new ResourceManager();
-                }else{
-                    String EngineDataPath;
-                    ArchiveType ArchiveType_;
-                    for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
-                    {
-                        String Lower = (*ParIt).first;
-                        StringTools::ToLowerCase(Lower);
-                        if( "enginedatapath" == Lower ) {
-                            EngineDataPath = (*ParIt).second;
-                        }else if( "archivetype" == Lower ) {
-                            ArchiveType_ = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
-                        }
-                    }
-                    return new ResourceManager(EngineDataPath,ArchiveType_);
-                }
-            }
-        }
+        ManagerBase::ManagerType DefaultResourceManagerFactory::GetManagerType() const
+            { return ResourceManager::InterfaceType; }
 
-        ManagerBase* DefaultResourceManagerFactory::CreateManager(XML::Node& XMLNode)
+        EntresolManager* DefaultResourceManagerFactory::CreateManager(const NameValuePairList& Params)
         {
             if( ResourceManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return ResourceManager::GetSingletonPtr();
-            }else return new ResourceManager(XMLNode);
+            }
+            if( Params.empty() ) {
+                return new ResourceManager();
+            }
+
+            String EngineDataPath = ".";
+            ArchiveType ArchType = Resource::AT_FileSystem;
+            for( NameValuePairList::const_iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+            {
+                String Lower = (*ParIt).first;
+                StringTools::ToLowerCase(Lower);
+                if( "enginedatapath" == Lower ) {
+                    EngineDataPath = (*ParIt).second;
+                }else if( "archivetype" == Lower ) {
+                    ArchType = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
+                }
+            }
+            return new ResourceManager(EngineDataPath,ArchType);
         }
 
-        void DefaultResourceManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        EntresolManager* DefaultResourceManagerFactory::CreateManager(const XML::Node& XMLNode)
         {
-            delete ToBeDestroyed;
+            if( ResourceManager::SingletonValid() ) {
+                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+                return ResourceManager::GetSingletonPtr();
+            }
+            return new ResourceManager(XMLNode);
         }
+
+        void DefaultResourceManagerFactory::DestroyManager(EntresolManager* ToBeDestroyed)
+            { delete ToBeDestroyed; }
     }//Resource
 }//Mezzanine
 

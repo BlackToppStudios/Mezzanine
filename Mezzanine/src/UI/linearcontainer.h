@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -55,7 +55,6 @@ namespace Mezzanine
         class MEZZ_LIB LinearContainer : public PagedContainer
         {
         public:
-            /// @enum SizeEnforcement
             /// @brief This enum is used to determine if and when a child should be forced to a specific size for this container.
             enum SizeEnforcement
             {

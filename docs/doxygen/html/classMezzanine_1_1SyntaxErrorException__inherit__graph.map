@@ -1,7 +1,7 @@
 <map id="Mezzanine::SyntaxErrorException" name="Mezzanine::SyntaxErrorException">
-<area shape="rect" id="node7" href="$classMezzanine_1_1SyntaxErrorLuaException.html" title="Thrown when lua code in incorrect. " alt="" coords="660,5,841,51"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1SyntaxErrorXMLException.html" title="Thrown when and XML document is being parsed but is invalid. " alt="" coords="628,75,873,104"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1SyntaxErrorXPathException.html" title="Thrown when an XPath query is being parsed but is invalid. " alt="" coords="652,127,849,174"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. " alt="" coords="159,75,308,104"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="5,75,109,104"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1SyntaxErrorLuaException.html" title="Thrown when lua code in incorrect. " alt="" coords="687,5,869,47"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1SyntaxErrorXMLException.html" title="Thrown when and XML document is being parsed but is invalid. " alt="" coords="655,71,901,98"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1SyntaxErrorXPathException.html" title="Thrown when an XPath query is being parsed but is invalid. " alt="" coords="679,123,877,164"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExceptionBase.html" title="This is the exception thrown by most Mezzanine systems that can throw exceptions. ..." alt="" coords="157,71,339,98"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="5,71,109,98"/>
 </map>

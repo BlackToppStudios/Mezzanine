@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -80,8 +80,6 @@ namespace Mezzanine
             /// @brief Stores whether or not inputs into this widget will alter it's underlying text.
             Boole EditingEnabled;
 
-            /// @copydoc QuadRenderable::CreateLayoutStrat()
-            virtual void CreateLayoutStrat();
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode& Code)
             virtual Boole HandleInputImpl(const Input::MetaCode& Code);
             /// @internal

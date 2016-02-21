@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -47,18 +47,16 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        /// @enum ActivationState
         /// @brief This is used by physics proxies to monitor and set their physics activation.
         enum ActivationState
         {
-            AS_Active = 1,
-            AS_Island_Sleeping = 2,
-            AS_Wants_Deactivation = 3,
-            AS_DisableDeactivation = 4,
-            AS_DisableSimulation = 5
+            AS_Active               = 1,
+            AS_Island_Sleeping      = 2,
+            AS_Wants_Deactivation   = 3,
+            AS_DisableDeactivation  = 4,
+            AS_DisableSimulation    = 5
         };
 
-        /// @enum AnisotropicFrictionFlags
         /// @brief This is used by physics proxies to help determine the behavior of it's anistropic friction behavior.
         /// @details See the documentation on the PhysicsProxy class for more details.
         enum AnisotropicFrictionFlags
@@ -68,29 +66,27 @@ namespace Mezzanine
             AFF_AnisotropicRollingFriction   = 2
         };
 
-        /// @enum CollisionFilter
         /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.
         /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with
         /// any of the existing groups defined here.  Simply pass in the Whole where appropriate.
         enum CollisionFilter
         {
             // Standard base filters
-            CF_GenericFilter = 1,
-            CF_StaticFilter = 2,
-            CF_KinematicFilter = 4,
-            CF_DebrisFilter = 8,
-            CF_SensorFilter = 16,
-            CF_CharacterFilter = 32,
-            CF_AllFilter = -1,
+            CF_GenericFilter    = 1,
+            CF_StaticFilter     = 2,
+            CF_KinematicFilter  = 4,
+            CF_DebrisFilter     = 8,
+            CF_SensorFilter     = 16,
+            CF_CharacterFilter  = 32,
+            CF_AllFilter        = -1,
 
             // Non-Standard Filters
-            CF_UserFilter1 = 64,
-            CF_UserFilter2 = 128,
-            CF_UserFilter3 = 256,
-            CF_UserFilter4 = 512
+            CF_UserFilter1      = 64,
+            CF_UserFilter2      = 128,
+            CF_UserFilter3      = 256,
+            CF_UserFilter4      = 512
         };
 
-        /// @enum CollisionFlags
         /// @brief This is used by physics proxies to help determine collision response behavior of a proxy.
         enum CollisionFlags
         {
@@ -103,7 +99,6 @@ namespace Mezzanine
             CF_DisableSPUCollisionProcessing  = 64
         };
 
-        /// @enum CollisionState
         /// @brief Enum specifying the state change occuring in the collision.
         enum CollisionState
         {
@@ -112,7 +107,6 @@ namespace Mezzanine
             Col_End
         };
 
-        /// @enum CollisionType
         /// @brief Enum specifying what kind of collision this class is storing.
         enum CollisionType
         {
@@ -127,38 +121,36 @@ namespace Mezzanine
             Col_Debris_Terrain          ///< Specifies a collision between a Debris and some Terrain.
         };
 
-        /// @enum DebugDrawMode
         /// @brief This is a collection of flags designed to describe what to draw when the Debug Drawer is enabled.
         /// @details Most of these options work, with the exception of text-based modes and contact point modes.
         enum DebugDrawMode
         {
-            DDM_NoDebug = 0,
-            DDM_DrawWireframe = 1,
-            DDM_DrawAABB = 2,
-            DDM_DrawFeaturesText = 4,
-            DDM_DrawContactPoints = 8,
-            DDM_NoDeactivation = 16,
-            DDM_NoHelpText = 32,
-            DDM_DrawText = 64,
-            DDM_ProfileTimings = 128,
-            DDM_EnableSatComparison = 256,
-            DDM_DisableBulletLCP = 512,
-            DDM_EnableCCD = 1024,
-            DDM_DrawConstraints = 2048,
-            DDM_DrawConstraintLimits = 4096,
-            DDM_FastWireframe = 8192,
-            DDM_DrawNormals = 16384,
+            DDM_NoDebug               = 0,
+            DDM_DrawWireframe         = 1,
+            DDM_DrawAABB              = 2,
+            DDM_DrawFeaturesText      = 4,
+            DDM_DrawContactPoints     = 8,
+            DDM_NoDeactivation        = 16,
+            DDM_NoHelpText            = 32,
+            DDM_DrawText              = 64,
+            DDM_ProfileTimings        = 128,
+            DDM_EnableSatComparison   = 256,
+            DDM_DisableBulletLCP      = 512,
+            DDM_EnableCCD             = 1024,
+            DDM_DrawConstraints       = 2048,
+            DDM_DrawConstraintLimits  = 4096,
+            DDM_FastWireframe         = 8192,
+            DDM_DrawNormals           = 16384,
 
-            DDM_All = -1
+            DDM_All                   = -1
         };
 
-        /// @enum ProxyType
         /// @brief This is used by the PhysicsProxy child classes to describe which proxy type they are.
         enum ProxyType
         {
-            PT_Rigid = 1,
-            PT_Soft = 2,
-            PT_Ghost = 3
+            PT_Rigid  = 1,
+            PT_Soft   = 2,
+            PT_Ghost  = 3
         };
     }//physics
 }//Mezzanine

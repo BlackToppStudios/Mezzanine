@@ -1,16 +1,16 @@
 <map id="Mezzanine::Threading::FrameScheduler" name="Mezzanine::Threading::FrameScheduler">
-<area shape="rect" id="node3" href="$classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" title="A thread specific collection of double&#45;buffered and algorithm specific resources. ..." alt="" coords="933,10,1096,51"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead. " alt="" coords="1302,75,1453,117"/>
-<area shape="rect" id="node5" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="265,237,439,278"/>
-<area shape="rect" id="node12" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="607,335,758,377"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="6,295,157,337"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1Threading_1_1WorkUnitKey.html" title="Stores data about a single work unit so that it can easily be sorted. " alt="" coords="277,419,427,461"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1Threading_1_1Thread.html" title="A small wrapper around the system thread. " alt="" coords="939,270,1090,311"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1Threading_1_1WorkSorter.html" title="Sorts all of the WorkUnits in the FrameScheduler. " alt="" coords="939,401,1090,442"/>
-<area shape="rect" id="node18" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads. " alt="" coords="939,335,1090,377"/>
-<area shape="rect" id="node16" href="$classMezzanine_1_1Threading_1_1ThreadId.html" title="The thread ID is a unique identifier for each thread. " alt="" coords="1302,454,1453,495"/>
-<area shape="rect" id="node20" title="STL class. " alt="" coords="1330,572,1425,599"/>
-<area shape="rect" id="node21" title="STL class. " alt="" coords="948,571,1081,613"/>
-<area shape="rect" id="node22" title="STL class. " alt="" coords="605,579,760,605"/>
-<area shape="rect" id="node23" title="STL class. " alt="" coords="302,579,402,605"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" title="A thread specific collection of double&#45;buffered and algorithm specific resources. ..." alt="" coords="927,5,1089,47"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead. " alt="" coords="1294,71,1445,112"/>
+<area shape="rect" id="node5" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="261,232,436,273"/>
+<area shape="rect" id="node12" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="602,331,753,372"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="5,291,156,332"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Threading_1_1WorkUnitKey.html" title="Stores data about a single work unit so that it can easily be sorted. " alt="" coords="273,415,424,456"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Threading_1_1Thread.html" title="A small wrapper around the system thread. " alt="" coords="933,265,1083,307"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Threading_1_1WorkSorter.html" title="Sorts all of the WorkUnits in the FrameScheduler. " alt="" coords="933,396,1083,437"/>
+<area shape="rect" id="node18" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads. " alt="" coords="933,331,1083,372"/>
+<area shape="rect" id="node16" href="$classMezzanine_1_1Threading_1_1ThreadId.html" title="The thread ID is a unique identifier for each thread. " alt="" coords="1294,449,1445,491"/>
+<area shape="rect" id="node20" title="STL class. " alt="" coords="1322,567,1417,594"/>
+<area shape="rect" id="node21" title="STL class. " alt="" coords="941,567,1075,608"/>
+<area shape="rect" id="node22" title="STL class. " alt="" coords="600,574,755,601"/>
+<area shape="rect" id="node23" title="STL class. " alt="" coords="299,574,399,601"/>
 </map>

@@ -207,7 +207,7 @@ struct sigaction {
     __p_sig_fn_t sa_sigaction;
 };
 
-int sigaction(int sig, struct sigaction *in, struct sigaction *out);//*/
+int sigaction(int sig, struct sigaction *in, struct sigaction *out);// */
 
 /* Sockets */
 
@@ -311,7 +311,7 @@ int aeWinListen(SOCKET sock, int backlog);
 int aeWinAccept(int fd, struct sockaddr *sa, socklen_t *len);
 
 int strerror_r(int err, char* buf, size_t buflen);
-char *wsa_strerror(int err);//*/
+char *wsa_strerror(int err);// */
 
 #endif /* WIN32 */
 #endif /* WIN32FIXES_H */

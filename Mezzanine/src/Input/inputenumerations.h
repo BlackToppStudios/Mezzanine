@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,7 +51,6 @@ namespace Mezzanine
 {
     namespace Input
     {
-        /// @enum InputCode
         /// @brief The InputCode enum defines all the posible types of inputs.
         /// @details It has one entry for each key on a most keyboards. Then it
         /// has an entry for most mouse and joystick input methods.
@@ -531,7 +530,6 @@ namespace Mezzanine
             INPUTEVENT_LAST         = 1024   ///< The last Input Code, all event codes will be less than this.
         };//InputCode
 
-        /// @enum InputDevice
         /// @brief An enum listing containing the different kind of input devices, useful for some query functions.
         enum InputDevice
         {
@@ -542,7 +540,6 @@ namespace Mezzanine
             DEVICE_CONTROLLER = 4
         };//InputDevice
 
-        /// @enum ButtonState
         /// @brief An Optional listing of value that can be used in a metacode to represent the information of a button press
         /// @details This is optional set of values that can make working with buttons easier. The values the engine pass
         /// via the the event manager will all use these whereever appropriate.
@@ -554,7 +551,6 @@ namespace Mezzanine
             BUTTON_DOWN = 8         /**< This is used the entire time a key is down.  */
         };//ButtonState
 
-        /// @enum DirectionalMotionState
         /// @brief An Optional listing of values that can be used in a metacode Indicate spin, digital or binary travel in a directionl
         /// @details This is optional set of values that can make working with the MouseWheel and other items that can be moved along 1 axis in two dirctions easier. The values the engine pass
         /// via the the event manager will all use these whereever appropriate.
@@ -565,7 +561,6 @@ namespace Mezzanine
             DIRECTIONALMOTION_DOWNRIGHT = -1       /**< Optionally Used when the MouseWheel/Joyhat is spun Down/Right as a Meta Code */
         };//DirectionalMotionState
 
-        /// @enum HatState
         /// @brief An optional listing of the possible states a hat on a controller can take.
         /// @details This is optional set of values that can make working with controller hats easier. The values the engine pass
         /// via the the event manager will all use these whereever appropriate.

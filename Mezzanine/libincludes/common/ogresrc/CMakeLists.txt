@@ -3,82 +3,45 @@ project (Ogre)
 message ( "${PROJECT_NAME} - Begin" )
 
 #Choose the destination directory
-#set ( Ogre_BINARY_DIR "${ProjectBinaryDir}/ogre/" )
-#set ( OGREDEPS_BINARY_DIR "${Ogre_BINARY_DIR}deps" )
-set ( Ogre_BINARY_DIR ${LIBRARY_OUTPUT_PATH} )
-set ( OgreDeps_BINARY_DIR ${LIBRARY_OUTPUT_PATH} )
+set( Ogre_BINARY_DIR ${LIBRARY_OUTPUT_PATH} )
+#set( OGRE_BINARY_DIR ${LIBRARY_OUTPUT_PATH} )
+set( OgreDeps_BINARY_DIR ${LIBRARY_OUTPUT_PATH} )
+#set( OGREDEPS_BINARY_DIR ${LIBRARY_OUTPUT_PATH} )
 message ( STATUS "Putting Ogre binaries in: ${Ogre_BINARY_DIR}" )
 message ( STATUS "Putting Ogre Dependancy binaries in: ${OgreDeps_BINARY_DIR}" )
 
 # Long list of changes necessary to get ogre properly merged with our project.
 # One quick thing to note is that all I applied these changes from top to bottom noting their line number as I went.  If you try to use the mentioned
-# line numbers in an unaltered version of the file you will have a bad time.  I try to explain the area of the file by their settings where I could to allieviate this.
+# line numbers in an unaltered version of the file you will have a bad time.  I try to explain the area of the file by their settings where I could to alleviate this.
 #
-# Before you get started it's good to know that the Dependancies folder referenced here has to be created and placed manually, and the contents of the dependancy source 
-# repo placed in it minus the hg config files.
+# Before you get started it's good to know that the Dependencies folder referenced here has to be created and placed manually, and the contents of the dependency source 
+# repo placed in it minus the hg config files.  A dependencies folder with most/all of the necessary changes should already exist in the repo and be reusable from one 
+# version of Ogre to the next for the foreseeable future.
 #
-# The root /CMakeLists.txt the version number should be manually entered around line 251
+## Ogre Core Setup
 #
-# In ogresvnsrc\CMake\Utils\OgreConfigTargets.cmake:
-# Have to change the output dirs listed near the top to instead use the binary dir defined above.
-# Also have to update the additional paths listed below the output dirs to be empty, since we want to put it all in one place regardless of build.
-# There is one exception to this, the variable "OGRE_PLUGIN_PATH" should be left as "/" or ".", but never as "".  Possibly others but in my tests
-# it did not complain.
+# In ogresvnsrc/OgreMain/Src/OgreZip.cpp:
+# At around line 37 change the include '#include <zzip/zzip.h>' to '#include <zzip.h>'
 #
-# --In ogresvnsrc\CMake\PrepareThreadingOptions.cmake:
-# --Only thing here is have to comment out line 19, where it sets boost as the threading option if/when it finds boost.
+# On windows, you need to change line 260 in ogresvnsrc/Rendersystems/GL/src/Win32/OgreWin32Window.cpp from
+# + ::Ogre::StringConverter::toString(le)
+# to this,
+# + ::Ogre::StringConverter::toString(static_cast<unsigned int>(le))
+# 
+# OpenGL and OpenGL3Plus rendersystems don't seem to want to play nice.  It's entirely possible that other similar rendersystems have similar behavior.  The issue with the OGL
+# rendersystems is that in the include paths they have an identically named file, one that includes OGL2 headers, and another includes OGL3 headers.  These headers are entirely 
+# incompatible and if both are included in the same file/include chain then a compilation error will result.  Exactly that happens in graphicsmanager.cpp.  Even if they aren't,
+# there isn't much guarentee that the wrong "OgreGLSLExtSupport.h" file will be included.  The directory structure for the GL and GL3Plus rendersystems differs greatly though
+# and it seems like the cleanest fix is to use this and alter the include entry in the files to ensure it gets the proper file.
+# So a find and replace should be performed where "#include "OgreGLSL" is replaced with "#include "GLSL/OgreGLSL" for all files stored under the "ogresvnsrc\RenderSystems\GL3Plus"
+# directory.
+# 
+## Ogre Dependencies Setup
 #
-# In ogresvnsrc\CMake\Dependencies.cmake:
-# Need to comment out lines 56 to 72 that try to find the 4 core ogre dependencies: Zlip, Zziplib, FreeImage, and Freetype.
-# Next, comment out lines 177 and 178 where it tries to find OIS.
-#
-# --In ogresvnsrc\CMake\InstallDependencies.cmake:
-# --On line 23, mark the options OGRE_INSTALL_DEPENDENCIES and OGRE_COPY_DEPENDENCIES as advanced.
-#
-# In ogresvnsrc\cmakelists.txt:
-# Set the commonbuild flags and force the GL rendersystem to be compiled aroun line 46.
-# At around line 102, comment out the line that adds definitions.
-# At Around line 130, comment out any lines that define a CPU architecture (should only be there for MinGW).
-# At around line 202 change the archive, output and library directory to be the same output directory as before.
-# -- Around line 324 disable building of demos and RPATH usage. comment out the 4 lines around line 281 that say to build the samples, tools, xsi export, and tests.  These need to be set to false.
-# Lines 311 and 315 were changed from "cmake_dependant_option" to "option", and removed the extra conditions to change the default.  
-# --Have to comment out the line under "# Dependancies" at around line 180 that includes the Dependancies package. this entry is responsible for
-# -- finding OpenGL, it a proxy for it must exist. I left this one and remarked out the one on line 421 
-#-- Also have to change the output directories just below the dependancies line to use the binary dir defined above.
-# remark out the compilation of samples on 403 and 420
-# --Next, have to mark all the cmake options that are listed starting around line 256 as advanced until the allocator options at around line 314.
-# --Next, the install options have to all be set to false, and disabled.  These options start around line 351.
-# --Next, mark the Unity options at around line 368 as advanced.
-# --Next, where the sub-directories are being added for the actual libs, add the subdirectory for Dependancies above OgreMain.  Around line 421. This
-# one was remarked out in favor of the original on line 180ish
-# Next, comment out the lines where the additional sub-directories are being added for the Samples and Media.  Starting around line 436.
-# --set(OGRE_BUILD_RENDERSYSTEM_GL TRUE) was added near the add_definitions that we already added neat the beggining of the file.
-# --OGRE_DEPENDENCIES_DIR was marked as advanced
-# --Lastly, at the end of the file add "mark_as_advanced(Boost_LIB_DIAGNOSTIC_DEFINITIONS)"
-# --near line 169 a check for big endianess is performed, but isn't required on 64bit systems.
-#
-# In ogresvnsrc\Dependencies\CMakeLists.txt:
-# --Add a section to define the output directory similar to the one at the top of this file.  Put it in the same dir listed above plus "deps".
-# -- I commented out the section mentioned above and instead moved it to this file, so that it could be used in the other dependencies setup.
-#
-# --In ogresvnsrc\Dependancies\cmake\FindDirectX.cmake:
-# --At line 79 they mark a bunch of options and paths as advanced, but missed the variable "DirectX_DINPUT8_LIBRARY".  Add it to the list of things being marked as advanced.
-#
-# In ogresvnsrc\Dependencies\src\CMakeLists.txt:
-# At the top of the file all the options to build the various dependancies must be set to true with the exception of OIS, which must be set to false.
-# Next, "OGREDEPS_LIB_DIRECTORY" needs to be set to the OGREDEPS_BINARY_DIR.
-# Next, Comment out the lines starting around line 22 that refer to release and debug paths, and runtime output.  Replace the runtime output with the output directory set in the above file.
-#  Also replace the release and debug paths with just a "/"
-# Next, Add two lines inside the "install_dep" function, near the top.  One for the Archive and another for the Library output.  Set them both to OGREDEPS_BINARY_DIR.
-#
-# --In ogresvnsrc\Dependencies\src\Cg\CMakeLists.txt:
-# --At the top of the file, around line 4 just after the option "Cg_INCLUDE_DIR", need to add a line marking it as advanced.
-# --Also, at line 43, you must mark the options "Cg_LIBRARY_REL" and "Cg_LIBRARY_DBG" as advanced.
-#
-# in ogresvnsrc/Dependencies/src/Cg/CMakeLists.txt
-# surround the bulk of the file, after the "project(Cg)" if(MINGW OR MSVC) and endif(MINGW OR MSVC)
-#
-# In ogresvnsrc\Dependencies\src\zziplib\CMakeLists.txt:
+# The "ios" and "Cg" folders of the dependencies should be deleted and their entries to their directory 
+#   in the cmake configuration removed, as we do not use Ogre functionality that requires them.
+# 
+# In ogresvnsrc/Dependencies/src/zziplib/CMakeLists.txt:
 # At line 38, remove the "zzip/" portion of the filename.  Also move the actual file to it's parent folder to properly account for the other change.
 # The above change also necessitates removal of the "zzip/" portion of the includes in each file of the zziplib that needs it.  The files that need it are below:
 # 1. lib.h
@@ -90,16 +53,6 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OgreDeps_BINARY_DIR}" )
 # --ogresvnsrc/Dependencies/src/FreeImage/Source/LibMNG/libmng_conf.h
 # --remark out line 80 to disable the definition of MNG_OPTIMIZE_CHUNKREADER to allow compilation
 #
-# In ogresvnsrc\OgreMain\CMakeLists.txt:
-# At around line 707, add include directories for all the dependancies of OgreMain.  Separately in an "if" statement put the Cg include directory.
-# Also, just after the include directories, add a line to declare the link directory.
-# After the ogremain target is created at around line 733, add a line to define the dependancies of OgreMain, with an "if" statement to exclude Cg on iOS.
-# Next, in the same if statement above, add lines for declaring the link libraries for the ogre dependancies.
-#
-# In ogresvnsrc\OgreMain\Src\OgreZip.cpp:
-# At around line 37 change the include '#include <zzip/zzip.h>' to '#include <zzip.h>'
-
-
 # To get -std=c++11
 # in dcraw_common.cpp 
 # around 9125 this: tiff_set (&th->ntag, 270, , 512, TOFF(th->t_desc));
@@ -109,7 +62,155 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OgreDeps_BINARY_DIR}" )
 # should change to: strcpy (th->soft, "dcraw v9.12");
 
 
+# Ogre Core
+set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
+set(OGRE_SET_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_CONFIG_THREAD_PROVIDER "" CACHE STRING "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_BUILD_PLUGIN_CG FALSE CACHE BOOL "Forcing Ogre to disable CG, because it is disgusting." FORCE)
+set(OGRE_CONFIG_ALLOCATOR 1 CACHE STRING "Forcing static build for Mezzanine build." FORCE)
+
+# Ogre Components
+#set(OGRE_BUILD_COMPONENT_HLMS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+#set(OGRE_BUILD_COMPONENT_MESHLODGENERATOR FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_BUILD_COMPONENT_OVERLAY FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_BUILD_COMPONENT_PAGING FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_BUILD_COMPONENT_RTSHADERSYSTEM FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_BUILD_COMPONENT_TERRAIN FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_BUILD_COMPONENT_VOLUME FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+
+# Ogre Dependencies
+set(OGREDEPS_BUILD_CG FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGREDEPS_BUILD_FREEIMAGE TRUE CACHE BOOL "Enabling extended image format support for Ogre." FORCE)
+set(OGREDEPS_BUILD_FREETYPE TRUE CACHE BOOL "Enabling vector text support for Ogre." FORCE)
+set(OGREDEPS_BUILD_OIS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGREDEPS_BUILD_ZLIB TRUE CACHE BOOL "Enabling enhanced resource reading for Ogre." FORCE)
+set(OGREDEPS_BUILD_ZZIPLIB TRUE CACHE BOOL "Enabling enhanced resource reading for Ogre." FORCE)
+set(OGREDEPS_INSTALL_DEV FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+
+set(FREETYPE_FT2BUILD_INCLUDE_DIR "" CACHE PATH "Forcing empty include path to avoid CMake errors." FORCE)
+set(FREETYPE_INCLUDE_DIR "" CACHE PATH "Forcing empty include path to avoid CMake errors." FORCE)
+
+# Ogre Extras
+set(OGRE_INSTALL_DOCS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_INSTALL_SAMPLES FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_INSTALL_TOOLS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_INSTALL_VSPROPS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+
+# Ogre Paths
+set(OGREDEPS_LIB_DIRECTORY ${OgreDeps_BINARY_DIR} CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_ARCHIVE_OUTPUT ${Ogre_BINARY_DIR} CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_LIBRARY_OUTPUT ${Ogre_BINARY_DIR} CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_RUNTIME_OUTPUT ${Ogre_BINARY_DIR} CACHE STRING "Forcing output directory to unified folder." FORCE)
+
+set(OGRE_RELEASE_PATH "" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_RELWDBG_PATH "" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_MINSIZE_PATH "" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_DEBUG_PATH "" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_LIB_RELEASE_PATH "" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_LIB_RELWDBG_PATH "" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_LIB_MINSIZE_PATH "" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_LIB_DEBUG_PATH "" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_PLUGIN_PATH "/" CACHE STRING "Forcing output directory to unified folder." FORCE)
+set(OGRE_SAMPLE_PATH "/" CACHE STRING "Forcing output directory to unified folder." FORCE)
+
 add_subdirectory ( ogresvnsrc )
 
-message ("${PROJECT_NAME} - End")
+mark_as_advanced( FORCE
+    # Ogre indirect
+    Boost_DIR 
+    Boost_LIB_DIAGNOSTIC_DEFINITIONS 
+    OGRE_SET_USE_BOOST 
+    BOOST_THREAD_LIBRARY
+    DirectX_DINPUT8_LIBRARY
+    Cg_LIBRARY_REL 
+    Cg_LIBRARY_DBG 
+    Cg_INCLUDE_DIR
+    
+    # Ogre Core
+    OGRE_STATIC
+    OGRE_ASSERT_MODE
+    OGRE_BUILD_RENDERSYSTEM_D3D9
+    OGRE_BUILD_RENDERSYSTEM_D3D11
+    OGRE_BUILD_RENDERSYSTEM_GL
+    OGRE_BUILD_RENDERSYSTEM_GL3PLUS
+    OGRE_BUILD_RENDERSYSTEM_GLES
+    OGRE_BUILD_RENDERSYSTEM_GLES2
+    OGRE_BUILD_PLATFORM_APPLE_IOS
+    OGRE_BUILD_PLATFORM_NACL
+    OGRE_BUILD_PLUGIN_BSP
+    OGRE_BUILD_PLUGIN_OCTREE
+    OGRE_BUILD_PLUGIN_PFX
+    OGRE_BUILD_PLUGIN_PCZ
+    OGRE_BUILD_PLUGIN_CG
+    
+    OGRE_CONFIG_DOUBLE
+    OGRE_CONFIG_THREADS 
+    OGRE_CONFIG_THREAD_PROVIDER
+    OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR 
+    OGRE_CONFIG_STRING_USE_CUSTOM_ALLOCATOR 
+    OGRE_CONFIG_MEMTRACK_DEBUG 
+    OGRE_CONFIG_MEMTRACK_RELEASE
+    OGRE_CONFIG_ENABLE_QUAD_BUFFER_STEREO
+    
+    OGRE_UNITY_BUILD 
+    OGRE_UNITY_FILES_PER_UNIT
+    
+    # Ogre Components
+    OGRE_BUILD_COMPONENT_HLMS
+    OGRE_BUILD_COMPONENT_MESHLODGENERATOR
+    OGRE_BUILD_COMPONENT_OVERLAY
+    OGRE_BUILD_COMPONENT_PAGING
+    OGRE_BUILD_COMPONENT_PROPERTY
+    OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
+    OGRE_BUILD_COMPONENT_TERRAIN
+    OGRE_BUILD_COMPONENT_VOLUME
+    OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS
+    OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS
+    
+    # Ogre Dependencies
+    OGREDEPS_BUILD_CG
+    OGREDEPS_BUILD_FREEIMAGE
+    OGREDEPS_BUILD_FREETYPE
+    OGREDEPS_BUILD_OIS
+    OGREDEPS_BUILD_ZLIB
+    OGREDEPS_BUILD_ZZIPLIB
+    OGREDEPS_INSTALL_DEV
+    OGRE_COPY_DEPENDENCIES 
+    OGRE_INSTALL_DEPENDENCIES
+    OGRE_DEPENDENCIES_DIR
+    
+    # Ogre Extras
+    OGRE_BUILD_SAMPLES
+    OGRE_BUILD_TOOLS
+    OGRE_BUILD_XSIEXPORTER
+    OGRE_BUILD_TESTS
+    OGRE_INSTALL_DOCS
+    OGRE_INSTALL_SAMPLES
+    OGRE_INSTALL_TOOLS
+    OGRE_INSTALL_VSPROPS
+    
+    # Ogre Paths
+    Ogre_BINARY_DIR
+    OGRE_BINARY_DIR
+    OgreDeps_BINARY_DIR
+    OGREDEPS_BINARY_DIR
+    
+    OGRE_ARCHIVE_OUTPUT
+    OGRE_LIBRARY_OUTPUT
+    OGRE_RUNTIME_OUTPUT
+    
+    OGRE_RELEASE_PATH
+    OGRE_RELWDBG_PATH
+    OGRE_MINSIZE_PATH
+    OGRE_DEBUG_PATH
+    OGRE_LIB_RELEASE_PATH
+    OGRE_LIB_RELWDBG_PATH
+    OGRE_LIB_MINSIZE_PATH
+    OGRE_LIB_DEBUG_PATH
+    OGRE_PLUGIN_PATH
+    OGRE_SAMPLE_PATH
+)
 
+message ("${PROJECT_NAME} - End")

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -58,8 +58,12 @@
     #include "Audio/audio.h"
     #include "Threading/dagframescheduler.h"
     #include "Graphics/graphics.h"
+    #include "Graphics/Procedural/procedural.h"
     #include "Input/input.h"
     #include "Physics/physics.h"
+    #include "MathTools/mathtools.h"
+    #include "Network/network.h"
+    #include "Noise/noise.h"
     #include "Resource/resource.h"
     #include "Scripting/scripting.h"
     #include "XML/xml.h"
@@ -74,6 +78,7 @@
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "cameracontroller.h"
+#include "circle.h"
 #include "colourvalue.h"
 #include "countedptr.h"
 #include "crossplatform.h"
@@ -81,85 +86,66 @@
 #include "datatypes.h"
 #include "debris.h"
 #include "debrismanager.h"
-
-#ifndef SWIG
-#include "entresol.h"
-#endif
-
 #include "enumerations.h"
 #include "event.h"
 #include "eventarguments.h"
-
-
 #include "eventbase.h"
 #include "eventgamewindow.h"
 #include "eventmanager.h"
 #include "eventpublisher.h"
 #include "eventquit.h"
-
-
 #include "eventsubscriber.h"
 #include "eventsubscriberslot.h"
-
-#ifndef SWIG
-#include "eventuserinput.h"
-#endif
-
 #include "exception.h"
+#include "managerbase.h"
+#include "managerfactory.h"
+#include "plane.h"
+#include "quaternion.h"
+#include "ray.h"
+#include "rayquerytool.h"
+#include "rect.h"
+#include "sphere.h"
+#include "stringtool.h"
+#include "timer.h"
+#include "transform.h"
+#include "vector2.h"
+#include "vector3.h"
+#include "world.h"
+#include "worldmanager.h"
+#include "worldmanagerfactory.h"
+#include "worldobject.h"
+#include "worldproxy.h"
 
 #ifndef SWIG
+#include "entresol.h"
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
+#include "eventuserinput.h"
 #include "fieldofforce.h"
 #include "gravityfield.h"
 #include "gravitywell.h"
 #include "hashedstring.h"
 #include "interpolator.h"
+#include "interval.h"
 #include "linegroup.h"
+#include "linesegment.h"
 #include "macros.h"
 #include "managedptr.h"
-#endif
-
-#include "managerbase.h"
-#include "managerfactory.h"
-#include "mathtool.h"
-
-#ifndef SWIG
 #include "meshterrain.h"
-#include "network.h"
-#include "networkmanager.h"
 #include "objectsettings.h"
-#endif
-
-#include "plane.h"
-#include "quaternion.h"
-#include "ray.h"
-#include "rayquerytool.h"
-
-#ifndef SWIG
 #include "rigiddebris.h"
 #include "serialization.h"
 #include "singleton.h"
 #include "softdebris.h"
-#endif
-
-#include "sphere.h"
-#include "stringtool.h"
-
-#ifndef SWIG
+#include "streamlogging.h"
 #include "track.h"
 #include "trackiterator.h"
+#include "triangle.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"
-#endif // \no SWIG
-
-#include "timer.h"
-#include "transform.h"
-#include "vector2.h"
-#include "vector3.h"
-
-#include "worldobject.h"
-
-#ifndef SWIG
+#include "uidgenerator.h"
 #include "worldtrigger.h"
-#endif // \no SWIG
+#include "version.h"
+#endif // no SWIG
 
-#endif // \ _mezzanine_h
+#endif // _mezzanine_h

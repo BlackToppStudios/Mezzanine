@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -52,6 +52,7 @@
 #include "Physics/softproxy.h"
 
 #include "entresol.h"
+#include "world.h"
 #include "exception.h"
 #include "stringtool.h"
 #include "serialization.h"
@@ -84,13 +85,13 @@ namespace Mezzanine
 
     void SoftDebris::CreateSoftDebris(const Real Mass)
     {
-        Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
             this->EntProx = SceneMan->CreateEntityProxy(false);
             this->EntProx->_Bind( this );
         }
 
-        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
             this->SofProx = PhysMan->CreateSoftProxy(Mass);
             this->SofProx->_Bind( this );
@@ -101,7 +102,7 @@ namespace Mezzanine
     {
         this->RemoveFromWorld();
         if( this->EntProx ) {
-            Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+            Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
             if( SceneMan ) {
                 SceneMan->DestroyProxy( this->EntProx );
                 this->EntProx = NULL;
@@ -109,7 +110,7 @@ namespace Mezzanine
         }
 
         if( this->SofProx ) {
-            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
             if( PhysMan ) {
                 PhysMan->DestroyProxy( this->SofProx );
                 this->SofProx = NULL;
@@ -330,7 +331,7 @@ namespace Mezzanine
 
                 XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
                 if( !EntProxNode.Empty() ) {
-                    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
                     if( SceneMan ) {
                         this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
                         this->EntProx->_Bind( this );
@@ -339,17 +340,17 @@ namespace Mezzanine
 
                 XML::Node SofProxNode = ProxiesNode.GetChild("SofProx").GetFirstChild();
                 if( !SofProxNode.Empty() ) {
-                    Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+                    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
                     if( PhysMan ) {
                         this->SofProx = PhysMan->CreateSoftProxy(SofProxNode);
                         this->SofProx->_Bind( this );
                     }
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (SoftDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (SoftDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,SoftDebris::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,SoftDebris::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
         }
     }
 

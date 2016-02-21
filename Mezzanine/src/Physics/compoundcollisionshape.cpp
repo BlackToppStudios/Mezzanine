@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -150,27 +150,27 @@ namespace Mezzanine
 
         void CompoundCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node CollisionNode = CurrentRoot.AppendChild(this->CompoundCollisionShape::SerializableName());
-            if (!CollisionNode) { SerializeError("create CollisionNode",this->CompoundCollisionShape::SerializableName());}
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->CompoundCollisionShape::GetSerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->CompoundCollisionShape::GetSerializableName());}
 
             XML::Attribute Version = CollisionNode.AppendAttribute("Version");
             if (Version)
                 { Version.SetValue(1); }
             else
-                { SerializeError("Create Version Attribute", SerializableName()); }
+                { SerializeError("Create Version Attribute", GetSerializableName()); }
 
             this->CollisionShape::ProtoSerialize(CollisionNode);
 
             XML::Node ChildShapesNode = CollisionNode.AppendChild("Shapes");
-            if (!ChildShapesNode) { SerializeError("create ChildShapesNode",this->CompoundCollisionShape::SerializableName());}
+            if (!ChildShapesNode) { SerializeError("create ChildShapesNode",this->CompoundCollisionShape::GetSerializableName());}
             for( Whole X = 0 ; X < ChildShapes.size() ; X++ )
             {
                 //if() //the shape is in the manager
                 //{
                     XML::Node OneChildShapeNode = ChildShapesNode.AppendChild("ChildShapeFromManager");
-                    if(!OneChildShapeNode) { SerializeError("create ChildShapeFromManager Node",this->CompoundCollisionShape::SerializableName());}
+                    if(!OneChildShapeNode) { SerializeError("create ChildShapeFromManager Node",this->CompoundCollisionShape::GetSerializableName());}
                     XML::Attribute OneName = OneChildShapeNode.AppendAttribute("Name");
-                    if(!OneName) { SerializeError("create Name Attribute on OneChildShapeNode",this->CompoundCollisionShape::SerializableName());}
+                    if(!OneName) { SerializeError("create Name Attribute on OneChildShapeNode",this->CompoundCollisionShape::GetSerializableName());}
                     OneName.SetValue(ChildShapes[X]->GetName());
                 //}else{
                 //    ChildShapes[X].ProtoSerialize(ChildShapesNode);
@@ -181,18 +181,18 @@ namespace Mezzanine
 
         void CompoundCollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->CompoundCollisionShape::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->CompoundCollisionShape::GetSerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
                     XML::Node CollisionNode = OneNode.GetChild("CollisionShape");
                     if(!CollisionNode)
-                        { DeSerializeError("locate CollisionShape node",SerializableName()); }
+                        { DeSerializeError("locate CollisionShape node",GetSerializableName()); }
                     this->CollisionShape::ProtoDeSerialize(CollisionNode);
 
                     ChildShapes.clear(); // this will leak if any childshapes are not in the CollisionManager.
                     XML::Node ChildShapesNode = OneNode.GetChild("Shapes");
-                    if(!ChildShapesNode) { DeSerializeError("Find Shapes Node",this->CompoundCollisionShape::SerializableName());}
+                    if(!ChildShapesNode) { DeSerializeError("Find Shapes Node",this->CompoundCollisionShape::GetSerializableName());}
 
                     XML::Node ChildNode = ChildShapesNode.GetFirstChild();
                     while(ChildNode)
@@ -200,9 +200,9 @@ namespace Mezzanine
                         if(String(ChildNode.Name())=="ChildShapeFromManager")
                         {
                             XML::Attribute OneName = ChildNode.GetAttribute("Name");
-                            if(!OneName) { DeSerializeError("find Name Attribute on ChildShapeFromManager Node",this->CompoundCollisionShape::SerializableName()); }
+                            if(!OneName) { DeSerializeError("find Name Attribute on ChildShapeFromManager Node",this->CompoundCollisionShape::GetSerializableName()); }
                             CollisionShape* CurrentShape = CollisionShapeManager::GetSingletonPtr()->GetShape(OneName.AsString());
-                            if(!CurrentShape) { DeSerializeError("find correct shape in CollisionShape Manager",this->CompoundCollisionShape::SerializableName()); }
+                            if(!CurrentShape) { DeSerializeError("find correct shape in CollisionShape Manager",this->CompoundCollisionShape::GetSerializableName()); }
                             ChildShapes.push_back(CurrentShape);
                         }else{
                             CollisionShape* CurrentShape = CreateShape(ChildNode);
@@ -212,14 +212,14 @@ namespace Mezzanine
                     }
 
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    DeSerializeError("find usable serialization version",GetSerializableName());
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),GetSerializableName());
             }
         }
 
-        String CompoundCollisionShape::SerializableName()
+        String CompoundCollisionShape::GetSerializableName()
             {   return String("CompoundCollisionShape"); }
     }//Physics
 }//Mezzanine

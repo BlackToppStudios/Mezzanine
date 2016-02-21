@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -66,7 +66,7 @@ namespace Ogre {
     {
         destroy();
 
-        if (mContext == NULL)
+        if (mContext != NULL)
         {
             OGRE_DELETE mContext;
         }
@@ -116,19 +116,8 @@ namespace Ogre {
 	{
         if(!mWindow) return;
         
-        Real w = mContentScalingFactor, h = mContentScalingFactor;
-        
-        // Check the orientation of the view controller and adjust dimensions
-        if (UIInterfaceOrientationIsPortrait(mViewController.interfaceOrientation))
-        {
-            h *= std::max(width, height);
-            w *= std::min(width, height);
-        }
-        else
-        {
-            w *= std::max(width, height);
-            h *= std::min(width, height);
-        }
+        Real w = width * mContentScalingFactor;
+        Real h = height * mContentScalingFactor;
         
         // Check if the window size really changed
         if(mWidth == w && mHeight == h)
@@ -151,10 +140,10 @@ namespace Ogre {
 	void EAGLWindow::windowMovedOrResized()
 	{
 		CGRect frame = [mView frame];
-		mWidth = (unsigned int)frame.size.width;
-		mHeight = (unsigned int)frame.size.height;
-        mLeft = (int)frame.origin.x;
-        mTop = (int)frame.origin.y+(int)frame.size.height;
+        mWidth = (unsigned int)frame.size.width * mContentScalingFactor;
+        mHeight = (unsigned int)frame.size.height * mContentScalingFactor;
+        mLeft = (int)frame.origin.x * mContentScalingFactor;
+        mTop = ((int)frame.origin.y + (int)frame.size.height) * mContentScalingFactor;
 
         for (ViewportList::iterator it = mViewportList.begin(); it != mViewportList.end(); ++it)
         {
@@ -199,11 +188,6 @@ namespace Ogre {
                 w = StringConverter::parseUnsignedInt(val.substr(0, pos));
                 h = StringConverter::parseUnsignedInt(val.substr(pos + 1));
             }
-        }
-
-        if ((opt = mGLSupport->getConfigOptions().find("Content Scaling Factor")) != end)
-        {
-            mContentScalingFactor = StringConverter::parseReal(opt->second.currentValue);
         }
 
         // Set us up with an external window, or create our own.
@@ -269,7 +253,8 @@ namespace Ogre {
         
         OgreAssert(mContext != nil, "EAGLWindow: Failed to create OpenGL ES context");
 
-        [mWindow addSubview:mViewController.view];
+        if(!mUsingExternalViewController)
+            [mWindow addSubview:mViewController.view];
 
         mViewController.mGLSupport = mGLSupport;
 
@@ -279,7 +264,8 @@ namespace Ogre {
         if(!mUsingExternalView)
             [mView release];
 
-        [mWindow makeKeyAndVisible];
+        if(!mUsingExternalViewController)
+            [mWindow makeKeyAndVisible];
 
         mContext->createFramebuffer();
 
@@ -310,6 +296,14 @@ namespace Ogre {
         mName = name;
         mWidth = width;
         mHeight = height;
+
+        // Check the configuration. This may be overridden later by the value sent via miscParams
+        ConfigOptionMap::const_iterator configOpt;
+        ConfigOptionMap::const_iterator configEnd = mGLSupport->getConfigOptions().end();
+        if ((configOpt = mGLSupport->getConfigOptions().find("Content Scaling Factor")) != configEnd)
+        {
+            mContentScalingFactor = StringConverter::parseReal(configOpt->second.currentValue);
+        }
 
         if (miscParams)
         {
@@ -393,7 +387,7 @@ namespace Ogre {
 		mClosed = false;
     }
 
-    void EAGLWindow::swapBuffers(bool waitForVSync)
+    void EAGLWindow::swapBuffers()
     {
         if (mClosed)
         {
@@ -491,9 +485,9 @@ namespace Ogre {
         if(dst.format != PF_A8R8G8B8)
             OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, "Only PF_A8R8G8B8 is a supported format for OpenGL ES", __FUNCTION__);
 
-        if ((dst.right > mWidth) ||
-			(dst.bottom > mHeight) ||
-			(dst.front != 0) || (dst.back != 1))
+        if (dst.getWidth() > mWidth ||
+            dst.getHeight() > mHeight ||
+            dst.front != 0 || dst.back != 1)
 		{
 			OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
                         "Invalid box.",
@@ -518,7 +512,7 @@ namespace Ogre {
         // Read pixel data from the framebuffer
         glPixelStorei(GL_PACK_ALIGNMENT, 4);
         GL_CHECK_ERROR
-		glReadPixels((GLint)dst.left, (GLint)dst.top,
+        glReadPixels((GLint)0, (GLint)(mHeight - dst.getHeight()),
                      (GLsizei)dst.getWidth(), (GLsizei)dst.getHeight(),
                      GL_RGBA, GL_UNSIGNED_BYTE, data);
         GL_CHECK_ERROR
@@ -548,7 +542,7 @@ namespace Ogre {
 
         // Retrieve the UIImage from the current context
         size_t rowSpan = dst.getWidth() * PixelUtil::getNumElemBytes(dst.format);
-        memcpy(dst.data, CGBitmapContextGetData(context), rowSpan * dst.getHeight());
+        memcpy(dst.data, CGBitmapContextGetData(context), rowSpan * dst.getHeight()); // TODO: support dst.rowPitch != dst.getWidth() case
         UIGraphicsEndImageContext();
 
         // Clean up

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -66,7 +66,6 @@ namespace Mezzanine
             /// @brief Convenience typedef for objects that will be used to represent list items in this ListBox.
             typedef Widget ListItem;
 
-            /// @enum ListItemOrdering
             /// @brief This enum is used to describe how new ListItems are inserted into the list.
             enum ListItemOrdering
             {

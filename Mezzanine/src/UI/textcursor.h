@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ namespace Mezzanine
             ColourValue CursorColour;
             /*/// @internal
             /// @brief The timer used for cursor flickering.
-            Timer FlickerTimer;//*/
+            Timer FlickerTimer;// */
             /// @internal
             /// @brief The index of the character this TextCursor is to the left of.
             Integer IndexPosition;
@@ -97,7 +97,7 @@ namespace Mezzanine
             virtual void SetFlicker(Boole Flicker);
             /// @brief Gets whether or not this cursor will flicker while being rendered.
             /// @return Returns true if this cursor is currently set to flicker every half second.
-            virtual Boole GetFlicker() const;//*/
+            virtual Boole GetFlicker() const;// */
 
             /// @brief Sets the index position of this cursor.
             /// @param Index The index indicating the position of this cursor among the characters in the parent layer.

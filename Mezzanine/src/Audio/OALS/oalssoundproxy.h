@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -181,10 +181,11 @@ namespace Mezzanine
             public:
                 /// @brief Class constructor.
                 /// @param Type The type of sound to initialize.  See @ref Audio::SoundType enum for the basic values.
+                /// @param ID The unique ID of this SoundProxy.
                 /// @param Decode A pointer to the decoder assigned to this sound.
                 /// @param Contexts A container holding all the current 3D contexts.
                 /// @param Creator A pointer to the manager that created this proxy.
-                SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts, OALS::SoundScapeManager* Creator);
+                SoundProxy(const UInt16 Type, const UInt32 ID, iDecoder* Decode, const ContextContainer& Contexts, OALS::SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~SoundProxy();
 
@@ -406,7 +407,7 @@ namespace Mezzanine
                 virtual String GetDerivedSerializableName() const;
                 /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
                 /// @return A string containing the name of this class.
-                static String SerializableName();
+                static String GetSerializableName();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

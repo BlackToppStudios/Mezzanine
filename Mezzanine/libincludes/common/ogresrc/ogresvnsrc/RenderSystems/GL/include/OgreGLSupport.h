@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,9 @@ THE SOFTWARE.
 
 namespace Ogre
 {
-    
+
+class GLStateCacheManager;
+
 class _OgreGLExport GLSupport
 {
 public:
@@ -51,7 +53,7 @@ public:
     */
     virtual void addConfig() = 0;
 
-	virtual void setConfigOption(const String &name, const String &value);
+    virtual void setConfigOption(const String &name, const String &value);
 
     /**
     * Make sure all the extra options are valid
@@ -59,16 +61,26 @@ public:
     */
     virtual String validateConfig() = 0;
 
-	virtual ConfigOptionMap& getConfigOptions(void);
+    virtual ConfigOptionMap& getConfigOptions(void);
 
-	virtual RenderWindow* createWindow(bool autoCreateWindow, GLRenderSystem* renderSystem, const String& windowTitle) = 0;
+    virtual RenderWindow* createWindow(bool autoCreateWindow, GLRenderSystem* renderSystem, const String& windowTitle) = 0;
 
-	/// @copydoc RenderSystem::_createRenderWindow
-	virtual RenderWindow* newWindow(const String &name, unsigned int width, unsigned int height, 
-		bool fullScreen, const NameValuePairList *miscParams = 0) = 0;
+    /// @copydoc RenderSystem::_createRenderWindow
+    virtual RenderWindow* newWindow(const String &name, unsigned int width, unsigned int height, 
+        bool fullScreen, const NameValuePairList *miscParams = 0) = 0;
 
     virtual bool supportsPBuffers();
     virtual GLPBuffer *createPBuffer(PixelComponentType format, size_t width, size_t height);
+
+    GLStateCacheManager* getStateCacheManager() const
+    {
+        return mStateCacheManager;
+    }
+
+    void setStateCacheManager(GLStateCacheManager* stateCacheMgr)
+    {
+        mStateCacheManager = stateCacheMgr;
+    }
 
     /**
     * Start anything special
@@ -98,7 +110,7 @@ public:
     /**
     * Compare GL version numbers
     */
-    bool checkMinGLVersion(const String& v) const;
+    bool hasMinGLVersion(const String& v) const;
 
     /**
     * Check if an extension is available
@@ -114,21 +126,23 @@ public:
     */
     virtual void initialiseExtensions();
 
-	/// @copydoc RenderSystem::getDisplayMonitorCount
-	virtual unsigned int getDisplayMonitorCount() const
-	{
-		return 1;
-	}
+    /// @copydoc RenderSystem::getDisplayMonitorCount
+    virtual unsigned int getDisplayMonitorCount() const
+    {
+        return 1;
+    }
 
 protected:
-	// Stored options
+    // Stored options
     ConfigOptionMap mOptions;
 
-	// This contains the complete list of supported extensions
+    // This contains the complete list of supported extensions
     set<String>::type extensionList;
 private:
     String mVersion;
     String mVendor;
+
+    GLStateCacheManager* mStateCacheManager;
 
 }; // class GLSupport
 

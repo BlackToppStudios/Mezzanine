@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -70,18 +70,18 @@ namespace Mezzanine
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-                if(!OneName) { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
+                if(!OneName) { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
                 this->Name=OneName.AsString();
 
                 /*XML::Node HalfExtentsNode = OneNode.GetChild("HalfExtents").GetFirstChild();
-                if (!HalfExtentsNode) { DeSerializeError("find HalfExtentsNode",BoxCollisionShape::SerializableName()); }
+                if (!HalfExtentsNode) { DeSerializeError("find HalfExtentsNode",BoxCollisionShape::GetSerializableName()); }
                 SetPointers(new btBoxShape(Vector3(HalfExtentsNode).GetBulletVector3()));
                 // */
                 SetPointers(new btBoxShape(Vector3().GetBulletVector3()));
 
                 this->ProtoDeSerialize(OneNode);
             }else{
-                DeSerializeError("find usable serialization version",BoxCollisionShape::SerializableName());
+                DeSerializeError("find usable serialization version",BoxCollisionShape::GetSerializableName());
             }
         }
 
@@ -120,12 +120,12 @@ namespace Mezzanine
 
         void BoxCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            XML::Node CollisionNode = CurrentRoot.AppendChild(this->BoxCollisionShape::SerializableName());
-            if (!CollisionNode) { SerializeError("create CollisionNode",this->BoxCollisionShape::SerializableName());}
+            XML::Node CollisionNode = CurrentRoot.AppendChild(this->BoxCollisionShape::GetSerializableName());
+            if (!CollisionNode) { SerializeError("create CollisionNode",this->BoxCollisionShape::GetSerializableName());}
 
             /*
             XML::Node HalfExtentsNode = CollisionNode.AppendChild("HalfExtents");
-            if (!HalfExtentsNode) { SerializeError("create HalfExtentsNode",this->BoxCollisionShape::SerializableName());}
+            if (!HalfExtentsNode) { SerializeError("create HalfExtentsNode",this->BoxCollisionShape::GetSerializableName());}
             //this->GetHalfExtents().ProtoSerialize(HalfExtentsNode);
             this->GetCleanHalfExtents().ProtoSerialize(HalfExtentsNode);
             */
@@ -134,30 +134,30 @@ namespace Mezzanine
             if (Version)
                 { Version.SetValue(1); }
             else
-                { SerializeError("Create Version Attribute", SerializableName()); }
+                { SerializeError("Create Version Attribute", GetSerializableName()); }
 
             this->PrimitiveCollisionShape::ProtoSerialize(CollisionNode);
         }
 
         void BoxCollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==this->BoxCollisionShape::SerializableName() )
+            if ( Mezzanine::String(OneNode.Name())==this->BoxCollisionShape::GetSerializableName() )
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    XML::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::SerializableName());
+                    XML::Node CollisionNode = OneNode.GetChild(this->PrimitiveCollisionShape::GetSerializableName());
                     if(!CollisionNode)
-                        { DeSerializeError("locate PrimitiveCollisionShape node",SerializableName()); }
+                        { DeSerializeError("locate PrimitiveCollisionShape node",GetSerializableName()); }
                     this->PrimitiveCollisionShape::ProtoDeSerialize(CollisionNode);
                 }else{
-                    DeSerializeError("find usable serialization version",SerializableName());
+                    DeSerializeError("find usable serialization version",GetSerializableName());
                 }
             }else{
-                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
+                DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),GetSerializableName());
             }
         }
 
-        String BoxCollisionShape::SerializableName()
+        String BoxCollisionShape::GetSerializableName()
             {   return String("BoxCollisionShape"); }
 
     }//Physics

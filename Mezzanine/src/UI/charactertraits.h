@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,7 +50,6 @@ namespace Mezzanine
     {
         class FontData;
 
-        /// @typedef CharacterStatus
         /// @brief An enum describing the status and boolean traits a Character can have.
         enum CharacterStatus
         {
@@ -113,7 +112,6 @@ namespace Mezzanine
             static String GetSerializableName();
         };//CharacterTraits
 
-        /// @typedef CharacterTraitsPtr
         /// @brief Convenience typedef for counted pointers to CharacterTraits.
         typedef CountedPtr<CharacterTraits> CharacterTraitsPtr;
     }//UI

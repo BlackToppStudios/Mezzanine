@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -61,7 +61,7 @@ namespace Mezzanine
 
             /// @copydoc TextLayer::PopulateTextLinesImpl(const Real)
             virtual void PopulateTextLinesImpl(const Real MaxWidth);
-            /// @copydoc TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)
+            /// @copydoc TextLayer::GetIndexAtOffsetImpl(const Vector2& Offset)
             virtual CharIndexPair GetIndexAtOffsetImpl(const Vector2& Offset);
             /// @copydoc TextLayer::GetOffsetAtIndex(const Integer Index)
             virtual CharOffsetPair GetOffsetAtIndexImpl(const Integer Index);

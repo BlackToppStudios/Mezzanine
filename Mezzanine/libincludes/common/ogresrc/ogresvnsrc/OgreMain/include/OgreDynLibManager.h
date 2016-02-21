@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,54 +30,55 @@ THE SOFTWARE.
 
 #include "OgrePrerequisites.h"
 #include "OgreSingleton.h"
+#include "OgreHeaderPrefix.h"
 
 namespace Ogre {
-	/** \addtogroup Core
-	*  @{
-	*/
-	/** \addtogroup General
-	*  @{
-	*/
-	/** Manager for Dynamic-loading Libraries.
-        @remarks
-            This manager keeps a track of all the open dynamic-loading
-            libraries, opens them and returns references to already-open
-            libraries.
+    /** \addtogroup Core
+    *  @{
+    */
+    /** \addtogroup General
+    *  @{
+    */
+    /** Manager for Dynamic-loading Libraries.
+    @remarks
+        This manager keeps a track of all the open dynamic-loading
+        libraries, opens them and returns references to already-open
+        libraries.
     */
     class _OgreExport DynLibManager: public Singleton<DynLibManager>, public DynLibAlloc
     {
-	protected:
-		typedef map<String, DynLib*>::type DynLibList;
-		DynLibList mLibList;
+    protected:
+        typedef map<String, DynLib*>::type DynLibList;
+        DynLibList mLibList;
     public:
         /** Default constructor.
-            @note
-                <br>Should never be called as the singleton is automatically
-                created during the creation of the Root object.
-            @see
-                Root::Root
+        @note
+            <br>Should never be called as the singleton is automatically
+            created during the creation of the Root object.
+        @see
+            Root::Root
         */
         DynLibManager();
 
         /** Default destructor.
-            @see
-                Root::~Root
+        @see
+            Root::~Root
         */
         virtual ~DynLibManager();
 
         /** Loads the passed library.
-            @param
-                filename The name of the library. The extension can be omitted
+        @param filename
+            The name of the library. The extension can be omitted.
         */
         DynLib* load(const String& filename);
 
-		/** Unloads the passed library.
-		@param
-		filename The name of the library. The extension can be omitted
-		*/
-		void unload(DynLib* lib);
+        /** Unloads the passed library.
+        @param lib
+            The library.
+        */
+        void unload(DynLib* lib);
 
-		/** Override standard Singleton retrieval.
+        /** Override standard Singleton retrieval.
         @remarks
         Why do we do this? Well, it's because the Singleton
         implementation is in a .h file, which means it gets compiled
@@ -110,8 +111,10 @@ namespace Ogre {
         */
         static DynLibManager* getSingletonPtr(void);
     };
-	/** @} */
-	/** @} */
-}
+    /** @} */
+    /** @} */
+} // namespace Ogre
 
-#endif
+#include "OgreHeaderSuffix.h"
+
+#endif // __DynLibManager_H__

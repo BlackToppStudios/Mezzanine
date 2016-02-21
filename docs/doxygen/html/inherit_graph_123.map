@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1HashedString32.html" title="An identifier that compares as fast as an integer but has a string. " alt="" coords="5,5,192,35"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1MeshGenerator.html" title="Mezzanine::Graphics\l::Procedural::MeshGenerator\l\&lt; BooleanGenerator \&gt;" alt="" coords="5,5,195,61"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1Procedural_1_1BooleanGenerator.html" title="A generator class for performing boolean operations on two buffers. " alt="" coords="243,13,447,54"/>
 </map>

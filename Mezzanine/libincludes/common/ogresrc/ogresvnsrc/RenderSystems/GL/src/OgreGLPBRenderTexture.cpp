@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ THE SOFTWARE.
 
 namespace Ogre {
 //-----------------------------------------------------------------------------  
-    GLPBuffer::GLPBuffer(PixelComponentType format, size_t width, size_t height):
+    GLPBuffer::GLPBuffer(PixelComponentType format, uint32 width, uint32 height):
         mFormat(format),
         mWidth(width),
         mHeight(height)
@@ -47,7 +47,7 @@ namespace Ogre {
 
 //-----------------------------------------------------------------------------  
     GLPBRenderTexture::GLPBRenderTexture(GLPBRTTManager *manager, const String &name, 
-		const GLSurfaceDesc &target, bool writeGamma, uint fsaa):
+        const GLSurfaceDesc &target, bool writeGamma, uint fsaa):
         GLRenderTexture(name, target, writeGamma, fsaa),
         mManager(manager)
     {
@@ -64,9 +64,9 @@ namespace Ogre {
     {
         if( name == GLRenderTexture::CustomAttributeString_TARGET )
         {
-			GLSurfaceDesc &target = *static_cast<GLSurfaceDesc*>(pData);
-			target.buffer = static_cast<GLHardwarePixelBuffer*>(mBuffer);
-			target.zoffset = mZOffset;
+            GLSurfaceDesc &target = *static_cast<GLSurfaceDesc*>(pData);
+            target.buffer = static_cast<GLHardwarePixelBuffer*>(mBuffer);
+            target.zoffset = mZOffset;
         }
         else if (name == GLRenderTexture::CustomAttributeString_GLCONTEXT )
         {
@@ -77,10 +77,10 @@ namespace Ogre {
 //-----------------------------------------------------------------------------  
     GLPBRTTManager::GLPBRTTManager(GLSupport *support, RenderTarget *mainwindow):
         mSupport(support),
-		mMainWindow(mainwindow),
-		mMainContext(0)
+        mMainWindow(mainwindow),
+        mMainContext(0)
     {
-		mMainWindow->getCustomAttribute(GLRenderTexture::CustomAttributeString_GLCONTEXT, &mMainContext);
+        mMainWindow->getCustomAttribute(GLRenderTexture::CustomAttributeString_GLCONTEXT, &mMainContext);
     }  
     GLPBRTTManager::~GLPBRTTManager()
     {
@@ -92,7 +92,7 @@ namespace Ogre {
     }
 
     RenderTexture *GLPBRTTManager::createRenderTexture(const String &name, 
-		const GLSurfaceDesc &target, bool writeGamma, uint fsaa)
+        const GLSurfaceDesc &target, bool writeGamma, uint fsaa)
     {
         return new GLPBRenderTexture(this, name, target, writeGamma, fsaa);
     }
@@ -110,17 +110,17 @@ namespace Ogre {
 
     void GLPBRTTManager::unbind(RenderTarget *target)
     { 
-		// Copy on unbind
+        // Copy on unbind
         GLSurfaceDesc surface;
-		surface.buffer = 0;
+        surface.buffer = 0;
         target->getCustomAttribute(GLRenderTexture::CustomAttributeString_TARGET, &surface);
         if(surface.buffer)
             static_cast<GLTextureBuffer*>(surface.buffer)->copyFromFramebuffer(surface.zoffset);
     }
     
-    void GLPBRTTManager::requestPBuffer(PixelComponentType ctype, size_t width, size_t height)
+    void GLPBRTTManager::requestPBuffer(PixelComponentType ctype, uint32 width, uint32 height)
     {
-        // ©heck size
+        //Check size
         if(mPBuffers[ctype].pb)
         {
             if(mPBuffers[ctype].pb->getWidth()<width || mPBuffers[ctype].pb->getHeight()<height)
@@ -149,15 +149,15 @@ namespace Ogre {
         }
     }
     
-    GLContext *GLPBRTTManager::getContextFor(PixelComponentType ctype, size_t width, size_t height)
+    GLContext *GLPBRTTManager::getContextFor(PixelComponentType ctype, uint32 width, uint32 height)
     {
         // Faster to return main context if the RTT is smaller than the window size
         // and ctype is PCT_BYTE. This must be checked every time because the window might have been resized
-		if(ctype == PCT_BYTE)
-		{
-			if(width <= mMainWindow->getWidth() && height <= mMainWindow->getHeight())
-				return mMainContext;
-		}
+        if(ctype == PCT_BYTE)
+        {
+            if(width <= mMainWindow->getWidth() && height <= mMainWindow->getHeight())
+                return mMainContext;
+        }
         assert(mPBuffers[ctype].pb);
         return mPBuffers[ctype].pb->getContext();
     }

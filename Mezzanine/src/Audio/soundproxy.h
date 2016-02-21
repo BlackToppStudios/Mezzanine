@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -59,9 +59,13 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            SoundProxy() {  }
+            /// @param ID The unique ID of this SoundProxy.
+            SoundProxy(const UInt32 ID) :
+                WorldProxy(ID)
+                {  }
             /// @brief Class destructor.
-            virtual ~SoundProxy() {  }
+            virtual ~SoundProxy()
+                {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -171,7 +175,7 @@ namespace Mezzanine
 
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
-            static String SerializableName() { return "SoundProxy"; }
+            static String GetSerializableName() { return "SoundProxy"; }
         };//SoundProxy
     }//Audio
 }//Mezzanine

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,7 +41,6 @@
 #define _graphicsviewport_cpp
 
 #include "Graphics/viewport.h"
-#include "Graphics/cameramanager.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/gamewindow.h"
 
@@ -199,7 +198,7 @@ namespace Mezzanine
 
                     /*CurrAttrib = SelfRoot.GetAttribute("CameraName");
                     if( !CurrAttrib.Empty() )
-                        this->SetCamera( CurrAttrib.AsString() );//*/
+                        this->SetCamera( CurrAttrib.AsString() );// */
 
                     XML::Node PositionNode = SelfRoot.GetChild("Position").GetFirstChild();
                     if( !PositionNode.Empty() ) {
@@ -215,10 +214,10 @@ namespace Mezzanine
                     this->SetDimensions(TempPos,TempSize);
                     this->SetCamera(CurrCam);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Viewport::GetSerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Viewport::GetSerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Viewport::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Viewport::GetSerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 

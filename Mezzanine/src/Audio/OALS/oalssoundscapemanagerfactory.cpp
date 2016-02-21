@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,34 +50,25 @@ namespace Mezzanine
         namespace OALS
         {
             OALSSoundScapeManagerFactory::OALSSoundScapeManagerFactory()
-            {
-            }
+                {  }
 
             OALSSoundScapeManagerFactory::~OALSSoundScapeManagerFactory()
-            {
-            }
+                {  }
 
-            String OALSSoundScapeManagerFactory::GetManagerTypeName() const
-            {
-                return "OALSSoundScapeManager";
-            }
+            String OALSSoundScapeManagerFactory::GetManagerImplName() const
+                { return OALS::SoundScapeManager::ImplementationName; }
 
-            ManagerBase* OALSSoundScapeManagerFactory::CreateManager(NameValuePairList& Params)
-            {
-                // SoundScapeManagers are not singleton, so let'er rip!
-                return new OALS::SoundScapeManager();
-            }
+            ManagerBase::ManagerType OALSSoundScapeManagerFactory::GetManagerType() const
+                { return OALS::SoundScapeManager::InterfaceType; }
 
-            ManagerBase* OALSSoundScapeManagerFactory::CreateManager(XML::Node& XMLNode)
-            {
-                // SoundScapeManagers are not singleton, so let'er rip!
-                return new OALS::SoundScapeManager(XMLNode);
-            }
+            WorldManager* OALSSoundScapeManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
+                { return new OALS::SoundScapeManager(Creator); }
 
-            void OALSSoundScapeManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-            {
-                delete ToBeDestroyed;
-            }
+            WorldManager* OALSSoundScapeManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
+                { return new OALS::SoundScapeManager(Creator,XMLNode); }
+
+            void OALSSoundScapeManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
+                { delete ToBeDestroyed; }
         }//OALS
     }//Audio
 }//Mezzanine

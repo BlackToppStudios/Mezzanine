@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -61,7 +61,6 @@ namespace Mezzanine
     class MEZZ_LIB EventBase
     {
         public:
-            /// @enum EventType
             /// @brief A listing of values that can be used to identify Events.
             /// @details A listing of values that can be used to identify Events.
             enum EventType

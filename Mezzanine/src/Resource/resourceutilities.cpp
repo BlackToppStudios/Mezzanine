@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@
 #include "stringtool.h"
 
 #include <dirent.h>
-#ifdef WINDOWS
+#ifdef MEZZ_WINDOWS
     #include <Windows.h>
     #include <Winuser.h>
     #include <WinBase.h>
@@ -54,7 +54,7 @@
     // Below includes may not work on MSVC
     #include <direct.h> // for _getcwd
     #include <sys/stat.h>
-#elif MACOSX
+#elif MEZZ_MACOSX
     #include <CoreServices/CoreServices.h>
     #include <unistd.h>//for sleep and getcwd
     #include <errno.h>
@@ -113,14 +113,14 @@ namespace Mezzanine
         /*Boole RemoveFile(const String& PathAndFile)
         {
             return ( remove( PathAndFile.c_str() ) == 0 );
-        }//*/
+        }// */
 
         ///////////////////////////////////////////////////////////////////////////////
         // Basic Directory Management
 
         Boole CreateDirectory(const String& DirectoryPath)
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             if( ::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0 ) {
                 if( ERROR_ALREADY_EXISTS == ::GetLastError() ) {
                     return false;
@@ -132,7 +132,7 @@ namespace Mezzanine
                 }else{
                     ExceptionStream << "Error Unknown. :(";
                 }
-                MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
             return true;
             #else
@@ -143,7 +143,7 @@ namespace Mezzanine
                 StringStream ExceptionStream;
                 ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
                 ExceptionStream << std::strerror(errno);
-                MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
             return true;
             #endif
@@ -153,23 +153,23 @@ namespace Mezzanine
         {
             Boole Result = true;
             StringVector FolderNames;
-            CountedPtr<StringVector> FolderVec = StringTools::Split(DirectoryPath,"/\\");
+            StringVector FolderVec = StringTools::Split(DirectoryPath,"/\\");
             size_t StartIndex = 0;
             String PathAttempt;
             Char8 SysSlash = GetDirectorySeparator();
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
-            if(FolderVec->at(0).find(':') != String::npos) {
-                PathAttempt.append( FolderVec->at(0) );
+            if( FolderVec.at(0).find(':') != String::npos ) {
+                PathAttempt.append( FolderVec.at(0) );
                 PathAttempt.append( 1, SysSlash );
                 StartIndex++;
             }
             #else
             PathAttempt.append( 1, SysSlash );
             #endif
-            for( size_t VecIndex = StartIndex ; VecIndex < FolderVec->size() ; ++VecIndex )
+            for( size_t VecIndex = StartIndex ; VecIndex < FolderVec.size() ; ++VecIndex )
             {
-                PathAttempt.append( FolderVec->at(VecIndex) );
+                PathAttempt.append( FolderVec.at(VecIndex) );
                 PathAttempt.append( 1, SysSlash );
                 Result = CreateDirectory( PathAttempt );
             }
@@ -182,9 +182,9 @@ namespace Mezzanine
             if( stat(DirectoryPath.c_str(),&st) == 0 ) {
                 return S_ISDIR(st.st_mode);
             }/*else{
-                //MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error getting directory information.");
+                //MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error getting directory information.");
                 return false;
-            }//*/
+            }// */
             return false;
         }
 
@@ -193,7 +193,7 @@ namespace Mezzanine
             if( !rmdir(DirectoryPath.c_str()) ) {
                 return;
             }else{
-                MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error removing directory.");
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error removing directory.");
             }
         }
 
@@ -212,7 +212,7 @@ namespace Mezzanine
                 closedir(Directory);
                 return Results;
             }else{
-                MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents"));
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents"));
             }
         }
 
@@ -249,7 +249,7 @@ namespace Mezzanine
 
         Char8 GetDirectorySeparator()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             return '\\';
             #else
             return '/';
@@ -258,11 +258,22 @@ namespace Mezzanine
 
         Char8 GetPathSeparator()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             return ';';
             #else
             return ':';
             #endif
+        }
+
+        String CombinePathAndFileName(const String& FilePath, const String& FileName)
+        {
+            String FullPath = FilePath;
+            String Separator(1,Resource::GetDirectorySeparator());
+            if( !StringTools::EndsWith(FilePath,Separator,true) ) {
+                FullPath.append(Separator);
+            }
+            FullPath.append(FileName);
+            return FullPath;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -321,7 +332,7 @@ namespace Mezzanine
         String GetExecutableDirFromSystem()
         {
             char Results[FILENAME_MAX];
-            #ifdef LINUX
+            #ifdef MEZZ_LINUX
                 MaxInt Length = ::readlink("/proc/self/exe", Results, sizeof(Results)-1);
                 if( Length != -1 ) {
                     Results[Length] = '\0';
@@ -330,11 +341,11 @@ namespace Mezzanine
                     return "";
                 }
             #endif
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
                 GetModuleFileName( NULL, Results, FILENAME_MAX );
                 return DirName(String(Results));
             #endif
-            #ifdef MACOSX
+            #ifdef MEZZ_MACOSX
                 uint32_t size = sizeof(Results);
                 if( _NSGetExecutablePath(Results, &size) == 0 ) {
                     return DirName(String(Results));
@@ -381,19 +392,19 @@ namespace Mezzanine
 
         void ChangeWorkingDirectory(const String& ChangeTo)
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             if(_chdir(ChangeTo.c_str()))
             #else
             if(chdir(ChangeTo.c_str()))
             #endif
-            { MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Could not change to directory \"")+ChangeTo+"\" error: "+ToString(errno)); }
+            { MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Could not change to directory \"")+ChangeTo+"\" error: "+ToString(errno)); }
         }
 
         String GetWorkingDirectory()
         {
             char cCurrentPath[FILENAME_MAX];
             // char cCurrentPath[MAXPATHLEN];
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             String Results (_getcwd(cCurrentPath,sizeof(cCurrentPath)));
             #else
             String Results (getcwd(cCurrentPath,sizeof(cCurrentPath)));
@@ -414,13 +425,13 @@ namespace Mezzanine
             else if(LowerVar == "commonuserdata") return GetCommonUserDataDir();
             else
             {
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
             }
         }
 
         String GetLocalAppDataDir()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             TCHAR path_local_appdata[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_local_appdata))) {
                 return path_local_appdata;
@@ -430,11 +441,11 @@ namespace Mezzanine
             if(pw) {
                 return String(pw->pw_dir);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve app data directory.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve app data directory.");
             }
 
             // might be some useful MAC OS X code
-            /*#elif MACOSX
+            /*#elif MEZZ_MACOSX
             FSRef ref;
             OSType folderType = kApplicationSupportFolderType;
             char path[PATH_MAX];
@@ -447,7 +458,7 @@ namespace Mezzanine
 
         String GetShareableAppDataDir()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             TCHAR path_appdata[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_appdata))) {
                 return path_appdata;
@@ -457,7 +468,7 @@ namespace Mezzanine
             if(pw) {
                 return String(pw->pw_dir);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve home directory.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve home directory.");
             }
             #endif
             return "";
@@ -465,7 +476,7 @@ namespace Mezzanine
 
         String GetCurrentUserDataDir()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             TCHAR path_personal[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PERSONAL|CSIDL_FLAG_CREATE, NULL, 0, path_personal))) {
                 return path_personal;
@@ -475,7 +486,7 @@ namespace Mezzanine
             if(pw) {
                 return String(pw->pw_dir);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve user data directory.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve user data directory.");
             }
             #endif
             return "";
@@ -483,7 +494,7 @@ namespace Mezzanine
 
         String GetCommonUserDataDir()
         {
-            #ifdef WINDOWS
+            #ifdef MEZZ_WINDOWS
             TCHAR path_common_personal[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_DOCUMENTS|CSIDL_FLAG_CREATE, NULL, 0, path_common_personal))) {
                 return path_common_personal;
@@ -493,7 +504,7 @@ namespace Mezzanine
             if(pw) {
                 return String(pw->pw_dir);
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve common data directory.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve common data directory.");
             }
             #endif
             return "";

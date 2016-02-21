@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,6 +44,7 @@
 #include "actor.h"
 #include "Physics/physicsmanager.h"
 #include "entresol.h"
+#include "world.h"
 
 #include <sstream>
 #include <algorithm>
@@ -79,14 +80,19 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // ActorManager Methods
 
-    ActorManager::ActorManager() :
+    const String ActorManager::ImplementationName = "DefaultActorManager";
+    const ManagerBase::ManagerType ActorManager::InterfaceType = ManagerBase::MT_ActorManager;
+
+    ActorManager::ActorManager(World* Creator) :
+        WorldManager(Creator),
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
     {
         this->ActorUpdateWork = new ActorUpdateWorkUnit(this);
     }
 
-    ActorManager::ActorManager(XML::Node& XMLNode) :
+    ActorManager::ActorManager(World* Creator, const XML::Node& XMLNode) :
+        WorldManager(Creator),
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
     {
@@ -117,7 +123,7 @@ namespace Mezzanine
             this->Actors.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an Actor of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an Actor of unknown type.");
         }
     }
 
@@ -129,7 +135,7 @@ namespace Mezzanine
             this->Actors.push_back( Ret );
             return Ret;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a Actor of unknown type.");
+            MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a Actor of unknown type.");
         }
     }
 
@@ -162,7 +168,7 @@ namespace Mezzanine
             if( ActFactIt != this->ActorFactories.end() ) {
                 (*ActFactIt).second->DestroyActor( (*ActIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
             }
 
             this->Actors.erase(ActIt);
@@ -178,7 +184,7 @@ namespace Mezzanine
             if( ActFactIt != this->ActorFactories.end() ) {
                 (*ActFactIt).second->DestroyActor( (*ActIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
             }
 
             this->Actors.erase(ActIt);
@@ -193,7 +199,7 @@ namespace Mezzanine
             if( ActFactIt != this->ActorFactories.end() ) {
                 (*ActFactIt).second->DestroyActor( (*ActIt) );
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
             }
         }
         this->Actors.clear();
@@ -264,10 +270,10 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
-            //WorldManager::Initialize();
+            WorldManager::Initialize();
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->ActorUpdateWork, "ActorUpdateWork" );
-            Physics::PhysicsManager* PhysicsMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
             if( PhysicsMan ) {
                 this->ActorUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
             }
@@ -294,10 +300,10 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType ActorManager::GetInterfaceType() const
-        { return ManagerBase::MT_ActorManager; }
+        { return ActorManager::InterfaceType; }
 
     String ActorManager::GetImplementationTypeName() const
-        { return "DefaultActorManager"; }
+        { return ActorManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultActorManagerFactory Methods
@@ -308,16 +314,19 @@ namespace Mezzanine
     DefaultActorManagerFactory::~DefaultActorManagerFactory()
         {  }
 
-    String DefaultActorManagerFactory::GetManagerTypeName() const
-        { return "DefaultActorManager"; }
+    String DefaultActorManagerFactory::GetManagerImplName() const
+        { return ActorManager::ImplementationName; }
 
-    ManagerBase* DefaultActorManagerFactory::CreateManager(NameValuePairList& Params)
-        { return new ActorManager(); }
+    ManagerBase::ManagerType DefaultActorManagerFactory::GetManagerType() const
+        { return ActorManager::InterfaceType; }
 
-    ManagerBase* DefaultActorManagerFactory::CreateManager(XML::Node& XMLNode)
-        { return new ActorManager(XMLNode); }
+    WorldManager* DefaultActorManagerFactory::CreateManager(World* Creator, const NameValuePairList& Params)
+        { return new ActorManager(Creator); }
 
-    void DefaultActorManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    WorldManager* DefaultActorManagerFactory::CreateManager(World* Creator, const XML::Node& XMLNode)
+        { return new ActorManager(Creator,XMLNode); }
+
+    void DefaultActorManagerFactory::DestroyManager(WorldManager* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

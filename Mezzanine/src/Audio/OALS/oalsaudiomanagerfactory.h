@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@
 #ifndef _audiooalsaudiomanagerfactory_h
 #define _audiooalsaudiomanagerfactory_h
 
-#include "managerfactory.h"
+#include "entresolmanagerfactory.h"
 
 namespace Mezzanine
 {
@@ -50,27 +50,27 @@ namespace Mezzanine
         {
             ///////////////////////////////////////////////////////////////////////////////
             /// @class OALSAudioManagerFactory
-            /// @headerfile oalsaudiomanagerfactory.h
             /// @brief A factory responsible for the creation and destruction of the default audiomanager.
             ///////////////////////////////////////
-            class MEZZ_LIB OALSAudioManagerFactory : public ManagerFactory
+            class MEZZ_LIB OALSAudioManagerFactory : public EntresolManagerFactory
             {
-                public:
-                    /// @brief Class constructor.
-                    OALSAudioManagerFactory();
-                    /// @brief Class destructor.
-                    virtual ~OALSAudioManagerFactory();
+            public:
+                /// @brief Class constructor.
+                OALSAudioManagerFactory();
+                /// @brief Class destructor.
+                virtual ~OALSAudioManagerFactory();
 
-                    /// @copydoc ManagerFactory::GetManagerTypeName()
-                    String GetManagerTypeName() const;
-                    /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-                    ManagerBase* CreateManager(NameValuePairList& Params);
+                /// @copydoc ManagerFactory::GetManagerImplName()
+                String GetManagerImplName() const;
+                /// @copydoc ManagerFactory::GetManagerType() const
+                ManagerBase::ManagerType GetManagerType() const;
 
-                    /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-                    ManagerBase* CreateManager(XML::Node& XMLNode);
-
-                    /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-                    void DestroyManager(ManagerBase* ToBeDestroyed);
+                /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&)
+                EntresolManager* CreateManager(const NameValuePairList& Params);
+                /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&)
+                EntresolManager* CreateManager(const XML::Node& XMLNode);
+                /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)
+                void DestroyManager(EntresolManager* ToBeDestroyed);
             };//OALSAudioManagerFactory
         }//OALS
     }//Audio

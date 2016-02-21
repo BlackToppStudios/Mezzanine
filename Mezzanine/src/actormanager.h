@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
 #define actormanager_h
 
 #include "worldmanager.h"
-#include "managerfactory.h"
+#include "worldmanagerfactory.h"
 #ifndef SWIG
     #include "Threading/workunit.h"
 #endif
@@ -106,6 +106,11 @@ namespace Mezzanine
         typedef ActorContainer::iterator             ActorIterator;
         /// @brief Const Iterator type for @ref Actor instances stored by this class.
         typedef ActorContainer::const_iterator       ConstActorIterator;
+
+        /// @brief A String containing the name of this manager implementation.
+        static const String ImplementationName;
+        /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+        static const ManagerBase::ManagerType InterfaceType;
     protected:
         friend class ActorUpdateWorkUnit;
 
@@ -124,10 +129,12 @@ namespace Mezzanine
         Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
     public:
         /// @brief Class constructor.
-        ActorManager();
+        /// @param Creator The parent world that is creating the manager.
+        ActorManager(World* Creator);
         /// @brief XML constructor.
+        /// @param Creator The parent world that is creating the manager.
         /// @param XMLNode The node of the xml document to construct from.
-        ActorManager(XML::Node& XMLNode);
+        ActorManager(World* Creator, const XML::Node& XMLNode);
         /// @brief Class destructor.
         virtual ~ActorManager();
 
@@ -231,10 +238,9 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class DefaultActorManagerFactory
-    /// @headerfile actormanager.h
     /// @brief A factory responsible for the creation and destruction of the default actormanager.
     ///////////////////////////////////////
-    class DefaultActorManagerFactory : public ManagerFactory
+    class DefaultActorManagerFactory : public WorldManagerFactory
     {
     public:
         /// @brief Class constructor.
@@ -242,15 +248,17 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~DefaultActorManagerFactory();
 
-        /// @copydoc ManagerFactory::GetManagerTypeName()
-        String GetManagerTypeName() const;
+        /// @copydoc ManagerFactory::GetManagerImplName()
+        String GetManagerImplName() const;
+        /// @copydoc ManagerFactory::GetManagerType() const
+        ManagerBase::ManagerType GetManagerType() const;
 
-        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-        ManagerBase* CreateManager(NameValuePairList& Params);
-        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-        ManagerBase* CreateManager(XML::Node& XMLNode);
-        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-        void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, const NameValuePairList&)
+        WorldManager* CreateManager(World* Creator, const NameValuePairList& Params);
+        /// @copydoc WorldManagerFactory::CreateManager(World*, const XML::Node&)
+        WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode);
+        /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+        void DestroyManager(WorldManager* ToBeDestroyed);
     };//DefaultActorManagerFactory
 }//Mezzanine
 

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -67,17 +67,20 @@ class lua51tests : public UnitTestGroup
                 Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Libset);
                 TestOutput << "Testing " << FeatureName << " functionality, with parameter: " << Input << endl;
                 Scripting::Lua::Lua51Script RealArgScript(Source, LuaRuntimeSafe);
-                LuaRuntimeSafe.Execute(RealArgScript);
+                LuaRuntimeSafe.Execute(RealArgScript); // Since the script is a functions this readies it to be called
                 Scripting::Lua::Lua51Script RealArgCall(FunctionToCall,LuaRuntimeSafe,true);
                 RealArgCall.AddArgument(Input);
-                LuaRuntimeSafe.Execute(RealArgCall);
+                LuaRuntimeSafe.Execute(RealArgCall); // This then calls that script with an argument
                 //TestOutput << " Recieved " << RealReturn->GetReal() << " while expecting " << ExpectedOutput << endl;
                 Real Returned = RealArgCall.GetReturn(0)->GetReal();
                 TestOutput << " Recieved " << Returned << " while expecting " << ExpectedOutput << endl;
 
                 TEST((ExpectedOutput==Returned || (Returned-Epsilon<ExpectedOutput && ExpectedOutput<Returned+Epsilon))
                      , String("SWIGWrapped::") + FeatureName);
-            } catch (ScriptLuaException& ) {
+            } catch (Mezzanine::ExceptionBase& Error) {
+                TestOutput << "Test Failed because of '" << Error.GetExceptionTypeName() << "'" << std::endl
+                           << "With Message: " << Error.GetCompleteMessage() << std::endl;
+                //Error.what()
                 TEST_RESULT(Testing::Failed, String("SWIGWrapped::") + FeatureName);
             }
             TestOutput << "End " << FeatureName << " Test" << endl << endl;
@@ -146,8 +149,10 @@ class lua51tests : public UnitTestGroup
             {
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
                 TestOutput << "Checking lib enum values:" << endl;
-                TestOutput << "Default Expected: " << (541+2048+8192) << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::DefaultLibs << endl;
-                TEST(541+2048+8192+32768==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+                Whole DefaultExpected = 541 + 2048 + 8192 + 32768 + 131072;
+                TestOutput << "Default Expected: " << DefaultExpected << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::DefaultLibs << endl;
+                TEST(DefaultExpected==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+
                 int TargetLib=0;
                 for(int lib = Scripting::Lua::Lua51ScriptingEngine::FirstLib;
                     lib <= Scripting::Lua::Lua51ScriptingEngine::LastLib;
@@ -432,6 +437,15 @@ class lua51tests : public UnitTestGroup
                 TestLuaLibraryExclusion("mut=Mezzanine.Threading.Mutex()\n",
                                         "MezzanineThreading", "MezzanineSafe.Threading.Mutex",
                                         Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLib);
+
+                TestLuaLibraryExclusion("mut=MezzanineSafe.MathTools.AxisAlignedQuad(MezzanineSafe.Axis_X, MezzanineSafe.Vector3(8,0,0), MezzanineSafe.Vector3(8,1,1))\n",
+                                        "MezzanineMathToolsSafe", "MezzanineSafe.MathTools.Mutex",
+                                        Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib|Scripting::Lua::Lua51ScriptingEngine::MezzMathToolsSafeLib);
+
+                TestLuaLibraryExclusion("mut=Mezzanine.MathTools.AxisAlignedQuad(Mezzanine.Axis_X, Mezzanine.Vector3(8,0,0), Mezzanine.Vector3(8,1,1))\n",
+                                        "MezzanineMathTools", "Mezzanine.MathTools.Mutex",
+                                        Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzMathToolsLib);
+
             }
 
             {
@@ -594,9 +608,9 @@ class lua51tests : public UnitTestGroup
                               "       MezzanineSafe.Vector3(0,0,0),\n"
                               "       MezzanineSafe.Vector3(x,0,0)\n"
                               "   )\n"
-                              "   return Charles:Length()\n"
+                              "   return Charles.Normal.X\n"
                               "end",
-                              "Ray", "VecXMultiply", 10, 10, 0.0,
+                              "Ray", "VecXMultiply", 10, 1, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function VecXMultiply(x)\n"
@@ -760,10 +774,11 @@ class lua51tests : public UnitTestGroup
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestMathTool(x)\n"
-                              "   return MezzanineSafe.Ceil(x)\n"
+                              "   return MezzanineMathToolsSafe.Ceil(x)\n"
                               "end",
-                              "MathTool", "TestMathTool", 3.5, 4.0, 0.0,
+                              "MathToolCeil", "TestMathTool", 3.5, 4.0, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
 
                 TestLuaScript("function TestRootEnumerations(x)\n"
                               "   return MezzanineSafe.AT_Zip\n"
@@ -788,7 +803,7 @@ class lua51tests : public UnitTestGroup
                 TestLuaScript("function TestException(x)\n"
                               "  return MezzanineSafe.Exception_IO_EXCEPTION\n"
                               "end",
-                              "Exception", "TestException", 8, Mezzanine::Exception::IO_EXCEPTION, 0.0,
+                              "Exception", "TestException", 8, Mezzanine::ExceptionBase::IO_EXCEPTION, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestOldEventSystem(x)\n"
@@ -797,7 +812,6 @@ class lua51tests : public UnitTestGroup
                               "OldEvent", "TestOldEventSystem", 8, Mezzanine::EventBase::GameWindow, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                //AreaEffectUpdateWorkUnit
             }
 
         }

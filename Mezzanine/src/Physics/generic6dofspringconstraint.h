@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,7 +50,6 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Generic6DofSpringConstraint
-        /// @headerfile constraint.h
         /// @brief Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion.
         /// @details When using functions of this class that require you to specify the index, the springs are arranged like so: @n
         ///     - 0: Translation X
@@ -63,164 +62,209 @@ namespace Mezzanine
         class MEZZ_LIB Generic6DofSpringConstraint : public Generic6DofConstraint
         {
         protected:
-            /// @brief Inheritance Constructor.
-            /// @details This is only called by derived classes, and shouldn't be called manually.
-            Generic6DofSpringConstraint();
-            /// @copydoc TypedConstraint::GetConstraintBase() const
+            /// @copydoc TypedConstraint::_GetConstraintBase() const
             virtual btGeneric6DofSpringConstraint* Generic6dofSpring() const;
+
+            /// @copydoc DualTransformConstraint::CreateConstraint(RigidProxy*, RigidProxy*, const Transform&, const Transform&)
+            virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB);
+
+            /// @internal
+            /// @brief Single body inheritance constructor.
+            /// @param ID The unique identifier assigned to this constraint.
+            /// @param Prox1 A pointer to the first/only proxy that will be constrained.
+            /// @param Creator A pointer to the manager that created this constraint.
+            Generic6DofSpringConstraint(const UInt32 ID, RigidProxy* Prox1, PhysicsManager* Creator);
+            /// @internal
+            /// @brief Dual body inheritance constructor.
+            /// @param ID The unique identifier assigned to this constraint.
+            /// @param Prox1 A pointer to the first proxy that will be constrained.
+            /// @param Prox2 A pointer to the second proxy that will be constrained.
+            /// @param Creator A pointer to the manager that created this constraint.
+            Generic6DofSpringConstraint(const UInt32 ID, RigidProxy* Prox1, RigidProxy* Prox2, PhysicsManager* Creator);
         public:
-            /// @brief Identify the Axis a bit easier when iterating over them is less convienent than typing an Identifier
-            enum UsableAxis{
-                LinearX         = 0,    ///< Translation on the X axis
-                LinearY         = 1,    ///< Translation on the Y axis
-                LinearZ         = 2,    ///< Translation on the Z axis
-                AngularX        = 3,    ///< Rotation on the X axis
-                AngularY        = 4,    ///< Rotation on the Y axis
-                AngularZ        = 5     ///< Rotation on the Z axis
-            };
-
-            ////////////////////////////////////////////////////////////////////////////////
-            // Generic6DofSpringConstraint Construction and Destruction
-
-            /// @brief Two proxy Verbose constructor.
-            /// @param ProxyA The First proxy to be bound.
-            /// @param ProxyB  The Second proxy to be bound.
-            /// @param VectorA The offset from ProxyAs center of gravity to get to match an offset from ProxyB.
-            /// @param VectorB The offset from ProxyBs center of gravity.
-            /// @param QuaternionA Relative rotation from ProxyA.
-            /// @param QuaternionB Relative rotation from ProxyB.
-            /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
-            Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boole UseLinearReferenceA = false);
             /// @brief Two proxy Terse constructor.
+            /// @param ID The unique identifier assigned to this constraint.
             /// @param ProxyA The First proxy to be bound.
             /// @param ProxyB  The Second proxy to be bound.
-            /// @param TransformA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
-            /// @param TransformB The offset and rotation from ProxyBs center of gravity.
-            /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
-            Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boole UseLinearReferenceA = false);
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @param Creator A pointer to the manager that created this constraint.
+            Generic6DofSpringConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator);
+            /// @brief XML constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param Creator A pointer to the manager that created this constraint.
+            Generic6DofSpringConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.
-            /// @details The class destructor.
             virtual ~Generic6DofSpringConstraint();
 
             ////////////////////////////////////////////////////////////////////////////////
-            // Generic6DofSpringConstraint Linear Spring Settings
+            // Utility
+
+            /// @brief Autogenerates the equalibrium points on each axis of this constraint.
+            /// @remarks The current offsets of both bodies in constraint space is what is used as
+            /// the equalibrium points for each axis.
+            virtual void CalculateSpringEquilibriumPoints();
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Linear Spring Settings
 
             /// @brief Set the Stiffness of the springs on each Linear Axis.
-            /// @param Stiffies A Vector3 containing the X, Y and Z stiffnesses.
-            virtual void SetSpringLinearStiffness(const Vector3& Stiffies);
-            /// @brief Set the Damping of the springs on each Linear Axis.
-            /// @param Damps A Vector3 containing the X, Y and Z desired damping.
-            virtual void SetSpringLinearDamping(const Vector3& Damps);
-            /// @brief Set the Stiffness of the springs on each Linear Axis.
-            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
-            virtual void SetSpringLinearEnabled(const Vector3& Enableness);
-
+            /// @param Stiffness A Vector3 containing the X, Y and Z stiffnesses.
+            virtual void SetLinearSpringStiffness(const Vector3& Stiffness);
             /// @brief Get the Stiffness for all Linear Axis
             /// @return A Vector3 with the Stiffness on the X, Y and Z Linear Axis.
-            virtual Vector3 GetSpringLinearStiffness() const;
+            virtual Vector3 GetLinearSpringStiffness() const;
+            /// @brief Sets the stiffness on a specific linear axis on this constraint.
+            /// @param Stiffness The amount of resistence to compressing force the spring should have.
+            /// @param TranslationAxis The Axis to work with.
+            virtual void SetLinearSpringStiffnessOnAxis(const Real Stiffness, Whole TranslationAxis);
+            /// @brief Gets the stiffness on a specific linear axis on this constraint.
+            /// @param TranslationAxis The Axis to work with.
+            /// @return Returns the currently set stiffness on the specified axis.
+            virtual Real GetLinearSpringStiffnessOnAxis(Whole TranslationAxis) const;
+
+            /// @brief Set the Damping of the springs on each Linear Axis.
+            /// @param Damps A Vector3 containing the X, Y and Z desired damping.
+            virtual void SetLinearSpringDamping(const Vector3& Damps);
             /// @brief Get the Damping for all Linear Axis
             /// @return A Vector3 with the Damping on the X, Y and Z Linear Axis.
-            virtual Vector3 GetSpringLinearDamping() const;
+            virtual Vector3 GetLinearSpringDamping() const;
+            /// @brief Sets the damping on a specific linear axis on this constraint.
+            /// @param Damping The amount of damping to apply to all movement on the spring.
+            /// @param TranslationAxis The Axis to work with.
+            virtual void SetLinearSpringDampingOnAxis(const Real Damping, Whole TranslationAxis);
+            /// @brief Gets the damping on a specific linear axis on this constraint.
+            /// @param TranslationAxis The Axis to work with.
+            /// @return Returns the currently set damping on the specified axis.
+            virtual Real GetLinearSpringDampingOnAxis(Whole TranslationAxis) const;
+
+            /// @brief Set whether or not a spring is enabled on a specific linear axis on this constraint.
+            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
+            virtual void SetLinearSpringEnabled(const Vector3& Enabled);
             /// @brief Get the Enabled Status for all Linear Axis
             /// @return A Vector3 with the Enabled Status on the X, Y and Z Linear Axis.
-            virtual Vector3 GetSpringLinearEnabled() const;
+            virtual Vector3 GetLinearSpringEnabled() const;
+            /// @brief Set whether or not a spring is enabled on a specific linear axis on this constraint.
+            /// @param Enabled The enabled status of the spring on the specified axis.
+            /// @param TranslationAxis The Axis to work with.
+            virtual void SetLinearSpringEnabledOnAxis(const Boole Enabled, Whole TranslationAxis);
+            /// @brief Get whether or not a spring is enabled on a specific linear axis on this constraint.
+            /// @param TranslationAxis The Axis to work with.
+            /// @return Returns true if the spring on the specified axis is enabled, false otherwise.
+            virtual Boole GetLinearSpringEnabledOnAxis(Whole TranslationAxis) const;
+
+            /// @brief Gets the rest point of the spring on each Linear axis.
+            /// @return Returns a Vector3 containing the values of the rest position on the respective axis in constraint space.
+            virtual Vector3 GetLinearSpringEquilibriumPoints() const;
 
             ////////////////////////////////////////////////////////////////////////////////
-            // Generic6DofSpringConstraint Angular Spring Settings
+            // Angular Spring Settings
 
             /// @brief Set the Stiffness of the springs on each Angular Axis.
-            /// @param Stiffies A Vector3 containing the X, Y and Z stiffnesses.
-            virtual void SetSpringAngularStiffness(const Vector3& Stiffies);
-            /// @brief Set the Damping of the springs on each Angular Axis.
-            /// @param Damps A Vector3 containing the X, Y and Z desired damping.
-            virtual void SetSpringAngularDamping(const Vector3& Damps);
-            /// @brief Set the Stiffness of the springs on each Angular Axis.
-            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
-            virtual void SetSpringAngularEnabled(const Vector3& Enableness);
-
+            /// @param Stiffness A Vector3 containing the X, Y and Z stiffnesses.
+            virtual void SetAngularSpringStiffness(const Vector3& Stiffness);
             /// @brief Get the Stiffness for all Angular Axis
             /// @return A Vector3 with the Stiffness on the X, Y and Z Angular Axis.
-            virtual Vector3 GetSpringAngularStiffness() const;
+            virtual Vector3 GetAngularSpringStiffness() const;
+            /// @brief Sets the stiffness on a specific angular axis on this constraint.
+            /// @param Stiffness The amount of resistence to compressing force the spring should have.
+            /// @param RotationAxis The Axis to work with.
+            virtual void SetAngularSpringStiffnessOnAxis(const Real Stiffness, Whole RotationAxis);
+            /// @brief Gets the stiffness on a specific angular axis on this constraint.
+            /// @param RotationAxis The Axis to work with.
+            /// @return Returns the currently set stiffness on the specified axis.
+            virtual Real GetAngularSpringStiffnessOnAxis(Whole RotationAxis) const;
+
+            /// @brief Set the Damping of the springs on each Angular Axis.
+            /// @param Damps A Vector3 containing the X, Y and Z desired damping.
+            virtual void SetAngularSpringDamping(const Vector3& Damps);
             /// @brief Get the Damping for all Angular Axis
             /// @return A Vector3 with the Damping on the X, Y and Z Angular Axis.
-            virtual Vector3 GetSpringAngularDamping() const;
+            virtual Vector3 GetAngularSpringDamping() const;
+            /// @brief Sets the damping on a specific angular axis on this constraint.
+            /// @param Damping The amount of damping to apply to all movement on the spring.
+            /// @param RotationAxis The Axis to work with.
+            virtual void SetAngularSpringDampingOnAxis(const Real Damping, Whole RotationAxis);
+            /// @brief Gets the damping on a specific angular axis on this constraint.
+            /// @param RotationAxis The Axis to work with.
+            /// @return Returns the currently set damping on the specified axis.
+            virtual Real GetAngularSpringDampingOnAxis(Whole RotationAxis) const;
+
+            /// @brief Set the Stiffness of the springs on each Angular Axis.
+            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
+            virtual void SetAngularSpringEnabled(const Vector3& Enableness);
             /// @brief Get the Enabled Status for all Angular Axis
             /// @return A Vector3 with the Enabled Status on the X, Y and Z Angular Axis.
-            virtual Vector3 GetSpringAngularEnabled() const;
+            virtual Vector3 GetAngularSpringEnabled() const;
+            /// @brief Set whether or not a spring is enabled on a specific angular axis on this constraint.
+            /// @param Enabled The enabled status of the spring on the specified axis.
+            /// @param RotationAxis The Axis to work with.
+            virtual void SetAngularSpringEnabledOnAxis(const Boole Enabled, Whole RotationAxis);
+            /// @brief Get whether or not a spring is enabled on a specific angular axis on this constraint.
+            /// @param RotationAxis The Axis to work with.
+            /// @return Returns true if the spring on the specified axis is enabled, false otherwise.
+            virtual Boole GetAngularSpringEnabledOnAxis(Whole RotationAxis) const;
+
+            /// @brief Gets the rest point of the spring on each Angular axis.
+            /// @return Returns a Vector3 containing the values of the rest position on the respective axis in constraint space.
+            virtual Vector3 GetAngularSpringEquilibriumPoints() const;
 
             ////////////////////////////////////////////////////////////////////////////////
-            // Generic6DofSpringConstraint Per Axis Spring Settings
+            // Combined Linear and Angular Axis Spring Settings
 
             /// @brief Set the spring stiffness on a given axis
             /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
             /// @param Stiffness A real with the new desired stiffness.
             virtual void SetSpringStiffness(int Index, Real Stiffness);
-            /// @brief Set the spring Damping on a given axis.
-            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
-            /// @param Damping A real with the new desired Damping.
-            virtual void SetSpringDamping(int Index, Real Damping);
-            /// @brief Set the spring's enabled status on a given axis.
-            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
-            /// @param Enable A Boole with the spring's enabled status.
-            virtual void SetSpringEnabled(int Index, Boole Enable);
-
             /// @brief Retrieve the Stiffness of the spring on the given axis
             /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
             /// @return A real with the requested value;
             virtual Real GetSpringStiffness(int Index) const;
+
+            /// @brief Set the spring Damping on a given axis.
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @param Damping A real with the new desired Damping.
+            virtual void SetSpringDamping(int Index, Real Damping);
             /// @brief Retrieve the Damping of the spring on the given axis
             /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
             /// @return A real with the requested value.
             virtual Real GetSpringDamping(int Index) const;
+
+            /// @brief Set the spring's enabled status on a given axis.
+            /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
+            /// @param Enable A Boole with the spring's enabled status.
+            virtual void SetSpringEnabled(int Index, Boole Enable);
             /// @brief Retrieve the EnabledStatus of the spring on the given axis
             /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
             /// @return A Boole with the requested value.
             virtual Boole GetSpringEnabled(int Index) const;
 
-            ////////////////////////////////////////////////////////////////////////////////
-            // Generic6DofSpringConstraint Calculated Items
-
-            #ifndef SWIG
-            /// @internal
-            virtual void CalculateSpringEquilibriumPoint();
-            /// @internal
+            /// @brief Automatically assigns the rest point of the spring on the specified axis based on the current offset of both constrained bodies.
+            /// @param Index The Axis to work with.
             virtual void CalculateSpringEquilibriumPoint(int Index);
-
-            /// @internal
-            virtual Vector3 GetCurrentSpringAngularEquilibriumPoints() const;
-            /// @internal
-            virtual Vector3 GetCurrentSpringLinearEquilibriumPoints() const;
-            /// @internal
-            virtual Real GetCurrentSpringEquilibriumPoint(int Index) const;
-            #endif // SWIG
+            /// @brief Sets the rest point of the spring on the specified axis.
+            /// @param Index The Axis to work with.
+            /// @param Point The position in constraint space on the specified Axis to set as the rest spot.
+            virtual void SetSpringEquilibriumPoint(int Index, const Real Point);
+            /// @brief Gets the rest point of the spring on the specified axis.
+            /// @param Index The Axis to work with.
+            virtual Real GetSpringEquilibriumPoint(int Index) const;
 
             ////////////////////////////////////////////////////////////////////////////////
-            // Generic6DofSpringConstraint Serialization
+            // Serialization
 
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "Generic6DofConstraint"
-            static String SerializableName();
+            /// @copydoc Constraint::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc Constraint::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc Constraint::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
         };//Generic6DofSpringConstraint
     }//Physics
 }//Mezzanine
-
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-
-#ifndef SWIG
-/// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::Generic6DofSpringConstraint& x);
-/// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Generic6DofSpringConstraint& x);
-/// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
-void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Generic6DofSpringConstraint& x);
-#endif
 
 #endif

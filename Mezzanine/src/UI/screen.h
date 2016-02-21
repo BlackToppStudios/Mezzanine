@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -127,6 +127,7 @@ namespace Mezzanine
             void Append(ScreenRenderData& OtherData);
             /// @brief Array access operator spanning all 3 Vertex vectors.
             /// @param Index The index to access.
+            /// @return Returns a reference to the VertexData at the specified index.
             VertexData& operator[](const Whole& Index);
         };//ScreenRenderData
 
@@ -566,7 +567,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created Window.
             /// @param Name The name of the Window.
             /// @param RendRect The Rect representing the position and size of the Window.
-            virtual Window* CreateWidgetWindow(ConstString& Name, const Rect& RendRect);//*/
+            virtual Window* CreateWidgetWindow(ConstString& Name, const Rect& RendRect);// */
 
             ///////////////////////////////////////////////////////////////////////////////
             // Atlas Query

@@ -1,5 +1,5 @@
 <map id="Mezzanine::AreaEffectFactory" name="Mezzanine::AreaEffectFactory">
-<area shape="rect" id="node3" href="$classMezzanine_1_1FieldOfForceFactory.html" title="A factory type for the creation of FieldOfForce objects. " alt="" coords="255,5,465,35"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1GravityFieldFactory.html" title="A factory type for the creation of GravityField objects. " alt="" coords="257,59,463,88"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1GravityWellFactory.html" title="A factory type for the creation of GravityWell objects. " alt="" coords="257,112,463,141"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1FieldOfForceFactory.html" title="A factory type for the creation of FieldOfForce objects. " alt="" coords="252,5,464,32"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1GravityFieldFactory.html" title="A factory type for the creation of GravityField objects. " alt="" coords="255,56,461,83"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1GravityWellFactory.html" title="A factory type for the creation of GravityWell objects. " alt="" coords="255,107,461,133"/>
 </map>

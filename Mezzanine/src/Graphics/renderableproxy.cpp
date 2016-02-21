@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -58,6 +58,17 @@ namespace Mezzanine
     namespace Graphics
     {
         RenderableProxy::RenderableProxy(SceneManager* Creator) :
+            GraphicsNode(NULL),
+            Manager(Creator),
+            VisibilityMask(Ogre::MovableObject::getDefaultVisibilityFlags()),
+            QueryMask(Ogre::MovableObject::getDefaultQueryFlags()),
+            InWorld(false)
+        {
+            this->GraphicsNode = this->Manager->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        }
+
+        RenderableProxy::RenderableProxy(const UInt32 ID, SceneManager* Creator) :
+            WorldProxy(ID),
             GraphicsNode(NULL),
             Manager(Creator),
             VisibilityMask(Ogre::MovableObject::getDefaultVisibilityFlags()),
@@ -268,10 +279,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetRenderDistance( CurrAttrib.AsReal() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RenderableProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RenderableProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,RenderableProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,RenderableProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

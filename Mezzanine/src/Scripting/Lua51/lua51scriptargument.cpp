@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -80,7 +80,7 @@ namespace Mezzanine
                     lua_pop(TargetState,1);
                 }
                 else
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Integer), but found something else.") }
+                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Expected a Lua number(Integer), but found something else.") }
             }
 
             void Lua51RealArgument::Push(lua_State* TargetState) const
@@ -94,7 +94,7 @@ namespace Mezzanine
                     lua_pop(TargetState,1);
                 }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Real), but found something else.") }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Expected a Lua number(Real), but found something else.") }
             }
 
             void Lua51WholeArgument::Push(lua_State* TargetState) const
@@ -108,7 +108,7 @@ namespace Mezzanine
                     lua_pop(TargetState,1);
                 }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Whole), but found something else.") }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Expected a Lua number(Whole), but found something else.") }
             }
 
             void Lua51StringArgument::Push(lua_State *TargetState) const
@@ -122,7 +122,7 @@ namespace Mezzanine
                     lua_pop(TargetState,1);
                 }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
             }
 
             void Lua51BoolArgument::Push(lua_State *TargetState) const
@@ -136,7 +136,7 @@ namespace Mezzanine
                     lua_pop(TargetState,1);
                 }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
             }
 
             void Lua51NilArgument::Push(lua_State *TargetState) const
@@ -147,7 +147,7 @@ namespace Mezzanine
                 if(LUA_TNIL==lua_type(TargetState,Top))
                     { lua_pop(TargetState,1); }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
                 // It seems Lua Nils never go on the stack when being returned sometimes.
             }
 

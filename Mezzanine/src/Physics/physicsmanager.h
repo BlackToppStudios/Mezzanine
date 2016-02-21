@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -59,16 +59,15 @@ typedef float btScalar;
 
 #include "datatypes.h"
 #ifndef SWIG
+    #include "uidgenerator.h"
     #include "worldmanager.h"
-    #include "managerfactory.h"
+    #include "worldmanagerfactory.h"
     #include "singleton.h"
-#endif
-#ifndef SWIG
+
     #include "Physics/collidablepair.h"
     #include "Physics/constraint.h"
     #include "Physics/managerconstructioninfo.h"
-#endif
-#ifndef SWIG
+
     #include "Threading/workunit.h"
     #include "Threading/monopoly.h"
 #endif
@@ -76,6 +75,7 @@ namespace Mezzanine
 {
     // internal forward declarations
     class Entresol;
+    class World;
     class WorldTrigger;
     namespace debug {
         class InternalDebugDrawer;
@@ -86,11 +86,23 @@ namespace Mezzanine
         class CollisionDispatcher;
         class ParallelCollisionDispatcher;
         class PhysicsManager;
+
         class CollidableProxy;
         class CollisionShape;
+
         class GhostProxy;
         class RigidProxy;
         class SoftProxy;
+
+        class ConeTwistConstraint;
+        class GearConstraint;
+        class Generic6DofConstraint;
+        class Generic6DofSpringConstraint;
+        class HingeConstraint;
+        class Hinge2Constraint;
+        class Point2PointConstraint;
+        class SliderConstraint;
+        class UniversalConstraint;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the single threaded processing of physics simulations.
@@ -242,31 +254,42 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for @ref CollidableProxy storage by this class.
-            typedef std::vector< CollidableProxy* >             ProxyContainer;
+            typedef std::vector< CollidableProxy* >                 ProxyContainer;
             /// @brief Iterator type for @ref CollidableProxy instances stored by this class.
-            typedef ProxyContainer::iterator                    ProxyIterator;
+            typedef ProxyContainer::iterator                        ProxyIterator;
             /// @brief Const Iterator type for @ref CollidableProxy instances stored by this class.
-            typedef ProxyContainer::const_iterator              ConstProxyIterator;
+            typedef ProxyContainer::const_iterator                  ConstProxyIterator;
             /// @brief Basic container type for @ref Constraint storage by this class.
-            typedef std::vector< Constraint* >                  ConstraintContainer;
+            typedef std::vector< Constraint* >                      ConstraintContainer;
             /// @brief Iterator type for @ref Constraint instances stored by this class.
-            typedef ConstraintContainer::iterator               ConstraintIterator;
+            typedef ConstraintContainer::iterator                   ConstraintIterator;
             /// @brief Const Iterator type for @ref Constraint instances stored by this class.
-            typedef ConstraintContainer::const_iterator         ConstConstraintIterator;
+            typedef ConstraintContainer::const_iterator             ConstConstraintIterator;
             /// @brief Basic container type for @ref WorldTrigger storage by this class.
-            typedef std::vector< WorldTrigger* >                WorldTriggerContainer;
+            typedef std::vector< WorldTrigger* >                    WorldTriggerContainer;
             /// @brief Iterator type for @ref WorldTrigger instances stored by this class.
-            typedef WorldTriggerContainer::iterator             WorldTriggerIterator;
+            typedef WorldTriggerContainer::iterator                 WorldTriggerIterator;
             /// @brief Const Iterator type for @ref WorldTrigger instances stored by this class.
-            typedef WorldTriggerContainer::const_iterator       ConstWorldTriggerIterator;
-            /// @brief Basic container type for @ref Collision storage by this class.
-            typedef std::map< CollidablePair, Collision* >      CollisionContainer;
-            /// @brief Iterator type for @ref Collision instances stored by this class.
-            typedef CollisionContainer::iterator                CollisionIterator;
-            /// @brief Const Iterator type for @ref Collision instances stored by this class.
-            typedef CollisionContainer::const_iterator          ConstCollisionIterator;
+            typedef WorldTriggerContainer::const_iterator           ConstWorldTriggerIterator;
             /// @brief A std::pair to assist with collision sorting operations.
-            typedef std::pair< CollidablePair, Collision* >     CollisionSortPair;
+            typedef std::pair< CollidablePair, Collision* >         CollisionSortPair;
+            /// @brief Basic container type for @ref Collision storage by this class.
+            typedef std::vector< Collision* >                       CollisionContainer;
+            /// @brief Iterator type for @ref Collision instances stored by this class.
+            typedef CollisionContainer::iterator                    CollisionIterator;
+            /// @brief Const Iterator type for @ref Collision instances stored by this class.
+            typedef CollisionContainer::const_iterator              ConstCollisionIterator;
+            /// @brief Container type for storing @ref Collision instances based on the pair of proxies that are colliding.
+            typedef std::map< CollidablePair, Collision* >          CollisionMap;
+            /// @brief Iterator type for sorted @ref Collision instances.
+            typedef CollisionMap::iterator                          CollisionMapIterator;
+            /// @brief Const Iterator type for sorted @ref Collision instances.
+            typedef CollisionMap::const_iterator                    ConstCollisionMapIterator;
+
+            /// @brief A String containing the name of this manager implementation.
+            static const String ImplementationName;
+            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+            static const ManagerBase::ManagerType InterfaceType;
         protected:
             friend class CollisionDispatcher;
             friend class ParallelCollisionDispatcher;
@@ -275,30 +298,75 @@ namespace Mezzanine
             friend class WorldTriggerUpdateWorkUnit;
             friend class DebugDrawWorkUnit;
 
-            //Some Data Items
-            Boole SimulationPaused;
-            Integer DebugRenderMode;
-            Whole SubstepModifier;
-            Whole ThreadCount;
-            Real StepSize;
-            Real TimeMultiplier; ///< A Multiplier that adjusts how fast physics runs relative to clock time.
-
+            /// @internal
+            /// @brief A copy of the information used to initialize this manager.
             ManagerConstructionInfo WorldConstructionInfo;
 
-            ProxyContainer Proxies;
-            ConstraintContainer Constraints;
-            WorldTriggerContainer Triggers;
-            CollisionContainer Collisions;
+            /// @internal
+            /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
+            UIDGenerator ProxyIDGen;
+            /// @internal
+            /// @brief Generator responsible for creating unique IDs for Constraint instances.
+            UIDGenerator ConstraintIDGen;
 
-            // Some Items bullet requires
+            /// @internal
+            /// @brief A container storing all of the proxies owned by this manager.
+            ProxyContainer Proxies;
+            /// @internal
+            /// @brief A container storing all of the constraints owned by this manager.
+            ConstraintContainer Constraints;
+            /// @internal
+            /// @brief A container storing all of the worldtriggers owned by this manager.
+            WorldTriggerContainer Triggers;
+            /// @internal
+            /// @brief A container tracking all of the existing collisions in the physics world.
+            CollisionMap Collisions;
+
+            /// @internal
+            /// @brief The amount of time (in seconds) a single simulation step should advance.
+            Real StepSize;
+            /// @internal
+            /// @brief A Multiplier that adjusts how fast physics runs relative to clock time.
+            Real TimeMultiplier;
+            /// @internal
+            /// @brief The current rendering mode for the debug drawer.
+            Integer DebugRenderMode;
+            /// @internal
+            /// @brief A modifier that will determine how many substeps each frame the physics simulation should perform.
+            Whole SubstepModifier;
+            /// @internal
+            /// @brief The number of threads the internal thread providers should allocate.
+            Whole ThreadCount;
+            /// @internal
+            /// @brief Whether or not the physics simulation is to step each frame.
+            Boole SimulationPaused;
+
+            /// @internal
+            /// @brief A pointer to the callback that enables ghost objects internally.
             btGhostPairCallback* GhostCallback;
+            /// @internal
+            /// @brief A pointer to the thread provider for the internal constraint solver.
             btThreadSupportInterface* BulletSolverThreads;
+            /// @internal
+            /// @brief A pointer to the thread provider for the internal dispatcher (narrowphase).
             btThreadSupportInterface* BulletDispatcherThreads;
+            /// @internal
+            /// @brief A pointer to the physics broadphase of the simulation.
             btBroadphaseInterface* BulletBroadphase;
+            /// @internal
+            /// @brief A pointer to the internal collision configuration that enables certain types of objects to collide.
             btCollisionConfiguration* BulletCollisionConfiguration;
+            /// @internal
+            /// @brief A pointer to the internal dispatcher (narrowphase).
             btCollisionDispatcher* BulletDispatcher;
+            /// @internal
+            /// @brief A pointer to the internal constraint solver.
             btSequentialImpulseConstraintSolver* BulletSolver;
+            /// @internal
+            /// @brief A pointer to the internal physics world.
             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
+            /// @internal
+            /// @brief A pointer to the debug drawer for rendering the physics world.
             debug::InternalDebugDrawer* BulletDrawer;
 
             /// @internal
@@ -331,20 +399,17 @@ namespace Mezzanine
             /// @brief Internal Callback that is called each substep of the simulation.
             static void InternalTickCallback(btDynamicsWorld* world, btScalar timeStep);
         public:
-            /// @brief Simple Constructor
-            /// @details This constructor will assign some sane default values and will create a physics
-            /// world that can be used immediately
-            PhysicsManager();
-            /// @brief Simple Constructor
-            /// @details This constructor will assign some sane default values and will create a physics
-            /// world that can be used immediately
+            /// @brief Default settings constructor.
+            /// @param Creator The parent world that is creating the manager.
+            PhysicsManager(World* Creator);
+            /// @brief More explicit constructor.
+            /// @param Creator The parent world that is creating the manager.
             /// @param Info The construction info class with all the settings you wish the world to have.
-            PhysicsManager(const ManagerConstructionInfo& Info);
+            PhysicsManager(World* Creator, const ManagerConstructionInfo& Info);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            PhysicsManager(XML::Node& XMLNode);
-            /// @brief Deconstructor
-            /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
+            PhysicsManager(World* Creator, const XML::Node& XMLNode);
+            /// @brief Class destructor.
             virtual ~PhysicsManager();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -395,11 +460,12 @@ namespace Mezzanine
             /// @param Shape A pointer to the collision shape that will be applied to the new proxy.
             /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            GhostProxy* CreateGhostProxy(CollisionShape* Shape, const Boole AddToWorld = true);
+            GhostProxy* CreateGhostProxy(CollisionShape* Shape, const Boole AddToWorld);
             /// @brief Creates a new GhostProxy.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             GhostProxy* CreateGhostProxy(const XML::Node& SelfRoot);
+
             /// @brief Creates a new RigidProxy.
             /// @param Mass The mass of the new proxy.
             /// @return Returns a pointer to the created proxy.
@@ -409,11 +475,12 @@ namespace Mezzanine
             /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @param Shape A pointer to the collision shape that will be applied to the new proxy.
             /// @return Returns a pointer to the created proxy.
-            RigidProxy* CreateRigidProxy(const Real Mass, CollisionShape* Shape, const Boole AddToWorld = true);
+            RigidProxy* CreateRigidProxy(const Real Mass, CollisionShape* Shape, const Boole AddToWorld);
             /// @brief Creates a new RigidProxy.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             RigidProxy* CreateRigidProxy(const XML::Node& SelfRoot);
+
             /// @brief Creates a new SoftProxy.
             /// @param Mass The total mass of the new proxy.
             /// @return Returns a pointer to the created proxy.
@@ -430,6 +497,16 @@ namespace Mezzanine
             /// @param Index The index of the CollidableProxy to be retrieved.
             /// @return Returns a pointer to the CollidableProxy at the specified index.
             CollidableProxy* GetProxy(const UInt32 Index) const;
+            /// @brief Gets the n-th proxy of the specified type.
+            /// @note This manager only stores CollidableProxy types.  As such, specifying a type of proxy that isn't derived from CollidableProxy will always return NULL.
+            /// @param Type The type of proxy to retrieve.
+            /// @param Which Which proxy of the specified type to retrieve.
+            /// @return Returns a pointer to the specified proxy, or NULL if there is no n-th proxy.
+            CollidableProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
+            /// @brief Gets the CollidableProxy via its ID.
+            /// @param ID The unique identifier belonging to the Proxy.
+            /// @return Returns a pointer to the CollidableProxy with the specified ID.
+            CollidableProxy* GetProxyByID(const UInt32 ID) const;
             /// @brief Gets the number of CollidableProxy instances in this manager.
             /// @return Returns a UInt32 representing the number of CollidableProxy instances contained in this manager.
             UInt32 GetNumProxies() const;
@@ -455,26 +532,195 @@ namespace Mezzanine
             #endif
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Constraint Creation
+
+            /// @brief Creates a new ConeTwistConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param TransA The transform in ProxyA's local space to attach this constraint to.
+            /// @param TransB The transform in ProxyB's local space to attach this constraint to.
+            /// @return Returns a pointer to the created constraint.
+            ConeTwistConstraint* CreateConeTwistConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new ConeTwistConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param TransA The transform in ProxyA's local space to attach this constraint to.
+            /// @return Returns a pointer to the created constraint.
+            ConeTwistConstraint* CreateConeTwistConstraint(RigidProxy* ProxyA, const Transform& TransA);
+            /// @brief Creates a new ConeTwistConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            ConeTwistConstraint* CreateConeTwistConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new GearConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The axis in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The axis in ProxyB's local space to apply the constraint to.
+            /// @return Returns a pointer to the created constraint.
+            GearConstraint* CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB);
+            /// @brief Creates a new GearConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The axis in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The axis in ProxyB's local space to apply the constraint to.
+            /// @param Ratio The amount the rotation from ProxyA that shall be used to be applied to ProxyB.
+            /// @return Returns a pointer to the created constraint.
+            GearConstraint* CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio);
+            /// @brief Creates a new GearConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            GearConstraint* CreateGearConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new Generic6DofConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofConstraint* CreateGeneric6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new Generic6DofConstraint.
+            /// @param ProxyB The proxy to be bound to the world.
+            /// @param TransB The offset and rotation for the ProxyB pivot/hinge/joint.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofConstraint* CreateGeneric6DofConstraint(RigidProxy* ProxyB, const Transform& TransB);
+            /// @brief Creates a new Generic6DofConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofConstraint* CreateGeneric6DofConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new Generic6DofSpringConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofSpringConstraint* CreateGeneric6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new Generic6DofSpringConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            Generic6DofSpringConstraint* CreateGeneric6DofSpringConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new HingeConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The location in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The location in ProxyB's local space to apply the constraint to.
+            /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param AxisInB The axis(for ProxyB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB);
+            /// @brief Creates a new HingeConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new HingeConstraint.
+            /// @param ProxyA The proxy to apply this constraint to.
+            /// @param PivotInA The point in the objects(ProxyA) local space where the constraint is to be attached to world space.
+            /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA);
+            /// @brief Creates a new HingeConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param TransB The offset and rotation from ProxyAs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, const Transform& TransA);
+            /// @brief Creates a new HingeConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            HingeConstraint* CreateHingeConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new Hinge2Constraint.
+            /// @remarks All axes passed in should be in world coordinates.
+            /// @param ProxyA A pointer to the first proxy that will be constrained.
+            /// @param ProxyB A pointer to the second proxy that will be constrained.
+            /// @param Anchor The point in world cocrdinates where the "axel" and "suspension" meet.
+            /// @param Axis1 The axis on which the child object should rotate about the parent object(aka turning).  Must be orthogonal to Axis2.
+            /// @param Axis2 The axis on which the child object will rotate on it's own(aka spinning).
+            /// @return Returns a pointer to the created constraint.
+            Hinge2Constraint* CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            /// @brief Creates a new Hinge2Constraint.
+            /// @param ProxyA A pointer to the first proxy that will be constrained.
+            /// @param ProxyB A pointer to the second proxy that will be constrained.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            Hinge2Constraint* CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new Hinge2Constraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            Hinge2Constraint* CreateHinge2Constraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new Point2PointConstraint.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The location in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The location in ProxyB's local space to apply the constraint to.
+            /// @return Returns a pointer to the created constraint.
+            Point2PointConstraint* CreatePoint2PointConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotA, const Vector3& PivotB);
+            /// @brief Creates a new Point2PointConstraint.
+            /// @param ProxyA The proxy to apply this constraint to.
+            /// @param PivotA The position relative to ProxyA's center of gravity to "Pin" to the world.
+            /// @return Returns a pointer to the created constraint.
+            Point2PointConstraint* CreatePoint2PointConstraint(RigidProxy* ProxyA, const Vector3& PivotA);
+            /// @brief Creates a new Point2PointConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            Point2PointConstraint* CreatePoint2PointConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new SliderConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyA's center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyB's center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            SliderConstraint* CreateSliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new SliderConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyA's center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            SliderConstraint* CreateSliderConstraint(RigidProxy* ProxyA, const Transform& TransA);
+            /// @brief Creates a new SliderConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            SliderConstraint* CreateSliderConstraint(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new UniversalConstraint.
+            /// @param ProxyA A pointer to the first proxy that will be constrained.
+            /// @param ProxyB A pointer to the second proxy that will be constrained.
+            /// @param Anchor The central point around both Axis1 and Axis 2 will connect and spin.
+            /// @param Axis1 An axis perpendicular to the axis you wish to have the ProxyA spin.
+            /// @param Axis2 An axis perpendicular to the axis you wish to have the ProxyB spin.
+            /// @return Returns a pointer to the created constraint.
+            UniversalConstraint* CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            /// @brief Creates a new UniversalConstraint.
+            /// @param ProxyA A pointer to the first proxy that will be constrained.
+            /// @param ProxyB A pointer to the second proxy that will be constrained.
+            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @return Returns a pointer to the created constraint.
+            UniversalConstraint* CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new UniversalConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created constraint.
+            UniversalConstraint* CreateUniversalConstraint(const XML::Node& SelfRoot);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Constraint Management
 
-            /// @brief Adds a constraint to the world.
-            /// @details Adds the constraint to the world so that it can/will take effect.
-            /// @param Con The constraint to be added.
-            /// @param DisableCollisions Sets whether or not the linked bodies collide with each other.
-            void AddConstraint(Physics::Constraint* Con, Boole DisableCollisions = false);
             /// @brief Gets a constraint by index.
             /// @param Index The index of the constraint you want.
             /// @return Returns a pointer to the specified constraint.
-            Physics::Constraint* GetConstraint(const Whole& Index);
+            Constraint* GetConstraint(const Whole& Index);
             /// @brief Gets the number of constraints currently in the world.
             /// @return Returns a whole representing the number of constraints in the world.
             Whole GetNumConstraints();
-            /// @brief Removes a constraint from the world.
-            /// @details Removes a constraint from the world so that it will have no effect.
-            /// @param Con The constraint to be removed.
-            void RemoveConstraint(Physics::Constraint* Con);
+            /// @brief Removes a constraint from the world and destroys it.
+            /// @param Con The constraint to be destroyed.
+            void DestroyConstraint(Constraint* Con);
             /// @brief Destroys all constraints currently in the manager.
-            /// @details In phashedstringractice it is cleaner to remove constraints from the world before removing any constrained actors.
             void DestroyAllConstraints();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -506,6 +752,11 @@ namespace Mezzanine
             // Collision Management
 
             /// @brief Gets a Collision by collidable pair.
+            /// @param A The first proxy in the collision pair.
+            /// @param B The second proxy in the collision pair.
+            /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.
+            Physics::Collision* GetCollision(CollidableProxy* A, CollidableProxy* B);
+            /// @brief Gets a Collision by collidable pair.
             /// @param Pair A pair of CollidableProxies.
             /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.
             Physics::Collision* GetCollision(CollidablePair* Pair);
@@ -526,17 +777,17 @@ namespace Mezzanine
 
             /// @brief Get an CollisionIterator to the first Collision.
             /// @return An CollisionIterator to the first Collision.
-            CollisionIterator BeginCollision();
+            CollisionMapIterator BeginCollision();
             /// @brief Get a CollisionIterator to one past the last Collision.
             /// @return A CollisionIterator to one past the last Collision.
-            CollisionIterator EndCollision();
+            CollisionMapIterator EndCollision();
             #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
             /// @brief Get a ConstCollisionIterator to the first Collision.
             /// @return A ConstCollisionIterator to the first Collision.
-            ConstCollisionIterator BeginCollision() const;
+            ConstCollisionMapIterator BeginCollision() const;
             /// @brief Get a ConstCollisionIterator to one past the last Collision.
             /// @return A ConstCollisionIterator to one past the last Collision.
-            ConstCollisionIterator EndCollision() const;
+            ConstCollisionMapIterator EndCollision() const;
             #endif
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -621,10 +872,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultPhysicsManagerFactory
-        /// @headerfile physicsmanager.h
         /// @brief A factory responsible for the creation and destruction of the default physicsmanager.
         ///////////////////////////////////////
-        class MEZZ_LIB DefaultPhysicsManagerFactory : public ManagerFactory
+        class MEZZ_LIB DefaultPhysicsManagerFactory : public WorldManagerFactory
         {
         public:
             /// @brief Class constructor.
@@ -632,16 +882,17 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~DefaultPhysicsManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
+            /// @copydoc ManagerFactory::GetManagerImplName()
+            String GetManagerImplName() const;
+            /// @copydoc ManagerFactory::GetManagerType() const
+            ManagerBase::ManagerType GetManagerType() const;
 
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, const NameValuePairList&)
+            WorldManager* CreateManager(World* Creator, const NameValuePairList& Params);
+            /// @copydoc WorldManagerFactory::CreateManager(World*, const XML::Node&)
+            WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode);
+            /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
+            void DestroyManager(WorldManager* ToBeDestroyed);
         };//DefaultPhysicsManagerFactory
     }//Physics
 }//Mezzanine

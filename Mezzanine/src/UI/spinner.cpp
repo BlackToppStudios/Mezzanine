@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@
 #include "UI/uimanager.h"
 
 #include "stringtool.h"
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 
 #include <algorithm>
 #include <sstream>
@@ -389,7 +389,7 @@ namespace Mezzanine
         Real Spinner::GetCurrentXPage() const
         {
             if( this->OrderPriority == UI::OP_Horizontal_Vertical ) {
-                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxYPages() ) + 1 );
+                return MathTools::Ceil( MathTools::Mod( this->SpinValue , this->GetMaxYPages() ) + 1 );
             }else if( this->OrderPriority == OP_Vertical_Horizontal ) {
                 return MathTools::Ceil( this->SpinValue / this->GetMaxXPages() );
             }
@@ -401,7 +401,7 @@ namespace Mezzanine
             if( this->OrderPriority == UI::OP_Horizontal_Vertical ) {
                 return MathTools::Ceil( this->SpinValue / this->GetMaxYPages() );
             }else if( this->OrderPriority == OP_Vertical_Horizontal ) {
-                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxXPages() ) + 1 );
+                return MathTools::Ceil( MathTools::Mod( this->SpinValue , this->GetMaxXPages() ) + 1 );
             }
             return 1;
         }
@@ -452,10 +452,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetMaxSpinValue( CurrAttrib.AsReal() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Spinner::GetSerializableName() + "Properties") + ": Not Version 1.");
+                    MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Spinner::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Spinner::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Spinner::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

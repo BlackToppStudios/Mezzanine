@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@
 #include "UI/layoutstrategy.h"
 #include "UI/widget.h"
 
-#include "mathtool.h"
+#include "MathTools/mathtools.h"
 #include "exception.h"
 
 #include <algorithm>
@@ -97,7 +97,7 @@ namespace Mezzanine
         Vector2 LayoutStrategy::HandleChildPositioning(const Rect& OldSelfRect, const Rect& NewSelfRect, const Vector2& NewChildSize, QuadRenderable* Child)
         {
             Vector2 NewPosition;
-            const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
+            //const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
 
             // Resolve our position
             NewPosition.X = MathTools::Floor( this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child) );
@@ -233,11 +233,11 @@ namespace Mezzanine
             // Check for configurations that are just not doable
             if( ( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis || ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis_Unified) &&
                 ( ChildSizing.VerticalRules == UI::SR_Match_Other_Axis || ChildSizing.VerticalRules == UI::SR_Match_Other_Axis_Unified ) )
-                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Both axes of a SizingPolicy cannot attempt to match the other axis.  This creates a circular dependency."); }
+                { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Both axes of a SizingPolicy cannot attempt to match the other axis.  This creates a circular dependency."); }
             if( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis && ChildSizing.VerticalRules == UI::SR_Size_For_Text )
-                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot attempt to match vertical axis when it is sizing for text.  This creates a circular dependency."); }
+                { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot attempt to match vertical axis when it is sizing for text.  This creates a circular dependency."); }
             if( ChildSizing.HorizontalRules == UI::SR_Size_For_Text )
-                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot size for text on the horizontal axis."); }
+                { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot size for text on the horizontal axis."); }
 
             // In general, process the vertical dimension first.  This is because vertical resizing is likely to be less extreme compared to horizontal
             // in the case of transitioning from widescreen to standard viewing formats.  In general, horizontal is more likely to be the dependent axis.

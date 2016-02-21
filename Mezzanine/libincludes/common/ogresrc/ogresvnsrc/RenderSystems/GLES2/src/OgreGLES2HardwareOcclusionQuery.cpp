@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2013 Torus Knot Software Ltd
+Copyright (c) 2000-2014 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,9 @@ THE SOFTWARE.
 #include "OgreGLES2HardwareOcclusionQuery.h"
 #include "OgreLogManager.h"
 #include "OgreException.h"
+#include "OgreRoot.h"
+#include "OgreGLES2RenderSystem.h"
+#include "OgreGLES2Util.h"
 
 namespace Ogre {
 
@@ -39,15 +42,7 @@ namespace Ogre {
   */
 GLES2HardwareOcclusionQuery::GLES2HardwareOcclusionQuery() 
 { 
-	// Check for hardware occlusion support
-#ifdef GL_EXT_occlusion_query_boolean
-    glGenQueriesEXT(1, &mQueryID );
-    GL_CHECK_ERROR;
-#else
-    OGRE_EXCEPT( Exception::ERR_INTERNAL_ERROR, 
-                "Cannot allocate a Hardware query. This video card doesn't support it, sorry.", 
-                "GLES2HardwareOcclusionQuery::GLES2HardwareOcclusionQuery" );
-#endif
+    createQuery();
 }
 //------------------------------------------------------------------
 /**
@@ -55,53 +50,85 @@ GLES2HardwareOcclusionQuery::GLES2HardwareOcclusionQuery()
   */
 GLES2HardwareOcclusionQuery::~GLES2HardwareOcclusionQuery() 
 { 
-#ifdef GL_EXT_occlusion_query_boolean
-    glDeleteQueriesEXT(1, &mQueryID);
-    GL_CHECK_ERROR;
-#endif
+    destroyQuery();
 }
 //------------------------------------------------------------------
-void GLES2HardwareOcclusionQuery::beginOcclusionQuery() 
-{ 
-#ifdef GL_EXT_occlusion_query_boolean
-    glBeginQueryEXT(GL_ANY_SAMPLES_PASSED_EXT, mQueryID);
-    GL_CHECK_ERROR;
+void GLES2HardwareOcclusionQuery::createQuery()
+{
+    // Check for hardware occlusion support
+    
+    if(getGLES2SupportRef()->checkExtension("GL_EXT_occlusion_query_boolean") || gleswIsSupported(3, 0))
+    {
+        OGRE_CHECK_GL_ERROR(glGenQueriesEXT(1, &mQueryID));
+    }
+    else
+    {
+        OGRE_EXCEPT( Exception::ERR_INTERNAL_ERROR,
+                    "Cannot allocate a Hardware query. This video card doesn't support it, sorry.",
+                    "GLES2HardwareOcclusionQuery::GLES2HardwareOcclusionQuery" );
+
+    }
+}
+//------------------------------------------------------------------
+void GLES2HardwareOcclusionQuery::destroyQuery()
+{
+    if(getGLES2SupportRef()->checkExtension("GL_EXT_occlusion_query_boolean") || gleswIsSupported(3, 0))
+    {
+        OGRE_CHECK_GL_ERROR(glDeleteQueriesEXT(1, &mQueryID));
+    }
+}
+//------------------------------------------------------------------
+#if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_EMSCRIPTEN
+void GLES2HardwareOcclusionQuery::notifyOnContextLost()
+{
+    destroyQuery();
+}
+//------------------------------------------------------------------
+void GLES2HardwareOcclusionQuery::notifyOnContextReset()
+{
+    createQuery();
+}
 #endif
+//------------------------------------------------------------------
+void GLES2HardwareOcclusionQuery::beginOcclusionQuery() 
+{
+    if(getGLES2SupportRef()->checkExtension("GL_EXT_occlusion_query_boolean") || gleswIsSupported(3, 0))
+    {
+        OGRE_CHECK_GL_ERROR(glBeginQueryEXT(GL_ANY_SAMPLES_PASSED_EXT, mQueryID));
+    }
 }
 //------------------------------------------------------------------
 void GLES2HardwareOcclusionQuery::endOcclusionQuery() 
-{ 
-#ifdef GL_EXT_occlusion_query_boolean
-    glEndQueryEXT(GL_ANY_SAMPLES_PASSED_EXT);
-    GL_CHECK_ERROR;
-#endif
+{
+    if(getGLES2SupportRef()->checkExtension("GL_EXT_occlusion_query_boolean") || gleswIsSupported(3, 0))
+    {
+        OGRE_CHECK_GL_ERROR(glEndQueryEXT(GL_ANY_SAMPLES_PASSED_EXT));
+    }
 }
 //------------------------------------------------------------------
 bool GLES2HardwareOcclusionQuery::pullOcclusionQuery( unsigned int* NumOfFragments ) 
 {
-#ifdef GL_EXT_occlusion_query_boolean
-    glGetQueryObjectuivEXT(mQueryID, GL_QUERY_RESULT_EXT, (GLuint*)NumOfFragments);
-    GL_CHECK_ERROR;
-    mPixelCount = *NumOfFragments;
-    return true;
-#else
-	return false;
-#endif
+    if(getGLES2SupportRef()->checkExtension("GL_EXT_occlusion_query_boolean") || gleswIsSupported(3, 0))
+    {
+        OGRE_CHECK_GL_ERROR(glGetQueryObjectuivEXT(mQueryID, GL_QUERY_RESULT_EXT, (GLuint*)NumOfFragments));
+        mPixelCount = *NumOfFragments;
+        return true;
+    }
+    else
+        return false;
 }
 //------------------------------------------------------------------
 bool GLES2HardwareOcclusionQuery::isStillOutstanding(void)
 {    
     GLuint available = GL_FALSE;
 
-#ifdef GL_EXT_occlusion_query_boolean
-    glGetQueryObjectuivEXT(mQueryID, GL_QUERY_RESULT_AVAILABLE_EXT, &available);
-    GL_CHECK_ERROR;
-#endif
+    if(getGLES2SupportRef()->checkExtension("GL_EXT_occlusion_query_boolean") || gleswIsSupported(3, 0))
+    {
+        OGRE_CHECK_GL_ERROR(glGetQueryObjectuivEXT(mQueryID, GL_QUERY_RESULT_AVAILABLE_EXT, &available));
+    }
 
-	// GL_TRUE means a wait would occur
+    // GL_TRUE means a wait would occur
     return !(available == GL_TRUE);  
 } 
 
 }
-
-

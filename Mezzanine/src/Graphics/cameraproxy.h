@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -58,7 +58,6 @@ namespace Mezzanine
     namespace Graphics
     {
         class Viewport;
-        class CameraManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the proxy class for placing and manipulating a camera in the scene.
         /// @details
@@ -69,14 +68,8 @@ namespace Mezzanine
             friend class Viewport;
 
             /// @internal
-            /// @brief A string containing the forward facing name of this proxy.
-            String CamName;
-            /// @internal
             /// @brief A vector3 representing the fixed axis on which this camera will always Yaw/rotate.
             Vector3 FixedYawAxis;
-            /// @internal
-            /// @brief A pointer to the CameraManager that created this camera.
-            CameraManager* CamManager;
             /// @internal
             /// @brief A pointer to the internal Camera this proxy is based on.
             Ogre::Camera* GraphicsCamera;
@@ -89,8 +82,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Creates an internal Camera to be used by the calling instance.
-            /// @param Name The name to be given to this CameraProxy.
-            virtual void CreateCamera(const String& Name);
+            virtual void CreateCamera();
             /// @internal
             /// @brief Destroys the internal Camera in use by this proxy.
             virtual void DestroyCamera();
@@ -101,13 +93,13 @@ namespace Mezzanine
             static String GenerateName();
         public:
             /// @brief Class constructor.
-            /// @param Name The name to be given to this CameraProxy.
+            /// @param ID The unique ID assigned to this CameraProxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            CameraProxy(const String& Name, CameraManager* Creator);
+            CameraProxy(const UInt32 ID, SceneManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.
-            CameraProxy(const XML::Node& SelfRoot, CameraManager* Creator);
+            CameraProxy(const XML::Node& SelfRoot, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~CameraProxy();
 
@@ -119,8 +111,6 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::GetProxyType() const
             virtual Mezzanine::ProxyType GetProxyType() const;
-            /// @copydoc WorldProxy::GetCreator() const
-            virtual WorldManager* GetCreator() const;
             /// @brief Gets the Viewport this camera is attached to, if any.
             /// @return Returns a pointer to the Viewport this camera is rendering to, or NULL if not attached.
             virtual Viewport* GetViewport() const;
@@ -151,10 +141,6 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Camera Properties
-
-            /// @brief Gets the name of this Camera.
-            /// @return Returns a const reference to a string containing the cameras name.
-            virtual const String& GetName() const;
 
             /// @brief Sets the debug rendering mode for this camera.
             /// @param PolyMode A CameraPolyMode enum value expressing the mode to be set.

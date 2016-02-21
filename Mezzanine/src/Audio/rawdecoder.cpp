@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,15 +51,26 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        RawDecoder::RawDecoder(Resource::DataStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config)
-            : RawStream(Stream),
-              Frequency(Freq),
-              BitConfiguration(Config)
+        RawDecoder::RawDecoder(Resource::DataStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config) :
+            RawStream(Stream),
+            RawStreamSize(0),
+            RawStreamPos(0),
+            Frequency(Freq),
+            BitConfiguration(Config)
         {
+            this->RawStream->seekg(0,std::ios_base::end);
+            this->RawStreamSize = this->RawStream->tellg();
+            this->RawStream->seekg(0);
         }
 
         RawDecoder::~RawDecoder()
+            {  }
+
+        void RawDecoder::ClearStreamErrors()
         {
+            if( this->RawStream->eof() ) {
+                this->RawStream->clear( this->RawStream->rdstate() ^ ( std::ios::eofbit | std::ios::failbit ) );
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -95,13 +106,18 @@ namespace Mezzanine
             return this->RawStream;
         }
 
-        Boole RawDecoder::SetPosition(Int32 Position, Boole Relative)
+        Boole RawDecoder::IsEndOfStream() const
         {
-            this->RawStream->SetStreamPosition(Position,( Relative ? Resource::DataStream::SO_Current : Resource::DataStream::SO_Beginning ));
+            return ( this->RawStream->eof() || this->RawStream->tellg() >= this->RawStreamSize );
+        }
+
+        Boole RawDecoder::SetPosition(Int32 Position, const Boole Relative)
+        {
+            this->RawStream->seekg(Position,( Relative ? std::ios_base::cur : std::ios_base::beg ));
             return true;
         }
 
-        Boole RawDecoder::Seek(const Real Seconds, Boole Relative)
+        Boole RawDecoder::Seek(const Real Seconds, const Boole Relative)
         {
             Int32 Pos = static_cast<Int32>( Seconds * static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) );
             return this->SetPosition(Pos,Relative);
@@ -109,41 +125,30 @@ namespace Mezzanine
 
         UInt32 RawDecoder::ReadAudioData(void* Output, UInt32 Amount)
         {
-            return this->RawStream->Read(Output,Amount);
+            this->RawStream->read(static_cast<char*>(Output),Amount);
+            return this->RawStream->gcount();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Stats
 
         Real RawDecoder::GetTotalTime() const
-        {
-            return static_cast<Real>( this->RawStream->GetSize() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) );
-        }
+            { return static_cast<Real>( this->RawStreamSize ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) ); }
 
         Real RawDecoder::GetCurrentTime() const
-        {
-            return static_cast<Real>( this->RawStream->GetStreamPosition() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) );
-        }
+            { return static_cast<Real>( this->RawStream->tellg() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) ); }
 
         UInt32 RawDecoder::GetTotalSize() const
-        {
-            return this->RawStream->GetSize();
-        }
+            { return this->RawStreamSize; }
 
         UInt32 RawDecoder::GetCompressedSize() const
-        {
-            return this->RawStream->GetSize();
-        }
+            { return this->RawStreamSize; }
 
         UInt32 RawDecoder::GetCurrentPosition() const
-        {
-            return this->RawStream->GetStreamPosition();
-        }
+            { return this->RawStream->tellg(); }
 
         UInt32 RawDecoder::GetCurrentCompressedPosition() const
-        {
-            return this->RawStream->GetStreamPosition();
-        }
+            { return this->RawStream->tellg(); }
     }//Audio
 }//Mezzanine
 

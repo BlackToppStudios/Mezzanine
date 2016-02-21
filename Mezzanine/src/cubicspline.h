@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -206,10 +206,10 @@ namespace Mezzanine
             void CalculateElements(const std::vector<TimeSeriesType>& x, const std::vector<DataSeriesType>& y)
             {
                 if (x.size() != y.size())
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Data series and time series must have the same count of elements."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Data series and time series must have the same count of elements."); }
 
                 if (x.size() < 3)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Must have at least three points for interpolation."); }
+                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_RANGE_EXCEPTION,"Must have at least three points for interpolation."); }
 
                 DataElements.clear();
 
