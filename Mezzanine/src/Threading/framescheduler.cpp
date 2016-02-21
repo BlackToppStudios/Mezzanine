@@ -79,7 +79,7 @@ namespace Mezzanine
         std::vector<FrameScheduler*> FrameScheduler::FrameSchedulers;
 
         /// @brief The function Frameschedulers have std::terminate() call.
-        /// @details This will iterate over every frame scheduler, finds its log aggregator, call it and flush its log.
+        /// @details This will iterate over every frame scheduler, finds and activate its log aggregator, and flush its log.
         void TerminateHandler()
         {
             lock_guard<SpinLock> g(FrameScheduler::FrameSchedulersLock);
