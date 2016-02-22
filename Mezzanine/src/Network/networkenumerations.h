@@ -100,7 +100,7 @@ namespace Mezzanine
             FCL_FEAT,          ///< Features.  Requests a listing of the available features/extensions on the server.  No argument needed.  Format defined in RFC 2389.
             FCL_HELP,          ///< Help.  Another command may be specified as an argument to get details on it's implementation status on the server.  If no argument is specified then it should return a listing of supported commands.
             FCL_LANG,          ///< Language.  Requests the server change it's response message language to a different language.  Use the FEAT command to determine supported languages.
-            FCL_MDTM,          ///< Modification Time.  Gets the time a file was last modified.  Argument should be a file name.  The format for the time returned in the response is "YYYYMMDDHHMMSS" with an optional decimal separated fraction of a second.
+            FCL_MDTM,          ///< Modification Time.  Gets the time a file was last modified.  Argument should be a file name.  The format for the time returned in the response is "YYYYMMDDHHMMSS" with an optional dot separated fraction of a second.
             FCL_MKD,           ///< Make Directory.  Creates a new directory on the server with the name provided in the argument.
             FCL_MLSD,          ///< Machine List Directory.  Gets a machine friendly listing of all the files in the specified directory.  If no directory is specified the current directory is used.  The format is defined in RFC 3659, section 7.2.
             FCL_MLST,          ///< Machine List.  Gets a machine friendly listing of information on the specified file.  The format is defined in RFC 3659, section 7.2.
@@ -150,60 +150,61 @@ namespace Mezzanine
         /// @brief This enum is a listing of the response codes that can be used in response to FTP commands.
         enum FTPResponseCode
         {
-            FRC_Invalid                    = 0,    ///< Not an actual return code, used in error conditions.
+            FRC_Invalid                       = 0,    ///< Not an actual return code, used in error conditions.
             // 100 Series - The requested action is being initiated, expect another reply before proceeding with a new command.
-            FRC_RestartMarker              = 110,  ///< Restart marker replay.
-            FRC_ServiceReadySoon           = 120,  ///< Service ready in nnn minutes.
-            FRC_DataConnAlreadyOpen        = 125,  ///< Data connection already open; transfer starting.
-            FRC_FileStatusOk               = 150,  ///< File status okay; about to open data connection.
+            FRC_RestartMarkerReply            = 110,  ///< Restart marker reply.
+            FRC_ServiceReadySoon              = 120,  ///< Service ready in nnn minutes.
+            FRC_DataConnectionAlreadyOpen     = 125,  ///< Data connection already open; transfer starting.
+            FRC_DataConnectionOpening         = 150,  ///< File status okay; about to open data connection.
             // 200 Series - The requested action has been successfully completed.
-            FRC_UnknownCommand             = 202,  ///< Command not implemented, superfluous at this site.
-            FRC_SysStatus                  = 211,  ///< System status, or system help reply.
-            FRC_DirectoryStatus            = 212,  ///< Directory status.
-            FRC_FileStatus                 = 213,  ///< File status.
-            FRC_Help                       = 214,  ///< Help message.On how to use the server or the meaning of a particular non-standard command.
-            FRC_SysType                    = 215,  ///< Name of system type.
-            FRC_ServiceReady               = 220,  ///< Service ready for new user.
-            FRC_ServiceClosing             = 221,  ///< Service closing control connection.
-            FRC_DataConnOpen               = 225,  ///< Data connection open; no transfer in progress.
-            FRC_ClosingDataConn            = 226,  ///< Closing data connection.  Requested file action successful (for example, file transfer or file abort).
-            FRC_EnteringPassive            = 227,  ///< Entering Passive Mode.
-            FRC_EnteringLongPassive        = 228,  ///< Entering Long Passive Mode.
-            FRC_EnteringExtendedPassive    = 229,  ///< Entering Extended Passive Mode.
-            FRC_UserLoggedIn               = 230,  ///< User logged in, proceed.
-            FRC_UserLoggedOut              = 231,  ///< User logged out; service terminated.
-            FRC_LogoutAcknowledged         = 232,  ///< Logout command noted, will complete when transfer done.
-            FRC_AuthenticationSuccess      = 234,  ///< Specifies that the server accepts the authentication mechanism specified by the client, and the exchange of security data is complete.
-            FRC_FileActionComplete         = 250,  ///< Requested file action okay, completed.
-            FRC_PathnameCreated            = 257,  ///< The file or directory was successfully created.
+            FRC_Ok                            = 200,  ///< Command acknowledged and completed.
+            FRC_PointlessCommand              = 202,  ///< Command not implemented, superfluous at this site.
+            FRC_SystemStatus                  = 211,  ///< System status, or system help reply.
+            FRC_DirectoryStatus               = 212,  ///< Directory status.
+            FRC_FileStatus                    = 213,  ///< File status.
+            FRC_Help                          = 214,  ///< Help message.On how to use the server or the meaning of a particular non-standard command.
+            FRC_SystemType                    = 215,  ///< Name of system type.
+            FRC_ServiceReady                  = 220,  ///< Service ready for new user.
+            FRC_ServiceClosing                = 221,  ///< Service closing control connection.
+            FRC_DataConnectionOpen            = 225,  ///< Data connection open; no transfer in progress.
+            FRC_DataConnectionClosing         = 226,  ///< Closing data connection.  Requested file action successful (for example, file transfer or file abort).
+            FRC_EnteringPassive               = 227,  ///< Entering Passive Mode.
+            FRC_EnteringLongPassive           = 228,  ///< Entering Long Passive Mode.
+            FRC_EnteringExtendedPassive       = 229,  ///< Entering Extended Passive Mode.
+            FRC_UserLoggedIn                  = 230,  ///< User logged in, proceed.
+            FRC_UserLoggedOut                 = 231,  ///< User logged out; service terminated.
+            FRC_LogoutAcknowledged            = 232,  ///< Logout command noted, will complete when transfer done.
+            FRC_AuthenticationSuccess         = 234,  ///< Specifies that the server accepts the authentication mechanism specified by the client, and the exchange of security data is complete.
+            FRC_FileActionComplete            = 250,  ///< Requested file action okay, completed.
+            FRC_PathnameCreated               = 257,  ///< The file or directory was successfully created.
             // 300 Series - The command has been accepted, but the requested action is on hold, pending receipt of further information.
-            FRC_NeedPassword               = 331,  ///< User name okay, need password.
-            FRC_NeedAccount                = 332,  ///< Need account for login.
-            FRC_FileActionPending          = 350,  ///< Requested file action pending further information.
+            FRC_NeedPassword                  = 331,  ///< User name okay, need password.
+            FRC_NeedAccount                   = 332,  ///< Need account for login.
+            FRC_FileActionPending             = 350,  ///< Requested file action pending further information.
             // 400 Series - The command was not accepted and the requested action did not take place, but the error condition is temporary and the action may be requested again.
-            FRC_ServiceUnavailable         = 421,  ///< Service not available, closing control connection.
-            FRC_DataConnFailed             = 425,  ///< Can't open data connection.
-            FRC_ConnClosedUnexpectedly     = 426,  ///< Connection closed; transfer aborted.
-            FRC_BadUserOrPass              = 430,  ///< Invalid username or password
-            FRC_HostUnavailable            = 434,  ///< Requested host unavailable.
-            FRC_FileActionFailed           = 450,  ///< Requested file action not taken.
-            FRC_ActionAborted              = 451,  ///< Requested action aborted.  Local error in processing.
-            FRC_ActionNotTaken             = 452,  ///< Requested action not taken.
+            FRC_ServiceUnavailable            = 421,  ///< Service not available, closing control connection.
+            FRC_DataConnectionFailed          = 425,  ///< Can't open data connection.
+            FRC_ConnectionClosedUnexpectedly  = 426,  ///< Connection closed; transfer aborted.
+            FRC_BadUserOrPass                 = 430,  ///< Invalid username or password
+            FRC_HostUnavailable               = 434,  ///< Requested host unavailable.
+            FRC_FileActionFailed              = 450,  ///< Requested file action not taken.
+            FRC_LocalError                    = 451,  ///< Requested action aborted.  Local error in processing.
+            FRC_InsufficientStorage           = 452,  ///< Requested action not taken due to lack of storage space.
             // 500 Series - Syntax error, command unrecognized and the requested action did not take place. This may include errors such as command line too long.
-            FRC_SyntaxError                = 501,  ///< Syntax error in parameters or arguments.
-            FRC_BadCommand                 = 502,  ///< Command not implemented.
-            FRC_BadCommandSequence         = 503,  ///< Bad sequence of commands.  A command is issued without a prerequisite command being completed can cause this.
-            FRC_BadParameter               = 504,  ///< Command not implemented for that parameter.
-            FRC_NotLoggedIn                = 530,  ///< Not logged in.
-            FRC_InsufficientPermissions    = 532,  ///< Need account for storing files.
-            FRC_FileUnavailable            = 550,  ///< Requested action not taken.  File unavailable.
-            FRC_PageTypeUnknown            = 551,  ///< Requested action aborted.  Page type unknown.
-            FRC_ExceededAllocation         = 552,  ///< Requested file action aborted.  Exceeded storage allocation (for current directory or dataset).
-            FRC_NameNotAllowed             = 553,  ///< Requested action not taken.  File name not allowed.
+            FRC_SyntaxError                   = 501,  ///< Syntax error in parameters or arguments.
+            FRC_BadCommand                    = 502,  ///< Command not implemented.
+            FRC_BadCommandSequence            = 503,  ///< Bad sequence of commands.  A command is issued without a prerequisite command being completed can cause this.
+            FRC_BadParameter                  = 504,  ///< Command not implemented for that parameter.
+            FRC_NotLoggedIn                   = 530,  ///< Not logged in.
+            FRC_InsufficientPermissions       = 532,  ///< Need account for storing files.
+            FRC_FileUnavailable               = 550,  ///< Requested action not taken.  File unavailable.
+            FRC_PageTypeUnknown               = 551,  ///< Requested action aborted.  Page type unknown.
+            FRC_ExceededAllocation            = 552,  ///< Requested file action aborted.  Exceeded storage allocation (for current directory or dataset).
+            FRC_NameNotAllowed                = 553,  ///< Requested action not taken.  File name not allowed.
             // 600 Series - Replies regarding confidentiality and integrity.
-            FRC_IntegrityReply             = 631,  ///< Integrity protected reply.
-            FRC_ConfAndIntegReply          = 632,  ///< Confidentiality and integrity protected reply.
-            FRC_ConfidentialityReply       = 633   ///< Confidentiality protected reply.
+            FRC_IntegrityReply                = 631,  ///< Integrity protected reply.
+            FRC_ConfAndIntegReply             = 632,  ///< Confidentiality and integrity protected reply.
+            FRC_ConfidentialityReply          = 633   ///< Confidentiality protected reply.
         };
 
         /// @brief This enum is a listing of the potential security levels that can be used on an FTPS data channel.

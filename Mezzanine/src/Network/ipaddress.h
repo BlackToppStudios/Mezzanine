@@ -105,8 +105,8 @@ namespace Mezzanine
             // Static Helpers
 
             /// @brief Resolves an IPv4 or IPv6 address as a String to it's binary representation.
-            /// @remarks There are some sane limitations in how this function can be used/interpretted.  The format for IP addresses that
-            /// are acceptable is "XXX.XXX.XXX.XXX" for IPv4, or "XXXX:XXXX:XXXX:XXXX::XXXX" (as a example) for IPv6.  Other formats or
+            /// @remarks There are some sane limitations in how this function can be used/interpreted.  The format for IP addresses that
+            /// are acceptable is "XXX.XXX.XXX.XXX" for IPv4, or "XXXX:XXXX:XXXX:XXXX::XXXX" (as an example) for IPv6.  Other formats or
             /// including a port number will cause this to fail.  The returned container should always be of size 0, 4, or 16.  A size of
             /// zero indicates a failure, whereas a size of 4 is an IPv4 address, and a size of 16 is an IPv6 address. @n @n
             /// This method will NOT perform DNS resolutions.  Only numeric representations.
