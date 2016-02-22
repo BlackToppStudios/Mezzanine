@@ -47,7 +47,42 @@ namespace Mezzanine
 {
     namespace Network
     {
+        FTPResponse::FTPResponse()
+            {  }
 
+        FTPResponse::FTPResponse(const String& Response)
+            { this->Decompose(Response); }
+
+        FTPResponse::~FTPResponse()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Core Operations
+
+        String FTPResponse::Compose() const
+        {
+            StringStream ResponseStream;
+            for( ConstLineIterator LineIt = this->ResponseLines.begin() ; LineIt != this->ResponseLines.end() ; ++LineIt )
+                { ResponseStream << (*LineIt) << "/r/n"; }
+            return ResponseStream.str();
+        }
+
+        Boole FTPResponse::Decompose(const String& Message)
+        {
+            String::const_iterator CurrIt = Message.begin();
+            return this->Decompose(CurrIt,Message.end());
+        }
+
+        Boole FTPResponse::Decompose(StringIterator& CurrIt, const StringIterator EndIt)
+        {
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        Boole FTPResponse::IsMultiline() const
+            { return this->ResponseLines.size() > 1; }
     }//Network
 }//Mezzanine
 
