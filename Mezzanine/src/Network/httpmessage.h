@@ -49,7 +49,6 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class HeaderField
         /// @brief Convenience class for storing Header fields in internet messaging protocols.
         ///////////////////////////////////////
         struct MEZZ_LIB HeaderField
@@ -69,7 +68,6 @@ namespace Mezzanine
         };//HeaderField
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class HTTPMessage
         /// @brief A base class for HTTP text parsing classes.
         ///////////////////////////////////////
         class MEZZ_LIB HTTPMessage
@@ -144,9 +142,14 @@ namespace Mezzanine
             /// @return Returns a String containing the generated Message.
             virtual String Compose() const = 0;
             /// @brief Populates the members of this class with data from a text HTTP Message.
-            /// @param Request The String containing the Message to be decomposed.
+            /// @param Message The String containing the Message to be decomposed.
             /// @return Returns true if the String was successfully decomposed.
-            virtual Boole Decompose(const String& Request) = 0;
+            virtual Boole Decompose(const String& Message) = 0;
+            /// @brief Populates the members of this class with data from a text HTTP Message.
+            /// @param CurrIt An iterator at the start of the range to be parsed.
+            /// @param EndIt An iterator at the end of the range to be parsed.  Parsing may or may not reach this point.
+            /// @return Returns true if the String was successfully decomposed.
+            virtual Boole Decompose(StringIterator& CurrIt, const StringIterator EndIt) = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Parameter setting/configuration

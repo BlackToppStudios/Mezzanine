@@ -188,12 +188,15 @@ namespace Mezzanine
             return RequestStream.str();
         }
 
-        Boole HTTPRequest::Decompose(const String& Request)
+        Boole HTTPRequest::Decompose(const String& Message)
         {
-            if( !Request.empty() ) {
-                // Set up the data
-                StringIterator CurrIt = Request.begin();
-                const StringIterator EndIt = Request.end();
+            StringIterator CurrIt = Message.begin();
+            return this->Decompose(CurrIt,Message.end());
+        }
+
+        Boole HTTPRequest::Decompose(StringIterator& CurrIt, const StringIterator EndIt)
+        {
+            if( CurrIt != EndIt ) {
                 // Start decomposing
                 if( !this->ParseHTTPHeader(CurrIt,EndIt) ) {
                     return false;

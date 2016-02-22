@@ -129,12 +129,15 @@ namespace Mezzanine
             return ResponseStream.str();
         }
 
-        Boole HTTPResponse::Decompose(const String& Response)
+        Boole HTTPResponse::Decompose(const String& Message)
         {
-            if( !Response.empty() ) {
-                // Set up the data
-                StringIterator CurrIt = Response.begin();
-                const StringIterator EndIt = Response.end();
+            StringIterator CurrIt = Message.begin();
+            return this->Decompose(CurrIt,Message.end());
+        }
+
+        Boole HTTPResponse::Decompose(StringIterator& CurrIt, const StringIterator EndIt)
+        {
+            if( CurrIt != EndIt ) {
                 // Start decomposing
                 if( !this->ParseHTTPHeader(CurrIt,EndIt) ) {
                     return false;

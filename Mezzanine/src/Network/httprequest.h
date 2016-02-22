@@ -50,7 +50,6 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class HTTPRequest
         /// @brief A simple class to facilitate the creation of HTTP requests.
         /// @details Some of the data that can be set is mandatory, some of it is optional.  The URI, major and minor versions, as well as
         /// the request method to be used are mandatory in all cases.  If you are using HTTP 1.1 or higher, then adding a "Host" header field
@@ -91,7 +90,11 @@ namespace Mezzanine
             /// @copydoc HTTPMessage::Decompose(const String&)
             /// @warning A request can be partially decomposed when it fails and have that data saved to members of this class.  For that
             /// reason you should only utilize the data in this class if the decompose was successful, or completely re-written.
-            Boole Decompose(const String& Request);
+            Boole Decompose(const String& Message);
+            /// @copydoc HTTPMessage::Decompose(StringIterator&, const StringIterator)
+            /// @warning A request can be partially decomposed when it fails and have that data saved to members of this class.  For that
+            /// reason you should only utilize the data in this class if the decompose was successful, or completely re-written.
+            Boole Decompose(StringIterator& CurrIt, const StringIterator EndIt);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
