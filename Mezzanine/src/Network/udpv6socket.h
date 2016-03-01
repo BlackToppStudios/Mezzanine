@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkudpv6socket_h
 #define _networkudpv6socket_h
 
@@ -51,9 +49,7 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class UDPv6Socket
         /// @brief A UDP socket that uses IPv6 internet addresses for transmissions.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB UDPv6Socket : public IPv6Socket, public UDPSocket
         {
@@ -86,5 +82,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

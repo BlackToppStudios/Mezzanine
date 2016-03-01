@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networksocketdescription_h
 #define _networksocketdescription_h
 
@@ -51,7 +49,6 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class SocketDescription
         /// @brief A convenience class storing socket data that can be returned from utility methods and used to create and init new sockets.
         /// @remarks Extreme care should be taken when handling these values.  They are set to Network-Byte-Order and any necessary conversions
         /// to Host-Byte-Order are not automatically done by this struct.
@@ -111,5 +108,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

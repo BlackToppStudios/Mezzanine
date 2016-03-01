@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkipaddress_h
 #define _networkipaddress_h
 
@@ -54,7 +52,6 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class IPAddress
         /// @brief This is a simple class for representing IP addresses used throughout the Network subsystem.
         ///////////////////////////////////////
         class MEZZ_LIB IPAddress
@@ -182,5 +179,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

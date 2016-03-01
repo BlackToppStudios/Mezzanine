@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networktcpsocket_h
 #define _networktcpsocket_h
 
@@ -50,9 +48,7 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class TCPSocket
         /// @brief A socket class using the TCP stream protocol.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB TCPSocket : virtual public Socket
         {
@@ -103,5 +99,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

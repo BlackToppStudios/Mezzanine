@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkudpsocket_h
 #define _networkudpsocket_h
 
@@ -51,9 +49,7 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class UDPSocket
         /// @brief A socket class using the User Datagram Protocol.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB UDPSocket : virtual public Socket
         {
@@ -156,5 +152,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

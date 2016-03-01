@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networksystemaddress_h
 #define _networksystemaddress_h
 
@@ -50,9 +48,7 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class SystemAddress
         /// @brief A simple class that stores a complete set of information for establishing connections.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB SystemAddress
         {
@@ -160,5 +156,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

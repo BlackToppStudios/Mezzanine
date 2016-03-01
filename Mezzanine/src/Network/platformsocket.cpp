@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,8 +37,6 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-
-#ifdef MEZZNETWORK
 
 #ifndef _networkplatformsocket_cpp
 #define _networkplatformsocket_cpp
@@ -234,11 +232,11 @@ namespace Mezzanine
 
         PlatformSocket::~PlatformSocket()
         {
-            #if defined(MEZZ_WINDOWS)
-                ::closesocket(this->InternalSocket);
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                ::close(this->InternalSocket);
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            ::closesocket(this->InternalSocket);
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            ::close(this->InternalSocket);
+        #endif
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -276,20 +274,20 @@ namespace Mezzanine
 
         Boole PlatformSocket::Bind(sockaddr* Address, const AddrLen Length)
         {
-            #if defined(MEZZ_WINDOWS)
-                return ( ::bind(this->InternalSocket,Address,Length) != SOCKET_ERROR );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ( ::bind(this->InternalSocket,Address,Length) == 0 );
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            return ( ::bind(this->InternalSocket,Address,Length) != SOCKET_ERROR );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return ( ::bind(this->InternalSocket,Address,Length) == 0 );
+        #endif
         }
 
         Boole PlatformSocket::Shutdown(const int How)
         {
-            #if defined(MEZZ_WINDOWS)
-                return ( ::shutdown(this->InternalSocket,How) != SOCKET_ERROR );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ( ::shutdown(this->InternalSocket,How) == 0 );
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            return ( ::shutdown(this->InternalSocket,How) != SOCKET_ERROR );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return ( ::shutdown(this->InternalSocket,How) == 0 );
+        #endif
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -309,20 +307,20 @@ namespace Mezzanine
 
         Boole PlatformSocket::Connect(sockaddr* Address, const AddrLen Length)
         {
-            #if defined(MEZZ_WINDOWS)
+        #if defined(MEZZ_WINDOWS)
             return ( ::connect(this->InternalSocket,Address,Length) != SOCKET_ERROR );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
             return ( ::connect(this->InternalSocket,Address,Length) == 0 );
-            #endif
+        #endif
         }
 
         Boole PlatformSocket::Listen(const int Backlog)
         {
-            #if defined(MEZZ_WINDOWS)
-                return ( ::listen(this->InternalSocket,Backlog) != SOCKET_ERROR );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ( ::listen(this->InternalSocket,Backlog) == 0 );
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            return ( ::listen(this->InternalSocket,Backlog) != SOCKET_ERROR );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return ( ::listen(this->InternalSocket,Backlog) == 0 );
+        #endif
         }
 
         PlatformSocket* PlatformSocket::Accept(SystemAddress& Address)
@@ -330,8 +328,7 @@ namespace Mezzanine
             sockaddr_storage AddressStorage;
             AddrLen AddressSize = sizeof(sockaddr_storage);
             SocketHandle NewSock = ::accept(this->InternalSocket,(sockaddr*)&AddressStorage,&AddressSize);
-            if( NewSock != INVALID_SOCKET )
-            {
+            if( NewSock != INVALID_SOCKET ) {
                 Address = ConvertToSystemAddress(AddressStorage);
                 return new PlatformSocket(NewSock,this->SockDomain,this->SockType);
             }
@@ -341,8 +338,7 @@ namespace Mezzanine
         PlatformSocket* PlatformSocket::Accept(sockaddr* Address, AddrLen* Length)
         {
             SocketHandle NewSock = ::accept(this->InternalSocket,Address,Length);
-            if( NewSock != INVALID_SOCKET )
-            {
+            if( NewSock != INVALID_SOCKET ) {
                 return new PlatformSocket(NewSock,this->SockDomain,this->SockType);
             }
             return NULL;
@@ -350,22 +346,22 @@ namespace Mezzanine
 
         Integer PlatformSocket::Send(const void* Buffer, const Integer BufSize, const Integer Flags)
         {
-            #if defined(MEZZ_WINDOWS)
-                int Ret = ::send(this->InternalSocket,static_cast<const char*>(Buffer),BufSize,Flags);
-                return ( Ret != SOCKET_ERROR ? Ret : -1 );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ::send(this->InternalSocket,Buffer,BufSize,Flags);
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            int Ret = ::send(this->InternalSocket,static_cast<const char*>(Buffer),BufSize,Flags);
+            return ( Ret != SOCKET_ERROR ? Ret : -1 );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return ::send(this->InternalSocket,Buffer,BufSize,Flags);
+        #endif
         }
 
         Integer PlatformSocket::Receive(void* Buffer, const Integer BufSize, const Integer Flags)
         {
-            #if defined(MEZZ_WINDOWS)
-                int Ret = ::recv(this->InternalSocket,static_cast<char*>(Buffer),BufSize,Flags);
-                return ( Ret != SOCKET_ERROR ? Ret : -1 );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ::recv(this->InternalSocket,Buffer,BufSize,Flags);
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            int Ret = ::recv(this->InternalSocket,static_cast<char*>(Buffer),BufSize,Flags);
+            return ( Ret != SOCKET_ERROR ? Ret : -1 );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return ::recv(this->InternalSocket,Buffer,BufSize,Flags);
+        #endif
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -385,12 +381,12 @@ namespace Mezzanine
 
         Integer PlatformSocket::SendTo(const void* Buffer, const Integer BufSize, const Integer Flags, const sockaddr* Address, const AddrLen Length)
         {
-            #if defined(MEZZ_WINDOWS)
-                int Ret = ::sendto(this->InternalSocket,static_cast<const char*>(Buffer),BufSize,Flags,Address,Length);
-                return ( Ret != SOCKET_ERROR ? Ret : -1 );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ::sendto(this->InternalSocket,Buffer,BufSize,Flags,Address,Length);
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            int Ret = ::sendto(this->InternalSocket,static_cast<const char*>(Buffer),BufSize,Flags,Address,Length);
+            return ( Ret != SOCKET_ERROR ? Ret : -1 );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return ::sendto(this->InternalSocket,Buffer,BufSize,Flags,Address,Length);
+        #endif
         }
 
         Integer PlatformSocket::ReceiveFrom(void* Buffer, const Integer BufSize, const Integer Flags, SystemAddress& Address)
@@ -404,12 +400,12 @@ namespace Mezzanine
 
         Integer PlatformSocket::ReceiveFrom(void* Buffer, const Integer BufSize, const Integer Flags, sockaddr* Address, AddrLen* Length)
         {
-            #if defined(MEZZ_WINDOWS)
-                int Ret = ::recvfrom(this->InternalSocket,static_cast<char*>(Buffer),BufSize,Flags,Address,Length);
-                return ( Ret != SOCKET_ERROR ? Ret : -1 );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return ::recvfrom(this->InternalSocket,Buffer,BufSize,Flags,Address,Length);
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            int Ret = ::recvfrom(this->InternalSocket,static_cast<char*>(Buffer),BufSize,Flags,Address,Length);
+            return ( Ret != SOCKET_ERROR ? Ret : -1 );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return ::recvfrom(this->InternalSocket,Buffer,BufSize,Flags,Address,Length);
+        #endif
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -417,18 +413,18 @@ namespace Mezzanine
 
         Boole PlatformSocket::SetBlocking(const Boole Block)
         {
-            #if defined(MEZZ_WINDOWS)
-                unsigned long Mode = ( Block ? 0 : 1 );
-                return ( ::ioctlsocket(this->InternalSocket, FIONBIO, &Mode) != SOCKET_ERROR );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                //int Flags = fcntl(fd, F_GETFL, 0);
-                int Flags = fcntl(this->InternalSocket, F_GETFL, 0);
-                if( Flags >= 0 ) {
-                    Flags = Block ? ( Flags & ~O_NONBLOCK ) : ( Flags | O_NONBLOCK );
-                    return ( ::fcntl(this->InternalSocket, F_SETFL, Flags) == 0 );
-                }
-                return false;
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            unsigned long Mode = ( Block ? 0 : 1 );
+            return ( ::ioctlsocket(this->InternalSocket, FIONBIO, &Mode) != SOCKET_ERROR );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            //int Flags = fcntl(fd, F_GETFL, 0);
+            int Flags = fcntl(this->InternalSocket, F_GETFL, 0);
+            if( Flags >= 0 ) {
+                Flags = Block ? ( Flags & ~O_NONBLOCK ) : ( Flags | O_NONBLOCK );
+                return ( ::fcntl(this->InternalSocket, F_SETFL, Flags) == 0 );
+            }
+            return false;
+        #endif
         }
 
         Boole PlatformSocket::GetBlocking() const
@@ -437,11 +433,11 @@ namespace Mezzanine
         Integer PlatformSocket::GetNumBytesAvailable() const
         {
             unsigned long Ret = 0;
-            #if defined(MEZZ_WINDOWS)
-                if( ::ioctlsocket(this->InternalSocket,FIONREAD,&Ret) == SOCKET_ERROR )
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                if( ::ioctl(this->InternalSocket,FIONREAD,&Ret) < 0 )
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            if( ::ioctlsocket(this->InternalSocket,FIONREAD,&Ret) == SOCKET_ERROR )
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            if( ::ioctl(this->InternalSocket,FIONREAD,&Ret) < 0 )
+        #endif
             {
                 return -1;
             }
@@ -462,25 +458,25 @@ namespace Mezzanine
 
         int PlatformSocket::GetLastError()
         {
-            #if defined(MEZZ_WINDOWS)
-                return WSAGetLastError();
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                return errno;
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            return WSAGetLastError();
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            return errno;
+        #endif
         }
 
         void PlatformSocket::ThrowError(const int ErrorCode)
         {
-            #if defined(MEZZ_WINDOWS)
-                char* Str = NULL;
-                FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-                   NULL, ErrorCode,
-                   MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-                   (LPSTR)&Str, 0, NULL);
-                String ErrorMsg( Str );
-            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
-                String ErrorMsg( strerror(ErrorCode) );
-            #endif
+        #if defined(MEZZ_WINDOWS)
+            char* Str = NULL;
+            FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+               NULL, ErrorCode,
+               MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+               (LPSTR)&Str, 0, NULL);
+            String ErrorMsg( Str );
+        #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+            String ErrorMsg( strerror(ErrorCode) );
+        #endif
             MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,ErrorMsg);
         }
 
@@ -492,5 +488,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK
