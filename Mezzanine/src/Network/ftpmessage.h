@@ -56,7 +56,13 @@ namespace Mezzanine
         public:
             /// @brief Convenience typedef for String iterators.
             typedef String::const_iterator                StringIterator;
-
+        protected:
+            /// @internal
+            /// @brief Checks to see if a parsing iterator is at a Telnet End-Of-Line.
+            /// @param CurrIt The iterator to be checked.
+            /// @return Returns true if the cursor is currently at the end of line, false otherwise.
+            Boole IsEndOfLine(const StringIterator CurrIt) const;
+        public:
             ///////////////////////////////////////////////////////////////////////////////
             // Convenience Conversion Methods
 
