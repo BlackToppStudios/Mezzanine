@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networktcpv6socket_h
 #define _networktcpv6socket_h
 
@@ -51,9 +49,7 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class TCPv6Socket
         /// @brief A TCP socket that uses IPv6 internet addresses for connections.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB TCPv6Socket : public IPv6Socket, public TCPSocket
         {
@@ -74,5 +70,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

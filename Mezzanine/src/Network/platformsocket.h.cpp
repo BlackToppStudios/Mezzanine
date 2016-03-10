@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkplatformsocket_h_cpp
 #define _networkplatformsocket_h_cpp
 
@@ -74,11 +72,13 @@ namespace Mezzanine
         #endif
     #endif
 
+        ///////////////////////////////////////////////////////////////////////////////
         /// @internal
         /// @brief Used to allow type inference on @ref PlatformSocket constructors.
         /// @details on Windows an @ref SocketHandleImplementation would be a SOCKET on Linux it
         /// would be an int. This class allows easy differentiation between @ref PlatformSocket
         /// where method calls would be identical otherwise.
+        ///////////////////////////////////////
         class SocketHandle
         {
         protected:
@@ -247,9 +247,7 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
-        /// @class PlatformSocket
         /// @brief This is helper class for managing platform specific data of socket implementations.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB PlatformSocket
         {
@@ -435,5 +433,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

@@ -50,6 +50,9 @@ namespace Mezzanine
 {
     namespace Network
     {
+        Boole FTPMessage::IsEndOfLine(const StringIterator CurrIt) const
+            { return ( (*CurrIt) == '\r' && *(CurrIt + 1) == '\n' ); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Conversion Methods
 

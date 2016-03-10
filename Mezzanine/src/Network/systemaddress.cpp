@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networksystemaddress_cpp
 #define _networksystemaddress_cpp
 
@@ -201,5 +199,3 @@ namespace Mezzanine
 }
 
 #endif
-
-#endif //MEZZNETWORK

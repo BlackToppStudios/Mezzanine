@@ -43,37 +43,69 @@
 
 /**
     @page installing_engine_deps_windows Installing Windows Engine Dependencies
-    @section installing_engine_deps_windows_mingw MinGW32
+    @section installing_engine_deps_windows_mingw MinGW
     The following steps for additional library configuration with the Mezzanine only apply when
     using MinGW32.
 
     If you want to use OpenGL and WinMM as the video and audio backends for your application there
     are no additional steps you need to follow here. However if you want to use DirectX and/or
-    DirectSound then you will need to install the DirectX SDK from
+    DirectSound then you will need to install the DirectX SDK.
+    @n
+    For Windows 7/Vista users you can
+    download the SDK as it's own thing from
     @htmlonly<a href="http://www.microsoft.com/en-us/download/details.aspx?id=6812">@endhtmlonly
-    Microsoft download page
+    here
     @htmlonly</a>@endhtmlonly
-    . The Feburary 2010 version has been tested and is known to be bad/faulty with our
+    .  The Feburary 2010 version has been tested and is known to be bad/faulty with our
     configuration, so ensure you download the June 2010 or newer version.
+    @n
+    For Windows 8/8.1/10 users
+    M$ has packaged the DirectX SDK with all the other major Windows SDKs.  You can get the Windows
+    SDK for Windows 8.1 from
+    @htmlonly<a href="https://dev.windows.com/en-us/downloads/windows-8-1-sdk">@endhtmlonly
+    here
+    @htmlonly</a>@endhtmlonly
+    , and for Windows 10 from
+    @htmlonly<a href="https://dev.windows.com/en-us/downloads/windows-10-sdk">@endhtmlonly
+    here
+    @htmlonly</a>@endhtmlonly
+    .
 
     @n
-    After installing the DirectX SDK you must add it’s install location to the system “Path”
+    After installing the appropriate SDK you must add its install location to the system “Path”
     variable. During installation it will prompt you for where it will be installed, make note of
     that location when it does. In the event that you are reading this and already installed it, the
-    typical locations for the DirectX SDK install are:
+    typical locations for the DirectX SDK install are: @n @n
 
+    Windows Vista/7 32-bit:
     - C:\\Program Files\\Microsoft DirectX SDK (June 2010)
+
+    Windows Vista/7 64-bit:
     - C:\\Program Files(x86)\\Microsoft DirectX SDK (June 2010)
 
-    Check those directories first and verify it’s location. Once you do copy that path to the system
+    Windows 8.1/10 32-bit (is this even a thing?):
+    - C:\\Program Files\\Windows Kits
+    - C:\\Program Files\\Microsoft SDKs\\Windows
+
+    Windows 8.1/10 64-bit:
+    - C:\\Program Files(x86)\\Windows Kits
+    - C:\\Program Files(x86)\\Microsoft SDKs\\Windows
+
+    For Windows 8.1 and 10, there will be additional folders for different SDKs available.  For example
+    you may have a "v8.1" folder or a "10" folder inside the folder noted above depending on the SDK.
+    Check those directories first and verify its location. Once you do copy that path to the system
     “Path” variable with the following the instruction on the @ref path_on_windows page.
 
     @n
     That is all the only step needed to get DirectX working. This also applies for DirectSound if
-    you are using MSVC/Visual Studio. DirectSound on MinGW however, needs a little bit more help.
+    you are using MSVC/Visual Studio. DirectSound on specific versions of MinGW needs a little bit
+    more help, however.  If you are using 32-bit MinGW from Msys then proceed to the next paragraph.
+    Otherwise other distributions of MinGW that have been tested (such as TDM-GCC64) do not need extra
+    steps.
+    @n
     You need to copy a header file available in a Microsoft Visual Studio install, and make it
     available to MinGW. So download and install the latest version of Microsoft Visual Studio
-    express. The version I used and tested was Visual Studio 9.0. Once installed navigate to it’s
+    express. The version I used and tested was Visual Studio 9.0. Once installed navigate to its
     install folder. For me this was in “C:\\Program Files\\Microsoft Visual Studio 9.0” (you may or
     may not need to append “x86” to the “Program Files” folder name). Once there you need to get to
     it’s include directory, to do that enter the “VC” folder, then the “include” folder. In there
@@ -82,36 +114,6 @@
     which by default is located at “C:\\MinGW\\include”. This should enable the DirectSound backend
     for the audio subsystem with MinGW on Windows. You can check the output when you configure CMake
     to verify.
-
-    @section installing_engine_deps_windows_mingw64 MinGW64
-    The following steps for additional library configuration with the Mezzanine only apply when
-    using MinGW64.
-
-    Unlike MinGW32, MinGW64 package linked on the developers tools page comes with it’s own
-    versions of all the necessary Windows and DirectX files that are used. The only real thing you
-    need to do is point the libraries looking for DirectX in the right direction.To ensure that
-    the correct libraries are paired with the correct headers and general compatibility, it is
-    recommended that any DirectX SDK install you may have on your system be uninstalled. Once
-    uninstalled you have to create an environment variable and set it to the necessary compiler
-    directory.
-
-    @subsection installing_engine_deps_windows_mingw64_xp Window XP
-    1. Right-click “My Computer” or “Computer”, click “properties”.
-    2. Click “Advanced” Tab.
-    3. Click “Environment Variables” button.
-    4. Click the “New…” button.
-    5. In the “Variable name” field enter “DXSDK_DIR”.
-    6. In the “Variable value” field enter “C:\\MinGW\\x86_64-w64-mingw32”.
-    7. Click “OK” 4 times.
-    @subsection installing_engine_deps_windows_mingw64_7 Vista and Windows 7.
-    1. Right-click “My Computer” or “Computer”, click “properties”.
-    2. Click “Advanced System Settings” Link.
-    3. If a UAC Prompt requests you permission to continue click “Continue”.
-    4. Click “Environment Variables” Button
-    5. Click the “New…” button
-    6. In the “Variable name” field enter “DXSDK_DIR”
-    7. In the “Variable value” field enter “C:\\MinGW\\x86_64-w64-mingw32”
-    8. Click “OK” 4 times
 
     @n
     Libraries using DirectX components should be able to detect and use the DirectX SDK provided by

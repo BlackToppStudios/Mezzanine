@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networksocket_h
 #define _networksocket_h
 
@@ -137,9 +135,7 @@ namespace Mezzanine
 
         class PlatformSocket;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Socket
         /// @brief This is a basic socket interface for the transmission and retrieval of packets.
-        /// @details
         /// @note This class is intented to house methods for the configuration of all Socket and IPv4 (because IPv6 is a superset of IPv4 in the
         /// case of socket options) options that can be set using a sockets API.  For the most part this is accomplished, however some functionality
         /// has been skipped.  On windows in particular, there are a ton of additional options related to multi-casting which may be addressed in the
@@ -329,5 +325,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

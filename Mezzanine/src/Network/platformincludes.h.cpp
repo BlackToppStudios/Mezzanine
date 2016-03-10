@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkplatformincludes_h_cpp
 #define _networkplatformincludes_h_cpp
 
@@ -67,5 +65,3 @@
 #endif //Platforms
 
 #endif //Include guard
-
-#endif //MEZZNETWORK

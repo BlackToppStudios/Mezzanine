@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkipv6socket_h
 #define _networkipv6socket_h
 
@@ -50,9 +48,7 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class IPv6Socket
         /// @brief A socket class using the IP version 6 protocol.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB IPv6Socket : virtual public Socket
         {
@@ -90,5 +86,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

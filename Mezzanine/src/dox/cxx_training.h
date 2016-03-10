@@ -137,11 +137,27 @@
 
     @subsection cxx_training_and_gaming Gaming Sources
 
-    Make John add links to things like game dev subreddit and bullet/ogre forums.
+    - For more information on our internal graphics implementation there is the
+    @htmlonly<a href="http://www.ogre3d.org/forums/">@endhtmlonly
+    Ogre forums
+    @htmlonly</a>@endhtmlonly
+    .
 
-    @todo John Add LINKS HERE!!!!!
+    - For more information on our internal physics implementation there is the
+    @htmlonly<a href="http://www.bulletphysics.org/Bullet/phpBB3/">@endhtmlonly
+    Bullet forums
+    @htmlonly</a>@endhtmlonly
+    .
 
-
+    - For more generic information on a broad range of topics relating to Game Dev there is the
+    @htmlonly<a href="https://www.reddit.com/r/gamedev">@endhtmlonly
+    Game Dev subreddit
+    @htmlonly</a>@endhtmlonly
+    or
+    @htmlonly<a href="http://www.gamedev.net/page/index.html">@endhtmlonly
+    GameDev.net
+    @htmlonly</a>@endhtmlonly
+    .  However, your mileage may vary with those sites.
 */
 
 

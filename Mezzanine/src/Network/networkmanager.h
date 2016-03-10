@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkmanager_h
 #define _networkmanager_h
 
@@ -53,9 +51,7 @@ namespace Mezzanine
     {
         class Socket;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class NetworkManager
         /// @brief This is the central management class for all network I/O operations.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB NetworkManager : public EntresolManager, public Singleton<NetworkManager>
         {
@@ -99,7 +95,6 @@ namespace Mezzanine
         };//NetworkManager
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class DefaultNetworkManagerFactory
         /// @brief A factory responsible for the creation and destruction of the default networkmanager.
         ///////////////////////////////////////
         class MEZZ_LIB DefaultNetworkManagerFactory : public EntresolManagerFactory
@@ -126,5 +121,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

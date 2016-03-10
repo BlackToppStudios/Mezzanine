@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkutilities_h
 #define _networkutilities_h
 
@@ -75,7 +73,6 @@ namespace Mezzanine
         // DNS Lookup
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class SocketResultContainer
         /// @brief A special container class used to store the results from a call to "ResolveDomainName".
         ///////////////////////////////////////
         class MEZZ_LIB SocketResultContainer
@@ -141,5 +138,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

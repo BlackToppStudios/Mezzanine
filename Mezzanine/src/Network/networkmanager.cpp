@@ -37,7 +37,6 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifdef MEZZNETWORK
 
 #ifndef _networkmanager_cpp
 #define _networkmanager_cpp
@@ -127,5 +126,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

@@ -106,7 +106,7 @@
     — This IDE should be usable. Cmake produces an odd project structure, Two extra projects are
     added “ALL_BUILD” and “ZERO_CHECK”. These can be ignored safely. Be sure to set your startup
     project from the default. Another oddity is that Visual Studio strongly wants to set whether a
-    build has debug symbols immediately before compilation. To accomodate this “CMAKE_BUILD_TYPE”
+    build has debug symbols immediately before compilation. To accommodate this “CMAKE_BUILD_TYPE”
     cannot be set with Visual Studio, this could affect automated build processes.
 
     - @htmlonly<a href="https://git-for-windows.github.io/">@endhtmlonly

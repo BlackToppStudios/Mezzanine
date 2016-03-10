@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkpacket_h
 #define _networkpacket_h
 
@@ -50,7 +48,6 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Packet
         /// @brief A base class for packing information to be transferred over the network.
         /// @remarks Notes about Packets and Fragmentation: @n
         /// When creating packets for any application there should be size considerations.  Routers are permitted to fragment
@@ -175,5 +172,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK

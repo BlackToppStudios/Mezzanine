@@ -73,12 +73,15 @@ namespace Mezzanine
 
         Boole FTPCommand::Decompose(const String& Message)
         {
-            String::const_iterator CurrIt = Message.begin();
+            StringIterator CurrIt = Message.begin();
             return this->Decompose(CurrIt,Message.end());
         }
 
         Boole FTPCommand::Decompose(StringIterator& CurrIt, const StringIterator EndIt)
         {
+            this->CommandArgs.clear();
+            this->CommandType = FCL_Invalid;
+
             if( CurrIt != EndIt ) {
                 String Component;
                 while( CurrIt != EndIt && (*CurrIt) != ' ' )
@@ -86,11 +89,19 @@ namespace Mezzanine
                 this->CommandType = ConvertCommand(Component);
                 Component.clear();
 
-                while( CurrIt != EndIt && !( (*CurrIt) == '\r' && *(CurrIt + 1) == '\n' ) )
-                    { Component.push_back( *CurrIt ); }
+                while( CurrIt != EndIt )
+                {
+                    if( this->IsEndOfLine(CurrIt) ) {
+                        CurrIt += 2;
+                        break;
+                    }else{
+                        Component.push_back( *CurrIt );
+                        ++CurrIt;
+                    }
+                }
                 this->CommandArgs.assign(Component);
 
-                return ( (*CurrIt) == '\r' && *(CurrIt + 1) == '\n' );
+                return this->IsEndOfLine(CurrIt);
             }
             return false;
         }
@@ -102,69 +113,69 @@ namespace Mezzanine
         {
             switch( Command )
             {
-                case Network::FCL_ABOR:  return "ABOR";
-                case Network::FCL_ACCT:  return "ACCT";
-                case Network::FCL_ADAT:  return "ADAT";
-                case Network::FCL_ALLO:  return "ALLO";
-                case Network::FCL_APPE:  return "APPE";
-                case Network::FCL_AUTH:  return "AUTH";
-                case Network::FCL_CCC:   return "CCC";
-                case Network::FCL_CDUP:  return "CDUP";
-                case Network::FCL_CONF:  return "CONF";
-                case Network::FCL_CWD:   return "CWD";
-                case Network::FCL_DELE:  return "DELE";
-                case Network::FCL_ENC:   return "ENC";
-                case Network::FCL_EPRT:  return "EPRT";
-                case Network::FCL_EPSV:  return "EPSV";
-                case Network::FCL_FEAT:  return "FEAT";
-                case Network::FCL_HELP:  return "HELP";
-                case Network::FCL_HOST:  return "HOST";
-                case Network::FCL_LANG:  return "LANG";
-                case Network::FCL_LIST:  return "LIST";
-                case Network::FCL_LPRT:  return "LPRT";
-                case Network::FCL_LPSV:  return "LPSV";
-                case Network::FCL_MDTM:  return "MDTM";
-                case Network::FCL_MIC:   return "MIC";
-                case Network::FCL_MKD:   return "MKD";
-                case Network::FCL_MLSD:  return "MLSD";
-                case Network::FCL_MLST:  return "MLST";
-                case Network::FCL_MODE:  return "MODE";
-                case Network::FCL_NLST:  return "NLST";
-                case Network::FCL_NOOP:  return "NOOP";
-                case Network::FCL_OPTS:  return "OPTS";
-                case Network::FCL_PASS:  return "PASS";
-                case Network::FCL_PASV:  return "PASV";
-                case Network::FCL_PBSZ:  return "PBSZ";
-                case Network::FCL_PORT:  return "PORT";
-                case Network::FCL_PROT:  return "PROT";
-                case Network::FCL_PWD:   return "PWD";
-                case Network::FCL_QUIT:  return "QUIT";
-                case Network::FCL_REIN:  return "REIN";
-                case Network::FCL_REST:  return "REST";
-                case Network::FCL_RETR:  return "RETR";
-                case Network::FCL_RMD:   return "RMD";
-                case Network::FCL_RNFR:  return "RNFR";
-                case Network::FCL_RNTO:  return "RNTO";
-                case Network::FCL_SITE:  return "SITE";
-                case Network::FCL_SIZE:  return "SIZE";
-                case Network::FCL_SMNT:  return "SMNT";
-                case Network::FCL_STAT:  return "STAT";
-                case Network::FCL_STOR:  return "STOR";
-                case Network::FCL_STOU:  return "STOU";
-                case Network::FCL_STRU:  return "STRU";
-                case Network::FCL_SYST:  return "SYST";
-                case Network::FCL_TYPE:  return "TYPE";
-                case Network::FCL_USER:  return "USER";
-                case Network::FCL_XCUP:  return "XCUP";
-                case Network::FCL_XCWD:  return "XCWD";
-                case Network::FCL_XMKD:  return "XMKD";
-                case Network::FCL_XPWD:  return "XPWD";
-                case Network::FCL_XRCP:  return "XRCP";
-                case Network::FCL_XRMD:  return "XRMD";
-                case Network::FCL_XRSQ:  return "XRSQ";
-                case Network::FCL_XSEM:  return "XSEM";
-                case Network::FCL_XSEN:  return "XSEN";
-                case Network::FCL_Invalid:
+                case FCL_ABOR:  return "ABOR";
+                case FCL_ACCT:  return "ACCT";
+                case FCL_ADAT:  return "ADAT";
+                case FCL_ALLO:  return "ALLO";
+                case FCL_APPE:  return "APPE";
+                case FCL_AUTH:  return "AUTH";
+                case FCL_CCC:   return "CCC";
+                case FCL_CDUP:  return "CDUP";
+                case FCL_CONF:  return "CONF";
+                case FCL_CWD:   return "CWD";
+                case FCL_DELE:  return "DELE";
+                case FCL_ENC:   return "ENC";
+                case FCL_EPRT:  return "EPRT";
+                case FCL_EPSV:  return "EPSV";
+                case FCL_FEAT:  return "FEAT";
+                case FCL_HELP:  return "HELP";
+                case FCL_HOST:  return "HOST";
+                case FCL_LANG:  return "LANG";
+                case FCL_LIST:  return "LIST";
+                case FCL_LPRT:  return "LPRT";
+                case FCL_LPSV:  return "LPSV";
+                case FCL_MDTM:  return "MDTM";
+                case FCL_MIC:   return "MIC";
+                case FCL_MKD:   return "MKD";
+                case FCL_MLSD:  return "MLSD";
+                case FCL_MLST:  return "MLST";
+                case FCL_MODE:  return "MODE";
+                case FCL_NLST:  return "NLST";
+                case FCL_NOOP:  return "NOOP";
+                case FCL_OPTS:  return "OPTS";
+                case FCL_PASS:  return "PASS";
+                case FCL_PASV:  return "PASV";
+                case FCL_PBSZ:  return "PBSZ";
+                case FCL_PORT:  return "PORT";
+                case FCL_PROT:  return "PROT";
+                case FCL_PWD:   return "PWD";
+                case FCL_QUIT:  return "QUIT";
+                case FCL_REIN:  return "REIN";
+                case FCL_REST:  return "REST";
+                case FCL_RETR:  return "RETR";
+                case FCL_RMD:   return "RMD";
+                case FCL_RNFR:  return "RNFR";
+                case FCL_RNTO:  return "RNTO";
+                case FCL_SITE:  return "SITE";
+                case FCL_SIZE:  return "SIZE";
+                case FCL_SMNT:  return "SMNT";
+                case FCL_STAT:  return "STAT";
+                case FCL_STOR:  return "STOR";
+                case FCL_STOU:  return "STOU";
+                case FCL_STRU:  return "STRU";
+                case FCL_SYST:  return "SYST";
+                case FCL_TYPE:  return "TYPE";
+                case FCL_USER:  return "USER";
+                case FCL_XCUP:  return "XCUP";
+                case FCL_XCWD:  return "XCWD";
+                case FCL_XMKD:  return "XMKD";
+                case FCL_XPWD:  return "XPWD";
+                case FCL_XRCP:  return "XRCP";
+                case FCL_XRMD:  return "XRMD";
+                case FCL_XRSQ:  return "XRSQ";
+                case FCL_XSEM:  return "XSEM";
+                case FCL_XSEN:  return "XSEN";
+                case FCL_Invalid:
                 default:                 return "";
             }
             return "";
@@ -185,61 +196,61 @@ namespace Mezzanine
                     {
                         switch( UpperCommand[1] )
                         {
-                            case 'B':    return Network::FCL_ABOR;
-                            case 'C':    return Network::FCL_ACCT;
-                            case 'D':    return Network::FCL_ADAT;
-                            case 'L':    return Network::FCL_ALLO;
-                            case 'P':    return Network::FCL_APPE;
-                            case 'U':    return Network::FCL_AUTH;
+                            case 'B':    return FCL_ABOR;
+                            case 'C':    return FCL_ACCT;
+                            case 'D':    return FCL_ADAT;
+                            case 'L':    return FCL_ALLO;
+                            case 'P':    return FCL_APPE;
+                            case 'U':    return FCL_AUTH;
                         }
                     }
                     case 'C':
                     {
                         switch( UpperCommand[1] )
                         {
-                            case 'C':    return Network::FCL_CCC;
-                            case 'D':    return Network::FCL_CDUP;
-                            case 'O':    return Network::FCL_CONF;
-                            case 'W':    return Network::FCL_CWD;
+                            case 'C':    return FCL_CCC;
+                            case 'D':    return FCL_CDUP;
+                            case 'O':    return FCL_CONF;
+                            case 'W':    return FCL_CWD;
                         }
                     }
-                    case 'D':    return Network::FCL_DELE;
+                    case 'D':    return FCL_DELE;
                     case 'E':
                     {
                         switch( UpperCommand[1] )
                         {
-                            case 'N':    return Network::FCL_ENC;
+                            case 'N':    return FCL_ENC;
                             case 'P':
                             {
                                 switch( UpperCommand[2] )
                                 {
-                                    case 'R':    return Network::FCL_EPRT;
-                                    case 'S':    return Network::FCL_EPSV;
+                                    case 'R':    return FCL_EPRT;
+                                    case 'S':    return FCL_EPSV;
                                 }
                             }
                         }
                     }
-                    case 'F':    return Network::FCL_FEAT;
+                    case 'F':    return FCL_FEAT;
                     case 'H':
                     {
                         switch( UpperCommand[1] )
                         {
-                            case 'E':    return Network::FCL_HELP;
-                            case 'O':    return Network::FCL_HOST;
+                            case 'E':    return FCL_HELP;
+                            case 'O':    return FCL_HOST;
                         }
                     }
                     case 'L':
                     {
                         switch( UpperCommand[1] )
                         {
-                            case 'A':    return Network::FCL_LANG;
-                            case 'I':    return Network::FCL_LIST;
+                            case 'A':    return FCL_LANG;
+                            case 'I':    return FCL_LIST;
                             case 'P':
                             {
                                 switch( UpperCommand[2] )
                                 {
-                                    case 'R':    return Network::FCL_LPRT;
-                                    case 'S':    return Network::FCL_LPSV;
+                                    case 'R':    return FCL_LPRT;
+                                    case 'S':    return FCL_LPSV;
                                 }
                             }
                         }
@@ -248,31 +259,31 @@ namespace Mezzanine
                     {
                         switch( UpperCommand[1] )
                         {
-                            case 'D':    return Network::FCL_MDTM;
-                            case 'I':    return Network::FCL_MIC;
-                            case 'K':    return Network::FCL_MKD;
+                            case 'D':    return FCL_MDTM;
+                            case 'I':    return FCL_MIC;
+                            case 'K':    return FCL_MKD;
                             case 'L':
                             {
                                 if( UpperCommand.size() > 3 ) {
                                     switch( UpperCommand[3] )
                                     {
-                                        case 'D':    return Network::FCL_MLSD;
-                                        case 'T':    return Network::FCL_MLST;
+                                        case 'D':    return FCL_MLSD;
+                                        case 'T':    return FCL_MLST;
                                     }
                                 }
                             }
-                            case 'O':    return Network::FCL_MODE;
+                            case 'O':    return FCL_MODE;
                         }
                     }
                     case 'N':
                     {
                         switch( UpperCommand[1] )
                         {
-                            case 'L':    return Network::FCL_NLST;
-                            case 'O':    return Network::FCL_NOOP;
+                            case 'L':    return FCL_NLST;
+                            case 'O':    return FCL_NOOP;
                         }
                     }
-                    case 'O':    return Network::FCL_OPTS;
+                    case 'O':    return FCL_OPTS;
                     case 'P':
                     {
                         switch( UpperCommand[1] )
@@ -282,18 +293,18 @@ namespace Mezzanine
                                 if( UpperCommand.size() > 3 ) {
                                     switch( UpperCommand[3] )
                                     {
-                                        case 'S':    return Network::FCL_PASS;
-                                        case 'V':    return Network::FCL_PASV;
+                                        case 'S':    return FCL_PASS;
+                                        case 'V':    return FCL_PASV;
                                     }
                                 }
                             }
-                            case 'B':    return Network::FCL_PBSZ;
-                            case 'O':    return Network::FCL_PORT;
-                            case 'R':    return Network::FCL_PROT;
-                            case 'W':    return Network::FCL_PWD;
+                            case 'B':    return FCL_PBSZ;
+                            case 'O':    return FCL_PORT;
+                            case 'R':    return FCL_PROT;
+                            case 'W':    return FCL_PWD;
                         }
                     }
-                    case 'Q':    return Network::FCL_QUIT;
+                    case 'Q':    return FCL_QUIT;
                     case 'R':
                     {
                         switch( UpperCommand[1] )
@@ -302,18 +313,18 @@ namespace Mezzanine
                             {
                                 switch( UpperCommand[2] )
                                 {
-                                    case 'I':    return Network::FCL_REIN;
-                                    case 'S':    return Network::FCL_REST;
-                                    case 'T':    return Network::FCL_RETR;
+                                    case 'I':    return FCL_REIN;
+                                    case 'S':    return FCL_REST;
+                                    case 'T':    return FCL_RETR;
                                 }
                             }
-                            case 'M':    return Network::FCL_RMD;
+                            case 'M':    return FCL_RMD;
                             case 'N':
                             {
                                 switch( UpperCommand[2] )
                                 {
-                                    case 'F':    return Network::FCL_RNFR;
-                                    case 'T':    return Network::FCL_RNTO;
+                                    case 'F':    return FCL_RNFR;
+                                    case 'T':    return FCL_RNTO;
                                 }
                             }
                         }
@@ -326,34 +337,34 @@ namespace Mezzanine
                             {
                                 switch( UpperCommand[2] )
                                 {
-                                    case 'T':    return Network::FCL_SITE;
-                                    case 'Z':    return Network::FCL_SIZE;
+                                    case 'T':    return FCL_SITE;
+                                    case 'Z':    return FCL_SIZE;
                                 }
                             }
-                            case 'M':    return Network::FCL_SMNT;
+                            case 'M':    return FCL_SMNT;
                             case 'T':
                             {
                                 switch( UpperCommand[2] )
                                 {
-                                    case 'A':    return Network::FCL_STAT;
+                                    case 'A':    return FCL_STAT;
                                     case 'O':
                                     {
                                         if( UpperCommand.size() > 3 ) {
                                             switch( UpperCommand[3] )
                                             {
-                                                case 'R':    return Network::FCL_STOR;
-                                                case 'U':    return Network::FCL_STOU;
+                                                case 'R':    return FCL_STOR;
+                                                case 'U':    return FCL_STOU;
                                             }
                                         }
                                     }
-                                    case 'R':    return Network::FCL_STRU;
+                                    case 'R':    return FCL_STRU;
                                 }
                             }
-                            case 'Y':    return Network::FCL_SYST;
+                            case 'Y':    return FCL_SYST;
                         }
                     }
-                    case 'T':    return Network::FCL_TYPE;
-                    case 'U':    return Network::FCL_USER;
+                    case 'T':    return FCL_TYPE;
+                    case 'U':    return FCL_USER;
                     case 'X':
                     {
                         switch( UpperCommand[1] )
@@ -362,19 +373,19 @@ namespace Mezzanine
                             {
                                 switch( UpperCommand[2] )
                                 {
-                                    case 'U':    return Network::FCL_XCUP;
-                                    case 'W':    return Network::FCL_XCWD;
+                                    case 'U':    return FCL_XCUP;
+                                    case 'W':    return FCL_XCWD;
                                 }
                             }
-                            case 'M':    return Network::FCL_XMKD;
-                            case 'P':    return Network::FCL_XPWD;
+                            case 'M':    return FCL_XMKD;
+                            case 'P':    return FCL_XPWD;
                             case 'R':
                             {
                                 switch( UpperCommand[2] )
                                 {
-                                    case 'C':    return Network::FCL_XRCP;
-                                    case 'M':    return Network::FCL_XRMD;
-                                    case 'S':    return Network::FCL_XRSQ;
+                                    case 'C':    return FCL_XRCP;
+                                    case 'M':    return FCL_XRMD;
+                                    case 'S':    return FCL_XRSQ;
                                 }
                             }
                             case 'S':
@@ -382,8 +393,8 @@ namespace Mezzanine
                                 if( UpperCommand.size() > 3 ) {
                                     switch( UpperCommand[3] )
                                     {
-                                        case 'M':    return Network::FCL_XSEM;
-                                        case 'N':    return Network::FCL_XSEN;
+                                        case 'M':    return FCL_XSEM;
+                                        case 'N':    return FCL_XSEN;
                                     }
                                 }
                             }// S case
@@ -391,7 +402,7 @@ namespace Mezzanine
                     }// X case
                 }// First character switch
             }// If we have an appropriate size
-            return Network::FCL_Invalid;
+            return FCL_Invalid;
         }
 
         void FTPCommand::SetCommand(const Network::FTPCommandList Command)

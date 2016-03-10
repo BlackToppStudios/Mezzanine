@@ -38,8 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifdef MEZZNETWORK
-
 #ifndef _networkudpv4socket_h
 #define _networkudpv4socket_h
 
@@ -51,9 +49,7 @@ namespace Mezzanine
     namespace Network
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class UDPv4Socket
         /// @brief A UDP socket that uses IPv4 internet addresses for transmissions.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB UDPv4Socket : public IPv4Socket, public UDPSocket
         {
@@ -73,7 +69,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
-            // Commented out due to lack of support on MacOSX.  Additionally there may be better ways to moderate tranmissions.
+            // Commented out due to lack of support on MacOSX.  Additionally there may be better ways to moderate transmissions.
             /*/// @brief Sets whether or not messages sent by this socket can be fragmented by routers.
             /// @remarks In a situation where message fragmentation would occur but isn't allowed to because of this setting
             /// the router will discard the message and send an error back to the sending host.
@@ -96,5 +92,3 @@ namespace Mezzanine
 }//Mezzanine
 
 #endif
-
-#endif //MEZZNETWORK
