@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -213,77 +213,179 @@ public:
 
         {//HTTP
             {//Request
-                String SourceStringFirst( "GET http://www.blacktoppstudios.com/index.html HTTP/1.1\r\n"
-                                          "Host: www.blacktoppstudios.com\r\n"
-                                          "User-Agent: Mezzanine Network\r\n"
-                                          "\r\n" );
-                Network::HTTPRequest RequestTestFirst(SourceStringFirst);
+                {//First
+                    String SourceString( "GET http://www.blacktoppstudios.com/index.html HTTP/1.1\r\n"
+                                         "Host: www.blacktoppstudios.com\r\n"
+                                         "User-Agent: Mezzanine Network\r\n"
+                                         "\r\n" );
+                    Network::HTTPRequest RequestTest(SourceString);
 
-                Boole MethodTestFirst = RequestTestFirst.GetMethod() == Network::HRM_GET;
-                Boole URITestFirst = RequestTestFirst.GetURI() == Network::URI("http://www.blacktoppstudios.com/index.html");
-                Boole VersionTestFirst = RequestTestFirst.GetHTTPVersion() == SimpleVersion(1,1);
-                Boole HostTestFirst = RequestTestFirst.GetHostHeader() == "www.blacktoppstudios.com";
-                Boole UserAgentTestFirst = RequestTestFirst.GetUserAgentHeader() == "Mezzanine Network";
-                Boole BodyTestFirst = RequestTestFirst.GetBody().empty();
+                    Boole MethodTest = RequestTest.GetMethod() == Network::HRM_GET;
+                    Boole URITest = RequestTest.GetURI() == Network::URI("http://www.blacktoppstudios.com/index.html");
+                    Boole VersionTest = RequestTest.GetHTTPVersion() == SimpleVersion(1,1);
+                    Boole HostTest = RequestTest.GetHostHeader() == "www.blacktoppstudios.com";
+                    Boole UserAgentTest = RequestTest.GetUserAgentHeader() == "Mezzanine Network";
+                    Boole BodyTest = RequestTest.GetBody().empty();
 
-                TEST(MethodTestFirst && URITestFirst && VersionTestFirst && HostTestFirst && UserAgentTestFirst && BodyTestFirst,"HTTPRequest_Decompose_First");
-                TEST(RequestTestFirst.Compose() == SourceStringFirst,"HTTPRequest_Compose_First");
+                    TEST(MethodTest && URITest && VersionTest && HostTest && UserAgentTest && BodyTest,"HTTPRequest_Decompose_First");
+                    TEST(RequestTest.Compose() == SourceString,"HTTPRequest_Compose_First");
+                }//First
 
-                String SourceStringSecond( "POST http://www.blacktoppstudios.com/forums HTTP/1.0\r\n"
-                                           "Host: www.blacktoppstudios.com\r\n"
-                                           "Content-Length: 13\r\n"
-                                           "\r\n"
-                                           "Hello Server!" );
-                Network::HTTPRequest RequestTestSecond(SourceStringSecond);
+                {//Second
+                    String SourceString( "POST http://www.blacktoppstudios.com/forums HTTP/1.0\r\n"
+                                         "Host: www.blacktoppstudios.com\r\n"
+                                         "Content-Length: 13\r\n"
+                                         "\r\n"
+                                         "Hello Server!" );
+                    Network::HTTPRequest RequestTest(SourceString);
 
-                Boole MethodTestSecond = RequestTestSecond.GetMethod() == Network::HRM_POST;
-                Boole URITestSecond = RequestTestSecond.GetURI() == Network::URI("http://www.blacktoppstudios.com/forums");
-                Boole VersionTestSecond = RequestTestSecond.GetHTTPVersion() == SimpleVersion(1,0);
-                Boole HostTestSecond = RequestTestSecond.GetHostHeader() == "www.blacktoppstudios.com";
-                Boole BodyTestSecond = RequestTestSecond.GetBody() == "Hello Server!";
+                    Boole MethodTest = RequestTest.GetMethod() == Network::HRM_POST;
+                    Boole URITest = RequestTest.GetURI() == Network::URI("http://www.blacktoppstudios.com/forums");
+                    Boole VersionTest = RequestTest.GetHTTPVersion() == SimpleVersion(1,0);
+                    Boole HostTest = RequestTest.GetHostHeader() == "www.blacktoppstudios.com";
+                    Boole BodyTest = RequestTest.GetBody() == "Hello Server!";
 
-                TEST(MethodTestSecond && URITestSecond && VersionTestSecond && HostTestSecond && BodyTestSecond,"HTTPRequest_Decompose_Second");
-                TEST(RequestTestSecond.Compose() == SourceStringSecond,"HTTPRequest_Compose_Second");
+                    TEST(MethodTest && URITest && VersionTest && HostTest && BodyTest,"HTTPRequest_Decompose_Second");
+                    TEST(RequestTest.Compose() == SourceString,"HTTPRequest_Compose_Second");
+                }//Second
             }//Request
 
             {//Response
-                String SourceStringFirst( "HTTP/1.1 200 OK\r\n"
-                                          "Date: Sun, 24 Jan 2016 4:15 GMT\r\n"
-                                          "Server: Server\r\n"
-                                          "Content-Length: 21\r\n"
-                                          "\r\n"
-                                          "YES.  THIS IS SERVER." );
-                Network::HTTPResponse ResponseTestFirst(SourceStringFirst);
+                {//First
+                    String SourceString( "HTTP/1.1 200 OK\r\n"
+                                         "Date: Sun, 24 Jan 2016 4:15 GMT\r\n"
+                                         "Server: Server\r\n"
+                                         "Content-Length: 21\r\n"
+                                         "\r\n"
+                                         "YES.  THIS IS SERVER." );
+                    Network::HTTPResponse ResponseTest(SourceString);
 
-                Boole VersionTestFirst = ResponseTestFirst.GetHTTPVersion() == SimpleVersion(1,1);
-                Boole StatusCodeTestFirst = ResponseTestFirst.GetStatusCode() == 200;
-                Boole StatusDescriptionTestFirst = ResponseTestFirst.GetResponseDescription() == "OK";
-                Boole DateTestFirst = ResponseTestFirst.GetDateHeader() == "Sun, 24 Jan 2016 4:15 GMT";
-                Boole ServerTestFirst = ResponseTestFirst.GetServerHeader() == "Server";
-                Boole BodyTestFirst = ResponseTestFirst.GetBody() == "YES.  THIS IS SERVER.";
+                    Boole VersionTest = ResponseTest.GetHTTPVersion() == SimpleVersion(1,1);
+                    Boole StatusCodeTest = ResponseTest.GetStatusCode() == 200;
+                    Boole StatusDescriptionTest = ResponseTest.GetResponseDescription() == "OK";
+                    Boole DateTest = ResponseTest.GetDateHeader() == "Sun, 24 Jan 2016 4:15 GMT";
+                    Boole ServerTest = ResponseTest.GetServerHeader() == "Server";
+                    Boole BodyTest = ResponseTest.GetBody() == "YES.  THIS IS SERVER.";
 
-                TEST(VersionTestFirst && StatusCodeTestFirst && StatusDescriptionTestFirst && DateTestFirst && ServerTestFirst && BodyTestFirst,"HTTPResponse_Decompose_First");
-                TEST(ResponseTestFirst.Compose() == SourceStringFirst,"HTTPResponse_Compose_First");
+                    TEST(VersionTest && StatusCodeTest && StatusDescriptionTest && DateTest && ServerTest && BodyTest,"HTTPResponse_Decompose_First");
+                    TEST(ResponseTest.Compose() == SourceString,"HTTPResponse_Compose_First");
+                }//First
 
-                String SourceStringSecond( "HTTP/1.0 404 Not Found\r\n"
-                                           "Date: Fri, 1 Jan 2010 22:00 GMT\r\n"
-                                           "Allow: POST\r\n"
-                                           "Content-Length: 33\r\n"
-                                           "\r\n"
-                                           "Specified Resource doesn't exist." );
-                Network::HTTPResponse ResponseTestSecond(SourceStringSecond);
+                {//Second
+                    String SourceString( "HTTP/1.0 404 Not Found\r\n"
+                                               "Date: Fri, 1 Jan 2010 22:00 GMT\r\n"
+                                               "Allow: POST\r\n"
+                                               "Content-Length: 33\r\n"
+                                               "\r\n"
+                                               "Specified Resource doesn't exist." );
+                    Network::HTTPResponse ResponseTest(SourceString);
 
-                Boole VersionTestSecond = ResponseTestSecond.GetHTTPVersion() == SimpleVersion(1,0);
-                Boole StatusCodeTestSecond = ResponseTestSecond.GetStatusCode() == 404;
-                Boole StatusDescriptionTestSecond = ResponseTestSecond.GetResponseDescription() == "Not Found";
-                Boole DateTestSecond = ResponseTestSecond.GetDateHeader() == "Fri, 1 Jan 2010 22:00 GMT";
-                Boole AllowTestSecond = ResponseTestSecond.GetAllowHeader() == "POST";
-                Boole BodyTestSecond = ResponseTestSecond.GetBody() == "Specified Resource doesn't exist.";
+                    Boole VersionTest = ResponseTest.GetHTTPVersion() == SimpleVersion(1,0);
+                    Boole StatusCodeTest = ResponseTest.GetStatusCode() == 404;
+                    Boole StatusDescriptionTest = ResponseTest.GetResponseDescription() == "Not Found";
+                    Boole DateTest = ResponseTest.GetDateHeader() == "Fri, 1 Jan 2010 22:00 GMT";
+                    Boole AllowTest = ResponseTest.GetAllowHeader() == "POST";
+                    Boole BodyTest = ResponseTest.GetBody() == "Specified Resource doesn't exist.";
 
-                TEST(VersionTestSecond && StatusCodeTestSecond && StatusDescriptionTestSecond && DateTestSecond && AllowTestSecond && BodyTestSecond,"HTTPResponse_Decompose_Second");
-                TEST(ResponseTestSecond.Compose() == SourceStringSecond,"HTTPResponse_Compose_Second");
+                    TEST(VersionTest && StatusCodeTest && StatusDescriptionTest && DateTest && AllowTest && BodyTest,"HTTPResponse_Decompose_Second");
+                    TEST(ResponseTest.Compose() == SourceString,"HTTPResponse_Compose_Second");
+                }//Second
             }//Response
         }//HTTP
+
+        {//FTP
+            {//Command
+                {//First
+                    String SourceString( "NOOP\r\n" );
+                    Network::FTPCommand CommandTest(SourceString);
+
+                    Boole CommandTypeTest = CommandTest.GetCommand() == Network::FCL_NOOP;
+                    Boole ArgumentsTest = CommandTest.GetArguments().empty();
+
+                    TEST(CommandTypeTest && ArgumentsTest,"FTPCommand_Decompose_First");
+                    TEST(CommandTest.Compose() == SourceString,"FTPCommand_Compose_First");
+                }//First
+
+                {//Second
+                    String SourceString( "RETR /Uploads/test.txt\r\n" );
+                    Network::FTPCommand CommandTest(SourceString);
+
+                    Boole CommandTypeTest = CommandTest.GetCommand() == Network::FCL_RETR;
+                    Boole ArgumentsTest = CommandTest.GetArguments() == "/Uploads/test.txt";
+
+                    TEST(CommandTypeTest && ArgumentsTest,"FTPCommand_Decompose_Second");
+                    TEST(CommandTest.Compose() == SourceString,"FTPCommand_Compose_Second");
+                }//Second
+
+                {//Third
+                    String SourceString( "TYPE I\r\n" );
+                    Network::FTPCommand CommandTest(SourceString);
+
+                    Boole CommandTypeTest = CommandTest.GetCommand() == Network::FCL_TYPE;
+                    Boole ArgumentsTest = CommandTest.GetArguments() == "I";
+
+                    TEST(CommandTypeTest && ArgumentsTest,"FTPCommand_Decompose_Third");
+                    TEST(CommandTest.Compose() == SourceString,"FTPCommand_Compose_Third");
+                }//Third
+            }//Command
+
+            {//Response
+                {//First
+                    String SourceString( "200 OK\r\n" );
+                    Network::FTPResponse ResponseTest(SourceString);
+
+                    Boole ResponseCodeTest = ResponseTest.GetCode() == Network::FRC_Ok;
+                    Boole ResponseLineTest = ResponseTest.GetLine(0) == "200 OK";
+
+                    TEST(ResponseCodeTest && ResponseLineTest,"FTPResponse_Decompose_First");
+                    TEST(ResponseTest.Compose() == SourceString,"FTPResponse_Compose_First");
+                }//First
+
+                {//Second
+                    String SourceString( "211-Extensions supported\r\n"
+                                         " MLSD\r\n"
+                                         " MLST\r\n"
+                                         " SIZE\r\n"
+                                         " STAT\r\n"
+                                         "211 End\r\n" );
+                    Network::FTPResponse ResponseTest(SourceString);
+
+                    Boole ResponseCodeTest = ResponseTest.GetCode() == Network::FRC_SystemStatus;
+                    Boole ResponseLineTest1 = ResponseTest.GetLine(0) == "211-Extensions supported";
+                    Boole ResponseLineTest2 = ResponseTest.GetLine(1) == " MLSD";
+                    Boole ResponseLineTest3 = ResponseTest.GetLine(2) == " MLST";
+                    Boole ResponseLineTest4 = ResponseTest.GetLine(3) == " SIZE";
+                    Boole ResponseLineTest5 = ResponseTest.GetLine(4) == " STAT";
+                    Boole ResponseLineTest6 = ResponseTest.GetLine(5) == "211 End";
+
+                    TEST(ResponseCodeTest && ResponseLineTest1 && ResponseLineTest2 && ResponseLineTest3 &&
+                                             ResponseLineTest4 && ResponseLineTest5 && ResponseLineTest6,"FTPResponse_Decompose_Second");
+                    TEST(ResponseTest.Compose() == SourceString,"FTPResponse_Compose_Second");
+                }//Second
+
+                {//Third
+                    String SourceString( "211-Extensions supported\r\n"
+                                         "211-MLSD\r\n"
+                                         "211-MLST\r\n"
+                                         "211-SIZE\r\n"
+                                         "211-STAT\r\n"
+                                         "211 End\r\n" );
+                    Network::FTPResponse ResponseTest(SourceString);
+
+                    Boole ResponseCodeTest = ResponseTest.GetCode() == Network::FRC_SystemStatus;
+                    Boole ResponseLineTest1 = ResponseTest.GetLine(0) == "211-Extensions supported";
+                    Boole ResponseLineTest2 = ResponseTest.GetLine(1) == "211-MLSD";
+                    Boole ResponseLineTest3 = ResponseTest.GetLine(2) == "211-MLST";
+                    Boole ResponseLineTest4 = ResponseTest.GetLine(3) == "211-SIZE";
+                    Boole ResponseLineTest5 = ResponseTest.GetLine(4) == "211-STAT";
+                    Boole ResponseLineTest6 = ResponseTest.GetLine(5) == "211 End";
+
+                    TEST(ResponseCodeTest && ResponseLineTest1 && ResponseLineTest2 && ResponseLineTest3 &&
+                                             ResponseLineTest4 && ResponseLineTest5 && ResponseLineTest6,"FTPResponse_Decompose_Third");
+                    TEST(ResponseTest.Compose() == SourceString,"FTPResponse_Compose_Third");
+                }//Third
+            }//Response
+        }//FTP
     }
     /// @brief Since RunAutomaticTests is implemented so is this.
     /// @return returns true

@@ -57,6 +57,10 @@ namespace Mezzanine
 #include "Network/networkutilities.h"
 #include "Network/networkmanager.h"
 
+#include "Network/ftpclient.h"
+#include "Network/ftpcommand.h"
+#include "Network/ftpmessage.h"
+#include "Network/ftpresponse.h"
 #include "Network/httpclient.h"
 #include "Network/httpmessage.h"
 #include "Network/httprequest.h"

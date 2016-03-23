@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -53,6 +53,9 @@ namespace Mezzanine
             CommandType(Network::FCL_Invalid)
             {  }
 
+        FTPCommand::FTPCommand(const String& Command)
+            { this->Decompose(Command); }
+
         FTPCommand::FTPCommand(const Network::FTPCommandList Type, const String& Args) :
             CommandArgs(Args),
             CommandType(Type)
@@ -67,7 +70,11 @@ namespace Mezzanine
         String FTPCommand::Compose() const
         {
             StringStream CommandStream;
-            CommandStream << FTPCommand::ConvertCommand(this->CommandType) << " " << this->CommandArgs << "\r\n";
+            CommandStream << FTPCommand::ConvertCommand(this->CommandType);
+            if( !this->CommandArgs.empty() ) {
+                CommandStream << " " << this->CommandArgs;
+            }
+            CommandStream << "\r\n";
             return CommandStream.str();
         }
 
@@ -84,8 +91,16 @@ namespace Mezzanine
 
             if( CurrIt != EndIt ) {
                 String Component;
-                while( CurrIt != EndIt && (*CurrIt) != ' ' )
-                    { Component.push_back( *CurrIt ); }
+                while( CurrIt != EndIt && !this->IsEndOfLine(CurrIt) )
+                {
+                    if( (*CurrIt) == ' ' ) {
+                        ++CurrIt;
+                        break;
+                    }else{
+                        Component.push_back( *CurrIt );
+                        ++CurrIt;
+                    }
+                }
                 this->CommandType = ConvertCommand(Component);
                 Component.clear();
 

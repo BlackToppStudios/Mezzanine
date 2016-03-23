@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -108,7 +108,7 @@ namespace Mezzanine
         {
             StringStream ResponseStream;
             for( ConstLineIterator LineIt = this->ResponseLines.begin() ; LineIt != this->ResponseLines.end() ; ++LineIt )
-                { ResponseStream << (*LineIt) << "/r/n"; }
+                { ResponseStream << (*LineIt) << "\r\n"; }
             return ResponseStream.str();
         }
 
@@ -144,10 +144,11 @@ namespace Mezzanine
 
                     this->ResponseLines.push_back(NewLine);
                     // Check if it's the last line.
-                    if( NewLine.size() >= 3 &&
+                    if( NewLine.size() >= 4 &&
                         NewLine[0] == this->ResponseLines[0][0] &&
                         NewLine[1] == this->ResponseLines[0][1] &&
-                        NewLine[2] == this->ResponseLines[0][2] )
+                        NewLine[2] == this->ResponseLines[0][2] &&
+                        NewLine[3] == ' ' )
                     {
                         return true;
                     }
