@@ -48,16 +48,18 @@ namespace Mezzanine
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ButtonDevice
-        /// @headerfile buttondevice.h
         /// @brief This is a base class for all input devices with buttons.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ButtonDevice : public Device
         {
         protected:
+            /// @internal
+            /// @brief A container of indexes being tracked due to state transitions.
             std::vector<Whole> TransitioningIndexes;
+            /// @internal
+            /// @brief A container of states for each button on the input device.
             std::vector<Input::ButtonState> Buttons;
+
             /// @internal
             /// @brief Internal implementation of the device update.
             virtual void UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes) = 0;

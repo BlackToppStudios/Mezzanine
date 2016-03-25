@@ -59,22 +59,30 @@ namespace Mezzanine
 
         Button::Button(Screen* Parent) :
             Widget(Parent),
-            Activation(AS_Deactivated)
+            Activation(AS_Deactivated),
+            LockoutTime(0),
+            MouseActivated(false)
             {  }
 
         Button::Button(const String& RendName, Screen* Parent) :
             Widget(RendName,Parent),
-            Activation(AS_Deactivated)
+            Activation(AS_Deactivated),
+            LockoutTime(0),
+            MouseActivated(false)
             { this->ConstructButton(); }
 
         Button::Button(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Widget(RendName,RendRect,Parent),
-            Activation(AS_Deactivated)
+            Activation(AS_Deactivated),
+            LockoutTime(0),
+            MouseActivated(false)
             { this->ConstructButton(); }
 
         Button::Button(const XML::Node& XMLNode, Screen* Parent) :
             Widget(Parent),
-            Activation(AS_Deactivated)
+            Activation(AS_Deactivated),
+            LockoutTime(0),
+            MouseActivated(false)
             { this->ProtoDeSerialize(XMLNode); }
 
         Button::~Button()
@@ -111,14 +119,14 @@ namespace Mezzanine
 
         void Button::ConstructButton()
         {
+            this->LockoutTimer.SetCountMode(Mezzanine::CM_CountDown);
             // Add our button events
             this->AddEvent(Button::EventActivated);
             this->AddEvent(Button::EventStandby);
             this->AddEvent(Button::EventDeactivated);
             // Handle auto activation registration
             UIManager* Manager = this->ParentScreen->GetManager();
-            if( Manager->ButtonAutoRegisterEnabled() )
-            {
+            if( Manager->ButtonAutoRegisterEnabled() ) {
                 const UIManager::InputContainer& Codes = Manager->GetAutoRegisteredCodes();
                 for( Whole X = 0 ; X < Codes.size() ; X++ )
                     this->BindActivationKeyOrButton(Codes.at(X));
@@ -136,7 +144,7 @@ namespace Mezzanine
         {
             if( this->Activation == AS_Activated )
                 return false;
-            if( this->LockoutTimer.GetInitialTime() != 0 && !(this->LockoutTimer.IsStopped()) )
+            if( this->LockoutTime != 0 && !( this->LockoutTimer.IsStopped() ) )
                 return false;
 
             this->Activation = AS_Activated;
@@ -148,9 +156,8 @@ namespace Mezzanine
         {
             if( this->Activation == AS_Deactivated )
                 return false;
-            if( this->LockoutTimer.GetInitialTime() != 0 )
-            {
-                this->LockoutTimer.Reset();
+            if( this->LockoutTime != 0 ) {
+                this->LockoutTimer.Reset(this->LockoutTime * 1000);
                 this->LockoutTimer.Start();
             }
 
@@ -173,9 +180,9 @@ namespace Mezzanine
         // Utility Methods
 
         void Button::SetLockoutTime(const UInt32& Milliseconds)
-            { this->LockoutTimer.SetInitialTimeInMilliseconds(Milliseconds); }
+            { this->LockoutTime = Milliseconds; }
 
-        const StopWatchTimer& Button::GetLockoutTimer() const
+        const Timer& Button::GetLockoutTimer() const
             { return this->LockoutTimer; }
 
         Boole Button::IsActivated() const
@@ -268,8 +275,8 @@ namespace Mezzanine
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") )
             {
                 // Only if we have a valid timer
-                if( this->LockoutTimer.GetInitialTime() != 0 ) {
-                    if( PropertiesNode.AppendAttribute("LockoutTime").SetValue( this->LockoutTimer.GetInitialTime() ) == false ) {
+                if( this->LockoutTime != 0 ) {
+                    if( PropertiesNode.AppendAttribute("LockoutTime").SetValue( this->LockoutTime ) == false ) {
                         SerializeError("Create XML Attribute Values",Button::GetSerializableName() + "Properties",true);
                     }
                 }

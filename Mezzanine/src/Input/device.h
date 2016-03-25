@@ -51,12 +51,14 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a base class for all input devices.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Device
         {
         protected:
+            /// @internal
+            /// @brief A container for storing and detecting input sequences for an input device.
             SequenceContainer Sequences;
+
             /// @internal
             /// @brief Provides the device specific logic for filtering code sequences.
             /// @param Sequence The MetaCode sequence to be verified.

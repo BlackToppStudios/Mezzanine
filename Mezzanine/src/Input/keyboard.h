@@ -49,10 +49,7 @@ namespace Mezzanine
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Keyboard
-        /// @headerfile keyboard.h
         /// @brief This class represents the keyboard input device.
-        /// @details
         ///////////////////////////////////////
         /// @todo SDL mentions a ModState for keys.  May want to implement that.
         class MEZZ_LIB Keyboard : public ButtonDevice

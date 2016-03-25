@@ -43,24 +43,44 @@
 #include "timer.h"
 #include "crossplatform.h"
 
+namespace
+{
+    Mezzanine::MaxInt CountUpFunction(const Mezzanine::MaxInt Current, const Mezzanine::MaxInt Delta)
+    {
+        return Current + Delta;
+    }
+
+    Mezzanine::MaxInt CountDownFunction(const Mezzanine::MaxInt Current, const Mezzanine::MaxInt Delta)
+    {
+        Mezzanine::MaxInt Result = Current - Delta;
+        if( Result < 0 )
+            Result = 0;
+        return Result;
+    }
+}
+
 namespace Mezzanine
 {
     Timer::Timer() :
-        StartStamp(0),
-        CurrentTime(0),
-        InitialTime(0)
-        {  }
+        LastStamp(0),
+        CurrentTime(0)
+        { this->TimerCounter = &CountUpFunction; }
 
     Timer::~Timer()
         {  }
 
-    void Timer::Update()
+    MaxInt Timer::UpdateTime()
     {
-        if( this->StartStamp != 0 ) {
+        if( this->LastStamp != 0 ) {
             MaxInt CurrentStamp = crossplatform::GetTimeStamp();
-            this->CurrentTime += (CurrentStamp - this->StartStamp);
-            this->StartStamp = CurrentStamp;
+            this->CurrentTime = this->TimerCounter(this->CurrentTime,CurrentStamp - this->LastStamp);
+            this->LastStamp = CurrentStamp;
+
+            // If we've reached the end of a countdown then stop the timer.  But don't actually call Stop(), as that will cause an infinite loop.
+            if( this->CurrentTime == 0 && this->GetCountMode() == Mezzanine::CM_CountDown )
+                this->LastStamp = 0;
         }
+        return this->CurrentTime;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -73,78 +93,76 @@ namespace Mezzanine
         { this->CurrentTime = static_cast<MaxInt>( Current ) * 1000; }
 
     Whole Timer::GetCurrentTime()
-        { this->Update();  return static_cast<Whole>( this->CurrentTime ); }
+        { return static_cast<Whole>( this->UpdateTime() ); }
 
     Whole Timer::GetCurrentTimeInMilliseconds()
         { return this->GetCurrentTime() * 0.001; }
 
-    void Timer::SetInitialTime(const Whole Initial)
-        { this->InitialTime = static_cast<MaxInt>( Initial ); }
+    void Timer::SetCountMode(const Mezzanine::CountMode Mode)
+    {
+        if( Mode == Mezzanine::CM_CountDown ) this->TimerCounter = &CountDownFunction;
+        else this->TimerCounter = &CountUpFunction;
+    }
 
-    void Timer::SetInitialTimeInMilliseconds(const Whole Initial)
-        { this->InitialTime = static_cast<MaxInt>( Initial ) * 1000; }
-
-    Whole Timer::GetInitialTime() const
-        { return static_cast<Whole>( this->InitialTime ); }
-
-    Whole Timer::GetInitialTimeInMilliseconds() const
-        { return this->GetInitialTime() * 0.001; }
+    Mezzanine::CountMode Timer::GetCountMode() const
+    {
+        if( this->TimerCounter == &CountDownFunction ) return Mezzanine::CM_CountDown;
+        else return Mezzanine::CM_CountUp;
+    }
 
     void Timer::Start()
     {
-        if( this->IsStopped() ) {
-            this->StartStamp = crossplatform::GetTimeStamp();
-        }
+        if( this->LastStamp == 0 )
+            this->LastStamp = crossplatform::GetTimeStamp();
     }
 
     void Timer::Stop()
     {
-        if( !this->IsStopped() ) {
-            this->StartStamp = 0;
+        if( this->LastStamp != 0 ) {
+            this->UpdateTime();
+            this->LastStamp = 0;
         }
+    }
+
+    void Timer::Reset(const Whole StartTime)
+    {
+        this->LastStamp = crossplatform::GetTimeStamp();
+        this->SetCurrentTime(StartTime);
+    }
+
+    Boole Timer::IsTicking()
+    {
+        this->UpdateTime();
+        return ( this->LastStamp != 0 );
     }
 
     Boole Timer::IsStopped()
     {
-        this->Update();
-        return this->StartStamp == 0;
+        this->UpdateTime();
+        return ( this->LastStamp == 0 );
     }
 
-    void Timer::Reset()
-    {
-        this->StartStamp = crossplatform::GetTimeStamp();
-        this->CurrentTime = this->InitialTime;
-    }
-
-    Timer::TimerType Timer::GetType() const
-    {
-        return Timer::Normal;
-    }
-
-    String Timer::GetTimeAsText(const Timer::TimeFormat Format)
+    String Timer::GetTimeAsText(const Mezzanine::TimeFormat Format)
     {
         StringStream TimeStream;
         switch( Format )
         {
-            case Timer::TF_Raw_Micro:
+            case Mezzanine::TF_RawMicro:
             {
                 TimeStream << this->GetCurrentTime();
-                return TimeStream.str();
                 break;
             }
-            case Timer::TF_Raw_Milli:
+            case Mezzanine::TF_RawMilli:
             {
                 TimeStream << this->GetCurrentTimeInMilliseconds();
-                return TimeStream.str();
                 break;
             }
-            case Timer::TF_Seconds:
+            case Mezzanine::TF_Seconds:
             {
                 TimeStream << ( this->GetCurrentTimeInMilliseconds() / 1000 );
-                return TimeStream.str();
                 break;
             }
-            case Timer::TF_Seconds_Milli:
+            case Mezzanine::TF_SecondsMilli:
             {
                 Whole Milli = this->GetCurrentTimeInMilliseconds();
                 Whole Seconds = ( Milli / 1000 );
@@ -158,7 +176,7 @@ namespace Mezzanine
                 }
                 break;
             }
-            case Timer::TF_Minutes_Seconds:
+            case Mezzanine::TF_MinutesSeconds:
             {
                 Whole Seconds = ( this->GetCurrentTimeInMilliseconds() / 1000 );
                 Whole Minutes = Seconds / 60;
@@ -168,116 +186,15 @@ namespace Mezzanine
                 }else{
                     TimeStream << Minutes << ":" << Remainder;
                 }
-                return TimeStream.str();
                 break;
             }
             default:
             {
-                return "";
                 break;
             }
         }
-        return "";
+        return TimeStream.str();
     }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // GoalTimer Methods
-
-    GoalTimer::GoalTimer() :
-        GoalTime(0),
-        ResetAtGoal(false)
-        {  }
-
-    GoalTimer::~GoalTimer()
-        {  }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Utility
-
-    void GoalTimer::SetAutoReset(const Boole AutoReset)
-        { this->ResetAtGoal = AutoReset; }
-
-    Boole GoalTimer::GetAutoReset() const
-        { return this->ResetAtGoal; }
-
-    void GoalTimer::SetGoalTime(const Whole Goal)
-        { this->GoalTime = static_cast<MaxInt>( Goal ); }
-
-    void GoalTimer::SetGoalTimeInMilliseconds(const Whole Goal)
-        { this->GoalTime = static_cast<MaxInt>( Goal ) * 1000; }
-
-    Whole GoalTimer::GetGoalTime() const
-        { return static_cast<Whole>( this->GoalTime ); }
-
-    Whole GoalTimer::GetGoalTimeInMilliseconds() const
-        { return this->GetGoalTime() * 0.001; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // StopWatchTimer Methods
-
-    StopWatchTimer::StopWatchTimer()
-        {  }
-
-    StopWatchTimer::~StopWatchTimer()
-        {  }
-
-    void StopWatchTimer::Update()
-    {
-        if( this->StartStamp != 0 ) {
-            MaxInt CurrentStamp = crossplatform::GetTimeStamp();
-            if( CurrentStamp - this->StartStamp > this->CurrentTime ) {
-                this->CurrentTime = 0;
-            }else{
-                this->CurrentTime -= ( CurrentStamp - this->StartStamp );
-            }
-            this->StartStamp = CurrentStamp;
-        }
-
-        if( this->GoalReached() ) {
-            this->StartStamp = 0;
-            if( this->ResetAtGoal ) {
-                this->Reset();
-            }
-        }
-    }
-
-    Boole StopWatchTimer::GoalReached()
-        { return this->CurrentTime <= this->GoalTime; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Utility
-
-    Timer::TimerType StopWatchTimer::GetType() const
-        { return Timer::StopWatch; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // AlarmTimer Methods
-
-    AlarmTimer::AlarmTimer()
-        {  }
-
-    AlarmTimer::~AlarmTimer()
-        {  }
-
-    void AlarmTimer::Update()
-    {
-        this->Timer::Update();
-        if( this->GoalReached() ) {
-            this->StartStamp = 0;
-            if( this->ResetAtGoal ) {
-                this->Reset();
-            }
-        }
-    }
-
-    Boole AlarmTimer::GoalReached()
-        { return this->CurrentTime >= this->GoalTime; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Utility
-
-    Timer::TimerType AlarmTimer::GetType() const
-        { return Timer::Alarm; }
 }//Mezzanine
 
 #endif

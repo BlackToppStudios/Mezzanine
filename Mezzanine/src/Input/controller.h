@@ -49,19 +49,27 @@ namespace Mezzanine
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Controller
-        /// @headerfile controller.h
         /// @brief This class represents a controller input device, such as a gamepad or joystick.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Controller : public ButtonDevice
         {
         protected:
-            UInt16 Index;
-            String DeviceName;
+            /// @internal
+            /// @brief Container storing the states for each axis on the controller.
             std::vector<Int16> Axes;
+            /// @internal
+            /// @brief Container storing the states for each trackball on the controller.
             std::vector<Vector2> Trackballs;
+            /// @internal
+            /// @brief Container storing the states for each hat on the controller.
             std::vector<Input::HatState> Hats;
+            /// @internal
+            /// @brief The name of the controller device.
+            String DeviceName;
+            /// @internal
+            /// @brief The index of the controller device.
+            UInt16 Index;
+
             /// @copydoc ButtonDevice::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
             void UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes);
             /// @copydoc Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)

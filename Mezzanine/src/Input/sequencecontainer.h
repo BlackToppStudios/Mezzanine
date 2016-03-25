@@ -45,26 +45,36 @@
 
 namespace Mezzanine
 {
-    class StopWatchTimer;
+    class Timer;
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class SequenceContainer
-        /// @headerfile sequencecontainer.h
         /// @brief This class stores and provides utilities for sequenced inputs and their operations.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB SequenceContainer
         {
         public:
+            /// @brief Container type for recognized input sequences.
             typedef Trie<Input::MetaCode,Int32>          SequencedInputContainer;
+            /// @brief Iterator type for recognized input sequences.
             typedef SequencedInputContainer::iterator    SequencedInputIterator;
         protected:
-            UInt16 MaxSequenceSize;
-            const UInt32 DeviceIndex;
-            StopWatchTimer* SequenceTimer;
-            MetaCodeContainer CurrSequenceCache;
+            /// @internal
+            /// @brief Container storing all the recognized input sequences.
             SequencedInputContainer SequencedInputs;
+            /// @internal
+            /// @brief Container storing the current input sequence.
+            MetaCodeContainer CurrSequenceCache;
+            /// @internal
+            /// @brief Timer used to help detect input sequences.
+            Timer* SequenceTimer;
+            /// @internal
+            /// @brief The index of the device to detect sequenced inputs for.
+            const UInt32 DeviceIndex;
+            /// @internal
+            /// @brief The maximum number of inputs to keep cached for detecting sequenced inputs.
+            UInt16 MaxSequenceSize;
+
             /// @internal
             /// @brief Verify's a sequence of MetaCode's is terminated with a null MetaCode.
             /// @param Codes The vector of MetaCode's to verify.

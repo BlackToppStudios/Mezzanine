@@ -55,10 +55,9 @@ namespace Mezzanine
             DeviceIndex(std::numeric_limits<UInt32>::max()),
             SequencedInputs(MetaCode())
         {
-            this->SequenceTimer = new StopWatchTimer();
-            this->SequenceTimer->SetInitialTimeInMilliseconds(300);
-            this->SequenceTimer->SetAutoReset(true);
-            this->SequenceTimer->Reset();
+            this->SequenceTimer = new Timer();
+            this->SequenceTimer->SetCurrentTimeInMilliseconds(300);
+            this->SequenceTimer->SetCountMode(Mezzanine::CM_CountDown);
         }
 
         SequenceContainer::SequenceContainer(const UInt32& Device) :
@@ -66,23 +65,21 @@ namespace Mezzanine
             DeviceIndex(Device),
             SequencedInputs(MetaCode())
         {
-            this->SequenceTimer = new StopWatchTimer();
-            this->SequenceTimer->SetInitialTimeInMilliseconds(300);
-            this->SequenceTimer->SetAutoReset(true);
-            this->SequenceTimer->Reset();
+            this->SequenceTimer = new Timer();
+            this->SequenceTimer->SetCurrentTimeInMilliseconds(300);
+            this->SequenceTimer->SetCountMode(Mezzanine::CM_CountDown);
         }
 
         SequenceContainer::~SequenceContainer()
         {
-            delete SequenceTimer;
+            delete this->SequenceTimer;
             this->SequencedInputs.clear();
         }
 
         void SequenceContainer::VerifyInputSequence(const MetaCodeContainer& Codes) const
         {
             const Input::MetaCode NullCode;
-            if( Codes.size() < 3 )
-            {
+            if( Codes.size() < 3 ) {
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to add a Sequenced Input that is less then 3 MetaCodes long(including the Null MetaCode).  "
                                                                        "A sequence with only one(or less) actual MetaCode isn't a sequence.");
             }
@@ -105,9 +102,9 @@ namespace Mezzanine
             // Do the actual search
             SequencedInputIterator SeqIt = this->SequencedInputs.find(Key);
             // Return a "Null" metacode if nothing was found
-            if( SeqIt == this->SequencedInputs.end() ) return Ret;
-            else
-            {
+            if( SeqIt == this->SequencedInputs.end() ) {
+                return Ret;
+            }else{
                 Ret.SetCode(Input::COMPOUNDINPUT_CUSTOMSEQUENCE);
                 Ret.SetMetaValue( *(*SeqIt).second );
                 Ret.SetDeviceIndex(this->DeviceIndex);
@@ -173,33 +170,31 @@ namespace Mezzanine
                 return;
 
             // Check our timer and clear our cache if it's been long enough since the last input
-            if( this->SequenceTimer->IsStopped() ) this->CurrSequenceCache.clear();
-            else this->SequenceTimer->Reset();
+            if( this->SequenceTimer->IsStopped() <= 0 ) {
+                this->CurrSequenceCache.clear();
+            }else{
+                this->SequenceTimer->Reset(300 * 1000);
+            }
 
             // Perform our per-code processing
             for( ConstMetaCodeIterator MCIt = NormalCodes.begin() ; MCIt != NormalCodes.end() ; ++MCIt )
             {
-                if( this->CurrSequenceCache.empty() )
-                {
+                if( this->CurrSequenceCache.empty() ) {
                     MetaCodeContainer TestVec;
                     TestVec.push_back( (*MCIt) );
                     TestVec.push_back(NullMetaCode);
                     SequencedInputIterator SeqIt = this->SequencedInputs.startsWith(TestVec);
-                    if( SeqIt != this->SequencedInputs.end() )
-                    {
+                    if( SeqIt != this->SequencedInputs.end() ) {
                         this->CurrSequenceCache.push_back( (*MCIt) );
                         this->SequenceTimer->Start();
                     }
                 }else{
                     this->CurrSequenceCache.push_back( (*MCIt) );
-                    if( this->MaxSequenceSize == this->CurrSequenceCache.size() )
-                    {
+                    if( this->MaxSequenceSize == this->CurrSequenceCache.size() ) {
                         // Commented out the line below since we shouldn't ever encounter a case where the size is more then 1 greater, since we process one MetaCode at a time
                         //MetaCodeContainer SwapVec(CurrSequenceCache.begin() + ( CurrSequenceCache.size() - MaxSequenceSize ),CurrSequenceCache.end());
                         this->CurrSequenceCache.erase(this->CurrSequenceCache.begin());
-                    }
-                    else if( this->MaxSequenceSize < this->CurrSequenceCache.size() )
-                    {
+                    }else if( this->MaxSequenceSize < this->CurrSequenceCache.size() ) {
                         MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Somehow managed to have the sequence cache in this SequenceContainer jump to more than 1 greater than the longest stored sequence.  "
                                                                           "Don't know how that happened, but if you see this error then the class needs a patch.");
                     }

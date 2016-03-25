@@ -44,195 +44,97 @@
 
 namespace Mezzanine
 {
+    /// @brief An enum describing how the text output of a timer should be formatted.
+    enum TimeFormat
+    {
+        TF_RawMicro       = 1, ///< Outputs the current time in microseconds.
+        TF_RawMilli       = 2, ///< Outputs the current time in milliseconds.
+        TF_Seconds        = 3, ///< Outputs the current time in seconds.
+        TF_SecondsMilli   = 4, ///< Outputs the current time in "seconds.milliseconds".  Milliseconds are out to 3 digits.
+        TF_MinutesSeconds = 5  ///< Outputs the current time in "minutes:seconds".
+    };
+
+    /// @brief A simple enum describing how the timer should increment time.
+    enum CountMode
+    {
+        CM_CountUp       = 1,  ///< The timer counts up, meaning the Timer current time is showing time elapsed.
+        CM_CountDown     = 2   ///< The timer counts down, meaning the Timer current time is showing remaining time.
+    };
+
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Timer
-    /// @headerfile timer.h
-    /// @brief A base timer class for the different timers.
-    /// @details
+    /// @brief A basic timer class to assist in timed operations.
     ///////////////////////////////////////
     class MEZZ_LIB Timer
     {
-    public:
-        /// @brief The style of timer to be used.
-        enum TimerType
-        {
-            Normal,     ///< Counts up forever, ignoring any goal and autoreset
-            StopWatch,  ///< Counts down, respecting any goal and autoreset
-            Alarm       ///< Counts up, respecting any goal and autoreset
-        };
-        /// @brief An enum describing how the text output of a timer should be formatted.
-        enum TimeFormat
-        {
-            TF_Raw_Micro = 1,       ///< Outputs the current time in microseconds.
-            TF_Raw_Milli = 2,       ///< Outputs the current time in milliseconds.
-            TF_Seconds   = 3,       ///< Outputs the current time in seconds.
-            TF_Seconds_Milli = 4,   ///< Outputs the current time in "seconds.milliseconds".  Milliseconds are out to 3 digits.
-            TF_Minutes_Seconds = 5  ///< Outputs the current time in "minutes:seconds".
-        };
     protected:
         /// @internal
-        /// @brief The time stamp from when the timer first started tracking time.
-        MaxInt StartStamp;
+        /// @brief Convenience type for processing the current time.
+        typedef MaxInt(*CountFunct)(const MaxInt, const MaxInt);
+
+        /// @internal
+        /// @brief The time stamp from when the last time the Timer was updated.
+        MaxInt LastStamp;
         /// @internal
         /// @brief The current amount of microseconds that has elapsed since starting to track time.
         MaxInt CurrentTime;
         /// @internal
-        /// @brief The amount of microseconds elapsed that is considered the starting point for tracking time.
-        MaxInt InitialTime;
+        /// @brief A pointer to the function currently doing the counting for this Timer.
+        CountFunct TimerCounter;
+
         /// @internal
-        /// @brief Updates all the timings in this timer.
-        virtual void Update();
+        /// @brief Updates the current time being tracked by this timer.
+        /// @return Returns the updated current time.
+        MaxInt UpdateTime();
     public:
-        /// @brief Standard Constructor.
-        /// @param Style The styling/type of timer to be constructed.
+        /// @brief Class Constructor.
         Timer();
         /// @brief Class Destructor.
-        virtual ~Timer();
+        ~Timer();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         /// @brief Sets the current time in Microseconds.
-        /// @return Returns a reference to this timer.
+        /// @return Returns a reference to this Timer.
         /// @param Current The value to set as current time in Microseconds.
-        virtual void SetCurrentTime(const Whole Current);
-        /// @brief Sets the current time in Milliseconds. The time that resetting sets the timer to.
-        /// @return Returns a reference to this timer.
+        void SetCurrentTime(const Whole Current);
+        /// @brief Sets the current time in Milliseconds. The time that resetting sets the Timer to.
+        /// @return Returns a reference to this Timer.
         /// @param Current The value to set as current time in Milliseconds.
-        virtual void SetCurrentTimeInMilliseconds(const Whole Current);
+        void SetCurrentTimeInMilliseconds(const Whole Current);
         /// @brief Gets the Current time in Microseconds.
         /// @return Returns a Whole representing the current time in Microseconds.
-        virtual Whole GetCurrentTime();
+        Whole GetCurrentTime();
         /// @brief Gets the Current time in Milliseconds.
         /// @return Returns a Whole representing the current time in Milliseconds.
-        virtual Whole GetCurrentTimeInMilliseconds();
-        /// @brief Sets the initial time in Microseconds. The time that resetting sets the timer to.
-        /// @return Returns a reference to this timer.
-        /// @param Initial The value to set as initial time in Microseconds.
-        virtual void SetInitialTime(const Whole Initial);
-        /// @brief Sets the initial time in Milliseconds. The time that resetting sets the timer to.
-        /// @return Returns a reference to this timer.
-        /// @param Initial The value to set as initial time in Milliseconds.
-        virtual void SetInitialTimeInMilliseconds(const Whole Initial);
-        /// @brief Gets the Initial time in Microseconds.
-        /// @return Returns a Whole representing the initial time in Microseconds.
-        virtual Whole GetInitialTime() const;
-        /// @brief Gets the Initial time in Milliseconds.
-        /// @return Returns a Whole representing the initial time in Milliseconds.
-        virtual Whole GetInitialTimeInMilliseconds() const;
+        Whole GetCurrentTimeInMilliseconds();
+
+        /// @brief Sets the mode the timer should use to increment time.
+        /// @param Mode The mode to be set, see the CountMode enum for more details.
+        void SetCountMode(const Mezzanine::CountMode Mode);
+        /// @brief Gets the mode the timer is using to increment time.
+        /// @return Returns a CountMode enum value determining if this timer is counting up or down from it's current time.
+        Mezzanine::CountMode GetCountMode() const;
 
         /// @brief Activates the Timer.
-        virtual void Start();
+        void Start();
         /// @brief Deactivates the Timer.
-        virtual void Stop();
-        /// @brief Gets Whether or not this timer is currently running.
-        /// @return Returns true if this timer is not currently active, false otherwise.
-        virtual Boole IsStopped();
-        /// @brief Sets the current values to their initial values.
-        virtual void Reset();
-        /// @brief Gets the type of timer this is.
-        /// @return Returns an enum value representing the type of timer this is.
-        virtual Timer::TimerType GetType() const;
+        void Stop();
+        /// @brief Sets the current time to an initial value and stops the Timer if it is running.
+        /// @param StartTime The time in microseconds to be begin the Timer at the next time it is started.
+        void Reset(const Whole StartTime = 0);
+        /// @brief Gets whether or not this Timer is currently running.
+        /// @return Returns true if this Timer is active, false if it is stopped.
+        Boole IsTicking();
+        /// @brief Gets whether or not this Timer is currently running.
+        /// @return Returns true if this Timer is not currently active, false otherwise.
+        Boole IsStopped();
 
-        /// @brief Gets the current time of this timer as a string.
+        /// @brief Gets the current time of this Timer as a string.
         /// @param Format A TimeFormat enum value representing how the current time should be presented.
         /// @return Returns a string containing a description of the current time in the specified format.
-        virtual String GetTimeAsText(const Timer::TimeFormat Format);
+        String GetTimeAsText(const Mezzanine::TimeFormat Format);
     };//Timer
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is the base class for timers intended to run only until they reach a specific goal.
-    /// @details
-    ///////////////////////////////////////
-    class MEZZ_LIB GoalTimer : public Timer
-    {
-    protected:
-        /// @internal
-        /// @brief The time this timer should stop at.
-        MaxInt GoalTime;
-        /// @internal
-        /// @brief Wether or not this timer will reset itself when it reaches it's goal.
-        Boole ResetAtGoal;
-        /// @internal
-        /// @brief Checks to see if the goal has been attained as dictated by the type of timer this is.
-        virtual Boole GoalReached() = 0;
-    public:
-        /// @brief Class constructor.
-        GoalTimer();
-        /// @brief Class destructor.
-        virtual ~GoalTimer();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @brief Sets whether or not this Timer should reset if it reaches it's goal.
-        /// @param AutoReset Should be true if you want this timer to reset itself back to it's initial time when it reaches it's goal.
-        virtual void SetAutoReset(const Boole AutoReset);
-        /// @brief Gets whether or not this Timer will reset when it reaches it's goal.
-        /// @return Returns true if this timer will automatically reset when it reaches it's goal.
-        virtual Boole GetAutoReset() const;
-
-        /// @brief Sets the goal time in Microseconds.
-        /// @param Goal The value to set as goal time in Microseconds.
-        virtual void SetGoalTime(const Whole Goal);
-        /// @brief Sets the goal time in Milliseconds.
-        /// @param Goal The value to set as goal time in Milliseconds.
-        virtual void SetGoalTimeInMilliseconds(const Whole Goal);
-        /// @brief Gets the Goal time in Microseconds.
-        /// @return Returns a Whole representing the goal time in Microseconds.
-        virtual Whole GetGoalTime() const;
-        /// @brief Gets the Goal time in Milliseconds.
-        /// @return Returns a Whole representing the goal time in Milliseconds.
-        virtual Whole GetGoalTimeInMilliseconds() const;
-    };//GoalTimer
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a timer class for counting down to a specified time.
-    /// @details
-    ///////////////////////////////////////
-    class MEZZ_LIB StopWatchTimer : public GoalTimer
-    {
-    protected:
-        /// @copydoc Timer::Update()
-        virtual void Update();
-        /// @copydoc GoalTimer::GoalReached()
-        virtual Boole GoalReached();
-    public:
-        /// @brief Class constructor.
-        StopWatchTimer();
-        /// @brief Class destructor.
-        virtual ~StopWatchTimer();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @copydoc Timer::GetType() const
-        virtual Timer::TimerType GetType() const;
-    };//StopWatchTimer
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a timer class that increments normally to a specified time.
-    /// @details
-    ///////////////////////////////////////
-    class MEZZ_LIB AlarmTimer : public GoalTimer
-    {
-    protected:
-        /// @copydoc Timer::Update()
-        virtual void Update();
-        /// @copydoc GoalTimer::GoalReached()
-        virtual Boole GoalReached();
-    public:
-        /// @brief Class constructor.
-        AlarmTimer();
-        /// @brief Class destructor.
-        virtual ~AlarmTimer();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @copydoc Timer::GetType() const
-        virtual Timer::TimerType GetType() const;
-    };//AlarmTimer
 }//Mezzanine
 
 #endif

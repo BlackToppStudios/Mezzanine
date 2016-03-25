@@ -46,7 +46,7 @@
 
 namespace Mezzanine
 {
-    class StopWatchTimer;
+    class Timer;
     namespace Graphics
     {
         class Viewport;
@@ -55,21 +55,33 @@ namespace Mezzanine
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Mouse
-        /// @headerfile mouse.h
         /// @brief This class represents the mouse input device.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Mouse : public ButtonDevice
         {
         protected:
-            Graphics::Viewport* CurrentViewport;
-            StopWatchTimer* MulticlickTimer;
-            Input::DirectionalMotionState VerticalWheelState;
-            Input::DirectionalMotionState HorizontalWheelState;
-            Vector2 Position;
-            Vector2 Delta;
+            /// @internal
+            /// @brief A copy of the current MetaCode being tracked for multi-click detection.
             MetaCode MulticlickCode;
+            /// @internal
+            /// @brief The current screen position of the mouse cursor.
+            Vector2 Position;
+            /// @internal
+            /// @brief The change in the mouse cursor position since the last update.
+            Vector2 Delta;
+            /// @internal
+            /// @brief The viewport that the mouse cursor is currently in.
+            Graphics::Viewport* CurrentViewport;
+            /// @internal
+            /// @brief The timer used to detect multi-clicks.
+            Timer* MulticlickTimer;
+            /// @internal
+            /// @brief The current state of the horizontal mouse wheel (if present).
+            Input::DirectionalMotionState HorizontalWheelState;
+            /// @internal
+            /// @brief The current state of the vertical mouse wheel (if present).
+            Input::DirectionalMotionState VerticalWheelState;
+
             /// @copydoc Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
             void UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes);
             /// @copydoc Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)

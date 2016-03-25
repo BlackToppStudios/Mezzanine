@@ -58,15 +58,14 @@ namespace Mezzanine
     {
         Mouse::Mouse() :
             CurrentViewport(NULL),
-            VerticalWheelState(Input::DIRECTIONALMOTION_UNCHANGED),
-            HorizontalWheelState(Input::DIRECTIONALMOTION_UNCHANGED)
+            HorizontalWheelState(Input::DIRECTIONALMOTION_UNCHANGED),
+            VerticalWheelState(Input::DIRECTIONALMOTION_UNCHANGED)
         {
             this->Buttons.resize( (Input::MOUSEBUTTON_LAST - Input::MOUSEBUTTON_FIRST) + 1, Input::BUTTON_UP );
 
-            this->MulticlickTimer = new StopWatchTimer();
-            this->MulticlickTimer->SetInitialTimeInMilliseconds(500);
-            this->MulticlickTimer->SetAutoReset(true);
-            this->MulticlickTimer->Reset();
+            this->MulticlickTimer = new Timer();
+            this->MulticlickTimer->SetCurrentTimeInMilliseconds(500);
+            this->MulticlickTimer->SetCountMode(Mezzanine::CM_CountDown);
         }
 
         Mouse::~Mouse()
@@ -88,22 +87,23 @@ namespace Mezzanine
             {
                 const MetaCode& CurrCode = DeltaCodes[X];
                 const Input::InputCode ICode = CurrCode.GetCode();
-                if( ICode >= Input::MOUSEBUTTON_FIRST && ICode <= Input::MOUSEBUTTON_LAST )
-                {
+                if( ICode >= Input::MOUSEBUTTON_FIRST && ICode <= Input::MOUSEBUTTON_LAST ) {
                     // Mark the index for transition on the next update and then place it's state in the button vector
                     TransitioningIndexes.push_back( ICode - Input::MOUSEBUTTON_FIRST );
                     Buttons.at( ICode - Input::MOUSEBUTTON_FIRST ) = static_cast<Input::ButtonState>(CurrCode.GetMetaValue());
                     // Now do our checks for multi-click
-                    if( this->IsMultiClickable(ICode) && Input::BUTTON_PRESSING == CurrCode.GetMetaValueAsButtonState() )
-                    {
+                    if( this->IsMultiClickable(ICode) && Input::BUTTON_PRESSING == CurrCode.GetMetaValueAsButtonState() ) {
                         /// @todo This code isn't as graceful as I am sure it can be made.
                         // Update our multiclick timer
-                        if( this->MulticlickTimer->IsStopped() ) this->MulticlickCode.SetMetaValue(0);
-                        else this->MulticlickTimer->Reset();
+                        if( this->MulticlickTimer->IsStopped() ) {
+                            this->MulticlickTimer->SetCurrentTimeInMilliseconds(500);
+                            this->MulticlickCode.SetMetaValue(0);
+                        }else{
+                            this->MulticlickTimer->Reset(500 * 1000);
+                        }
 
                         const Input::InputCode MCICode = this->ConvertToMultiClickCode(ICode);
-                        if( this->MulticlickCode.GetCode() != MCICode )
-                        {
+                        if( this->MulticlickCode.GetCode() != MCICode ) {
                             this->MulticlickCode.SetMetaValue(1);
                             this->MulticlickCode.SetCode(MCICode);
                         }else{
@@ -112,40 +112,27 @@ namespace Mezzanine
                         }
                         this->MulticlickTimer->Start();
                     }
-                }
-                else if( Input::MOUSEWHEELVERTICAL == ICode )
-                {
+                }else if( Input::MOUSEWHEELVERTICAL == ICode ) {
                     this->VerticalWheelState = static_cast<Input::DirectionalMotionState>(CurrCode.GetMetaValue());
-                }
-                else if( Input::MOUSEWHEELHORIZONTAL == ICode )
-                {
+                }else if( Input::MOUSEWHEELHORIZONTAL == ICode ) {
                     this->HorizontalWheelState = static_cast<Input::DirectionalMotionState>(CurrCode.GetMetaValue());
                 }
                 // Only if we're on a window
-                if( Focus )
-                {
-                    if( Input::MOUSEABSOLUTEVERTICAL == ICode )
-                    {
+                if( Focus ) {
+                    if( Input::MOUSEABSOLUTEVERTICAL == ICode ) {
                         this->Position.Y = (Real)(CurrCode.GetMetaValue());
-                    }
-                    else if( Input::MOUSEABSOLUTEHORIZONTAL == ICode )
-                    {
+                    }else if( Input::MOUSEABSOLUTEHORIZONTAL == ICode ) {
                         this->Position.X = (Real)(CurrCode.GetMetaValue());
-                    }
-                    /*else if( Input::MOUSEVERTICAL == ICode )
-                    {
+                    }/*else if( Input::MOUSEVERTICAL == ICode ) {
                         Delta.Y = (Real)(CurrCode.GetMetaValue());
-                    }
-                    else if( Input::MOUSEHORIZONTAL == ICode )
-                    {
+                    }else if( Input::MOUSEHORIZONTAL == ICode ) {
                         Delta.X = (Real)(CurrCode.GetMetaValue());
                     }*/
                 }
             }
 
             // Update our current window
-            if( NULL != Focus )
-            {
+            if( NULL != Focus ) {
                 Graphics::GameWindow* Win = static_cast<Graphics::GameWindow*>(Focus->data->data);
                 for( Graphics::GameWindow::ReverseViewportIterator ViewIt = Win->ReverseBeginViewport() ; ViewIt != Win->ReverseEndViewport() ; ++ViewIt )
                 {

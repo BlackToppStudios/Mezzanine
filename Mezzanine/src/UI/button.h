@@ -97,14 +97,17 @@ namespace Mezzanine
             static const String EventDeactivated;
         protected:
             /// @internal
-            /// @brief The timer that will be used when a button is locked from activating a second time within a certain period.
-            StopWatchTimer LockoutTimer;
-            /// @internal
             /// @brief A container of codes that stores the inputs that will trigger this button to be activated.
             ActivationCodeContainer ActivationCodes;
             /// @internal
             /// @brief Stores the current state of this button's activation.  See Button::ActivationState enum for more details.
             ActivationState Activation;
+            /// @internal
+            /// @brief The timer that will be used when a button is locked from activating a second time within a certain period.
+            Timer LockoutTimer;
+            /// @internal
+            /// @brief The amount of time to lock the activation of a button after it has already been activated.
+            Whole LockoutTime;
             /// @internal
             /// @brief Stores whether or not the current activation of this button was triggered by a mouse.
             Boole MouseActivated;
@@ -159,7 +162,7 @@ namespace Mezzanine
             void SetLockoutTime(const UInt32& Milliseconds);
             /// @brief Gets this activatables lockout timer.
             /// @return Returns a pointer to the Lockout timer for this button, or NULL if one hasn't been set.
-            const StopWatchTimer& GetLockoutTimer() const;
+            const Timer& GetLockoutTimer() const;
 
             /// @brief Gets whether or not this button can be activated again.
             /// @return Returns true if this button is not ready to be activated again.
