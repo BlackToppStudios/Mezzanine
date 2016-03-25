@@ -1659,18 +1659,17 @@ Boole CatchApp::CheckEndOfLevel()
         return true;
     if( this->AllStartZonesEmpty() ) {
         if( !this->EndTimer ) {
-            this->EndTimer = new StopWatchTimer();
-            this->EndTimer->SetInitialTime(5 * 1000000);
-            this->EndTimer->SetCurrentTime(5 * 1000000);
-            this->EndTimer->SetGoalTime(0);
+            this->EndTimer = new Timer();
+            this->EndTimer->SetCountMode(Mezzanine::CM_CountDown);
+            this->EndTimer->SetCurrentTimeInMilliseconds(5 * 1000);
             this->EndTimer->Start();
         }
 
         if( this->Scorer->GetNumAddedThrowables() > 0 ) {
-            this->EndTimer->Reset();
+            this->EndTimer->Reset(5 * 1000000);
         }
 
-        return 0 == this->EndTimer->GetCurrentTime();
+        return this->EndTimer->IsStopped();
     }else{
         if( this->EndTimer ) {
             delete this->EndTimer;
@@ -2004,7 +2003,7 @@ ItemShop* CatchApp::GetItemShop() const
 Timer* CatchApp::GetLevelTimer() const
     { return this->LevelTimer; }
 
-StopWatchTimer* CatchApp::GetEndTimer() const
+Timer* CatchApp::GetEndTimer() const
     { return this->EndTimer; }
 
 #endif

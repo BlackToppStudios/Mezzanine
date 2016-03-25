@@ -55,7 +55,7 @@ protected:
     Debris* LastObjectThrown;
 
     Timer* LevelTimer;
-    StopWatchTimer* EndTimer;
+    Timer* EndTimer;
 
     Boole Paused;
     CatchApp::GameState CurrentState;
@@ -115,7 +115,7 @@ public:
     ProfileManager* GetProfiles() const;
     ItemShop* GetItemShop() const;
     Timer* GetLevelTimer() const;
-    StopWatchTimer* GetEndTimer() const;
+    Timer* GetEndTimer() const;
 };//CatchApp
 
 #endif

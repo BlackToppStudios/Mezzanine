@@ -465,7 +465,7 @@ void CatchHUDUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
 
         // Update the timer
         UI::Widget* TimerWid = GameScreen->GetWidget("GS_TimerValue");
-        static_cast<UI::SingleLineTextLayer*>( TimerWid->GetRenderLayer(0,UI::RLT_SingleLineText) )->SetText( this->CatchApplication->GetLevelTimer()->GetTimeAsText(Timer::TF_Minutes_Seconds) );
+        static_cast<UI::SingleLineTextLayer*>( TimerWid->GetRenderLayer(0,UI::RLT_SingleLineText) )->SetText( this->CatchApplication->GetLevelTimer()->GetTimeAsText(Mezzanine::TF_MinutesSeconds) );
 
         // Update the score display
         LevelScorer::ScorePair LevelScores = this->CatchApplication->GetLevelScorer()->CalculateThrowableScore();
