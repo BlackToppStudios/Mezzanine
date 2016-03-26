@@ -352,6 +352,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Network/networkenumerations.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/networkutilities.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/networkmanager.h"
+		"${${PROJECT_NAME}_SRC_DIR}Network/connection.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/ftpclient.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/ftpcommand.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/ftpmessage.h"
@@ -812,6 +813,7 @@ set(${PROJECT_NAME}_sources
         # Network Items
         "${${PROJECT_NAME}_SRC_DIR}Network/networkutilities.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/networkmanager.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Network/connection.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/ftpclient.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/ftpcommand.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Network/ftpmessage.cpp"

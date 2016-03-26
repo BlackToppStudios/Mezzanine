@@ -38,48 +38,25 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifndef _network_h
-#define _network_h
+#ifndef _networkconnection_cpp
+#define _networkconnection_cpp
+
+#include "Network/connection.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Network
-    /// @brief This namespace is for all the classes belonging to the Network Subsystem.
-    /// @details Our Network subsystem is based a wrapper/extension on top of berkely sockets on Unix systems,
-    /// and winsock on windows systems.
     namespace Network
     {
+        Connection::Connection()
+        {
 
-    }
-}
+        }
 
-#include "Network/networkenumerations.h"
-#include "Network/networkutilities.h"
-#include "Network/networkmanager.h"
+        Connection::~Connection()
+        {
 
-#include "Network/connection.h"
-#include "Network/ftpclient.h"
-#include "Network/ftpcommand.h"
-#include "Network/ftpmessage.h"
-#include "Network/ftpresponse.h"
-#include "Network/httpclient.h"
-#include "Network/httpmessage.h"
-#include "Network/httprequest.h"
-#include "Network/httpresponse.h"
-#include "Network/ipaddress.h"
-#include "Network/ipv4socket.h"
-#include "Network/ipv6socket.h"
-#include "Network/packet.h"
-#include "Network/socket.h"
-#include "Network/socketdescription.h"
-#include "Network/systemaddress.h"
-#include "Network/tcpsocket.h"
-#include "Network/tcpv4socket.h"
-#include "Network/tcpv6socket.h"
-#include "Network/udpsocket.h"
-#include "Network/udpv4socket.h"
-#include "Network/udpv6socket.h"
-#include "Network/uri.h"
+        }
+    }//Network
+}//Mezzanine
 
 #endif
-
