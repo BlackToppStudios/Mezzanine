@@ -231,7 +231,7 @@ class AllUnitTestGroups : public UnitTestGroup
         /// @brief this is used when there are test to execute and we need to loop over them and run each in a child process.
         void IterateSubtests()
         {
-            setvbuf (stdout, NULL, _IONBF, 0);
+            setvbuf(stdout, NULL, _IONBF, 0);
             for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
             {
                 ClearTempFile();

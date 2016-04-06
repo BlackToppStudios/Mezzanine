@@ -37,24 +37,18 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef statetransitionaction_h
-#define statetransitionaction_h
+#ifndef sortedvector_cpp
+#define sortedvector_cpp
 
 /// @file
-/// @brief Describe file here
+/// @brief Does a Template really need this.
 
-#include "datatypes.h"
+#include "sortedvector.h"
 
 namespace Mezzanine
 {
-    class StateTransitionAction
-    {
-        public:
-            virtual void operator()() = 0;
-
-
-    };
 
 } // /namespace Mezzanine
 
 #endif // Include guard
+

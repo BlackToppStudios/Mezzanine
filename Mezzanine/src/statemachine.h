@@ -45,15 +45,16 @@
 
 #include "datatypes.h"
 #include "statetransition.h"
+#include "sortedvector.h"
 
 namespace Mezzanine
 {
     class StateMachine
     {
         private:
-            std::vector<HashedString32> states;
+            SortedVector<HashedString32> states;
 
-            std::vector<StateTransition> states;
+            SortedVector<StateTransition> transitions;
 
     };
 } // /namespace Mezzanine

@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef statetransitionaction_h
-#define statetransitionaction_h
+#ifndef sortedvector_h
+#define sortedvector_h
 
 /// @file
 /// @brief Describe file here
@@ -47,14 +47,48 @@
 
 namespace Mezzanine
 {
-    class StateTransitionAction
+    /// @brief Search throught an iterator range and return the desired iterator.
+    /// @details Thanks to stack overflow and their CC-by-SA license which is written permission to
+    /// use this.
+    /// http://stackoverflow.com/questions/446296/where-can-i-get-a-useful-c-binary-search-algorithm
+    /// @param begin The beginning of the iterator range.
+    /// @param end One past the end of the actual iterators.
+    /// @param val The value to find.
+    /// @tparam Iter An iterator type.
+    /// @tparam T The type of the value the iterator points to.
+    /// @return The end iterator if nothing was found or the iterator found by value.
+    template<class Iter, class T>
+    Iter binary_find(Iter begin, Iter end, T val)
+    {
+        // Finds the lower bound in at most log(last - first) + 1 comparisons
+        Iter i = std::lower_bound(begin, end, val);
+
+        if (i != end && !(val < *i))
+            return i; // found
+        else
+            return end; // not found
+    }
+
+    template<typename T>
+    class SortedVector
     {
         public:
-            virtual void operator()() = 0;
+            typedef std::vector<T> StorageVector;
+
+        private:
+            StorageVector IinternalStorage;
+
+        public:
+            typedef typename StorageVector::size_type size_type;
+
+
+            size_type size() const
+                { return IinternalStorage.size(); }
+
+
 
 
     };
-
 } // /namespace Mezzanine
 
 #endif // Include guard

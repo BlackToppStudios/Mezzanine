@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,24 +37,53 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef statetransitionaction_h
-#define statetransitionaction_h
+#ifndef sortedvectortests_h
+#define sortedvectortests_h
+
+#include "mezztest.h"
+
+#include "sortedvector.h"
 
 /// @file
-/// @brief Describe file here
+/// @brief Test the sorted vector works
 
-#include "datatypes.h"
+using namespace Mezzanine;
+using namespace Mezzanine::Testing;
 
-namespace Mezzanine
+/// @brief Test
+class sortedvectortests : public UnitTestGroup
 {
-    class StateTransitionAction
+public:
+    /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+    /// @return Returns a String containing "SortedVector"
+    virtual String Name()
+        { return String("SortedVector"); }
+
+    /// @brief Test most features on the SortedVector.
+    void RunAutomaticTests()
     {
-        public:
-            virtual void operator()() = 0;
+        {
+            std::vector<int> Sorted;
+            Sorted.push_back(1);
+            Sorted.push_back(2);
+            Sorted.push_back(3);
+            TEST( binary_find(Sorted.begin(),Sorted.end(),1) == Sorted.begin(),    "BinaryFind1");
+            TEST( binary_find(Sorted.begin(),Sorted.end(),2) == Sorted.begin()+1,  "BinaryFind2");
+            TEST( binary_find(Sorted.begin(),Sorted.end(),3) == Sorted.end()-1,    "BinaryFind3");
+        }
+
+        {
+            SortedVector<Int32> sample;
+            TEST(sample.size() == 0, "SortedVector.Size");
+        }
 
 
-    };
+    }
 
-} // /namespace Mezzanine
+    /// @brief Since RunAutomaticTests is implemented so is this.
+    /// @return returns true
+    virtual bool HasAutomaticTests() const
+        { return true; }
+};//spheretests
 
-#endif // Include guard
+#endif
