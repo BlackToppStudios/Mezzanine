@@ -37,27 +37,16 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef statetransition_cpp
-#define statetransition_cpp
+#ifndef statetransitionaction_cpp
+#define statetransitionaction_cpp
 
 /// @file
 /// @brief Describe file here
 
-#include "statetransition.h"
+#include "statetransitionaction.h"
 
 namespace Mezzanine
 {
-
-    StateTransition::StateTransition(   const HashedString32& FromState,
-                                        const HashedString32& ToState,
-                                        StateTransitionAction* OwningActionPointer)
-        : From(FromState), To(ToState), Action(OwningActionPointer)
-    {}
-
-    StateTransition::~StateTransition()
-    {
-        delete Action;
-    }
 
 } // /namespace Mezzanine
 

@@ -44,10 +44,27 @@
 /// @brief Describe file here
 
 #include "datatypes.h"
+#include "hashedstring.h"
+#include "statetransitionaction.h"
 
 namespace Mezzanine
 {
+    class StateTransition
+    {
+        private:
+            const HashedString32& From;
+            const HashedString32& To;
+            StateTransitionAction* Action;
 
+        public:
+            StateTransition(const HashedString32& FromState,
+                            const HashedString32& ToState,
+                            StateTransitionAction* OwningActionPointer);
+
+            ~StateTransition();
+
+
+    };
 } // /namespace Mezzanine
 
 #endif // Include guard

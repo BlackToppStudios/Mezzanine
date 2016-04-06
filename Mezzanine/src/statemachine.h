@@ -44,10 +44,18 @@
 /// @brief Describe file here
 
 #include "datatypes.h"
+#include "statetransition.h"
 
 namespace Mezzanine
 {
+    class StateMachine
+    {
+        private:
+            std::vector<HashedString32> states;
 
+            std::vector<StateTransition> states;
+
+    };
 } // /namespace Mezzanine
 
 #endif // Include guard
