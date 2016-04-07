@@ -74,18 +74,37 @@ namespace Mezzanine
     {
         public:
             typedef std::vector<T> StorageVector;
+            typedef typename StorageVector::size_type size_type;
+            typedef typename StorageVector::iterator iterator;
+            typedef typename StorageVector::const_iterator const_iterator;
 
         private:
-            StorageVector IinternalStorage;
+            /// @internal The actual vector that does most of the interesting work.
+            StorageVector InternalStorage;
 
         public:
-            typedef typename StorageVector::size_type size_type;
 
+            iterator begin()
+                { return InternalStorage.begin(); }
+            iterator begin() const
+                { return InternalStorage.begin(); }
+
+            iterator end()
+                { return InternalStorage.end(); }
+            iterator end() const
+                { return InternalStorage.end(); }
+
+            void sort()
+                { std::sort(begin(),end()); }
 
             size_type size() const
-                { return IinternalStorage.size(); }
+                { return InternalStorage.size(); }
 
-
+            void add(T value)
+            {
+                InternalStorage.push_back(value);
+                sort();
+            }
 
 
     };

@@ -59,6 +59,12 @@ namespace Mezzanine
         delete Action;
     }
 
+    Boole StateTransition::operator<(const StateTransition& Other)
+    {
+        return  this->From < Other.From &&
+                this->To < Other.To;
+    }
+
 } // /namespace Mezzanine
 
 #endif // Include guard

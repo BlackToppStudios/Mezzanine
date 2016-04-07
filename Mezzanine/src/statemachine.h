@@ -53,8 +53,10 @@ namespace Mezzanine
     {
         private:
             SortedVector<HashedString32> states;
-
             SortedVector<StateTransition> transitions;
+
+        public:
+
 
     };
 } // /namespace Mezzanine

@@ -74,7 +74,28 @@ public:
 
         {
             SortedVector<Int32> sample;
-            TEST(sample.size() == 0, "SortedVector.Size");
+            TEST(sample.size() == 0, "SortedVector.Size1");
+        }
+
+        {
+            SortedVector<Int32> sample;
+            sample.add(5);
+            TEST(sample.size() == 1, "SortedVector.Size2");
+            TEST( *(sample.begin()) == 5, "SortedVector.BeginDerefenced1");
+        }
+
+        {
+            SortedVector<Int32> sample;
+            sample.add(13);
+            sample.add(5);
+            sample.add(8);
+            TEST(sample.size() == 3, "SortedVector.Size3");
+            TEST( *(sample.begin()) == 5, "SortedVector.SortedValue1Begin");
+            TEST( *(sample.begin()+1) == 8, "SortedVector.SortedValue2Begin");
+            TEST( *(sample.begin()+2) == 13, "SortedVector.SortedValue3Begin");
+            TEST( *(sample.end()-3) == 5, "SortedVector.SortedValue1End");
+            TEST( *(sample.end()-2) == 8, "SortedVector.SortedValue2End");
+            TEST( *(sample.end()-1) == 13, "SortedVector.SortedValue3End");
         }
 
 
