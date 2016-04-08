@@ -64,10 +64,20 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
+/*
+ Portions of the algorithms contained in this file are derived from the work of
+ Jukka Jylänki which was released to the public domain.
+
+ The original source code can be found at this repo:
+ https://github.com/juj/RectangleBinPack
+*/
 #ifndef _graphicsproceduralatlasgenerator_h
 #define _graphicsproceduralatlasgenerator_h
 
 #include "Graphics/Procedural/Texture/texturegenerator.h"
+
+#include "rect.h"
+#include "Graphics/image.h"
 
 namespace Mezzanine
 {
@@ -77,11 +87,31 @@ namespace Mezzanine
         {
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief A generator that will produce an image that is a number of other images placed side by side with no overlap.
-            /// @details
+            /// @details The use of this Generator is a little bit different than most generators, but only a little.  When everything is set
+            /// you still call the final generate methods as you would normally, but it's expected to have a lot of setup.  Adding images
+            /// must be done individually so the user may be informed of the position the image has been placed in the Atlas.  This
+            /// generator does not know or care what the names or ID's of these images are, so if either is required they must be tracked
+            /// elsewhere.
             ///////////////////////////////////////
             class MEZZ_LIB AtlasGenerator : public TextureGenerator
             {
+            public:
+                /// @brief A convenience type for the storage of Rects by this class.
+                typedef std::vector<WholeRect>           RectContainer;
+                /// @brief An iterator type for Images to be Rects by this class.
+                typedef RectContainer::iterator          ImageIterator;
+                /// @brief A const iterator type for Images to be Rects by this class.
+                typedef RectContainer::const_iterator    ConstImageIterator;
             protected:
+                /// @internal
+                /// @brief A container storing all of the available Rects in the texture to be generated.
+                RectContainer FreeRects;
+                /// @internal
+                /// @brief A container storing all of the used Rects in the texture to be generated.
+                RectContainer UsedRects;
+                /// @internal
+                /// @brief The amount of extra space to enforce around every Image to be Atlas'd.
+                Whole ImagePadding;
             public:
                 /// @brief Class constructor.
                 AtlasGenerator();
@@ -99,6 +129,25 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration
 
+                /// @brief Adds an Image to be combined into the final Texture Atlas.
+                /// @param ToAdd The loaded Image to add.
+                /// @return Returns a WholeRect containing the position on the Atlas the image was placed.  An invalid (zero dim) rect means there was no room.
+                WholeRect AddImage(const Graphics::Image& ToAdd);
+                /// @brief Adds an Image to be combined into the final Texture Atlas.
+                /// @remarks This method is identical to calling the dual String overload, but putting "UI" for the asset group.
+                /// @param AssetName The name of the Image as it would be found in an asset group.
+                /// @return Returns a WholeRect containing the position on the Atlas the image was placed.  An invalid (zero dim) rect means there was no room.
+                WholeRect AddImage(const String& AssetName);
+                /// @brief Adds an Image to be combined into the final Texture Atlas.
+                /// @param AssetName The name of the Image in an asset group.
+                /// @param AssetGroup The name of the asset group where the named Image can be found.
+                /// @return Returns a WholeRect containing the position on the Atlas the image was placed.  An invalid (zero dim) rect means there was no room.
+                WholeRect AddImage(const String& AssetName, const String& AssetGroup);
+
+                /// @brief Sets extra padding around every Image added to the final Atlas.
+                /// @param Padding The amount of blank pixels to ensure every edge of every added Image has.
+                /// @return Returns a reference to this.
+                AtlasGenerator& SetPadding(const Whole Padding);
             };//AtlasGenerator
         }//Procedural
     }//Graphics
