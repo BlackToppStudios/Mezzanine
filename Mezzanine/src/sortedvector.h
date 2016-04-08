@@ -106,7 +106,16 @@ namespace Mezzanine
                 sort();
             }
 
+            T& operator[] (size_t Index)
+                { return InternalStorage[Index]; }
 
+            iterator find(T value)
+                { return binary_find(begin(),end(),value); }
+            const_iterator find(T value) const
+                { return binary_find(begin(),end(),value); }
+
+            Boole contains(T value) const
+                { return std::binary_search(begin(),end(),value); }
     };
 } // /namespace Mezzanine
 

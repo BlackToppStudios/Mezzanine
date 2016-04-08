@@ -89,13 +89,26 @@ public:
             sample.add(13);
             sample.add(5);
             sample.add(8);
-            TEST(sample.size() == 3, "SortedVector.Size3");
-            TEST( *(sample.begin()) == 5, "SortedVector.SortedValue1Begin");
-            TEST( *(sample.begin()+1) == 8, "SortedVector.SortedValue2Begin");
-            TEST( *(sample.begin()+2) == 13, "SortedVector.SortedValue3Begin");
-            TEST( *(sample.end()-3) == 5, "SortedVector.SortedValue1End");
-            TEST( *(sample.end()-2) == 8, "SortedVector.SortedValue2End");
-            TEST( *(sample.end()-1) == 13, "SortedVector.SortedValue3End");
+            TEST(sample.size() == 3,                        "SortedVector.Size3");
+            TEST( *(sample.begin()) == 5,                   "SortedVector.SortedValue1Begin");
+            TEST( *(sample.begin()+1) == 8,                 "SortedVector.SortedValue2Begin");
+            TEST( *(sample.begin()+2) == 13,                "SortedVector.SortedValue3Begin");
+            TEST( *(sample.end()-3) == 5,                   "SortedVector.SortedValue1End");
+            TEST( *(sample.end()-2) == 8,                   "SortedVector.SortedValue2End");
+            TEST( *(sample.end()-1) == 13,                  "SortedVector.SortedValue3End");
+            TEST( sample[0] == 5,                           "SortedVector.SortedValue0Bracket");
+            TEST( sample[1] == 8,                           "SortedVector.SortedValue1Bracket");
+            TEST( sample[2] == 13,                          "SortedVector.SortedValue2Bracket");
+            TEST( sample.find(5) == 5,         "SortedVector.find1");
+            TEST( *(sample.find(8)) == 8, "SortedVector.find2");
+            TEST( *(sample.find(13)) == 13,"SortedVector.find3");
+            TEST( sample.find(100) == sample.end(),         "SortedVector.findfail1");
+            TEST( sample.contains(5) == true,               "SortedVector.contains1");
+            TEST( sample.contains(8) == true,               "SortedVector.contains2");
+            TEST( sample.contains(13) == true,              "SortedVector.contains3");
+            TEST( sample.contains(-1) == false,             "SortedVector.containsfalse");
+
+
         }
 
 
