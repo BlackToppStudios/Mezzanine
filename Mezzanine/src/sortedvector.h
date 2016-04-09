@@ -86,12 +86,12 @@ namespace Mezzanine
 
             iterator begin()
                 { return InternalStorage.begin(); }
-            iterator begin() const
+            const_iterator begin() const
                 { return InternalStorage.begin(); }
 
             iterator end()
                 { return InternalStorage.end(); }
-            iterator end() const
+            const_iterator end() const
                 { return InternalStorage.end(); }
 
             void sort()
