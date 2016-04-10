@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Threading_1_1Barrier.html" title="A synchronization primitive that causes a predefined number of threads to all wait before continuing..." alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="200,13,341,39"/>
 </map>

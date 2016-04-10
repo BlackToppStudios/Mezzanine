@@ -119,66 +119,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef MEZZNETWORK</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef _networkudpv6socket_h</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define _networkudpv6socket_h</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/udpsocket.h&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;Network/ipv6socket.h&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">namespace </span>Network</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {<span class="comment"></span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">        /// @class UDPv6Socket</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        /// @brief A UDP socket that uses IPv6 internet addresses for transmissions.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        /// @details</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> UDPv6Socket : <span class="keyword">public</span> IPv6Socket, <span class="keyword">public</span> UDPSocket</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span>            UDPv6Socket();<span class="comment"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">            /// @brief Internal constructor.</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">            /// @param A pointer to the internal socket to wrap.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>            UDPv6Socket(PlatformSocket* InternalSock);<span class="comment"></span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">            /// @brief Binding constructor.</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">            /// @param Port The port number to bind this socket to.</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span>            UDPv6Socket(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">UInt16</a> Port);<span class="comment"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~UDPv6Socket();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>            <span class="comment">// Configuration</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @copydoc UDPSocket::SetNumMulticastHops(const Integer)</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> SetNumMulticastHops(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> Hops);<span class="comment"></span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">            /// @copydoc UDPSocket::GetNumMulticastHops() const</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> GetNumMulticastHops() <span class="keyword">const</span>;<span class="comment"></span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            /// @copydoc UDPSocket::SetMulticastLoop(const Boole)</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> SetMulticastLoop(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> Loop);<span class="comment"></span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">            /// @copydoc UDPSocket::GetMulticastLoop() const</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> GetMulticastLoop() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        };<span class="comment">//UDPv6Socket</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }<span class="comment">//Network</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef _networkudpv6socket_h</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define _networkudpv6socket_h</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Network/udpsocket.h&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;Network/ipv6socket.h&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">namespace </span>Network</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {<span class="comment"></span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">        /// @brief A UDP socket that uses IPv6 internet addresses for transmissions.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1UDPv6Socket.html">   54</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Network_1_1UDPv6Socket.html">UDPv6Socket</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Network_1_1IPv6Socket.html">IPv6Socket</a>, <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Network_1_1UDPSocket.html">UDPSocket</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1UDPv6Socket.html">UDPv6Socket</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">            /// @brief Internal constructor.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">            /// @param A pointer to the internal socket to wrap.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1UDPv6Socket.html">UDPv6Socket</a>(<a class="code" href="classMezzanine_1_1Network_1_1PlatformSocket.html">PlatformSocket</a>* InternalSock);<span class="comment"></span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">            /// @brief Binding constructor.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">            /// @param Port The port number to bind this socket to.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1UDPv6Socket.html">UDPv6Socket</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">UInt16</a> Port);<span class="comment"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Network_1_1UDPv6Socket.html">UDPv6Socket</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>            <span class="comment">// Configuration</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            /// @copydoc UDPSocket::SetNumMulticastHops(const Integer)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> SetNumMulticastHops(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> Hops);<span class="comment"></span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">            /// @copydoc UDPSocket::GetNumMulticastHops() const</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> GetNumMulticastHops() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @copydoc UDPSocket::SetMulticastLoop(const Boole)</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> SetMulticastLoop(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> Loop);<span class="comment"></span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">            /// @copydoc UDPSocket::GetMulticastLoop() const</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> GetMulticastLoop() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        };<span class="comment">//UDPv6Socket</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }<span class="comment">//Network</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1IPv6Socket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1IPv6Socket.html">Mezzanine::Network::IPv6Socket</a></div><div class="ttdoc">A socket class using the IP version 6 protocol. </div><div class="ttdef"><b>Definition:</b> <a href="ipv6socket_8h_source.html#l00053">ipv6socket.h:53</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ac358283f927fd1135643c26dfc75c9cf"><div class="ttname"><a href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00173">datatypes.h:173</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ad03e394cd98434cc30bc665e8f2ba30f"><div class="ttname"><a href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Mezzanine::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdoc">A datatype used to represent any integer close to. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00154">datatypes.h:154</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1UDPSocket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1UDPSocket.html">Mezzanine::Network::UDPSocket</a></div><div class="ttdoc">A socket class using the User Datagram Protocol. </div><div class="ttdef"><b>Definition:</b> <a href="udpsocket_8h_source.html#l00054">udpsocket.h:54</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_adab7bb4dd72bbb8ddb8b1b5470ce99c8"><div class="ttname"><a href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">Mezzanine::UInt16</a></div><div class="ttdeci">uint16_t UInt16</div><div class="ttdoc">An 16-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00122">datatypes.h:122</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1UDPv6Socket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1UDPv6Socket.html">Mezzanine::Network::UDPv6Socket</a></div><div class="ttdoc">A UDP socket that uses IPv6 internet addresses for transmissions. </div><div class="ttdef"><b>Definition:</b> <a href="udpv6socket_8h_source.html#l00054">udpv6socket.h:54</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1PlatformSocket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1PlatformSocket.html">Mezzanine::Network::PlatformSocket</a></div><div class="ttdoc">This is helper class for managing platform specific data of socket implementations. </div><div class="ttdef"><b>Definition:</b> <a href="platformsocket_8h_8cpp_source.html#l00252">platformsocket.h.cpp:252</a></div></div>
 <div class="ttc" id="crossplatformexport_8h_html_a455f91aab9e6a1cf4286f5cdfa74c7bc"><div class="ttname"><a href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a></div><div class="ttdeci">#define MEZZ_LIB</div><div class="ttdoc">Some platforms require special decorations to denote what is exported/imported in a share library...</div><div class="ttdef"><b>Definition:</b> <a href="crossplatformexport_8h_source.html#l00139">crossplatformexport.h:139</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:42 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:47 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

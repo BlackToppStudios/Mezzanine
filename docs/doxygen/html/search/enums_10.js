@@ -14,6 +14,8 @@ var searchData=
   ['sizingrules',['SizingRules',['../namespaceMezzanine_1_1UI.html#af126c73bf3db9e5ae1409a386376c73f',1,'Mezzanine::UI']]],
   ['skymethod',['SkyMethod',['../classMezzanine_1_1Graphics_1_1SceneManager.html#a0b416339c2486a4161da34072e3208fd',1,'Mezzanine::Graphics::SceneManager']]],
   ['slottype',['SlotType',['../classMezzanine_1_1EventSubscriberSlot.html#ac88ad245d2f4e6ff334143a247ee42f4',1,'Mezzanine::EventSubscriberSlot']]],
+  ['socketleveloptions',['SocketLevelOptions',['../namespaceMezzanine_1_1Network.html#ac05f2867da2925c5380b9e4e2aea9fb1',1,'Mezzanine::Network']]],
+  ['socketoptionlevel',['SocketOptionLevel',['../namespaceMezzanine_1_1Network.html#a63a7d0289514ce3e71e21bc887b4d91b',1,'Mezzanine::Network']]],
   ['socketshutdown',['SocketShutdown',['../namespaceMezzanine_1_1Network.html#a40c71c206b0069e9bb6dbaefa66374b8',1,'Mezzanine::Network']]],
   ['soundtype',['SoundType',['../namespaceMezzanine_1_1Audio.html#a316b2244b8be1a8c441a39b0a246295e',1,'Mezzanine::Audio']]],
   ['spinnerstyle',['SpinnerStyle',['../namespaceMezzanine_1_1UI.html#a62462d4df783dcdda77e1590a96bc6d6',1,'Mezzanine::UI']]],

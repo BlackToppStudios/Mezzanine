@@ -119,70 +119,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef MEZZNETWORK</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef _networkipv4socket_cpp</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define _networkipv4socket_cpp</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef _networkipv4socket_cpp</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define _networkipv4socket_cpp</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Network/platformsocket.h.cpp&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/platformsocket.h.cpp&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/ipv4socket.h&quot;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;Network/ipv4socket.h&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">namespace </span>Network</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        IPv4Socket::IPv4Socket()</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            {  }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        IPv4Socket::~IPv4Socket()</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            {  }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18">NetworkLayerProtocol</a> IPv4Socket::GetNetworkLayerProtocol()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5">Network::NLP_IPv4</a>; }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span>        <span class="comment">// Configuration</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> IPv4Socket::SetNumUnicastHops(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> Hops)</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">            #if defined(MEZZ_WINDOWS)</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            DWORD Value = ( Hops &lt; 0 ? 0 : Hops );</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            this-&gt;InternalSocket-&gt;SetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_TimeToLive,(<span class="keywordtype">char</span>*)&amp;Value,<span class="keyword">sizeof</span>(Value));</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            this-&gt;InternalSocket-&gt;SetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_TimeToLive,(<span class="keywordtype">char</span>*)&amp;Hops,<span class="keyword">sizeof</span>(Hops));</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">            #endif</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> IPv4Socket::GetNumUnicastHops()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">            #if defined(MEZZ_WINDOWS)</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            DWORD Value = 0;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordtype">int</span> Value = 0;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">            #endif</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            AddrLen Size;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            this-&gt;InternalSocket-&gt;GetSocketOption(Network::Sol_IPv4,Network::IPv4Opts_TimeToLive,(<span class="keywordtype">char</span>*)&amp;Value,&amp;Size);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a><span class="keyword">&gt;</span>(Value);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }<span class="comment">//Network</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
-<div class="ttc" id="namespaceMezzanine_1_1Network_html_a2cc9dfa328c8f701096a4d61abfb3f18"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18">Mezzanine::Network::NetworkLayerProtocol</a></div><div class="ttdeci">NetworkLayerProtocol</div><div class="ttdoc">This is an enum listing for recognized protocols on Layer 3 of the OSI model. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00340">networkenumerations.h:340</a></div></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">namespace </span>Network</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1IPv4Socket.html#afff0409afd3d23ac2e2fb3106ba0ca7e">   52</a></span>&#160;        <a class="code" href="classMezzanine_1_1Network_1_1IPv4Socket.html#afff0409afd3d23ac2e2fb3106ba0ca7e">IPv4Socket::IPv4Socket</a>()</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            {  }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1IPv4Socket.html#a58618e6e0665ad1b2355bc48bb2f9737">   55</a></span>&#160;        <a class="code" href="classMezzanine_1_1Network_1_1IPv4Socket.html#a58618e6e0665ad1b2355bc48bb2f9737">IPv4Socket::~IPv4Socket</a>()</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            {  }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1IPv4Socket.html#aeebe8b0a4c2ce196842c0bc5bb14fa82">   61</a></span>&#160;        <a class="code" href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18">NetworkLayerProtocol</a> <a class="code" href="classMezzanine_1_1Network_1_1IPv4Socket.html#aeebe8b0a4c2ce196842c0bc5bb14fa82">IPv4Socket::GetNetworkLayerProtocol</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5">Network::NLP_IPv4</a>; }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span>        <span class="comment">// Configuration</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1IPv4Socket.html#ac36a332ec6af79aa00d31ab509eb733a">   67</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Network_1_1IPv4Socket.html#ac36a332ec6af79aa00d31ab509eb733a">IPv4Socket::SetNumUnicastHops</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> Hops)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">            #if defined(MEZZ_WINDOWS)</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            DWORD Value = ( Hops &lt; 0 ? 0 : Hops );</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">InternalSocket</a>-&gt;<a class="code" href="classMezzanine_1_1Network_1_1PlatformSocket.html#aa9be7063f28d874d1710d8fe0ce799bb">SetSocketOption</a>(Network::Sol_IPv4,Network::IPv4Opts_TimeToLive,(<span class="keywordtype">char</span>*)&amp;Value,<span class="keyword">sizeof</span>(Value));</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">InternalSocket</a>-&gt;<a class="code" href="classMezzanine_1_1Network_1_1PlatformSocket.html#aa9be7063f28d874d1710d8fe0ce799bb">SetSocketOption</a>(Network::Sol_IPv4,Network::IPv4Opts_TimeToLive,(<span class="keywordtype">char</span>*)&amp;Hops,<span class="keyword">sizeof</span>(Hops));</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">            #endif</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1IPv4Socket.html#a0227fced9a2e83d7d9c71bbdd0e625f2">   77</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> <a class="code" href="classMezzanine_1_1Network_1_1IPv4Socket.html#a0227fced9a2e83d7d9c71bbdd0e625f2">IPv4Socket::GetNumUnicastHops</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">            #if defined(MEZZ_WINDOWS)</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            DWORD Value = 0;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">            #elif defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordtype">int</span> Value = 0;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">            #endif</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            AddrLen Size;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">InternalSocket</a>-&gt;<a class="code" href="classMezzanine_1_1Network_1_1PlatformSocket.html#a7c640828dd436ea0c892b00df852f8d1">GetSocketOption</a>(Network::Sol_IPv4,Network::IPv4Opts_TimeToLive,(<span class="keywordtype">char</span>*)&amp;Value,&amp;Size);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a><span class="keyword">&gt;</span>(Value);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }<span class="comment">//Network</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Socket_html_a3c86dd1338e86d114519812ab7b1c9b4"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">Mezzanine::Network::Socket::InternalSocket</a></div><div class="ttdeci">PlatformSocket * InternalSocket</div><div class="ttdoc">A pointer to the internal system socket. </div><div class="ttdef"><b>Definition:</b> <a href="socket_8h_source.html#l00163">socket.h:163</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1PlatformSocket_html_a7c640828dd436ea0c892b00df852f8d1"><div class="ttname"><a href="classMezzanine_1_1Network_1_1PlatformSocket.html#a7c640828dd436ea0c892b00df852f8d1">Mezzanine::Network::PlatformSocket::GetSocketOption</a></div><div class="ttdeci">Boole GetSocketOption(const Integer Level, const Integer OptID, char *Value, AddrLen *ValueLen) const </div><div class="ttdoc">Get a low level socket parameter. </div><div class="ttdef"><b>Definition:</b> <a href="platformsocket_8cpp_source.html#l00453">platformsocket.cpp:453</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Network_html_a2cc9dfa328c8f701096a4d61abfb3f18"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18">Mezzanine::Network::NetworkLayerProtocol</a></div><div class="ttdeci">NetworkLayerProtocol</div><div class="ttdoc">This is an enum listing for recognized protocols on Layer 3 of the OSI model. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00341">networkenumerations.h:341</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ad03e394cd98434cc30bc665e8f2ba30f"><div class="ttname"><a href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Mezzanine::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdoc">A datatype used to represent any integer close to. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00154">datatypes.h:154</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1IPv4Socket_html_a0227fced9a2e83d7d9c71bbdd0e625f2"><div class="ttname"><a href="classMezzanine_1_1Network_1_1IPv4Socket.html#a0227fced9a2e83d7d9c71bbdd0e625f2">Mezzanine::Network::IPv4Socket::GetNumUnicastHops</a></div><div class="ttdeci">Integer GetNumUnicastHops() const </div><div class="ttdoc">Gets the number of hops permitted when sending to a non-multicast address before the message is destr...</div><div class="ttdef"><b>Definition:</b> <a href="ipv4socket_8cpp_source.html#l00077">ipv4socket.cpp:77</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1IPv4Socket_html_afff0409afd3d23ac2e2fb3106ba0ca7e"><div class="ttname"><a href="classMezzanine_1_1Network_1_1IPv4Socket.html#afff0409afd3d23ac2e2fb3106ba0ca7e">Mezzanine::Network::IPv4Socket::IPv4Socket</a></div><div class="ttdeci">IPv4Socket()</div><div class="ttdoc">Class constructor. </div><div class="ttdef"><b>Definition:</b> <a href="ipv4socket_8cpp_source.html#l00052">ipv4socket.cpp:52</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1IPv4Socket_html_aeebe8b0a4c2ce196842c0bc5bb14fa82"><div class="ttname"><a href="classMezzanine_1_1Network_1_1IPv4Socket.html#aeebe8b0a4c2ce196842c0bc5bb14fa82">Mezzanine::Network::IPv4Socket::GetNetworkLayerProtocol</a></div><div class="ttdeci">virtual NetworkLayerProtocol GetNetworkLayerProtocol() const </div><div class="ttdoc">Gets the layer 3 protocol this socket is operating on. </div><div class="ttdef"><b>Definition:</b> <a href="ipv4socket_8cpp_source.html#l00061">ipv4socket.cpp:61</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Network_html_a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5">Mezzanine::Network::NLP_IPv4</a></div><div class="ttdoc">Internet Protocol version 4. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00346">networkenumerations.h:346</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1IPv4Socket_html_ac36a332ec6af79aa00d31ab509eb733a"><div class="ttname"><a href="classMezzanine_1_1Network_1_1IPv4Socket.html#ac36a332ec6af79aa00d31ab509eb733a">Mezzanine::Network::IPv4Socket::SetNumUnicastHops</a></div><div class="ttdeci">void SetNumUnicastHops(const Integer Hops)</div><div class="ttdoc">Sets the number of hops permitted when sending to a non-multicast address before the message is destr...</div><div class="ttdef"><b>Definition:</b> <a href="ipv4socket_8cpp_source.html#l00067">ipv4socket.cpp:67</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1IPv4Socket_html_a58618e6e0665ad1b2355bc48bb2f9737"><div class="ttname"><a href="classMezzanine_1_1Network_1_1IPv4Socket.html#a58618e6e0665ad1b2355bc48bb2f9737">Mezzanine::Network::IPv4Socket::~IPv4Socket</a></div><div class="ttdeci">virtual ~IPv4Socket()</div><div class="ttdoc">Class destructor. </div><div class="ttdef"><b>Definition:</b> <a href="ipv4socket_8cpp_source.html#l00055">ipv4socket.cpp:55</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Network_html_a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18a08818318c5ebc667ed00a9070d65b5b5">Mezzanine::Network::NLP_IPv4</a></div><div class="ttdoc">Internet Protocol version 4. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00347">networkenumerations.h:347</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1PlatformSocket_html_aa9be7063f28d874d1710d8fe0ce799bb"><div class="ttname"><a href="classMezzanine_1_1Network_1_1PlatformSocket.html#aa9be7063f28d874d1710d8fe0ce799bb">Mezzanine::Network::PlatformSocket::SetSocketOption</a></div><div class="ttdeci">Boole SetSocketOption(const Integer Level, const Integer OptID, const char *Value, const AddrLen ValueLen)</div><div class="ttdoc">Set a low level socket parameter. </div><div class="ttdef"><b>Definition:</b> <a href="platformsocket_8cpp_source.html#l00450">platformsocket.cpp:450</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:42 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:47 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

@@ -1,3 +1,19 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1RectBase.html" title="A class for tracking a rectangle by tracking two corners Top, Left and Right, Bottom. " alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes. " alt="" coords="5,137,145,179"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CompoundCollisionShape.html" title="A collision shape composed of many other collision shapes placed and oriented in local space..." alt="" coords="193,23,373,64"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Physics_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes. " alt="" coords="211,88,356,129"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Physics_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes. " alt="" coords="209,185,358,227"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Physics_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes. " alt="" coords="199,495,367,536"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion. " alt="" coords="433,5,611,47"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size. " alt="" coords="447,71,597,112"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh. " alt="" coords="421,136,623,177"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies. " alt="" coords="451,201,593,243"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh. " alt="" coords="431,267,613,308"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1BoxCollisionShape.html" title="A box physics shape. " alt="" coords="452,332,592,373"/>
+<area shape="rect" id="node12" href="$classMezzanine_1_1Physics_1_1CapsuleCollisionShape.html" title="A capsule physics shape. " alt="" coords="439,397,605,439"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1ConeCollisionShape.html" title="A cone physics shape. " alt="" coords="448,463,596,504"/>
+<area shape="rect" id="node14" href="$classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space. " alt="" coords="429,528,615,569"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1CylinderCollisionShape.html" title="A cylinder physics shape. " alt="" coords="439,593,605,635"/>
+<area shape="rect" id="node16" href="$classMezzanine_1_1Physics_1_1MultiSphereCollisionShape.html" title="A physics shape comprised of multiple sphere&#39;s placed in local space. " alt="" coords="429,659,615,700"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Physics_1_1SphereCollisionShape.html" title="A sphere physics shape. " alt="" coords="443,724,601,765"/>
 </map>

@@ -1,12 +1,10 @@
 <map id="Mezzanine::Input::Controller" name="Mezzanine::Input::Controller">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons. " alt="" coords="1453,89,1621,130"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="1109,32,1280,59"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1SequenceContainer.html" title="This class stores and provides utilities for sequenced inputs and their operations. " alt="" coords="804,25,992,66"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time. " alt="" coords="440,5,631,32"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="181,5,335,32"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers. " alt="" coords="5,5,132,32"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="477,56,593,83"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="1125,200,1264,227"/>
-<area shape="rect" id="node15" title="STL class. " alt="" coords="1497,311,1577,337"/>
-<area shape="rect" id="node16" title="STL class. " alt="" coords="1131,303,1258,345"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons. " alt="" coords="1099,85,1267,126"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="755,28,925,55"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1SequenceContainer.html" title="This class stores and provides utilities for sequenced inputs and their operations. " alt="" coords="449,21,637,62"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. " alt="" coords="149,5,276,32"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="155,56,271,83"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="771,196,909,223"/>
+<area shape="rect" id="node13" title="STL class. " alt="" coords="1143,307,1223,333"/>
+<area shape="rect" id="node14" title="STL class. " alt="" coords="777,299,903,341"/>
 </map>

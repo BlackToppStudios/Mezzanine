@@ -119,62 +119,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef MEZZNETWORK</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef _networkipv6socket_h</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define _networkipv6socket_h</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef _networkipv6socket_h</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define _networkipv6socket_h</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Network/socket.h&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/socket.h&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">namespace </span>Network</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {<span class="comment"></span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        /// @class IPv6Socket</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">        /// @brief A socket class using the IP version 6 protocol.</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        /// @details</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> IPv6Socket : <span class="keyword">virtual</span> <span class="keyword">public</span> Socket</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"></span>            IPv6Socket();<span class="comment"></span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~IPv6Socket();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span>            <span class="comment">// Utility</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            /// @copydoc Socket::GetNetworkLayerProtocol() const</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18">NetworkLayerProtocol</a> GetNetworkLayerProtocol() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>            <span class="comment">// Configuration</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">            /// @copydoc Socket::SetNumUnicastHops(const Integer)</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> SetNumUnicastHops(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> Hops);<span class="comment"></span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">            /// @copydoc Socket::GetNumUnicastHops() const</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> GetNumUnicastHops() <span class="keyword">const</span>;<span class="comment"></span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">            /// @brief Sets whether this socket is allowed to send or receive IPv4 messages.</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            /// @remarks By default IPv6 supports IPv4 addresses mapped onto it, and thus you can communicate with IPv4 hosts even with an IPv6 socket.  This</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">            /// option forces IPv6 traffic on the socket.  Doing so also allows you to reuse the port the socket is operating on if it is reused by an IPv4</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">            /// socket.</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">            /// @param V6Only Whether or not to permit IPv4 addresses on send and/or accept IPv4 messages from remote hosts.</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> SetV6Only(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> V6Only);<span class="comment"></span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">            /// @brief Gets whether this socket is allowed to send or receive IPv4 messages.</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">            /// @return Returns true if this socket is only allowed to send and receive IPv6 message, false if it will accept either IPv4 or IPv6.</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> GetV6Only() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        };<span class="comment">//IPv6Socket</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }<span class="comment">//Network</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">namespace </span>Network</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {<span class="comment"></span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        /// @brief A socket class using the IP version 6 protocol.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1IPv6Socket.html">   53</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Network_1_1IPv6Socket.html">IPv6Socket</a> : <span class="keyword">virtual</span> <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Network_1_1Socket.html">Socket</a></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1IPv6Socket.html">IPv6Socket</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Network_1_1IPv6Socket.html">IPv6Socket</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span>            <span class="comment">// Utility</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">            /// @copydoc Socket::GetNetworkLayerProtocol() const</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18">NetworkLayerProtocol</a> GetNetworkLayerProtocol() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span>            <span class="comment">// Configuration</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            /// @copydoc Socket::SetNumUnicastHops(const Integer)</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> SetNumUnicastHops(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> Hops);<span class="comment"></span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">            /// @copydoc Socket::GetNumUnicastHops() const</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Integer</a> GetNumUnicastHops() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">            /// @brief Sets whether this socket is allowed to send or receive IPv4 messages.</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @remarks By default IPv6 supports IPv4 addresses mapped onto it, and thus you can communicate with IPv4 hosts even with an IPv6 socket.  This</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">            /// option forces IPv6 traffic on the socket.  Doing so also allows you to reuse the port the socket is operating on if it is reused by an IPv4</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">            /// socket.</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">            /// @param V6Only Whether or not to permit IPv4 addresses on send and/or accept IPv4 messages from remote hosts.</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> SetV6Only(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> V6Only);<span class="comment"></span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">            /// @brief Gets whether this socket is allowed to send or receive IPv4 messages.</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">            /// @return Returns true if this socket is only allowed to send and receive IPv6 message, false if it will accept either IPv4 or IPv6.</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> GetV6Only() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        };<span class="comment">//IPv6Socket</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }<span class="comment">//Network</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1IPv6Socket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1IPv6Socket.html">Mezzanine::Network::IPv6Socket</a></div><div class="ttdoc">A socket class using the IP version 6 protocol. </div><div class="ttdef"><b>Definition:</b> <a href="ipv6socket_8h_source.html#l00053">ipv6socket.h:53</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Socket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Socket.html">Mezzanine::Network::Socket</a></div><div class="ttdoc">This is a basic socket interface for the transmission and retrieval of packets. </div><div class="ttdef"><b>Definition:</b> <a href="socket_8h_source.html#l00152">socket.h:152</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ac358283f927fd1135643c26dfc75c9cf"><div class="ttname"><a href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00173">datatypes.h:173</a></div></div>
-<div class="ttc" id="namespaceMezzanine_1_1Network_html_a2cc9dfa328c8f701096a4d61abfb3f18"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18">Mezzanine::Network::NetworkLayerProtocol</a></div><div class="ttdeci">NetworkLayerProtocol</div><div class="ttdoc">This is an enum listing for recognized protocols on Layer 3 of the OSI model. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00340">networkenumerations.h:340</a></div></div>
+<div class="ttc" id="namespaceMezzanine_1_1Network_html_a2cc9dfa328c8f701096a4d61abfb3f18"><div class="ttname"><a href="namespaceMezzanine_1_1Network.html#a2cc9dfa328c8f701096a4d61abfb3f18">Mezzanine::Network::NetworkLayerProtocol</a></div><div class="ttdeci">NetworkLayerProtocol</div><div class="ttdoc">This is an enum listing for recognized protocols on Layer 3 of the OSI model. </div><div class="ttdef"><b>Definition:</b> <a href="networkenumerations_8h_source.html#l00341">networkenumerations.h:341</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ad03e394cd98434cc30bc665e8f2ba30f"><div class="ttname"><a href="namespaceMezzanine.html#ad03e394cd98434cc30bc665e8f2ba30f">Mezzanine::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdoc">A datatype used to represent any integer close to. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00154">datatypes.h:154</a></div></div>
 <div class="ttc" id="crossplatformexport_8h_html_a455f91aab9e6a1cf4286f5cdfa74c7bc"><div class="ttname"><a href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a></div><div class="ttdeci">#define MEZZ_LIB</div><div class="ttdoc">Some platforms require special decorations to denote what is exported/imported in a share library...</div><div class="ttdef"><b>Definition:</b> <a href="crossplatformexport_8h_source.html#l00139">crossplatformexport.h:139</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
@@ -182,7 +178,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:42 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:47 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

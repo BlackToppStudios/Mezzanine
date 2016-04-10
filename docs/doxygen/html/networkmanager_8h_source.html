@@ -119,106 +119,107 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef MEZZNETWORK</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef _networkmanager_h</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define _networkmanager_h</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;entresolmanager.h&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;entresolmanagerfactory.h&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;singleton.h&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">namespace </span>Network</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">class </span>Socket;<span class="comment"></span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        /// @class NetworkManager</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">        /// @brief This is the central management class for all network I/O operations.</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">        /// @details</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> NetworkManager : <span class="keyword">public</span> EntresolManager, <span class="keyword">public</span> Singleton&lt;NetworkManager&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">            /// @brief A String containing the name of this manager implementation.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> ImplementationName;<span class="comment"></span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> InterfaceType;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="comment">//std::map&lt;unsigned short int,Socket*&gt; Sockets;</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span>            NetworkManager();<span class="comment"></span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            /// @brief XML constructor.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">            /// @param XMLNode The node of the xml document to construct from.</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>            NetworkManager(<span class="keyword">const</span> XML::Node&amp; XMLNode);<span class="comment"></span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~NetworkManager();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>            <span class="comment">// Sockets Management</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span>            <span class="comment">// Network Utilities</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span>            <span class="comment">// Utility</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">            /// @copydoc ManagerBase::Initialize()</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();<span class="comment"></span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">            /// @copydoc ManagerBase::Deinitialize()</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Deinitialize();</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span>            <span class="comment">// Type Identifier Methods</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">            /// @copydoc ManagerBase::GetInterfaceType()</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ManagerType GetInterfaceType() <span class="keyword">const</span>;<span class="comment"></span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">            /// @copydoc ManagerBase::GetImplementationTypeName()</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> GetImplementationTypeName() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        };<span class="comment">//NetworkManager</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">        /// @class DefaultNetworkManagerFactory</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">        /// @brief A factory responsible for the creation and destruction of the default networkmanager.</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> DefaultNetworkManagerFactory : <span class="keyword">public</span> EntresolManagerFactory</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"></span>            DefaultNetworkManagerFactory();<span class="comment"></span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~DefaultNetworkManagerFactory();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef _networkmanager_h</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define _networkmanager_h</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;entresolmanager.h&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;entresolmanagerfactory.h&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;singleton.h&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">namespace </span>Network</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">class </span>Socket;<span class="comment"></span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">        /// @brief This is the central management class for all network I/O operations.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1NetworkManager.html">   56</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Network_1_1NetworkManager.html">NetworkManager</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>, <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Singleton.html">Singleton</a>&lt;NetworkManager&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">            /// @brief A String containing the name of this manager implementation.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1NetworkManager.html#a515d4525049d8332d72eeb84625ada86">   60</a></span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> <a class="code" href="classMezzanine_1_1Network_1_1NetworkManager.html#a515d4525049d8332d72eeb84625ada86">ImplementationName</a>;<span class="comment"></span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">            /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1NetworkManager.html#a8e2e645f3a04f5f7e7d9741426182c75">   62</a></span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> <a class="code" href="classMezzanine_1_1Network_1_1NetworkManager.html#a8e2e645f3a04f5f7e7d9741426182c75">InterfaceType</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="comment">//std::map&lt;unsigned short int,Socket*&gt; Sockets;</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1NetworkManager.html">NetworkManager</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">            /// @brief XML constructor.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            /// @param XMLNode The node of the xml document to construct from.</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1NetworkManager.html">NetworkManager</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a>&amp; XMLNode);<span class="comment"></span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Network_1_1NetworkManager.html">NetworkManager</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span>            <span class="comment">// Sockets Management</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>            <span class="comment">// Network Utilities</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span>            <span class="comment">// Utility</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">            /// @copydoc ManagerBase::Initialize()</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();<span class="comment"></span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">            /// @copydoc ManagerBase::Deinitialize()</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Deinitialize();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"></span>            <span class="comment">// Type Identifier Methods</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">            /// @copydoc ManagerBase::GetInterfaceType()</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> GetInterfaceType() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">            /// @copydoc ManagerBase::GetImplementationTypeName()</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> GetImplementationTypeName() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        };<span class="comment">//NetworkManager</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">        /// @brief A factory responsible for the creation and destruction of the default networkmanager.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory.html">  100</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory.html">DefaultNetworkManagerFactory</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1EntresolManagerFactory.html">EntresolManagerFactory</a></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory.html">DefaultNetworkManagerFactory</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory.html">DefaultNetworkManagerFactory</a>();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">            /// @copydoc ManagerFactory::GetManagerImplName()</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> GetManagerImplName() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">            /// @copydoc ManagerFactory::GetManagerType() const</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> GetManagerType() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">            /// @copydoc ManagerFactory::GetManagerImplName()</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> GetManagerImplName() <span class="keyword">const</span>;<span class="comment"></span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">            /// @copydoc ManagerFactory::GetManagerType() const</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> GetManagerType() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&amp;)</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span>            EntresolManager* CreateManager(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ada9ac19c62901cf6e22e728597885487">NameValuePairList</a>&amp; Params);<span class="comment"></span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&amp;)</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment"></span>            EntresolManager* CreateManager(<span class="keyword">const</span> XML::Node&amp; XMLNode);<span class="comment"></span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> DestroyManager(EntresolManager* ToBeDestroyed);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        };<span class="comment">//DefaultNetworkManagerFactory</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }<span class="comment">//Network</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::CreateManager(const NameValuePairList&amp;)</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>* CreateManager(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#ada9ac19c62901cf6e22e728597885487">NameValuePairList</a>&amp; Params);<span class="comment"></span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::CreateManager(const XML::Node&amp;)</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>* CreateManager(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a>&amp; XMLNode);<span class="comment"></span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">            /// @copydoc EntresolManagerFactory::DestroyManager(EntresolManager*)</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> DestroyManager(<a class="code" href="classMezzanine_1_1EntresolManager.html">EntresolManager</a>* ToBeDestroyed);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        };<span class="comment">//DefaultNetworkManagerFactory</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }<span class="comment">//Network</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory.html">Mezzanine::Network::DefaultNetworkManagerFactory</a></div><div class="ttdoc">A factory responsible for the creation and destruction of the default networkmanager. </div><div class="ttdef"><b>Definition:</b> <a href="networkmanager_8h_source.html#l00100">networkmanager.h:100</a></div></div>
 <div class="ttc" id="classMezzanine_1_1ManagerBase_html_a9a6f3e238f66cbc68dfec11e4160aa6c"><div class="ttname"><a href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">Mezzanine::ManagerBase::ManagerType</a></div><div class="ttdeci">ManagerType</div><div class="ttdoc">A listing of Manager Types. </div><div class="ttdef"><b>Definition:</b> <a href="managerbase_8h_source.html#l00065">managerbase.h:65</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1NetworkManager_html_a8e2e645f3a04f5f7e7d9741426182c75"><div class="ttname"><a href="classMezzanine_1_1Network_1_1NetworkManager.html#a8e2e645f3a04f5f7e7d9741426182c75">Mezzanine::Network::NetworkManager::InterfaceType</a></div><div class="ttdeci">static const ManagerBase::ManagerType InterfaceType</div><div class="ttdoc">A ManagerType enum value used to describe the type of interface/functionality this manager provides...</div><div class="ttdef"><b>Definition:</b> <a href="networkmanager_8h_source.html#l00062">networkmanager.h:62</a></div></div>
+<div class="ttc" id="classMezzanine_1_1EntresolManagerFactory_html"><div class="ttname"><a href="classMezzanine_1_1EntresolManagerFactory.html">Mezzanine::EntresolManagerFactory</a></div><div class="ttdoc">This is a base class for factories that construct managers used by the Entresol class. </div><div class="ttdef"><b>Definition:</b> <a href="entresolmanagerfactory_8h_source.html#l00053">entresolmanagerfactory.h:53</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Singleton_html"><div class="ttname"><a href="classMezzanine_1_1Singleton.html">Mezzanine::Singleton</a></div><div class="ttdoc">This is a convenience base class intended to be used with classes that need to be singletons...</div><div class="ttdef"><b>Definition:</b> <a href="singleton_8h_source.html#l00062">singleton.h:62</a></div></div>
+<div class="ttc" id="classMezzanine_1_1EntresolManager_html"><div class="ttname"><a href="classMezzanine_1_1EntresolManager.html">Mezzanine::EntresolManager</a></div><div class="ttdoc">This is the base class for all managers that do no describe properties of a single world...</div><div class="ttdef"><b>Definition:</b> <a href="entresolmanager_8h_source.html#l00052">entresolmanager.h:52</a></div></div>
+<div class="ttc" id="classMezzanine_1_1XML_1_1Node_html"><div class="ttname"><a href="classMezzanine_1_1XML_1_1Node.html">Mezzanine::XML::Node</a></div><div class="ttdoc">A light-weight handle for manipulating nodes in DOM tree. </div><div class="ttdef"><b>Definition:</b> <a href="node_8h_source.html#l00089">node.h:89</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ada9ac19c62901cf6e22e728597885487"><div class="ttname"><a href="namespaceMezzanine.html#ada9ac19c62901cf6e22e728597885487">Mezzanine::NameValuePairList</a></div><div class="ttdeci">std::list&lt; NameValuePair &gt; NameValuePairList</div><div class="ttdoc">This is a datatype mostly used for describing settings or parameters that can&#39;t be declared in advanc...</div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00206">datatypes.h:206</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1NetworkManager_html_a515d4525049d8332d72eeb84625ada86"><div class="ttname"><a href="classMezzanine_1_1Network_1_1NetworkManager.html#a515d4525049d8332d72eeb84625ada86">Mezzanine::Network::NetworkManager::ImplementationName</a></div><div class="ttdeci">static const String ImplementationName</div><div class="ttdoc">A String containing the name of this manager implementation. </div><div class="ttdef"><b>Definition:</b> <a href="networkmanager_8h_source.html#l00060">networkmanager.h:60</a></div></div>
 <div class="ttc" id="crossplatformexport_8h_html_a455f91aab9e6a1cf4286f5cdfa74c7bc"><div class="ttname"><a href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a></div><div class="ttdeci">#define MEZZ_LIB</div><div class="ttdoc">Some platforms require special decorations to denote what is exported/imported in a share library...</div><div class="ttdef"><b>Definition:</b> <a href="crossplatformexport_8h_source.html#l00139">crossplatformexport.h:139</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1NetworkManager_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1NetworkManager.html">Mezzanine::Network::NetworkManager</a></div><div class="ttdoc">This is the central management class for all network I/O operations. </div><div class="ttdef"><b>Definition:</b> <a href="networkmanager_8h_source.html#l00056">networkmanager.h:56</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a1a35eea04e090afa5803c92b8be71c67"><div class="ttname"><a href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">Mezzanine::String</a></div><div class="ttdeci">std::string String</div><div class="ttdoc">A datatype used to a series of characters. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00159">datatypes.h:159</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:42 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:47 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

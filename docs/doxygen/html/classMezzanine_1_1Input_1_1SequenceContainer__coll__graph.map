@@ -1,6 +1,4 @@
 <map id="Mezzanine::Input::SequenceContainer" name="Mezzanine::Input::SequenceContainer">
-<area shape="rect" id="node2" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time. " alt="" coords="5,171,196,197"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="24,81,177,108"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers. " alt="" coords="37,5,164,32"/>
-<area shape="rect" id="node5" title="STL class. " alt="" coords="220,171,336,197"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. " alt="" coords="5,95,132,121"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="156,95,272,121"/>
 </map>

@@ -159,7 +159,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        std::vector&lt;FrameScheduler*&gt; FrameScheduler::FrameSchedulers;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">        /// @brief The function Frameschedulers have std::terminate() call.</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">        /// @details This will iterate over every frame scheduler, finds its log aggregator, call it and flush its log.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">        /// @details This will iterate over every frame scheduler, finds and activate its log aggregator, and flush its log.</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span>        <span class="keywordtype">void</span> TerminateHandler()</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            lock_guard&lt;SpinLock&gt; g(FrameScheduler::FrameSchedulersLock);</div>
@@ -982,7 +982,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:43 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:47 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

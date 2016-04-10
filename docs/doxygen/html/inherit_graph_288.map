@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structMezzanine_1_1UI_1_1GridRect.html" title="Simple rect used to represent a complete transform on a grid. " alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. " alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time. " alt="" coords="180,5,361,32"/>
 </map>

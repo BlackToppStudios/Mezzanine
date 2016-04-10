@@ -1,6 +1,6 @@
 <map id="Mezzanine::Input::ButtonDevice" name="Mezzanine::Input::ButtonDevice">
 <area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. " alt="" coords="5,169,192,196"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1Keyboard.html" title="This class represents the keyboard input device. " alt="" coords="217,169,402,196"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1Keyboard.html" title="This class represents the keyboard input device. ////////////////////////////////////. " alt="" coords="217,169,402,196"/>
 <area shape="rect" id="node5" href="$classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device. " alt="" coords="426,169,595,196"/>
 <area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="224,5,395,32"/>
 </map>

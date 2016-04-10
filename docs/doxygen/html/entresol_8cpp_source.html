@@ -774,7 +774,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;<span class="preprocessor">        #ifdef MEZZNETWORK</span></div>
 <div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;        <span class="comment">//DefaultNetworkManager</span></div>
 <div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;        ManIt = Entresol::ManagerFactories.find(<span class="stringliteral">&quot;DefaultNetworkManager&quot;</span>);</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;        <span class="keywordflow">if</span>( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(<span class="keyword">new</span> Network::DefaultNetworkManagerFactory());</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;        <span class="keywordflow">if</span>( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(<span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory.html">Network::DefaultNetworkManagerFactory</a>());</div>
 <div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;<span class="preprocessor">        #endif //MEZZNETWORK</span></div>
 <div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;</div>
 <div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;<span class="preprocessor">        #ifdef MEZZLUA51</span></div>
@@ -1066,6 +1066,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;}</div>
 <div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classMezzanine_1_1Resource_1_1DefaultResourceManagerFactory_html"><div class="ttname"><a href="classMezzanine_1_1Resource_1_1DefaultResourceManagerFactory.html">Mezzanine::Resource::DefaultResourceManagerFactory</a></div><div class="ttdoc">A factory responsible for the creation and destruction of the default resourcemanager. </div><div class="ttdef"><b>Definition:</b> <a href="resourcemanager_8h_source.html#l00252">resourcemanager.h:252</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1DefaultNetworkManagerFactory.html">Mezzanine::Network::DefaultNetworkManagerFactory</a></div><div class="ttdoc">A factory responsible for the creation and destruction of the default networkmanager. </div><div class="ttdef"><b>Definition:</b> <a href="networkmanager_8h_source.html#l00100">networkmanager.h:100</a></div></div>
 <div class="ttc" id="classMezzanine_1_1Singleton_html_a0db9959ccd7daa1345f4567aa0b0655d"><div class="ttname"><a href="classMezzanine_1_1Singleton.html#a0db9959ccd7daa1345f4567aa0b0655d">Mezzanine::Singleton&lt; Entresol &gt;::SingletonPtr</a></div><div class="ttdeci">static Entresol * SingletonPtr</div><div class="ttdoc">The one and only pointer to the single object. </div><div class="ttdef"><b>Definition:</b> <a href="singleton_8h_source.html#l00072">singleton.h:72</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ac0e305210456ef0132dc20c06aa292dd"><div class="ttname"><a href="namespaceMezzanine.html#ac0e305210456ef0132dc20c06aa292dd">Mezzanine::Logger</a></div><div class="ttdeci">std::stringstream Logger</div><div class="ttdoc">In case we ever replace the stringstream with another class, this will allow us to swap it out...</div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00180">datatypes.h:180</a></div></div>
 <div class="ttc" id="classMezzanine_1_1Entresol_html_a30291e66b458ffba6d92ebfadc2b3d51"><div class="ttname"><a href="classMezzanine_1_1Entresol.html#a30291e66b458ffba6d92ebfadc2b3d51">Mezzanine::Entresol::ManagerVec</a></div><div class="ttdeci">std::vector&lt; EntresolManager * &gt; ManagerVec</div><div class="ttdoc">Container type for passing pre-created managers into the Entresol upon creation. </div><div class="ttdef"><b>Definition:</b> <a href="entresol_8h_source.html#l00342">entresol.h:342</a></div></div>
@@ -1118,7 +1119,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:41 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:46 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>
