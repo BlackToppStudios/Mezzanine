@@ -48,6 +48,43 @@
 namespace Mezzanine
 {
 
+    void StateMachine::AddState(const HashedString32& NewState)
+    {
+
+    }
+
+    void StateMachine::AddStateTransitation(const HashedString32& From,
+                                            const HashedString32& To,
+                                            StateTransitionAction* PossibleAction)
+    {
+
+    }
+
+    Boole StateMachine::ChangeState(const HashedString32& ToState)
+    {
+
+    }
+
+    Boole StateMachine::SetPendingState(const HashedString32& ToState)
+    {
+
+    }
+
+    Boole StateMachine::DoPendingStateChange(const HashedString32& ToState)
+    {
+
+    }
+
+    const HashedString32&StateMachine::CurrentState() const
+    {
+
+    }
+
+    const HashedString32&StateMachine::PendingState() const
+    {
+
+    }
+
 } // /namespace Mezzanine
 
 #endif // Include guard

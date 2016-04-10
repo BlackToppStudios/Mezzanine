@@ -65,6 +65,7 @@ namespace Mezzanine
 
             Boole operator< (const StateTransition& Other);
 
+            Boole operator()();
 
     };
 } // /namespace Mezzanine

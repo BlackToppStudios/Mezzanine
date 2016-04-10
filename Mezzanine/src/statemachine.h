@@ -54,10 +54,19 @@ namespace Mezzanine
         private:
             SortedVector<HashedString32> states;
             SortedVector<StateTransition> transitions;
+            StateTransition* FutureState;
 
         public:
+            void AddState(const HashedString32& NewState);
+            void AddStateTransitation(  const HashedString32& From,
+                                        const HashedString32& To,
+                                        StateTransitionAction* PossibleAction);
+            Boole ChangeState(const HashedString32& ToState);
+            Boole SetPendingState(const HashedString32& ToState);
+            Boole DoPendingStateChange(const HashedString32& ToState);
 
-
+            const HashedString32& CurrentState() const;
+            const HashedString32& PendingState() const;
     };
 } // /namespace Mezzanine
 

@@ -65,6 +65,11 @@ namespace Mezzanine
                 this->To < Other.To;
     }
 
+    Boole StateTransition::operator()()
+    {
+
+    }
+
 } // /namespace Mezzanine
 
 #endif // Include guard

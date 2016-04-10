@@ -59,6 +59,7 @@ namespace Mezzanine
     class MEZZ_LIB ExceptionBase : public std::exception
     {
         public:
+            /// @enum ExceptionCodes
             /// @brief This enum provides mapping/naming for all the core Mezzanine.
             /// @details This system might superficially look convoluted. It is designed to make
             /// capturing as much detail about problems as they occur.
@@ -214,7 +215,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Exception code class definitions.
 
-
+    
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief Thrown when there was an issue with IO but very little was known about it.
 /// @ingroup exception_heirarchy IOException
