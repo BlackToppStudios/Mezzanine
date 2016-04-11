@@ -20,6 +20,10 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OgreDeps_BINARY_DIR}" )
 #
 ## Ogre Core Setup
 #
+# In ogresvnsrc/CMakeLists.txt:
+# Around line 547 the cmake configuration will add the Samples subdirectory regardless of the cmake config, where additional code is run that depends on data not set.
+# Commenting out this line resolves the issue of this cmake config running on CMake 3.4+.  A better solution to the cmake config should be made for something long term.
+#
 # In ogresvnsrc/OgreMain/Src/OgreZip.cpp:
 # At around line 37 change the include '#include <zzip/zzip.h>' to '#include <zzip.h>'
 #
@@ -93,8 +97,10 @@ set(FREETYPE_FT2BUILD_INCLUDE_DIR "" CACHE PATH "Forcing empty include path to a
 set(FREETYPE_INCLUDE_DIR "" CACHE PATH "Forcing empty include path to avoid CMake errors." FORCE)
 
 # Ogre Extras
+set(OGRE_BUILD_SAMPLES FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_INSTALL_DOCS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_INSTALL_SAMPLES FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_INSTALL_SAMPLES_SOURCE FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_INSTALL_TOOLS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_INSTALL_VSPROPS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 
