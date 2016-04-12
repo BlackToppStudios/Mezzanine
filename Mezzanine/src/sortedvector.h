@@ -75,8 +75,12 @@ namespace Mezzanine
         public:
             typedef std::vector<T> StorageVector;
             typedef typename StorageVector::size_type size_type;
+            typedef typename StorageVector::value_type value_type;
             typedef typename StorageVector::iterator iterator;
             typedef typename StorageVector::const_iterator const_iterator;
+
+            typedef typename StorageVector::reverse_iterator reverse_iterator;
+            typedef typename StorageVector::const_reverse_iterator const_reverse_iterator;
 
         private:
             /// @internal The actual vector that does most of the interesting work.
@@ -93,6 +97,16 @@ namespace Mezzanine
                 { return InternalStorage.end(); }
             const_iterator end() const
                 { return InternalStorage.end(); }
+
+            reverse_iterator rbegin()
+                { return InternalStorage.rbegin(); }
+            const_reverse_iterator rbegin() const
+                { return InternalStorage.rbegin(); }
+
+            reverse_iterator rend()
+                { return InternalStorage.rend(); }
+            const_reverse_iterator rend() const
+                { return InternalStorage.rend(); }
 
             void sort()
                 { std::sort(begin(),end()); }
@@ -116,6 +130,29 @@ namespace Mezzanine
 
             Boole contains(T value) const
                 { return std::binary_search(begin(),end(),value); }
+
+
+            void clear()
+                { InternalStorage.clear(); }
+            void reserve( size_type new_capacity )
+                { InternalStorage.reserve(new_capacity); }
+            size_type capacity() const
+                { return InternalStorage.capacity(); }
+
+
+            iterator erase( iterator position )
+                { return InternalStorage.erase(position); }
+            iterator erase( iterator first, iterator last )
+                { return InternalStorage.erase(first, last); }
+
+//            void resize( size_type count )
+//                { InternalStorage.reserve(count); }
+
+            // proper C++11 way
+            //void resize( size_type count )
+            //    { InternalStorage.reserve(count); }
+            //void resize( size_type count, const value_type& value )
+            //    { InternalStorage.reserve(count,value); }
     };
 } // /namespace Mezzanine
 

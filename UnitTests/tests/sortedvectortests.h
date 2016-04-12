@@ -73,57 +73,138 @@ public:
         }
 
         {
-            SortedVector<Int32> sample;
-            TEST(sample.size() == 0, "SortedVector.Size1");
+            SortedVector<Int32> tested;
+            TEST(tested.size() == 0, "SortedVector.Size1");
         }
 
         {
-            SortedVector<Int32> sample;
-            sample.add(5);
-            TEST(sample.size() == 1, "SortedVector.Size2");
-            TEST( *(sample.begin()) == 5, "SortedVector.BeginDerefenced1");
+            SortedVector<Int32> tested;
+            tested.add(5);
+            TEST(tested.size() == 1,            "SortedVector.Size2");
+            TEST( *(tested.begin()) == 5,       "SortedVector.BeginDerefenced1");
+
+            tested.clear();
+            TEST( tested.size() == 0,           "SortedVector.SizeIntClear");
         }
 
         {
-            SortedVector<Int32> sample;
-            sample.add(13);
-            sample.add(5);
-            sample.add(8);
-            TEST(sample.size() == 3,                        "SortedVector.Size3");
-            TEST( *(sample.begin()) == 5,                   "SortedVector.SortedValue1Begin");
-            TEST( *(sample.begin()+1) == 8,                 "SortedVector.SortedValue2Begin");
-            TEST( *(sample.begin()+2) == 13,                "SortedVector.SortedValue3Begin");
-            TEST( *(sample.end()-3) == 5,                   "SortedVector.SortedValue1End");
-            TEST( *(sample.end()-2) == 8,                   "SortedVector.SortedValue2End");
-            TEST( *(sample.end()-1) == 13,                  "SortedVector.SortedValue3End");
-            TEST( sample[0] == 5,                           "SortedVector.SortedValue0Bracket");
-            TEST( sample[1] == 8,                           "SortedVector.SortedValue1Bracket");
-            TEST( sample[2] == 13,                          "SortedVector.SortedValue2Bracket");
-            SortedVector<Int32>::const_iterator constfind5 = sample.find(5);
-            SortedVector<Int32>::const_iterator constfind8 = sample.find(8);
-            SortedVector<Int32>::const_iterator constfind13 = sample.find(13);
-            SortedVector<Int32>::const_iterator constfind100 = sample.find(100);
-            SortedVector<Int32>::const_iterator constfindend = sample.end();
-            TEST( *constfind5 == 5,                      "SortedVector.find1");
-            TEST( *constfind8 == 8,                   "SortedVector.find2");
-            TEST( *constfind13 == 13,                 "SortedVector.find3");
-            TEST( constfind100 == constfindend,         "SortedVector.findfail1");
-            SortedVector<Int32>::iterator find5 = sample.find(5);
-            SortedVector<Int32>::iterator find8 = sample.find(8);
-            SortedVector<Int32>::iterator find13 = sample.find(13);
-            SortedVector<Int32>::iterator find100 = sample.find(100);
-            SortedVector<Int32>::iterator findend = sample.end();
-            TEST( *find5 == 5,                      "SortedVector.find1");
-            TEST( *find8 == 8,                   "SortedVector.find2");
-            TEST( *find13 == 13,                 "SortedVector.find3");
-            TEST( find100 == findend,         "SortedVector.findfail1");
-            TEST( sample.contains(5) == true,               "SortedVector.contains1");
-            TEST( sample.contains(8) == true,               "SortedVector.contains2");
-            TEST( sample.contains(13) == true,              "SortedVector.contains3");
-            TEST( sample.contains(-1) == false,             "SortedVector.containsfalse");
-
-
+            SortedVector<Int32> tested;
+            tested.add(13);
+            tested.add(5);
+            tested.add(8);
+            TEST(tested.size() == 3,                        "SortedVector.SizeInt");
+            TEST( *(tested.begin()) == 5,                   "SortedVector.SortedValue1Begin");
+            TEST( *(tested.begin()+1) == 8,                 "SortedVector.SortedValue2Begin");
+            TEST( *(tested.begin()+2) == 13,                "SortedVector.SortedValue3Begin");
+            TEST( *(tested.end()-3) == 5,                   "SortedVector.SortedValue1End");
+            TEST( *(tested.end()-2) == 8,                   "SortedVector.SortedValue2End");
+            TEST( *(tested.end()-1) == 13,                  "SortedVector.SortedValue3End");
+            TEST( tested[0] == 5,                           "SortedVector.SortedValue0Bracket");
+            TEST( tested[1] == 8,                           "SortedVector.SortedValue1Bracket");
+            TEST( tested[2] == 13,                          "SortedVector.SortedValue2Bracket");
+            SortedVector<Int32>::const_iterator constfind5 = tested.find(5);
+            SortedVector<Int32>::const_iterator constfind8 = tested.find(8);
+            SortedVector<Int32>::const_iterator constfind13 = tested.find(13);
+            SortedVector<Int32>::const_iterator constfind100 = tested.find(100);
+            SortedVector<Int32>::const_iterator constfindend = tested.end();
+            TEST( *constfind5 == 5,                 "SortedVector.find1");
+            TEST( *constfind8 == 8,                 "SortedVector.find2");
+            TEST( *constfind13 == 13,               "SortedVector.find3");
+            TEST( constfind100 == constfindend,     "SortedVector.findfail1");
+            SortedVector<Int32>::iterator find5 = tested.find(5);
+            SortedVector<Int32>::iterator find8 = tested.find(8);
+            SortedVector<Int32>::iterator find13 = tested.find(13);
+            SortedVector<Int32>::iterator find100 = tested.find(100);
+            SortedVector<Int32>::iterator findend = tested.end();
+            TEST( *find5 == 5,                  "SortedVector.find1");
+            TEST( *find8 == 8,                  "SortedVector.find2");
+            TEST( *find13 == 13,                "SortedVector.find3");
+            TEST( find100 == findend,           "SortedVector.findfail1");
+            TEST( tested.contains(5) == true,       "SortedVector.contains1");
+            TEST( tested.contains(8) == true,       "SortedVector.contains2");
+            TEST( tested.contains(13) == true,      "SortedVector.contains3");
+            TEST( tested.contains(-1) == false,     "SortedVector.containsfalse");
         }
+
+        {
+            SortedVector<String> tested;
+            tested.add("B");
+            tested.add("A");
+            tested.add("C");
+            TEST( tested[0] == "A",                 "SortedVector.SortedString0Bracket");
+            TEST( tested[1] == "B",                 "SortedVector.SortedString1Bracket");
+            TEST( tested[2] == "C",                 "SortedVector.SortedString2Bracket");
+
+            TEST( tested.size() == 3,               "SortedVector.SizeString");
+
+            tested.clear()
+            TEST( tested.size() == 0,               "SortedVector.SizeStringClear");
+        }
+
+        {
+            SortedVector<Int32> tested;
+            tested.add(3);
+            tested.add(6);
+            tested.add(9);
+            TEST(tested.capacity() >= 3, "SimpleCapacity");
+            tested.reserve(10);
+            TEST(tested.capacity() >= 9, "CapacityAfterReserve");
+        }
+
+        {
+            SortedVector<Int32> tested;
+            tested.add(9);
+            tested.add(3);
+            tested.add(6);
+
+            TEST( *(tested.rbegin()) == 9,          "SortedVector.SortedValue1RBegin");
+            TEST( *(tested.rbegin()+1) == 6,        "SortedVector.SortedValue2RBegin");
+            TEST( *(tested.rbegin()+2) == 3,        "SortedVector.SortedValue3RBegin");
+            TEST( *(tested.rend()-3) == 9,          "SortedVector.SortedValue1REnd");
+            TEST( *(tested.rend()-2) == 6,          "SortedVector.SortedValue2REnd");
+            TEST( *(tested.rend()-1) == 3,          "SortedVector.SortedValue3REnd");
+        }
+
+        {
+            SortedVector<String> tested;
+            tested.add("B");
+            tested.add("E");
+            tested.add("C");
+            tested.add("A");
+            tested.add("F");
+            tested.add("D");
+            TEST( tested[0] == "A",                 "SortedVector.ErasePrep");
+            tested.erase(tested.begin());
+            TEST( tested[0] == "B",                 "SortedVector.EraseSingle");
+            tested.erase(tested.begin(), tested.begin()+3);
+            std::cout << tested[0] << std::endl;
+            TEST( tested[0] == "E",                 "SortedVector.EraseRange");
+        }
+
+        // need proper C++11 support for the good resize implementation
+//        {
+//            SortedVector<Int32> tested;
+//            tested.add(1);
+//            tested.add(9);
+//            tested.resize(3,6);
+//            TEST( tested.size() == 3,               "SortedVector.ResizeSizeInt");
+//            TEST( *(tested.begin()) == 1,           "SortedVector.SortedValue1Resize");
+//            TEST( *(tested.begin()+1) == 6,         "SortedVector.SortedValue2Resize");
+//            TEST( *(tested.begin()+2) == 9,         "SortedVector.SortedValue3Resize");
+//        }
+
+        // Super busted without C++11
+//        {
+//            SortedVector<String> tested;
+//            tested.add("C");
+//            tested.add("A");
+//            tested.resize(3);
+//            TEST( tested.size() == 3,                "SortedVector.ResizeSizeString");
+//            TEST( *(tested.begin()) == "",           "SortedVector.SortedValueString1Resize");
+//            TEST( *(tested.begin()+1) == "A",        "SortedVector.SortedValueString2Resize");
+//            TEST( *(tested.begin()+2) == "C",        "SortedVector.SortedValueString3Resize");
+//        }
+
 
 
     }
