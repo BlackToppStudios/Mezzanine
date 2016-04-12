@@ -41,7 +41,7 @@
 #define sortedvector_h
 
 /// @file
-/// @brief Describe file here
+/// @brief This file includes the declaration and definition for the SortedVector class.
 
 #include "datatypes.h"
 
@@ -69,17 +69,27 @@ namespace Mezzanine
             return end; // not found
     }
 
+    /// @brief This container uses an std::vector for storage, but sorts all
+    /// @tparam T The this container will store, must implement operate < for sorting
     template<typename T>
     class SortedVector
     {
         public:
+            /// @brief The type used for internal storage.
             typedef std::vector<T> StorageVector;
+            /// @brief The type used when checking sizes and capacities of instances of this.
             typedef typename StorageVector::size_type size_type;
+            /// @brief The type of items stored.
             typedef typename StorageVector::value_type value_type;
+            /// @brief Type of mutable random access iterator. Invalidated on all insertions.
             typedef typename StorageVector::iterator iterator;
+            /// @brief Type of const random access iterator. Invalidated on all insertions.
             typedef typename StorageVector::const_iterator const_iterator;
-
+            /// @brief Type of mutable reverse iterator for random access. Invalidated on all
+            /// insertions.
             typedef typename StorageVector::reverse_iterator reverse_iterator;
+            /// @brief Type of const reverse iterator for random access. Invalidated on all
+            /// insertions.
             typedef typename StorageVector::const_reverse_iterator const_reverse_iterator;
 
         private:
@@ -88,13 +98,21 @@ namespace Mezzanine
 
         public:
 
+            /// @brief Get an iterator to the beginning of the container.
+            /// @return A mutable iterator pointing to the first element.
             iterator begin()
                 { return InternalStorage.begin(); }
+            /// @brief Get a const iterator to the beginning of the container.
+            /// @return A const iterator pointing to the first element.
             const_iterator begin() const
                 { return InternalStorage.begin(); }
 
+            /// @brief Get an iterator to one past the end of the container.
+            /// @return A mutable iterator to one past the end of the container.
             iterator end()
                 { return InternalStorage.end(); }
+            /// @brief Get an iterator to one past the end of the container.
+            /// @return A const iterator to one past the end of the container.
             const_iterator end() const
                 { return InternalStorage.end(); }
 
