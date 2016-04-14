@@ -185,12 +185,19 @@ namespace Mezzanine
             /// @param new_capacity The amount of items to be ready to store.
             void reserve( size_type new_capacity )
                 { InternalStorage.reserve(new_capacity); }
+            /// @brief How many items can this store before requiring an allocation.
             size_type capacity() const
                 { return InternalStorage.capacity(); }
 
-
+            /// @brief Remove an item indicated by the iterator.
+            /// @param position An iterator pointing to the item to remove.
+            /// @return An iterator to one after the erased item.
             iterator erase( iterator position )
                 { return InternalStorage.erase(position); }
+            /// @brief Remove items indicated by an iterator range.
+            /// @param first An iterator pointing to the first item to be erased.
+            /// @param last An iterator pointer to one past the last item to be erased.
+            /// @return An iterator to one after the erased item.
             iterator erase( iterator first, iterator last )
                 { return InternalStorage.erase(first, last); }
 
