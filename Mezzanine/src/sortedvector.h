@@ -116,42 +116,73 @@ namespace Mezzanine
             const_iterator end() const
                 { return InternalStorage.end(); }
 
+            /// @brief Get an iterator to the last element of the container, going backwards.
+            /// @return A mutable reverse iterator pointing to the first element at the end.
             reverse_iterator rbegin()
                 { return InternalStorage.rbegin(); }
+            /// @brief Get a const iterator to the last element of the container, going backwards.
+            /// @return A const reverse iterator pointing to the first element at the end.
             const_reverse_iterator rbegin() const
                 { return InternalStorage.rbegin(); }
 
+            /// @brief Get an iterator to one before the first element of the container.
+            /// @return A mutable reverse iterator pointing to the reverse end element at the start.
             reverse_iterator rend()
                 { return InternalStorage.rend(); }
+            /// @brief Get a const iterator to one before the first element of the container.
+            /// @return A const reverse iterator pointing to the reverse end element at the start.
             const_reverse_iterator rend() const
                 { return InternalStorage.rend(); }
 
+            /// @brief Uses std::sort to sort this, might using something more special focus in the
+            /// future.
             void sort()
                 { std::sort(begin(),end()); }
 
+            /// @brief How many items are stored in this?
+            /// @return Some integer type, likely unsigned indicating how many items this stores.
             size_type size() const
                 { return InternalStorage.size(); }
 
+            /// @brief Since this container has no array-like concept this inserts the item were
+            /// it needs to go. This has all the potentional allocation slow downs of push_back
+            /// and costs of find the required place to insert.
+            /// @param value The value to put into the vector.
             void add(T value)
             {
                 InternalStorage.push_back(value);
                 sort();
             }
 
+            /// @brief Get an item in the vector, operates in fast constant time.
+            /// @param Index A 0 based index, if too large this can throw std::out_of_range.
+            /// @return A reference to the stored item in the container. If the value is changed
+            /// then SortedVector::sort should be called.
             T& operator[] (size_t Index)
                 { return InternalStorage[Index]; }
 
+            /// @brief Get and interator to a specific item, operates in fast logarithmic time.
+            /// @param value the item to get the location of.
+            /// @return A mutable iterator to an item, can be adjusted by random access.
             iterator find(T value)
                 { return binary_find(begin(),end(),value); }
+            /// @brief Get and interator to a specific item, operates in fast logarithmic time.
+            /// @param value the item to get the location of.
+            /// @return A const iterator to an item, can be adjusted by random access.
             const_iterator find(T value) const
                 { return binary_find(begin(),end(),value); }
 
+            /// @brief Does the item exist in this vector?
+            /// @param value The item in question.
+            /// @return True if present false otherwise.
             Boole contains(T value) const
                 { return std::binary_search(begin(),end(),value); }
 
-
+            /// @brief Empt the Vector discarding all data.
             void clear()
                 { InternalStorage.clear(); }
+            /// @brief Allocate enough space for the specified quantity of items
+            /// @param new_capacity The amount of items to be ready to store.
             void reserve( size_type new_capacity )
                 { InternalStorage.reserve(new_capacity); }
             size_type capacity() const
