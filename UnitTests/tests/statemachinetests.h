@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,26 +37,52 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef statetransitionaction_h
-#define statetransitionaction_h
+#ifndef statemachinetests_h
+#define statemachinetests_h
+
+#include "mezztest.h"
+
+#include "statemachine.h"
 
 /// @file
-/// @brief Describe file here
+/// @brief Test the statemachine works
 
-#include "datatypes.h"
+using namespace Mezzanine;
+using namespace Mezzanine::Testing;
 
-namespace Mezzanine
+/// @brief Test
+class statemachinetests : public UnitTestGroup
 {
-    class StateTransitionAction
+public:
+    /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+    /// @return Returns a String containing "StateMachine"
+    virtual String Name()
+        { return String("StateMachine"); }
+
+    /// @brief Test most features on the StateMachine.
+    void RunAutomaticTests()
     {
-        public:
-            virtual void operator()() = 0;
+        {
+            StateMachine UnderTest("starting");
+            TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateSTD");
+        }
 
-            virtual ~StateTransitionAction();
+        {
+            StateMachine UnderTest(HashedString32("starting"));
+            TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateHash");
+        }
 
+        {
+            StateMachine UnderTest(HashedString32("starting"));
+            TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateHash");
+        }
 
-    };
+    }
 
-} // /namespace Mezzanine
+    /// @brief Since RunAutomaticTests is implemented so is this.
+    /// @return returns true
+    virtual bool HasAutomaticTests() const
+        { return true; }
+};//spheretests
 
-#endif // Include guard
+#endif

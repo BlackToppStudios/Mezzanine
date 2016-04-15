@@ -48,6 +48,9 @@
 namespace Mezzanine
 {
 
+    StateTransitionAction::~StateTransitionAction()
+        { }
+
 } // /namespace Mezzanine
 
 #endif // Include guard

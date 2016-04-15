@@ -48,6 +48,18 @@
 namespace Mezzanine
 {
 
+    StateMachine::StateMachine(const HashedString32& InitialState) : CurrentState(InitialState)
+    {
+        //states.add(InitialState);
+
+    }
+
+    StateMachine::StateMachine(const String& InitialState) : CurrentState(InitialState)
+    {
+        //states.add(InitialState);
+
+    }
+
     void StateMachine::AddState(const HashedString32& NewState)
     {
 
@@ -70,17 +82,15 @@ namespace Mezzanine
 
     }
 
-    Boole StateMachine::DoPendingStateChange(const HashedString32& ToState)
+    void StateMachine::DoPendingStateChange()
     {
 
     }
 
-    const HashedString32&StateMachine::CurrentState() const
-    {
+    const HashedString32& StateMachine::GetCurrentState() const
+        { return CurrentState; }
 
-    }
-
-    const HashedString32&StateMachine::PendingState() const
+    const HashedString32& StateMachine::GetPendingState() const
     {
 
     }

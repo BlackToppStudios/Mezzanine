@@ -67,7 +67,8 @@ namespace Mezzanine
 
     Boole StateTransition::operator()()
     {
-
+        Action->operator()();
+        return true;
     }
 
 } // /namespace Mezzanine
