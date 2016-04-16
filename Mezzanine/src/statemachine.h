@@ -52,12 +52,13 @@ namespace Mezzanine
     class StateMachine
     {
         private:
-            SortedVector<HashedString32> states;
-            SortedVector<StateTransition> transitions;
-            HashedString32 CurrentState;
-            StateTransition* FutureState;
+            SortedVector<HashedString32> States;
+            SortedVector<StateTransition> Transitions;
+            SortedVector<HashedString32>::const_iterator CurrentState;
+            SortedVector<HashedString32>::const_iterator FutureState;
 
         public:
+            StateMachine();
             explicit StateMachine(const HashedString32& InitialState);
             explicit StateMachine(const String& InitialState);
 

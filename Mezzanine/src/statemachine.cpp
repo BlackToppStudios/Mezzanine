@@ -45,19 +45,31 @@
 
 #include "statemachine.h"
 
+namespace
+{
+    Mezzanine::HashedString32 NoState("");
+}
+
 namespace Mezzanine
 {
-
-    StateMachine::StateMachine(const HashedString32& InitialState) : CurrentState(InitialState)
+    StateMachine::StateMachine()
     {
-        //states.add(InitialState);
-
+        CurrentState = States.end();
+        FutureState = States.end();
     }
 
-    StateMachine::StateMachine(const String& InitialState) : CurrentState(InitialState)
+    StateMachine::StateMachine(const HashedString32& InitialState) //: CurrentState(InitialState)
     {
-        //states.add(InitialState);
+        States.add(InitialState);
+        CurrentState = States.begin();
+        FutureState = States.end();
+    }
 
+    StateMachine::StateMachine(const String& InitialState) //: CurrentState(InitialState)
+    {
+        States.add(InitialState);
+        CurrentState = States.begin();
+        FutureState = States.end();
     }
 
     void StateMachine::AddState(const HashedString32& NewState)
@@ -88,11 +100,20 @@ namespace Mezzanine
     }
 
     const HashedString32& StateMachine::GetCurrentState() const
-        { return CurrentState; }
+    {
+        if(CurrentState!=States.end())
+            { return *CurrentState; }
+        else
+            { return ::NoState; }
+    }
+
 
     const HashedString32& StateMachine::GetPendingState() const
     {
-
+        if(FutureState!=States.end())
+            { return *FutureState; }
+        else
+            { return ::NoState; }
     }
 
 } // /namespace Mezzanine

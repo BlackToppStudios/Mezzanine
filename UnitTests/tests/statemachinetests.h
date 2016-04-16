@@ -63,18 +63,26 @@ public:
     void RunAutomaticTests()
     {
         {
+            StateMachine UnderTest;
+            TEST( UnderTest.GetCurrentState() == HashedString32(""), "NoDefaultState");
+            TEST( UnderTest.GetPendingState() == HashedString32(""), "NoDefaultPendingState");
+        }
+
+        {
             StateMachine UnderTest("starting");
             TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateSTD");
+            TEST( UnderTest.GetPendingState() == HashedString32(""), "NoDefaultPendingStateSTD");
         }
 
         {
             StateMachine UnderTest(HashedString32("starting"));
             TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateHash");
+            TEST( UnderTest.GetPendingState() == HashedString32(""), "NoDefaultPendingStateHash");
         }
 
         {
             StateMachine UnderTest(HashedString32("starting"));
-            TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateHash");
+            //TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateHash");
         }
 
     }
