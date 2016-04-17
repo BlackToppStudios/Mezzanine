@@ -210,13 +210,13 @@ namespace Mezzanine
             PF_R8G8B8A8 = 28,
             PF_X8R8G8B8 = 26,
             PF_X8B8G8R8 = 27,
-#if MEZZ_BIG_ENDIAN
+#ifdef MEZZ_BIG_ENDIAN
             PF_Byte_RGB = PF_R8G8B8,
             PF_Byte_BGR = PF_B8G8R8,
             PF_Byte_BGRA = PF_B8G8R8A8,
             PF_Byte_RGBA = PF_R8G8B8A8,
 #endif
-#if MEZZ_LITTLE_ENDIAN
+#ifdef MEZZ_LITTLE_ENDIAN
             PF_Byte_RGB = PF_B8G8R8,
             PF_Byte_BGR = PF_R8G8B8,
             PF_Byte_BGRA = PF_A8R8G8B8,
