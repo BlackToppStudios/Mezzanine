@@ -41,6 +41,7 @@
 #define _networksockettests_h
 
 #include "mezztest.h"
+#include "Network/network.h"
 
 #include <stdexcept> //only used to throw for TEST_THROW
 

@@ -86,8 +86,8 @@ public:
 
 
         String SubProcessOutput(LaunchSubProcessTest());
-        TestOutput  << "Expecting: " << SubSubMessage << endl
-                    << "Actual:    " << SubProcessOutput << endl;
+        TestOutput  << "Expecting: " << SubSubMessage << std::endl
+                    << "Actual:    " << SubProcessOutput << std::endl;
         TEST(SubSubMessage==SubProcessOutput, "SubProcess");
     }
     /// @brief Since RunAutomaticTests is implemented so is this.
@@ -114,7 +114,7 @@ public:
     {
         // Please note that test macros mean nothing here. This is run in a subprocess
         // with as little interference from the Unit Test framework as possible
-        cout << SubSubMessage;
+        std::cout << SubSubMessage;
     }
     /// @brief Indicates this test will launch a subprocess.
     /// @return Returns true to indicate this test will launch a subprocess of it's own.
