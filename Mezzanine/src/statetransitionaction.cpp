@@ -51,6 +51,15 @@ namespace Mezzanine
     StateTransitionAction::~StateTransitionAction()
         { }
 
+    void StateTransitionNoAction::operator()()
+        { }
+
+    StateTransitionNoAction::~StateTransitionNoAction()
+        { }
+
+    StateTransitionAction* StateTransitionNoAction::clone()
+        { return new StateTransitionNoAction(); }
+
 } // /namespace Mezzanine
 
 #endif // Include guard

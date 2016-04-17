@@ -51,10 +51,16 @@ namespace Mezzanine
     {
         public:
             virtual void operator()() = 0;
-
             virtual ~StateTransitionAction();
+            virtual StateTransitionAction* clone() = 0;
+    };
 
-
+    class StateTransitionNoAction : public StateTransitionAction
+    {
+        public:
+            virtual void operator()();
+            virtual ~StateTransitionNoAction();
+            virtual StateTransitionAction* clone();
     };
 
 } // /namespace Mezzanine

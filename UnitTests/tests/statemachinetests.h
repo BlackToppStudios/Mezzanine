@@ -64,27 +64,56 @@ public:
     {
         {
             StateMachine UnderTest;
-            TEST( UnderTest.GetCurrentState() == HashedString32(""), "NoDefaultState");
-            TEST( UnderTest.GetPendingState() == HashedString32(""), "NoDefaultPendingState");
+            TEST( UnderTest.GetStateCount() == 0, "NoStartingStates");
+            TEST( UnderTest.GetCurrentState().IsEmpty(), "NoDefaultState");
+            TEST( UnderTest.GetPendingState().IsEmpty(), "NoDefaultPendingState");
         }
 
         {
             StateMachine UnderTest("starting");
+            TEST( UnderTest.GetStateCount() == 1, "OneStartingStateSTD");
             TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateSTD");
-            TEST( UnderTest.GetPendingState() == HashedString32(""), "NoDefaultPendingStateSTD");
+            TEST( UnderTest.GetPendingState().IsEmpty(), "NoDefaultPendingStateSTD");
         }
 
         {
             StateMachine UnderTest(HashedString32("starting"));
+            TEST( UnderTest.GetStateCount() == 1, "OneStartingStateHash");
             TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateHash");
-            TEST( UnderTest.GetPendingState() == HashedString32(""), "NoDefaultPendingStateHash");
+            TEST( UnderTest.GetPendingState().IsEmpty(), "NoDefaultPendingStateHash");
         }
 
         {
             StateMachine UnderTest(HashedString32("starting"));
-            //TEST( UnderTest.GetCurrentState() == HashedString32("starting"), "StartingStateHash");
+            TEST( UnderTest.GetStateCount() == 1, "OneStartingState");
+            UnderTest.AddState("started");
+            TEST( UnderTest.GetStateCount() == 2, "AddStateIncrementsSomething1");
+            UnderTest.AddState("stopping");
+            TEST( UnderTest.GetStateCount() == 3, "AddStateIncrementsSomething2");
         }
 
+        {
+            StateMachine StopLight("Green");
+            TEST( StopLight.GetStateTransitionCount() == 0, "NoStartingTransitions1");
+            StopLight.AddState("Yellow");
+            StopLight.AddState("Red");
+            StopLight.AddState("LeftArrow");
+            TEST( StopLight.GetStateTransitionCount() == 0, "NoStartingTransitions2");
+
+            StopLight.AddStateTransitation("Green","Yellow");
+            TEST( StopLight.GetStateTransitionCount() == 1, "TransitionAdd1");
+            StopLight.AddStateTransitation("Yellow","Red");
+            StopLight.AddStateTransitation("Red","Green");
+            StopLight.AddStateTransitation("Red","LeftArrow");
+            StopLight.AddStateTransitation("LeftArrow","Green");
+            TEST( StopLight.GetStateTransitionCount() == 5, "TransitionAdd2");
+
+
+        }
+
+        {
+            StateMachine foo;
+        }
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.

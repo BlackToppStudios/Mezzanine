@@ -54,10 +54,19 @@ namespace Mezzanine
         : From(FromState), To(ToState), Action(OwningActionPointer)
     {}
 
-    StateTransition::~StateTransition()
+    StateTransition::StateTransition(const StateTransition& CopiedTransition)
+        : From(CopiedTransition.From), To(CopiedTransition.To)
+        { Action = CopiedTransition.Action->clone(); }
+
+    StateTransition&StateTransition::operator=(const StateTransition& CopiedTransition)
     {
-        delete Action;
+        From = CopiedTransition.From;
+        To = CopiedTransition.To;
+        Action = CopiedTransition.Action->clone();
     }
+
+    StateTransition::~StateTransition()
+        { delete Action; }
 
     Boole StateTransition::operator<(const StateTransition& Other)
     {

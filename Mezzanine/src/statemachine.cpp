@@ -74,15 +74,29 @@ namespace Mezzanine
 
     void StateMachine::AddState(const HashedString32& NewState)
     {
+        HashedString32 LastCurrentState = *CurrentState;
+        States.add(NewState);
+        if(LastCurrentState.IsEmpty())
+            { CurrentState = States.begin(); }
+        else
+            { CurrentState = States.find(NewState); }
 
     }
+
+    void StateMachine::AddState(const String& NewState)
+        { AddState(HashedString32(NewState));}
 
     void StateMachine::AddStateTransitation(const HashedString32& From,
                                             const HashedString32& To,
                                             StateTransitionAction* PossibleAction)
     {
-
+        Transitions.add(StateTransition(From, To, PossibleAction));
     }
+
+    void StateMachine::AddStateTransitation(const String& From,
+                                            const String& To,
+                                            StateTransitionAction* PossibleAction)
+        { AddStateTransitation(HashedString32(From), HashedString32(To), PossibleAction); }
 
     Boole StateMachine::ChangeState(const HashedString32& ToState)
     {
@@ -107,7 +121,6 @@ namespace Mezzanine
             { return ::NoState; }
     }
 
-
     const HashedString32& StateMachine::GetPendingState() const
     {
         if(FutureState!=States.end())
@@ -115,6 +128,12 @@ namespace Mezzanine
         else
             { return ::NoState; }
     }
+
+    Whole StateMachine::GetStateCount() const
+        { return States.size(); }
+
+    Whole StateMachine::GetStateTransitionCount() const
+        { return Transitions.size(); }
 
 } // /namespace Mezzanine
 

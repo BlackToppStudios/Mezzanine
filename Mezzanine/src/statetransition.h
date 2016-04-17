@@ -52,15 +52,17 @@ namespace Mezzanine
     class StateTransition
     {
         private:
-            const HashedString32& From;
-            const HashedString32& To;
+            HashedString32 From;
+            HashedString32 To;
             StateTransitionAction* Action;
 
         public:
             StateTransition(const HashedString32& FromState,
                             const HashedString32& ToState,
-                            StateTransitionAction* OwningActionPointer);
-
+                            StateTransitionAction* OwningActionPointer
+                                = new StateTransitionNoAction());
+            StateTransition(const StateTransition& CopiedTransition);
+            StateTransition& operator= (const StateTransition& CopiedTransition);
             ~StateTransition();
 
             Boole operator< (const StateTransition& Other);

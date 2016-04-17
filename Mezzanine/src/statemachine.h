@@ -52,26 +52,52 @@ namespace Mezzanine
     class StateMachine
     {
         private:
+            typedef SortedVector<HashedString32> StateContainerType;
+            typedef StateContainerType::iterator StateIterator;
+            typedef StateContainerType::const_iterator ConstStateIterator;
+
             SortedVector<HashedString32> States;
             SortedVector<StateTransition> Transitions;
             SortedVector<HashedString32>::const_iterator CurrentState;
             SortedVector<HashedString32>::const_iterator FutureState;
 
+
+
         public:
+            /// Cheap
             StateMachine();
+            /// Cheap
             explicit StateMachine(const HashedString32& InitialState);
+            /// Cheap
             explicit StateMachine(const String& InitialState);
 
+
+            /// Less Cheap does insertion, might allocate
             void AddState(const HashedString32& NewState);
+            void AddState(const String& NewState);
+
             void AddStateTransitation(  const HashedString32& From,
                                         const HashedString32& To,
-                                        StateTransitionAction* PossibleAction);
+                                        StateTransitionAction* PossibleAction
+                                            = new StateTransitionNoAction());
+            void AddStateTransitation(  const String& From,
+                                        const String& To,
+                                        StateTransitionAction* PossibleAction
+                                            = new StateTransitionNoAction());
+
             Boole ChangeState(const HashedString32& ToState);
             Boole SetPendingState(const HashedString32& ToState);
             void DoPendingStateChange();
 
+
+            /// Cheap One if
             const HashedString32& GetCurrentState() const;
+            /// Cheap One if
             const HashedString32& GetPendingState() const;
+            /// Cheap
+            Whole GetStateCount() const;
+            /// Cheap
+            Whole GetStateTransitionCount() const;
     };
 } // /namespace Mezzanine
 
