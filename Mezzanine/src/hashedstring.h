@@ -109,19 +109,22 @@ namespace Mezzanine
             /// @param Other The other string to compare this one too.
             /// @return True if the hashes are the same.
             /// @note It is imcredibly unlikely, but this could return true in the event of a hash collision.
-            bool operator==(const HashedString32& Other) const;
+            Boole operator==(const HashedString32& Other) const;
             /// @brief Compare The hash of this and another string for inequality.
             /// @param Other The other string to compare this one too.
             /// @return True if the hashes are different.
-            bool operator!=(const HashedString32& Other) const;
+            Boole operator!=(const HashedString32& Other) const;
             /// @brief Provide a semantically useless, but quite fast sorting order for std containers based on only hashes.
             /// @param Other The other string to compare this one too.
             /// @return true If the Hash of this is smaller than the hash of the other
-            bool operator<(const HashedString32& Other) const;
+            Boole operator<(const HashedString32& Other) const;
             /// @brief Provide a semantically useless, but quite fast sorting order for std containers based on only hashes.
             /// @param Other The other string to compare this one too.
             /// @return true If the Hash of this is larger than the hash of the other
-            bool operator>(const HashedString32& Other) const;
+            Boole operator>(const HashedString32& Other) const;
+
+            /// @return True if this is equal to "", false otherwise.
+            Boole IsEmpty() const;
 
 
             ///////////////////////////////////////////////////////////////////////////////
