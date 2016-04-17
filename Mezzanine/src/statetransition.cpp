@@ -58,17 +58,18 @@ namespace Mezzanine
         : From(CopiedTransition.From), To(CopiedTransition.To)
         { Action = CopiedTransition.Action->clone(); }
 
-    StateTransition&StateTransition::operator=(const StateTransition& CopiedTransition)
+    StateTransition& StateTransition::operator=(const StateTransition& CopiedTransition)
     {
         From = CopiedTransition.From;
         To = CopiedTransition.To;
         Action = CopiedTransition.Action->clone();
+        return *this;
     }
 
     StateTransition::~StateTransition()
         { delete Action; }
 
-    Boole StateTransition::operator<(const StateTransition& Other)
+    Boole StateTransition::operator< (const StateTransition& Other) const
     {
         return  this->From < Other.From &&
                 this->To < Other.To;

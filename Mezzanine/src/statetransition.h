@@ -65,7 +65,7 @@ namespace Mezzanine
             StateTransition& operator= (const StateTransition& CopiedTransition);
             ~StateTransition();
 
-            Boole operator< (const StateTransition& Other);
+            Boole operator< (const StateTransition& Other) const;
 
             Boole operator()();
 
