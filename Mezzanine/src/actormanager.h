@@ -208,6 +208,8 @@ namespace Mezzanine
         /// @brief Destroys all Actor factories in this manager.
         /// @warning The destruction of Actor factories should only be done after all the Actor have been destroyed, otherwise this will cause an exception.
         static void DestroyAllActorFactories();
+        /// @brief Adds all the default Actor factories provided by the engine.
+        static void AddAllDefaultActorFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

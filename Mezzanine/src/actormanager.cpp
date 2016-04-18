@@ -260,6 +260,11 @@ namespace Mezzanine
         ActorManager::ActorFactories.clear();
     }
 
+    void ActorManager::AddAllDefaultActorFactories()
+    {
+
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 

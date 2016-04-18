@@ -208,6 +208,8 @@ namespace Mezzanine
         /// @brief Destroys all Vehicle factories in this manager.
         /// @warning The destruction of Vehicle factories should only be done after all the Vehicle have been destroyed, otherwise this will cause an exception.
         static void DestroyAllVehicleFactories();
+        /// @brief Adds all the default Vehicle factories provided by the engine.
+        static void AddAllDefaultVehicleFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

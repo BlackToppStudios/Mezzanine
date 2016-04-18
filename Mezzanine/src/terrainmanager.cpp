@@ -260,6 +260,11 @@ namespace Mezzanine
         TerrainManager::TerrainFactories.clear();
     }
 
+    void TerrainManager::AddAllDefaultTerrainFactories()
+    {
+
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 

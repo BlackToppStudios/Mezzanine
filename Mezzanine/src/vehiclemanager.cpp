@@ -260,6 +260,11 @@ namespace Mezzanine
         VehicleManager::VehicleFactories.clear();
     }
 
+    void VehicleManager::AddAllDefaultVehicleFactories()
+    {
+
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 

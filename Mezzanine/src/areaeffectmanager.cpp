@@ -97,10 +97,6 @@ namespace Mezzanine
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
     {
-        this->AddAreaEffectFactory( new FieldOfForceFactory() );
-        this->AddAreaEffectFactory( new GravityFieldFactory() );
-        this->AddAreaEffectFactory( new GravityWellFactory() );
-
         this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
     }
 
@@ -111,10 +107,6 @@ namespace Mezzanine
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
 
-        this->AddAreaEffectFactory( new FieldOfForceFactory() );
-        this->AddAreaEffectFactory( new GravityFieldFactory() );
-        this->AddAreaEffectFactory( new GravityWellFactory() );
-
         this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
     }
 
@@ -122,7 +114,6 @@ namespace Mezzanine
     {
         this->Deinitialize();
         this->DestroyAllAreaEffects();
-        this->DestroyAllAreaEffectFactories();
 
         delete this->AreaEffectUpdateWork;
     }
@@ -403,6 +394,13 @@ namespace Mezzanine
         for( FactoryIterator AEFactIt = AreaEffectManager::AreaEffectFactories.begin() ; AEFactIt != AreaEffectManager::AreaEffectFactories.end() ; ++AEFactIt )
             { delete (*AEFactIt).second; }
         AreaEffectManager::AreaEffectFactories.clear();
+    }
+
+    void AreaEffectManager::AddAllDefaultAreaEffectFactories()
+    {
+        AreaEffectManager::AddAreaEffectFactory( new FieldOfForceFactory() );
+        AreaEffectManager::AddAreaEffectFactory( new GravityFieldFactory() );
+        AreaEffectManager::AddAreaEffectFactory( new GravityWellFactory() );
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -266,6 +266,8 @@ namespace Mezzanine
         /// @brief Destroys all AreaEffect factories in this manager.
         /// @warning The destruction of AreaEffect factories should only be done after all the AreaEffects have been destroyed, otherwise this will cause an exception.
         static void DestroyAllAreaEffectFactories();
+        /// @brief Adds all the default AreaEffect factories provided by the engine.
+        static void AddAllDefaultAreaEffectFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

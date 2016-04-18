@@ -90,9 +90,6 @@ namespace Mezzanine
     DebrisManager::DebrisManager(World* Creator) :
         WorldManager(Creator)
     {
-        this->AddDebrisFactory( new RigidDebrisFactory() );
-        this->AddDebrisFactory( new SoftDebrisFactory() );
-
         this->DebrisUpdateWork = new DebrisUpdateWorkUnit(this);
     }
 
@@ -101,9 +98,6 @@ namespace Mezzanine
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
 
-        this->AddDebrisFactory( new RigidDebrisFactory() );
-        this->AddDebrisFactory( new SoftDebrisFactory() );
-
         this->DebrisUpdateWork = new DebrisUpdateWorkUnit(this);
     }
 
@@ -111,7 +105,6 @@ namespace Mezzanine
     {
         this->Deinitialize();
         this->DestroyAllDebris();
-        this->DestroyAllDebrisFactories();
 
         delete this->DebrisUpdateWork;
     }
@@ -335,6 +328,12 @@ namespace Mezzanine
         for( FactoryIterator DebFactIt = DebrisManager::DebrisFactories.begin() ; DebFactIt != DebrisManager::DebrisFactories.end() ; ++DebFactIt )
             { delete (*DebFactIt).second; }
         DebrisManager::DebrisFactories.clear();
+    }
+
+    void DebrisManager::AddAllDefaultDebrisFactories()
+    {
+        DebrisManager::AddDebrisFactory( new RigidDebrisFactory() );
+        DebrisManager::AddDebrisFactory( new SoftDebrisFactory() );
     }
 
     ///////////////////////////////////////////////////////////////////////////////

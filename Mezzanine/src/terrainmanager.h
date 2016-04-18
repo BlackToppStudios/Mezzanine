@@ -208,6 +208,8 @@ namespace Mezzanine
         /// @brief Destroys all Terrain factories in this manager.
         /// @warning The destruction of Terrain factories should only be done after all the Terrain have been destroyed, otherwise this will cause an exception.
         static void DestroyAllTerrainFactories();
+        /// @brief Adds all the default Terrain factories provided by the engine.
+        static void AddAllDefaultTerrainFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

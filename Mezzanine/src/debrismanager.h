@@ -250,6 +250,8 @@ namespace Mezzanine
         /// @brief Destroys all Debris factories in this manager.
         /// @warning The destruction of Debris factories should only be done after all the Debris have been destroyed, otherwise this will cause an exception.
         static void DestroyAllDebrisFactories();
+        /// @brief Adds all the default Debris factories provided by the engine.
+        static void AddAllDefaultDebrisFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
