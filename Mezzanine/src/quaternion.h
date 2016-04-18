@@ -67,331 +67,306 @@ namespace Mezzanine
     /// W represents an amount of rotation.
     class MEZZ_LIB Quaternion
     {
-        public:
-            ///////////////////////////////////////////////////////////////////////////////
-            //  Data Members
+    public:
+        ///////////////////////////////////////////////////////////////////////////////
+        //  Data Members
 
-            /// @brief The X component of the Axis.
-            Real X;
-            /// @brief The Y component of the Axis.
-            Real Y;
-            /// @brief The Z component of the Axis.
-            Real Z;
-            /// @brief Rotation on the Axis X, Y and Z defined.
-            Real W;
+        /// @brief The X component of the Axis.
+        Real X;
+        /// @brief The Y component of the Axis.
+        Real Y;
+        /// @brief The Z component of the Axis.
+        Real Z;
+        /// @brief Rotation on the Axis X, Y and Z defined.
+        Real W;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Constructors
+        ///////////////////////////////////////////////////////////////////////////////
+        // Constructors
 
-            /// @brief Blank Constructor.
-            /// @details Basic no-initialization constructor.
-            Quaternion();
-            /// @brief Constructor.
-            /// @details Constructor that sets all four axis' of rotation.
-            /// @param X The X component of the Axis.
-            /// @param Y The Y component of the Axis.
-            /// @param Z The Z component of the Axis.
-            /// @param W Rotation on the Axis X, Y and Z defined.
-            Quaternion(const Real& X, const Real& Y, const Real& Z, const Real& W);
-            /// @brief Axis and Rotation Constructor.
-            /// @details This assembles a quaternion based on an axis and a rotation in radians.
-            /// @param Angle Real representing the angle to be applied along the axis in radians.
-            /// @param Axis Vector3 representing the axis to apply the rotation.
-            Quaternion(const Real& Angle, const Vector3& Axis);
-            /// @brief Rotation Matrix Constructor.
-            /// @param Mat The matrix to set this quaternion from.
-            Quaternion(const Matrix3x3& Mat);
-            /// @brief Axes Constructor.
-            /// @param AxisX The vector expressing the X axis.
-            /// @param AxisY The vector expressing the Y axis.
-            /// @param AxisZ The vector expressing the Z axis.
-            Quaternion(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
-            /// @brief Rotation To Z constructor.
-            /// @param DirectionAxis The axis to get the rotation to Z for.
-            /// @param UpAxis The up axis in local space.
-            Quaternion(const Vector3& DirectionAxis, const Vector3& UpAxis);
-            /// @brief Bullet Quaternion constructor.
-            /// @details Constructor that sets all values to match the Bullet quaternion.
-            /// @param Theirs The quaternion to be copied to make this quaternion.
-            explicit Quaternion(const btQuaternion& Theirs);
-            /// @brief Ogre Quaternion constructor.
-            /// @details Constructor that sets all values to match the Ogre quaternion.
-            /// @param Theirs The quaternion to be copied to make this quaternion.
-            explicit Quaternion(const Ogre::Quaternion& Theirs);
-            /// @brief Copy Constructor.
-            /// @param Other The Quaternion to copy.
-            Quaternion(const Mezzanine::Quaternion& Other);
-            /// @brief XML Constructor.
-            /// @param OneNode The XML node to deserialize from.
-            explicit Quaternion(const XML::Node& OneNode);
+        /// @brief Blank Constructor.
+        /// @details Basic no-initialization constructor.
+        Quaternion();
+        /// @brief Constructor.
+        /// @details Constructor that sets all four axis' of rotation.
+        /// @param X The X component of the Axis.
+        /// @param Y The Y component of the Axis.
+        /// @param Z The Z component of the Axis.
+        /// @param W Rotation on the Axis X, Y and Z defined.
+        Quaternion(const Real& X, const Real& Y, const Real& Z, const Real& W);
+        /// @brief Axis and Rotation Constructor.
+        /// @details This assembles a quaternion based on an axis and a rotation in radians.
+        /// @param Angle Real representing the angle to be applied along the axis in radians.
+        /// @param Axis Vector3 representing the axis to apply the rotation.
+        Quaternion(const Real& Angle, const Vector3& Axis);
+        /// @brief Rotation Matrix Constructor.
+        /// @param Mat The matrix to set this quaternion from.
+        Quaternion(const Matrix3x3& Mat);
+        /// @brief Axes Constructor.
+        /// @param AxisX The vector expressing the X axis.
+        /// @param AxisY The vector expressing the Y axis.
+        /// @param AxisZ The vector expressing the Z axis.
+        Quaternion(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
+        /// @brief Rotation To Z constructor.
+        /// @param DirectionAxis The axis to get the rotation to Z for.
+        /// @param UpAxis The up axis in local space.
+        Quaternion(const Vector3& DirectionAxis, const Vector3& UpAxis);
+        /// @brief Bullet Quaternion constructor.
+        /// @details Constructor that sets all values to match the Bullet quaternion.
+        /// @param Theirs The quaternion to be copied to make this quaternion.
+        explicit Quaternion(const btQuaternion& Theirs);
+        /// @brief Ogre Quaternion constructor.
+        /// @details Constructor that sets all values to match the Ogre quaternion.
+        /// @param Theirs The quaternion to be copied to make this quaternion.
+        explicit Quaternion(const Ogre::Quaternion& Theirs);
+        /// @brief Copy Constructor.
+        /// @param Other The Quaternion to copy.
+        Quaternion(const Mezzanine::Quaternion& Other);
+        /// @brief XML Constructor.
+        /// @param OneNode The XML node to deserialize from.
+        explicit Quaternion(const XML::Node& OneNode);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Fancy Math and Utilities
+        ///////////////////////////////////////////////////////////////////////////////
+        // Fancy Math and Utilities
 
-            /// @brief Sets default/identity values to the members of this quaternion.
-            void SetIdentity();
-            /// @brief Sets the individual values of this quaterion directly.
-            /// @param X The X component of the Axis.
-            /// @param Y The Y component of the Axis.
-            /// @param Z The Z component of the Axis.
-            /// @param W Rotation on the Axis X, Y and Z defined.
-            void SetValues(const Real& X, const Real& Y, const Real& Z, const Real& W);
-            /// @brief Generates and sets the values of this quaternion to describe a rotation from an axis and angle on that axis.
-            /// @param Angle Real representing the angle to be applied along the axis in radians.
-            /// @param Axis Vector3 representing the axis to apply the rotation.
-            void SetFromAxisAngle(const Real& Angle, const Vector3& Axis);
-            /// @brief Sets this quaternions values to express the same rotation as a Matrix3x3.
-            /// @param Mat The matrix to set this quaternion from.
-            void SetFromMatrix3x3(const Matrix3x3& Mat);
-            /// @brief Generates and sets the values of this quaternion from 3 Axis vectors.
-            /// @param AxisX The vector expressing the X axis.
-            /// @param AxisY The vector expressing the Y axis.
-            /// @param AxisZ The vector expressing the Z axis.
-            void SetFromAxes(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
-            /// @brief Generates and sets the values of this quaternion to describe a rotation from the direction axis to the Z axis.
-            /// @param DirectionAxis The axis to get the rotation to Z for.
-            /// @param UpAxis The up axis in local space.
-            void SetFromAxisToZ(const Vector3& DirectionAxis, const Vector3& UpAxis);
+        /// @brief Sets default/identity values to the members of this quaternion.
+        void SetIdentity();
+        /// @brief Sets the individual values of this quaterion directly.
+        /// @param X The X component of the Axis.
+        /// @param Y The Y component of the Axis.
+        /// @param Z The Z component of the Axis.
+        /// @param W Rotation on the Axis X, Y and Z defined.
+        void SetValues(const Real& X, const Real& Y, const Real& Z, const Real& W);
+        /// @brief Generates and sets the values of this quaternion to describe a rotation from an axis and angle on that axis.
+        /// @param Angle Real representing the angle to be applied along the axis in radians.
+        /// @param Axis Vector3 representing the axis to apply the rotation.
+        void SetFromAxisAngle(const Real& Angle, const Vector3& Axis);
+        /// @brief Sets this quaternions values to express the same rotation as a Matrix3x3.
+        /// @param Mat The matrix to set this quaternion from.
+        void SetFromMatrix3x3(const Matrix3x3& Mat);
+        /// @brief Generates and sets the values of this quaternion from 3 Axis vectors.
+        /// @param AxisX The vector expressing the X axis.
+        /// @param AxisY The vector expressing the Y axis.
+        /// @param AxisZ The vector expressing the Z axis.
+        void SetFromAxes(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
+        /// @brief Generates and sets the values of this quaternion to describe a rotation from the direction axis to the Z axis.
+        /// @param DirectionAxis The axis to get the rotation to Z for.
+        /// @param UpAxis The up axis in local space.
+        void SetFromAxisToZ(const Vector3& DirectionAxis, const Vector3& UpAxis);
 
-            /// @brief Converts the rotation expressed by this Quaternion into it's individual rotation and axis components.
-            /// @param Angle The amount of rotation to apply to the axis.
-            /// @param Axis The Axis this quaternions rotation is on.
-            void ConvertToAngleAxis(Real& Angle, Vector3& Axis) const;
+        /// @brief Converts the rotation expressed by this Quaternion into it's individual rotation and axis components.
+        /// @param Angle The amount of rotation to apply to the axis.
+        /// @param Axis The Axis this quaternions rotation is on.
+        void ConvertToAngleAxis(Real& Angle, Vector3& Axis) const;
 
-            /// @brief Gets the Dot Product of this quaternion and another quaternion.
-            /// @param Other The other quaternion to calculate the dot product from.
-            /// @return Returns a Real that is the Dot Product of the two quaternions.
-            Real DotProduct(const Quaternion& Other) const;
-            /// @brief Gets the length of the quaternion.
-            /// @return Returns a Real representing the length of the quaternion.
-            Real Length() const;
-            /// @brief Gets the squared length(len^2) of the quaternion.
-            /// @return Returns a Real representing the squared length(len^2) of the quaternion.
-            Real LengthSqrd() const;
-            /// @brief Normalizes this Quaternion.
-            /// @return Returns a normalized reference of this quaternion.
-            Quaternion& Normalize();
-            /// @brief Get a normalized copy of this Quaternion without changing this one.
-            /// @return A Copy of this Quaternion after the copy has been normalized.
-            Quaternion GetNormalizedCopy() const;
-            /// @brief Inverses this Quaternion.
-            /// @return Returns a quaternion that is a copy of this one after it has been inversed.
-            Quaternion GetInverse() const;
+        /// @brief Gets the Dot Product of this quaternion and another quaternion.
+        /// @param Other The other quaternion to calculate the dot product from.
+        /// @return Returns a Real that is the Dot Product of the two quaternions.
+        Real DotProduct(const Quaternion& Other) const;
+        /// @brief Gets the length of the quaternion.
+        /// @return Returns a Real representing the length of the quaternion.
+        Real Length() const;
+        /// @brief Gets the squared length(len^2) of the quaternion.
+        /// @return Returns a Real representing the squared length(len^2) of the quaternion.
+        Real LengthSqrd() const;
+        /// @brief Normalizes this Quaternion.
+        /// @return Returns a normalized reference of this quaternion.
+        Quaternion& Normalize();
+        /// @brief Get a normalized copy of this Quaternion without changing this one.
+        /// @return A Copy of this Quaternion after the copy has been normalized.
+        Quaternion GetNormalizedCopy() const;
+        /// @brief Inverses this Quaternion.
+        /// @return Returns a quaternion that is a copy of this one after it has been inversed.
+        Quaternion GetInverse() const;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Explicit Conversion
+        ///////////////////////////////////////////////////////////////////////////////
+        // Explicit Conversion
 
-            /// @brief Gets a Bullet quaternion.
-            /// @details Creates a Bullet quaternion with values equal to this class and returns it.
-            /// @param normalize Whether or not you want this function to normalize the quaternion for you.
-            /// @return A btQuaternion that has the same contents as this Mezzanine::Quaternion.
-            btQuaternion GetBulletQuaternion(Boole normalize=false) const;
+        /// @brief Gets a Bullet quaternion.
+        /// @details Creates a Bullet quaternion with values equal to this class and returns it.
+        /// @param normalize Whether or not you want this function to normalize the quaternion for you.
+        /// @return A btQuaternion that has the same contents as this Mezzanine::Quaternion.
+        btQuaternion GetBulletQuaternion(Boole normalize = false) const;
+        /// @brief Copies an existing Bullet quaternion.
+        /// @details This function will copy the values stored in an existing Bullet quaternion
+        /// and set the values of this class to be the same.
+        /// @param Ours The quaternion to be extracted.
+        void ExtractBulletQuaternion(const btQuaternion &Ours);
+        /// @brief Gets a Ogre quaternion.
+        /// @details Creates a Ogre quaternion with values equal to this class and returns it.
+        /// @param normalize Whether or not you want this function to normalize the quaternion for you.
+        Ogre::Quaternion GetOgreQuaternion(Boole normalize = false) const;
+        /// @brief Copies an existing Ogre quaternion.
+        /// @details This function will copy the values stored in an existing Ogre quaternion
+        /// and set the values of this class to be the same.
+        /// @param Ours The quaternion to be extracted.
+        void ExtractOgreQuaternion(const Ogre::Quaternion &Ours);
 
-            /// @brief Copies an existing Bullet quaternion.
-            /// @details This function will copy the values stored in an existing Bullet quaternion
-            /// and set the values of this class to be the same.
-            /// @param Ours The quaternion to be extracted.
-            void ExtractBulletQuaternion(const btQuaternion &Ours);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Access Operators
 
-            /// @brief Gets a Ogre quaternion.
-            /// @details Creates a Ogre quaternion with values equal to this class and returns it.
-            /// @param normalize Whether or not you want this function to normalize the quaternion for you.
-            Ogre::Quaternion GetOgreQuaternion(Boole normalize=false) const;
+        /// @brief Allows Array style access to the members of this class.
+        /// @param Index The number corresponding to the Index you want.  0 = X, 1 = Y, 2 = Z, 3 = W.
+        /// @return Returns a copy of the number at the index requested.
+        Real operator[](const Whole& Index) const;
+        /// @brief Allows Array style access to the members of this class.
+        /// @param Index The number corresponding to the Index you want.  0 = X, 1 = Y, 2 = Z, 3 = W.
+        /// @return Returns a writable reference to the number at the index requested.
+        Real& operator[](const Whole& Index);
 
-            /// @brief Copies an existing Ogre quaternion.
-            /// @details This function will copy the values stored in an existing Ogre quaternion
-            /// and set the values of this class to be the same.
-            /// @param Ours The quaternion to be extracted.
-            void ExtractOgreQuaternion(const Ogre::Quaternion &Ours);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Arithmetic By Real Operators
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Access Operators
+        /// @brief Scaling by multiplication.
+        /// @param Scalar This is the amount to scale the quaternion by.
+        /// @return Returns a scaled quaternion.
+        Quaternion operator* (const Real& Scalar) const;
+        /// @brief Scaling by division.
+        /// @param Scalar This is the amount to scale the quaternion by.
+        /// @return Returns a scaled quaternion.
+        Quaternion operator/ (const Real& Scalar) const;
 
-            /// @brief Allows Array style access to the members of this class.
-            /// @param Index The number corresponding to the Index you want.  0 = X, 1 = Y, 2 = Z, 3 = W.
-            /// @return Returns a copy of the number at the index requested.
-            Real operator[](const Whole& Index) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Left Hand Basic Arithmetic Operators
 
-            /// @brief Allows Array style access to the members of this class.
-            /// @param Index The number corresponding to the Index you want.  0 = X, 1 = Y, 2 = Z, 3 = W.
-            /// @return Returns a writable reference to the number at the index requested.
-            Real& operator[](const Whole& Index);
+        /// @brief Addition operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
+        /// @param Other The other Quaternion to add to this one.
+        /// @return A Mezzanine::Quaternion with the sum.
+        Quaternion operator+ (const Mezzanine::Quaternion& Other) const;
+        /// @brief Addition operator with Mezzanine::Quaternion and Ogre::Quaternion.
+        /// @param Other The other Quaternion to add to this one.
+        /// @return A Mezzanine::Quaternion with the sum.
+        Quaternion operator+ (const Ogre::Quaternion& Other) const;
+        /// @brief Addition operator with Mezzanine::Quaternion and btQuaternion.
+        /// @param Other The other Quaternion to add to this one.
+        /// @return A Mezzanine::Quaternion with the sum.
+        Quaternion operator+ (const btQuaternion& Other) const;
+        /// @brief Subtraction operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
+        /// @param Other The other Quaternion to subtract from this one.
+        /// @return A Mezzanine::Quaternion with the difference.
+        Quaternion operator- (const Mezzanine::Quaternion& Other) const;
+        /// @brief Subtraction operator with Mezzanine::Quaternion and Ogre::Quaternion.
+        /// @param Other The other Quaternion to subtract from this one.
+        /// @return A Mezzanine::Quaternion with the difference.
+        Quaternion operator- (const Ogre::Quaternion& Other) const;
+        /// @brief Subtraction operator with Mezzanine::Quaternion and btQuaternion.
+        /// @param Other The other Quaternion to subtract from this one.
+        /// @return A Mezzanine::Quaternion with the difference.
+        Quaternion operator- (const btQuaternion& Other) const;
+        /// @brief Multiplication operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
+        /// @param Other The other Quaternion to multiply from this one.
+        /// @return A Mezzanine::Quaternion with the result.
+        Quaternion operator* (const Mezzanine::Quaternion& Other) const;
+        /// @brief Multiplication operator with Mezzanine::Quaternion and Ogre::Quaternion.
+        /// @param Other The other Quaternion to multiply from this one.
+        /// @return A Mezzanine::Quaternion with the result.
+        Quaternion operator* (const Ogre::Quaternion& Other) const;
+        /// @brief Multiplication operator with Mezzanine::Quaternion and btQuaternion.
+        /// @param Other The other Quaternion to multiply from this one.
+        /// @return A Mezzanine::Quaternion with the result.
+        Quaternion operator* (const btQuaternion& Other) const;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Arithmetic By Real Operators
+        ///////////////////////////////////////////////////////////////////////////////
+        // Vector Rotation Operators
 
-            /// @brief Scaling by multiplication.
-            /// @param Scalar This is the amount to scale the quaternion by.
-            /// @return Returns a scaled quaternion.
-            Quaternion operator* (const Real& Scalar) const;
+        /// @brief Rotates a vector by the provided quaternion.
+        /// @param Other The vector to rotate.
+        /// @return Returns a rotated version of the provided vector.
+        Vector3 operator* (const Vector3& Other) const;
 
-            /// @brief Scaling by division.
-            /// @param Scalar This is the amount to scale the quaternion by.
-            /// @return Returns a scaled quaternion.
-            Quaternion operator/ (const Real& Scalar) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Increment and Decrement Operators
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Left Hand Basic Arithmetic Operators
+        /// @brief Incrementing operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
+        /// @param Other The other Quaternion to add to this one.
+        /// @return This Mezzanine::Quaternion with the sum.
+        Quaternion& operator+= (const Mezzanine::Quaternion& Other);
+        /// @brief Incrementing operator with Mezzanine::Quaternion and Ogre::Quaternion.
+        /// @param Other The other Quaternion to add to this one.
+        /// @return This Mezzanine::Quaternion with the sum.
+        Quaternion& operator+= (const Ogre::Quaternion& Other);
+        /// @brief Incrementing operator with Mezzanine::Quaternion and btQuaternion.
+        /// @param Other The other Quaternion to add to this one.
+        /// @return This Mezzanine::Quaternion with the sum.
+        Quaternion& operator+= (const btQuaternion& Other);
+        /// @brief Decrementing operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
+        /// @param Other The other Quaternion to subtract from this one.
+        /// @return This Mezzanine::Quaternion with the difference.
+        Quaternion& operator-= (const Mezzanine::Quaternion& Other);
+        /// @brief Decrementing operator with Mezzanine::Quaternion and Ogre::Quaternion.
+        /// @param Other The other Quaternion to subtract from this one.
+        /// @return This Mezzanine::Quaternion with the difference.
+        Quaternion& operator-= (const Ogre::Quaternion& Other);
+        /// @brief Decrementing operator with Mezzanine::Quaternion and btQuaternion.
+        /// @param Other The other Quaternion to subtract from this one.
+        /// @return This Mezzanine::Quaternion with the difference.
+        Quaternion& operator-= (const btQuaternion& Other);
 
-            /// @brief Addition operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
-            /// @param Other The other Quaternion to add to this one.
-            /// @return A Mezzanine::Quaternion with the sum.
-            Quaternion operator+ (const Mezzanine::Quaternion& Other) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Assignment Operators
 
-            /// @brief Addition operator with Mezzanine::Quaternion and Ogre::Quaternion.
-            /// @param Other The other Quaternion to add to this one.
-            /// @return A Mezzanine::Quaternion with the sum.
-            Quaternion operator+ (const Ogre::Quaternion& Other) const;
+        /// @brief Assignment Operator from Mezzanine::Quaternion.
+        /// @param Other The other quaternion to overwrite this one.
+        /// @return This Quaternion after being assigned fresh values.
+        Quaternion& operator= (const Mezzanine::Quaternion& Other);
+        /// @brief Assignment Operator from Ogre::Quaternion.
+        /// @param Other The other quaternion to overwrite this one.
+        /// @return This Quaternion after being assigned fresh values.
+        Quaternion& operator= (const Ogre::Quaternion& Other);
+        /// @brief Assignment Operator from btQuaternion.
+        /// @param Other The other quaternion to overwrite this one.
+        /// @return This Quaternion after being assigned fresh values.
+        Quaternion& operator= (const btQuaternion& Other);
 
-            /// @brief Addition operator with Mezzanine::Quaternion and btQuaternion.
-            /// @param Other The other Quaternion to add to this one.
-            /// @return A Mezzanine::Quaternion with the sum.
-            Quaternion operator+ (const btQuaternion& Other) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Equality Comparison Operators
 
-            /// @brief Subtraction operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
-            /// @param Other The other Quaternion to subtract from this one.
-            /// @return A Mezzanine::Quaternion with the difference.
-            Quaternion operator- (const Mezzanine::Quaternion& Other) const;
+        /// @brief Equality Comparison Operator from Mezzanine::Quaternion.
+        /// @param Other The other quaternion to compare with.
+        /// @return True if the Quaternions are semantically equal, false otherwise.
+        Boole operator==(const Mezzanine::Quaternion& Other) const;
+        /// @brief Equality Comparison Operator from Ogre::Quaternion.
+        /// @param Other The other quaternion to compare with.
+        /// @return True if the Quaternions are semantically equal, false otherwise.
+        Boole operator==(const Ogre::Quaternion& Other) const;
+        /// @brief Equality Comparison Operator from btQuaternion.
+        /// @param Other The other quaternion to compare with.
+        /// @return True if the Quaternions are semantically equal, false otherwise.
+        Boole operator==(const btQuaternion& Other) const;
 
-            /// @brief Subtraction operator with Mezzanine::Quaternion and Ogre::Quaternion.
-            /// @param Other The other Quaternion to subtract from this one.
-            /// @return A Mezzanine::Quaternion with the difference.
-            Quaternion operator- (const Ogre::Quaternion& Other) const;
+        /// @brief Inequality Comparison Operator from Mezzanine::Quaternion.
+        /// @param Other The other quaternion to compare with.
+        /// @return True if the Quaternions are not semantically equal, false otherwise.
+        Boole operator!=(const Mezzanine::Quaternion& Other) const;
+        /// @brief Inequality Comparison Operator from Ogre::Quaternion.
+        /// @param Other The other quaternion to compare with.
+        /// @return True if the Quaternions are not semantically equal, false otherwise.
+        Boole operator!=(const Ogre::Quaternion& Other) const;
+        /// @brief Inequality Comparison Operator from btQuaternion.
+        /// @param Other The other quaternion to compare with.
+        /// @return True if the Quaternions are not semantically equal, false otherwise.
+        Boole operator!=(const btQuaternion& Other) const;
 
-            /// @brief Subtraction operator with Mezzanine::Quaternion and btQuaternion.
-            /// @param Other The other Quaternion to subtract from this one.
-            /// @return A Mezzanine::Quaternion with the difference.
-            Quaternion operator- (const btQuaternion& Other) const;
+        /// @brief Is every value in this Quaternion less than or equal to its corresponding value in another.
+        /// @param Other The Quaternion on the right hand side of the sign.
+        /// @note Used primarily for testing. This is not implemented for use with other kinds of Quaternion implementations as it is widely considered useless.
+        Boole operator<= (const Mezzanine::Quaternion& Other) const;
+        /// @brief Is every value in this Quaternion greater than or equal to its corresponding value in another.
+        /// @param Other The Quaternion on the right hand side of the sign.
+        /// @note Used primarily for testing. This is not implemented for use with other kinds of Quaternion implementations as it is widely considered useless.
+        Boole operator>= (const Mezzanine::Quaternion& Other) const;
 
-            /// @brief Multiplication operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
-            /// @param Other The other Quaternion to multiply from this one.
-            /// @return A Mezzanine::Quaternion with the result.
-            Quaternion operator* (const Mezzanine::Quaternion& Other) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
 
-            /// @brief Multiplication operator with Mezzanine::Quaternion and Ogre::Quaternion.
-            /// @param Other The other Quaternion to multiply from this one.
-            /// @return A Mezzanine::Quaternion with the result.
-            Quaternion operator* (const Ogre::Quaternion& Other) const;
-
-            /// @brief Multiplication operator with Mezzanine::Quaternion and btQuaternion.
-            /// @param Other The other Quaternion to multiply from this one.
-            /// @return A Mezzanine::Quaternion with the result.
-            Quaternion operator* (const btQuaternion& Other) const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Vector Rotation Operators
-
-            /// @brief Rotates a vector by the provided quaternion.
-            /// @param Other The vector to rotate.
-            /// @return Returns a rotated version of the provided vector.
-            Vector3 operator* (const Vector3& Other) const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Increment and Decrement Operators
-
-            /// @brief Incrementing operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
-            /// @param Other The other Quaternion to add to this one.
-            /// @return This Mezzanine::Quaternion with the sum.
-            Quaternion& operator+= (const Mezzanine::Quaternion& Other);
-
-            /// @brief Incrementing operator with Mezzanine::Quaternion and Ogre::Quaternion.
-            /// @param Other The other Quaternion to add to this one.
-            /// @return This Mezzanine::Quaternion with the sum.
-            Quaternion& operator+= (const Ogre::Quaternion& Other);
-
-            /// @brief Incrementing operator with Mezzanine::Quaternion and btQuaternion.
-            /// @param Other The other Quaternion to add to this one.
-            /// @return This Mezzanine::Quaternion with the sum.
-            Quaternion& operator+= (const btQuaternion& Other);
-
-            /// @brief Decrementing operator with Mezzanine::Quaternion and Mezzanine::Quaternion.
-            /// @param Other The other Quaternion to subtract from this one.
-            /// @return This Mezzanine::Quaternion with the difference.
-            Quaternion& operator-= (const Mezzanine::Quaternion& Other);
-
-            /// @brief Decrementing operator with Mezzanine::Quaternion and Ogre::Quaternion.
-            /// @param Other The other Quaternion to subtract from this one.
-            /// @return This Mezzanine::Quaternion with the difference.
-            Quaternion& operator-= (const Ogre::Quaternion& Other);
-
-            /// @brief Decrementing operator with Mezzanine::Quaternion and btQuaternion.
-            /// @param Other The other Quaternion to subtract from this one.
-            /// @return This Mezzanine::Quaternion with the difference.
-            Quaternion& operator-= (const btQuaternion& Other);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Assignment Operators
-
-            /// @brief Assignment Operator from Mezzanine::Quaternion.
-            /// @param Other The other quaternion to overwrite this one.
-            /// @return This Quaternion after being assigned fresh values.
-            Quaternion& operator= (const Mezzanine::Quaternion& Other);
-
-            /// @brief Assignment Operator from Ogre::Quaternion.
-            /// @param Other The other quaternion to overwrite this one.
-            /// @return This Quaternion after being assigned fresh values.
-            Quaternion& operator= (const Ogre::Quaternion& Other);
-
-            /// @brief Assignment Operator from btQuaternion.
-            /// @param Other The other quaternion to overwrite this one.
-            /// @return This Quaternion after being assigned fresh values.
-            Quaternion& operator= (const btQuaternion& Other);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Equality Comparison Operators
-
-            /// @brief Equality Comparison Operator from Mezzanine::Quaternion.
-            /// @param Other The other quaternion to compare with.
-            /// @return True if the Quaternions are semantically equal, false otherwise.
-            Boole operator==(const Mezzanine::Quaternion& Other) const;
-            /// @brief Equality Comparison Operator from Ogre::Quaternion.
-            /// @param Other The other quaternion to compare with.
-            /// @return True if the Quaternions are semantically equal, false otherwise.
-            Boole operator==(const Ogre::Quaternion& Other) const;
-            /// @brief Equality Comparison Operator from btQuaternion.
-            /// @param Other The other quaternion to compare with.
-            /// @return True if the Quaternions are semantically equal, false otherwise.
-            Boole operator==(const btQuaternion& Other) const;
-
-            /// @brief Inequality Comparison Operator from Mezzanine::Quaternion.
-            /// @param Other The other quaternion to compare with.
-            /// @return True if the Quaternions are not semantically equal, false otherwise.
-            Boole operator!=(const Mezzanine::Quaternion& Other) const;
-            /// @brief Inequality Comparison Operator from Ogre::Quaternion.
-            /// @param Other The other quaternion to compare with.
-            /// @return True if the Quaternions are not semantically equal, false otherwise.
-            Boole operator!=(const Ogre::Quaternion& Other) const;
-            /// @brief Inequality Comparison Operator from btQuaternion.
-            /// @param Other The other quaternion to compare with.
-            /// @return True if the Quaternions are not semantically equal, false otherwise.
-            Boole operator!=(const btQuaternion& Other) const;
-
-            /// @brief Is every value in this Quaternion less than or equal to its corresponding value in another.
-            /// @param Other The Quaternion on the right hand side of the sign.
-            /// @note Used primarily for testing. This is not implemented for use with other kinds of Quaternion implementations as it is widely considered useless.
-            Boole operator<= (const Mezzanine::Quaternion& Other) const;
-            /// @brief Is every value in this Quaternion greater than or equal to its corresponding value in another.
-            /// @param Other The Quaternion on the right hand side of the sign.
-            /// @note Used primarily for testing. This is not implemented for use with other kinds of Quaternion implementations as it is widely considered useless.
-            Boole operator>= (const Mezzanine::Quaternion& Other) const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
-
-            // Serializable
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
-            void ProtoSerialize(XML::Node& CurrentRoot) const;
-
-            // DeSerializable
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            void ProtoDeSerialize(const XML::Node& OneNode);
-
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "Quaternion"
-            static String GetSerializableName();
-
+        /// @brief Convert this class to an XML::Node ready for serialization
+        /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
+        void ProtoSerialize(XML::Node& CurrentRoot) const;
+        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+        /// @param OneNode and XML::Node containing the data.
+        void ProtoDeSerialize(const XML::Node& OneNode);
+        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+        /// @return A string containing "Quaternion"
+        static String GetSerializableName();
     };//Quaternion
 }//Mezzanine
 

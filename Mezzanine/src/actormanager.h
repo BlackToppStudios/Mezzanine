@@ -54,7 +54,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of actors.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB ActorUpdateWorkUnit : public Threading::DefaultWorkUnit
     {
@@ -86,8 +85,6 @@ namespace Mezzanine
     };//ActorUpdateWorkUnit
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorManager
-    /// @headerfile actormanager.h
     /// @brief A manager responsible for the storage and management of all actors that exist in a world.
     /// @details More or less Management point for a container of actors to help keep them sorted.
     ///////////////////////////////////////
@@ -95,7 +92,7 @@ namespace Mezzanine
     {
     public:
         /// @brief Basic container type for ActorFactory storage by this class.
-        typedef std::map<String,ActorFactory*>      FactoryMap;
+        typedef std::map<String,ActorFactory*>       FactoryMap;
         /// @brief Iterator type for ActorFactory instances stored by this class.
         typedef FactoryMap::iterator                 FactoryIterator;
         /// @brief Const Iterator type for ActorFactory instances stored by this class.
@@ -238,7 +235,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class DefaultActorManagerFactory
-    /// @brief A factory responsible for the creation and destruction of the default actormanager.
+    /// @brief A factory responsible for the creation and destruction of the default ActorManager.
     ///////////////////////////////////////
     class DefaultActorManagerFactory : public WorldManagerFactory
     {
