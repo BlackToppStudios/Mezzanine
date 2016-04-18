@@ -49,7 +49,6 @@
 
 namespace Mezzanine
 {
-
     // Document stuff about default state being first state added.
     class MEZZ_LIB StateMachine
     {
