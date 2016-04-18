@@ -108,6 +108,50 @@ public:
             StopLight.AddStateTransitation("LeftArrow","Green");
             TEST( StopLight.GetStateTransitionCount() == 5, "TransitionAdd2");
 
+            TEST( StopLight.HasState("") == false, "DoesntHaveStateNilSTD");
+            TEST( StopLight.HasState(HashedString32("")) == false, "DoesntHaveStateNilHash");
+            TEST( StopLight.HasState("RightArrow") == false, "DoesntHaveStateRightArrowSTD");
+            TEST( StopLight.HasState(HashedString32("RightArrow")) == false,
+                  "DoesntHaveStateRightArrowHash");
+            TEST( StopLight.HasState("LeftArrow") == true, "HasStateSTD");
+            TEST( StopLight.HasState(HashedString32("LeftArrow")) == true, "HasStateHash");
+
+            TEST( StopLight.HasStateTransition("Green","Red") == false,
+                  "HasInvalidTransition1");
+            TEST( StopLight.HasStateTransition("Yellow","Green") == false,
+                  "HasInvalidTransition2");
+            TEST( StopLight.HasStateTransition("Green","LeftArrow") == false,
+                  "HasInvalidTransition3");
+            TEST( StopLight.HasStateTransition(HashedString32("Green"),
+                                               HashedString32("LeftArrow") ) == false,
+                  "HasInvalidTransition4");
+            TEST( StopLight.HasStateTransition("Green","Yellow") == true,
+                  "HasValidTransition1");
+            TEST( StopLight.HasStateTransition("Red","Green") == true,
+                  "HasValidTransition2");
+            TEST( StopLight.HasStateTransition("LeftArrow","Green") == true,
+                  "HasValidTransition3");
+            TEST( StopLight.HasStateTransition(HashedString32("LeftArrow"),
+                                               HashedString32("Green") ) == true,
+                  "HasValidTransition4");
+
+            TEST( StopLight.GetCurrentState() == HashedString32("Green"), "QueryDoesntChangeState");
+
+            TEST( StopLight.CanChangeState("Green") == false,
+                  "CanChangeFail1");
+            TEST( StopLight.CanChangeState(HashedString32("Green")) == false,
+                  "CanChangeFail2");
+            TEST( StopLight.CanChangeState("Red") == false,
+                  "CanChangeFail3");
+            TEST( StopLight.CanChangeState("LeftArrow") == false,
+                  "CanChangeFail4");
+            TEST( StopLight.CanChangeState("Yellow") == true,
+                  "CanChangeWinSTD");
+            TEST( StopLight.CanChangeState(HashedString32("Yellow")) == true,
+                  "CanChangeWinHash");
+
+
+            //TEST_THROW();
 
         }
 

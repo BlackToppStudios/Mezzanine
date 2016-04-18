@@ -49,6 +49,7 @@
 
 namespace Mezzanine
 {
+    // Document stuff about default state being first state added.
     class StateMachine
     {
         private:
@@ -56,12 +57,14 @@ namespace Mezzanine
             typedef StateContainerType::iterator StateIterator;
             typedef StateContainerType::const_iterator ConstStateIterator;
 
-            SortedVector<HashedString32> States;
-            SortedVector<StateTransition> Transitions;
-            SortedVector<HashedString32>::const_iterator CurrentState;
-            SortedVector<HashedString32>::const_iterator FutureState;
+            typedef SortedVector<StateTransition> TranstionContainerType;
+            typedef TranstionContainerType::iterator TranstionIterator;
+            typedef TranstionContainerType::const_iterator ConstTranstionIterator;
 
-
+            StateContainerType States;
+            TranstionContainerType Transitions;
+            ConstStateIterator CurrentState;
+            ConstStateIterator FutureState;
 
         public:
             /// Cheap
@@ -72,10 +75,11 @@ namespace Mezzanine
             explicit StateMachine(const String& InitialState);
 
 
-            /// Less Cheap does insertion, might allocate
+            /// Less Cheap does insertion, might allocate and does sort work
             void AddState(const HashedString32& NewState);
             void AddState(const String& NewState);
 
+            /// Expensive does insertion, hashing, might allocate and does sort work
             void AddStateTransitation(  const HashedString32& From,
                                         const HashedString32& To,
                                         StateTransitionAction* PossibleAction
@@ -84,6 +88,18 @@ namespace Mezzanine
                                         const String& To,
                                         StateTransitionAction* PossibleAction
                                             = new StateTransitionNoAction());
+
+            // costs search log time on container, ought to be pretty cheap
+            Boole HasState(const HashedString32& PossibleState) const;
+            Boole HasState(const String& PossibleState) const;
+
+            Boole HasStateTransition(const HashedString32& FromState,
+                                     const HashedString32& ToState) const;
+            Boole HasStateTransition(const String& FromState, const String& ToState) const;
+
+
+            Boole CanChangeState(const HashedString32& ToState);
+            Boole CanChangeState(const String& ToState);
 
             Boole ChangeState(const HashedString32& ToState);
             Boole SetPendingState(const HashedString32& ToState);
