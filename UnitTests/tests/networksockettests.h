@@ -41,6 +41,7 @@
 #define _networksockettests_h
 
 #include "mezztest.h"
+#include "Network/network.h"
 
 #include <stdexcept> //only used to throw for TEST_THROW
 
@@ -190,6 +191,7 @@ public:
                                 }
                             }
 
+                            ClientThread->join();
                             while( TCPClientThreadResult < 0 )
                                 Threading::this_thread::sleep_for(1 * 1000);
 
@@ -248,6 +250,7 @@ public:
                                 }
                             }
 
+                            ClientThread->join();
                             while( TCPClientThreadResult < 0 )
                                 Threading::this_thread::sleep_for(1 * 1000);
 

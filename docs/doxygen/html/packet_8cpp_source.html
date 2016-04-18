@@ -119,79 +119,86 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef MEZZNETWORK</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef _networkpacket_cpp</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define _networkpacket_cpp</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef _networkpacket_cpp</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define _networkpacket_cpp</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Network/platformincludes.h.cpp&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/platformincludes.h.cpp&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/packet.h&quot;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;Network/packet.h&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">namespace</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">enum</span> MTUValues</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        SmallestIPv4MTU = 576,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        IPv4HeaderBaseSize = 20,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        IPv4HeaderOptionsMaxSize = 40,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        SmallestIPv6MTU = 1500,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        IPv6HeaderBaseSize = 40,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        IPv6HeaderOptionsEstSize = 40,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        TCPHeaderBaseSize = 40,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        TCPHeaderOptionsMaxSize = 40,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        UDPHeaderSize = 8</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    };</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">namespace </span>Network</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {<span class="comment"></span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>        <span class="comment">// Packet Static Member Data</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Packet::DefaultIPv4MTU = SmallestIPv4MTU;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Packet::DefaultIPv6MTU = SmallestIPv6MTU;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Packet::DefaultUDPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Packet::DefaultUDPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Packet::DefaultTCPv4MsgSize = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Packet::DefaultTCPv6MsgSize = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>        <span class="comment">// Packet Methods</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        Packet::Packet()</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            {  }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        Packet::~Packet()</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            {  }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> Packet::IsExpectedSize()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;GetExpectedSize() == this-&gt;GetSize(); }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"></span>        <span class="comment">// Buffer Management</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }<span class="comment">//Network</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">namespace</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">enum</span> MTUValues</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        SmallestIPv4MTU = 576,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        IPv4HeaderBaseSize = 20,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        IPv4HeaderOptionsMaxSize = 40,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        SmallestIPv6MTU = 1500,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        IPv6HeaderBaseSize = 40,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        IPv6HeaderOptionsEstSize = 40,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        TCPHeaderBaseSize = 40,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        TCPHeaderOptionsMaxSize = 40,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        UDPHeaderSize = 8</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    };</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">namespace </span>Network</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {<span class="comment"></span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span>        <span class="comment">// Packet Static Member Data</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#a56a3a0f4d7a401a49818edfa52cd6174">Packet::DefaultIPv4MTU</a> = SmallestIPv4MTU;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#ab83ae6c9a7cf097d97f2b05f1029d8ac">Packet::DefaultIPv6MTU</a> = SmallestIPv6MTU;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#ab8ac83dbe985aa88de036d9b14202b56">Packet::DefaultUDPv4MsgSize</a> = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + UDPHeaderSize );</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#a731f3b048cc2d9394d06307573eb1957">Packet::DefaultUDPv6MsgSize</a> = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + UDPHeaderSize );</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#a4dab8cc3cd01cd53d03796916c20c14c">Packet::DefaultTCPv4MsgSize</a> = SmallestIPv4MTU - ( ( IPv4HeaderBaseSize + IPv4HeaderOptionsMaxSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#a41f960d05cf72898537febd8dddb5377">Packet::DefaultTCPv6MsgSize</a> = SmallestIPv6MTU - ( ( IPv6HeaderBaseSize + IPv6HeaderOptionsEstSize ) + ( TCPHeaderBaseSize + TCPHeaderOptionsMaxSize ) );</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span>        <span class="comment">// Packet Methods</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1Packet.html#a66010c22ea92b73738aeecda7fc66b11">   84</a></span>&#160;        <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#a66010c22ea92b73738aeecda7fc66b11">Packet::Packet</a>()</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {  }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1Packet.html#ad6ed3a0cdbe5893126fbe7b12b21102a">   87</a></span>&#160;        <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#ad6ed3a0cdbe5893126fbe7b12b21102a">Packet::~Packet</a>()</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            {  }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span>        <span class="comment">// Utility</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1Packet.html#af9b356ee3acdfbb8dec6c504087b6ba2">   93</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> <a class="code" href="classMezzanine_1_1Network_1_1Packet.html#af9b356ee3acdfbb8dec6c504087b6ba2">Packet::IsExpectedSize</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Packet.html#a6cfa4aa6ba8b3f6cff7552c29112f3cd">GetExpectedSize</a>() == this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Packet.html#a5c16ae5970f7259fc640e8ec9fba0779">GetSize</a>(); }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"></span>        <span class="comment">// Buffer Management</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }<span class="comment">//Network</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_a731f3b048cc2d9394d06307573eb1957"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#a731f3b048cc2d9394d06307573eb1957">Mezzanine::Network::Packet::DefaultUDPv6MsgSize</a></div><div class="ttdeci">static const Whole DefaultUDPv6MsgSize</div><div class="ttdoc">The maximum size the message portion of a UDP packet can be without being rejected with IPv6...</div><div class="ttdef"><b>Definition:</b> <a href="packet_8h_source.html#l00120">packet.h:120</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_ac358283f927fd1135643c26dfc75c9cf"><div class="ttname"><a href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Mezzanine::Boole</a></div><div class="ttdeci">bool Boole</div><div class="ttdoc">Generally acts a single bit, true or false. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00173">datatypes.h:173</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_a41f960d05cf72898537febd8dddb5377"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#a41f960d05cf72898537febd8dddb5377">Mezzanine::Network::Packet::DefaultTCPv6MsgSize</a></div><div class="ttdeci">static const Whole DefaultTCPv6MsgSize</div><div class="ttdoc">The maximum size the message portion of a TCP packet can be without segmenting with IPv6...</div><div class="ttdef"><b>Definition:</b> <a href="packet_8h_source.html#l00124">packet.h:124</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_a56a3a0f4d7a401a49818edfa52cd6174"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#a56a3a0f4d7a401a49818edfa52cd6174">Mezzanine::Network::Packet::DefaultIPv4MTU</a></div><div class="ttdeci">static const Whole DefaultIPv4MTU</div><div class="ttdoc">The maximum size an entire single transmission can be without fragmenting/rejection over IPv4...</div><div class="ttdef"><b>Definition:</b> <a href="packet_8h_source.html#l00114">packet.h:114</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_ad6ed3a0cdbe5893126fbe7b12b21102a"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#ad6ed3a0cdbe5893126fbe7b12b21102a">Mezzanine::Network::Packet::~Packet</a></div><div class="ttdeci">virtual ~Packet()</div><div class="ttdoc">Class destructor. </div><div class="ttdef"><b>Definition:</b> <a href="packet_8cpp_source.html#l00087">packet.cpp:87</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_a4dab8cc3cd01cd53d03796916c20c14c"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#a4dab8cc3cd01cd53d03796916c20c14c">Mezzanine::Network::Packet::DefaultTCPv4MsgSize</a></div><div class="ttdeci">static const Whole DefaultTCPv4MsgSize</div><div class="ttdoc">The maximum size the message portion of a TCP packet can be without segmenting with IPv4...</div><div class="ttdef"><b>Definition:</b> <a href="packet_8h_source.html#l00122">packet.h:122</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_a6cfa4aa6ba8b3f6cff7552c29112f3cd"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#a6cfa4aa6ba8b3f6cff7552c29112f3cd">Mezzanine::Network::Packet::GetExpectedSize</a></div><div class="ttdeci">virtual Whole GetExpectedSize() const =0</div><div class="ttdoc">Gets the size this packet should be according to it&#39;s type. </div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_a66010c22ea92b73738aeecda7fc66b11"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#a66010c22ea92b73738aeecda7fc66b11">Mezzanine::Network::Packet::Packet</a></div><div class="ttdeci">Packet()</div><div class="ttdoc">Class constructor. </div><div class="ttdef"><b>Definition:</b> <a href="packet_8cpp_source.html#l00084">packet.cpp:84</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_af9b356ee3acdfbb8dec6c504087b6ba2"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#af9b356ee3acdfbb8dec6c504087b6ba2">Mezzanine::Network::Packet::IsExpectedSize</a></div><div class="ttdeci">Boole IsExpectedSize() const </div><div class="ttdoc">Gets whether or not this packet is the size it should be. </div><div class="ttdef"><b>Definition:</b> <a href="packet_8cpp_source.html#l00093">packet.cpp:93</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_ab8ac83dbe985aa88de036d9b14202b56"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#ab8ac83dbe985aa88de036d9b14202b56">Mezzanine::Network::Packet::DefaultUDPv4MsgSize</a></div><div class="ttdeci">static const Whole DefaultUDPv4MsgSize</div><div class="ttdoc">The maximum size the message portion of a UDP packet can be without fragmenting/rejection with IPv4...</div><div class="ttdef"><b>Definition:</b> <a href="packet_8h_source.html#l00118">packet.h:118</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_a82ee3fda2abc03b9acd21e22a433df77"><div class="ttname"><a href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Mezzanine::Whole</a></div><div class="ttdeci">unsigned long Whole</div><div class="ttdoc">Whole is an unsigned integer, it will be at least 32bits in size. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00151">datatypes.h:151</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_a5c16ae5970f7259fc640e8ec9fba0779"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#a5c16ae5970f7259fc640e8ec9fba0779">Mezzanine::Network::Packet::GetSize</a></div><div class="ttdeci">virtual Whole GetSize() const =0</div><div class="ttdoc">Gets the actual size of this packet. </div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Packet_html_ab83ae6c9a7cf097d97f2b05f1029d8ac"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Packet.html#ab83ae6c9a7cf097d97f2b05f1029d8ac">Mezzanine::Network::Packet::DefaultIPv6MTU</a></div><div class="ttdeci">static const Whole DefaultIPv6MTU</div><div class="ttdoc">The maximum size an entire single transmission can be without fragmenting/rejection over IPv6...</div><div class="ttdef"><b>Definition:</b> <a href="packet_8h_source.html#l00116">packet.h:116</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:42 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:47 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

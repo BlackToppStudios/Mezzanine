@@ -2,6 +2,7 @@ var searchData=
 [
   ['namednodeiterator',['NamedNodeIterator',['../classMezzanine_1_1XML_1_1NamedNodeIterator.html',1,'Mezzanine::XML']]],
   ['networkexception',['NetworkException',['../classMezzanine_1_1NetworkException.html',1,'Mezzanine']]],
+  ['networkmanager',['NetworkManager',['../classMezzanine_1_1Network_1_1NetworkManager.html',1,'Mezzanine::Network']]],
   ['networknotfoundexception',['NetworkNotFoundException',['../classMezzanine_1_1NetworkNotFoundException.html',1,'Mezzanine']]],
   ['networkpermissionexception',['NetworkPermissionException',['../classMezzanine_1_1NetworkPermissionException.html',1,'Mezzanine']]],
   ['networkreadexception',['NetworkReadException',['../classMezzanine_1_1NetworkReadException.html',1,'Mezzanine']]],

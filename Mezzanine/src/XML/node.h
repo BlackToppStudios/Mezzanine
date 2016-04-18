@@ -230,10 +230,10 @@ namespace Mezzanine
 #endif
 
                 /// @brief Attempt to get a child Node with a given name.
-                /// @param Name The name of the desired child Node.
+                /// @param ChildName The name of the desired child Node.
                 /// @return A Node that represents the first desired child, or an empty Node on failure.
-                Node GetChild(const String& Name) const
-                    { return GetChild(Name.c_str()); }
+                Node GetChild(const String& ChildName) const
+                    { return GetChild(ChildName.c_str()); }
 
                 /// @brief Attempt to get an Attribute on this Node with a given name.
                 /// @param Name The name of the desired Attribute.
@@ -293,10 +293,10 @@ namespace Mezzanine
 #endif
 
                 /// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
-                /// @param Name The name of the New attribute to be created
+                /// @param AttributeName The name of the New attribute to be created
                 /// @return The created Attribute or an empty Attribute on Failure.
-                Attribute AppendAttribute(const String& Name)
-                    { return AppendAttribute(Name.c_str()); }
+                Attribute AppendAttribute(const String& AttributeName)
+                    { return AppendAttribute(AttributeName.c_str()); }
 
                 /// @brief Creates an Attribute and puts it at the begining of this Nodes attributes
                 /// @param Name The name of the New attribute to be created
@@ -393,11 +393,11 @@ namespace Mezzanine
 #endif
 
                 /// @brief Creates an element Node as a child of this Node, with the given name.
-                /// @param Name The name of the Node to be created.
+                /// @param NewChildName The name of the Node to be created.
                 /// @details Calls @ref Node::AppendChild
                 /// @return The desired Node on success, an empty Node on failure.
-                Node AppendChild(const String& Name)
-                    { return AppendChild(Name.c_str()); }
+                Node AppendChild(const String& NewChildName)
+                    { return AppendChild(NewChildName.c_str()); }
 
 #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
                 /// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
@@ -409,11 +409,11 @@ namespace Mezzanine
 #endif
 
                 /// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
-                /// @param Name The name of the Node to be created.
+                /// @param NewChildName The name of the Node to be created.
                 /// @details Calls @ref Node::PrependChild
                 /// @return The desired Node on success, an empty Node on failure.
-                Node PrependChild(const String& Name)
-                    { return PrependChild(Name.c_str()); }
+                Node PrependChild(const String& NewChildName)
+                    { return PrependChild(NewChildName.c_str()); }
 
                 /// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
                 /// @param Name The name of the Node to be created.

@@ -78,8 +78,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMezzanine_1_1Timer-members.html">List of all members</a>  </div>
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>A base timer class for the different timers.  
+<p>A basic timer class to assist in timed operations.  
  <a href="classMezzanine_1_1Timer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="timer_8h_source.html">timer.h</a>&gt;</code></p>
@@ -97,200 +97,135 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Timer__inherit__graph.svg" width="490" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Timer__inherit__graph.svg" width="192" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:aeb35f7603f19a470e53510d33c2cd319"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319">TimeFormat</a> { <br />
-&#160;&#160;<a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319a78db9b782e450f0d79febd17738ac92b">TF_Raw_Micro</a> = 1, 
-<a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319ae151683d48d67b537438b2ba6d110851">TF_Raw_Milli</a> = 2, 
-<a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319ae6a3e68f7102c3ba0ac3407ce5bfd8b4">TF_Seconds</a> = 3, 
-<a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319adc13b96079facaa31f8c2305240fca09">TF_Seconds_Milli</a> = 4, 
-<br />
-&#160;&#160;<a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319a9d091609bb8ff571ec0b291468e46797">TF_Minutes_Seconds</a> = 5
-<br />
- }</td></tr>
-<tr class="memdesc:aeb35f7603f19a470e53510d33c2cd319"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enum describing how the text output of a timer should be formatted.  <a href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319">More...</a><br /></td></tr>
-<tr class="separator:aeb35f7603f19a470e53510d33c2cd319"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdc9cac008cfe642ce8a11d090f29ec6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6">TimerType</a> { <a class="el" href="classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6a023d2336d30bf4bcba70f2511af2c3c3">Normal</a>, 
-<a class="el" href="classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6ae421b07061ca1f45a2f1080316c3dbb7">StopWatch</a>, 
-<a class="el" href="classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6ad408501a2b2ad050dce4591e1735a6a2">Alarm</a>
- }</td></tr>
-<tr class="memdesc:afdc9cac008cfe642ce8a11d090f29ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The style of timer to be used.  <a href="classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6">More...</a><br /></td></tr>
-<tr class="separator:afdc9cac008cfe642ce8a11d090f29ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3c207b6b1ac4d11a1ef18aa5d996265a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a3c207b6b1ac4d11a1ef18aa5d996265a">Timer</a> ()</td></tr>
-<tr class="memdesc:a3c207b6b1ac4d11a1ef18aa5d996265a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a3c207b6b1ac4d11a1ef18aa5d996265a">More...</a><br /></td></tr>
+<tr class="memitem:a3c207b6b1ac4d11a1ef18aa5d996265a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c207b6b1ac4d11a1ef18aa5d996265a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a3c207b6b1ac4d11a1ef18aa5d996265a">Timer</a> ()</td></tr>
+<tr class="memdesc:a3c207b6b1ac4d11a1ef18aa5d996265a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor. <br /></td></tr>
 <tr class="separator:a3c207b6b1ac4d11a1ef18aa5d996265a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9f53c261429f22eaf09ae9d86e8b931"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9f53c261429f22eaf09ae9d86e8b931"></a>
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#af9f53c261429f22eaf09ae9d86e8b931">~Timer</a> ()</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#af9f53c261429f22eaf09ae9d86e8b931">~Timer</a> ()</td></tr>
 <tr class="memdesc:af9f53c261429f22eaf09ae9d86e8b931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br /></td></tr>
 <tr class="separator:af9f53c261429f22eaf09ae9d86e8b931"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1ff34a4b1de75d83004a7337f4ce0cd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#ae1ff34a4b1de75d83004a7337f4ce0cd">GetCurrentTime</a> ()</td></tr>
+<tr class="memitem:a99ef03a363877a5bce0c495c19c8b891"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a6b7941b622accefe657cb3af55d99922">Mezzanine::CountMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a99ef03a363877a5bce0c495c19c8b891">GetCountMode</a> () const </td></tr>
+<tr class="memdesc:a99ef03a363877a5bce0c495c19c8b891"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mode the timer is using to increment time.  <a href="#a99ef03a363877a5bce0c495c19c8b891">More...</a><br /></td></tr>
+<tr class="separator:a99ef03a363877a5bce0c495c19c8b891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ff34a4b1de75d83004a7337f4ce0cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#ae1ff34a4b1de75d83004a7337f4ce0cd">GetCurrentTime</a> ()</td></tr>
 <tr class="memdesc:ae1ff34a4b1de75d83004a7337f4ce0cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Current time in Microseconds.  <a href="#ae1ff34a4b1de75d83004a7337f4ce0cd">More...</a><br /></td></tr>
 <tr class="separator:ae1ff34a4b1de75d83004a7337f4ce0cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35997949fed1a4f47d4159d3450f168c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a35997949fed1a4f47d4159d3450f168c">GetCurrentTimeInMilliseconds</a> ()</td></tr>
+<tr class="memitem:a35997949fed1a4f47d4159d3450f168c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a35997949fed1a4f47d4159d3450f168c">GetCurrentTimeInMilliseconds</a> ()</td></tr>
 <tr class="memdesc:a35997949fed1a4f47d4159d3450f168c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Current time in Milliseconds.  <a href="#a35997949fed1a4f47d4159d3450f168c">More...</a><br /></td></tr>
 <tr class="separator:a35997949fed1a4f47d4159d3450f168c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefe7484d1d9e86c7076b9959c9f78380"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#aefe7484d1d9e86c7076b9959c9f78380">GetInitialTime</a> () const </td></tr>
-<tr class="memdesc:aefe7484d1d9e86c7076b9959c9f78380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Initial time in Microseconds.  <a href="#aefe7484d1d9e86c7076b9959c9f78380">More...</a><br /></td></tr>
-<tr class="separator:aefe7484d1d9e86c7076b9959c9f78380"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc3dca350d61c4b227450f7db4a8ff6f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#abc3dca350d61c4b227450f7db4a8ff6f">GetInitialTimeInMilliseconds</a> () const </td></tr>
-<tr class="memdesc:abc3dca350d61c4b227450f7db4a8ff6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Initial time in Milliseconds.  <a href="#abc3dca350d61c4b227450f7db4a8ff6f">More...</a><br /></td></tr>
-<tr class="separator:abc3dca350d61c4b227450f7db4a8ff6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a132ae5264c63f6c0e3f9804025b77ed5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a132ae5264c63f6c0e3f9804025b77ed5">GetTimeAsText</a> (const <a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319">Timer::TimeFormat</a> Format)</td></tr>
-<tr class="memdesc:a132ae5264c63f6c0e3f9804025b77ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current time of this timer as a string.  <a href="#a132ae5264c63f6c0e3f9804025b77ed5">More...</a><br /></td></tr>
-<tr class="separator:a132ae5264c63f6c0e3f9804025b77ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3d5788daebf7a47b5681d32941be573"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6">Timer::TimerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#aa3d5788daebf7a47b5681d32941be573">GetType</a> () const </td></tr>
-<tr class="memdesc:aa3d5788daebf7a47b5681d32941be573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of timer this is.  <a href="#aa3d5788daebf7a47b5681d32941be573">More...</a><br /></td></tr>
-<tr class="separator:aa3d5788daebf7a47b5681d32941be573"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a924580655b6b040b1f92ec50d56c3f05"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a924580655b6b040b1f92ec50d56c3f05">IsStopped</a> ()</td></tr>
-<tr class="memdesc:a924580655b6b040b1f92ec50d56c3f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Whether or not this timer is currently running.  <a href="#a924580655b6b040b1f92ec50d56c3f05">More...</a><br /></td></tr>
+<tr class="memitem:a58223831cf2c760a67e7673772fee69f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a58223831cf2c760a67e7673772fee69f">GetTimeAsText</a> (const <a class="el" href="namespaceMezzanine.html#a2dca793c23a6d14031dca3e66138adef">Mezzanine::TimeFormat</a> Format)</td></tr>
+<tr class="memdesc:a58223831cf2c760a67e7673772fee69f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current time of this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> as a string.  <a href="#a58223831cf2c760a67e7673772fee69f">More...</a><br /></td></tr>
+<tr class="separator:a58223831cf2c760a67e7673772fee69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a924580655b6b040b1f92ec50d56c3f05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a924580655b6b040b1f92ec50d56c3f05">IsStopped</a> ()</td></tr>
+<tr class="memdesc:a924580655b6b040b1f92ec50d56c3f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> is currently running.  <a href="#a924580655b6b040b1f92ec50d56c3f05">More...</a><br /></td></tr>
 <tr class="separator:a924580655b6b040b1f92ec50d56c3f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a425eee35c63d9f588e441052bbe2be55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a425eee35c63d9f588e441052bbe2be55"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a425eee35c63d9f588e441052bbe2be55">Reset</a> ()</td></tr>
-<tr class="memdesc:a425eee35c63d9f588e441052bbe2be55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current values to their initial values. <br /></td></tr>
-<tr class="separator:a425eee35c63d9f588e441052bbe2be55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48ac796a629579b2372fbd8c0e0b69a8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a48ac796a629579b2372fbd8c0e0b69a8">SetCurrentTime</a> (const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Current)</td></tr>
+<tr class="memitem:a93c48c21adb40be9f7927f5f82e95219"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a93c48c21adb40be9f7927f5f82e95219">IsTicking</a> ()</td></tr>
+<tr class="memdesc:a93c48c21adb40be9f7927f5f82e95219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> is currently running.  <a href="#a93c48c21adb40be9f7927f5f82e95219">More...</a><br /></td></tr>
+<tr class="separator:a93c48c21adb40be9f7927f5f82e95219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5ea059796d10186dcb91d9488616753"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#ad5ea059796d10186dcb91d9488616753">Reset</a> (const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> StartTime=0)</td></tr>
+<tr class="memdesc:ad5ea059796d10186dcb91d9488616753"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current time to an initial value and stops the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> if it is running.  <a href="#ad5ea059796d10186dcb91d9488616753">More...</a><br /></td></tr>
+<tr class="separator:ad5ea059796d10186dcb91d9488616753"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac56a592c29b6bfd46f8e867cafb2a38c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#ac56a592c29b6bfd46f8e867cafb2a38c">SetCountMode</a> (const <a class="el" href="namespaceMezzanine.html#a6b7941b622accefe657cb3af55d99922">Mezzanine::CountMode</a> Mode)</td></tr>
+<tr class="memdesc:ac56a592c29b6bfd46f8e867cafb2a38c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mode the timer should use to increment time.  <a href="#ac56a592c29b6bfd46f8e867cafb2a38c">More...</a><br /></td></tr>
+<tr class="separator:ac56a592c29b6bfd46f8e867cafb2a38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48ac796a629579b2372fbd8c0e0b69a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a48ac796a629579b2372fbd8c0e0b69a8">SetCurrentTime</a> (const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Current)</td></tr>
 <tr class="memdesc:a48ac796a629579b2372fbd8c0e0b69a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current time in Microseconds.  <a href="#a48ac796a629579b2372fbd8c0e0b69a8">More...</a><br /></td></tr>
 <tr class="separator:a48ac796a629579b2372fbd8c0e0b69a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a418fb77ef4ae72c005d3c522ca021432"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a418fb77ef4ae72c005d3c522ca021432">SetCurrentTimeInMilliseconds</a> (const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Current)</td></tr>
-<tr class="memdesc:a418fb77ef4ae72c005d3c522ca021432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current time in Milliseconds. The time that resetting sets the timer to.  <a href="#a418fb77ef4ae72c005d3c522ca021432">More...</a><br /></td></tr>
+<tr class="memitem:a418fb77ef4ae72c005d3c522ca021432"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a418fb77ef4ae72c005d3c522ca021432">SetCurrentTimeInMilliseconds</a> (const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Current)</td></tr>
+<tr class="memdesc:a418fb77ef4ae72c005d3c522ca021432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current time in Milliseconds. The time that resetting sets the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> to.  <a href="#a418fb77ef4ae72c005d3c522ca021432">More...</a><br /></td></tr>
 <tr class="separator:a418fb77ef4ae72c005d3c522ca021432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91fa3bb32e9370d38c720330d450322e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a91fa3bb32e9370d38c720330d450322e">SetInitialTime</a> (const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Initial)</td></tr>
-<tr class="memdesc:a91fa3bb32e9370d38c720330d450322e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the initial time in Microseconds. The time that resetting sets the timer to.  <a href="#a91fa3bb32e9370d38c720330d450322e">More...</a><br /></td></tr>
-<tr class="separator:a91fa3bb32e9370d38c720330d450322e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20bad66b88c8c8d90f74b6142c077833"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a20bad66b88c8c8d90f74b6142c077833">SetInitialTimeInMilliseconds</a> (const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Initial)</td></tr>
-<tr class="memdesc:a20bad66b88c8c8d90f74b6142c077833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the initial time in Milliseconds. The time that resetting sets the timer to.  <a href="#a20bad66b88c8c8d90f74b6142c077833">More...</a><br /></td></tr>
-<tr class="separator:a20bad66b88c8c8d90f74b6142c077833"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a465d15b41007c1476ae3d31e941c733c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a465d15b41007c1476ae3d31e941c733c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a465d15b41007c1476ae3d31e941c733c">Start</a> ()</td></tr>
-<tr class="memdesc:a465d15b41007c1476ae3d31e941c733c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activates the <a class="el" href="classMezzanine_1_1Timer.html" title="A base timer class for the different timers. ">Timer</a>. <br /></td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a465d15b41007c1476ae3d31e941c733c">Start</a> ()</td></tr>
+<tr class="memdesc:a465d15b41007c1476ae3d31e941c733c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activates the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a>. <br /></td></tr>
 <tr class="separator:a465d15b41007c1476ae3d31e941c733c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a456e0551436d81c9c68205cf8c6617eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a456e0551436d81c9c68205cf8c6617eb"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a456e0551436d81c9c68205cf8c6617eb">Stop</a> ()</td></tr>
-<tr class="memdesc:a456e0551436d81c9c68205cf8c6617eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivates the <a class="el" href="classMezzanine_1_1Timer.html" title="A base timer class for the different timers. ">Timer</a>. <br /></td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a456e0551436d81c9c68205cf8c6617eb">Stop</a> ()</td></tr>
+<tr class="memdesc:a456e0551436d81c9c68205cf8c6617eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivates the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a>. <br /></td></tr>
 <tr class="separator:a456e0551436d81c9c68205cf8c6617eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
+Protected Types</h2></td></tr>
+<tr class="memitem:a8c9f1ecf5b08e0705acbc6f5f2328036"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a8c9f1ecf5b08e0705acbc6f5f2328036">CountFunct</a>) (const <a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>, const <a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>)</td></tr>
+<tr class="memdesc:a8c9f1ecf5b08e0705acbc6f5f2328036"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type for processing the current time.  <a href="#a8c9f1ecf5b08e0705acbc6f5f2328036">More...</a><br /></td></tr>
+<tr class="separator:a8c9f1ecf5b08e0705acbc6f5f2328036"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a5760c16eed46b8cac4a1ad2108613668"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a5760c16eed46b8cac4a1ad2108613668">Update</a> ()</td></tr>
-<tr class="memdesc:a5760c16eed46b8cac4a1ad2108613668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all the timings in this timer.  <a href="#a5760c16eed46b8cac4a1ad2108613668">More...</a><br /></td></tr>
-<tr class="separator:a5760c16eed46b8cac4a1ad2108613668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4dc6da22cfb9a84b2cb3d9088ac4943"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#af4dc6da22cfb9a84b2cb3d9088ac4943">UpdateTime</a> ()</td></tr>
+<tr class="memdesc:af4dc6da22cfb9a84b2cb3d9088ac4943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the current time being tracked by this timer.  <a href="#af4dc6da22cfb9a84b2cb3d9088ac4943">More...</a><br /></td></tr>
+<tr class="separator:af4dc6da22cfb9a84b2cb3d9088ac4943"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a8f7a435a843d3f749c95383b6bc1ef80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a8f7a435a843d3f749c95383b6bc1ef80">CurrentTime</a></td></tr>
 <tr class="memdesc:a8f7a435a843d3f749c95383b6bc1ef80"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current amount of microseconds that has elapsed since starting to track time.  <a href="#a8f7a435a843d3f749c95383b6bc1ef80">More...</a><br /></td></tr>
 <tr class="separator:a8f7a435a843d3f749c95383b6bc1ef80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82c7384179b223a89651bf0eef70874"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#ab82c7384179b223a89651bf0eef70874">InitialTime</a></td></tr>
-<tr class="memdesc:ab82c7384179b223a89651bf0eef70874"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of microseconds elapsed that is considered the starting point for tracking time.  <a href="#ab82c7384179b223a89651bf0eef70874">More...</a><br /></td></tr>
-<tr class="separator:ab82c7384179b223a89651bf0eef70874"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dd8df2755b757a36dabdfa0fc713a31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a4dd8df2755b757a36dabdfa0fc713a31">StartStamp</a></td></tr>
-<tr class="memdesc:a4dd8df2755b757a36dabdfa0fc713a31"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time stamp from when the timer first started tracking time.  <a href="#a4dd8df2755b757a36dabdfa0fc713a31">More...</a><br /></td></tr>
-<tr class="separator:a4dd8df2755b757a36dabdfa0fc713a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0883ab2368a395d0e5efc99aa2ac18e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a0883ab2368a395d0e5efc99aa2ac18e7">LastStamp</a></td></tr>
+<tr class="memdesc:a0883ab2368a395d0e5efc99aa2ac18e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time stamp from when the last time the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> was updated.  <a href="#a0883ab2368a395d0e5efc99aa2ac18e7">More...</a><br /></td></tr>
+<tr class="separator:a0883ab2368a395d0e5efc99aa2ac18e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2192842be033bb61454395fd913cbe17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Timer.html#a8c9f1ecf5b08e0705acbc6f5f2328036">CountFunct</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Timer.html#a2192842be033bb61454395fd913cbe17">TimerCounter</a></td></tr>
+<tr class="memdesc:a2192842be033bb61454395fd913cbe17"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the function currently doing the counting for this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a>.  <a href="#a2192842be033bb61454395fd913cbe17">More...</a><br /></td></tr>
+<tr class="separator:a2192842be033bb61454395fd913cbe17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A base timer class for the different timers. </p>
+<div class="textblock"><p>A basic timer class to assist in timed operations. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00053">53</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a class="anchor" id="aeb35f7603f19a470e53510d33c2cd319"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319">Mezzanine::Timer::TimeFormat</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>An enum describing how the text output of a timer should be formatted. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="aeb35f7603f19a470e53510d33c2cd319a78db9b782e450f0d79febd17738ac92b"></a>TF_Raw_Micro&#160;</td><td class="fielddoc">
-<p>Outputs the current time in microseconds. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aeb35f7603f19a470e53510d33c2cd319ae151683d48d67b537438b2ba6d110851"></a>TF_Raw_Milli&#160;</td><td class="fielddoc">
-<p>Outputs the current time in milliseconds. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aeb35f7603f19a470e53510d33c2cd319ae6a3e68f7102c3ba0ac3407ce5bfd8b4"></a>TF_Seconds&#160;</td><td class="fielddoc">
-<p>Outputs the current time in seconds. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aeb35f7603f19a470e53510d33c2cd319adc13b96079facaa31f8c2305240fca09"></a>TF_Seconds_Milli&#160;</td><td class="fielddoc">
-<p>Outputs the current time in "seconds.milliseconds". Milliseconds are out to 3 digits. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aeb35f7603f19a470e53510d33c2cd319a9d091609bb8ff571ec0b291468e46797"></a>TF_Minutes_Seconds&#160;</td><td class="fielddoc">
-<p>Outputs the current time in "minutes:seconds". </p>
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00064">64</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afdc9cac008cfe642ce8a11d090f29ec6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6">Mezzanine::Timer::TimerType</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The style of timer to be used. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="afdc9cac008cfe642ce8a11d090f29ec6a023d2336d30bf4bcba70f2511af2c3c3"></a>Normal&#160;</td><td class="fielddoc">
-<p>Counts up forever, ignoring any goal and autoreset. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="afdc9cac008cfe642ce8a11d090f29ec6ae421b07061ca1f45a2f1080316c3dbb7"></a>StopWatch&#160;</td><td class="fielddoc">
-<p>Counts down, respecting any goal and autoreset. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="afdc9cac008cfe642ce8a11d090f29ec6ad408501a2b2ad050dce4591e1735a6a2"></a>Alarm&#160;</td><td class="fielddoc">
-<p>Counts up, respecting any goal and autoreset. </p>
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00057">57</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3c207b6b1ac4d11a1ef18aa5d996265a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Mezzanine::Timer::Timer </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Standard Constructor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Style</td><td>The styling/type of timer to be constructed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00048">48</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae1ff34a4b1de75d83004a7337f4ce0cd"></a>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00067">67</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="a8c9f1ecf5b08e0705acbc6f5f2328036"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>(* Mezzanine::Timer::CountFunct) (const <a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>, const <a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convenience type for processing the current time. </p>
+
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00072">72</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a99ef03a363877a5bce0c495c19c8b891"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a6b7941b622accefe657cb3af55d99922">Mezzanine::CountMode</a> Mezzanine::Timer::GetCountMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the mode the timer is using to increment time. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a CountMode enum value determining if this timer is counting up or down from it's current time. </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00107">107</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1ff34a4b1de75d83004a7337f4ce0cd"></a>
+<div class="memitem">
+<div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Mezzanine::Timer::GetCurrentTime </td>
@@ -299,26 +234,18 @@ Protected Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Gets the Current time in Microseconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Whole representing the current time in Microseconds. </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00075">75</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00095">95</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a35997949fed1a4f47d4159d3450f168c"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Mezzanine::Timer::GetCurrentTimeInMilliseconds </td>
@@ -327,99 +254,30 @@ Protected Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Gets the Current time in Milliseconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Whole representing the current time in Milliseconds. </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00078">78</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00098">98</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aefe7484d1d9e86c7076b9959c9f78380"></a>
+<a class="anchor" id="a58223831cf2c760a67e7673772fee69f"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Mezzanine::Timer::GetInitialTime </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the Initial time in Microseconds. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a Whole representing the initial time in Microseconds. </dd></dl>
-
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00087">87</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abc3dca350d61c4b227450f7db4a8ff6f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a> Mezzanine::Timer::GetInitialTimeInMilliseconds </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the Initial time in Milliseconds. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a Whole representing the initial time in Milliseconds. </dd></dl>
-
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00090">90</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a132ae5264c63f6c0e3f9804025b77ed5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceMezzanine.html#a1a35eea04e090afa5803c92b8be71c67">String</a> Mezzanine::Timer::GetTimeAsText </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Timer.html#aeb35f7603f19a470e53510d33c2cd319">Timer::TimeFormat</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a2dca793c23a6d14031dca3e66138adef">Mezzanine::TimeFormat</a>&#160;</td>
           <td class="paramname"><em>Format</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Gets the current time of this timer as a string. </p>
+<p>Gets the current time of this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> as a string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Format</td><td>A TimeFormat enum value representing how the current time should be presented. </td></tr>
@@ -428,46 +286,13 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing a description of the current time in the specified format. </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00124">124</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa3d5788daebf7a47b5681d32941be573"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Timer.html#afdc9cac008cfe642ce8a11d090f29ec6">Timer::TimerType</a> Mezzanine::Timer::GetType </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the type of timer this is. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns an enum value representing the type of timer this is. </dd></dl>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1AlarmTimer.html#aa0ea1f9fb91675c2915bb5417a02be99">Mezzanine::AlarmTimer</a>, and <a class="el" href="classMezzanine_1_1StopWatchTimer.html#ab8aca310bee8d5524c28630be9ead52f">Mezzanine::StopWatchTimer</a>.</p>
-
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00119">119</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00145">145</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a924580655b6b040b1f92ec50d56c3f05"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> Mezzanine::Timer::IsStopped </td>
@@ -476,26 +301,90 @@ Protected Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Gets Whether or not this timer is currently running. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns true if this timer is not currently active, false otherwise. </dd></dl>
+<p>Gets whether or not this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> is currently running. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> is not currently active, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00107">107</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00139">139</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a93c48c21adb40be9f7927f5f82e95219"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#ac358283f927fd1135643c26dfc75c9cf">Boole</a> Mezzanine::Timer::IsTicking </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets whether or not this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> is currently running. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> is active, false if it is stopped. </dd></dl>
+
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00133">133</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad5ea059796d10186dcb91d9488616753"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Timer::Reset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td>
+          <td class="paramname"><em>StartTime</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the current time to an initial value and stops the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> if it is running. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">StartTime</td><td>The time in microseconds to be begin the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> at the next time it is started. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00127">127</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac56a592c29b6bfd46f8e867cafb2a38c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Timer::SetCountMode </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a6b7941b622accefe657cb3af55d99922">Mezzanine::CountMode</a>&#160;</td>
+          <td class="paramname"><em>Mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the mode the timer should use to increment time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Mode</td><td>The mode to be set, see the CountMode enum for more details. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00101">101</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a48ac796a629579b2372fbd8c0e0b69a8"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Timer::SetCurrentTime </td>
@@ -505,15 +394,10 @@ Protected Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Sets the current time in Microseconds. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a reference to this timer. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a reference to this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a>. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Current</td><td>The value to set as current time in Microseconds. </td></tr>
@@ -521,16 +405,13 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00069">69</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00089">89</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a418fb77ef4ae72c005d3c522ca021432"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Timer::SetCurrentTimeInMilliseconds </td>
@@ -540,15 +421,10 @@ Protected Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Sets the current time in Milliseconds. The time that resetting sets the timer to. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a reference to this timer. </dd></dl>
+<p>Sets the current time in Milliseconds. The time that resetting sets the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> to. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a reference to this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a>. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Current</td><td>The value to set as current time in Milliseconds. </td></tr>
@@ -556,11 +432,11 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00072">72</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00092">92</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a91fa3bb32e9370d38c720330d450322e"></a>
+<a class="anchor" id="af4dc6da22cfb9a84b2cb3d9088ac4943"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -568,77 +444,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::Timer::SetInitialTime </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td>
-          <td class="paramname"><em>Initial</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the initial time in Microseconds. The time that resetting sets the timer to. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a reference to this timer. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Initial</td><td>The value to set as initial time in Microseconds. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00081">81</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a20bad66b88c8c8d90f74b6142c077833"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::Timer::SetInitialTimeInMilliseconds </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a82ee3fda2abc03b9acd21e22a433df77">Whole</a>&#160;</td>
-          <td class="paramname"><em>Initial</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the initial time in Milliseconds. The time that resetting sets the timer to. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a reference to this timer. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Initial</td><td>The value to set as initial time in Milliseconds. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00084">84</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5760c16eed46b8cac4a1ad2108613668"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::Timer::Update </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a> Mezzanine::Timer::UpdateTime </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -646,16 +452,15 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Updates all the timings in this timer. </p>
+<p>Updates the current time being tracked by this timer. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the updated current time. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1AlarmTimer.html#a1f14878431593109eb15eb04dc8b8165">Mezzanine::AlarmTimer</a>, and <a class="el" href="classMezzanine_1_1StopWatchTimer.html#a1dd3a378ab85bbaf9762aef84143f896">Mezzanine::StopWatchTimer</a>.</p>
-
-<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00057">57</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="timer_8cpp_source.html#l00072">72</a> of file <a class="el" href="timer_8cpp_source.html">timer.cpp</a>.</p>
 
 </div>
 </div>
@@ -680,11 +485,11 @@ Protected Attributes</h2></td></tr>
 
 <p>The current amount of microseconds that has elapsed since starting to track time. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00078">78</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00079">79</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab82c7384179b223a89651bf0eef70874"></a>
+<a class="anchor" id="a0883ab2368a395d0e5efc99aa2ac18e7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -692,7 +497,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a> Mezzanine::Timer::InitialTime</td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a> Mezzanine::Timer::LastStamp</td>
         </tr>
       </table>
   </td>
@@ -702,13 +507,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The amount of microseconds elapsed that is considered the starting point for tracking time. </p>
+<p>The time stamp from when the last time the <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a> was updated. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00081">81</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00076">76</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4dd8df2755b757a36dabdfa0fc713a31"></a>
+<a class="anchor" id="a2192842be033bb61454395fd913cbe17"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -716,7 +521,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a> Mezzanine::Timer::StartStamp</td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Timer.html#a8c9f1ecf5b08e0705acbc6f5f2328036">CountFunct</a> Mezzanine::Timer::TimerCounter</td>
         </tr>
       </table>
   </td>
@@ -726,9 +531,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The time stamp from when the timer first started tracking time. </p>
+<p>A pointer to the function currently doing the counting for this <a class="el" href="classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. ">Timer</a>. </p>
 
-<p>Definition at line <a class="el" href="timer_8h_source.html#l00075">75</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
+<p>Definition at line <a class="el" href="timer_8h_source.html#l00082">82</a> of file <a class="el" href="timer_8h_source.html">timer.h</a>.</p>
 
 </div>
 </div>
@@ -740,7 +545,7 @@ Protected Attributes</h2></td></tr>
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:46 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:51 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

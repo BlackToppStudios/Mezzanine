@@ -119,46 +119,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef MEZZNETWORK</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef _networktcpv4socket_cpp</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define _networktcpv4socket_cpp</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef _networktcpv4socket_cpp</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define _networktcpv4socket_cpp</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Network/platformsocket.h.cpp&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/platformsocket.h.cpp&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/tcpv4socket.h&quot;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;Network/tcpv4socket.h&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">namespace </span>Network</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        TCPv4Socket::TCPv4Socket()</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            { this-&gt;InternalSocket = <span class="keyword">new</span> PlatformSocket(PF_INET,SOCK_STREAM,0); }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        TCPv4Socket::TCPv4Socket(PlatformSocket* InternalSock)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            { this-&gt;InternalSocket = InternalSock; }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        TCPv4Socket::TCPv4Socket(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">UInt16</a> Port)</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            { this-&gt;InternalSocket = <span class="keyword">new</span> PlatformSocket(PF_INET,SOCK_STREAM,0,Port); }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        TCPv4Socket::~TCPv4Socket()</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keyword">delete</span> this-&gt;InternalSocket;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            this-&gt;InternalSocket = NULL;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }<span class="comment">//Network</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">namespace </span>Network</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1TCPv4Socket.html#aa7c4c69029979acc7bc2c0b408ffb8ec">   52</a></span>&#160;        <a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html#aa7c4c69029979acc7bc2c0b408ffb8ec">TCPv4Socket::TCPv4Socket</a>()</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            { this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">InternalSocket</a> = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Network_1_1PlatformSocket.html">PlatformSocket</a>(PF_INET,SOCK_STREAM,0); }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1TCPv4Socket.html#aa09c6d30401688b0a074fb00c1434e00">   55</a></span>&#160;        <a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html#aa7c4c69029979acc7bc2c0b408ffb8ec">TCPv4Socket::TCPv4Socket</a>(<a class="code" href="classMezzanine_1_1Network_1_1PlatformSocket.html">PlatformSocket</a>* InternalSock)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            { this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">InternalSocket</a> = InternalSock; }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1TCPv4Socket.html#a3034066142568b2b96ce50f7691edbe2">   58</a></span>&#160;        <a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html#aa7c4c69029979acc7bc2c0b408ffb8ec">TCPv4Socket::TCPv4Socket</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">UInt16</a> Port)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            { this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">InternalSocket</a> = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Network_1_1PlatformSocket.html">PlatformSocket</a>(PF_INET,SOCK_STREAM,0,Port); }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1TCPv4Socket.html#a111317b67317962aff5a93838322d133">   61</a></span>&#160;        <a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html#a111317b67317962aff5a93838322d133">TCPv4Socket::~TCPv4Socket</a>()</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keyword">delete</span> this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">InternalSocket</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">InternalSocket</a> = NULL;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }<span class="comment">//Network</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1Socket_html_a3c86dd1338e86d114519812ab7b1c9b4"><div class="ttname"><a href="classMezzanine_1_1Network_1_1Socket.html#a3c86dd1338e86d114519812ab7b1c9b4">Mezzanine::Network::Socket::InternalSocket</a></div><div class="ttdeci">PlatformSocket * InternalSocket</div><div class="ttdoc">A pointer to the internal system socket. </div><div class="ttdef"><b>Definition:</b> <a href="socket_8h_source.html#l00163">socket.h:163</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1TCPv4Socket_html_a111317b67317962aff5a93838322d133"><div class="ttname"><a href="classMezzanine_1_1Network_1_1TCPv4Socket.html#a111317b67317962aff5a93838322d133">Mezzanine::Network::TCPv4Socket::~TCPv4Socket</a></div><div class="ttdeci">virtual ~TCPv4Socket()</div><div class="ttdoc">Class destructor. </div><div class="ttdef"><b>Definition:</b> <a href="tcpv4socket_8cpp_source.html#l00061">tcpv4socket.cpp:61</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html_adab7bb4dd72bbb8ddb8b1b5470ce99c8"><div class="ttname"><a href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">Mezzanine::UInt16</a></div><div class="ttdeci">uint16_t UInt16</div><div class="ttdoc">An 16-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00122">datatypes.h:122</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1PlatformSocket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1PlatformSocket.html">Mezzanine::Network::PlatformSocket</a></div><div class="ttdoc">This is helper class for managing platform specific data of socket implementations. </div><div class="ttdef"><b>Definition:</b> <a href="platformsocket_8h_8cpp_source.html#l00252">platformsocket.h.cpp:252</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1TCPv4Socket_html_aa7c4c69029979acc7bc2c0b408ffb8ec"><div class="ttname"><a href="classMezzanine_1_1Network_1_1TCPv4Socket.html#aa7c4c69029979acc7bc2c0b408ffb8ec">Mezzanine::Network::TCPv4Socket::TCPv4Socket</a></div><div class="ttdeci">TCPv4Socket()</div><div class="ttdoc">Class constructor. </div><div class="ttdef"><b>Definition:</b> <a href="tcpv4socket_8cpp_source.html#l00052">tcpv4socket.cpp:52</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:42 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:47 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

@@ -1,9 +1,7 @@
 <map id="Mezzanine::Input::Keyboard" name="Mezzanine::Input::Keyboard">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons. " alt="" coords="274,468,442,509"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="90,371,261,398"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1SequenceContainer.html" title="This class stores and provides utilities for sequenced inputs and their operations. " alt="" coords="81,260,269,301"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time. " alt="" coords="5,171,196,197"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="24,81,177,108"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers. " alt="" coords="37,5,164,32"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="220,171,336,197"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons. " alt="" coords="230,392,398,433"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices. " alt="" coords="46,295,217,322"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1SequenceContainer.html" title="This class stores and provides utilities for sequenced inputs and their operations. " alt="" coords="37,184,225,225"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Timer.html" title="A basic timer class to assist in timed operations. " alt="" coords="5,95,132,121"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="156,95,272,121"/>
 </map>

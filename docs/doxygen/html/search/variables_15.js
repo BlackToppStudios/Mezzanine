@@ -11,6 +11,7 @@ var searchData=
   ['upperbound',['UpperBound',['../classMezzanine_1_1Interval.html#a48560b84c726826351e0bc4518e1db33',1,'Mezzanine::Interval']]],
   ['upperlimit',['UpperLimit',['../classMezzanine_1_1Graphics_1_1Procedural_1_1ThresholdModifier.html#a02806a6a86ea0054305b2ede96aa2768',1,'Mezzanine::Graphics::Procedural::ThresholdModifier']]],
   ['upperthreshold',['UpperThreshold',['../classMezzanine_1_1Graphics_1_1Procedural_1_1EdgeDetectionModifier.html#ae58bc0d629f596af6eaedfd9964dcd9d',1,'Mezzanine::Graphics::Procedural::EdgeDetectionModifier']]],
+  ['uptimetimer',['UptimeTimer',['../classMezzanine_1_1Network_1_1Connection.html#a053d06804680317102a86afb18f81f98',1,'Mezzanine::Network::Connection']]],
   ['urifragment',['URIFragment',['../classMezzanine_1_1Network_1_1URI.html#aaf9d2f7e4d8fd95af29a64ab4e42585c',1,'Mezzanine::Network::URI']]],
   ['urihost',['URIHost',['../classMezzanine_1_1Network_1_1URI.html#a9cde061ef9abcd01e18abbcbf92a4224',1,'Mezzanine::Network::URI']]],
   ['uripath',['URIPath',['../classMezzanine_1_1Network_1_1URI.html#a4a98f3e14584306c2018f291332524b2',1,'Mezzanine::Network::URI']]],

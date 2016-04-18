@@ -84,13 +84,13 @@ namespace Mezzanine
             /// @brief Convenience enum that stores the colour placement in a word according to endianness.
             enum ColourChannelIndex
             {
-            #if MEZZ_LITTLE_ENDIAN
+            #ifdef MEZZ_LITTLE_ENDIAN
                 CCI_Red   = 3,
                 CCI_Green = 2,
                 CCI_Blue  = 1,
                 CCI_Alpha = 0
             #endif
-            #if MEZZ_BIG_ENDIAN
+            #ifdef MEZZ_BIG_ENDIAN
                 CCI_Red   = 0,
                 CCI_Green = 1,
                 CCI_Blue  = 2,

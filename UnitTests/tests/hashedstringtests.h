@@ -106,6 +106,7 @@ class hashedstringtests : public UnitTestGroup
             TEST(HashSerializedLineThree==ToString(HashedLineThree),"Serialization4");
 
             HashedString32 Temp;
+            TEST(Temp.IsEmpty(),"DefaultEmpty");
             StringStream EmptyStream;
             EmptyStream << HashSerializedEmpty;
             DeSerialize(EmptyStream,Temp);
@@ -125,12 +126,14 @@ class hashedstringtests : public UnitTestGroup
             ThreeStream << HashSerializedLineThree;
             DeSerialize(ThreeStream,Temp);
             TEST(Temp==HashedLineThree,"Deserialization4");
+            TEST(Temp.IsEmpty()==false,"NotEmpty");
 
             TestOutput << endl << "Testing Getting and Setting String and Hash." << endl;
             TEST(1364076727==HashedEmpty.GetHash(),"GetHash");
             Temp.SetString("");
             TEST(1364076727==Temp.GetHash(),"SetString");
             TEST(""==Temp.GetString(),"GetString");
+            TEST(Temp.IsEmpty(),"SetStringEmpty");
 
             TestOutput << endl << "Comparing Hashes From LineTwo: " << HashedLineTwo.GetHash() << " and LineThree: " << HashedLineThree.GetHash() << endl;
             TEST(HashedLineThree<HashedLineTwo,"operator<");
@@ -203,7 +206,6 @@ class hashedstringtests : public UnitTestGroup
             TestOutput << "String sort by set insertion took (in microseconds): " << (PostStringSet-PreStringSet) << endl;
             TestOutput << "Hashed sort by set insertion took (in microseconds): " << (PostHashedSet-PreHashedSet) << endl;
             TEST_WARN((PostStringSet-PreStringSet)>(PostHashedSet-PreHashedSet),"SetSpeed")
-
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

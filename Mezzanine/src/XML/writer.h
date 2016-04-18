@@ -160,7 +160,8 @@ namespace Mezzanine
                 /// @brief Writes data to the stream.
                 /// @param data The data to be written.
                 /// @param size The number of bytes to be written.
-                void Write(const void* data, size_t size) { WrappedStream->Write(data,size); }
+                void Write(const void* data, Resource::StreamSize size)
+                    { WrappedStream->Write(data,size); }
         };//XMLStreamWrapper
 
 

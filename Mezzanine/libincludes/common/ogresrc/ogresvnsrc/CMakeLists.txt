@@ -544,7 +544,7 @@ if (OGRE_BUILD_TESTS)
 endif ()
 
 # Setup samples
-add_subdirectory(Samples)
+#add_subdirectory(Samples)
 
 # Add android JNI binding
 if(ANDROID AND OGRE_BUILD_ANDROID_JNI_SAMPLE)

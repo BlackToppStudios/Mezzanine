@@ -33,7 +33,6 @@ var searchData=
   ['glyphadvance',['GlyphAdvance',['../classMezzanine_1_1UI_1_1Glyph.html#a5bca9d6333cf67a842546475f350a4ec',1,'Mezzanine::UI::Glyph']]],
   ['glyphid',['GlyphID',['../classMezzanine_1_1UI_1_1Glyph.html#a8bddaeb76a02a6b71a653f164bdd7a8a',1,'Mezzanine::UI::Glyph']]],
   ['glyphs',['Glyphs',['../classMezzanine_1_1UI_1_1FontData.html#a357ad9ba16ca7595c4a83e0dcf8a825d',1,'Mezzanine::UI::FontData']]],
-  ['goaltime',['GoalTime',['../classMezzanine_1_1GoalTimer.html#a6363d16c70502a00ae190b60b178e54b',1,'Mezzanine::GoalTimer']]],
   ['graphicsaffector',['GraphicsAffector',['../classMezzanine_1_1Graphics_1_1ParticleAffector.html#a354400e9180d5b0fc25ef355dbdd9931',1,'Mezzanine::Graphics::ParticleAffector']]],
   ['graphicsbillboard',['GraphicsBillboard',['../classMezzanine_1_1Graphics_1_1Billboard.html#ae68a2f489c4f828ddf22b1a0829e128c',1,'Mezzanine::Graphics::Billboard']]],
   ['graphicsbillboardset',['GraphicsBillboardSet',['../classMezzanine_1_1Graphics_1_1BillboardSetProxy.html#a61a46291934b26c1e4351b994e79a30f',1,'Mezzanine::Graphics::BillboardSetProxy']]],

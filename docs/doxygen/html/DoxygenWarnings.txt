@@ -1,8 +1,18 @@
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/statetransitionaction.h:51: warning: Compound Mezzanine::StateTransitionAction is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/Procedural/Mesh/vertexnormalsmodifier.h:83: warning: Compound Mezzanine::Graphics::Procedural::VertexNormalsModifier is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/statemachine.h:52: warning: Compound Mezzanine::StateMachine is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/assethandler.h:52: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/sortedvector.h:74: warning: Compound Mezzanine::SortedVector is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/quadrenderer.h:57: warning: Compound Mezzanine::UI::QuadRenderer is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/statetransition.h:53: warning: Compound Mezzanine::StateTransition is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/ipaddress.cpp:121: warning: no uniquely matching class member found for 
+  String IPAddress::Resolve(const IPAddress::AddressContainer &Address)
+Possible candidates:
+  static AddressContainer Mezzanine::Network::IPAddress::Resolve(const String &Address)' at line 112 of file /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/ipaddress.h
+  static String Mezzanine::Network::IPAddress::Resolve(const AddressContainer &Address)' at line 118 of file /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/ipaddress.h
+
 error: Extra file 'img/tab_a.png' specified in HTML_EXTRA_FILES does not exist!
 error: Extra file 'img/tab_b.png' specified in HTML_EXTRA_FILES does not exist!
 error: Extra file 'img/tab_h.png' specified in HTML_EXTRA_FILES does not exist!
@@ -24,15 +34,15 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravitywell.h:173: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::CreateAreaEffect(const String&, World*, const NameValuePairMap&)' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravitywell.h:156: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::GetTypeName() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravitywell.h:90: warning: @copybrief or @copydoc target 'Mezzanine::WorldObject::ApplyEffect()' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:67: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:69: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:65: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:78: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:63: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:131: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:75: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:73: warning: @copybrief or @copydoc target 'Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:77: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:75: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:77: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:62: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:75: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:60: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:143: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:87: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:85: warning: @copybrief or @copydoc target 'Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:89: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/primitivecollisionshape.h:77: warning: @copybrief or @copydoc target 'CollisionShape::GetBulletShape' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/boxcollisionshape.h:104: warning: @copybrief or @copydoc target 'CollisionShape::GetBulletShape' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Physics/boxcollisionshape.h:102: warning: @copybrief or @copydoc target 'CollisionShape::GetBulletShape' not found
@@ -114,11 +124,11 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 <TEST_NO_THROW>:1: warning: parameters of member TEST_NO_THROW are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/UnitTests/src/testdatatools.h:182: warning: argument 'CodeThatMightThrow' of command @param is not found in the argument list of TEST_THROW(ExpectThrown, CodeThatThrows, Name)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:100: warning: unable to resolve reference to `Mezzanine::Graphics::Light' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:146: warning: unable to resolve reference to `Mezzanine::Network::NetworkManager' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:148: warning: unable to resolve reference to `Mezzanine::ResourceManager' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:156: warning: unable to resolve reference to `mainloop1' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:162: warning: unable to resolve reference to `actorcontainer1' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/entresol.h:276: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/dox/installing_engine_deps_windows.h:75: warning: End of list marker found without any preceding list items
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/ui.h:212: warning: unable to resolve reference to `UIClassSCreen' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/ui.h:391: warning: unable to resolve reference to `Mezzanine::UI::Screen::CreateWidget(const String&,const String&)' for \ref command
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/UI/ui.h:492: warning: unable to resolve reference to `UISingleImage' for \ref command
@@ -141,6 +151,7 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/XML/xml.h:627: warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/XML/xml.h:711: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/XML/xml.h:711: warning: explicit link request to 'x' could not be resolved
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/ipaddress.cpp:118: warning: Member Ret (variable) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/mutex.h:82: warning: Found unknown command `\TODO'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Threading/mutex.h:82: warning: explicit link request to 'IF' could not be resolved
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:300: warning: return type of member Mezzanine::operator+ is not documented
@@ -149,7 +160,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/vector3.h:737: warning: Unsupported xml/html tag <Vector3> found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/actormanager.h:153: warning: parameters of member Mezzanine::ActorManager::CreateActor are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/actormanager.h:69: warning: return type of member Mezzanine::ActorUpdateWorkUnit::operator= is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/timer.h:222: warning: return type of member Mezzanine::AlarmTimer::GoalReached is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/areaeffectmanager.h:208: warning: parameters of member Mezzanine::AreaEffectManager::CreateAreaEffect are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/areaeffectmanager.h:77: warning: return type of member Mezzanine::AreaEffectUpdateWorkUnit::operator= is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/attachable.h:62: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
@@ -240,7 +250,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:169: warning: @copybrief or @copydoc target 'Mezzanine::WorldObjectFactory::GetTypeName() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:169: warning: @copydetails or @copydoc target 'Mezzanine::WorldObjectFactory::GetTypeName() const' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/fieldofforce.h:169: warning: return type of member Mezzanine::FieldOfForceFactory::GetTypeName is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/timer.h:156: warning: return type of member Mezzanine::GoalTimer::GoalReached is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravityfield.h:84: warning: @copybrief or @copydoc target 'Mezzanine::WorldObject::ApplyEffect()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravityfield.h:84: warning: @copybrief or @copydoc target 'Mezzanine::WorldObject::ApplyEffect()' not found
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/gravityfield.h:84: warning: @copydetails or @copydoc target 'Mezzanine::WorldObject::ApplyEffect()' not found
@@ -323,6 +332,7 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/rigiddebris.h:227: warning: return type of member Mezzanine::RigidDebrisFactory::CreateRigidDebris is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/rigiddebris.h:232: warning: return type of member Mezzanine::RigidDebrisFactory::CreateRigidDebris is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/rigiddebris.h:239: warning: return type of member Mezzanine::RigidDebrisFactory::CreateRigidDebris is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/networkmanager.cpp:48: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/texturemanager.cpp:50: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Graphics/meshmanager.cpp:55: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:56: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
@@ -340,7 +350,11 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/trackiterator.h:293: warning: return type of member Mezzanine::SmoothTrackIterator::operator[] is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/softdebris.h:212: warning: return type of member Mezzanine::SoftDebrisFactory::CreateSoftDebris is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/softdebris.h:217: warning: return type of member Mezzanine::SoftDebrisFactory::CreateSoftDebris is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/timer.h:198: warning: return type of member Mezzanine::StopWatchTimer::GoalReached is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/sortedvector.h:82: warning: Member size_type (typedef) of class Mezzanine::SortedVector is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/sortedvector.h:76: warning: Member StorageVector (typedef) of class Mezzanine::SortedVector is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/sortedvector.h:85: warning: Member size() const  (function) of class Mezzanine::SortedVector is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/statetransition.h:60: warning: Member StateTransition(const HashedString32 &FromState, const HashedString32 &ToState, StateTransitionAction *OwningActionPointer) (function) of class Mezzanine::StateTransition is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/statetransitionaction.h:53: warning: Member operator()()=0 (function) of class Mezzanine::StateTransitionAction is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/terrainmanager.h:81: warning: The following parameters of Mezzanine::TerrainManager::TerrainManager(World *Creator, const XML::Node &XMLNode) are not documented:
   parameter 'Creator'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/terrainmanager.h:115: warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::TerrainManager::DestroyTerrain(TerrainBase *ToBeDestroyed)
@@ -358,7 +372,6 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/extendedtimer.h:55: warning: Member Milliseconds (variable) of class Mezzanine::Time is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/extendedtimer.h:57: warning: Member Minutes (variable) of class Mezzanine::Time is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/extendedtimer.h:56: warning: Member Seconds (variable) of class Mezzanine::Time is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/timer.h:86: warning: argument 'Style' of command @param is not found in the argument list of Mezzanine::Timer::Timer()
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/track.h:150: warning: return type of member Mezzanine::Track::begin is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/track.h:158: warning: return type of member Mezzanine::Track::Begin is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/track.h:339: warning: Found unknown command `\Polymorphicaly'
@@ -464,42 +477,30 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
   parameter 'Remove'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:85: warning: Member InternalControlIterator (typedef) of namespace Mezzanine::Input is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:84: warning: Member InternalControlPair (typedef) of namespace Mezzanine::Input is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:64: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:60: warning: Member Buttons (variable) of class Mezzanine::Input::ButtonDevice is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:59: warning: Member TransitioningIndexes (variable) of class Mezzanine::Input::ButtonDevice is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/device.h:59: warning: Member Sequences (variable) of class Mezzanine::Input::Device is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:66: warning: parameters of member Mezzanine::Input::ButtonDevice::AddPressedButtons are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:129: warning: parameters of member Mezzanine::Input::ButtonDevice::GetButtonState are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:133: warning: parameters of member Mezzanine::Input::ButtonDevice::GetButtonState are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:61: warning: parameters of member Mezzanine::Input::ButtonDevice::UpdateImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:64: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:64: warning: @copydetails or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:64: warning: parameters of member Mezzanine::Input::ButtonDevice::VerifySequenceImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:69: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:67: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:62: warning: Member Axes (variable) of class Mezzanine::Input::Controller is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:61: warning: Member DeviceName (variable) of class Mezzanine::Input::Controller is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:64: warning: Member Hats (variable) of class Mezzanine::Input::Controller is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:60: warning: Member Index (variable) of class Mezzanine::Input::Controller is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:63: warning: Member Trackballs (variable) of class Mezzanine::Input::Controller is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:60: warning: Member Buttons (variable) of class Mezzanine::Input::ButtonDevice is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:59: warning: Member TransitioningIndexes (variable) of class Mezzanine::Input::ButtonDevice is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/device.h:59: warning: Member Sequences (variable) of class Mezzanine::Input::Device is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:72: warning: The following parameters of Mezzanine::Input::Controller::Controller(void *InternalControl, int Count) are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:66: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:68: warning: parameters of member Mezzanine::Input::ButtonDevice::AddPressedButtons are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:131: warning: parameters of member Mezzanine::Input::ButtonDevice::GetButtonState are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:135: warning: parameters of member Mezzanine::Input::ButtonDevice::GetButtonState are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:63: warning: parameters of member Mezzanine::Input::ButtonDevice::UpdateImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:66: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:66: warning: @copydetails or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:66: warning: parameters of member Mezzanine::Input::ButtonDevice::VerifySequenceImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:77: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:75: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:80: warning: The following parameters of Mezzanine::Input::Controller::Controller(void *InternalControl, int Count) are not documented:
   parameter 'Count'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:69: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:69: warning: @copydetails or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:69: warning: parameters of member Mezzanine::Input::Controller::AddPressedButtons are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:131: warning: parameters of member Mezzanine::Input::Controller::GetButtonState are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:133: warning: parameters of member Mezzanine::Input::Controller::GetButtonState are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:128: warning: unable to resolve reference to `InvalidParametersException' for \ref command
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:98: warning: The following parameters of Mezzanine::Input::Controller::IsHatPushedInDirection(const UInt16 Hat, const Input::HatState &WhichWay) const are not documented:
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:77: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:77: warning: @copydetails or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:77: warning: parameters of member Mezzanine::Input::Controller::AddPressedButtons are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:139: warning: parameters of member Mezzanine::Input::Controller::GetButtonState are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:141: warning: parameters of member Mezzanine::Input::Controller::GetButtonState are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:136: warning: unable to resolve reference to `InvalidParametersException' for \ref command
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:106: warning: The following parameters of Mezzanine::Input::Controller::IsHatPushedInDirection(const UInt16 Hat, const Input::HatState &WhichWay) const are not documented:
   parameter 'Hat'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:65: warning: parameters of member Mezzanine::Input::Controller::UpdateImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:67: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:67: warning: @copydetails or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:67: warning: parameters of member Mezzanine::Input::Controller::VerifySequenceImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/device.h:59: warning: Member Sequences (variable) of class Mezzanine::Input::Device is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:73: warning: parameters of member Mezzanine::Input::Controller::UpdateImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:75: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:75: warning: @copydetails or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/controller.h:75: warning: parameters of member Mezzanine::Input::Controller::VerifySequenceImpl are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.h:75: warning: return type of member Mezzanine::Input::DeviceUpdateWorkUnit::operator= is not documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.h:187: warning: parameters of member Mezzanine::Input::InputManager::GetController are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:71: warning: Member ConstControllerIterator (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
@@ -507,28 +508,25 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:70: warning: Member ControllerIterator (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:68: warning: Member ControllerPair (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/inputmanager.cpp:74: warning: Member Controllers (variable) of class Mezzanine::Input::InputManagerInternalData is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:78: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:80: warning: @copybrief or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:65: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:63: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:60: warning: Member Buttons (variable) of class Mezzanine::Input::ButtonDevice is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:59: warning: Member TransitioningIndexes (variable) of class Mezzanine::Input::ButtonDevice is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/device.h:59: warning: Member Sequences (variable) of class Mezzanine::Input::Device is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:65: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:65: warning: @copydetails or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:65: warning: parameters of member Mezzanine::Input::Keyboard::AddPressedButtons are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:78: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:78: warning: @copydetails or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:78: warning: parameters of member Mezzanine::Input::Keyboard::GetButtonState are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:78: warning: return type of member Mezzanine::Input::Keyboard::GetButtonState is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:80: warning: @copybrief or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:80: warning: @copydetails or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:80: warning: parameters of member Mezzanine::Input::Keyboard::GetButtonState are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:80: warning: return type of member Mezzanine::Input::Keyboard::GetButtonState is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:61: warning: parameters of member Mezzanine::Input::Keyboard::UpdateImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:63: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:63: warning: @copydetails or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:63: warning: parameters of member Mezzanine::Input::Keyboard::VerifySequenceImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:75: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:77: warning: @copybrief or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:62: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:60: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:62: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:62: warning: @copydetails or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:62: warning: parameters of member Mezzanine::Input::Keyboard::AddPressedButtons are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:75: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:75: warning: @copydetails or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:75: warning: parameters of member Mezzanine::Input::Keyboard::GetButtonState are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:75: warning: return type of member Mezzanine::Input::Keyboard::GetButtonState is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:77: warning: @copybrief or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:77: warning: @copydetails or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:77: warning: parameters of member Mezzanine::Input::Keyboard::GetButtonState are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:77: warning: return type of member Mezzanine::Input::Keyboard::GetButtonState is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:58: warning: parameters of member Mezzanine::Input::Keyboard::UpdateImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:60: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:60: warning: @copydetails or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/keyboard.h:60: warning: parameters of member Mezzanine::Input::Keyboard::VerifySequenceImpl are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/metacode.h:149: warning: parameters of member Mezzanine::Input::MetaCode::MetaCode are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/metacode.h:230: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of Mezzanine::Input::MetaCode::GetControllerButtonCode(const UInt16 ButtonNumber)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/metacode.h:230: warning: The following parameters of Mezzanine::Input::MetaCode::GetControllerButtonCode(const UInt16 ButtonNumber) are not documented:
@@ -536,49 +534,32 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/metacode.h:226: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of Mezzanine::Input::MetaCode::GetMouseButtonCode(const UInt16 ButtonNumber)
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/metacode.h:226: warning: The following parameters of Mezzanine::Input::MetaCode::GetMouseButtonCode(const UInt16 ButtonNumber) are not documented:
   parameter 'ButtonNumber'
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:131: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:133: warning: @copybrief or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:77: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:73: warning: @copybrief or @copydoc target 'Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:75: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:66: warning: Member CurrentViewport (variable) of class Mezzanine::Input::Mouse is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:71: warning: Member Delta (variable) of class Mezzanine::Input::Mouse is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:69: warning: Member HorizontalWheelState (variable) of class Mezzanine::Input::Mouse is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:72: warning: Member MulticlickCode (variable) of class Mezzanine::Input::Mouse is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:67: warning: Member MulticlickTimer (variable) of class Mezzanine::Input::Mouse is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:70: warning: Member Position (variable) of class Mezzanine::Input::Mouse is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:68: warning: Member VerticalWheelState (variable) of class Mezzanine::Input::Mouse is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:60: warning: Member Buttons (variable) of class Mezzanine::Input::ButtonDevice is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/buttondevice.h:59: warning: Member TransitioningIndexes (variable) of class Mezzanine::Input::ButtonDevice is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/device.h:59: warning: Member Sequences (variable) of class Mezzanine::Input::Device is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:77: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:77: warning: @copydetails or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:77: warning: parameters of member Mezzanine::Input::Mouse::AddPressedButtons are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:82: warning: parameters of member Mezzanine::Input::Mouse::ConvertToMultiClickCode are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:82: warning: return type of member Mezzanine::Input::Mouse::ConvertToMultiClickCode is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:131: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:131: warning: @copydetails or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:131: warning: parameters of member Mezzanine::Input::Mouse::GetButtonState are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:131: warning: return type of member Mezzanine::Input::Mouse::GetButtonState is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:133: warning: @copybrief or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:133: warning: @copydetails or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:133: warning: parameters of member Mezzanine::Input::Mouse::GetButtonState are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:133: warning: return type of member Mezzanine::Input::Mouse::GetButtonState is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:79: warning: parameters of member Mezzanine::Input::Mouse::IsMultiClickable are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:79: warning: return type of member Mezzanine::Input::Mouse::IsMultiClickable is not documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:73: warning: @copybrief or @copydoc target 'Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:73: warning: @copydetails or @copydoc target 'Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:73: warning: parameters of member Mezzanine::Input::Mouse::UpdateImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:75: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:75: warning: @copydetails or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:75: warning: parameters of member Mezzanine::Input::Mouse::VerifySequenceImpl are not (all) documented
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/sequencecontainer.h:60: warning: Member SequencedInputContainer (typedef) of class Mezzanine::Input::SequenceContainer is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/sequencecontainer.h:61: warning: Member SequencedInputIterator (typedef) of class Mezzanine::Input::SequenceContainer is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/sequencecontainer.h:66: warning: Member CurrSequenceCache (variable) of class Mezzanine::Input::SequenceContainer is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/sequencecontainer.h:64: warning: Member DeviceIndex (variable) of class Mezzanine::Input::SequenceContainer is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/sequencecontainer.h:63: warning: Member MaxSequenceSize (variable) of class Mezzanine::Input::SequenceContainer is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/sequencecontainer.h:67: warning: Member SequencedInputs (variable) of class Mezzanine::Input::SequenceContainer is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/sequencecontainer.h:65: warning: Member SequenceTimer (variable) of class Mezzanine::Input::SequenceContainer is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:143: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:145: warning: @copybrief or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:89: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:85: warning: @copybrief or @copydoc target 'Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:87: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:89: warning: @copybrief or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:89: warning: @copydetails or @copydoc target 'Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:89: warning: parameters of member Mezzanine::Input::Mouse::AddPressedButtons are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:94: warning: parameters of member Mezzanine::Input::Mouse::ConvertToMultiClickCode are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:94: warning: return type of member Mezzanine::Input::Mouse::ConvertToMultiClickCode is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:143: warning: @copybrief or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:143: warning: @copydetails or @copydoc target 'Device::GetButtonState(const UInt16 Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:143: warning: parameters of member Mezzanine::Input::Mouse::GetButtonState are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:143: warning: return type of member Mezzanine::Input::Mouse::GetButtonState is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:145: warning: @copybrief or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:145: warning: @copydetails or @copydoc target 'Device::GetButtonState(const Input::InputCode& Button) const' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:145: warning: parameters of member Mezzanine::Input::Mouse::GetButtonState are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:145: warning: return type of member Mezzanine::Input::Mouse::GetButtonState is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:91: warning: parameters of member Mezzanine::Input::Mouse::IsMultiClickable are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:91: warning: return type of member Mezzanine::Input::Mouse::IsMultiClickable is not documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:85: warning: @copybrief or @copydoc target 'Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:85: warning: @copydetails or @copydoc target 'Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:85: warning: parameters of member Mezzanine::Input::Mouse::UpdateImpl are not (all) documented
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:87: warning: @copybrief or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:87: warning: @copydetails or @copydoc target 'Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)' not found
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Input/mouse.h:87: warning: parameters of member Mezzanine::Input::Mouse::VerifySequenceImpl are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/linegroup.cpp:118: warning: parameters of member Mezzanine::Internal::Line3D::Line3D are not (all) documented
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/linegroup.cpp:125: warning: The following parameters of Mezzanine::Internal::Line3D::AddPoint(const Vector3 &NewPoint, const ColourValue &Colour) are not documented:
   parameter 'Colour'
@@ -586,10 +567,37 @@ error: Extra file 'img/search_l.png' specified in HTML_EXTRA_FILES does not exis
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/linegroup.cpp:129: warning: The following parameters of Mezzanine::Internal::Line3D::GetPoint(const Whole Index) const are not documented:
   parameter 'Index'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/uri.cpp:60: warning: Member BuildURIPath(String &ToBuild, const StringVector &Segments) (function) of namespace Mezzanine::Network is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/platformsocket.cpp:66: warning: Member ConvertLayer3ProtocolType(const short int Protocol) (function) of namespace Mezzanine::Network is not documented.
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/uri.cpp:75: warning: Member MergeURIPaths(const String &Base, const String &Relative) (function) of namespace Mezzanine::Network is not documented.
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/httpresponse.h:82: warning: argument 'Request' of command @param is not found in the argument list of Mezzanine::Network::HTTPResponse::Decompose(const String &Response)
-/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/httpresponse.h:82: warning: The following parameters of Mezzanine::Network::HTTPResponse::Decompose(const String &Response) are not documented:
-  parameter 'Response'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/ipaddress.cpp:113: warning: Member resize(IPv6BinaryLength, 0) (function) of namespace Mezzanine::Network is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/ipaddress.cpp:107: warning: Member v6Test(in6_addr) (function) of namespace Mezzanine::Network is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/ipaddress.cpp:114: warning: Member Ret (variable) of namespace Mezzanine::Network is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/ipaddress.cpp:106: warning: Member v6Test (variable) of namespace Mezzanine::Network is not documented.
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/httpresponse.h:83: warning: argument 'Message' of command @param is not found in the argument list of Mezzanine::Network::HTTPResponse::Decompose(StringIterator &CurrIt, const StringIterator EndIt)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/httpresponse.h:83: warning: The following parameters of Mezzanine::Network::HTTPResponse::Decompose(StringIterator &CurrIt, const StringIterator EndIt) are not documented:
+  parameter 'CurrIt'
+  parameter 'EndIt'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/platformsocket.h.cpp:289: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::Network::PlatformSocket::Bind(const UInt16 Port)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/platformsocket.h.cpp:289: warning: The following parameters of Mezzanine::Network::PlatformSocket::Bind(const UInt16 Port) are not documented:
+  parameter 'Port'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/socket.h:204: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::Network::Socket::Bind(const UInt16 Port)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/socket.h:204: warning: The following parameters of Mezzanine::Network::Socket::Bind(const UInt16 Port) are not documented:
+  parameter 'Port'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/platformsocket.h.cpp:79: warning: unable to resolve reference to `SocketHandleImplementation' for \ref command
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/platformsocket.h.cpp:91: warning: unable to resolve reference to `SocketHandleImplementation' for \ref command
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/platformsocket.h.cpp:94: warning: unable to resolve reference to `SocketHandleImplementation' for \ref command
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/tcpv4socket.h:60: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Network::TCPv4Socket::TCPv4Socket(PlatformSocket *InternalSock)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/tcpv4socket.h:60: warning: The following parameters of Mezzanine::Network::TCPv4Socket::TCPv4Socket(PlatformSocket *InternalSock) are not documented:
+  parameter 'InternalSock'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/tcpv6socket.h:60: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Network::TCPv6Socket::TCPv6Socket(PlatformSocket *InternalSock)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/tcpv6socket.h:60: warning: The following parameters of Mezzanine::Network::TCPv6Socket::TCPv6Socket(PlatformSocket *InternalSock) are not documented:
+  parameter 'InternalSock'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/udpv4socket.h:60: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Network::UDPv4Socket::UDPv4Socket(PlatformSocket *InternalSock)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/udpv4socket.h:60: warning: The following parameters of Mezzanine::Network::UDPv4Socket::UDPv4Socket(PlatformSocket *InternalSock) are not documented:
+  parameter 'InternalSock'
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/udpv6socket.h:60: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Network::UDPv6Socket::UDPv6Socket(PlatformSocket *InternalSock)
+/home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/udpv6socket.h:60: warning: The following parameters of Mezzanine::Network::UDPv6Socket::UDPv6Socket(PlatformSocket *InternalSock) are not documented:
+  parameter 'InternalSock'
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/uri.h:324: warning: argument 'Other' of command @param is not found in the argument list of Mezzanine::Network::URI::Resolve(const URI &Relative) const
 /home/sqeaky/Code/MezzanineFresh/Mezzanine/src/Network/uri.h:324: warning: The following parameters of Mezzanine::Network::URI::Resolve(const URI &Relative) const are not documented:
   parameter 'Relative'

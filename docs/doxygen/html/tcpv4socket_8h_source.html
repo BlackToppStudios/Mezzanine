@@ -119,52 +119,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef MEZZNETWORK</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef _networktcpv4socket_h</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define _networktcpv4socket_h</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Network/tcpsocket.h&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;Network/ipv4socket.h&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">namespace </span>Network</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {<span class="comment"></span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">        /// @class TCPv4Socket</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        /// @brief A TCP socket that uses IPv4 internet addresses for connections.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        /// @details</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> TCPv4Socket : <span class="keyword">public</span> IPv4Socket, <span class="keyword">public</span> TCPSocket</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span>            TCPv4Socket();<span class="comment"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">            /// @brief Internal constructor.</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">            /// @param A pointer to the internal socket to wrap.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>            TCPv4Socket(PlatformSocket* InternalSock);<span class="comment"></span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">            /// @brief Binding constructor.</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">            /// @param Port The port number to bind this socket to.</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span>            TCPv4Socket(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">UInt16</a> Port);<span class="comment"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~TCPv4Socket();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        };<span class="comment">//TCPv4Socket</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }<span class="comment">//Network</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef _networktcpv4socket_h</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define _networktcpv4socket_h</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Network/tcpsocket.h&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;Network/ipv4socket.h&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMezzanine.html">Mezzanine</a></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">namespace </span>Network</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {<span class="comment"></span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">        /// @brief A TCP socket that uses IPv4 internet addresses for connections.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classMezzanine_1_1Network_1_1TCPv4Socket.html">   54</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html">TCPv4Socket</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Network_1_1IPv4Socket.html">IPv4Socket</a>, <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Network_1_1TCPSocket.html">TCPSocket</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html">TCPv4Socket</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">            /// @brief Internal constructor.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">            /// @param A pointer to the internal socket to wrap.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html">TCPv4Socket</a>(<a class="code" href="classMezzanine_1_1Network_1_1PlatformSocket.html">PlatformSocket</a>* InternalSock);<span class="comment"></span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">            /// @brief Binding constructor.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">            /// @param Port The port number to bind this socket to.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html">TCPv4Socket</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">UInt16</a> Port);<span class="comment"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Network_1_1TCPv4Socket.html">TCPv4Socket</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        };<span class="comment">//TCPv4Socket</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }<span class="comment">//Network</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="namespaceMezzanine_html_adab7bb4dd72bbb8ddb8b1b5470ce99c8"><div class="ttname"><a href="namespaceMezzanine.html#adab7bb4dd72bbb8ddb8b1b5470ce99c8">Mezzanine::UInt16</a></div><div class="ttdeci">uint16_t UInt16</div><div class="ttdoc">An 16-bit unsigned integer. </div><div class="ttdef"><b>Definition:</b> <a href="datatypes_8h_source.html#l00122">datatypes.h:122</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1IPv4Socket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1IPv4Socket.html">Mezzanine::Network::IPv4Socket</a></div><div class="ttdoc">A socket class using the IP version 4 protocol. </div><div class="ttdef"><b>Definition:</b> <a href="ipv4socket_8h_source.html#l00053">ipv4socket.h:53</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1PlatformSocket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1PlatformSocket.html">Mezzanine::Network::PlatformSocket</a></div><div class="ttdoc">This is helper class for managing platform specific data of socket implementations. </div><div class="ttdef"><b>Definition:</b> <a href="platformsocket_8h_8cpp_source.html#l00252">platformsocket.h.cpp:252</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1TCPv4Socket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1TCPv4Socket.html">Mezzanine::Network::TCPv4Socket</a></div><div class="ttdoc">A TCP socket that uses IPv4 internet addresses for connections. </div><div class="ttdef"><b>Definition:</b> <a href="tcpv4socket_8h_source.html#l00054">tcpv4socket.h:54</a></div></div>
 <div class="ttc" id="crossplatformexport_8h_html_a455f91aab9e6a1cf4286f5cdfa74c7bc"><div class="ttname"><a href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a></div><div class="ttdeci">#define MEZZ_LIB</div><div class="ttdoc">Some platforms require special decorations to denote what is exported/imported in a share library...</div><div class="ttdef"><b>Definition:</b> <a href="crossplatformexport_8h_source.html#l00139">crossplatformexport.h:139</a></div></div>
 <div class="ttc" id="namespaceMezzanine_html"><div class="ttname"><a href="namespaceMezzanine.html">Mezzanine</a></div><div class="ttdoc">The bulk of the engine components go in this namspace. </div><div class="ttdef"><b>Definition:</b> <a href="actor_8cpp_source.html#l00056">actor.cpp:56</a></div></div>
+<div class="ttc" id="classMezzanine_1_1Network_1_1TCPSocket_html"><div class="ttname"><a href="classMezzanine_1_1Network_1_1TCPSocket.html">Mezzanine::Network::TCPSocket</a></div><div class="ttdoc">A socket class using the TCP stream protocol. </div><div class="ttdef"><b>Definition:</b> <a href="tcpsocket_8h_source.html#l00053">tcpsocket.h:53</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/>
     <address class="footer">
         <small>
-            Generated on Mon Feb 15 2016 13:31:42 for BlackTopp Studios inc by
+            Generated on Wed Apr 6 2016 08:34:47 for BlackTopp Studios inc by
             <a href="http://www.doxygen.org/index.html">
                 <img class="footer" src="doxygen.png" alt="doxygen"/>
             </a>

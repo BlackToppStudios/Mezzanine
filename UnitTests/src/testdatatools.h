@@ -64,7 +64,7 @@ namespace Mezzanine
             #ifdef __FUNCTION__
                 #define TEST(Cond, Name) Test( (Cond), (Name), Testing::Failed, Testing::Success, __FUNCTION__, __FILE__, __LINE__ );
             #else
-                #define TEST(Cond, Name) Test( (Cond), (Name), Testing::Failed, Testing::Success, __func__, __FILE__, __LINE__ );
+                #define TEST(Cond, Name); Test( (Cond), (Name), Testing::Failed, Testing::Success, __func__, __FILE__, __LINE__ );
             #endif
         #endif
 

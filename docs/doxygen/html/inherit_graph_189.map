@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CollisionDispatcher.html" title="Used to provide better reporting of collisions. " alt="" coords="200,5,343,47"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Network_1_1Socket.html" title="This is a basic socket interface for the transmission and retrieval of packets. " alt="" coords="5,104,148,145"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Network_1_1IPv4Socket.html" title="A socket class using the IP version 4 protocol. " alt="" coords="196,71,339,112"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Network_1_1IPv6Socket.html" title="A socket class using the IP version 6 protocol. " alt="" coords="196,136,339,177"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Network_1_1TCPSocket.html" title="A socket class using the TCP stream protocol. " alt="" coords="196,5,339,47"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Network_1_1UDPSocket.html" title="A socket class using the User Datagram Protocol. " alt="" coords="196,201,339,243"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Network_1_1TCPv4Socket.html" title="A TCP socket that uses IPv4 internet addresses for connections. " alt="" coords="387,5,529,47"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Network_1_1UDPv4Socket.html" title="A UDP socket that uses IPv4 internet addresses for transmissions. " alt="" coords="387,136,529,177"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Network_1_1TCPv6Socket.html" title="A TCP socket that uses IPv6 internet addresses for connections. " alt="" coords="387,71,529,112"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Network_1_1UDPv6Socket.html" title="A UDP socket that uses IPv6 internet addresses for transmissions. " alt="" coords="387,201,529,243"/>
 </map>
