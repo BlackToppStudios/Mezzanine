@@ -49,8 +49,9 @@
 
 namespace Mezzanine
 {
+
     // Document stuff about default state being first state added.
-    class StateMachine
+    class MEZZ_LIB StateMachine
     {
         private:
             typedef SortedVector<HashedString32> StateContainerType;
