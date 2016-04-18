@@ -51,6 +51,8 @@
 
 namespace Mezzanine
 {
+    VehicleManager::FactoryContainer VehicleManager::VehicleFactories;
+
     ///////////////////////////////////////////////////////////////////////////////
     // VehicleUpdateWorkUnit Methods
 
@@ -222,40 +224,40 @@ namespace Mezzanine
 
     void VehicleManager::AddVehicleFactory(VehicleFactory* ToBeAdded)
     {
-        this->VehicleFactories.insert(std::pair<String,VehicleFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
+        VehicleManager::VehicleFactories.insert(std::pair<String,VehicleFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
     }
 
     void VehicleManager::RemoveVehicleFactory(VehicleFactory* ToBeRemoved)
     {
-        this->RemoveVehicleFactory(ToBeRemoved->GetTypeName());
+        VehicleManager::RemoveVehicleFactory(ToBeRemoved->GetTypeName());
     }
 
     void VehicleManager::RemoveVehicleFactory(const String& ImplName)
     {
-        FactoryIterator VehFactIt = this->VehicleFactories.find(ImplName);
-        if( VehFactIt != this->VehicleFactories.end() )
-            { this->VehicleFactories.erase(VehFactIt); }
+        FactoryIterator VehFactIt = VehicleManager::VehicleFactories.find(ImplName);
+        if( VehFactIt != VehicleManager::VehicleFactories.end() )
+            { VehicleManager::VehicleFactories.erase(VehFactIt); }
     }
 
     void VehicleManager::DestroyVehicleFactory(VehicleFactory* ToBeDestroyed)
     {
-        this->DestroyVehicleFactory(ToBeDestroyed->GetTypeName());
+        VehicleManager::DestroyVehicleFactory(ToBeDestroyed->GetTypeName());
     }
 
     void VehicleManager::DestroyVehicleFactory(const String& ImplName)
     {
-        FactoryIterator VehFactIt = this->VehicleFactories.find(ImplName);
-        if( VehFactIt != this->VehicleFactories.end() ) {
+        FactoryIterator VehFactIt = VehicleManager::VehicleFactories.find(ImplName);
+        if( VehFactIt != VehicleManager::VehicleFactories.end() ) {
             delete VehFactIt->second;
-            this->VehicleFactories.erase(VehFactIt);
+            VehicleManager::VehicleFactories.erase(VehFactIt);
         }
     }
 
     void VehicleManager::DestroyAllVehicleFactories()
     {
-        for( FactoryIterator VehFactIt = this->VehicleFactories.begin() ; VehFactIt != this->VehicleFactories.end() ; ++VehFactIt )
+        for( FactoryIterator VehFactIt = VehicleManager::VehicleFactories.begin() ; VehFactIt != VehicleManager::VehicleFactories.end() ; ++VehFactIt )
             { delete (*VehFactIt).second; }
-        this->VehicleFactories.clear();
+        VehicleManager::VehicleFactories.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

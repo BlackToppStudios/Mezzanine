@@ -53,6 +53,8 @@
 
 namespace Mezzanine
 {
+    DebrisManager::FactoryContainer DebrisManager::DebrisFactories;
+
     ///////////////////////////////////////////////////////////////////////////////
     // DebrisUpdateWorkUnit Methods
 
@@ -299,40 +301,40 @@ namespace Mezzanine
 
     void DebrisManager::AddDebrisFactory(DebrisFactory* ToBeAdded)
     {
-        this->DebrisFactories.insert(std::pair<String,DebrisFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
+        DebrisManager::DebrisFactories.insert(std::pair<String,DebrisFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
     }
 
     void DebrisManager::RemoveDebrisFactory(DebrisFactory* ToBeRemoved)
     {
-        this->RemoveDebrisFactory(ToBeRemoved->GetTypeName());
+        DebrisManager::RemoveDebrisFactory(ToBeRemoved->GetTypeName());
     }
 
     void DebrisManager::RemoveDebrisFactory(const String& ImplName)
     {
-        FactoryIterator DebFactIt = this->DebrisFactories.find(ImplName);
-        if( DebFactIt != this->DebrisFactories.end() )
-            { this->DebrisFactories.erase(DebFactIt); }
+        FactoryIterator DebFactIt = DebrisManager::DebrisFactories.find(ImplName);
+        if( DebFactIt != DebrisManager::DebrisFactories.end() )
+            { DebrisManager::DebrisFactories.erase(DebFactIt); }
     }
 
     void DebrisManager::DestroyDebrisFactory(DebrisFactory* ToBeDestroyed)
     {
-        this->DestroyDebrisFactory(ToBeDestroyed->GetTypeName());
+        DebrisManager::DestroyDebrisFactory(ToBeDestroyed->GetTypeName());
     }
 
     void DebrisManager::DestroyDebrisFactory(const String& ImplName)
     {
-        FactoryIterator DebFactIt = this->DebrisFactories.find(ImplName);
-        if( DebFactIt != this->DebrisFactories.end() ) {
+        FactoryIterator DebFactIt = DebrisManager::DebrisFactories.find(ImplName);
+        if( DebFactIt != DebrisManager::DebrisFactories.end() ) {
             delete DebFactIt->second;
-            this->DebrisFactories.erase(DebFactIt);
+            DebrisManager::DebrisFactories.erase(DebFactIt);
         }
     }
 
     void DebrisManager::DestroyAllDebrisFactories()
     {
-        for( FactoryIterator DebFactIt = this->DebrisFactories.begin() ; DebFactIt != this->DebrisFactories.end() ; ++DebFactIt )
+        for( FactoryIterator DebFactIt = DebrisManager::DebrisFactories.begin() ; DebFactIt != DebrisManager::DebrisFactories.end() ; ++DebFactIt )
             { delete (*DebFactIt).second; }
-        this->DebrisFactories.clear();
+        DebrisManager::DebrisFactories.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

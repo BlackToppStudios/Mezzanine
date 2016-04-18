@@ -51,6 +51,8 @@
 
 namespace Mezzanine
 {
+    ActorManager::FactoryContainer ActorManager::ActorFactories;
+
     ///////////////////////////////////////////////////////////////////////////////
     // ActorUpdateWorkUnit Methods
 
@@ -222,40 +224,40 @@ namespace Mezzanine
 
     void ActorManager::AddActorFactory(ActorFactory* ToBeAdded)
     {
-        this->ActorFactories.insert(std::pair<String,ActorFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
+        ActorManager::ActorFactories.insert(std::pair<String,ActorFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
     }
 
     void ActorManager::RemoveActorFactory(ActorFactory* ToBeRemoved)
     {
-        this->RemoveActorFactory(ToBeRemoved->GetTypeName());
+        ActorManager::RemoveActorFactory(ToBeRemoved->GetTypeName());
     }
 
     void ActorManager::RemoveActorFactory(const String& ImplName)
     {
-        FactoryIterator ActFactIt = this->ActorFactories.find(ImplName);
-        if( ActFactIt != this->ActorFactories.end() )
-            { this->ActorFactories.erase(ActFactIt); }
+        FactoryIterator ActFactIt = ActorManager::ActorFactories.find(ImplName);
+        if( ActFactIt != ActorManager::ActorFactories.end() )
+            { ActorManager::ActorFactories.erase(ActFactIt); }
     }
 
     void ActorManager::DestroyActorFactory(ActorFactory* ToBeDestroyed)
     {
-        this->DestroyActorFactory(ToBeDestroyed->GetTypeName());
+        ActorManager::DestroyActorFactory(ToBeDestroyed->GetTypeName());
     }
 
     void ActorManager::DestroyActorFactory(const String& ImplName)
     {
-        FactoryIterator ActFactIt = this->ActorFactories.find(ImplName);
-        if( ActFactIt != this->ActorFactories.end() ) {
+        FactoryIterator ActFactIt = ActorManager::ActorFactories.find(ImplName);
+        if( ActFactIt != ActorManager::ActorFactories.end() ) {
             delete ActFactIt->second;
-            this->ActorFactories.erase(ActFactIt);
+            ActorManager::ActorFactories.erase(ActFactIt);
         }
     }
 
     void ActorManager::DestroyAllActorFactories()
     {
-        for( FactoryIterator ActFactIt = this->ActorFactories.begin() ; ActFactIt != this->ActorFactories.end() ; ++ActFactIt )
+        for( FactoryIterator ActFactIt = ActorManager::ActorFactories.begin() ; ActFactIt != ActorManager::ActorFactories.end() ; ++ActFactIt )
             { delete (*ActFactIt).second; }
-        this->ActorFactories.clear();
+        ActorManager::ActorFactories.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

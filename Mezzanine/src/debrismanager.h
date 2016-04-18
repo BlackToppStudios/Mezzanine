@@ -66,7 +66,6 @@ namespace Mezzanine
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of Debris.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB DebrisUpdateWorkUnit : public Threading::DefaultWorkUnit
     {
@@ -105,11 +104,11 @@ namespace Mezzanine
     {
     public:
         /// @brief Basic container type for DebrisFactory storage by this class.
-        typedef std::map<String,DebrisFactory*>      FactoryMap;
+        typedef std::map<String,DebrisFactory*>      FactoryContainer;
         /// @brief Iterator type for DebrisFactory instances stored by this class.
-        typedef FactoryMap::iterator                 FactoryIterator;
+        typedef FactoryContainer::iterator           FactoryIterator;
         /// @brief Const Iterator type for DebrisFactory instances stored by this class.
-        typedef FactoryMap::const_iterator           ConstFactoryIterator;
+        typedef FactoryContainer::const_iterator     ConstFactoryIterator;
         /// @brief Basic container type for Debris storage by this class.
         typedef std::vector< Debris* >               DebrisContainer;
         /// @brief Iterator type for Debris instances stored by this class.
@@ -126,7 +125,7 @@ namespace Mezzanine
 
         /// @internal
         /// @brief A map containing all registered Debris type factories.
-        FactoryMap DebrisFactories;
+        static FactoryContainer DebrisFactories;
         /// @internal
         /// @brief Container storing all Debris belonging to this manager.
         DebrisContainer Debriss;
@@ -235,22 +234,22 @@ namespace Mezzanine
 
         /// @brief Adds/registers a Debris factory with this manager, allowing it to be constructed through this API.
         /// @param ToBeAdded The Debris factory to be added.
-        virtual void AddDebrisFactory(DebrisFactory* ToBeAdded);
+        static void AddDebrisFactory(DebrisFactory* ToBeAdded);
         /// @brief Removes a Debris factory from this manager.
         /// @param ToBeRemoved A pointer to the Debris factory that is to be removed.
-        virtual void RemoveDebrisFactory(DebrisFactory* ToBeRemoved);
+        static void RemoveDebrisFactory(DebrisFactory* ToBeRemoved);
         /// @brief Removes a Debris factory from this manager.
         /// @param ImplName The name of the Debris implementation created by the factory to be removed.
-        virtual void RemoveDebrisFactory(const String& ImplName);
+        static void RemoveDebrisFactory(const String& ImplName);
         /// @brief Removes and destroys a Debris factory in this manager.
         /// @param ToBeDestroyed A pointer to the Debris factory that is to be removed and destroyed.
-        virtual void DestroyDebrisFactory(DebrisFactory* ToBeDestroyed);
+        static void DestroyDebrisFactory(DebrisFactory* ToBeDestroyed);
         /// @brief Removes and destroys a Debris factory in this manager.
         /// @param ImplName The name of the Debris implementation created by the factory to be removed and destroyed.
-        virtual void DestroyDebrisFactory(const String& ImplName);
+        static void DestroyDebrisFactory(const String& ImplName);
         /// @brief Destroys all Debris factories in this manager.
         /// @warning The destruction of Debris factories should only be done after all the Debris have been destroyed, otherwise this will cause an exception.
-        virtual void DestroyAllDebrisFactories();
+        static void DestroyAllDebrisFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -277,7 +276,6 @@ namespace Mezzanine
     };//DebrisManager
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class DefaultDebrisManagerFactory
     /// @brief A factory responsible for the creation and destruction of the default DebrisManager.
     ///////////////////////////////////////
     class DefaultDebrisManagerFactory : public WorldManagerFactory

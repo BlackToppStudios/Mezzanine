@@ -41,29 +41,27 @@
 #ifndef _meshterrain_h
 #define _meshterrain_h
 
-#include "terrainbase.h"
-
-///////////////////////////////////
-// Forward Declares
+#include "terrain.h"
 
 namespace Mezzanine
 {
-    class MEZZ_LIB MeshTerrain : public TerrainBase
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is the most straightforward of a terrain using a normal mesh for it's geometry.
+    ///////////////////////////////////////
+    class MEZZ_LIB MeshTerrain : public Terrain
     {
-        protected:
-        public:
-            /// @brief Class constructor.
-            /// @details The class constructor.
-            /// @param InitPosition The location for this terrain.
-            /// @param name The name of the terrain.
-            /// @param file The 3d mesh file that contains the 3d model the terrain will use.
-            /// @param group The resource group where the 3d mesh and other related files can be found.
-            MeshTerrain(Vector3 InitPosition, String name, String file, String group);
-            /// @brief Class destructor.
-            /// @details The class destructor.
-            virtual ~MeshTerrain();
-    };
-}
+    protected:
+    public:
+        /// @brief Class constructor.
+        /// @param InitPosition The location for this terrain.
+        /// @param name The name of the terrain.
+        /// @param file The 3d mesh file that contains the 3d model the terrain will use.
+        /// @param group The resource group where the 3d mesh and other related files can be found.
+        MeshTerrain(Vector3 InitPosition, String name, String file, String group);
+        /// @brief Class destructor.
+        virtual ~MeshTerrain();
+    };//MeshTerrain
+}//Mezzanine
 
 
 #endif // _meshterrain_h

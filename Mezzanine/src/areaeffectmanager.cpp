@@ -57,6 +57,8 @@
 
 namespace Mezzanine
 {
+    AreaEffectManager::FactoryContainer AreaEffectManager::AreaEffectFactories;
+
     ///////////////////////////////////////////////////////////////////////////////
     // AreaEffectUpdateWorkUnit Methods
 
@@ -367,40 +369,40 @@ namespace Mezzanine
 
     void AreaEffectManager::AddAreaEffectFactory(AreaEffectFactory* ToBeAdded)
     {
-        this->AreaEffectFactories.insert(std::pair<String,AreaEffectFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
+        AreaEffectManager::AreaEffectFactories.insert(std::pair<String,AreaEffectFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
     }
 
     void AreaEffectManager::RemoveAreaEffectFactory(AreaEffectFactory* ToBeRemoved)
     {
-        this->RemoveAreaEffectFactory(ToBeRemoved->GetTypeName());
+        AreaEffectManager::RemoveAreaEffectFactory(ToBeRemoved->GetTypeName());
     }
 
     void AreaEffectManager::RemoveAreaEffectFactory(const String& ImplName)
     {
-        FactoryIterator AEFactIt = this->AreaEffectFactories.find(ImplName);
-        if( AEFactIt != this->AreaEffectFactories.end() )
-            { this->AreaEffectFactories.erase(AEFactIt); }
+        FactoryIterator AEFactIt = AreaEffectManager::AreaEffectFactories.find(ImplName);
+        if( AEFactIt != AreaEffectManager::AreaEffectFactories.end() )
+            { AreaEffectManager::AreaEffectFactories.erase(AEFactIt); }
     }
 
     void AreaEffectManager::DestroyAreaEffectFactory(AreaEffectFactory* ToBeDestroyed)
     {
-        this->DestroyAreaEffectFactory(ToBeDestroyed->GetTypeName());
+        AreaEffectManager::DestroyAreaEffectFactory(ToBeDestroyed->GetTypeName());
     }
 
     void AreaEffectManager::DestroyAreaEffectFactory(const String& ImplName)
     {
-        FactoryIterator AEFactIt = this->AreaEffectFactories.find(ImplName);
-        if( AEFactIt != this->AreaEffectFactories.end() ) {
+        FactoryIterator AEFactIt = AreaEffectManager::AreaEffectFactories.find(ImplName);
+        if( AEFactIt != AreaEffectManager::AreaEffectFactories.end() ) {
             delete AEFactIt->second;
-            this->AreaEffectFactories.erase(AEFactIt);
+            AreaEffectManager::AreaEffectFactories.erase(AEFactIt);
         }
     }
 
     void AreaEffectManager::DestroyAllAreaEffectFactories()
     {
-        for( FactoryIterator AEFactIt = this->AreaEffectFactories.begin() ; AEFactIt != this->AreaEffectFactories.end() ; ++AEFactIt )
+        for( FactoryIterator AEFactIt = AreaEffectManager::AreaEffectFactories.begin() ; AEFactIt != AreaEffectManager::AreaEffectFactories.end() ; ++AEFactIt )
             { delete (*AEFactIt).second; }
-        this->AreaEffectFactories.clear();
+        AreaEffectManager::AreaEffectFactories.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

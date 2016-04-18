@@ -92,11 +92,11 @@ namespace Mezzanine
     {
     public:
         /// @brief Basic container type for ActorFactory storage by this class.
-        typedef std::map<String,ActorFactory*>       FactoryMap;
+        typedef std::map<String,ActorFactory*>       FactoryContainer;
         /// @brief Iterator type for ActorFactory instances stored by this class.
-        typedef FactoryMap::iterator                 FactoryIterator;
+        typedef FactoryContainer::iterator           FactoryIterator;
         /// @brief Const Iterator type for ActorFactory instances stored by this class.
-        typedef FactoryMap::const_iterator           ConstFactoryIterator;
+        typedef FactoryContainer::const_iterator     ConstFactoryIterator;
         /// @brief Basic container type for @ref Actor storage by this class.
         typedef std::vector<Actor*>                  ActorContainer;
         /// @brief Iterator type for @ref Actor instances stored by this class.
@@ -113,7 +113,7 @@ namespace Mezzanine
 
         /// @internal
         /// @brief A map containing all registered Actor type factories.
-        FactoryMap ActorFactories;
+        static FactoryContainer ActorFactories;
         /// @internal
         /// @brief Container storing all Actors belonging to this manager.
         ActorContainer Actors;
@@ -192,22 +192,22 @@ namespace Mezzanine
 
         /// @brief Adds/registers a Actor factory with this manager, allowing it to be constructed through this API.
         /// @param ToBeAdded The Actor factory to be added.
-        virtual void AddActorFactory(ActorFactory* ToBeAdded);
+        static void AddActorFactory(ActorFactory* ToBeAdded);
         /// @brief Removes a Actor factory from this manager.
         /// @param ToBeRemoved A pointer to the Actor factory that is to be removed.
-        virtual void RemoveActorFactory(ActorFactory* ToBeRemoved);
+        static void RemoveActorFactory(ActorFactory* ToBeRemoved);
         /// @brief Removes a Actor factory from this manager.
         /// @param ImplName The name of the Actor implementation created by the factory to be removed.
-        virtual void RemoveActorFactory(const String& ImplName);
+        static void RemoveActorFactory(const String& ImplName);
         /// @brief Removes and destroys a Actor factory in this manager.
         /// @param ToBeDestroyed A pointer to the Actor factory that is to be removed and destroyed.
-        virtual void DestroyActorFactory(ActorFactory* ToBeDestroyed);
+        static void DestroyActorFactory(ActorFactory* ToBeDestroyed);
         /// @brief Removes and destroys a Actor factory in this manager.
         /// @param ImplName The name of the Actor implementation created by the factory to be removed and destroyed.
-        virtual void DestroyActorFactory(const String& ImplName);
+        static void DestroyActorFactory(const String& ImplName);
         /// @brief Destroys all Actor factories in this manager.
         /// @warning The destruction of Actor factories should only be done after all the Actor have been destroyed, otherwise this will cause an exception.
-        virtual void DestroyAllActorFactories();
+        static void DestroyAllActorFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -234,7 +234,6 @@ namespace Mezzanine
     };//ActorManager
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class DefaultActorManagerFactory
     /// @brief A factory responsible for the creation and destruction of the default ActorManager.
     ///////////////////////////////////////
     class DefaultActorManagerFactory : public WorldManagerFactory

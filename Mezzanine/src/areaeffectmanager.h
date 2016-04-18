@@ -103,11 +103,11 @@ namespace Mezzanine
     {
     public:
         /// @brief Basic container type for AreaEffectFactory storage by this class.
-        typedef std::map<String,AreaEffectFactory*>   FactoryMap;
+        typedef std::map<String,AreaEffectFactory*>   FactoryContainer;
         /// @brief Iterator type for AreaEffectFactory instances stored by this class.
-        typedef FactoryMap::iterator                  FactoryIterator;
+        typedef FactoryContainer::iterator            FactoryIterator;
         /// @brief Const Iterator type for AreaEffectFactory instances stored by this class.
-        typedef FactoryMap::const_iterator            ConstFactoryIterator;
+        typedef FactoryContainer::const_iterator      ConstFactoryIterator;
         /// @brief Basic container type for AreaEffect storage by this class.
         typedef std::vector<AreaEffect*>              AreaEffectContainer;
         /// @brief Iterator type for AreaEffect instances stored by this class.
@@ -124,7 +124,7 @@ namespace Mezzanine
 
         /// @internal
         /// @brief A map containing all registered AreaEffect type factories.
-        FactoryMap AreaEffectFactories;
+        static FactoryContainer AreaEffectFactories;
         /// @internal
         /// @brief Container storing all AreaEffects belonging to this manager.
         AreaEffectContainer AreaEffects;
@@ -250,22 +250,22 @@ namespace Mezzanine
 
         /// @brief Adds/registers a AreaEffect factory with this manager, allowing it to be constructed through this API.
         /// @param ToBeAdded The AreaEffect factory to be added.
-        virtual void AddAreaEffectFactory(AreaEffectFactory* ToBeAdded);
+        static void AddAreaEffectFactory(AreaEffectFactory* ToBeAdded);
         /// @brief Removes a AreaEffect factory from this manager.
         /// @param ToBeRemoved A pointer to the AreaEffect factory that is to be removed.
-        virtual void RemoveAreaEffectFactory(AreaEffectFactory* ToBeRemoved);
+        static void RemoveAreaEffectFactory(AreaEffectFactory* ToBeRemoved);
         /// @brief Removes a AreaEffect factory from this manager.
         /// @param ImplName The name of the AreaEffect implementation created by the factory to be removed.
-        virtual void RemoveAreaEffectFactory(const String& ImplName);
+        static void RemoveAreaEffectFactory(const String& ImplName);
         /// @brief Removes and destroys a AreaEffect factory in this manager.
         /// @param ToBeDestroyed A pointer to the AreaEffect factory that is to be removed and destroyed.
-        virtual void DestroyAreaEffectFactory(AreaEffectFactory* ToBeDestroyed);
+        static void DestroyAreaEffectFactory(AreaEffectFactory* ToBeDestroyed);
         /// @brief Removes and destroys a AreaEffect factory in this manager.
         /// @param ImplName The name of the AreaEffect implementation created by the factory to be removed and destroyed.
-        virtual void DestroyAreaEffectFactory(const String& ImplName);
+        static void DestroyAreaEffectFactory(const String& ImplName);
         /// @brief Destroys all AreaEffect factories in this manager.
         /// @warning The destruction of AreaEffect factories should only be done after all the AreaEffects have been destroyed, otherwise this will cause an exception.
-        virtual void DestroyAllAreaEffectFactories();
+        static void DestroyAllAreaEffectFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

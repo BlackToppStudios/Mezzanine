@@ -37,32 +37,20 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef _terrain_cpp
+#define _terrain_cpp
 
-#ifndef _terrainbase_h
-#define _terrainbase_h
-
-#include "worldobject.h"
+#include "terrain.h"
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class TerrainBase
-    /// @headerfile terrainbase.h
-    /// @brief This is the base class from which all the terrains inherit.
-    /// @details The terrain classes store and manage all the relevant data regarding
-    /// terrains inside the World.  They serve as a binder between the physics and
-    /// graphics for terrain and have functions that allow the manipulation of terrain
-    /// loaded into the World.  Currently there is 1 terrain class: MeshTerrain.
-    ///////////////////////////////////////
-    class MEZZ_LIB TerrainBase : public WorldObject
-    {
-        protected:
-        public:
-            /// @brief Class constructor.
-            TerrainBase();
-            /// @brief Class destructor.
-            virtual ~TerrainBase();
-    };//Terrainbase
-}//Mezzanine
+    Terrain::Terrain() :
+        WorldObject(NULL)
+        {  }
 
-#endif // _terrainbase_h
+    Terrain::~Terrain()
+        {  }
+}// /Mezzanine
+
+#endif // _terrainbase_cpp
+

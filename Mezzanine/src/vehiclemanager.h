@@ -92,11 +92,11 @@ namespace Mezzanine
     {
     public:
         /// @brief Basic container type for VehicleFactory storage by this class.
-        typedef std::map<String,VehicleFactory*>       FactoryMap;
+        typedef std::map<String,VehicleFactory*>       FactoryContainer;
         /// @brief Iterator type for VehicleFactory instances stored by this class.
-        typedef FactoryMap::iterator                 FactoryIterator;
+        typedef FactoryContainer::iterator             FactoryIterator;
         /// @brief Const Iterator type for VehicleFactory instances stored by this class.
-        typedef FactoryMap::const_iterator           ConstFactoryIterator;
+        typedef FactoryContainer::const_iterator       ConstFactoryIterator;
         /// @brief Basic container type for @ref Vehicle storage by this class.
         typedef std::vector<Vehicle*>                  VehicleContainer;
         /// @brief Iterator type for @ref Vehicle instances stored by this class.
@@ -113,7 +113,7 @@ namespace Mezzanine
 
         /// @internal
         /// @brief A map containing all registered Vehicle type factories.
-        FactoryMap VehicleFactories;
+        static FactoryContainer VehicleFactories;
         /// @internal
         /// @brief Container storing all Vehicles belonging to this manager.
         VehicleContainer Vehicles;
@@ -192,22 +192,22 @@ namespace Mezzanine
 
         /// @brief Adds/registers a Vehicle factory with this manager, allowing it to be constructed through this API.
         /// @param ToBeAdded The Vehicle factory to be added.
-        virtual void AddVehicleFactory(VehicleFactory* ToBeAdded);
+        static void AddVehicleFactory(VehicleFactory* ToBeAdded);
         /// @brief Removes a Vehicle factory from this manager.
         /// @param ToBeRemoved A pointer to the Vehicle factory that is to be removed.
-        virtual void RemoveVehicleFactory(VehicleFactory* ToBeRemoved);
+        static void RemoveVehicleFactory(VehicleFactory* ToBeRemoved);
         /// @brief Removes a Vehicle factory from this manager.
         /// @param ImplName The name of the Vehicle implementation created by the factory to be removed.
-        virtual void RemoveVehicleFactory(const String& ImplName);
+        static void RemoveVehicleFactory(const String& ImplName);
         /// @brief Removes and destroys a Vehicle factory in this manager.
         /// @param ToBeDestroyed A pointer to the Vehicle factory that is to be removed and destroyed.
-        virtual void DestroyVehicleFactory(VehicleFactory* ToBeDestroyed);
+        static void DestroyVehicleFactory(VehicleFactory* ToBeDestroyed);
         /// @brief Removes and destroys a Vehicle factory in this manager.
         /// @param ImplName The name of the Vehicle implementation created by the factory to be removed and destroyed.
-        virtual void DestroyVehicleFactory(const String& ImplName);
+        static void DestroyVehicleFactory(const String& ImplName);
         /// @brief Destroys all Vehicle factories in this manager.
         /// @warning The destruction of Vehicle factories should only be done after all the Vehicle have been destroyed, otherwise this will cause an exception.
-        virtual void DestroyAllVehicleFactories();
+        static void DestroyAllVehicleFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

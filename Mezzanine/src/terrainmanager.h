@@ -37,107 +37,177 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef terrainmanager_h
+#define terrainmanager_h
 
-#ifndef _terrainmanager_h
-#define _terrainmanager_h
-
-#include "datatypes.h"
-#include "vector3.h"
 #include "worldmanager.h"
 #include "worldmanagerfactory.h"
+#ifndef SWIG
+    #include "Threading/workunit.h"
+#endif
 
 namespace Mezzanine
 {
-    class MeshTerrain;
-    class TerrainBase;
+    class Terrain;
+    class TerrainFactory;
+    class TerrainManager;
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class TerrainManager
-    /// @headerfile terrainmanager.h
-    /// @brief This is manager for terrains and their functions.
-    /// @details
+    /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of terrains.
+    ///////////////////////////////////////
+    class MEZZ_LIB TerrainUpdateWorkUnit : public Threading::DefaultWorkUnit
+    {
+    protected:
+        /// @internal
+        /// @brief A pointer to the manager this work unit is processing.
+        TerrainManager* TargetManager;
+        /// @internal
+        /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+        /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+        TerrainUpdateWorkUnit(const TerrainUpdateWorkUnit& Other);
+        /// @internal
+        /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+        /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+        TerrainUpdateWorkUnit& operator=(const TerrainUpdateWorkUnit& Other);
+    public:
+        /// @brief Class constructor.
+        /// @param Target The TerrainManager this work unit will process during the frame.
+        TerrainUpdateWorkUnit(TerrainManager* Target);
+        /// @brief Class destructor.
+        virtual ~TerrainUpdateWorkUnit();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief This does any required update of the Terrains stored by it's manager.
+        /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+        virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+    };//TerrainUpdateWorkUnit
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A manager responsible for the storage and management of all terrains that exist in a world.
+    /// @details More or less Management point for a container of terrains to help keep them sorted.
     ///////////////////////////////////////
     class MEZZ_LIB TerrainManager : public WorldManager
     {
     public:
-        /// @brief Basic container type for @ref TerrainBase storage by this class.
-        typedef std::vector< TerrainBase* >              TerrainContainer;
-        /// @brief Iterator type for @ref TerrainBase instances stored by this class.
-        typedef TerrainContainer::iterator               TerrainIterator;
-        /// @brief Const Iterator type for @ref TerrainBase instances stored by this class.
-        typedef TerrainContainer::const_iterator         ConstTerrainIterator;
+        /// @brief Basic container type for TerrainFactory storage by this class.
+        typedef std::map<String,TerrainFactory*>       FactoryContainer;
+        /// @brief Iterator type for TerrainFactory instances stored by this class.
+        typedef FactoryContainer::iterator             FactoryIterator;
+        /// @brief Const Iterator type for TerrainFactory instances stored by this class.
+        typedef FactoryContainer::const_iterator       ConstFactoryIterator;
+        /// @brief Basic container type for @ref Terrain storage by this class.
+        typedef std::vector<Terrain*>                  TerrainContainer;
+        /// @brief Iterator type for @ref Terrain instances stored by this class.
+        typedef TerrainContainer::iterator             TerrainIterator;
+        /// @brief Const Iterator type for @ref Terrain instances stored by this class.
+        typedef TerrainContainer::const_iterator       ConstTerrainIterator;
 
         /// @brief A String containing the name of this manager implementation.
         static const String ImplementationName;
         /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
         static const ManagerBase::ManagerType InterfaceType;
     protected:
+        friend class TerrainUpdateWorkUnit;
+
         /// @internal
-        /// @brief A container of all terrain instances.
+        /// @brief A map containing all registered Terrain type factories.
+        static FactoryContainer TerrainFactories;
+        /// @internal
+        /// @brief Container storing all Terrains belonging to this manager.
         TerrainContainer Terrains;
+
+        /// @internal
+        /// @brief The work unit that updates all the terrains stored by this manager.
+        TerrainUpdateWorkUnit* TerrainUpdateWork;
+        /// @internal
+        /// @brief Can be used for thread safe logging and other thread specific resources.
+        Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
     public:
         /// @brief Class constructor.
+        /// @param Creator The parent world that is creating the manager.
         TerrainManager(World* Creator);
         /// @brief XML constructor.
+        /// @param Creator The parent world that is creating the manager.
         /// @param XMLNode The node of the xml document to construct from.
         TerrainManager(World* Creator, const XML::Node& XMLNode);
         /// @brief Class destructor.
         virtual ~TerrainManager();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Managing all terrains
+        // Prefab Terrain Type Creation
 
-        /// @brief Retrieves a MeshTerrain from the list of terrains.
-        /// @param index Index of desired terrain in MeshTerrains.
-        /// @return Returns a pointer to the MeshTerrain at the given index.
-        virtual TerrainBase* GetTerrainByIndex(const Whole& Index);
-        /// @brief Retrieves a Meshterrain from the list of terrains.
-        /// @param name The name of the terrain.
-        /// @return Returns a pointer to the named MeshTerrain, or NULL if no MeshTerrain exists with given name.
-        virtual TerrainBase* GetTerrainByName(const String& Name);
-        /// @brief Gets the number of terrains being stored in this manager.
-        /// @return Returns a whole representing the number of terrains in this manager.
+        ///////////////////////////////////////////////////////////////////////////////
+        // Terrain Management
+
+        /// @brief Creates a new Terrain.
+        /// @param TypeName A string containing the name of the type of Terrain to be constructed.
+        /// @param InstanceName A string containing the name to be given to the created Terrain.
+        /// @param Params A container of additional parameters to be used for the construction of the new Terrain.
+        /// @return Returns a pointer to the created Terrain.
+        Terrain* CreateTerrain(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
+        /// @brief Creates a new Terrain class from an XML node.
+        /// @remarks This is mostly useful for deserialization.
+        /// @return Returns a pointer to the created Terrain.
+        Terrain* CreateTerrain(const XML::Node& SelfRoot);
+
+        /// @brief Gets an Terrain by Index.
+        /// @param Index The index of the Terrain you wish to retrieve.
+        /// @return Returns a pointer to the Terrain at the specified index.
+        virtual Terrain* GetTerrain(const Whole Index) const;
+        /// @brief Gets an Terrain by Name.
+        /// @param Name The name of the Terrain you wish to retrieve.
+        /// @return Returns a pointer to the Terrain of the specified name.
+        virtual Terrain* GetTerrain(const String& Name) const;
+        /// @brief Gets the number of Terrains stored in this manager.
+        /// @return Returns a whole representing the current Terrain count.
         virtual Whole GetNumTerrains() const;
-        /// @brief Adds a pre-made terrain to the world and the manager.
-        /// @param Terrain The terrain to be added.
-        virtual void AddTerrain(TerrainBase* Terrain);
-        /// @brief Removes a terrain from the world and this manager by index.
-        /// @param Index The index at which to remove the terrain.
-        virtual void RemoveTerrain(const Whole& Index);
-        /// @brief Removes a terrain from the world and this manager.
-        /// @param ToBeRemoved The terrain to be removed.
-        virtual void RemoveTerrain(TerrainBase* ToBeRemoved);
-        /// @brief Removes all terrains currently in this manager from the world and the manager.
-        virtual void RemoveAllTerrains();
-        /// @brief Destroys a terrain and removes it from world.
-        /// @param Index Index of desired terrain in MeshTerrains.
-        virtual void DestroyTerrain(const Whole& Index);
-        /// @brief Destroys a terrain and removes it from world.
-        /// @param Name name of desired terrain in MeshTerrains.
-        virtual void DestroyTerrain(TerrainBase* ToBeDestroyed);
-        /// @brief Removes and deletes all terrains currently in this manager from the world and the manager.
+        /// @brief Destroys an Terrain at the specified index.
+        /// @param Index The index at which to destroy the Terrain.
+        virtual void DestroyTerrain(const Whole Index);
+        /// @brief Destroys an Terrain.
+        /// @param ToBeDestroyed The Terrain to be destroyed.
+        virtual void DestroyTerrain(Terrain* ToBeDestroyed);
+        /// @brief Destroys all Terrains currently within this manager.
         virtual void DestroyAllTerrains();
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // MeshTerrain Management
-
-        /// @brief Creates a terrain based on a given mesh.
-        /// @details This method creates a terrain object and handles adding it to the world.
-        /// @param InitPosition The location of the terrain.
-        /// @param name The name of the terrain.
-        /// @param file The 3d mesh file that contains the 3d model the actor will use.
-        /// @param group The resource group where the 3d mesh and other related files can be found.
-        /// @return Returns a pointer to the created MeshTerrain object.
-        virtual MeshTerrain* CreateMeshTerrain(const Vector3& InitPosition, const String& name, const String& file, const String& group);
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // HeightfieldTerrain Management
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // VectorfieldTerrain Management
+        #ifndef SWIG
+        /// @brief Gets an iterator to the first Terrain in this manager.
+        /// @return Returns an iterator to the first Terrain being stored by this manager.
+        TerrainIterator BeginTerrain();
+        /// @brief Gets an iterator to one passed the last Terrain in this manager.
+        /// @return Returns an iterator to one passed the last Terrain being stored by this manager.
+        TerrainIterator EndTerrain();
+        /// @brief Gets a const iterator to the first Terrain in this manager.
+        /// @return Returns a const iterator to the first Terrain being stored by this manager.
+        ConstTerrainIterator BeginTerrain() const;
+        /// @brief Gets a const iterator to one passed the last Terrain in this manager.
+        /// @return Returns a const iterator to one passed the last Terrain being stored by this manager.
+        ConstTerrainIterator EndTerrain() const;
+        #endif
 
         ///////////////////////////////////////////////////////////////////////////////
-        // VoxelTerrain Management
+        // TerrainFactory Management
+
+        /// @brief Adds/registers a Terrain factory with this manager, allowing it to be constructed through this API.
+        /// @param ToBeAdded The Terrain factory to be added.
+        static void AddTerrainFactory(TerrainFactory* ToBeAdded);
+        /// @brief Removes a Terrain factory from this manager.
+        /// @param ToBeRemoved A pointer to the Terrain factory that is to be removed.
+        static void RemoveTerrainFactory(TerrainFactory* ToBeRemoved);
+        /// @brief Removes a Terrain factory from this manager.
+        /// @param ImplName The name of the Terrain implementation created by the factory to be removed.
+        static void RemoveTerrainFactory(const String& ImplName);
+        /// @brief Removes and destroys a Terrain factory in this manager.
+        /// @param ToBeDestroyed A pointer to the Terrain factory that is to be removed and destroyed.
+        static void DestroyTerrainFactory(TerrainFactory* ToBeDestroyed);
+        /// @brief Removes and destroys a Terrain factory in this manager.
+        /// @param ImplName The name of the Terrain implementation created by the factory to be removed and destroyed.
+        static void DestroyTerrainFactory(const String& ImplName);
+        /// @brief Destroys all Terrain factories in this manager.
+        /// @warning The destruction of Terrain factories should only be done after all the Terrain have been destroyed, otherwise this will cause an exception.
+        static void DestroyAllTerrainFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -150,6 +220,10 @@ namespace Mezzanine
         /// @copydoc ManagerBase::Deinitialize()
         virtual void Deinitialize();
 
+        /// @brief Gets the work unit responsible for updating terrains stored by this manager.
+        /// @return Returns a pointer to the TerrainUpdateWorkUnit used by this manager.
+        TerrainUpdateWorkUnit* GetTerrainUpdateWork();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Type Identifier Methods
 
@@ -160,10 +234,9 @@ namespace Mezzanine
     };//TerrainManager
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class DefaultTerrainManagerFactory
-    /// @brief A factory responsible for the creation and destruction of the default terrainmanager.
+    /// @brief A factory responsible for the creation and destruction of the default TerrainManager.
     ///////////////////////////////////////
-    class MEZZ_LIB DefaultTerrainManagerFactory : public WorldManagerFactory
+    class DefaultTerrainManagerFactory : public WorldManagerFactory
     {
     public:
         /// @brief Class constructor.
@@ -185,4 +258,4 @@ namespace Mezzanine
     };//DefaultTerrainManagerFactory
 }//Mezzanine
 
-#endif // _terrainmanager_h
+#endif

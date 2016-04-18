@@ -143,7 +143,7 @@
 #include "track.h"
 #include "trackiterator.h"
 #include "triangle.h"
-#include "terrainbase.h"
+#include "terrain.h"
 #include "terrainmanager.h"
 #include "uidgenerator.h"
 #include "worldtrigger.h"
