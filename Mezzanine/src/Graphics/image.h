@@ -55,10 +55,42 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a convenience class for specifying a sub-portion of an image.
+        ///////////////////////////////////////
+        struct MEZZ_LIB ImageBounds
+        {
+            /// @brief The lower bound of the X axis on the image.
+            Whole Left;
+            /// @brief The lower bound of the Y axis on the image.
+            Whole Top;
+            /// @brief The lower bound of the Z axis on the image.
+            Whole Front;
+            /// @brief The upper bound of the X axis on the image.
+            Whole Right;
+            /// @brief The upper bound of the Y axis on the image.
+            Whole Bottom;
+            /// @brief The upper bound of the Z axis on the image.
+            Whole Back;
+
+            /// @brief Gets the width of the bounds.
+            /// @return Returns a Whole containing the width of the specified image area.
+            Whole GetWidth() const
+                { return ( this->Right - this->Left ); }
+            /// @brief Gets the height of the bounds.
+            /// @return Returns a Whole containing the height of the specified image area.
+            Whole GetHeight() const
+                { return ( this->Bottom - this->Top ); }
+            /// @brief Gets the depth of the bounds.
+            /// @return Returns a Whole containing the depth of the specified image area.
+            Whole GetDepth() const
+                { return ( this->Back - this->Front ); }
+        };//ImageBounds
+
+        class Texture;
         class InternalImageData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class represents an image loaded into system memory.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Image
         {
@@ -69,6 +101,9 @@ namespace Mezzanine
         public:
             /// @brief Blank, no-init constructor.
             Image();
+            /// @brief Copy constructor.
+            /// @param Other The other Image to be copied.
+            Image(const Image& Other);
             /// @brief Resource constructor.
             /// @param ResourceName The name of the resource to be loaded.
             /// @param ResourceGroup The name of the group the resource is located in.
@@ -153,6 +188,33 @@ namespace Mezzanine
             /// @param Z The Z position of the pixel to retrieve.
             /// @return Returns a ColourValue containing the colour of the pixel at the specified position.
             ColourValue GetColourAt(const Whole X, const Whole Y, const Whole Z) const;
+
+            /// @brief Copies the entirety of this image into another image.
+            /// @param Other The target image to Blit to.
+            /// @param X The left-most position to place the Blit in the target image.
+            /// @param Y The top-most position to place the Blit in the target image.
+            /// @param Z The front-most position to place the Blit in the target image.
+            void BlitTo(Image& Other, const Whole X, const Whole Y, const Whole Z) const;
+            /// @brief Copies a portion of this image into another image.
+            /// @param Other The target image to Blit to.
+            /// @param Bounds The bounds in the source image (this) to be copied to the target image.
+            /// @param X The left-most position to place the Blit in the target image.
+            /// @param Y The top-most position to place the Blit in the target image.
+            /// @param Z The front-most position to place the Blit in the target image.
+            void BlitTo(Image& Other, const ImageBounds& Bounds, const Whole X, const Whole Y, const Whole Z) const;
+            /// @brief Copies the entirety of this image into a texture.
+            /// @param Other The target image to Blit to.
+            /// @param X The left-most position to place the Blit in the target texture.
+            /// @param Y The top-most position to place the Blit in the target texture.
+            /// @param Z The front-most position to place the Blit in the target texture.
+            void BlitTo(Texture* Other, const Whole X, const Whole Y, const Whole Z) const;
+            /// @brief Copies a portion of this image into a texture.
+            /// @param Other The target texture to Blit to.
+            /// @param Bounds The bounds in the source image (this) to be copied to the target texture.
+            /// @param X The left-most position to place the Blit in the target texture.
+            /// @param Y The top-most position to place the Blit in the target texture.
+            /// @param Z The front-most position to place the Blit in the target texture.
+            void BlitTo(Texture* Other, const ImageBounds& Bounds, const Whole X, const Whole Y, const Whole Z) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Initialize Methods

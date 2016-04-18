@@ -42,6 +42,7 @@
 #define _graphicsimage_cpp
 
 #include "Graphics/image.h"
+#include "Graphics/texture.h"
 #include "Graphics/graphicsutilities.h"
 
 #include "stringtool.h"
@@ -64,7 +65,16 @@ namespace Mezzanine
             /// @internal
             /// @brief The internal representation of the Image.
             Ogre::Image GraphicsImage;
-        };//InternalTextureData
+
+            /// @brief Blank Constructor.
+            InternalImageData()
+                {  }
+            /// @brief Copy Constructor.
+            /// @param Other The other Image to be copied.
+            InternalImageData(const Image& Other) :
+                GraphicsImage(Other._GetInternalImage())
+                {  }
+        };//InternalImageData
 
         ///////////////////////////////////////////////////////////////////////////////
         // Image Methods
@@ -72,6 +82,11 @@ namespace Mezzanine
         Image::Image()
         {
             this->IID = new InternalImageData();
+        }
+
+        Image::Image(const Image& Other)
+        {
+            this->IID = new InternalImageData(Other);
         }
 
         Image::Image(const String& ResourceName, const String& ResourceGroup)
@@ -148,6 +163,38 @@ namespace Mezzanine
 
         ColourValue Image::GetColourAt(const Whole X, const Whole Y, const Whole Z) const
             { return this->IID->GraphicsImage.getColourAt(X,Y,Z); }
+
+        void Image::BlitTo(Image& Other, const Whole X, const Whole Y, const Whole Z) const
+        {
+            Ogre::PixelBox SrcBox = this->IID->GraphicsImage.getPixelBox();
+            Ogre::Box DstBounds( X, Y, Z, X + this->GetWidth(), Y + this->GetHeight(), Z + this->GetDepth() );
+            Ogre::PixelBox DstBox = Other.IID->GraphicsImage.getPixelBox().getSubVolume(DstBounds);
+            Ogre::PixelUtil::bulkPixelConversion(SrcBox,DstBox);
+        }
+
+        void Image::BlitTo(Image& Other, const ImageBounds& Bounds, const Whole X, const Whole Y, const Whole Z) const
+        {
+            Ogre::Box SrcBounds( Bounds.Left, Bounds.Top, Bounds.Front, Bounds.Right, Bounds.Bottom, Bounds.Back );
+            Ogre::PixelBox SrcBox = this->IID->GraphicsImage.getPixelBox().getSubVolume(SrcBounds);
+            Ogre::Box DstBounds( X, Y, Z, X + Bounds.GetWidth(), Y + Bounds.GetHeight(), Z + Bounds.GetDepth() );
+            Ogre::PixelBox DstBox = Other.IID->GraphicsImage.getPixelBox().getSubVolume(DstBounds);
+            Ogre::PixelUtil::bulkPixelConversion(SrcBox,DstBox);
+        }
+
+        void Image::BlitTo(Texture* Other, const Whole X, const Whole Y, const Whole Z) const
+        {
+            Ogre::PixelBox SrcBox = this->IID->GraphicsImage.getPixelBox();
+            Ogre::Box DstBounds( X, Y, Z, X + this->GetWidth(), Y + this->GetHeight(), Z + this->GetDepth() );
+            Other->_GetInternalTexture()->getBuffer()->blitFromMemory(SrcBox,DstBounds);
+        }
+
+        void Image::BlitTo(Texture* Other, const ImageBounds& Bounds, const Whole X, const Whole Y, const Whole Z) const
+        {
+            Ogre::Box SrcBounds( Bounds.Left, Bounds.Top, Bounds.Front, Bounds.Right, Bounds.Bottom, Bounds.Back );
+            Ogre::PixelBox SrcBox = this->IID->GraphicsImage.getPixelBox().getSubVolume(SrcBounds);
+            Ogre::Box DstBounds( X, Y, Z, X + Bounds.GetWidth(), Y + Bounds.GetHeight(), Z + Bounds.GetDepth() );
+            Other->_GetInternalTexture()->getBuffer()->blitFromMemory(SrcBox,DstBounds);
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Initialize Methods

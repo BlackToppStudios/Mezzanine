@@ -126,7 +126,7 @@ namespace Mezzanine
             /// @param SrcBuffer The buffer containing the pixel data to be written.
             /// @param BufferSize The size of the buffer being written.
             /// @param SrcFormat The pixel format of the texture in the source buffer.  Pixel format will automatically be converted to the set format of this texture.
-            void _WriteToBuffer(UInt8* SrcBuffer, const Whole BufferSize, const Graphics::PixelFormat SrcFormat);
+            void _WriteToBuffer(const UInt8* SrcBuffer, const Whole BufferSize, const Graphics::PixelFormat SrcFormat);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

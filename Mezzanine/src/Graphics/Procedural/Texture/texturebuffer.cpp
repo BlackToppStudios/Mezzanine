@@ -185,7 +185,7 @@ namespace Mezzanine
 
             Image* TextureBuffer::GenerateImage(const Graphics::PixelFormat Format) const
             {
-                ColourChannelType* NewBuff = new ColourChannelType[ this->GetSubChannelCount() ];
+                UInt8* NewBuff = new UInt8[ Ogre::PixelUtil::getMemorySize(this->Width,this->Height,1,static_cast<Ogre::PixelFormat>(Format)) ];
                 Ogre::PixelUtil::bulkPixelConversion(this->Pixels,static_cast<Ogre::PixelFormat>(Graphics::PF_R8G8B8A8),NewBuff,static_cast<Ogre::PixelFormat>(Format),this->GetPixelCount());
                 Image* NewImage = new Image(NewBuff,this->Width,this->Height,Format,true);
                 return NewImage;
