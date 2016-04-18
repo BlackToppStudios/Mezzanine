@@ -49,7 +49,7 @@
 
 namespace Mezzanine
 {
-    class StateMachine
+    class MEZZ_LIB StateMachine
     {
         private:
             typedef SortedVector<HashedString32> StateContainerType;

@@ -47,7 +47,7 @@
 
 namespace Mezzanine
 {
-    class StateTransitionAction
+    class MEZZ_LIB StateTransitionAction
     {
         public:
             virtual void operator()() = 0;
@@ -55,7 +55,7 @@ namespace Mezzanine
             virtual StateTransitionAction* clone() = 0;
     };
 
-    class StateTransitionNoAction : public StateTransitionAction
+    class MEZZ_LIB StateTransitionNoAction : public StateTransitionAction
     {
         public:
             virtual void operator()();

@@ -49,7 +49,7 @@
 
 namespace Mezzanine
 {
-    class StateTransition
+    class MEZZ_LIB StateTransition
     {
         private:
             HashedString32 From;
