@@ -103,7 +103,7 @@
 #include "quaternion.h"
 #include "ray.h"
 #include "rayquerytool.h"
-#include "rect.h"
+#include "rectbase.h"
 #include "sphere.h"
 #include "stringtool.h"
 #include "timer.h"

@@ -69,7 +69,7 @@
 
 #include "Graphics/Procedural/Texture/texturemodifier.h"
 
-#include "rect.h"
+#include "rectbase.h"
 
 namespace Mezzanine
 {

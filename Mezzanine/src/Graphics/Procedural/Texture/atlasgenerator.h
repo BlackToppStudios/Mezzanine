@@ -76,7 +76,7 @@
 
 #include "Graphics/Procedural/Texture/texturegenerator.h"
 
-#include "rect.h"
+#include "rectbase.h"
 #include "Graphics/image.h"
 
 namespace Mezzanine
