@@ -191,6 +191,7 @@ public:
                                 }
                             }
 
+                            ClientThread->join();
                             while( TCPClientThreadResult < 0 )
                                 Threading::this_thread::sleep_for(1 * 1000);
 
@@ -249,6 +250,7 @@ public:
                                 }
                             }
 
+                            ClientThread->join();
                             while( TCPClientThreadResult < 0 )
                                 Threading::this_thread::sleep_for(1 * 1000);
 
