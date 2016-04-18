@@ -71,8 +71,10 @@ namespace Mezzanine
 
     Boole StateTransition::operator< (const StateTransition& Other) const
     {
-        return  this->From < Other.From &&
-                this->To < Other.To;
+        if(this->From == Other.From)
+            { return this->To < Other.To; }
+        else
+            { return this->From < Other.From; }
     }
 
     Boole StateTransition::operator()()

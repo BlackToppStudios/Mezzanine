@@ -96,11 +96,43 @@ namespace Mezzanine
     void StateMachine::AddStateTransitation(const String& From,
                                             const String& To,
                                             StateTransitionAction* PossibleAction)
-        { AddStateTransitation(HashedString32(From), HashedString32(To), PossibleAction); }
+    { AddStateTransitation(HashedString32(From), HashedString32(To), PossibleAction); }
+
+    Boole StateMachine::HasState(const HashedString32& PossibleState) const
+        { return States.find(PossibleState) != States.end(); }
+
+    Boole StateMachine::HasState(const String& PossibleState) const
+        { return HasState(HashedString32(PossibleState)); }
+
+    Boole StateMachine::HasStateTransition(const HashedString32& FromState,
+                                           const HashedString32& ToState) const
+    {
+        return Transitions.find(StateTransition(FromState,ToState)) != Transitions.end();
+    }
+
+    Boole StateMachine::HasStateTransition(const String& FromState, const String& ToState) const
+        { return HasStateTransition(HashedString32(FromState),HashedString32(ToState)); }
+
+    Boole StateMachine::CanChangeState(const HashedString32& ToState)
+        { return HasStateTransition(*CurrentState, ToState); }
+
+    Boole StateMachine::CanChangeState(const String& ToState)
+        { return CanChangeState(HashedString32(ToState)); }
 
     Boole StateMachine::ChangeState(const HashedString32& ToState)
     {
+        ConstStateIterator FoundState = States.find(ToState);
+        if(FoundState == States.end())
+            { return false; }
 
+        TranstionIterator FoundTransition
+                = Transitions.find(StateTransition(*CurrentState, ToState));
+        if(FoundTransition == Transitions.end())
+            { return false; }
+
+        //FoundTransition->operator();
+        CurrentState = FoundState;
+        return true;
     }
 
     Boole StateMachine::SetPendingState(const HashedString32& ToState)

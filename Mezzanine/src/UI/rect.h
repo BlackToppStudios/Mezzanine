@@ -211,14 +211,14 @@ namespace Mezzanine
             }
             /// @brief Gets whether or point on the X axis is within the limits of this rect or not.
             /// @param Position The point on the X axis.
-            /// @return Returns true in the provided position is within this rect's limits, false otherwise.
+            /// @return Returns true in the provided position is within this rects limits, false otherwise.
             inline Boole IsWithinWidth(const Real& Position) const
             {
                 return ValueInRange(Position,this->Position.X,this->Position.X + this->Size.X);
             }
             /// @brief Gets whether or point on the Y axis is within the limits of this rect or not.
             /// @param Position The point on the Y axis.
-            /// @return Returns true in the provided position is within this rect's limits, false otherwise.
+            /// @return Returns true in the provided position is within this rects limits, false otherwise.
             inline Boole IsWithinHeight(const Real& Position) const
             {
                 return ValueInRange(Position,this->Position.Y,this->Position.Y + this->Size.Y);
@@ -286,7 +286,8 @@ namespace Mezzanine
                     RectNode.AppendAttribute("PositionX").SetValue(this->Position.X) &&
                     RectNode.AppendAttribute("PositionY").SetValue(this->Position.Y) &&
                     RectNode.AppendAttribute("SizeX").SetValue(this->Size.X) &&
-                    RectNode.AppendAttribute("SizeY").SetValue(this->Size.Y) )
+                    RectNode.AppendAttribute("SizeY").SetValue(this->Size.Y) &&
+                    RectNode.AppendAttribute("Relative").SetValue(this->Relative) )
                 {
                     return;
                 }else{
@@ -316,7 +317,11 @@ namespace Mezzanine
 
                         CurrAttrib = RectNode.GetAttribute("SizeY");
                         if( !CurrAttrib.Empty() )
-                            this->Size.X = CurrAttrib.AsReal();
+                            this->Size.Y = CurrAttrib.AsReal();
+
+                        CurrAttrib = RectNode.GetAttribute("Relative");
+                        if( !CurrAttrib.Empty() )
+                            this->Relative = CurrAttrib.AsBool();
                     }else{
                         MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Rect::GetSerializableName() + ": Not Version 1.");
                     }
