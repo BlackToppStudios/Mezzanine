@@ -135,7 +135,7 @@ namespace Mezzanine
             return TexSize;
         }
 
-        void Texture::_WriteToBuffer(UInt8* SrcBuffer, const Whole BufferSize, const Graphics::PixelFormat SrcFormat)
+        void Texture::_WriteToBuffer(const UInt8* SrcBuffer, const Whole BufferSize, const Graphics::PixelFormat SrcFormat)
         {
             if( this->GetSize() != BufferSize ) {
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Texture and write buffer are different sizes.  Sizes must match.");
@@ -149,7 +149,7 @@ namespace Mezzanine
 
             UInt8* DestBuf = static_cast<UInt8*>(Box.data);
             Whole PixelCount = BufferSize / Ogre::PixelUtil::getNumElemBytes(static_cast<Ogre::PixelFormat>(SrcFormat));
-            Ogre::PixelUtil::bulkPixelConversion(SrcBuffer,static_cast<Ogre::PixelFormat>(SrcFormat),DestBuf,this->_GetInternalTexture()->getFormat(),PixelCount);
+            Ogre::PixelUtil::bulkPixelConversion(const_cast<UInt8*>(SrcBuffer),static_cast<Ogre::PixelFormat>(SrcFormat),DestBuf,this->_GetInternalTexture()->getFormat(),PixelCount);
 
             // Unlock the pixel buffer
             PixelBuffer->unlock();

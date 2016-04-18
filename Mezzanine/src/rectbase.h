@@ -44,8 +44,7 @@
 
 namespace Mezzanine
 {
-    /// @brief A class for tracking a rectangle by tracking two corners Top, Left and
-    /// Right, Bottom.
+    /// @brief A class for tracking a rectangle by tracking two corners Top/Left and Bottom/Right.
     template<typename NumType>
     class RectBase
     {
@@ -117,6 +116,15 @@ namespace Mezzanine
             this->Bottom = RectBottom;
         }
 
+        /// @brief Gets the width of this Rect.
+        /// @return Returns the width of this Rect.
+        NumType GetWidth() const
+            { return this->Right - this->Left; }
+        /// @brief Gets the height of this Rect.
+        /// @return Returns the height of this Rect.
+        NumType GetHeight() const
+            { return this->Bottom - this->Top; }
+
         /// @brief Clamps the position and size of this Rect to the provided size.
         /// @param Width The width of the area this Rect will be placed in.
         /// @param Height The height of the area this Rect will be placed in.
@@ -128,14 +136,26 @@ namespace Mezzanine
             this->Bottom = std::min(Height,this->Bottom);
         }
 
-        /// @brief Gets the width of this Rect.
-        /// @return Returns the width of this Rect.
-        NumType GetWidth() const
-            { return this->Right - this->Left; }
-        /// @brief Gets the height of this Rect.
-        /// @return Returns the height of this Rect.
-        NumType GetHeight() const
-            { return this->Bottom - this->Top; }
+        /// @brief Checks to see if another Rect overlaps with this Rect.
+        /// @param Other The other Rect to be compared with.
+        /// @return Returns true if the two Rects overlap, false otherwise.
+        Boole Overlaps(const SelfType& Other) const
+        {
+            Boole XOverlap = ( this->Left >= Other.Left && this->Left <= Other.Right ) ||
+                             ( Other.Left >= this->Left && Other.Left <= this->Right );
+            Boole YOverlap = ( this->Top >= Other.Top && this->Top <= Other.Bottom ) ||
+                             ( Other.Top >= this->Top && Other.Top <= this->Bottom );
+            return ( XOverlap && YOverlap );
+        }
+
+        /// @brief Checks to see if this Rect fits entirely in another Rect.
+        /// @param Other The other Rect to be compared with.
+        /// @return Returns true if this Rect is completely engulfed by the specified Rect, false otherwise.
+        Boole IsContainedIn(const SelfType& Other) const
+        {
+            return ( this->Left > Other.Left && this->Right < Other.Right &&
+                     this->Top < Other.Top && this->Bottom > Other.Bottom );
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
@@ -164,6 +184,8 @@ namespace Mezzanine
 
     /// @brief Convenience type for a Rect using Whole numbers.
     typedef RectBase<Whole> WholeRect;
+    /// @brief Convenience type for a Rect using Integer numbers.
+    typedef RectBase<Integer> IntegerRect;
     /// @brief Convenience type for a Rect using Real numbers.
     typedef RectBase<Real> RealRect;
 }//Mezzanine

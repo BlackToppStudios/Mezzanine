@@ -64,6 +64,13 @@
  THE SOFTWARE.
  -----------------------------------------------------------------------------
  */
+/*
+ Portions of the algorithms contained in this file are derived from the work of
+ Jukka Jylänki which was released to the public domain.
+
+ The original source code can be found at this repo:
+ https://github.com/juj/RectangleBinPack
+*/
 #ifndef _graphicsproceduralatlasgenerator_cpp
 #define _graphicsproceduralatlasgenerator_cpp
 
@@ -75,7 +82,44 @@ namespace Mezzanine
     {
         namespace Procedural
         {
+            AtlasGenerator::AtlasGenerator() :
+                ImagePadding(0)
+                {  }
 
+            AtlasGenerator::~AtlasGenerator()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            void AtlasGenerator::AddToTextureBuffer(TextureBuffer& Buffer) const
+            {
+
+            }
+
+            String AtlasGenerator::GetName() const
+                { return "AtlasGenerator"; }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            WholeRect AtlasGenerator::AddImage(const Graphics::Image& ToAdd)
+            {
+
+            }
+
+            WholeRect AtlasGenerator::AddImage(const String& AssetName)
+            {
+
+            }
+
+            WholeRect AtlasGenerator::AddImage(const String& AssetName, const String& AssetGroup)
+            {
+
+            }
+
+            AtlasGenerator& AtlasGenerator::SetPadding(const Whole Padding)
+                { this->ImagePadding = Padding; }
         }//Procedural
     }//Graphics
 }//Mezzanine
