@@ -110,6 +110,8 @@
 #include "transform.h"
 #include "vector2.h"
 #include "vector3.h"
+#include "vehicle.h"
+#include "vehiclemanager.h"
 #include "world.h"
 #include "worldmanager.h"
 #include "worldmanagerfactory.h"
