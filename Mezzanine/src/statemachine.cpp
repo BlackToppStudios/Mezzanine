@@ -79,7 +79,7 @@ namespace Mezzanine
         if(LastCurrentState.IsEmpty())
             { CurrentState = States.begin(); }
         else
-            { CurrentState = States.find(NewState); }
+            { CurrentState = States.find(LastCurrentState); }
 
     }
 
