@@ -150,7 +150,14 @@ public:
             TEST( StopLight.CanChangeState(HashedString32("Yellow")) == true,
                   "CanChangeWinHash");
 
+            // TEST change state
 
+            TEST( StopLight.SetPendingState(HashedString32("Red")) == false,
+                  "SetPendingInvalidHash");
+            TEST( StopLight.SetPendingState("Red") == false, "SetPendingInvalidSTD");
+            TEST( StopLight.SetPendingState(HashedString32("Yellow")) == true,
+                  "SetPendingValidHash");
+            TEST( StopLight.SetPendingState("Yellow") == true, "SetPendingValidSTD");
             //TEST_THROW();
 
         }

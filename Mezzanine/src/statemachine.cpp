@@ -137,8 +137,20 @@ namespace Mezzanine
 
     Boole StateMachine::SetPendingState(const HashedString32& ToState)
     {
+        ConstStateIterator FoundState = States.find(ToState);
+        if(FoundState == States.end())
+            { return false; }
 
+        TranstionIterator FoundTransition
+                = Transitions.find(StateTransition(*CurrentState, ToState));
+        if(FoundTransition == Transitions.end())
+            { return false; }
+        FutureState = FoundState;
+        return true;
     }
+
+    Boole StateMachine::SetPendingState(const String& ToState)
+        { return SetPendingState(HashedString32(ToState)); }
 
     void StateMachine::DoPendingStateChange()
     {
