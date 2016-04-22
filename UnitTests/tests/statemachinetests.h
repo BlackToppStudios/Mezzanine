@@ -157,7 +157,9 @@ public:
             TEST( StopLight.SetPendingState("Red") == false, "SetPendingInvalidSTD");
             TEST( StopLight.SetPendingState(HashedString32("Yellow")) == true,
                   "SetPendingValidHash");
+            TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingSetHash")
             TEST( StopLight.SetPendingState("Yellow") == true, "SetPendingValidSTD");
+            TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingSetSTD")
             //TEST_THROW();
 
         }

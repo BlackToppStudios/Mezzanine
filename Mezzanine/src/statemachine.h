@@ -64,7 +64,7 @@ namespace Mezzanine
             StateContainerType States;
             TranstionContainerType Transitions;
             ConstStateIterator CurrentState;
-            ConstStateIterator FutureState;
+            TranstionIterator FutureStateTransition;
 
         public:
             /// Cheap

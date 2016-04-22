@@ -83,6 +83,12 @@ namespace Mezzanine
         return true;
     }
 
+    const HashedString32&StateTransition::FromState() const
+        { return From; }
+
+    const HashedString32&StateTransition::ToState() const
+        { return To; }
+
 } // /namespace Mezzanine
 
 #endif // Include guard

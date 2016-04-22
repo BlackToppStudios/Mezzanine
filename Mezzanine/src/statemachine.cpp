@@ -55,21 +55,21 @@ namespace Mezzanine
     StateMachine::StateMachine()
     {
         CurrentState = States.end();
-        FutureState = States.end();
+        FutureStateTransition = Transitions.end();
     }
 
     StateMachine::StateMachine(const HashedString32& InitialState) //: CurrentState(InitialState)
     {
         States.add(InitialState);
         CurrentState = States.begin();
-        FutureState = States.end();
+        FutureStateTransition = Transitions.end();
     }
 
     StateMachine::StateMachine(const String& InitialState) //: CurrentState(InitialState)
     {
         States.add(InitialState);
         CurrentState = States.begin();
-        FutureState = States.end();
+        FutureStateTransition = Transitions.end();
     }
 
     void StateMachine::AddState(const HashedString32& NewState)
@@ -130,22 +130,21 @@ namespace Mezzanine
         if(FoundTransition == Transitions.end())
             { return false; }
 
-        //FoundTransition->operator();
+        (*FoundTransition).operator();
         CurrentState = FoundState;
         return true;
     }
 
     Boole StateMachine::SetPendingState(const HashedString32& ToState)
     {
-        ConstStateIterator FoundState = States.find(ToState);
-        if(FoundState == States.end())
+        if(!HasState(ToState))
             { return false; }
 
         TranstionIterator FoundTransition
                 = Transitions.find(StateTransition(*CurrentState, ToState));
         if(FoundTransition == Transitions.end())
             { return false; }
-        FutureState = FoundState;
+        FutureStateTransition = FoundTransition;
         return true;
     }
 
@@ -167,8 +166,8 @@ namespace Mezzanine
 
     const HashedString32& StateMachine::GetPendingState() const
     {
-        if(FutureState!=States.end())
-            { return *FutureState; }
+        if(FutureStateTransition!=Transitions.end())
+            { return (*FutureStateTransition).ToState(); }
         else
             { return ::NoState; }
     }

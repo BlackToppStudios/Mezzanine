@@ -69,6 +69,9 @@ namespace Mezzanine
 
             Boole operator()();
 
+            const HashedString32& FromState() const;
+            const HashedString32& ToState() const;
+
     };
 } // /namespace Mezzanine
 
