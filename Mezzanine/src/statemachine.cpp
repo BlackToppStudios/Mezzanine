@@ -130,7 +130,7 @@ namespace Mezzanine
         if(FoundTransition == Transitions.end())
             { return false; }
 
-        (*FoundTransition).operator();
+        //(*FoundTransition).operator();
         CurrentState = FoundState;
         return true;
     }

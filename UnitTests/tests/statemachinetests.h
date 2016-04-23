@@ -119,6 +119,7 @@ public:
             TEST( StopLight.HasStateTransition("Green","Red") == false,
                   "HasInvalidTransition1");
             TEST( StopLight.HasStateTransition("Yellow","Green") == false,
+
                   "HasInvalidTransition2");
             TEST( StopLight.HasStateTransition("Green","LeftArrow") == false,
                   "HasInvalidTransition3");
@@ -150,7 +151,6 @@ public:
             TEST( StopLight.CanChangeState(HashedString32("Yellow")) == true,
                   "CanChangeWinHash");
 
-            // TEST change state
 
             TEST( StopLight.SetPendingState(HashedString32("Red")) == false,
                   "SetPendingInvalidHash");

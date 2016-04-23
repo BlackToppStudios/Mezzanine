@@ -71,7 +71,7 @@ namespace Mezzanine
 
     /// @brief This container uses an std::vector for storage, but sorts all
     /// @tparam T The this container will store, must implement operate < for sorting
-    template<typename T>
+    template<typename T, typename Sorter = std::less<T> >
     class SortedVector
     {
         public:
@@ -137,7 +137,7 @@ namespace Mezzanine
             /// @brief Uses std::sort to sort this, might using something more special focus in the
             /// future.
             void sort()
-                { std::sort(begin(),end()); }
+                { std::sort(begin(),end(), Sorter()); }
 
             /// @brief How many items are stored in this?
             /// @return Some integer type, likely unsigned indicating how many items this stores.

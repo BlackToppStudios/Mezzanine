@@ -89,6 +89,10 @@ namespace Mezzanine
     const HashedString32&StateTransition::ToState() const
         { return To; }
 
+
+    Boole StateTransitionPointerSorter::operator()(StateTransition* Left, StateTransition* Right)
+        { return *Left < *Right; }
+
 } // /namespace Mezzanine
 
 #endif // Include guard

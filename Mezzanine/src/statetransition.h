@@ -73,6 +73,12 @@ namespace Mezzanine
             const HashedString32& ToState() const;
 
     };
+
+    class MEZZ_LIB StateTransitionPointerSorter
+    {
+        public:
+            Boole operator()(StateTransition* Left, StateTransition* Right);
+    };
 } // /namespace Mezzanine
 
 #endif // Include guard
