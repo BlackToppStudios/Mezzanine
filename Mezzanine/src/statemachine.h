@@ -57,7 +57,8 @@ namespace Mezzanine
             typedef StateContainerType::iterator StateIterator;
             typedef StateContainerType::const_iterator ConstStateIterator;
 
-            typedef SortedVector<StateTransition> TranstionContainerType;
+            typedef SortedVector<StateTransition*, StateTransitionPointerSorter>
+                TranstionContainerType;
             typedef TranstionContainerType::iterator TranstionIterator;
             typedef TranstionContainerType::const_iterator ConstTranstionIterator;
 
@@ -69,6 +70,7 @@ namespace Mezzanine
         public:
             /// Cheap
             StateMachine();
+            ~StateMachine();
             /// Cheap
             explicit StateMachine(const HashedString32& InitialState);
             /// Cheap

@@ -54,6 +54,32 @@ namespace Mezzanine
     /// @param begin The beginning of the iterator range.
     /// @param end One past the end of the actual iterators.
     /// @param val The value to find.
+    /// @param Comparer An instance of comparison function to use while finding.
+    /// @tparam Iter An iterator type.
+    /// @tparam T The type of the value the iterator points to.
+    /// @tparam Compare A functor that accepts two parameters of type to
+    /// @return The end iterator if nothing was found or the iterator found by value.
+    template<typename Iter, typename T, typename Compare >
+    Iter binary_find(Iter begin, Iter end, T val, Compare Comparer)
+    {
+        // Finds the lower bound in at most log(last - first) + 1 comparisons
+        Iter i = std::lower_bound(begin, end, val);
+
+        if (i != end && !Comparer(val,*i))
+            return i; // found
+        else
+            return end; // not found
+    }
+
+    /// @brief Search throught an iterator range and return the desired iterator.
+    /// @details This uses the operator< to perform searches and matching for the contained item.
+    /// @n
+    /// Thanks to stack overflow and their CC-by-SA license which is written permission to
+    /// use this.
+    /// http://stackoverflow.com/questions/446296/where-can-i-get-a-useful-c-binary-search-algorithm
+    /// @param begin The beginning of the iterator range.
+    /// @param end One past the end of the actual iterators.
+    /// @param val The value to find.
     /// @tparam Iter An iterator type.
     /// @tparam T The type of the value the iterator points to.
     /// @return The end iterator if nothing was found or the iterator found by value.
@@ -68,6 +94,7 @@ namespace Mezzanine
         else
             return end; // not found
     }
+
 
     /// @brief This container uses an std::vector for storage, but sorts all
     /// @tparam T The this container will store, must implement operate < for sorting
@@ -165,12 +192,12 @@ namespace Mezzanine
             /// @param value the item to get the location of.
             /// @return A mutable iterator to an item, can be adjusted by random access.
             iterator find(T value)
-                { return binary_find(begin(),end(),value); }
+                { return binary_find(begin(),end(),value,Sorter()); }
             /// @brief Get and interator to a specific item, operates in fast logarithmic time.
             /// @param value the item to get the location of.
             /// @return A const iterator to an item, can be adjusted by random access.
             const_iterator find(T value) const
-                { return binary_find(begin(),end(),value); }
+                { return binary_find(begin(),end(),value,Sorter()); }
 
             /// @brief Does the item exist in this vector?
             /// @param value The item in question.

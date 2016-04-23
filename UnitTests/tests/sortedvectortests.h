@@ -44,6 +44,7 @@
 
 #include "sortedvector.h"
 
+
 /// @file
 /// @brief Test the sorted vector works
 
@@ -67,6 +68,14 @@ public:
             Sorted.push_back(1);
             Sorted.push_back(2);
             Sorted.push_back(3);
+            TEST( binary_find(Sorted.begin(),Sorted.end(),1,std::less<int>()) == Sorted.begin(),
+                  "BinaryFind1Less");
+            TEST( binary_find(Sorted.begin(),Sorted.end(),2,std::less<int>()) == Sorted.begin()+1,
+                  "BinaryFind2Less");
+            TEST( binary_find(Sorted.begin(),Sorted.end(),3,std::less<int>()) == Sorted.end()-1,
+                  "BinaryFind3Less");
+
+
             TEST( binary_find(Sorted.begin(),Sorted.end(),1) == Sorted.begin(),    "BinaryFind1");
             TEST( binary_find(Sorted.begin(),Sorted.end(),2) == Sorted.begin()+1,  "BinaryFind2");
             TEST( binary_find(Sorted.begin(),Sorted.end(),3) == Sorted.end()-1,    "BinaryFind3");

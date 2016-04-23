@@ -58,6 +58,12 @@ namespace Mezzanine
         FutureStateTransition = Transitions.end();
     }
 
+    StateMachine::~StateMachine()
+    {
+        for(TranstionIterator tran = Transitions.begin(); tran != Transitions.end(); tran++)
+        { delete *tran; }
+    }
+
     StateMachine::StateMachine(const HashedString32& InitialState) //: CurrentState(InitialState)
     {
         States.add(InitialState);
@@ -90,7 +96,7 @@ namespace Mezzanine
                                             const HashedString32& To,
                                             StateTransitionAction* PossibleAction)
     {
-        Transitions.add(StateTransition(From, To, PossibleAction));
+        Transitions.add(new StateTransition(From, To, PossibleAction));
     }
 
     void StateMachine::AddStateTransitation(const String& From,
@@ -107,7 +113,8 @@ namespace Mezzanine
     Boole StateMachine::HasStateTransition(const HashedString32& FromState,
                                            const HashedString32& ToState) const
     {
-        return Transitions.find(StateTransition(FromState,ToState)) != Transitions.end();
+        StateTransition Needle(FromState,ToState);
+        return Transitions.find(&Needle) != Transitions.end();
     }
 
     Boole StateMachine::HasStateTransition(const String& FromState, const String& ToState) const
@@ -125,8 +132,9 @@ namespace Mezzanine
         if(FoundState == States.end())
             { return false; }
 
+        StateTransition Needle(*CurrentState, ToState);
         TranstionIterator FoundTransition
-                = Transitions.find(StateTransition(*CurrentState, ToState));
+                = Transitions.find(&Needle);
         if(FoundTransition == Transitions.end())
             { return false; }
 
@@ -140,8 +148,9 @@ namespace Mezzanine
         if(!HasState(ToState))
             { return false; }
 
+        StateTransition Needle(*CurrentState, ToState);
         TranstionIterator FoundTransition
-                = Transitions.find(StateTransition(*CurrentState, ToState));
+                = Transitions.find(&Needle);
         if(FoundTransition == Transitions.end())
             { return false; }
         FutureStateTransition = FoundTransition;
@@ -167,7 +176,7 @@ namespace Mezzanine
     const HashedString32& StateMachine::GetPendingState() const
     {
         if(FutureStateTransition!=Transitions.end())
-            { return (*FutureStateTransition).ToState(); }
+            { return (*FutureStateTransition)->ToState(); }
         else
             { return ::NoState; }
     }
