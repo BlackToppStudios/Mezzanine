@@ -82,6 +82,22 @@ public:
         }
 
         {
+            std::vector<int> Back;
+            Back.push_back(3);
+            Back.push_back(2);
+            Back.push_back(1);
+            //std::cout << *binary_find(Back.begin(),Back.end(),3,std::greater<int>()) << std::endl;
+            //std::cout << *binary_find(Back.begin(),Back.end(),2,std::greater<int>()) << std::endl;
+            //std::cout << *binary_find(Back.begin(),Back.end(),1,std::greater<int>()) << std::endl;
+            TEST( binary_find(Back.begin(),Back.end(),3,std::greater<int>()) == Back.begin(),
+                  "BinaryFind1Greater");
+            TEST( binary_find(Back.begin(),Back.end(),2,std::greater<int>()) == Back.begin()+1,
+                  "BinaryFind2Greater");
+            TEST( binary_find(Back.begin(),Back.end(),1,std::greater<int>()) == Back.end()-1,
+                  "BinaryFind3Greater");
+        }
+
+        {
             SortedVector<Int32> tested;
             TEST(tested.size() == 0, "SortedVector.Size1");
         }

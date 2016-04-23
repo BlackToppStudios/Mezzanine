@@ -63,7 +63,7 @@ namespace Mezzanine
     Iter binary_find(Iter begin, Iter end, T val, Compare Comparer)
     {
         // Finds the lower bound in at most log(last - first) + 1 comparisons
-        Iter i = std::lower_bound(begin, end, val);
+        Iter i = std::lower_bound(begin, end, val, Comparer);
 
         if (i != end && !Comparer(val,*i))
             return i; // found
