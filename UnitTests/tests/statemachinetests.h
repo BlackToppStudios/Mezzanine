@@ -151,7 +151,6 @@ public:
             TEST( StopLight.CanChangeState(HashedString32("Yellow")) == true,
                   "CanChangeWinHash");
 
-
             TEST( StopLight.SetPendingState(HashedString32("Red")) == false,
                   "SetPendingInvalidHash");
             TEST( StopLight.SetPendingState("Red") == false, "SetPendingInvalidSTD");
@@ -160,7 +159,18 @@ public:
             TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingSetHash")
             TEST( StopLight.SetPendingState("Yellow") == true, "SetPendingValidSTD");
             TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingSetSTD")
-            //TEST_THROW();
+
+
+            TEST( StopLight.ChangeState("Red") == false, "WontStupidChange")
+            TEST( StopLight.GetCurrentState() == HashedString32("Green"), "StateUnchanged");
+            TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingUnchanged");
+
+            std::cout << StopLight.GetCurrentState() << std::endl;
+
+            TEST( StopLight.ChangeState("Yellow") == true, "ChangedStateToYellow")
+            TEST( StopLight.GetCurrentState() == HashedString32("Yellow"), "ChangeState");
+            TEST( StopLight.GetPendingState() == HashedString32(""), "PendingClearedAfterChange")
+
 
         }
 

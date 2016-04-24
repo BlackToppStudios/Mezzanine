@@ -104,9 +104,13 @@ namespace Mezzanine
             Boole CanChangeState(const String& ToState);
 
             Boole ChangeState(const HashedString32& ToState);
+            Boole ChangeState(const String& ToState);
 
             Boole SetPendingState(const HashedString32& ToState);
             Boole SetPendingState(const String& ToState);
+
+            void ClearPendingState();
+
             void DoPendingStateChange();
 
 

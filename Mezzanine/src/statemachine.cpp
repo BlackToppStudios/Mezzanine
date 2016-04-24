@@ -138,10 +138,14 @@ namespace Mezzanine
         if(FoundTransition == Transitions.end())
             { return false; }
 
-        //(*FoundTransition).operator();
+        (*FoundTransition)->operator()();
         CurrentState = FoundState;
+        ClearPendingState();
         return true;
     }
+
+    Boole StateMachine::ChangeState(const String& ToState)
+        { return ChangeState(HashedString32(ToState)); }
 
     Boole StateMachine::SetPendingState(const HashedString32& ToState)
     {
@@ -159,6 +163,9 @@ namespace Mezzanine
 
     Boole StateMachine::SetPendingState(const String& ToState)
         { return SetPendingState(HashedString32(ToState)); }
+
+    void StateMachine::ClearPendingState()
+        { FutureStateTransition = Transitions.end(); }
 
     void StateMachine::DoPendingStateChange()
     {
