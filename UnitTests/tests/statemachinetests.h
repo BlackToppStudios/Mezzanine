@@ -50,6 +50,23 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+
+class StateTransitionActionChecker : public StateTransitionAction
+{
+    public:
+        Boole Transitioned;
+
+        StateTransitionActionChecker() : Transitioned(false)
+            {}
+
+        virtual void operator ()()
+            { Transitioned = false;}
+
+        virtual StateTransitionAction* clone()
+            { return new StateTransitionActionChecker; }
+};
+
+
 /// @brief Test
 class statemachinetests : public UnitTestGroup
 {
@@ -102,7 +119,7 @@ public:
 
             StopLight.AddStateTransitation("Green","Yellow");
             TEST( StopLight.GetStateTransitionCount() == 1, "TransitionAdd1");
-            StopLight.AddStateTransitation("Yellow","Red");
+            StopLight.AddStateTransitation(HashedString32("Yellow"),HashedString32("Red"));
             StopLight.AddStateTransitation("Red","Green");
             StopLight.AddStateTransitation("Red","LeftArrow");
             StopLight.AddStateTransitation("LeftArrow","Green");
@@ -165,17 +182,69 @@ public:
             TEST( StopLight.GetCurrentState() == HashedString32("Green"), "StateUnchanged");
             TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingUnchanged");
 
-            std::cout << StopLight.GetCurrentState() << std::endl;
-
             TEST( StopLight.ChangeState("Yellow") == true, "ChangedStateToYellow")
-            TEST( StopLight.GetCurrentState() == HashedString32("Yellow"), "ChangeState");
+            TEST( StopLight.GetCurrentState() == HashedString32("Yellow"), "ActuallyChangeState");
             TEST( StopLight.GetPendingState() == HashedString32(""), "PendingClearedAfterChange")
 
+            TEST( StopLight.SetPendingState("Red") == true, "SetPendingValidForUse");
+            StopLight.DoPendingStateChange();
+            TEST( StopLight.GetCurrentState() == HashedString32("Red"), "ChangeToPendingState");
+            TEST( StopLight.GetPendingState() == HashedString32(""),
+                "PendingClearedAfterPendingChange");
 
         }
 
         {
-            StateMachine foo;
+            StateMachine windowsMachine;
+            windowsMachine.AddState("Off");
+            windowsMachine.AddState("Booting");
+            windowsMachine.AddState("Running");
+            windowsMachine.AddState("Shutdown");
+            windowsMachine.AddState("Crashing");
+
+            // The StateMachine ought to delete these.
+            StateTransitionActionChecker* OffToBoot = new StateTransitionActionChecker;
+            StateTransitionActionChecker* BootToRunning = new StateTransitionActionChecker;
+            StateTransitionActionChecker* RunningToShutdown = new StateTransitionActionChecker;
+            StateTransitionActionChecker* ShutdownToOff = new StateTransitionActionChecker;
+
+            windowsMachine.AddStateTransitation( HashedString32("Off"),
+                                            HashedString32("Booting"),
+                                            OffToBoot);
+
+            windowsMachine.AddStateTransitation("Booting","Running",BootToRunning);
+            windowsMachine.AddStateTransitation( HashedString32("Booting"),
+                                                 HashedString32("Crashing"));
+
+            windowsMachine.AddStateTransitation("Running","Crashing");
+            windowsMachine.AddStateTransitation( HashedString32("Running"),
+                                            HashedString32("Shutdown"),
+                                            RunningToShutdown);
+
+            windowsMachine.AddStateTransitation("Shutdown","Crashing");
+            windowsMachine.AddStateTransitation(HashedString32("Shutdown"),
+                                           HashedString32("Off"),
+                                           ShutdownToOff);
+
+            windowsMachine.AddStateTransitation("Crashing","Off");
+
+            TEST(OffToBoot->Transitioned == false && BootToRunning->Transitioned == false &&
+                 RunningToShutdown->Transitioned == false && ShutdownToOff->Transitioned == false,
+                 "TransitionSanityCheck");
+
+            TEST(windowsMachine.ChangeState("Booting") == true, "BootMachine");
+            TEST(OffToBoot->Transitioned, "BootingFunctorCalled");
+
+            TEST(BootToRunning->Transitioned == false &&
+                 RunningToShutdown->Transitioned == false && ShutdownToOff->Transitioned == false,
+                 "OnlyOneStateRun");
+
+            TEST(windowsMachine.SetPendingState("Running") == true, "SetToRunMachine");
+            windowsMachine.DoPendingStateChange();
+            TEST(BootToRunning->Transitioned, "StartedRunningFunctorCalled");
+            TEST(RunningToShutdown->Transitioned == false && ShutdownToOff->Transitioned == false,
+                 "OnlyTheSecondStateRun");
+
         }
     }
 

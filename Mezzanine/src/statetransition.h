@@ -71,7 +71,6 @@ namespace Mezzanine
 
             const HashedString32& FromState() const;
             const HashedString32& ToState() const;
-
     };
 
     class MEZZ_LIB StateTransitionPointerSorter
