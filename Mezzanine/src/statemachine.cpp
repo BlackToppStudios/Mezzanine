@@ -97,7 +97,10 @@ namespace Mezzanine
 
         States.add(NewState);
 
-        CurrentState = States.find(LastCurrentState);
+        if(LastCurrentState.empty())
+            { CurrentState = States.begin(); }
+        else
+            { CurrentState = States.find(LastCurrentState); }
         FutureState = States.find(LastFutureCurrentState);
 
     }

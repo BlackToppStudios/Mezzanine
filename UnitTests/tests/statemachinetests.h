@@ -60,7 +60,7 @@ class StateTransitionActionChecker : public StateTransitionAction
             {}
 
         virtual void operator ()()
-            { Transitioned = false;}
+            { Transitioned = true;}
 
         virtual StateTransitionAction* clone()
             { return new StateTransitionActionChecker; }
@@ -201,6 +201,8 @@ public:
             windowsMachine.AddState("Running");
             windowsMachine.AddState("Shutdown");
             windowsMachine.AddState("Crashing");
+
+            TEST(windowsMachine.GetCurrentState() == HashedString32("Off"), "StartsOff");
 
             // The StateMachine ought to delete these.
             StateTransitionActionChecker* OffToBoot = new StateTransitionActionChecker;
