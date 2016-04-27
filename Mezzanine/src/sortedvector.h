@@ -172,12 +172,25 @@ namespace Mezzanine
                 { return InternalStorage.size(); }
 
             /// @brief Since this container has no array-like concept this inserts the item were
-            /// it needs to go. This has all the potentional allocation slow downs of push_back
-            /// and costs of find the required place to insert.
+            /// it needs to go.
+            /// @details This has all the potentional allocation slow downs of push_back
+            /// and costs of find the required place to insert. This sorts the whole container after
+            /// adding items, so calling this after for a many additions is really slow, use
+            /// @ref add_range to only sort once.
             /// @param value The value to put into the vector.
             void add(T value)
             {
                 InternalStorage.push_back(value);
+                sort();
+            }
+
+            /// @brief Add several items at once efficiently
+            /// @details
+            template<class ForeignIterator>
+            void add_range(ForeignIterator OtherBegin, ForeignIterator OtherEnd)
+            {
+                for(; OtherBegin!=OtherEnd; OtherBegin++)
+                    { add(*OtherBegin); }
                 sort();
             }
 
@@ -205,7 +218,7 @@ namespace Mezzanine
             Boole contains(T value) const
                 { return std::binary_search(begin(),end(),value); }
 
-            /// @brief Empt the Vector discarding all data.
+            /// @brief Empty the Vector discarding all data.
             void clear()
                 { InternalStorage.clear(); }
             /// @brief Allocate enough space for the specified quantity of items
