@@ -184,13 +184,17 @@ namespace Mezzanine
                 sort();
             }
 
-            /// @brief Add several items at once efficiently
-            /// @details
+            /// @brief Add several items at once efficiently.
+            /// @details Sorts only once so is much faster than add(),
+            /// @tparam ForeignIterator The type of the the iterator of the other container, must
+            /// be at least a forward iterator.
+            /// @param OtherBegin An iterator to the start of the other range to be copied.
+            /// @param OtherEnd An iterator to one past the end.
             template<class ForeignIterator>
             void add_range(ForeignIterator OtherBegin, ForeignIterator OtherEnd)
             {
                 for(; OtherBegin!=OtherEnd; OtherBegin++)
-                    { add(*OtherBegin); }
+                    { InternalStorage.push_back(*OtherBegin); }
                 sort();
             }
 

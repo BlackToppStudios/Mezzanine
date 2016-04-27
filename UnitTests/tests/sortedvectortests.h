@@ -268,7 +268,7 @@ public:
 
 
         {
-            const Integer AmountToSort = 1000;
+            const Integer AmountToSort = 100000; // What is the lowest this start failing?
             TestOutput << endl << "Benchmarking creation of " << AmountToSort
                        << " Strings and Hashed Strings and sorting them in an std::set and "
                        << "a SortedVector." << endl;
@@ -319,18 +319,18 @@ public:
                 Iter++)
             { SetHashString.insert(*Iter); }
             MaxInt PostSetHash = GetTimeStamp();
-            SortDump.reserve(AmountToSort);
+            SortDumpHash.reserve(AmountToSort);
             for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
                 Iter != GibberishHashed.end();
                 Iter++)
             { SortDumpHash.push_back(*SetHashString.find(*Iter)); }
             MaxInt FinalSetHash = GetTimeStamp();
-            MaxInt SetHashSeek = FinalSetHash - PostSetString;
+            MaxInt SetHashSeek = FinalSetHash - PostSetHash;
             MaxInt SetHashDuration = PostSetHash - PreSetHash;
             TestOutput << "To prevent optimization: "
-                       << *(SetHashString.begin()) << SortDump.at(rand()%AmountToSort) << endl;
+                       << *(SetHashString.begin()) << SortDumpHash.at(rand()%AmountToSort) << endl;
 
-
+/*
             SortDumpHash.clear();
             SortDump.clear();
             TestOutput << "Stuffing String into SortedVector." << endl;
@@ -341,8 +341,16 @@ public:
                 Iter++)
             { VecString.add(*Iter); }
             MaxInt PostVecString = GetTimeStamp();
+            SortDump.reserve(AmountToSort);
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { SortDump.push_back(*VecString.find(*Iter)); }
+            MaxInt FinalVecString = GetTimeStamp();
+            MaxInt VecStringSeek = FinalVecString - PostVecString;
             MaxInt VecStringDuration = PostVecString - PreVecString;
-            TestOutput << "To prevent optimization: " << *(VecString.begin()) << endl;
+            TestOutput << "To prevent optimization: "
+                       << *(VecString.begin()) << SortDump.at(rand()%AmountToSort) << endl;
 
             SortDumpHash.clear();
             SortDump.clear();
@@ -354,8 +362,16 @@ public:
                 Iter++)
             { VecHash.add(*Iter); }
             MaxInt PostVecHash = GetTimeStamp();
+            SortDumpHash.reserve(AmountToSort);
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { SortDumpHash.push_back(*VecHash.find(*Iter)); }
+            MaxInt FinalVecHash = GetTimeStamp();
+            MaxInt VecHashSeek = FinalVecHash - PostVecHash;
             MaxInt VecHashDuration = PostVecHash - PreVecHash;
-            TestOutput << "To prevent optimization: " << *(VecHash.begin()) << endl;
+            TestOutput << "To prevent optimization: "
+                       << *(VecHash.begin()) << SortDumpHash.at(rand()%AmountToSort) << endl;
 
 
             SortDumpHash.clear();
@@ -369,8 +385,16 @@ public:
                 Iter++)
             { CapString.add(*Iter); }
             MaxInt PostCapString = GetTimeStamp();
+            SortDump.reserve(AmountToSort);
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { SortDump.push_back(*CapString.find(*Iter)); }
+            MaxInt FinalCapString = GetTimeStamp();
+            MaxInt CapStringSeek = FinalCapString - PostCapString;
             MaxInt CapStringDuration = PostCapString - PreCapString;
-            TestOutput << "To prevent optimization: " << *(CapString.begin()) << endl;
+            TestOutput << "To prevent optimization: "
+                       << *(CapString.begin()) << SortDump.at(rand()%AmountToSort) << endl;
 
             SortDumpHash.clear();
             SortDump.clear();
@@ -383,9 +407,17 @@ public:
                 Iter++)
             { CapHash.add(*Iter); }
             MaxInt PostCapHash = GetTimeStamp();
+            SortDumpHash.reserve(AmountToSort);
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { SortDumpHash.push_back(*CapHash.find(*Iter)); }
+            MaxInt FinalCapHash = GetTimeStamp();
+            MaxInt CapHashSeek = FinalCapHash - PostCapHash;
             MaxInt CapHashDuration = PostCapHash - PreCapHash;
-            TestOutput << "To prevent optimization: " << *(CapHash.begin()) << endl;
-
+            TestOutput << "To prevent optimization: "
+                       << *(CapHash.begin()) << SortDumpHash.at(rand()%AmountToSort) << endl;
+*/
 
             SortDumpHash.clear();
             SortDump.clear();
@@ -395,8 +427,16 @@ public:
             RangeString.reserve(AmountToSort);
             RangeString.add_range(Gibberish.begin(), Gibberish.end());
             MaxInt PostRangeString = GetTimeStamp();
+            SortDump.reserve(AmountToSort);
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { SortDump.push_back(*RangeString.find(*Iter)); }
+            MaxInt FinalRangeString = GetTimeStamp();
+            MaxInt RangeStringSeek = FinalRangeString - PostRangeString;
             MaxInt RangeStringDuration = PostRangeString - PreRangeString;
-            TestOutput << "To prevent optimization: " << *(RangeString.begin()) << endl;
+            TestOutput << "To prevent optimization: "
+                       << *(RangeString.begin()) << SortDump.at(rand()%AmountToSort) << endl;
 
             SortDumpHash.clear();
             SortDump.clear();
@@ -406,21 +446,48 @@ public:
             RangeHash.reserve(AmountToSort);
             RangeHash.add_range(GibberishHashed.begin(), GibberishHashed.end());
             MaxInt PostRangeHash = GetTimeStamp();
+            SortDumpHash.reserve(AmountToSort);
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { SortDumpHash.push_back(*RangeHash.find(*Iter)); }
+            MaxInt FinalRangeHash = GetTimeStamp();
+            MaxInt RangeHashSeek = FinalRangeHash - PostRangeHash;
             MaxInt RangeHashDuration = PostRangeHash - PreRangeHash;
-            TestOutput << "To prevent optimization: " << *(RangeHash.begin()) << endl;
+            TestOutput << "To prevent optimization: "
+                       << *(RangeHash.begin()) << SortDumpHash.at(rand()%AmountToSort) << endl;
 
             TestOutput
                 << "Set with String                               : " << SetStringDuration << endl
                 << "seek:                                         : " << SetStringSeek << endl
+                << endl
                 << "Set with HashedString                         : " << SetHashDuration << endl
                 << "seek:                                         : " << SetHashSeek << endl
-                << "SortedVector with String                      : " << VecStringDuration << endl
-                << "SortedVector with HashedString                : " << VecHashDuration << endl
-                << "SortedVector with Capacity/String             : " << CapStringDuration << endl
-                << "SortedVector with Capacity/HashedString       : " << CapHashDuration << endl
+                << endl
+//                << "SortedVector with String                      : " << VecStringDuration << endl
+//                << "seek:                                         : " << VecStringSeek << endl
+//                << endl
+//                << "SortedVector with HashedString                : " << VecHashDuration << endl
+//                << "seek:                                         : " << VecHashSeek << endl
+//                << endl
+//                << "SortedVector with Capacity/String             : " << CapStringDuration << endl
+//                << "seek:                                         : " << CapStringSeek << endl
+//                << endl
+//                << "SortedVector with Capacity/HashedString       : " << CapHashDuration << endl
+//                << "seek:                                         : " << CapHashSeek << endl
+//                << endl
                 << "SortedVector with Range/Capacity/String       : " << RangeStringDuration << endl
+                << "seek:                                         : " << RangeStringSeek << endl
+                << endl
                 << "SortedVector with Range/Capacity/HashedString : " << RangeHashDuration << endl
+                << "seek:                                         : " << RangeHashSeek << endl
+                << endl
                 << endl;
+
+            TEST_WARN(SetStringDuration > RangeStringDuration, "SortedVectorInsertsFast_String");
+            TEST_WARN(SetStringSeek > RangeStringSeek, "SortedVectorSeekFast_String");
+            TEST_WARN(SetHashDuration > RangeHashDuration, "SortedVectorInsertsFast_Hashed");
+            TEST_WARN(SetHashSeek > RangeHashSeek, "SortedVectorSeekFast_Hashed");
         }
     }
 
