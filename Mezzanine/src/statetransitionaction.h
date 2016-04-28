@@ -41,15 +41,19 @@
 #define statetransitionaction_h
 
 /// @file
-/// @brief Describe file here
+/// @brief The defition of @ref StateMachine functors
 
 #include "datatypes.h"
 
 namespace Mezzanine
 {
+    /// @brief This is the interface for for actions the @ref StateMachine will execute when
+    /// transitioning states.
     class MEZZ_LIB StateTransitionAction
     {
         public:
+            /// @brief The action
+            /// @details The State will not pass anything int
             virtual void operator()() = 0;
             virtual ~StateTransitionAction();
             virtual StateTransitionAction* clone() = 0;
