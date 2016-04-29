@@ -52,18 +52,33 @@ namespace Mezzanine
     class MEZZ_LIB StateTransitionAction
     {
         public:
-            /// @brief The action
+            /// @brief The action to be executed on a transition, must be implemented
+            /// in derived class.
             /// @details The State will not pass anything int
             virtual void operator()() = 0;
+            /// @brief A no-op virtual deconstructor to not interfere with inheritance during
+            /// deconstruction.
             virtual ~StateTransitionAction();
+            /// @brief Create a copy of this.
+            /// @return This is expected to return an owning pointer to a new instance of something
+            /// derived from this class. This allows for storing multiple kinds of transition
+            /// actions in the same container. Calling this and not deleting it will leak.
             virtual StateTransitionAction* clone() = 0;
     };
 
+    /// @brief A simple no action that is use by default in @ref StateTransition instances
     class MEZZ_LIB StateTransitionNoAction : public StateTransitionAction
     {
         public:
+            /// @brief When called does nothing.
             virtual void operator()();
+            /// @brief A no-op virtual deconstructor to not interfere with inheritance during
+            /// deconstruction.
             virtual ~StateTransitionNoAction();
+            /// @brief Create a copy of this, doing something like "new StateTransitionNoAction;"
+            /// @return This is expected to return an owning pointer to a new instance of this
+            /// from this class. This allows for storing multiple kinds of transition
+            /// actions in the same container. Calling this and not deleting it will leak.
             virtual StateTransitionAction* clone();
     };
 
