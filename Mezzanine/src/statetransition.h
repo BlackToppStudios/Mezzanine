@@ -49,14 +49,29 @@
 
 namespace Mezzanine
 {
+    /// @brief When a @ref StateMachine changes state how is the knowledge that a transition
+    /// @b From one state and @b To another stored and referenced, and what @b Action is performed.
     class MEZZ_LIB StateTransition
     {
         private:
+            /// @internal
+            /// @brief The state this transition is coming from.
             HashedString32 From;
+            /// @internal
+            /// @brief The State this transition is going to.
             HashedString32 To;
+            /// @internal
+            /// @brief The action it takes to get @b From here @b To there.
             StateTransitionAction* Action;
 
         public:
+            /// @brief State Transition Stealing constructor
+            /// @param FromState Sets the state this transition is coming from.
+            /// @param ToState Sets the state this transition is going to.
+            /// @param OwningActionPointer An owning pointer (meaning this pointer will be deleted)
+            /// and the calling code should forget about because this class will delete it) to any
+            /// instance of a class derived from a @ref StateTransitionAction. This defaults to a
+            /// new @ref StateTransitionNoAction, which does no action exactly like it sounds.
             StateTransition(const HashedString32& FromState,
                             const HashedString32& ToState,
                             StateTransitionAction* OwningActionPointer
