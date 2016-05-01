@@ -76,7 +76,10 @@ namespace Mezzanine
                             const HashedString32& ToState,
                             StateTransitionAction* OwningActionPointer
                                 = new StateTransitionNoAction());
+            /// @brief Copy constructor
+            /// @param CopiedTransition The other StateTransition to copy
             StateTransition(const StateTransition& CopiedTransition);
+
             StateTransition& operator= (const StateTransition& CopiedTransition);
             ~StateTransition();
 
