@@ -51,6 +51,9 @@ namespace Mezzanine
 {
     /// @brief When a @ref StateMachine changes state how is the knowledge that a transition
     /// @b From one state and @b To another stored and referenced, and what @b Action is performed.
+    /// @details This is not intended to be a base for inheritance, this is intended to be stored
+    /// directly in a container inside an @ref StateMachine. That said if this is inherited from
+    /// it ought to work as long as no new data members are added.
     class MEZZ_LIB StateTransition
     {
         private:
@@ -77,20 +80,40 @@ namespace Mezzanine
                             StateTransitionAction* OwningActionPointer
                                 = new StateTransitionNoAction());
             /// @brief Copy constructor
-            /// @param CopiedTransition The other StateTransition to copy
+            /// @param CopiedTransition The other StateTransition to copy.
             StateTransition(const StateTransition& CopiedTransition);
 
+            /// @brief Assignment Operator
+            /// @param CopiedTransition The other StateTransition to copy.
+            /// @return A reference to this StateTransition to allow operator chaining.
             StateTransition& operator= (const StateTransition& CopiedTransition);
-            ~StateTransition();
 
+            /// @brief A virtual destructor to not totally screw inheritance, because this is
+            /// intended to be stored in a container directly in an @ref StateMachine, so any
+            /// inheritance needs to avoid adding any new data members and preserve
+            virtual ~StateTransition();
+
+            /// @brief Determines sorting order, not useful for human readable sorting.
+            /// @param Other the other StateTransition to work with.
+            /// @details This compares the Hashes in the Other StateTransition to this one. It
+            /// starts by comparing the value of the From State, then in the event of a tie it
+            /// compares the values of the To state.
             Boole operator< (const StateTransition& Other) const;
 
+            /// @brief Execute the StateTransitionAction.
+            /// @return True if it executed completely.
             Boole operator()();
 
+            /// @brief What is the From State?
+            /// @return An immutable Reference to the From state.
             const HashedString32& FromState() const;
+            /// @brief What is the To State?
+            /// @return An immutable Reference to the To state.
             const HashedString32& ToState() const;
     };
 
+    /// @brief If pointers to this must be stored, then this comparator can be used to get the same
+    /// sorting results as without pointers.
     class MEZZ_LIB StateTransitionPointerSorter
     {
         public:
