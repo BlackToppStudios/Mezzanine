@@ -59,12 +59,6 @@ namespace Mezzanine
         FutureState = States.end();
     }
 
-    StateMachine::~StateMachine()
-    {
-        for(TranstionIterator tran = Transitions.begin(); tran != Transitions.end(); tran++)
-            { delete *tran; }
-    }
-
     StateMachine::StateMachine(const HashedString32& InitialState) //: CurrentState(InitialState)
     {
         States.add(InitialState);
@@ -79,6 +73,13 @@ namespace Mezzanine
         CurrentState = States.begin();
         FutureStateTransition = Transitions.end();
         FutureState = States.end();
+    }
+
+
+    StateMachine::~StateMachine()
+    {
+        //for(TranstionIterator tran = Transitions.begin(); tran != Transitions.end(); tran++)
+        //    { delete *tran; }
     }
 
     void StateMachine::AddState(const HashedString32& NewState)
@@ -112,7 +113,7 @@ namespace Mezzanine
                                             const HashedString32& To,
                                             StateTransitionAction* PossibleAction)
     {
-        Transitions.add(new StateTransition(From, To, PossibleAction));
+        Transitions.add(StateTransition(From, To, PossibleAction));
     }
 
     void StateMachine::AddStateTransitation(const String& From,
@@ -130,7 +131,7 @@ namespace Mezzanine
                                            const HashedString32& ToState) const
     {
         StateTransition Needle(FromState,ToState);
-        return Transitions.find(&Needle) != Transitions.end();
+        return Transitions.find(Needle) != Transitions.end();
     }
 
     Boole StateMachine::HasStateTransition(const String& FromState, const String& ToState) const
@@ -150,11 +151,11 @@ namespace Mezzanine
 
         StateTransition Needle(*CurrentState, ToState);
         TranstionIterator FoundTransition
-                = Transitions.find(&Needle);
+                = Transitions.find(Needle);
         if(FoundTransition == Transitions.end())
             { return false; }
 
-        (*FoundTransition)->operator()();
+        FoundTransition->operator()();
         CurrentState = FoundState;
         ClearPendingState();
         return true;
@@ -171,7 +172,7 @@ namespace Mezzanine
 
         StateTransition Needle(*CurrentState, ToState);
         TranstionIterator FoundTransition
-                = Transitions.find(&Needle);
+                = Transitions.find(Needle);
         if(FoundTransition == Transitions.end())
             { return false; }
         FutureStateTransition = FoundTransition;
@@ -192,7 +193,7 @@ namespace Mezzanine
     {
         if(Transitions.end() != FutureStateTransition)
         {
-            (*FutureStateTransition)->operator()();
+            FutureStateTransition->operator()();
             CurrentState = FutureState;
             ClearPendingState();
         }
