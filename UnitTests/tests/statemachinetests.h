@@ -60,11 +60,22 @@ class StateTransitionActionChecker : public StateTransitionAction
         StateTransitionActionChecker(Boole& BooleToWrite) : Transitioned(BooleToWrite)
             {}
 
-        virtual void operator ()()
-            { Transitioned = true;}
+        virtual Boole operator ()()
+            { return Transitioned = true;}
 
-        virtual StateTransitionAction* clone()
+        virtual StateTransitionActionChecker* clone()
             { return new StateTransitionActionChecker(Transitioned); }
+};
+
+
+class StateTransitionActionFail : public StateTransitionAction
+{
+    public:
+        virtual Boole operator ()()
+            { return false;}
+
+        virtual StateTransitionActionFail* clone()
+            { return new StateTransitionActionFail; }
 };
 
 
@@ -256,6 +267,29 @@ public:
                  "OnlyTheSecondStateRun");
 
         }
+
+        {
+            StateMachine UnderTest(HashedString32("Running"));
+            UnderTest.AddState("CantStop");
+
+            UnderTest.AddStateTransitation( HashedString32("Running"),
+                                            HashedString32("CantStop"),
+                                            new StateTransitionActionFail);
+
+            TEST(UnderTest.CanChangeState(HashedString32("CantStop")), "TransitionAppearsValid");
+            TEST(UnderTest.ChangeState(HashedString32("CantStop")) == false,
+                  "FailingTransitionInterupts");
+            TEST(UnderTest.GetCurrentState() == HashedString32("Running"), "StillRunning");
+            TEST(UnderTest.GetPendingState() == HashedString32(""), "NoPendingAfterFail");
+
+            TEST(UnderTest.SetPendingState(HashedString32("CantStop")), "FutureAppearsValid");
+            TEST(UnderTest.DoPendingStateChange()==false, "PendingCanFail");
+            TEST(UnderTest.ChangeState(HashedString32("CantStop")) == false,
+                  "FailingTransitionInteruptsFuture");
+            TEST(UnderTest.GetPendingState() == HashedString32(""), "NoPendingAfterFutureFail");
+
+        }
+
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.
@@ -265,3 +299,4 @@ public:
 };//spheretests
 
 #endif
+

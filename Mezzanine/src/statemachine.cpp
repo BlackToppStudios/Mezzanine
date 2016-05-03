@@ -75,7 +75,6 @@ namespace Mezzanine
         FutureState = States.end();
     }
 
-
     StateMachine::~StateMachine()
     {
         //for(TranstionIterator tran = Transitions.begin(); tran != Transitions.end(); tran++)
@@ -155,7 +154,8 @@ namespace Mezzanine
         if(FoundTransition == Transitions.end())
             { return false; }
 
-        FoundTransition->operator()();
+        if(!FoundTransition->operator()())
+            { ClearPendingState(); return false; }
         CurrentState = FoundState;
         ClearPendingState();
         return true;
@@ -189,14 +189,17 @@ namespace Mezzanine
         FutureState = States.end();
     }
 
-    void StateMachine::DoPendingStateChange()
+    Boole StateMachine::DoPendingStateChange()
     {
-        if(Transitions.end() != FutureStateTransition)
-        {
-            FutureStateTransition->operator()();
+        if(Transitions.end() != FutureStateTransition) // in order to get rid of this I need a
+        {                                              // A static StateTransitionAction.
+            if(!FutureStateTransition->operator()())
+                { ClearPendingState(); return false; }
             CurrentState = FutureState;
             ClearPendingState();
+            return true;
         }
+        return false;
     }
 
     const HashedString32& StateMachine::GetCurrentState() const

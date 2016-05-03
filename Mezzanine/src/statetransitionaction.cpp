@@ -51,8 +51,8 @@ namespace Mezzanine
     StateTransitionAction::~StateTransitionAction()
         { }
 
-    void StateTransitionNoAction::operator()()
-        { }
+    Boole StateTransitionNoAction::operator()()
+        { return true; }
 
     StateTransitionNoAction::~StateTransitionNoAction()
         { }

@@ -54,8 +54,9 @@ namespace Mezzanine
         public:
             /// @brief The action to be executed on a transition, must be implemented
             /// in derived class.
-            /// @details The State will not pass anything int
-            virtual void operator()() = 0;
+            /// @return True if successes and the State should complete the Transition and False
+            /// otherwise.
+            virtual Boole operator()() = 0;
             /// @brief A no-op virtual deconstructor to not interfere with inheritance during
             /// deconstruction.
             virtual ~StateTransitionAction();
@@ -71,7 +72,8 @@ namespace Mezzanine
     {
         public:
             /// @brief When called does nothing.
-            virtual void operator()();
+            /// @
+            virtual Boole operator()();
             /// @brief A no-op virtual deconstructor to not interfere with inheritance during
             /// deconstruction.
             virtual ~StateTransitionNoAction();
