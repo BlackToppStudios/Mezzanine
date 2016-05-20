@@ -228,6 +228,7 @@ namespace Mezzanine
         {
             size_t StrLen = Str.length();
             size_t PatternLen = Pattern.length();
+
             String Start = Str.substr(0,PatternLen);
 
             if( CaseSensitive ) {
@@ -248,6 +249,9 @@ namespace Mezzanine
         {
             size_t StrLen = Str.length();
             size_t PatternLen = Pattern.length();
+            if( PatternLen > StrLen )
+                return false;
+
             String End = Str.substr(StrLen - PatternLen,PatternLen);
 
             if( CaseSensitive ) {
