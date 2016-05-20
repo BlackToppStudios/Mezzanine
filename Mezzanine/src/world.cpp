@@ -321,12 +321,32 @@ namespace Mezzanine
         return true;
     }
 
-    WorldManager* World::GetManager(const Whole ManagerToGet)
+    WorldManager* World::GetManager(const Whole ManagerToGet) const
     {
-        for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
+        for( ConstWorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
         {
             if( (*ManIter)->GetInterfaceType() == ManagerToGet )
                 return *ManIter;
+        }
+        return NULL;
+    }
+
+    WorldObjectManager* World::GetObjectManager(const Whole ManagerToGet) const
+    {
+        if( ManagerToGet >= ManagerBase::MT_WorldObjectManagerFirst &&
+            ManagerToGet <= ManagerBase::MT_WorldObjectManagerLast )
+        {
+            return static_cast<WorldObjectManager*>( this->GetManager(ManagerToGet) );
+        }
+        return NULL;
+    }
+
+    WorldProxyManager* World::GetProxyManager(const Whole ManagerToGet) const
+    {
+        if( ManagerToGet >= ManagerBase::MT_WorldProxyManagerFirst &&
+            ManagerToGet <= ManagerBase::MT_WorldProxyManagerLast )
+        {
+            return static_cast<WorldProxyManager*>( this->GetManager(ManagerToGet) );
         }
         return NULL;
     }

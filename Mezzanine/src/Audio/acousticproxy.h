@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,63 +40,40 @@
 // Copyright (c) 2008-2010 Raynaldo (Wildicv) Rivera, Joshua (Dark_Kilauea) Jones
 // This file is part of the "cAudio Engine"
 // For conditions of distribution and use, see copyright notice in cAudio-ZLIBLicense.txt
-#ifndef _audiolistener_h
-#define _audiolistener_h
+#ifndef _audioacousticproxy_h
+#define _audioacousticproxy_h
 
-#include "Audio/acousticproxy.h"
+#include "worldproxy.h"
 
 namespace Mezzanine
 {
     namespace Audio
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is an interface class for a listener (such as a player) in the 3D audio world.
+        /// @brief This is the base class for proxies belonging the Audio subsystem.
         ///////////////////////////////////////
-        class iListener : public AcousticProxy
+        class AcousticProxy : public WorldProxy
         {
         public:
             /// @brief Blank constructor.
-            iListener()
+            AcousticProxy()
                 {  }
             /// @brief ID constructor.
-            /// @param ID The unique ID of this listener.
-            iListener(const UInt32 ID) :
-                AcousticProxy(ID)
+            /// @param ID The unique ID of this proxy.
+            AcousticProxy(const UInt32 ID) :
+                WorldProxy(ID)
                 {  }
             /// @brief Class destructor.
-            virtual ~iListener()
+            virtual ~AcousticProxy()
                 {  }
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @brief Sets the moving velocity of this listener.
-            /// @param Vel The velocity this listener is to be given.
-            virtual void SetVelocity(const Vector3& Vel) = 0;
-            /// @brief Gets the current velocity of this listener.
-            /// @return Returns a Vector3 containing the current velocity of this listener.
-            virtual Vector3 GetVelocity() const = 0;
-
-            /// @brief Sets the modifier to use that will adjust the volume of all audio heard by this listener.
-            /// @param Vol The modifier to be set.  Range 0.0 to +Inf.
-            virtual void SetVolumeModifier(const Real Vol) = 0;
-            /// @brief Gets the modifier applied to all audio heard by this listener.
-            /// @return Returns the currently set volume modifier.
-            virtual Real GetVolumeModifier() const = 0;
-            /// @brief Sets the number of meters in a single unit of world space.
-            /// @param Meters The number of meters in a single unit of world space.
-            virtual void SetMetersPerUnit(const Real Meters) = 0;
-            /// @brief Gets the currently set number of meters in a single unit of world space.
-            /// @return Returns a Real representing the number of meters in a unit of world space.
-            virtual Real GetMetersPerUnit() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @brief Get the name of the the XML tag the Acoustic class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
-            static String GetSerializableName() { return "iListener"; }
-        };//iListener
+            static String GetSerializableName() { return "AcousticProxy"; }
+        };//AcousticProxy
     }//Audio
 }//Mezzanine
 

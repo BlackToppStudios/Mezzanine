@@ -179,9 +179,12 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldmanagerfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}worldobject.h"
+        "${${PROJECT_NAME}_SRC_DIR}worldobjectmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldproxy.h"
+        "${${PROJECT_NAME}_SRC_DIR}worldproxymanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         # Audio Items
+        "${${PROJECT_NAME}_SRC_DIR}Audio/acousticproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/audio.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/audioenumerations.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/audiomanager.h"

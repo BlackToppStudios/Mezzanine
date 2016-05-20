@@ -59,7 +59,6 @@ namespace Mezzanine
             class SoundScapeManager;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OpenALSoft implemenation for an Audio listener.
-            /// @details
             ///////////////////////////////////////
             class MEZZ_LIB Listener : public iListener
             {
@@ -101,6 +100,11 @@ namespace Mezzanine
                 /// @param ListenContext The context this listener belongs to.
                 /// @param Creator A pointer to the manager that created this listener.
                 Listener(const UInt32 ID, ALCcontext* ListenContext, OALS::SoundScapeManager* Creator);
+                /// @brief Internal XML constructor.
+                /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+                /// @param ListenContext The context this listener belongs to.
+                /// @param Creator A pointer to the manager that created this listener.
+                Listener(const XML::Node& SelfRoot, ALCcontext* ListenContext, OALS::SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~Listener();
 
@@ -128,14 +132,24 @@ namespace Mezzanine
                 virtual void AddToWorld();
                 /// @copydoc WorldProxy::RemoveFromWorld()
                 virtual void RemoveFromWorld();
+
                 /// @copydoc WorldProxy::IsInWorld() const
                 virtual Boole IsInWorld() const;
+                /// @copydoc WorldProxy::IsStatic() const
+                virtual Boole IsStatic() const;
 
                 /// @copydoc WorldProxy::GetCreator() const
-                virtual WorldManager* GetCreator() const;
+                virtual WorldProxyManager* GetCreator() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods
+
+                /// @copydoc WorldProxy::SetTransform(const Transform&)
+                virtual void SetTransform(const Transform& Trans);
+                /// @copydoc WorldProxy::SetTransform(const Vector3&,const Quaternion&)
+                virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
+                /// @copydoc WorldProxy::GetTransform() const
+                virtual Transform GetTransform() const;
 
                 /// @copydoc WorldProxy::SetLocation(const Vector3&)
                 virtual void SetLocation(const Vector3& Loc);
@@ -178,10 +192,10 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Serialization
 
-                /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
-                virtual void ProtoSerialize(XML::Node& ParentNode) const;
-                /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
-                virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+                /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
+                virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+                /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
+                virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
                 /// @copydoc WorldProxy::GetDerivedSerializableName() const
                 virtual String GetDerivedSerializableName() const;

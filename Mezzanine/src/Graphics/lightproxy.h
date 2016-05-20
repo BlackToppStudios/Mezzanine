@@ -58,7 +58,6 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the proxy class for placing and manipulating lighting in the scene.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB LightProxy : public RenderableProxy
         {
@@ -85,7 +84,7 @@ namespace Mezzanine
             /// @param Creator A pointer to the manager that created this proxy.
             LightProxy(const UInt32 ID, const Graphics::LightType Type, SceneManager* Creator);
             /// @brief XML constructor.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this proxy.
             LightProxy(const XML::Node& SelfRoot, SceneManager* Creator);
             /// @brief Class destructor.
@@ -96,6 +95,8 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::GetProxyType() const
             virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::IsStatic() const
+            virtual Boole IsStatic() const;
 
             /// @brief Sets the direction the light will be emitted from this source.
             /// @note The direction is not used if this is a point light.

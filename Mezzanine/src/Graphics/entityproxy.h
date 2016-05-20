@@ -57,7 +57,6 @@ namespace Mezzanine
         class Mesh;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the proxy class for placing and manipulating a mesh in the scene.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB EntityProxy : public RenderableProxy
         {
@@ -118,7 +117,7 @@ namespace Mezzanine
             /// @param Creator A pointer to the manager that created this proxy.
             EntityProxy(const UInt32 ID, const String& MeshName, const String& GroupName, SceneManager* Creator);
             /// @brief XML constructor.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this proxy.
             EntityProxy(const XML::Node& SelfRoot, SceneManager* Creator);
             /// @brief Class destructor.
@@ -133,6 +132,8 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::GetProxyType() const
             virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::IsStatic() const
+            virtual Boole IsStatic() const;
 
             /// @copydoc WorldProxy::AddToWorld()
             virtual void AddToWorld();
@@ -200,7 +201,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the mesh of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeMesh(const XML::Node& SelfRoot);
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const

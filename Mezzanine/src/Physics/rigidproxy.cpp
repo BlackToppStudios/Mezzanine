@@ -282,8 +282,8 @@ namespace Mezzanine
 
         void RigidProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            this->CollidableProxy::ProtoSerialize(SelfRoot);
-            // We're at the base implementation, so no calling of child implementations
+            this->CollidableProxy::ProtoSerializeProperties(SelfRoot);
+
             XML::Node PropertiesNode = SelfRoot.AppendChild( RigidProxy::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
@@ -291,7 +291,7 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("LinearDamping").SetValue( this->GetLinearDamping() ) &&
                 PropertiesNode.AppendAttribute("AngularDamping").SetValue( this->GetAngularDamping() ) )
             {
-                XML::Node LinVelNode = PropertiesNode.AppendChild("LinearVelocty");
+                XML::Node LinVelNode = PropertiesNode.AppendChild("LinearVelocity");
                 this->GetLinearVelocity().ProtoSerialize( LinVelNode );
 
                 XML::Node AngVelNode = PropertiesNode.AppendChild("AngularVelocity");
@@ -321,8 +321,8 @@ namespace Mezzanine
         void RigidProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
             this->PhysicsRigidBody->clearForces();
-            this->CollidableProxy::ProtoDeSerialize(SelfRoot);
-            // We're at the base implementation, so no calling of child implementations
+            this->CollidableProxy::ProtoDeSerializeProperties(SelfRoot);
+
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( RigidProxy::GetSerializableName() + "Properties" );
 
@@ -345,7 +345,7 @@ namespace Mezzanine
                     this->SetDamping(LinDam,AngDam);
 
                     // Get the properties that need their own nodes
-                    XML::Node LinVelNode = PropertiesNode.GetChild("LinearVelocty").GetFirstChild();
+                    XML::Node LinVelNode = PropertiesNode.GetChild("LinearVelocity").GetFirstChild();
                     if( !LinVelNode.Empty() ) {
                         Vector3 LinVel(LinVelNode);
                         this->SetLinearVelocity(LinVel);

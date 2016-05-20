@@ -224,11 +224,14 @@ namespace Mezzanine
                 virtual void AddToWorld();
                 /// @copydoc Audio::SoundProxy::RemoveFromWorld()
                 virtual void RemoveFromWorld();
+
                 /// @copydoc WorldProxy::IsInWorld()
                 virtual Boole IsInWorld() const;
+                /// @copydoc WorldProxy::IsStatic() const
+                virtual Boole IsStatic() const;
 
                 /// @copydoc WorldProxy::GetCreator() const
-                virtual WorldManager* GetCreator() const;
+                virtual WorldProxyManager* GetCreator() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Playback
@@ -314,6 +317,13 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods
 
+                /// @copydoc WorldProxy::SetTransform(const Transform&)
+                virtual void SetTransform(const Transform& Trans);
+                /// @copydoc WorldProxy::SetTransform(const Vector3&,const Quaternion&)
+                virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
+                /// @copydoc WorldProxy::GetTransform() const
+                virtual Transform GetTransform() const;
+
                 /// @copydoc WorldProxy::SetLocation(const Vector3&)
                 virtual void SetLocation(const Vector3& Loc);
                 /// @copydoc WorldProxy::SetLocation(const Real, const Real, const Real)
@@ -394,13 +404,13 @@ namespace Mezzanine
                 /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
                 virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
                 /// @brief Take the data stored in an XML Node and overwrite the Decoder used by this object with it.
-                /// @param SelfRoot An XML::Node containing the data to populate this class with.
+                /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
                 virtual void ProtoDeSerializeDecoder(const XML::Node& SelfRoot);
                 /// @brief Take the data stored in an XML Node and overwrite the Filter attached to this object with it.
-                /// @param SelfRoot An XML::Node containing the data to populate this class with.
+                /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
                 virtual void ProtoDeSerializeFilter(const XML::Node& SelfRoot);
                 /// @brief Take the data stored in an XML Node and overwrite the Effects attached to this object with it.
-                /// @param SelfRoot An XML::Node containing the data to populate this class with.
+                /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
                 virtual void ProtoDeSerializeEffects(const XML::Node& SelfRoot);
 
                 /// @copydoc WorldProxy::GetDerivedSerializableName() const

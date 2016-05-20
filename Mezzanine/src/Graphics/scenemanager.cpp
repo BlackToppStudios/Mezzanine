@@ -180,7 +180,7 @@ namespace Mezzanine
         const ManagerBase::ManagerType SceneManager::InterfaceType = ManagerBase::MT_SceneManager;
 
         SceneManager::SceneManager(World* Creator, const String& InternalManagerTypeName) :
-            WorldManager(Creator),
+            WorldProxyManager(Creator),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -191,7 +191,7 @@ namespace Mezzanine
         }
 
         SceneManager::SceneManager(World* Creator, const XML::Node& XMLNode) :
-            WorldManager(Creator),
+            WorldProxyManager(Creator),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -412,18 +412,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Creating Proxies
 
-        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const Boole AddToWorld)
-        {
-            return this->CreateBillboardSetProxy(20,AddToWorld);
-        }
-
-        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const UInt32 InitialPoolSize, const Boole AddToWorld)
+        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const UInt32 InitialPoolSize)
         {
             BillboardSetProxy* NewProxy = new BillboardSetProxy(this->ProxyIDGen.GenerateID(),InitialPoolSize,this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
@@ -450,33 +442,24 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy(const Boole AddToWorld)
+        EntityProxy* SceneManager::CreateEntityProxy()
         {
             EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh, const Boole AddToWorld)
+        EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh)
         {
             EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),TheMesh,this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName, const Boole AddToWorld)
+        EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName)
         {
             EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),MeshName,GroupName,this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
@@ -488,23 +471,17 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        LightProxy* SceneManager::CreateLightProxy(const Boole AddToWorld)
+        LightProxy* SceneManager::CreateLightProxy()
         {
             LightProxy* NewProxy = new LightProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
-        LightProxy* SceneManager::CreateLightProxy(const Graphics::LightType Type, const Boole AddToWorld)
+        LightProxy* SceneManager::CreateLightProxy(const Graphics::LightType Type)
         {
             LightProxy* NewProxy = new LightProxy(this->ProxyIDGen.GenerateID(),Type,this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
@@ -516,13 +493,10 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template, const Boole AddToWorld)
+        ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template)
         {
             ParticleSystemProxy* NewProxy = new ParticleSystemProxy(this->ProxyIDGen.GenerateID(),Template,this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
@@ -534,37 +508,66 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        WorldProxy* SceneManager::CreateProxy(const XML::Node& SelfRoot)
+        {
+            if( SelfRoot.Name() == BillboardSetProxy::GetSerializableName() ) return this->CreateBillboardSetProxy(SelfRoot);
+            else if( SelfRoot.Name() == CameraProxy::GetSerializableName() ) return this->CreateCamera(SelfRoot);
+            else if( SelfRoot.Name() == EntityProxy::GetSerializableName() ) return this->CreateEntityProxy(SelfRoot);
+            else if( SelfRoot.Name() == LightProxy::GetSerializableName() ) return this->CreateLightProxy(SelfRoot);
+            else if( SelfRoot.Name() == ParticleSystemProxy::GetSerializableName() ) return this->CreateParticleSystemProxy(SelfRoot);
+            else return NULL;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Proxy Management
 
         RenderableProxy* SceneManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
-        RenderableProxy* SceneManager::GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const
+        WorldProxy* SceneManager::GetProxyByID(const UInt32 ID) const
         {
-            if( Mezzanine::PT_Graphics_All_Proxies & Type ) {
-                for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-                {
-                    if( (*ProxIt)->GetProxyType() == Type ) {
-                        if( 0 == Which ) return (*ProxIt);
-                        else --Which;
-                    }
+            for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( (*ProxIt)->GetProxyID() == ID ) {
+                    return (*ProxIt);
                 }
             }
             return NULL;
         }
 
         UInt32 SceneManager::GetNumProxies() const
-            { return this->Proxies.size(); }
+        {
+            return this->Proxies.size();
+        }
 
-        void SceneManager::DestroyProxy(RenderableProxy* ToBeDestroyed)
+        UInt32 SceneManager::GetNumProxies(const UInt32 Types) const
+        {
+            if( ( Types & Mezzanine::PT_Graphics_All_Proxies ) == Mezzanine::PT_Graphics_All_Proxies )
+                return this->GetNumProxies();
+
+            UInt32 Count = 0;
+            for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( (*ProxIt)->GetProxyType() & Types ) {
+                    ++Count;
+                }
+            }
+            return Count;
+        }
+
+        WorldProxyManager::WorldProxyVec SceneManager::GetProxies() const
+        {
+            return WorldProxyVec(this->Proxies.begin(),this->Proxies.end());
+        }
+
+        void SceneManager::DestroyProxy(WorldProxy* ToBeDestroyed)
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
                     WorldObject* Parent = (*ProxIt)->GetParentObject();
                     if( Parent )
-                        Parent->_NotifyProxyDestroyed( (*ProxIt) );
+                        Parent->RemoveProxy( (*ProxIt) );
 
                     this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                     delete (*ProxIt);
@@ -574,13 +577,33 @@ namespace Mezzanine
             }
         }
 
+        void SceneManager::DestroyAllProxies(const UInt32 Types)
+        {
+            ProxyContainer ToKeep;
+            for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( (*ProxIt)->GetProxyType() & Types ) {
+                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    if( Parent )
+                        Parent->RemoveProxy( (*ProxIt) );
+
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                    delete (*ProxIt);
+                }else{
+                    ToKeep.push_back( *ProxIt );
+                }
+            }
+            this->Proxies.clear();
+            this->Proxies.swap(ToKeep);
+        }
+
         void SceneManager::DestroyAllProxies()
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 WorldObject* Parent = (*ProxIt)->GetParentObject();
                 if( Parent )
-                    Parent->_NotifyProxyDestroyed( (*ProxIt) );
+                    Parent->RemoveProxy( (*ProxIt) );
 
                 this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
                 delete (*ProxIt);
@@ -966,6 +989,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
     }else{
         MEZZ_EXCEPTION(Mezzanine::ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a SceneManager, found a " + Mezzanine::String(OneNode.Name()));
     }
+    //return OneNode;
 }
 
 

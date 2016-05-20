@@ -41,7 +41,9 @@
 #ifndef _world_h
 #define _world_h
 
-#include "worldmanager.h"
+#include "enumerations.h"
+#include "worldobjectmanager.h"
+#include "worldproxymanager.h"
 
 namespace Mezzanine
 {
@@ -65,8 +67,6 @@ namespace Mezzanine
         class ManagerConstructionInfo;
     }
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class World
-    /// @headerfile world.h
     /// @brief This class represents a world for objects to interact within.
     /// @details Objects can be inserted and removed from worlds in order to simulate them.  Multiple worlds can
     /// exist but objects can only belong to one world at a time.
@@ -187,7 +187,15 @@ namespace Mezzanine
         /// @brief This is will find the manager of a given type.
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
         /// @return This returns a pointer to a WorldManager, or a NULL pointer if no matching manager exists.
-        WorldManager* GetManager(const Whole ManagerToGet);
+        WorldManager* GetManager(const Whole ManagerToGet) const;
+        /// @brief This is will find the WorldObject manager of a given type.
+        /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
+        /// @return This returns a pointer to a WorldObjectManager, or a NULL pointer if no matching manager exists.
+        WorldObjectManager* GetObjectManager(const Whole ManagerToGet) const;
+        /// @brief This is will find the WorldProxy manager of a given type.
+        /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
+        /// @return This returns a pointer to a WorldProxyManager, or a NULL pointer if no matching manager exists.
+        WorldProxyManager* GetProxyManager(const Whole ManagerToGet) const;
         /// @brief This removes a manager by finding the matching pointer.
         /// @param ToBeRemoved A pointer to the manager to be removed.
         void RemoveManager(WorldManager* ToBeRemoved);
@@ -198,7 +206,7 @@ namespace Mezzanine
         void RemoveAllManagers();
 
         /// @brief This gets the list of managers in the world.
-        /// @return This returns a pointer to a vector containing the managers in this world.
+        /// @return This returns a reference to a vector containing the managers in this world.
         WorldManagerContainer& GetWorldManagers();
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -236,10 +244,10 @@ namespace Mezzanine
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
         /// @brief Take the data stored in an XML Node and overwrite this object with it.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
         /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
         /// @brief Gets the most derived serializable name of this World.

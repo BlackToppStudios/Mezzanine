@@ -165,45 +165,79 @@ namespace Mezzanine
                 virtual ~SoundScapeManager();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Listener Management
+                // Proxy Creation
 
                 /// @copydoc Audio::SoundScapeManager::CreateListener()
-                virtual iListener* CreateListener();
-                /// @copydoc Audio::SoundScapeManager::GetListener(const UInt32) const
-                virtual iListener* GetListener(const UInt32 Index) const;
-                /// @copydoc Audio::SoundScapeManager::GetNumListeners() const
-                virtual UInt32 GetNumListeners() const;
-                /// @copydoc Audio::SoundScapeManager::DestroyListener(iListener*)
-                virtual void DestroyListener(iListener* ToBeDestroyed);
-                /// @copydoc Audio::SoundScapeManager::DestroyAllListeners()
-                virtual void DestroyAllListeners();
+                iListener* CreateListener();
+                /// @copydoc Audio::SoundScapeManager::CreateListener(XML::Node&)
+                iListener* CreateListener(const XML::Node& SelfRoot);
+
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const Audio::Encoding)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, const String&)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const Audio::Encoding)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const UInt32, const Audio::BitConfig)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(XML::Node&)
+                Audio::SoundProxy* CreateSoundProxy(const XML::Node& SelfRoot);
+
+                /// @copydoc WorldProxyManager::CreateProxy(const XML::Node&)
+                WorldProxy* CreateProxy(const XML::Node& SelfRoot);
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Proxy Management
+                // General Proxy Management
 
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const Boole)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const Boole AddToWorld);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const Audio::Encoding, const Boole)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig, const Boole)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, const String&, const Boole)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group, const Boole AddToWorld);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const Audio::Encoding, const Boole)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const UInt32, const Audio::BitConfig, const Boole)
-                virtual Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld);
+                /// @copydoc WorldProxyManager::GetProxyByID(const UInt32) const
+                WorldProxy* GetProxyByID(const UInt32 ID) const;
 
-                /// @copydoc Audio::SoundScapeManager::GetSoundProxy(const UInt32) const
-                virtual Audio::SoundProxy* GetProxy(const UInt32 Index) const;
-                /// @copydoc Audio::SoundScapeManager::GetProxy(const Mezzanine::ProxyType, UInt32) const
-                virtual Audio::SoundProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
-                /// @copydoc Audio::SoundScapeManager::GetNumSoundProxies() const
-                virtual UInt32 GetNumProxies() const;
-                /// @copydoc Audio::SoundScapeManager::DestroySoundProxy(SoundProxy*)
-                virtual void DestroyProxy(Audio::SoundProxy* ToBeDestroyed);
-                /// @copydoc Audio::SoundScapeManager::DestroyAllProxies()
-                virtual void DestroyAllProxies();
+                /// @copydoc WorldProxyManager::GetNumProxies() const
+                UInt32 GetNumProxies() const;
+                /// @copydoc WorldProxyManager::GetNumProxies(const UInt32
+                UInt32 GetNumProxies(const UInt32 Types) const;
+                /// @copydoc WorldProxyManager::GetProxies() const
+                WorldProxyManager::WorldProxyVec GetProxies() const;
+
+                /// @copydoc WorldProxyManager::DestroyProxy(WorldProxy*)
+                void DestroyProxy(WorldProxy* ToBeDestroyed);
+                /// @copydoc WorldProxyManager::DestroyAllProxies(const UInt32)
+                void DestroyAllProxies(const UInt32 Types);
+                /// @copydoc WorldProxyManager::DestroyAllProxies()
+                void DestroyAllProxies();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Specific Proxy Management
+
+                /// @brief Gets a Listener instance by index.
+                /// @param Index The index of the Listener to be retrieved.
+                /// @return Returns a pointer to the Listener at the specified index.
+                OALS::Listener* GetListener(const UInt32 Index) const;
+                /// @brief Gets the number of Listener instances in this manager.
+                /// @return Returns a UInt32 representing the number of Listener instances contained in this manager.
+                UInt32 GetNumListeners() const;
+                /// @brief Deletes a Listener.
+                /// @param ToBeDestroyed A pointer to the Listener you want deleted.
+                void DestroyListener(OALS::Listener* ToBeDestroyed);
+                /// @brief Deletes all stored Listener instances.
+                void DestroyAllListeners();
+
+                /// @brief Gets an SoundProxy instance by index.
+                /// @param Index The index of the SoundProxy to be retrieved.
+                /// @return Returns a pointer to the SoundProxy at the specified index.
+                OALS::SoundProxy* GetSoundProxy(const UInt32 Index) const;
+                /// @brief Gets the number of SoundProxy instances in this manager.
+                /// @return Returns a UInt32 representing the number of SoundProxy instances contained in this manager.
+                UInt32 GetNumSoundProxies() const;
+                /// @brief Deletes a SoundProxy.
+                /// @param ToBeDestroyed A pointer to the SoundProxy you want deleted.
+                void DestroySoundProxy(OALS::SoundProxy* ToBeDestroyed);
+                /// @brief Deletes all stored SoundProxy instances.
+                void DestroyAllSoundProxies();
 
                 #ifndef SWIG
                 /// @brief Gets an iterator to the first Sound Proxy in this manager.

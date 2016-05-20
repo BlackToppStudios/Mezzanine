@@ -111,7 +111,7 @@ namespace Mezzanine
         Boole RenderableProxy::IsInWorld() const
             { return this->InWorld; }
 
-        WorldManager* RenderableProxy::GetCreator() const
+        WorldProxyManager* RenderableProxy::GetCreator() const
             { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -168,6 +168,15 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
+
+        void RenderableProxy::SetTransform(const Transform& Trans)
+            { this->SetLocation(Trans.Location);  this->SetOrientation(Trans.Rotation); }
+
+        void RenderableProxy::SetTransform(const Vector3& Loc, const Quaternion& Ori)
+            { this->SetLocation(Loc);  this->SetOrientation(Ori); }
+
+        Transform RenderableProxy::GetTransform() const
+            { return Transform(this->GetLocation(),this->GetOrientation()); }
 
         void RenderableProxy::SetLocation(const Vector3& Loc)
             { this->GraphicsNode->setPosition( Loc.GetOgreVector3() ); }

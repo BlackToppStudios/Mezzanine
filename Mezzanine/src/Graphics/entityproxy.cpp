@@ -119,7 +119,7 @@ namespace Mezzanine
             if( ObjectMesh != NULL ) {
                 this->GraphicsEntity = this->Manager->_GetGraphicsWorldPointer()->createEntity( ObjectMesh->_GetInternalMesh() );
                 this->GraphicsNode->attachObject( this->GraphicsEntity );
-                this->GraphicsEntity->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
+                this->GraphicsEntity->getUserObjectBindings().setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
                 this->GraphicsEntity->setVisibilityFlags(0);
                 this->GraphicsEntity->setQueryFlags(0);
             }
@@ -147,6 +147,11 @@ namespace Mezzanine
         Mezzanine::ProxyType EntityProxy::GetProxyType() const
         {
             return Mezzanine::PT_Graphics_EntityProxy;
+        }
+
+        Boole EntityProxy::IsStatic() const
+        {
+            return false;
         }
 
         void EntityProxy::AddToWorld()

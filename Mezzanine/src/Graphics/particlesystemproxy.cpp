@@ -97,7 +97,7 @@ namespace Mezzanine
         {
             this->GraphicsParticleSystem = this->Manager->_GetGraphicsWorldPointer()->createParticleSystem(ParticleSystemProxy::GenerateName(),Template);
             this->GraphicsNode->attachObject( this->GraphicsParticleSystem );
-            this->GraphicsParticleSystem->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
+            this->GraphicsParticleSystem->getUserObjectBindings().setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
             this->GraphicsParticleSystem->setVisibilityFlags(0);
             this->GraphicsParticleSystem->setQueryFlags(0);
 
@@ -143,6 +143,11 @@ namespace Mezzanine
         Mezzanine::ProxyType ParticleSystemProxy::GetProxyType() const
         {
             return PT_Graphics_ParticleSystemProxy;
+        }
+
+        Boole ParticleSystemProxy::IsStatic() const
+        {
+            return false;
         }
 
         const String& ParticleSystemProxy::GetName() const

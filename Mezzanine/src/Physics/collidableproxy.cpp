@@ -317,7 +317,7 @@ namespace Mezzanine
         Boole CollidableProxy::IsInWorld() const
             { return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL ); }
 
-        WorldManager* CollidableProxy::GetCreator() const
+        WorldProxyManager* CollidableProxy::GetCreator() const
             { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -533,6 +533,21 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
+
+        void CollidableProxy::SetTransform(const Transform& Trans)
+        {
+            this->_GetBasePhysicsObject()->setWorldTransform(Trans.GetBulletTransform());
+        }
+
+        void CollidableProxy::SetTransform(const Vector3& Loc, const Quaternion& Ori)
+        {
+            this->SetLocation(Loc);  this->SetOrientation(Ori);
+        }
+
+        Transform CollidableProxy::GetTransform() const
+        {
+            return Transform(this->_GetBasePhysicsObject()->getWorldTransform());
+        }
 
         void CollidableProxy::SetLocation(const Vector3& Loc)
         {
