@@ -69,7 +69,7 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         GravityField(const String& Name, Physics::CollisionShape* Shape, World* TheWorld);
         /// @brief XML constructor.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @param TheWorld A pointer to the world this object belongs to.
         GravityField(const XML::Node& SelfRoot, World* TheWorld);
         /// @brief Class destructor.

@@ -160,9 +160,9 @@ namespace Mezzanine
         // Debris Objects
         WO_DebrisFirst            = ( 1u << 6 ),//64,
 
-        WO_DebrisRigid            = ( 1u << 6 ),//64,
-        WO_DebrisSoft             = ( 1u << 7 ),//128,
-        WO_DebrisUnknown          = ( 1u << 8 ),//256,
+        WO_RigidDebris            = ( 1u << 6 ),//64,
+        WO_SoftDebris             = ( 1u << 7 ),//128,
+        WO_UnknownDebris          = ( 1u << 8 ),//256,
 
         WO_DebrisLast             = ( 1u << 8 ),//256,
         // AreaEffect Objects

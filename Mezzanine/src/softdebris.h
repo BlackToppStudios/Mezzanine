@@ -57,18 +57,18 @@ namespace Mezzanine
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A deformable debris.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB SoftDebris : public Debris
     {
+    public:
+        /// @brief An enum specifying the indexes of the proxies that compose a RigidDebris.
+        enum ProxyIndexes
+        {
+            PI_SofProx = 0,
+            PI_EntProx,
+            ProxyCount
+        };
     protected:
-        /// @internal
-        /// @brief A pointer to the graphics representation of this debris.
-        Graphics::EntityProxy* EntProx;
-        /// @internal
-        /// @brief A pointer to the physics representation of this debris.
-        Physics::SoftProxy* SofProx;
-
         /// @internal
         /// @brief Common construction method for SoftDebris.
         /// @param Mass The mass of the debris object.
@@ -86,7 +86,7 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         SoftDebris(const String& Name, const Real Mass, World* TheWorld);
         /// @brief XML constructor.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @param TheWorld A pointer to the world this object belongs to.
         SoftDebris(const XML::Node& SelfRoot, World* TheWorld);
         /// @brief Class destructor.
@@ -99,86 +99,27 @@ namespace Mezzanine
         virtual WorldObjectType GetType() const;
 
         /// @brief Gets a pointer to the graphics portion of this debris.
+        /// @remarks This is a convenience method that just calls "GetProxy(const UInt32 Types, Whole TypeIndex) const",
+        /// setting Mezzanine::PT_Graphics_EntityProxy as the type.  Depending on the world configuration one may not
+        /// exist, for example of no SceneManager was created with the world.  Please be aware of these configurations
+        /// when working with these methods.
         /// @return Returns a pointer to the Entity proxy representing the graphics portion of this debris.
         virtual Graphics::EntityProxy* GetEntityProxy() const;
         /// @brief Gets a pointer to the physics portion of this debris.
+        /// @remarks This is a convenience method that just calls "GetProxy(const UInt32 Types, Whole TypeIndex) const",
+        /// setting Mezzanine::PT_Physics_SoftProxy as the type.  Depending on the world configuration one may not
+        /// exist, for example of no PhysicsManager was created with the world.  Please be aware of these configurations
+        /// when working with these methods.
         /// @return Returns a pointer to the Soft proxy representing the physics portion of this debris.
         virtual Physics::SoftProxy* GetSoftProxy() const;
-
-        /// @copydoc Mezzanine::WorldObject::IsInWorld() const
-        virtual Boole IsInWorld() const;
-
-        /// @copydoc Mezzanine::WorldObject::IsStatic() const
-        virtual Boole IsStatic() const;
-        /// @copydoc Mezzanine::WorldObject::IsKinematic() const
-        virtual Boole IsKinematic() const;
-
-        /// @copydoc Mezzanine::WorldObject::GetProxies(ProxyContainer&)
-        virtual void GetProxies(ProxyContainer& Proxies);
-        /// @copydoc Mezzanine::WorldObject::GetProxies(const UInt32, ProxyContainer&)
-        virtual void GetProxies(const UInt32 Types, ProxyContainer& Proxies);
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Working with the World
-
-        /// @copydoc Mezzanine::WorldObject::AddToWorld()
-        virtual void AddToWorld();
-        /// @copydoc Mezzanine::WorldObject::RemoveFromWorld()
-        virtual void RemoveFromWorld();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Transform Methods
-
-        /// @copydoc TransformableObject::SetLocation(const Vector3&)
-        virtual void SetLocation(const Vector3& Loc);
-        /// @copydoc TransformableObject::SetLocation(const Real, const Real, const Real)
-        virtual void SetLocation(const Real X, const Real Y, const Real Z);
-        /// @copydoc TransformableObject::GetLocation() const
-        virtual Vector3 GetLocation() const;
-        /// @copydoc TransformableObject::SetOrientation(const Quaternion&)
-        virtual void SetOrientation(const Quaternion& Ori);
-        /// @copydoc TransformableObject::SetOrientation(const Real, const Real, const Real, const Real)
-        virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
-        /// @copydoc TransformableObject::GetOrientation() const
-        virtual Quaternion GetOrientation() const;
-        /// @copydoc TransformableObject::SetScale(const Vector3&)
-        virtual void SetScale(const Vector3& Sc);
-        /// @copydoc TransformableObject::SetScale(const Real, const Real, const Real)
-        virtual void SetScale(const Real X, const Real Y, const Real Z);
-        /// @copydoc TransformableObject::GetScale() const
-        virtual Vector3 GetScale() const;
-
-        /// @copydoc TransformableObject::Translate(const Vector3&)
-        virtual void Translate(const Vector3& Trans);
-        /// @copydoc TransformableObject::Translate(const Real, const Real, const Real)
-        virtual void Translate(const Real X, const Real Y, const Real Z);
-        /// @copydoc TransformableObject::Yaw(const Real)
-        virtual void Yaw(const Real Angle);
-        /// @copydoc TransformableObject::Pitch(const Real)
-        virtual void Pitch(const Real Angle);
-        /// @copydoc TransformableObject::Roll(const Real)
-        virtual void Roll(const Real Angle);
-        /// @copydoc TransformableObject::Rotate(const Vector3&, const Real)
-        virtual void Rotate(const Vector3& Axis, const Real Angle);
-        /// @copydoc TransformableObject::Rotate(const Quaternion&)
-        virtual void Rotate(const Quaternion& Rotation);
-        /// @copydoc TransformableObject::Scale(const Vector3&)
-        virtual void Scale(const Vector3& Scale);
-        /// @copydoc TransformableObject::Scale(const Real, const Real, const Real)
-        virtual void Scale(const Real X, const Real Y, const Real Z);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
         /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node&) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProxies(XML::Node&) const
-        virtual void ProtoSerializeProxies(XML::Node& SelfRoot) const;
-
         /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node&)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
-        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProxies(const XML::Node&)
-        virtual void ProtoDeSerializeProxies(const XML::Node& SelfRoot);
 
         /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
@@ -190,13 +131,10 @@ namespace Mezzanine
 
         /// @copydoc Mezzanine::WorldObject::_Update()
         virtual void _Update();
-        /// @copydoc Mezzanine::WorldObject::_NotifyProxyDestroyed(WorldProxy*)
-        virtual void _NotifyProxyDestroyed(WorldProxy* ToBeDestroyed);
     };//SoftDebris
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of deformable Debris objects.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB SoftDebrisFactory : public DebrisFactory
     {

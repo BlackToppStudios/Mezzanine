@@ -42,7 +42,6 @@
 
 #include "enumerations.h"
 #include "transformableobject.h"
-#include "attachable.h"
 #include "Physics/physicsenumerations.h"
 
 namespace Mezzanine
@@ -53,9 +52,9 @@ namespace Mezzanine
     {
         class Collision;
     }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class from which classes that are insertable into the physical world.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB WorldObject : public TransformableObject
     {
@@ -66,22 +65,23 @@ namespace Mezzanine
         typedef ProxyContainer::iterator               ProxyIterator;
         /// @brief Const Iterator type for WorldProxy instances stored by this class.
         typedef ProxyContainer::const_iterator         ConstProxyIterator;
-        /// @brief Basic container type for the current collisions applied to this object.
-        typedef std::set< Physics::Collision* >        CollisionContainer;
-        /// @brief Iterator type for the current collisions applied to this object.
-        typedef CollisionContainer::iterator           CollisionIterator;
-        /// @brief Const Iterator type for the current collisions applied to this object.
-        typedef CollisionContainer::const_iterator     ConstCollisionIterator;
     protected:
         /// @internal
-        /// @brief This member stores all existing collision events referencing this object.
-        CollisionContainer CurrentCollisions;
+        /// @brief A container of the proxies that share this objects transform.
+        ProxyContainer Proxies;
         /// @internal
         /// @brief The name of the object.
         String ObjectName;
         /// @internal
+        /// @brief A pointer to the proxy that is used for various queries, such as transform.
+        WorldProxy* PrimaryProxy;
+        /// @internal
         /// @brief This is the world this object belongs to and will be inserted in/removed from.
         World* ParentWorld;
+
+        /// @internal
+        /// @brief Destroys every WorldProxy in this object.
+        void DestroyAllProxies();
     public:
         /// @brief Blank constructor.
         /// @param TheWorld A pointer to the world this object belongs to.
@@ -107,31 +107,139 @@ namespace Mezzanine
         virtual World* GetWorld() const;
 
         /// @brief Gets whether or not this object is currently in the world.
+        /// @remarks This will check the status of the first proxy (index 0) and query only it.
+        /// If this object is empty the method will return false.
         /// @return Returns a Boole indicating if this object has been added to the world.
-        virtual Boole IsInWorld() const = 0;
+        virtual Boole IsInWorld() const;
+        /// @brief Checks of the object is meant to have it's geometry/transform updated frequently.
+        /// @remarks This will check the status of the first proxy (index 0) and query only it.
+        /// If this object is empty the method will return true.
+        /// @return Returns true if the object is meant to be stationary, false otherwise.
+        virtual Boole IsStatic() const;
 
-        /// @brief Checks of the object is static.
-        /// @return Returns true if the object is static, false otherwise.
-        virtual Boole IsStatic() const = 0;
-        /// @brief Checks of the object is kinematic.
-        /// @return Returns true if the object is kinematic, false otherwise.
-        virtual Boole IsKinematic() const = 0;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Proxy Management
 
-        /// @brief Populates a container with all of the WorldProxies being used by this WorldObject.
-        /// @param Proxies The container of proxies to be populated.
-        virtual void GetProxies(ProxyContainer& Proxies) = 0;
-        /// @brief Populates a container with all the WorldProxies being used by this WorldObject specified in a provided mask.
-        /// @param Types The bitmask specifing the types of world proxies to populate the container with.
-        /// @param Proxies The container of proxies to be populated.
-        virtual void GetProxies(const UInt32 Types, ProxyContainer& Proxies) = 0;
+        /// @brief Adds a WorldProxy to this WorldObject.
+        /// @remarks The order in which WorldProxy instances are inserted/stored slightly matters.  The first (index 0) proxy
+        /// will be treated as the primary transform proxy.  When this object is queried for it's transform, that is the proxy
+        /// that will be queried and thus used to represent this objects transform.  Prefab WorldObjects provided by the
+        /// engine will have this taken care of for you.  However when using custom WorldObjects or heavily modifying/removing
+        /// WorldProxy instances from a WorldObject, take care.
+        /// @param ToAdd A pointer to the WorldProxy to be added.
+        virtual void AddProxy(WorldProxy* ToAdd);
+        /// @brief Removes a WorldProxy from this WorldObject.
+        /// @warning This method is intended for use with custom WorldObject implementations.  Many WorldObjects in engine
+        /// care about the placement of proxies and tampering with that can disrupt their operation.
+        /// @param ToRemove A pointer to the WorldProxy to be removed.
+        /// @return Returns a pointer to the removed WorldProxy or NULL if the WorldProxy was not in this WorldObject.
+        virtual WorldProxy* RemoveProxy(WorldProxy* ToRemove);
+        /// @brief Removes all WorldProxy instances of the specified types from this WorldObject.
+        /// @warning This method is intended for use with custom WorldObject implementations.  Many WorldObjects in engine
+        /// care about the placement of proxies and tampering with that can disrupt their operation.
+        /// @param Types A bitfield of the types of WorldProxy instances to remove.
+        /// @return Returns a container of the removed proxies.
+        virtual ProxyContainer RemoveAllProxiesOfType(const UInt32 Types);
+        /// @brief Removes all WorldProxy instances from this WorldObject.
+        /// @warning This method is intended for use with custom WorldObject implementations.  Many WorldObjects in engine
+        /// care about the placement of proxies and tampering with that can disrupt their operation.
+        /// @return Returns a container of the removed proxies.
+        virtual ProxyContainer RemoveAllProxies();
+
+        /// @brief Gets the number of WorldProxy instances in this WorldObject.
+        /// @return Returns the number of WorldProxies being stored in this WorldObject.
+        virtual Whole GetNumProxies() const;
+        /// @brief Gets the WorldProxy by index.
+        /// @param Index The index of the WorldProxy to retrieve.
+        /// @return Returns a pointer to the WorldProxy at the specified index.
+        virtual WorldProxy* GetProxy(const Whole Index) const;
+        /// @brief Gets the Nth WorldProxy among the proxies of the specified types.
+        /// @param Types The types to be considered when getting the Nth WorldProxy.
+        /// @param TypeIndex The Nth WorldProxy to retrieve.
+        /// @return Returns a pointer to the WorldProxy at the specified index.
+        virtual WorldProxy* GetProxy(const UInt32 Types, Whole TypeIndex) const;
+        /// @brief Gets the WorldProxy via its ID.
+        /// @param ID The unique identifier belonging to the Proxy.
+        /// @return Returns a pointer to the WorldProxy with the specified ID.
+        virtual WorldProxy* GetProxyByID(const UInt32 ID) const;
+
+        /// @brief Gets a container of the WorldProxies stored in this WorldObject.
+        /// @return Returns a const reference to the internal WorldProxy storage.
+        virtual const ProxyContainer& GetProxies() const;
+        /// @brief Gets a container of the WorldProxies stored in this WorldObject.
+        /// @param Types A bitfield of the types of WorldProxies to retrieve.
+        /// @return Returns a container of all the proxies in this WorldObject of the specified type.
+        virtual ProxyContainer GetProxies(const UInt32 Types) const;
+
+        /// @brief Sets the primary proxy in this WorldObject.
+        /// @remarks The primary proxy is responsible for being the WorldProxy to be queried where it doesn't
+        /// make sense to query multiple proxies, such as if you want to know the location of the WorldObject.
+        /// The GetLocation() method is directed to the primary proxy.  This is not limited to just location,
+        /// and is also responsible for other transform and non-transform queries. @n @n
+        /// Every WorldObject instance should have the PrimaryProxy set as a part of it's initialization
+        /// before use.  Some WorldObjects will do this automatically.  Some may not.  Consult the WorldObjects
+        /// documentation.
+        /// @param Primary The WorldProxy to be set as the primary proxy.
+        virtual void SetPrimaryProxy(WorldProxy* Primary);
+        /// @brief Gets the primary proxy in this WorldObject.
+        /// @return Returns a pointer to the primary proxy of this WorldObject.
+        virtual WorldProxy* GetPrimaryProxy() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Working with the World
 
         /// @brief Adds the object to the World.
-        virtual void AddToWorld() = 0;
+        virtual void AddToWorld();
         /// @brief Removes the object from the World.
-        virtual void RemoveFromWorld() = 0;
+        virtual void RemoveFromWorld();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Transform Methods
+
+        /// @copydoc TransformableObject::SetTransform(const Transform&)
+        virtual void SetTransform(const Transform& Trans);
+        /// @copydoc TransformableObject::SetTransform(const Vector3&,const Quaternion&)
+        virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
+        /// @copydoc TransformableObject::GetTransform() const
+        virtual Transform GetTransform() const;
+
+        /// @copydoc TransformableObject::SetLocation(const Vector3&)
+        virtual void SetLocation(const Vector3& Loc);
+        /// @copydoc TransformableObject::SetLocation(const Real, const Real, const Real)
+        virtual void SetLocation(const Real X, const Real Y, const Real Z);
+        /// @copydoc TransformableObject::GetLocation() const
+        virtual Vector3 GetLocation() const;
+        /// @copydoc TransformableObject::SetOrientation(const Quaternion&)
+        virtual void SetOrientation(const Quaternion& Ori);
+        /// @copydoc TransformableObject::SetOrientation(const Real, const Real, const Real, const Real)
+        virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+        /// @copydoc TransformableObject::GetOrientation() const
+        virtual Quaternion GetOrientation() const;
+        /// @copydoc TransformableObject::SetScale(const Vector3&)
+        virtual void SetScale(const Vector3& Sc);
+        /// @copydoc TransformableObject::SetScale(const Real, const Real, const Real)
+        virtual void SetScale(const Real X, const Real Y, const Real Z);
+        /// @copydoc TransformableObject::GetScale() const
+        virtual Vector3 GetScale() const;
+
+        /// @copydoc TransformableObject::Translate(const Vector3&)
+        virtual void Translate(const Vector3& Trans);
+        /// @copydoc TransformableObject::Translate(const Real, const Real, const Real)
+        virtual void Translate(const Real X, const Real Y, const Real Z);
+        /// @copydoc TransformableObject::Yaw(const Real)
+        virtual void Yaw(const Real Angle);
+        /// @copydoc TransformableObject::Pitch(const Real)
+        virtual void Pitch(const Real Angle);
+        /// @copydoc TransformableObject::Roll(const Real)
+        virtual void Roll(const Real Angle);
+        /// @copydoc TransformableObject::Rotate(const Vector3&, const Real)
+        virtual void Rotate(const Vector3& Axis, const Real Angle);
+        /// @copydoc TransformableObject::Rotate(const Quaternion&)
+        virtual void Rotate(const Quaternion& Rotation);
+        /// @copydoc TransformableObject::Scale(const Vector3&)
+        virtual void Scale(const Vector3& Sc);
+        /// @copydoc TransformableObject::Scale(const Real, const Real, const Real)
+        virtual void Scale(const Real X, const Real Y, const Real Z);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -144,17 +252,17 @@ namespace Mezzanine
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
         /// @brief Convert the proxies of this class to an XML::Node ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.
-        virtual void ProtoSerializeProxies(XML::Node& SelfRoot) const = 0;
+        virtual void ProtoSerializeProxies(XML::Node& SelfRoot) const;
 
         /// @brief Take the data stored in an XML Node and overwrite this object with it.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
         /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
         /// @brief Take the data stored in an XML Node and overwrite the proxies of this object with it.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
-        virtual void ProtoDeSerializeProxies(const XML::Node& SelfRoot) = 0;
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+        virtual void ProtoDeSerializeProxies(const XML::Node& SelfRoot);
 
         /// @brief Gets the most derived serializable name of this WorldObject.
         /// @note When creating a new WorldObject class verify this method has a valid return for it in order for serialization to work properly.
@@ -170,16 +278,6 @@ namespace Mezzanine
         /// @internal
         /// @brief Utility function for altering or checking the World Object every frame.
         virtual void _Update() = 0;
-        /// @internal
-        /// @brief Notifies that a proxy belonging to this WorldObject is being forcibly destroyed, and it needs to update.
-        /// @note Forced destruction should only happen if a subsystem is being shutdown at a time when the WorldObject is still operational.
-        /// @param ToBeDestroyed The WorldProxy that is marked for destruction.
-        virtual void _NotifyProxyDestroyed(WorldProxy* ToBeDestroyed) = 0;
-        /// @internal
-        /// @brief Notifies this World Object of a collision that is occuring with it.
-        /// @param Col A pointer to the collision pertaining to this World Object.
-        /// @param State The state of the collision pertaining to this World Object.
-        virtual void _NotifyCollisionState(Physics::Collision* Col, const Physics::CollisionState State);
     };//WorldObject
 }//Mezzanine
 

@@ -112,30 +112,24 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Prefab Debris Type Creation
 
-    RigidDebris* DebrisManager::CreateRigidDebris(const String& Name, const Real Mass, const Boole AddToWorld)
+    RigidDebris* DebrisManager::CreateRigidDebris(const String& Name, const Real Mass)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( RigidDebris::GetSerializableName() );
         if( DebFactIt != this->DebrisFactories.end() ) {
             RigidDebris* Ret = static_cast<RigidDebrisFactory*>( (*DebFactIt).second )->CreateRigidDebris( Name, Mass, this->ParentWorld );
             this->Debriss.push_back( Ret );
-            if( AddToWorld ) {
-                Ret->AddToWorld();
-            }
             return Ret;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
         }
     }
 
-    RigidDebris* DebrisManager::CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, const Boole AddToWorld)
+    RigidDebris* DebrisManager::CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( RigidDebris::GetSerializableName() );
         if( DebFactIt != this->DebrisFactories.end() ) {
             RigidDebris* Ret = static_cast<RigidDebrisFactory*>( (*DebFactIt).second )->CreateRigidDebris( Name, Mass, DebMesh, DebShape, this->ParentWorld );
             this->Debriss.push_back( Ret );
-            if( AddToWorld ) {
-                Ret->AddToWorld();
-            }
             return Ret;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
@@ -154,15 +148,12 @@ namespace Mezzanine
         }
     }
 
-    SoftDebris* DebrisManager::CreateSoftDebris(const String& Name, const Real Mass, const Boole AddToWorld)
+    SoftDebris* DebrisManager::CreateSoftDebris(const String& Name, const Real Mass)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( SoftDebris::GetSerializableName() );
         if( DebFactIt != this->DebrisFactories.end() ) {
             SoftDebris* Ret = static_cast<SoftDebrisFactory*>( (*DebFactIt).second )->CreateSoftDebris( Name, Mass, this->ParentWorld );
             this->Debriss.push_back( Ret );
-            if( AddToWorld ) {
-                Ret->AddToWorld();
-            }
             return Ret;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
@@ -184,15 +175,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Debris Management
 
-    Debris* DebrisManager::CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params, const Boole AddToWorld)
+    Debris* DebrisManager::CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( TypeName );
         if( DebFactIt != this->DebrisFactories.end() ) {
             Debris* Ret = (*DebFactIt).second->CreateDebris( InstanceName, this->ParentWorld, Params );
             this->Debriss.push_back( Ret );
-            if( AddToWorld ) {
-                Ret->AddToWorld();
-            }
             return Ret;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an Debris of unknown type.");

@@ -113,13 +113,8 @@ namespace Mezzanine
             Real Distance, AppliedStrength;
             for( ObjectIterator ObjIt = this->OverlappingObjects.begin() ; ObjIt != this->OverlappingObjects.end() ; ObjIt++ )
             {
-                ProxyContainer RigidProxies;
-                (*ObjIt)->GetProxies(Mezzanine::PT_Physics_RigidProxy,RigidProxies);
-                if( RigidProxies.empty() )
-                    continue;
-
                 ObjectLoc = (*ObjIt)->GetLocation();
-                switch(this->AttenStyle)
+                switch( this->AttenStyle )
                 {
                     case Mezzanine::Att_Linear:
                     {
@@ -142,18 +137,21 @@ namespace Mezzanine
 
                 // Collect necessary data
                 //InvMass = (*ObjIt)->GetBulletObject()->getInvMass();
-                //if(0 != InvMass)
+                //if( 0 != InvMass )
                 //    AppliedStrength *= (1 / (*ObjIt)->GetBulletObject()->getInvMass());
                 //else
                 //    AppliedStrength = 0;
-                if(0 > AppliedStrength)
+                if( AppliedStrength < 0 )
                     AppliedStrength = 0;
 
                 //Apply the Force
-                for( ProxyIterator ProxIt = RigidProxies.begin() ; ProxIt != RigidProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherProxies = (*ObjIt)->GetProxies();
+                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
                 {
-                    Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
-                    RigProx->ApplyForce( Direction * AppliedStrength );
+                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                        RigProx->ApplyForce( Direction * AppliedStrength );
+                    }
                 }
             }
         }

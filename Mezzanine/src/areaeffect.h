@@ -81,12 +81,6 @@ namespace Mezzanine
         /// @internal
         /// @brief Container of actors that have been removed since last frame.
         ObjectContainer RemovedObjects;
-        /// @internal
-        /// @brief Container of proxies that representing this AE field.
-        ProxyContainer AEProxies;
-        /// @internal
-        /// @brief A pointer to the ghost powering this AE field.
-        Physics::GhostProxy* Ghost;
 
         /// @internal
         /// @brief Common constructor method for AreaEffect base class.
@@ -126,27 +120,6 @@ namespace Mezzanine
         /// This function will be called on by the physics manager and shouldn't be called manually.
         virtual void ApplyEffect() = 0;
 
-        /// @copydoc Mezzanine::WorldObject::IsInWorld() const
-        virtual Boole IsInWorld() const;
-
-        /// @copydoc Mezzanine::WorldObject::IsStatic() const
-        virtual Boole IsStatic() const;
-        /// @copydoc Mezzanine::WorldObject::IsKinematic() const
-        virtual Boole IsKinematic() const;
-
-        /// @copydoc Mezzanine::WorldObject::GetProxies(ProxyContainer&)
-        virtual void GetProxies(ProxyContainer& Proxies);
-        /// @copydoc Mezzanine::WorldObject::GetProxies(const UInt32, ProxyContainer&)
-        virtual void GetProxies(const UInt32 Types, ProxyContainer& Proxies);
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Working with the World
-
-        /// @copydoc Mezzanine::WorldObject::AddToWorld()
-        virtual void AddToWorld();
-        /// @copydoc Mezzanine::WorldObject::RemoveFromWorld()
-        virtual void RemoveFromWorld();
-
         ///////////////////////////////////////////////////////////////////////////////
         // Overlapping Object Management
 
@@ -175,58 +148,12 @@ namespace Mezzanine
         // AreaEffect Properties
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Transform Methods
-
-        /// @copydoc TransformableObject::SetLocation(const Vector3&)
-        virtual void SetLocation(const Vector3& Loc);
-        /// @copydoc TransformableObject::SetLocation(const Real, const Real, const Real)
-        virtual void SetLocation(const Real X, const Real Y, const Real Z);
-        /// @copydoc TransformableObject::GetLocation() const
-        virtual Vector3 GetLocation() const;
-        /// @copydoc TransformableObject::SetOrientation(const Quaternion&)
-        virtual void SetOrientation(const Quaternion& Ori);
-        /// @copydoc TransformableObject::SetOrientation(const Real, const Real, const Real, const Real)
-        virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
-        /// @copydoc TransformableObject::GetOrientation() const
-        virtual Quaternion GetOrientation() const;
-        /// @copydoc TransformableObject::SetScale(const Vector3&)
-        virtual void SetScale(const Vector3& Sc);
-        /// @copydoc TransformableObject::SetScale(const Real, const Real, const Real)
-        virtual void SetScale(const Real X, const Real Y, const Real Z);
-        /// @copydoc TransformableObject::GetScale() const
-        virtual Vector3 GetScale() const;
-
-        /// @copydoc TransformableObject::Translate(const Vector3&)
-        virtual void Translate(const Vector3& Trans);
-        /// @copydoc TransformableObject::Translate(const Real, const Real, const Real)
-        virtual void Translate(const Real X, const Real Y, const Real Z);
-        /// @copydoc TransformableObject::Yaw(const Real)
-        virtual void Yaw(const Real Angle);
-        /// @copydoc TransformableObject::Pitch(const Real)
-        virtual void Pitch(const Real Angle);
-        /// @copydoc TransformableObject::Roll(const Real)
-        virtual void Roll(const Real Angle);
-        /// @copydoc TransformableObject::Rotate(const Vector3&, const Real)
-        virtual void Rotate(const Vector3& Axis, const Real Angle);
-        /// @copydoc TransformableObject::Rotate(const Quaternion&)
-        virtual void Rotate(const Quaternion& Rotation);
-        /// @copydoc TransformableObject::Scale(const Vector3&)
-        virtual void Scale(const Vector3& Scale);
-        /// @copydoc TransformableObject::Scale(const Real, const Real, const Real)
-        virtual void Scale(const Real X, const Real Y, const Real Z);
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
         /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node& SelfRoot) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProxies(XML::Node&) const
-        virtual void ProtoSerializeProxies(XML::Node& SelfRoot) const;
-
         /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
-        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProxies(const XML::Node&)
-        virtual void ProtoDeSerializeProxies(const XML::Node& SelfRoot);
 
         /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
@@ -238,13 +165,10 @@ namespace Mezzanine
 
         /// @copydoc Mezzanine::WorldObject::_Update()
         virtual void _Update();
-        /// @copydoc Mezzanine::WorldObject::_NotifyProxyDestroyed(WorldProxy*)
-        virtual void _NotifyProxyDestroyed(WorldProxy* ToBeDestroyed);
     };//AreaEffect
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of AreaEffect objects.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB AreaEffectFactory
     {

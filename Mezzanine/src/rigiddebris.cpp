@@ -63,27 +63,19 @@ namespace Mezzanine
     // RigidDebris Methods
 
     RigidDebris::RigidDebris(World* TheWorld) :
-        Debris(TheWorld),
-        EntProx(NULL),
-        RigProx(NULL)
+        Debris(TheWorld)
         {  }
 
     RigidDebris::RigidDebris(const String& Name, const Real Mass, World* TheWorld) :
-        Debris(Name,TheWorld),
-        EntProx(NULL),
-        RigProx(NULL)
+        Debris(Name,TheWorld)
         { this->CreateRigidDebris(Mass); }
 
     RigidDebris::RigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld) :
-        Debris(Name,TheWorld),
-        EntProx(NULL),
-        RigProx(NULL)
+        Debris(Name,TheWorld)
         { this->CreateRigidDebris(Mass,DebMesh,DebShape); }
 
     RigidDebris::RigidDebris(const XML::Node& SelfRoot, World* TheWorld) :
-        Debris(TheWorld),
-        EntProx(NULL),
-        RigProx(NULL)
+        Debris(TheWorld)
         { this->ProtoDeSerialize(SelfRoot); }
 
     RigidDebris::~RigidDebris()
@@ -91,227 +83,65 @@ namespace Mezzanine
 
     void RigidDebris::CreateRigidDebris(const Real Mass)
     {
-        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
-        if( SceneMan ) {
-            this->EntProx = SceneMan->CreateEntityProxy(false);
-            this->EntProx->_Bind( this );
-        }
-
+        Physics::RigidProxy* RigProx = NULL;
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
-            this->RigProx = PhysMan->CreateRigidProxy(Mass);
-            this->RigProx->_Bind( this );
+            RigProx = PhysMan->CreateRigidProxy(Mass);
+            this->AddProxy( RigProx );
+            this->SetPrimaryProxy( RigProx );
         }
 
-        if( this->EntProx && this->RigProx ) {
-            this->RigProx->AddSyncObject( this->EntProx );
+        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
+        if( SceneMan ) {
+            EntProx = SceneMan->CreateEntityProxy();
+            this->AddProxy( EntProx );
+        }
+
+        if( RigProx && EntProx ) {
+            RigProx->AddSyncObject( EntProx );
         }
     }
 
     void RigidDebris::CreateRigidDebris(const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
     {
-        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
-        if( SceneMan ) {
-            this->EntProx = SceneMan->CreateEntityProxy(DebMesh,false);
-            this->EntProx->_Bind( this );
-        }
-
+        Physics::RigidProxy* RigProx = NULL;
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
-            this->RigProx = PhysMan->CreateRigidProxy(Mass,DebShape,false);
-            this->RigProx->_Bind( this );
+            RigProx = PhysMan->CreateRigidProxy(Mass,DebShape);
+            this->AddProxy( RigProx );
+            this->SetPrimaryProxy( RigProx );
         }
 
-        if( this->EntProx && this->RigProx ) {
-            this->RigProx->AddSyncObject( this->EntProx );
+        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
+        if( SceneMan ) {
+            EntProx = SceneMan->CreateEntityProxy(DebMesh);
+            this->AddProxy( EntProx );
+        }
+
+        if( RigProx && EntProx ) {
+            RigProx->AddSyncObject( EntProx );
         }
     }
 
     void RigidDebris::DestroyRigidDebris()
     {
         this->RemoveFromWorld();
-        if( this->EntProx ) {
-            Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
-            if( SceneMan ) {
-                SceneMan->DestroyProxy( this->EntProx );
-                this->EntProx = NULL;
-            }
-        }
-
-        if( this->RigProx ) {
-            Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
-            if( PhysMan ) {
-                PhysMan->DestroyProxy( this->RigProx );
-                this->RigProx = NULL;
-            }
-        }
+        this->DestroyAllProxies();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
     WorldObjectType RigidDebris::GetType() const
-        { return Mezzanine::WO_DebrisRigid; }
+        { return Mezzanine::WO_RigidDebris; }
 
     Graphics::EntityProxy* RigidDebris::GetEntityProxy() const
-        { return this->EntProx; }
+        { return static_cast<Graphics::EntityProxy*>( this->GetProxy(Mezzanine::PT_Graphics_EntityProxy,0) ); }
 
     Physics::RigidProxy* RigidDebris::GetRigidProxy() const
-        { return this->RigProx; }
-
-    Boole RigidDebris::IsInWorld() const
-        { return this->RigProx->IsInWorld(); }
-
-    Boole RigidDebris::IsStatic() const
-        { return this->RigProx->IsStatic(); }
-
-    Boole RigidDebris::IsKinematic() const
-        { return this->RigProx->IsKinematic(); }
-
-    void RigidDebris::GetProxies(ProxyContainer& Proxies)
-    {
-        Proxies.push_back( this->EntProx );
-        Proxies.push_back( this->RigProx );
-    }
-
-    void RigidDebris::GetProxies(const UInt32 Types, ProxyContainer& Proxies)
-    {
-        if( Types & Mezzanine::PT_Graphics_EntityProxy ) {
-            Proxies.push_back( this->EntProx );
-        }
-        if( Types & Mezzanine::PT_Physics_RigidProxy ) {
-            Proxies.push_back( this->RigProx );
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Working with the World
-
-    void RigidDebris::AddToWorld()
-    {
-        if( this->EntProx )
-            this->EntProx->AddToWorld();
-
-        if( this->RigProx )
-            this->RigProx->AddToWorld();
-    }
-
-    void RigidDebris::RemoveFromWorld()
-    {
-        if( this->EntProx )
-            this->EntProx->RemoveFromWorld();
-
-        if( this->RigProx )
-            this->RigProx->RemoveFromWorld();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Transform Methods
-
-    void RigidDebris::SetLocation(const Vector3& Loc)
-    {
-        this->RigProx->SetLocation(Loc);
-        this->EntProx->SetLocation(Loc);
-    }
-
-    void RigidDebris::SetLocation(const Real X, const Real Y, const Real Z)
-    {
-        this->RigProx->SetLocation(X,Y,Z);
-        this->EntProx->SetLocation(X,Y,Z);
-    }
-
-    Vector3 RigidDebris::GetLocation() const
-    {
-        return this->RigProx->GetLocation();
-    }
-
-    void RigidDebris::SetOrientation(const Quaternion& Ori)
-    {
-        this->RigProx->SetOrientation(Ori);
-        this->EntProx->SetOrientation(Ori);
-    }
-
-    void RigidDebris::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
-    {
-        this->RigProx->SetOrientation(X,Y,Z,W);
-        this->EntProx->SetOrientation(X,Y,Z,W);
-    }
-
-    Quaternion RigidDebris::GetOrientation() const
-    {
-        return this->RigProx->GetOrientation();
-    }
-
-    void RigidDebris::SetScale(const Vector3& Sc)
-    {
-        this->RigProx->SetScale(Sc);
-        this->EntProx->SetScale(Sc);
-    }
-
-    void RigidDebris::SetScale(const Real X, const Real Y, const Real Z)
-    {
-        this->RigProx->SetScale(X,Y,Z);
-        this->EntProx->SetScale(X,Y,Z);
-    }
-
-    Vector3 RigidDebris::GetScale() const
-    {
-        return this->RigProx->GetScale();
-    }
-
-    void RigidDebris::Translate(const Vector3& Trans)
-    {
-        this->RigProx->Translate(Trans);
-        this->EntProx->Translate(Trans);
-    }
-
-    void RigidDebris::Translate(const Real X, const Real Y, const Real Z)
-    {
-        this->RigProx->Translate(X,Y,Z);
-        this->EntProx->Translate(X,Y,Z);
-    }
-
-    void RigidDebris::Yaw(const Real Angle)
-    {
-        this->RigProx->Yaw(Angle);
-        this->EntProx->Yaw(Angle);
-    }
-
-    void RigidDebris::Pitch(const Real Angle)
-    {
-        this->RigProx->Pitch(Angle);
-        this->EntProx->Pitch(Angle);
-    }
-
-    void RigidDebris::Roll(const Real Angle)
-    {
-        this->RigProx->Roll(Angle);
-        this->EntProx->Roll(Angle);
-    }
-
-    void RigidDebris::Rotate(const Vector3& Axis, const Real Angle)
-    {
-        this->RigProx->Rotate(Axis,Angle);
-        this->EntProx->Rotate(Axis,Angle);
-    }
-
-    void RigidDebris::Rotate(const Quaternion& Rotation)
-    {
-        this->RigProx->Rotate(Rotation);
-        this->EntProx->Rotate(Rotation);
-    }
-
-    void RigidDebris::Scale(const Vector3& Scale)
-    {
-        this->RigProx->Scale(Scale);
-        this->EntProx->Scale(Scale);
-    }
-
-    void RigidDebris::Scale(const Real X, const Real Y, const Real Z)
-    {
-        this->RigProx->Scale(X,Y,Z);
-        this->EntProx->Scale(X,Y,Z);
-    }
+        { return static_cast<Physics::RigidProxy*>( this->GetProxy(Mezzanine::PT_Physics_RigidProxy,0) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -321,69 +151,9 @@ namespace Mezzanine
         this->Debris::ProtoSerializeProperties(SelfRoot);
     }
 
-    void RigidDebris::ProtoSerializeProxies(XML::Node& SelfRoot) const
-    {
-        // No base implementations to call
-        XML::Node ProxiesNode = SelfRoot.AppendChild( RigidDebris::GetSerializableName() + "Proxies" );
-
-        if( ProxiesNode.AppendAttribute("Version").SetValue("1") )
-        {
-            XML::Node EntProxNode = ProxiesNode.AppendChild("EntProx");
-            this->EntProx->ProtoSerialize( EntProxNode );
-            XML::Node RigProxNode = ProxiesNode.AppendChild("RigProx");
-            this->RigProx->ProtoSerialize( RigProxNode );
-
-            return;
-        }else{
-            SerializeError("Create XML Attribute Values",RigidDebris::GetSerializableName() + "Proxies",true);
-        }
-    }
-
     void RigidDebris::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
         this->Debris::ProtoDeSerializeProperties(SelfRoot);
-    }
-
-    void RigidDebris::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
-    {
-        this->DestroyRigidDebris();
-        // No base implementations to call
-        //XML::Attribute CurrAttrib;
-        XML::Node ProxiesNode = SelfRoot.GetChild( RigidDebris::GetSerializableName() + "Proxies" );
-
-        if( !ProxiesNode.Empty() ) {
-            if(ProxiesNode.GetAttribute("Version").AsInt() == 1) {
-                /// @todo I don't think an exception is appropriate for the failure of the worldmanager validity checks,
-                /// however a warning should be written to the log if that happens.  This should be updated to do that once
-                /// logging refactors are done.
-
-                XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
-                if( !EntProxNode.Empty() ) {
-                    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
-                    if( SceneMan ) {
-                        this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
-                        this->EntProx->_Bind( this );
-                    }
-                }
-
-                XML::Node RigProxNode = ProxiesNode.GetChild("RigProx").GetFirstChild();
-                if( !RigProxNode.Empty() ) {
-                    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
-                    if( PhysMan ) {
-                        this->RigProx = PhysMan->CreateRigidProxy(RigProxNode);
-                        this->RigProx->_Bind( this );
-                    }
-                }
-
-                if( this->EntProx && this->RigProx ) {
-                    this->RigProx->AddSyncObject( this->EntProx );
-                }
-            }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RigidDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
-            }
-        }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,RigidDebris::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
-        }
     }
 
     String RigidDebris::GetDerivedSerializableName() const
@@ -398,24 +168,6 @@ namespace Mezzanine
     void RigidDebris::_Update()
     {
         // Do nothing
-    }
-
-    void RigidDebris::_NotifyProxyDestroyed(WorldProxy* ToBeDestroyed)
-    {
-        if( ToBeDestroyed == NULL )
-            return;
-
-        if( this->EntProx == ToBeDestroyed ) {
-            if( this->RigProx ) {
-                this->RigProx->RemoveSyncObject( this->EntProx );
-            }
-
-            this->EntProx = NULL;
-        }
-
-        if( this->RigProx == ToBeDestroyed ) {
-            this->RigProx = NULL;
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

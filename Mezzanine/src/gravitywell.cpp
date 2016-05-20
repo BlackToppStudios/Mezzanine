@@ -102,35 +102,30 @@ namespace Mezzanine
         /// rather than the WorldObject position to get more interesting results.
         /// @todo Update to allow the application of force to soft proxies.
 
-        if( 0 == this->Strength )
+        if( this->Strength == 0 )
             return;
 
-        if( !this->AllowWorldGrav && !this->AddedObjects.empty() )
-        {
+        if( !this->AllowWorldGrav && !this->AddedObjects.empty() ){
             for( ObjectIterator AddedIt = this->AddedObjects.begin() ; AddedIt != this->AddedObjects.end() ; ++AddedIt )
             {
-                ProxyContainer RigidProxies;
-                (*AddedIt)->GetProxies(Mezzanine::PT_Physics_RigidProxy,RigidProxies);
-                for( ProxyIterator ProxIt = RigidProxies.begin() ; ProxIt != RigidProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherProxies = (*AddedIt)->GetProxies();
+                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
                 {
-                    Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
-                    RigProx->SetGravity( Vector3(0,0,0) );
+                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                        RigProx->SetGravity( Vector3(0,0,0) );
+                    }
                 }
             }
         }
 
         if( !this->OverlappingObjects.empty() ) {
-            const Vector3 SelfLoc = this->Ghost->GetLocation();
+            const Vector3 SelfLoc = this->GetLocation();
             Vector3 ObjectLoc, Direction;
-            Real Distance = 0,AppliedStrength = 0;
+            Real Distance = 0, AppliedStrength = 0;
 
             for( ObjectIterator ObjIt = this->OverlappingObjects.begin() ; ObjIt != this->OverlappingObjects.end() ; ObjIt++ )
             {
-                ProxyContainer RigidProxies;
-                (*ObjIt)->GetProxies(Mezzanine::PT_Physics_RigidProxy,RigidProxies);
-                if( RigidProxies.empty() )
-                    continue;
-
                 Distance = ObjectLoc.Distance(SelfLoc);
                 Direction = (SelfLoc - ObjectLoc) / Distance;
                 switch(this->AttenStyle)
@@ -147,31 +142,34 @@ namespace Mezzanine
                 }
 
                 //Apply the Force
-                for( ProxyIterator ProxIt = RigidProxies.begin() ; ProxIt != RigidProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherProxies = (*ObjIt)->GetProxies();
+                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
                 {
-                    Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
 
-                    Real Mass = RigProx->GetMass();
-                    if( 0 > AppliedStrength ) {
-                        AppliedStrength = 0;
+                        Real Mass = RigProx->GetMass();
+                        if( 0 > AppliedStrength ) {
+                            AppliedStrength = 0;
+                        }
+
+                        RigProx->ApplyForce( Direction * (AppliedStrength * Mass ) );
                     }
-
-                    RigProx->ApplyForce( Direction * (AppliedStrength * Mass ) );
                 }
             }
         }
 
-        if( !this->AllowWorldGrav && !this->RemovedObjects.empty() )
-        {
+        if( !this->AllowWorldGrav && !this->RemovedObjects.empty() ){
             const Vector3 WorldGravity = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) )->GetWorldGravity();
             for( ObjectIterator RemovedIt = this->RemovedObjects.begin() ; RemovedIt != this->RemovedObjects.end() ; ++RemovedIt )
             {
-                ProxyContainer RigidProxies;
-                (*RemovedIt)->GetProxies(Mezzanine::PT_Physics_RigidProxy,RigidProxies);
-                for( ProxyIterator ProxIt = RigidProxies.begin() ; ProxIt != RigidProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherProxies = (*RemovedIt)->GetProxies();
+                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
                 {
-                    Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
-                    RigProx->SetGravity( WorldGravity );
+                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                        RigProx->SetGravity( WorldGravity );
+                    }
                 }
             }
         }

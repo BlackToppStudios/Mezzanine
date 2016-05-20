@@ -71,7 +71,7 @@ namespace Mezzanine
         {
             this->InternalData = new CollisionInternalData();
 
-            WorldObject* ObjectA = this->ProxyA->GetParentObject();
+            /*WorldObject* ObjectA = this->ProxyA->GetParentObject();
             if( ObjectA ) {
                 ObjectA->_NotifyCollisionState(this,Physics::Col_Begin);
             }
@@ -79,7 +79,7 @@ namespace Mezzanine
             WorldObject* ObjectB = this->ProxyB->GetParentObject();
             if( ObjectB ) {
                 ObjectB->_NotifyCollisionState(this,Physics::Col_Begin);
-            }
+            }//*/
 
             this->InternalAlgo->getAllContactManifolds(this->InternalData->Manifolds);
         }
@@ -108,14 +108,14 @@ namespace Mezzanine
         Collision::~Collision()
         {
             WorldObject* ObjectA = this->ProxyA->GetParentObject();
-            if( ObjectA ) {
+            /*if( ObjectA ) {
                 ObjectA->_NotifyCollisionState(this,Physics::Col_End);
             }
 
             WorldObject* ObjectB = this->ProxyB->GetParentObject();
             if( ObjectB ) {
                 ObjectB->_NotifyCollisionState(this,Physics::Col_End);
-            }
+            }//*/
 
             delete this->InternalData;
         }
@@ -185,11 +185,10 @@ namespace Mezzanine
             this->InternalData->Manifolds.clear();
             this->InternalAlgo->getAllContactManifolds(this->InternalData->Manifolds);
             Whole NumManifolds = this->InternalData->Manifolds.size();
-            if( NumManifolds != 0 && this->PenetrationDistances.size() != NumManifolds )
-            {
+            if( NumManifolds != 0 && this->PenetrationDistances.size() != NumManifolds ) {
                 this->UpdatePenetrationDistances();
 
-                WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                /*WorldObject* ObjectA = this->ProxyA->GetParentObject();
                 if( ObjectA ) {
                     ObjectA->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
                 }
@@ -197,17 +196,16 @@ namespace Mezzanine
                 WorldObject* ObjectB = this->ProxyB->GetParentObject();
                 if( ObjectB ) {
                     ObjectB->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
-                }
+                }//*/
 
                 return;
             }
             for( Whole X = 0 ; X < NumManifolds ; ++X )
             {
-                if( this->PenetrationDistances[X] != this->GetDistance(X) )
-                {
+                if( this->PenetrationDistances[X] != this->GetDistance(X) ) {
                     this->UpdatePenetrationDistances();
 
-                    WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                    /*WorldObject* ObjectA = this->ProxyA->GetParentObject();
                     if( ObjectA ) {
                         ObjectA->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
                     }
@@ -215,7 +213,7 @@ namespace Mezzanine
                     WorldObject* ObjectB = this->ProxyB->GetParentObject();
                     if( ObjectB ) {
                         ObjectB->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
-                    }
+                    }//*/
 
                     return;
                 }
@@ -260,10 +258,10 @@ namespace Mezzanine
         {
             if( !this->ProxyA ) {
                 this->ProxyA = A;
-                WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                /*WorldObject* ObjectA = this->ProxyA->GetParentObject();
                 if( ObjectA ) {
                     ObjectA->_NotifyCollisionState(this,Physics::Col_Begin);
-                }
+                }//*/
             }
         }
 
@@ -271,10 +269,10 @@ namespace Mezzanine
         {
             if( !this->ProxyB ) {
                 this->ProxyB = B;
-                WorldObject* ObjectB = this->ProxyB->GetParentObject();
+                /*WorldObject* ObjectB = this->ProxyB->GetParentObject();
                 if( ObjectB ) {
                     ObjectB->_NotifyCollisionState(this,Physics::Col_Begin);
-                }
+                }//*/
             }
         }
     }//Physics

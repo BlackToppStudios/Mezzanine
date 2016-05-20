@@ -119,9 +119,6 @@ namespace Mezzanine
             case ManagerBase::MT_NetworkManager:
                 return "NetworkManager";
                 break;
-            case ManagerBase::MT_PagingManager:
-                return "PagingManager";
-                break;
             case ManagerBase::MT_PhysicsManager:
                 return "PhysicsManager";
                 break;
@@ -218,8 +215,7 @@ namespace Mezzanine
             }
             case 'p':
             {
-                if( 'a' == Lower.at(1) ) return ManagerBase::MT_PagingManager;
-                else if( 'h' == Lower.at(1) ) return ManagerBase::MT_PhysicsManager;
+                if( 'h' == Lower.at(1) ) return ManagerBase::MT_PhysicsManager;
                 break;
             }
             case 'r':

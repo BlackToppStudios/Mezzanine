@@ -153,29 +153,26 @@ namespace Mezzanine
         /// @brief Creates a new RigidDebris.
         /// @param Name The name to be given to the new RigidDebris.
         /// @param Mass The mass of the debris object.
-        /// @param AddToWorld Wether or not the new Debris should be added to the world after it has been created.
         /// @return Returns a pointer to the created Debris.
-        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, const Boole AddToWorld = true);
+        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass);
         /// @brief Creates a new RigidDebris.
         /// @param Name The name to be given to the new RigidDebris.
         /// @param Mass The mass of the debris object.
         /// @param DebMesh A pointer to the Graphics mesh that will be applied to the new RigidDebris.
         /// @param DebShape A pointer to the Collision shape that will be applied to the new RigidDebris.
-        /// @param AddToWorld Wether or not the new Debris should be added to the world after it has been created.
         /// @return Returns a pointer to the created Debris.
-        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, const Boole AddToWorld = true);
+        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape);
         /// @brief Creates a new RigidDebris.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created Debris.
         RigidDebris* CreateRigidDebris(const XML::Node& SelfRoot);
         /// @brief Creates a new SoftDebris.
         /// @param Name The name to be given to the new SoftDebris.
         /// @param Mass The mass of the debris object.
-        /// @param AddToWorld Wether or not the new Debris should be added to the world after it has been created.
         /// @return Returns a pointer to the created Debris.
-        SoftDebris* CreateSoftDebris(const String& Name, const Real Mass, const Boole AddToWorld = true);
+        SoftDebris* CreateSoftDebris(const String& Name, const Real Mass);
         /// @brief Creates a new SoftDebris.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created Debris.
         SoftDebris* CreateSoftDebris(const XML::Node& SelfRoot);
 
@@ -186,9 +183,8 @@ namespace Mezzanine
         /// @param TypeName A string containing the name of the type of Debris to be constructed.
         /// @param InstanceName A string containing the name to be given to the created Debris.
         /// @param Params A container of additional parameters to be used for the construction of the new Debris.
-        /// @param AddToWorld Wether or not the new Debris should be added to the world after it has been created.
         /// @return Returns a pointer to the created Debris.
-        Debris* CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params, const Boole AddToWorld = true);
+        Debris* CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
         /// @brief Creates a new Debris class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created Debris.

@@ -67,18 +67,15 @@
 namespace Mezzanine
 {
     AreaEffect::AreaEffect(World* TheWorld) :
-        WorldObject(TheWorld),
-        Ghost(NULL)
+        WorldObject(TheWorld)
         { this->CreateAreaEffect(NULL); }
 
     AreaEffect::AreaEffect(const String& Name, World* TheWorld) :
-        WorldObject(Name,TheWorld),
-        Ghost(NULL)
+        WorldObject(Name,TheWorld)
         { this->CreateAreaEffect(NULL); }
 
     AreaEffect::AreaEffect(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        WorldObject(Name,TheWorld),
-        Ghost(NULL)
+        WorldObject(Name,TheWorld)
         { this->CreateAreaEffect(Shape); }
 
     AreaEffect::~AreaEffect()
@@ -86,29 +83,28 @@ namespace Mezzanine
 
     void AreaEffect::CreateAreaEffect(Physics::CollisionShape* Shape)
     {
+        Physics::GhostProxy* Ghost = NULL;
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan != NULL ) {
             if( Shape == NULL ) {
-                this->Ghost = PhysMan->CreateGhostProxy();
+                Ghost = PhysMan->CreateGhostProxy();
             }else{
-                this->Ghost = PhysMan->CreateGhostProxy(Shape,false);
+                Ghost = PhysMan->CreateGhostProxy(Shape);
             }
+            this->AddProxy(Ghost);
+            this->SetPrimaryProxy(Ghost);
 
             UInt16 ColGroup = Physics::CF_SensorFilter;
             UInt16 ColMask = Physics::CF_AllFilter & ~(Physics::CF_SensorFilter | Physics::CF_StaticFilter);
-            this->Ghost->SetCollisionGroupAndMask(ColGroup,ColMask);
-            this->Ghost->_Bind(this);
+            Ghost->SetCollisionGroupAndMask(ColGroup,ColMask);
+            Ghost->_Bind(this);
         }
     }
 
     void AreaEffect::DestroyAreaEffect()
     {
         this->RemoveFromWorld();
-        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
-        if( this->Ghost != NULL && PhysMan != NULL ) {
-            PhysMan->DestroyProxy( this->Ghost );
-            this->Ghost = NULL;
-        }
+        this->DestroyAllProxies();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -118,43 +114,7 @@ namespace Mezzanine
         { return Mezzanine::WO_AreaEffectUnknown; }
 
     Physics::GhostProxy* AreaEffect::GetGhostProxy() const
-        { return this->Ghost; }
-
-    Boole AreaEffect::IsInWorld() const
-        { return this->Ghost->IsInWorld(); }
-
-    Boole AreaEffect::IsStatic() const
-        { return this->Ghost->IsStatic(); }
-
-    Boole AreaEffect::IsKinematic() const
-        { return this->Ghost->IsKinematic(); }
-
-    void AreaEffect::GetProxies(ProxyContainer& Proxies)
-    {
-        Proxies.push_back( this->Ghost );
-    }
-
-    void AreaEffect::GetProxies(const UInt32 Types, ProxyContainer& Proxies)
-    {
-        if( Types & Mezzanine::PT_Physics_GhostProxy ) {
-            Proxies.push_back( this->Ghost );
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Working with the World
-
-    void AreaEffect::AddToWorld()
-    {
-        if( this->Ghost )
-            this->Ghost->AddToWorld();
-    }
-
-    void AreaEffect::RemoveFromWorld()
-    {
-        if( this->Ghost )
-            this->Ghost->RemoveFromWorld();
-    }
+        { return static_cast<Physics::GhostProxy*>( this->GetProxy(Mezzanine::PT_Physics_GhostProxy,0) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Overlapping Object Management
@@ -181,99 +141,6 @@ namespace Mezzanine
     // AreaEffect Properties
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Transform Methods
-
-    void AreaEffect::SetLocation(const Vector3& Loc)
-    {
-        this->Ghost->SetLocation(Loc);
-    }
-
-    void AreaEffect::SetLocation(const Real X, const Real Y, const Real Z)
-    {
-        this->Ghost->SetLocation(X,Y,Z);
-    }
-
-    Vector3 AreaEffect::GetLocation() const
-    {
-        return this->Ghost->GetLocation();
-    }
-
-    void AreaEffect::SetOrientation(const Quaternion& Ori)
-    {
-        this->Ghost->SetOrientation(Ori);
-    }
-
-    void AreaEffect::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
-    {
-        this->Ghost->SetOrientation(X,Y,Z,W);
-    }
-
-    Quaternion AreaEffect::GetOrientation() const
-    {
-        return this->Ghost->GetOrientation();
-    }
-
-    void AreaEffect::SetScale(const Vector3& Sc)
-    {
-        this->Ghost->SetScale(Sc);
-    }
-
-    void AreaEffect::SetScale(const Real X, const Real Y, const Real Z)
-    {
-        this->Ghost->SetScale(X,Y,Z);
-    }
-
-    Vector3 AreaEffect::GetScale() const
-    {
-        return this->Ghost->GetScale();
-    }
-
-    void AreaEffect::Translate(const Vector3& Trans)
-    {
-        this->Ghost->Translate(Trans);
-    }
-
-    void AreaEffect::Translate(const Real X, const Real Y, const Real Z)
-    {
-        this->Ghost->Translate(X,Y,Z);
-    }
-
-    void AreaEffect::Yaw(const Real Angle)
-    {
-        this->Ghost->Yaw(Angle);
-    }
-
-    void AreaEffect::Pitch(const Real Angle)
-    {
-        this->Ghost->Pitch(Angle);
-    }
-
-    void AreaEffect::Roll(const Real Angle)
-    {
-        this->Ghost->Roll(Angle);
-    }
-
-    void AreaEffect::Rotate(const Vector3& Axis, const Real Angle)
-    {
-        this->Ghost->Rotate(Axis,Angle);
-    }
-
-    void AreaEffect::Rotate(const Quaternion& Rotation)
-    {
-        this->Ghost->Rotate(Rotation);
-    }
-
-    void AreaEffect::Scale(const Vector3& Scale)
-    {
-        this->Ghost->Scale(Scale);
-    }
-
-    void AreaEffect::Scale(const Real X, const Real Y, const Real Z)
-    {
-        this->Ghost->Scale(X,Y,Z);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
     void AreaEffect::ProtoSerializeProperties(XML::Node& SelfRoot) const
@@ -281,54 +148,9 @@ namespace Mezzanine
         this->WorldObject::ProtoSerializeProperties(SelfRoot);
     }
 
-    void AreaEffect::ProtoSerializeProxies(XML::Node& SelfRoot) const
-    {
-        // No base implementations to call
-        XML::Node ProxiesNode = SelfRoot.AppendChild( AreaEffect::GetSerializableName() + "Proxies" );
-
-        if( ProxiesNode.AppendAttribute("Version").SetValue("1") )
-        {
-            XML::Node GhostProxNode = ProxiesNode.AppendChild("Ghost");
-            this->Ghost->ProtoSerialize( GhostProxNode );
-
-            return;
-        }else{
-            SerializeError("Create XML Attribute Values",AreaEffect::GetSerializableName() + "Proxies",true);
-        }
-    }
-
     void AreaEffect::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
         this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
-    }
-
-    void AreaEffect::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
-    {
-        this->DestroyAreaEffect();
-        // No base implementations to call
-        //XML::Attribute CurrAttrib;
-        XML::Node ProxiesNode = SelfRoot.GetChild( AreaEffect::GetSerializableName() + "Proxies" );
-
-        if( !ProxiesNode.Empty() ) {
-            if(ProxiesNode.GetAttribute("Version").AsInt() == 1) {
-                /// @todo I don't think an exception is appropriate for the failure of the worldmanager validity checks,
-                /// however a warning should be written to the log if that happens.  This should be updated to do that once
-                /// logging refactors are done.
-
-                XML::Node GhostProxNode = ProxiesNode.GetChild("Ghost").GetFirstChild();
-                if( !GhostProxNode.Empty() ) {
-                    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
-                    if( PhysMan ) {
-                        this->Ghost = PhysMan->CreateGhostProxy(GhostProxNode);
-                        this->Ghost->_Bind( this );
-                    }
-                }
-            }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (AreaEffect::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
-            }
-        }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,AreaEffect::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
-        }
     }
 
     String AreaEffect::GetDerivedSerializableName() const
@@ -342,33 +164,35 @@ namespace Mezzanine
 
     void AreaEffect::_Update()
     {
+        if( this->PrimaryProxy->GetProxyType() != Mezzanine::PT_Physics_GhostProxy )
+            return;
+
         this->AddedObjects.clear();
         this->RemovedObjects.clear();
 
+        Physics::GhostProxy* Ghost = static_cast<Physics::GhostProxy*>( this->PrimaryProxy );
         ObjectContainer PrevOverlapping;
         PrevOverlapping.swap( this->OverlappingObjects );
 
-        const UInt32 NumProxies = this->Ghost->GetNumShapeOverlappingProxies();
+        const UInt32 NumProxies = Ghost->GetNumShapeOverlappingProxies();
         for( UInt32 ProxIndex = 0 ; ProxIndex < NumProxies ; ++ProxIndex )
         {
-            Physics::CollidableProxy* CurrProxy = this->Ghost->GetShapeOverlappingProxy( ProxIndex );
-            if( CurrProxy != NULL ) {
-                WorldObject* CurrObject = CurrProxy->GetParentObject();
-                if( CurrObject != NULL ) {
-                    // We need to check for unique world objects just in case a world object contains multiple collidable proxies
-                    ObjectIterator UniqueCheck = std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), CurrObject );
-                    if( UniqueCheck == this->OverlappingObjects.end() ) {
-                        // We've established that this object is unique, so lets try to remove it from our temporary vector
-                        ObjectIterator PrevCheck = std::find( PrevOverlapping.begin(), PrevOverlapping.end(), CurrObject );
-                        if( PrevCheck == PrevOverlapping.end() ) {
-                            // If we've failed to find it, then it's new
-                            this->OverlappingObjects.push_back( CurrObject );
-                            this->AddedObjects.push_back( CurrObject );
-                        }else{
-                            // If it was in the previous frame it isn't new, but it may be removed
-                            this->OverlappingObjects.push_back( CurrObject );
-                            PrevOverlapping.erase( PrevCheck );
-                        }
+            Physics::CollidableProxy* CurrProxy = Ghost->GetShapeOverlappingProxy( ProxIndex );
+            WorldObject* CurrObject = ( CurrProxy ? CurrProxy->GetParentObject() : NULL );
+            if( CurrObject != NULL ) {
+                // We need to check for unique world objects just in case a world object contains multiple collidable proxies
+                ObjectIterator UniqueCheck = std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), CurrObject );
+                if( UniqueCheck == this->OverlappingObjects.end() ) {
+                    // We've established that this object is unique, so lets try to remove it from our temporary vector
+                    ObjectIterator PrevCheck = std::find( PrevOverlapping.begin(), PrevOverlapping.end(), CurrObject );
+                    if( PrevCheck == PrevOverlapping.end() ) {
+                        // If we've failed to find it, then it's new
+                        this->OverlappingObjects.push_back( CurrObject );
+                        this->AddedObjects.push_back( CurrObject );
+                    }else{
+                        // If it was in the previous frame it isn't new, but it may be removed
+                        this->OverlappingObjects.push_back( CurrObject );
+                        PrevOverlapping.erase( PrevCheck );
                     }
                 }
             }
@@ -377,16 +201,6 @@ namespace Mezzanine
         // If we have anything left over in our prev-overlapping, it's not inside this anymore so put them in the removed vector
         if( !PrevOverlapping.empty() ) {
             this->RemovedObjects.swap( PrevOverlapping );
-        }
-    }
-
-    void AreaEffect::_NotifyProxyDestroyed(WorldProxy* ToBeDestroyed)
-    {
-        if( ToBeDestroyed == NULL )
-            return;
-
-        if( this->Ghost == ToBeDestroyed ) {
-            this->Ghost = NULL;
         }
     }
 }

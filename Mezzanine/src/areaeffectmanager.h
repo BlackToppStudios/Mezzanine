@@ -151,47 +151,41 @@ namespace Mezzanine
 
         /// @brief Creates a new FieldOfForce.
         /// @param Name The name to be given to the new FieldOfForce.
-        /// @param AddToWorld Wether or not the new AreaEffect should be added to the world after it has been created.
         /// @return Returns a pointer to the created AreaEffect.
-        FieldOfForce* CreateFieldOfForce(const String& Name, const Boole AddToWorld = true);
+        FieldOfForce* CreateFieldOfForce(const String& Name);
         /// @brief Creates a new FieldOfForce.
         /// @param Name The name to be given to the new FieldOfForce.
         /// @param AEShape A pointer to the Collision shape that will be applied to the new FieldOfForce.
-        /// @param AddToWorld Wether or not the new AreaEffect should be added to the world after it has been created.
         /// @return Returns a pointer to the created AreaEffect.
-        FieldOfForce* CreateFieldOfForce(const String& Name, Physics::CollisionShape* AEShape, const Boole AddToWorld = true);
+        FieldOfForce* CreateFieldOfForce(const String& Name, Physics::CollisionShape* AEShape);
         /// @brief Creates a new FieldOfForce.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created AreaEffect.
         FieldOfForce* CreateFieldOfForce(const XML::Node& SelfRoot);
         /// @brief Creates a new GravityField.
         /// @param Name The name to be given to the new GravityField.
-        /// @param AddToWorld Wether or not the new AreaEffect should be added to the world after it has been created.
         /// @return Returns a pointer to the created AreaEffect.
-        GravityField* CreateGravityField(const String& Name, const Boole AddToWorld = true);
+        GravityField* CreateGravityField(const String& Name);
         /// @brief Creates a new GravityField.
         /// @param Name The name to be given to the new GravityField.
         /// @param AEShape A pointer to the Collision shape that will be applied to the new GravityField.
-        /// @param AddToWorld Wether or not the new AreaEffect should be added to the world after it has been created.
         /// @return Returns a pointer to the created AreaEffect.
-        GravityField* CreateGravityField(const String& Name, Physics::CollisionShape* AEShape, const Boole AddToWorld = true);
+        GravityField* CreateGravityField(const String& Name, Physics::CollisionShape* AEShape);
         /// @brief Creates a new GravityField.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created AreaEffect.
         GravityField* CreateGravityField(const XML::Node& SelfRoot);
         /// @brief Creates a new GravityWell.
         /// @param Name The name to be given to the new GravityWell.
-        /// @param AddToWorld Wether or not the new AreaEffect should be added to the world after it has been created.
         /// @return Returns a pointer to the created AreaEffect.
-        GravityWell* CreateGravityWell(const String& Name, const Boole AddToWorld = true);
+        GravityWell* CreateGravityWell(const String& Name);
         /// @brief Creates a new GravityWell.
         /// @param Name The name to be given to the new GravityWell.
         /// @param AEShape A pointer to the Collision shape that will be applied to the new GravityWell.
-        /// @param AddToWorld Wether or not the new AreaEffect should be added to the world after it has been created.
         /// @return Returns a pointer to the created AreaEffect.
-        GravityWell* CreateGravityWell(const String& Name, Physics::CollisionShape* AEShape, const Boole AddToWorld = true);
+        GravityWell* CreateGravityWell(const String& Name, Physics::CollisionShape* AEShape);
         /// @brief Creates a new GravityWell.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created AreaEffect.
         GravityWell* CreateGravityWell(const XML::Node& SelfRoot);
 
@@ -202,9 +196,8 @@ namespace Mezzanine
         /// @param TypeName A string containing the name of the type of AreaEffect to be constructed.
         /// @param InstanceName A string containing the name to be given to the created AreaEffect.
         /// @param Params A container of additional parameters to be used for the construction of the new AreaEffect.
-        /// @param AddToWorld Wether or not the new AreaEffect should be added to the world after it has been created.
         /// @return Returns a pointer to the created AreaEffect.
-        AreaEffect* CreateAreaEffect(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params, const Boole AddToWorld = true);
+        AreaEffect* CreateAreaEffect(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
         /// @brief Creates a new AreaEffect class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created AreaEffect.
