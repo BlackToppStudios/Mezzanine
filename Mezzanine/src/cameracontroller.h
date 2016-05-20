@@ -51,25 +51,44 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @struct AngleLimits
     /// @brief Boundaries for rotation on one axis.
     ///////////////////////////////////////
-    struct AngleLimits
+    class MEZZ_LIB AngleData
     {
-        /// @brief The upper limit for rotation, in radians.
-        Real Upper;
-        /// @brief The lower limit for rotation, in radians.
-        Real Lower;
+    public:
+        /// @brief The current rotation on the represented axis in radians.
+        Real CurrentAngle;
+        /// @brief The upper limit for rotation in radians.
+        Real UpperLimit;
+        /// @brief The lower limit for rotation in radians.
+        Real LowerLimit;
 
         /// @brief Class constructor.
-        AngleLimits() :
-            Upper(0),
-            Lower(0)
-            {  }
+        AngleData();
+
+        /// @brief Sets the upper and lower limits on this axis.
+        /// @note This class will perform a rollover of the angle when it exceeds
+        /// positive or negative Pi.  This is to prevent eventual precision loss if
+        /// the angle is rotated over an extended period of time.  So setting the
+        /// limits to be beyond Pi or -Pi may give expected results as limits are
+        /// checked and enforced first, and then rollover is calculated.
+        /// @param Upper The upper bound limit of the angle on this axis.
+        /// @param Lower The lower bound limit of the angle on this axis.
+        void SetLimits(const Real Upper, const Real Lower);
+        /// @brief Removes the current limits imposed on this axis.
+        void UnsetLimits();
+        /// @brief Checks to see if this has valid limits to be enforced.
+        /// @return Returns true if this has valid limits, false otherwise.
+        Boole HasEnforcableLimit() const;
+        /// @brief Performs limits checks and sets the current angle.
+        /// @param Angle The angle to be set.
+        void SetAngle(Real Angle);
+        /// @brief Increases or decreases the angle of rotation by a relative amount.
+        /// @param Angle The amount of rotation to apply to the current axis value.
+        void Rotate(const Real Angle);
     };//AngleLimits
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class CameraController
     /// @brief This is a simplified controller class for use with cameras.
     /// @details This class is useful for manipulating cameras to move around in simple ways,
     /// such as flying through a scene.
@@ -92,39 +111,20 @@ namespace Mezzanine
         Graphics::CameraProxy* Controlled;
         /// @internal
         /// @brief A pointer to the angle limits for rotations on the Y axis.
-        AngleLimits* YawLimits;
+        AngleData YawData;
         /// @internal
         /// @brief A pointer to the angle limits for rotations on the X axis.
-        AngleLimits* PitchLimits;
+        AngleData PitchData;
         /// @internal
         /// @brief A pointer to the angle limits for rotations on the Z axis.
-        AngleLimits* RollLimits;
+        AngleData RollData;
         /// @internal
         /// @brief The height at which the camera is to remain above the terrain.
         Real HoverHeight;
         /// @internal
-        /// @brief The current rotation of the camera on the Y axis.
-        Real YawRad;
-        /// @internal
-        /// @brief The current rotation of the camera on the X axis.
-        Real PitchRad;
-        /// @internal
-        /// @brief The current rotation of the camera on the Z axis.
-        Real RollRad;
-        /// @internal
         /// @brief The mode with which the camera should move around the scene.
         MovementMode CurrentMMode;
 
-        /// @internal
-        /// @brief Wraps an angle value if it goes outside the range of [-pi,+pi].
-        /// @param Angle The angle to be checked.
-        void CheckAngleRollover(Real Angle);
-        /// @internal
-        /// @brief Clamps all current rotation values to their set limits.
-        void CheckAngleLimits();
-        /// @internal
-        /// @brief Calls CheckAngleLimits() and CheckAngleRollover(Real).
-        void CheckAllAngles();
         /// @internal
         /// @brief Ensures the camera position is at the desired height above any world terrain.
         void CheckHeight();
@@ -218,7 +218,7 @@ namespace Mezzanine
         /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
         /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
         void Rotate6DOF(Real Yaw, Real Pitch, Real Roll);
-    };// Cameracontroller
+    };//CameraController
 }//Mezzanine
 
 #endif
