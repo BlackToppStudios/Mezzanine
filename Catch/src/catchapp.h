@@ -8,6 +8,7 @@
 #include "levelmanager.h"
 #include "levelscorer.h"
 #include "itemshop.h"
+#include "player.h"
 #include "profilemanager.h"
 #include "workunits.h"
 
@@ -52,7 +53,9 @@ protected:
     LevelManager* LevelMan;
     LevelScorer* Scorer;
     ItemShop* Shop;
+
     Debris* LastObjectThrown;
+    Player* ThePlayer;
 
     Timer* LevelTimer;
     Timer* EndTimer;
@@ -114,6 +117,7 @@ public:
     LevelScorer* GetLevelScorer() const;
     ProfileManager* GetProfiles() const;
     ItemShop* GetItemShop() const;
+    Player* GetPlayer() const;
     Timer* GetLevelTimer() const;
     Timer* GetEndTimer() const;
 };//CatchApp

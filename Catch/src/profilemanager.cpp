@@ -7,18 +7,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 // CatchProfile Methods
 
-CatchProfile::CatchProfile(const String& Name) :
-    ProfileName(Name)
+CatchProfile::CatchProfile(const String& Name, const Boole NeedsLoading) :
+    ProfileName(Name),
+    Loaded(!NeedsLoading)
     {  }
-
-CatchProfile::CatchProfile(const XML::Document& ProfileDoc)
-{
-    XML::Node RootNode = ProfileDoc.GetChild("ProfileRoot");
-    if( !RootNode.Empty() ) {
-        this->DeSerializeProfileName(RootNode);
-        this->DeSerializeLevelScores(RootNode);
-    }
-}
 
 CatchProfile::~CatchProfile()
     {  }
@@ -60,6 +52,37 @@ void CatchProfile::DeSerializeLevelScores(const XML::Node& ProfileRoot)
     }
 }
 
+const String& CatchProfile::GetName() const
+    { return this->ProfileName; }
+
+Boole CatchProfile::IsLoaded() const
+    { return this->Loaded; }
+
+void CatchProfile::Load(const String& ProfilesDir)
+{
+    if( !this->Loaded ) {
+        XML::Document ProfileDoc;
+        /// @todo Possibly in the future instead of constructing the datastream direct, call on the resource manager to create it(future plans)
+        Resource::FileStream LoadStream(this->ProfileName+".xml",ProfilesDir+"/",Resource::SF_Read);
+
+        ProfileDoc.Load( LoadStream );
+        XML::Node RootNode = ProfileDoc.GetChild("ProfileRoot");
+        if( !RootNode.Empty() ) {
+            this->DeSerializeProfileName(RootNode);
+            this->DeSerializeLevelScores(RootNode);
+        }
+        this->Loaded = true;
+    }
+}
+
+void CatchProfile::Unload()
+{
+    if( this->Loaded ) {
+        this->LevelScores.clear();
+        this->Loaded = false;
+    }
+}
+
 void CatchProfile::Save(const String& ProfilesDir)
 {
     XML::Document ProfileDoc;
@@ -75,11 +98,6 @@ void CatchProfile::Save(const String& ProfilesDir)
     /// @todo Possibly in the future instead of constructing the datastream direct, call on the resource manager to create it(future plans)
     Resource::FileStream SaveStream(ProfileName+".xml",ProfilesDir+"/",(Resource::SF_Truncate | Resource::SF_Write));
     ProfileDoc.Save(SaveStream,"\t",XML::FormatIndent);
-}
-
-ConstString& CatchProfile::GetName() const
-{
-    return this->ProfileName;
 }
 
 void CatchProfile::SetNewHighScore(const String& LevelName, const Whole& NewHigh)
@@ -99,20 +117,20 @@ Whole CatchProfile::GetHighestScore(const String& LevelName) const
 
 ProfileManager::ProfileManager(Entresol* Ent, const String& ProfilesDir) :
     TheEntresol(Ent),
-    ActiveProfile(NULL)
+    LastLoadedProfile(NULL)
     { this->SetProfilesDirectory(ProfilesDir); }
 
 ProfileManager::ProfileManager(Entresol* Ent, const XML::Node& XMLNode) :
     TheEntresol(Ent),
-    ActiveProfile(NULL)
+    LastLoadedProfile(NULL)
     { this->ObjectSettingsHandler::ProtoDeSerialize(XMLNode); }
 
 ProfileManager::~ProfileManager()
 {
-    this->SaveAllProfiles();
-    for( ProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
+    //this->SaveAllProfiles();
+    for( ProfilesIterator it = this->Profiles.begin() ; it != this->Profiles.end() ; ++it )
         { delete (*it); }
-    this->LoadedProfiles.clear();
+    this->Profiles.clear();
 }
 
 String ProfileManager::GetObjectRootNodeName() const
@@ -128,8 +146,8 @@ void ProfileManager::AppendCurrentSettings(XML::Node& SettingsRootNode)
     XML::Node ProfilesDirectoryNode = CurrentSettings.AppendChild("ProfilesDirectory");
     ProfilesDirectoryNode.AppendAttribute("Path").SetValue( this->ProfilesDirectory );
     // Create and initialize the master settings
-    XML::Node ActiveProfileNode = CurrentSettings.AppendChild("ActiveProfile");
-    ActiveProfileNode.AppendAttribute("ProfileName").SetValue( this->ActiveProfile->GetName() );
+    XML::Node ActiveProfileNode = CurrentSettings.AppendChild("LastLoadedProfile");
+    ActiveProfileNode.AppendAttribute("ProfileName").SetValue( this->LastLoadedProfile->GetName() );
 }
 
 void ProfileManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
@@ -145,28 +163,16 @@ void ProfileManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
 
     this->DetectProfiles();
 
-    ObjectSettingSet* ActiveSet = Group->GetChildObjectSettingSet("ActiveProfile");
+    ObjectSettingSet* ActiveSet = Group->GetChildObjectSettingSet("LastLoadedProfile");
     if( ActiveSet != NULL ) {
         // Get the values
         CurrSettingValue = ActiveSet->GetSettingValue("ProfileName");
         if(!CurrSettingValue.empty())
-            this->SetActiveProfile( CurrSettingValue );
+            this->LastLoadedProfile = this->GetProfile( CurrSettingValue );
     }
-    /*for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Group->SubSetBegin() ; SubSetIt != Group->SubSetEnd() ; ++SubSetIt )
-    {
-        String CurrSettingValue;
-        if( "ProfilesDirectory" == (*SubSetIt)->GetName() ) {
-            // Get the values
-            CurrSettingValue = (*SubSetIt)->GetSettingValue("Path");
-            if(!CurrSettingValue.empty())
-                this->SetProfilesDirectory( CurrSettingValue );
-        }else if( "ActiveProfile" == (*SubSetIt)->GetName() ) {
-            // Get the values
-            CurrSettingValue = (*SubSetIt)->GetSettingValue("ProfileName");
-            if(!CurrSettingValue.empty())
-                this->SetActiveProfile( CurrSettingValue );
-        }
-    }// */
+
+    if( this->LastLoadedProfile != NULL )
+        this->LastLoadedProfile->Load(this->ProfilesDirectory);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -176,59 +182,48 @@ Whole ProfileManager::DetectProfiles()
 {
     // Save and then clear before attempting to detect.
     this->SaveAllProfiles();
-    for( ProfilesIterator ProIt = this->LoadedProfiles.begin() ; ProIt != this->LoadedProfiles.end() ; ++ProIt )
+    for( ProfilesIterator ProIt = this->Profiles.begin() ; ProIt != this->Profiles.end() ; ++ProIt )
         { delete (*ProIt); }
 
     // Now detect and load.
     Whole Detected = 0;
     XML::Document ProfileDoc;
-    Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( this->TheEntresol->GetManager(ManagerBase::MT_ResourceManager) );
     StringVector ProfileVec = Resource::GetDirContents(this->ProfilesDirectory);
     for( StringVector::iterator it = ProfileVec.begin() ; it != ProfileVec.end() ; it++ )
     {
         const String& FileName = (*it);
-        if( String::npos != FileName.find(".xml") ) {
+        size_t PeriodPos = FileName.find(".xml");
+        if( PeriodPos != String::npos ) {
             ++Detected;
 
-            ProfileDoc.Reset();
-            Resource::DataStreamPtr ProfileStream = ResourceMan->OpenAssetStream(FileName,"Profiles");
-            ProfileDoc.Load( *ProfileStream.Get() );
-
-            GameProfile* NewProfile = new GameProfile(ProfileDoc);
-            this->LoadedProfiles.push_back(NewProfile);
+            GameProfile* NewProfile = new GameProfile(FileName.substr(0,PeriodPos),true);
+            this->Profiles.push_back(NewProfile);
         }
     }
     return Detected;
 }
 
-void ProfileManager::ApplyProfileDataToProfileList()
+void ProfileManager::ApplyProfileDataToProfileList(GameProfile* PlayerProfile)
 {
-    UI::Screen* MainMenuScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("MainMenuScreen");
+    UI::Screen* MainMenuScreen = this->GetMainMenuScreen();
     UI::DropDownList* ProfilesDropList = static_cast<UI::DropDownList*>( MainMenuScreen->GetWidget("MS_ProfilesList") );
     UI::ListBox* ProfilesList = ProfilesDropList->GetSelectionList();
 
     ProfilesList->GetListContainer()->DestroyAllChildren();
-    for( ConstProfilesIterator ProIt = this->LoadedProfiles.begin() ; ProIt != this->LoadedProfiles.end() ; ++ProIt )
+    for( ConstProfilesIterator ProIt = this->Profiles.begin() ; ProIt != this->Profiles.end() ; ++ProIt )
     {
         const String& ProfileName = (*ProIt)->GetName();
         ProfilesList->CreateSingleLineListItem(ProfileName,ProfileName);
     }
     ProfilesList->UpdateChildDimensions();
-    ProfilesDropList->UpdateCurrentSelection( ProfilesList->GetListItem( this->ActiveProfile->GetName() ) );// */
-}
-
-void ProfileManager::ApplyProfileDataToLevelSelect()
-{
-    if( this->ActiveProfile != NULL ) {
-        this->ApplyProfileDataToLevelSelect( this->ActiveProfile );
-    }
+    ProfilesDropList->UpdateCurrentSelection( ProfilesList->GetListItem( PlayerProfile->GetName() ) );// */
 }
 
 void ProfileManager::ApplyProfileDataToLevelSelect(GameProfile* Profile)
 {
     // Get our pointers
     LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
-    UI::Screen* MainMenuScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("MainMenuScreen");
+    UI::Screen* MainMenuScreen = this->GetMainMenuScreen();
 
     for( LevelManager::ConstGameLevelIterator LevelIt = LevelMan->BeginGameLevel() ; LevelIt != LevelMan->EndGameLevel() ; ++LevelIt )
     {
@@ -251,11 +246,23 @@ void ProfileManager::ApplyProfileDataToLevelSelect(GameProfile* Profile)
     }
 }
 
-void ProfileManager::SetNewHighScore(const String& LevelName, const Whole LevelScore)
+UI::Screen* ProfileManager::GetMainMenuScreen() const
+{
+    UI::UIManager* UIMan = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) );
+    return UIMan->GetScreen("MainMenuScreen");
+}
+
+UI::Widget* ProfileManager::GetProfileAccessButton() const
+{
+    UI::Screen* MainMenuScreen = this->GetMainMenuScreen();
+    return MainMenuScreen->GetWidget("MS_ProfilesAccess");
+}
+
+void ProfileManager::SetNewHighScoreInUI(const String& LevelName, const Whole LevelScore)
 {
     // Get our pointers
     LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
-    UI::Screen* MainMenuScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("MainMenuScreen");
+    UI::Screen* MainMenuScreen = this->GetMainMenuScreen();
 
     GameLevel* HighScoreLevel = LevelMan->GetLevel(LevelName);
     UI::Widget* LevelScoreWid = MainMenuScreen->GetWidget( LevelName + ".Score" );
@@ -270,8 +277,6 @@ void ProfileManager::SetNewHighScore(const String& LevelName, const Whole LevelS
             LevelScoreStars->SetSprite(ScoreTier,"MMLevelScoreStar");
         }
     }
-
-    this->ActiveProfile->SetNewHighScore(LevelName,LevelScore);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -291,12 +296,13 @@ void ProfileManager::SetProfilesDirectory(const String& Path)
     }
     Resource::CreateDirectoryPath(this->ProfilesDirectory);
 
+    /*
     Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( this->TheEntresol->GetManager(ManagerBase::MT_ResourceManager) );
     Resource::AssetGroup* ProfilesGroup = ResourceMan->GetAssetGroup("Profiles");
     if( ProfilesGroup != NULL ) {
         ResourceMan->DestroyAssetGroup("Profiles");
     }
-    ResourceMan->AddAssetLocation(this->ProfilesDirectory,Resource::AT_FileSystem,"Profiles");
+    ResourceMan->AddAssetLocation(this->ProfilesDirectory,Resource::AT_FileSystem,"Profiles");//*/
 }
 
 const String& ProfileManager::GetProfilesDirectory() const
@@ -313,33 +319,29 @@ GameProfile* ProfileManager::CreateNewProfile(const String& Name)
     if( Profile != NULL ) {
         return Profile;
     }
-    Profile = new GameProfile(Name);
-    this->LoadedProfiles.push_back(Profile);
+    Profile = new GameProfile(Name,false);
+    this->Profiles.push_back(Profile);
+    this->LastLoadedProfile = Profile;
     return Profile;
 }
 
-GameProfile* ProfileManager::LoadProfile(const String& FileName)
+GameProfile* ProfileManager::LoadProfile(const String& Name)
 {
-    XML::Document ProfileDoc;
-
-    return this->LoadProfile(ProfileDoc);
+    GameProfile* Profile = this->GetProfile(Name);
+    if( Profile == NULL ) return NULL;
+    else return this->LoadProfile(Profile);
 }
 
-GameProfile* ProfileManager::LoadProfile(XML::Document& ProfileDoc)
+GameProfile* ProfileManager::LoadProfile(GameProfile* Profile)
 {
-    GameProfile* Profile = NULL;
-    try{
-        Profile = new GameProfile(ProfileDoc);
-    }catch(IOException Ex){
-        //Handle somehow?
-    }
-    this->LoadedProfiles.push_back(Profile);
+    Profile->Load(this->ProfilesDirectory);
+    this->LastLoadedProfile = Profile;
     return Profile;
 }
 
 GameProfile* ProfileManager::GetProfile(const String& Name) const
 {
-    for( ConstProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
+    for( ConstProfilesIterator it = this->Profiles.begin() ; it != this->Profiles.end() ; ++it )
     {
         if( Name == (*it)->GetName() ) {
             return (*it);
@@ -348,94 +350,25 @@ GameProfile* ProfileManager::GetProfile(const String& Name) const
     return NULL;
 }
 
-GameProfile* ProfileManager::GetProfile(const Whole& Index) const
-{
-    return this->LoadedProfiles.at(Index);
-}
+GameProfile* ProfileManager::GetProfile(const Whole Index) const
+    { return this->Profiles.at(Index); }
 
-Whole ProfileManager::GetNumLoadedProfiles() const
-{
-    return this->LoadedProfiles.size();
-}
+Whole ProfileManager::GetNumProfiles() const
+    { return this->Profiles.size(); }
+
+GameProfile* ProfileManager::GetLastLoadedProfile() const
+    { return this->LastLoadedProfile; }
 
 void ProfileManager::SaveProfile(const String& Name)
-{
-    GameProfile* Profile = this->GetProfile(Name);
-    this->SaveProfile(Profile);
-}
+    { this->SaveProfile( this->GetProfile(Name) ); }
 
 void ProfileManager::SaveProfile(GameProfile* Profile)
-{
-    Profile->Save(this->ProfilesDirectory);
-}
+    { Profile->Save(this->ProfilesDirectory); }
 
 void ProfileManager::SaveAllProfiles()
 {
-    for( ProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
-    {
-        (*it)->Save(this->ProfilesDirectory);
-    }
-}
-
-/*void ProfileManager::DestroyProfile(const String& Name)
-{
-    GameProfile* Profile = this->GetProfile(Name);
-    this->DestroyProfile(Profile);
-}
-
-void ProfileManager::DestroyProfile(GameProfile* Profile)
-{
-    // Clear it from our container
-    ProfilesIterator ProIt = std::find(this->LoadedProfiles.begin(),this->LoadedProfiles.end(),Profile);
-    if( ProIt != this->LoadedProfiles.end() ) {
-        this->LoadedProfiles.erase(ProIt);
-    }
-    // Delete it from the disk
-    Resource::RemoveFile( this->ProfilesDirectory + Profile->GetName() );
-    // Clean up the profile itself
-    delete Profile;
-}// */
-
-///////////////////////////////////////////////////////////////////////////////
-// ActiveProfile Management
-
-void ProfileManager::SetActiveProfile(const String& Name)
-{
-    for( ProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
-    {
-        if( Name == (*it)->GetName() ) {
-            this->SetActiveProfile(*it);
-            break;
-        }
-    }
-}
-
-void ProfileManager::SetActiveProfile(GameProfile* Profile)
-{
-    this->ActiveProfile = Profile;
-    //this->ApplyProfileDataToUI( this->ActiveProfile );
-
-    if( this->ActiveProfile != NULL ) {
-        UI::Screen* MainMenuScreen = static_cast<UI::UIManager*>( this->TheEntresol->GetManager(ManagerBase::MT_UIManager) )->GetScreen("MainMenuScreen");
-        if( MainMenuScreen != NULL ) {
-            UI::Widget* ProfileDisplay = MainMenuScreen->GetWidget("MS_ProfilesAccess");
-            UI::SingleLineTextLayer* ProfileDisplayText = static_cast<UI::SingleLineTextLayer*>( ProfileDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
-            ProfileDisplayText->SetText( this->ActiveProfile->GetName() );
-        }
-    }
-}
-
-String ProfileManager::GetActiveProfileName() const
-{
-    if( this->ActiveProfile != NULL ) {
-        return this->ActiveProfile->GetName();
-    }
-    return "";
-}
-
-GameProfile* ProfileManager::GetActiveProfile() const
-{
-    return this->ActiveProfile;
+    for( ProfilesIterator it = this->Profiles.begin() ; it != this->Profiles.end() ; ++it )
+        { (*it)->Save(this->ProfilesDirectory); }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -443,13 +376,13 @@ GameProfile* ProfileManager::GetActiveProfile() const
 
 void ProfileManager::Initialize()
 {
-    if( this->ActiveProfile == NULL ) {
+    if( this->LastLoadedProfile == NULL ) {
         String Default("Default");
         GameProfile* DefaultProfile = this->GetProfile(Default);
         if( DefaultProfile == NULL ) {
             DefaultProfile = this->CreateNewProfile(Default);
         }
-        this->SetActiveProfile(DefaultProfile);
+        this->LastLoadedProfile = DefaultProfile;
     }
 
     this->SaveAllProfiles();

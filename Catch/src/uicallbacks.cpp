@@ -38,7 +38,7 @@ void MSProfileCreate::operator()(EventArgumentsPtr Args)
 {
     UI::EditBox* ProfilesEntry = static_cast<UI::EditBox*>( this->MainScreen->GetWidget("MS_ProfilesEntry") );
     this->ProfileMan->CreateNewProfile( ProfilesEntry->GetText() );
-    this->ProfileMan->ApplyProfileDataToProfileList();
+    this->ProfileMan->ApplyProfileDataToProfileList(CatchApp::GetCatchAppPointer()->GetPlayer()->GetProfile());
     ProfilesEntry->SetText("");
 }
 
@@ -57,8 +57,12 @@ void MSProfileSelect::operator()(EventArgumentsPtr Args)
 {
     UI::DropDownList* ProfilesList = static_cast<UI::DropDownList*>( this->MainScreen->GetWidget("MS_ProfilesList") );
     GameProfile* NewSelected = this->ProfileMan->GetProfile( ProfilesList->GetSelectionText() );
-    this->ProfileMan->SetActiveProfile( NewSelected );
-    this->ProfileMan->ApplyProfileDataToLevelSelect();
+    CatchApp::GetCatchAppPointer()->GetPlayer()->SetIdentity( NewSelected );
+    this->ProfileMan->ApplyProfileDataToLevelSelect(NewSelected);
+
+    UI::StackButton* ProfilesDisplay = static_cast<UI::StackButton*>( this->MainScreen->GetWidget("MS_ProfilesAccess") );
+    UI::SingleLineTextLayer* ProfileDisplayText = static_cast<UI::SingleLineTextLayer*>( ProfilesDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
+    ProfileDisplayText->SetText( NewSelected->GetName() );
 }
 
 ///////////////////////////////////////////////////////////////////////////////
