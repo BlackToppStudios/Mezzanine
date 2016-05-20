@@ -269,7 +269,7 @@ namespace Mezzanine
                 }
             }
             /// @brief Take the data stored in an XML Node and overwrite this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerialize(const XML::Node& SelfRoot)
             {
                 XML::Attribute CurrAttrib;
@@ -616,7 +616,7 @@ namespace Mezzanine
                 }
             }
             /// @brief Take the data stored in an XML Node and overwrite this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerialize(const XML::Node& SelfRoot)
             {
                 XML::Attribute CurrAttrib;
@@ -831,7 +831,7 @@ namespace Mezzanine
                 }
             }
             /// @brief Take the data stored in an XML Node and overwrite this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerialize(const XML::Node& SelfRoot)
             {
                 XML::Attribute CurrAttrib;

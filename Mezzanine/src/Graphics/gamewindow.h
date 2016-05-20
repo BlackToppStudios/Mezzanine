@@ -299,13 +299,13 @@ namespace Mezzanine
             void ProtoSerializeViewports(XML::Node& SelfRoot) const;
 
             /// @brief Take the data stored in an XML Node and overwrite this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the viewports of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerializeViewports(const XML::Node& SelfRoot);
 
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.

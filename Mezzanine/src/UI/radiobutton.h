@@ -189,7 +189,7 @@ namespace Mezzanine
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
             /// @brief Take the data stored in an XML Node and overwrite the Group Buttons of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeGroupButtons(const XML::Node& SelfRoot);
             /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);

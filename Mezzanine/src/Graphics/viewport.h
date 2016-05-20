@@ -173,7 +173,7 @@ namespace Mezzanine
             /// @param ParentNode The point in the XML hierarchy that all this Viewport should be appended to.
             void ProtoSerialize(XML::Node& ParentNode) const;
             /// @brief Take the data stored in an XML Node and overwrite this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.

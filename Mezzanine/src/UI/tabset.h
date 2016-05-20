@@ -161,7 +161,7 @@ namespace Mezzanine
             /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the Button Bindings of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeButtonBindings(const XML::Node& SelfRoot);
 
             /// @copydoc Renderable::GetSerializableName()

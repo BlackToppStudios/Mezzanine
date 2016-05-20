@@ -128,7 +128,7 @@ namespace Mezzanine
             /// @param Creator A pointer to the manager that created this proxy.
             RigidProxy(const UInt32 ID, const Real Mass, CollisionShape* Shape, PhysicsManager* Creator);
             /// @brief XML constructor.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this proxy.
             RigidProxy(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class Destructor
