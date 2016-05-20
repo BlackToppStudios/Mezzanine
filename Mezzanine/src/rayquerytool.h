@@ -59,7 +59,6 @@ namespace Mezzanine
     class WorldObject;
     class World;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class RayQueryTool
     /// @brief This provides a number of optional tools for working with a Mezzanine::World
     /// @details Currently this allows for more seamless mouse use, including 'picking'
     /// of objects with the mouse, and associated functionality.
@@ -119,7 +118,7 @@ namespace Mezzanine
         /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
         /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
         /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() and LastQueryResultsActorPtr() for more details.
-        Boole GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags);
+        Boole GetFirstObjectOnRayByPolygon(const Ray& ObjectRay, Whole ObjectFlags);
         /// @brief Partially implemented. This should find the first Object that is on or almost on the a given Ray.
         /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.
         /// Presently this is untested and does not return the Offset of the intersection. This should perform faster than WorldQueryTool::GetFirstActorOnRayByPolygon
@@ -128,7 +127,7 @@ namespace Mezzanine
         /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
         /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
         /// @return True if something is found, false otherwise. Use LastQueryResultsActorPtr() for more details. Any return Offset is empty
-        Boole GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags);
+        Boole GetFirstObjectOnRayByAABB(const Ray& ObjectRay, Whole ObjectFlags);
         /// @brief Where does this Ray Meet this Plane?
         /// @details This does some fancy math to return the point where the ray and the plane intersent.
         /// @param QueryRay This is the Ray that could intersent the plane
