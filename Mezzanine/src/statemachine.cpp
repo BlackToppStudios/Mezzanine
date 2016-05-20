@@ -55,6 +55,7 @@ namespace Mezzanine
     StateMachine::StateMachine()
     {
         CurrentState = States.end();
+        FutureStateTransition = Transitions.end();
         FutureState = States.end();
     }
 
@@ -62,6 +63,7 @@ namespace Mezzanine
     {
         States.add(InitialState);
         CurrentState = States.begin();
+        FutureStateTransition = Transitions.end();
         FutureState = States.end();
     }
 
@@ -69,17 +71,37 @@ namespace Mezzanine
     {
         States.add(InitialState);
         CurrentState = States.begin();
+        FutureStateTransition = Transitions.end();
         FutureState = States.end();
+    }
+
+    StateMachine::~StateMachine()
+    {
+        //for(TranstionIterator tran = Transitions.begin(); tran != Transitions.end(); tran++)
+        //    { delete *tran; }
     }
 
     void StateMachine::AddState(const HashedString32& NewState)
     {
-        HashedString32 LastCurrentState = *CurrentState;
+        String LastCurrentState;
+        if (CurrentState == States.end())
+            { LastCurrentState = ::NoState.GetString(); }
+        else
+            { LastCurrentState = CurrentState->GetString(); }
+
+        String LastFutureCurrentState;
+        if (FutureState == States.end())
+            { LastFutureCurrentState = ::NoState.GetString(); }
+        else
+            { LastFutureCurrentState = FutureState->GetString(); }
+
         States.add(NewState);
-        if(LastCurrentState.IsEmpty())
+
+        if(LastCurrentState.empty())
             { CurrentState = States.begin(); }
         else
-            { CurrentState = States.find(NewState); }
+            { CurrentState = States.find(LastCurrentState); }
+        FutureState = States.find(LastFutureCurrentState);
 
     }
 
@@ -107,7 +129,8 @@ namespace Mezzanine
     Boole StateMachine::HasStateTransition(const HashedString32& FromState,
                                            const HashedString32& ToState) const
     {
-        return Transitions.find(StateTransition(FromState,ToState)) != Transitions.end();
+        StateTransition Needle(FromState,ToState);
+        return Transitions.find(Needle) != Transitions.end();
     }
 
     Boole StateMachine::HasStateTransition(const String& FromState, const String& ToState) const
@@ -125,24 +148,58 @@ namespace Mezzanine
         if(FoundState == States.end())
             { return false; }
 
+        StateTransition Needle(*CurrentState, ToState);
         TranstionIterator FoundTransition
-                = Transitions.find(StateTransition(*CurrentState, ToState));
+                = Transitions.find(Needle);
         if(FoundTransition == Transitions.end())
             { return false; }
 
-        //FoundTransition->operator();
+        if(!FoundTransition->operator()())
+            { ClearPendingState(); return false; }
         CurrentState = FoundState;
+        ClearPendingState();
         return true;
     }
 
+    Boole StateMachine::ChangeState(const String& ToState)
+        { return ChangeState(HashedString32(ToState)); }
+
     Boole StateMachine::SetPendingState(const HashedString32& ToState)
     {
+        ConstStateIterator FoundState = States.find(ToState);
+        if(FoundState == States.end())
+            { return false; }
 
+        StateTransition Needle(*CurrentState, ToState);
+        TranstionIterator FoundTransition
+                = Transitions.find(Needle);
+        if(FoundTransition == Transitions.end())
+            { return false; }
+        FutureStateTransition = FoundTransition;
+        FutureState = FoundState;
+        return true;
     }
 
-    void StateMachine::DoPendingStateChange()
-    {
+    Boole StateMachine::SetPendingState(const String& ToState)
+        { return SetPendingState(HashedString32(ToState)); }
 
+    void StateMachine::ClearPendingState()
+    {
+        FutureStateTransition = Transitions.end();
+        FutureState = States.end();
+    }
+
+    Boole StateMachine::DoPendingStateChange()
+    {
+        if(Transitions.end() != FutureStateTransition) // in order to get rid of this I need a
+        {                                              // A static StateTransitionAction.
+            if(!FutureStateTransition->operator()())
+                { ClearPendingState(); return false; }
+            CurrentState = FutureState;
+            ClearPendingState();
+            return true;
+        }
+        return false;
     }
 
     const HashedString32& StateMachine::GetCurrentState() const

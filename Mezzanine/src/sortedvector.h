@@ -54,6 +54,32 @@ namespace Mezzanine
     /// @param begin The beginning of the iterator range.
     /// @param end One past the end of the actual iterators.
     /// @param val The value to find.
+    /// @param Comparer An instance of comparison function to use while finding.
+    /// @tparam Iter An iterator type.
+    /// @tparam T The type of the value the iterator points to.
+    /// @tparam Compare A functor that accepts two parameters of type to
+    /// @return The end iterator if nothing was found or the iterator found by value.
+    template<typename Iter, typename T, typename Compare >
+    Iter binary_find(Iter begin, Iter end, T val, Compare Comparer)
+    {
+        // Finds the lower bound in at most log(last - first) + 1 comparisons
+        Iter i = std::lower_bound(begin, end, val, Comparer);
+
+        if (i != end && !Comparer(val,*i))
+            return i; // found
+        else
+            return end; // not found
+    }
+
+    /// @brief Search throught an iterator range and return the desired iterator.
+    /// @details This uses the operator< to perform searches and matching for the contained item.
+    /// @n
+    /// Thanks to stack overflow and their CC-by-SA license which is written permission to
+    /// use this.
+    /// http://stackoverflow.com/questions/446296/where-can-i-get-a-useful-c-binary-search-algorithm
+    /// @param begin The beginning of the iterator range.
+    /// @param end One past the end of the actual iterators.
+    /// @param val The value to find.
     /// @tparam Iter An iterator type.
     /// @tparam T The type of the value the iterator points to.
     /// @return The end iterator if nothing was found or the iterator found by value.
@@ -69,9 +95,10 @@ namespace Mezzanine
             return end; // not found
     }
 
+
     /// @brief This container uses an std::vector for storage, but sorts all
     /// @tparam T The this container will store, must implement operate < for sorting
-    template<typename T>
+    template<typename T, typename Sorter = std::less<T> >
     class SortedVector
     {
         public:
@@ -137,7 +164,7 @@ namespace Mezzanine
             /// @brief Uses std::sort to sort this, might using something more special focus in the
             /// future.
             void sort()
-                { std::sort(begin(),end()); }
+                { std::sort(begin(),end(), Sorter()); }
 
             /// @brief How many items are stored in this?
             /// @return Some integer type, likely unsigned indicating how many items this stores.
@@ -145,12 +172,29 @@ namespace Mezzanine
                 { return InternalStorage.size(); }
 
             /// @brief Since this container has no array-like concept this inserts the item were
-            /// it needs to go. This has all the potentional allocation slow downs of push_back
-            /// and costs of find the required place to insert.
+            /// it needs to go.
+            /// @details This has all the potentional allocation slow downs of push_back
+            /// and costs of find the required place to insert. This sorts the whole container after
+            /// adding items, so calling this after for a many additions is really slow, use
+            /// @ref add_range to only sort once.
             /// @param value The value to put into the vector.
             void add(T value)
             {
                 InternalStorage.push_back(value);
+                sort();
+            }
+
+            /// @brief Add several items at once efficiently.
+            /// @details Sorts only once so is much faster than add(),
+            /// @tparam ForeignIterator The type of the the iterator of the other container, must
+            /// be at least a forward iterator.
+            /// @param OtherBegin An iterator to the start of the other range to be copied.
+            /// @param OtherEnd An iterator to one past the end.
+            template<class ForeignIterator>
+            void add_range(ForeignIterator OtherBegin, ForeignIterator OtherEnd)
+            {
+                for(; OtherBegin!=OtherEnd; OtherBegin++)
+                    { InternalStorage.push_back(*OtherBegin); }
                 sort();
             }
 
@@ -165,12 +209,12 @@ namespace Mezzanine
             /// @param value the item to get the location of.
             /// @return A mutable iterator to an item, can be adjusted by random access.
             iterator find(T value)
-                { return binary_find(begin(),end(),value); }
+                { return binary_find(begin(),end(),value,Sorter()); }
             /// @brief Get and interator to a specific item, operates in fast logarithmic time.
             /// @param value the item to get the location of.
             /// @return A const iterator to an item, can be adjusted by random access.
             const_iterator find(T value) const
-                { return binary_find(begin(),end(),value); }
+                { return binary_find(begin(),end(),value,Sorter()); }
 
             /// @brief Does the item exist in this vector?
             /// @param value The item in question.
@@ -178,7 +222,7 @@ namespace Mezzanine
             Boole contains(T value) const
                 { return std::binary_search(begin(),end(),value); }
 
-            /// @brief Empt the Vector discarding all data.
+            /// @brief Empty the Vector discarding all data.
             void clear()
                 { InternalStorage.clear(); }
             /// @brief Allocate enough space for the specified quantity of items

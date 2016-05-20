@@ -43,12 +43,35 @@
 #include "mezztest.h"
 
 #include "sortedvector.h"
+#include <hashedstring.h>
+
 
 /// @file
 /// @brief Test the sorted vector works
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
+
+/// @brief Makes a random string for testing purposes.
+/// @param Length The length of the String.
+/// @return An alphanumeric string of the desired length.
+/// @details Using code from
+/// http://stackoverflow.com/questions/440133/how-do-i-create-a-random-alpha-numeric-string-in-c
+/// with written by the Creative Commons SA license.
+String GenerateRandomString(const int Length = (rand()%15+5))
+{
+    static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+
+    String Results;
+    Results.reserve(Length);
+    for (int i = 0; i < Length; ++i)
+        { Results.push_back(alphanum[rand() % (sizeof(alphanum) - 1)]); }
+
+    return Results;
+}
 
 /// @brief Test
 class sortedvectortests : public UnitTestGroup
@@ -67,9 +90,33 @@ public:
             Sorted.push_back(1);
             Sorted.push_back(2);
             Sorted.push_back(3);
+            TEST( binary_find(Sorted.begin(),Sorted.end(),1,std::less<int>()) == Sorted.begin(),
+                  "BinaryFind1Less");
+            TEST( binary_find(Sorted.begin(),Sorted.end(),2,std::less<int>()) == Sorted.begin()+1,
+                  "BinaryFind2Less");
+            TEST( binary_find(Sorted.begin(),Sorted.end(),3,std::less<int>()) == Sorted.end()-1,
+                  "BinaryFind3Less");
+
+
             TEST( binary_find(Sorted.begin(),Sorted.end(),1) == Sorted.begin(),    "BinaryFind1");
             TEST( binary_find(Sorted.begin(),Sorted.end(),2) == Sorted.begin()+1,  "BinaryFind2");
             TEST( binary_find(Sorted.begin(),Sorted.end(),3) == Sorted.end()-1,    "BinaryFind3");
+        }
+
+        {
+            std::vector<int> Back;
+            Back.push_back(3);
+            Back.push_back(2);
+            Back.push_back(1);
+            //std::cout << *binary_find(Back.begin(),Back.end(),3,std::greater<int>()) << std::endl;
+            //std::cout << *binary_find(Back.begin(),Back.end(),2,std::greater<int>()) << std::endl;
+            //std::cout << *binary_find(Back.begin(),Back.end(),1,std::greater<int>()) << std::endl;
+            TEST( binary_find(Back.begin(),Back.end(),3,std::greater<int>()) == Back.begin(),
+                  "BinaryFind1Greater");
+            TEST( binary_find(Back.begin(),Back.end(),2,std::greater<int>()) == Back.begin()+1,
+                  "BinaryFind2Greater");
+            TEST( binary_find(Back.begin(),Back.end(),1,std::greater<int>()) == Back.end()-1,
+                  "BinaryFind3Greater");
         }
 
         {
@@ -181,6 +228,20 @@ public:
             TEST( tested[0] == "E",                 "SortedVector.EraseRange");
         }
 
+        {
+            std::vector<Whole> Unsorted;
+            Unsorted.push_back(15);
+            Unsorted.push_back(10);
+            Unsorted.push_back(60);
+
+            SortedVector<Whole> Sorted;
+            Sorted.add_range(Unsorted.begin(), Unsorted.end());
+            TEST( *(Sorted.begin()) == 10,          "SortedVector.RangeAdd1Begin");
+            TEST( *(Sorted.begin()+1) == 15,        "SortedVector.RangeAdd2Begin");
+            TEST( *(Sorted.begin()+2) == 60,        "SortedVector.RangeAdd3Begin");
+
+        }
+
         // need proper C++11 support for the good resize implementation
 //        {
 //            SortedVector<Int32> tested;
@@ -206,7 +267,228 @@ public:
 //        }
 
 
+        {
+            const Integer AmountToSort = 100000; // What is the lowest this start failing?
+            TestOutput << endl << "Benchmarking creation of " << AmountToSort
+                       << " Strings and Hashed Strings and sorting them in an std::set and "
+                       << "a SortedVector." << endl;
+            std::vector<String> Gibberish;
+            std::vector<HashedString32> GibberishHashed;
+            Gibberish.reserve(AmountToSort);
+            GibberishHashed.reserve(AmountToSort);
+            String Scratch;
+            TestOutput << "Stuffing into set" << endl;
+            for(Integer I = 0; I < AmountToSort; I++)
+            {
+                Scratch = GenerateRandomString();
+                Gibberish.push_back(Scratch);
+                GibberishHashed.push_back(HashedString32(Scratch));
+            }
+            std::vector<String> SortDump;
+            std::vector<HashedString32> SortDumpHash;
 
+
+            SortDumpHash.clear();
+            SortDump.clear();
+            TestOutput << "Stuffing String into set." << endl;
+            MaxInt PreSetString = GetTimeStamp();
+            std::set<String> SetString;
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { SetString.insert(*Iter); }
+            MaxInt PostSetString = GetTimeStamp();
+            SortDump.reserve(AmountToSort);
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { SortDump.push_back(*SetString.find(*Iter)); }
+            MaxInt FinalSetString = GetTimeStamp();
+            MaxInt SetStringSeek = FinalSetString - PostSetString;
+            MaxInt SetStringDuration = PostSetString - PreSetString;
+            TestOutput << "To prevent optimization: "
+                       << *(SetString.begin()) << SortDump.at(rand()%AmountToSort) << endl;
+
+            SortDumpHash.clear();
+            SortDump.clear();
+            TestOutput << "Stuffing Hashed String into set." << endl;
+            MaxInt PreSetHash = GetTimeStamp();
+            std::set<HashedString32> SetHashString;
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { SetHashString.insert(*Iter); }
+            MaxInt PostSetHash = GetTimeStamp();
+            SortDumpHash.reserve(AmountToSort);
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { SortDumpHash.push_back(*SetHashString.find(*Iter)); }
+            MaxInt FinalSetHash = GetTimeStamp();
+            MaxInt SetHashSeek = FinalSetHash - PostSetHash;
+            MaxInt SetHashDuration = PostSetHash - PreSetHash;
+            TestOutput << "To prevent optimization: "
+                       << *(SetHashString.begin()) << SortDumpHash.at(rand()%AmountToSort) << endl;
+
+/*
+            SortDumpHash.clear();
+            SortDump.clear();
+            TestOutput << "Stuffing String into SortedVector." << endl;
+            MaxInt PreVecString = GetTimeStamp();
+            SortedVector<String> VecString;
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { VecString.add(*Iter); }
+            MaxInt PostVecString = GetTimeStamp();
+            SortDump.reserve(AmountToSort);
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { SortDump.push_back(*VecString.find(*Iter)); }
+            MaxInt FinalVecString = GetTimeStamp();
+            MaxInt VecStringSeek = FinalVecString - PostVecString;
+            MaxInt VecStringDuration = PostVecString - PreVecString;
+            TestOutput << "To prevent optimization: "
+                       << *(VecString.begin()) << SortDump.at(rand()%AmountToSort) << endl;
+
+            SortDumpHash.clear();
+            SortDump.clear();
+            TestOutput << "Stuffing Hashed String into SortedVector." << endl;
+            MaxInt PreVecHash = GetTimeStamp();
+            SortedVector<HashedString32> VecHash;
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { VecHash.add(*Iter); }
+            MaxInt PostVecHash = GetTimeStamp();
+            SortDumpHash.reserve(AmountToSort);
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { SortDumpHash.push_back(*VecHash.find(*Iter)); }
+            MaxInt FinalVecHash = GetTimeStamp();
+            MaxInt VecHashSeek = FinalVecHash - PostVecHash;
+            MaxInt VecHashDuration = PostVecHash - PreVecHash;
+            TestOutput << "To prevent optimization: "
+                       << *(VecHash.begin()) << SortDumpHash.at(rand()%AmountToSort) << endl;
+
+
+            SortDumpHash.clear();
+            SortDump.clear();
+            TestOutput << "Stuffing String into SortedVector with reserve." << endl;
+            MaxInt PreCapString = GetTimeStamp();
+            SortedVector<String> CapString;
+            CapString.reserve(AmountToSort);
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { CapString.add(*Iter); }
+            MaxInt PostCapString = GetTimeStamp();
+            SortDump.reserve(AmountToSort);
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { SortDump.push_back(*CapString.find(*Iter)); }
+            MaxInt FinalCapString = GetTimeStamp();
+            MaxInt CapStringSeek = FinalCapString - PostCapString;
+            MaxInt CapStringDuration = PostCapString - PreCapString;
+            TestOutput << "To prevent optimization: "
+                       << *(CapString.begin()) << SortDump.at(rand()%AmountToSort) << endl;
+
+            SortDumpHash.clear();
+            SortDump.clear();
+            TestOutput << "Stuffing Hashed String into SortedVector with reserve." << endl;
+            MaxInt PreCapHash = GetTimeStamp();
+            SortedVector<HashedString32> CapHash;
+            CapHash.reserve(AmountToSort);
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { CapHash.add(*Iter); }
+            MaxInt PostCapHash = GetTimeStamp();
+            SortDumpHash.reserve(AmountToSort);
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { SortDumpHash.push_back(*CapHash.find(*Iter)); }
+            MaxInt FinalCapHash = GetTimeStamp();
+            MaxInt CapHashSeek = FinalCapHash - PostCapHash;
+            MaxInt CapHashDuration = PostCapHash - PreCapHash;
+            TestOutput << "To prevent optimization: "
+                       << *(CapHash.begin()) << SortDumpHash.at(rand()%AmountToSort) << endl;
+*/
+
+            SortDumpHash.clear();
+            SortDump.clear();
+            TestOutput << "RangeAdding String into SortedVector." << endl;
+            MaxInt PreRangeString = GetTimeStamp();
+            SortedVector<String> RangeString;
+            RangeString.reserve(AmountToSort);
+            RangeString.add_range(Gibberish.begin(), Gibberish.end());
+            MaxInt PostRangeString = GetTimeStamp();
+            SortDump.reserve(AmountToSort);
+            for(std::vector<String>::iterator Iter = Gibberish.begin();
+                Iter != Gibberish.end();
+                Iter++)
+            { SortDump.push_back(*RangeString.find(*Iter)); }
+            MaxInt FinalRangeString = GetTimeStamp();
+            MaxInt RangeStringSeek = FinalRangeString - PostRangeString;
+            MaxInt RangeStringDuration = PostRangeString - PreRangeString;
+            TestOutput << "To prevent optimization: "
+                       << *(RangeString.begin()) << SortDump.at(rand()%AmountToSort) << endl;
+
+            SortDumpHash.clear();
+            SortDump.clear();
+            TestOutput << "Stuffing Hashed String into SortedVector." << endl;
+            MaxInt PreRangeHash = GetTimeStamp();
+            SortedVector<HashedString32> RangeHash;
+            RangeHash.reserve(AmountToSort);
+            RangeHash.add_range(GibberishHashed.begin(), GibberishHashed.end());
+            MaxInt PostRangeHash = GetTimeStamp();
+            SortDumpHash.reserve(AmountToSort);
+            for(std::vector<HashedString32>::iterator Iter = GibberishHashed.begin();
+                Iter != GibberishHashed.end();
+                Iter++)
+            { SortDumpHash.push_back(*RangeHash.find(*Iter)); }
+            MaxInt FinalRangeHash = GetTimeStamp();
+            MaxInt RangeHashSeek = FinalRangeHash - PostRangeHash;
+            MaxInt RangeHashDuration = PostRangeHash - PreRangeHash;
+            TestOutput << "To prevent optimization: "
+                       << *(RangeHash.begin()) << SortDumpHash.at(rand()%AmountToSort) << endl;
+
+            TestOutput
+                << "Set with String                               : " << SetStringDuration << endl
+                << "seek:                                         : " << SetStringSeek << endl
+                << endl
+                << "Set with HashedString                         : " << SetHashDuration << endl
+                << "seek:                                         : " << SetHashSeek << endl
+                << endl
+//                << "SortedVector with String                      : " << VecStringDuration << endl
+//                << "seek:                                         : " << VecStringSeek << endl
+//                << endl
+//                << "SortedVector with HashedString                : " << VecHashDuration << endl
+//                << "seek:                                         : " << VecHashSeek << endl
+//                << endl
+//                << "SortedVector with Capacity/String             : " << CapStringDuration << endl
+//                << "seek:                                         : " << CapStringSeek << endl
+//                << endl
+//                << "SortedVector with Capacity/HashedString       : " << CapHashDuration << endl
+//                << "seek:                                         : " << CapHashSeek << endl
+//                << endl
+                << "SortedVector with Range/Capacity/String       : " << RangeStringDuration << endl
+                << "seek:                                         : " << RangeStringSeek << endl
+                << endl
+                << "SortedVector with Range/Capacity/HashedString : " << RangeHashDuration << endl
+                << "seek:                                         : " << RangeHashSeek << endl
+                << endl
+                << endl;
+
+            TEST_WARN(SetStringDuration > RangeStringDuration, "SortedVectorInsertsFast_String");
+            TEST_WARN(SetStringSeek > RangeStringSeek, "SortedVectorSeekFast_String");
+            TEST_WARN(SetHashDuration > RangeHashDuration, "SortedVectorInsertsFast_Hashed");
+            TEST_WARN(SetHashSeek > RangeHashSeek, "SortedVectorSeekFast_Hashed");
+        }
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.
