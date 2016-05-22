@@ -187,11 +187,11 @@ namespace Mezzanine
         // Vehicle Objects
         WO_VehicleFirst           = ( 1u << 18 ),//262144,
 
-        WO_VehiclePlaceHolder1    = ( 1u << 18 ),//262144,
-        WO_VehiclePlaceHolder2    = ( 1u << 19 ),//524288,
-        WO_VehiclePlaceHolder3    = ( 1u << 20 ),//1048576,
-        WO_VehiclePlaceHolder4    = ( 1u << 21 ),//2097152,
-        WO_VehiclePlaceHolder5    = ( 1u << 22 ),//4194304,
+        WO_MultiBodyVehicle       = ( 1u << 18 ),//262144,
+        WO_RaycastVehicle         = ( 1u << 19 ),//524288,
+        WO_SimpleVehicle          = ( 1u << 20 ),//1048576,
+        WO_VehiclePlaceHolder1    = ( 1u << 21 ),//2097152,
+        WO_VehiclePlaceHolder2    = ( 1u << 22 ),//4194304,
 
         WO_VehicleLast            = ( 1u << 22 ) //4194304
     };

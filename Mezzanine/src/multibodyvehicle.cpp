@@ -1,0 +1,130 @@
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+/* This file is part of The Mezzanine Engine.
+
+    The Mezzanine Engine is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    The Mezzanine Engine is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* The original authors have included a copy of the license specified above in the
+   'Docs' folder. See 'gpl.txt'
+*/
+/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to
+   Build professional software and charge for their product.
+
+   However there are some practical restrictions, so if your project involves
+   any of the following you should contact us and we will try to work something
+   out:
+    - DRM or Copy Protection of any kind(except Copyrights)
+    - Software Patents You Do Not Wish to Freely License
+    - Any Kind of Linking to Non-GPL licensed Works
+    - Are Currently In Violation of Another Copyright Holder's GPL License
+    - If You want to change our code and not add a few hundred MB of stuff to
+        your distribution
+
+   These and other limitations could cause serious legal problems if you ignore
+   them, so it is best to simply contact us or the Free Software Foundation, if
+   you have any questions.
+
+   Joseph Toppi - toppij@gmail.com
+   John Blackwood - makoenergy02@gmail.com
+*/
+#ifndef _multibodyvehicle_cpp
+#define _multibodyvehicle_cpp
+
+/// @file
+/// @brief This file contains the implementation for the MultiBodyVehicle class, which uses distinct objects for the wheels.
+
+#include "multibodyvehicle.h"
+
+namespace Mezzanine
+{
+    ///////////////////////////////////////////////////////////////////////////////
+    // MultiBodyVehicle Methods
+
+    MultiBodyVehicle::MultiBodyVehicle(const String& Name, World* TheWorld) :
+        Vehicle(Name,TheWorld)
+    {
+
+    }
+
+    MultiBodyVehicle::MultiBodyVehicle(const XML::Node& SelfRoot, World* TheWorld) :
+        Vehicle(TheWorld)
+    {
+
+    }
+
+    MultiBodyVehicle::~MultiBodyVehicle()
+    {
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility and Configuration
+
+    WorldObjectType MultiBodyVehicle::GetType() const
+        { return Mezzanine::WO_MultiBodyVehicle; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void MultiBodyVehicle::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    {
+
+    }
+
+    void MultiBodyVehicle::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    {
+
+    }
+
+    String MultiBodyVehicle::GetDerivedSerializableName() const
+        { return MultiBodyVehicle::GetSerializableName(); }
+
+    String MultiBodyVehicle::GetSerializableName()
+        { return "MultiBodyVehicle"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
+    void MultiBodyVehicle::_Update()
+    {
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // MultiBodyVehicleFactory Methods
+
+    MultiBodyVehicleFactory::MultiBodyVehicleFactory()
+        {  }
+
+    MultiBodyVehicleFactory::~MultiBodyVehicleFactory()
+        {  }
+
+    String MultiBodyVehicleFactory::GetTypeName() const
+        { return MultiBodyVehicle::GetSerializableName(); }
+
+    MultiBodyVehicle* MultiBodyVehicleFactory::CreateMultiBodyVehicle(const String& Name, World* TheWorld)
+        { return new MultiBodyVehicle(Name,TheWorld); }
+
+    Vehicle* MultiBodyVehicleFactory::CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    {
+        return this->CreateMultiBodyVehicle(Name,TheWorld);
+    }
+
+    Vehicle* MultiBodyVehicleFactory::CreateVehicle(const XML::Node& XMLNode, World* TheWorld)
+        { return new MultiBodyVehicle(XMLNode,TheWorld); }
+
+    void MultiBodyVehicleFactory::DestroyVehicle(Vehicle* ToBeDestroyed)
+        { delete ToBeDestroyed; }
+}//Mezzanine
+
+#endif

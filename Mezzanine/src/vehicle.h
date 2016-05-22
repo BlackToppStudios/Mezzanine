@@ -41,7 +41,7 @@
 #define _vehicle_h
 
 /// @file
-/// @brief This file contains the implementation for the vehicle base class used to represent a solid self-propelling object.
+/// @brief This file contains the declaration for the vehicle base class used to represent a solid self-propelling object.
 
 #include "worldobject.h"
 
@@ -56,8 +56,13 @@ namespace Mezzanine
     {
     protected:
     public:
+        /// @brief Blank constructor.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        Vehicle(World* TheWorld);
         /// @brief Class constructor.
-        Vehicle();
+        /// @param Name The name to be given to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        Vehicle(const String& Name, World* TheWorld);
         /// @brief Class destructor.
         virtual ~Vehicle();
     };//Vehicle

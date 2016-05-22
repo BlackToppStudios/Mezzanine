@@ -41,14 +41,18 @@
 #define _vehicle_cpp
 
 /// @file
-/// @brief This file contains the declaration for the vehicle base class used to represent a solid self-propelling object.
+/// @brief This file contains the implementation for the vehicle base class used to represent a solid self-propelling object.
 
 #include "vehicle.h"
 
 namespace Mezzanine
 {
-    Vehicle::Vehicle() :
-        WorldObject("",NULL)
+    Vehicle::Vehicle(World* TheWorld) :
+        WorldObject(TheWorld)
+        {  }
+
+    Vehicle::Vehicle(const String& Name, World* TheWorld) :
+        WorldObject(Name,TheWorld)
         {  }
 
     Vehicle::~Vehicle()
