@@ -92,7 +92,7 @@ namespace Mezzanine
         void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
-            this->PhysicsRigidBody->setMotionState( new Internal::MultiMotionState( this ) );
+            this->PhysicsRigidBody->setMotionState( new Internal::WorldObjectMotionState( this ) );
             this->PhysicsRigidBody->setUserPointer( static_cast<CollidableProxy*>( this ) );
             if(0.0 == Mass) {
                 this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
@@ -260,8 +260,9 @@ namespace Mezzanine
 		*/
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Transform Syncronization
+        // Transform Synchronization
 
+        /*
         void RigidProxy::AddSyncObject(TransformableObject* ToBeAdded)
             { static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->AddSyncObject(ToBeAdded); }
 
@@ -276,6 +277,7 @@ namespace Mezzanine
 
         void RigidProxy::RemoveAllSyncObjects()
             { static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->RemoveAllSyncObjects(); }
+        */
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -402,6 +404,13 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        void RigidProxy::_Bind(WorldObject* NewParent)
+        {
+            WorldProxy::_Bind(NewParent);
+            Internal::WorldObjectMotionState* MS = static_cast<Internal::WorldObjectMotionState*>( this->PhysicsRigidBody->getMotionState() );
+            MS->SetSyncObject(NewParent);
+        }
 
         btRigidBody* RigidProxy::_GetPhysicsObject() const
             { return this->PhysicsRigidBody; }

@@ -56,6 +56,7 @@ namespace Ogre
 namespace Mezzanine
 {
     class TransformableObject;
+    class WorldObject;
     namespace Physics
     {
         class RigidProxy;
@@ -64,13 +65,9 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
-        /// @class SimpleMotionState
-        /// @headerfile motionstate.h.cpp
         /// @brief This class is used by the RigidProxy class to sync between the physics world and other subsystems.
         /// @details This class provides the link for position and orientation between all the worlds in the engine.
         /// This is called on every step(frame) of the world to sync the TransformableObject if it has moved.
-        /// @attention This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a
-        /// source file and should not shipped with the DLL when the SDK is released. This is used for engine internals that need to be used by multiple classes.
         ///////////////////////////////////////
         class SimpleMotionState : public btMotionState
         {
@@ -113,20 +110,16 @@ namespace Mezzanine
             /// @brief Sets the initial position.
             /// @note This function is called on by the physics world upon adding the Proxy to the world.
             /// @param worldTrans The location and orientation data.
-            virtual void getWorldTransform(btTransform& worldTrans) const;
+            void getWorldTransform(btTransform& worldTrans) const;
             /// @brief Updates the position and orientation.
             /// @remarks This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
             /// @param worldTrans The location and orientation data.
-            virtual void setWorldTransform(const btTransform& worldTrans);
+            void setWorldTransform(const btTransform& worldTrans);
         };//SimpleMotionState
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
-        /// @class MultiMotionState
-        /// @headerfile motionstate.h.cpp
         /// @brief This class functions very similarly to the SimgpleMotionState, but it allows the syncing of multiple objects instead of just one.
-        /// @attention This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a
-        /// source file and should not shipped with the DLL when the SDK is released. This is used for engine internals that need to be used by multiple classes.
         ///////////////////////////////////////
         class MultiMotionState : public btMotionState
         {
@@ -188,12 +181,65 @@ namespace Mezzanine
             /// @brief Sets the initial position.
             /// @note This function is called on by the physics world upon adding the Proxy to the world.
             /// @param worldTrans The location and orientation data.
-            virtual void getWorldTransform(btTransform& worldTrans) const;
+            void getWorldTransform(btTransform& worldTrans) const;
             /// @brief Updates the position and orientation.
             /// @remarks This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
             /// @param worldTrans The location and orientation data.
-            virtual void setWorldTransform(const btTransform& worldTrans);
+            void setWorldTransform(const btTransform& worldTrans);
         };//MultiMotionState
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @internal
+        /// @brief This class is used by the RigidProxy class to sync between the physics world and other subsystems.
+        /// @details This class provides the link for position and orientation between all the worlds in the engine.
+        /// This is called on every step(frame) of the world to sync the WorldObject if it has moved.
+        ///////////////////////////////////////
+        class WorldObjectMotionState : public btMotionState
+        {
+        protected:
+            /// @internal
+            /// @brief Transform cache.  May remove in the future.
+            btTransform WorldTrans;
+            /// @internal
+            /// @brief The calling rigid proxy that will be used to sync other objects' transforms to.
+            Physics::RigidProxy* ParentObject;
+            /// @internal
+            /// @brief The other proxy being sync'd to the RigidProxy transform.
+            WorldObject* SyncObject;
+        public:
+            /// @brief Blank constructor.
+            WorldObjectMotionState();
+            /// @brief Class constructor.
+            /// @param PO A pointer to the parent physics object.
+            WorldObjectMotionState(Physics::RigidProxy* PO);
+            /// @brief Class destructor.
+            virtual ~WorldObjectMotionState();
+
+            /// @brief Sets the parent object to be updated.
+            /// @param PO A pointer to the parent physics object.
+            void SetParentObject(Physics::RigidProxy* PO);
+            /// @brief Sets the proxy to be sync'd.
+            /// @param WO A pointer to the WorldObject that will be sync'd with the physics object transform.
+            void SetSyncObject(WorldObject* WO);
+
+            /// @brief Sets the initial position.
+            /// @note This information is only grabbed when the object is added to the world.
+            /// @param Position The vector3 representing the location to be used.
+            void SetPosition(const Vector3& Position);
+            /// @brief Sets the initial orientation.
+            /// @note This information is only grabbed when the object is added to the world.
+            /// @param Orientation The vector3 representing the orientation to be used.
+            void SetOrientation(const Quaternion& Orientation);
+
+            /// @brief Sets the initial position.
+            /// @note This function is called on by the physics world upon adding the Proxy to the world.
+            /// @param worldTrans The location and orientation data.
+            void getWorldTransform(btTransform& worldTrans) const;
+            /// @brief Updates the position and orientation.
+            /// @remarks This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
+            /// @param worldTrans The location and orientation data.
+            void setWorldTransform(const btTransform& worldTrans);
+        };//WorldObjectMotionState
     }//Internal
 }//Mezzanine
 

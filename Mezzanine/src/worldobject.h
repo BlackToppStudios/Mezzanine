@@ -158,10 +158,6 @@ namespace Mezzanine
         /// @param TypeIndex The Nth WorldProxy to retrieve.
         /// @return Returns a pointer to the WorldProxy at the specified index.
         virtual WorldProxy* GetProxy(const UInt32 Types, Whole TypeIndex) const;
-        /// @brief Gets the WorldProxy via its ID.
-        /// @param ID The unique identifier belonging to the Proxy.
-        /// @return Returns a pointer to the WorldProxy with the specified ID.
-        virtual WorldProxy* GetProxyByID(const UInt32 ID) const;
 
         /// @brief Gets a container of the WorldProxies stored in this WorldObject.
         /// @return Returns a const reference to the internal WorldProxy storage.
@@ -277,7 +273,13 @@ namespace Mezzanine
 
         /// @internal
         /// @brief Utility function for altering or checking the World Object every frame.
-        virtual void _Update() = 0;
+        /// @param Delta The amount of time since the last update in microseconds.
+        virtual void _Update(const Whole Delta) = 0;
+        /// @internal
+        /// @brief Updates the transforms of all the WorldProxy instances in this object except for one.
+        /// @param Exclude The WorldProxy to be exempted from the sync (usually because it already has the updated transform).
+        /// @param NewTrans The transform to be applied to each WorldProxy other than the Exclude.
+        virtual void _SyncTransforms(WorldProxy* Exclude, const Transform& NewTrans);
     };//WorldObject
 }//Mezzanine
 

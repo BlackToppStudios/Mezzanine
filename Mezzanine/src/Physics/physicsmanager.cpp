@@ -516,7 +516,6 @@ namespace Mezzanine
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
         {
-            this->CallBackWorld = NULL;
             this->ThreadCount = ( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded) ? crossplatform::GetCPUCount() : 0;
 
             // Create the broadphase
@@ -609,7 +608,8 @@ namespace Mezzanine
             this->GhostCallback = new btGhostPairCallback();
             this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(this->GhostCallback);
 
-            this->BulletDynamicsWorld->setInternalTickCallback((btInternalTickCallback)PhysicsManager::InternalTickCallback,0,false);
+            this->BulletDynamicsWorld->setInternalTickCallback((btInternalTickCallback)PhysicsManager::InternalPreTickCallback,this,true);
+            this->BulletDynamicsWorld->setInternalTickCallback((btInternalTickCallback)PhysicsManager::InternalPostTickCallback,this,false);
 
             this->BulletDynamicsWorld->getWorldInfo().m_dispatcher = this->BulletDispatcher;
             this->BulletDynamicsWorld->getWorldInfo().m_broadphase = this->BulletBroadphase;
@@ -752,11 +752,19 @@ namespace Mezzanine
             AlgoQueue->clear();
         }
 
-        PhysicsManager* PhysicsManager::CallBackWorld;
-        void PhysicsManager::InternalTickCallback(btDynamicsWorld* world, btScalar timeStep)
+        void PhysicsManager::InternalPreTickCallback(btDynamicsWorld* world, btScalar timeStep)
         {
-            if( CallBackWorld != NULL ) {
-                CallBackWorld->ProcessAllCollisions();
+            //PhysicsManager* Physman = static_cast<PhysicsManager*>( world->getWorldUserInfo() );
+            //if( Physman != NULL ) {
+
+            //}
+        }
+
+        void PhysicsManager::InternalPostTickCallback(btDynamicsWorld* world, btScalar timeStep)
+        {
+            PhysicsManager* Physman = static_cast<PhysicsManager*>( world->getWorldUserInfo() );
+            if( Physman != NULL ) {
+                Physman->ProcessAllCollisions();
             }
         }
 
@@ -1501,9 +1509,7 @@ namespace Mezzanine
             Timer PhysicsTimer;
             PhysicsTimer.Start();
 
-            CallBackWorld = this;
             this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
-            CallBackWorld = NULL;
 
             PhysicsTimer.Stop();
             ThreadLog << "StepSimulation took " << PhysicsTimer.GetCurrentTimeInMilliseconds() << " milliseconds." << std::endl;

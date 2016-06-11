@@ -73,9 +73,10 @@ namespace Mezzanine
 
     void ActorUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
+        Whole FrameTime = CurrentThreadStorage.GetLastFrameTime();
         for( ActorManager::ActorIterator ActIt = this->TargetManager->Actors.begin() ; ActIt != this->TargetManager->Actors.end() ; ++ActIt )
         {
-            (*ActIt)->_Update();
+            (*ActIt)->_Update(FrameTime);
         }
     }
 

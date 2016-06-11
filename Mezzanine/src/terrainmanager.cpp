@@ -73,9 +73,10 @@ namespace Mezzanine
 
     void TerrainUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
+        Whole FrameTime = CurrentThreadStorage.GetLastFrameTime();
         for( TerrainManager::TerrainIterator TerrIt = this->TargetManager->Terrains.begin() ; TerrIt != this->TargetManager->Terrains.end() ; ++TerrIt )
         {
-            (*TerrIt)->_Update();
+            (*TerrIt)->_Update(FrameTime);
         }
     }
 

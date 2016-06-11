@@ -136,8 +136,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc Mezzanine::WorldObject::_Update()
-        virtual void _Update();
+        /// @copydoc Mezzanine::WorldObject::_Update(const Whole)
+        virtual void _Update(const Whole Delta);
     };//RigidDebris
 
     ///////////////////////////////////////////////////////////////////////////////

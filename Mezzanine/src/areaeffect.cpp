@@ -67,15 +67,18 @@
 namespace Mezzanine
 {
     AreaEffect::AreaEffect(World* TheWorld) :
-        WorldObject(TheWorld)
+        WorldObject(TheWorld),
+        SyncTarget(NULL)
         { this->CreateAreaEffect(NULL); }
 
     AreaEffect::AreaEffect(const String& Name, World* TheWorld) :
-        WorldObject(Name,TheWorld)
+        WorldObject(Name,TheWorld),
+        SyncTarget(NULL)
         { this->CreateAreaEffect(NULL); }
 
     AreaEffect::AreaEffect(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        WorldObject(Name,TheWorld)
+        WorldObject(Name,TheWorld),
+        SyncTarget(NULL)
         { this->CreateAreaEffect(Shape); }
 
     AreaEffect::~AreaEffect()
@@ -115,6 +118,19 @@ namespace Mezzanine
 
     Physics::GhostProxy* AreaEffect::GetGhostProxy() const
         { return static_cast<Physics::GhostProxy*>( this->GetProxy(Mezzanine::PT_Physics_GhostProxy,0) ); }
+
+    void AreaEffect::ApplyEffect()
+    {
+        if( this->SyncTarget != NULL ) {
+            this->SetTransform( this->SyncTarget->GetTransform() );
+        }
+    }
+
+    void AreaEffect::SetSyncTarget(WorldObject* ToSync)
+        { this->SyncTarget = ToSync; }
+
+    WorldObject* AreaEffect::GetSyncTarget() const
+        { return this->SyncTarget; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Overlapping Object Management
@@ -162,7 +178,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void AreaEffect::_Update()
+    void AreaEffect::_Update(const Whole Delta)
     {
         if( this->PrimaryProxy->GetProxyType() != Mezzanine::PT_Physics_GhostProxy )
             return;

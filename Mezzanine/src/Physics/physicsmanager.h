@@ -382,17 +382,14 @@ namespace Mezzanine
             virtual void Destroy();
 
             /// @brief Calls the ConditionsAreMet() and ApplyTrigger() functions of every stored trigger.
-            /// @details This function is automatically called every step.
             virtual void ProcessAllTriggers();
             /// @brief Checks the internal collision data and generates/updates collisions as necessary.
-            /// @details This function is automatically called every step.
             virtual void ProcessAllCollisions();
 
-            /// @brief The World that will be used for the InternalTickCallback
-            /// @warning The prevents two PhysicsManagers from running in two differen
-            static PhysicsManager* CallBackWorld;
-            /// @brief Internal Callback that is called each substep of the simulation.
-            static void InternalTickCallback(btDynamicsWorld* world, btScalar timeStep);
+            /// @brief Internal Callback that is called immediately before each internal substep of the simulation.
+            static void InternalPreTickCallback(btDynamicsWorld* world, btScalar timeStep);
+            /// @brief Internal Callback that is called immediately after each internal substep of the simulation.
+            static void InternalPostTickCallback(btDynamicsWorld* world, btScalar timeStep);
         public:
             /// @brief Default settings constructor.
             /// @param Creator The parent world that is creating the manager.

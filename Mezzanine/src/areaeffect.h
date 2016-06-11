@@ -81,6 +81,9 @@ namespace Mezzanine
         /// @internal
         /// @brief Container of actors that have been removed since last frame.
         ObjectContainer RemovedObjects;
+        /// @internal
+        /// @brief An optional pointer to an object this AreaEffect will follow.
+        WorldObject* SyncTarget;
 
         /// @internal
         /// @brief Common constructor method for AreaEffect base class.
@@ -110,7 +113,6 @@ namespace Mezzanine
 
         /// @copydoc Mezzanine::WorldObject::GetType() const
         virtual WorldObjectType GetType() const;
-
         /// @brief Gets a pointer to the physics portion of this AreaEffect.
         /// @return Returns a pointer to the Ghost proxy representing the physics portion of this AreaEffect.
         virtual Physics::GhostProxy* GetGhostProxy() const;
@@ -118,7 +120,14 @@ namespace Mezzanine
         /// @brief Defines and applies the effect of the field.
         /// @details When inheriting this class, this function is what defines the effect the field has. @n
         /// This function will be called on by the physics manager and shouldn't be called manually.
-        virtual void ApplyEffect() = 0;
+        virtual void ApplyEffect();
+
+        /// @brief Gets the WorldObject this AreaEffect will sync it's transform with.
+        /// @param ToSync A pointer to the WorldObject to sync transforms with.
+        virtual void SetSyncTarget(WorldObject* ToSync);
+        /// @brief Gets the WorldObject this AreaEffect is syncing it's transform with.
+        /// @return Returns a pointer to the WorldObject that will be sync'd with.
+        virtual WorldObject* GetSyncTarget() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Overlapping Object Management
@@ -163,8 +172,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc Mezzanine::WorldObject::_Update()
-        virtual void _Update();
+        /// @copydoc Mezzanine::WorldObject::_Update(const Whole)
+        virtual void _Update(const Whole Delta);
     };//AreaEffect
 
     ///////////////////////////////////////////////////////////////////////////////

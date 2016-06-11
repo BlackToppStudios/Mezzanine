@@ -98,9 +98,9 @@ namespace Mezzanine
             this->AddProxy( EntProx );
         }
 
-        if( RigProx && EntProx ) {
-            RigProx->AddSyncObject( EntProx );
-        }
+        //if( RigProx && EntProx ) {
+        //    RigProx->AddSyncObject( EntProx );
+        //}
     }
 
     void RigidDebris::CreateRigidDebris(const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
@@ -120,9 +120,9 @@ namespace Mezzanine
             this->AddProxy( EntProx );
         }
 
-        if( RigProx && EntProx ) {
-            RigProx->AddSyncObject( EntProx );
-        }
+        //if( RigProx && EntProx ) {
+        //    RigProx->AddSyncObject( EntProx );
+        //}
     }
 
     void RigidDebris::DestroyRigidDebris()
@@ -165,7 +165,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void RigidDebris::_Update()
+    void RigidDebris::_Update(const Whole Delta)
     {
         // Do nothing
     }

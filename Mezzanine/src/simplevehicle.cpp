@@ -95,7 +95,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void SimpleVehicle::_Update()
+    void SimpleVehicle::_Update(const Whole Delta)
     {
 
     }

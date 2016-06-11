@@ -79,9 +79,10 @@ namespace Mezzanine
 
     void AreaEffectUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
+        Whole FrameTime = CurrentThreadStorage.GetLastFrameTime();
         for( AreaEffectManager::AreaEffectIterator AE = this->TargetManager->AreaEffects.begin() ; AE != this->TargetManager->AreaEffects.end() ; ++AE )
         {
-            (*AE)->_Update();
+            (*AE)->_Update(FrameTime);
             (*AE)->ApplyEffect();
         }
     }
@@ -394,7 +395,7 @@ namespace Mezzanine
     {
         for( AreaEffectManager::AreaEffectIterator AE = this->AreaEffects.begin() ; AE != this->AreaEffects.end() ; ++AE )
         {
-            (*AE)->_Update();
+            (*AE)->_Update(0);
             (*AE)->ApplyEffect();
         }
     }

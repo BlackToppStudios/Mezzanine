@@ -95,7 +95,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void MultiBodyVehicle::_Update()
+    void MultiBodyVehicle::_Update(const Whole Delta)
     {
 
     }

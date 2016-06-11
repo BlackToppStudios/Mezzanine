@@ -135,7 +135,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void SoftDebris::_Update()
+    void SoftDebris::_Update(const Whole Delta)
     {
         // Do nothing
     }

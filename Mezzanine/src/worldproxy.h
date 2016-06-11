@@ -204,7 +204,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Binds this proxy to a WorldObject.
         /// @param NewParent A pointer to the WorldObject taking possession of this proxy.
-        void _Bind(WorldObject* NewParent);
+        virtual void _Bind(WorldObject* NewParent);
     };//WorldProxy
 }//Mezzanine
 

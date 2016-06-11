@@ -75,9 +75,10 @@ namespace Mezzanine
 
     void DebrisUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
+        Whole FrameTime = CurrentThreadStorage.GetLastFrameTime();
         for( DebrisManager::DebrisIterator DebIt = this->TargetManager->Debriss.begin() ; DebIt != this->TargetManager->Debriss.end() ; ++DebIt )
         {
-            (*DebIt)->_Update();
+            (*DebIt)->_Update(FrameTime);
         }
     }
 

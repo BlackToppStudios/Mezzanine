@@ -176,19 +176,6 @@ namespace Mezzanine
         return NULL;
     }
 
-    WorldProxy* WorldObject::GetProxyByID(const UInt32 ID) const
-    {
-        ConstProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
-        {
-            if( (*ProxIt)->GetProxyID() == ID ) {
-                return (*ProxIt);
-            }
-            ++ProxIt;
-        }
-        return NULL;
-    }
-
     const WorldObject::ProxyContainer& WorldObject::GetProxies() const
     {
         return this->Proxies;
@@ -516,6 +503,16 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
+
+    void WorldObject::_SyncTransforms(WorldProxy* Exclude, const Transform& NewTrans)
+    {
+        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+        {
+            if( (*ProxIt) != Exclude ) {
+                (*ProxIt)->SetTransform(NewTrans);
+            }
+        }
+    }
 }//Mezzanine
 
 #endif

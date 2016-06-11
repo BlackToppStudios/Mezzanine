@@ -104,7 +104,7 @@ namespace Mezzanine
         /// Instead this should perhaps apply only to the ones in the field, or perhaps apply force based on the proxy position
         /// rather than the WorldObject position to get more interesting results.
         /// @todo Update to allow the application of force to soft proxies.
-
+        AreaEffect::ApplyEffect();
         if(0 == this->Strength)
             return;
         if( !this->OverlappingObjects.empty() ) {

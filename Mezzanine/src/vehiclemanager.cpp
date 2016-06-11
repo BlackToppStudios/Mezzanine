@@ -73,9 +73,10 @@ namespace Mezzanine
 
     void VehicleUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
+        Whole FrameTime = CurrentThreadStorage.GetLastFrameTime();
         for( VehicleManager::VehicleIterator VehIt = this->TargetManager->Vehicles.begin() ; VehIt != this->TargetManager->Vehicles.end() ; ++VehIt )
         {
-            (*VehIt)->_Update();
+            (*VehIt)->_Update(FrameTime);
         }
     }
 

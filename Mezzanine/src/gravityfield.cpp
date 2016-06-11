@@ -80,6 +80,7 @@ namespace Mezzanine
 
     void GravityField::ApplyEffect()
     {
+        AreaEffect::ApplyEffect();
         for( ObjectIterator AddedIt = this->AddedObjects.begin() ; AddedIt != this->AddedObjects.end() ; ++AddedIt )
         {
             const ProxyContainer& OtherProxies = (*AddedIt)->GetProxies();
