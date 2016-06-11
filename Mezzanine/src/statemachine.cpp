@@ -108,17 +108,17 @@ namespace Mezzanine
     void StateMachine::AddState(const String& NewState)
         { AddState(HashedString32(NewState));}
 
-    void StateMachine::AddStateTransitation(const HashedString32& From,
-                                            const HashedString32& To,
-                                            StateTransitionAction* PossibleAction)
+    void StateMachine::AddStateTransition(const HashedString32& From,
+                                          const HashedString32& To,
+                                          StateTransitionAction* PossibleAction)
     {
         Transitions.add(StateTransition(From, To, PossibleAction));
     }
 
-    void StateMachine::AddStateTransitation(const String& From,
-                                            const String& To,
-                                            StateTransitionAction* PossibleAction)
-    { AddStateTransitation(HashedString32(From), HashedString32(To), PossibleAction); }
+    void StateMachine::AddStateTransition(const String& From,
+                                          const String& To,
+                                          StateTransitionAction* PossibleAction)
+    { AddStateTransition(HashedString32(From), HashedString32(To), PossibleAction); }
 
     Boole StateMachine::HasState(const HashedString32& PossibleState) const
         { return States.find(PossibleState) != States.end(); }

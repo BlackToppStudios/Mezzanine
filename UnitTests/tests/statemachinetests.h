@@ -129,12 +129,12 @@ public:
             StopLight.AddState("LeftArrow");
             TEST( StopLight.GetStateTransitionCount() == 0, "NoStartingTransitions2");
 
-            StopLight.AddStateTransitation("Green","Yellow");
+            StopLight.AddStateTransition("Green","Yellow");
             TEST( StopLight.GetStateTransitionCount() == 1, "TransitionAdd1");
-            StopLight.AddStateTransitation(HashedString32("Yellow"),HashedString32("Red"));
-            StopLight.AddStateTransitation("Red","Green");
-            StopLight.AddStateTransitation("Red","LeftArrow");
-            StopLight.AddStateTransitation("LeftArrow","Green");
+            StopLight.AddStateTransition(HashedString32("Yellow"),HashedString32("Red"));
+            StopLight.AddStateTransition("Red","Green");
+            StopLight.AddStateTransition("Red","LeftArrow");
+            StopLight.AddStateTransition("LeftArrow","Green");
             TEST( StopLight.GetStateTransitionCount() == 5, "TransitionAdd2");
 
             TEST( StopLight.HasState("") == false, "DoesntHaveStateNilSTD");
@@ -229,25 +229,25 @@ public:
             StateTransitionActionChecker* ShutdownToOff =
                     new StateTransitionActionChecker(ShutdownToOffTransitioned);
 
-            windowsMachine.AddStateTransitation(HashedString32("Off"),
+            windowsMachine.AddStateTransition(HashedString32("Off"),
                                                 HashedString32("Booting"),
                                                 OffToBoot);
 
-            windowsMachine.AddStateTransitation("Booting","Running",BootToRunning);
-            windowsMachine.AddStateTransitation(HashedString32("Booting"),
+            windowsMachine.AddStateTransition("Booting","Running",BootToRunning);
+            windowsMachine.AddStateTransition(HashedString32("Booting"),
                                                 HashedString32("Crashing"));
 
-            windowsMachine.AddStateTransitation("Running","Crashing");
-            windowsMachine.AddStateTransitation(HashedString32("Running"),
+            windowsMachine.AddStateTransition("Running","Crashing");
+            windowsMachine.AddStateTransition(HashedString32("Running"),
                                                 HashedString32("Shutdown"),
                                                 RunningToShutdown);
 
-            windowsMachine.AddStateTransitation("Shutdown","Crashing");
-            windowsMachine.AddStateTransitation(HashedString32("Shutdown"),
+            windowsMachine.AddStateTransition("Shutdown","Crashing");
+            windowsMachine.AddStateTransition(HashedString32("Shutdown"),
                                                 HashedString32("Off"),
                                                 ShutdownToOff);
 
-            windowsMachine.AddStateTransitation("Crashing","Off");
+            windowsMachine.AddStateTransition("Crashing","Off");
 
             TEST(OffToBootTransitioned == false && BootToRunningTransitioned == false &&
                  RunningToShutdownTransitioned == false && ShutdownToOffTransitioned == false,
@@ -272,9 +272,9 @@ public:
             StateMachine UnderTest(HashedString32("Running"));
             UnderTest.AddState("CantStop");
 
-            UnderTest.AddStateTransitation( HashedString32("Running"),
-                                            HashedString32("CantStop"),
-                                            new StateTransitionActionFail);
+            UnderTest.AddStateTransition( HashedString32("Running"),
+                                          HashedString32("CantStop"),
+                                          new StateTransitionActionFail);
 
             TEST(UnderTest.CanChangeState(HashedString32("CantStop")), "TransitionAppearsValid");
             TEST(UnderTest.ChangeState(HashedString32("CantStop")) == false,

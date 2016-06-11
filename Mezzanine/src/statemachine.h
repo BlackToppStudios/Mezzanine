@@ -146,7 +146,7 @@ namespace Mezzanine
             /// operation in the StateMachine because it sorts all the States and potentially
             /// allocates memory. Try to get all of this done up front. This invalidates any
             /// references the @ref StateMachine returned by getters.
-            /// @note This is the preferred metohod because it can copy the hashes from the
+            /// @note This is the preferred method because it can copy the hashes from the
             /// HashString32 and not recalculate it.
             void AddState(const HashedString32& NewState);
             /// @brief This adds a State to the StateMachine.
@@ -155,7 +155,7 @@ namespace Mezzanine
             /// operation in the StateMachine because it sorts all the States and potentially
             /// allocates memory and then it also needs to calculate the hash of the string. This
             /// invalidates any references the @ref StateMachine returned by getters.
-            /// @warning  This needlessly forces recalcuation of the hash for the state, try to use
+            /// @warning  This needlessly forces recalculation of the hash for the state, try to use
             /// the AddState method accepting A HashString32.
             void AddState(const String& NewState);
 
@@ -170,9 +170,9 @@ namespace Mezzanine
             /// @ref StateTransitionNoAction instance. Once passed in this will delete the pointer.
             /// @note This is the preferred method because it can copy the hashes from the
             /// HashString32 and not recalculate it.
-            void AddStateTransitation(  const HashedString32& From,
-                                        const HashedString32& To,
-                                        StateTransitionAction* PossibleAction
+            void AddStateTransition(  const HashedString32& From,
+                                      const HashedString32& To,
+                                      StateTransitionAction* PossibleAction
                                             = new StateTransitionNoAction());
             /// Expensive does insertion, hashing, might allocate and does sort work
             /// @brief Add a transition between two states.
@@ -183,11 +183,11 @@ namespace Mezzanine
             /// @ref StateTransitionNoAction instance. Once passed in this will delete the pointer.
             /// @details This is moderately expensive because it sorts all the StateTransitions and
             /// potentially allocates memory to store them. Try to get all of this done up front.
-            /// @warning This needlessly forces recalcuation of the hash for the state, try to use
-            /// the AddStateTransitation method accepting A pair of HashString32.
-            void AddStateTransitation(  const String& From,
-                                        const String& To,
-                                        StateTransitionAction* PossibleAction
+            /// @warning This needlessly forces recalculation of the hash for the state, try to use
+            /// the AddStateTransition method accepting A pair of HashString32.
+            void AddStateTransition(  const String& From,
+                                      const String& To,
+                                      StateTransitionAction* PossibleAction
                                             = new StateTransitionNoAction());
 
             /// @brief Does this StateMachine have the passed state?
@@ -204,7 +204,7 @@ namespace Mezzanine
             /// states. So it should be fast, but not free, also this wastes time calculating a
             /// hash for the String passed in: Log(NumberOFStates) + StringHashing time to perform.
             /// @return True if the state is present, false otherwise.
-            /// @warning  This needlessly forces recalcuation of the hash for the state, try to use
+            /// @warning  This needlessly forces recalculation of the hash for the state, try to use
             /// the HasState method accepting A HashString32.
             Boole HasState(const String& PossibleState) const;
 
@@ -222,9 +222,9 @@ namespace Mezzanine
             /// @param FromState The from state in the Transition being sought.
             /// @param ToState The To state of of the Transition being sought.
             /// @details This is somewhat fast, but still takes Log(NumberOfStates) +
-            /// Log(NumberOfTransitions) + Hash calculuation time.
+            /// Log(NumberOfTransitions) + Hash calculation time.
             /// @return True if the @ref StateTransition exists, false otherwise.
-            /// @warning  This needlessly forces recalcuation of the hash for the state, try to use
+            /// @warning  This needlessly forces recalculation of the hash for the state, try to use
             /// the HasStateTransition method accepting A HashString32.
             Boole HasStateTransition(const String& FromState, const String& ToState) const;
 
@@ -241,7 +241,7 @@ namespace Mezzanine
             /// @details this calls HasStateTransition(HashedString32, HashedString32) so takes the
             /// same amount of time, plus time to calculate the hash.
             /// @return True if this can transition to the passed ToState and false otherwise.
-            /// @warning  This needlessly forces recalcuation of the hash for the state, try to use
+            /// @warning  This needlessly forces recalculation of the hash for the state, try to use
             /// the CanChangeState method accepting A HashString32.
             Boole CanChangeState(const String& ToState);
 
@@ -266,7 +266,7 @@ namespace Mezzanine
             /// @return This the true or false that the operator() in the correct
             /// @ref StateTransition returned. If there is no valid transition then false is
             /// returned.
-            /// @warning This needlessly forces recalcuation of the hash for the state, try to use
+            /// @warning This needlessly forces recalculation of the hash for the state, try to use
             /// the ChangeState method accepting A HashString32.
             Boole ChangeState(const String& ToState);
 
@@ -285,7 +285,7 @@ namespace Mezzanine
             /// but does not call the operator() of the @ref StateTransition.
             /// @return True if the correct @ref StateTransition could be found and is valid false
             /// if there is no transition.
-            /// @warning This needlessly forces recalcuation of the hash for the state, try to use
+            /// @warning This needlessly forces recalculation of the hash for the state, try to use
             /// the SetPendingState method accepting A HashString32.
             Boole SetPendingState(const String& ToState);
 
