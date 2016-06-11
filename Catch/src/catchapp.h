@@ -47,7 +47,9 @@ protected:
     CatchEndLevelWorkUnit* EndLevelWork;
     Scripting::Lua::Lua51WorkUnit* LuaScriptWork;
 
+    /// @brief A pointer to the root engine object simulating the game.
     Entresol* TheEntresol;
+    /// @brief A pointer to the game world.
     World* TheWorld;
     ProfileManager* Profiles;
     LevelManager* LevelMan;
@@ -55,6 +57,7 @@ protected:
     ItemShop* Shop;
 
     Debris* LastObjectThrown;
+    /// @brief A pointer to the player.
     Player* ThePlayer;
 
     Timer* LevelTimer;
@@ -70,11 +73,17 @@ protected:
 
     void InitializeFromXML(const String& CatchDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile);
 
+    /// @brief Creates a game world ready to be populated.
     void CreateWorld();
+    /// @brief Sets up the game HUD/Menus.
     void MakeGUI();
+    /// @brief Sets up the loading screen for the game.
     void CreateLoadingScreen();
+    /// @brief Loads all the music and sets up a playlist.
     void InitMusic();
+    /// @brief Verifies all manager and player settings by loading from files or making defaults.
     void VerifySettings();
+    /// @brief Registers all custom game factories with the engine.
     void RegisterTypes();
 
     void ChangeState(const CatchApp::GameState StateToSet);

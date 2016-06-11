@@ -265,28 +265,28 @@ void LoadFerris()
     BonusZone1->SetScoreMultiplier(2.0);
     BonusZone1->SetLocation(169.6,14.3,0);
     BonusZone1->AddToWorld();
-    Tray2->GetRigidProxy()->AddSyncObject(BonusZone1);// */
+    BonusZone1->SetSyncTarget(Tray2);// */
     ScoreArea* BonusZone2 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea2",BonusZoneParams) );
     BonusZone2->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
     BonusZone2->GetEntityProxy()->SetMesh(BonusScoreMesh);
     BonusZone2->SetScoreMultiplier(2.0);
     BonusZone2->SetLocation(30.4,-42.7,0);
     BonusZone2->AddToWorld();
-    Tray3->GetRigidProxy()->AddSyncObject(BonusZone2);// */
+    BonusZone2->SetSyncTarget(Tray3);// */
     ScoreArea* BonusZone3 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea3",BonusZoneParams) );
     BonusZone3->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
     BonusZone3->GetEntityProxy()->SetMesh(BonusScoreMesh);
     BonusZone3->SetScoreMultiplier(2.0);
     BonusZone3->SetLocation(71.5,55.4,0);
     BonusZone3->AddToWorld();
-    Tray5->GetRigidProxy()->AddSyncObject(BonusZone3);// */
+    BonusZone3->SetSyncTarget(Tray5);// */
     ScoreArea* BonusZone4 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea4",BonusZoneParams) );
     BonusZone4->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
     BonusZone4->GetEntityProxy()->SetMesh(BonusScoreMesh);
     BonusZone4->SetScoreMultiplier(2.0);
     BonusZone4->SetLocation(128.5,-83.8,0);
     BonusZone4->AddToWorld();
-    Tray8->GetRigidProxy()->AddSyncObject(BonusZone4);// */
+    BonusZone4->SetSyncTarget(Tray8);// */
 }
 
 void LoadBigCurve()

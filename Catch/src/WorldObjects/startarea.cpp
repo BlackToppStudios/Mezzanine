@@ -99,6 +99,7 @@ Real StartArea::GetParticleMaximumTimeToLive() const
 void StartArea::ApplyEffect()
 {
     static const Vector3 ZeroGrav(0,0,0);
+    AreaEffect::ApplyEffect();
     if( !this->AddedObjects.empty() ) {
         for( ObjectIterator ObjIt = this->AddedObjects.begin() ; ObjIt != this->AddedObjects.end() ; ObjIt++ )
         {

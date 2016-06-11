@@ -41,7 +41,7 @@ void ScoreArea::DestroyScoreArea()
 // Utility
 
 void ScoreArea::ApplyEffect()
-    {  }
+    { AreaEffect::ApplyEffect(); }
 
 Boole ScoreArea::AllObjectsAtRest()
 {
