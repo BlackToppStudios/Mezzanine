@@ -50,9 +50,9 @@
 
     @section dev_tools_ubuntu_install Ubuntu Install
     Installing the developer tools on Ubuntu is incredibly easy. Just run this one command from a
-    terminal and it will install all the required tools at once for you.
+    terminal and it will install a minimum set of required tools at once for you.
     @code
-    sudo apt-get install g++ git cmake
+    sudo apt install g++ git cmake
     @endcode
     This leaves you with compiler, tools to download our code from
     @htmlonly<a href="https://github.com/BlackToppStudios/Mezzanine">@endhtmlonly
@@ -62,8 +62,9 @@
     in a typical day working on the Mezzanine and Catch!. To get a set of tools similar to our
     please run the following:
     @code
-    sudo apt-get install g++ gdb codeblocks qtcreator doxygen texlive-font-utils graphviz git-core pkg-config cmake-gui cmake autoconf pkg-config swig ninja-build mercurial
+    sudo apt install g++ gdb codeblocks qtcreator doxygen texlive-font-utils graphviz git pkg-config cmake-gui cmake autoconf swig ninja-build mercurial blender audacity clang
     @endcode
+    On some older systems you may want to use "apt-get" instead of apt.
 
     @section dev_tools_linux_summary What Are the Tools
     Most of the Tools are explained on the @ref cxx_training_and_tools page, but some we have
