@@ -67,9 +67,9 @@
     @page blog BTS blog
 
     - @htmlonly<a href="">@endhtmlonly
-    TITLE
+    Update tests June 26
     @htmlonly</a>@endhtmlonly
-    — DEsc
+    — Updating the license from GPL 3.0 to something else.
 */
 
 /**
