@@ -23946,34 +23946,6 @@ static int _wrap_WorldObject_GetProxy(lua_State* L) {
 }
 
 
-static int _wrap_WorldObject_GetProxyByID(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
-  Mezzanine::UInt32 arg2 ;
-  Mezzanine::WorldProxy *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::WorldObject::GetProxyByID",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::GetProxyByID",1,"Mezzanine::WorldObject const *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::WorldObject::GetProxyByID",2,"Mezzanine::UInt32 const");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WorldObject,0))){
-    SWIG_fail_ptr("WorldObject_GetProxyByID",1,SWIGTYPE_p_Mezzanine__WorldObject);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (Mezzanine::UInt32 const)lua_tonumber(L, 2);
-  result = (Mezzanine::WorldProxy *)((Mezzanine::WorldObject const *)arg1)->GetProxyByID(arg2);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__WorldProxy,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_WorldObject_GetProxies__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
@@ -25524,15 +25496,56 @@ fail:
 static int _wrap_WorldObject__Update(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+  Mezzanine::Whole arg2 ;
   
-  SWIG_check_num_args("Mezzanine::WorldObject::_Update",1,1)
+  SWIG_check_num_args("Mezzanine::WorldObject::_Update",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::_Update",1,"Mezzanine::WorldObject *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::WorldObject::_Update",2,"Mezzanine::Whole const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WorldObject,0))){
     SWIG_fail_ptr("WorldObject__Update",1,SWIGTYPE_p_Mezzanine__WorldObject);
   }
   
-  (arg1)->_Update();
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  (arg1)->_Update(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorldObject__SyncTransforms(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+  Mezzanine::WorldProxy *arg2 = (Mezzanine::WorldProxy *) 0 ;
+  Mezzanine::Transform *arg3 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WorldObject::_SyncTransforms",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::_SyncTransforms",1,"Mezzanine::WorldObject *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::WorldObject::_SyncTransforms",2,"Mezzanine::WorldProxy *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::WorldObject::_SyncTransforms",3,"Mezzanine::Transform const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WorldObject,0))){
+    SWIG_fail_ptr("WorldObject__SyncTransforms",1,SWIGTYPE_p_Mezzanine__WorldObject);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__WorldProxy,0))){
+    SWIG_fail_ptr("WorldObject__SyncTransforms",2,SWIGTYPE_p_Mezzanine__WorldProxy);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Transform,0))){
+    SWIG_fail_ptr("WorldObject__SyncTransforms",3,SWIGTYPE_p_Mezzanine__Transform);
+  }
+  
+  (arg1)->_SyncTransforms(arg2,(Mezzanine::Transform const &)*arg3);
   
   return SWIG_arg;
   
@@ -25563,7 +25576,6 @@ static swig_lua_method swig_WorldObject_methods[]= {
     { "RemoveAllProxies", _wrap_WorldObject_RemoveAllProxies},
     { "GetNumProxies", _wrap_WorldObject_GetNumProxies},
     { "GetProxy", _wrap_WorldObject_GetProxy},
-    { "GetProxyByID", _wrap_WorldObject_GetProxyByID},
     { "GetProxies", _wrap_WorldObject_GetProxies},
     { "SetPrimaryProxy", _wrap_WorldObject_SetPrimaryProxy},
     { "GetPrimaryProxy", _wrap_WorldObject_GetPrimaryProxy},
@@ -25591,6 +25603,7 @@ static swig_lua_method swig_WorldObject_methods[]= {
     { "ProtoDeSerializeProxies", _wrap_WorldObject_ProtoDeSerializeProxies},
     { "GetDerivedSerializableName", _wrap_WorldObject_GetDerivedSerializableName},
     { "_Update", _wrap_WorldObject__Update},
+    { "_SyncTransforms", _wrap_WorldObject__SyncTransforms},
     {0,0}
 };
 static swig_lua_method swig_WorldObject_meta[] = {
@@ -26147,6 +26160,7 @@ static swig_lua_const_info swig_ManagerBase_Sf_SwigStatic_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("MT_MaterialManager", Mezzanine::ManagerBase::MT_MaterialManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_MeshManager", Mezzanine::ManagerBase::MT_MeshManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_NetworkManager", Mezzanine::ManagerBase::MT_NetworkManager)},
+    {SWIG_LUA_CONSTTAB_INT("MT_PlayerManager", Mezzanine::ManagerBase::MT_PlayerManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_ResourceManager", Mezzanine::ManagerBase::MT_ResourceManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_ScriptingManager", Mezzanine::ManagerBase::MT_ScriptingManager)},
     {SWIG_LUA_CONSTTAB_INT("MT_TextureManager", Mezzanine::ManagerBase::MT_TextureManager)},
@@ -31981,6 +31995,172 @@ static swig_lua_class *swig_ColourValue_bases[] = {0};
 static const char *swig_ColourValue_base_names[] = {0};
 static swig_lua_class _wrap_class_ColourValue = { "ColourValue", "ColourValue", &SWIGTYPE_p_Mezzanine__ColourValue,_proxy__wrap_new_ColourValue, swig_delete_ColourValue, swig_ColourValue_methods, swig_ColourValue_attributes, &swig_ColourValue_Sf_SwigStatic, swig_ColourValue_meta, swig_ColourValue_bases, swig_ColourValue_base_names };
 
+static int _wrap_new_AreaEffect__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::World *arg1 = (Mezzanine::World *) 0 ;
+  Mezzanine::AreaEffect *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::AreaEffect::AreaEffect",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",1,"Mezzanine::World *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("new_AreaEffect",1,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  result = (Mezzanine::AreaEffect *)new Mezzanine::AreaEffect(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__AreaEffect,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_AreaEffect__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::World *arg2 = (Mezzanine::World *) 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::AreaEffect *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::AreaEffect::AreaEffect",2,2)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",1,"Mezzanine::String const &");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",2,"Mezzanine::World *");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("new_AreaEffect",2,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  result = (Mezzanine::AreaEffect *)new Mezzanine::AreaEffect((Mezzanine::String const &)*arg1,arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__AreaEffect,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_AreaEffect__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
+  Mezzanine::World *arg3 = (Mezzanine::World *) 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::AreaEffect *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::AreaEffect::AreaEffect",3,3)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",1,"Mezzanine::String const &");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",2,"Mezzanine::Physics::CollisionShape *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",3,"Mezzanine::World *");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
+    SWIG_fail_ptr("new_AreaEffect",2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__World,0))){
+    SWIG_fail_ptr("new_AreaEffect",3,SWIGTYPE_p_Mezzanine__World);
+  }
+  
+  result = (Mezzanine::AreaEffect *)new Mezzanine::AreaEffect((Mezzanine::String const &)*arg1,arg2,arg3);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__AreaEffect,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_AreaEffect(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__World, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_AreaEffect__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__World, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_AreaEffect__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__World, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_new_AreaEffect__SWIG_2(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_AreaEffect'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::AreaEffect::AreaEffect(Mezzanine::World *)\n"
+    "    Mezzanine::AreaEffect::AreaEffect(Mezzanine::String const &,Mezzanine::World *)\n"
+    "    Mezzanine::AreaEffect::AreaEffect(Mezzanine::String const &,Mezzanine::Physics::CollisionShape *,Mezzanine::World *)\n");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_AreaEffect_GetType(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
@@ -32042,6 +32222,60 @@ static int _wrap_AreaEffect_ApplyEffect(lua_State* L) {
   
   (arg1)->ApplyEffect();
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AreaEffect_SetSyncTarget(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
+  Mezzanine::WorldObject *arg2 = (Mezzanine::WorldObject *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::AreaEffect::SetSyncTarget",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::SetSyncTarget",1,"Mezzanine::AreaEffect *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::AreaEffect::SetSyncTarget",2,"Mezzanine::WorldObject *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__AreaEffect,0))){
+    SWIG_fail_ptr("AreaEffect_SetSyncTarget",1,SWIGTYPE_p_Mezzanine__AreaEffect);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__WorldObject,0))){
+    SWIG_fail_ptr("AreaEffect_SetSyncTarget",2,SWIGTYPE_p_Mezzanine__WorldObject);
+  }
+  
+  (arg1)->SetSyncTarget(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AreaEffect_GetSyncTarget(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
+  Mezzanine::WorldObject *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::AreaEffect::GetSyncTarget",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::GetSyncTarget",1,"Mezzanine::AreaEffect const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__AreaEffect,0))){
+    SWIG_fail_ptr("AreaEffect_GetSyncTarget",1,SWIGTYPE_p_Mezzanine__AreaEffect);
+  }
+  
+  result = (Mezzanine::WorldObject *)((Mezzanine::AreaEffect const *)arg1)->GetSyncTarget();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__WorldObject,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -32300,15 +32534,19 @@ fail:
 static int _wrap_AreaEffect__Update(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
+  Mezzanine::Whole arg2 ;
   
-  SWIG_check_num_args("Mezzanine::AreaEffect::_Update",1,1)
+  SWIG_check_num_args("Mezzanine::AreaEffect::_Update",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::_Update",1,"Mezzanine::AreaEffect *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::AreaEffect::_Update",2,"Mezzanine::Whole const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__AreaEffect,0))){
     SWIG_fail_ptr("AreaEffect__Update",1,SWIGTYPE_p_Mezzanine__AreaEffect);
   }
   
-  (arg1)->_Update();
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  (arg1)->_Update(arg2);
   
   return SWIG_arg;
   
@@ -32324,6 +32562,14 @@ static void swig_delete_AreaEffect(void *obj) {
 Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) obj;
 delete arg1;
 }
+static int _proxy__wrap_new_AreaEffect(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_AreaEffect);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
 static swig_lua_attribute swig_AreaEffect_attributes[] = {
     {0,0,0}
 };
@@ -32331,6 +32577,8 @@ static swig_lua_method swig_AreaEffect_methods[]= {
     { "GetType", _wrap_AreaEffect_GetType},
     { "GetGhostProxy", _wrap_AreaEffect_GetGhostProxy},
     { "ApplyEffect", _wrap_AreaEffect_ApplyEffect},
+    { "SetSyncTarget", _wrap_AreaEffect_SetSyncTarget},
+    { "GetSyncTarget", _wrap_AreaEffect_GetSyncTarget},
     { "GetNumOverlappingObjects", _wrap_AreaEffect_GetNumOverlappingObjects},
     { "GetNumAddedObjects", _wrap_AreaEffect_GetNumAddedObjects},
     { "GetNumRemovedObjects", _wrap_AreaEffect_GetNumRemovedObjects},
@@ -32371,7 +32619,7 @@ static swig_lua_namespace swig_AreaEffect_Sf_SwigStatic = {
 };
 static swig_lua_class *swig_AreaEffect_bases[] = {0,0};
 static const char *swig_AreaEffect_base_names[] = {"Mezzanine::WorldObject *",0};
-static swig_lua_class _wrap_class_AreaEffect = { "AreaEffect", "AreaEffect", &SWIGTYPE_p_Mezzanine__AreaEffect,0, swig_delete_AreaEffect, swig_AreaEffect_methods, swig_AreaEffect_attributes, &swig_AreaEffect_Sf_SwigStatic, swig_AreaEffect_meta, swig_AreaEffect_bases, swig_AreaEffect_base_names };
+static swig_lua_class _wrap_class_AreaEffect = { "AreaEffect", "AreaEffect", &SWIGTYPE_p_Mezzanine__AreaEffect,_proxy__wrap_new_AreaEffect, swig_delete_AreaEffect, swig_AreaEffect_methods, swig_AreaEffect_attributes, &swig_AreaEffect_Sf_SwigStatic, swig_AreaEffect_meta, swig_AreaEffect_bases, swig_AreaEffect_base_names };
 
 static int _wrap_AreaEffectFactory_GetTypeName(lua_State* L) {
   int SWIG_arg = 0;
@@ -58905,6 +59153,7 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_MaterialManager", Mezzanine::ManagerBase::MT_MaterialManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_MeshManager", Mezzanine::ManagerBase::MT_MeshManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_NetworkManager", Mezzanine::ManagerBase::MT_NetworkManager)},
+    {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_PlayerManager", Mezzanine::ManagerBase::MT_PlayerManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_ResourceManager", Mezzanine::ManagerBase::MT_ResourceManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_ScriptingManager", Mezzanine::ManagerBase::MT_ScriptingManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_TextureManager", Mezzanine::ManagerBase::MT_TextureManager)},

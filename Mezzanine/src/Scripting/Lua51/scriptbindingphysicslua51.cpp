@@ -57632,141 +57632,6 @@ fail:
 }
 
 
-static int _wrap_RigidProxy_AddSyncObject(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::TransformableObject *arg2 = (Mezzanine::TransformableObject *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::AddSyncObject",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::AddSyncObject",1,"Mezzanine::Physics::RigidProxy *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::AddSyncObject",2,"Mezzanine::TransformableObject *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
-    SWIG_fail_ptr("RigidProxy_AddSyncObject",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__TransformableObject,0))){
-    SWIG_fail_ptr("RigidProxy_AddSyncObject",2,SWIGTYPE_p_Mezzanine__TransformableObject);
-  }
-  
-  (arg1)->AddSyncObject(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_RigidProxy_GetSyncObject(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::UInt32 arg2 ;
-  Mezzanine::TransformableObject *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetSyncObject",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetSyncObject",1,"Mezzanine::Physics::RigidProxy const *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetSyncObject",2,"Mezzanine::UInt32 const");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
-    SWIG_fail_ptr("RigidProxy_GetSyncObject",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (Mezzanine::UInt32 const)lua_tonumber(L, 2);
-  result = (Mezzanine::TransformableObject *)((Mezzanine::Physics::RigidProxy const *)arg1)->GetSyncObject(arg2);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__TransformableObject,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_RigidProxy_GetNumSyncObjects(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::UInt32 result;
-  
-  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetNumSyncObjects",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetNumSyncObjects",1,"Mezzanine::Physics::RigidProxy const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
-    SWIG_fail_ptr("RigidProxy_GetNumSyncObjects",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
-  }
-  
-  result = (Mezzanine::UInt32)((Mezzanine::Physics::RigidProxy const *)arg1)->GetNumSyncObjects();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_RigidProxy_RemoveSyncObject(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::TransformableObject *arg2 = (Mezzanine::TransformableObject *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::RemoveSyncObject",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RemoveSyncObject",1,"Mezzanine::Physics::RigidProxy *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RemoveSyncObject",2,"Mezzanine::TransformableObject *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
-    SWIG_fail_ptr("RigidProxy_RemoveSyncObject",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__TransformableObject,0))){
-    SWIG_fail_ptr("RigidProxy_RemoveSyncObject",2,SWIGTYPE_p_Mezzanine__TransformableObject);
-  }
-  
-  (arg1)->RemoveSyncObject(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_RigidProxy_RemoveAllSyncObjects(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::RemoveAllSyncObjects",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::RemoveAllSyncObjects",1,"Mezzanine::Physics::RigidProxy *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
-    SWIG_fail_ptr("RigidProxy_RemoveAllSyncObjects",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
-  }
-  
-  (arg1)->RemoveAllSyncObjects();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_RigidProxy_ProtoSerializeProperties(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
@@ -57868,6 +57733,36 @@ fail:
 }
 
 
+static int _wrap_RigidProxy__Bind(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
+  Mezzanine::WorldObject *arg2 = (Mezzanine::WorldObject *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Physics::RigidProxy::_Bind",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::_Bind",1,"Mezzanine::Physics::RigidProxy *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::_Bind",2,"Mezzanine::WorldObject *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
+    SWIG_fail_ptr("RigidProxy__Bind",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__WorldObject,0))){
+    SWIG_fail_ptr("RigidProxy__Bind",2,SWIGTYPE_p_Mezzanine__WorldObject);
+  }
+  
+  (arg1)->_Bind(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_RigidProxy__GetPhysicsObject(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
@@ -57955,14 +57850,10 @@ static swig_lua_method swig_RigidProxy_methods[]= {
     { "GetAppliedForce", _wrap_RigidProxy_GetAppliedForce},
     { "ApplyTorque", _wrap_RigidProxy_ApplyTorque},
     { "GetAppliedTorque", _wrap_RigidProxy_GetAppliedTorque},
-    { "AddSyncObject", _wrap_RigidProxy_AddSyncObject},
-    { "GetSyncObject", _wrap_RigidProxy_GetSyncObject},
-    { "GetNumSyncObjects", _wrap_RigidProxy_GetNumSyncObjects},
-    { "RemoveSyncObject", _wrap_RigidProxy_RemoveSyncObject},
-    { "RemoveAllSyncObjects", _wrap_RigidProxy_RemoveAllSyncObjects},
     { "ProtoSerializeProperties", _wrap_RigidProxy_ProtoSerializeProperties},
     { "ProtoDeSerializeProperties", _wrap_RigidProxy_ProtoDeSerializeProperties},
     { "GetDerivedSerializableName", _wrap_RigidProxy_GetDerivedSerializableName},
+    { "_Bind", _wrap_RigidProxy__Bind},
     { "_GetPhysicsObject", _wrap_RigidProxy__GetPhysicsObject},
     { "_GetBasePhysicsObject", _wrap_RigidProxy__GetBasePhysicsObject},
     {0,0}
