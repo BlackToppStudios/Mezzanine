@@ -126,8 +126,8 @@ public:
     /// @param Returns the number of levels that were detected.
     Whole DetectProfiles();
     /// @brief Applys all currently loaded profiles to the list of all profiles in the UI profile configuration.
-    /// @param PlayerProfile A pointer to the current profile in use by the player.
-    void ApplyProfileDataToProfileList(GameProfile* PlayerProfile);
+    /// @param CatchPlayerProfile A pointer to the current profile in use by the player.
+    void ApplyProfileDataToProfileList(GameProfile* CatchPlayerProfile);
     /// @brief Applys profile data to the relevant widgets in the UI configuration.
     /// @param Profile A pointer to the profile to be read when updating the UI configuration.
     void ApplyProfileDataToLevelSelect(GameProfile* Profile);

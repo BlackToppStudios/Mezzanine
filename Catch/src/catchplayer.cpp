@@ -1,14 +1,14 @@
-#ifndef _player_cpp
-#define _player_cpp
+#ifndef _catchplayer_cpp
+#define _catchplayer_cpp
 
-#include "player.h"
+#include "catchplayer.h"
 
-Player::Player(ProfileManager* Manager) :
+CatchPlayer::CatchPlayer(ProfileManager* Manager) :
     Profile(NULL),
     ProMan(Manager)
     {  }
 
-Player::~Player()
+CatchPlayer::~CatchPlayer()
 {
     if( this->Profile != NULL ) {
         this->ProMan->SaveProfile(this->Profile);
@@ -16,17 +16,17 @@ Player::~Player()
     }
 }
 
-void Player::SetIdentity(GameProfile* PlayerProfile)
+void CatchPlayer::SetIdentity(GameProfile* CatchPlayerProfile)
 {
     if( this->Profile != NULL ) {
         this->ProMan->SaveProfile(this->Profile);
         //this->Profile->Unload();
     }
-    this->Profile = PlayerProfile;
+    this->Profile = CatchPlayerProfile;
     this->ProMan->LoadProfile(this->Profile);
 }
 
-void Player::InitWorldObjects(World* GameWorld)
+void CatchPlayer::InitWorldObjects(World* GameWorld)
 {
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( GameWorld->GetManager( ManagerBase::MT_SceneManager ) );
     if( SceneMan != NULL && SceneMan->GetNumProxies(Mezzanine::PT_Graphics_CameraProxy) == 0 ) {
@@ -37,16 +37,16 @@ void Player::InitWorldObjects(World* GameWorld)
     }
 }
 
-PlayerControl& Player::GetControl()
+CatchPlayerControl& CatchPlayer::GetControl()
     { return this->Control; }
 
-GameProfile* Player::GetProfile() const
+GameProfile* CatchPlayer::GetProfile() const
     { return this->Profile; }
 
-const String& Player::GetName() const
+const String& CatchPlayer::GetName() const
     { return this->Profile->GetName(); }
 
-void Player::Update(Input::InputManager* InputMan, const Whole DeltaTime)
+void CatchPlayer::Update(Input::InputManager* InputMan, const Whole DeltaTime)
 {
 #ifdef MEZZDEBUG
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();

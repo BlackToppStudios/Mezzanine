@@ -203,7 +203,7 @@ Whole ProfileManager::DetectProfiles()
     return Detected;
 }
 
-void ProfileManager::ApplyProfileDataToProfileList(GameProfile* PlayerProfile)
+void ProfileManager::ApplyProfileDataToProfileList(GameProfile* CatchPlayerProfile)
 {
     UI::Screen* MainMenuScreen = this->GetMainMenuScreen();
     UI::DropDownList* ProfilesDropList = static_cast<UI::DropDownList*>( MainMenuScreen->GetWidget("MS_ProfilesList") );
@@ -216,7 +216,7 @@ void ProfileManager::ApplyProfileDataToProfileList(GameProfile* PlayerProfile)
         ProfilesList->CreateSingleLineListItem(ProfileName,ProfileName);
     }
     ProfilesList->UpdateChildDimensions();
-    ProfilesDropList->UpdateCurrentSelection( ProfilesList->GetListItem( PlayerProfile->GetName() ) );// */
+    ProfilesDropList->UpdateCurrentSelection( ProfilesList->GetListItem( CatchPlayerProfile->GetName() ) );// */
 }
 
 void ProfileManager::ApplyProfileDataToLevelSelect(GameProfile* Profile)

@@ -58,7 +58,7 @@ CatchApp::CatchApp() :
     if( this->Profiles == NULL ) {
         this->Profiles = new ProfileManager(this->TheEntresol,"$ShareableAppData$/.Catch/Profiles/");
     }
-    this->ThePlayer = new Player(this->Profiles);
+    this->ThePlayer = new CatchPlayer(this->Profiles);
 
     this->LevelTimer = new Timer();
 }
@@ -1995,7 +1995,7 @@ ProfileManager* CatchApp::GetProfiles() const
 ItemShop* CatchApp::GetItemShop() const
     { return this->Shop; }
 
-Player* CatchApp::GetPlayer() const
+CatchPlayer* CatchApp::GetPlayer() const
     { return this->ThePlayer; }
 
 Timer* CatchApp::GetLevelTimer() const

@@ -1,11 +1,11 @@
-#ifndef _playercontrol_h
-#define _playercontrol_h
+#ifndef _catchplayercontrol_h
+#define _catchplayercontrol_h
 
 #include <mezzanine.h>
 
 using namespace Mezzanine;
 
-class PlayerControl
+class CatchPlayerControl
 {
 protected:
 #ifdef MEZZDEBUG
@@ -13,12 +13,12 @@ protected:
     CameraController CamControl;
 #endif
     /// @brief A pointer to the camera of the player.
-    Graphics::CameraProxy* PlayerView;
+    Graphics::CameraProxy* CatchPlayerView;
 public:
     /// @brief Class constructor.
-    PlayerControl();
+    CatchPlayerControl();
     /// @brief Class destructor.
-    ~PlayerControl();
+    ~CatchPlayerControl();
 
     /// @brief Sets the camera to update.
     /// @param View A pointer to the camera of the players view.
@@ -55,6 +55,6 @@ public:
     /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
     void Rotate(Real Yaw, Real Pitch, Real Roll);
 #endif
-};//Player
+};//CatchPlayer
 
 #endif

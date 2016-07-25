@@ -8,7 +8,7 @@
 #include "levelmanager.h"
 #include "levelscorer.h"
 #include "itemshop.h"
-#include "player.h"
+#include "catchplayer.h"
 #include "profilemanager.h"
 #include "workunits.h"
 
@@ -58,7 +58,7 @@ protected:
 
     Debris* LastObjectThrown;
     /// @brief A pointer to the player.
-    Player* ThePlayer;
+    CatchPlayer* ThePlayer;
 
     Timer* LevelTimer;
     Timer* EndTimer;
@@ -126,7 +126,7 @@ public:
     LevelScorer* GetLevelScorer() const;
     ProfileManager* GetProfiles() const;
     ItemShop* GetItemShop() const;
-    Player* GetPlayer() const;
+    CatchPlayer* GetPlayer() const;
     Timer* GetLevelTimer() const;
     Timer* GetEndTimer() const;
 };//CatchApp
