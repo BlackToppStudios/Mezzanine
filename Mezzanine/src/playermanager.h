@@ -51,6 +51,11 @@ namespace Mezzanine
     ///////////////////////////////////////
     class PlayerManager : public EntresolManager
     {
+    public:
+        /// @brief A String containing the name of this manager implementation.
+        static const String ImplementationName;
+        /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
+        static const ManagerBase::ManagerType InterfaceType;
     protected:
     public:
         /// @brief Class constructor.

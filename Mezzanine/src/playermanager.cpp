@@ -48,6 +48,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // PlayerManager Methods
 
+    const String PlayerManager::ImplementationName = "DefaultPlayerManager";
+    const ManagerBase::ManagerType PlayerManager::InterfaceType = ManagerBase::MT_PlayerManager;
+
     PlayerManager::PlayerManager()
     {
 
@@ -57,6 +60,28 @@ namespace Mezzanine
     {
 
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void PlayerManager::Initialize()
+    {
+
+    }
+
+    void PlayerManager::Deinitialize()
+    {
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Type Identifier Methods
+
+    ManagerBase::ManagerType PlayerManager::GetInterfaceType() const
+        { return PlayerManager::InterfaceType; }
+
+    String PlayerManager::GetImplementationTypeName() const
+        { return PlayerManager::ImplementationName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultPlayerManagerFactory Methods
