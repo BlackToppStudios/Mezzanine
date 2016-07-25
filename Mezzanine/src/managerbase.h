@@ -85,10 +85,11 @@ namespace Mezzanine
             MT_MaterialManager         = 9,   // Graphics
             MT_MeshManager             = 10,  // Graphics
             MT_NetworkManager          = 11,  // Network
-            MT_ResourceManager         = 12,  // Resource
-            MT_ScriptingManager        = 13,  // Scripting
-            MT_TextureManager          = 14,  // Graphics
-            MT_UIManager               = 15,  // UI
+            MT_PlayerManager           = 12,  // Mezzanine
+            MT_ResourceManager         = 13,  // Resource
+            MT_ScriptingManager        = 14,  // Scripting
+            MT_TextureManager          = 15,  // Graphics
+            MT_UIManager               = 16,  // UI
 
             // World Managers                 // Namespaces
 
