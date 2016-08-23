@@ -45,7 +45,8 @@ message ("${PROJECT_NAME} - Begin")
 ##############################################################################
 #Catch! initializations
 
-add_definitions( ${CommonBuildFlags} )
+#add_definitions( ${CommonBuildFlags} )
+#target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
@@ -226,6 +227,8 @@ link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine )
 target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName} )
+
+target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 ##############################################################################
 # File copies during all builds

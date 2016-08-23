@@ -47,7 +47,8 @@ message ("${PROJECT_NAME} - Begin")
 ###############################################################################
 # Initializations
 
-add_definitions( ${CommonBuildFlags} )
+#add_definitions( ${CommonBuildFlags} ) #-std=c++11 )
+#target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 message("Compiler Flags used on all Builds: ${CommonBuildFlags}")
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
@@ -1364,6 +1365,8 @@ endif(${WIN32})
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
+target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
+
 set(SDL_ATOMIC    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_CPUINFO   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
@@ -1715,7 +1718,6 @@ CopyFilesDuringBuild( common/SDL-MITLicense.txt data/common/SDL-MITLicense.txt )
 CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
 CopyFilesDuringBuild( common/zlib-libpngLicense.txt data/common/zlib-libpngLicense.txt )
 CopyFilesDuringBuild( common/zlib-zliblicense.txt data/common/zlib-zliblicense.txt )
-CopyFilesDuringBuild( common/cAudio-ZLIBLicense.txt data/common/cAudio-ZLIBLicense.txt )
 
 
 # Ogre

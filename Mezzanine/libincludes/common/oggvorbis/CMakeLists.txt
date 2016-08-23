@@ -134,7 +134,7 @@ include_directories(
 	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.3/include"
 )
 
-add_definitions( ${CommonBuildFlags} )
+#add_definitions( ${CommonBuildFlags} )
 
 #set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/oggvorbis/")
 message ( STATUS "Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")

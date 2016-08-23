@@ -43,7 +43,9 @@ message ("${PROJECT_NAME} - Begin")
 
 ###############################################################################
 #Variables
-add_definitions( ${CommonBuildFlags} )
+
+#add_definitions( ${CommonBuildFlags} )
+#target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}")
@@ -249,6 +251,8 @@ target_link_libraries( ${PROJECT_NAME}
     ${SoundLibraryNames}
 )
 #target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName})
+
+target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 ##############################################################################
 # File copies during all builds

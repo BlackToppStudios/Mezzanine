@@ -45,7 +45,8 @@ message ("${PROJECT_NAME} - Begin")
 ##############################################################################
 #EngineDemo initializations
 
-add_definitions( ${CommonBuildFlags} )
+#add_definitions( ${CommonBuildFlags} )
+#target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}/data/")
 message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
@@ -124,6 +125,7 @@ add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine )
 target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName} )
 
+target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 ##############################################################################
 # File copies during all builds
