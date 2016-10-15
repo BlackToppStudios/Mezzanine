@@ -272,7 +272,7 @@ namespace Mezzanine
         // Internal Methods
 
         /// @internal
-        /// @brief Utility function for altering or checking the World Object every frame.
+        /// @brief Performs any object specific behaviors that need to be updated per tick.
         /// @param Delta The amount of time since the last update in microseconds.
         virtual void _Update(const Whole Delta) = 0;
         /// @internal
