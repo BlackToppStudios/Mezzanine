@@ -43,6 +43,10 @@
 /// @file
 /// @brief This file contains the AxisAlignedBox class for representing AABB's of objects in the world.
 
+#ifndef SWIG
+    #include "MathTools/mathtypes.h"
+#endif
+
 #include "vector3.h"
 #include "plane.h"
 
@@ -73,7 +77,7 @@ namespace Mezzanine
         /// @details This type provides more verbose return data that can be used for further tests.  @n @n
         /// The first member stores whether or not there was a hit.  The second member stores ray containing
         /// the points where the ray entered and exited the AABB.
-        typedef std::pair<Boole,Ray> RayTestResult;
+        typedef MathTools::GeometryRayTestResult RayTestResult;
 
         /// @brief Used to uniquely identify sides of an axis aligned box.
         enum Side

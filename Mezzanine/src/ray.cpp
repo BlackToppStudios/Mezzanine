@@ -45,6 +45,7 @@
 #include "axisalignedbox.h"
 #include "plane.h"
 #include "sphere.h"
+#include "linesegment.h"
 #include "exception.h"
 #include "serialization.h"
 
@@ -94,7 +95,7 @@ namespace Mezzanine
     void Ray::SetOrigin(const Vector3& FreshOrigin)
         { this->Origin = FreshOrigin; }
 
-    Vector3 Ray::GetPointAtDistance(const Real& Distance)
+    Vector3 Ray::GetPointAtDistance(const Real& Distance) const
         { return ( this->Origin + ( this->GetNormal() * Distance ) ); }
 
     Ray::PlaneRayTestResult Ray::Intersects(const Plane& ToCheck) const
@@ -172,12 +173,12 @@ namespace Mezzanine
 
     Boole Ray::operator!=(const Ray& Other) const
         { return ( this->Origin != Other.Origin || this->Normal != Other.Normal ); }
-}
+}//Mezzanine
 
-std::ostream& operator << (std::ostream& stream, const Mezzanine::Ray& x)
+std::ostream& operator << (std::ostream& Stream, const Mezzanine::Ray& Data)
 {
-    stream << "[" << x.GetOrigin() << "," << x.GetNormal() << "]";
-    return stream;
+    Stream << "[" << Data.GetOrigin() << "," << Data.GetNormal() << "]";
+    return Stream;
 }
 
 #endif

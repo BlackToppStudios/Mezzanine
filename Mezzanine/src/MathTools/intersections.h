@@ -40,56 +40,42 @@
 #ifndef _mathtoolintersections_h
 #define _mathtoolintersections_h
 
-#include "vector2.h"
-#include "vector3.h"
+#include "MathTools/mathtypes.h"
+
+#include "axisalignedbox.h"
+#include "linesegment.h"
 #include "plane.h"
+#include "ray.h"
+#include "sphere.h"
+#include "triangle.h"
 
 namespace Mezzanine
 {
-    class AxisAlignedBox;
-    class Plane;
-    class Ray;
-    class Sphere;
-    class LineSegment2D;
-    class LineSegment3D;
     /// @namespace Mezzanine::MathTools
     /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
     {
-        /// @brief This is a type used for intersection tests that return a point in 2D space.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Vector2> Point2DTestResult;
-        /// @brief This is a type used for intersection tests that return a point in 3D space.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Vector3> Point3DTestResult;
-        /// @brief This is a type used for geometry tests that return a line segment in 2D space.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,LineSegment2D> Line2DTestResult;
-        /// @brief This is a type used for geometry tests that return a line segment in 3D space.
-        /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,LineSegment3D> Line3DTestResult;
-
-        typedef std::pair<Boole,Ray> GeometryRayTestResult;
-
+        /*
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
         class PointPointInterection
         {
-            public:
-                Whole IntersectionCount;
-                Vector3 FirstIntersection;
-                Vector3 SecondIntersection;
+        public:
+            Whole IntersectionCount;
+            Vector3 FirstIntersection;
+            Vector3 SecondIntersection;
 
-                PointPointInterection(Whole HitCount = 0, Vector3 FirstHit = Vector3(), Vector3 SecondHit = Vector3())
-                    : IntersectionCount(HitCount),
-                      FirstIntersection(FirstHit),
-                      SecondIntersection(SecondHit)
-                    {}
+            PointPointInterection(Whole HitCount = 0, Vector3 FirstHit = Vector3(), Vector3 SecondHit = Vector3())
+                : IntersectionCount(HitCount),
+                  FirstIntersection(FirstHit),
+                  SecondIntersection(SecondHit)
+                {}
 #ifndef SWIG
-                operator bool()
-                    { return IntersectionCount != 0; }
+            operator bool()
+                { return IntersectionCount != 0; }
 #endif
         };
+        */
 
         ///////////////////////////////////////////////////////////////////////////////
         // 2D Geometry Intersection Query
@@ -146,11 +132,38 @@ namespace Mezzanine
         /// @return Returns true if the two Planes are overlapping, false otherwise.
         Boole MEZZ_LIB Overlap(const Plane& Surface1, const Plane& Surface2);
 
+        /// @brief Checks to see if a ray intersects with a Triangle3D.
+        /// @param Face The Triangle3D to check for intersection.
+        /// @param Cast The casted ray to check for intersection.  The Ray Normal should be normalized.
+        /// @return Returns a std::pair containing which side of the triangle the ray hit(or PS_Neither if it missed), and the point in 3D space where it hit(or Zero vector if it missed).
+        PlaneTestResult MEZZ_LIB Intersects(const Triangle3D& Face, const Ray& Cast);
+        /// @brief Checks to see if a ray intersects with a Triangle3D.
+        /// @param Face The Triangle3D to check for intersection.
+        /// @param Normal The normal describing the "front" side of the Triangle.
+        /// @param Cast The casted ray to check for intersection.  The Ray Normal should be normalized.
+        /// @return Returns a std::pair containing which side of the triangle the ray hit(or PS_Neither if it missed), and the point in 3D space where it hit(or Zero vector if it missed).
+        PlaneTestResult MEZZ_LIB Intersects(const Triangle3D& Face, const Vector3& Normal, const Ray& Cast);
+        /// @brief Checks to see if a ray intersects with a Triangle3D.
+        /// @param Vert1 The first component of the Triangle to check for intersection.
+        /// @param Vert2 The second component of the Triangle to check for intersection.
+        /// @param Vert3 The third component of the Triangle to check for intersection.
+        /// @param Cast The casted ray to check for intersection.  The Ray Normal should be normalized.
+        /// @return Returns a std::pair containing which side of the triangle the ray hit(or PS_Neither if it missed), and the point in 3D space where it hit(or Zero vector if it missed).
+        PlaneTestResult MEZZ_LIB Intersects(const Vector3& Vert1, const Vector3& Vert2, const Vector3& Vert3, const Ray& Cast);
+        /// @brief Checks to see if a ray intersects with a Triangle3D.
+        /// @param Vert1 The first component of the Triangle to check for intersection.
+        /// @param Vert2 The second component of the Triangle to check for intersection.
+        /// @param Vert3 The third component of the Triangle to check for intersection.
+        /// @param Normal The normal describing the "front" side of the Triangle.
+        /// @param Cast The casted ray to check for intersection.  The Ray Normal should be normalized.
+        /// @return Returns a std::pair containing which side of the triangle the ray hit(or PS_Neither if it missed), and the point in 3D space where it hit(or Zero vector if it missed).
+        PlaneTestResult MEZZ_LIB Intersects(const Vector3& Vert1, const Vector3& Vert2, const Vector3& Vert3, const Vector3& Normal, const Ray& Cast);
+
         /// @brief Checks to see if a ray intersects with a Plane.
         /// @param Surface The Plane to check for intersection.
         /// @param Cast The casted ray to check for intersection.
         /// @return Returns a std::pair containing whether of not the ray hit, and the point in 3D space where it hit if it did.
-        Point3DTestResult MEZZ_LIB Intersects(const Plane& Surface, const Ray& Cast);
+        PlaneTestResult MEZZ_LIB Intersects(const Plane& Surface, const Ray& Cast);
         /// @brief Checks to see if a ray intersects with an AABB.
         /// @param Box The AABB to check for intersection.
         /// @param Cast The casted ray to check for intersection.
@@ -161,9 +174,6 @@ namespace Mezzanine
         /// @param Cast The casted ray to check for intersection.
         /// @return Returns a std::pair containing whether or not the ray hit, and if it did also a ray that is the subsection of the casted ray that went through the Sphere.
         GeometryRayTestResult MEZZ_LIB Intersects(const Sphere& Ball, const Ray& Cast);
-
-
-
     }//MathTools
 }//Mezzanine
 

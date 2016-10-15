@@ -47,6 +47,7 @@
 #include "MathTools/mathtools.h"
 #include "plane.h"
 #include "ray.h"
+#include "linesegment.h"
 #include "exception.h"
 #include "serialization.h"
 

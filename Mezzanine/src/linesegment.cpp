@@ -71,6 +71,18 @@ namespace Mezzanine
         { return MathTools::Intersects(*this,Other); }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Operators
+
+    void LineSegment2D::operator=(const LineSegment2D& Other)
+        { this->PointA = Other.PointA;  this->PointB = Other.PointB; }
+
+    Boole LineSegment2D::operator==(const LineSegment2D& Other) const
+        { return ( this->PointA == Other.PointA && this->PointB == Other.PointB ); }
+
+    Boole LineSegment2D::operator!=(const LineSegment2D& Other) const
+        { return ( this->PointA != Other.PointA || this->PointB != Other.PointB ); }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // LineSegment3D
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -104,6 +116,30 @@ namespace Mezzanine
 			return LineSegment3D(this->PointB,this->PointA);
 		return *this;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Operators
+
+    void LineSegment3D::operator=(const LineSegment3D& Other)
+        { this->PointA = Other.PointA;  this->PointB = Other.PointB; }
+
+    Boole LineSegment3D::operator==(const LineSegment3D& Other) const
+        { return ( this->PointA == Other.PointA && this->PointB == Other.PointB ); }
+
+    Boole LineSegment3D::operator!=(const LineSegment3D& Other) const
+        { return ( this->PointA != Other.PointA || this->PointB != Other.PointB ); }
 }//Mezzanine
+
+std::ostream& operator << (std::ostream& Stream, const Mezzanine::LineSegment2D& Data)
+{
+    Stream << "[" << Data.PointA << "," << Data.PointB << "]";
+    return Stream;
+}
+
+std::ostream& operator << (std::ostream& Stream, const Mezzanine::LineSegment3D& Data)
+{
+    Stream << "[" << Data.PointA << "," << Data.PointB << "]";
+    return Stream;
+}
 
 #endif

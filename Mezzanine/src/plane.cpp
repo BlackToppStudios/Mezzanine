@@ -113,28 +113,28 @@ namespace Mezzanine
         this->Distance = -(this->Normal.DotProduct(First));
     }
 
-    Plane::Side Plane::GetSide(const Vector3& Point) const
+    MathTools::PlaneSide Plane::GetSide(const Vector3& Point) const
     {
         Real Dist = this->GetDistance(Point);
         if( Dist < 0.0 ) {
-            return Plane::S_Negative;
+            return MathTools::PS_Negative;
         }else if( Dist > 0.0 ) {
-            return Plane::S_Positive;
+            return MathTools::PS_Positive;
         }else{
-            return Plane::S_None;
+            return MathTools::PS_Neither;
         }
     }
 
-    Plane::Side Plane::GetSide(const Vector3& Center, const Vector3& HalfSize) const
+    MathTools::PlaneSide Plane::GetSide(const Vector3& Center, const Vector3& HalfSize) const
     {
         Real CenterDist = this->GetDistance(Center);
         Real MaxDist = MathTools::Abs( this->Normal.DotProduct(HalfSize) );
         if( CenterDist < -MaxDist ) {
-            return Plane::S_Negative;
+            return MathTools::PS_Negative;
         }else if( CenterDist > +MaxDist ) {
-            return Plane::S_Positive;
+            return MathTools::PS_Positive;
         }else{
-            return Plane::S_Both;
+            return MathTools::PS_Both;
         }
     }
 

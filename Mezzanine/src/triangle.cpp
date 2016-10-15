@@ -285,6 +285,23 @@ namespace Mezzanine
         return LineSegment3D(v1,v2);
     }
 
+    Triangle3D::RayTestResult Triangle3D::Intersects(const Ray& ToCheck) const
+    {
+        return MathTools::Intersects(*this,ToCheck);
+    }
+
+    Vector3 Triangle3D::CalculateBasicNormal() const
+    {
+        return Triangle3D::CalculateBasicNormal(this->PointA,this->PointB,this->PointC);
+    }
+
+    Vector3 Triangle3D::CalculateBasicNormal(const Vector3& A, const Vector3& B, const Vector3& C)
+    {
+        Vector3 Normal = ( B - A ).CrossProduct( C - A );
+        Normal.Normalize();
+        return Normal;
+    }
+
     Vector3& Triangle3D::operator[](const Whole& Index)
     {
         switch( Index )

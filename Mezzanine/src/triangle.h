@@ -42,13 +42,15 @@
 
 #include "vector2.h"
 #include "vector3.h"
-#include "linesegment.h"
+#include "MathTools/mathtypes.h"
 
 namespace Mezzanine
 {
+    class Ray;
+    class LineSegment2D;
+    class LineSegment3D;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A geometry math class for expressing a triangle in 2D space.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB Triangle2D
     {
@@ -75,7 +77,7 @@ namespace Mezzanine
         Triangle2D(const Vector2& A, const Vector2& B, const Vector2& C);
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Utility
+        // Operators
 
         /// @brief Gets the point in this triangle corresponding to the specified index.
         /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.
@@ -91,11 +93,15 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A geometry math class for expressing a triangle in 3D space.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB Triangle3D
     {
     public:
+        /// @brief This is a type used for the return of a ray intersection test.
+        /// @details This type provides more verbose return data that can be used for further tests.  @n @n
+        /// The first member stores whether or not there was a hit.  The second member stores the point where it was hit.
+        typedef MathTools::PlaneTestResult RayTestResult;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
@@ -124,6 +130,24 @@ namespace Mezzanine
         /// @param Other The other triangle to compare with.
         /// @return Returns a line segment expressing the length where the two triangles overlap, or a zero'd out line segment if there is no overlap.
         LineSegment3D GetOverlap(const Triangle3D& Other) const;
+
+        /// @brief Checks to see if a ray intersects this triangle.
+        /// @param ToCheck The ray to check for a hit.
+        /// @return Returns true if the ray intersects this triangle, false otherwise.
+        RayTestResult Intersects(const Ray& ToCheck) const;
+
+        /// @brief Calculates a normal for the triangle.
+        /// @return Returns a normal indicating the "front" facing direction of the triangle.
+        Vector3 CalculateBasicNormal() const;
+        /// @brief Calculates a normal for the triangle.
+        /// @param A The first point in space making the triangle.
+        /// @param B The second point in space making the triangle.
+        /// @param C The third point in space making the triangle.
+        /// @return Returns a normal indicating the "front" facing direction of the triangle.
+        static Vector3 CalculateBasicNormal(const Vector3& A, const Vector3& B, const Vector3& C);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
 
         /// @brief Gets the point in this triangle corresponding to the specified index.
         /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.

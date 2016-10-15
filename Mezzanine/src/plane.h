@@ -43,6 +43,7 @@
 #include "vector3.h"
 
 #ifndef SWIG
+    #include "MathTools/mathtypes.h"
     #include "XML/xml.h"
 #endif
 
@@ -65,18 +66,10 @@ namespace Mezzanine
     class MEZZ_LIB Plane
     {
     public:
-        /// @brief An enum used to describe which side of the plane the result of a query is on.
-        enum Side
-        {
-            S_None     = 0,
-            S_Positive = 1,
-            S_Negative = 2,
-            S_Both     = 3
-        };
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.  @n @n
         /// The first member stores whether or not there was a hit.  The second member stores the point where it was hit.
-        typedef std::pair<Boole,Vector3> RayTestResult;
+        typedef MathTools::PlaneTestResult RayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -132,13 +125,13 @@ namespace Mezzanine
 
         /// @brief Gets which side of the plane a point in 3D space is.
         /// @param Point The point in 3D space to determine on which side of the plane it lies.
-        /// @return Returns a Side enum value, indicating which side of the plane the point is on.
-        Side GetSide(const Vector3& Point) const;
+        /// @return Returns a PlaneSide enum value, indicating which side of the plane the point is on.
+        MathTools::PlaneSide GetSide(const Vector3& Point) const;
         /// @brief Gets which side of the plane a box shape is.
         /// @param Center The point in 3D space where the center of the box is.
         /// @param HalfSize Half of the total size on each axis.
-        /// @return Returns a Side enum value indicating which side of the plane the box is on.
-        Side GetSide(const Vector3& Center, const Vector3& HalfSize) const;
+        /// @return Returns a PlaneSide enum value indicating which side of the plane the box is on.
+        MathTools::PlaneSide GetSide(const Vector3& Center, const Vector3& HalfSize) const;
         /// @brief Gets the distance from the plane to a point in 3D space.
         /// @note This function will only return a true unit distance if the Normal member of this class is properly normalized.  Take care when altering it's value.
         /// @param Point The point in 3D space to get the distance to.
