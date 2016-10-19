@@ -239,7 +239,10 @@ namespace Mezzanine
             }
             // Get the distance from the ray origin and return
             Real Dist = EdgeTwo.DotProduct(QVec) * InvDet;
-            return PlaneTestResult(FaceSide,Cast.GetPointAtDistance(Dist));
+            if( Dist > 0 ) {
+                return PlaneTestResult(FaceSide,Cast.GetPointAtDistance(Dist));
+            }
+            return PlaneTestResult(MathTools::PS_Neither,Vector3());
         }
 
         PlaneTestResult Intersects(const Vector3& Vert1, const Vector3& Vert2, const Vector3& Vert3, const Vector3& Normal, const Ray& Cast)
@@ -255,10 +258,10 @@ namespace Mezzanine
             Real Denom = Normal.DotProduct( Cast.Normal );
             if( Denom > +PlaneCheckEpsilon ) {
                 // We've struck the forward face of the triangle
-                FaceSide = MathTools::PS_Positive;
+                FaceSide = MathTools::PS_Negative;
             }else if( Denom < -PlaneCheckEpsilon ) {
                 // We've struck the back face of the triangle
-                FaceSide = MathTools::PS_Negative;
+                FaceSide = MathTools::PS_Positive;
             }else{
                 // We're parallel with the plane of the triangle, or too close to parallel to tell the difference
                 return PlaneTestResult(MathTools::PS_Neither,Vector3());
