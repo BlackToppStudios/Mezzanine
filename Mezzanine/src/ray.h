@@ -97,7 +97,7 @@ namespace Mezzanine
         Ray(const Vector3& Dir);
         /// @brief Descriptive constructor.
         /// @param From The origin for the new Ray.
-        /// @param Dir The direction this Ray is pointing in. This will be normalizedprior to use.
+        /// @param Dir The direction this Ray is pointing in. This will be normalized prior to use.
         Ray(const Vector3& From, const Vector3& Dir);
         /// @brief Internal constructor.
         /// @param InternalRay This is the Ogre::Ray to copy from.
