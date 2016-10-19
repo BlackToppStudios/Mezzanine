@@ -165,6 +165,12 @@ namespace Mezzanine
     Triangle3D::Triangle3D()
         {  }
 
+    Triangle3D::Triangle3D(const Triangle3D& Other) :
+        PointA(Other.PointA),
+        PointB(Other.PointB),
+        PointC(Other.PointC)
+        {  }
+
     Triangle3D::Triangle3D(const Vector3& A, const Vector3& B, const Vector3& C) :
         PointA(A),
         PointB(B),
@@ -302,7 +308,28 @@ namespace Mezzanine
         return Normal;
     }
 
-    Vector3& Triangle3D::operator[](const Whole& Index)
+    void Triangle3D::operator=(const Triangle3D& Other)
+    {
+        this->PointA = Other.PointA;
+        this->PointB = Other.PointB;
+        this->PointC = Other.PointC;
+    }
+
+    Boole Triangle3D::operator==(const Triangle3D& Other) const
+    {
+        return ( this->PointA == Other.PointA &&
+                 this->PointB == Other.PointB &&
+                 this->PointC == Other.PointC );
+    }
+
+    Boole Triangle3D::operator!=(const Triangle3D& Other) const
+    {
+        return ( this->PointA != Other.PointA ||
+                 this->PointB != Other.PointB ||
+                 this->PointC != Other.PointC );
+    }
+
+    Vector3& Triangle3D::operator[](const Whole Index)
     {
         switch( Index )
         {
@@ -315,7 +342,7 @@ namespace Mezzanine
         return this->PointA;
     }
 
-    const Vector3& Triangle3D::operator[](const Whole& Index) const
+    const Vector3& Triangle3D::operator[](const Whole Index) const
     {
         switch( Index )
         {

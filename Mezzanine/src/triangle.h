@@ -117,6 +117,9 @@ namespace Mezzanine
 
         /// @brief Blank constructor.
         Triangle3D();
+        /// @brief Copy constructor.
+        /// @param Other The other Triangle3D to be copied.
+        Triangle3D(const Triangle3D& Other);
         /// @brief Descriptive constructor.
         /// @param A The first point in space making the triangle.
         /// @param B The second point in space making the triangle.
@@ -149,16 +152,28 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
+        /// @brief Assignment Operator.
+        /// @param Other The other Triangle3D to copy from.
+        void operator=(const Triangle3D& Other);
+        /// @brief Equality comparison operator.
+        /// @param Other The other Triangle3D to compare to.
+        /// @return Returns true if the two Triangle3D's are equal, false otherwise.
+        Boole operator==(const Triangle3D& Other) const;
+        /// @brief Inequality comparison operator.
+        /// @param Other The other Triangle3D to compare to.
+        /// @return Returns true if the two Triangle3D's are not equal, false otherwise.
+        Boole operator!=(const Triangle3D& Other) const;
+
         /// @brief Gets the point in this triangle corresponding to the specified index.
         /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.
         /// @param Index The index of the point to retrieve.
         /// @return Returns a reference to a Vector2 containing the position of the specified point.
-        Vector3& operator[](const Whole& Index);
+        Vector3& operator[](const Whole Index);
         /// @brief Gets the point in this triangle corresponding to the specified index.
         /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.
         /// @param Index The index of the point to retrieve.
         /// @return Returns a const reference to a Vector2 containing the position of the specified point.
-        const Vector3& operator[](const Whole& Index) const;
+        const Vector3& operator[](const Whole Index) const;
     };//Triangle3D
 }//Mezzanine
 
