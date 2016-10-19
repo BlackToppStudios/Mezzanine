@@ -154,7 +154,7 @@ public:
             Vector3 PosSide(15.0,10.0,-10.0);
             Vector3 NegSide(-1.0,0.5,-10.0);
             Plane Surface(Vector3(1.0,1.0,1.0).Normalize(),1);
-            TEST( Surface.GetSide(PosSide) == Plane::S_Positive && Surface.GetSide(NegSide) == Plane::S_Negative ,"GetSide(const_Vector3&)_const");
+            TEST( Surface.GetSide(PosSide) == MathTools::PS_Positive && Surface.GetSide(NegSide) == MathTools::PS_Negative ,"GetSide(const_Vector3&)_const");
         }
 
         {
@@ -163,9 +163,9 @@ public:
             Vector3 NegCenter(-10.0,-20.0,-10.0);
             Vector3 BothCenter(0.0,0.0,0.0);
             Plane Surface(Vector3(1.0,1.0,1.0).Normalize(),1);
-            TEST( Surface.GetSide(PosCenter,Size) == Plane::S_Positive &&
-                  Surface.GetSide(NegCenter,Size) == Plane::S_Negative &&
-                  Surface.GetSide(BothCenter,Size) == Plane::S_Both
+            TEST( Surface.GetSide(PosCenter,Size) == MathTools::PS_Positive &&
+                  Surface.GetSide(NegCenter,Size) == MathTools::PS_Negative &&
+                  Surface.GetSide(BothCenter,Size) == MathTools::PS_Both
                   ,"GetSide(const_Vector3&,_const_Vector3&)_const");
         }
 

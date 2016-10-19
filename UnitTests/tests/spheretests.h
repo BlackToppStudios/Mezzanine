@@ -148,7 +148,7 @@ public:
             Sphere Ball(Vector3(10.0,10.0,10.0),10.0);
             Sphere::RayTestResult PassResult = Ball.Intersects(PassRay);
             Sphere::RayTestResult FailResult = Ball.Intersects(FailRay);
-            TEST( ( PassResult.first && PassResult.second == Ray(Vector3(0.0,10.0,10.0),Vector3(20.0,10.0,10.0)) ) && ( !FailResult.first && FailResult.second == Ray() ) ,"Intersects(const_Ray&)_const");
+            TEST( ( PassResult.first && PassResult.second == LineSegment3D(Vector3(0.0,10.0,10.0),Vector3(20.0,10.0,10.0)) ) && ( !FailResult.first && FailResult.second == LineSegment3D() ) ,"Intersects(const_Ray&)_const");
         }
 
         {

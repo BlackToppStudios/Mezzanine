@@ -182,43 +182,43 @@ public:
             Ray PassRayOriginInside(Vector3(1.0,1.0,1.0),Vector3(20.0,20.0,20.0));
             AxisAlignedBox::RayTestResult PassResultOriginInside = Box.Intersects(PassRayOriginInside);
             TEST(PassResultOriginInside.first,"IntersectsOriginInside(const_Ray&)_const_boole_positive");
-            TEST(PassResultOriginInside.second == Ray(Vector3(1.0,1.0,1.0),Vector3(4.0,4.0,4.0)), "IntersectsOriginInside(const_Ray&)_const_ray_positive");
+            TEST(PassResultOriginInside.second == LineSegment3D(Vector3(1.0,1.0,1.0),Vector3(4.0,4.0,4.0)), "IntersectsOriginInside(const_Ray&)_const_ray_positive");
 
             Ray PassRayHighOnX(Vector3(-20.0,0.0,0.0),Vector3(20.0,0.0,0.0));
             AxisAlignedBox::RayTestResult PassResultHighOnX = Box.Intersects(PassRayHighOnX);
             TEST(PassResultHighOnX.first,"IntersectsHighOnX(const_Ray&)_const_boole_positive");
-            TEST(PassResultHighOnX.second == Ray(Vector3(-4.0,0.0,0.0),Vector3(4.0,0.0,0.0)), "IntersectsHighOnX(const_Ray&)_const_ray_positive");
+            TEST(PassResultHighOnX.second == LineSegment3D(Vector3(-4.0,0.0,0.0),Vector3(4.0,0.0,0.0)), "IntersectsHighOnX(const_Ray&)_const_ray_positive");
 
             Ray PassRayLowOnX(Vector3(20.0,0.0,0.0),Vector3(-20.0,0.0,0.0));
             AxisAlignedBox::RayTestResult PassResultLowOnX = Box.Intersects(PassRayLowOnX);
             TEST(PassResultLowOnX.first,"IntersectsHighOnX(const_Ray&)_const_boole_positive");
-            TEST(PassResultLowOnX.second == Ray(Vector3(4.0,0.0,0.0),Vector3(-4.0,0.0,0.0)), "IntersectsLowOnX(const_Ray&)_const_ray_positive");
+            TEST(PassResultLowOnX.second == LineSegment3D(Vector3(4.0,0.0,0.0),Vector3(-4.0,0.0,0.0)), "IntersectsLowOnX(const_Ray&)_const_ray_positive");
 
             Ray PassRayHighOnY(Vector3(0.0,-20.0,0.0),Vector3(0.0,20.0,0.0));
             AxisAlignedBox::RayTestResult PassResultHighOnY = Box.Intersects(PassRayHighOnY);
             TEST(PassResultHighOnY.first,"IntersectsHighOnY(const_Ray&)_const_boole_positive");
-            TEST(PassResultHighOnY.second == Ray(Vector3(0.0,-4.0,0.0),Vector3(0.0,4.0,0.0)), "IntersectsHighOnY(const_Ray&)_const_ray_positive");
+            TEST(PassResultHighOnY.second == LineSegment3D(Vector3(0.0,-4.0,0.0),Vector3(0.0,4.0,0.0)), "IntersectsHighOnY(const_Ray&)_const_ray_positive");
 
             Ray PassRayLowOnY(Vector3(0.0,20.0,0.0),Vector3(0.0,-20.0,0.0));
             AxisAlignedBox::RayTestResult PassResultLowOnY = Box.Intersects(PassRayLowOnY);
             TEST(PassResultLowOnY.first,"IntersectsHighOnY(const_Ray&)_const_boole_positive");
-            TEST(PassResultLowOnY.second == Ray(Vector3(0.0,4.0,0.0),Vector3(0.0,-4.0,0.0)), "IntersectsLowOnY(const_Ray&)_const_ray_positive");
+            TEST(PassResultLowOnY.second == LineSegment3D(Vector3(0.0,4.0,0.0),Vector3(0.0,-4.0,0.0)), "IntersectsLowOnY(const_Ray&)_const_ray_positive");
 
             Ray PassRayHighOnZ(Vector3(0.0,0.0,-20.0),Vector3(0.0,0.0,20.0));
             AxisAlignedBox::RayTestResult PassResultHighOnZ = Box.Intersects(PassRayHighOnZ);
             TEST(PassResultHighOnZ.first,"IntersectsHighOnZ(const_Ray&)_const_boole_positive");
-            TEST(PassResultHighOnZ.second == Ray(Vector3(0.0,0.0,-4.0),Vector3(0.0,0.0,4.0)), "IntersectsHighOnZ(const_Ray&)_const_ray_positive");
+            TEST(PassResultHighOnZ.second == LineSegment3D(Vector3(0.0,0.0,-4.0),Vector3(0.0,0.0,4.0)), "IntersectsHighOnZ(const_Ray&)_const_ray_positive");
 
             Ray PassRayLowOnZ(Vector3(0.0,0.0,20.0),Vector3(0.0,0.0,-20.0));
             AxisAlignedBox::RayTestResult PassResultLowOnZ = Box.Intersects(PassRayLowOnZ);
             TEST(PassResultLowOnZ.first,"IntersectsHighOnZ(const_Ray&)_const_boole_positive");
-            TEST(PassResultLowOnZ.second == Ray(Vector3(0.0,0.0,4.0),Vector3(0.0,0.0,-4.0)), "IntersectsLowOnZ(const_Ray&)_const_ray_positive");
+            TEST(PassResultLowOnZ.second == LineSegment3D(Vector3(0.0,0.0,4.0),Vector3(0.0,0.0,-4.0)), "IntersectsLowOnZ(const_Ray&)_const_ray_positive");
 
 
             Ray FailRay(Vector3(100.0,40.0,50.0),Vector3(80.0,60.0,50.0));
             AxisAlignedBox::RayTestResult FailResult = Box.Intersects(FailRay);
             TEST(!FailResult.first, "Intersects(const_Ray&)_const_boole_negative");
-            TEST(FailResult.second == Ray(), "Intersects(const_Ray&)_const_ray_negative");
+            TEST(FailResult.second == LineSegment3D(), "Intersects(const_Ray&)_const_ray_negative");
         }
 
         {
