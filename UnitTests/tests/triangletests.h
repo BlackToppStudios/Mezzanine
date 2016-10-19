@@ -157,7 +157,39 @@ public:
     /// @brief Test most features on the Triangle.
     void RunAutomaticTests()
     {
-        {
+        {// Constructors and Operators
+            Vector3 PointOne(-4.0,-3.0,0.0);
+            Vector3 PointTwo(4.0,5.0,4.0);
+            Vector3 PointThree(4.0,5.0,-4.0);
+
+            Triangle3D BlankTest;
+            TEST( BlankTest.PointA == Vector3() && BlankTest.PointB == Vector3() && BlankTest.PointC == Vector3(),
+                  "Triangle3D()" );
+
+            Triangle3D ExplicitTest(PointOne,PointTwo,PointThree);
+            TEST( ExplicitTest.PointA == PointOne && ExplicitTest.PointB == PointTwo && ExplicitTest.PointC == PointThree,
+                  "Triangle3D(const_Vector3&,const_Vector3&,const_Vector3&)" );
+
+            Triangle3D CopyTest(ExplicitTest);
+            TEST( CopyTest.PointA == PointOne && CopyTest.PointB == PointTwo && CopyTest.PointC == PointThree,
+                  "Triangle3D(const_Triangle3D&)" );
+
+            Triangle3D AssignmentTest;
+            AssignmentTest = CopyTest;
+            TEST( AssignmentTest.PointA == PointOne && AssignmentTest.PointB == PointTwo && AssignmentTest.PointC == PointThree,
+                  "Triangle3D::operator=(const_Triangle3D&)" );
+
+            TEST( ExplicitTest == CopyTest && !( BlankTest == CopyTest ),
+                  "Triangle3D::operator==(const_Triangle3D&)" );
+
+            TEST( BlankTest != ExplicitTest && !( ExplicitTest != CopyTest ),
+                  "Triangle3D::operator!=(const_Triangle3D&)" );
+
+            TEST( CopyTest[0] == PointOne && CopyTest[1] == PointTwo && CopyTest[2] == PointThree,
+                  "Triangle3D::operator[](const_Whole)" );
+        }// Constructors and Operators
+
+        {// Ray Intersection Tests
             // Vertical Triangle
             Triangle3D TestTriOne( Vector3(0.0,2.0,1.0),
                                    Vector3(-2.0,-2.0,1.0),
@@ -189,7 +221,7 @@ public:
             Ray TestRayThree( Vector3(-10.0,11.0,0.0),
                               Vector3(1.0,-1.0,0.0) );//Ray automatically normalizes
 
-            {
+            {// Moller-Trumbore
                 // 1-1
                 Triangle3D::RayTestResult ZToVert = TestTriOne.Intersects(TestRayOne);
                 TEST( ZToVert.first == MathTools::PS_Positive && CompareEqualityWithEpsilon(ZToVert.second,Vector3(0.0,1.0,1.0),2),
@@ -214,9 +246,9 @@ public:
                 Triangle3D::RayTestResult YToNone = TestTriFive.Intersects(TestRayTwo);
                 TEST( YToNone.first == MathTools::PS_Neither && CompareEqualityWithEpsilon(YToNone.second,Vector3(0.0,0.0,0.0),2),
                       "Triangle3D::Intersects(const_Ray&)_Y-Axis_Ray_with_Triangle_nowhere_near" );
-            }
+            }// Moller-Trumbore
 
-            {
+            {// Ogre
                 // 1-1
                 Vector3 TestTriOneNorm = TestTriOne.CalculateBasicNormal();
                 Triangle3D::RayTestResult ZToVert = MathTools::Intersects(TestTriOne,TestTriOneNorm,TestRayOne);
@@ -246,10 +278,10 @@ public:
                 Triangle3D::RayTestResult YToNone = MathTools::Intersects(TestTriFive,TestTriFiveNorm,TestRayTwo);
                 TEST( YToNone.first == MathTools::PS_Neither && CompareEqualityWithEpsilon(YToNone.second,Vector3(0.0,0.0,0.0),4),
                       "MathTools::Intersects(const_Triangle3D&,const_Vector3&,const_Ray&)_Y-Axis_Ray_with_Triangle_far_away" );
-            }
-        }
+            }// Ogre
+        }// Ray Intersection Tests
 
-        {
+        {// Timing Tests
             // +X Axis
             Ray TestRayOne( Vector3(10.0,0.0,0.0),
                             Vector3(-4.0,1.0,0.0) );
@@ -286,7 +318,7 @@ public:
                 this->OgreRayTest(TestRayFive,"+Z Axis");
                 this->OgreRayTest(TestRaySix,"-Z Axis");
             }// Ogre Algorithm
-        }
+        }// Timing Tests
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.
