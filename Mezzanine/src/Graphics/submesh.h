@@ -52,6 +52,47 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        /*
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A class to assist in direct buffer access for better performance.
+        ///////////////////////////////////////
+        class MEZZ_LIB MeshRawBufferHelper
+        {
+        protected:
+            /// @brief A pointer to the internal SubMesh being accessed.
+            Ogre::SubMesh* InternalSubMesh;
+            /// @brief
+            const void* BasePointer;
+        public:
+            /// @brief Class constructor.
+            /// @param Internal The internal SubMesh this SubMesh being accessed.
+            MeshRawBufferHelper(Ogre::SubMesh* Internal);
+            /// @brief Class destructor.
+            ~MeshRawBufferHelper();
+
+            /// @brief Gets a base buffer pointer offset to point to the first element of the specified semantic.
+            /// @param Semantic The vertex Semantic to apply the offset for.
+            /// @return Returns a pointer to the first element of the semantic.
+            const void* GetData(const VertexElementSemantic Semantic) const;
+
+            /// @brief Gets the size of a single vertex.
+            /// @return Returns a UInt32 containing the size of one vertex in this buffer.
+            UInt32 GetVertexSize() const;
+            /// @brief Gets the byte size of a vertex element.
+            /// @param Semantic The vertex Semantic to get the size of.
+            /// @return Returns a UInt32 containing the size of the specified element.
+            UInt32 GetVertexElementSize(const VertexElementSemantic Semantic) const;
+            /// @brief Gets the byte offset of a vertex element.
+            /// @param Semantic The vertex Semantic to get the offset of.
+            /// @return Returns a UInt32 containing the offset of the specified element.
+            UInt32 GetVertexElementOffset(const VertexElementSemantic Semantic) const;
+            /// @brief Gets the type of a vertex element.
+            /// @param Semantic The vertex Semantic to get the type of.
+            /// @return Returns a VertexElementType enum representing the type of the specified element.
+            VertexElementType GetVertexElementType(const VertexElementSemantic Semantic) const;
+        };//MeshRawBufferHelper
+        */
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class represents a sub-section of an overall mesh.
         /// @details Every mesh has at least one SubMesh.  Most meshes have only 1 or 2.  SubMeshes are often
@@ -95,31 +136,36 @@ namespace Mezzanine
             Whole GetIndexCount() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // SubMesh Information Methods
+            // Convenience Information Methods
 
             /// @brief Gets the information used to render this SubMesh.
-            /// @remarks This method makes no attempt to clear any pre-existing data on the MeshInfo struct before use.  Relevant data will be overwritten.
-            /// @param ToFill The MeshInfo struct to be populated with data from this SubMesh.
-            void GetInfo(MeshInfo& ToFill) const;
-            /// @brief Gets the vertex information of this SubMesh and appends it to the VertexInfo provided.
-            /// @param ToFill The VertexInfo struct to have this SubMesh vertex information added to.
-            void AppendVertexInfo(VertexInfo& ToFill) const;
+            /// @return Returns a MeshInfo struct containing all the raw data of this SubMesh.
+            MeshInfo GetMeshInfo() const;
+            /// @brief Gets the vertex information of this SubMesh.
+            /// @return Returns a VertexInfo struct containing all of the raw vertex data of this SubMesh.
+            VertexInfo GetVertexInfo() const;
 
-            /// @brief Gets the vertex position information of this SubMesh and appends it to the container provided.
-            /// @param ToFill The container to append this SubMeshes vertex position info to.
-            void AppendVertexPositionInfo(Vector3Vec& ToFill) const;
-            /// @brief Gets the vertex texture coordinate information of this SubMesh and appends it to the container provided.
-            /// @param ToFill The container to append this SubMeshes vertex texture coordinate info to.
-            void AppendVertexTexCoordInfo(Vector2Vec& ToFill) const;
-            /// @brief Gets the vertex normal information of this SubMesh and appends it to the container provided.
-            /// @param ToFill The container to append this SubMeshes vertex normal info to.
-            void AppendVertexNormalInfo(Vector3Vec& ToFill) const;
-            /// @brief Gets the vertex tangent information of this SubMesh and appends it to the container provided.
-            /// @param ToFill The container to append this SubMeshes vertex tangent info to.
-            void AppendVertexTangentInfo(Vector3Vec& ToFill) const;
-            /// @brief Gets the Index information of this SubMesh and appends it to the container provided.
-            /// @param ToFill The container to append this SubMeshes Index info to.
-            void AppendIndexInfo(IntVec& ToFill) const;
+            /// @brief Gets the vertex position information of this SubMesh.
+            /// @return Returns a container with the position of each vertex in this SubMesh.
+            Vector3Vec GetVertexPositions() const;
+            /// @brief Gets the vertex texture coordinate information of this SubMesh.
+            /// @return Returns a container with the texture coordinates for each vertex in this SubMesh.
+            Vector2Vec GetVertexTexCoords() const;
+            /// @brief Gets the vertex normal information of this SubMesh.
+            /// @return Returns a container with the normal of each vertex in this SubMesh.
+            Vector3Vec GetVertexNormals() const;
+            /// @brief Gets the vertex tangent information of this SubMesh.
+            /// @return Returns a container with the tangents of each vertex in this SubMesh.
+            Vector3Vec GetVertexTangents() const;
+            /// @brief Gets the vertex binormal information of this SubMesh.
+            /// @return Returns a container with the binormals of each vertex in this SubMesh.
+            Vector3Vec GetVertexBinormals() const;
+            /// @brief Gets the Index information of this SubMesh.
+            /// @return Returns a container with the indicies used to assemble the triangles in this SubMesh.
+            IntVec GetIndices() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Raw Buffer Access
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
