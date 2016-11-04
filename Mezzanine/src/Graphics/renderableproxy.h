@@ -233,7 +233,7 @@ namespace Mezzanine
             /// @brief Automatically performs a cast from an internal graphics object to a Mezzanine object.
             /// @param ToCast A pointer to the internal object being casted.
             /// @return Returns a pointer to the RenderableProxy used to represent the internal graphics object.
-            static RenderableProxy* _Upcast(Ogre::MovableObject* ToCast);
+            static RenderableProxy* _Upcast(const Ogre::MovableObject* ToCast);
         };//RenderableProxy
     }//Graphics
 }//Mezzanine

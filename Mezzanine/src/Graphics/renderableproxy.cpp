@@ -307,7 +307,7 @@ namespace Mezzanine
         Ogre::SceneNode* RenderableProxy::_GetGraphicsNode() const
             { return this->GraphicsNode; }
 
-        RenderableProxy* RenderableProxy::_Upcast(Ogre::MovableObject* ToCast)
+        RenderableProxy* RenderableProxy::_Upcast(const Ogre::MovableObject* ToCast)
             { return Ogre::any_cast<Graphics::RenderableProxy*>( ToCast->getUserObjectBindings().getUserAny() ); }
     }//Graphics
 }//Mezzanine

@@ -798,7 +798,7 @@ namespace Mezzanine
         Integer CollidableProxy::_GetBroadphaseUniqueID() const
             { return ( this->IsInWorld() ? this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_uniqueId : 0 ); }
 
-        CollidableProxy* CollidableProxy::_Upcast(btCollisionObject* ToCast)
+        CollidableProxy* CollidableProxy::_Upcast(const btCollisionObject* ToCast)
             { return static_cast<CollidableProxy*>( ToCast->getUserPointer() ); }
     }// Physics
 }// Mezzanine

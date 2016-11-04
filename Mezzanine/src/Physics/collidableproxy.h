@@ -357,7 +357,7 @@ namespace Mezzanine
             /// @brief Automatically performs a cast from an internal physics object to a Mezzanine object.
             /// @param ToCast A pointer to the internal object being casted.
             /// @return Returns a pointer to the CollidableProxy used to represent the internal physics object.
-            static CollidableProxy* _Upcast(btCollisionObject* ToCast);
+            static CollidableProxy* _Upcast(const btCollisionObject* ToCast);
         };// CollidableProxy
     }//Physics
 }//Mezzanine
