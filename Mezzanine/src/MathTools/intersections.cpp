@@ -70,10 +70,9 @@ namespace
     /// @return Returns false if the check has succeeded in ruling out an intersection, true otherwise.
     Mezzanine::Boole CalculateAxis(const Mezzanine::Whole Axis, const Mezzanine::Ray& Cast, const Mezzanine::AxisAlignedBox& Box, SegmentPosPair& PosPair)
     {
-        Mezzanine::Vector3 RayDir = Cast.GetNormal();
-        Mezzanine::Real Denom = 1 / RayDir[Axis];
-        Mezzanine::Real NewStart = ( Box.MinExt[Axis] - Cast.GetOrigin()[Axis] ) * Denom;
-        Mezzanine::Real NewEnd = ( Box.MaxExt[Axis] - Cast.GetOrigin()[Axis] ) * Denom;
+        Mezzanine::Real Denom = 1 / Cast.Normal[Axis];
+        Mezzanine::Real NewStart = ( Box.MinExt[Axis] - Cast.Origin[Axis] ) * Denom;
+        Mezzanine::Real NewEnd = ( Box.MaxExt[Axis] - Cast.Origin[Axis] ) * Denom;
 
         if( NewStart > NewEnd )
             std::swap(NewStart,NewEnd);
@@ -323,7 +322,7 @@ namespace Mezzanine
 
         GeometryRayTestResult Intersects(const AxisAlignedBox& Box, const Ray& Cast)
         {
-            // Code in this function is based on the equivalent in Ogre
+            Boole HasHit = false;
             Vector3 CastDir = Cast.GetNormal();
             Vector3 AbsoluteDir = CastDir;
             AbsoluteDir.X = MathTools::Abs( AbsoluteDir.X );
@@ -343,25 +342,9 @@ namespace Mezzanine
                 MaxAxis = 1;
             }
 
-            if(IsInside(Box,Cast.Origin))
-            {
-                Vector3 Intersects;
-                Intersects[MinAxis] = 0;
-                Intersects[MidAxis] = 0;
-                Intersects[MaxAxis] = 1;
-                /*Plane Side(Intersects,)
-                if(CastDir[MaxAxis]>0)
-                {
-
-                }else{
-
-                }
-                return GeometryRayTestResult(true,LineSegment3D(,Vector3));*/
-            }
-
             SegmentPosPair Distances(0,std::numeric_limits<Real>::infinity());
 
-            ::CalculateAxis(MaxAxis,Cast,Box,Distances);
+            HasHit = ::CalculateAxis(MaxAxis,Cast,Box,Distances);
             if( AbsoluteDir[MidAxis] < std::numeric_limits<Real>::epsilon() ) {
                 if( Cast.GetOrigin()[MidAxis] < Box.MinExt[MidAxis] || Cast.GetOrigin()[MidAxis] > Box.MaxExt[MidAxis] ||
                     Cast.GetOrigin()[MinAxis] < Box.MinExt[MinAxis] || Cast.GetOrigin()[MinAxis] > Box.MaxExt[MinAxis] )
@@ -369,18 +352,21 @@ namespace Mezzanine
                     return GeometryRayTestResult(false,LineSegment3D());
                 }
             }else{
-                ::CalculateAxis(MidAxis,Cast,Box,Distances);
+                HasHit = ( HasHit || ::CalculateAxis(MidAxis,Cast,Box,Distances) );
                 if( AbsoluteDir[MinAxis] < std::numeric_limits<Real>::epsilon() ) {
                     if( Cast.GetOrigin()[MinAxis] < Box.MinExt[MinAxis] || Cast.GetOrigin()[MinAxis] > Box.MaxExt[MinAxis] ) {
                         return GeometryRayTestResult(false,LineSegment3D());
                     }
                 }else{
-                    ::CalculateAxis(MinAxis,Cast,Box,Distances);
+                    HasHit = ( HasHit || ::CalculateAxis(MinAxis,Cast,Box,Distances) );
                 }
             }
 
-            LineSegment3D Ret( Cast.GetOrigin() + (CastDir * Distances.first), Cast.GetOrigin() + (CastDir * Distances.second) );
-            return GeometryRayTestResult(true,Ret);
+            if( HasHit ) {
+                LineSegment3D Ret( Cast.GetOrigin() + (CastDir * Distances.first), Cast.GetOrigin() + (CastDir * Distances.second) );
+                return GeometryRayTestResult(true,Ret);
+            }
+            return GeometryRayTestResult(false,LineSegment3D());
         }
 
         GeometryRayTestResult Intersects(const Sphere& Ball, const Ray& Cast)
