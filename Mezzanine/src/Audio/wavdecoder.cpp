@@ -70,7 +70,7 @@ namespace Mezzanine
             this->WavStreamSize = this->WavStream->tellg();
 
             this->ReadWavMetaData(Stream);
-            this->WaveStream->seekg(0);
+            this->WavStream->seekg(0);
         }
 
         WavDecoder::~WavDecoder()
