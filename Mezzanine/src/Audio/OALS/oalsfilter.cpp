@@ -47,6 +47,9 @@
 
 #include "Audio/OALS/oalsefxinterface.h.cpp"
 
+#include "exception.h"
+#include "serialization.h"
+
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <AL/alext.h>
@@ -95,42 +98,59 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Filter::Filter(EFXInterface* EFXMethods)
-                : EFX(EFXMethods),
-                  Dirty(false),
-                  Valid(false),
-                  Volume(1.0),
-                  LFVolume(1.0),
-                  HFVolume(1.0),
-                  InternalFilter(0)
+            Filter::Filter(EFXInterface* EFXMethods) :
+                EFX(EFXMethods),
+                Volume(1.0),
+                LFVolume(1.0),
+                HFVolume(1.0),
+                InternalFilter(0),
+                Dirty(false),
+                Valid(false)
             {
-                this->Valid = EFX->Supported;
+                this->Valid = this->EFX->Supported;
 
-                if( EFX->Supported )
-                {
+                if( this->EFX->Supported ) {
                     // Create our filter
-                    EFX->alGenFilters(1,&InternalFilter);
+                    this->EFX->alGenFilters(1,&InternalFilter);
                 }
+            }
+
+            Filter::Filter(const XML::Node& SelfRoot, EFXInterface* EFXMethods) :
+                EFX(EFXMethods),
+                Volume(1.0),
+                LFVolume(1.0),
+                HFVolume(1.0),
+                InternalFilter(0),
+                Dirty(false),
+                Valid(false)
+            {
+                this->Valid = this->EFX->Supported;
+
+                if( this->EFX->Supported ) {
+                    // Create our filter
+                    this->EFX->alGenFilters(1,&InternalFilter);
+                }
+
+                this->ProtoDeSerialize(SelfRoot);
             }
 
             Filter::~Filter()
             {
-                if( InternalFilter != 0 )
-                {
+                if( InternalFilter != 0 ) {
                     // Obliterate our filter
-                    EFX->alDeleteFilters(1,&InternalFilter);
+                    this->EFX->alDeleteFilters(1,&InternalFilter);
                 }
             }
 
             void Filter::UpdateVolume()
             {
                 ALenum Type;
-                EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,&Type);
+                this->EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,&Type);
                 switch(Type)
                 {
-                    case AL_FILTER_LOWPASS:   EFX->alFilterf(this->InternalFilter,AL_LOWPASS_GAIN,this->Volume);    break;
-                    case AL_FILTER_HIGHPASS:  EFX->alFilterf(this->InternalFilter,AL_HIGHPASS_GAIN,this->Volume);   break;
-                    case AL_FILTER_BANDPASS:  EFX->alFilterf(this->InternalFilter,AL_BANDPASS_GAIN,this->Volume);   break;
+                    case AL_FILTER_LOWPASS:   this->EFX->alFilterf(this->InternalFilter,AL_LOWPASS_GAIN,this->Volume);    break;
+                    case AL_FILTER_HIGHPASS:  this->EFX->alFilterf(this->InternalFilter,AL_HIGHPASS_GAIN,this->Volume);   break;
+                    case AL_FILTER_BANDPASS:  this->EFX->alFilterf(this->InternalFilter,AL_BANDPASS_GAIN,this->Volume);   break;
                 }
             }
 
@@ -140,18 +160,18 @@ namespace Mezzanine
                 EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,&Type);
                 switch(Type)
                 {
-                    case AL_FILTER_LOWPASS:   EFX->alFilterf(this->InternalFilter,AL_LOWPASS_GAINHF,this->HFVolume);   break;
-                    case AL_FILTER_HIGHPASS:  EFX->alFilterf(this->InternalFilter,AL_HIGHPASS_GAINLF,this->LFVolume);  break;
+                    case AL_FILTER_LOWPASS:   this->EFX->alFilterf(this->InternalFilter,AL_LOWPASS_GAINHF,this->HFVolume);   break;
+                    case AL_FILTER_HIGHPASS:  this->EFX->alFilterf(this->InternalFilter,AL_HIGHPASS_GAINLF,this->LFVolume);  break;
                     case AL_FILTER_BANDPASS:
                     {
-                        EFX->alFilterf(this->InternalFilter,AL_LOWPASS_GAINHF,this->HFVolume);
-                        EFX->alFilterf(this->InternalFilter,AL_HIGHPASS_GAINLF,this->LFVolume);
+                        this->EFX->alFilterf(this->InternalFilter,AL_LOWPASS_GAINHF,this->HFVolume);
+                        this->EFX->alFilterf(this->InternalFilter,AL_HIGHPASS_GAINLF,this->LFVolume);
                         break;
                     }
                 }
             }
 
-            Boole Filter::CheckError()
+            Boole Filter::CheckValid()
             {
                 Integer ALError = alGetError();
                 return ( ALError == AL_NO_ERROR );
@@ -167,13 +187,12 @@ namespace Mezzanine
 
             void Filter::SetType(const FilterType FilType)
             {
-                if( this->Valid )
-                {
-                    EFX->alFilteri(this->InternalFilter,AL_FILTER_TYPE,ConvertMezzanineFilterType(FilType));
+                if( this->Valid ) {
+                    this->EFX->alFilteri(this->InternalFilter,AL_FILTER_TYPE,ConvertMezzanineFilterType(FilType));
                     this->UpdateVolume();
                     this->UpdateFrequencyVolume();
                     this->Dirty = true;
-                    this->Valid = CheckError();
+                    this->Valid = CheckValid();
                 }
             }
 
@@ -181,7 +200,7 @@ namespace Mezzanine
             {
                 if( this->Valid ) {
                     ALenum Type;
-                    EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,&Type);
+                    this->EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,&Type);
                     return ConvertInternalFilterType(Type);
                 }else{
                     return Audio::FT_Null;
@@ -190,12 +209,11 @@ namespace Mezzanine
 
             void Filter::SetVolume(const Real Vol)
             {
-                if( this->Volume != Vol && this->Valid )
-                {
+                if( this->Volume != Vol && this->Valid ) {
                     this->Volume = Vol;
                     this->Dirty = true;
                     this->UpdateVolume();
-                    this->Valid = CheckError();
+                    this->Valid = CheckValid();
                 }
             }
 
@@ -206,12 +224,11 @@ namespace Mezzanine
 
             void Filter::SetHighFrequencyVolume(const Real HFVol)
             {
-                if( this->HFVolume != HFVol && this->Valid )
-                {
+                if( this->HFVolume != HFVol && this->Valid ) {
                     this->HFVolume = HFVol;
                     this->Dirty = true;
                     this->UpdateFrequencyVolume();
-                    this->Valid = CheckError();
+                    this->Valid = CheckValid();
                 }
             }
 
@@ -222,12 +239,11 @@ namespace Mezzanine
 
             void Filter::SetLowFrequencyVolume(const Real LFVol)
             {
-                if( this->LFVolume != LFVol && this->Valid )
-                {
+                if( this->LFVolume != LFVol && this->Valid ) {
                     this->LFVolume = LFVol;
                     this->Dirty = true;
                     this->UpdateFrequencyVolume();
-                    this->Valid = CheckError();
+                    this->Valid = CheckValid();
                 }
             }
 
@@ -237,22 +253,67 @@ namespace Mezzanine
             }
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            void Filter::ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(Filter::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("FilterType").SetValue( this->GetType() ) &&
+                    SelfRoot.AppendAttribute("Volume").SetValue( this->GetVolume() ) &&
+                    SelfRoot.AppendAttribute("LowFreqVolume").SetValue( this->GetLowFrequencyVolume() ) &&
+                    SelfRoot.AppendAttribute("HighFreqVolume").SetValue( this->GetHighFrequencyVolume() ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",Filter::GetSerializableName(),true);
+                }
+            }
+
+            void Filter::ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == Filter::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("FilterType");
+                        if( !CurrAttrib.Empty() )
+                            this->SetType( static_cast<FilterType>( CurrAttrib.AsUint() ) );
+
+                        CurrAttrib = SelfRoot.GetAttribute("Volume");
+                        if( !CurrAttrib.Empty() )
+                            this->SetVolume( CurrAttrib.AsReal() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("LowFreqVolume");
+                        if( !CurrAttrib.Empty() )
+                            this->SetLowFrequencyVolume( CurrAttrib.AsReal() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("HighFreqVolume");
+                        if( !CurrAttrib.Empty() )
+                            this->SetHighFrequencyVolume( CurrAttrib.AsReal() );
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Filter::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Filter::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            String Filter::GetSerializableName()
+                { return "OALSFilter"; }
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
             UInt32 Filter::_GetInternalFilter() const
-            {
-                return this->InternalFilter;
-            }
+                { return this->InternalFilter; }
 
             Boole Filter::_IsDirty() const
-            {
-                return this->Dirty;
-            }
+                { return this->Dirty; }
 
             void Filter::_Clean()
-            {
-                this->Dirty = false;
-            }
+                { this->Dirty = false; }
         }//OALS
     }//Audio
 }//Mezzanine

@@ -46,6 +46,9 @@
 #include "datatypes.h"
 #include "Audio/effectparameters.h"
 #include "Audio/filter.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 namespace Mezzanine
 {
@@ -182,6 +185,20 @@ namespace Mezzanine
             /// @brief Gets the current parameters for the Equalizer Effect.
             /// @return Returns an EqualizerParameters struct containing the currently set parameters.
             virtual EqualizerParameters GetEqualizerParameters() const = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            virtual void ProtoSerialize(XML::Node& ParentNode) const = 0;
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot) = 0;
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
         };//iEffect
     }//Audio
 }//Mezzanine

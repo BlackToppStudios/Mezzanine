@@ -55,42 +55,38 @@ namespace Mezzanine
             class EFXInterface;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OpenALSoft implemenation for an Audio Effect.
-            /// @details
             ///////////////////////////////////////
             class MEZZ_LIB Effect : public iEffect
             {
             protected:
-                /// @internal
                 /// @brief Pointer to the class holding function pointers to all the OALS EFX methods
                 EFXInterface* EFX;
-                /// @internal
                 /// @brief The filter processing audio emitted by this effect.
                 OALS::Filter* EffectFilter;
-                /// @internal
-                /// @brief This stores whether or not this effect has been modified recently.
-                Boole Dirty;
-                /// @internal
-                /// @brief This stores whether or not there was an error with the last settings change.
-                Boole Valid;
-                /// @internal
-                /// @brief This stores whether or not audio processed through this effect will ignore attenuation based on distance.
-                Boole IgnoreAtten;
-                /// @internal
                 /// @brief This stores the volume modifier to be applied to processed Audio.
                 Real Volume;
-                /// @internal
                 /// @brief This stores the internal ID for this effect.
                 UInt32 InternalEffect;
-                /// @internal
                 /// @brief This stores the internal ID for this for the effect slot being populated by the internal effect.
                 UInt32 InternalEffectSlot;
-                /// @internal
-                /// @brief Checks to see if there was a configuration error after setting an effect property.
-                Boole CheckError();
+                /// @brief This stores whether or not this effect has been modified recently.
+                Boole Dirty;
+                /// @brief This stores whether or not there was an error with the last settings change.
+                Boole Valid;
+                /// @brief This stores whether or not audio processed through this effect will ignore attenuation based on distance.
+                Boole IgnoreAtten;
+
+                /// @brief Checks to see if there was a configuration error after setting a filter property.
+                /// @return Returns true if there was no error, false if there was.
+                Boole CheckValid();
             public:
                 /// @brief Class constructor.
                 /// @param EFXMethods A pointer to the class storing all the methods to the EFX extension.
                 Effect(EFXInterface* EFXMethods);
+                /// @brief Serialization constructor.
+                /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+                /// @param EFXMethods A pointer to the class storing all the methods to the EFX extension.
+                Effect(const XML::Node& SelfRoot, EFXInterface* EFXMethods);
                 /// @brief Class destructor.
                 virtual ~Effect();
 
@@ -175,6 +171,18 @@ namespace Mezzanine
                 virtual void SetEqualizerParameters(const EqualizerParameters& Param);
                 /// @copydoc iEffect::GetEqualizerParameters() const
                 virtual EqualizerParameters GetEqualizerParameters() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Serialization
+
+                /// @copydoc iEffect::ProtoSerialize(XML::Node&) const
+                virtual void ProtoSerialize(XML::Node& ParentNode) const;
+                /// @copydoc iEffect::ProtoDeSerialize(const XML::Node&)
+                virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+
+                /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+                /// @return A string containing the name of this class.
+                static String GetSerializableName();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

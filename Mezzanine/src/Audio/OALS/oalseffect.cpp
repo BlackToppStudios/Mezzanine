@@ -47,6 +47,9 @@
 #include "Audio/OALS/oalsfilter.h"
 #include "exception.h"
 
+#include "exception.h"
+#include "serialization.h"
+
 #include "Audio/OALS/oalsefxinterface.h.cpp"
 
 #include <AL/al.h>
@@ -341,29 +344,50 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Effect::Effect(EFXInterface* EFXMethods)
-                : EFX(EFXMethods),
-                  EffectFilter(NULL),
-                  Dirty(false),
-                  Valid(false),
-                  IgnoreAtten(false),
-                  Volume(1.0),
-                  InternalEffect(0),
-                  InternalEffectSlot(0)
+            Effect::Effect(EFXInterface* EFXMethods) :
+                EFX(EFXMethods),
+                EffectFilter(NULL),
+                Volume(1.0),
+                InternalEffect(0),
+                InternalEffectSlot(0),
+                Dirty(false),
+                Valid(false),
+                IgnoreAtten(false)
             {
-                this->Valid = EFX->Supported;
+                this->Valid = this->EFX->Supported;
 
-                if( EFX->Supported )
-                {
+                if( this->EFX->Supported ) {
                     // Create our Effect
-                    EFX->alGenEffects(1,&InternalEffect);
-
+                    this->EFX->alGenEffects(1,&InternalEffect);
                     // Create our Effect Slot
-                    EFX->alGenAuxiliaryEffectSlots(1,&InternalEffectSlot);
-
+                    this->EFX->alGenAuxiliaryEffectSlots(1,&InternalEffectSlot);
                     // Attach the two
-                    EFX->alAuxiliaryEffectSloti(this->InternalEffectSlot,AL_EFFECTSLOT_EFFECT,this->InternalEffect);
+                    this->EFX->alAuxiliaryEffectSloti(this->InternalEffectSlot,AL_EFFECTSLOT_EFFECT,this->InternalEffect);
                 }
+            }
+
+            Effect::Effect(const XML::Node& SelfRoot, EFXInterface* EFXMethods) :
+                EFX(EFXMethods),
+                EffectFilter(NULL),
+                Volume(1.0),
+                InternalEffect(0),
+                InternalEffectSlot(0),
+                Dirty(false),
+                Valid(false),
+                IgnoreAtten(false)
+            {
+                this->Valid = this->EFX->Supported;
+
+                if( this->EFX->Supported ) {
+                    // Create our Effect
+                    this->EFX->alGenEffects(1,&InternalEffect);
+                    // Create our Effect Slot
+                    this->EFX->alGenAuxiliaryEffectSlots(1,&InternalEffectSlot);
+                    // Attach the two
+                    this->EFX->alAuxiliaryEffectSloti(this->InternalEffectSlot,AL_EFFECTSLOT_EFFECT,this->InternalEffect);
+                }
+
+                this->ProtoDeSerialize(SelfRoot);
             }
 
             Effect::~Effect()
@@ -371,20 +395,18 @@ namespace Mezzanine
                 // Detach our objects
                 EFX->alAuxiliaryEffectSloti(this->InternalEffectSlot,AL_EFFECTSLOT_EFFECT,this->InternalEffect);
 
-                if( this->InternalEffect != 0 )
-                {
+                if( this->InternalEffect != 0 ) {
                     // Obliterate our effect
                     EFX->alDeleteEffects(1,&InternalEffect);
                 }
 
-                if( this->InternalEffectSlot != 0 )
-                {
+                if( this->InternalEffectSlot != 0 ) {
                     // Obliterate our effect slot
                     EFX->alDeleteAuxiliaryEffectSlots(1,&InternalEffectSlot);
                 }
             }
 
-            Boole Effect::CheckError()
+            Boole Effect::CheckValid()
             {
                 Integer ALError = alGetError();
                 return ( ALError == AL_NO_ERROR );
@@ -476,8 +498,7 @@ namespace Mezzanine
 
             void Effect::AttachFilter(iFilter* Fil)
             {
-                if( this->EffectFilter != Fil )
-                {
+                if( this->EffectFilter != Fil ) {
                     this->EffectFilter = static_cast<OALS::Filter*>(Fil);
                     this->Dirty = true;
                 }
@@ -495,8 +516,7 @@ namespace Mezzanine
 
             void Effect::SetVolume(const Real Vol)
             {
-                if( this->Volume != Vol )
-                {
+                if( this->Volume != Vol ) {
                     this->EFX->alAuxiliaryEffectSlotf(this->InternalEffectSlot,AL_EFFECTSLOT_GAIN,Vol);
                     this->Dirty = true;
                 }
@@ -509,8 +529,7 @@ namespace Mezzanine
 
             void Effect::IgnoreAttenuation(Boole Ignore)
             {
-                if( this->IsIgnoringAttenuation() != Ignore )
-                {
+                if( this->IsIgnoringAttenuation() != Ignore ) {
                     this->EFX->alAuxiliaryEffectSloti(this->InternalEffectSlot,AL_EFFECTSLOT_AUXILIARY_SEND_AUTO,( this->IgnoreAtten ? AL_TRUE : AL_FALSE ));
                     this->Dirty = true;
                 }
@@ -552,7 +571,7 @@ namespace Mezzanine
                     this->EFX->alEffectf(this->InternalEffect,AL_EAXREVERB_ROOM_ROLLOFF_FACTOR,Param.RoomRolloffFactor);
                     this->EFX->alEffectf(this->InternalEffect,AL_EAXREVERB_AIR_ABSORPTION_GAINHF,Param.AirAbsorptionGainHF);
                     this->EFX->alEffecti(this->InternalEffect,AL_EAXREVERB_DECAY_HFLIMIT,(Param.DecayHFLimit ? AL_TRUE : AL_FALSE));
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -614,7 +633,7 @@ namespace Mezzanine
                     this->EFX->alEffectf(this->InternalEffect,AL_REVERB_ROOM_ROLLOFF_FACTOR,Param.RoomRolloffFactor);
                     this->EFX->alEffectf(this->InternalEffect,AL_REVERB_AIR_ABSORPTION_GAINHF,Param.AirAbsorptionGainHF);
                     this->EFX->alEffecti(this->InternalEffect,AL_REVERB_DECAY_HFLIMIT,(Param.DecayHFLimit ? AL_TRUE : AL_FALSE));
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -659,7 +678,7 @@ namespace Mezzanine
                     this->EFX->alEffectf(this->InternalEffect,AL_CHORUS_DEPTH,Param.Depth);
                     this->EFX->alEffectf(this->InternalEffect,AL_CHORUS_FEEDBACK,Param.Feedback);
                     this->EFX->alEffectf(this->InternalEffect,AL_CHORUS_DELAY,Param.Delay);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -695,7 +714,7 @@ namespace Mezzanine
                     this->EFX->alEffectf(this->InternalEffect,AL_DISTORTION_LOWPASS_CUTOFF,Param.LowpassCutoff);
                     this->EFX->alEffectf(this->InternalEffect,AL_DISTORTION_EQCENTER,Param.EqCenter);
                     this->EFX->alEffectf(this->InternalEffect,AL_DISTORTION_EQBANDWIDTH,Param.EqBandwidth);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -727,7 +746,7 @@ namespace Mezzanine
                     this->EFX->alEffectf(this->InternalEffect,AL_ECHO_DAMPING,Param.Damping);
                     this->EFX->alEffectf(this->InternalEffect,AL_ECHO_FEEDBACK,Param.Feedback);
                     this->EFX->alEffectf(this->InternalEffect,AL_ECHO_SPREAD,Param.Spread);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -760,7 +779,7 @@ namespace Mezzanine
                     this->EFX->alEffectf(this->InternalEffect,AL_FLANGER_DEPTH,Param.Depth);
                     this->EFX->alEffectf(this->InternalEffect,AL_FLANGER_FEEDBACK,Param.Feedback);
                     this->EFX->alEffectf(this->InternalEffect,AL_FLANGER_DELAY,Param.Delay);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -794,7 +813,7 @@ namespace Mezzanine
                     this->EFX->alEffecti(this->InternalEffect,AL_FREQUENCY_SHIFTER_LEFT_DIRECTION,ConvertMezzanineShiftDirectionType(Param.Left));
                     this->EFX->alEffecti(this->InternalEffect,AL_FREQUENCY_SHIFTER_RIGHT_DIRECTION,ConvertMezzanineShiftDirectionType(Param.Right));
                     this->EFX->alEffectf(this->InternalEffect,AL_FREQUENCY_SHIFTER_FREQUENCY,Param.Frequency);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -831,7 +850,7 @@ namespace Mezzanine
                     this->EFX->alEffecti(this->InternalEffect,AL_VOCAL_MORPHER_PHONEMEA_COARSE_TUNING,Param.PhonemeACoarseTune);
                     this->EFX->alEffecti(this->InternalEffect,AL_VOCAL_MORPHER_PHONEMEB_COARSE_TUNING,Param.PhonemeBCoarseTune);
                     this->EFX->alEffectf(this->InternalEffect,AL_VOCAL_MORPHER_RATE,Param.Rate);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -870,7 +889,7 @@ namespace Mezzanine
                 if( InternalType == AL_EFFECT_PITCH_SHIFTER ) {
                     this->EFX->alEffecti(this->InternalEffect,AL_PITCH_SHIFTER_COARSE_TUNE,Param.CoarseTune);
                     this->EFX->alEffecti(this->InternalEffect,AL_PITCH_SHIFTER_FINE_TUNE,Param.FineTune);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -897,7 +916,7 @@ namespace Mezzanine
                     this->EFX->alEffecti(this->InternalEffect,AL_RING_MODULATOR_WAVEFORM,ConvertMezzanineModulatorWaveformType(Param.Waveform));
                     this->EFX->alEffectf(this->InternalEffect,AL_RING_MODULATOR_FREQUENCY,Param.Frequency);
                     this->EFX->alEffectf(this->InternalEffect,AL_RING_MODULATOR_HIGHPASS_CUTOFF,Param.HighPassCutoff);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -929,7 +948,7 @@ namespace Mezzanine
                     this->EFX->alEffectf(this->InternalEffect,AL_AUTOWAH_RELEASE_TIME,Param.ReleaseTime);
                     this->EFX->alEffectf(this->InternalEffect,AL_AUTOWAH_RESONANCE,Param.Resonance);
                     this->EFX->alEffectf(this->InternalEffect,AL_AUTOWAH_PEAK_GAIN,Param.PeakGain);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -956,7 +975,7 @@ namespace Mezzanine
                 this->EFX->alGetEffecti(this->InternalEffect,AL_EFFECT_TYPE,&InternalType);
                 if( InternalType == AL_EFFECT_COMPRESSOR ) {
                     this->EFX->alEffecti(this->InternalEffect,AL_COMPRESSOR_ONOFF,( Param.Active ? AL_TRUE : AL_FALSE ));
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -992,7 +1011,7 @@ namespace Mezzanine
                     this->EFX->alEffectf(this->InternalEffect,AL_EQUALIZER_MID2_WIDTH,Param.Mid2Width);
                     this->EFX->alEffectf(this->InternalEffect,AL_EQUALIZER_HIGH_GAIN,Param.HighGain);
                     this->EFX->alEffectf(this->InternalEffect,AL_EQUALIZER_HIGH_CUTOFF,Param.HighCutoff);
-                    this->Valid = this->CheckError();
+                    this->Valid = this->CheckValid();
                 }
             }
 
@@ -1020,27 +1039,35 @@ namespace Mezzanine
             }
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            void Effect::ProtoSerialize(XML::Node& ParentNode) const
+            {
+
+            }
+
+            void Effect::ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+
+            }
+
+            String Effect::GetSerializableName()
+                { return "OALSEffect"; }
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
             UInt32 Effect::_GetInternalEffect() const
-            {
-                return this->InternalEffect;
-            }
+                { return this->InternalEffect; }
 
             UInt32 Effect::_GetInternalEffectSlot() const
-            {
-                return this->InternalEffectSlot;
-            }
+                { return this->InternalEffectSlot; }
 
             Boole Effect::_IsDirty() const
-            {
-                return (this->Dirty || this->EffectFilter->_IsDirty());
-            }
+                { return ( this->Dirty || ( this->EffectFilter && this->EffectFilter->_IsDirty() ) ); }
 
             void Effect::_Clean()
-            {
-                this->Dirty = false;
-            }
+                { this->Dirty = false; }
         }//OALS
     }//Audio
 }//Mezzanine
