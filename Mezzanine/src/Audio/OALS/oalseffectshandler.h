@@ -60,8 +60,7 @@ namespace Mezzanine
             class Filter;
             class EFXInterface;
             ///////////////////////////////////////////////////////////////////////////////
-            /// @brief This is the OpenALSoft implemenation for an Audio EffectsHandler.
-            /// @details
+            /// @brief This is the OpenALSoft implementation for an Audio EffectsHandler.
             ///////////////////////////////////////
             class MEZZ_LIB EffectsHandler : public iEffectsHandler
             {
@@ -157,52 +156,37 @@ namespace Mezzanine
                 /// @brief Const Iterator type for @ref EqualizerParameters instances stored by this class.
                 typedef EqualizerParamContainer::const_iterator       ConstEqualizerParamIterator;
             protected:
-                /// @internal
                 /// @brief Pointer to the class holding function pointers to all the OALS EFX methods
                 EFXInterface* EFX;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref iEffect instances.
                 EffectContainer Effects;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref iFilter instances.
                 FilterContainer Filters;
-                /// @internal
+
                 /// @brief Container responsible for the storage of @ref EAXReverbParameters.
                 EAXReverbParamContainer EAXReverbParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref ReverbParameters.
                 ReverbParamContainer ReverbParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref ChorusParameters.
                 ChorusParamContainer ChorusParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref DistortionParameters.
                 DistortionParamContainer DistortionParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref EchoParameters.
                 EchoParamContainer EchoParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref FlangerParameters.
                 FlangerParamContainer FlangerParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref FrequencyShiftParameters.
                 FrequencyShiftParamContainer FrequencyShiftParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref VocalMorpherParameters.
                 VocalMorpherParamContainer VocalMorpherParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref PitchShifterParameters.
                 PitchShifterParamContainer PitchShifterParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref RingModulatorParameters.
                 RingModulatorParamContainer RingModulatorParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref AutowahParameters.
                 AutowahParamContainer AutowahParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref CompressorParameters.
                 CompressorParamContainer CompressorParams;
-                /// @internal
                 /// @brief Container responsible for the storage of @ref EqualizerParameters.
                 EqualizerParamContainer EqualizerParams;
             public:
@@ -222,6 +206,8 @@ namespace Mezzanine
                 virtual Boole IsEffectSupported(const EffectType Type) const;
                 /// @copydoc iEffectsHandler::CreateEffect()
                 virtual iEffect* CreateEffect();
+                /// @copydoc iEffectsHandler::CreateEffect(const XML::Node&)
+                virtual iEffect* CreateEffect(const XML::Node& SelfRoot);
                 /// @copydoc iEffectsHandler::GetEffect(const UInt32 Index) const
                 virtual iEffect* GetEffect(const UInt32 Index) const;
                 /// @copydoc iEffectsHandler::GetNumEffects() const
@@ -238,6 +224,8 @@ namespace Mezzanine
                 virtual Boole IsFilterSupported(const FilterType Type) const;
                 /// @copydoc iEffectsHandler::CreateFilter()
                 virtual iFilter* CreateFilter();
+                /// @copydoc iEffectsHandler::CreateFilter(const XML::Node&)
+                virtual iFilter* CreateFilter(const XML::Node& SelfRoot);
                 /// @copydoc iEffectsHandler::GetFilter(const UInt32 Index) const
                 virtual iFilter* GetFilter(const UInt32 Index) const;
                 /// @copydoc iEffectsHandler::GetNumFilters() const

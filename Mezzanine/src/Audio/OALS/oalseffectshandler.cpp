@@ -147,7 +147,18 @@ namespace Mezzanine
                 if( this->EFX->Supported == false )
                     return NULL;
 
-                OALS::Effect* NewEffect = new OALS::Effect(this->EFX);
+                OALS::Effect* NewEffect = new OALS::Effect(this);
+                this->Effects.push_back(NewEffect);
+                return NewEffect;
+            }
+
+            iEffect* EffectsHandler::CreateEffect(const XML::Node& SelfRoot)
+            {
+                /// @todo Throw an exception instead?
+                if( this->EFX->Supported == false )
+                    return NULL;
+
+                OALS::Effect* NewEffect = new OALS::Effect(SelfRoot,this);
                 this->Effects.push_back(NewEffect);
                 return NewEffect;
             }
@@ -202,6 +213,17 @@ namespace Mezzanine
                     return NULL;
 
                 OALS::Filter* NewFilter = new OALS::Filter(this->EFX);
+                this->Filters.push_back(NewFilter);
+                return NewFilter;
+            }
+
+            iFilter* EffectsHandler::CreateFilter(const XML::Node& SelfRoot)
+            {
+                /// @todo Throw an exception instead?
+                if( this->EFX->Supported == false )
+                    return NULL;
+
+                OALS::Filter* NewFilter = new OALS::Filter(SelfRoot,this->EFX);
                 this->Filters.push_back(NewFilter);
                 return NewFilter;
             }

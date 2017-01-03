@@ -46,6 +46,9 @@
 #include "Audio/effect.h"
 #include "Audio/filter.h"
 #include "Audio/effectparameters.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 namespace Mezzanine
 {
@@ -53,7 +56,6 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is an interface class for the creation, destruction, and overall management of audio effects.
-        /// @details
         ///////////////////////////////////////
         class iEffectsHandler
         {
@@ -76,6 +78,10 @@ namespace Mezzanine
             /// @brief Creates an Audio Effect for use with Audio::Sound instances.
             /// @return Returns a pointer to the created Effect, or NULL if there was an error.
             virtual iEffect* CreateEffect() = 0;
+            /// @brief Creates an Audio Effect for use with Audio::Sound instances.
+            /// @param SelfRoot The XML node to create the Effect from.
+            /// @return Returns a pointer to the created Effect, or NULL if there was an error.
+            virtual iEffect* CreateEffect(const XML::Node& SelfRoot) = 0;
             /// @brief Gets an Audio::iEffect instance by index.
             /// @param Index The index of the Audio::iEffect instance to retrieve.
             /// @return Returns a pointer to the Audio::iEffect at the specified index.
@@ -99,6 +105,10 @@ namespace Mezzanine
             /// @brief Creates an Audio Filter for use with @ref iSound instances.
             /// @return Returns a pointer to the created Filter, or NULL if there was an error.
             virtual iFilter* CreateFilter() = 0;
+            /// @brief Creates an Audio Filter for use with @ref iSound instances.
+            /// @param SelfRoot The XML node to create the Filter from.
+            /// @return Returns a pointer to the created Filter, or NULL if there was an error.
+            virtual iFilter* CreateFilter(const XML::Node& SelfRoot) = 0;
             /// @brief Gets an @ref Audio::iFilter instance by index.
             /// @param Index The index of the Audio::iFilter instance to retrieve.
             /// @return Returns a pointer to the @ref Audio::iFilter at the specified index.
