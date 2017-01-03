@@ -292,6 +292,8 @@ namespace Mezzanine
                         CurrAttrib = SelfRoot.GetAttribute("HighFreqVolume");
                         if( !CurrAttrib.Empty() )
                             this->SetHighFrequencyVolume( CurrAttrib.AsReal() );
+
+                        this->Valid = this->CheckValid();
                     }else{
                         MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Filter::GetSerializableName() + ": Not Version 1.");
                     }
