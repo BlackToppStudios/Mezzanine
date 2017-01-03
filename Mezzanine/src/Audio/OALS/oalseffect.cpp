@@ -43,18 +43,20 @@
 #ifndef _audiooalseffect_cpp
 #define _audiooalseffect_cpp
 
-#include "Audio/OALS/oalseffect.h"
-#include "Audio/OALS/oalsfilter.h"
-#include "exception.h"
-
-#include "exception.h"
-#include "serialization.h"
-
-#include "Audio/OALS/oalsefxinterface.h.cpp"
-
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <AL/alext.h>
+
+#define OALS_STRUCTS_DECLARED
+
+#include "Audio/OALS/oalseffect.h"
+#include "Audio/OALS/oalsfilter.h"
+
+#include "Audio/OALS/oalsefxinterface.h.cpp"
+#include "Audio/OALS/oalseffectshandler.h"
+
+#include "exception.h"
+#include "serialization.h"
 
 #include <AL/efx.h>
 #include <AL/efx-creative.h>
@@ -840,8 +842,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Effect Methods
 
-            Effect::Effect(EFXInterface* EFXMethods) :
-                EFX(EFXMethods),
+            Effect::Effect(OALS::EffectsHandler* EFXCreator) :
+                EFX(EFXCreator->_GetEFXInterface()),
+                Creator(EFXCreator),
                 EffectFilter(NULL),
                 Volume(1.0),
                 InternalEffect(0),
@@ -862,8 +865,9 @@ namespace Mezzanine
                 }
             }
 
-            Effect::Effect(const XML::Node& SelfRoot, EFXInterface* EFXMethods) :
-                EFX(EFXMethods),
+            Effect::Effect(const XML::Node& SelfRoot, OALS::EffectsHandler* EFXCreator) :
+                EFX(EFXCreator->_GetEFXInterface()),
+                Creator(EFXCreator),
                 EffectFilter(NULL),
                 Volume(1.0),
                 InternalEffect(0),
@@ -889,16 +893,16 @@ namespace Mezzanine
             Effect::~Effect()
             {
                 // Detach our objects
-                EFX->alAuxiliaryEffectSloti(this->InternalEffectSlot,AL_EFFECTSLOT_EFFECT,this->InternalEffect);
+                this->EFX->alAuxiliaryEffectSloti(this->InternalEffectSlot,AL_EFFECTSLOT_EFFECT,this->InternalEffect);
 
                 if( this->InternalEffect != 0 ) {
                     // Obliterate our effect
-                    EFX->alDeleteEffects(1,&InternalEffect);
+                    this->EFX->alDeleteEffects(1,&InternalEffect);
                 }
 
                 if( this->InternalEffectSlot != 0 ) {
                     // Obliterate our effect slot
-                    EFX->alDeleteAuxiliaryEffectSlots(1,&InternalEffectSlot);
+                    this->EFX->alDeleteAuxiliaryEffectSlots(1,&InternalEffectSlot);
                 }
             }
 
@@ -1007,7 +1011,10 @@ namespace Mezzanine
 
             void Effect::RemoveFilter()
             {
-                this->EffectFilter = NULL;
+                if( this->EffectFilter != NULL ) {
+                    this->EffectFilter = NULL;
+                    this->Dirty = true;
+                }
             }
 
             void Effect::SetVolume(const Real Vol)
@@ -1308,12 +1315,144 @@ namespace Mezzanine
 
             void Effect::ProtoSerialize(XML::Node& ParentNode) const
             {
+                XML::Node SelfRoot = ParentNode.AppendChild(Effect::GetSerializableName());
 
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("EffectType").SetValue( this->GetType() ) &&
+                    SelfRoot.AppendAttribute("Volume").SetValue( this->GetVolume() ) &&
+                    SelfRoot.AppendAttribute("IgnoreAttenuation").SetValue( this->IsIgnoringAttenuation() ) )
+                {
+                    XML::Node ParamsNode = SelfRoot.AppendChild("EffectParams");
+                    switch( this->GetType() )
+                    {
+                        case Audio::ET_EAX_Reverb:         this->GetEAXReverbParameters().ProtoSerialize(ParamsNode);       break;
+                        case Audio::ET_Reverb:             this->GetReverbParameters().ProtoSerialize(ParamsNode);          break;
+                        case Audio::ET_Chorus:             this->GetChorusParameters().ProtoSerialize(ParamsNode);          break;
+                        case Audio::ET_Distortion:         this->GetDistortionParameters().ProtoSerialize(ParamsNode);      break;
+                        case Audio::ET_Echo:               this->GetEchoParameters().ProtoSerialize(ParamsNode);            break;
+                        case Audio::ET_Flanger:            this->GetFlangerParameters().ProtoSerialize(ParamsNode);         break;
+                        case Audio::ET_Frequency_Shifter:  this->GetFrequencyShiftParameters().ProtoSerialize(ParamsNode);  break;
+                        case Audio::ET_Vocal_Morpher:      this->GetVocalMorpherParameters().ProtoSerialize(ParamsNode);    break;
+                        case Audio::ET_Pitch_Shifter:      this->GetPitchShifterParameters().ProtoSerialize(ParamsNode);    break;
+                        case Audio::ET_Ring_Modulator:     this->GetRingModulatorParameters().ProtoSerialize(ParamsNode);   break;
+                        case Audio::ET_Autowah:            this->GetAutowahParameters().ProtoSerialize(ParamsNode);         break;
+                        case Audio::ET_Compressor:         this->GetCompressorParameters().ProtoSerialize(ParamsNode);      break;
+                        case Audio::ET_Equalizer:          this->GetEqualizerParameters().ProtoSerialize(ParamsNode);       break;
+                        case Audio::ET_Null:  default:     break;
+                    }
+
+                    XML::Node FilterNode = SelfRoot.AppendChild("EffectFilter");
+                    this->EffectFilter->ProtoSerialize( FilterNode );
+
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",Effect::GetSerializableName(),true);
+                }
             }
 
             void Effect::ProtoDeSerialize(const XML::Node& SelfRoot)
             {
+                XML::Attribute CurrAttrib;
 
+                if( SelfRoot.Name() == Effect::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("EffectType");
+                        if( !CurrAttrib.Empty() )
+                            this->SetType( static_cast<EffectType>( CurrAttrib.AsUint() ) );
+
+                        CurrAttrib = SelfRoot.GetAttribute("Volume");
+                        if( !CurrAttrib.Empty() )
+                            this->SetVolume( CurrAttrib.AsReal() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("IgnoreAttenuation");
+                        if( !CurrAttrib.Empty() )
+                            this->IgnoreAttenuation( CurrAttrib.AsBool() );
+
+                        XML::Node EffectParamsNode = SelfRoot.GetChild("EffectParams").GetFirstChild();
+                        if( !EffectParamsNode.Empty() ) {
+                            switch( this->GetType() )
+                            {
+                                case Audio::ET_EAX_Reverb: {
+                                    EAXReverbParameters Params(EffectParamsNode);
+                                    this->SetEAXReverbParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Reverb: {
+                                    ReverbParameters Params(EffectParamsNode);
+                                    this->SetReverbParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Chorus: {
+                                    ChorusParameters Params(EffectParamsNode);
+                                    this->SetChorusParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Distortion: {
+                                    DistortionParameters Params(EffectParamsNode);
+                                    this->SetDistortionParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Echo: {
+                                    EchoParameters Params(EffectParamsNode);
+                                    this->SetEchoParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Flanger: {
+                                    FlangerParameters Params(EffectParamsNode);
+                                    this->SetFlangerParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Frequency_Shifter: {
+                                    FrequencyShiftParameters Params(EffectParamsNode);
+                                    this->SetFrequencyShiftParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Vocal_Morpher: {
+                                    VocalMorpherParameters Params(EffectParamsNode);
+                                    this->SetVocalMorpherParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Pitch_Shifter: {
+                                    PitchShifterParameters Params(EffectParamsNode);
+                                    this->SetPitchShifterParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Ring_Modulator: {
+                                    RingModulatorParameters Params(EffectParamsNode);
+                                    this->SetRingModulatorParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Autowah: {
+                                    AutowahParameters Params(EffectParamsNode);
+                                    this->SetAutowahParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Compressor: {
+                                    CompressorParameters Params(EffectParamsNode);
+                                    this->SetCompressorParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Equalizer: {
+                                    EqualizerParameters Params(EffectParamsNode);
+                                    this->SetEqualizerParameters(Params);
+                                    break;
+                                }
+                                case Audio::ET_Null:  default:  break;
+                            }
+                        }
+
+                        XML::Node EffectFilterNode = SelfRoot.GetChild("EffectFilter").GetFirstChild();
+                        if( !EffectFilterNode.Empty() ) {
+                            this->EffectFilter = static_cast<OALS::Filter*>( Creator->CreateFilter(EffectFilterNode) );
+                        }
+
+                        this->Valid = this->CheckValid();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Effect::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Effect::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
             }
 
             String Effect::GetSerializableName()

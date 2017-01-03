@@ -53,6 +53,7 @@ namespace Mezzanine
         {
             class Filter;
             class EFXInterface;
+            class EffectsHandler;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OpenALSoft implemenation for an Audio Effect.
             ///////////////////////////////////////
@@ -61,6 +62,8 @@ namespace Mezzanine
             protected:
                 /// @brief Pointer to the class holding function pointers to all the OALS EFX methods
                 EFXInterface* EFX;
+                /// @brief A pointer to the creator of this Effect.
+                OALS::EffectsHandler* Creator;
                 /// @brief The filter processing audio emitted by this effect.
                 OALS::Filter* EffectFilter;
                 /// @brief This stores the volume modifier to be applied to processed Audio.
@@ -81,12 +84,12 @@ namespace Mezzanine
                 Boole CheckValid();
             public:
                 /// @brief Class constructor.
-                /// @param EFXMethods A pointer to the class storing all the methods to the EFX extension.
-                Effect(EFXInterface* EFXMethods);
+                /// @param EFXCreator A pointer to the creator of this Effect.
+                Effect(OALS::EffectsHandler* EFXCreator);
                 /// @brief Serialization constructor.
                 /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-                /// @param EFXMethods A pointer to the class storing all the methods to the EFX extension.
-                Effect(const XML::Node& SelfRoot, EFXInterface* EFXMethods);
+                /// @param EFXCreator A pointer to the creator of this Effect.
+                Effect(const XML::Node& SelfRoot, OALS::EffectsHandler* EFXCreator);
                 /// @brief Class destructor.
                 virtual ~Effect();
 
