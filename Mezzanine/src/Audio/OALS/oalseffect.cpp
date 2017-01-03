@@ -341,6 +341,11 @@ namespace Mezzanine
                 return VocalMorpherParameters::EMP_A;
             }
 
+            /// @internal
+            /// @brief Sets every EAX Reverb parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyEAXReverbParameters(EFXInterface* EFX, const UInt32 EffectID, const EAXReverbParameters& Params)
             {
                 EFX->alEffectf(EffectID,AL_EAXREVERB_DENSITY,Params.Density);
@@ -368,6 +373,11 @@ namespace Mezzanine
                 EFX->alEffecti(EffectID,AL_EAXREVERB_DECAY_HFLIMIT,(Params.DecayHFLimit ? AL_TRUE : AL_FALSE));
             }
 
+            /// @internal
+            /// @brief Gets every EAX Reverb parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a EAXReverbParameters with the currently set parameters of the effect.
             EAXReverbParameters AquireEAXReverbParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 EAXReverbParameters Ret(0,0,0,0,0,0,0,0,0,0,Vector3(0,0,0),0,0,Vector3(0,0,0),0,0,0,0,0,0,0,false);
@@ -402,6 +412,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Reverb parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyReverbParameters(EFXInterface* EFX, const UInt32 EffectID, const ReverbParameters& Params)
             {
                 EFX->alEffectf(EffectID,AL_REVERB_DENSITY,Params.Density);
@@ -419,6 +434,11 @@ namespace Mezzanine
                 EFX->alEffecti(EffectID,AL_REVERB_DECAY_HFLIMIT,(Params.DecayHFLimit ? AL_TRUE : AL_FALSE));
             }
 
+            /// @internal
+            /// @brief Gets every Reverb parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a ReverbParameters with the currently set parameters of the effect.
             ReverbParameters AquireReverbParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 ReverbParameters Ret(0,0,0,0,0,0,0,0,0,0,0,0,false);
@@ -443,6 +463,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Chorus parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyChorusParameters(EFXInterface* EFX, const UInt32 EffectID, const ChorusParameters& Params)
             {
                 EFX->alEffecti(EffectID,AL_CHORUS_WAVEFORM,ConvertMezzanineChorusWaveformType(Params.Waveform));
@@ -453,6 +478,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_CHORUS_DELAY,Params.Delay);
             }
 
+            /// @internal
+            /// @brief Gets every Chorus parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a ChorusParameters with the currently set parameters of the effect.
             ChorusParameters AquireChorusParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 ChorusParameters Ret(ChorusParameters::ECW_Triangle,0,0,0,0,0);
@@ -470,6 +500,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Distortion parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyDistortionParameters(EFXInterface* EFX, const UInt32 EffectID, const DistortionParameters& Params)
             {
                 EFX->alEffectf(EffectID,AL_DISTORTION_EDGE,Params.Edge);
@@ -479,6 +514,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_DISTORTION_EQBANDWIDTH,Params.EqBandwidth);
             }
 
+            /// @internal
+            /// @brief Gets every Distortion parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a DistortionParameters with the currently set parameters of the effect.
             DistortionParameters AquireDistortionParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 DistortionParameters Ret(0,0,0,0,0);
@@ -492,6 +532,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Echo parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyEchoParameters(EFXInterface* EFX, const UInt32 EffectID, const EchoParameters& Params)
             {
                 EFX->alEffectf(EffectID,AL_ECHO_DELAY,Params.Delay);
@@ -501,6 +546,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_ECHO_SPREAD,Params.Spread);
             }
 
+            /// @internal
+            /// @brief Gets every Echo parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a EchoParameters with the currently set parameters of the effect.
             EchoParameters AquireEchoParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 EchoParameters Ret(0,0,0,0,0);
@@ -514,6 +564,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Flanger parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyFlangerParameters(EFXInterface* EFX, const UInt32 EffectID, const FlangerParameters& Params)
             {
                 EFX->alEffecti(EffectID,AL_FLANGER_WAVEFORM,ConvertMezzanineFlangerWaveformType(Params.Waveform));
@@ -524,6 +579,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_FLANGER_DELAY,Params.Delay);
             }
 
+            /// @internal
+            /// @brief Gets every Flanger parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a FlangerParameters with the currently set parameters of the effect.
             FlangerParameters AquireFlangerParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 FlangerParameters Ret(FlangerParameters::EFW_Triangle,0,0,0,0,0);
@@ -541,6 +601,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Frequency Shift parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyFrequencyShiftParameters(EFXInterface* EFX, const UInt32 EffectID, const FrequencyShiftParameters& Params)
             {
                 EFX->alEffecti(EffectID,AL_FREQUENCY_SHIFTER_LEFT_DIRECTION,ConvertMezzanineShiftDirectionType(Params.Left));
@@ -548,6 +613,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_FREQUENCY_SHIFTER_FREQUENCY,Params.Frequency);
             }
 
+            /// @internal
+            /// @brief Gets every Frequency Shift parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a FrequencyShiftParameters with the currently set parameters of the effect.
             FrequencyShiftParameters AquireFrequencyShiftParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 FrequencyShiftParameters Ret(0,FrequencyShiftParameters::ESD_Down,FrequencyShiftParameters::ESD_Down);
@@ -565,6 +635,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Vocal Morpher parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyVocalMorpherParameters(EFXInterface* EFX, const UInt32 EffectID, const VocalMorpherParameters& Params)
             {
                 EFX->alEffecti(EffectID,AL_VOCAL_MORPHER_PHONEMEA,ConvertMezzanineMorpherPhonemeType(Params.PhonemeA));
@@ -575,6 +650,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_VOCAL_MORPHER_RATE,Params.Rate);
             }
 
+            /// @internal
+            /// @brief Gets every Vocal Morpher parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a VocalMorpherParameters with the currently set parameters of the effect.
             VocalMorpherParameters AquireVocalMorpherParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 VocalMorpherParameters Ret(VocalMorpherParameters::EMP_A,
@@ -602,12 +682,22 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Pitch Shifter parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyPitchShifterParameters(EFXInterface* EFX, const UInt32 EffectID, const PitchShifterParameters& Params)
             {
                 EFX->alEffecti(EffectID,AL_PITCH_SHIFTER_COARSE_TUNE,Params.CoarseTune);
                 EFX->alEffecti(EffectID,AL_PITCH_SHIFTER_FINE_TUNE,Params.FineTune);
             }
 
+            /// @internal
+            /// @brief Gets every Pitch Shifter parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a PitchShifterParameters with the currently set parameters of the effect.
             PitchShifterParameters AquirePitchShifterParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 PitchShifterParameters Ret(0,0);
@@ -618,6 +708,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Ring Modulator parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyRingModulatorParameters(EFXInterface* EFX, const UInt32 EffectID, const RingModulatorParameters& Params)
             {
                 EFX->alEffecti(EffectID,AL_RING_MODULATOR_WAVEFORM,ConvertMezzanineModulatorWaveformType(Params.Waveform));
@@ -625,6 +720,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_RING_MODULATOR_HIGHPASS_CUTOFF,Params.HighPassCutoff);
             }
 
+            /// @internal
+            /// @brief Gets every Ring Modulator parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a RingModulatorParameters with the currently set parameters of the effect.
             RingModulatorParameters AquireRingModulatorParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 RingModulatorParameters Ret(0,0,RingModulatorParameters::EMW_Sinusoid);
@@ -639,6 +739,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Autowah parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyAutowahParameters(EFXInterface* EFX, const UInt32 EffectID, const AutowahParameters& Params)
             {
                 EFX->alEffectf(EffectID,AL_AUTOWAH_ATTACK_TIME,Params.AttackTime);
@@ -647,6 +752,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_AUTOWAH_PEAK_GAIN,Params.PeakGain);
             }
 
+            /// @internal
+            /// @brief Gets every Autowah parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a AutowahParameters with the currently set parameters of the effect.
             AutowahParameters AquireAutowahParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 AutowahParameters Ret(0,0,0,0);
@@ -659,11 +769,21 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Compressor parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyCompressorParameters(EFXInterface* EFX, const UInt32 EffectID, const CompressorParameters& Params)
             {
                 EFX->alEffecti(EffectID,AL_COMPRESSOR_ONOFF,( Params.Active ? AL_TRUE : AL_FALSE ));
             }
 
+            /// @internal
+            /// @brief Gets every Compressor parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a CompressorParameters with the currently set parameters of the effect.
             CompressorParameters AquireCompressorParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 CompressorParameters Ret(false);
@@ -675,6 +795,11 @@ namespace Mezzanine
                 return Ret;
             }
 
+            /// @internal
+            /// @brief Sets every Equalizer parameter to the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @param Params The parameters to set.
             void ApplyEqualizerParameters(EFXInterface* EFX, const UInt32 EffectID, const EqualizerParameters& Params)
             {
                 EFX->alEffectf(EffectID,AL_EQUALIZER_LOW_GAIN,Params.LowGain);
@@ -689,6 +814,11 @@ namespace Mezzanine
                 EFX->alEffectf(EffectID,AL_EQUALIZER_HIGH_CUTOFF,Params.HighCutoff);
             }
 
+            /// @internal
+            /// @brief Gets every Equalizer parameter of the internal Effect.
+            /// @param EFX A pointer to the interface with the Audio effect control functions.
+            /// @param EffectID The ID of the effect being worked on.
+            /// @return Returns a EqualizerParameters with the currently set parameters of the effect.
             EqualizerParameters AquireEqualizerParameters(EFXInterface* EFX, const UInt32 EffectID)
             {
                 EqualizerParameters Ret(0,0,0,0,0,0,0,0,0,0);
