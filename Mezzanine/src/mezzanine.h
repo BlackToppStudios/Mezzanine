@@ -119,11 +119,14 @@
 #include "worldproxy.h"
 
 #ifndef SWIG
+#include "assetid.h"
+#include "datastream.h"
 #include "entresol.h"
 #include "entresolmanager.h"
 #include "entresolmanagerfactory.h"
 #include "eventuserinput.h"
 #include "fieldofforce.h"
+#include "filestream.h"
 #include "gravityfield.h"
 #include "gravitywell.h"
 #include "hashedstring.h"
@@ -133,6 +136,7 @@
 #include "linesegment.h"
 #include "macros.h"
 #include "managedptr.h"
+#include "memorystream.h"
 #include "meshterrain.h"
 #include "objectsettings.h"
 #include "player.h"

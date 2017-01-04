@@ -63,7 +63,7 @@
 #include "datatypes.h"
 
 #ifndef SWIG
-#include "Resource/datastream.h"
+#include "datastream.h"
 #endif
 
 namespace Mezzanine
@@ -148,11 +148,11 @@ namespace Mezzanine
         {
             protected:
                 /// @brief This is the stream that will be used for output.
-                Resource::DataStream* WrappedStream;
+                DataStream* WrappedStream;
             public:
                 /// @brief Class constructor.
                 /// @param Stream The stream to be wrapped.
-                XMLStreamWrapper(Resource::DataStream* Stream) : WrappedStream(Stream) {}
+                XMLStreamWrapper(DataStream* Stream) : WrappedStream(Stream) {}
 
                 /// @brief Class destructor.
                 virtual ~XMLStreamWrapper() {}
@@ -160,7 +160,7 @@ namespace Mezzanine
                 /// @brief Writes data to the stream.
                 /// @param data The data to be written.
                 /// @param size The number of bytes to be written.
-                void Write(const void* data, Resource::StreamSize size)
+                void Write(const void* data, StreamSize size)
                     { WrappedStream->Write(data,size); }
         };//XMLStreamWrapper
 

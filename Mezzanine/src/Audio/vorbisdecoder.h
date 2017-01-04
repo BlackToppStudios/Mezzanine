@@ -64,7 +64,7 @@ namespace Mezzanine
             VorbisDecoderInternalData* VDID;
             /// @internal
             /// @brief This is a shared pointer to the stream being decoded.
-            Resource::DataStreamPtr VorbisStream;
+            DataStreamPtr VorbisStream;
             /// @internal
             /// @brief This is used to cache the total size of the stream used by this decoder.
             Integer VorbisStreamSize;
@@ -80,7 +80,7 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             /// @param Stream The stream to decode.
-            VorbisDecoder(Resource::DataStreamPtr Stream);
+            VorbisDecoder(DataStreamPtr Stream);
             /// @brief Class destructor.
             virtual ~VorbisDecoder();
 
@@ -109,7 +109,7 @@ namespace Mezzanine
             /// @copydoc iDecoder::GetFrequency() const
             UInt32 GetFrequency() const;
             /// @copydoc iDecoder::GetStream() const
-            Resource::DataStreamPtr GetStream() const;
+            DataStreamPtr GetStream() const;
             /// @copydoc iDecoder::IsEndOfStream() const
             Boole IsEndOfStream() const;
 

@@ -70,7 +70,7 @@ namespace Mezzanine
         {
             String GroupName = mesh->getGroup();
 
-            Resource::DataStreamPtr SkeletonStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(*name,GroupName);
+            DataStreamPtr SkeletonStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(*name,GroupName);
             Ogre::DataStreamPtr SkeletonWrapper(new IOStreamWrapper(SkeletonStream.get(),false));
 
             // Verify it's not already loaded.

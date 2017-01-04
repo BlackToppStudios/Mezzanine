@@ -41,8 +41,8 @@
 #define _resourceassetgroup_cpp
 
 #include "Resource/assetgroup.h"
-#include "Resource/memorystream.h"
-#include "Resource/filestream.h"
+#include "memorystream.h"
+#include "filestream.h"
 
 #include <Ogre.h>
 
@@ -77,7 +77,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Management
 
-        Resource::DataStreamPtr AssetGroup::OpenAssetStream(const String& AssetName)
+        DataStreamPtr AssetGroup::OpenAssetStream(const String& AssetName)
         {
             /// @todo This entire method is a bit of a hack.  When the resource system gets refactored it should go through our archives or whatever equivalent.
             /// Since we currently have to put up with Ogre's system, we'll use it for now as a hack.
@@ -94,17 +94,17 @@ namespace Mezzanine
             return Ret;
         }
 
-        Resource::DataStreamPtr AssetGroup::CreateDataStream(void* Buffer, const UInt32 BufferSize)
+        DataStreamPtr AssetGroup::CreateDataStream(void* Buffer, const UInt32 BufferSize)
         {
-            Resource::DataStreamPtr NewStream( new Resource::MemoryStream(Buffer,BufferSize,true) );
+            DataStreamPtr NewStream( new MemoryStream(Buffer,BufferSize,true) );
             this->UnnamedGroupAssets.push_back(NewStream);
             return NewStream;
         }
 
-        Resource::DataStreamPtr AssetGroup::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
+        DataStreamPtr AssetGroup::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
         {
-            Resource::DataStreamPtr NewStream( new Resource::MemoryStream(Buffer,BufferSize,true) );
-            this->GroupAssets.insert(std::pair<String,Resource::DataStreamPtr>(AssetName,NewStream));
+            DataStreamPtr NewStream( new MemoryStream(Buffer,BufferSize,true) );
+            this->GroupAssets.insert(std::pair<String,DataStreamPtr>(AssetName,NewStream));
             return NewStream;
         }
     }//Resource

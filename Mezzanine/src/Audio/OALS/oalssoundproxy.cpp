@@ -255,7 +255,7 @@ namespace Mezzanine
                 return this->SoundPitch;
             }
 
-            void OALS::SoundProxy::SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            void OALS::SoundProxy::SetStream(DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
                 if( Factory != NULL ) {
@@ -267,7 +267,7 @@ namespace Mezzanine
                 }
             }
 
-            void OALS::SoundProxy::SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            void OALS::SoundProxy::SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 this->SType = Type;
                 this->SetStream(Stream,Encode);

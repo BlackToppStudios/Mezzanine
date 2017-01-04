@@ -44,7 +44,8 @@
 #include "Graphics/mesh.h"
 #include "Graphics/meshmanager.h"
 #include "Resource/resourcemanager.h"
-#include "Resource/filestream.h"
+
+#include "filestream.h"
 
 #include "Physics/collisionshape.h"
 #include "Physics/boxcollisionshape.h"
@@ -583,7 +584,7 @@ namespace Mezzanine
         void CollisionShapeManager::LoadAllShapesFromXMLFile(const String& FileName, const String& Group)
         {
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            Resource::FileStream ShapesStream( FileName, Resource::ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group) );
+            FileStream ShapesStream( FileName, Resource::ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group) );
             XML::Document ShapesDoc;
             XML::ParseResult DocResult = ShapesDoc.Load(ShapesStream);
             if( DocResult.Status != XML::StatusOk ) {
@@ -615,7 +616,7 @@ namespace Mezzanine
                 }
 
                 /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-                Resource::FileStream SettingsStream(FileName,".",Resource::SF_Truncate | Resource::SF_Write);
+                FileStream SettingsStream(FileName,".",Mezzanine::SF_Truncate | Mezzanine::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
@@ -636,7 +637,7 @@ namespace Mezzanine
                 }
 
                 /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-                Resource::FileStream SettingsStream(FileName,".",Resource::SF_Truncate | Resource::SF_Write);
+                FileStream SettingsStream(FileName,".",Mezzanine::SF_Truncate | Mezzanine::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");

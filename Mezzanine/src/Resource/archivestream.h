@@ -40,7 +40,7 @@
 #ifndef _resourcearchivestream_h
 #define _resourcearchivestream_h
 
-#include "Resource/datastream.h"
+#include "datastream.h"
 
 /// @file
 /// @brief Declaration of ArchiveStream

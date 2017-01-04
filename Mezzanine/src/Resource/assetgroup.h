@@ -40,7 +40,7 @@
 #ifndef _resourceassetgroup_h
 #define _resourceassetgroup_h
 
-#include "Resource/datastream.h"
+#include "datastream.h"
 
 namespace Mezzanine
 {
@@ -48,13 +48,12 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a class that stores a specific grouping of Assets, usually based on thier location.
-        /// @details
         ///////////////////////////////////////
         class AssetGroup
         {
         public:
             /// @brief Basic container type for @ref DataStream storage by this class.
-            typedef std::vector<Resource::DataStreamPtr>    UnnamedAssetContainer;
+            typedef std::vector<DataStreamPtr>    UnnamedAssetContainer;
             /// @brief Iterator type for @ref DataStream instances stored by this class.
             typedef UnnamedAssetContainer::iterator         UnnamedAssetIterator;
             /// @brief Const Iterator type for @ref DataStream instances stored by this class.
@@ -101,21 +100,21 @@ namespace Mezzanine
 
             /// @brief Opens a stream to an asset in an AssetGroup.
             /// @param AssetName The identity of the asset to be opened (commonly a file name).
-            Resource::DataStreamPtr OpenAssetStream(const String& AssetName);
+            DataStreamPtr OpenAssetStream(const String& AssetName);
 
             /// @brief Creates a stream from a memory buffer.
             /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
             /// @param Buffer A pointer to the memory to stream from.
             /// @param BufferSize The size of the provided buffer in bytes.
             /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            Resource::DataStreamPtr CreateDataStream(void* Buffer, const UInt32 BufferSize);
+            DataStreamPtr CreateDataStream(void* Buffer, const UInt32 BufferSize);
             /// @brief Creates a named stream from a memory buffer.
             /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
             /// @param AssetName The name to be given to the created stream.
             /// @param Buffer A pointer to the memory to stream from.
             /// @param BufferSize The size of the provided buffer in bytes.
             /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            Resource::DataStreamPtr CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize);
+            DataStreamPtr CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize);
         };//AssetGroup
     }//Resource
 }//Mezzanine
