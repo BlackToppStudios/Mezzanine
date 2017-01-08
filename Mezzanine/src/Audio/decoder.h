@@ -44,9 +44,8 @@
 #define _audiodecoder_h
 
 #include "datatypes.h"
+#include "datastream.h"
 #include "Audio/audioenumerations.h"
-
-#include "Resource/datastream.h"
 
 namespace Mezzanine
 {
@@ -54,7 +53,6 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is an interface class for the decoding of audio from a stream.
-        /// @details
         ///////////////////////////////////////
         class iDecoder
         {
@@ -90,7 +88,7 @@ namespace Mezzanine
             virtual UInt32 GetFrequency() const = 0;
             /// @brief Gets the stream being decoded.
             /// @return Returns a shared pointer to the DataStream being decoded.
-            virtual Resource::DataStreamPtr GetStream() const = 0;
+            virtual DataStreamPtr GetStream() const = 0;
             /// @brief Checks to see if the decode has reached the end of the stream.
             /// @remarks Multiple decoders may use the same stream, and when this happens the actual underlying stream position
             /// may be altered multiple times to varying positions in the stream.  Because of this, checking the underlying

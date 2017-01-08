@@ -71,7 +71,7 @@
 #include "Resource/resourcemanager.h"
 #include "UI/uimanager.h"
 
-#include "Resource/filestream.h"
+#include "filestream.h"
 
 // Enabled implementation includes
 #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
@@ -278,7 +278,7 @@ namespace Mezzanine
 
         // Open and load the initializer doc.
         Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager) );
-        Resource::FileStream InitStream(InitializerFile,EngineDataPath);
+        FileStream InitStream(InitializerFile,EngineDataPath);
         XML::Document InitDoc;
         XML::ParseResult DocResult = InitDoc.Load(InitStream);
         if( DocResult.Status != XML::StatusOk ) {
@@ -345,7 +345,7 @@ namespace Mezzanine
         // Load additional resource groups
         if( !ResourceInit.empty() ) {
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            Resource::FileStream ResourceStream(ResourceInit,EngineDataPath);
+            FileStream ResourceStream(ResourceInit,EngineDataPath);
             XML::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.

@@ -42,9 +42,10 @@
 
 #include "Resource/resourcemanager.h"
 #include "Resource/resourceenumerations.h"
-#include "Resource/filestream.h"
-#include "Resource/memorystream.h"
 #include "Resource/assetgroup.h"
+
+#include "filestream.h"
+#include "memorystream.h"
 
 #include "Graphics/meshmanager.h"
 
@@ -91,16 +92,16 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Management
 
-        Resource::DataStreamPtr ResourceManager::OpenAssetStream(const String& AssetName, const String& GroupName)
+        DataStreamPtr ResourceManager::OpenAssetStream(const String& AssetName, const String& GroupName)
             { return this->GetAssetGroupExcept(GroupName)->OpenAssetStream(AssetName); }
 
-        Resource::DataStreamPtr ResourceManager::CreateDataStream(void* Buffer, const UInt32 BufferSize)
+        DataStreamPtr ResourceManager::CreateDataStream(void* Buffer, const UInt32 BufferSize)
             { return this->GetAssetGroupExcept("")->CreateDataStream(Buffer,BufferSize); }
 
-        Resource::DataStreamPtr ResourceManager::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
+        DataStreamPtr ResourceManager::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
             { return this->GetAssetGroupExcept("")->CreateDataStream(AssetName,Buffer,BufferSize); }
 
-        Resource::DataStreamPtr ResourceManager::CreateDataStream(const String& AssetName, const String& GroupName, void* Buffer, const UInt32 BufferSize)
+        DataStreamPtr ResourceManager::CreateDataStream(const String& AssetName, const String& GroupName, void* Buffer, const UInt32 BufferSize)
             { return this->GetAssetGroupExcept(GroupName)->CreateDataStream(AssetName,Buffer,BufferSize); }
 
         ///////////////////////////////////////////////////////////////////////////////

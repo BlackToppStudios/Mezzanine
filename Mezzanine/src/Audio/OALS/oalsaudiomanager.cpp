@@ -385,7 +385,7 @@ namespace Mezzanine
                 return NewSound;
             }
 
-            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
@@ -400,7 +400,7 @@ namespace Mezzanine
                 return NewSound;
             }
 
-            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
@@ -422,7 +422,7 @@ namespace Mezzanine
 
                 // Setup our needed parameters
                 Audio::Encoding Encode = Audio::Enc_RAW;
-                Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(FileName,Group);
+                DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(FileName,Group);
 
                 // Figure out the encoding from the filename
                 String Extension = FileName.substr(FileName.find_last_of(".")+1);
@@ -452,7 +452,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 // Create our stream and get on with it
-                Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(SoundName,Buffer,Length);
+                DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(SoundName,Buffer,Length);
 
                 return this->CreateSound(Type,SoundStream,Encode);
             }
@@ -463,7 +463,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 // Create our stream and get on with it
-                Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(SoundName,Buffer,Length);
+                DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(SoundName,Buffer,Length);
 
                 return this->CreateSound(Type,SoundStream,Frequency,Config);
             }

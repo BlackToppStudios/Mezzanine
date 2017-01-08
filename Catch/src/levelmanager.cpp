@@ -1258,7 +1258,7 @@ void CatchLevel::DeSerializeLevelData(const XML::Document& LevelDoc)
                     // Next attempt to load the specified file, if one is specified
                     CurrAttrib = (*ScriptNodeIt).GetAttribute("FileName");
                     if( !CurrAttrib.Empty() ) {
-                        Resource::DataStreamPtr ScriptStream = ResourceMan->OpenAssetStream( CurrAttrib.AsString(), this->LevelName );
+                        DataStreamPtr ScriptStream = ResourceMan->OpenAssetStream( CurrAttrib.AsString(), this->LevelName );
                         ScriptSource = ScriptStream->GetAsString();
                     }
                 }
@@ -1338,7 +1338,7 @@ Whole LevelManager::DetectLevels()
             ResourceMan->AddAssetLocation(CompletePath,Resource::AT_Zip,AssetGroupName);
 
             LevelDoc.Reset();
-            Resource::DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);
+            DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);
             LevelDoc.Load( *LevelStream.Get() );
 
             GameLevel* NewLevel = new GameLevel(AssetGroupName,LevelDoc);

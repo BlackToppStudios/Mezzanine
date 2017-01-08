@@ -42,9 +42,9 @@
 
 #include "objectsettings.h"
 #include "stringtool.h"
+#include "filestream.h"
 #include "Resource/resourcemanager.h"
 #include "Resource/resourceutilities.h"
-#include "Resource/filestream.h"
 
 namespace Mezzanine
 {
@@ -330,7 +330,7 @@ namespace Mezzanine
         try
         {
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            Resource::FileStream SettingsStream(FileName,Path);
+            FileStream SettingsStream(FileName,Path);
             SettingsDoc.Load(SettingsStream);
         }
         catch( FileNotFoundException Ex )
@@ -374,7 +374,7 @@ namespace Mezzanine
             else this->SaveSettingsToXML(GroupNames,RootNode);
             // Open a stream to the saving file
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            Resource::FileStream SettingsStream(FileName,Path,Resource::SF_Truncate | Resource::SF_Write);
+            FileStream SettingsStream(FileName,Path,Mezzanine::SF_Truncate | Mezzanine::SF_Write);
             SettingsDoc.Save(SettingsStream,"\t",XML::FormatIndent);
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
