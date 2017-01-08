@@ -93,6 +93,23 @@ namespace Mezzanine
             SourceType(AssetSourceType::AST_Memory),
             StreamDesc(AssetStreamDesc::ASD_None)
             {  }
+        /// @brief Copy constructor.
+        /// @param Other The other AssetID to copy from.
+        AssetID(const AssetID& Other) :
+            SourceType(Other.SourceType),
+            StreamDesc(Other.StreamDesc),
+            GroupName(Other.GroupName),
+            Identifier(Other.Identifier)
+            {  }
+        /// @brief Move constructor.
+        /// @param Other The other AssetID to be moved.
+        AssetID(AssetID&& Other) :
+            SourceType(Other.SourceType),
+            StreamDesc(Other.StreamDesc)
+        {
+            this->GroupName.swap(Other.GroupName);
+            this->Identifier.swap(Other.Identifier);
+        }
         /// @brief Source-Stream constructor.
         /// @param Source The type of storage the asset is being streamed from.
         /// @param Stream Additional details for the stream to the asset.
@@ -227,6 +244,18 @@ namespace Mezzanine
                 return ( this->GroupName > Other.GroupName );
 
             return ( this->Identifier > Other.Identifier );
+        }
+
+        /// @brief Assignment operator.
+        /// @param Other The other AssetID to be copied.
+        /// @return Returns a reference to this.
+        AssetID& operator=(const AssetID& Other)
+        {
+            this->SourceType = Other.SourceType;
+            this->StreamDesc = Other.StreamDesc;
+            this->GroupName = Other.GroupName;
+            this->Identifier = Other.Identifier;
+            return *this;
         }
 
         /// @brief Equality operator.
