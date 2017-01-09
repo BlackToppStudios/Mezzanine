@@ -1129,9 +1129,9 @@ endif(UNIX)
 
 # Ensure that the extra cflags are used at compile time
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${EXTRA_CFLAGS}")
-if(NOT ${WIN32})
+if(NOT WIN32)
     add_definitions(-fPIC)
-endif(NOT ${WIN32})
+endif(NOT WIN32)
 
 # Always build SDLmain
 add_library(SDL2main STATIC ${SDLMAIN_SOURCES})
