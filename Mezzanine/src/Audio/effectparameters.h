@@ -45,6 +45,12 @@
 
 #include "vector3.h"
 #include "Audio/audioenumerations.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
+
+#include "exception.h"
+#include "serialization.h"
 
 namespace Mezzanine
 {
@@ -233,16 +239,216 @@ namespace Mezzanine
                 Real hFReference = 5000.0f,
                 Real lFReference = 250.0f,
                 Real roomRolloffFactor = 0.0f,
-                Boole decayHFLimit = true) :
-                Density(density), Diffusion(diffusion), Gain(gain), GainHF(gainHF), GainLF(gainLF),
-                DecayTime(decayTime), DecayHFRatio(decayHFRatio), DecayLFRatio(decayLFRatio),
-                ReflectionsGain(reflectionsGain), ReflectionsDelay(reflectionsDelay),
-                ReflectionsPan(reflectionsPan), LateReverbGain(lateReverbGain),
-                LateReverbDelay(lateReverbDelay), LateReverbPan(lateReverbPan),
-                EchoTime(echoTime), EchoDepth(echoDepth),ModulationTime(modulationTime),
-                ModulationDepth(modulationDepth), AirAbsorptionGainHF(airAbsorptionGainHF),
-                HFReference(hFReference), LFReference(lFReference),
-                RoomRolloffFactor(roomRolloffFactor), DecayHFLimit(decayHFLimit) {  }
+                Boole decayHFLimit = true)
+                :
+                Density(density),
+                Diffusion(diffusion),
+                Gain(gain),
+                GainHF(gainHF),
+                GainLF(gainLF),
+                DecayTime(decayTime),
+                DecayHFRatio(decayHFRatio),
+                DecayLFRatio(decayLFRatio),
+                ReflectionsGain(reflectionsGain),
+                ReflectionsDelay(reflectionsDelay),
+                ReflectionsPan(reflectionsPan),
+                LateReverbGain(lateReverbGain),
+                LateReverbDelay(lateReverbDelay),
+                LateReverbPan(lateReverbPan),
+                EchoTime(echoTime),
+                EchoDepth(echoDepth),
+                ModulationTime(modulationTime),
+                ModulationDepth(modulationDepth),
+                AirAbsorptionGainHF(airAbsorptionGainHF),
+                HFReference(hFReference),
+                LFReference(lFReference),
+                RoomRolloffFactor(roomRolloffFactor),
+                DecayHFLimit(decayHFLimit)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            EAXReverbParameters(const XML::Node& SelfRoot) :
+                Density(1.0f),
+                Diffusion(1.0f),
+                Gain(0.32f),
+                GainHF(0.89f),
+                GainLF(0.0f),
+                DecayTime(1.49f),
+                DecayHFRatio(0.83f),
+                DecayLFRatio(1.0f),
+                ReflectionsGain(0.05f),
+                ReflectionsDelay(0.007f),
+                ReflectionsPan(0.0f,0.0f,0.0f),
+                LateReverbGain(1.26f),
+                LateReverbDelay(0.011f),
+                LateReverbPan(0.0f,0.0f,0.0f),
+                EchoTime(0.25f),
+                EchoDepth(0.0f),
+                ModulationTime(0.25f),
+                ModulationDepth(0.0f),
+                AirAbsorptionGainHF(0.994f),
+                HFReference(5000.0f),
+                LFReference(250.0f),
+                RoomRolloffFactor(0.0f),
+                DecayHFLimit(true)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(EAXReverbParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Density").SetValue( this->Density ) &&
+                    SelfRoot.AppendAttribute("Diffusion").SetValue( this->Diffusion ) &&
+                    SelfRoot.AppendAttribute("Gain").SetValue( this->Gain ) &&
+                    SelfRoot.AppendAttribute("GainHF").SetValue( this->GainHF ) &&
+                    SelfRoot.AppendAttribute("GainLF").SetValue( this->GainLF ) &&
+                    SelfRoot.AppendAttribute("DecayTime").SetValue( this->DecayTime ) &&
+                    SelfRoot.AppendAttribute("DecayHFRatio").SetValue( this->DecayHFRatio ) &&
+                    SelfRoot.AppendAttribute("DecayLFRatio").SetValue( this->DecayLFRatio ) &&
+                    SelfRoot.AppendAttribute("ReflectionsGain").SetValue( this->ReflectionsGain ) &&
+                    SelfRoot.AppendAttribute("ReflectionsDelay").SetValue( this->ReflectionsDelay ) &&
+                    SelfRoot.AppendAttribute("LateReverbGain").SetValue( this->LateReverbGain ) &&
+                    SelfRoot.AppendAttribute("LateReverbDelay").SetValue( this->LateReverbDelay ) &&
+                    SelfRoot.AppendAttribute("EchoTime").SetValue( this->EchoTime ) &&
+                    SelfRoot.AppendAttribute("EchoDepth").SetValue( this->EchoDepth ) &&
+                    SelfRoot.AppendAttribute("ModulationTime").SetValue( this->ModulationTime ) &&
+                    SelfRoot.AppendAttribute("ModulationDepth").SetValue( this->ModulationDepth ) &&
+                    SelfRoot.AppendAttribute("AirAbsorptionGainHF").SetValue( this->AirAbsorptionGainHF ) &&
+                    SelfRoot.AppendAttribute("HFReference").SetValue( this->HFReference ) &&
+                    SelfRoot.AppendAttribute("LFReference").SetValue( this->LFReference ) &&
+                    SelfRoot.AppendAttribute("RoomRolloffFactor").SetValue( this->RoomRolloffFactor ) &&
+                    SelfRoot.AppendAttribute("DecayHFLimit").SetValue( this->DecayHFLimit ) )
+                {
+                    XML::Node ReflectionsPanNode = SelfRoot.AppendChild("ReflectionsPan");
+                    this->ReflectionsPan.ProtoSerialize( ReflectionsPanNode );
+                    XML::Node LateReverbPanNode = SelfRoot.AppendChild("LateReverbPan");
+                    this->LateReverbPan.ProtoSerialize( LateReverbPanNode );
+
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",EAXReverbParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == EAXReverbParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Density");
+                        if( !CurrAttrib.Empty() )
+                            this->Density = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Diffusion");
+                        if( !CurrAttrib.Empty() )
+                            this->Diffusion = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Gain");
+                        if( !CurrAttrib.Empty() )
+                            this->Gain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("GainHF");
+                        if( !CurrAttrib.Empty() )
+                            this->GainHF = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("GainLF");
+                        if( !CurrAttrib.Empty() )
+                            this->GainLF = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("DecayTime");
+                        if( !CurrAttrib.Empty() )
+                            this->DecayTime = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("DecayHFRatio");
+                        if( !CurrAttrib.Empty() )
+                            this->DecayHFRatio = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("DecayLFRatio");
+                        if( !CurrAttrib.Empty() )
+                            this->DecayLFRatio = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("ReflectionsGain");
+                        if( !CurrAttrib.Empty() )
+                            this->ReflectionsGain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("ReflectionsDelay");
+                        if( !CurrAttrib.Empty() )
+                            this->ReflectionsDelay = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("LateReverbGain");
+                        if( !CurrAttrib.Empty() )
+                            this->LateReverbGain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("LateReverbDelay");
+                        if( !CurrAttrib.Empty() )
+                            this->LateReverbDelay = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("EchoTime");
+                        if( !CurrAttrib.Empty() )
+                            this->EchoTime = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("EchoDepth");
+                        if( !CurrAttrib.Empty() )
+                            this->EchoDepth = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("ModulationTime");
+                        if( !CurrAttrib.Empty() )
+                            this->ModulationTime = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("ModulationDepth");
+                        if( !CurrAttrib.Empty() )
+                            this->ModulationDepth = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("AirAbsorptionGainHF");
+                        if( !CurrAttrib.Empty() )
+                            this->AirAbsorptionGainHF = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("HFReference");
+                        if( !CurrAttrib.Empty() )
+                            this->HFReference = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("LFReference");
+                        if( !CurrAttrib.Empty() )
+                            this->LFReference = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("RoomRolloffFactor");
+                        if( !CurrAttrib.Empty() )
+                            this->RoomRolloffFactor = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("DecayHFLimit");
+                        if( !CurrAttrib.Empty() )
+                            this->DecayHFLimit = CurrAttrib.AsBool();
+
+                        XML::Node ReflectionsPanNode = SelfRoot.GetChild("ReflectionsPan").GetFirstChild();
+                        if( !ReflectionsPanNode.Empty() ) {
+                            this->ReflectionsPan.ProtoDeSerialize(ReflectionsPanNode);
+                        }
+
+                        XML::Node LateReverbPanNode = SelfRoot.GetChild("LateReverbPan").GetFirstChild();
+                        if( !LateReverbPanNode.Empty() ) {
+                            this->LateReverbPan.ProtoDeSerialize(LateReverbPanNode);
+                        }
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + EAXReverbParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,EAXReverbParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "EAXReverbParameters"; }
         };//EAXReverbParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -346,13 +552,141 @@ namespace Mezzanine
                 Real lateReverbDelay = 0.011f,
                 Real airAbsorptionGainHF = 0.994f,
                 Real roomRolloffFactor = 0.0f,
-                Boole decayHFLimit = true) :
-                Density(density), Diffusion(diffusion), Gain(gain), GainHF(gainHF),
-                DecayTime(decayTime), DecayHFRatio(decayHFRatio),
-                ReflectionsGain(reflectionsGain), ReflectionsDelay(reflectionsDelay),
-                LateReverbGain(lateReverbGain), LateReverbDelay(lateReverbDelay),
-                AirAbsorptionGainHF(airAbsorptionGainHF), RoomRolloffFactor(roomRolloffFactor),
-                DecayHFLimit(decayHFLimit) {  }
+                Boole decayHFLimit = true)
+                :
+                Density(density),
+                Diffusion(diffusion),
+                Gain(gain),
+                GainHF(gainHF),
+                DecayTime(decayTime),
+                DecayHFRatio(decayHFRatio),
+                ReflectionsGain(reflectionsGain),
+                ReflectionsDelay(reflectionsDelay),
+                LateReverbGain(lateReverbGain),
+                LateReverbDelay(lateReverbDelay),
+                AirAbsorptionGainHF(airAbsorptionGainHF),
+                RoomRolloffFactor(roomRolloffFactor),
+                DecayHFLimit(decayHFLimit)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            ReverbParameters(const XML::Node& SelfRoot) :
+                Density(1.0f),
+                Diffusion(1.0f),
+                Gain(0.32f),
+                GainHF(0.89f),
+                DecayTime(1.49f),
+                DecayHFRatio(0.83f),
+                ReflectionsGain(0.05f),
+                ReflectionsDelay(0.007f),
+                LateReverbGain(1.26f),
+                LateReverbDelay(0.011f),
+                AirAbsorptionGainHF(0.994f),
+                RoomRolloffFactor(0.0f),
+                DecayHFLimit(true)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(ReverbParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Density").SetValue( this->Density ) &&
+                    SelfRoot.AppendAttribute("Diffusion").SetValue( this->Diffusion ) &&
+                    SelfRoot.AppendAttribute("Gain").SetValue( this->Gain ) &&
+                    SelfRoot.AppendAttribute("GainHF").SetValue( this->GainHF ) &&
+                    SelfRoot.AppendAttribute("DecayTime").SetValue( this->DecayTime ) &&
+                    SelfRoot.AppendAttribute("DecayHFRatio").SetValue( this->DecayHFRatio ) &&
+                    SelfRoot.AppendAttribute("ReflectionsGain").SetValue( this->ReflectionsGain ) &&
+                    SelfRoot.AppendAttribute("ReflectionsDelay").SetValue( this->ReflectionsDelay ) &&
+                    SelfRoot.AppendAttribute("LateReverbGain").SetValue( this->LateReverbGain ) &&
+                    SelfRoot.AppendAttribute("LateReverbDelay").SetValue( this->LateReverbDelay ) &&
+                    SelfRoot.AppendAttribute("AirAbsorptionGainHF").SetValue( this->AirAbsorptionGainHF ) &&
+                    SelfRoot.AppendAttribute("RoomRolloffFactor").SetValue( this->RoomRolloffFactor ) &&
+                    SelfRoot.AppendAttribute("DecayHFLimit").SetValue( this->DecayHFLimit ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",ReverbParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == ReverbParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Density");
+                        if( !CurrAttrib.Empty() )
+                            this->Density = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Diffusion");
+                        if( !CurrAttrib.Empty() )
+                            this->Diffusion = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Gain");
+                        if( !CurrAttrib.Empty() )
+                            this->Gain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("GainHF");
+                        if( !CurrAttrib.Empty() )
+                            this->GainHF = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("DecayTime");
+                        if( !CurrAttrib.Empty() )
+                            this->DecayTime = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("DecayHFRatio");
+                        if( !CurrAttrib.Empty() )
+                            this->DecayHFRatio = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("ReflectionsGain");
+                        if( !CurrAttrib.Empty() )
+                            this->ReflectionsGain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("ReflectionsDelay");
+                        if( !CurrAttrib.Empty() )
+                            this->ReflectionsDelay = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("LateReverbGain");
+                        if( !CurrAttrib.Empty() )
+                            this->LateReverbGain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("LateReverbDelay");
+                        if( !CurrAttrib.Empty() )
+                            this->LateReverbDelay = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("AirAbsorptionGainHF");
+                        if( !CurrAttrib.Empty() )
+                            this->AirAbsorptionGainHF = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("RoomRolloffFactor");
+                        if( !CurrAttrib.Empty() )
+                            this->RoomRolloffFactor = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("DecayHFLimit");
+                        if( !CurrAttrib.Empty() )
+                            this->DecayHFLimit = CurrAttrib.AsBool();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ReverbParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ReverbParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "ReverbParameters"; }
         };//ReverbParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -402,10 +736,93 @@ namespace Mezzanine
                 Real rate = 1.1f,
                 Real depth = 0.1f,
                 Real feedback = 0.25f,
-                Real delay = 0.016f) :
-                Waveform(waveform), Phase(phase), Rate(rate), Depth(depth), Feedback(feedback),
-                Delay(delay) {  }
-        };// ChorusParameters
+                Real delay = 0.016f)
+                :
+                Waveform(waveform),
+                Phase(phase),
+                Rate(rate),
+                Depth(depth),
+                Feedback(feedback),
+                Delay(delay)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            ChorusParameters(const XML::Node& SelfRoot) :
+                Waveform(ECW_Triangle),
+                Phase(90),
+                Rate(1.1f),
+                Depth(0.1f),
+                Feedback(0.25f),
+                Delay(0.016f)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(ChorusParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Waveform").SetValue( this->Waveform ) &&
+                    SelfRoot.AppendAttribute("Phase").SetValue( this->Phase ) &&
+                    SelfRoot.AppendAttribute("Rate").SetValue( this->Rate ) &&
+                    SelfRoot.AppendAttribute("Depth").SetValue( this->Depth ) &&
+                    SelfRoot.AppendAttribute("Feedback").SetValue( this->Feedback ) &&
+                    SelfRoot.AppendAttribute("Delay").SetValue( this->Delay ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",ChorusParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == ChorusParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Waveform");
+                        if( !CurrAttrib.Empty() )
+                            this->Waveform = static_cast<ChorusWaveform>( CurrAttrib.AsUint() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("Phase");
+                        if( !CurrAttrib.Empty() )
+                            this->Phase = CurrAttrib.AsInt();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Rate");
+                        if( !CurrAttrib.Empty() )
+                            this->Rate = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Depth");
+                        if( !CurrAttrib.Empty() )
+                            this->Depth = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Feedback");
+                        if( !CurrAttrib.Empty() )
+                            this->Feedback = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Delay");
+                        if( !CurrAttrib.Empty() )
+                            this->Delay = CurrAttrib.AsReal();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ChorusParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ChorusParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "ChorusParameters"; }
+        };//ChorusParameters
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a struct containing all the parameters needed to describe a Distortion effect.
@@ -440,9 +857,85 @@ namespace Mezzanine
                 Real gain = 0.05f,
                 Real lowpassCutoff = 8000.0f,
                 Real eqCenter = 3600.0f,
-                Real eqBandwidth = 3600.0f) :
-                Edge(edge), Gain(gain), LowpassCutoff(lowpassCutoff), EqCenter(eqCenter),
-                EqBandwidth(eqBandwidth) {  }
+                Real eqBandwidth = 3600.0f)
+                :
+                Edge(edge),
+                Gain(gain),
+                LowpassCutoff(lowpassCutoff),
+                EqCenter(eqCenter),
+                EqBandwidth(eqBandwidth)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            DistortionParameters(const XML::Node& SelfRoot) :
+                Edge(0.2f),
+                Gain(0.05f),
+                LowpassCutoff(8000.0f),
+                EqCenter(3600.0f),
+                EqBandwidth(3600.0f)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(DistortionParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Edge").SetValue( this->Edge ) &&
+                    SelfRoot.AppendAttribute("Gain").SetValue( this->Gain ) &&
+                    SelfRoot.AppendAttribute("LowpassCutoff").SetValue( this->LowpassCutoff ) &&
+                    SelfRoot.AppendAttribute("EqCenter").SetValue( this->EqCenter ) &&
+                    SelfRoot.AppendAttribute("EqBandwidth").SetValue( this->EqBandwidth ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",DistortionParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == DistortionParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Edge");
+                        if( !CurrAttrib.Empty() )
+                            this->Edge = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Gain");
+                        if( !CurrAttrib.Empty() )
+                            this->Gain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("LowpassCutoff");
+                        if( !CurrAttrib.Empty() )
+                            this->LowpassCutoff = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("EqCenter");
+                        if( !CurrAttrib.Empty() )
+                            this->EqCenter = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("EqBandwidth");
+                        if( !CurrAttrib.Empty() )
+                            this->EqBandwidth = CurrAttrib.AsReal();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + DistortionParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,DistortionParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "DistortionParameters"; }
         };//DistortionParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -481,9 +974,85 @@ namespace Mezzanine
                 Real lRDelay = 0.1f,
                 Real damping = 0.5f,
                 Real feedback = 0.5f,
-                Real spread = -1.0f) :
-                Delay(delay), LRDelay(lRDelay), Damping(damping), Feedback(feedback),
-                Spread(spread) {  }
+                Real spread = -1.0f)
+                :
+                Delay(delay),
+                LRDelay(lRDelay),
+                Damping(damping),
+                Feedback(feedback),
+                Spread(spread)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            EchoParameters(const XML::Node& SelfRoot) :
+                Delay(0.1f),
+                LRDelay(0.1f),
+                Damping(0.5f),
+                Feedback(0.5f),
+                Spread(-1.0f)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(EchoParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Delay").SetValue( this->Delay ) &&
+                    SelfRoot.AppendAttribute("LRDelay").SetValue( this->LRDelay ) &&
+                    SelfRoot.AppendAttribute("Damping").SetValue( this->Damping ) &&
+                    SelfRoot.AppendAttribute("Feedback").SetValue( this->Feedback ) &&
+                    SelfRoot.AppendAttribute("Spread").SetValue( this->Spread ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",EchoParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == EchoParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Delay");
+                        if( !CurrAttrib.Empty() )
+                            this->Delay = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("LRDelay");
+                        if( !CurrAttrib.Empty() )
+                            this->LRDelay = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Damping");
+                        if( !CurrAttrib.Empty() )
+                            this->Damping = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Feedback");
+                        if( !CurrAttrib.Empty() )
+                            this->Feedback = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Spread");
+                        if( !CurrAttrib.Empty() )
+                            this->Spread = CurrAttrib.AsReal();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + EchoParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,EchoParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "EchoParameters"; }
         };//EchoParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -531,9 +1100,92 @@ namespace Mezzanine
                 Real rate = 0.27f,
                 Real depth = 1.0f,
                 Real feedback = -0.5f,
-                Real delay = 0.002f) :
-                Waveform(waveform), Phase(phase), Rate(rate), Depth(depth), Feedback(feedback),
-                Delay(delay) {  }
+                Real delay = 0.002f)
+                :
+                Waveform(waveform),
+                Phase(phase),
+                Rate(rate),
+                Depth(depth),
+                Feedback(feedback),
+                Delay(delay)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            FlangerParameters(const XML::Node& SelfRoot) :
+                Waveform(EFW_Triangle),
+                Phase(0),
+                Rate(0.27f),
+                Depth(1.0f),
+                Feedback(-0.5f),
+                Delay(0.002f)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(FlangerParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Waveform").SetValue( this->Waveform ) &&
+                    SelfRoot.AppendAttribute("Phase").SetValue( this->Phase ) &&
+                    SelfRoot.AppendAttribute("Rate").SetValue( this->Rate ) &&
+                    SelfRoot.AppendAttribute("Depth").SetValue( this->Depth ) &&
+                    SelfRoot.AppendAttribute("Feedback").SetValue( this->Feedback ) &&
+                    SelfRoot.AppendAttribute("Delay").SetValue( this->Delay ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",FlangerParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == FlangerParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Waveform");
+                        if( !CurrAttrib.Empty() )
+                            this->Waveform = static_cast<FlangerWaveform>( CurrAttrib.AsUint() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("Phase");
+                        if( !CurrAttrib.Empty() )
+                            this->Phase = CurrAttrib.AsInt();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Rate");
+                        if( !CurrAttrib.Empty() )
+                            this->Rate = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Depth");
+                        if( !CurrAttrib.Empty() )
+                            this->Depth = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Feedback");
+                        if( !CurrAttrib.Empty() )
+                            this->Feedback = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Delay");
+                        if( !CurrAttrib.Empty() )
+                            this->Delay = CurrAttrib.AsReal();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + FlangerParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,FlangerParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "FlangerParameters"; }
         };//FlangerParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -569,8 +1221,71 @@ namespace Mezzanine
             FrequencyShiftParameters(
                 Real frequency = 0.0f,
                 ShiftDirection left = ESD_Down,
-                ShiftDirection right = ESD_Down) :
-                Frequency(frequency), Left(left), Right(right) {  }
+                ShiftDirection right = ESD_Down)
+                :
+                Frequency(frequency),
+                Left(left),
+                Right(right)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            FrequencyShiftParameters(const XML::Node& SelfRoot) :
+                Frequency(0.0f),
+                Left(ESD_Down),
+                Right(ESD_Down)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(FrequencyShiftParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Frequency").SetValue( this->Frequency ) &&
+                    SelfRoot.AppendAttribute("Left").SetValue( this->Left ) &&
+                    SelfRoot.AppendAttribute("Right").SetValue( this->Right ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",FrequencyShiftParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == FrequencyShiftParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Frequency");
+                        if( !CurrAttrib.Empty() )
+                            this->Frequency = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Left");
+                        if( !CurrAttrib.Empty() )
+                            this->Left = static_cast<ShiftDirection>( CurrAttrib.AsUint() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("Right");
+                        if( !CurrAttrib.Empty() )
+                            this->Right = static_cast<ShiftDirection>( CurrAttrib.AsUint() );
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + FrequencyShiftParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,FrequencyShiftParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "FrequencyShiftParameters"; }
         };//FrequencyShiftParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -655,9 +1370,92 @@ namespace Mezzanine
                 Integer phonemeACoarseTune = 0,
                 Integer phonemeBCoarseTune = 0,
                 MorpherWaveform waveform = EMW_Sinusoid,
-                Real rate = 1.41f) :
-                PhonemeA(phonemeA), PhonemeB(phonemeB), PhonemeACoarseTune(phonemeACoarseTune),
-                PhonemeBCoarseTune(phonemeBCoarseTune), Waveform(waveform), Rate(rate) {  }
+                Real rate = 1.41f)
+                :
+                PhonemeA(phonemeA),
+                PhonemeB(phonemeB),
+                PhonemeACoarseTune(phonemeACoarseTune),
+                PhonemeBCoarseTune(phonemeBCoarseTune),
+                Waveform(waveform),
+                Rate(rate)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            VocalMorpherParameters(const XML::Node& SelfRoot) :
+                PhonemeA(EMP_A),
+                PhonemeB(EMP_ER),
+                PhonemeACoarseTune(0),
+                PhonemeBCoarseTune(0),
+                Waveform(EMW_Sinusoid),
+                Rate(1.41f)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(VocalMorpherParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("PhonemeA").SetValue( this->PhonemeA ) &&
+                    SelfRoot.AppendAttribute("PhonemeB").SetValue( this->PhonemeB ) &&
+                    SelfRoot.AppendAttribute("PhonemeACoarseTune").SetValue( this->PhonemeACoarseTune ) &&
+                    SelfRoot.AppendAttribute("PhonemeBCoarseTune").SetValue( this->PhonemeBCoarseTune ) &&
+                    SelfRoot.AppendAttribute("Waveform").SetValue( this->Waveform ) &&
+                    SelfRoot.AppendAttribute("Rate").SetValue( this->Rate ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",VocalMorpherParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == VocalMorpherParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("PhonemeA");
+                        if( !CurrAttrib.Empty() )
+                            this->PhonemeA = static_cast<MorpherPhoneme>( CurrAttrib.AsUint() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("PhonemeB");
+                        if( !CurrAttrib.Empty() )
+                            this->PhonemeB = static_cast<MorpherPhoneme>( CurrAttrib.AsUint() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("PhonemeACoarseTune");
+                        if( !CurrAttrib.Empty() )
+                            this->PhonemeACoarseTune = CurrAttrib.AsInt();
+
+                        CurrAttrib = SelfRoot.GetAttribute("PhonemeBCoarseTune");
+                        if( !CurrAttrib.Empty() )
+                            this->PhonemeBCoarseTune = CurrAttrib.AsInt();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Waveform");
+                        if( !CurrAttrib.Empty() )
+                            this->Waveform = static_cast<MorpherWaveform>( CurrAttrib.AsUint() );
+
+                        CurrAttrib = SelfRoot.GetAttribute("Rate");
+                        if( !CurrAttrib.Empty() )
+                            this->Rate = CurrAttrib.AsReal();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + VocalMorpherParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,VocalMorpherParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "VocalMorpherParameters"; }
         };//VocalMorpherParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -676,10 +1474,63 @@ namespace Mezzanine
             /// @brief Struct constructor.
             /// @param coarseTune This sets the number of semitones by which the pitch is shifted.
             /// @param fineTune This sets the number of cents between Semitones a pitch is shifted.
-            PitchShifterParameters(
-                Integer coarseTune = 12,
-                Integer fineTune = 0) :
-                CoarseTune(coarseTune), FineTune(fineTune) {  }
+            PitchShifterParameters(Integer coarseTune = 12, Integer fineTune = 0) :
+                CoarseTune(coarseTune),
+                FineTune(fineTune)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            PitchShifterParameters(const XML::Node& SelfRoot) :
+                CoarseTune(12),
+                FineTune(0)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(PitchShifterParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("CoarseTune").SetValue( this->CoarseTune ) &&
+                    SelfRoot.AppendAttribute("FineTune").SetValue( this->FineTune ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",PitchShifterParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == PitchShifterParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("CoarseTune");
+                        if( !CurrAttrib.Empty() )
+                            this->CoarseTune = CurrAttrib.AsInt();
+
+                        CurrAttrib = SelfRoot.GetAttribute("FineTune");
+                        if( !CurrAttrib.Empty() )
+                            this->FineTune = CurrAttrib.AsInt();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + PitchShifterParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,PitchShifterParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "PitchShifterParameters"; }
         };//PitchShifterParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -716,8 +1567,71 @@ namespace Mezzanine
             RingModulatorParameters(
                 Real frequency = 440.0f,
                 Real highPassCutoff = 800.0f,
-                ModulatorWaveform waveform = EMW_Sinusoid) :
-                Frequency(frequency), HighPassCutoff(highPassCutoff), Waveform(waveform) {  }
+                ModulatorWaveform waveform = EMW_Sinusoid)
+                :
+                Frequency(frequency),
+                HighPassCutoff(highPassCutoff),
+                Waveform(waveform)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            RingModulatorParameters(const XML::Node& SelfRoot) :
+                Frequency(440.0f),
+                HighPassCutoff(800.0f),
+                Waveform(EMW_Sinusoid)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(RingModulatorParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Frequency").SetValue( this->Frequency ) &&
+                    SelfRoot.AppendAttribute("HighPassCutoff").SetValue( this->HighPassCutoff ) &&
+                    SelfRoot.AppendAttribute("Waveform").SetValue( this->Waveform ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",RingModulatorParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == RingModulatorParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Frequency");
+                        if( !CurrAttrib.Empty() )
+                            this->Frequency = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("HighPassCutoff");
+                        if( !CurrAttrib.Empty() )
+                            this->HighPassCutoff = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Waveform");
+                        if( !CurrAttrib.Empty() )
+                            this->Waveform = static_cast<ModulatorWaveform>( CurrAttrib.AsUint() );
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + RingModulatorParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,RingModulatorParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "RingModulatorParameters"; }
         };//RingModulatorParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -749,9 +1663,78 @@ namespace Mezzanine
                 Real attackTime = 0.06f,
                 Real releaseTime = 0.06f,
                 Real resonance = 1000.0f,
-                Real peakGain = 11.22f) :
-                AttackTime(attackTime), ReleaseTime(releaseTime), Resonance(resonance),
-                PeakGain(peakGain) {  }
+                Real peakGain = 11.22f)
+                :
+                AttackTime(attackTime),
+                ReleaseTime(releaseTime),
+                Resonance(resonance),
+                PeakGain(peakGain)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            AutowahParameters(const XML::Node& SelfRoot) :
+                AttackTime(0.06f),
+                ReleaseTime(0.06f),
+                Resonance(1000.0f),
+                PeakGain(11.22f)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(AutowahParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("AttackTime").SetValue( this->AttackTime ) &&
+                    SelfRoot.AppendAttribute("ReleaseTime").SetValue( this->ReleaseTime ) &&
+                    SelfRoot.AppendAttribute("Resonance").SetValue( this->Resonance ) &&
+                    SelfRoot.AppendAttribute("PeakGain").SetValue( this->PeakGain ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",AutowahParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == AutowahParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("AttackTime");
+                        if( !CurrAttrib.Empty() )
+                            this->AttackTime = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("ReleaseTime");
+                        if( !CurrAttrib.Empty() )
+                            this->ReleaseTime = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Resonance");
+                        if( !CurrAttrib.Empty() )
+                            this->Resonance = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("PeakGain");
+                        if( !CurrAttrib.Empty() )
+                            this->PeakGain = CurrAttrib.AsReal();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + AutowahParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,AutowahParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "AutowahParameters"; }
         };//AutowahParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -765,10 +1748,57 @@ namespace Mezzanine
 
             /// @brief Struct constructor.
             /// @param active The Compressor can only be switched on and off, it cannot be adjusted.
-            CompressorParameters(
-                Boole active = true) :
-                Active(active) {  }
-        };// CompressorParameters
+            CompressorParameters(Boole active = true) :
+                Active(active)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            CompressorParameters(const XML::Node& SelfRoot) :
+                Active(true)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(CompressorParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("Active").SetValue( this->Active ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",CompressorParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == CompressorParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Active");
+                        if( !CurrAttrib.Empty() )
+                            this->Active = CurrAttrib.AsBool();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + CompressorParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,CompressorParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "CompressorParameters"; }
+        };//CompressorParameters
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a struct containing all the parameters needed to describe an equalizer effect.
@@ -828,11 +1858,120 @@ namespace Mezzanine
                 Real mid2Center = 3000.0f,
                 Real mid2Width = 1.0f,
                 Real highGain = 1.0f,
-                Real highCutoff = 6000.0f) :
-                LowGain(lowGain), LowCutoff(lowCutoff), Mid1Gain(mid1Gain),
-                Mid1Center(mid1Center), Mid1Width(mid1Width), Mid2Gain(mid2Gain),
-                Mid2Center(mid2Center), Mid2Width(mid2Width), HighGain(highGain),
-                HighCutoff(highCutoff) {  }
+                Real highCutoff = 6000.0f)
+                :
+                LowGain(lowGain),
+                LowCutoff(lowCutoff),
+                Mid1Gain(mid1Gain),
+                Mid1Center(mid1Center),
+                Mid1Width(mid1Width),
+                Mid2Gain(mid2Gain),
+                Mid2Center(mid2Center),
+                Mid2Width(mid2Width),
+                HighGain(highGain),
+                HighCutoff(highCutoff)
+                {  }
+
+            /// @brief Serialization constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            EqualizerParameters(const XML::Node& SelfRoot) :
+                LowGain(1.0f),
+                LowCutoff(200.0f),
+                Mid1Gain(1.0f),
+                Mid1Center(500.0f),
+                Mid1Width(1.0f),
+                Mid2Gain(1.0f),
+                Mid2Center(3000.0f),
+                Mid2Width(1.0f),
+                HighGain(1.0f),
+                HighCutoff(6000.0f)
+                { this->ProtoDeSerialize(SelfRoot); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node SelfRoot = ParentNode.AppendChild(EqualizerParameters::GetSerializableName());
+
+                if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                    SelfRoot.AppendAttribute("LowGain").SetValue( this->LowGain ) &&
+                    SelfRoot.AppendAttribute("LowCutoff").SetValue( this->LowCutoff ) &&
+                    SelfRoot.AppendAttribute("Mid1Gain").SetValue( this->Mid1Gain ) &&
+                    SelfRoot.AppendAttribute("Mid1Center").SetValue( this->Mid1Center ) &&
+                    SelfRoot.AppendAttribute("Mid1Width").SetValue( this->Mid1Width ) &&
+                    SelfRoot.AppendAttribute("Mid2Gain").SetValue( this->Mid2Gain ) &&
+                    SelfRoot.AppendAttribute("Mid2Center").SetValue( this->Mid2Center ) &&
+                    SelfRoot.AppendAttribute("Mid2Width").SetValue( this->Mid2Width ) &&
+                    SelfRoot.AppendAttribute("HighGain").SetValue( this->HighGain ) &&
+                    SelfRoot.AppendAttribute("HighCutoff").SetValue( this->HighCutoff ) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",EqualizerParameters::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+
+                if( SelfRoot.Name() == EqualizerParameters::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("LowGain");
+                        if( !CurrAttrib.Empty() )
+                            this->LowGain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("LowCutoff");
+                        if( !CurrAttrib.Empty() )
+                            this->LowCutoff = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Mid1Gain");
+                        if( !CurrAttrib.Empty() )
+                            this->Mid1Gain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Mid1Center");
+                        if( !CurrAttrib.Empty() )
+                            this->Mid1Center = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Mid1Width");
+                        if( !CurrAttrib.Empty() )
+                            this->Mid1Width = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Mid2Gain");
+                        if( !CurrAttrib.Empty() )
+                            this->Mid2Gain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Mid2Center");
+                        if( !CurrAttrib.Empty() )
+                            this->Mid2Center = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Mid2Width");
+                        if( !CurrAttrib.Empty() )
+                            this->Mid2Width = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("HighGain");
+                        if( !CurrAttrib.Empty() )
+                            this->HighGain = CurrAttrib.AsReal();
+
+                        CurrAttrib = SelfRoot.GetAttribute("HighCutoff");
+                        if( !CurrAttrib.Empty() )
+                            this->HighCutoff = CurrAttrib.AsReal();
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + EqualizerParameters::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,EqualizerParameters::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+                { return "EqualizerParameters"; }
         };//EqualizerParameters
     }//Audio
 }//Mezzanine

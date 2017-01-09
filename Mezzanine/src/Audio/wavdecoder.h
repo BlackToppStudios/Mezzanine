@@ -53,48 +53,35 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a @ref iDecoder implementation for the wav encoding.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB WavDecoder : public iDecoder
         {
         protected:
-            /// @internal
             /// @brief This is a shared pointer to the stream being decoded.
             DataStreamPtr WavStream;
-            /// @internal
             /// @brief This is used to cache the total size of the stream used by this decoder.
             Integer WavStreamSize;
-            /// @internal
             /// @brief This is used to cache the current stream position for this decoder.
             Integer WavStreamPos;
-            /// @internal
             /// @brief The frequency of the wav file.
             Int32 SampleRate;
-            /// @internal
             /// @brief Redundant wav data expressing the rate of platback for the wav file.
             Int32 ByteRate;
-            /// @internal
             /// @brief The end point of the audio in the wav file.
             Int32 DataSize;
-            /// @internal
             /// @brief The start point of the audio in the wav file.
             Int32 DataOffset;
-            /// @internal
             /// @brief The number of channels in this wav file.
             UInt16 Channels;
-            /// @internal
             /// @brief The byte alignment of the waveform data in this wav file.
             UInt16 BlockAlign;
-            /// @internal
             /// @brief The size of each sample in this wav file.
             UInt16 BitsPerSample;
-            /// @internal
             /// @brief Tracks and stores the validity of the Wav stream.
             Boole Valid;
 
             /// @copydoc iDecoder::ClearStreamErrors()
             void ClearStreamErrors();
-            /// @internal
             /// @brief Reads the metadata at the start of a Wav stream and saves it.
             /// @param Stream The Wav stream to read metadata from.
             void ReadWavMetaData(DataStreamPtr Stream);
@@ -125,6 +112,8 @@ namespace Mezzanine
 
             /// @copydoc iDecoder::SetPosition(Int32, const Boole)
             Boole SetPosition(Int32 Position, const Boole Relative);
+            /// @copydoc iDecoder::GetPosition() const
+            Int32 GetPosition() const;
             /// @copydoc iDecoder::Seek(const Real, const Boole)
             Boole Seek(const Real Seconds, const Boole Relative);
 

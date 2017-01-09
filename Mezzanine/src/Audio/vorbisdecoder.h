@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// � Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -54,24 +54,18 @@ namespace Mezzanine
         class VorbisDecoderInternalData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a @ref iDecoder implementation for the vorbis encoding.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB VorbisDecoder : public iDecoder
         {
         protected:
-            /// @internal
             /// @brief A pointer to all the internal data needed for working with the vorbis library.
             VorbisDecoderInternalData* VDID;
-            /// @internal
             /// @brief This is a shared pointer to the stream being decoded.
             DataStreamPtr VorbisStream;
-            /// @internal
             /// @brief This is used to cache the total size of the stream used by this decoder.
             Integer VorbisStreamSize;
-            /// @internal
             /// @brief This is used to cache the current stream position for this decoder.
             Integer VorbisStreamPos;
-            /// @internal
             /// @brief Tracks and stores the validity of the Vorbis stream.
             Boole Valid;
 
@@ -115,6 +109,8 @@ namespace Mezzanine
 
             /// @copydoc iDecoder::SetPosition(Int32, const Boole)
             Boole SetPosition(Int32 Position, const Boole Relative);
+            /// @copydoc iDecoder::GetPosition() const
+            Int32 GetPosition() const;
             /// @copydoc iDecoder::Seek(const Real, const Boole)
             Boole Seek(const Real Seconds, const Boole Relative);
 

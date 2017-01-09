@@ -53,24 +53,18 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a @ref iDecoder implementation for un-encoded data.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB RawDecoder : public iDecoder
         {
         protected:
-            /// @internal
             /// @brief This is a shared pointer to the stream being decoded.
             DataStreamPtr RawStream;
-            /// @internal
             /// @brief This is used to cache the total size of the stream used by this decoder.
             Integer RawStreamSize;
-            /// @internal
             /// @brief This is used to cache the current stream position for this decoder.
             Integer RawStreamPos;
-            /// @internal
             /// @brief The frequency to expect when decoding the stream.
             UInt32 Frequency;
-            /// @internal
             /// @brief The configuration of the samples to expect when decoding the stream.
             Audio::BitConfig BitConfiguration;
 
@@ -105,6 +99,8 @@ namespace Mezzanine
 
             /// @copydoc iDecoder::SetPosition(Int32, const Boole)
             Boole SetPosition(Int32 Position, const Boole Relative);
+            /// @copydoc iDecoder::GetPosition() const
+            Int32 GetPosition() const;
             /// @copydoc iDecoder::Seek(const Real, const Boole)
             Boole Seek(const Real Seconds, const Boole Relative);
 

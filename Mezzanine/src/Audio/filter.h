@@ -45,6 +45,9 @@
 
 #include "datatypes.h"
 #include "Audio/audioenumerations.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 namespace Mezzanine
 {
@@ -97,6 +100,20 @@ namespace Mezzanine
             /// @brief Gets the low frequency volume of this filter.
             /// @return Returns a Real representing the volume scale being applied to lower frequency audio passing through this filter.
             virtual Real GetLowFrequencyVolume() const = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
+            virtual void ProtoSerialize(XML::Node& ParentNode) const = 0;
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot) = 0;
+
+            /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
         };//iFilter
     }//Audio
 }//Mezzanine

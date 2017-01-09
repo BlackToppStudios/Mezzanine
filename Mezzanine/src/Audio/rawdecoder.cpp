@@ -114,7 +114,13 @@ namespace Mezzanine
         Boole RawDecoder::SetPosition(Int32 Position, const Boole Relative)
         {
             this->RawStream->seekg(Position,( Relative ? std::ios_base::cur : std::ios_base::beg ));
+            this->RawStreamPos = this->RawStream->tellg();
             return true;
+        }
+
+        Int32 RawDecoder::GetPosition() const
+        {
+            return this->RawStreamPos;
         }
 
         Boole RawDecoder::Seek(const Real Seconds, const Boole Relative)

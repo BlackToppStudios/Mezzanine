@@ -112,7 +112,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
         /// @brief Internal convenience class for the storage of Vorbis structs needed for Vorbis operations.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB VorbisDecoderInternalData
         {
@@ -259,6 +258,11 @@ namespace Mezzanine
                 }
             }
             return false;
+        }
+
+        Int32 VorbisDecoder::GetPosition() const
+        {
+            return this->VorbisStreamPos;
         }
 
         Boole VorbisDecoder::Seek(const Real Seconds, const Boole Relative)

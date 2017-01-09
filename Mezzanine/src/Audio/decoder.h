@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -103,12 +103,12 @@ namespace Mezzanine
             {
                 switch(this->GetBitConfiguration())
                 {
-                    case Mezzanine::Audio::BC_8Bit_Mono:     return 1;  break;
-                    case Mezzanine::Audio::BC_8Bit_Stereo:   return 2;  break;
-                    case Mezzanine::Audio::BC_16Bit_Mono:    return 2;  break;
-                    case Mezzanine::Audio::BC_16Bit_Stereo:  return 4;  break;
-                    case Mezzanine::Audio::BC_24Bit_Mono:    return 3;  break;
-                    case Mezzanine::Audio::BC_24Bit_Stereo:  return 6;  break;
+                    case Audio::BC_8Bit_Mono:     return 1;  break;
+                    case Audio::BC_8Bit_Stereo:   return 2;  break;
+                    case Audio::BC_16Bit_Mono:    return 2;  break;
+                    case Audio::BC_16Bit_Stereo:  return 4;  break;
+                    case Audio::BC_24Bit_Mono:    return 3;  break;
+                    case Audio::BC_24Bit_Stereo:  return 6;  break;
                     default: return -1;
                 }
             }
@@ -118,6 +118,9 @@ namespace Mezzanine
             /// @param Relative Whether or not to move from the current position.  If false this will set from the beginning.
             /// @return Returns true if the position was successfully set, false otherwise.
             virtual Boole SetPosition(Int32 Position, const Boole Relative) = 0;
+            /// @brief Gets the current stream position of this decoder.
+            /// @return Returns the byte position of this decoder in the stream.
+            virtual Int32 GetPosition() const = 0;
             /// @brief Moves the current time position in the stream.
             /// @param Seconds The position in seconds to move to in the stream.
             /// @param Relative Whether or not to move from the current position.  If false this will seek from the beginning.
