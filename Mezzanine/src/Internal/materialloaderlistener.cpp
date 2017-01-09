@@ -79,7 +79,7 @@ namespace Mezzanine
                     Ogre::TexturePtr NewTexture = Ogre::TextureManager::getSingletonPtr()->getByName(Casted->mName,GroupName);
                     if( NewTexture.isNull() ) {
                         // Get our stream and make it usable to Ogre.
-                        Resource::DataStreamPtr TextureStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(Casted->mName,GroupName);
+                        DataStreamPtr TextureStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(Casted->mName,GroupName);
                         Ogre::DataStreamPtr TextureWrapper(new IOStreamWrapper(TextureStream.get(),false));
 
                         // Textures are a bit more complicated given they don't have a convenient serialzied class like Skeletons and Meshes.
@@ -87,7 +87,7 @@ namespace Mezzanine
                         // So we gotta jump through some hoops to get at the information we need, then fallback to the extension should that fail.
                         Ogre::Codec* TextureCodec = NULL;
 
-                        size_t MagicNumLength = std::min(TextureStream->GetSize(),Resource::StreamSize(32));
+                        size_t MagicNumLength = std::min(TextureStream->GetSize(),StreamSize(32));
                         char MagicBuffer[32];
                         TextureStream->Read(MagicBuffer,MagicNumLength);
                         // Reset the read position so we don't mess up the decode.

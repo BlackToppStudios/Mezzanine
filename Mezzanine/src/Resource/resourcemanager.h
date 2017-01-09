@@ -41,11 +41,11 @@
 #define _resourcemanager_h
 
 #include "datatypes.h"
+#include "datastream.h"
 #include "entresolmanager.h"
 #include "entresolmanagerfactory.h"
 #include "singleton.h"
 #include "Resource/resourceenumerations.h"
-#include "Resource/datastream.h"
 
 /// @file
 /// @brief The defintion of the Resource Manager.
@@ -84,13 +84,13 @@ namespace Mezzanine
             typedef AssetGroupContainer::const_iterator        ConstAssetGroupIterator;
 
             /// @brief Basic container type for @ref DataStream storage by this class.
-            typedef std::vector<Resource::DataStreamPtr>       DataStreamContainer;
+            typedef std::vector<DataStreamPtr>       DataStreamContainer;
             /// @brief Iterator type for @ref DataStream instances stored by this class.
             typedef DataStreamContainer::iterator              DataStreamIterator;
             /// @brief Const Iterator type for @ref DataStream instances stored by this class.
             typedef DataStreamContainer::const_iterator        ConstDataStreamIterator;
             /// @brief Basic container type for named @ref DataStream storage by this class.
-            typedef std::map<String,Resource::DataStreamPtr>   NamedDataStreamContainer;
+            typedef std::map<String,DataStreamPtr>   NamedDataStreamContainer;
             /// @brief Iterator type for named @ref DataStream instances stored by this class.
             typedef NamedDataStreamContainer::iterator         NamedDataStreamIterator;
             /// @brief Const Iterator type for named @ref DataStream instances stored by this class.
@@ -128,21 +128,21 @@ namespace Mezzanine
             /// @brief Opens a stream to an asset in an AssetGroup.
             /// @param AssetName The identity of the asset to be opened (commonly a file name).
             /// @param GroupName The name of the AssetGroup where the Asset can be found.
-            Resource::DataStreamPtr OpenAssetStream(const String& AssetName, const String& GroupName);
+            DataStreamPtr OpenAssetStream(const String& AssetName, const String& GroupName);
 
             /// @brief Creates a stream from a memory buffer.
             /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
             /// @param Buffer A pointer to the memory to stream from.
             /// @param BufferSize The size of the provided buffer in bytes.
             /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            Resource::DataStreamPtr CreateDataStream(void* Buffer, const UInt32 BufferSize);
+            DataStreamPtr CreateDataStream(void* Buffer, const UInt32 BufferSize);
             /// @brief Creates a named stream from a memory buffer.
             /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
             /// @param AssetName The name to be given to the created stream.
             /// @param Buffer A pointer to the memory to stream from.
             /// @param BufferSize The size of the provided buffer in bytes.
             /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            Resource::DataStreamPtr CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize);
+            DataStreamPtr CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize);
             /// @brief Creates a named stream from a memory buffer and adds it to the named AssetGroup.
             /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
             /// @param AssetName The name to be given to the created stream.
@@ -150,7 +150,7 @@ namespace Mezzanine
             /// @param Buffer A pointer to the memory to stream from.
             /// @param BufferSize The size of the provided buffer in bytes.
             /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            Resource::DataStreamPtr CreateDataStream(const String& AssetName, const String& GroupName, void* Buffer, const UInt32 BufferSize);
+            DataStreamPtr CreateDataStream(const String& AssetName, const String& GroupName, void* Buffer, const UInt32 BufferSize);
 
             ///////////////////////////////////////////////////////////////////////////////
             // AssetGroup Management

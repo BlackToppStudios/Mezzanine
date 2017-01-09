@@ -58,7 +58,7 @@ namespace Mezzanine
         {
         protected:
             /// @brief This is a shared pointer to the stream being decoded.
-            Resource::DataStreamPtr RawStream;
+            DataStreamPtr RawStream;
             /// @brief This is used to cache the total size of the stream used by this decoder.
             Integer RawStreamSize;
             /// @brief This is used to cache the current stream position for this decoder.
@@ -75,7 +75,7 @@ namespace Mezzanine
             /// @param Stream The stream to decode.
             /// @param Freq The frequency of the audio being decoded.
             /// @param Config The bit configuration of the audio being decoded.
-            RawDecoder(Resource::DataStreamPtr Stream, const UInt32 Freq = 22050, const Audio::BitConfig Config = Audio::BC_16Bit_Mono);
+            RawDecoder(DataStreamPtr Stream, const UInt32 Freq = 22050, const Audio::BitConfig Config = Audio::BC_16Bit_Mono);
             /// @brief Class destructor.
             virtual ~RawDecoder();
 
@@ -93,7 +93,7 @@ namespace Mezzanine
             /// @copydoc iDecoder::GetFrequency() const
             UInt32 GetFrequency() const;
             /// @copydoc iDecoder::GetStream() const
-            Resource::DataStreamPtr GetStream() const;
+            DataStreamPtr GetStream() const;
             /// @copydoc iDecoder::IsEndOfStream() const
             Boole IsEndOfStream() const;
 

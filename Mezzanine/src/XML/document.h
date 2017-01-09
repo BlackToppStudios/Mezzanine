@@ -68,7 +68,7 @@
 
 
 #ifndef SWIG
-#include "Resource/datastream.h"
+#include "datastream.h"
 #endif
 
 

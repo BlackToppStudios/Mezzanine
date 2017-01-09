@@ -174,10 +174,10 @@ namespace Mezzanine
 
                 /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16)
                 Audio::SoundProxy* CreateSoundProxy(const UInt16 Type);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const Audio::Encoding)
-                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig)
-                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, DataStreamPtr, const Audio::Encoding)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode);
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, DataStreamPtr, const UInt32, const Audio::BitConfig)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
                 /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, const String&)
                 Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group);
                 /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const Audio::Encoding)

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// ï¿½ Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -61,7 +61,7 @@ namespace Mezzanine
             /// @brief A pointer to all the internal data needed for working with the vorbis library.
             VorbisDecoderInternalData* VDID;
             /// @brief This is a shared pointer to the stream being decoded.
-            Resource::DataStreamPtr VorbisStream;
+            DataStreamPtr VorbisStream;
             /// @brief This is used to cache the total size of the stream used by this decoder.
             Integer VorbisStreamSize;
             /// @brief This is used to cache the current stream position for this decoder.
@@ -74,7 +74,7 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             /// @param Stream The stream to decode.
-            VorbisDecoder(Resource::DataStreamPtr Stream);
+            VorbisDecoder(DataStreamPtr Stream);
             /// @brief Class destructor.
             virtual ~VorbisDecoder();
 
@@ -103,7 +103,7 @@ namespace Mezzanine
             /// @copydoc iDecoder::GetFrequency() const
             UInt32 GetFrequency() const;
             /// @copydoc iDecoder::GetStream() const
-            Resource::DataStreamPtr GetStream() const;
+            DataStreamPtr GetStream() const;
             /// @copydoc iDecoder::IsEndOfStream() const
             Boole IsEndOfStream() const;
 

@@ -237,7 +237,7 @@ namespace Mezzanine
                 return this->SoundPitch;
             }
 
-            void Sound::SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            void Sound::SetStream(DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
                 if( Factory != NULL ) {
@@ -249,7 +249,7 @@ namespace Mezzanine
                 }
             }
 
-            void Sound::SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            void Sound::SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 this->SType = Type;
                 this->SetStream(Stream,Encode);

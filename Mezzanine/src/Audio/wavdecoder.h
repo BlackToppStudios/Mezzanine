@@ -58,7 +58,7 @@ namespace Mezzanine
         {
         protected:
             /// @brief This is a shared pointer to the stream being decoded.
-            Resource::DataStreamPtr WavStream;
+            DataStreamPtr WavStream;
             /// @brief This is used to cache the total size of the stream used by this decoder.
             Integer WavStreamSize;
             /// @brief This is used to cache the current stream position for this decoder.
@@ -84,11 +84,11 @@ namespace Mezzanine
             void ClearStreamErrors();
             /// @brief Reads the metadata at the start of a Wav stream and saves it.
             /// @param Stream The Wav stream to read metadata from.
-            void ReadWavMetaData(Resource::DataStreamPtr Stream);
+            void ReadWavMetaData(DataStreamPtr Stream);
         public:
             /// @brief Class constructor.
             /// @param Stream The stream to decode.
-            WavDecoder(Resource::DataStreamPtr Stream);
+            WavDecoder(DataStreamPtr Stream);
             /// @brief Class destructor.
             virtual ~WavDecoder();
 
@@ -106,7 +106,7 @@ namespace Mezzanine
             /// @copydoc iDecoder::GetFrequency() const
             UInt32 GetFrequency() const;
             /// @copydoc iDecoder::GetStream() const
-            Resource::DataStreamPtr GetStream() const;
+            DataStreamPtr GetStream() const;
             /// @copydoc iDecoder::IsEndOfStream() const
             Boole IsEndOfStream() const;
 
