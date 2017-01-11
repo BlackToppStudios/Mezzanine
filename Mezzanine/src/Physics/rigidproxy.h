@@ -128,7 +128,7 @@ namespace Mezzanine
             /// @param Creator A pointer to the manager that created this proxy.
             RigidProxy(const UInt32 ID, const Real Mass, CollisionShape* Shape, PhysicsManager* Creator);
             /// @brief XML constructor.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this proxy.
             RigidProxy(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class Destructor
@@ -242,9 +242,9 @@ namespace Mezzanine
             virtual StickyData* GetStickyData() const;// */
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Transform Syncronization
+            // Transform Synchronization
 
-            /// @brief Adds a TransformableObject that will force it's transform to sync with this RigidProxy.
+            /*/// @brief Adds a TransformableObject that will force it's transform to sync with this RigidProxy.
             /// @param ToBeAdded A pointer to the WorldObject being added.
             virtual void AddSyncObject(TransformableObject* ToBeAdded);
             /// @brief Gets a TransformableObject being sync'd to this RigidProxy by it's index.
@@ -258,7 +258,7 @@ namespace Mezzanine
             /// @param ToBeRemoved A pointer to the TransformableObject to be removed.
             virtual void RemoveSyncObject(TransformableObject* ToBeRemoved);
             /// @brief Removes all WorldProxies being sync'd to this RigidProxy.
-            virtual void RemoveAllSyncObjects();
+            virtual void RemoveAllSyncObjects();//*/
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -275,6 +275,9 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
+
+            /// @copydoc WorldProxy::_Bind(WorldObject*)
+            virtual void _Bind(WorldObject* NewParent);
 
             /// @internal
             /// @brief Accessor for the internal rigid body physics proxy.

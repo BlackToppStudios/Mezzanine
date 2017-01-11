@@ -10,7 +10,6 @@ class CatchApp;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This workunit is responsible fullfilling an Audio settings change requested from the UI.
-/// @details
 ///////////////////////////////////////
 class AudioSettingsWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -36,7 +35,6 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This workunit is responsible fullfilling an Video settings change requested from the UI.
-/// @details
 ///////////////////////////////////////
 class VideoSettingsWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -62,7 +60,6 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This workunit is responsible for all Catch logic to be run before Input is collected.
-/// @details
 ///////////////////////////////////////
 class CatchPreInputWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -84,14 +81,10 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This workunit is responsible for all Catch logic to be run after Input is collected.
-/// @details
 ///////////////////////////////////////
 class CatchPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
-    /// @internal
-    /// @brief The camera controller to be used for debugging scenes.
-    CameraController DefaultControl;
     /// @internal
     /// @brief A pointer to the Catch core class.
     CatchApp* CatchApplication;
@@ -101,10 +94,6 @@ public:
     CatchPostInputWorkUnit(CatchApp* Target);
     /// @brief Class destructor.
     virtual ~CatchPostInputWorkUnit();
-
-    /// @brief Camera control access.
-    /// @return Returns a refernece to the CameraController used for scene debugging.
-    CameraController& GetDefaultControl();
 
     /// @brief Performs all the tasks this WorkUnit is responsible for.
     /// @param CurrentThreadStorage Storage for a number of utilities and data that is safe for this WorkUnit to access.

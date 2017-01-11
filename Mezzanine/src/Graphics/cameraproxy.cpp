@@ -171,7 +171,7 @@ namespace Mezzanine
         {
             this->GraphicsCamera = this->Manager->_GetGraphicsWorldPointer()->createCamera( CameraProxy::GenerateName() );
             this->GraphicsNode->attachObject( this->GraphicsCamera );
-            this->GraphicsCamera->MovableObject::setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
+            this->GraphicsCamera->MovableObject::getUserObjectBindings().setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
             this->GraphicsCamera->setVisibilityFlags(0);
             this->GraphicsCamera->setQueryFlags(0);
         }
@@ -201,6 +201,9 @@ namespace Mezzanine
 
         Mezzanine::ProxyType CameraProxy::GetProxyType() const
             { return Mezzanine::PT_Graphics_CameraProxy; }
+
+        Boole CameraProxy::IsStatic() const
+            { return false; }
 
         Viewport* CameraProxy::GetViewport() const
             { return this->CameraVP; }

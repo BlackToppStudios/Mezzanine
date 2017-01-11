@@ -30,6 +30,7 @@ CatchApp::CatchApp() :
     Scorer(NULL),
     Shop(NULL),
     LastObjectThrown(NULL),
+    ThePlayer(NULL),
 
     LevelTimer(NULL),
     EndTimer(NULL),
@@ -57,6 +58,7 @@ CatchApp::CatchApp() :
     if( this->Profiles == NULL ) {
         this->Profiles = new ProfileManager(this->TheEntresol,"$ShareableAppData$/.Catch/Profiles/");
     }
+    this->ThePlayer = new CatchPlayer(this->Profiles);
 
     this->LevelTimer = new Timer();
 }
@@ -91,6 +93,7 @@ CatchApp::~CatchApp()
 
     this->TheEntresol->DestroyWorld(this->TheWorld);
 
+    delete this->ThePlayer;
     delete this->Profiles;
     delete this->LevelMan;
     delete this->Scorer;
@@ -255,7 +258,7 @@ void CatchApp::MakeGUI()
     MMProfilesAccess->CreateSingleImageLayer("MMOptionsButton",UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     MMProfilesAccess->CreateSingleImageLayer("MMOptionsHoveredButton",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     UI::SingleLineTextLayer* MMProfilesAccessText = MMProfilesAccess->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
-    MMProfilesAccessText->SetText( this->Profiles->GetActiveProfileName() );
+    MMProfilesAccessText->SetText( this->ThePlayer->GetName() );
     MMProfilesAccessText->HorizontallyAlign(UI::LA_Center);
     MMProfilesAccessText->VerticallyAlign(UI::LA_Center);
     MMProfilesAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
@@ -1618,11 +1621,8 @@ void CatchApp::VerifySettings()
 
 void CatchApp::RegisterTypes()
 {
-    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->TheWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
-    if( AEMan != NULL ) {
-        AEMan->AddAreaEffectFactory( new ScoreAreaFactory() );
-        AEMan->AddAreaEffectFactory( new StartAreaFactory() );
-    }
+    AreaEffectManager::AddAreaEffectFactory( new ScoreAreaFactory() );
+    AreaEffectManager::AddAreaEffectFactory( new StartAreaFactory() );
 }
 
 void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
@@ -1633,19 +1633,16 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
     this->SetVisibleScreens(StateToSet);
     if( StateToSet == CatchApp::Catch_MenuScreen ) {
         // This code block was created due to cameras being destroyed on every level unload.
-        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) );
-        Graphics::CameraProxy* MainCam = static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
-        if( MainCam == NULL ) {
-            SceneMan->CreateCamera();
-        }
+        this->ThePlayer->InitWorldObjects(this->TheWorld);
     }
     if( StateToSet == CatchApp::Catch_ScoreScreen ) {
         this->PauseGame(true);
         Whole LevelScore = this->Scorer->PresentFinalScore();
         String LevelName = this->LevelMan->GetCurrentLevel()->GetName();
-        CatchProfile* Active = this->Profiles->GetActiveProfile();
-        if( Active != NULL && LevelScore > Active->GetHighestScore( LevelName ) ) {
-            this->Profiles->SetNewHighScore(LevelName,LevelScore);
+        CatchProfile* PlayerProfile = this->ThePlayer->GetProfile();
+        if( PlayerProfile != NULL && LevelScore > PlayerProfile->GetHighestScore( LevelName ) ) {
+            this->Profiles->SetNewHighScoreInUI(LevelName,LevelScore);
+            PlayerProfile->SetNewHighScore(LevelName,LevelScore);
         }
     }
     this->CurrentState = StateToSet;
@@ -1789,12 +1786,10 @@ int CatchApp::GetCatchin()
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "LuaWork" );
 
     this->Profiles->Initialize();
+    this->ThePlayer->InitWorldObjects(this->TheWorld); /* Why the hell is this line important? */
+    this->ThePlayer->SetIdentity(this->Profiles->GetLastLoadedProfile());
 
     this->CreateLoadingScreen();
-
-    Graphics::CameraProxy* DefaultCam = static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) );
-    DefaultCam->SetNearClipDistance(0.5);
-    this->PostInputWork->GetDefaultControl().SetControlledCamera(DefaultCam);
 
     this->ChangeState(CatchApp::Catch_Loading);
 
@@ -1806,8 +1801,8 @@ int CatchApp::GetCatchin()
     this->LevelMan->DetectLevels();
     this->LevelMan->PopulateLevelSelectUI();
     // Detect the profiles and populate our UI
-    this->Profiles->ApplyProfileDataToLevelSelect();
-    this->Profiles->ApplyProfileDataToProfileList();
+    this->Profiles->ApplyProfileDataToLevelSelect(this->ThePlayer->GetProfile());
+    this->Profiles->ApplyProfileDataToProfileList(this->ThePlayer->GetProfile());
 
     AudioMan->GetMusicPlayer()->Play();
     this->LevelMan->SetNextLevel("MainMenu");
@@ -1822,7 +1817,7 @@ int CatchApp::GetCatchin()
         CatchApp::GameState NewState = ( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() ? CatchApp::Catch_MenuScreen : CatchApp::Catch_GameScreen );
         this->ChangeState(NewState);
 
-        GraphicsMan->GetGameWindow(0)->GetViewport(0)->SetCamera( static_cast<Graphics::CameraProxy*>( SceneMan->GetProxy(Mezzanine::PT_Graphics_CameraProxy,0) ) );
+        GraphicsMan->GetGameWindow(0)->GetViewport(0)->SetCamera( this->ThePlayer->GetControl().GetCamera() );
 
         this->LevelTimer->Reset();
         this->LevelTimer->Start();
@@ -1999,6 +1994,9 @@ ProfileManager* CatchApp::GetProfiles() const
 
 ItemShop* CatchApp::GetItemShop() const
     { return this->Shop; }
+
+CatchPlayer* CatchApp::GetPlayer() const
+    { return this->ThePlayer; }
 
 Timer* CatchApp::GetLevelTimer() const
     { return this->LevelTimer; }

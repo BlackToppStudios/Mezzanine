@@ -4,11 +4,12 @@ The following Licenses are applicable to the libraries that comprise the Mezzani
 		libgcc 
 		libstdc++
 
-	The "GNU GENERAL PUBLIC LICENSE Version 2" without unique identifying information as described in gpl-2.0.txt.
-		FreeImage
-		Freetype
-		zziplib
+	The "GNU LESSER GENERAL PUBLIC LICENSE 2.0" as described in lgpl-2.0.txt:
 		OpenAl-Soft
+		zziplib
+
+	The "GNU GENERAL PUBLIC LICENSE Version 2" without unique identifying information as described in gpl-2.0.txt.
+		FreeImage !! This needs to be fixed !!
 
 	The "MIT License with Torus Knot Copyright" as described in Ogre-MITLicense.txt:
 		Ogre3d 
@@ -23,10 +24,6 @@ The following Licenses are applicable to the libraries that comprise the Mezzani
 		Bullet3d
 		Bullet Extras - Extras/GIMPACT
 		Bullet Extras - Extras/GIMPACTBullet
-
-	The "zlib/libpng License" as described in zlib-libpngLicense.txt:
-	An updated copy of the license can also be found in cAudio-ZLIBLicense.txt:
-		cAudio
 
 	The "Xiph.org Copyright Notice" as described in XiphCopyrightNotice.txt:
 		libogg
@@ -44,7 +41,7 @@ The following Licenses are applicable to the libraries that comprise the Mezzani
 	The "Lua MIT License" as described in Lua-MIT.txt
 		Lua
 
-	The "GNU GENERAL PUBLIC LICENSE 3.0" as described in gpl-3.0.txt:zlib-zliblicense.txt
+	The "GNU GENERAL PUBLIC LICENSE 3.0" as described in gpl-3.0.txt.
 		Mezzanine Engine
 
 	The "René Nyffenegger MIT License" as described in RenéNyffenegger-MIT.txt

@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -38,31 +38,22 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifndef _terrainbase_h
-#define _terrainbase_h
+#ifndef _player_cpp
+#define _player_cpp
 
-#include "worldobject.h"
+#include "player.h"
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class TerrainBase
-    /// @headerfile terrainbase.h
-    /// @brief This is the base class from which all the terrains inherit.
-    /// @details The terrain classes store and manage all the relevant data regarding
-    /// terrains inside the World.  They serve as a binder between the physics and
-    /// graphics for terrain and have functions that allow the manipulation of terrain
-    /// loaded into the World.  Currently there is 1 terrain class: MeshTerrain.
-    ///////////////////////////////////////
-    class MEZZ_LIB TerrainBase : public WorldObject
+    Player::Player()
     {
-        protected:
-        public:
-            /// @brief Class constructor.
-            TerrainBase();
-            /// @brief Class destructor.
-            virtual ~TerrainBase();
-    };//Terrainbase
+
+    }
+
+    Player::~Player()
+    {
+
+    }
 }//Mezzanine
 
-#endif // _terrainbase_h
+#endif

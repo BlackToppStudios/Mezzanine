@@ -46,7 +46,7 @@
 #include "singleton.h"
 
 #include "uidgenerator.h"
-#include "worldmanager.h"
+#include "worldproxymanager.h"
 #include "worldmanagerfactory.h"
 
 #include "Graphics/graphicsenumerations.h"
@@ -82,7 +82,7 @@ namespace Mezzanine
         /// @details This class contains functions that allow the manipulation of lighting, skyboxes, internal
         /// scenemanager types, and more.
         ///////////////////////////////////////
-        class MEZZ_LIB SceneManager : public WorldManager
+        class MEZZ_LIB SceneManager : public WorldProxyManager
         {
         public:
             /// @brief Basic container type for RenderableProxy storage by this class.
@@ -118,8 +118,6 @@ namespace Mezzanine
                 SkyDome     = 3         ///< A multifaceted hemispherical dome, the most sophisticated sky background.
             };
         protected:
-            friend class TrackingNodeUpdateWorkUnit;
-
             /// @internal
             /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
             UIDGenerator ProxyIDGen;
@@ -259,17 +257,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Creating Proxies
 
-            /// @brief Creates a new BillboardSetProxy with a pool size of 20.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
-            /// @return Returns a pointer to the created proxy.
-            BillboardSetProxy* CreateBillboardSetProxy(const Boole AddToWorld);
             /// @brief Creates a new BillboardSetProxy.
             /// @param InitialPoolSize The number of billboards to reserve space for.  20 is a sane default.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            BillboardSetProxy* CreateBillboardSetProxy(const UInt32 InitialPoolSize, const Boole AddToWorld);
+            BillboardSetProxy* CreateBillboardSetProxy(const UInt32 InitialPoolSize = 20);
             /// @brief Creates a new BillboardSetProxy.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
             BillboardSetProxy* CreateBillboardSetProxy(const XML::Node& SelfRoot);
 
@@ -277,53 +270,50 @@ namespace Mezzanine
             /// @return Returns a pointer to the created camera.
             CameraProxy* CreateCamera();
             /// @brief Creates a new camera.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created camera.
             CameraProxy* CreateCamera(const XML::Node& SelfRoot);
 
             /// @brief Creates a new EntityProxy.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(const Boole AddToWorld);
+            EntityProxy* CreateEntityProxy();
             /// @brief Creates a new EntityProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(Mesh* TheMesh, const Boole AddToWorld);
+            EntityProxy* CreateEntityProxy(Mesh* TheMesh);
             /// @brief Creates a new EntityProxy.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(const String& MeshName, const String& GroupName, const Boole AddToWorld);
+            EntityProxy* CreateEntityProxy(const String& MeshName, const String& GroupName);
             /// @brief Creates a new EntityProxy.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
             EntityProxy* CreateEntityProxy(const XML::Node& SelfRoot);
 
             /// @brief Creates a new LightProxy.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            LightProxy* CreateLightProxy(const Boole AddToWorld);
+            LightProxy* CreateLightProxy();
             /// @brief Creates a new LightProxy.
             /// @param Type The type of light this light is to be constructed as.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            LightProxy* CreateLightProxy(const Graphics::LightType Type, const Boole AddToWorld);
+            LightProxy* CreateLightProxy(const Graphics::LightType Type);
             /// @brief Creates a new LightProxy.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
             LightProxy* CreateLightProxy(const XML::Node& SelfRoot);
 
             /// @brief Creates a new ParticleSystemProxy.
             /// @param Template Name of the particle script to be used in creating this particle effect.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            ParticleSystemProxy* CreateParticleSystemProxy(const String& Template, const Boole AddToWorld);
+            ParticleSystemProxy* CreateParticleSystemProxy(const String& Template);
             /// @brief Creates a new ParticleSystemProxy.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
             ParticleSystemProxy* CreateParticleSystemProxy(const XML::Node& SelfRoot);
+
+            /// @copydoc WorldProxyManager::CreateProxy(const XML::Node&)
+            WorldProxy* CreateProxy(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
@@ -332,19 +322,22 @@ namespace Mezzanine
             /// @param Index The index of the RenderableProxy to be retrieved.
             /// @return Returns a pointer to the RenderableProxy at the specified index.
             RenderableProxy* GetProxy(const UInt32 Index) const;
-            /// @brief Gets the n-th proxy of the specified type.
-            /// @note This manager only stores RenderableProxy types.  As such, specifying a type of proxy that isn't derived from RenderableProxy will always return NULL.
-            /// @param Type The type of proxy to retrieve.
-            /// @param Which Which proxy of the specified type to retrieve.
-            /// @return Returns a pointer to the specified proxy, or NULL if there is no n-th proxy.
-            RenderableProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
-            /// @brief Gets the number of RenderableProxy instances in this manager.
-            /// @return Returns a UInt32 representing the number of RenderableProxy instances contained in this manager.
+
+            /// @copydoc WorldProxyManager::GetProxyByID(const UInt32) const
+            WorldProxy* GetProxyByID(const UInt32 ID) const;
+
+            /// @copydoc WorldProxyManager::GetNumProxies() const
             UInt32 GetNumProxies() const;
-            /// @brief Deletes a RenderableProxy.
-            /// @param ToBeDestroyed A pointer to the RenderableProxy you want deleted.
-            void DestroyProxy(RenderableProxy* ToBeDestroyed);
-            /// @brief Deletes all stored RenderableProxy instances.
+            /// @copydoc WorldProxyManager::GetNumProxies(const UInt32) const
+            UInt32 GetNumProxies(const UInt32 Types) const;
+            /// @copydoc WorldProxyManager::GetProxies() const
+            WorldProxyManager::WorldProxyVec GetProxies() const;
+
+            /// @copydoc WorldProxyManager::DestroyProxy(WorldProxy*)
+            void DestroyProxy(WorldProxy* ToBeDestroyed);
+            /// @copydoc WorldProxyManager::DestroyAllProxies(const UInt32)
+            void DestroyAllProxies(const UInt32 Types);
+            /// @copydoc WorldProxyManager::DestroyAllProxies()
             void DestroyAllProxies();
 
             #ifndef SWIG

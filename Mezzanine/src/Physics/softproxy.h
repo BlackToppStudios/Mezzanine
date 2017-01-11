@@ -70,7 +70,7 @@ namespace Mezzanine
             /// @param Creator A pointer to the manager that created this proxy.
             SoftProxy(const UInt32 ID, const Real Mass, PhysicsManager* Creator);
             /// @brief XML constructor.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this proxy.
             SoftProxy(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.
@@ -131,7 +131,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the nodes (and their specific properties) of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSeriailzeNodes(XML::Node& SelfRoot) const;
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const

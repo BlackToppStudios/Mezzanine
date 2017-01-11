@@ -130,6 +130,12 @@ namespace Mezzanine
             /// @brief Unloads every Mesh that is currently loaded.
             void UnloadAllMeshes();
 
+            /// @brief Removes a Mesh from this manager.
+            /// @param MeshName The name of the Mesh to be removed.
+            void RemoveMesh(const String& MeshName);
+            /// @brief Removes all Meshes from this manager.
+            void RemoveAllMeshes();
+
             /// @brief Writes a Mesh to the asset group.
             /// @param ToSave The Mesh to be saved.
             /// @param FileName The name of the file to save the Mesh as.

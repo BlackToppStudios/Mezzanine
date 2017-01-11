@@ -41,14 +41,12 @@
 #define _transformableobject_h
 
 #include "enumerations.h"
-#include "vector3.h"
-#include "quaternion.h"
+#include "transform.h"
 
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an interface for all 3D objects that can have their full transforms manipulated.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB TransformableObject
     {
@@ -56,6 +54,17 @@ namespace Mezzanine
         /// @brief Class Destructor.
         virtual ~TransformableObject()
             {  }
+
+        /// @brief Sets the non-scaled transform of this object.
+        /// @param Trans The transform containing the location and rotation to be applied.
+        virtual void SetTransform(const Transform& Trans) = 0;
+        /// @brief Sets the non-scaled transform of this object.
+        /// @param Loc A Vector3 representing the location this object is to be set to.
+        /// @param Ori A Quaternion representing the rotation this object is to be set to.
+        virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori) = 0;
+        /// @brief Gets the non-scaled transform of this object.
+        /// @return Returns a Transform containing the location and rotation of this object.
+        virtual Transform GetTransform() const = 0;
 
         /// @brief Sets the location of this object in parent space.
         /// @param Loc A Vector3 representing the location this object is to be set to.
@@ -127,8 +136,8 @@ namespace Mezzanine
         /// @brief Scales the object from it's current size.
         /// @note This method has an additive effect with the objects' current scaling.  Unlike "SetScale" this method does not replace
         /// the existing scale with what you provide.
-        /// @param Scale A Vector3 representing the scaling to apply to this object.
-        virtual void Scale(const Vector3& Scale) = 0;
+        /// @param Sc A Vector3 representing the scaling to apply to this object.
+        virtual void Scale(const Vector3& Sc) = 0;
         /// @brief Scales the object from it's current size.
         /// @note This method has an additive effect with the objects' current scaling.  Unlike "SetScale" this method does not replace
         /// the existing scale with what you provide.

@@ -53,6 +53,8 @@
 
 namespace Mezzanine
 {
+    DebrisManager::FactoryContainer DebrisManager::DebrisFactories;
+
     ///////////////////////////////////////////////////////////////////////////////
     // DebrisUpdateWorkUnit Methods
 
@@ -73,9 +75,10 @@ namespace Mezzanine
 
     void DebrisUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
+        Whole FrameTime = CurrentThreadStorage.GetLastFrameTime();
         for( DebrisManager::DebrisIterator DebIt = this->TargetManager->Debriss.begin() ; DebIt != this->TargetManager->Debriss.end() ; ++DebIt )
         {
-            (*DebIt)->_Update();
+            (*DebIt)->_Update(FrameTime);
         }
     }
 
@@ -88,9 +91,6 @@ namespace Mezzanine
     DebrisManager::DebrisManager(World* Creator) :
         WorldManager(Creator)
     {
-        this->AddDebrisFactory( new RigidDebrisFactory() );
-        this->AddDebrisFactory( new SoftDebrisFactory() );
-
         this->DebrisUpdateWork = new DebrisUpdateWorkUnit(this);
     }
 
@@ -99,9 +99,6 @@ namespace Mezzanine
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
 
-        this->AddDebrisFactory( new RigidDebrisFactory() );
-        this->AddDebrisFactory( new SoftDebrisFactory() );
-
         this->DebrisUpdateWork = new DebrisUpdateWorkUnit(this);
     }
 
@@ -109,7 +106,6 @@ namespace Mezzanine
     {
         this->Deinitialize();
         this->DestroyAllDebris();
-        this->DestroyAllDebrisFactories();
 
         delete this->DebrisUpdateWork;
     }
@@ -117,30 +113,24 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Prefab Debris Type Creation
 
-    RigidDebris* DebrisManager::CreateRigidDebris(const String& Name, const Real Mass, const Boole AddToWorld)
+    RigidDebris* DebrisManager::CreateRigidDebris(const String& Name, const Real Mass)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( RigidDebris::GetSerializableName() );
         if( DebFactIt != this->DebrisFactories.end() ) {
             RigidDebris* Ret = static_cast<RigidDebrisFactory*>( (*DebFactIt).second )->CreateRigidDebris( Name, Mass, this->ParentWorld );
             this->Debriss.push_back( Ret );
-            if( AddToWorld ) {
-                Ret->AddToWorld();
-            }
             return Ret;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
         }
     }
 
-    RigidDebris* DebrisManager::CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, const Boole AddToWorld)
+    RigidDebris* DebrisManager::CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( RigidDebris::GetSerializableName() );
         if( DebFactIt != this->DebrisFactories.end() ) {
             RigidDebris* Ret = static_cast<RigidDebrisFactory*>( (*DebFactIt).second )->CreateRigidDebris( Name, Mass, DebMesh, DebShape, this->ParentWorld );
             this->Debriss.push_back( Ret );
-            if( AddToWorld ) {
-                Ret->AddToWorld();
-            }
             return Ret;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a RigidDebris without it's factory registered.");
@@ -159,15 +149,12 @@ namespace Mezzanine
         }
     }
 
-    SoftDebris* DebrisManager::CreateSoftDebris(const String& Name, const Real Mass, const Boole AddToWorld)
+    SoftDebris* DebrisManager::CreateSoftDebris(const String& Name, const Real Mass)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( SoftDebris::GetSerializableName() );
         if( DebFactIt != this->DebrisFactories.end() ) {
             SoftDebris* Ret = static_cast<SoftDebrisFactory*>( (*DebFactIt).second )->CreateSoftDebris( Name, Mass, this->ParentWorld );
             this->Debriss.push_back( Ret );
-            if( AddToWorld ) {
-                Ret->AddToWorld();
-            }
             return Ret;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create a SoftDebris without it's factory registered.");
@@ -189,15 +176,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Debris Management
 
-    Debris* DebrisManager::CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params, const Boole AddToWorld)
+    Debris* DebrisManager::CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( TypeName );
         if( DebFactIt != this->DebrisFactories.end() ) {
             Debris* Ret = (*DebFactIt).second->CreateDebris( InstanceName, this->ParentWorld, Params );
             this->Debriss.push_back( Ret );
-            if( AddToWorld ) {
-                Ret->AddToWorld();
-            }
             return Ret;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to create an Debris of unknown type.");
@@ -299,40 +283,46 @@ namespace Mezzanine
 
     void DebrisManager::AddDebrisFactory(DebrisFactory* ToBeAdded)
     {
-        this->DebrisFactories.insert(std::pair<String,DebrisFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
+        DebrisManager::DebrisFactories.insert(std::pair<String,DebrisFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
     }
 
     void DebrisManager::RemoveDebrisFactory(DebrisFactory* ToBeRemoved)
     {
-        this->RemoveDebrisFactory(ToBeRemoved->GetTypeName());
+        DebrisManager::RemoveDebrisFactory(ToBeRemoved->GetTypeName());
     }
 
     void DebrisManager::RemoveDebrisFactory(const String& ImplName)
     {
-        FactoryIterator DebFactIt = this->DebrisFactories.find(ImplName);
-        if( DebFactIt != this->DebrisFactories.end() )
-            { this->DebrisFactories.erase(DebFactIt); }
+        FactoryIterator DebFactIt = DebrisManager::DebrisFactories.find(ImplName);
+        if( DebFactIt != DebrisManager::DebrisFactories.end() )
+            { DebrisManager::DebrisFactories.erase(DebFactIt); }
     }
 
     void DebrisManager::DestroyDebrisFactory(DebrisFactory* ToBeDestroyed)
     {
-        this->DestroyDebrisFactory(ToBeDestroyed->GetTypeName());
+        DebrisManager::DestroyDebrisFactory(ToBeDestroyed->GetTypeName());
     }
 
     void DebrisManager::DestroyDebrisFactory(const String& ImplName)
     {
-        FactoryIterator DebFactIt = this->DebrisFactories.find(ImplName);
-        if( DebFactIt != this->DebrisFactories.end() ) {
+        FactoryIterator DebFactIt = DebrisManager::DebrisFactories.find(ImplName);
+        if( DebFactIt != DebrisManager::DebrisFactories.end() ) {
             delete DebFactIt->second;
-            this->DebrisFactories.erase(DebFactIt);
+            DebrisManager::DebrisFactories.erase(DebFactIt);
         }
     }
 
     void DebrisManager::DestroyAllDebrisFactories()
     {
-        for( FactoryIterator DebFactIt = this->DebrisFactories.begin() ; DebFactIt != this->DebrisFactories.end() ; ++DebFactIt )
+        for( FactoryIterator DebFactIt = DebrisManager::DebrisFactories.begin() ; DebFactIt != DebrisManager::DebrisFactories.end() ; ++DebFactIt )
             { delete (*DebFactIt).second; }
-        this->DebrisFactories.clear();
+        DebrisManager::DebrisFactories.clear();
+    }
+
+    void DebrisManager::AddAllDefaultDebrisFactories()
+    {
+        DebrisManager::AddDebrisFactory( new RigidDebrisFactory() );
+        DebrisManager::AddDebrisFactory( new SoftDebrisFactory() );
     }
 
     ///////////////////////////////////////////////////////////////////////////////

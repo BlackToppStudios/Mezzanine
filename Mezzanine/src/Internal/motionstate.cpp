@@ -42,7 +42,7 @@
 
 #include "Internal/motionstate.h.cpp"
 #include "Physics/rigidproxy.h"
-#include "transformableobject.h"
+#include "worldobject.h"
 #include "exception.h"
 
 #include <algorithm>
@@ -94,10 +94,9 @@ namespace Mezzanine
         void SimpleMotionState::setWorldTransform(const btTransform& worldTrans)
         {
             this->WorldTrans = worldTrans;
-
             if( this->ParentObject != NULL && this->SyncObject != NULL ) {
-                this->SyncObject->SetLocation( Vector3( worldTrans.getOrigin() ) );
-                this->SyncObject->SetOrientation( Quaternion( worldTrans.getRotation() ) );
+                Transform NewTrans(this->WorldTrans);
+                this->SyncObject->SetTransform(NewTrans);
             }
         }
 
@@ -153,16 +152,50 @@ namespace Mezzanine
         void MultiMotionState::setWorldTransform(const btTransform& worldTrans)
         {
             this->WorldTrans = worldTrans;
-
             if( this->ParentObject != NULL ) {
-                Vector3 TargetLocation( worldTrans.getOrigin() );
-                Quaternion TargetOrientation( worldTrans.getRotation() );
-
+                Transform NewTrans(this->WorldTrans);
                 for( TransformableObjectIterator ObjIt = this->SyncObjects.begin() ; ObjIt != this->SyncObjects.end() ; ++ObjIt )
-                {
-                    (*ObjIt)->SetLocation( TargetLocation );
-                    (*ObjIt)->SetOrientation( TargetOrientation );
-                }
+                    { (*ObjIt)->SetTransform(NewTrans); }
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // WorldObjectMotionState methods
+
+        WorldObjectMotionState::WorldObjectMotionState() :
+            ParentObject(NULL),
+            SyncObject(NULL)
+            { this->WorldTrans.setIdentity(); }
+
+        WorldObjectMotionState::WorldObjectMotionState(Physics::RigidProxy* PO) :
+            ParentObject(PO),
+            SyncObject(NULL)
+            { this->WorldTrans.setIdentity(); }
+
+        WorldObjectMotionState::~WorldObjectMotionState()
+            {  }
+
+        void WorldObjectMotionState::SetParentObject(Physics::RigidProxy* PO)
+            { this->ParentObject = PO; }
+
+        void WorldObjectMotionState::SetSyncObject(WorldObject* WO)
+            { this->SyncObject = WO; }
+
+        void WorldObjectMotionState::SetPosition(const Vector3& Position)
+            { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }
+
+        void WorldObjectMotionState::SetOrientation(const Quaternion& Orientation)
+            { this->WorldTrans.setRotation(Orientation.GetBulletQuaternion()); }
+
+        void WorldObjectMotionState::getWorldTransform(btTransform& worldTrans) const
+            { worldTrans = this->WorldTrans; }
+
+        void WorldObjectMotionState::setWorldTransform(const btTransform& worldTrans)
+        {
+            this->WorldTrans = worldTrans;
+            if( this->ParentObject != NULL && this->SyncObject != NULL ) {
+                Transform NewTrans(this->WorldTrans);
+                this->SyncObject->_SyncTransforms(this->ParentObject,NewTrans);
             }
         }
     }//Internal

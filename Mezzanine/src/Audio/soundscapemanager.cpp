@@ -47,11 +47,11 @@ namespace Mezzanine
     namespace Audio
     {
         SoundScapeManager::SoundScapeManager(World* Creator) :
-            WorldManager(Creator)
+            WorldProxyManager(Creator)
             {  }
 
         SoundScapeManager::SoundScapeManager(World* Creator, XML::Node& XMLNode) :
-            WorldManager(Creator)
+            WorldProxyManager(Creator)
             {  }
 
         SoundScapeManager::~SoundScapeManager()
@@ -69,59 +69,59 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Creation Methods
 
-        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Ambient,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Dialog,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Effect,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Music,AddToWorld); }
+        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy()
+            { return this->CreateSoundProxy(Audio::ST_Ambient); }
+        SoundProxy* SoundScapeManager::CreateDialogSoundProxy()
+            { return this->CreateSoundProxy(Audio::ST_Dialog); }
+        SoundProxy* SoundScapeManager::CreateEffectSoundProxy()
+            { return this->CreateSoundProxy(Audio::ST_Effect); }
+        SoundProxy* SoundScapeManager::CreateMusicSoundProxy()
+            { return this->CreateSoundProxy(Audio::ST_Music); }
 
-        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Ambient,Stream,Encode,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Dialog,Stream,Encode,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Effect,Stream,Encode,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Music,Stream,Encode,AddToWorld); }
+        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            { return this->CreateSoundProxy(Audio::ST_Ambient,Stream,Encode); }
+        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            { return this->CreateSoundProxy(Audio::ST_Dialog,Stream,Encode); }
+        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            { return this->CreateSoundProxy(Audio::ST_Effect,Stream,Encode); }
+        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            { return this->CreateSoundProxy(Audio::ST_Music,Stream,Encode); }
 
-        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Ambient,Stream,Frequency,Config,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Dialog,Stream,Frequency,Config,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Effect,Stream,Frequency,Config,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Music,Stream,Frequency,Config,AddToWorld); }
+        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSoundProxy(Audio::ST_Ambient,Stream,Frequency,Config); }
+        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSoundProxy(Audio::ST_Dialog,Stream,Frequency,Config); }
+        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSoundProxy(Audio::ST_Effect,Stream,Frequency,Config); }
+        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSoundProxy(Audio::ST_Music,Stream,Frequency,Config); }
 
-        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(const String& FileName, const String& Group, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Ambient,FileName,Group,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(const String& FileName, const String& Group, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Dialog,FileName,Group,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(const String& FileName, const String& Group, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Effect,FileName,Group,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(const String& FileName, const String& Group, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Music,FileName,Group,AddToWorld); }
+        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(const String& FileName, const String& Group)
+            { return this->CreateSoundProxy(Audio::ST_Ambient,FileName,Group); }
+        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(const String& FileName, const String& Group)
+            { return this->CreateSoundProxy(Audio::ST_Dialog,FileName,Group); }
+        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(const String& FileName, const String& Group)
+            { return this->CreateSoundProxy(Audio::ST_Effect,FileName,Group); }
+        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(const String& FileName, const String& Group)
+            { return this->CreateSoundProxy(Audio::ST_Music,FileName,Group); }
 
-        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Ambient,StreamName,Buffer,Length,Encode,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Dialog,StreamName,Buffer,Length,Encode,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Effect,StreamName,Buffer,Length,Encode,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Music,StreamName,Buffer,Length,Encode,AddToWorld); }
+        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            { return this->CreateSoundProxy(Audio::ST_Ambient,StreamName,Buffer,Length,Encode); }
+        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            { return this->CreateSoundProxy(Audio::ST_Dialog,StreamName,Buffer,Length,Encode); }
+        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            { return this->CreateSoundProxy(Audio::ST_Effect,StreamName,Buffer,Length,Encode); }
+        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            { return this->CreateSoundProxy(Audio::ST_Music,StreamName,Buffer,Length,Encode); }
 
-        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Ambient,StreamName,Buffer,Length,Frequency,Config,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Dialog,StreamName,Buffer,Length,Frequency,Config,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Effect,StreamName,Buffer,Length,Frequency,Config,AddToWorld); }
-        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
-            { return this->CreateSoundProxy(Audio::ST_Music,StreamName,Buffer,Length,Frequency,Config,AddToWorld); }
+        SoundProxy* SoundScapeManager::CreateAmbientSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSoundProxy(Audio::ST_Ambient,StreamName,Buffer,Length,Frequency,Config); }
+        SoundProxy* SoundScapeManager::CreateDialogSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSoundProxy(Audio::ST_Dialog,StreamName,Buffer,Length,Frequency,Config); }
+        SoundProxy* SoundScapeManager::CreateEffectSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSoundProxy(Audio::ST_Effect,StreamName,Buffer,Length,Frequency,Config); }
+        SoundProxy* SoundScapeManager::CreateMusicSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSoundProxy(Audio::ST_Music,StreamName,Buffer,Length,Frequency,Config); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Inherited from Managerbase

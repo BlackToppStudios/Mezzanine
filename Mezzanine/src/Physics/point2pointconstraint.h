@@ -89,7 +89,7 @@ namespace Mezzanine
             /// @param Creator A pointer to the manager that created this constraint.
             Point2PointConstraint(const UInt32 ID, RigidProxy* ProxyA, const Vector3& PivotA, PhysicsManager* Creator);
             /// @brief XML constructor.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this constraint.
             Point2PointConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.

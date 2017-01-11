@@ -46,14 +46,10 @@
 namespace Mezzanine
 {
     MeshTerrain::MeshTerrain(Vector3 InitPosition, String name, String file, String group)
-    {
-
-    }
+        {  }
 
     MeshTerrain::~MeshTerrain()
-    {
-
-    }
+        {  }
 }
 
 #endif // _meshterrain_cpp

@@ -500,10 +500,10 @@ namespace Mezzanine
             /// @copydoc SimpleRenderer::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the TextCursor of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeCursor(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the Text of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeText(const XML::Node& SelfRoot);
 
             /// @copydoc SimpleRenderer::GetDerivedSerializableName() const

@@ -45,7 +45,8 @@ message ("${PROJECT_NAME} - Begin")
 ##############################################################################
 #Catch! initializations
 
-add_definitions( ${CommonBuildFlags} )
+#add_definitions( ${CommonBuildFlags} )
+#target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
@@ -136,6 +137,10 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.h"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.h"
+    "${${PROJECT_NAME}_SRC_DIR}catchplayer.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}catchplayer.h"
+    "${${PROJECT_NAME}_SRC_DIR}catchplayercontrol.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}catchplayercontrol.h"
     "${${PROJECT_NAME}_SRC_DIR}gamebase.cpp"
     "${${PROJECT_NAME}_SRC_DIR}gamebase.h"
     "${${PROJECT_NAME}_SRC_DIR}itemshop.cpp"
@@ -222,6 +227,8 @@ link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine )
 target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName} )
+
+target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 ##############################################################################
 # File copies during all builds

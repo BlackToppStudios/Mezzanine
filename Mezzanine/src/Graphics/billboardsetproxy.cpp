@@ -191,7 +191,7 @@ namespace Mezzanine
         {
             this->GraphicsBillboardSet = this->Manager->_GetGraphicsWorldPointer()->createBillboardSet(InitialPoolSize);
             this->GraphicsNode->attachObject( this->GraphicsBillboardSet );
-            this->GraphicsBillboardSet->MovableObject::setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
+            this->GraphicsBillboardSet->MovableObject::getUserObjectBindings().setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
             this->GraphicsBillboardSet->setVisibilityFlags(0);
             this->GraphicsBillboardSet->setQueryFlags(0);
         }
@@ -210,6 +210,11 @@ namespace Mezzanine
         Mezzanine::ProxyType BillboardSetProxy::GetProxyType() const
         {
             return Mezzanine::PT_Graphics_BillboardSetProxy;
+        }
+
+        Boole BillboardSetProxy::IsStatic() const
+        {
+            return false;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

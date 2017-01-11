@@ -45,10 +45,9 @@
 namespace Mezzanine
 {
     class WorldObject;
-    class WorldManager;
+    class WorldProxyManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for proxy objects belonging to the various 3D subsystems.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB WorldProxy : public TransformableObject
     {
@@ -66,7 +65,7 @@ namespace Mezzanine
         virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
         /// @internal
         /// @brief Implementation method for deseriailizing additional sets of data.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
     public:
         /// @brief Blank constructor.
@@ -90,6 +89,9 @@ namespace Mezzanine
         /// @brief Gets whether or not this object is inside of it's world.
         /// @return Returns true if this proxy is inserted in it's respective subsystems world.
         virtual Boole IsInWorld() const = 0;
+        /// @brief Checks of the object is meant to have it's geometry/transform updated frequently.
+        /// @return Returns true if the object is meant to be stationary, false otherwise.
+        virtual Boole IsStatic() const = 0;
 
         /// @brief Gets a pointer to the parent object controlling this proxy.
         /// @return Returns a pointer to the WorldObject controlling this proxy, or NULL if this proxy isn't bound to a WorldObject.
@@ -99,11 +101,21 @@ namespace Mezzanine
         /// @return Returns a UInt32 containing the unique ID for this proxy.
         virtual UInt32 GetProxyID() const;
         /// @brief Gets a pointer to this proxies creator.
-        /// @return Returns a pointer to the WorldManager that created this WorldProxy.
-        virtual WorldManager* GetCreator() const = 0;
+        /// @return Returns a pointer to the WorldProxyManager that created this WorldProxy.
+        virtual WorldProxyManager* GetCreator() const = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
+
+        /// @copydoc TransformableObject::SetTransform(const Transform&)
+        /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
+        virtual void SetTransform(const Transform& Trans) = 0;
+        /// @copydoc TransformableObject::SetTransform(const Vector3&,const Quaternion&)
+        /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
+        virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori) = 0;
+        /// @copydoc TransformableObject::GetTransform() const
+        /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
+        virtual Transform GetTransform() const = 0;
 
         /// @copydoc TransformableObject::SetLocation(const Vector3&)
         /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
@@ -156,7 +168,7 @@ namespace Mezzanine
         virtual void Rotate(const Quaternion& Rotation) = 0;
         /// @copydoc TransformableObject::Scale(const Vector3&)
         /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
-        virtual void Scale(const Vector3& Scale) = 0;
+        virtual void Scale(const Vector3& Sc) = 0;
         /// @copydoc TransformableObject::Scale(const Real, const Real, const Real)
         /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
         virtual void Scale(const Real X, const Real Y, const Real Z) = 0;
@@ -172,10 +184,10 @@ namespace Mezzanine
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
         /// @brief Take the data stored in an XML Node and overwrite this object with it.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
         /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
         /// @brief Gets the most derived serializable name of this WorldProxy.
@@ -192,7 +204,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Binds this proxy to a WorldObject.
         /// @param NewParent A pointer to the WorldObject taking possession of this proxy.
-        void _Bind(WorldObject* NewParent);
+        virtual void _Bind(WorldObject* NewParent);
     };//WorldProxy
 }//Mezzanine
 

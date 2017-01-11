@@ -43,7 +43,7 @@
 cmake_minimum_required (VERSION 2.8)
 project (Lua)
 
-add_definitions( ${CommonBuildFlags} )
+#add_definitions( ${CommonBuildFlags} )
 
 message ("${PROJECT_NAME} - Begin")
 

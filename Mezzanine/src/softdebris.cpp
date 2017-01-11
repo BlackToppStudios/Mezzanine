@@ -63,21 +63,15 @@ namespace Mezzanine
     // RigidDebris Methods
 
     SoftDebris::SoftDebris(World* TheWorld) :
-        Debris(TheWorld),
-        EntProx(NULL),
-        SofProx(NULL)
+        Debris(TheWorld)
         {  }
 
     SoftDebris::SoftDebris(const String& Name, const Real Mass, World* TheWorld) :
-        Debris(Name,TheWorld),
-        EntProx(NULL),
-        SofProx(NULL)
+        Debris(Name,TheWorld)
         { this->CreateSoftDebris(Mass); }
 
     SoftDebris::SoftDebris(const XML::Node& SelfRoot, World* TheWorld) :
-        Debris(TheWorld),
-        EntProx(NULL),
-        SofProx(NULL)
+        Debris(TheWorld)
         { this->ProtoDeSerialize(SelfRoot); }
 
     SoftDebris::~SoftDebris()
@@ -85,205 +79,39 @@ namespace Mezzanine
 
     void SoftDebris::CreateSoftDebris(const Real Mass)
     {
-        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
-        if( SceneMan ) {
-            this->EntProx = SceneMan->CreateEntityProxy(false);
-            this->EntProx->_Bind( this );
-        }
-
+        Physics::SoftProxy* SofProx = NULL;
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
-            this->SofProx = PhysMan->CreateSoftProxy(Mass);
-            this->SofProx->_Bind( this );
+            SofProx = PhysMan->CreateSoftProxy(Mass);
+            this->AddProxy( SofProx );
+            this->SetPrimaryProxy( SofProx );
+        }
+
+        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
+        if( SceneMan ) {
+            EntProx = SceneMan->CreateEntityProxy();
+            this->AddProxy( EntProx );
         }
     }
 
     void SoftDebris::DestroySoftDebris()
     {
         this->RemoveFromWorld();
-        if( this->EntProx ) {
-            Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
-            if( SceneMan ) {
-                SceneMan->DestroyProxy( this->EntProx );
-                this->EntProx = NULL;
-            }
-        }
-
-        if( this->SofProx ) {
-            Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
-            if( PhysMan ) {
-                PhysMan->DestroyProxy( this->SofProx );
-                this->SofProx = NULL;
-            }
-        }
+        this->DestroyAllProxies();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
     WorldObjectType SoftDebris::GetType() const
-        { return Mezzanine::WO_DebrisSoft; }
+        { return Mezzanine::WO_SoftDebris; }
 
     Graphics::EntityProxy* SoftDebris::GetEntityProxy() const
-        { return this->EntProx; }
+        { return static_cast<Graphics::EntityProxy*>( this->GetProxy(Mezzanine::PT_Graphics_EntityProxy,0) ); }
 
     Physics::SoftProxy* SoftDebris::GetSoftProxy() const
-        { return this->SofProx; }
-
-    Boole SoftDebris::IsInWorld() const
-        { return this->SofProx->IsInWorld(); }
-
-    Boole SoftDebris::IsStatic() const
-        { return this->SofProx->IsStatic(); }
-
-    Boole SoftDebris::IsKinematic() const
-        { return this->SofProx->IsKinematic(); }
-
-    void SoftDebris::GetProxies(ProxyContainer& Proxies)
-    {
-        Proxies.push_back( this->EntProx );
-        Proxies.push_back( this->SofProx );
-    }
-
-    void SoftDebris::GetProxies(const UInt32 Types, ProxyContainer& Proxies)
-    {
-        if( Types & Mezzanine::PT_Graphics_EntityProxy ) {
-            Proxies.push_back( this->EntProx );
-        }
-        if( Types & Mezzanine::PT_Physics_SoftProxy ) {
-            Proxies.push_back( this->SofProx );
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Working with the World
-
-    void SoftDebris::AddToWorld()
-    {
-        if( this->EntProx )
-            this->EntProx->AddToWorld();
-
-        if( this->SofProx )
-            this->SofProx->AddToWorld();
-    }
-
-    void SoftDebris::RemoveFromWorld()
-    {
-        if( this->EntProx )
-            this->EntProx->RemoveFromWorld();
-
-        if( this->SofProx )
-            this->SofProx->RemoveFromWorld();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Transform Methods
-
-    void SoftDebris::SetLocation(const Vector3& Loc)
-    {
-        this->SofProx->SetLocation(Loc);
-        this->EntProx->SetLocation(Loc);
-    }
-
-    void SoftDebris::SetLocation(const Real X, const Real Y, const Real Z)
-    {
-        this->SofProx->SetLocation(X,Y,Z);
-        this->EntProx->SetLocation(X,Y,Z);
-    }
-
-    Vector3 SoftDebris::GetLocation() const
-    {
-        return this->SofProx->GetLocation();
-    }
-
-    void SoftDebris::SetOrientation(const Quaternion& Ori)
-    {
-        this->SofProx->SetOrientation(Ori);
-        this->EntProx->SetOrientation(Ori);
-    }
-
-    void SoftDebris::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
-    {
-        this->SofProx->SetOrientation(X,Y,Z,W);
-        this->EntProx->SetOrientation(X,Y,Z,W);
-    }
-
-    Quaternion SoftDebris::GetOrientation() const
-    {
-        return this->SofProx->GetOrientation();
-    }
-
-    void SoftDebris::SetScale(const Vector3& Sc)
-    {
-        this->SofProx->SetScale(Sc);
-        this->EntProx->SetScale(Sc);
-    }
-
-    void SoftDebris::SetScale(const Real X, const Real Y, const Real Z)
-    {
-        this->SofProx->SetScale(X,Y,Z);
-        this->EntProx->SetScale(X,Y,Z);
-    }
-
-    Vector3 SoftDebris::GetScale() const
-    {
-        return this->SofProx->GetScale();
-    }
-
-    void SoftDebris::Translate(const Vector3& Trans)
-    {
-        this->SofProx->Translate(Trans);
-        this->EntProx->Translate(Trans);
-    }
-
-    void SoftDebris::Translate(const Real X, const Real Y, const Real Z)
-    {
-        this->SofProx->Translate(X,Y,Z);
-        this->EntProx->Translate(X,Y,Z);
-    }
-
-    void SoftDebris::Yaw(const Real Angle)
-    {
-        this->SofProx->Yaw(Angle);
-        this->EntProx->Yaw(Angle);
-    }
-
-    void SoftDebris::Pitch(const Real Angle)
-    {
-        this->SofProx->Pitch(Angle);
-        this->EntProx->Pitch(Angle);
-    }
-
-    void SoftDebris::Roll(const Real Angle)
-    {
-        this->SofProx->Roll(Angle);
-        this->EntProx->Roll(Angle);
-    }
-
-    void SoftDebris::Rotate(const Vector3& Axis, const Real Angle)
-    {
-        this->SofProx->Rotate(Axis,Angle);
-        this->EntProx->Rotate(Axis,Angle);
-    }
-
-    void SoftDebris::Rotate(const Quaternion& Rotation)
-    {
-        this->SofProx->Rotate(Rotation);
-        this->EntProx->Rotate(Rotation);
-    }
-
-    void SoftDebris::Scale(const Vector3& Scale)
-    {
-        this->SofProx->Scale(Scale);
-        this->EntProx->Scale(Scale);
-    }
-
-    void SoftDebris::Scale(const Real X, const Real Y, const Real Z)
-    {
-        this->SofProx->Scale(X,Y,Z);
-        this->EntProx->Scale(X,Y,Z);
-    }
-
+        { return static_cast<Physics::SoftProxy*>( this->GetProxy(Mezzanine::PT_Physics_SoftProxy,0) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -293,65 +121,9 @@ namespace Mezzanine
         this->Debris::ProtoSerializeProperties(SelfRoot);
     }
 
-    void SoftDebris::ProtoSerializeProxies(XML::Node& SelfRoot) const
-    {
-        // No base implementations to call
-        XML::Node ProxiesNode = SelfRoot.AppendChild( SoftDebris::GetSerializableName() + "Proxies" );
-
-        if( ProxiesNode.AppendAttribute("Version").SetValue("1") )
-        {
-            XML::Node EntProxNode = ProxiesNode.AppendChild("EntProx");
-            this->EntProx->ProtoSerialize( EntProxNode );
-            XML::Node SofProxNode = ProxiesNode.AppendChild("SofProx");
-            this->SofProx->ProtoSerialize( SofProxNode );
-
-            return;
-        }else{
-            SerializeError("Create XML Attribute Values",SoftDebris::GetSerializableName() + "Proxies",true);
-        }
-    }
-
     void SoftDebris::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
         this->Debris::ProtoDeSerializeProperties(SelfRoot);
-    }
-
-    void SoftDebris::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
-    {
-        this->DestroySoftDebris();
-        // No base implementations to call
-        //XML::Attribute CurrAttrib;
-        XML::Node ProxiesNode = SelfRoot.GetChild( SoftDebris::GetSerializableName() + "Proxies" );
-
-        if( !ProxiesNode.Empty() ) {
-            if(ProxiesNode.GetAttribute("Version").AsInt() == 1) {
-                /// @todo I don't think an exception is appropriate for the failure of the worldmanager validity checks,
-                /// however a warning should be written to the log if that happens.  This should be updated to do that once
-                /// logging refactors are done.
-
-                XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
-                if( !EntProxNode.Empty() ) {
-                    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
-                    if( SceneMan ) {
-                        this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
-                        this->EntProx->_Bind( this );
-                    }
-                }
-
-                XML::Node SofProxNode = ProxiesNode.GetChild("SofProx").GetFirstChild();
-                if( !SofProxNode.Empty() ) {
-                    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
-                    if( PhysMan ) {
-                        this->SofProx = PhysMan->CreateSoftProxy(SofProxNode);
-                        this->SofProx->_Bind( this );
-                    }
-                }
-            }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (SoftDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
-            }
-        }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,SoftDebris::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
-        }
     }
 
     String SoftDebris::GetDerivedSerializableName() const
@@ -363,23 +135,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void SoftDebris::_Update()
+    void SoftDebris::_Update(const Whole Delta)
     {
         // Do nothing
-    }
-
-    void SoftDebris::_NotifyProxyDestroyed(WorldProxy* ToBeDestroyed)
-    {
-        if( ToBeDestroyed == NULL )
-            return;
-
-        if( this->EntProx == ToBeDestroyed ) {
-            this->EntProx = NULL;
-        }
-
-        if( this->SofProx == ToBeDestroyed ) {
-            this->SofProx = NULL;
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -86,7 +86,7 @@ namespace Mezzanine
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
             /// @internal
             /// @brief Implementation method for deseriailizing additional sets of data.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
         //public:
             /// @brief Blank constructor.
@@ -151,10 +151,10 @@ namespace Mezzanine
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
             /// @brief Take the data stored in an XML Node and overwrite this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
             /// @brief Gets the most derived serializable name of this Renderable.

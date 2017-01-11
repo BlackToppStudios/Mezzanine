@@ -37,24 +37,19 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _terrainbase_cpp
-#define _terrainbase_cpp
+#ifndef _terrain_cpp
+#define _terrain_cpp
 
-#include "terrainbase.h"
+#include "terrain.h"
 
 namespace Mezzanine
 {
-    ///////////////////////////////////
-    // TerrainBase class fuctions
-    TerrainBase::TerrainBase() :
+    Terrain::Terrain() :
         WorldObject(NULL)
-    {
+        {  }
 
-    }
-
-    TerrainBase::~TerrainBase()
-    {
-    }
+    Terrain::~Terrain()
+        {  }
 }// /Mezzanine
 
 #endif // _terrainbase_cpp

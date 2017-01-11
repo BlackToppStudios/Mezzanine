@@ -121,12 +121,11 @@ namespace Mezzanine
         void MeshManager::UnloadMesh(const String& MeshName)
         {
             MeshIterator MeshIt = this->Meshes.find(MeshName);
-            if( MeshIt == this->Meshes.end() ) {
-                return;
+            if( MeshIt != this->Meshes.end() ) {
+                this->_GetInternalManager()->unload(MeshName);
+                delete (*MeshIt).second;
+                this->Meshes.erase(MeshIt);
             }
-            this->_GetInternalManager()->unload(MeshName);
-            delete (*MeshIt).second;
-            this->Meshes.erase(MeshIt);
         }
 
         void MeshManager::UnloadAllMeshes()
@@ -135,6 +134,24 @@ namespace Mezzanine
                 { delete (*MeshIt).second; }
             this->Meshes.clear();
             this->_GetInternalManager()->unloadAll();
+        }
+
+        void MeshManager::RemoveMesh(const String& MeshName)
+        {
+            MeshIterator MeshIt = this->Meshes.find(MeshName);
+            if( MeshIt != this->Meshes.end() ) {
+                this->_GetInternalManager()->remove(MeshName);
+                delete (*MeshIt).second;
+                this->Meshes.erase(MeshIt);
+            }
+        }
+
+        void MeshManager::RemoveAllMeshes()
+        {
+            for( MeshIterator MeshIt = this->Meshes.begin() ; MeshIt != this->Meshes.end() ; ++MeshIt )
+                { delete (*MeshIt).second; }
+            this->Meshes.clear();
+            this->_GetInternalManager()->removeAll();
         }
 
         void MeshManager::SaveMesh(Mesh* ToSave, const String& FileName, const String& GroupName)

@@ -93,7 +93,7 @@ namespace Mezzanine
             /// @param Creator A pointer to the manager that created this constraint.
             Hinge2Constraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator);
             /// @brief XML constructor.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this constraint.
             Hinge2Constraint(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.

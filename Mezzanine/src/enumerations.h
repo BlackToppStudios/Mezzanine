@@ -148,45 +148,51 @@ namespace Mezzanine
     {
         // Terrain Objects
         WO_TerrainFirst           = ( 1u << 0 ),//1,
+
         WO_MeshTerrain            = ( 1u << 0 ),//1,
         WO_HeightfieldTerrain     = ( 1u << 1 ),//2,
         WO_VectorFieldTerrain     = ( 1u << 2 ),//4,
         WO_VoxelTerrain           = ( 1u << 3 ),//8,
         WO_MarchingCubeTerrain    = ( 1u << 4 ),//16,
         WO_UnknownTerrain         = ( 1u << 5 ),//32,
-        WO_TerrainLast            = ( 1u << 5 ),//32,
 
+        WO_TerrainLast            = ( 1u << 5 ),//32,
         // Debris Objects
         WO_DebrisFirst            = ( 1u << 6 ),//64,
-        WO_DebrisRigid            = ( 1u << 6 ),//64,
-        WO_DebrisSoft             = ( 1u << 7 ),//128,
-        WO_DebrisUnknown          = ( 1u << 8 ),//256,
-        WO_DebrisLast             = ( 1u << 8 ),//256,
 
+        WO_RigidDebris            = ( 1u << 6 ),//64,
+        WO_SoftDebris             = ( 1u << 7 ),//128,
+        WO_UnknownDebris          = ( 1u << 8 ),//256,
+
+        WO_DebrisLast             = ( 1u << 8 ),//256,
         // AreaEffect Objects
         WO_AreaEffectFirst        = ( 1u << 9 ),//512,
+
         WO_AreaEffectGravityField = ( 1u << 9 ),//512,
         WO_AreaEffectGravityWell  = ( 1u << 10 ),//1024,
         WO_AreaEffectFieldOfForce = ( 1u << 11 ),//2048,
         WO_AreaEffectPlaceHolder1 = ( 1u << 12 ),//4096,
         WO_AreaEffectPlaceHolder2 = ( 1u << 13 ),//8192,
         WO_AreaEffectUnknown      = ( 1u << 14 ),//16384,
-        WO_AreaEffectLast         = ( 1u << 14 ),//16384,
 
+        WO_AreaEffectLast         = ( 1u << 14 ),//16384,
         // Actor Objects
         WO_ActorFirst             = ( 1u << 15 ),//32768,
+
         WO_ActorPlaceHolder1      = ( 1u << 15 ),//32768,
         WO_ActorPlaceHolder2      = ( 1u << 16 ),//65536,
         WO_ActorPlaceHolder3      = ( 1u << 17 ),//131072,
-        WO_ActorLast              = ( 1u << 17 ),//131072,
 
+        WO_ActorLast              = ( 1u << 17 ),//131072,
         // Vehicle Objects
         WO_VehicleFirst           = ( 1u << 18 ),//262144,
-        WO_VehiclePlaceHolder1    = ( 1u << 18 ),//262144,
-        WO_VehiclePlaceHolder2    = ( 1u << 19 ),//524288,
-        WO_VehiclePlaceHolder3    = ( 1u << 20 ),//1048576,
-        WO_VehiclePlaceHolder4    = ( 1u << 21 ),//2097152,
-        WO_VehiclePlaceHolder5    = ( 1u << 22 ),//4194304,
+
+        WO_MultiBodyVehicle       = ( 1u << 18 ),//262144,
+        WO_RaycastVehicle         = ( 1u << 19 ),//524288,
+        WO_SimpleVehicle          = ( 1u << 20 ),//1048576,
+        WO_VehiclePlaceHolder1    = ( 1u << 21 ),//2097152,
+        WO_VehiclePlaceHolder2    = ( 1u << 22 ),//4194304,
+
         WO_VehicleLast            = ( 1u << 22 ) //4194304
     };
 }//Mezzanine

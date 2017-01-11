@@ -367,7 +367,7 @@ namespace Mezzanine
         const ManagerBase::ManagerType PhysicsManager::InterfaceType = ManagerBase::MT_PhysicsManager;
 
         PhysicsManager::PhysicsManager(World* Creator) :
-            WorldManager(Creator),
+            WorldProxyManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -395,7 +395,7 @@ namespace Mezzanine
         }
 
         PhysicsManager::PhysicsManager(World* Creator, const ManagerConstructionInfo& Info) :
-            WorldManager(Creator),
+            WorldProxyManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -421,7 +421,7 @@ namespace Mezzanine
         }
 
         PhysicsManager::PhysicsManager(World* Creator, const XML::Node& XMLNode) :
-            WorldManager(Creator),
+            WorldProxyManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -516,7 +516,6 @@ namespace Mezzanine
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
         {
-            this->CallBackWorld = NULL;
             this->ThreadCount = ( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded) ? crossplatform::GetCPUCount() : 0;
 
             // Create the broadphase
@@ -609,7 +608,8 @@ namespace Mezzanine
             this->GhostCallback = new btGhostPairCallback();
             this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(this->GhostCallback);
 
-            this->BulletDynamicsWorld->setInternalTickCallback((btInternalTickCallback)PhysicsManager::InternalTickCallback,0,false);
+            this->BulletDynamicsWorld->setInternalTickCallback((btInternalTickCallback)PhysicsManager::InternalPreTickCallback,this,true);
+            this->BulletDynamicsWorld->setInternalTickCallback((btInternalTickCallback)PhysicsManager::InternalPostTickCallback,this,false);
 
             this->BulletDynamicsWorld->getWorldInfo().m_dispatcher = this->BulletDispatcher;
             this->BulletDynamicsWorld->getWorldInfo().m_broadphase = this->BulletBroadphase;
@@ -752,11 +752,19 @@ namespace Mezzanine
             AlgoQueue->clear();
         }
 
-        PhysicsManager* PhysicsManager::CallBackWorld;
-        void PhysicsManager::InternalTickCallback(btDynamicsWorld* world, btScalar timeStep)
+        void PhysicsManager::InternalPreTickCallback(btDynamicsWorld* world, btScalar timeStep)
         {
-            if( CallBackWorld != NULL ) {
-                CallBackWorld->ProcessAllCollisions();
+            //PhysicsManager* Physman = static_cast<PhysicsManager*>( world->getWorldUserInfo() );
+            //if( Physman != NULL ) {
+
+            //}
+        }
+
+        void PhysicsManager::InternalPostTickCallback(btDynamicsWorld* world, btScalar timeStep)
+        {
+            PhysicsManager* Physman = static_cast<PhysicsManager*>( world->getWorldUserInfo() );
+            if( Physman != NULL ) {
+                Physman->ProcessAllCollisions();
             }
         }
 
@@ -806,13 +814,10 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        GhostProxy* PhysicsManager::CreateGhostProxy(CollisionShape* Shape, const Boole AddToWorld)
+        GhostProxy* PhysicsManager::CreateGhostProxy(CollisionShape* Shape)
         {
             GhostProxy* NewProxy = new GhostProxy(this->ProxyIDGen.GenerateID(),Shape,this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
@@ -831,13 +836,10 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass, CollisionShape* Shape, const Boole AddToWorld)
+        RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass, CollisionShape* Shape)
         {
             RigidProxy* NewProxy = new RigidProxy(this->ProxyIDGen.GenerateID(),Mass,Shape,this);
             this->Proxies.push_back(NewProxy);
-            if( AddToWorld ) {
-                NewProxy->AddToWorld();
-            }
             return NewProxy;
         }
 
@@ -864,27 +866,21 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        WorldProxy* PhysicsManager::CreateProxy(const XML::Node& SelfRoot)
+        {
+            if( SelfRoot.Name() == RigidProxy::GetSerializableName() ) return this->CreateRigidProxy(SelfRoot);
+            else if( SelfRoot.Name() == GhostProxy::GetSerializableName() ) return this->CreateGhostProxy(SelfRoot);
+            else if( SelfRoot.Name() == SoftProxy::GetSerializableName() ) return this->CreateSoftProxy(SelfRoot);
+            else return NULL;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Proxy Management
 
         CollidableProxy* PhysicsManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
-        CollidableProxy* PhysicsManager::GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const
-        {
-            if( Mezzanine::PT_Physics_All_Proxies & Type ) {
-                for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-                {
-                    if( (*ProxIt)->GetProxyType() == Type ) {
-                        if( 0 == Which ) return (*ProxIt);
-                        else --Which;
-                    }
-                }
-            }
-            return NULL;
-        }
-
-        CollidableProxy* PhysicsManager::GetProxyByID(const UInt32 ID) const
+        WorldProxy* PhysicsManager::GetProxyByID(const UInt32 ID) const
         {
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
@@ -896,16 +892,38 @@ namespace Mezzanine
         }
 
         UInt32 PhysicsManager::GetNumProxies() const
-            { return this->Proxies.size(); }
+        {
+            return this->Proxies.size();
+        }
 
-        void PhysicsManager::DestroyProxy(CollidableProxy* ToBeDestroyed)
+        UInt32 PhysicsManager::GetNumProxies(const UInt32 Types) const
+        {
+            if( ( Types & Mezzanine::PT_Physics_All_Proxies ) == Mezzanine::PT_Physics_All_Proxies )
+                return this->GetNumProxies();
+
+            UInt32 Count = 0;
+            for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( (*ProxIt)->GetProxyType() & Types ) {
+                    ++Count;
+                }
+            }
+            return Count;
+        }
+
+        WorldProxyManager::WorldProxyVec PhysicsManager::GetProxies() const
+        {
+            return WorldProxyVec(this->Proxies.begin(),this->Proxies.end());
+        }
+
+        void PhysicsManager::DestroyProxy(WorldProxy* ToBeDestroyed)
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
                     WorldObject* Parent = (*ProxIt)->GetParentObject();
                     if( Parent )
-                        Parent->_NotifyProxyDestroyed( (*ProxIt) );
+                        Parent->RemoveProxy( (*ProxIt) );
 
                     this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                     delete (*ProxIt);
@@ -915,13 +933,33 @@ namespace Mezzanine
             }
         }
 
+        void PhysicsManager::DestroyAllProxies(const UInt32 Types)
+        {
+            ProxyContainer ToKeep;
+            for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( (*ProxIt)->GetProxyType() & Types ) {
+                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    if( Parent )
+                        Parent->RemoveProxy( (*ProxIt) );
+
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                    delete (*ProxIt);
+                }else{
+                    ToKeep.push_back( *ProxIt );
+                }
+            }
+            this->Proxies.clear();
+            this->Proxies.swap(ToKeep);
+        }
+
         void PhysicsManager::DestroyAllProxies()
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 WorldObject* Parent = (*ProxIt)->GetParentObject();
                 if( Parent )
-                    Parent->_NotifyProxyDestroyed( (*ProxIt) );
+                    Parent->RemoveProxy( (*ProxIt) );
 
                 this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
                 delete (*ProxIt);
@@ -1471,9 +1509,7 @@ namespace Mezzanine
             Timer PhysicsTimer;
             PhysicsTimer.Start();
 
-            CallBackWorld = this;
             this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
-            CallBackWorld = NULL;
 
             PhysicsTimer.Stop();
             ThreadLog << "StepSimulation took " << PhysicsTimer.GetCurrentTimeInMilliseconds() << " milliseconds." << std::endl;

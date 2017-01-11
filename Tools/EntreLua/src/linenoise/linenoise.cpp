@@ -234,7 +234,7 @@ static int win32read(char *c) {
 #ifdef __STRICT_ANSI__
 char *strdup(const char *s) {
     size_t l = strlen(s)+1;
-    char *p = malloc(l);
+    char *p = (char*)malloc(l);
 
     memcpy(p,s,l);
     return p;

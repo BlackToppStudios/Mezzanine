@@ -72,16 +72,23 @@ namespace Mezzanine
     Boole StateTransition::operator< (const StateTransition& Other) const
     {
         if(this->From == Other.From)
-            { return this->To < Other.To; }
+            { return this->To.GetHash() < Other.To.GetHash(); }
         else
-            { return this->From < Other.From; }
+            { return this->From.GetHash() < Other.From.GetHash(); }
     }
 
     Boole StateTransition::operator()()
-    {
-        Action->operator()();
-        return true;
-    }
+        { return Action->operator()(); }
+
+    const HashedString32&StateTransition::FromState() const
+        { return From; }
+
+    const HashedString32&StateTransition::ToState() const
+        { return To; }
+
+
+    Boole StateTransitionPointerSorter::operator()(StateTransition* Left, StateTransition* Right)
+        { return *Left < *Right; }
 
 } // /namespace Mezzanine
 

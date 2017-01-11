@@ -196,7 +196,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Ray Queries
 
-    Boole RayQueryTool::GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags)
+    Boole RayQueryTool::GetFirstObjectOnRayByPolygon(const Ray& ObjectRay, Whole ObjectFlags)
     {
         RayQueryHandle ray( this->ParentWorld );
         ManagedRayQuery RayQuery( ray );
@@ -266,16 +266,16 @@ namespace Mezzanine
         } // \if qr_idx
 
         // Change the closest point into a point relative to the Actor
-        if (IntersectedObject) {
+        if( IntersectedObject != NULL ) {
             Offset = IntersectedObject->GetOrientation() * ((closest_result - IntersectedObject->GetLocation()) * IntersectedObject->GetScale());
-            ValidResult=true;
+            ValidResult = true;
             return ValidResult;
         }else{
             return ClearReturns();
         }
     }
 
-    Boole RayQueryTool::GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags)
+    Boole RayQueryTool::GetFirstObjectOnRayByAABB(const Ray& ObjectRay, Whole ObjectFlags)
     {
         RayQueryHandle ray( this->ParentWorld );
         ManagedRayQuery RayQuery( ray );

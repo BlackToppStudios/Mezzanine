@@ -66,7 +66,6 @@ namespace Mezzanine
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of Debris.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB DebrisUpdateWorkUnit : public Threading::DefaultWorkUnit
     {
@@ -105,11 +104,11 @@ namespace Mezzanine
     {
     public:
         /// @brief Basic container type for DebrisFactory storage by this class.
-        typedef std::map<String,DebrisFactory*>      FactoryMap;
+        typedef std::map<String,DebrisFactory*>      FactoryContainer;
         /// @brief Iterator type for DebrisFactory instances stored by this class.
-        typedef FactoryMap::iterator                 FactoryIterator;
+        typedef FactoryContainer::iterator           FactoryIterator;
         /// @brief Const Iterator type for DebrisFactory instances stored by this class.
-        typedef FactoryMap::const_iterator           ConstFactoryIterator;
+        typedef FactoryContainer::const_iterator     ConstFactoryIterator;
         /// @brief Basic container type for Debris storage by this class.
         typedef std::vector< Debris* >               DebrisContainer;
         /// @brief Iterator type for Debris instances stored by this class.
@@ -126,7 +125,7 @@ namespace Mezzanine
 
         /// @internal
         /// @brief A map containing all registered Debris type factories.
-        FactoryMap DebrisFactories;
+        static FactoryContainer DebrisFactories;
         /// @internal
         /// @brief Container storing all Debris belonging to this manager.
         DebrisContainer Debriss;
@@ -154,29 +153,26 @@ namespace Mezzanine
         /// @brief Creates a new RigidDebris.
         /// @param Name The name to be given to the new RigidDebris.
         /// @param Mass The mass of the debris object.
-        /// @param AddToWorld Wether or not the new Debris should be added to the world after it has been created.
         /// @return Returns a pointer to the created Debris.
-        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, const Boole AddToWorld = true);
+        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass);
         /// @brief Creates a new RigidDebris.
         /// @param Name The name to be given to the new RigidDebris.
         /// @param Mass The mass of the debris object.
         /// @param DebMesh A pointer to the Graphics mesh that will be applied to the new RigidDebris.
         /// @param DebShape A pointer to the Collision shape that will be applied to the new RigidDebris.
-        /// @param AddToWorld Wether or not the new Debris should be added to the world after it has been created.
         /// @return Returns a pointer to the created Debris.
-        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, const Boole AddToWorld = true);
+        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape);
         /// @brief Creates a new RigidDebris.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created Debris.
         RigidDebris* CreateRigidDebris(const XML::Node& SelfRoot);
         /// @brief Creates a new SoftDebris.
         /// @param Name The name to be given to the new SoftDebris.
         /// @param Mass The mass of the debris object.
-        /// @param AddToWorld Wether or not the new Debris should be added to the world after it has been created.
         /// @return Returns a pointer to the created Debris.
-        SoftDebris* CreateSoftDebris(const String& Name, const Real Mass, const Boole AddToWorld = true);
+        SoftDebris* CreateSoftDebris(const String& Name, const Real Mass);
         /// @brief Creates a new SoftDebris.
-        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created Debris.
         SoftDebris* CreateSoftDebris(const XML::Node& SelfRoot);
 
@@ -187,9 +183,8 @@ namespace Mezzanine
         /// @param TypeName A string containing the name of the type of Debris to be constructed.
         /// @param InstanceName A string containing the name to be given to the created Debris.
         /// @param Params A container of additional parameters to be used for the construction of the new Debris.
-        /// @param AddToWorld Wether or not the new Debris should be added to the world after it has been created.
         /// @return Returns a pointer to the created Debris.
-        Debris* CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params, const Boole AddToWorld = true);
+        Debris* CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
         /// @brief Creates a new Debris class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created Debris.
@@ -235,22 +230,24 @@ namespace Mezzanine
 
         /// @brief Adds/registers a Debris factory with this manager, allowing it to be constructed through this API.
         /// @param ToBeAdded The Debris factory to be added.
-        virtual void AddDebrisFactory(DebrisFactory* ToBeAdded);
+        static void AddDebrisFactory(DebrisFactory* ToBeAdded);
         /// @brief Removes a Debris factory from this manager.
         /// @param ToBeRemoved A pointer to the Debris factory that is to be removed.
-        virtual void RemoveDebrisFactory(DebrisFactory* ToBeRemoved);
+        static void RemoveDebrisFactory(DebrisFactory* ToBeRemoved);
         /// @brief Removes a Debris factory from this manager.
         /// @param ImplName The name of the Debris implementation created by the factory to be removed.
-        virtual void RemoveDebrisFactory(const String& ImplName);
+        static void RemoveDebrisFactory(const String& ImplName);
         /// @brief Removes and destroys a Debris factory in this manager.
         /// @param ToBeDestroyed A pointer to the Debris factory that is to be removed and destroyed.
-        virtual void DestroyDebrisFactory(DebrisFactory* ToBeDestroyed);
+        static void DestroyDebrisFactory(DebrisFactory* ToBeDestroyed);
         /// @brief Removes and destroys a Debris factory in this manager.
         /// @param ImplName The name of the Debris implementation created by the factory to be removed and destroyed.
-        virtual void DestroyDebrisFactory(const String& ImplName);
+        static void DestroyDebrisFactory(const String& ImplName);
         /// @brief Destroys all Debris factories in this manager.
         /// @warning The destruction of Debris factories should only be done after all the Debris have been destroyed, otherwise this will cause an exception.
-        virtual void DestroyAllDebrisFactories();
+        static void DestroyAllDebrisFactories();
+        /// @brief Adds all the default Debris factories provided by the engine.
+        static void AddAllDefaultDebrisFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -277,7 +274,6 @@ namespace Mezzanine
     };//DebrisManager
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class DefaultDebrisManagerFactory
     /// @brief A factory responsible for the creation and destruction of the default DebrisManager.
     ///////////////////////////////////////
     class DefaultDebrisManagerFactory : public WorldManagerFactory

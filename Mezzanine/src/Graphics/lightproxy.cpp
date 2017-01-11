@@ -114,7 +114,7 @@ namespace Mezzanine
         {
             this->GraphicsLight = this->Manager->_GetGraphicsWorldPointer()->createLight();
             this->GraphicsNode->attachObject( this->GraphicsLight );
-            this->GraphicsLight->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
+            this->GraphicsLight->getUserObjectBindings().setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
             this->GraphicsLight->setVisibilityFlags(0);
             this->GraphicsLight->setQueryFlags(0);
         }
@@ -132,6 +132,9 @@ namespace Mezzanine
 
         Mezzanine::ProxyType LightProxy::GetProxyType() const
             { return Mezzanine::PT_Graphics_LightProxy; }
+
+        Boole LightProxy::IsStatic() const
+            { return false; }
 
         void LightProxy::SetDirection(const Vector3& Dir)
             { this->SetOrientation( Vector3::Unit_Z().GetRotationToAxis( Dir ) ); }

@@ -7,7 +7,6 @@ using namespace Mezzanine;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This is used to store simple data related to a profile that can be loaded.
-/// @details
 ///////////////////////////////////////
 class CatchProfile
 {
@@ -19,12 +18,12 @@ public:
     /// @brief Const Iterator type for level high scores being stored in this class.
     typedef LevelScoreMap::const_iterator ConstLevelScoreMapIterator;
 protected:
-    /// @internal
     /// @brief Container storing the saved high scores for this profile.
     LevelScoreMap LevelScores;
-    /// @internal
     /// @brief A string containing the name of this profile.
     String ProfileName;
+    /// @brief Stores whether or not this profile has been loaded.
+    Boole Loaded;
 
     /// @internal
     /// @brief Serializes the name of this profile.
@@ -44,17 +43,24 @@ protected:
     void DeSerializeLevelScores(const XML::Node& ProfileRoot);
 public:
     /// @brief Class constructor.
-    CatchProfile(const String& Name);
-    /// @brief XML constructor.
-    /// @param LevelDoc The XML document containing profile data.
-    CatchProfile(const XML::Document& ProfileDoc);
+    /// @param Name The name of this profile.
+    /// @param NeedsLoading Whether or not this profile is being generated from a file.  True if so, false otherwise.
+    CatchProfile(const String& Name, const Boole NeedsLoading);
     /// @brief Class destructor.
     ~CatchProfile();
 
     /// @brief Gets the name of this profile.
     /// @return Returns a const String reference to the name of this profile.
     const String& GetName() const;
+    /// @brief Gets whether or not this profile has been loaded.
+    /// @return Returns true if this profile has been loaded from disk, false if it is pending loading.
+    Boole IsLoaded() const;
 
+    /// @brief Loads this profile from an XML document.
+    /// @param ProfilesDir The directory to load this profile from.
+    void Load(const String& ProfilesDir);
+    /// @brief Clears this profile of non-name data.
+    void Unload();
     /// @brief Saves this profile to disk.
     /// @param ProfilesDir The directory to save this profile to.
     void Save(const String& ProfilesDir);
@@ -69,7 +75,6 @@ typedef CatchProfile GameProfile;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This is used to store all of the detected/loaded profiles.
-/// @details
 ///////////////////////////////////////
 class ProfileManager : public ObjectSettingsHandler
 {
@@ -81,18 +86,14 @@ public:
     /// @brief Const Iterator type for GameProfile instances stored in this class.
     typedef ProfilesContainer::const_iterator    ConstProfilesIterator;
 protected:
-    /// @internal
     /// @brief Container storing all of the loaded game profiles.
-    ProfilesContainer LoadedProfiles;
-    /// @internal
+    ProfilesContainer Profiles;
     /// @brief A path to where the game profiles are stored.
     String ProfilesDirectory;
-    /// @internal
     /// @brief A pointer to the initialized Entresol housing the utilities that are needed to load levels.
     Entresol* TheEntresol;
-    /// @internal
-    /// @brief A pointer to the currently active profile where new profile data is saved to.
-    GameProfile* ActiveProfile;
+    /// @brief A pointer to the most recently loaded profile.
+    GameProfile* LastLoadedProfile;
 
     /// @internal
     /// @brief Gets the name of the Root XML Node of this object when it is serialized.
@@ -125,17 +126,23 @@ public:
     /// @param Returns the number of levels that were detected.
     Whole DetectProfiles();
     /// @brief Applys all currently loaded profiles to the list of all profiles in the UI profile configuration.
-    void ApplyProfileDataToProfileList();
-    /// @brief Applys the active profile data to the relevant widgets in the UI configuration.
-    void ApplyProfileDataToLevelSelect();
+    /// @param CatchPlayerProfile A pointer to the current profile in use by the player.
+    void ApplyProfileDataToProfileList(GameProfile* CatchPlayerProfile);
     /// @brief Applys profile data to the relevant widgets in the UI configuration.
     /// @param Profile A pointer to the profile to be read when updating the UI configuration.
     void ApplyProfileDataToLevelSelect(GameProfile* Profile);
 
+    /// @brief Gets the UI screen for the main menu.
+    /// @return Returns a pointer to the main menu UI screen.
+    UI::Screen* GetMainMenuScreen() const;
+    /// @brief Gets the widget displaying the current profile name.
+    /// @return Returns a pointer to the access button for selecting profiles.
+    UI::Widget* GetProfileAccessButton() const;
+
     /// @brief Updates all profile related data with the achievement of a new high score.
     /// @param LevelName The name of the level the high score was achieved in.
     /// @param LevelScore The new high score that was achieved.
-    void SetNewHighScore(const String& LevelName, const Whole LevelScore);
+    void SetNewHighScoreInUI(const String& LevelName, const Whole LevelScore);
 
     ///////////////////////////////////////////////////////////////////////////////
     // Profile Path Management
@@ -158,10 +165,10 @@ public:
     /// @param FileName The name of the file to be loaded and parsed.
     /// @return Returns a pointer to the created profile.
     GameProfile* LoadProfile(const String& FileName);
-    /// @brief Loads a profile from a parsed XML document.
-    /// @param ProfileDoc The XML document to create a profile from.
+    /// @brief Loads a profile from the disk.
+    /// @param Profile A pointer to the profile to be loaded from the disk.
     /// @return Returns a pointer to the created profile.
-    GameProfile* LoadProfile(XML::Document& ProfileDoc);
+    GameProfile* LoadProfile(GameProfile* Profile);
     /// @brief Gets a profile by name.
     /// @param Name The name of the profile to retrieve.
     /// @return Returns a pointer to the requested profile.
@@ -169,10 +176,14 @@ public:
     /// @brief Gets a profile by index.
     /// @param Index The index of the profile to retrieve.
     /// @return Returns a pointer to the requested profile.
-    GameProfile* GetProfile(const Whole& Index) const;
+    GameProfile* GetProfile(const Whole Index) const;
     /// @brief Gets the number of currently loaded profiles.
     /// @return Returns a Whole representing the number of currently loaded profiles.
-    Whole GetNumLoadedProfiles() const;
+    Whole GetNumProfiles() const;
+
+    /// @brief Gets the last profile to be loaded.
+    /// @return Returns a pointer to the last profile that was loaded from disk.
+    GameProfile* GetLastLoadedProfile() const;
 
     /// @brief Saves a profile to the disk.
     /// @param Name The name of the profile to be saved to the disk.
@@ -182,31 +193,6 @@ public:
     void SaveProfile(GameProfile* Profile);
     /// @brief Saves all currently loaded profiles to the disk.
     void SaveAllProfiles();
-
-    /*/// @brief Destroys a loaded profile.
-    /// @note This will also delete the profile file from the disk.
-    /// @param Name The name of the profile to be destroyed.
-    void DestroyProfile(const String& Name);
-    /// @brief Destroys a loaded profile.
-    /// @note This will also delete the profile file from the disk.
-    /// @param Profile A pointer to the profile to be destroyed.
-    void DestroyProfile(GameProfile* Profile);// */
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // ActiveProfile Management
-
-    /// @brief Sets the currently active profile.
-    /// @param Name The name of the profile to set.
-    void SetActiveProfile(const String& Name);
-    /// @brief Sets the currently active profile.
-    /// @param Profile A pointer to the profile to set.
-    void SetActiveProfile(GameProfile* Profile);
-    /// @brief Gets the name of the currently active profile.
-    /// @return Returns a String containing the name of the currently active profile.
-    String GetActiveProfileName() const;
-    /// @brief Gets the currently active profile.
-    /// @return Returns a pointer to the profile that is currently being used and displayed.
-    GameProfile* GetActiveProfile() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     // Initialization Methods

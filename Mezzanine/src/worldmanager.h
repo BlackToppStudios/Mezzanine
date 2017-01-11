@@ -47,10 +47,7 @@ namespace Mezzanine
 {
     class World;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class WorldManager
-    /// @headerfile worldmanager.h
     /// @brief This is the base class for all managers that belong to a single world instance.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB WorldManager : public ManagerBase
     {

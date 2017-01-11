@@ -278,29 +278,15 @@ CatchPostInputWorkUnit::CatchPostInputWorkUnit(CatchApp* Target) :
 CatchPostInputWorkUnit::~CatchPostInputWorkUnit()
     {  }
 
-CameraController& CatchPostInputWorkUnit::GetDefaultControl()
-    { return this->DefaultControl; }
-
 void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     // Setup our pointers
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-    // Determine our camera linear movement
-    if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A) )
-        DefaultControl.StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D) )
-        DefaultControl.StrafeRight(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W) )
-        DefaultControl.MoveForward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
-        DefaultControl.MoveBackward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
-    // Determine our camera angular movement
-    Vector2 Offset = SysMouse->GetMouseDelta();
-    if( SysMouse->IsButtonPressed(Input::MOUSEBUTTON_2) && Vector2(0,0) != Offset ) {
-        DefaultControl.Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
-    }
+    const Whole DeltaTime = this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds();
+    // Update our player
+    this->CatchApplication->GetPlayer()->Update(InputMan,DeltaTime);
     // Determine our Debug drawer visibility
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) ) {
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->CatchApplication->GetTheWorld()->GetManager(ManagerBase::MT_PhysicsManager) );
@@ -346,10 +332,10 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
             Ray MouseRay = RayQueryTool::GetMouseRay();
 
             Boole firstframe = false;
-            if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid | Mezzanine::WO_DebrisSoft) ) {
+            if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_RigidDebris | Mezzanine::WO_SoftDebris) ) {
                 Debris* CastResult = static_cast<Debris*>( RayCaster.LastQueryResultsObjectPtr() );
                 Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                if( CastResult->GetType() & Mezzanine::WO_DebrisRigid &&
+                if( CastResult->GetType() & Mezzanine::WO_RigidDebris &&
                     this->CatchApplication->IsInsideAnyStartZone( CastResult ) &&
                     Dragger == NULL )
                 {
@@ -362,10 +348,8 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                         Dragger->EnableConstraint(true);
                         Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
                         Dragger->SetParam(Physics::Con_CFM,0.8,-1);
-                        //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
                         Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
                         Dragger->SetParam(Physics::Con_ERP,0.1,-1);
-                        //Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
                         firstframe = true;
                         this->CatchApplication->LastObjectThrown = rigid;
                     }

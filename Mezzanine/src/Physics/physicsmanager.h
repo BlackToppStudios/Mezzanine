@@ -60,9 +60,8 @@ typedef float btScalar;
 #include "datatypes.h"
 #ifndef SWIG
     #include "uidgenerator.h"
-    #include "worldmanager.h"
+    #include "worldproxymanager.h"
     #include "worldmanagerfactory.h"
-    #include "singleton.h"
 
     #include "Physics/collidablepair.h"
     #include "Physics/constraint.h"
@@ -106,7 +105,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the single threaded processing of physics simulations.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB SimulationWorkUnit : public Threading::DefaultWorkUnit
         {
@@ -140,7 +138,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the multi-threaded processing of physics simulations.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB SimulationMonopolyWorkUnit : public Threading::MonopolyWorkUnit
         {
@@ -180,7 +177,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB WorldTriggerUpdateWorkUnit : public Threading::DefaultWorkUnit
         {
@@ -213,7 +209,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB DebugDrawWorkUnit : public Threading::DefaultWorkUnit
         {
@@ -248,9 +243,9 @@ namespace Mezzanine
         /// @brief This is simply a place for storing all the Physics Related functions
         /// @details This is a place for storing items related to Debug physics
         /// drawing, Adding constraints, screwing with gravity and doing other physics
-        /// Related features.
+        /// related features.
         ///////////////////////////////////////
-        class MEZZ_LIB PhysicsManager : public WorldManager
+        class MEZZ_LIB PhysicsManager : public WorldProxyManager
         {
         public:
             /// @brief Basic container type for @ref CollidableProxy storage by this class.
@@ -387,17 +382,14 @@ namespace Mezzanine
             virtual void Destroy();
 
             /// @brief Calls the ConditionsAreMet() and ApplyTrigger() functions of every stored trigger.
-            /// @details This function is automatically called every step.
             virtual void ProcessAllTriggers();
             /// @brief Checks the internal collision data and generates/updates collisions as necessary.
-            /// @details This function is automatically called every step.
             virtual void ProcessAllCollisions();
 
-            /// @brief The World that will be used for the InternalTickCallback
-            /// @warning The prevents two PhysicsManagers from running in two differen
-            static PhysicsManager* CallBackWorld;
-            /// @brief Internal Callback that is called each substep of the simulation.
-            static void InternalTickCallback(btDynamicsWorld* world, btScalar timeStep);
+            /// @brief Internal Callback that is called immediately before each internal substep of the simulation.
+            static void InternalPreTickCallback(btDynamicsWorld* world, btScalar timeStep);
+            /// @brief Internal Callback that is called immediately after each internal substep of the simulation.
+            static void InternalPostTickCallback(btDynamicsWorld* world, btScalar timeStep);
         public:
             /// @brief Default settings constructor.
             /// @param Creator The parent world that is creating the manager.
@@ -458,11 +450,10 @@ namespace Mezzanine
             GhostProxy* CreateGhostProxy();
             /// @brief Creates a new GhostProxy.
             /// @param Shape A pointer to the collision shape that will be applied to the new proxy.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            GhostProxy* CreateGhostProxy(CollisionShape* Shape, const Boole AddToWorld);
+            GhostProxy* CreateGhostProxy(CollisionShape* Shape);
             /// @brief Creates a new GhostProxy.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
             GhostProxy* CreateGhostProxy(const XML::Node& SelfRoot);
 
@@ -472,12 +463,11 @@ namespace Mezzanine
             RigidProxy* CreateRigidProxy(const Real Mass);
             /// @brief Creates a new RigidProxy.
             /// @param Mass The mass of the new proxy.
-            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @param Shape A pointer to the collision shape that will be applied to the new proxy.
             /// @return Returns a pointer to the created proxy.
-            RigidProxy* CreateRigidProxy(const Real Mass, CollisionShape* Shape, const Boole AddToWorld);
+            RigidProxy* CreateRigidProxy(const Real Mass, CollisionShape* Shape);
             /// @brief Creates a new RigidProxy.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
             RigidProxy* CreateRigidProxy(const XML::Node& SelfRoot);
 
@@ -486,9 +476,12 @@ namespace Mezzanine
             /// @return Returns a pointer to the created proxy.
             SoftProxy* CreateSoftProxy(const Real Mass);
             /// @brief Creates a new SoftProxy.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
             SoftProxy* CreateSoftProxy(const XML::Node& SelfRoot);
+
+            /// @copydoc WorldProxyManager::CreateProxy(const XML::Node&)
+            WorldProxy* CreateProxy(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
@@ -497,23 +490,22 @@ namespace Mezzanine
             /// @param Index The index of the CollidableProxy to be retrieved.
             /// @return Returns a pointer to the CollidableProxy at the specified index.
             CollidableProxy* GetProxy(const UInt32 Index) const;
-            /// @brief Gets the n-th proxy of the specified type.
-            /// @note This manager only stores CollidableProxy types.  As such, specifying a type of proxy that isn't derived from CollidableProxy will always return NULL.
-            /// @param Type The type of proxy to retrieve.
-            /// @param Which Which proxy of the specified type to retrieve.
-            /// @return Returns a pointer to the specified proxy, or NULL if there is no n-th proxy.
-            CollidableProxy* GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const;
-            /// @brief Gets the CollidableProxy via its ID.
-            /// @param ID The unique identifier belonging to the Proxy.
-            /// @return Returns a pointer to the CollidableProxy with the specified ID.
-            CollidableProxy* GetProxyByID(const UInt32 ID) const;
-            /// @brief Gets the number of CollidableProxy instances in this manager.
-            /// @return Returns a UInt32 representing the number of CollidableProxy instances contained in this manager.
+
+            /// @copydoc WorldProxyManager::GetProxyByID(const UInt32) const
+            WorldProxy* GetProxyByID(const UInt32 ID) const;
+
+            /// @copydoc WorldProxyManager::GetNumProxies() const
             UInt32 GetNumProxies() const;
-            /// @brief Deletes a CollidableProxy.
-            /// @param ToBeDestroyed A pointer to the CollidableProxy you want deleted.
-            void DestroyProxy(CollidableProxy* ToBeDestroyed);
-            /// @brief Deletes all stored CollidableProxy instances.
+            /// @copydoc WorldProxyManager::GetNumProxies(const UInt32) const
+            UInt32 GetNumProxies(const UInt32 Types) const;
+            /// @copydoc WorldProxyManager::GetProxies() const
+            WorldProxyManager::WorldProxyVec GetProxies() const;
+
+            /// @copydoc WorldProxyManager::DestroyProxy(WorldProxy*)
+            void DestroyProxy(WorldProxy* ToBeDestroyed);
+            /// @copydoc WorldProxyManager::DestroyAllProxies(const UInt32)
+            void DestroyAllProxies(const UInt32 Types);
+            /// @copydoc WorldProxyManager::DestroyAllProxies()
             void DestroyAllProxies();
 
             #ifndef SWIG
@@ -547,7 +539,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             ConeTwistConstraint* CreateConeTwistConstraint(RigidProxy* ProxyA, const Transform& TransA);
             /// @brief Creates a new ConeTwistConstraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             ConeTwistConstraint* CreateConeTwistConstraint(const XML::Node& SelfRoot);
 
@@ -567,7 +559,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             GearConstraint* CreateGearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio);
             /// @brief Creates a new GearConstraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             GearConstraint* CreateGearConstraint(const XML::Node& SelfRoot);
 
@@ -584,7 +576,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             Generic6DofConstraint* CreateGeneric6DofConstraint(RigidProxy* ProxyB, const Transform& TransB);
             /// @brief Creates a new Generic6DofConstraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             Generic6DofConstraint* CreateGeneric6DofConstraint(const XML::Node& SelfRoot);
 
@@ -596,7 +588,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             Generic6DofSpringConstraint* CreateGeneric6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
             /// @brief Creates a new Generic6DofSpringConstraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             Generic6DofSpringConstraint* CreateGeneric6DofSpringConstraint(const XML::Node& SelfRoot);
 
@@ -628,7 +620,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             HingeConstraint* CreateHingeConstraint(RigidProxy* ProxyA, const Transform& TransA);
             /// @brief Creates a new HingeConstraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             HingeConstraint* CreateHingeConstraint(const XML::Node& SelfRoot);
 
@@ -649,7 +641,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             Hinge2Constraint* CreateHinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
             /// @brief Creates a new Hinge2Constraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             Hinge2Constraint* CreateHinge2Constraint(const XML::Node& SelfRoot);
 
@@ -666,7 +658,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             Point2PointConstraint* CreatePoint2PointConstraint(RigidProxy* ProxyA, const Vector3& PivotA);
             /// @brief Creates a new Point2PointConstraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             Point2PointConstraint* CreatePoint2PointConstraint(const XML::Node& SelfRoot);
 
@@ -683,7 +675,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             SliderConstraint* CreateSliderConstraint(RigidProxy* ProxyA, const Transform& TransA);
             /// @brief Creates a new SliderConstraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             SliderConstraint* CreateSliderConstraint(const XML::Node& SelfRoot);
 
@@ -703,7 +695,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             UniversalConstraint* CreateUniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
             /// @brief Creates a new UniversalConstraint.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
             UniversalConstraint* CreateUniversalConstraint(const XML::Node& SelfRoot);
 

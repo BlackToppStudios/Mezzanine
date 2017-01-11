@@ -47,7 +47,8 @@ message ("${PROJECT_NAME} - Begin")
 ###############################################################################
 # Initializations
 
-add_definitions( ${CommonBuildFlags} )
+#add_definitions( ${CommonBuildFlags} ) #-std=c++11 )
+#target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 message("Compiler Flags used on all Builds: ${CommonBuildFlags}")
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
@@ -140,14 +141,21 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}matrix4x4.h"
         "${${PROJECT_NAME}_SRC_DIR}meshterrain.h"
         "${${PROJECT_NAME}_SRC_DIR}mezzanine.h"
+        "${${PROJECT_NAME}_SRC_DIR}multibodyvehicle.h"
         "${${PROJECT_NAME}_SRC_DIR}objectsettings.h"
         "${${PROJECT_NAME}_SRC_DIR}plane.h"
+        "${${PROJECT_NAME}_SRC_DIR}player.h"
+        "${${PROJECT_NAME}_SRC_DIR}playercontrol.h"
+        "${${PROJECT_NAME}_SRC_DIR}playermanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}playerprofile.h"
         "${${PROJECT_NAME}_SRC_DIR}pstdint.h"
         "${${PROJECT_NAME}_SRC_DIR}quaternion.h"
         "${${PROJECT_NAME}_SRC_DIR}ray.h"
+        "${${PROJECT_NAME}_SRC_DIR}raycastvehicle.h"
         "${${PROJECT_NAME}_SRC_DIR}rayquerytool.h"
         "${${PROJECT_NAME}_SRC_DIR}rectbase.h"
         "${${PROJECT_NAME}_SRC_DIR}rigiddebris.h"
+        "${${PROJECT_NAME}_SRC_DIR}simplevehicle.h"
         "${${PROJECT_NAME}_SRC_DIR}singleton.h"
         "${${PROJECT_NAME}_SRC_DIR}serialization.h"
         "${${PROJECT_NAME}_SRC_DIR}softdebris.h"
@@ -159,7 +167,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}streamlogging.h"
         "${${PROJECT_NAME}_SRC_DIR}stringtool.h"
         "${${PROJECT_NAME}_SRC_DIR}swig.h"
-        "${${PROJECT_NAME}_SRC_DIR}terrainbase.h"
+        "${${PROJECT_NAME}_SRC_DIR}terrain.h"
         "${${PROJECT_NAME}_SRC_DIR}terrainmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}timer.h"
         "${${PROJECT_NAME}_SRC_DIR}track.h"
@@ -172,14 +180,19 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}unicode.h"
         "${${PROJECT_NAME}_SRC_DIR}vector2.h"
         "${${PROJECT_NAME}_SRC_DIR}vector3.h"
+        "${${PROJECT_NAME}_SRC_DIR}vehicle.h"
+        "${${PROJECT_NAME}_SRC_DIR}vehiclemanager.h"
         "${${PROJECT_NAME}_SRC_DIR}version.h"
         "${${PROJECT_NAME}_SRC_DIR}world.h"
         "${${PROJECT_NAME}_SRC_DIR}worldmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldmanagerfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}worldobject.h"
+        "${${PROJECT_NAME}_SRC_DIR}worldobjectmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldproxy.h"
+        "${${PROJECT_NAME}_SRC_DIR}worldproxymanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         # Audio Items
+        "${${PROJECT_NAME}_SRC_DIR}Audio/acousticproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/audio.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/audioenumerations.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/audiomanager.h"
@@ -648,12 +661,18 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}matrix3x3.cpp"
         "${${PROJECT_NAME}_SRC_DIR}matrix4x4.cpp"
         "${${PROJECT_NAME}_SRC_DIR}meshterrain.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}multibodyvehicle.cpp"
         "${${PROJECT_NAME}_SRC_DIR}objectsettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}plane.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}player.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}playercontrol.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}playermanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}quaternion.cpp"
         "${${PROJECT_NAME}_SRC_DIR}ray.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}raycastvehicle.cpp"
         "${${PROJECT_NAME}_SRC_DIR}rayquerytool.cpp"
         "${${PROJECT_NAME}_SRC_DIR}rigiddebris.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}simplevehicle.cpp"
         "${${PROJECT_NAME}_SRC_DIR}serialization.cpp"
         "${${PROJECT_NAME}_SRC_DIR}softdebris.cpp"
         "${${PROJECT_NAME}_SRC_DIR}sphere.cpp"
@@ -662,7 +681,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}statetransitionaction.cpp"
         "${${PROJECT_NAME}_SRC_DIR}streamlogging.cpp"
         "${${PROJECT_NAME}_SRC_DIR}stringtool.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}terrainbase.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}terrain.cpp"
         "${${PROJECT_NAME}_SRC_DIR}terrainmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}timer.cpp"
         "${${PROJECT_NAME}_SRC_DIR}track.cpp"
@@ -673,6 +692,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}unicode.cpp"
         "${${PROJECT_NAME}_SRC_DIR}vector2.cpp"
         "${${PROJECT_NAME}_SRC_DIR}vector3.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}vehicle.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}vehiclemanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}world.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobject.cpp"
@@ -1354,6 +1375,8 @@ endif(${WIN32})
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
+target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
+
 set(SDL_ATOMIC    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_CPUINFO   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
@@ -1705,7 +1728,6 @@ CopyFilesDuringBuild( common/SDL-MITLicense.txt data/common/SDL-MITLicense.txt )
 CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
 CopyFilesDuringBuild( common/zlib-libpngLicense.txt data/common/zlib-libpngLicense.txt )
 CopyFilesDuringBuild( common/zlib-zliblicense.txt data/common/zlib-zliblicense.txt )
-CopyFilesDuringBuild( common/cAudio-ZLIBLicense.txt data/common/cAudio-ZLIBLicense.txt )
 
 
 # Ogre

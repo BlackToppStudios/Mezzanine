@@ -80,14 +80,16 @@ namespace Mezzanine
 
     void GravityField::ApplyEffect()
     {
+        AreaEffect::ApplyEffect();
         for( ObjectIterator AddedIt = this->AddedObjects.begin() ; AddedIt != this->AddedObjects.end() ; ++AddedIt )
         {
-            ProxyContainer RigidProxies;
-            (*AddedIt)->GetProxies(Mezzanine::PT_Physics_RigidProxy,RigidProxies);
-            for( ProxyIterator ProxIt = RigidProxies.begin() ; ProxIt != RigidProxies.end() ; ++ProxIt )
+            const ProxyContainer& OtherProxies = (*AddedIt)->GetProxies();
+            for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
             {
-                Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
-                RigProx->SetGravity(this->Grav);
+                if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                    Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                    RigProx->SetGravity(this->Grav);
+                }
             }
         }
 
@@ -96,12 +98,13 @@ namespace Mezzanine
 
             for( ObjectIterator RemovedIt = this->RemovedObjects.begin() ; RemovedIt != this->RemovedObjects.end() ; ++RemovedIt )
             {
-                ProxyContainer RigidProxies;
-                (*RemovedIt)->GetProxies(Mezzanine::PT_Physics_RigidProxy,RigidProxies);
-                for( ProxyIterator ProxIt = RigidProxies.begin() ; ProxIt != RigidProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherProxies = (*RemovedIt)->GetProxies();
+                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
                 {
-                    Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
-                    RigProx->SetGravity(WorldGravity);
+                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                        RigProx->SetGravity(WorldGravity);
+                    }
                 }
             }
         }

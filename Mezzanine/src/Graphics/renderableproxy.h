@@ -59,7 +59,6 @@ namespace Mezzanine
         class SceneManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base proxy class for world proxies wrapping functionality of the graphics subsystem.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB RenderableProxy : public WorldProxy
         {
@@ -106,7 +105,7 @@ namespace Mezzanine
             virtual Boole IsInWorld() const;
 
             /// @copydoc WorldProxy::GetCreator() const
-            virtual WorldManager* GetCreator() const;
+            virtual WorldProxyManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // RenderableProxy Properties
@@ -160,6 +159,13 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
+
+            /// @copydoc WorldProxy::SetTransform(const Transform&)
+            virtual void SetTransform(const Transform& Trans);
+            /// @copydoc WorldProxy::SetTransform(const Vector3&,const Quaternion&)
+            virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
+            /// @copydoc WorldProxy::GetTransform() const
+            virtual Transform GetTransform() const;
 
             /// @copydoc WorldProxy::SetLocation(const Vector3&)
             virtual void SetLocation(const Vector3& Loc);

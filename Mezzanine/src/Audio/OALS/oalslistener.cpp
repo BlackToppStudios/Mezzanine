@@ -73,6 +73,18 @@ namespace Mezzanine
                 alListenerf(AL_GAIN,0.0);
             }
 
+            Listener::Listener(const XML::Node& SelfRoot, ALCcontext* ListenContext, OALS::SoundScapeManager* Creator) :
+                MPU(1.0),
+                VolumeModifier(1.0),
+                Manager(Creator),
+                Context(ListenContext),
+                InWorld(false)
+            {
+                this->ProtoDeSerialize(SelfRoot);
+                this->MakeCurrent();
+                alListenerf(AL_GAIN,0.0);
+            }
+
             Listener::~Listener()
                 {  }
 
@@ -173,13 +185,33 @@ namespace Mezzanine
                 return this->InWorld;
             }
 
-            WorldManager* Listener::GetCreator() const
+            Boole Listener::IsStatic() const
+            {
+                return false;
+            }
+
+            WorldProxyManager* Listener::GetCreator() const
             {
                 return this->Manager;
             }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
+
+            void Listener::SetTransform(const Transform& Trans)
+            {
+                this->SetLocation(Trans.Location);  this->SetOrientation(Trans.Rotation);
+            }
+
+            void Listener::SetTransform(const Vector3& Loc, const Quaternion& Ori)
+            {
+                this->SetLocation(Loc);  this->SetOrientation(Ori);
+            }
+
+            Transform Listener::GetTransform() const
+            {
+                return Transform(this->GetLocation(),this->GetOrientation());
+            }
 
             void Listener::SetLocation(const Vector3& Loc)
             {
@@ -297,27 +329,61 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            void Listener::ProtoSerialize(XML::Node& ParentNode) const
+            void Listener::ProtoSerializeProperties(XML::Node& SelfRoot) const
             {
-                /// @todo Implement this.
-                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
+                this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+
+                XML::Node PropertiesNode = SelfRoot.AppendChild( Listener::GetSerializableName() + "Properties" );
+
+                if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                    PropertiesNode.AppendAttribute("MPU").SetValue( this->GetMetersPerUnit() ) &&
+                    PropertiesNode.AppendAttribute("VolumeModifier").SetValue( this->GetVolumeModifier() ) )
+                {
+                    XML::Node VelNode = PropertiesNode.AppendChild("Velocity");
+                    this->GetVelocity().ProtoSerialize( VelNode );
+
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",Listener::GetSerializableName() + "Properties",true);
+                }
             }
 
-            void Listener::ProtoDeSerialize(const XML::Node& SelfRoot)
+            void Listener::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             {
-                /// @todo Implement this.
-                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
+                this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+
+                XML::Attribute CurrAttrib;
+                XML::Node PropertiesNode = SelfRoot.GetChild( Listener::GetSerializableName() + "Properties" );
+
+                if( !PropertiesNode.Empty() ) {
+                    if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = PropertiesNode.GetAttribute("MPU");
+                        if( !CurrAttrib.Empty() )
+                            this->SetMetersPerUnit( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("VolumeModifier");
+                        if( !CurrAttrib.Empty() )
+                            this->SetVolumeModifier( CurrAttrib.AsReal() );
+
+                        // Get the properties that need their own nodes
+                        XML::Node VelNode = PropertiesNode.GetChild("Velocity").GetFirstChild();
+                        if( !VelNode.Empty() ) {
+                            Vector3 Vel(VelNode);
+                            this->SetVelocity(Vel);
+                        }
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Listener::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Listener::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                }
             }
 
             String Listener::GetDerivedSerializableName() const
-            {
-                return this->Listener::GetSerializableName();
-            }
+                { return this->Listener::GetSerializableName(); }
 
             String Listener::GetSerializableName()
-            {
-                return "OALSListener";
-            }
+                { return "OALSListener"; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

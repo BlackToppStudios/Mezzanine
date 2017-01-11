@@ -58,7 +58,6 @@ namespace Mezzanine
         class ParticleAffector;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the proxy class for placing and manipulating particles in the scene.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ParticleSystemProxy : public RenderableProxy
         {
@@ -125,7 +124,7 @@ namespace Mezzanine
             /// @param Creator A pointer to the manager that created this proxy.
             ParticleSystemProxy(const UInt32 ID, const String& Template, SceneManager* Creator);
             /// @brief XML constructor.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this proxy.
             ParticleSystemProxy(const XML::Node& SelfRoot, SceneManager* Creator);
             /// @brief Class destructor.
@@ -136,6 +135,8 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::GetProxyType() const
             virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::IsStatic() const
+            virtual Boole IsStatic() const;
 
             /// @brief Gets the name of this particle effect.
             /// @note This method will be removed in the Ogre 2.0 switch.
@@ -231,16 +232,16 @@ namespace Mezzanine
             /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the template name of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeTemplate(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the custom altered parameters of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeCustomParameters(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the emitters of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeEmitters(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the affectors of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeAffectors(const XML::Node& SelfRoot);
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const

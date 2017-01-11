@@ -759,13 +759,13 @@ namespace Mezzanine
             /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the RenderLayers of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeRenderLayers(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the RenderLayerGroups of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeRenderLayerGroups(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the ChildQuads of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeChildQuads(const XML::Node& SelfRoot);
 
             /// @copydoc Renderable::GetDerivedSerializableName() const

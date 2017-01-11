@@ -267,18 +267,18 @@ namespace Mezzanine
             virtual void ProtoSerializeGlobalOverrides(XML::Node& SelfRoot) const;
 
             /// @brief Take the data stored in an XML Node and overwrite this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and initializes a new internal object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeInitData(const XML::Node& SelfRoot) = 0;
             /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the global overrides of this object with it.
             /// @warning Internally there is no way to unset a global variable.  If you are calling this method without
             /// first called "ProtoDeSerializeInitData" then you will have the previous global overrides in effect as well.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeGlobalOverrides(const XML::Node& SelfRoot);
 
             /// @brief Gets the most derived serializable name of this Constraint.

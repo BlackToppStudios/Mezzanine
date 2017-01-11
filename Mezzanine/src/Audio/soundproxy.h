@@ -43,7 +43,7 @@
 #ifndef _audiosoundproxy_h
 #define _audiosoundproxy_h
 
-#include "worldproxy.h"
+#include "Audio/acousticproxy.h"
 #include "Audio/sound.h"
 
 namespace Mezzanine
@@ -52,16 +52,15 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a proxy class for representing a sound being played in 3D space.
-        /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB SoundProxy : public WorldProxy, public iSound
+        class MEZZ_LIB SoundProxy : public AcousticProxy, public iSound
         {
         protected:
         public:
             /// @brief Class constructor.
             /// @param ID The unique ID of this SoundProxy.
             SoundProxy(const UInt32 ID) :
-                WorldProxy(ID)
+                AcousticProxy(ID)
                 {  }
             /// @brief Class destructor.
             virtual ~SoundProxy()
@@ -173,7 +172,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @brief Get the name of the the XML tag the Acoustic class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
             static String GetSerializableName() { return "SoundProxy"; }
         };//SoundProxy

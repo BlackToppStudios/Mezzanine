@@ -216,7 +216,7 @@ namespace Mezzanine
             }
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Listener Management
+            // Proxy Creation
 
             iListener* SoundScapeManager::CreateListener()
             {
@@ -226,70 +226,26 @@ namespace Mezzanine
                 return NewListener;
             }
 
-            iListener* SoundScapeManager::GetListener(const UInt32 Index) const
+            iListener* SoundScapeManager::CreateListener(const XML::Node& SelfRoot)
             {
-                return this->Listeners.at(Index);
+                ALCcontext* ListenerContext = this->CreateContext();
+                OALS::Listener* NewListener = new OALS::Listener(SelfRoot,ListenerContext,this);
+                this->ProxyIDGen.ReserveID(NewListener->GetProxyID());
+                this->Listeners.push_back(NewListener);
+                return NewListener;
             }
 
-            UInt32 SoundScapeManager::GetNumListeners() const
-            {
-                return this->Listeners.size();
-            }
-
-            void SoundScapeManager::DestroyListener(iListener* ToBeDestroyed)
-            {
-                ALCcontext* ListenerContext = NULL;
-                for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
-                {
-                    if( (*ListIt) == ToBeDestroyed ) {
-                        ListenerContext = static_cast<OALS::Listener*>(ToBeDestroyed)->_GetListenerContext();
-
-                        WorldObject* Parent = (*ListIt)->GetParentObject();
-                        if( Parent )
-                            Parent->_NotifyProxyDestroyed( (*ListIt) );
-
-                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
-                        delete ToBeDestroyed;
-                        this->Listeners.erase(ListIt);
-                    }
-                }
-
-                if( ListenerContext != NULL )
-                    this->DestroyContext(ListenerContext);
-            }
-
-            void SoundScapeManager::DestroyAllListeners()
-            {
-                for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
-                {
-                    WorldObject* Parent = (*ListIt)->GetParentObject();
-                    if( Parent )
-                        Parent->_NotifyProxyDestroyed( (*ListIt) );
-
-                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetProxyID() );
-                    delete (*ListIt);
-                }
-                this->Listeners.clear();
-                this->DestroyAllContexts();
-            }
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Proxy Management
-
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const Boole AddToWorld)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),NULL,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
-                if( AddToWorld ) {
-                    NewSoundProxy->AddToWorld();
-                }
                 return NewSoundProxy;
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -302,13 +258,10 @@ namespace Mezzanine
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),SoundDecoder,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
-                if( AddToWorld ) {
-                    NewSoundProxy->AddToWorld();
-                }
                 return NewSoundProxy;
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -321,13 +274,10 @@ namespace Mezzanine
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,this->ProxyIDGen.GenerateID(),SoundDecoder,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
-                if( AddToWorld ) {
-                    NewSoundProxy->AddToWorld();
-                }
                 return NewSoundProxy;
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group, const Boole AddToWorld)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -355,10 +305,10 @@ namespace Mezzanine
                     MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
                 }
 
-                return this->CreateSoundProxy(Type,SoundStream,Encode,AddToWorld);
+                return this->CreateSoundProxy(Type,SoundStream,Encode);
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -366,10 +316,10 @@ namespace Mezzanine
                 // Create our stream and get on with it
                 Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
 
-                return this->CreateSoundProxy(Type,SoundStream,Encode,AddToWorld);
+                return this->CreateSoundProxy(Type,SoundStream,Encode);
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -377,41 +327,152 @@ namespace Mezzanine
                 // Create our stream and get on with it
                 Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
 
-                return this->CreateSoundProxy(Type,SoundStream,Frequency,Config,AddToWorld);
+                return this->CreateSoundProxy(Type,SoundStream,Frequency,Config);
             }
 
-            Audio::SoundProxy* SoundScapeManager::GetProxy(const UInt32 Index) const
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const XML::Node& SelfRoot)
             {
-                return this->Proxies.at(Index);
+                return NULL;
             }
 
-            Audio::SoundProxy* SoundScapeManager::GetProxy(const Mezzanine::ProxyType Type, UInt32 Which) const
+            WorldProxy* SoundScapeManager::CreateProxy(const XML::Node& SelfRoot)
             {
-                if( Mezzanine::PT_Audio_All_Proxies & Type ) {
-                    for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-                    {
-                        if( (*ProxIt)->GetProxyType() == Type ) {
-                            if( 0 == Which ) return (*ProxIt);
-                            else --Which;
-                        }
+                if( SelfRoot.Name() == OALS::Listener::GetSerializableName() ) return this->CreateListener(SelfRoot);
+                else if( SelfRoot.Name() == OALS::SoundProxy::GetSerializableName() ) return this->CreateSoundProxy(SelfRoot);
+                else return NULL;
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Proxy Management
+
+            WorldProxy* SoundScapeManager::GetProxyByID(const UInt32 ID) const
+            {
+                for( ConstListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
+                {
+                    if( (*ListIt)->GetProxyID() == ID ) {
+                        return (*ListIt);
                     }
                 }
+
+                for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+                {
+                    if( (*ProxIt)->GetProxyID() == ID ) {
+                        return (*ProxIt);
+                    }
+                }
+
                 return NULL;
             }
 
             UInt32 SoundScapeManager::GetNumProxies() const
             {
-                return this->Proxies.size();
+                return ( this->GetNumListeners() + this->GetNumSoundProxies() );
             }
 
-            void SoundScapeManager::DestroyProxy(Audio::SoundProxy* ToBeDestroyed)
+            UInt32 SoundScapeManager::GetNumProxies(const UInt32 Types) const
+            {
+                UInt32 Count = 0;
+                if( Types & Mezzanine::PT_Audio_Listener )
+                    Count += this->GetNumListeners();
+
+                if( Types & Mezzanine::PT_Audio_SoundProxy )
+                    Count += this->GetNumSoundProxies();
+
+                return Count;
+            }
+
+            WorldProxyManager::WorldProxyVec SoundScapeManager::GetProxies() const
+            {
+                WorldProxyVec Ret;
+                Ret.insert(Ret.end(),this->Listeners.begin(),this->Listeners.end());
+                Ret.insert(Ret.end(),this->Proxies.begin(),this->Proxies.end());
+                return Ret;
+            }
+
+            void SoundScapeManager::DestroyProxy(WorldProxy* ToBeDestroyed)
+            {
+                if( ToBeDestroyed->GetProxyType() == Mezzanine::PT_Audio_Listener ) {
+                    this->DestroyListener( static_cast<OALS::Listener*>( ToBeDestroyed ) );
+                }else if( ToBeDestroyed->GetProxyType() == Mezzanine::PT_Audio_SoundProxy ) {
+                    this->DestroySoundProxy( static_cast<OALS::SoundProxy*>( ToBeDestroyed ) );
+                }
+            }
+
+            void SoundScapeManager::DestroyAllProxies(const UInt32 Types)
+            {
+                if( Types & Mezzanine::PT_Audio_SoundProxy ) {
+                    this->DestroyAllSoundProxies();
+                }else if( Types & Mezzanine::PT_Audio_Listener ) {
+                    this->DestroyAllListeners();
+                }
+            }
+
+            void SoundScapeManager::DestroyAllProxies()
+            {
+                this->DestroyAllSoundProxies();
+                this->DestroyAllListeners();
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Specific Proxy Management
+
+            OALS::Listener* SoundScapeManager::GetListener(const UInt32 Index) const
+                { return this->Listeners.at(Index); }
+
+            UInt32 SoundScapeManager::GetNumListeners() const
+                { return this->Listeners.size(); }
+
+            void SoundScapeManager::DestroyListener(OALS::Listener* ToBeDestroyed)
+            {
+                ALCcontext* ListenerContext = NULL;
+                for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
+                {
+                    if( (*ListIt) == ToBeDestroyed ) {
+                        ListenerContext = static_cast<OALS::Listener*>(ToBeDestroyed)->_GetListenerContext();
+
+                        WorldObject* Parent = (*ListIt)->GetParentObject();
+                        if( Parent )
+                            Parent->RemoveProxy( (*ListIt) );
+
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
+                        delete ToBeDestroyed;
+                        this->Listeners.erase(ListIt);
+                    }
+                }
+
+                if( ListenerContext != NULL )
+                    this->DestroyContext(ListenerContext);
+            }
+
+            void SoundScapeManager::DestroyAllListeners()
+            {
+                for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
+                {
+                    WorldObject* Parent = (*ListIt)->GetParentObject();
+                    if( Parent )
+                        Parent->RemoveProxy( (*ListIt) );
+
+                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetProxyID() );
+                    delete (*ListIt);
+                }
+                this->Listeners.clear();
+                this->DestroyAllContexts();
+            }
+
+            OALS::SoundProxy* SoundScapeManager::GetSoundProxy(const UInt32 Index) const
+                { return this->Proxies.at(Index); }
+
+            UInt32 SoundScapeManager::GetNumSoundProxies() const
+                { return this->Proxies.size(); }
+
+            void SoundScapeManager::DestroySoundProxy(OALS::SoundProxy* ToBeDestroyed)
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     if( (*ProxIt) == ToBeDestroyed ) {
                         WorldObject* Parent = (*ProxIt)->GetParentObject();
                         if( Parent )
-                            Parent->_NotifyProxyDestroyed( (*ProxIt) );
+                            Parent->RemoveProxy( (*ProxIt) );
 
                         this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
                         delete ToBeDestroyed;
@@ -420,13 +481,13 @@ namespace Mezzanine
                 }
             }
 
-            void SoundScapeManager::DestroyAllProxies()
+            void SoundScapeManager::DestroyAllSoundProxies()
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     WorldObject* Parent = (*ProxIt)->GetParentObject();
                     if( Parent )
-                        Parent->_NotifyProxyDestroyed( (*ProxIt) );
+                        Parent->RemoveProxy( (*ProxIt) );
 
                     this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
                     delete (*ProxIt);

@@ -43,7 +43,7 @@
 #ifndef _audiolistener_h
 #define _audiolistener_h
 
-#include "worldproxy.h"
+#include "Audio/acousticproxy.h"
 
 namespace Mezzanine
 {
@@ -51,15 +51,17 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is an interface class for a listener (such as a player) in the 3D audio world.
-        /// @details
         ///////////////////////////////////////
-        class iListener : public WorldProxy
+        class iListener : public AcousticProxy
         {
         public:
-            /// @brief Class constructor.
+            /// @brief Blank constructor.
+            iListener()
+                {  }
+            /// @brief ID constructor.
             /// @param ID The unique ID of this listener.
             iListener(const UInt32 ID) :
-                WorldProxy(ID)
+                AcousticProxy(ID)
                 {  }
             /// @brief Class destructor.
             virtual ~iListener()
@@ -91,7 +93,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @brief Get the name of the the XML tag the Acoustic class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
             static String GetSerializableName() { return "iListener"; }
         };//iListener

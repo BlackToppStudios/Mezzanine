@@ -78,83 +78,57 @@ namespace Mezzanine
         switch( ManagerType )
         {
             case ManagerBase::MT_ActorManager:
-                return "ActorManager";
-                break;
+                return "ActorManager";  break;
             case ManagerBase::MT_AnimationManager:
-                return "AnimationManager";
-                break;
+                return "AnimationManager";  break;
             case ManagerBase::MT_AreaEffectManager:
-                return "AreaEffectManager";
-                break;
+                return "AreaEffectManager";  break;
             case ManagerBase::MT_AudioManager:
-                return "AudioManager";
-                break;
+                return "AudioManager";  break;
             case ManagerBase::MT_CollisionShapeManager:
-                return "CollisionShapeManager";
-                break;
+                return "CollisionShapeManager";  break;
             case ManagerBase::MT_CompositorManager:
-                return "CompositorManager";
-                break;
+                return "CompositorManager";  break;
             case ManagerBase::MT_DebrisManager:
-                return "DebrisManager";
-                break;
+                return "DebrisManager";  break;
             case ManagerBase::MT_EventManager:
-                return "EventManager";
-                break;
+                return "EventManager";  break;
             case ManagerBase::MT_GraphicsManager:
-                return "GraphicsManager";
-                break;
+                return "GraphicsManager";  break;
             case ManagerBase::MT_InputManager:
-                return "InputManager";
-                break;
+                return "InputManager";  break;
             case ManagerBase::MT_LogManager:
-                return "LogManager";
-                break;
+                return "LogManager";  break;
             case ManagerBase::MT_MaterialManager:
-                return "MaterialManager";
-                break;
+                return "MaterialManager";  break;
             case ManagerBase::MT_MeshManager:
-                return "MeshManager";
-                break;
+                return "MeshManager";  break;
             case ManagerBase::MT_NetworkManager:
-                return "NetworkManager";
-                break;
-            case ManagerBase::MT_PagingManager:
-                return "PagingManager";
-                break;
+                return "NetworkManager";  break;
             case ManagerBase::MT_PhysicsManager:
-                return "PhysicsManager";
-                break;
+                return "PhysicsManager";  break;
+            case ManagerBase::MT_PlayerManager:
+                return "PlayerManager";  break;
             case ManagerBase::MT_ResourceManager:
-                return "ResourceManager";
-                break;
+                return "ResourceManager";  break;
             case ManagerBase::MT_SceneManager:
-                return "SceneManager";
-                break;
+                return "SceneManager";  break;
             case ManagerBase::MT_ScriptingManager:
-                return "ScriptingManager";
-                break;
+                return "ScriptingManager";  break;
             case ManagerBase::MT_SoundScapeManager:
-                return "SoundScapeManager";
-                break;
+                return "SoundScapeManager";  break;
             case ManagerBase::MT_TerrainManager:
-                return "TerrainManager";
-                break;
+                return "TerrainManager";  break;
             case ManagerBase::MT_TextureManager:
-                return "TextureManager";
-                break;
+                return "TextureManager";  break;
             case ManagerBase::MT_UIManager:
-                return "UIManager";
-                break;
+                return "UIManager";  break;
             case ManagerBase::MT_VehicleManager:
-                return "VehicleManager";
-                break;
+                return "VehicleManager";  break;
             case ManagerBase::MT_UserCreated:
-                return "UserCreated";
-                break;
+                return "UserCreated";  break;
             default:
-                return "Unknown";
-                break;
+                return "Unknown";  break;
         }
     }
 
@@ -218,8 +192,8 @@ namespace Mezzanine
             }
             case 'p':
             {
-                if( 'a' == Lower.at(1) ) return ManagerBase::MT_PagingManager;
-                else if( 'h' == Lower.at(1) ) return ManagerBase::MT_PhysicsManager;
+                if( 'h' == Lower.at(1) ) return ManagerBase::MT_PhysicsManager;
+                else if( 'l' == Lower.at(1) ) return ManagerBase::MT_PlayerManager;
                 break;
             }
             case 'r':

@@ -50,6 +50,35 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+
+class StateTransitionActionChecker : public StateTransitionAction
+{
+        Boole& Transitioned;
+    public:
+
+        // Dammit I hate out parameters
+        StateTransitionActionChecker(Boole& BooleToWrite) : Transitioned(BooleToWrite)
+            {}
+
+        virtual Boole operator ()()
+            { return Transitioned = true;}
+
+        virtual StateTransitionActionChecker* clone()
+            { return new StateTransitionActionChecker(Transitioned); }
+};
+
+
+class StateTransitionActionFail : public StateTransitionAction
+{
+    public:
+        virtual Boole operator ()()
+            { return false;}
+
+        virtual StateTransitionActionFail* clone()
+            { return new StateTransitionActionFail; }
+};
+
+
 /// @brief Test
 class statemachinetests : public UnitTestGroup
 {
@@ -100,12 +129,12 @@ public:
             StopLight.AddState("LeftArrow");
             TEST( StopLight.GetStateTransitionCount() == 0, "NoStartingTransitions2");
 
-            StopLight.AddStateTransitation("Green","Yellow");
+            StopLight.AddStateTransition("Green","Yellow");
             TEST( StopLight.GetStateTransitionCount() == 1, "TransitionAdd1");
-            StopLight.AddStateTransitation("Yellow","Red");
-            StopLight.AddStateTransitation("Red","Green");
-            StopLight.AddStateTransitation("Red","LeftArrow");
-            StopLight.AddStateTransitation("LeftArrow","Green");
+            StopLight.AddStateTransition(HashedString32("Yellow"),HashedString32("Red"));
+            StopLight.AddStateTransition("Red","Green");
+            StopLight.AddStateTransition("Red","LeftArrow");
+            StopLight.AddStateTransition("LeftArrow","Green");
             TEST( StopLight.GetStateTransitionCount() == 5, "TransitionAdd2");
 
             TEST( StopLight.HasState("") == false, "DoesntHaveStateNilSTD");
@@ -119,6 +148,7 @@ public:
             TEST( StopLight.HasStateTransition("Green","Red") == false,
                   "HasInvalidTransition1");
             TEST( StopLight.HasStateTransition("Yellow","Green") == false,
+
                   "HasInvalidTransition2");
             TEST( StopLight.HasStateTransition("Green","LeftArrow") == false,
                   "HasInvalidTransition3");
@@ -150,14 +180,116 @@ public:
             TEST( StopLight.CanChangeState(HashedString32("Yellow")) == true,
                   "CanChangeWinHash");
 
+            TEST( StopLight.SetPendingState(HashedString32("Red")) == false,
+                  "SetPendingInvalidHash");
+            TEST( StopLight.SetPendingState("Red") == false, "SetPendingInvalidSTD");
+            TEST( StopLight.SetPendingState(HashedString32("Yellow")) == true,
+                  "SetPendingValidHash");
+            TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingSetHash")
+            TEST( StopLight.SetPendingState("Yellow") == true, "SetPendingValidSTD");
+            TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingSetSTD")
 
-            //TEST_THROW();
+
+            TEST( StopLight.ChangeState("Red") == false, "WontStupidChange")
+            TEST( StopLight.GetCurrentState() == HashedString32("Green"), "StateUnchanged");
+            TEST( StopLight.GetPendingState() == HashedString32("Yellow"), "PendingUnchanged");
+
+            TEST( StopLight.ChangeState("Yellow") == true, "ChangedStateToYellow")
+            TEST( StopLight.GetCurrentState() == HashedString32("Yellow"), "ActuallyChangeState");
+            TEST( StopLight.GetPendingState() == HashedString32(""), "PendingClearedAfterChange")
+
+            TEST( StopLight.SetPendingState("Red") == true, "SetPendingValidForUse");
+            StopLight.DoPendingStateChange();
+            TEST( StopLight.GetCurrentState() == HashedString32("Red"), "ChangeToPendingState");
+            TEST( StopLight.GetPendingState() == HashedString32(""),
+                "PendingClearedAfterPendingChange");
 
         }
 
         {
-            StateMachine foo;
+            StateMachine windowsMachine;
+            windowsMachine.AddState("Off");
+            windowsMachine.AddState("Booting");
+            windowsMachine.AddState("Running");
+            windowsMachine.AddState("Shutdown");
+            windowsMachine.AddState("Crashing");
+
+            TEST(windowsMachine.GetCurrentState() == HashedString32("Off"), "StartsOff");
+
+            Boole OffToBootTransitioned = false;
+            StateTransitionActionChecker* OffToBoot =
+                    new StateTransitionActionChecker(OffToBootTransitioned);
+            Boole BootToRunningTransitioned = false;
+            StateTransitionActionChecker* BootToRunning =
+                    new StateTransitionActionChecker(BootToRunningTransitioned);
+            Boole RunningToShutdownTransitioned = false;
+            StateTransitionActionChecker* RunningToShutdown =
+                    new StateTransitionActionChecker(RunningToShutdownTransitioned);
+            Boole ShutdownToOffTransitioned = false;
+            StateTransitionActionChecker* ShutdownToOff =
+                    new StateTransitionActionChecker(ShutdownToOffTransitioned);
+
+            windowsMachine.AddStateTransition(HashedString32("Off"),
+                                                HashedString32("Booting"),
+                                                OffToBoot);
+
+            windowsMachine.AddStateTransition("Booting","Running",BootToRunning);
+            windowsMachine.AddStateTransition(HashedString32("Booting"),
+                                                HashedString32("Crashing"));
+
+            windowsMachine.AddStateTransition("Running","Crashing");
+            windowsMachine.AddStateTransition(HashedString32("Running"),
+                                                HashedString32("Shutdown"),
+                                                RunningToShutdown);
+
+            windowsMachine.AddStateTransition("Shutdown","Crashing");
+            windowsMachine.AddStateTransition(HashedString32("Shutdown"),
+                                                HashedString32("Off"),
+                                                ShutdownToOff);
+
+            windowsMachine.AddStateTransition("Crashing","Off");
+
+            TEST(OffToBootTransitioned == false && BootToRunningTransitioned == false &&
+                 RunningToShutdownTransitioned == false && ShutdownToOffTransitioned == false,
+                 "TransitionSanityCheck");
+
+            TEST(windowsMachine.ChangeState("Booting") == true, "BootMachine");
+            TEST(OffToBootTransitioned == true, "BootingFunctorCalled");
+
+            TEST(BootToRunningTransitioned == false &&
+                 RunningToShutdownTransitioned == false && ShutdownToOffTransitioned == false,
+                 "OnlyOneStateRun");
+
+            TEST(windowsMachine.SetPendingState("Running") == true, "SetToRunMachine");
+            windowsMachine.DoPendingStateChange();
+            TEST(BootToRunningTransitioned== true, "StartedRunningFunctorCalled");
+            TEST(RunningToShutdownTransitioned == false && ShutdownToOffTransitioned == false,
+                 "OnlyTheSecondStateRun");
+
         }
+
+        {
+            StateMachine UnderTest(HashedString32("Running"));
+            UnderTest.AddState("CantStop");
+
+            UnderTest.AddStateTransition( HashedString32("Running"),
+                                          HashedString32("CantStop"),
+                                          new StateTransitionActionFail);
+
+            TEST(UnderTest.CanChangeState(HashedString32("CantStop")), "TransitionAppearsValid");
+            TEST(UnderTest.ChangeState(HashedString32("CantStop")) == false,
+                  "FailingTransitionInterupts");
+            TEST(UnderTest.GetCurrentState() == HashedString32("Running"), "StillRunning");
+            TEST(UnderTest.GetPendingState() == HashedString32(""), "NoPendingAfterFail");
+
+            TEST(UnderTest.SetPendingState(HashedString32("CantStop")), "FutureAppearsValid");
+            TEST(UnderTest.DoPendingStateChange()==false, "PendingCanFail");
+            TEST(UnderTest.ChangeState(HashedString32("CantStop")) == false,
+                  "FailingTransitionInteruptsFuture");
+            TEST(UnderTest.GetPendingState() == HashedString32(""), "NoPendingAfterFutureFail");
+
+        }
+
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.
@@ -167,3 +299,4 @@ public:
 };//spheretests
 
 #endif
+

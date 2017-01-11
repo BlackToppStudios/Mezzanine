@@ -15,7 +15,7 @@ ScoreArea::ScoreArea(World* TheWorld) :
     {  }
 
 ScoreArea::ScoreArea(const String& Name, World* TheWorld, const Vector3& HalfAreaSize) :
-    LevelZone(Name,TheWorld,Vector3()),
+    LevelZone(Name,TheWorld,HalfAreaSize),
     ScoreMultiplier(1.0)
     { this->CreateScoreArea(HalfAreaSize); }
 
@@ -29,32 +29,19 @@ ScoreArea::~ScoreArea()
 
 void ScoreArea::CreateScoreArea(const Vector3& HalfAreaSize)
 {
-    //Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
-    //Graphics::MeshManager* MeshMan = Entresol::GetSingletonPtr()->GetMeshManager();
-    //Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-    //Physics::CollisionShapeMananger* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
 
-    /*if( this->EntProx != NULL && MeshMan != NULL ) {
-        Graphics::Mesh* StartMesh = MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),HalfAreaSize,4.0);
-        this->EntProx->SetMesh( StartMesh );
-    }
-
-    if( this->Ghost != NULL && CSMan != NULL ) {
-        Physics::CollisionShape* StartCS = new Physics::BoxCollisionShape("StartAreaShape",HalfAreaSize);
-        this->Ghost->SetCollisionShape( StartCS );
-    }// */
 }
 
 void ScoreArea::DestroyScoreArea()
 {
-    //this->RemoveFromWorld();
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Utility
 
 void ScoreArea::ApplyEffect()
-    {  }
+    { AreaEffect::ApplyEffect(); }
 
 Boole ScoreArea::AllObjectsAtRest()
 {
@@ -63,8 +50,7 @@ Boole ScoreArea::AllObjectsAtRest()
 
     for( ObjectIterator ObjIt = this->OverlappingObjects.begin() ; ObjIt != this->OverlappingObjects.end() ; ObjIt++ )
     {
-        ProxyContainer ColProxies;
-        (*ObjIt)->GetProxies(Mezzanine::PT_Physics_All_Proxies,ColProxies);
+        ProxyContainer ColProxies = (*ObjIt)->GetProxies(Mezzanine::PT_Physics_All_Proxies);
         for( ProxyIterator ProxIt = ColProxies.begin() ; ProxIt != ColProxies.end() ; ++ProxIt )
         {
             if( static_cast<Physics::CollidableProxy*>( *ProxIt )->IsActive() )

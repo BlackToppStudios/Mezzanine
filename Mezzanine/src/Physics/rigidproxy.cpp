@@ -92,7 +92,7 @@ namespace Mezzanine
         void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
-            this->PhysicsRigidBody->setMotionState( new Internal::MultiMotionState( this ) );
+            this->PhysicsRigidBody->setMotionState( new Internal::WorldObjectMotionState( this ) );
             this->PhysicsRigidBody->setUserPointer( static_cast<CollidableProxy*>( this ) );
             if(0.0 == Mass) {
                 this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
@@ -260,8 +260,9 @@ namespace Mezzanine
 		*/
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Transform Syncronization
+        // Transform Synchronization
 
+        /*
         void RigidProxy::AddSyncObject(TransformableObject* ToBeAdded)
             { static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->AddSyncObject(ToBeAdded); }
 
@@ -276,14 +277,15 @@ namespace Mezzanine
 
         void RigidProxy::RemoveAllSyncObjects()
             { static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->RemoveAllSyncObjects(); }
+        */
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
         void RigidProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            this->CollidableProxy::ProtoSerialize(SelfRoot);
-            // We're at the base implementation, so no calling of child implementations
+            this->CollidableProxy::ProtoSerializeProperties(SelfRoot);
+
             XML::Node PropertiesNode = SelfRoot.AppendChild( RigidProxy::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
@@ -291,7 +293,7 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("LinearDamping").SetValue( this->GetLinearDamping() ) &&
                 PropertiesNode.AppendAttribute("AngularDamping").SetValue( this->GetAngularDamping() ) )
             {
-                XML::Node LinVelNode = PropertiesNode.AppendChild("LinearVelocty");
+                XML::Node LinVelNode = PropertiesNode.AppendChild("LinearVelocity");
                 this->GetLinearVelocity().ProtoSerialize( LinVelNode );
 
                 XML::Node AngVelNode = PropertiesNode.AppendChild("AngularVelocity");
@@ -321,8 +323,8 @@ namespace Mezzanine
         void RigidProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
             this->PhysicsRigidBody->clearForces();
-            this->CollidableProxy::ProtoDeSerialize(SelfRoot);
-            // We're at the base implementation, so no calling of child implementations
+            this->CollidableProxy::ProtoDeSerializeProperties(SelfRoot);
+
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( RigidProxy::GetSerializableName() + "Properties" );
 
@@ -345,7 +347,7 @@ namespace Mezzanine
                     this->SetDamping(LinDam,AngDam);
 
                     // Get the properties that need their own nodes
-                    XML::Node LinVelNode = PropertiesNode.GetChild("LinearVelocty").GetFirstChild();
+                    XML::Node LinVelNode = PropertiesNode.GetChild("LinearVelocity").GetFirstChild();
                     if( !LinVelNode.Empty() ) {
                         Vector3 LinVel(LinVelNode);
                         this->SetLinearVelocity(LinVel);
@@ -402,6 +404,13 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        void RigidProxy::_Bind(WorldObject* NewParent)
+        {
+            WorldProxy::_Bind(NewParent);
+            Internal::WorldObjectMotionState* MS = static_cast<Internal::WorldObjectMotionState*>( this->PhysicsRigidBody->getMotionState() );
+            MS->SetSyncObject(NewParent);
+        }
 
         btRigidBody* RigidProxy::_GetPhysicsObject() const
             { return this->PhysicsRigidBody; }

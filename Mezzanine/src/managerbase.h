@@ -62,45 +62,59 @@ namespace Mezzanine
         /// @details These will be returned by ManagerBase::GetType(), and will allow
         /// code using this to determine what type of Manager class they are working with
         /// and use this information to more safely cast to the correct manager if needed.
+        /// @n @n
+        /// When extending the Mezzanine with additional managers, you should try to stay
+        /// within the ranges specified (where applicable) as some systems use range-based
+        /// checks.
         enum ManagerType
         {
             // Utility Types
 
             MT_Undefined              = 0,
 
-            // Entresol Managers             // Namespaces
+            // Entresol Managers              // Namespaces
 
-            MT_AudioManager           = 1,   // Audio
-            MT_AnimationManager       = 2,   // Graphics
-            MT_CollisionShapeManager  = 3,   // Physics
-            MT_CompositorManager      = 4,   // Graphics
-            MT_GraphicsManager        = 5,   // Graphics
-            MT_EventManager           = 6,   // Mezzanine
-            MT_InputManager           = 7,   // Input
-            MT_LogManager             = 8,   // Mezzanine
-            MT_MaterialManager        = 9,   // Graphics
-            MT_MeshManager            = 10,  // Graphics
-            MT_NetworkManager         = 11,  // Network
-            MT_ResourceManager        = 12,  // Resource
-            MT_ScriptingManager       = 13,  // Scripting
-            MT_TextureManager         = 14,  // Graphics
-            MT_UIManager              = 15,  // UI
+            MT_AudioManager            = 1,   // Audio
+            MT_AnimationManager        = 2,   // Graphics
+            MT_CollisionShapeManager   = 3,   // Physics
+            MT_CompositorManager       = 4,   // Graphics
+            MT_GraphicsManager         = 5,   // Graphics
+            MT_EventManager            = 6,   // Mezzanine
+            MT_InputManager            = 7,   // Input
+            MT_LogManager              = 8,   // Mezzanine
+            MT_MaterialManager         = 9,   // Graphics
+            MT_MeshManager             = 10,  // Graphics
+            MT_NetworkManager          = 11,  // Network
+            MT_PlayerManager           = 12,  // Mezzanine
+            MT_ResourceManager         = 13,  // Resource
+            MT_ScriptingManager        = 14,  // Scripting
+            MT_TextureManager          = 15,  // Graphics
+            MT_UIManager               = 16,  // UI
 
-            // World Managers                // Namespaces
+            // World Managers                 // Namespaces
 
-            MT_ActorManager           = 101, // Mezzanine
-            MT_AreaEffectManager      = 102, // Mezzanine
-            MT_DebrisManager          = 103, // Mezzanine
-            MT_PagingManager          = 104, // Paging
-            MT_PhysicsManager         = 105, // Physics
-            MT_SceneManager           = 106, // Graphics
-            MT_SoundScapeManager      = 107, // Audio
-            MT_TerrainManager         = 108, // Mezzanine
-            MT_VehicleManager         = 109, // Mezzanine
+            MT_WorldProxyManagerFirst  = 100,
 
-            // Other Managers                // Namespaces
+            MT_PhysicsManager          = 105, // Physics
+            MT_SceneManager            = 106, // Graphics
+            MT_SoundScapeManager       = 107, // Audio
 
-            MT_UserCreated            = 512  ///< This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
+            MT_WorldProxyManagerLast   = 199,
+            MT_WorldObjectManagerFirst = 200,
+
+            MT_ActorManager            = 201, // Mezzanine
+            MT_AreaEffectManager       = 202, // Mezzanine
+            MT_DebrisManager           = 203, // Mezzanine
+            MT_TerrainManager          = 208, // Mezzanine
+            MT_VehicleManager          = 209, // Mezzanine
+
+            MT_WorldObjectManagerLast  = 299,
+
+            // Other Managers                 // Namespaces
+
+            MT_UserManagerFirst        = 1000,
+
+            MT_UserCreated             = 1001  ///< This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
         };
     protected:
         /// @internal

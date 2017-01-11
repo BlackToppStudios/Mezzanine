@@ -159,6 +159,8 @@ if(${WIN32})
 else(${WIN32})
     set(FPIC "-fPIC")
 endif(${WIN32})
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FPIC}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FPIC}")
 
 if(MSVC)
     set(D "/D")
@@ -167,11 +169,11 @@ else(MSVC)
 endif(MSVC)
 
 if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=athlon64")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=athlon64")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=athlon64")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=athlon64")
 else( CMAKE_SIZEOF_VOID_P EQUAL 8 )
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=i686")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=i686")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=i686")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=i686")
 endif( CMAKE_SIZEOF_VOID_P EQUAL 8 )
 
 ###############################################################################
@@ -632,7 +634,8 @@ if(NOT MSVC AND NOT ANDROID)
     endif(Mezz_Platform_Big_Endian)
 endif(NOT MSVC AND NOT ANDROID)
 
-set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} ${FPIC}")
+set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} -std=c++11")
+separate_arguments(CommonBuildFlags UNIX_COMMAND "${CommonBuildFlags}")
 
 ###############################################################################
 # Perform Platform Specific Tasks for build options and configuration.

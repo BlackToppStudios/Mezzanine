@@ -201,7 +201,7 @@ public:
                 }
             }else{
                 Ray MouseRay = RayQueryTool::GetMouseRay();
-                RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid);
+                RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_RigidDebris);
 
                 bool firstframe=false;
                 if( 0 == RayCaster.LastQueryResultsObjectPtr() ) {
@@ -215,9 +215,9 @@ public:
                     //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
                     //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
                     #endif
-                    if( !( RayCaster.LastQueryResultsObjectPtr()->IsStatic() || RayCaster.LastQueryResultsObjectPtr()->IsKinematic() ) ) {
+                    if( !( RayCaster.LastQueryResultsObjectPtr()->IsStatic() ) ) {
                         if(!Dragger) { //If we have a dragger, then this is dragging, not clicking
-                            if(RayCaster.LastQueryResultsObjectPtr()->GetType() == Mezzanine::WO_DebrisRigid) { //This is Dragging let's do some checks for sanity
+                            if(RayCaster.LastQueryResultsObjectPtr()->GetType() == Mezzanine::WO_RigidDebris) { //This is Dragging let's do some checks for sanity
                                 Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
                                 RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
                                 rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
@@ -547,7 +547,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
@@ -559,7 +559,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
@@ -572,7 +572,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
+        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
         RigDeb->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
@@ -585,54 +585,54 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass,false);
+    RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
     RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
     RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
     RigDeb->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
     RigDeb->AddToWorld();
 
-    object5 = DebrisMan->CreateRigidDebris("Plane",0,false);
+    object5 = DebrisMan->CreateRigidDebris("Plane",0);
     object5->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object5->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object5->SetLocation(Vector3(0.0,-100,-300.0));
     object5->AddToWorld();
 
-    object6 = DebrisMan->CreateRigidDebris("Ramp",0,false);
+    object6 = DebrisMan->CreateRigidDebris("Ramp",0);
     object6->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object6->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object6->SetLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
     object6->AddToWorld();
 
-    object1 = DebrisMan->CreateRigidDebris("RobotWayUpFrontRight",mass,false);
+    object1 = DebrisMan->CreateRigidDebris("RobotWayUpFrontRight",mass);
     object1->GetRigidProxy()->SetCollisionShape(RobitCH);
     object1->GetEntityProxy()->SetMesh(filerobot,groupname);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->AddToWorld();
 
-    object2 = DebrisMan->CreateRigidDebris("WoodSphere",150.0,false);
+    object2 = DebrisMan->CreateRigidDebris("WoodSphere",150.0);
     object2->GetRigidProxy()->SetCollisionShape(WoodenSphere);
     object2->GetEntityProxy()->SetMesh("Sphere_Wood.mesh",groupname);
     object2->SetScale(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
     object2->AddToWorld();
 
-    object3 = DebrisMan->CreateRigidDebris("MetalSphere",200.0,false);
+    object3 = DebrisMan->CreateRigidDebris("MetalSphere",200.0);
     object3->GetRigidProxy()->SetCollisionShape(MetalSphere);
     object3->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object3->SetScale(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
     object3->AddToWorld();
 
-    object4 = DebrisMan->CreateRigidDebris("RobotWayUpFrontLeft",mass,false);
+    object4 = DebrisMan->CreateRigidDebris("RobotWayUpFrontLeft",mass);
     object4->GetRigidProxy()->SetCollisionShape(RobitCH);
     object4->GetEntityProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->AddToWorld();
 
-    object7 = DebrisMan->CreateRigidDebris("MetalSphere2",800.0,false);
+    object7 = DebrisMan->CreateRigidDebris("MetalSphere2",800.0);
     object7->GetRigidProxy()->SetCollisionShape(MetalSphere2);
     object7->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object7->SetScale(Vector3(0.3,0.3,0.3));
@@ -655,7 +655,7 @@ void LoadContent()
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     PhysMan->AddAreaEffect(BlackHole);// */
 
-    Physics::RigidProxy* InvisFloor = PhysMan->CreateRigidProxy(0,NULL,false);
+    Physics::RigidProxy* InvisFloor = PhysMan->CreateRigidProxy(0,NULL);
     InvisFloor->SetCollisionShape( new Physics::PlaneCollisionShape("InvisFloor",Plane(Vector3::Unit_Y(),Vector3(0,-300,0))) );
     InvisFloor->AddToWorld();
 

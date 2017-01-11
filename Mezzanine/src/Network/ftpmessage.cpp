@@ -98,7 +98,7 @@ namespace Mezzanine
                 }else if( (*CurrIt) == ',' ) {
                     Int8 ComponentVal = StringTools::ConvertToInt8(Component);
                     if( ComponentIndex <= 3 ) {
-                        ConvertedIP[ComponentIndex] == ComponentVal;
+                        ConvertedIP[ComponentIndex] = ComponentVal;
                         Ret.GetAddress().SetBinaryAddress(ConvertedIP);
                     }else if( ComponentIndex == 4 ) {
                         ConvertedPort = ComponentVal * 256;

@@ -340,7 +340,12 @@ namespace Mezzanine
                 return (this->State & OALS::PS_InWorld);
             }
 
-            WorldManager* OALS::SoundProxy::GetCreator() const
+            Boole OALS::SoundProxy::IsStatic() const
+            {
+                return false;
+            }
+
+            WorldProxyManager* OALS::SoundProxy::GetCreator() const
             {
                 return this->Manager;
             }
@@ -708,6 +713,21 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
+
+            void OALS::SoundProxy::SetTransform(const Transform& Trans)
+            {
+                this->SetLocation(Trans.Location);  this->SetOrientation(Trans.Rotation);
+            }
+
+            void OALS::SoundProxy::SetTransform(const Vector3& Loc, const Quaternion& Ori)
+            {
+                this->SetLocation(Loc);  this->SetOrientation(Ori);
+            }
+
+            Transform OALS::SoundProxy::GetTransform() const
+            {
+                return Transform(this->GetLocation(),this->GetOrientation());
+            }
 
             void OALS::SoundProxy::SetLocation(const Vector3& Loc)
             {

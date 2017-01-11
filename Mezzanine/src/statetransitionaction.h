@@ -41,25 +41,46 @@
 #define statetransitionaction_h
 
 /// @file
-/// @brief Describe file here
+/// @brief The defition of @ref StateMachine functors
 
 #include "datatypes.h"
 
 namespace Mezzanine
 {
+    /// @brief This is the interface for for actions the @ref StateMachine will execute when
+    /// transitioning states.
     class MEZZ_LIB StateTransitionAction
     {
         public:
-            virtual void operator()() = 0;
+            /// @brief The action to be executed on a transition, must be implemented
+            /// in derived class.
+            /// @return True if successes and the State should complete the Transition and False
+            /// otherwise.
+            virtual Boole operator()() = 0;
+            /// @brief A no-op virtual deconstructor to not interfere with inheritance during
+            /// deconstruction.
             virtual ~StateTransitionAction();
+            /// @brief Create a copy of this.
+            /// @return This is expected to return an owning pointer to a new instance of something
+            /// derived from this class. This allows for storing multiple kinds of transition
+            /// actions in the same container. Calling this and not deleting it will leak.
             virtual StateTransitionAction* clone() = 0;
     };
 
+    /// @brief A simple no action that is use by default in @ref StateTransition instances
     class MEZZ_LIB StateTransitionNoAction : public StateTransitionAction
     {
         public:
-            virtual void operator()();
+            /// @brief When called does nothing.
+            /// @
+            virtual Boole operator()();
+            /// @brief A no-op virtual deconstructor to not interfere with inheritance during
+            /// deconstruction.
             virtual ~StateTransitionNoAction();
+            /// @brief Create a copy of this, doing something like "new StateTransitionNoAction;"
+            /// @return This is expected to return an owning pointer to a new instance of this
+            /// from this class. This allows for storing multiple kinds of transition
+            /// actions in the same container. Calling this and not deleting it will leak.
             virtual StateTransitionAction* clone();
     };
 

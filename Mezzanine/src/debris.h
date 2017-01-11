@@ -49,7 +49,6 @@ namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A simple world object without a large structure ideal for representing loose small objects.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB Debris : public WorldObject
     {
@@ -90,7 +89,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of Debris objects.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB DebrisFactory
     {
