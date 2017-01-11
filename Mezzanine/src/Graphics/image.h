@@ -95,7 +95,6 @@ namespace Mezzanine
         class MEZZ_LIB Image
         {
         protected:
-            /// @internal
             /// @brief A pointer to the internal implementation of the Image.
             InternalImageData* IID;
         public:
@@ -171,10 +170,17 @@ namespace Mezzanine
 
             /// @brief Reverses the order of each pixel on the X axis.
             /// @return Returns a reference to this.
-            Image& FlipAroundXAxis();
+            Image& ReverseXAxis();
             /// @brief Reverses the order of each pixel on the Y axis.
             /// @return Returns a reference to this.
-            Image& FlipAroundYAxis();
+            Image& ReverseYAxis();
+
+            /// @brief Rotates this image clockwise on the X-Y plane.
+            /// @remarks Only 90 degree rotation increments are allowed.  Rotations are based how the image is now, as
+            /// original orientations are not stored by this class.  Does not work on images with depth.
+            /// @param Orientation The rotation to be made.
+            /// @return Returns a reference to this.
+            Image& RotateXY(const Graphics::OrientationMode Orientation);
 
             /// @brief Sets the colour of an individual pixel in this image.
             /// @param X The X position of the pixel to alter.

@@ -76,6 +76,40 @@ namespace Mezzanine
                 {  }
         };//InternalImageData
 
+        /// @brief Converts an X-Y-Z pixel coordinate into an index.
+        /// @param X The X position of the pixel.
+        /// @param Y The Y position of the pixel.
+        /// @param Z The Z position of the pixel.
+        /// @param Width The width of the target image.
+        /// @param Height The height of the target image.
+        /// @return Returns the calculated pixel index.
+        Whole GetPixelIndex(const Whole X, const Whole Y, const Whole Z, const Whole Width, const Whole Height)
+        {
+            return ( Z * Width * Height ) + ( Y * Width ) + X;
+        }
+
+        /// @brief Converts an X-Y-Z pixel coordinate into an X-Y rotation index.
+        /// @param X The original X position of the pixel to be rotated.
+        /// @param Y The original Y position of the pixel to be rotated.
+        /// @param Z The original Z position of the pixel to be rotated.
+        /// @param Width The width of the target image.
+        /// @param Height The height of the target image.
+        /// @param Mode The rotation to be applied.
+        /// @return Returns the rotated pixel index.
+        Whole GetPixelIndexXY(const Whole X, const Whole Y, const Whole Z, const Whole Width, const Whole Height, const Graphics::OrientationMode Mode)
+        {
+            // We're rotating on the XY plane, so the Z component is the same regardless of the rotation.
+            Whole ZResult = Z * Width * Height;
+            switch( Mode )
+            {
+                case Graphics::OM_Degree_90:   return ZResult + ( X * Width ) + ( ( Height - 1 ) - Y );
+                case Graphics::OM_Degree_180:  return ZResult + ( ( ( Height - 1 ) - Y ) * Width ) + ( ( Width - 1 ) - X );
+                case Graphics::OM_Degree_270:  return ZResult + ( ( ( Height - 1 ) - X ) * Width ) + Y;
+                case Graphics::OM_Degree_0:
+                default:                       return ZResult + ( Y * Width ) + X;
+            }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Image Methods
 
@@ -146,15 +180,52 @@ namespace Mezzanine
         Whole Image::GetRowSpan() const
             { return this->IID->GraphicsImage.getRowSpan(); }
 
-        Image& Image::FlipAroundXAxis()
+        Image& Image::ReverseXAxis()
         {
             this->IID->GraphicsImage.flipAroundX();
             return *this;
         }
 
-        Image& Image::FlipAroundYAxis()
+        Image& Image::ReverseYAxis()
         {
             this->IID->GraphicsImage.flipAroundY();
+            return *this;
+        }
+
+        Image& Image::RotateXY(const Graphics::OrientationMode Orientation)
+        {
+            if( Orientation == Graphics::OM_Degree_0 )
+                return *this;
+
+            Whole Width = this->GetWidth();
+            Whole Height = this->GetHeight();
+            Whole Depth = this->GetDepth();
+            Whole TargetWidth = ( Orientation != Graphics::OM_Degree_180 ? Height : Width );
+            Whole TargetHeight = ( Orientation != Graphics::OM_Degree_180 ? Width : Height );
+            Ogre::PixelFormat Format = this->IID->GraphicsImage.getFormat();
+            Whole BytesPerPixel = Ogre::PixelUtil::getNumElemBytes(Format);
+            Whole NumMipMaps = this->GetNumMipMaps();
+            Whole NumFaces = this->GetNumFaces();
+
+            Ogre::Image& TheImage = this->IID->GraphicsImage;
+            Ogre::ColourValue PixelColour;
+            UInt8* OrigBuf = this->GetImageData();
+            UInt8* RotatedBuf = new UInt8[ Width * Height * Depth * BytesPerPixel ];
+            for( Whole ZPos = 0 ; ZPos < Depth ; ++ZPos )
+            {
+                for( Whole YPos = 0 ; YPos < Height ; ++YPos )
+                {
+                    for( Whole XPos = 0 ; XPos < Width ; ++XPos )
+                    {
+                        Whole PixelIndex = GetPixelIndex(XPos,YPos,ZPos,Width,Height) * BytesPerPixel;
+                        Whole RotatedIndex = GetPixelIndexXY(XPos,YPos,ZPos,TargetWidth,TargetHeight,Orientation) * BytesPerPixel;
+                        Ogre::PixelUtil::unpackColour(&PixelColour,Format,OrigBuf + PixelIndex);
+                        Ogre::PixelUtil::packColour(PixelColour,Format,RotatedBuf + RotatedIndex);
+                    }
+                }
+            }
+
+            this->IID->GraphicsImage.loadDynamicImage(RotatedBuf,TargetWidth,TargetHeight,Depth,Format,true,NumFaces,NumMipMaps);
             return *this;
         }
 
