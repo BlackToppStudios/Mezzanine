@@ -177,7 +177,7 @@ namespace Mezzanine
         // Serialization
 
         /// @brief Convert this class to an XML::Node ready for serialization.
-        /// @param ParentNode The point in the XML hierarchy that all this renderable should be appended to.
+        /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
         virtual void ProtoSerialize(XML::Node& ParentNode) const;
         /// @brief Convert the properties of this class to an XML::Node ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.

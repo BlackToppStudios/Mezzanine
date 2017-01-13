@@ -47,7 +47,7 @@
 
 #include "Audio/vorbisdecoder.h"
 
-#include "Resource/datastream.h"
+#include "datastream.h"
 
 #include <ogg/ogg.h>
 #include <vorbis/codec.h>
@@ -57,7 +57,7 @@ namespace
 {
     /// @internal
     /// @brief Convenience method to check for and clear EoF flags that may be encountered during decoding.
-    void ClearEoF(Mezzanine::Resource::DataStream* Stream)
+    void ClearEoF(Mezzanine::DataStream* Stream)
     {
         if( Stream->eof() ) {
             Stream->clear( Stream->rdstate() ^ ( std::ios::eofbit | std::ios::failbit ) );
@@ -68,7 +68,7 @@ namespace
     /// @brief The Vorbis read callback.
     size_t VorbisRead(void *ptr, size_t byteSize,size_t sizeToRead, void *datasource)
     {
-        Mezzanine::Resource::DataStream* Stream = static_cast<Mezzanine::Resource::DataStream*>(datasource);
+        Mezzanine::DataStream* Stream = static_cast<Mezzanine::DataStream*>(datasource);
         Stream->read( static_cast<char*>(ptr), byteSize * sizeToRead );
         return Stream->gcount();
     }
@@ -77,7 +77,7 @@ namespace
     /// @brief The Vorbis seek callback (set position).
     int VorbisSeek(void *datasource,ogg_int64_t offset,int whence)
     {
-        Mezzanine::Resource::DataStream* Stream = static_cast<Mezzanine::Resource::DataStream*>(datasource);
+        Mezzanine::DataStream* Stream = static_cast<Mezzanine::DataStream*>(datasource);
         ClearEoF(Stream);
         switch(whence)
         {
@@ -92,7 +92,7 @@ namespace
     /// @brief The Vorbis tell callback (retrieve position).
     long VorbisTell(void *datasource)
     {
-        Mezzanine::Resource::DataStream* Stream = static_cast<Mezzanine::Resource::DataStream*>(datasource);
+        Mezzanine::DataStream* Stream = static_cast<Mezzanine::DataStream*>(datasource);
         ClearEoF(Stream);
         return Stream->tellg();
     }
@@ -112,7 +112,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
         /// @brief Internal convenience class for the storage of Vorbis structs needed for Vorbis operations.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB VorbisDecoderInternalData
         {
@@ -148,7 +147,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // VorbisDecoder Methods
 
-        VorbisDecoder::VorbisDecoder(Resource::DataStreamPtr Stream) :
+        VorbisDecoder::VorbisDecoder(DataStreamPtr Stream) :
             VorbisStream(Stream),
             VorbisStreamSize(0),
             VorbisStreamPos(0),
@@ -232,7 +231,7 @@ namespace Mezzanine
             else return 0;
         }
 
-        Resource::DataStreamPtr VorbisDecoder::GetStream() const
+        DataStreamPtr VorbisDecoder::GetStream() const
         {
             return this->VorbisStream;
         }
@@ -259,6 +258,11 @@ namespace Mezzanine
                 }
             }
             return false;
+        }
+
+        Int32 VorbisDecoder::GetPosition() const
+        {
+            return this->VorbisStreamPos;
         }
 
         Boole VorbisDecoder::Seek(const Real Seconds, const Boole Relative)

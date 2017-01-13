@@ -88,12 +88,12 @@ namespace Mezzanine
             /// @brief Sets a new stream for playback by this @ref iSound.
             /// @param Stream The stream to be decoded and played by this sound.
             /// @param Encode The encoding to expect when decoding the stream provided.
-            virtual void SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
+            virtual void SetStream(DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
             /// @brief Sets a new stream for playback by this @ref iSound.
             /// @param Type The new type to set this @ref iSound instance as.
             /// @param Stream The stream to be decoded and played by this sound.
             /// @param Encode The encoding to expect when decoding the stream provided.
-            virtual void SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
+            virtual void SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
             /// @brief Sets a new stream for playback by this @ref iSound via a new decoder.
             /// @warning @ref iSound instances take ownership of decoders.  Decoders should not be shared between @ref iSound instances.
             /// @param Decode A pointer to the decoder containing the stream that will be used by this @ref iSound.

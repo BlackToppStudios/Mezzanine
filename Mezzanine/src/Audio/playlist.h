@@ -41,7 +41,7 @@
 #define _audioplsylist_h
 
 #include "datatypes.h"
-#include "Resource/datastream.h"
+#include "datastream.h"
 
 /// @file
 /// @brief The declaration of the Playlist class.
