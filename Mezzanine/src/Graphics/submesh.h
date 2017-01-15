@@ -46,6 +46,7 @@
 namespace Ogre
 {
     class SubMesh;
+    class VertexData;
 }//Ogre
 
 namespace Mezzanine
@@ -102,11 +103,13 @@ namespace Mezzanine
         class MEZZ_LIB SubMesh
         {
         protected:
-            /// @internal
             /// @brief A pointer to the internal SubMesh this is based on.
             Ogre::SubMesh* InternalSubMesh;
+
+            /// @brief Gets the appropriate vertex data for this submesh.
+            /// @return Returns a pointer to the internal Vertex container.
+            Ogre::VertexData* GetVertexData() const;
         public:
-            /// @internal
             /// @brief Internal Constructor.
             /// @param Internal The internal SubMesh this SubMesh class is based on.
             SubMesh(Ogre::SubMesh* Internal);
