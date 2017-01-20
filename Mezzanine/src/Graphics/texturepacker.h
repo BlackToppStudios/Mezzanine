@@ -203,8 +203,14 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             TexturePacker();
+            /// @brief Copy constructor.
+            /// @param Other The other packer to be copied.
+            TexturePacker(const TexturePacker& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other packer to be moved.
+            TexturePacker(TexturePacker&& Other) = default;
             /// @brief Class destructor.
-            virtual ~TexturePacker();
+            virtual ~TexturePacker() = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Initialization

@@ -64,14 +64,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // MaxRectsTexturePacker Methods
 
-        MaxRectsTexturePacker::MaxRectsTexturePacker()
-            {  }
-
         MaxRectsTexturePacker::MaxRectsTexturePacker(const Whole TexWidth, const Whole TexHeight)
             { this->Initialize(TexWidth,TexHeight); }
-
-        MaxRectsTexturePacker::~MaxRectsTexturePacker()
-            {  }
 
         RectScoreResult MaxRectsTexturePacker::ScoreRect(const RectSizeType& RectSize, const MaxRectsPlacement Method) const
         {

@@ -57,9 +57,6 @@ namespace Mezzanine
             AllowRotated(false)
             {  }
 
-        TexturePacker::~TexturePacker()
-            {  }
-
         void TexturePacker::InitImage(const Whole Width, const Whole Height)
         {
             Whole BufferSize = Width * Height * 4;

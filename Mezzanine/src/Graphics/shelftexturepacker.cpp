@@ -62,9 +62,6 @@ namespace Mezzanine
             ShelfHeight(Height)
             {  }
 
-        TextureShelf::~TextureShelf()
-            {  }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Functionality
 
@@ -106,9 +103,6 @@ namespace Mezzanine
         ShelfTexturePacker::ShelfTexturePacker(const Whole TexWidth, const Whole TexHeight) :
             CurrentY(0)
             { this->Initialize(TexWidth,TexHeight); }
-
-        ShelfTexturePacker::~ShelfTexturePacker()
-            {  }
 
         Boole ShelfTexturePacker::CanStartNewShelf(const Integer Height) const
         {

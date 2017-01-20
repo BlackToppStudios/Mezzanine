@@ -97,7 +97,7 @@ namespace Mezzanine
             /// @param Height The starting height of the shelf.
             TextureShelf(const Integer YPosition, const Integer Height);
             /// @brief Class destructor.
-            ~TextureShelf();
+            ~TextureShelf() = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Functionality
@@ -185,18 +185,24 @@ namespace Mezzanine
             /// @brief No Init constructor.
             /// @remarks Initial texture size will be zero.  Must call Init after this constructor.
             ShelfTexturePacker();
+            /// @brief Copy constructor.
+            /// @param Other The other packer to be copied.
+            ShelfTexturePacker(const ShelfTexturePacker& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other packer to be moved.
+            ShelfTexturePacker(ShelfTexturePacker&& Other) = default;
             /// @brief Initialization constructor.
             /// @param TexWidth The width of the texture to be packed.
             /// @param TexHeight The height of the texture to be packed.
             ShelfTexturePacker(const Whole TexWidth, const Whole TexHeight);
             /// @brief Class destructor.
-            ~ShelfTexturePacker();
+            virtual ~ShelfTexturePacker() = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Initialization
 
             /// @copydoc TexturePacker::Initialize(const Whole, const Whole)
-            void Initialize(const Whole TexWidth, const Whole TexHeight);
+            virtual void Initialize(const Whole TexWidth, const Whole TexHeight) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Insertion
@@ -204,11 +210,11 @@ namespace Mezzanine
             /// @copydoc TexturePacker::Insert(const Image*)
             /// @remarks This method calls the more descriptive Insert method with (SP_BestAreaFit)
             /// as sane defaults.  Call the other Insert method directly for more control.
-            PlacementResult Insert(const Image* ToInsert);
+            virtual PlacementResult Insert(const Image* ToInsert) override;
             /// @copydoc TexturePacker::Insert(const ImageContainer&, PackResultHandler*)
             /// @remarks This method calls the more descriptive Insert method with (SP_BestAreaFit)
             /// as sane defaults.  Call the other Insert method directly for more control.
-            ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler);
+            virtual ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler) override;
 
             /// @brief Inserts a single image into the atlas.
             /// @remarks The packer might rotate the rectangle, in which case the returned struct will have the width and height values swapped.
@@ -217,7 +223,7 @@ namespace Mezzanine
             /// @param ToInsert The image to be inserted.
             /// @param RectChoice The rect placement heuristic rule to use.
             /// @return Returns a Rect of where the image was placed.  The Rect may have invalid dimensions if the image wasn't placed.
-            PlacementResult Insert(const Image* ToInsert, const ShelfPlacement RectChoice);
+            virtual PlacementResult Insert(const Image* ToInsert, const ShelfPlacement RectChoice);
             /// @brief Inserts a series of images into the atlas.
             /// @remarks The packer might rotate the rectangle, in which case the returned struct will have the width and height values swapped.
             /// @n Merging will defragment the free rectangles and may improve performance when finding a free rect, but will cause this method
@@ -226,7 +232,7 @@ namespace Mezzanine
             /// @param Handler A pointer to the handler that will process the packing result.
             /// @param RectChoice The rect placement heuristic rule to use.
             /// @return Returns a container of the unpacked images.
-            ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler, const ShelfPlacement RectChoice);
+            virtual ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler, const ShelfPlacement RectChoice);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query
@@ -235,7 +241,7 @@ namespace Mezzanine
             /// @return Returns a const reference to the shelf container used by this texture packer.
             const ShelfContainer& GetShelves() const;
             /// @copydoc TexturePacker::GetCoverage() const
-            Real GetCoverage() const;
+            virtual Real GetCoverage() const override;
         };//ShelfTexturePacker
     }//Graphics
 }//Mezzanine

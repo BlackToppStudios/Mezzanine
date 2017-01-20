@@ -116,22 +116,28 @@ namespace Mezzanine
         public:
             /// @brief No Init constructor.
             /// @remarks Initial texture size will be zero.  Must call Init after this constructor.
-            MaxRectsTexturePacker();
+            MaxRectsTexturePacker() = default;
+            /// @brief Copy constructor.
+            /// @param Other The other packer to be copied.
+            MaxRectsTexturePacker(const MaxRectsTexturePacker& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other packer to be moved.
+            MaxRectsTexturePacker(MaxRectsTexturePacker&& Other) = default;
             /// @brief Initialization constructor.
             /// @param TexWidth The width of the texture to be packed.
             /// @param TexHeight The height of the texture to be packed.
             MaxRectsTexturePacker(const Whole TexWidth, const Whole TexHeight);
             /// @brief Class destructor.
-            ~MaxRectsTexturePacker();
+            virtual ~MaxRectsTexturePacker() = default;
 
             /// @brief Removed redundant free rectangle entries.
-            void PruneFreeList();
+            virtual void PruneFreeList();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Initialization
 
             /// @copydoc TexturePacker::Initialize(const Whole, const Whole)
-            void Initialize(const Whole TexWidth, const Whole TexHeight);
+            virtual void Initialize(const Whole TexWidth, const Whole TexHeight) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Insertion
@@ -139,11 +145,11 @@ namespace Mezzanine
             /// @copydoc TexturePacker::Insert(const Image*)
             /// @remarks This method calls the more descriptive Insert method with (true,MRP_TopLeftRule)
             /// as sane defaults.  Call the other Insert method directly for more control.
-            PlacementResult Insert(const Image* ToInsert);
+            virtual PlacementResult Insert(const Image* ToInsert) override;
             /// @copydoc TexturePacker::Insert(const ImageContainer&, PackResultHandler*)
             /// @remarks This method calls the more descriptive Insert method with (true,MRP_TopLeftRule)
             /// as sane defaults.  Call the other Insert method directly for more control.
-            ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler);
+            virtual ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler) override;
 
             /// @brief Inserts a single image into the atlas.
             /// @remarks The packer might rotate the rectangle, in which case the returned struct will have the width and height values swapped.
@@ -153,7 +159,7 @@ namespace Mezzanine
             /// @param Merge Whether or not to perform free Rectangle Merge procedure after packing the new rectangle.
             /// @param RectChoice The rect placement heuristic rule to use.
             /// @return Returns a Rect of where the image was placed.  The Rect may have invalid dimensions if the image wasn't placed.
-            PlacementResult Insert(const Image* ToInsert, const Boole Merge, const MaxRectsPlacement RectChoice);
+            virtual PlacementResult Insert(const Image* ToInsert, const Boole Merge, const MaxRectsPlacement RectChoice);
             /// @brief Inserts a series of images into the atlas.
             /// @remarks The packer might rotate the rectangle, in which case the returned struct will have the width and height values swapped.
             /// @n Merging will defragment the free rectangles and may improve performance when finding a free rect, but will cause this method
@@ -163,7 +169,7 @@ namespace Mezzanine
             /// @param Merge Whether or not to perform free Rectangle Merge procedure after packing the new rectangle.
             /// @param RectChoice The rect placement heuristic rule to use.
             /// @return Returns a container of the unpacked images.
-            ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler, const Boole Merge, const MaxRectsPlacement RectChoice);
+            virtual ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler, const Boole Merge, const MaxRectsPlacement RectChoice);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query
@@ -175,7 +181,7 @@ namespace Mezzanine
             /// @return Returns a const reference to a container of Rects representing the used space.
             const RectVector& GetUsedRectangles() const;
             /// @copydoc TexturePacker::GetCoverage() const
-            Real GetCoverage() const;
+            virtual Real GetCoverage() const override;
         };//MaxRectsTexturePacker
     }//Graphics
 }//Mezzanine

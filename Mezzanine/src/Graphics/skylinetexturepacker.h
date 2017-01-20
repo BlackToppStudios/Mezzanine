@@ -81,7 +81,7 @@ namespace Mezzanine
             /// @param Width The width of this skyline.
             TextureSkylineNode(const Integer XPosition, const Integer YPosition, const Integer Width);
             /// @brief Class destructor.
-            ~TextureSkylineNode();
+            ~TextureSkylineNode() = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Functionality
@@ -157,13 +157,19 @@ namespace Mezzanine
         public:
             /// @brief No Init constructor.
             /// @remarks Initial texture size will be zero.  Must call Init after this constructor.
-            SkylineTexturePacker();
+            SkylineTexturePacker() = default;
+            /// @brief Copy constructor.
+            /// @param Other The other packer to be copied.
+            SkylineTexturePacker(const SkylineTexturePacker& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other packer to be moved.
+            SkylineTexturePacker(SkylineTexturePacker&& Other) = default;
             /// @brief Initialization constructor.
             /// @param TexWidth The width of the texture to be packed.
             /// @param TexHeight The height of the texture to be packed.
             SkylineTexturePacker(const Whole TexWidth, const Whole TexHeight);
             /// @brief Class destructor.
-            ~SkylineTexturePacker();
+            virtual ~SkylineTexturePacker() = default;
 
             /// @brief Merges all skyline nodes that are at the same Y position and next to each other.
             void MergeSkylines();
@@ -172,7 +178,7 @@ namespace Mezzanine
             // Initialization
 
             /// @copydoc TexturePacker::Initialize(const Whole, const Whole)
-            void Initialize(const Whole TexWidth, const Whole TexHeight);
+            virtual void Initialize(const Whole TexWidth, const Whole TexHeight) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Insertion
@@ -180,11 +186,11 @@ namespace Mezzanine
             /// @copydoc TexturePacker::Insert(const Image*)
             /// @remarks This method calls the more descriptive Insert method with (SLP_BestAreaFit)
             /// as sane defaults.  Call the other Insert method directly for more control.
-            PlacementResult Insert(const Image* ToInsert);
+            virtual PlacementResult Insert(const Image* ToInsert) override;
             /// @copydoc TexturePacker::Insert(const ImageContainer&, PackResultHandler*)
             /// @remarks This method calls the more descriptive Insert method with (SLP_BestAreaFit)
             /// as sane defaults.  Call the other Insert method directly for more control.
-            ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler);
+            virtual ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler) override;
 
             /// @brief Inserts a single image into the atlas.
             /// @remarks The packer might rotate the rectangle, in which case the returned struct will have the width and height values swapped.
@@ -193,7 +199,7 @@ namespace Mezzanine
             /// @param ToInsert The image to be inserted.
             /// @param RectChoice The rect placement heuristic rule to use.
             /// @return Returns a Rect of where the image was placed.  The Rect may have invalid dimensions if the image wasn't placed.
-            PlacementResult Insert(const Image* ToInsert, const SkylinePlacement RectChoice);
+            virtual PlacementResult Insert(const Image* ToInsert, const SkylinePlacement RectChoice);
             /// @brief Inserts a series of images into the atlas.
             /// @remarks The packer might rotate the rectangle, in which case the returned struct will have the width and height values swapped.
             /// @n Merging will defragment the free rectangles and may improve performance when finding a free rect, but will cause this method
@@ -202,7 +208,7 @@ namespace Mezzanine
             /// @param Handler A pointer to the handler that will process the packing result.
             /// @param RectChoice The rect placement heuristic rule to use.
             /// @return Returns a container of the unpacked images.
-            ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler, const SkylinePlacement RectChoice);
+            virtual ImageContainer Insert(const ImageContainer& ToPack, PackResultHandler* Handler, const SkylinePlacement RectChoice);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query
@@ -211,7 +217,7 @@ namespace Mezzanine
             /// @return Returns a const reference to a container of Rects representing the used space.
             const RectVector& GetUsedRectangles() const;
             /// @copydoc TexturePacker::GetCoverage() const
-            Real GetCoverage() const;
+            virtual Real GetCoverage() const override;
         };//SkylineTexturePacker
     }//Graphics
 }//Mezzanine

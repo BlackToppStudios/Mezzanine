@@ -123,6 +123,12 @@ namespace Mezzanine
             this->IID = new InternalImageData(Other);
         }
 
+        Image::Image(const Image&& Other)
+        {
+            this->IID->GraphicsImage = Other.IID->GraphicsImage;
+            Other.IID->GraphicsImage.freeMemory();
+        }
+
         Image::Image(const String& ResourceName, const String& ResourceGroup)
         {
             this->IID = new InternalImageData();
@@ -335,6 +341,15 @@ namespace Mezzanine
             Ogre::DataStreamPtr OgreStream = this->IID->GraphicsImage.encode(Extension);
             Ogre::MemoryDataStream* RawOgreStream = static_cast<Ogre::MemoryDataStream*>( OgreStream.getPointer() );
             Stream->write(reinterpret_cast<char*>(RawOgreStream->getPtr()),RawOgreStream->size());
+            return *this;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        Image& Image::operator=(const Image& Other)
+        {
+            this->IID->GraphicsImage = Other.IID->GraphicsImage;
             return *this;
         }
 

@@ -62,9 +62,6 @@ namespace Mezzanine
             LineWidth(Width)
             {  }
 
-        TextureSkylineNode::~TextureSkylineNode()
-            {  }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Functionality
 
@@ -80,14 +77,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // ShelfTexturePacker Methods
 
-        SkylineTexturePacker::SkylineTexturePacker()
-            {  }
-
         SkylineTexturePacker::SkylineTexturePacker(const Whole TexWidth, const Whole TexHeight)
             { this->Initialize(TexWidth,TexHeight); }
-
-        SkylineTexturePacker::~SkylineTexturePacker()
-            {  }
 
         void SkylineTexturePacker::AddSkylineLevel(const Whole SkylineIndex, const RectType& Placed)
         {

@@ -76,10 +76,10 @@ namespace Mezzanine
             {  }
         /// @brief Copy constructor.
         /// @param Other The other RectSize to copy from.
-        RectSize(const SelfType& Other) :
-            Width(Other.Width),
-            Height(Other.Height)
-            {  }
+        RectSize(const SelfType& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other RectSize to be moved.
+        RectSize(SelfType&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param RectWidth The Width of the Rect.
         /// @param RectHeight The Height of the Rect.
@@ -88,8 +88,7 @@ namespace Mezzanine
             Height(RectHeight)
             {  }
         /// @brief Class destructor.
-        ~RectSize()
-            {  }
+        ~RectSize() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -218,12 +217,10 @@ namespace Mezzanine
             {  }
         /// @brief Copy constructor.
         /// @param Other The other RectBase to copy from.
-        RectBase(const SelfType& Other) :
-            Left(Other.Left),
-            Top(Other.Top),
-            Right(Other.Right),
-            Bottom(Other.Bottom)
-            {  }
+        RectBase(const SelfType& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other RectBase to be moved.
+        RectBase(SelfType&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param RectLeft The Left edge of the Rect.
         /// @param RectTop The Top edge of the Rect.
@@ -246,8 +243,7 @@ namespace Mezzanine
             Bottom(RectTop + Size.Height)
             {  }
         /// @brief Class destructor.
-        ~RectBase()
-            {  }
+        ~RectBase() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

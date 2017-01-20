@@ -103,6 +103,9 @@ namespace Mezzanine
             /// @brief Copy constructor.
             /// @param Other The other Image to be copied.
             Image(const Image& Other);
+            /// @brief Move constructor.
+            /// @param Other The other image to move from.
+            Image(const Image&& Other);
             /// @brief Resource constructor.
             /// @param ResourceName The name of the resource to be loaded.
             /// @param ResourceGroup The name of the group the resource is located in.
@@ -300,6 +303,14 @@ namespace Mezzanine
             /// @param Stream A pointer to the stream to save this image to.
             /// @return Returns a reference to this.
             Image& Save(const String& Extension, std::ostream* Stream);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other Image to be copied.
+            /// @return Returns a reference to this.
+            Image& operator=(const Image& Other);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

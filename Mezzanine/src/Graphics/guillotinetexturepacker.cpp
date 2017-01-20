@@ -43,18 +43,73 @@
 
 #include "Graphics/guillotinetexturepacker.h"
 
+namespace
+{
+    using namespace Mezzanine;
+    using namespace Mezzanine::Graphics;
+
+    /// @brief Determines the score of a free Rect based on the best overall area fit.
+    /// @param RectSize The size of the Rect to be placed.
+    /// @param FreeRect The free Rect to be scored.
+    /// @return Returns the score of placing the new texture in the free Rect.  Lower is better.
+    static Integer ScoreBestAreaFit(const TexturePacker::RectSizeType& RectSize, const TexturePacker::RectType& FreeRect)
+        { return FreeRect.GetWidth() * FreeRect.GetHeight() - RectSize.Width * RectSize.Height; }
+    /// @brief Determines the score of a free Rect based on closely matching the short side.
+    /// @param RectSize The size of the Rect to be placed.
+    /// @param FreeRect The free Rect to be scored.
+    /// @return Returns the score of placing the new texture in the free Rect.  Lower is better.
+    static Integer ScoreBestShortSideFit(const TexturePacker::RectSizeType& RectSize, const TexturePacker::RectType& FreeRect)
+        { return std::min( std::abs( FreeRect.GetWidth() - RectSize.Width ), std::abs( FreeRect.GetHeight() - RectSize.Height ) ); }
+    /// @brief Determines the score of a free Rect based on closely matching the long side.
+    /// @param RectSize The size of the Rect to be placed.
+    /// @param FreeRect The free Rect to be scored.
+    /// @return Returns the score of placing the new texture in the free Rect.  Lower is better.
+    static Integer ScoreBestLongSideFit(const TexturePacker::RectSizeType& RectSize, const TexturePacker::RectType& FreeRect)
+        { return std::max( std::abs( FreeRect.GetWidth() - RectSize.Width ), std::abs( FreeRect.GetHeight() - RectSize.Height ) ); }
+    /// @brief Determines the score of a free Rect based on the worst overall area fit.
+    /// @param RectSize The size of the Rect to be placed.
+    /// @param FreeRect The free Rect to be scored.
+    /// @return Returns the score of placing the new texture in the free Rect.  Lower is better.
+    static Integer ScoreWorstAreaFit(const TexturePacker::RectSizeType& RectSize, const TexturePacker::RectType& FreeRect)
+        { return -( ScoreBestAreaFit(RectSize,FreeRect) ); }
+    /// @brief Determines the score of a free Rect based on the most leftover space for the long side.
+    /// @param RectSize The size of the Rect to be placed.
+    /// @param FreeRect The free Rect to be scored.
+    /// @return Returns the score of placing the new texture in the free Rect.  Lower is better.
+    static Integer ScoreWorstShortSideFit(const TexturePacker::RectSizeType& RectSize, const TexturePacker::RectType& FreeRect)
+        { return -( ScoreBestShortSideFit(RectSize,FreeRect) ); }
+    /// @brief Determines the score of a free Rect based on the most leftover space for the short side.
+    /// @param RectSize The size of the Rect to be placed.
+    /// @param FreeRect The free Rect to be scored.
+    /// @return Returns the score of placing the new texture in the free Rect.  Lower is better.
+    static Integer ScoreWorstLongSideFit(const TexturePacker::RectSizeType& RectSize, const TexturePacker::RectType& FreeRect)
+        { return -( ScoreBestLongSideFit(RectSize,FreeRect) ); }
+    /// @brief Determines the score of a free Rect for placing a new texture.
+    /// @param RectSize The size of the Rect to be placed.
+    /// @param FreeRect The free Rect to be scored.
+    /// @param RectChoice The heuristic to use for scoring which free Rect to use for new texture placement.
+    /// @return Returns the score of placing the new texture in the free Rect.  Lower is better.
+    static Integer ScoreByHeuristic(const TexturePacker::RectSizeType& RectSize, const TexturePacker::RectType& FreeRect, const GuillotinePlacement RectChoice)
+    {
+        switch( RectChoice )
+        {
+            case Graphics::GP_BestAreaFit:       return ScoreBestAreaFit(RectSize,FreeRect);       break;
+            case Graphics::GP_BestShortSideFit:  return ScoreBestShortSideFit(RectSize,FreeRect);  break;
+            case Graphics::GP_BestLongSideFit:   return ScoreBestLongSideFit(RectSize,FreeRect);   break;
+            case Graphics::GP_WorstAreaFit:      return ScoreWorstAreaFit(RectSize,FreeRect);      break;
+            case Graphics::GP_WorstShortSideFit: return ScoreWorstShortSideFit(RectSize,FreeRect); break;
+            case Graphics::GP_WorstLongSideFit:  return ScoreWorstLongSideFit(RectSize,FreeRect);  break;
+            default:                             return std::numeric_limits<TexturePacker::RectType::MemberType>::max();  break;
+        }
+    }
+}
+
 namespace Mezzanine
 {
     namespace Graphics
     {
-        GuillotineTexturePacker::GuillotineTexturePacker()
-            {  }
-
         GuillotineTexturePacker::GuillotineTexturePacker(const Whole TexWidth, const Whole TexHeight)
             { this->Initialize(TexWidth,TexHeight); }
-
-        GuillotineTexturePacker::~GuillotineTexturePacker()
-            {  }
 
         TexturePacker::PlacementResult GuillotineTexturePacker::FindPositionForNewNode(const RectSizeType& RectSize, const GuillotinePlacement RectChoice, Integer* NodeIndex) const
         {
@@ -142,38 +197,6 @@ namespace Mezzanine
                 this->FreeRectangles.push_back(RSide);
             }
         }
-
-        Integer GuillotineTexturePacker::ScoreByHeuristic(const RectSizeType& RectSize, const RectType& FreeRect, const GuillotinePlacement RectChoice)
-        {
-            switch( RectChoice )
-            {
-                case Graphics::GP_BestAreaFit:       return ScoreBestAreaFit(RectSize,FreeRect);       break;
-                case Graphics::GP_BestShortSideFit:  return ScoreBestShortSideFit(RectSize,FreeRect);  break;
-                case Graphics::GP_BestLongSideFit:   return ScoreBestLongSideFit(RectSize,FreeRect);   break;
-                case Graphics::GP_WorstAreaFit:      return ScoreWorstAreaFit(RectSize,FreeRect);      break;
-                case Graphics::GP_WorstShortSideFit: return ScoreWorstShortSideFit(RectSize,FreeRect); break;
-                case Graphics::GP_WorstLongSideFit:  return ScoreWorstLongSideFit(RectSize,FreeRect);  break;
-                default:                             return std::numeric_limits<RectType::MemberType>::max();  break;
-            }
-        }
-
-        Integer GuillotineTexturePacker::ScoreBestAreaFit(const RectSizeType& RectSize, const RectType& FreeRect)
-            { return FreeRect.GetWidth() * FreeRect.GetHeight() - RectSize.Width * RectSize.Height; }
-
-        Integer GuillotineTexturePacker::ScoreBestShortSideFit(const RectSizeType& RectSize, const RectType& FreeRect)
-            { return std::min( std::abs( FreeRect.GetWidth() - RectSize.Width ), std::abs( FreeRect.GetHeight() - RectSize.Height ) ); }
-
-        Integer GuillotineTexturePacker::ScoreBestLongSideFit(const RectSizeType& RectSize, const RectType& FreeRect)
-            { return std::max( std::abs( FreeRect.GetWidth() - RectSize.Width ), std::abs( FreeRect.GetHeight() - RectSize.Height ) ); }
-
-        Integer GuillotineTexturePacker::ScoreWorstAreaFit(const RectSizeType& RectSize, const RectType& FreeRect)
-            { return -( ScoreBestAreaFit(RectSize,FreeRect) ); }
-
-        Integer GuillotineTexturePacker::ScoreWorstShortSideFit(const RectSizeType& RectSize, const RectType& FreeRect)
-            { return -( ScoreBestShortSideFit(RectSize,FreeRect) ); }
-
-        Integer GuillotineTexturePacker::ScoreWorstLongSideFit(const RectSizeType& RectSize, const RectType& FreeRect)
-            { return -( ScoreBestLongSideFit(RectSize,FreeRect) ); }
 
         void GuillotineTexturePacker::MergeFreeList()
         {
