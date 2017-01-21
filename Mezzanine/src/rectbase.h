@@ -158,11 +158,7 @@ namespace Mezzanine
 
         /// @brief Assignment Operator.
         /// @param Other The other RectSize to copy data from.
-        void operator=(const SelfType& Other)
-        {
-            this->Width = Other.Width;
-            this->Height = Other.Height;
-        }
+        SelfType& operator=(const SelfType& Other) = default;
 
         /// @brief Equality Operator.
         /// @param Other The other RectSize to compare with.
@@ -370,13 +366,7 @@ namespace Mezzanine
 
         /// @brief Assignment Operator.
         /// @param Other The other Rect to copy data from.
-        void operator=(const SelfType& Other)
-        {
-            this->Left = Other.Left;
-            this->Top = Other.Top;
-            this->Right = Other.Right;
-            this->Bottom = Other.Bottom;
-        }
+        SelfType& operator=(const SelfType& Other) = default;
 
         /// @brief Equality Operator.
         /// @param Other The other Rect to compare with.
