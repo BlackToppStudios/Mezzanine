@@ -95,7 +95,6 @@ namespace Mezzanine
         class MEZZ_LIB Image
         {
         protected:
-            /// @internal
             /// @brief A pointer to the internal implementation of the Image.
             InternalImageData* IID;
         public:
@@ -104,6 +103,9 @@ namespace Mezzanine
             /// @brief Copy constructor.
             /// @param Other The other Image to be copied.
             Image(const Image& Other);
+            /// @brief Move constructor.
+            /// @param Other The other image to move from.
+            Image(const Image&& Other);
             /// @brief Resource constructor.
             /// @param ResourceName The name of the resource to be loaded.
             /// @param ResourceGroup The name of the group the resource is located in.
@@ -171,10 +173,17 @@ namespace Mezzanine
 
             /// @brief Reverses the order of each pixel on the X axis.
             /// @return Returns a reference to this.
-            Image& FlipAroundXAxis();
+            Image& ReverseXAxis();
             /// @brief Reverses the order of each pixel on the Y axis.
             /// @return Returns a reference to this.
-            Image& FlipAroundYAxis();
+            Image& ReverseYAxis();
+
+            /// @brief Rotates this image clockwise on the X-Y plane.
+            /// @remarks Only 90 degree rotation increments are allowed.  Rotations are based how the image is now, as
+            /// original orientations are not stored by this class.  Does not work on images with depth.
+            /// @param Orientation The rotation to be made.
+            /// @return Returns a reference to this.
+            Image& RotateXY(const Graphics::OrientationMode Orientation);
 
             /// @brief Sets the colour of an individual pixel in this image.
             /// @param X The X position of the pixel to alter.
@@ -294,6 +303,14 @@ namespace Mezzanine
             /// @param Stream A pointer to the stream to save this image to.
             /// @return Returns a reference to this.
             Image& Save(const String& Extension, std::ostream* Stream);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other Image to be copied.
+            /// @return Returns a reference to this.
+            Image& operator=(const Image& Other);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
