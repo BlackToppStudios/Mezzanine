@@ -66,7 +66,7 @@ protected:
     Boole Paused;
     CatchApp::GameState CurrentState;
 
-    const Plane PlaneOfPlay;
+    MousePicker Picker;
 
     ThrowableContainer ThrownItems;
     StartAreaContainer StartAreas;
@@ -120,6 +120,8 @@ public:
 
     Entresol* GetTheEntresol() const;
     World* GetTheWorld() const;
+
+    MousePicker& GetPicker();
 
     ThrowableContainer& GetThrowables();
     LevelManager* GetLevelManager() const;
