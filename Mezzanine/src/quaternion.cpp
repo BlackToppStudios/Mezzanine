@@ -228,10 +228,9 @@ namespace Mezzanine
     Quaternion Quaternion::GetInverse() const
     {
         Real Norm = W*W+X*X+Y*Y+Z*Z;
-        if ( Norm > 0.0 )
-        {
+        if ( Norm > 0.0 ) {
             Real InvNorm = 1.f/Norm;
-            return Quaternion(W*InvNorm,-X*InvNorm,-Y*InvNorm,-Z*InvNorm);
+            return Quaternion(-X*InvNorm,-Y*InvNorm,-Z*InvNorm,W*InvNorm);
         }else{
             return Quaternion(0,0,0,0);
         }
