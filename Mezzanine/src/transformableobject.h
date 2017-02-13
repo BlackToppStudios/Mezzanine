@@ -152,19 +152,33 @@ namespace Mezzanine
         /// @brief Converts a point in local space to the same point in global space.
         /// @param Location The point in local space to be converted.
         /// @return Returns a Vector3 representing the point in global space corresponding to the provided local space point.
-        virtual Vector3 ConvertLocalToGlobal(const Vector3& Location) const;
+        Vector3 ConvertLocalToGlobal(const Vector3& Location) const
+            { return ( this->GetOrientation() * ( Location * this->GetScale() ) ) + this->GetLocation(); }
         /// @brief Converts a point in global space to the same point in local space.
         /// @param Location The point in global space to be converted.
         /// @return Returns a Vector3 representing the point in local space corresponding to the provided global space point.
-        virtual Vector3 ConvertGlobalToLocal(const Vector3& Location) const;
+        Vector3 ConvertGlobalToLocal(const Vector3& Location) const
+            { return ( this->GetOrientation().GetInverse() * ( Location - this->GetLocation() ) ) / this->GetScale(); }
+        /// @brief Converts a point in local space to the same point in global space without accounting for scaling.
+        /// @param Location The point in local space to be converted.
+        /// @return Returns a Vector3 representing the point in global space corresponding to the provided local space point.
+        Vector3 ConvertLocalToGlobalNoScale(const Vector3& Location) const
+            { return ( this->GetOrientation() * Location ) + this->GetLocation(); }
+        /// @brief Converts a point in global space to the same point in local space without accounting for scaling.
+        /// @param Location The point in global space to be converted.
+        /// @return Returns a Vector3 representing the point in local space corresponding to the provided global space point.
+        Vector3 ConvertGlobalToLocalNoScale(const Vector3& Location) const
+            { return ( this->GetOrientation().GetInverse() * ( Location - this->GetLocation() ) ); }
         /// @brief Converts a rotation in local space to the same rotation in global space.
         /// @param Orientation The rotation in local space to be converted.
         /// @return Returns a Quaternion representing the rotation in global space corresponding to the provided local space rotation.
-        virtual Quaternion ConvertLocalToGlobal(const Quaternion& Orientation) const;
+        Quaternion ConvertLocalToGlobal(const Quaternion& Orientation) const
+            { return ( this->GetOrientation() * Orientation ); }
         /// @brief Converts a rotation in global space to the same rotation in local space.
         /// @param Orientation The rotation in global space to be converted.
         /// @return Returns a Quaternion representing the rotation in local space corresponding to the provided global space rotation.
-        virtual Quaternion ConvertGlobalToLocal(const Quaternion& Orientation) const;
+        Quaternion ConvertGlobalToLocal(const Quaternion& Orientation) const
+            { return ( this->GetOrientation().GetInverse() * Orientation ); }
     };//TransformableObject
 
     ///////////////////////////////////////////////////////////////////////////////
