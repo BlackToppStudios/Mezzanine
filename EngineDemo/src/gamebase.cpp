@@ -101,15 +101,32 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
     World* OneWorld;
-    RayQueryTool RayCaster;
+    Input::InputManager* InputMan;
+    MousePicker Picker;
 public:
-    DemoPostInputWorkUnit(World* TheWorld) : OneWorld(TheWorld), RayCaster(TheWorld) {  }
-    virtual ~DemoPostInputWorkUnit() {  }
+    DemoPostInputWorkUnit(World* TheWorld, Input::InputManager* Inputs) :
+        OneWorld(TheWorld),
+        InputMan(Inputs)
+    {
+        //Plane DragPlane(Vector3(0.0,0.0,1.0),Vector3(0.0,0.0,-5.0));
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( TheWorld->GetManager(ManagerBase::MT_SceneManager) );
+        //Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( TheWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+        this->Picker.Initialize( Inputs->GetSystemMouse(),
+                                 new Graphics::RenderableRayQuery(SceneMan),
+                                 //new Physics::CollidableRayQuery(PhysMan),
+                                 new DistanceDragger(30.0) );
+    }
+
+    virtual ~DemoPostInputWorkUnit()
+    {
+        delete this->Picker.GetQuery();
+        delete this->Picker.GetDragger();
+        //this->Picker.Deinitialize(true);
+    }
 
     void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
         //User Input through a WorldQueryTool
-        Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
         Input::Mouse* SysMouse = InputMan->GetSystemMouse();
         Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
         Input::Controller* Controller1 = NULL;
@@ -185,13 +202,10 @@ public:
             Toggle = !Toggle;
         }
 
-        // Make a declaration for a static constrain so it survives the function lifetime
-        static Physics::Point2PointConstraint* Dragger = NULL;
-
+        UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+        Boole MouseInUI = UIMan->MouseIsInUISystem();
         if( SysMouse->IsButtonPressed(1) ) {
-            UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-            if( UIMan->MouseIsInUISystem() ) {
-                //UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
+            if( MouseInUI ) {
                 UI::Widget* Hover = UIMan->GetHoveredWidget();
                 if(Hover) {
                     Hover = Hover->GetBottomMostHoveredWidget();
@@ -199,62 +213,11 @@ public:
                         TheEntresol->BreakMainLoop();
                     }
                 }
-            }else{
-                Ray MouseRay = RayQueryTool::GetMouseRay();
-                RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_RigidDebris);
-
-                bool firstframe=false;
-                if( 0 == RayCaster.LastQueryResultsObjectPtr() ) {
-                    #ifdef MEZZDEBUG
-                    //TheEntresol->Log("No Object Clicked on");
-                    #endif
-                }else{
-                    #ifdef MEZZDEBUG
-                    //TheEntresol->Log("Object Clicked on"); TheEntresol->Log(*ClickOnActor);
-                    //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
-                    //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
-                    //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
-                    #endif
-                    if( !( RayCaster.LastQueryResultsObjectPtr()->IsStatic() ) ) {
-                        if(!Dragger) { //If we have a dragger, then this is dragging, not clicking
-                            if(RayCaster.LastQueryResultsObjectPtr()->GetType() == Mezzanine::WO_RigidDebris) { //This is Dragging let's do some checks for sanity
-                                Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                                RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
-                                rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
-                                //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                                Dragger = PhysMan->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
-                                Dragger->SetTAU(0.001);
-                                Dragger->EnableConstraint(true);
-                                Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                                Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                                firstframe=true;
-                            }else{  // since we don't
-                                #ifdef MEZZDEBUG
-                                //TheEntresol->Log("Object is not an ActorRigid.  Aborting.");
-                                #endif
-                            }
-                        }
-                    }else{
-                        #ifdef MEZZDEBUG
-                        //TheEntresol->Log("Object is Static/Kinematic.  Aborting.");
-                        #endif
-                    }
-                }
-
-                // This chunk of code calculates the 3d point that the actor needs to be dragged to
-                if( RayCaster.RayPlaneIntersection(MouseRay, PlaneOfPlay) ) {
-                    if(Dragger&&!firstframe)
-                        { Dragger->SetPivotB(RayCaster.LastQueryResultsOffset()); }
-                }
             }
+        }
 
-        }else{  //Since we are no longer clicking we need to setup for the next clicking
-            if( Dragger ) {
-                Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                PhysMan->DestroyConstraint(Dragger);
-                Dragger = NULL;
-                Prox->SetActivationState(Physics::AS_Active);
-            }
+        if( !MouseInUI ) {
+            this->Picker.Execute();
         }
     }
 };//DemoPostInputWorkUnit
@@ -412,7 +375,7 @@ void CreateDemoWorld()
     EventMan->GetEventPumpWork()->AddDependency( DemoPreEventWork );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork, "DemoPreEventWork" );
 
-    DemoPostInputWork = new DemoPostInputWorkUnit(DemoWorld);
+    DemoPostInputWork = new DemoPostInputWorkUnit(DemoWorld,InputMan);
     DemoPostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork, "DemoPostInputWork" );
 
@@ -655,9 +618,9 @@ void LoadContent()
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     PhysMan->AddAreaEffect(BlackHole);// */
 
-    Physics::RigidProxy* InvisFloor = PhysMan->CreateRigidProxy(0,NULL);
-    InvisFloor->SetCollisionShape( new Physics::PlaneCollisionShape("InvisFloor",Plane(Vector3::Unit_Y(),Vector3(0,-300,0))) );
-    InvisFloor->AddToWorld();
+    //Physics::RigidProxy* InvisFloor = PhysMan->CreateRigidProxy(0,NULL);
+    //InvisFloor->SetCollisionShape( new Physics::PlaneCollisionShape("InvisFloor",Plane(Vector3::Unit_Y(),Vector3(0,-300,0))) );
+    //InvisFloor->AddToWorld();
 
     //Final Steps
     Audio::iSound* Sound = NULL;

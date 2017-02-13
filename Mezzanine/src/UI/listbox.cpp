@@ -184,7 +184,7 @@ namespace Mezzanine
             /// @todo Update for Autohide.
         }
 
-        const UnifiedDim& ListBox::GetScrollbarWidth() const
+        UnifiedDim ListBox::GetScrollbarWidth() const
         {
             return this->ListScroll->GetUnifiedSize().X;
         }
