@@ -38,34 +38,22 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifndef _playerprofile_h
-#define _playerprofile_h
-
-#include "datatypes.h"
+#ifndef _playeraction_h
+#define _playeraction_h
 
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is the base class used by end applications for player-specific data.
+    /// @brief A class used represent an action that can or has been taken by a player.
     ///////////////////////////////////////
-    class PlayerProfile
+    class PlayerAction
     {
-    protected:
     public:
         /// @brief Class constructor.
-        PlayerProfile()
-            {  }
+        PlayerAction();
         /// @brief Class destructor.
-        virtual ~PlayerProfile()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @brief Gets the ID of this profile.
-        /// @return Returns a String containing the ID of this profile.
-        virtual String GetID() const = 0;
-    };//PlayerProfile
+        ~PlayerAction();
+    };//PlayerAction
 }//Mezzanine
 
-#endif
+#endif // _playeraction_h

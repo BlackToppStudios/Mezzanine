@@ -41,21 +41,68 @@
 #ifndef _player_h
 #define _player_h
 
-#include "datatypes.h"
+#include "playercontrol.h"
+#include "playerview.h"
 
 namespace Mezzanine
 {
+    class PlayerManager;
+    class PlayerProfile;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A class used to represent the user in the session.
     ///////////////////////////////////////
     class Player
     {
     protected:
+        /// @brief The controlling elements of how the player moves through the world.
+        PlayerControl Control;
+        /// @brief The controlling elements of how the camera moves in relation to the player in the world.
+        PlayerView* View;
+        /// @brief A pointer to the profile storing player specific game data.
+        PlayerProfile* Profile;
+        /// @brief A pointer to the manager housing utilities related to profile management.
+        PlayerManager* PlayMan;
     public:
         /// @brief Class constructor.
-        Player();
+        /// @param Creator A pointer to the PlayerManager.
+        Player(PlayerManager* Creator);
         /// @brief Class destructor.
         virtual ~Player();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Sets the profile for this player, establishing an identity for the player.
+        /// @param ToSet A pointer to the profile to be set.
+        void SetIdentity(PlayerProfile* ToSet);
+        /// @brief Creates all the necessary objects to represent the player in the game world.
+        /// @param GameWorld A pointer to the world in which to create the player objects.
+        void InitializeInWorld(World* GameWorld);
+
+        /// @brief Gets the controller for the player objects.
+        /// @return Returns a reference to the PlayerControl that facilitates player object movement in the world.
+        PlayerControl& GetControl();
+        /// @brief Gets the controller for the player camera.
+        /// @return Returns a reference to the PlayerView that facilitates player camera movement in the world.
+        PlayerView* GetView() const;
+        /// @brief Gets the profile for this player.
+        /// @return Returns a pointer to the game profile for this player.
+        PlayerProfile* GetProfile() const;
+        /// @brief Gets the name of this player.
+        /// @return Returns a const string reference to the name of this player.
+        const String& GetName() const;
+
+        /// @brief Gets whether or not this player is giving inputs directly to the local host.
+        /// @return Returns true if the player is local, false if the player is remote.
+        virtual Boole IsLocal() const;
+        /// @brief Gets whether or not this player is connected to this host over a network.
+        /// @return Returns true if the player is remote, false if the player is local.
+        virtual Boole IsRemote() const;
+
+        /// @brief Advances the state for the player.
+        /// @param InputMan A pointer to the input manager for querying inputs.
+        /// @param DeltaTime The amount of time that has elapsed since the last update.
+        void Update(Input::InputManager* InputMan, const Whole DeltaTime);
     };//Player
 }//Mezzanine
 
