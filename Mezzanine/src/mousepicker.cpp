@@ -37,14 +37,115 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mousepicker_h
-#define _mousepicker_h
+#ifndef _mousepicker_cpp
+#define _mousepicker_cpp
 
 #include "mousepicker.h"
+#include "mousepickdragger.h"
+#include "rayquery.h"
+#include "world.h"
+#include "worldobject.h"
+#include "worldproxy.h"
+
+#include "Input/mouse.h"
+
+#include "Graphics/cameraproxy.h"
+#include "Graphics/gamewindow.h"
+#include "Graphics/viewport.h"
 
 namespace Mezzanine
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    // MousePicker Methods
 
+    MousePicker::MousePicker() :
+        Selector(NULL),
+        Query(NULL),
+        Dragger(NULL)
+        {  }
+
+    MousePicker::MousePicker(Input::Mouse* Cursor, RayQuery* WorldQuery, MousePickDragger* WorldDragger) :
+        Selector(Cursor),
+        Query(WorldQuery),
+        Dragger(WorldDragger)
+        {  }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Initialization and Deinitialization
+
+    void MousePicker::Initialize(Input::Mouse* Cursor, RayQuery* WorldQuery, MousePickDragger* WorldDragger)
+    {
+        this->Selector = Cursor;
+        this->Query = WorldQuery;
+        this->Dragger = WorldDragger;
+    }
+
+    void MousePicker::Deinitialize(const Boole Cleanup)
+    {
+        this->Selector = NULL;
+        if( Cleanup ) {
+            delete this->Query;
+            delete this->Dragger;
+        }
+        this->Query = NULL;
+        this->Dragger = NULL;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    Input::Mouse* MousePicker::GetSelector() const
+        { return this->Selector; }
+
+    RayQuery* MousePicker::GetQuery() const
+        { return this->Query; }
+
+    MousePickDragger* MousePicker::GetDragger() const
+        { return this->Dragger; }
+
+    Ray MousePicker::GetMouseRay() const
+    {
+        Graphics::Viewport* HoveredViewport = this->Selector->GetHoveredViewport();
+        Vector2 MousePos = this->Selector->GetViewportPosition();
+        Ray MouseRay;
+        if( HoveredViewport != NULL ) {
+            MouseRay = Ray( HoveredViewport->GetCamera()->GetCameraToViewportRay(
+                            MousePos.X / static_cast<Real>( HoveredViewport->GetActualWidth() ),
+                            MousePos.Y / static_cast<Real>( HoveredViewport->GetActualHeight() ) ) );
+        }
+        return MouseRay;
+    }
+
+    World* MousePicker::GetMouseWorld() const
+    {
+        Graphics::Viewport* HoveredViewport = this->Selector->GetHoveredViewport();
+        if( HoveredViewport != NULL ) {
+            return HoveredViewport->GetCamera()->GetCreator()->GetWorld();
+        }
+        return NULL;
+    }
+
+    void MousePicker::Execute()
+    {
+        Input::ButtonState LeftClickState = this->Selector->GetButtonState(1);
+        if( LeftClickState >= Input::BUTTON_PRESSING ) {
+            Ray MouseRay = this->GetMouseRay();
+            if( LeftClickState == Input::BUTTON_PRESSING && !this->Dragger->IsDragging() ) {
+                World* VisitingWorld = this->GetMouseWorld();
+                if( VisitingWorld != NULL ) {
+                    this->Query->SetWorld(VisitingWorld);
+                    RayQueryHit Result = this->Query->GetFirstShapeResult(MouseRay);
+                    if( Result.IsValid() && !Result.Object->IsStatic() ) {
+                        this->Dragger->StartDragging(this->Dragger->GetBestProxy(Result.Object),Result.GetLocalHitLocation(),MouseRay);
+                    }
+                }
+            }else if( LeftClickState == Input::BUTTON_DOWN ) {
+                this->Dragger->ContinueDragging(MouseRay,this->Selector);
+            }
+        }else if( this->Dragger->IsDragging() ) {
+            this->Dragger->StopDragging();
+        }
+    }
 }//Mezzanine
 
 #endif

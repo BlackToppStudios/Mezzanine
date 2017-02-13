@@ -40,21 +40,82 @@
 #ifndef _mousepicker_h
 #define _mousepicker_h
 
-#include "rayquery.h"
+#include "ray.h"
 
 namespace Mezzanine
 {
+    class World;
+    class WorldObject;
+    class MousePickDragger;
+    class RayQuery;
+    namespace Input
+    {
+        class Mouse;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A helper class to facilitate the manipulation and movement of objects in the world directly using the mouse cursor.
     ///////////////////////////////////////
     class MEZZ_LIB MousePicker
     {
     protected:
+        /// @brief A pointer to the mouse being used for selection.
+        Input::Mouse* Selector;
+        /// @brief A pointer to the object that will perform the world query.
+        RayQuery* Query;
+        /// @brief A pointer to the dragger that will move the selected object.
+        MousePickDragger* Dragger;
     public:
-        /// @brief Class constructor.
+        /// @brief Blank constructor.
+        /// @details The mouse, ray query, and dragger MUST be set before using this class.  This constructor
+        /// exists to facilitate delayed construction when used as a non-pointer data member in other classes.
         MousePicker();
+        /// @brief Full constructor.
+        /// @details The MousePicker does NOT claim ownership over any pointer passed into it.
+        /// @param Cursor A pointer to the system mouse.
+        /// @param WorldQuery A pointer to the RayQuery to use.
+        /// @param WorldDragger A pointer to the MouseDragger to use.
+        MousePicker(Input::Mouse* Cursor, RayQuery* WorldQuery, MousePickDragger* WorldDragger);
         /// @brief Class destructor.
-        ~MousePicker();
+        ~MousePicker() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Initialization and Deinitialization
+
+        /// @brief Assigns the components to be used by this picker and prepares it for use.
+        /// @param Cursor A pointer to the system mouse.
+        /// @param WorldQuery A pointer to the RayQuery to use.
+        /// @param WorldDragger A pointer to the MouseDragger to use.
+        void Initialize(Input::Mouse* Cursor, RayQuery* WorldQuery, MousePickDragger* WorldDragger);
+        /// @brief Reverts the picker back to it's pre-init state.
+        /// @remarks This method will optionally delete the RayQuery and MousePickDragger components for you, but never
+        /// the Mouse component, as it is explicitly owned by another subsystem.  The destructor does not automatically
+        /// call Deinitialize, so if freeing through this method is desired it must be explicitly called.
+        /// @param Cleanup Whether or not to delete the RayQuery and MousePickDragger pointers stored by this picker.
+        void Deinitialize(const Boole Cleanup);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Gets the mouse being used for selection.
+        /// @return Returns a pointer to the mouse to use to generate the mouse ray in world space.
+        Input::Mouse* GetSelector() const;
+        /// @brief Gets the object that will perform the world query.
+        /// @return Returns a pointer to the ray query that will find the object on the mouse ray.
+        RayQuery* GetQuery() const;
+        /// @brief Gets the dragger that will move the selected object.
+        /// @return Returns a pointer to the dragger that will move the object found on the mouse ray.
+        MousePickDragger* GetDragger() const;
+
+        /// @brief Gets the Ray being cast from the camera position to the world.
+        /// @return Returns a Ray being cast to the cursor from the camera in world space.
+        Ray GetMouseRay() const;
+        /// @brief Gets the world the mouse is currently in.
+        /// @return Returns a pointer to the world being shown in the viewport the mouse cursor is over.
+        World* GetMouseWorld() const;
+
+        /// @brief Performs all the checks and updates to drag a target under the mouse.
+        void Execute();
     };//MousePicker
 }//Mezzanine
 
