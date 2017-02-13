@@ -180,13 +180,6 @@ namespace Mezzanine
             btVector3 RayEnd;
             /// @brief A bitmask containing the types of proxies we want when returning the results.
             UInt32 Filter;
-
-            /// @brief Comparison method for sorting results.
-            /// @param First The first hit to sort.
-            /// @param Second The second hit to sort.
-            /// @return Returns true if the First is a shorter distance than the second.
-            static Boole CompareHitDistance(const RayQueryHit& First, const RayQueryHit& Second)
-                { return First.Distance < Second.Distance; }
         public:
             /// @brief Class constructor.
             /// @param Start The point in world space where the ray originates.
@@ -243,7 +236,7 @@ namespace Mezzanine
                 { return this->Results; }
             /// @brief Sorts the results by distance.
             void SortResults()
-                { std::sort(this->Results.begin(),this->Results.end(),MultiHitRayCallback::CompareHitDistance); }
+                { std::sort(this->Results.begin(),this->Results.end()); }
             /// @brief Resizes the results container
             /// @param Keep The number of results to shrink down to.
             void TruncateResults(const Whole Keep)
@@ -258,10 +251,8 @@ namespace Mezzanine
 
         CollidableRayQuery::CollidableRayQuery(PhysicsManager* ToQuery) :
             PhysicsMan(ToQuery),
+            ProxyTypesFilter(std::numeric_limits<UInt32>::max()),
             ColFilter(std::numeric_limits<UInt32>::max())
-            {  }
-
-        CollidableRayQuery::~CollidableRayQuery()
             {  }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -279,10 +270,10 @@ namespace Mezzanine
         UInt32 CollidableRayQuery::GetProxyTypes() const
             { return this->ProxyTypesFilter; }
 
-        void CollidableRayQuery::SetSubSystemFilter(const UInt32 Filter)
+        void CollidableRayQuery::SetQueryFilter(const UInt32 Filter)
             { this->ColFilter = Filter; }
 
-        UInt32 CollidableRayQuery::GetSubSystemFilter() const
+        UInt32 CollidableRayQuery::GetQueryFilter() const
             { return this->ColFilter; }
 
         void CollidableRayQuery::SetManager(PhysicsManager* Manager)
@@ -394,7 +385,7 @@ namespace Mezzanine
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
                 SelfRoot.AppendAttribute("WorldName").SetValue( this->GetWorld()->GetName() ) &&
                 SelfRoot.AppendAttribute("ProxyTypesFilter").SetValue( this->GetProxyTypes() ) &&
-                SelfRoot.AppendAttribute("CollisionFilter").SetValue( this->GetSubSystemFilter() ) )
+                SelfRoot.AppendAttribute("CollisionFilter").SetValue( this->GetQueryFilter() ) )
             {
                 return;
             }else{
@@ -418,7 +409,7 @@ namespace Mezzanine
 
                     CurrAttrib = SelfRoot.GetAttribute("CollisionFilter");
                     if( !CurrAttrib.Empty() )
-                        this->SetSubSystemFilter( CurrAttrib.AsUint() );
+                        this->SetQueryFilter( CurrAttrib.AsUint() );
                 }else{
                     MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + ( CollidableRayQuery::GetSerializableName() ) + ": Not Version 1.");
                 }

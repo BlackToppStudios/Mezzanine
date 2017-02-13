@@ -84,12 +84,12 @@ namespace Mezzanine
             virtual void SetProxyTypes(const UInt32 Filter);
             /// @copydoc RayQuery::GetProxyTypes() const
             virtual UInt32 GetProxyTypes() const;
-            /// @copydoc RayQuery::SetSubSystemFilter(const UInt32)
+            /// @copydoc RayQuery::SetQueryFilter(const UInt32)
             /// @remarks This method compares against the same filter set in RenderableProxy::SetQueryFilter method.
-            virtual void SetSubSystemFilter(const UInt32 Filter);
-            /// @copydoc RayQuery::GetSubSystemFilter() const
+            virtual void SetQueryFilter(const UInt32 Filter);
+            /// @copydoc RayQuery::GetQueryFilter() const
             /// @remarks The value returned by this method is what will be compared against the value set in RenderableProxy::SetQueryFilter for each object detected.
-            virtual UInt32 GetSubSystemFilter() const;
+            virtual UInt32 GetQueryFilter() const;
 
             /// @brief Sets the pointer to the manager being used to perform the Ray query.
             /// @param Manager A pointer to the SceneManager to be queried.

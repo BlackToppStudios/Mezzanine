@@ -64,7 +64,7 @@ namespace Mezzanine
             /// @param ToQuery A pointer to the PhysicsManager to be queried.
             CollidableRayQuery(PhysicsManager* ToQuery);
             /// @brief Class destructor.
-            virtual ~CollidableRayQuery();
+            virtual ~CollidableRayQuery() = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
@@ -77,14 +77,14 @@ namespace Mezzanine
             virtual void SetProxyTypes(const UInt32 Filter);
             /// @copydoc RayQuery::GetProxyTypes() const
             virtual UInt32 GetProxyTypes() const;
-            /// @copydoc RayQuery::SetSubSystemFilter(const UInt32)
+            /// @copydoc RayQuery::SetQueryFilter(const UInt32)
             /// @remarks This method uses the CollisionFilter enum for it's filtering. @n
             /// Internally, only 16 bits of the field are used (unsigned short).
-            virtual void SetSubSystemFilter(const UInt32 Filter);
-            /// @copydoc RayQuery::GetSubSystemFilter() const
+            virtual void SetQueryFilter(const UInt32 Filter);
+            /// @copydoc RayQuery::GetQueryFilter() const
             /// @remarks This method returns a CollisionFilter enum. @n
             /// Internally, only 16 bits of the field are used (unsigned short).
-            virtual UInt32 GetSubSystemFilter() const;
+            virtual UInt32 GetQueryFilter() const;
 
             /// @brief Sets the pointer to the manager being used to perform the Ray query.
             /// @param Manager A pointer to the PhysicsManager to be queried.

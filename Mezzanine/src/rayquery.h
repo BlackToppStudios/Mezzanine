@@ -52,9 +52,9 @@ namespace Mezzanine
     ///////////////////////////////////////
     struct MEZZ_LIB RayQueryHit
     {
-        /// @brief The hit location in object local space.
+        /// @brief The hit location in world space.
         Vector3 HitLocation;
-        /// @brief The hit normal in object local space.
+        /// @brief The hit normal in world space.
         Vector3 HitNormal;
         /// @brief The distance the hit was from the Ray origin.
         Real Distance;
@@ -62,6 +62,17 @@ namespace Mezzanine
         Integer SubObject;
         /// @brief A pointer to the object hit.
         WorldProxy* Object;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
+
+        /// @brief Struct constructor.
+        RayQueryHit() :
+            Distance(0.0),
+            SubObject(-1)
+            {  }
+        /// @brief Struct destructor.
+        ~RayQueryHit() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Helpers
@@ -77,7 +88,7 @@ namespace Mezzanine
         /// @brief Gets the hit location in world space.
         /// @return Returns a Vector3 containing the world location of the ray hit.
         Vector3 GetLocalHitLocation() const
-            { return this->Object->ConvertGlobalToLocal(this->HitLocation); }
+            { return this->Object->ConvertGlobalToLocalNoScale(this->HitLocation); }
         /// @brief Gets the hit normal in world space.
         /// @return Returns a Vector3 containing the world direction of the ray hit.
         Vector3 GetLocalHitNormal() const
@@ -93,6 +104,15 @@ namespace Mezzanine
             this->Object = NULL;
             return *this;
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Sorting Operators
+
+        /// @brief Less-than Operator.
+        /// @param Other The other RayQueryHit to be compared to.
+        /// @return Returns true if this RayQueryHit should be sorted before the other RayQueryHit.
+        Boole operator<(const RayQueryHit& Other)
+            { return this->Distance < Other.Distance; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -188,9 +208,9 @@ namespace Mezzanine
         typedef ResultContainer::const_iterator  ConstResultIterator;
 
         /// @brief Class constructor.
-        RayQuery() {  }
+        RayQuery() = default;
         /// @brief Class destructor.
-        virtual ~RayQuery() {  }
+        virtual ~RayQuery() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Configuration
@@ -215,10 +235,10 @@ namespace Mezzanine
         /// is being performed in.  Be sure to verify you are using the correct flags for the subsystem or you may find
         /// your Ray casts returning nothing constantly.
         /// @param Filter A bitmask containing the object types to treat as valid returns.
-        virtual void SetSubSystemFilter(const UInt32 Filter) = 0;
+        virtual void SetQueryFilter(const UInt32 Filter) = 0;
         /// @brief Gets the optional filter to only return hits on specific types of internal objects.
         /// @return Returns a bitmask of the objects to hit.  The exact meaning of the bitmask depends on the subsystem the query is being performed in.
-        virtual UInt32 GetSubSystemFilter() const = 0;
+        virtual UInt32 GetQueryFilter() const = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Fast Query
