@@ -156,7 +156,7 @@ namespace Mezzanine
             btScalar addSingleResult(btCollisionWorld::LocalRayResult& rayResult, bool normalInWorldSpace)
             {
                 CollidableProxy* Prox = CollidableProxy::_Upcast(rayResult.m_collisionObject);
-                if( Prox != NULL && Prox->GetProxyType() | this->Filter ) {
+                if( Prox != NULL && Prox->GetProxyType() & this->Filter ) {
                     return this->btCollisionWorld::ClosestRayResultCallback::addSingleResult(rayResult,normalInWorldSpace);
                 }
                 return rayResult.m_hitFraction;
@@ -202,7 +202,7 @@ namespace Mezzanine
             {
                 this->m_collisionObject = rayResult.m_collisionObject;
                 CollidableProxy* Prox = CollidableProxy::_Upcast(rayResult.m_collisionObject);
-                if( Prox != NULL && Prox->GetProxyType() | this->Filter ) {
+                if( Prox != NULL && Prox->GetProxyType() & this->Filter ) {
                     btVector3 BtHitLoc;
                     BtHitLoc.setInterpolate3(this->RayStart,this->RayEnd,rayResult.m_hitFraction);
 
@@ -327,7 +327,9 @@ namespace Mezzanine
 
             Broadphase->rayTest(Start,End,BroadphaseCallback);
             RayCallback.SortResults();
-            RayCallback.TruncateResults(Limit);
+            if( Limit > 0 ) {
+                RayCallback.TruncateResults(Limit);
+            }
             return RayCallback.GetResults();
         }
 
@@ -371,7 +373,9 @@ namespace Mezzanine
 
             InternalWorld->rayTest(Start,End,RayCallback);
             RayCallback.SortResults();
-            RayCallback.TruncateResults(Limit);
+            if( Limit > 0 ) {
+                RayCallback.TruncateResults(Limit);
+            }
             return RayCallback.GetResults();
         }
 
@@ -385,7 +389,7 @@ namespace Mezzanine
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
                 SelfRoot.AppendAttribute("WorldName").SetValue( this->GetWorld()->GetName() ) &&
                 SelfRoot.AppendAttribute("ProxyTypesFilter").SetValue( this->GetProxyTypes() ) &&
-                SelfRoot.AppendAttribute("CollisionFilter").SetValue( this->GetQueryFilter() ) )
+                SelfRoot.AppendAttribute("QueryFilter").SetValue( this->GetQueryFilter() ) )
             {
                 return;
             }else{
@@ -407,7 +411,7 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetProxyTypes( CurrAttrib.AsUint() );
 
-                    CurrAttrib = SelfRoot.GetAttribute("CollisionFilter");
+                    CurrAttrib = SelfRoot.GetAttribute("QueryFilter");
                     if( !CurrAttrib.Empty() )
                         this->SetQueryFilter( CurrAttrib.AsUint() );
                 }else{

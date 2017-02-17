@@ -90,6 +90,7 @@ namespace Mezzanine
             this->PhysicsGhostBody = new btPairCachingGhostObject();
             this->PhysicsGhostBody->setCollisionFlags( this->PhysicsGhostBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
             this->PhysicsGhostBody->setUserPointer( this );
+            this->CollisionGroup = Physics::CF_SensorFilter;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

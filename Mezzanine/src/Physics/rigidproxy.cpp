@@ -95,14 +95,13 @@ namespace Mezzanine
             this->PhysicsRigidBody->setMotionState( new Internal::WorldObjectMotionState( this ) );
             this->PhysicsRigidBody->setUserPointer( static_cast<CollidableProxy*>( this ) );
             if( Mass == 0.0 ) {
-                //this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
                 this->CollisionGroup = Physics::CF_StaticFilter;
                 this->CollisionMask = Physics::CF_AllFilter & ~Physics::CF_StaticFilter;
             }else{
+                this->CollisionGroup = Physics::CF_DebrisFilter;
                 //this->PhysicsRigidBody->setCollisionFlags( this->PhysicsRigidBody->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT) );
                 // Use default group and mask
             }
-            this->SetGravity( this->Manager->GetWorldGravity() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -116,10 +115,7 @@ namespace Mezzanine
         void RigidProxy::AddToWorld()
         {
             if( !this->IsInWorld() ) {
-                // Preserve gravity when adding
-                Vector3 Grav = this->GetGravity();
                 this->Manager->_GetPhysicsWorldPointer()->addRigidBody( this->PhysicsRigidBody, this->CollisionGroup, this->CollisionMask );
-                this->SetGravity(Grav);
             }
         }
 
@@ -207,6 +203,15 @@ namespace Mezzanine
         Vector3 RigidProxy::GetGravity() const
             { return Vector3(this->PhysicsRigidBody->getGravity()); }
 
+        void RigidProxy::SetIgnoreWorldGravity(const Boole Ignore)
+        {
+            if( Ignore ) this->PhysicsRigidBody->setFlags( this->PhysicsRigidBody->getFlags() | BT_DISABLE_WORLD_GRAVITY );
+            else this->PhysicsRigidBody->setFlags( this->PhysicsRigidBody->getFlags() & ~BT_DISABLE_WORLD_GRAVITY );
+        }
+
+        Boole RigidProxy::GetIgnoreWorldGravity() const
+            { return ( this->PhysicsRigidBody->getFlags() & BT_DISABLE_WORLD_GRAVITY ); }
+
         void RigidProxy::ApplyForce(const Vector3& Force)
             { this->PhysicsRigidBody->applyCentralForce( Force.GetBulletVector3() ); }
 
@@ -290,6 +295,7 @@ namespace Mezzanine
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
                 PropertiesNode.AppendAttribute("Mass").SetValue( this->GetMass() ) &&
+                PropertiesNode.AppendAttribute("IgnoreWorldGravity").SetValue( this->GetIgnoreWorldGravity() ) &&
                 PropertiesNode.AppendAttribute("LinearDamping").SetValue( this->GetLinearDamping() ) &&
                 PropertiesNode.AppendAttribute("AngularDamping").SetValue( this->GetAngularDamping() ) )
             {
@@ -335,6 +341,10 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("Mass");
                     if( !CurrAttrib.Empty() )
                         this->SetMass( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("IgnoreWorldGravity");
+                    if( !CurrAttrib.Empty() )
+                        this->SetIgnoreWorldGravity( CurrAttrib.AsBool() );
 
                     CurrAttrib = PropertiesNode.GetAttribute("LinearDamping");
                     if( !CurrAttrib.Empty() )
