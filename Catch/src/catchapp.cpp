@@ -84,7 +84,7 @@ CatchApp::~CatchApp()
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostInputWork );
     delete this->PostInputWork;
 
-    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostUIWork );
+    this->TheEntresol->GetScheduler().RemoveWorkUnitAffinity( this->PostUIWork );
     delete this->PostUIWork;
 
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PauseWork );
@@ -1764,7 +1764,7 @@ int CatchApp::GetCatchin()
     this->PostUIWork = new CatchPostUIWorkUnit(this);
     this->PostUIWork->AddDependency( UIMan->GetWidgetUpdateWork() );
     this->PostUIWork->AddDependency( PhysicsMan->GetSimulationWork() );
-    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostUIWork, "PostUIWork" );
+    this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->PostUIWork, "PostUIWork" );
 
     this->PauseWork = new CatchPauseWorkUnit(this,UIMan);
     this->PauseWork->AddDependency( UIMan->GetWidgetUpdateWork() );
