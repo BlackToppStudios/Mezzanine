@@ -54,6 +54,18 @@ namespace Mezzanine
         class SceneManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for performing ray queries in the Graphics subsystem.
+        /// @details This RayQuery comes with some not-so-intuitive limitations.  This RayQuery is NOT suitable for
+        /// any kind of comprehensive projectile simulation solution.  The Ray tests performed by this class do not,
+        /// and cannot take into account any changes in transforms on an objects mesh due to animation.
+        /// @n @n
+        /// The reason for this is when vertices are moved due to their bone weights (skinning is the name of the
+        /// process) the updated transforms are calculated and then used on the video card, then the results are
+        /// discarded.  They are not transferred back because they are assumed to need to be recalculated each frame
+        /// and sending the calculated information would slow down rendering with the additional synchronization
+        /// requirements that would impose.
+        /// @n @n
+        /// So, for static or non-animated objects this is a good solution with clean results.  But if you perform a
+        /// ray cast on an animated body then expect the results to come back with it's non-animated transform.
         ///////////////////////////////////////
         class MEZZ_LIB RenderableRayQuery : public RayQuery
         {
