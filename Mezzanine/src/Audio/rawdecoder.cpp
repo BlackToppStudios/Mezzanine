@@ -51,7 +51,7 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        RawDecoder::RawDecoder(Resource::DataStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config) :
+        RawDecoder::RawDecoder(DataStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config) :
             RawStream(Stream),
             RawStreamSize(0),
             RawStreamPos(0),
@@ -101,7 +101,7 @@ namespace Mezzanine
             return this->Frequency;
         }
 
-        Resource::DataStreamPtr RawDecoder::GetStream() const
+        DataStreamPtr RawDecoder::GetStream() const
         {
             return this->RawStream;
         }
@@ -114,7 +114,13 @@ namespace Mezzanine
         Boole RawDecoder::SetPosition(Int32 Position, const Boole Relative)
         {
             this->RawStream->seekg(Position,( Relative ? std::ios_base::cur : std::ios_base::beg ));
+            this->RawStreamPos = this->RawStream->tellg();
             return true;
+        }
+
+        Int32 RawDecoder::GetPosition() const
+        {
+            return this->RawStreamPos;
         }
 
         Boole RawDecoder::Seek(const Real Seconds, const Boole Relative)

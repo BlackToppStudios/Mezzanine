@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -60,7 +60,6 @@ namespace Mezzanine
             class Effect;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OpenALSoft implemenation for a 2D sound.
-            /// @details
             ///////////////////////////////////////
             class MEZZ_LIB Sound : public iSound
             {
@@ -78,49 +77,41 @@ namespace Mezzanine
                 /// @brief Const Iterator type for buffer handles stored by this class.
                 typedef BufferContainer::const_iterator  ConstBufferIterator;
             protected:
-                /// @internal
                 /// @brief The OALS context this sound belongs to.
                 ALCcontext* Context;
-                /// @internal
                 /// @brief The filter processing audio emitted by this sound.
                 OALS::Filter* SoundFilter;
-                /// @internal
                 /// @brief The decoder responsible for tracking this sounds position in the audio stream and decompressing into something we can populate buffers with.
                 iDecoder* SoundDecoder;
-                /// @internal
                 /// @brief The type of sound this is.
                 UInt16 SType;
-                /// @internal
                 /// @brief This is a bitfield storing the the current state of this sound.
                 UInt16 State;
-                /// @internal
                 /// @brief The speed of playback modifier for the sound.  Higher values make playback sound more high pitched.
                 Real SoundPitch;
-                /// @internal
                 /// @brief The base volume applied to this sound alone, before external modifiers.
                 Real BaseVolume;
-                /// @internal
                 /// @brief The minimum volume this sound is allowed to reach, regardless of other settings.
                 Real MinVolume;
-                /// @internal
                 /// @brief The maximum volume this sound is allowed to reach, regardless of other settings.
                 Real MaxVolume;
-                /// @internal
                 /// @brief Handle to the internal OALS source representing this sound.
                 UInt32 InternalSource;
-                /// @internal
                 /// @brief This stores the handles to all the OALS buffers owned by this sound.
                 BufferContainer Buffers;
-                /// @internal
                 /// @brief This stores the effects currently being applied to audio emitted by this sound.
                 EffectContainer Effects;
 
-                /// @internal
                 /// @brief Makes the context this listener belongs to the current context.
                 void MakeCurrent();
-                /// @internal
                 /// @brief Streams the content from the decoder into an OALS buffer.
-                Boole StreamToBuffer(const UInt32 Buffer);
+                /// @param BufferID The ID of the buffer to be streamed to.
+                /// @return Returns true if the streaming was successful, false if there was a failure.
+                Boole StreamToBuffer(const UInt32 BufferID);
+                /// @brief Updates the internal data of the attached filter to reflect any changes made to the filter externally.
+                void RefreshFilter();
+                /// @brief Updates the internal data of the attached effects to reflect any changes made to the effects externally.
+                void RefreshEffects();
             public:
                 /// @brief Class constructor.
                 /// @param Type The type of sound to initialize.  See @ref Audio::SoundType enum for the basic values.
@@ -144,10 +135,10 @@ namespace Mezzanine
                 virtual void SetPitch(const Real Pitch);
                 /// @copydoc iSound::GetPitch() const
                 virtual Real GetPitch() const;
-                /// @copydoc iSound::SetStream(Resource::DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
-                /// @copydoc iSound::SetStream(const UInt16, Resource::DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
+                /// @copydoc iSound::SetStream(DataStreamPtr, const Audio::Encoding)
+                virtual void SetStream(DataStreamPtr Stream, const Audio::Encoding Encode);
+                /// @copydoc iSound::SetStream(const UInt16, DataStreamPtr, const Audio::Encoding)
+                virtual void SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode);
                 /// @copydoc iSound::SetStream(iDecoder*)
                 virtual void SetStream(iDecoder* Decode);
                 /// @copydoc iSound::SetStream(const UInt16, iDecoder*)

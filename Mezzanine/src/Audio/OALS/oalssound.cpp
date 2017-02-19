@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -148,7 +148,7 @@ namespace Mezzanine
                 }
             }
 
-            Boole Sound::StreamToBuffer(const UInt32 Buffer)
+            Boole Sound::StreamToBuffer(const UInt32 BufferID)
             {
                 if( this->SoundDecoder ) {
                     UInt32 TotalRead = 0;
@@ -177,10 +177,32 @@ namespace Mezzanine
                     if( TotalRead == 0 ) {
                         return false;
                     }
-                    alBufferData(Buffer,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),ALBuffer,TotalRead,this->SoundDecoder->GetFrequency());
+                    alBufferData(BufferID,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),ALBuffer,TotalRead,this->SoundDecoder->GetFrequency());
                     return true;
                 }
                 return false;
+            }
+
+            void Sound::RefreshFilter()
+            {
+                if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() ) {
+                    ALuint FilterID = this->SoundFilter->_GetInternalFilter();
+                    alSourcei(this->InternalSource,AL_DIRECT_FILTER,FilterID);
+                }
+            }
+
+            void Sound::RefreshEffects()
+            {
+                for( UInt32 Index = 0 ; Index < this->Effects.size() ; ++Index )
+                {
+                    OALS::Effect* CurrEffect = this->Effects.at(Index);
+                    if( CurrEffect != NULL && CurrEffect->_IsDirty() ) {
+                        //ALuint EffectID = CurrEffect->_GetInternalEffect();
+                        ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
+                        ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
+                        alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Index,FilterID);
+                    }
+                }
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -215,7 +237,7 @@ namespace Mezzanine
                 return this->SoundPitch;
             }
 
-            void Sound::SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            void Sound::SetStream(DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
                 if( Factory != NULL ) {
@@ -227,7 +249,7 @@ namespace Mezzanine
                 }
             }
 
-            void Sound::SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            void Sound::SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 this->SType = Type;
                 this->SetStream(Stream,Encode);
@@ -468,23 +490,8 @@ namespace Mezzanine
                 // Update our volume
                 alSourcef(this->InternalSource,AL_GAIN,this->GetVolume());
 
-                // Update our filter
-                if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() ) {
-                    ALuint FilterID = this->SoundFilter->_GetInternalFilter();
-                    alSourcei(this->InternalSource,AL_DIRECT_FILTER,FilterID);
-                }
-
-                // Update our effects
-                for( UInt32 Index = 0 ; Index < this->Effects.size() ; ++Index )
-                {
-                    OALS::Effect* CurrEffect = this->Effects.at(Index);
-                    if( CurrEffect != NULL && CurrEffect->_IsDirty() ) {
-                        //ALuint EffectID = CurrEffect->_GetInternalEffect();
-                        ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
-                        ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
-                        alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Index,FilterID);
-                    }
-                }
+                this->RefreshFilter();
+                this->RefreshEffects();
 
                 // Update our streaming buffers
                 this->_UpdateBuffers();

@@ -172,7 +172,7 @@ namespace Mezzanine
             LT_Spotlight   = 2     ///< From a point emanating in a cone, like a flashlight, hooded lantern, really bright computer screens, flood lights, older style space heaters, Concert lights, camera flashes, etc...
         };
 
-        /// @brief This is used by CameraProxies to determine the orientation of the camera frustrum.
+        /// @brief This is used to describe simple rotations in views or textures.
         enum OrientationMode
         {
             OM_Degree_0       = 0,
@@ -185,7 +185,7 @@ namespace Mezzanine
             OM_LandscapeLeft  = OM_Degree_270
         };
 
-        /// @brief This is used to describe how bits are arraged for each pixel in an image.
+        /// @brief This is used to describe how bits are arranged for each pixel in an image.
         enum PixelFormat
         {
             PF_Unknown            = 0,

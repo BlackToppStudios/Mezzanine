@@ -40,7 +40,7 @@
 #ifndef _enumerations_h
 #define _enumerations_h
 
-#include "macros.h"
+#include "datatypes.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @file
@@ -49,6 +49,24 @@
 
 namespace Mezzanine
 {
+    /// @brief Method to assist the conversion of enum class values to ints.
+    /// @param Val The enumeration value to be converted.
+    /// @return Returns an int of the underlying type of the enum.
+    template<typename Enumeration>
+    constexpr typename std::underlying_type<Enumeration>::type EnumClassToInt(const Enumeration Val)
+    {
+        static_assert( std::is_enum<Enumeration>::value, "Value received does not belong to an enum or enum class." );
+        return static_cast< typename std::underlying_type<Enumeration>::type >(Val);
+    }
+
+    /// @brief Convenience method for getting the value of the n-th bit.  Useful for setting bit-fields.
+    /// @param Bit The n-th bit to get the value of.  Range of 1-64.
+    /// @return Returns the value at the specified bit position.
+    constexpr UInt64 EnumBit(const Whole Bit)
+    {
+        return ( 1 << ( Bit - 1 ) );
+    }
+
     /// @brief These values represent the kind of attenuation applied to the field strength over a distance.
     /// @details None is the default, where the force is constant in all area's of the field.  @n
     /// Linear is where the force applied drops by the attenuation value times the distance (strength - (attenuation amount * distance to AE center)).  @n
@@ -149,53 +167,53 @@ namespace Mezzanine
     enum WorldObjectType
     {
         // Terrain Objects
-        WO_TerrainFirst           = ( 1u << 0 ),//1,
+        WO_TerrainFirst           = EnumBit(1),
 
-        WO_MeshTerrain            = ( 1u << 0 ),//1,
-        WO_HeightfieldTerrain     = ( 1u << 1 ),//2,
-        WO_VectorFieldTerrain     = ( 1u << 2 ),//4,
-        WO_VoxelTerrain           = ( 1u << 3 ),//8,
-        WO_MarchingCubeTerrain    = ( 1u << 4 ),//16,
-        WO_UnknownTerrain         = ( 1u << 5 ),//32,
+        WO_MeshTerrain            = EnumBit(1),
+        WO_HeightfieldTerrain     = EnumBit(2),
+        WO_VectorFieldTerrain     = EnumBit(3),
+        WO_VoxelTerrain           = EnumBit(4),
+        WO_MarchingCubeTerrain    = EnumBit(5),
+        WO_UnknownTerrain         = EnumBit(6),
 
-        WO_TerrainLast            = ( 1u << 5 ),//32,
+        WO_TerrainLast            = EnumBit(6),
         // Debris Objects
-        WO_DebrisFirst            = ( 1u << 6 ),//64,
+        WO_DebrisFirst            = EnumBit(7),
 
-        WO_RigidDebris            = ( 1u << 6 ),//64,
-        WO_SoftDebris             = ( 1u << 7 ),//128,
-        WO_UnknownDebris          = ( 1u << 8 ),//256,
+        WO_RigidDebris            = EnumBit(7),
+        WO_SoftDebris             = EnumBit(8),
+        WO_UnknownDebris          = EnumBit(9),
 
-        WO_DebrisLast             = ( 1u << 8 ),//256,
+        WO_DebrisLast             = EnumBit(9),
         // AreaEffect Objects
-        WO_AreaEffectFirst        = ( 1u << 9 ),//512,
+        WO_AreaEffectFirst        = EnumBit(10),
 
-        WO_AreaEffectGravityField = ( 1u << 9 ),//512,
-        WO_AreaEffectGravityWell  = ( 1u << 10 ),//1024,
-        WO_AreaEffectFieldOfForce = ( 1u << 11 ),//2048,
-        WO_AreaEffectPlaceHolder1 = ( 1u << 12 ),//4096,
-        WO_AreaEffectPlaceHolder2 = ( 1u << 13 ),//8192,
-        WO_AreaEffectUnknown      = ( 1u << 14 ),//16384,
+        WO_AreaEffectGravityField = EnumBit(10),
+        WO_AreaEffectGravityWell  = EnumBit(11),
+        WO_AreaEffectFieldOfForce = EnumBit(12),
+        WO_AreaEffectPlaceHolder1 = EnumBit(13),
+        WO_AreaEffectPlaceHolder2 = EnumBit(14),
+        WO_AreaEffectUnknown      = EnumBit(15),
 
-        WO_AreaEffectLast         = ( 1u << 14 ),//16384,
+        WO_AreaEffectLast         = EnumBit(15),
         // Actor Objects
-        WO_ActorFirst             = ( 1u << 15 ),//32768,
+        WO_ActorFirst             = EnumBit(16),
 
-        WO_ActorPlaceHolder1      = ( 1u << 15 ),//32768,
-        WO_ActorPlaceHolder2      = ( 1u << 16 ),//65536,
-        WO_ActorPlaceHolder3      = ( 1u << 17 ),//131072,
+        WO_ActorPlaceHolder1      = EnumBit(16),
+        WO_ActorPlaceHolder2      = EnumBit(17),
+        WO_ActorPlaceHolder3      = EnumBit(18),
 
-        WO_ActorLast              = ( 1u << 17 ),//131072,
+        WO_ActorLast              = EnumBit(18),
         // Vehicle Objects
-        WO_VehicleFirst           = ( 1u << 18 ),//262144,
+        WO_VehicleFirst           = EnumBit(19),
 
-        WO_MultiBodyVehicle       = ( 1u << 18 ),//262144,
-        WO_RaycastVehicle         = ( 1u << 19 ),//524288,
-        WO_SimpleVehicle          = ( 1u << 20 ),//1048576,
-        WO_VehiclePlaceHolder1    = ( 1u << 21 ),//2097152,
-        WO_VehiclePlaceHolder2    = ( 1u << 22 ),//4194304,
+        WO_MultiBodyVehicle       = EnumBit(19),
+        WO_RaycastVehicle         = EnumBit(20),
+        WO_SimpleVehicle          = EnumBit(21),
+        WO_VehiclePlaceHolder1    = EnumBit(22),
+        WO_VehiclePlaceHolder2    = EnumBit(23),
 
-        WO_VehicleLast            = ( 1u << 22 ) //4194304
+        WO_VehicleLast            = EnumBit(23)
     };
 }//Mezzanine
 

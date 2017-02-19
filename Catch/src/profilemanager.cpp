@@ -63,7 +63,7 @@ void CatchProfile::Load(const String& ProfilesDir)
     if( !this->Loaded ) {
         XML::Document ProfileDoc;
         /// @todo Possibly in the future instead of constructing the datastream direct, call on the resource manager to create it(future plans)
-        Resource::FileStream LoadStream(this->ProfileName+".xml",ProfilesDir+"/",Resource::SF_Read);
+        FileStream LoadStream(this->ProfileName+".xml",ProfilesDir+"/",Mezzanine::SF_Read);
 
         ProfileDoc.Load( LoadStream );
         XML::Node RootNode = ProfileDoc.GetChild("ProfileRoot");
@@ -96,7 +96,7 @@ void CatchProfile::Save(const String& ProfilesDir)
     this->SerializeLevelScores(RootNode);
 
     /// @todo Possibly in the future instead of constructing the datastream direct, call on the resource manager to create it(future plans)
-    Resource::FileStream SaveStream(ProfileName+".xml",ProfilesDir+"/",(Resource::SF_Truncate | Resource::SF_Write));
+    FileStream SaveStream(ProfileName+".xml",ProfilesDir+"/",(Mezzanine::SF_Truncate | Mezzanine::SF_Write));
     ProfileDoc.Save(SaveStream,"\t",XML::FormatIndent);
 }
 

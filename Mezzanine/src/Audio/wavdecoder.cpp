@@ -53,7 +53,7 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        WavDecoder::WavDecoder(Resource::DataStreamPtr Stream) :
+        WavDecoder::WavDecoder(DataStreamPtr Stream) :
             WavStream(Stream),
             WavStreamSize(0),
             WavStreamPos(0),
@@ -70,12 +70,13 @@ namespace Mezzanine
             this->WavStreamSize = this->WavStream->tellg();
 
             this->ReadWavMetaData(Stream);
+            this->WavStream->seekg(0);
         }
 
         WavDecoder::~WavDecoder()
             {  }
 
-        void WavDecoder::ReadWavMetaData(Resource::DataStreamPtr Stream)
+        void WavDecoder::ReadWavMetaData(DataStreamPtr Stream)
         {
             const char* RIFFTAG = "RIFF";
             const char* WAVETAG = "WAVE";
@@ -92,60 +93,66 @@ namespace Mezzanine
             this->WavStream->seekg(0);
             this->WavStream->read(Ident,4);
             // Check to see if it is a valid RIFF file
-            if( strncmp(Ident,RIFFTAG,4) == 0 ) {
+            if( strncmp(Ident,RIFFTAG,4) != 0 )
+                return;
+
+            this->WavStream->read((char*)&Temp32,4);
+            // Check to see if the file is big enough to be valid (not completely accurate)
+            if( Temp32 < 44 )
+                return;
+
+            this->WavStream->read(Ident,4);
+            // Check that it is a wave file
+            if( strncmp(Ident,WAVETAG,4) != 0 )
+                return;
+
+            // Save our position
+            StartOffset = this->WavStream->tellg();
+            // Scan for the first fmt chuck (not necessarily right after)
+            do{
+                this->WavStream->read(Ident,4);
+            } while( ( strncmp(Ident,FORMATTAG,4) != 0 ) && ( this->WavStream->tellg() < this->WavStreamSize ) );
+            //Did we find it?
+            if( this->WavStream->tellg() < ( this->WavStreamSize - 16 ) ) {
+                //Yes, read it in
                 this->WavStream->read((char*)&Temp32,4);
-                // Check to see if the file is big enough to be valid (not completely accurate)
-                if( Temp32 >= 44 ) {
+                if( Temp32 < 16 )
+                    return;
+
+                // Check that it is in PCM format, we don't support compressed wavs
+                this->WavStream->read((char*)&Temp16,2);
+                this->Channels = Temp16;
+                // We only support mono or stereo wavs
+                if( this->Channels > 2 )
+                    return;
+
+                this->WavStream->read((char*)&Temp32,4);
+                this->SampleRate = Temp32;
+                this->WavStream->read((char*)&Temp32,4);
+                this->ByteRate = Temp32;
+                this->WavStream->read((char*)&Temp16,2);
+                this->BlockAlign = Temp16;
+                this->WavStream->read((char*)&Temp16,2);
+                this->BitsPerSample = Temp16;
+
+                // We only support 8 bit or 16 bit wavs
+                if( this->BitsPerSample != 8 && this->BitsPerSample != 16 )
+                    return;
+
+                // Reset our pointer to start scanning for the data block
+                this->WavStream->seekg(StartOffset);
+                // Scan for the first data chuck (not necessarily right after)
+                do{
                     this->WavStream->read(Ident,4);
-                    // Check that it is a wave file
-                    if( strncmp(Ident,WAVETAG,4) == 0 ) {
-                        // Save our position
-                        StartOffset = this->WavStream->tellg();
-                        // Scan for the first fmt chuck (not necessarily right after)
-                        do{
-                            this->WavStream->read(Ident,4);
-                        } while( ( strncmp(Ident,FORMATTAG,4) != 0 ) && ( this->WavStream->tellg() < this->WavStreamSize ) );
-                        //Did we find it?
-                        if( this->WavStream->tellg() < ( this->WavStreamSize - 16 ) ) {
-                            //Yes, read it in
-                            this->WavStream->read((char*)&Temp32,4);
-                            if( Temp32 >= 16 ) {
-                                // Check that it is in PCM format, we don't support compressed wavs
-                                this->WavStream->read((char*)&Temp16,2);
-                                this->Channels = Temp16;
-                                // We only support mono or stereo wavs
-                                if( this->Channels == 1 || this->Channels == 2 ) {
-                                    this->WavStream->read((char*)&Temp32,4);
-                                    this->SampleRate = Temp32;
-                                    this->WavStream->read((char*)&Temp32,4);
-                                    this->ByteRate = Temp32;
-                                    this->WavStream->read((char*)&Temp16,2);
-                                    this->BlockAlign = Temp16;
-                                    this->WavStream->read((char*)&Temp16,2);
-                                    this->BitsPerSample = Temp16;
+                } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->tellg() < this->WavStreamSize ) );
 
-                                    // We only support 8 bit or 16 bit wavs
-                                    if( this->BitsPerSample == 8 || this->BitsPerSample == 16 ) {
-                                        // Reset our pointer to start scanning for the data block
-                                        this->WavStream->seekg(StartOffset);
-                                        // Scan for the first data chuck (not necessarily right after)
-                                        do{
-                                            this->WavStream->read(Ident,4);
-                                        } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->tellg() < this->WavStreamSize ) );
-
-                                        // Did we find it?
-                                        if( this->WavStream->tellg() < this->WavStreamSize ) {
-                                            // Get size of data block
-                                            this->WavStream->read((char*)&Temp32,4);
-                                            this->DataSize = Temp32;
-                                            this->DataOffset = this->WavStream->tellg();
-                                            this->Valid = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                // Did we find it?
+                if( this->WavStream->tellg() < this->WavStreamSize ) {
+                    // Get size of data block
+                    this->WavStream->read((char*)&Temp32,4);
+                    this->DataSize = Temp32;
+                    this->DataOffset = this->WavStream->tellg();
+                    this->Valid = true;
                 }
             }
         }
@@ -194,7 +201,7 @@ namespace Mezzanine
             return this->SampleRate;
         }
 
-        Resource::DataStreamPtr WavDecoder::GetStream() const
+        DataStreamPtr WavDecoder::GetStream() const
         {
             return this->WavStream;
         }
@@ -219,7 +226,13 @@ namespace Mezzanine
             }
 
             this->WavStream->seekg(Position);
+            this->WavStreamPos = Position;
             return true;
+        }
+
+        Int32 WavDecoder::GetPosition() const
+        {
+            return this->WavStreamPos;
         }
 
         Boole WavDecoder::Seek(const Real Seconds, const Boole Relative)

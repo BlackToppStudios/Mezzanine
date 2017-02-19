@@ -54,45 +54,40 @@ namespace Mezzanine
             class EFXInterface;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OpenALSoft implemenation for an Audio Filter.
-            /// @details
             ///////////////////////////////////////
             class MEZZ_LIB Filter : public iFilter
             {
             protected:
-                /// @internal
                 /// @brief Pointer to the class holding function pointers to all the OALS EFX methods
                 EFXInterface* EFX;
-                /// @internal
-                /// @brief This stores whether or not this filter has been modified recently.
-                Boole Dirty;
-                /// @internal
-                /// @brief This stores whether or not there was an error with the last settings change.
-                Boole Valid;
-                /// @internal
                 /// @brief This stores the volume modifier to be applied to filtered sounds.
                 Real Volume;
-                /// @internal
                 /// @brief This stores the volume to be used by the filter at low frequencies.
                 Real LFVolume;
-                /// @internal
                 /// @brief This stores the volume to be used by the filter at high frequencies.
                 Real HFVolume;
-                /// @internal
                 /// @brief This stores the internal ID for this filter.
                 UInt32 InternalFilter;
-                /// @internal
+                /// @brief This stores whether or not this filter has been modified recently.
+                Boole Dirty;
+                /// @brief This stores whether or not there was an error with the last settings change.
+                Boole Valid;
+
                 /// @brief Updates the appropriate volume based on the type.
                 void UpdateVolume();
-                /// @internal
                 /// @brief Updates the volume used on high and low frequency sounds based on the type.
                 void UpdateFrequencyVolume();
-                /// @internal
                 /// @brief Checks to see if there was a configuration error after setting a filter property.
-                Boole CheckError();
+                /// @return Returns true if there was no error, false if there was.
+                Boole CheckValid();
             public:
                 /// @brief Class constructor.
                 /// @param EFXMethods A pointer to the class storing all the methods to the EFX extension.
                 Filter(EFXInterface* EFXMethods);
+                /// @brief Serialization constructor.
+                /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+                /// @param EFXMethods A pointer to the class storing all the methods to the EFX extension.
+                Filter(const XML::Node& SelfRoot, EFXInterface* EFXMethods);
                 /// @brief Class destructor.
                 virtual ~Filter();
 
@@ -119,6 +114,18 @@ namespace Mezzanine
                 virtual void SetLowFrequencyVolume(const Real LFVol);
                 /// @copydoc iFilter::GetLowFrequencyVolume() const
                 virtual Real GetLowFrequencyVolume() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Serialization
+
+                /// @copydoc iFilter::ProtoSerialize(XML::Node&) const
+                virtual void ProtoSerialize(XML::Node& ParentNode) const;
+                /// @copydoc iFilter::ProtoDeSerialize(const XML::Node&)
+                virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+
+                /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+                /// @return A string containing the name of this class.
+                static String GetSerializableName();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

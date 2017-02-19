@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -98,7 +98,7 @@ namespace Mezzanine
                 PS_Stopped = 4,
                 PS_Looping = 8,
                 PS_InWorld = 16
-            };//PlaybackState
+            };//ProxyState
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Methods
@@ -186,7 +186,7 @@ namespace Mezzanine
                     alcMakeContextCurrent(Context);
             }
 
-            Boole OALS::SoundProxy::StreamToBuffer(const UInt32 Buffer)
+            Boole OALS::SoundProxy::StreamToBuffer(const UInt32 BufferID)
             {
                 if( this->SoundDecoder ) {
                     UInt32 TotalRead = 0;
@@ -215,10 +215,32 @@ namespace Mezzanine
                     if( TotalRead == 0 ) {
                         return false;
                     }
-                    alBufferData(Buffer,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),TempBuffer,TotalRead,this->SoundDecoder->GetFrequency());
+                    alBufferData(BufferID,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),TempBuffer,TotalRead,this->SoundDecoder->GetFrequency());
                     return true;
                 }
                 return false;
+            }
+
+            void OALS::SoundProxy::RefreshFilter(const UInt32 SourceID)
+            {
+                if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() ) {
+                    ALuint FilterID = this->SoundFilter->_GetInternalFilter();
+                    alSourcei( SourceID, AL_DIRECT_FILTER, FilterID );
+                }
+            }
+
+            void OALS::SoundProxy::RefreshEffects(const UInt32 SourceID)
+            {
+                for( UInt32 Index = 0 ; Index < this->Effects.size() ; ++Index )
+                {
+                    OALS::Effect* CurrEffect = this->Effects.at(Index);
+                    if( CurrEffect != NULL && CurrEffect->_IsDirty() ) {
+                        //ALuint EffectID = CurrEffect->_GetInternalEffect();
+                        ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
+                        ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
+                        alSource3i( SourceID, AL_AUXILIARY_SEND_FILTER, EffectSlotID, Index, FilterID);
+                    }
+                }
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -255,7 +277,7 @@ namespace Mezzanine
                 return this->SoundPitch;
             }
 
-            void OALS::SoundProxy::SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            void OALS::SoundProxy::SetStream(DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
                 if( Factory != NULL ) {
@@ -267,7 +289,7 @@ namespace Mezzanine
                 }
             }
 
-            void OALS::SoundProxy::SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            void OALS::SoundProxy::SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 this->SType = Type;
                 this->SetStream(Stream,Encode);
@@ -1136,23 +1158,8 @@ namespace Mezzanine
                     // Update our volume
                     alSourcef( (*CSI).second, AL_GAIN, this->GetVolume() );
 
-                    // Update our filter
-                    if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() ) {
-                        ALuint FilterID = this->SoundFilter->_GetInternalFilter();
-                        alSourcei( (*CSI).second, AL_DIRECT_FILTER, FilterID );
-                    }
-
-                    // Update our effects
-                    for( UInt32 Index = 0 ; Index < this->Effects.size() ; ++Index )
-                    {
-                        OALS::Effect* CurrEffect = this->Effects.at(Index);
-                        if( CurrEffect != NULL && CurrEffect->_IsDirty() ) {
-                            //ALuint EffectID = CurrEffect->_GetInternalEffect();
-                            ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
-                            ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
-                            alSource3i( (*CSI).second, AL_AUXILIARY_SEND_FILTER, EffectSlotID, Index, FilterID);
-                        }
-                    }
+                    this->RefreshFilter( (*CSI).second );
+                    this->RefreshEffects( (*CSI).second );
                 }
 
                 // Update our streaming buffers
@@ -1213,7 +1220,6 @@ namespace Mezzanine
             {
                 if( Index < this->ContextsAndSources.size() ) {
                     ALCcontext* OldContext = this->ContextsAndSources[Index].first;
-                    //UInt32 SourceID = this->ContextsAndSources[Index].second;
 
                     if( OldContext != NULL )
                         { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to write over an existing context."); }

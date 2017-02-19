@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -63,7 +63,6 @@ namespace Mezzanine
             class SoundScapeManager;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OALS implementation for a sound in 3D space.
-            /// @details
             ///////////////////////////////////////
             class MEZZ_LIB SoundProxy : public Audio::SoundProxy
             {
@@ -95,76 +94,52 @@ namespace Mezzanine
                 /// @brief Const Iterator type for buffer handles stored by this class.
                 typedef BufferContainer::const_iterator           ConstBufferIterator;
             protected:
-                /// @internal
                 /// @brief This stores all the contexts this proxy needs to be aware of and the sources that belong to those contexts.
                 ContextSourceContainer ContextsAndSources;
-                /// @internal
                 /// @brief This stores the handles to all the OALS buffers owned by this sound proxy.
                 BufferContainer Buffers;
-                /// @internal
                 /// @brief This stores the effects currently being applied to audio emitted by this sound proxy.
                 EffectContainer Effects;
-                /// @internal
                 /// @brief The 3D rotation of this sound proxy.
                 Quaternion Orientation;
-                /// @internal
                 /// @brief The 3D position of this sound proxy.
                 Vector3 Location;
-                /// @internal
                 /// @brief The direction and speed of this sound proxy.
                 Vector3 Velocity;
-                /// @internal
                 /// @brief The direction and speed of this object for doppler effects.
                 Vector3 DopplerVelocity;
-                /// @internal
                 /// @brief This is a pointer to the managert that created this listener.
                 OALS::SoundScapeManager* Manager;
-                /// @internal
                 /// @brief The filter processing audio emitted by this sound proxy.
                 OALS::Filter* SoundFilter;
-                /// @internal
                 /// @brief The decoder responsible for tracking this sound proxy's position in the audio stream and decompressing into something we can populate buffers with.
                 iDecoder* SoundDecoder;
-                /// @internal
                 /// @brief The modifier that can enhance or diminish the doppler effect coming from this sound proxy.
                 Real DopplerStrength;
-                /// @internal
                 /// @brief The outer angle of the cone at which this sound proxy can be heard.
                 Real OuterConeAngle;
-                /// @internal
                 /// @brief The gain of the sound proxy on the outer edge of it's audible cone.
                 Real OuterConeVolume;
-                /// @internal
                 /// @brief The inner angle of the cone at which this sound proxy can be heard.
                 Real InnerConeAngle;
-                /// @internal
                 /// @brief The minimum distance at which this sound proxy can be heard.
                 Real MinDist;
-                /// @internal
                 /// @brief The maximum distance at which this sound proxy can be heard.
                 Real MaxDist;
-                /// @internal
                 /// @brief The value determining how the sound proxy will attenuate over a distance.
                 Real RolloffFactor;
-                /// @internal
                 /// @brief The base volume applied to this sound proxy alone, before external modifiers.
                 Real BaseVolume;
-                /// @internal
                 /// @brief The minimum volume this sound proxy is allowed to reach, regardless of other settings.
                 Real MinVolume;
-                /// @internal
                 /// @brief The maximum volume this sound proxy is allowed to reach, regardless of other settings.
                 Real MaxVolume;
-                /// @internal
                 /// @brief The speed of playback modifier for the sound proxy.  Higher values make playback sound proxy more high pitched.
                 Real SoundPitch;
-                /// @internal
                 /// @brief The type of sound proxy this is.
                 UInt16 SType;
-                /// @internal
                 /// @brief This is a bitfield storing the the current state of this sound proxy.
                 UInt16 State;
-                /// @internal
                 /// @brief Stores whether or not sound being emitted in a specific direction.
                 Boole DirectSound;
 
@@ -172,12 +147,19 @@ namespace Mezzanine
                 virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
                 /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
                 virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
-                /// @internal
                 /// @brief Makes the context this listener belongs to the current context.
+                /// @param Context The audio context to be made current.
                 void MakeCurrent(ALCcontext* Context);
-                /// @internal
                 /// @brief Streams the content from the decoder into an OALS buffer.
-                Boole StreamToBuffer(const UInt32 Buffer);
+                /// @param BufferID The ID of the buffer to be streamed to.
+                /// @return Returns true if the streaming was successful, false if there was a failure.
+                Boole StreamToBuffer(const UInt32 BufferID);
+                /// @brief Updates the internal data of the attached filter to reflect any changes made to the filter externally.
+                /// @param SourceID The ID of the audio source being updated with the newest filter settings.
+                void RefreshFilter(const UInt32 SourceID);
+                /// @brief Updates the internal data of the attached effects to reflect any changes made to the effects externally.
+                /// @param SourceID The ID of the audio source being updated with the newest effect settings.
+                void RefreshEffects(const UInt32 SourceID);
             public:
                 /// @brief Class constructor.
                 /// @param Type The type of sound to initialize.  See @ref Audio::SoundType enum for the basic values.
@@ -206,10 +188,10 @@ namespace Mezzanine
                 virtual void SetPitch(const Real Pitch);
                 /// @copydoc iSound::GetPitch() const
                 virtual Real GetPitch() const;
-                /// @copydoc iSound::SetStream(Resource::DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
-                /// @copydoc iSound::SetStream(const UInt16, Resource::DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
+                /// @copydoc iSound::SetStream(DataStreamPtr, const Audio::Encoding)
+                virtual void SetStream(DataStreamPtr Stream, const Audio::Encoding Encode);
+                /// @copydoc iSound::SetStream(const UInt16, DataStreamPtr, const Audio::Encoding)
+                virtual void SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode);
                 /// @copydoc iSound::SetStream(iDecoder*)
                 virtual void SetStream(iDecoder* Decode);
                 /// @copydoc iSound::SetStream(const UInt16, iDecoder*)

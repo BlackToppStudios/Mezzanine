@@ -302,10 +302,10 @@ namespace Mezzanine
 
                 /// @copydoc Audio::AudioManager::CreateSound(const UInt16)
                 virtual iSound* CreateSound(const UInt16 Type);
-                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, Resource::DataStreamPtr, const Audio::Encoding)
-                virtual iSound* CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
-                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig)
-                virtual iSound* CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, DataStreamPtr, const Audio::Encoding)
+                virtual iSound* CreateSound(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode);
+                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, DataStreamPtr, const UInt32, const Audio::BitConfig)
+                virtual iSound* CreateSound(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
                 /// @copydoc Audio::AudioManager::CreateSound(const UInt16, const String&, const String&, const String&)
                 virtual iSound* CreateSound(const UInt16 Type, const String& FileName, const String& Group);
                 /// @copydoc Audio::AudioManager::CreateSound(const UInt16, const String&, const Char8*, const UInt32, const Audio::Encoding)

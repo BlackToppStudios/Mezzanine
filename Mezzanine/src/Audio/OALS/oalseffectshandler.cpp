@@ -110,17 +110,15 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            EffectsHandler::EffectsHandler(ALCdevice* Device)
-                : EFX(NULL)
-            {
-                EFX = new OALS::EFXInterface(Device);
-            }
+            EffectsHandler::EffectsHandler(ALCdevice* Device) :
+                EFX(NULL)
+                { this->EFX = new OALS::EFXInterface(Device); }
 
             EffectsHandler::~EffectsHandler()
             {
                 this->DestroyAllFilters();
                 this->DestroyAllEffects();
-                delete EFX;
+                delete this->EFX;
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -135,11 +133,11 @@ namespace Mezzanine
                     return false;
 
                 ALuint EffectID;
-                EFX->alGenEffects(1,&EffectID);
-                EFX->alEffecti(EffectID,AL_EFFECT_TYPE,ConvertEffectType(Type));
+                this->EFX->alGenEffects(1,&EffectID);
+                this->EFX->alEffecti(EffectID,AL_EFFECT_TYPE,ConvertEffectType(Type));
 
                 Boole Success = (alGetError() == AL_NO_ERROR);
-                EFX->alDeleteEffects(1,&EffectID);
+                this->EFX->alDeleteEffects(1,&EffectID);
                 return Success;
             }
 
@@ -149,28 +147,34 @@ namespace Mezzanine
                 if( this->EFX->Supported == false )
                     return NULL;
 
-                OALS::Effect* NewEffect = new OALS::Effect(EFX);
-                Effects.push_back(NewEffect);
+                OALS::Effect* NewEffect = new OALS::Effect(this);
+                this->Effects.push_back(NewEffect);
+                return NewEffect;
+            }
+
+            iEffect* EffectsHandler::CreateEffect(const XML::Node& SelfRoot)
+            {
+                /// @todo Throw an exception instead?
+                if( this->EFX->Supported == false )
+                    return NULL;
+
+                OALS::Effect* NewEffect = new OALS::Effect(SelfRoot,this);
+                this->Effects.push_back(NewEffect);
                 return NewEffect;
             }
 
             iEffect* EffectsHandler::GetEffect(const UInt32 Index) const
-            {
-                return this->Effects.at(Index);
-            }
+                { return this->Effects[Index]; }
 
             UInt32 EffectsHandler::GetNumEffects() const
-            {
-                return this->Effects.size();
-            }
+                { return this->Effects.size(); }
 
             void EffectsHandler::DestroyEffect(iEffect* ToBeDestroyed)
             {
-                for( EffectIterator EffIt = Effects.begin() ; EffIt != Effects.end() ; ++EffIt )
+                for( EffectIterator EffIt = this->Effects.begin() ; EffIt != this->Effects.end() ; ++EffIt )
                 {
-                    if( (*EffIt) == ToBeDestroyed )
-                    {
-                        Effects.erase(EffIt);
+                    if( (*EffIt) == ToBeDestroyed ) {
+                        this->Effects.erase(EffIt);
                         delete ToBeDestroyed;
                         return;
                     }
@@ -179,10 +183,10 @@ namespace Mezzanine
 
             void EffectsHandler::DestroyAllEffects()
             {
-                for( EffectIterator EffIt = Effects.begin() ; EffIt != Effects.end() ; ++EffIt )
+                for( EffectIterator EffIt = this->Effects.begin() ; EffIt != this->Effects.end() ; ++EffIt )
                     delete (*EffIt);
 
-                Effects.clear();
+                this->Effects.clear();
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -194,11 +198,11 @@ namespace Mezzanine
                     return false;
 
                 ALuint FilterID;
-                EFX->alGenFilters(1,&FilterID);
-                EFX->alFilteri(FilterID,AL_FILTER_TYPE,ConvertFilterType(Type));
+                this->EFX->alGenFilters(1,&FilterID);
+                this->EFX->alFilteri(FilterID,AL_FILTER_TYPE,ConvertFilterType(Type));
 
                 Boole Success = (alGetError() == AL_NO_ERROR);
-                EFX->alDeleteFilters(1,&FilterID);
+                this->EFX->alDeleteFilters(1,&FilterID);
                 return Success;
             }
 
@@ -208,28 +212,34 @@ namespace Mezzanine
                 if( this->EFX->Supported == false )
                     return NULL;
 
-                OALS::Filter* NewFilter = new OALS::Filter(EFX);
-                Filters.push_back(NewFilter);
+                OALS::Filter* NewFilter = new OALS::Filter(this->EFX);
+                this->Filters.push_back(NewFilter);
+                return NewFilter;
+            }
+
+            iFilter* EffectsHandler::CreateFilter(const XML::Node& SelfRoot)
+            {
+                /// @todo Throw an exception instead?
+                if( this->EFX->Supported == false )
+                    return NULL;
+
+                OALS::Filter* NewFilter = new OALS::Filter(SelfRoot,this->EFX);
+                this->Filters.push_back(NewFilter);
                 return NewFilter;
             }
 
             iFilter* EffectsHandler::GetFilter(const UInt32 Index) const
-            {
-                return this->Filters.at(Index);
-            }
+                { return this->Filters[Index]; }
 
             UInt32 EffectsHandler::GetNumFilters() const
-            {
-                return this->Filters.size();
-            }
+                { return this->Filters.size(); }
 
             void EffectsHandler::DestroyFilter(iFilter* ToBeDestroyed)
             {
-                for( FilterIterator FilIt = Filters.begin() ; FilIt != Filters.end() ; ++FilIt )
+                for( FilterIterator FilIt = this->Filters.begin() ; FilIt != this->Filters.end() ; ++FilIt )
                 {
-                    if( (*FilIt) == ToBeDestroyed )
-                    {
-                        Filters.erase(FilIt);
+                    if( (*FilIt) == ToBeDestroyed ) {
+                        this->Filters.erase(FilIt);
                         delete ToBeDestroyed;
                         return;
                     }
@@ -238,10 +248,10 @@ namespace Mezzanine
 
             void EffectsHandler::DestroyAllFilters()
             {
-                for( FilterIterator FilIt = Filters.begin() ; FilIt != Filters.end() ; ++FilIt )
+                for( FilterIterator FilIt = this->Filters.begin() ; FilIt != this->Filters.end() ; ++FilIt )
                     delete (*FilIt);
 
-                Filters.clear();
+                this->Filters.clear();
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -314,158 +324,132 @@ namespace Mezzanine
             // Individual effect type settings
 
             void EffectsHandler::AddEAXReverbEffectPreset(const String& Name, const EAXReverbParameters& Setting)
-            {
-                this->EAXReverbParams[Name] = Setting;
-            }
+                { this->EAXReverbParams[Name] = Setting; }
 
             EAXReverbParameters EffectsHandler::GetEAXReverbEffectPreset(const String& Name) const
             {
-                ConstEAXReverbParamIterator ParamIt = EAXReverbParams.find(Name);
-                if( ParamIt != EAXReverbParams.end() ) return (*ParamIt).second;
+                ConstEAXReverbParamIterator ParamIt = this->EAXReverbParams.find(Name);
+                if( ParamIt != this->EAXReverbParams.end() ) return (*ParamIt).second;
                 else return EAXReverbParameters();
             }
 
             void EffectsHandler::AddReverbEffectPreset(const String& Name, const ReverbParameters& Setting)
-            {
-                this->ReverbParams[Name] = Setting;
-            }
+                { this->ReverbParams[Name] = Setting; }
 
             ReverbParameters EffectsHandler::GetReverbEffectPreset(const String& Name) const
             {
-                ConstReverbParamIterator ParamIt = ReverbParams.find(Name);
-                if( ParamIt != ReverbParams.end() ) return (*ParamIt).second;
+                ConstReverbParamIterator ParamIt = this->ReverbParams.find(Name);
+                if( ParamIt != this->ReverbParams.end() ) return (*ParamIt).second;
                 else return ReverbParameters();
             }
 
             void EffectsHandler::AddChorusEffectPreset(const String& Name, const ChorusParameters& Setting)
-            {
-                this->ChorusParams[Name] = Setting;
-            }
+                { this->ChorusParams[Name] = Setting; }
 
             ChorusParameters EffectsHandler::GetChorusEffectPreset(const String& Name) const
             {
-                ConstChorusParamIterator ParamIt = ChorusParams.find(Name);
-                if( ParamIt != ChorusParams.end() ) return (*ParamIt).second;
+                ConstChorusParamIterator ParamIt = this->ChorusParams.find(Name);
+                if( ParamIt != this->ChorusParams.end() ) return (*ParamIt).second;
                 else return ChorusParameters();
             }
 
             void EffectsHandler::AddDistortionEffectPreset(const String& Name, const DistortionParameters& Setting)
-            {
-                this->DistortionParams[Name] = Setting;
-            }
+                { this->DistortionParams[Name] = Setting; }
 
             DistortionParameters EffectsHandler::GetDistortionEffectPreset(const String& Name) const
             {
-                ConstDistortionParamIterator ParamIt = DistortionParams.find(Name);
-                if( ParamIt != DistortionParams.end() ) return (*ParamIt).second;
+                ConstDistortionParamIterator ParamIt = this->DistortionParams.find(Name);
+                if( ParamIt != this->DistortionParams.end() ) return (*ParamIt).second;
                 else return DistortionParameters();
             }
 
             void EffectsHandler::AddEchoEffectPreset(const String& Name, const EchoParameters& Setting)
-            {
-                this->EchoParams[Name] = Setting;
-            }
+                { this->EchoParams[Name] = Setting; }
 
             EchoParameters EffectsHandler::GetEchoEffectPreset(const String& Name) const
             {
-                ConstEchoParamIterator ParamIt = EchoParams.find(Name);
-                if( ParamIt != EchoParams.end() ) return (*ParamIt).second;
+                ConstEchoParamIterator ParamIt = this->EchoParams.find(Name);
+                if( ParamIt != this->EchoParams.end() ) return (*ParamIt).second;
                 else return EchoParameters();
             }
 
             void EffectsHandler::AddFlangerEffectPreset(const String& Name, const FlangerParameters& Setting)
-            {
-                this->FlangerParams[Name] = Setting;
-            }
+                { this->FlangerParams[Name] = Setting; }
 
             FlangerParameters EffectsHandler::GetFlangerEffectPreset(const String& Name) const
             {
-                ConstFlangerParamIterator ParamIt = FlangerParams.find(Name);
-                if( ParamIt != FlangerParams.end() ) return (*ParamIt).second;
+                ConstFlangerParamIterator ParamIt = this->FlangerParams.find(Name);
+                if( ParamIt != this->FlangerParams.end() ) return (*ParamIt).second;
                 else return FlangerParameters();
             }
 
             void EffectsHandler::AddFrequencyShiftEffectPreset(const String& Name, const FrequencyShiftParameters& Setting)
-            {
-                this->FrequencyShiftParams[Name] = Setting;
-            }
+                { this->FrequencyShiftParams[Name] = Setting; }
 
             FrequencyShiftParameters EffectsHandler::GetFrequencyShiftEffectPreset(const String& Name) const
             {
-                ConstFrequencyShiftParamIterator ParamIt = FrequencyShiftParams.find(Name);
-                if( ParamIt != FrequencyShiftParams.end() ) return (*ParamIt).second;
+                ConstFrequencyShiftParamIterator ParamIt = this->FrequencyShiftParams.find(Name);
+                if( ParamIt != this->FrequencyShiftParams.end() ) return (*ParamIt).second;
                 else return FrequencyShiftParameters();
             }
 
             void EffectsHandler::AddVocalMorpherEffectPreset(const String& Name, const VocalMorpherParameters& Setting)
-            {
-                this->VocalMorpherParams[Name] = Setting;
-            }
+                { this->VocalMorpherParams[Name] = Setting; }
 
             VocalMorpherParameters EffectsHandler::GetVocalMorpherEffectPreset(const String& Name) const
             {
-                ConstVocalMorpherParamIterator ParamIt = VocalMorpherParams.find(Name);
-                if( ParamIt != VocalMorpherParams.end() ) return (*ParamIt).second;
+                ConstVocalMorpherParamIterator ParamIt = this->VocalMorpherParams.find(Name);
+                if( ParamIt != this->VocalMorpherParams.end() ) return (*ParamIt).second;
                 else return VocalMorpherParameters();
             }
 
             void EffectsHandler::AddPitchShifterEffectPreset(const String& Name, const PitchShifterParameters& Setting)
-            {
-                this->PitchShifterParams[Name] = Setting;
-            }
+                { this->PitchShifterParams[Name] = Setting; }
 
             PitchShifterParameters EffectsHandler::GetPitchShifterEffectPreset(const String& Name) const
             {
-                ConstPitchShifterParamIterator ParamIt = PitchShifterParams.find(Name);
-                if( ParamIt != PitchShifterParams.end() ) return (*ParamIt).second;
+                ConstPitchShifterParamIterator ParamIt = this->PitchShifterParams.find(Name);
+                if( ParamIt != this->PitchShifterParams.end() ) return (*ParamIt).second;
                 else return PitchShifterParameters();
             }
 
             void EffectsHandler::AddRingModulatorEffectPreset(const String& Name, const RingModulatorParameters& Setting)
-            {
-                this->RingModulatorParams[Name] = Setting;
-            }
+                { this->RingModulatorParams[Name] = Setting; }
 
             RingModulatorParameters EffectsHandler::GetRingModulatorEffectPreset(const String& Name) const
             {
-                ConstRingModulatorParamIterator ParamIt = RingModulatorParams.find(Name);
-                if( ParamIt != RingModulatorParams.end() ) return (*ParamIt).second;
+                ConstRingModulatorParamIterator ParamIt = this->RingModulatorParams.find(Name);
+                if( ParamIt != this->RingModulatorParams.end() ) return (*ParamIt).second;
                 else return RingModulatorParameters();
             }
 
             void EffectsHandler::AddAutowahEffectPreset(const String& Name, const AutowahParameters& Setting)
-            {
-                this->AutowahParams[Name] = Setting;
-            }
+                { this->AutowahParams[Name] = Setting; }
 
             AutowahParameters EffectsHandler::GetAutowahEffectPreset(const String& Name) const
             {
-                ConstAutowahParamIterator ParamIt = AutowahParams.find(Name);
-                if( ParamIt != AutowahParams.end() ) return (*ParamIt).second;
+                ConstAutowahParamIterator ParamIt = this->AutowahParams.find(Name);
+                if( ParamIt != this->AutowahParams.end() ) return (*ParamIt).second;
                 else return AutowahParameters();
             }
 
             void EffectsHandler::AddCompressorEffectPreset(const String& Name, const CompressorParameters& Setting)
-            {
-                this->CompressorParams[Name] = Setting;
-            }
+                { this->CompressorParams[Name] = Setting; }
 
             CompressorParameters EffectsHandler::GetCompressorEffectPreset(const String& Name) const
             {
-                ConstCompressorParamIterator ParamIt = CompressorParams.find(Name);
-                if( ParamIt != CompressorParams.end() ) return (*ParamIt).second;
+                ConstCompressorParamIterator ParamIt = this->CompressorParams.find(Name);
+                if( ParamIt != this->CompressorParams.end() ) return (*ParamIt).second;
                 else return CompressorParameters();
             }
 
             void EffectsHandler::AddEqualizerEffectPreset(const String& Name, const EqualizerParameters& Setting)
-            {
-                this->EqualizerParams[Name] = Setting;
-            }
+                { this->EqualizerParams[Name] = Setting; }
 
             EqualizerParameters EffectsHandler::GetEqualizerEffectPreset(const String& Name) const
             {
-                ConstEqualizerParamIterator ParamIt = EqualizerParams.find(Name);
-                if( ParamIt != EqualizerParams.end() ) return (*ParamIt).second;
+                ConstEqualizerParamIterator ParamIt = this->EqualizerParams.find(Name);
+                if( ParamIt != this->EqualizerParams.end() ) return (*ParamIt).second;
                 else return EqualizerParameters();
             }
 
@@ -473,21 +457,15 @@ namespace Mezzanine
             // Internal Methods
 
             EFXInterface* EffectsHandler::_GetEFXInterface() const
-            {
-                return this->EFX;
-            }
+                { return this->EFX; }
 
             void EffectsHandler::_CleanAll()
             {
                 for( FilterIterator FilIt = this->Filters.begin() ; FilIt != this->Filters.end() ; ++FilIt )
-                {
-                    (*FilIt)->_Clean();
-                }
+                    { (*FilIt)->_Clean(); }
 
                 for( EffectIterator EffIt = this->Effects.begin() ; EffIt != this->Effects.end() ; ++EffIt )
-                {
-                    (*EffIt)->_Clean();
-                }
+                    { (*EffIt)->_Clean(); }
             }
         }//OALS
     }//Audio
