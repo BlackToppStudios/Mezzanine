@@ -37,32 +37,32 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _collidablerayquerytests_h
-#define _collidablerayquerytests_h
+#ifndef _renderablerayquerytests_h
+#define _renderablerayquerytests_h
 
 #include "mezztest.h"
 
 #include "entresol.h"
 #include "world.h"
-#include "Physics/physics.h"
+#include "Graphics/graphics.h"
 
 #include "sstream"
 #include <stdexcept> //only used to throw for TEST_THROW
 
 /// @file
-/// @brief Tests the functionality of performing a series of ray tests in the world of the Physics subsyetem.
+/// @brief Tests the functionality of performing a series of ray tests in the world of the Graphics subsyetem.
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
-/// @brief Test of the Mezzanine::Physics::CollidableRayQuery
-class collidablerayquerytests : public UnitTestGroup
+/// @brief Test of the Mezzanine::Graphics::RenderableRayQuery
+class renderablerayquerytests : public UnitTestGroup
 {
 public:
     /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-    /// @return Returns a String containing "CollidableRayQuery"
+    /// @return Returns a String containing "RenderableRayQuery"
     virtual String Name()
-        { return String("CollidableRayQuery"); }
+        { return String("RenderableRayQuery"); }
 
     /// @brief Verifies the provided result matches expectations.
     /// @param Result The result given by the ray query.
@@ -81,62 +81,74 @@ public:
     void RunAutomaticTests()
     {
         Entresol TheEntresol;
-        World* TheWorld = TheEntresol.CreateWorld("CollidableRayTestWorld");
-        Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( TheWorld->GetManager(ManagerBase::MT_PhysicsManager) );
+        World* TheWorld = TheEntresol.CreateWorld("RenderableRayTestWorld");
+        World* DummyWorld = TheEntresol.CreateWorld("DummyWorld");
+        Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( TheEntresol.GetManager(ManagerBase::MT_GraphicsManager) );
+        Graphics::GameWindow* TestWindow = GraphicsMan->CreateGameWindow("Test",10,10,Graphics::GameWindow::WF_Hidden);
+        Graphics::Viewport* TestViewport = TestWindow->CreateViewport(NULL,0);
+        TheEntresol.Initialize(true);
+        Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( TheWorld->GetManager(ManagerBase::MT_SceneManager) );
+        Graphics::SceneManager* DummySceneMan = static_cast<Graphics::SceneManager*>( DummyWorld->GetManager(ManagerBase::MT_SceneManager) );
 
-        Physics::BoxCollisionShape* TestBox = new Physics::BoxCollisionShape("TestBox",Vector3(5.0,5.0,5.0));
-        Physics::BoxCollisionShape* DoubleScaleTestBox = new Physics::BoxCollisionShape("DoubleScaleTestBox",Vector3(5.0,5.0,5.0));
-        Physics::BoxCollisionShape* HalfScaleTestBox = new Physics::BoxCollisionShape("HalfScaleTestBox",Vector3(5.0,5.0,5.0));
-        Physics::SphereCollisionShape* TestSphere = new Physics::SphereCollisionShape("TestSphere",5.0);
-        Physics::SphereCollisionShape* DoubleScaleTestSphere = new Physics::SphereCollisionShape("DoubleScaleTestSphere",5.0);
-        Whole Mass = 1.0;
+        Graphics::CameraProxy* TestCamera = SceneMan->CreateCamera();
+        TestCamera->SetLocation(200.0,-200.0,200.0);
+        TestCamera->LookAt(Vector3(0.0,0.0,0.0));
+        TestViewport->SetCamera(TestCamera);
+
+        Graphics::Procedural::BoxGenerator BoxGen(5.0,5.0,5.0);
+        Graphics::Mesh* TestBox = BoxGen.GenerateMesh("TestBox","Internal","BaseWhiteNoLighting","Internal");
+        Graphics::Procedural::SphereGenerator SphereGen(5.0);
+        Graphics::Mesh* TestSphere = SphereGen.GenerateMesh("TestSphere","Internal","BaseWhiteNoLighting","Internal");
 
         // Create entities.  Descriptions are relative to default camera perspective.
-        Physics::RigidProxy* Rigid01 = PhysMan->CreateRigidProxy(Mass,TestBox);
-        Rigid01->SetLocation(25.0,0.0,0.0);// 25 units to the left.
-        Rigid01->AddToWorld();
-        Physics::RigidProxy* Rigid02 = PhysMan->CreateRigidProxy(Mass,TestBox);
-        Rigid02->SetLocation(-25.0,0.0,0.0);// 25 units to the right.
-        Rigid02->AddToWorld();
-        Physics::RigidProxy* Rigid03 = PhysMan->CreateRigidProxy(Mass,TestBox);
-        Rigid03->SetLocation(0.0,25.0,0.0);// 25 units above.
-        Rigid03->AddToWorld();
-        Physics::RigidProxy* Rigid04 = PhysMan->CreateRigidProxy(Mass,TestBox);
-        Rigid04->SetLocation(0.0,0.0,-25.0);// 25 units in front of.
-        Rigid04->AddToWorld();
-        Physics::RigidProxy* Rigid05 = PhysMan->CreateRigidProxy(Mass,DoubleScaleTestBox);
-        Rigid05->SetLocation(0.0,-7.5,-50.0);// 50 units in front of and 7.5 units down.
-        Rigid05->SetScale(2.0,2.0,2.0);
-        Rigid05->AddToWorld();
-        Physics::RigidProxy* Rigid06 = PhysMan->CreateRigidProxy(Mass,HalfScaleTestBox);
-        Rigid06->SetLocation(0.0,3.0,-75.0);// 75 units in front of and 3 units up.
-        Rigid06->SetScale(0.5,0.5,0.5);
-        Rigid06->AddToWorld();
-        Physics::RigidProxy* Rigid07 = PhysMan->CreateRigidProxy(Mass,TestBox);
-        Rigid07->SetLocation(50.0,50.0,50.0);// 50 units to the left, up, and back.
-        Rigid07->AddToWorld();
-        Physics::RigidProxy* Rigid08 = PhysMan->CreateRigidProxy(Mass,TestSphere);
-        Rigid08->SetLocation(-50.0,-50.0,-50.0);// 50 units to the right, down, and front.
-        Rigid08->AddToWorld();
-        Physics::RigidProxy* Rigid09 = PhysMan->CreateRigidProxy(Mass,TestSphere);
-        Rigid09->SetLocation(-50.0,50.0,-50.0);// 50 units to the right, up, and front.
-        Rigid09->AddToWorld();
-        Physics::RigidProxy* Rigid10 = PhysMan->CreateRigidProxy(Mass,TestSphere);
-        Rigid10->SetLocation(4.0,4.0,25.0);// 4 units to the left and up, and 25 units behind.
-        Rigid10->AddToWorld();
-        Physics::RigidProxy* Rigid11 = PhysMan->CreateRigidProxy(Mass,TestSphere);
-        Rigid11->SetLocation(-4.0,-4.0,50.0);// 4 units to the right and down, and 50 units behind.
-        Rigid11->AddToWorld();
-        Physics::RigidProxy* Rigid12 = PhysMan->CreateRigidProxy(Mass,DoubleScaleTestSphere);
-        Rigid12->SetLocation(5.0,100.0,5.0);// 5 units to the left and back, and 100 units up.
-        Rigid12->SetScale(2.0,2.0,2.0);
-        Rigid12->AddToWorld();
+        Graphics::EntityProxy* Entity01 = SceneMan->CreateEntityProxy(TestBox);
+        Entity01->SetLocation(25.0,0.0,0.0);// 25 units to the left.
+        Entity01->AddToWorld();
+        Graphics::EntityProxy* Entity02 = SceneMan->CreateEntityProxy(TestBox);
+        Entity02->SetLocation(-25.0,0.0,0.0);// 25 units to the right.
+        Entity02->AddToWorld();
+        Graphics::EntityProxy* Entity03 = SceneMan->CreateEntityProxy(TestBox);
+        Entity03->SetLocation(0.0,25.0,0.0);// 25 units above.
+        Entity03->AddToWorld();
+        Graphics::EntityProxy* Entity04 = SceneMan->CreateEntityProxy(TestBox);
+        Entity04->SetLocation(0.0,0.0,-25.0);// 25 units in front of.
+        Entity04->AddToWorld();
+        Graphics::EntityProxy* Entity05 = SceneMan->CreateEntityProxy(TestBox);
+        Entity05->SetLocation(0.0,-7.5,-50.0);// 50 units in front of and 7.5 units down.
+        Entity05->SetScale(2.0,2.0,2.0);
+        Entity05->AddToWorld();
+        Graphics::EntityProxy* Entity06 = SceneMan->CreateEntityProxy(TestBox);
+        Entity06->SetLocation(0.0,3.0,-75.0);// 75 units in front of and 3 units up.
+        Entity06->SetScale(0.5,0.5,0.5);
+        Entity06->AddToWorld();
+        Graphics::EntityProxy* Entity07 = SceneMan->CreateEntityProxy(TestBox);
+        Entity07->SetLocation(50.0,50.0,50.0);// 50 units to the left, up, and back.
+        Entity07->AddToWorld();
+        Graphics::EntityProxy* Entity08 = SceneMan->CreateEntityProxy(TestSphere);
+        Entity08->SetLocation(-50.0,-50.0,-50.0);// 50 units to the right, down, and front.
+        Entity08->AddToWorld();
+        Graphics::EntityProxy* Entity09 = SceneMan->CreateEntityProxy(TestSphere);
+        Entity09->SetLocation(-50.0,50.0,-50.0);// 50 units to the right, up, and front.
+        Entity09->AddToWorld();
+        Graphics::EntityProxy* Entity10 = SceneMan->CreateEntityProxy(TestSphere);
+        Entity10->SetLocation(4.0,4.0,25.0);// 4 units to the left and up, and 25 units behind.
+        Entity10->AddToWorld();
+        Graphics::EntityProxy* Entity11 = SceneMan->CreateEntityProxy(TestSphere);
+        Entity11->SetLocation(-4.0,-4.0,50.0);// 4 units to the right and down, and 50 units behind.
+        Entity11->AddToWorld();
+        Graphics::EntityProxy* Entity12 = SceneMan->CreateEntityProxy(TestSphere);
+        Entity12->SetLocation(5.0,100.0,5.0);// 5 units to the left and back, and 100 units up.
+        Entity12->SetScale(2.0,2.0,2.0);
+        Entity12->AddToWorld();
 
-        Physics::GhostProxy* Ghost = PhysMan->CreateGhostProxy(TestSphere);
-        Ghost->SetLocation(75.0,0.0,0.0);
-        Ghost->AddToWorld();
+        Graphics::BillboardSetProxy* BBSet = SceneMan->CreateBillboardSetProxy(1);
+        BBSet->SetLocation(75.0,0.0,0.0);
+        BBSet->SetDefaultDimensions(5.0,5.0);
+        BBSet->CreateBillboard(Vector3(0.0,0.0,0.0));
+        BBSet->AddToWorld();
 
-        Physics::CollidableRayQuery TestRayQuery(PhysMan);
+        GraphicsMan->RenderOneFrame();
+        Graphics::RenderableRayQuery TestRayQuery(SceneMan);
 
         Vector3 ZeroVec(0.0,0.0,0.0);
         {//AABB Tests
@@ -144,8 +156,8 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Unit_X());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Rigid01, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Ghost, 70.0 ),
+                      this->VerifyResult( TestResults[0], Entity01, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], BBSet, 70.0 ),
                       "AABB_Unit_X_RayTest" );
             }//Test 1
 
@@ -153,7 +165,7 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Neg_Unit_X());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 1 &&
-                      this->VerifyResult( TestResults[0], Rigid02, 20.0 ),
+                      this->VerifyResult( TestResults[0], Entity02, 20.0 ),
                       "AABB_Neg_Unit_X_RayTest" );
             }//Test 2
 
@@ -161,8 +173,8 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Unit_Y());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Rigid03, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Rigid12, 90.0 ),
+                      this->VerifyResult( TestResults[0], Entity03, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Entity12, 90.0 ),
                       "AABB_Unit_Y_RayTest" );
             }//Test 3
 
@@ -177,15 +189,15 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Unit_Z());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Rigid10, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Rigid11, 45.0 ),
+                      this->VerifyResult( TestResults[0], Entity10, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Entity11, 45.0 ),
                       "AABB_Unit_Z_RayTest_MultiHit" );
             }//Test 5
 
             {//Test 6
                 Ray AABBTestRay(ZeroVec,Vector3::Unit_Z());
                 RayQueryHit TestResult = TestRayQuery.GetFirstAABBResult(AABBTestRay);
-                TEST( this->VerifyResult( TestResult, Rigid10, 20.0 ),
+                TEST( this->VerifyResult( TestResult, Entity10, 20.0 ),
                       "AABB_Unit_Z_RayTest_SingleHit" );
             }//Test 6
 
@@ -193,34 +205,34 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Neg_Unit_Z());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Rigid04, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Rigid05, 40.0 ),
+                      this->VerifyResult( TestResults[0], Entity04, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Entity05, 40.0 ),
                       "AABB_Neg_Unit_Z_RayTest_MultiHit" );
             }//Test 7
 
             {//Test 8
                 Ray AABBTestRay(ZeroVec,Vector3::Neg_Unit_Z());
                 RayQueryHit TestResult = TestRayQuery.GetFirstAABBResult(AABBTestRay);
-                TEST( this->VerifyResult( TestResult, Rigid04, 20.0 ),
+                TEST( this->VerifyResult( TestResult, Entity04, 20.0 ),
                       "AABB_Neg_Unit_Z_RayTest_SingleHit" );
             }//Test 8
 
             {//Test 9
-                Ray AABBTestRay(ZeroVec,Vector3(1.0,1.0,1.0).Normalize());
+                Ray AABBTestRay(ZeroVec,Vector3(45.0,50.0,50.0).Normalize());//Setting 1,1,1 here doesn't work because Ogre's ray test method is more susceptible to precision loss than Bullet.
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 1 &&
-                      this->VerifyResult( TestResults[0], Rigid07, 77.9422913 ),
+                      this->VerifyResult( TestResults[0], Entity07, 83.8152618 ),
                       "AABB_Unit_X_Y_Z_RayTest" );
             }//Test 9
         }//AABB Tests
 
-        {//Shape Tests
+        {//Shape (mesh) Tests
             {//Test 1
                 Ray ShapeTestRay(ZeroVec,Vector3::Unit_X());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Rigid01, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Ghost, 70.0 ),
+                      this->VerifyResult( TestResults[0], Entity01, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], BBSet, 75.0 ),
                       "Shape_Unit_X_RayTest" );
             }//Test 1
 
@@ -228,7 +240,7 @@ public:
                 Ray ShapeTestRay(ZeroVec,Vector3::Neg_Unit_X());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 1 &&
-                      this->VerifyResult( TestResults[0], Rigid02, 20.0 ),
+                      this->VerifyResult( TestResults[0], Entity02, 20.0 ),
                       "Shape_Neg_Unit_X_RayTest" );
             }//Test 2
 
@@ -236,8 +248,8 @@ public:
                 Ray ShapeTestRay(ZeroVec,Vector3::Unit_Y());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Rigid03, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Rigid12, 92.9289246 ),
+                      this->VerifyResult( TestResults[0], Entity03, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Entity12, 92.9289398 ),
                       "Shape_Unit_Y_RayTest" );
             }//Test 3
 
@@ -266,40 +278,40 @@ public:
                 Ray ShapeTestRay(ZeroVec,Vector3::Neg_Unit_Z());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Rigid04, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Rigid05, 40.0000038 ),// <- This was annoying, 10 epsilons of tolerance couldn't account for this.
+                      this->VerifyResult( TestResults[0], Entity04, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Entity05, 40.0 ),
                       "Shape_Neg_Unit_Z_RayTest_MultiHit" );
             }//Test 7
 
             {//Test 8
                 Ray ShapeTestRay(ZeroVec,Vector3::Neg_Unit_Z());
                 RayQueryHit TestResult = TestRayQuery.GetFirstShapeResult(ShapeTestRay);
-                TEST( this->VerifyResult( TestResult, Rigid04, 20.0 ),
+                TEST( this->VerifyResult( TestResult, Entity04, 20.0 ),
                       "Shape_Neg_Unit_Z_RayTest_SingleHit" );
             }//Test 8
 
             {//Test 9
-                Ray ShapeTestRay(ZeroVec,Vector3(1.0,1.0,1.0).Normalize());
+                Ray ShapeTestRay(ZeroVec,Vector3(45.0,50.0,50.0).Normalize());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 1 &&
-                      this->VerifyResult( TestResults[0], Rigid07, 77.9422836 ),// <- This was the number I math'd in advance for the AABB check.  I suspect the bullet margin is factoring in.
+                      this->VerifyResult( TestResults[0], Entity07, 83.8152695 ),
                       "Shape_Unit_X_Y_Z_RayTest" );
             }//Test 9
-        }//Shape Tests
+        }//Shape (mesh) Tests
 
         {//Utility Tests
             {//Get/SetTypes Test
-                UInt32 ProxFilter = Mezzanine::PT_Physics_GhostProxy;
+                UInt32 ProxFilter = Mezzanine::PT_Graphics_BillboardSetProxy;
                 TestRayQuery.SetProxyTypes(ProxFilter);
                 Ray FilterTestRay(ZeroVec,Vector3::Unit_X());
 
                 RayQuery::ResultContainer MultiTestResult = TestRayQuery.GetAllShapeResults(FilterTestRay);
                 TEST( MultiTestResult.size() == 1 &&
-                      this->VerifyResult( MultiTestResult[0], Ghost, 70.0 ),
+                      this->VerifyResult( MultiTestResult[0], BBSet, 75.0 ),
                       "SetProxyTypes(const_UInt32)_Multi" );
 
                 RayQueryHit SingleTestResult = TestRayQuery.GetFirstShapeResult(FilterTestRay);
-                TEST( this->VerifyResult( SingleTestResult, Ghost, 70.0 ),
+                TEST( this->VerifyResult( SingleTestResult, BBSet, 75.0 ),
                       "SetProxyTypes(const_UInt32)_Single" );
 
                 TEST( TestRayQuery.GetProxyTypes() == ProxFilter,
@@ -309,17 +321,19 @@ public:
             }//Get/SetTypes Test
 
             {//Get/SetQuery Test
-                UInt32 QueryFilter = Physics::CF_SensorFilter;
+                UInt32 QueryFilter = 2;
+                Entity01->SetQueryMask( Entity01->GetQueryMask() & ~QueryFilter );
+                BBSet->SetQueryMask( QueryFilter );
                 TestRayQuery.SetQueryFilter(QueryFilter);
                 Ray FilterTestRay(ZeroVec,Vector3::Unit_X());
 
                 RayQuery::ResultContainer MultiTestResult = TestRayQuery.GetAllShapeResults(FilterTestRay);
                 TEST( MultiTestResult.size() == 1 &&
-                      this->VerifyResult( MultiTestResult[0], Ghost, 70.0 ),
+                      this->VerifyResult( MultiTestResult[0], BBSet, 75.0 ),
                       "SetQueryFilter(const_UInt32)_Multi" );
 
                 RayQueryHit SingleTestResult = TestRayQuery.GetFirstShapeResult(FilterTestRay);
-                TEST( this->VerifyResult( SingleTestResult, Ghost, 70.0 ),
+                TEST( this->VerifyResult( SingleTestResult, BBSet, 75.0 ),
                       "SetQueryFilter(const_UInt32)_Single" );
 
                 TEST( TestRayQuery.GetQueryFilter() == QueryFilter,
@@ -330,10 +344,10 @@ public:
         }//Utility Tests
 
         {//Serialize Test
-            String Expected( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Expected( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
-            Physics::CollidableRayQuery TestRayQuery(PhysMan);
+            Graphics::RenderableRayQuery TestRayQuery(SceneMan);
             TestRayQuery.ProtoSerialize(Doc);
             StringStream Buffer;
             Doc.Save(Buffer);
@@ -342,20 +356,20 @@ public:
         }//Serialize Test
 
         {//Deserialize Test
-            String Source( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Source( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             StringStream Buffer;
             Buffer.str(Source);
             Doc.Load(Buffer);
 
-            Physics::CollidableRayQuery TestRayQuery(NULL);// <- This is #Dicey
+            Graphics::RenderableRayQuery TestRayQuery(DummySceneMan);
             TestRayQuery.ProtoDeSerialize(Doc.GetFirstChild());
 
             Boole WorldMatch = TestRayQuery.GetWorld() == TheWorld;
             Boole ProxyTypesMatch = TestRayQuery.GetProxyTypes() == std::numeric_limits<UInt32>::max();
-            Boole CollisionFilterMatch = TestRayQuery.GetQueryFilter() == std::numeric_limits<UInt32>::max();
-            TEST( WorldMatch && ProxyTypesMatch && CollisionFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
+            Boole QueryFilterMatch = TestRayQuery.GetQueryFilter() == std::numeric_limits<UInt32>::max();
+            TEST( WorldMatch && ProxyTypesMatch && QueryFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
         }//Deserialize Test
     }
 
@@ -363,6 +377,6 @@ public:
     /// @return returns true
     virtual bool HasAutomaticTests() const
         { return true; }
-};//collidableRayQuery
+};//renderablerayquerytests
 
 #endif
