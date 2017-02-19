@@ -403,6 +403,7 @@ namespace Mezzanine
             QueryFilter(std::numeric_limits<UInt32>::max())
         {
             this->QueryTool = ToQuery->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(),Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+            this->QueryTool->setQueryTypeMask(std::numeric_limits<UInt32>::max());
             this->QueryTool->setSortByDistance(true);
         }
 
@@ -442,9 +443,9 @@ namespace Mezzanine
         RayQueryHit RenderableRayQuery::GetFirstAABBResult(const Ray& Cast) const
         {
             AABBQueryListener QueryListener(Cast,this->ProxyTypesFilter);
-            QueryTool->setQueryTypeMask(this->QueryFilter);
-            QueryTool->setRay(Cast.GetOgreRay());
-            QueryTool->execute(&QueryListener);
+            this->QueryTool->setQueryMask(this->QueryFilter);
+            this->QueryTool->setRay(Cast.GetOgreRay());
+            this->QueryTool->execute(&QueryListener);
 
             QueryListener.SortResults();
             if( QueryListener.GetResults().size() > 0 ) {
@@ -458,12 +459,14 @@ namespace Mezzanine
         RayQuery::ResultContainer RenderableRayQuery::GetAllAABBResults(const Ray& Cast, const Whole Limit) const
         {
             AABBQueryListener QueryListener(Cast,this->ProxyTypesFilter);
-            QueryTool->setQueryTypeMask(this->QueryFilter);
-            QueryTool->setRay(Cast.GetOgreRay());
-            QueryTool->setSortByDistance(true,Limit);
-            QueryTool->execute(&QueryListener);
+            this->QueryTool->setQueryMask(this->QueryFilter);
+            this->QueryTool->setRay(Cast.GetOgreRay());
+            this->QueryTool->setSortByDistance(true,Limit);
+            this->QueryTool->execute(&QueryListener);
             QueryListener.SortResults();
-            QueryListener.TruncateResults(Limit);
+            if( Limit > 0 ) {
+                QueryListener.TruncateResults(Limit);
+            }
             return QueryListener.GetResults();
         }
 
@@ -473,9 +476,9 @@ namespace Mezzanine
         RayQueryHit RenderableRayQuery::GetFirstShapeResult(const Ray& Cast) const
         {
             ShapeQueryListener QueryListener(Cast,this->ProxyTypesFilter);
-            QueryTool->setQueryTypeMask(this->QueryFilter);
-            QueryTool->setRay(Cast.GetOgreRay());
-            QueryTool->execute(&QueryListener);
+            this->QueryTool->setQueryMask(this->QueryFilter);
+            this->QueryTool->setRay(Cast.GetOgreRay());
+            this->QueryTool->execute(&QueryListener);
 
             QueryListener.SortResults();
             if( QueryListener.GetResults().size() > 0 ) {
@@ -489,12 +492,14 @@ namespace Mezzanine
         RayQuery::ResultContainer RenderableRayQuery::GetAllShapeResults(const Ray& Cast, const Whole Limit) const
         {
             ShapeQueryListener QueryListener(Cast,this->ProxyTypesFilter);
-            QueryTool->setQueryTypeMask(this->QueryFilter);
-            QueryTool->setRay(Cast.GetOgreRay());
-            QueryTool->setSortByDistance(true,Limit);
-            QueryTool->execute(&QueryListener);
+            this->QueryTool->setQueryMask(this->QueryFilter);
+            this->QueryTool->setRay(Cast.GetOgreRay());
+            this->QueryTool->setSortByDistance(true,Limit);
+            this->QueryTool->execute(&QueryListener);
             QueryListener.SortResults();
-            QueryListener.TruncateResults(Limit);
+            if( Limit > 0 ) {
+                QueryListener.TruncateResults(Limit);
+            }
             return QueryListener.GetResults();
         }
 
@@ -508,7 +513,7 @@ namespace Mezzanine
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
                 SelfRoot.AppendAttribute("WorldName").SetValue( this->GetWorld()->GetName() ) &&
                 SelfRoot.AppendAttribute("ProxyTypesFilter").SetValue( this->GetProxyTypes() ) &&
-                SelfRoot.AppendAttribute("SceneQueryFilter").SetValue( this->GetQueryFilter() ) )
+                SelfRoot.AppendAttribute("QueryFilter").SetValue( this->GetQueryFilter() ) )
             {
                 return;
             }else{
@@ -530,7 +535,7 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetProxyTypes( CurrAttrib.AsUint() );
 
-                    CurrAttrib = SelfRoot.GetAttribute("SceneQueryFilter");
+                    CurrAttrib = SelfRoot.GetAttribute("QueryFilter");
                     if( !CurrAttrib.Empty() )
                         this->SetQueryFilter( CurrAttrib.AsUint() );
                 }else{

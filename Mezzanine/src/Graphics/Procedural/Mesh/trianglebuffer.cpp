@@ -70,6 +70,7 @@
 #include "Graphics/Procedural/Mesh/trianglebuffer.h"
 
 #include "Graphics/meshmanager.h"
+#include "Graphics/mesh.h"
 
 #include "Ogre.h"
 
@@ -113,10 +114,6 @@ namespace Mezzanine
             {
                 Ogre::ManualObject* TempMan = new Ogre::ManualObject("TempMan");
 
-            #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
-                Ogre::Vector3 aabb_min = Ogre::Vector3::ZERO;
-                Ogre::Vector3 aabb_max = Ogre::Vector3::ZERO;
-            #endif
                 if( this->IsUsingSections() ) {
                     for( ConstSectionIterator SectIt = this->Sections.begin() ; SectIt != this->Sections.end() ; ++SectIt )
                     {
@@ -127,14 +124,6 @@ namespace Mezzanine
                             TempMan->position( VertIt->Position.GetOgreVector3() );
                             TempMan->textureCoord( VertIt->UV.GetOgreVector2() );
                             TempMan->normal( VertIt->Normal.GetOgreVector3() );
-                        #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
-                            if( VertIt->Position.X < aabb_min.X ) aabb_min.X = it->Position.X;
-                            if( VertIt->Position.Y < aabb_min.Y ) aabb_min.Y = it->Position.Y;
-                            if( VertIt->Position.Z < aabb_min.Z ) aabb_min.Z = it->Position.Z;
-                            if( VertIt->Position.X > aabb_max.X ) aabb_max.X = it->Position.X;
-                            if( VertIt->Position.Y > aabb_max.Y ) aabb_max.Y = it->Position.Y;
-                            if( VertIt->Position.Z > aabb_max.Z ) aabb_max.z = it->Position.Z;
-                        #endif
                         }
                         const ConstIndexIterator IndicEndIt = this->Indices.begin() + (*SectIt).LastIndex;
                         for( ConstIndexIterator IndicIt = this->Indices.begin() + (*SectIt).FirstIndex ; IndicIt != IndicEndIt ; ++IndicIt )
@@ -148,23 +137,17 @@ namespace Mezzanine
                         TempMan->position( VertIt->Position.GetOgreVector3() );
                         TempMan->textureCoord( VertIt->UV.GetOgreVector2() );
                         TempMan->normal( VertIt->Normal.GetOgreVector3() );
-                    #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
-                        if( VertIt->Position.X < aabb_min.X ) aabb_min.X = it->Position.X;
-                        if( VertIt->Position.Y < aabb_min.Y ) aabb_min.Y = it->Position.Y;
-                        if( VertIt->Position.Z < aabb_min.Z ) aabb_min.Z = it->Position.Z;
-                        if( VertIt->Position.X > aabb_max.X ) aabb_max.X = it->Position.X;
-                        if( VertIt->Position.Y > aabb_max.Y ) aabb_max.Y = it->Position.Y;
-                        if( VertIt->Position.Z > aabb_max.Z ) aabb_max.z = it->Position.Z;
-                    #endif
                     }
                     for( ConstIndexIterator IndIt = this->Indices.begin() ; IndIt != this->Indices.end() ; ++IndIt )
                         { TempMan->index( *IndIt ); }
                     TempMan->end();
                 }
-            #if OGRE_VERSION >= ((2 << 16) | (0 << 8) | 0)
-                TempMan->setLocalAabb( Ogre::Aabb::newFromExtents(aabb_min,aabb_max) );
-            #endif
+
+                // ManualObjects will automatically pad AABBs that they generate.  This can be circumvented by changing some parameters
+                // but those are internal to the method we are calling with no control.  So we must save the AABB and set it after creation.
+                Ogre::AxisAlignedBox MeshAABB = TempMan->getBoundingBox();
                 Mesh* NewMesh = MeshManager::GetSingletonPtr()->_WrapInternalMesh( TempMan->convertToMesh(MeshName,MeshGroup) );
+                NewMesh->_GetInternalMesh()->_setBounds(MeshAABB,false);
                 delete TempMan;
                 return NewMesh;
             }
