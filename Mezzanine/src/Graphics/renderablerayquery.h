@@ -78,6 +78,10 @@ namespace Mezzanine
             UInt32 ProxyTypesFilter;
             /// @brief A filter for categories of graphics objects to return as results.
             UInt32 QueryFilter;
+
+            /// @brief Updates the internal Query tool used by this Query.
+            /// @param NewQuery A pointer to the SceneManager to generate the QueryTool from.
+            void UpdateQueryTool(SceneManager* NewQuery);
         public:
             /// @brief Class constructor.
             /// @param ToQuery A pointer to the SceneManager to be queried.

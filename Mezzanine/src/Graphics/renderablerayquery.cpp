@@ -398,23 +398,37 @@ namespace Mezzanine
         // RenderableRayQuery Methods
 
         RenderableRayQuery::RenderableRayQuery(SceneManager* ToQuery) :
-            SceneMan(ToQuery),
+            SceneMan(NULL),
+            QueryTool(NULL),
             ProxyTypesFilter(std::numeric_limits<UInt32>::max()),
             QueryFilter(std::numeric_limits<UInt32>::max())
-        {
-            this->QueryTool = ToQuery->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(),Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-            this->QueryTool->setQueryTypeMask(std::numeric_limits<UInt32>::max());
-            this->QueryTool->setSortByDistance(true);
-        }
+            { this->UpdateQueryTool(ToQuery); }
 
         RenderableRayQuery::~RenderableRayQuery()
             { this->SceneMan->_GetGraphicsWorldPointer()->destroyQuery(this->QueryTool); }
+
+        void RenderableRayQuery::UpdateQueryTool(SceneManager* NewQuery)
+        {
+            if( this->SceneMan != NewQuery ) {
+                if( this->QueryTool != NULL ) {
+                    this->SceneMan->_GetGraphicsWorldPointer()->destroyQuery(this->QueryTool);
+                    this->QueryTool = NULL;
+                }
+
+                if( NewQuery != NULL ) {
+                    this->QueryTool = NewQuery->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(),Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+                    this->QueryTool->setQueryTypeMask(std::numeric_limits<UInt32>::max());
+                    this->QueryTool->setSortByDistance(true);
+                }
+                this->SceneMan = NewQuery;
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Configuration
 
         void RenderableRayQuery::SetWorld(World* ToQuery)
-            { this->SceneMan = static_cast<SceneManager*>( ToQuery->GetManager(ManagerBase::MT_SceneManager) ); }
+            { this->SetManager( static_cast<SceneManager*>( ToQuery->GetManager(ManagerBase::MT_SceneManager) ) ); }
 
         World* RenderableRayQuery::GetWorld() const
             { return this->SceneMan->GetWorld(); }
@@ -432,7 +446,7 @@ namespace Mezzanine
             { return this->QueryFilter; }
 
         void RenderableRayQuery::SetManager(SceneManager* Manager)
-            { this->SceneMan = Manager; }
+            { this->UpdateQueryTool(Manager); }
 
         SceneManager* RenderableRayQuery::GetManager() const
             { return this->SceneMan; }

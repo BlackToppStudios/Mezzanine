@@ -82,13 +82,11 @@ public:
     {
         Entresol TheEntresol;
         World* TheWorld = TheEntresol.CreateWorld("RenderableRayTestWorld");
-        World* DummyWorld = TheEntresol.CreateWorld("DummyWorld");
         Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( TheEntresol.GetManager(ManagerBase::MT_GraphicsManager) );
         Graphics::GameWindow* TestWindow = GraphicsMan->CreateGameWindow("Test",10,10,Graphics::GameWindow::WF_Hidden);
         Graphics::Viewport* TestViewport = TestWindow->CreateViewport(NULL,0);
         TheEntresol.Initialize(true);
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( TheWorld->GetManager(ManagerBase::MT_SceneManager) );
-        Graphics::SceneManager* DummySceneMan = static_cast<Graphics::SceneManager*>( DummyWorld->GetManager(ManagerBase::MT_SceneManager) );
 
         Graphics::CameraProxy* TestCamera = SceneMan->CreateCamera();
         TestCamera->SetLocation(200.0,-200.0,200.0);
@@ -363,7 +361,7 @@ public:
             Buffer.str(Source);
             Doc.Load(Buffer);
 
-            Graphics::RenderableRayQuery TestRayQuery(DummySceneMan);
+            Graphics::RenderableRayQuery TestRayQuery(NULL);// <- This is #Dicey
             TestRayQuery.ProtoDeSerialize(Doc.GetFirstChild());
 
             Boole WorldMatch = TestRayQuery.GetWorld() == TheWorld;
