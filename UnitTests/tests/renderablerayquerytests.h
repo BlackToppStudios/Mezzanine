@@ -46,7 +46,6 @@
 #include "world.h"
 #include "Graphics/graphics.h"
 
-#include "sstream"
 #include <stdexcept> //only used to throw for TEST_THROW
 
 /// @file
@@ -71,9 +70,9 @@ public:
     /// @return Returns true if the result contains the values we expect, false otherwise.
     Boole VerifyResult(const RayQueryHit& Result, WorldProxy* ExpectedProxy, Real ExpectedDistance)
     {
-        /// @todo The distance comparison may need to be swapped with something that has more leeway than n-epsilons.
         Boole ObjectMatch = ( Result.Object == ExpectedProxy );
-        Boole DistanceMatch = CompareEqualityWithEpsilon(Result.Distance,ExpectedDistance,5);
+        Boole DistanceMatch = ( Result.Distance < ExpectedDistance + 0.00001 ) && ( Result.Distance > ExpectedDistance - 0.00001 );
+        //Boole DistanceMatch = CompareEqualityWithEpsilon(Result.Distance,ExpectedDistance,5);
         return ( ObjectMatch && DistanceMatch );
     }
 

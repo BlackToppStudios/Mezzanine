@@ -59,8 +59,6 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        const Real RayCastDist = 15000.0;
-
         ///////////////////////////////////////////////////////////////////////////////
         // BroadphaseOnlyCallback Methods
 
@@ -114,7 +112,8 @@ namespace Mezzanine
                 AxisAlignedBox ProxyAABB( Vector3(proxy->m_aabbMin), Vector3(proxy->m_aabbMax) );
                 Ray ToProxyRay( Vector3(this->m_rayFromWorld), Vector3(this->m_rayFromWorld).GetDirection( Vector3(this->m_rayToWorld) ) );
                 MathTools::GeometryRayTestResult Result = MathTools::Intersects(ProxyAABB,ToProxyRay);
-                btScalar BtHitFraction = ( this->m_rayFromWorld.distance( Result.second.PointA.GetBulletVector3() ) / RayCastDist );
+                btScalar BtHitFraction = ( this->m_rayFromWorld.distance( Result.second.PointA.GetBulletVector3() ) /
+                                           this->m_rayFromWorld.distance( this->m_rayToWorld ) );
 
                 btCollisionWorld::LocalRayResult RayResult( collisionObject,
                                                             &ShapeInfo,
@@ -251,6 +250,7 @@ namespace Mezzanine
 
         CollidableRayQuery::CollidableRayQuery(PhysicsManager* ToQuery) :
             PhysicsMan(ToQuery),
+            RayCastLength(15000),
             ProxyTypesFilter(std::numeric_limits<UInt32>::max()),
             ColFilter(std::numeric_limits<UInt32>::max())
             {  }
@@ -276,6 +276,12 @@ namespace Mezzanine
         UInt32 CollidableRayQuery::GetQueryFilter() const
             { return this->ColFilter; }
 
+        void CollidableRayQuery::SetRayLength(const Real Length)
+            { this->RayCastLength = Length; }
+
+        Real CollidableRayQuery::GetRayLength() const
+            { return this->RayCastLength; }
+
         void CollidableRayQuery::SetManager(PhysicsManager* Manager)
             { this->PhysicsMan = Manager; }
 
@@ -289,7 +295,7 @@ namespace Mezzanine
         {
             RayQueryHit Ret;
             btVector3 Start = Cast.Origin.GetBulletVector3();
-            btVector3 End = Cast.GetPointAtDistance(RayCastDist).GetBulletVector3();
+            btVector3 End = Cast.GetPointAtDistance(this->RayCastLength).GetBulletVector3();
 
             btCollisionWorld* InternalWorld = this->PhysicsMan->_GetPhysicsWorldPointer();
             btBroadphaseInterface* Broadphase = InternalWorld->getBroadphase();
@@ -315,7 +321,7 @@ namespace Mezzanine
         {
             RayQueryHit Ret;
             btVector3 Start = Cast.Origin.GetBulletVector3();
-            btVector3 End = Cast.GetPointAtDistance(RayCastDist).GetBulletVector3();
+            btVector3 End = Cast.GetPointAtDistance(this->RayCastLength).GetBulletVector3();
 
             btCollisionWorld* InternalWorld = this->PhysicsMan->_GetPhysicsWorldPointer();
             btBroadphaseInterface* Broadphase = InternalWorld->getBroadphase();
@@ -340,7 +346,7 @@ namespace Mezzanine
         {
             RayQueryHit Ret;
             btVector3 Start = Cast.Origin.GetBulletVector3();
-            btVector3 End = Cast.GetPointAtDistance(RayCastDist).GetBulletVector3();
+            btVector3 End = Cast.GetPointAtDistance(this->RayCastLength).GetBulletVector3();
 
             btCollisionWorld* InternalWorld = this->PhysicsMan->_GetPhysicsWorldPointer();
             SingleHitRayCallback RayCallback(Start,End,this->ProxyTypesFilter);
@@ -363,7 +369,7 @@ namespace Mezzanine
         RayQuery::ResultContainer CollidableRayQuery::GetAllShapeResults(const Ray& Cast, const Whole Limit) const
         {
             btVector3 Start = Cast.Origin.GetBulletVector3();
-            btVector3 End = Cast.GetPointAtDistance(RayCastDist).GetBulletVector3();
+            btVector3 End = Cast.GetPointAtDistance(this->RayCastLength).GetBulletVector3();
 
             btCollisionWorld* InternalWorld = this->PhysicsMan->_GetPhysicsWorldPointer();
             MultiHitRayCallback RayCallback(Start,End,this->ProxyTypesFilter);
@@ -388,6 +394,7 @@ namespace Mezzanine
 
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
                 SelfRoot.AppendAttribute("WorldName").SetValue( this->GetWorld()->GetName() ) &&
+                SelfRoot.AppendAttribute("RayCastLength").SetValue( this->GetRayLength() ) &&
                 SelfRoot.AppendAttribute("ProxyTypesFilter").SetValue( this->GetProxyTypes() ) &&
                 SelfRoot.AppendAttribute("QueryFilter").SetValue( this->GetQueryFilter() ) )
             {
@@ -406,6 +413,10 @@ namespace Mezzanine
                     CurrAttrib = SelfRoot.GetAttribute("WorldName");
                     if( !CurrAttrib.Empty() )
                         this->SetWorld( Entresol::GetSingletonPtr()->GetWorld( CurrAttrib.AsString() ) );
+
+                    CurrAttrib = SelfRoot.GetAttribute("RayCastLength");
+                    if( !CurrAttrib.Empty() )
+                        this->SetRayLength( CurrAttrib.AsReal() );
 
                     CurrAttrib = SelfRoot.GetAttribute("ProxyTypesFilter");
                     if( !CurrAttrib.Empty() )

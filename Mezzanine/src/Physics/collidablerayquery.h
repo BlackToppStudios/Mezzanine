@@ -55,6 +55,8 @@ namespace Mezzanine
         protected:
             /// @brief A pointer to the PhysicsManager to be queried.
             PhysicsManager* PhysicsMan;
+            /// @brief The length of the line segment to use for the "ray" query.
+            Real RayCastLength;
             /// @brief A mask of the types of objects to return as results.
             UInt32 ProxyTypesFilter;
             /// @brief A filter for categories of physics objects to return as results.
@@ -85,6 +87,17 @@ namespace Mezzanine
             /// @remarks This method returns a CollisionFilter enum. @n
             /// Internally, only 16 bits of the field are used (unsigned short).
             virtual UInt32 GetQueryFilter() const;
+
+            /// @brief Sets the length of the ray to be cast in the physics world.
+            /// @details In pure geometry terms, rays do not have lengths.  Only start points and directions.  However
+            /// internally this RayQuery uses Bullet, and Bullet performs it's ray queries with a start and an end.  So
+            /// line segments, essentially.  This allows you to configure the length of the rays to be cast.  Default:
+            /// 15000.
+            /// @param Length The length that will be applied to the start point of the ray to determine the end point.
+            void SetRayLength(const Real Length);
+            /// @brief Gets the length of the ray to be cast in the physics world.
+            /// @return Returns a Real representing the current length of the ray to be cast in the world.
+            Real GetRayLength() const;
 
             /// @brief Sets the pointer to the manager being used to perform the Ray query.
             /// @param Manager A pointer to the PhysicsManager to be queried.

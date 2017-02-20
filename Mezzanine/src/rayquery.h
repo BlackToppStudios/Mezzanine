@@ -69,7 +69,8 @@ namespace Mezzanine
         /// @brief Struct constructor.
         RayQueryHit() :
             Distance(0.0),
-            SubObject(-1)
+            SubObject(-1),
+            Object(NULL)
             {  }
         /// @brief Struct destructor.
         ~RayQueryHit() = default;
