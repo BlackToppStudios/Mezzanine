@@ -96,10 +96,10 @@ namespace Mezzanine
         /// @brief Copy constructor.
         /// @param Other The other AssetID to copy from.
         AssetID(const AssetID& Other) :
-            SourceType(Other.SourceType),
-            StreamDesc(Other.StreamDesc),
             GroupName(Other.GroupName),
-            Identifier(Other.Identifier)
+            Identifier(Other.Identifier),
+            SourceType(Other.SourceType),
+            StreamDesc(Other.StreamDesc)
             {  }
         /// @brief Move constructor.
         /// @param Other The other AssetID to be moved.
@@ -121,17 +121,17 @@ namespace Mezzanine
         /// @param Source The type of storage the asset is being streamed from.
         /// @param ID The unique identifier for the asset.
         AssetID(const AssetSourceType Source, const String& ID) :
-            SourceType(Source),
-            Identifier(ID)
+            Identifier(ID),
+            SourceType(Source)
             {  }
         /// @brief Non-Group constructor.
         /// @param Source The type of storage the asset is being streamed from.
         /// @param Stream Additional details for the stream to the asset.
         /// @param ID The unique identifier for the asset.
         AssetID(const AssetSourceType Source, const AssetStreamDesc Stream, const String& ID) :
+            Identifier(ID),
             SourceType(Source),
-            StreamDesc(Stream),
-            Identifier(ID)
+            StreamDesc(Stream)
             {  }
         /// @brief Complete constructor.
         /// @param Source The type of storage the asset is being streamed from.
@@ -139,10 +139,10 @@ namespace Mezzanine
         /// @param ID The unique identifier for the asset.
         /// @param Group The resource group where the asset can be found.
         AssetID(const AssetSourceType Source, const AssetStreamDesc Stream, const String& ID, const String& Group) :
-            SourceType(Source),
-            StreamDesc(Stream),
             GroupName(Group),
-            Identifier(ID)
+            Identifier(ID),
+            SourceType(Source),
+            StreamDesc(Stream)
             {  }
         /// @brief Serialization constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
