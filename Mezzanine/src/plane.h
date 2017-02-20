@@ -86,7 +86,10 @@ namespace Mezzanine
         Plane();
         /// @brief Copy constructor.
         /// @param Other The other plane to copy from.
-        Plane(const Plane& Other);
+        Plane(const Plane& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other plane to move.
+        Plane(Plane&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param Norm The positive direction of the plane.
         /// @param Constant The Constant distance of the origin with which to project the plane.
@@ -190,7 +193,12 @@ namespace Mezzanine
 
         /// @brief Assignment operator.
         /// @param Other The other Plane to copy from.
-        void operator=(const Plane& Other);
+        /// @return Returns a reference to this.
+        Plane& operator=(const Plane& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Plane to move.
+        /// @return Returns a reference to this.
+        Plane& operator=(Plane&& Other) = default;
 
         /// @brief The assignment operator from Ogre::Plane to Mezzanine::Plane.
         /// @param InternalPlane The Ogre::Plane to take data from.

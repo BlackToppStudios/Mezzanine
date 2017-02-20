@@ -72,14 +72,17 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        LineSegment2D();
+        LineSegment2D() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other line segment to copy.
+        LineSegment2D(const LineSegment2D& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other line segment to move.
+        LineSegment2D(LineSegment2D&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param A The first point defining the segment.
         /// @param B The second point defining the segment.
         LineSegment2D(const Vector2& A, const Vector2& B);
-        /// @brief Copy constructor.
-        /// @param Other The other line segment to copy from.
-        LineSegment2D(const LineSegment2D& Other);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -93,8 +96,13 @@ namespace Mezzanine
         // Operators
 
         /// @brief Assignment operator.
-        /// @param Other The other line segment to copy from.
-        void operator=(const LineSegment2D& Other);
+        /// @param Other The other line segment to copy.
+        /// @return Returns a reference to this.
+        LineSegment2D& operator=(const LineSegment2D& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other line segment to move.
+        /// @return Returns a reference to this.
+        LineSegment2D& operator=(LineSegment2D&& Other) = default;
         /// @brief Equality comparison operator.
         /// @param Other The other line segment to compare with.
         /// @return Returns true if the two line segments are equal, false otherwise.
@@ -123,14 +131,17 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        LineSegment3D();
+        LineSegment3D() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other line segment to copy.
+        LineSegment3D(const LineSegment3D& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other line segment to move.
+        LineSegment3D(LineSegment3D&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param A The first point defining the segment.
         /// @param B The second point defining the segment.
         LineSegment3D(const Vector3& A, const Vector3& B);
-        /// @brief Copy constructor.
-        /// @param Other The other line segment to copy from.
-        LineSegment3D(const LineSegment3D& Other);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -147,8 +158,13 @@ namespace Mezzanine
         // Operators
 
         /// @brief Assignment operator.
-        /// @param Other The other line segment to copy from.
-        void operator=(const LineSegment3D& Other);
+        /// @param Other The other line segment to copy.
+        /// @return Returns a reference to this.
+        LineSegment3D& operator=(const LineSegment3D& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other line segment to move.
+        /// @return Returns a reference to this.
+        LineSegment3D& operator=(LineSegment3D&& Other) = default;
         /// @brief Equality comparison operator.
         /// @param Other The other line segment to compare with.
         /// @return Returns true if the two line segments are equal, false otherwise.

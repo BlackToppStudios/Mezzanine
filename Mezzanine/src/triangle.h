@@ -69,7 +69,13 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        Triangle2D();
+        Triangle2D() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other triangle to be copied.
+        Triangle2D(const Triangle2D& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other triangle to be moved.
+        Triangle2D(Triangle2D&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param A The first point in space making the triangle.
         /// @param B The second point in space making the triangle.
@@ -78,6 +84,15 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
+
+        /// @brief Assignment Operator.
+        /// @param Other The other Triangle2D to copy.
+        /// @return Returns a reference to this.
+        Triangle2D& operator=(const Triangle2D& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Triangle2D to move.
+        /// @return Returns a reference to this.
+        Triangle2D& operator=(Triangle2D&& Other) = default;
 
         /// @brief Gets the point in this triangle corresponding to the specified index.
         /// @exception If the index passed in is greater than 2, a PARAMETERS_RANGE_EXCEPTION will be thrown.
@@ -116,10 +131,13 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        Triangle3D();
+        Triangle3D() = default;
         /// @brief Copy constructor.
-        /// @param Other The other Triangle3D to be copied.
-        Triangle3D(const Triangle3D& Other);
+        /// @param Other The other triangle to be copied.
+        Triangle3D(const Triangle3D& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other triangle to be moved.
+        Triangle3D(Triangle3D&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param A The first point in space making the triangle.
         /// @param B The second point in space making the triangle.
@@ -153,8 +171,13 @@ namespace Mezzanine
         // Operators
 
         /// @brief Assignment Operator.
-        /// @param Other The other Triangle3D to copy from.
-        void operator=(const Triangle3D& Other);
+        /// @param Other The other Triangle3D to copy.
+        /// @return Returns a reference to this.
+        Triangle3D& operator=(const Triangle3D& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Triangle3D to move.
+        /// @return Returns a reference to this.
+        Triangle3D& operator=(Triangle3D&& Other) = default;
         /// @brief Equality comparison operator.
         /// @param Other The other Triangle3D to compare to.
         /// @return Returns true if the two Triangle3D's are equal, false otherwise.

@@ -57,14 +57,6 @@
 
 namespace Mezzanine
 {
-    AxisAlignedBox::AxisAlignedBox()
-        {  }
-
-    AxisAlignedBox::AxisAlignedBox(const AxisAlignedBox& Other) :
-        MinExt(Other.MinExt),
-        MaxExt(Other.MaxExt)
-        {  }
-
     AxisAlignedBox::AxisAlignedBox(const Vector3& Min, const Vector3& Max) :
         MinExt(Min),
         MaxExt(Max)
@@ -237,9 +229,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
-
-    void AxisAlignedBox::operator=(const AxisAlignedBox& Other)
-        { this->MinExt = Other.MinExt;  this->MaxExt = Other.MaxExt; }
 
     void AxisAlignedBox::operator=(const Ogre::AxisAlignedBox& InternalAABB)
         { this->ExtractOgreAABB(InternalAABB); }

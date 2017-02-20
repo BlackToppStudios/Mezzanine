@@ -67,8 +67,6 @@ namespace Mezzanine
 {
     class Quaternion;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Vector3
-    /// @headerfile vector3.h
     /// @brief This is used to represent a point in space, or a vector through space
     /// @details This contains an X, Y and a Z value used to represent coordinates.
     /// This also has a number of facilities to make converting from Physics subsystem
@@ -126,6 +124,12 @@ namespace Mezzanine
         /// @brief Default Constructor.
         /// @details Basic all zero initialization constructor.
         Vector3();
+        /// @brief Copy Constructor.
+        /// @param Other The other Vector3 to be copied.
+        Vector3(const Mezzanine::Vector3& Other) = default;
+        /// @brief Move Constructor.
+        /// @param Other The other Vector3 to be moved.
+        Vector3(Mezzanine::Vector3&& Other) = default;
         /// @brief Real value Constructor.
         /// @details Constructor that sets all three vectors.
         /// @param X Coordinate on the X vector.
@@ -140,9 +144,6 @@ namespace Mezzanine
         /// @details Constructor that sets all values to match the Bullet vector.
         /// @param Vec The vector to be copied to make this vector.
         explicit Vector3(const btVector3& Vec);
-        /// @brief Copy Constructor
-        /// @param Vec The other Mezzanine::Vector3 to copy to make this one.
-        Vector3(const Mezzanine::Vector3& Vec);
         /// @brief Deserializing constructor
         /// @param OneNode The XML node to deserialize from.
         explicit Vector3(XML::Node OneNode);
@@ -180,16 +181,25 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Assignment Operators
 
+        /// @brief Assignment operator.
+        /// @param Other The other Vector3 to be copied.
+        /// @return Returns a reference to this.
+        Vector3& operator=(const Mezzanine::Vector3& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Vector3 to be moved.
+        /// @return Returns a reference to this.
+        Vector3& operator=(Mezzanine::Vector3&& Other) = default;
+
         /// @brief Assignment operator to convert from Bullet Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
         /// @param Vec This is a btVector3 that will be copied
         /// @return A reference to the assigned Vector3 to allow chained expresions
-        Vector3& operator= (const btVector3 &Vec);
+        Vector3& operator=(const btVector3 &Vec);
         /// @brief Assignment operator to convert from Ogre Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
         /// @param Vec This is a Ogre::Vector3 that will be copied.
         /// @return A reference to the assigned Vector3 to allow chained expresions
-        Vector3& operator= (const Ogre::Vector3 &Vec);
+        Vector3& operator=(const Ogre::Vector3 &Vec);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Unary Operators

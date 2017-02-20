@@ -60,11 +60,6 @@ namespace Mezzanine
         Radius(0)
         {  }
 
-    Sphere::Sphere(const Sphere& Other) :
-        Center(Other.Center),
-        Radius(Other.Radius)
-        {  }
-
     Sphere::Sphere(const Real SphereRadius) :
         Radius(SphereRadius)
         {  }
@@ -157,9 +152,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
-
-    void Sphere::operator=(const Sphere& Other)
-        { this->Center = Other.Center;  this->Radius = Other.Radius; }
 
     void Sphere::operator=(const Ogre::Sphere& InternalSphere)
         { this->ExtractOgreSphere(InternalSphere); }

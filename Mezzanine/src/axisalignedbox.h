@@ -105,10 +105,13 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        AxisAlignedBox();
+        AxisAlignedBox() = default;
         /// @brief Copy constructor.
         /// @param Other The other AABB to copy.
-        AxisAlignedBox(const AxisAlignedBox& Other);
+        AxisAlignedBox(const AxisAlignedBox& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other AABB to move.
+        AxisAlignedBox(AxisAlignedBox&& Other) = default;
         /// @brief Extents constructor.
         /// @param Min The minimum extents on each axis in world space.
         /// @param Max The maximum extents on each axis in world space.
@@ -218,8 +221,13 @@ namespace Mezzanine
         // Operators
 
         /// @brief Assignment operator.
-        /// @param Other The other AABB to copy from.
-        void operator=(const AxisAlignedBox& Other);
+        /// @param Other The other AABB to copy.
+        /// @return Returns a reference to this.
+        AxisAlignedBox& operator=(const AxisAlignedBox& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other AABB to move.
+        /// @return Returns a reference to this.
+        AxisAlignedBox& operator=(AxisAlignedBox&& Other) = default;
 
         /// @brief The assignment operator from Ogre::AxisAlignedBox to Mezzanine::AxisAlignedBox.
         /// @param InternalAABB The Ogre::AxisAlignedBox to take data from.

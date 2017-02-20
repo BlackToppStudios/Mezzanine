@@ -118,9 +118,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction
 
-    Triangle2D::Triangle2D()
-        {  }
-
     Triangle2D::Triangle2D(const Vector2& A, const Vector2& B, const Vector2& C) :
         PointA(A),
         PointB(B),
@@ -161,15 +158,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction
-
-    Triangle3D::Triangle3D()
-        {  }
-
-    Triangle3D::Triangle3D(const Triangle3D& Other) :
-        PointA(Other.PointA),
-        PointB(Other.PointB),
-        PointC(Other.PointC)
-        {  }
 
     Triangle3D::Triangle3D(const Vector3& A, const Vector3& B, const Vector3& C) :
         PointA(A),
@@ -306,13 +294,6 @@ namespace Mezzanine
         Vector3 Normal = ( B - A ).CrossProduct( C - A );
         Normal.Normalize();
         return Normal;
-    }
-
-    void Triangle3D::operator=(const Triangle3D& Other)
-    {
-        this->PointA = Other.PointA;
-        this->PointB = Other.PointB;
-        this->PointC = Other.PointC;
     }
 
     Boole Triangle3D::operator==(const Triangle3D& Other) const

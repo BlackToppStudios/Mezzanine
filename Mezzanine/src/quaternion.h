@@ -86,8 +86,13 @@ namespace Mezzanine
         /// @brief Blank Constructor.
         /// @details Basic no-initialization constructor.
         Quaternion();
+        /// @brief Copy Constructor.
+        /// @param Other The other Quaternion to be copied.
+        Quaternion(const Mezzanine::Quaternion& Other) = default;
+        /// @brief Move Constructor.
+        /// @param Other The other Quaternion to be moved.
+        Quaternion(Mezzanine::Quaternion&& Other) = default;
         /// @brief Constructor.
-        /// @details Constructor that sets all four axis' of rotation.
         /// @param X The X component of the Axis.
         /// @param Y The Y component of the Axis.
         /// @param Z The Z component of the Axis.
@@ -118,9 +123,6 @@ namespace Mezzanine
         /// @details Constructor that sets all values to match the Ogre quaternion.
         /// @param Theirs The quaternion to be copied to make this quaternion.
         explicit Quaternion(const Ogre::Quaternion& Theirs);
-        /// @brief Copy Constructor.
-        /// @param Other The Quaternion to copy.
-        Quaternion(const Mezzanine::Quaternion& Other);
         /// @brief XML Constructor.
         /// @param OneNode The XML node to deserialize from.
         explicit Quaternion(const XML::Node& OneNode);
@@ -304,18 +306,22 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Assignment Operators
 
-        /// @brief Assignment Operator from Mezzanine::Quaternion.
-        /// @param Other The other quaternion to overwrite this one.
-        /// @return This Quaternion after being assigned fresh values.
-        Quaternion& operator= (const Mezzanine::Quaternion& Other);
+        /// @brief Assignment Operator.
+        /// @param Other The other Quaternion to be copied.
+        /// @return Returns a reference to this.
+        Quaternion& operator=(const Mezzanine::Quaternion& Other) = default;
+        /// @brief Move assignment Operator.
+        /// @param Other The other Quaternion to be moved.
+        /// @return Returns a reference to this.
+        Quaternion& operator=(Mezzanine::Quaternion&& Other) = default;
         /// @brief Assignment Operator from Ogre::Quaternion.
-        /// @param Other The other quaternion to overwrite this one.
-        /// @return This Quaternion after being assigned fresh values.
-        Quaternion& operator= (const Ogre::Quaternion& Other);
+        /// @param Other The other Quaternion to be copied.
+        /// @return Returns a reference to this.
+        Quaternion& operator=(const Ogre::Quaternion& Other);
         /// @brief Assignment Operator from btQuaternion.
-        /// @param Other The other quaternion to overwrite this one.
-        /// @return This Quaternion after being assigned fresh values.
-        Quaternion& operator= (const btQuaternion& Other);
+        /// @param Other The other Quaternion to be copied.
+        /// @return Returns a reference to this.
+        Quaternion& operator=(const btQuaternion& Other);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Equality Comparison Operators

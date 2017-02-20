@@ -61,105 +61,117 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB Transform
     {
-        public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Data Members
-            /// @brief The location or relative location is stored in a Vector3
-            Vector3 Location;
+    public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Data Members
 
-            /// @brief The Rotation or relative rotation is stored in a Quaternion.
-            Quaternion Rotation;
+        /// @brief The location or relative location is stored in a Vector3
+        Vector3 Location;
+        /// @brief The Rotation or relative rotation is stored in a Quaternion.
+        Quaternion Rotation;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Creation
-            /// @brief The multipurpose constructor
-            /// @param Vec The starting Vector#/Location you would like this transform to have. If not passed, a default Vector3 is used.
-            /// @param Quat The starting Quaternion/Rotation you would like this transform to have. If not passed, a default Quaternion is used.
-            Transform(const Vector3& Vec = Vector3(), const Quaternion& Quat = Quaternion());
+        ///////////////////////////////////////////////////////////////////////////////
+        // Creation
 
-            /// @brief The Conversion Constructor
-            /// @param Btt The btTransform from bullet physics.
-            Transform(const btTransform& Btt);
+        /// @brief Identity init constructor.
+        Transform() = default;
+        /// @brief Copy constructor.
+        /// @param TheOther Another Transform to be copied.
+        Transform(const Transform& TheOther) = default;
+        /// @brief Move constructor.
+        /// @param TheOther Another Transform to be moved.
+        Transform(Transform&& TheOther) = default;
 
-            /// @brief The copy constructor
-            /// @param TheOther Another Transform to be copied
-            Transform(const Transform& TheOther);
+        /// @brief Vector constructor.
+        /// @param Vec The starting Vector3/Location you would like this transform to have.
+        Transform(const Vector3& Vec);
+        /// @brief Descriptive constructor.
+        /// @param Vec The starting Vector3/Location you would like this transform to have.
+        /// @param Quat The starting Quaternion/Rotation you would like this transform to have.
+        Transform(const Vector3& Vec, const Quaternion& Quat);
+        /// @brief The Conversion Constructor.
+        /// @param Btt The btTransform from bullet physics.
+        Transform(const btTransform& Btt);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utilities
-            /// @brief Sets default construction values for all members.
-            void SetIdentity();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utilities
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Conversion
-            /// @brief Gets a Bullet Transform
-            /// @details Creates a Bullet Transform with values equal to this class instance and returns it.
-            btTransform GetBulletTransform() const;
-            /// @brief Copies an existing Bullet transform
-            /// @details This function will copy the values stored in an existing Bullet transform
-            /// and set the values of this class instance to be the same.
-            /// @param temp The btTransfrom to have its values extracted.
-            void ExtractBulletTransform(const btTransform& temp);
+        /// @brief Sets default construction values for all members.
+        void SetIdentity();
 
-            /// @brief Set the values of this Transform to match an existing Transform
-            /// @param rhs The item storing the values to copy.
-            /// @return A reference to the freshly overwritten Transform.
-            Transform& operator= (const Transform& rhs);
-            /// @brief Set the values of this Transform to match an existing btTransform.
-            /// @param rhs The item storing the values to copy.
-            /// @return A reference to the freshly overwritten Transform.
-            Transform& operator= (const btTransform& rhs);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Conversion
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
+        /// @brief Gets a Bullet Transform
+        /// @details Creates a Bullet Transform with values equal to this class instance and returns it.
+        btTransform GetBulletTransform() const;
+        /// @brief Copies an existing Bullet transform
+        /// @details This function will copy the values stored in an existing Bullet transform
+        /// and set the values of this class instance to be the same.
+        /// @param temp The btTransfrom to have its values extracted.
+        void ExtractBulletTransform(const btTransform& temp);
 
-            // Serializable
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            void ProtoSerialize(XML::Node& CurrentRoot) const;
+        /// @brief Set the values of this Transform to match an existing btTransform.
+        /// @param rhs The item storing the values to copy.
+        /// @return A reference to the freshly overwritten Transform.
+        Transform& operator= (const btTransform& rhs);
 
-            // DeSerializable
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            void ProtoDeSerialize(const XML::Node& OneNode);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
 
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "Transform"
-            static String GetSerializableName();
+        /// @brief Convert this class to an XML::Node ready for serialization
+        /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+        void ProtoSerialize(XML::Node& CurrentRoot) const;
+        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+        /// @param OneNode and XML::Node containing the data.
+        /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+        void ProtoDeSerialize(const XML::Node& OneNode);
+        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+        /// @return A string containing "Transform"
+        static String GetSerializableName();
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Assignment Operators
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Math and test operations
-            /// @brief Create a Transform with the difference of this and another
-            /// @param rhs The Transform on the right hand side of the sign.
-            /// @return A Transform with
-            Transform operator- (const Transform& rhs) const;
-            /// @brief Create a Transform with the sum of this and another
-            /// @param rhs The Transform on the right hand side of the sign.
-            /// @return A Transform with
-            Transform operator+ (const Transform& rhs) const;
-            /// @brief Multiply all the values of this by a single scalar.
-            /// @param rhs The Transform on the right hand side of the sign.
-            /// @return A Transform with
-            Transform operator* (Real rhs) const;
-            /// @brief Divide all the values of this by a single scalar.
-            /// @param rhs The Transform on the right hand side of the sign.
-            /// @return A Transform with
-            Transform operator/ (Real rhs) const;
+        /// @brief Assignment operator.
+        /// @param Other The other Transform to be copied.
+        /// @return Returns a reference to this.
+        Transform& operator=(const Transform& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Transform to be moved.
+        /// @return Returns a reference to this.
+        Transform& operator=(Transform&& Other) = default;
 
-            /// @brief Is every value in this Transform less than or equal to its corresponding value in another.
-            /// @param rhs The Transform on the right hand side of the sign.
-            /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
-            Boole operator<= (const Transform& rhs) const;
-            /// @brief Is every value in this Transform greater than or equal to its corresponding value in another.
-            /// @param rhs The Transform on the right hand side of the sign.
-            /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
-            Boole operator>= (const Transform& rhs) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Math and Test Operators
 
+        /// @brief Create a Transform with the difference of this and another
+        /// @param rhs The Transform on the right hand side of the sign.
+        /// @return A Transform with
+        Transform operator- (const Transform& rhs) const;
+        /// @brief Create a Transform with the sum of this and another
+        /// @param rhs The Transform on the right hand side of the sign.
+        /// @return A Transform with
+        Transform operator+ (const Transform& rhs) const;
+        /// @brief Multiply all the values of this by a single scalar.
+        /// @param rhs The Transform on the right hand side of the sign.
+        /// @return A Transform with
+        Transform operator* (Real rhs) const;
+        /// @brief Divide all the values of this by a single scalar.
+        /// @param rhs The Transform on the right hand side of the sign.
+        /// @return A Transform with
+        Transform operator/ (Real rhs) const;
 
-    };
-}
+        /// @brief Is every value in this Transform less than or equal to its corresponding value in another.
+        /// @param rhs The Transform on the right hand side of the sign.
+        /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
+        Boole operator<= (const Transform& rhs) const;
+        /// @brief Is every value in this Transform greater than or equal to its corresponding value in another.
+        /// @param rhs The Transform on the right hand side of the sign.
+        /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
+        Boole operator>= (const Transform& rhs) const;
+    };//Transform
+}//Mezzanine
 
 #ifndef SWIG
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Transform& x);

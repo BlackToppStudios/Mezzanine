@@ -51,17 +51,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction
 
-    LineSegment2D::LineSegment2D()
-        {  }
-
     LineSegment2D::LineSegment2D(const Vector2& A, const Vector2& B) :
         PointA(A),
         PointB(B)
-        {  }
-
-    LineSegment2D::LineSegment2D(const LineSegment2D& Other) :
-        PointA(Other.PointA),
-        PointB(Other.PointB)
         {  }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -72,9 +64,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
-
-    void LineSegment2D::operator=(const LineSegment2D& Other)
-        { this->PointA = Other.PointA;  this->PointB = Other.PointB; }
 
     Boole LineSegment2D::operator==(const LineSegment2D& Other) const
         { return ( this->PointA == Other.PointA && this->PointB == Other.PointB ); }
@@ -88,17 +77,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction
 
-    LineSegment3D::LineSegment3D()
-        {  }
-
     LineSegment3D::LineSegment3D(const Vector3& A, const Vector3& B) :
         PointA(A),
         PointB(B)
-        {  }
-
-    LineSegment3D::LineSegment3D(const LineSegment3D& Other) :
-        PointA(Other.PointA),
-        PointB(Other.PointB)
         {  }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -119,9 +100,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
-
-    void LineSegment3D::operator=(const LineSegment3D& Other)
-        { this->PointA = Other.PointA;  this->PointB = Other.PointB; }
 
     Boole LineSegment3D::operator==(const LineSegment3D& Other) const
         { return ( this->PointA == Other.PointA && this->PointB == Other.PointB ); }

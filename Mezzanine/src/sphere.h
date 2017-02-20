@@ -61,7 +61,6 @@ namespace Mezzanine
     class Ray;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a generic sphere class used for spacial queries.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB Sphere
     {
@@ -86,7 +85,10 @@ namespace Mezzanine
         Sphere();
         /// @brief Copy constructor.
         /// @param Other The other sphere to copy from.
-        Sphere(const Sphere& Other);
+        Sphere(const Sphere& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other sphere to be moved.
+        Sphere(Sphere&& Other) = default;
         /// @brief Radius constructor.
         /// @param SphereRadius The radius of the sphere.
         Sphere(const Real SphereRadius);
@@ -153,7 +155,12 @@ namespace Mezzanine
 
         /// @brief Assignment operator.
         /// @param Other The other Sphere to copy from.
-        void operator=(const Sphere& Other);
+        /// @return Returns a reference to this.
+        Sphere& operator=(const Sphere& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Sphere to be moved.
+        /// @return Returns a reference to this.
+        Sphere& operator=(Sphere&& Other) = default;
 
         /// @brief The assignment operator from Ogre::Sphere to Mezzanine::Sphere.
         /// @param InternalSphere The Ogre::Sphere to take data from.

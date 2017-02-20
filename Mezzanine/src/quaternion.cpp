@@ -82,14 +82,6 @@ namespace Mezzanine
     Quaternion::Quaternion(const Ogre::Quaternion& Other)
         { this->ExtractOgreQuaternion(Other); }
 
-    Quaternion::Quaternion(const Mezzanine::Quaternion& Other)
-    {
-        this->X = Other.X;
-        this->Y = Other.Y;
-        this->Z = Other.Z;
-        this->W = Other.W;
-    }
-
     Quaternion::Quaternion(const XML::Node& OneNode)
         { this->ProtoDeSerialize(OneNode); }
 
@@ -450,14 +442,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators
-    Quaternion& Quaternion::operator= (const Mezzanine::Quaternion& Other)
-    {
-        this->X=Other.X;
-        this->Y=Other.Y;
-        this->Z=Other.Z;
-        this->W=Other.W;
-        return *this;
-    }
 
     Quaternion& Quaternion::operator= (const btQuaternion& Other)
     {

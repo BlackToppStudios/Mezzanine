@@ -67,11 +67,6 @@ namespace Mezzanine
         Distance(0)
         {  }
 
-    Plane::Plane(const Plane& Other) :
-        Normal(Other.Normal),
-        Distance(Other.Distance)
-        {  }
-
     Plane::Plane(const Vector3& Norm, const Real Constant) :
         Normal(Norm),
         Distance(-Constant)
@@ -249,9 +244,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
-
-    void Plane::operator=(const Plane& Other)
-        { this->Normal = Other.Normal;  this->Distance = Other.Distance; }
 
     void Plane::operator=(const Ogre::Plane& InternalPlane)
         { this->ExtractOgrePlane(InternalPlane); }

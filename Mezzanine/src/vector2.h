@@ -70,6 +70,12 @@ namespace Mezzanine
 
         /// @brief Default Constructor.
         Vector2();
+        /// @brief Copy Constructor.
+        /// @param Other The other Vector2 to be copied.
+        Vector2(const Mezzanine::Vector2& Other) = default;
+        /// @brief Move Constructor.
+        /// @param Other The other Vector2 to be moved.
+        Vector2(Mezzanine::Vector2&& Other) = default;
         /// @brief Single Real value Constructor.
         /// @param xy Value to set both x and y to.
         explicit Vector2(const Real& xy);
@@ -80,6 +86,9 @@ namespace Mezzanine
         /// @brief Ogre Value Constructor.
         /// @param Vec The vector to be copied to make this vector.
         Vector2(const Ogre::Vector2& Vec);
+        /// @brief Deserializing constructor
+        /// @param OneNode The XML node to deserialize from.
+        explicit Vector2(XML::Node OneNode);
 
         /// @brief Gets a Ogre vector2.
         /// @return Returns an Ogre Vector2 with the same values as this.
@@ -116,6 +125,18 @@ namespace Mezzanine
         /// @brief Checks to see if the values of this vector are all zero.
         /// @return Returns true if all components of this vector are zero, false otherwise.
         Boole IsZero() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Assignment operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other Vector2 to be copied.
+        /// @return Returns a reference to this.
+        Vector2& operator=(const Mezzanine::Vector2& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Vector2 to be moved.
+        /// @return Returns a reference to this.
+        Vector2& operator=(Mezzanine::Vector2&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Equality Comparison operators
