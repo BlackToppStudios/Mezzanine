@@ -69,7 +69,9 @@ CatchApp::CatchApp() :
 
 CatchApp::~CatchApp()
 {
-    this->Picker.Deinitialize(true);
+    delete this->Picker.GetQuery();
+    delete this->Picker.GetDragger();
+
     this->Profiles->Deinitialize();
 
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->AudioSettingsWork );

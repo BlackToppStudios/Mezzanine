@@ -80,16 +80,15 @@ namespace Mezzanine
         this->Dragger = WorldDragger;
     }
 
-    void MousePicker::Deinitialize(const Boole Cleanup)
+    void MousePicker::Deinitialize()
     {
         this->Selector = NULL;
-        if( Cleanup ) {
-            delete this->Query;
-            delete this->Dragger;
-        }
         this->Query = NULL;
         this->Dragger = NULL;
     }
+
+    Boole MousePicker::IsInitialized() const
+        { return ( this->Selector != NULL ) && ( this->Query != NULL ) && ( this->Dragger != NULL ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility

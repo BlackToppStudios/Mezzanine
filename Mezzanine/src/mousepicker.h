@@ -87,12 +87,12 @@ namespace Mezzanine
         /// @param WorldQuery A pointer to the RayQuery to use.
         /// @param WorldDragger A pointer to the MouseDragger to use.
         void Initialize(Input::Mouse* Cursor, RayQuery* WorldQuery, MousePickDragger* WorldDragger);
-        /// @brief Reverts the picker back to it's pre-init state.
-        /// @remarks This method will optionally delete the RayQuery and MousePickDragger components for you, but never
-        /// the Mouse component, as it is explicitly owned by another subsystem.  The destructor does not automatically
-        /// call Deinitialize, so if freeing through this method is desired it must be explicitly called.
-        /// @param Cleanup Whether or not to delete the RayQuery and MousePickDragger pointers stored by this picker.
-        void Deinitialize(const Boole Cleanup);
+        /// @brief Reverts the picker back to it's pre-init state by NULL'ing all the pointers inside.
+        void Deinitialize();
+
+        /// @brief Gets whether or not this Picker has valid pointers and can be used.
+        /// @return Returns true if this picker is valid and initialized, false otherwise.
+        Boole IsInitialized() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
