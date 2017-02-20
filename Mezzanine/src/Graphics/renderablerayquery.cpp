@@ -239,10 +239,6 @@ namespace Mezzanine
             Integer ResultSubMesh = -1;
             RayResult Result(MathTools::PS_Neither,Vector3(0,0,0));
 
-            /*Vector3 LocalRayOrigin = MezzObj->GetOrientation() * ( this->CastRay.Origin - MezzObj->GetLocation() );
-            Vector3 LocalRayNormal = MezzObj->GetOrientation() * this->CastRay.Normal;
-            Ray LocalRay(LocalRayOrigin,LocalRayNormal);//*/
-
             Mesh* ObjMesh = static_cast<EntityProxy*>( MezzObj )->GetMesh();
             Whole NumSubMeshes = ObjMesh->GetNumSubMeshes();
             for( Whole CurrSubMesh = 0 ; CurrSubMesh < NumSubMeshes ; ++CurrSubMesh )
@@ -252,10 +248,6 @@ namespace Mezzanine
 
                 for( Whole IdxCount = 0 ; IdxCount < Indices.size() ; IdxCount += 3 )
                 {
-                    /*RayResult SingleResult = MathTools::Intersects( Verts[ Indices[IdxCount + 0] ],
-                                                                    Verts[ Indices[IdxCount + 1] ],
-                                                                    Verts[ Indices[IdxCount + 2] ],
-                                                                    LocalRay);//*/
                     Vector3 PointA = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 0] ] );
                     Vector3 PointB = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 1] ] );
                     Vector3 PointC = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 2] ] );
