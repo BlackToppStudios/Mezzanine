@@ -101,7 +101,6 @@
 #include "plane.h"
 #include "quaternion.h"
 #include "ray.h"
-#include "rayquerytool.h"
 #include "rectbase.h"
 #include "sphere.h"
 #include "stringtool.h"

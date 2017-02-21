@@ -44,7 +44,6 @@
 
 #include "enumerations.h"
 #include "ray.h"
-#include "rayquerytool.h"
 #include "worldproxymanager.h"
 #include "worldobject.h"
 
