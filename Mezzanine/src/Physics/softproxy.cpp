@@ -47,8 +47,6 @@ John Blackwood - makoenergy02@gmail.com
 #include "serialization.h"
 #include "stringtool.h"
 
-//#include "Internal/meshtools.h.cpp"
-
 #include <btBulletDynamicsCommon.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 
