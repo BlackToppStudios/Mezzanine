@@ -365,7 +365,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Internal/meshloaderlistener.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/motionstate.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/murmurhash3.h.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Internal/ogredatastreambuf.h.cpp"
         # MathTools Items
         "${${PROJECT_NAME}_SRC_DIR}MathTools/mathtools.h"
         "${${PROJECT_NAME}_SRC_DIR}MathTools/mathtypes.h"
@@ -847,7 +846,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Internal/meshloaderlistener.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/motionstate.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/murmurhash3.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Internal/ogredatastreambuf.cpp"
         # MathTools Items
         "${${PROJECT_NAME}_SRC_DIR}MathTools/mathtools.cpp"
         "${${PROJECT_NAME}_SRC_DIR}MathTools/arithmetic.cpp"
