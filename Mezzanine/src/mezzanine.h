@@ -132,7 +132,6 @@
 #include "interval.h"
 #include "linegroup.h"
 #include "linesegment.h"
-#include "managedptr.h"
 #include "memorystream.h"
 #include "meshterrain.h"
 #include "mousepicker.h"
