@@ -136,7 +136,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}interval.h"
         "${${PROJECT_NAME}_SRC_DIR}linegroup.h"
         "${${PROJECT_NAME}_SRC_DIR}linesegment.h"
-        "${${PROJECT_NAME}_SRC_DIR}macros.h"
         "${${PROJECT_NAME}_SRC_DIR}managedptr.h"
         "${${PROJECT_NAME}_SRC_DIR}managerbase.h"
         "${${PROJECT_NAME}_SRC_DIR}managerfactory.h"
