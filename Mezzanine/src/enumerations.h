@@ -166,6 +166,7 @@ namespace Mezzanine
     /// @details This enum can be used to express any object which could be considered "insertable" into the game world.
     enum WorldObjectType
     {
+        WO_None                   = 0,          ///< Used to help report error conditions.
         // Terrain Objects
         WO_TerrainFirst           = EnumBit(1),
 
@@ -177,6 +178,10 @@ namespace Mezzanine
         WO_UnknownTerrain         = EnumBit(6),
 
         WO_TerrainLast            = EnumBit(6),
+
+        WO_AllTerrains            = WO_MeshTerrain | WO_HeightfieldTerrain | WO_VectorFieldTerrain |
+                                    WO_VoxelTerrain | WO_MarchingCubeTerrain | WO_UnknownTerrain,
+
         // Debris Objects
         WO_DebrisFirst            = EnumBit(7),
 
@@ -185,6 +190,9 @@ namespace Mezzanine
         WO_UnknownDebris          = EnumBit(9),
 
         WO_DebrisLast             = EnumBit(9),
+
+        WO_AllDebris              = WO_RigidDebris | WO_SoftDebris | WO_UnknownDebris,
+
         // AreaEffect Objects
         WO_AreaEffectFirst        = EnumBit(10),
 
@@ -196,6 +204,10 @@ namespace Mezzanine
         WO_AreaEffectUnknown      = EnumBit(15),
 
         WO_AreaEffectLast         = EnumBit(15),
+
+        WO_AllAreaEffects         = WO_AreaEffectGravityField | WO_AreaEffectGravityWell | WO_AreaEffectFieldOfForce |
+                                    WO_AreaEffectPlaceHolder1 | WO_AreaEffectPlaceHolder2 | WO_AreaEffectUnknown,
+
         // Actor Objects
         WO_ActorFirst             = EnumBit(16),
 
@@ -204,6 +216,9 @@ namespace Mezzanine
         WO_ActorPlaceHolder3      = EnumBit(18),
 
         WO_ActorLast              = EnumBit(18),
+
+        WO_AllActors              = WO_ActorPlaceHolder1 | WO_ActorPlaceHolder2 | WO_ActorPlaceHolder3,
+
         // Vehicle Objects
         WO_VehicleFirst           = EnumBit(19),
 
@@ -213,7 +228,10 @@ namespace Mezzanine
         WO_VehiclePlaceHolder1    = EnumBit(22),
         WO_VehiclePlaceHolder2    = EnumBit(23),
 
-        WO_VehicleLast            = EnumBit(23)
+        WO_VehicleLast            = EnumBit(23),
+
+        WO_AllVehicles            = WO_MultiBodyVehicle | WO_RaycastVehicle | WO_SimpleVehicle |
+                                    WO_VehiclePlaceHolder1 | WO_VehiclePlaceHolder2
     };
 }//Mezzanine
 

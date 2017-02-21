@@ -49,7 +49,10 @@
 #include "worldobject.h"
 
 #include "Graphics/cameraproxy.h"
+#include "Graphics/scenemanager.h"
 #include "MathTools/mathtools.h"
+
+#include <assert.h>
 
 namespace Mezzanine
 {
@@ -103,12 +106,14 @@ namespace Mezzanine
     // CameraController Methods
 
     CameraController::CameraController() :
+        RayCaster(NULL),
         Controlled(NULL),
         HoverHeight(2),
         CurrentMMode(CCM_Fly)
         {  }
 
     CameraController::CameraController(Graphics::CameraProxy* ToBeControlled) :
+        RayCaster(static_cast<Graphics::SceneManager*>(ToBeControlled->GetCreator())),
         Controlled(ToBeControlled),
         HoverHeight(2),
         CurrentMMode(CCM_Fly)
@@ -130,14 +135,15 @@ namespace Mezzanine
 
     Real CameraController::FindDistanceToGround()
     {
-        Vector3 Loc( this->Controlled->GetLocation() );
-        Vector3 Dest( Vector3::Neg_Unit_Y() );
-        Ray GroundRay(Loc,Dest);
-        UInt32 flags = Mezzanine::WO_MeshTerrain | Mezzanine::WO_HeightfieldTerrain | Mezzanine::WO_VectorFieldTerrain | Mezzanine::WO_VoxelTerrain;
-        if( !RayCaster.GetFirstObjectOnRayByPolygon(GroundRay,flags) )
-            { return 0; }
-        Real Distance = Loc.Y - (RayCaster.LastQueryResultsObjectPtr()->GetLocation() + RayCaster.LastQueryResultsOffset()).Y;
-        return Distance;
+        assert(this->Controlled != NULL && "Must have a valid camera pointer to work with the controller.");
+
+        Ray GroundRay(this->Controlled->GetLocation(),Vector3::Neg_Unit_Y());
+        this->RayCaster.SetProxyTypes(Mezzanine::WO_AllTerrains);
+        RayQueryHit Result = this->RayCaster.GetFirstShapeResult(GroundRay);
+        if( Result.IsValid() ) {
+            return Result.Distance;
+        }
+        return 0;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
