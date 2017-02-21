@@ -70,6 +70,7 @@ namespace Mezzanine
     %}
 #endif
 
+#include "MathTools/mathtypes.h"
 #include "MathTools/arithmetic.h"
 #include "MathTools/constants.h"
 #include "MathTools/intersections.h"

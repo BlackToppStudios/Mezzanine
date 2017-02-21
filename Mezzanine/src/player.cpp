@@ -45,12 +45,60 @@
 
 namespace Mezzanine
 {
-    Player::Player()
+    Player::Player(PlayerManager* Creator)
     {
 
     }
 
     Player::~Player()
+    {
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void Player::SetIdentity(PlayerProfile* ToSet)
+    {
+
+    }
+
+    void Player::InitializeInWorld(World* GameWorld)
+    {
+
+    }
+
+    PlayerControl& Player::GetControl()
+    {
+        return this->Control;
+    }
+
+    PlayerView* Player::GetView() const
+    {
+        return this->View;
+    }
+
+    PlayerProfile* Player::GetProfile() const
+    {
+        return this->Profile;
+    }
+
+    const String& Player::GetName() const
+    {
+        return String();
+    }
+
+    Boole Player::IsLocal() const
+    {
+        return false;
+    }
+
+    Boole Player::IsRemote() const
+    {
+        return false;
+    }
+
+    void Player::Update(Input::InputManager* InputMan, const Whole DeltaTime)
     {
 
     }

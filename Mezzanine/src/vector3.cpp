@@ -119,9 +119,6 @@ namespace Mezzanine
     Vector3::Vector3(const btVector3& Vec)
         { this->ExtractBulletVector3(Vec); }
 
-    Vector3::Vector3(const Mezzanine::Vector3& Vec)
-        { *this = Vec; }
-
     Vector3::Vector3(XML::Node OneNode)
         { this->ProtoDeSerialize(OneNode); }
 

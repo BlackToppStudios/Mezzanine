@@ -14,7 +14,6 @@ class CatchApp;
 class AudioSettingsWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
-    /// @internal
     /// @brief The subscriber used to store settings change requests until they can be processed.
     QueuedSettingsSubscriber* SettingsSubscriber;
 public:
@@ -39,7 +38,6 @@ public:
 class VideoSettingsWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
-    /// @internal
     /// @brief The subscriber used to store settings change requests until they can be processed.
     QueuedSettingsSubscriber* SettingsSubscriber;
 public:
@@ -64,7 +62,6 @@ public:
 class CatchPreInputWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
-    /// @internal
     /// @brief A pointer to the Catch core class.
     CatchApp* CatchApplication;
 public:
@@ -85,7 +82,6 @@ public:
 class CatchPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
-    /// @internal
     /// @brief A pointer to the Catch core class.
     CatchApp* CatchApplication;
 public:
@@ -102,17 +98,14 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This workunit is responsible for all Catch logic to be run after UI widgets are updated.
-/// @details
 ///////////////////////////////////////
 class CatchPostUIWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
-    /// @internal
     /// @brief A pointer to the Catch core class.
     CatchApp* CatchApplication;
-    /// @internal
-    /// @brief The raycaster used for click and drag in Catch.
-    RayQueryTool RayCaster;
+    /// @brief A pointer to the UIManager to query mouse interaction.
+    UI::UIManager* UIMan;
 public:
     /// @brief Class constructor.
     /// @param Target A pointer to the Catch core class.
@@ -126,8 +119,7 @@ public:
 };// CatchPostUIWorkUnit
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @brief This workunit is responsible for fullfilling a request to pause the game.
-/// @details
+/// @brief This workunit is responsible for fulfilling a request to pause the game.
 ///////////////////////////////////////
 class CatchPauseWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -153,12 +145,10 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This workunit is responsible for updating the in-game HUD information.
-/// @details
 ///////////////////////////////////////
 class CatchHUDUpdateWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
-    /// @internal
     /// @brief A pointer to the Catch core class.
     CatchApp* CatchApplication;
 public:
@@ -174,13 +164,11 @@ public:
 };// CatchHUDUpdateWorkUnit
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @brief This workunit is responsible for checking if the events need to end a level have occured.
-/// @details
+/// @brief This workunit is responsible for checking if the events need to end a level have occurred.
 ///////////////////////////////////////
 class CatchEndLevelWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
-    /// @internal
     /// @brief A pointer to the Catch core class.
     CatchApp* CatchApplication;
 public:

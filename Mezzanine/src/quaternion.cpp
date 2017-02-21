@@ -82,14 +82,6 @@ namespace Mezzanine
     Quaternion::Quaternion(const Ogre::Quaternion& Other)
         { this->ExtractOgreQuaternion(Other); }
 
-    Quaternion::Quaternion(const Mezzanine::Quaternion& Other)
-    {
-        this->X = Other.X;
-        this->Y = Other.Y;
-        this->Z = Other.Z;
-        this->W = Other.W;
-    }
-
     Quaternion::Quaternion(const XML::Node& OneNode)
         { this->ProtoDeSerialize(OneNode); }
 
@@ -228,10 +220,9 @@ namespace Mezzanine
     Quaternion Quaternion::GetInverse() const
     {
         Real Norm = W*W+X*X+Y*Y+Z*Z;
-        if ( Norm > 0.0 )
-        {
+        if ( Norm > 0.0 ) {
             Real InvNorm = 1.f/Norm;
-            return Quaternion(W*InvNorm,-X*InvNorm,-Y*InvNorm,-Z*InvNorm);
+            return Quaternion(-X*InvNorm,-Y*InvNorm,-Z*InvNorm,W*InvNorm);
         }else{
             return Quaternion(0,0,0,0);
         }
@@ -451,14 +442,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators
-    Quaternion& Quaternion::operator= (const Mezzanine::Quaternion& Other)
-    {
-        this->X=Other.X;
-        this->Y=Other.Y;
-        this->Z=Other.Z;
-        this->W=Other.W;
-        return *this;
-    }
 
     Quaternion& Quaternion::operator= (const btQuaternion& Other)
     {

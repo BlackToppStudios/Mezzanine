@@ -118,9 +118,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction
 
-    Triangle2D::Triangle2D()
-        {  }
-
     Triangle2D::Triangle2D(const Vector2& A, const Vector2& B, const Vector2& C) :
         PointA(A),
         PointB(B),
@@ -161,9 +158,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction
-
-    Triangle3D::Triangle3D()
-        {  }
 
     Triangle3D::Triangle3D(const Vector3& A, const Vector3& B, const Vector3& C) :
         PointA(A),
@@ -285,7 +279,38 @@ namespace Mezzanine
         return LineSegment3D(v1,v2);
     }
 
-    Vector3& Triangle3D::operator[](const Whole& Index)
+    Triangle3D::RayTestResult Triangle3D::Intersects(const Ray& ToCheck) const
+    {
+        return MathTools::Intersects(*this,ToCheck);
+    }
+
+    Vector3 Triangle3D::CalculateBasicNormal() const
+    {
+        return Triangle3D::CalculateBasicNormal(this->PointA,this->PointB,this->PointC);
+    }
+
+    Vector3 Triangle3D::CalculateBasicNormal(const Vector3& A, const Vector3& B, const Vector3& C)
+    {
+        Vector3 Normal = ( B - A ).CrossProduct( C - A );
+        Normal.Normalize();
+        return Normal;
+    }
+
+    Boole Triangle3D::operator==(const Triangle3D& Other) const
+    {
+        return ( this->PointA == Other.PointA &&
+                 this->PointB == Other.PointB &&
+                 this->PointC == Other.PointC );
+    }
+
+    Boole Triangle3D::operator!=(const Triangle3D& Other) const
+    {
+        return ( this->PointA != Other.PointA ||
+                 this->PointB != Other.PointB ||
+                 this->PointC != Other.PointC );
+    }
+
+    Vector3& Triangle3D::operator[](const Whole Index)
     {
         switch( Index )
         {
@@ -298,7 +323,7 @@ namespace Mezzanine
         return this->PointA;
     }
 
-    const Vector3& Triangle3D::operator[](const Whole& Index) const
+    const Vector3& Triangle3D::operator[](const Whole Index) const
     {
         switch( Index )
         {

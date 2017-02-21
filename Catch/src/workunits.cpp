@@ -314,7 +314,7 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
 
 CatchPostUIWorkUnit::CatchPostUIWorkUnit(CatchApp* Target) :
     CatchApplication(Target),
-    RayCaster(Target->GetTheWorld())
+    UIMan( static_cast<UI::UIManager*>( Target->GetTheEntresol()->GetManager(ManagerBase::MT_UIManager) ) )
     {  }
 
 CatchPostUIWorkUnit::~CatchPostUIWorkUnit()
@@ -322,61 +322,8 @@ CatchPostUIWorkUnit::~CatchPostUIWorkUnit()
 
 void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
-    Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-    Input::Mouse* SysMouse = InputMan->GetSystemMouse();
-    Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->CatchApplication->GetTheWorld()->GetManager(ManagerBase::MT_PhysicsManager) );
-    static Physics::Point2PointConstraint* Dragger = NULL;
-
-    if( SysMouse->IsButtonPressed(1) ) {
-        if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() ) {
-            Ray MouseRay = RayQueryTool::GetMouseRay();
-
-            Boole firstframe = false;
-            if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_RigidDebris | Mezzanine::WO_SoftDebris) ) {
-                Debris* CastResult = static_cast<Debris*>( RayCaster.LastQueryResultsObjectPtr() );
-                Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                if( CastResult->GetType() & Mezzanine::WO_RigidDebris &&
-                    this->CatchApplication->IsInsideAnyStartZone( CastResult ) &&
-                    Dragger == NULL )
-                {
-                    if( !( static_cast<RigidDebris*>( CastResult )->GetRigidProxy()->IsStaticOrKinematic() ) )
-                    {
-                        RigidDebris* rigid = static_cast<RigidDebris*>( RayCaster.LastQueryResultsObjectPtr() );
-                        rigid->GetRigidProxy()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-                        Dragger = PhysMan->CreatePoint2PointConstraint(rigid->GetRigidProxy(),LocalPivot);
-                        Dragger->SetTAU(0.001);
-                        Dragger->EnableConstraint(true);
-                        Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                        Dragger->SetParam(Physics::Con_CFM,0.8,-1);
-                        Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                        Dragger->SetParam(Physics::Con_ERP,0.1,-1);
-                        firstframe = true;
-                        this->CatchApplication->LastObjectThrown = rigid;
-                    }
-                }
-            }
-
-            if(Dragger && RayCaster.RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay)) {
-                if( !firstframe ) {
-                    Dragger->SetPivotB( RayCaster.LastQueryResultsOffset() );
-                }
-            }
-
-            if(Dragger && !this->CatchApplication->IsInsideAnyStartZone( this->CatchApplication->LastObjectThrown ) ) {
-                Physics::RigidProxy* Prox = Dragger->GetProxyA();
-                PhysMan->DestroyConstraint(Dragger);
-                Dragger = NULL;
-                Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-            }
-        }
-
-    }else{  //Since we are no longer clicking we need to setup for the next clicking
-        if( Dragger ) {
-            Physics::RigidProxy* Prox = Dragger->GetProxyA();
-            PhysMan->DestroyConstraint(Dragger);
-            Dragger = NULL;
-            Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-        }
+    if( !UIMan->MouseIsInUISystem() ) {
+        this->CatchApplication->GetPicker().Execute();
     }
 }
 

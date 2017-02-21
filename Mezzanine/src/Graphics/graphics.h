@@ -74,6 +74,7 @@ namespace Mezzanine
 #include "Graphics/particlesystemproxy.h"
 #include "Graphics/pass.h"
 #include "Graphics/renderableproxy.h"
+#include "Graphics/renderablerayquery.h"
 #include "Graphics/resolution.h"
 #include "Graphics/shelftexturepacker.h"
 #include "Graphics/skeleton.h"

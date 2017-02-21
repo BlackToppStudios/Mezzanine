@@ -51,16 +51,17 @@
 
 namespace Mezzanine
 {
-    Transform::Transform(const Vector3& Vec, const Quaternion& Quat):
+    Transform::Transform(const Vector3& Vec) :
+        Location(Vec)
+        { this->Rotation.SetIdentity(); }
+
+    Transform::Transform(const Vector3& Vec, const Quaternion& Quat) :
         Location(Vec),
         Rotation(Quat)
-    {}
+        {  }
 
     Transform::Transform(const btTransform& Btt)
         { this->ExtractBulletTransform(Btt); }
-
-    Transform::Transform(const Transform& TheOther)
-        { this->operator=(TheOther); }
 
     void Transform::SetIdentity()
     {
@@ -79,17 +80,6 @@ namespace Mezzanine
     {
         this->Location.ExtractBulletVector3(temp.getOrigin());
         this->Rotation.ExtractBulletQuaternion(temp.getRotation());
-    }
-
-
-    Transform& Transform::operator= (const Transform& rhs)
-    {
-        if( this != &rhs ) // Are we assigning to ourselves?!?!?!?
-        {
-            this->Location = rhs.Location;
-            this->Rotation = rhs.Rotation;
-        }
-        return *this;
     }
 
     Transform& Transform::operator= (const btTransform& rhs)

@@ -43,6 +43,10 @@
 /// @file
 /// @brief This file contains the AxisAlignedBox class for representing AABB's of objects in the world.
 
+#ifndef SWIG
+    #include "MathTools/mathtypes.h"
+#endif
+
 #include "vector3.h"
 #include "plane.h"
 
@@ -73,7 +77,7 @@ namespace Mezzanine
         /// @details This type provides more verbose return data that can be used for further tests.  @n @n
         /// The first member stores whether or not there was a hit.  The second member stores ray containing
         /// the points where the ray entered and exited the AABB.
-        typedef std::pair<Boole,Ray> RayTestResult;
+        typedef MathTools::GeometryRayTestResult RayTestResult;
 
         /// @brief Used to uniquely identify sides of an axis aligned box.
         enum Side
@@ -101,10 +105,13 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        AxisAlignedBox();
+        AxisAlignedBox() = default;
         /// @brief Copy constructor.
         /// @param Other The other AABB to copy.
-        AxisAlignedBox(const AxisAlignedBox& Other);
+        AxisAlignedBox(const AxisAlignedBox& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other AABB to move.
+        AxisAlignedBox(AxisAlignedBox&& Other) = default;
         /// @brief Extents constructor.
         /// @param Min The minimum extents on each axis in world space.
         /// @param Max The maximum extents on each axis in world space.
@@ -214,8 +221,13 @@ namespace Mezzanine
         // Operators
 
         /// @brief Assignment operator.
-        /// @param Other The other AABB to copy from.
-        void operator=(const AxisAlignedBox& Other);
+        /// @param Other The other AABB to copy.
+        /// @return Returns a reference to this.
+        AxisAlignedBox& operator=(const AxisAlignedBox& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other AABB to move.
+        /// @return Returns a reference to this.
+        AxisAlignedBox& operator=(AxisAlignedBox&& Other) = default;
 
         /// @brief The assignment operator from Ogre::AxisAlignedBox to Mezzanine::AxisAlignedBox.
         /// @param InternalAABB The Ogre::AxisAlignedBox to take data from.

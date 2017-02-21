@@ -36,8 +36,7 @@ CatchApp::CatchApp() :
     EndTimer(NULL),
 
     Paused(false),
-    CurrentState(CatchApp::Catch_Init),
-    PlaneOfPlay(Plane(Vector3(2.0,1.0,0.0), Vector3(1.0,2.0,0.0), Vector3(1.0,1.0,0.0)))
+    CurrentState(CatchApp::Catch_Init)
 {
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;
@@ -55,6 +54,11 @@ CatchApp::CatchApp() :
     this->Shop = new ItemShop();
     ThrowableGenerator::ParseThrowables("");
 
+    Plane PlaneOfPlay(Vector3(2.0,1.0,0.0), Vector3(1.0,2.0,0.0), Vector3(1.0,1.0,0.0));
+    this->Picker.Initialize( static_cast<Input::InputManager*>( this->TheEntresol->GetManager(ManagerBase::MT_InputManager) )->GetSystemMouse(),
+                             new Graphics::RenderableRayQuery( static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) ) ),
+                             new PlaneDragger(PlaneOfPlay) );
+
     if( this->Profiles == NULL ) {
         this->Profiles = new ProfileManager(this->TheEntresol,"$ShareableAppData$/.Catch/Profiles/");
     }
@@ -65,6 +69,9 @@ CatchApp::CatchApp() :
 
 CatchApp::~CatchApp()
 {
+    delete this->Picker.GetQuery();
+    delete this->Picker.GetDragger();
+
     this->Profiles->Deinitialize();
 
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->AudioSettingsWork );
@@ -79,7 +86,7 @@ CatchApp::~CatchApp()
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostInputWork );
     delete this->PostInputWork;
 
-    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostUIWork );
+    this->TheEntresol->GetScheduler().RemoveWorkUnitAffinity( this->PostUIWork );
     delete this->PostUIWork;
 
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PauseWork );
@@ -1759,7 +1766,7 @@ int CatchApp::GetCatchin()
     this->PostUIWork = new CatchPostUIWorkUnit(this);
     this->PostUIWork->AddDependency( UIMan->GetWidgetUpdateWork() );
     this->PostUIWork->AddDependency( PhysicsMan->GetSimulationWork() );
-    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostUIWork, "PostUIWork" );
+    this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->PostUIWork, "PostUIWork" );
 
     this->PauseWork = new CatchPauseWorkUnit(this,UIMan);
     this->PauseWork->AddDependency( UIMan->GetWidgetUpdateWork() );
@@ -1979,6 +1986,9 @@ Entresol* CatchApp::GetTheEntresol() const
 
 World* CatchApp::GetTheWorld() const
     { return this->TheWorld; }
+
+MousePicker& CatchApp::GetPicker()
+    { return this->Picker; }
 
 CatchApp::ThrowableContainer& CatchApp::GetThrowables()
     { return this->ThrownItems; }

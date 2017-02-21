@@ -50,18 +50,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Conversion Methods
 
-    Vector3 TransformableObject::ConvertLocalToGlobal(const Vector3& Location) const
-        { return (this->GetOrientation() * Location * this->GetScale()) + this->GetLocation(); }
-
-    Vector3 TransformableObject::ConvertGlobalToLocal(const Vector3& Location) const
-        { return this->GetOrientation().GetInverse() * (Location - this->GetLocation()) / this->GetScale(); }
-
-    Quaternion TransformableObject::ConvertLocalToGlobal(const Quaternion& Orientation) const
-        { return this->GetOrientation() * Orientation; }
-
-    Quaternion TransformableObject::ConvertGlobalToLocal(const Quaternion& Orientation) const
-        { return this->GetOrientation().GetInverse() * Orientation; }
-
     ///////////////////////////////////////////////////////////////////////////////
     // TransformableChildObject Methods
 }//Mezzanine

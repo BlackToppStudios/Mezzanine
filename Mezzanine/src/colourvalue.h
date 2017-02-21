@@ -54,8 +54,6 @@ namespace Ogre
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ColourValue
-    /// @headerfile colourvalue.h
     /// @brief This is a simple class for holding 4 reals representing the colour any give object or lightsource can have.
     /// @note Calling the Color helper function from scripting languages without static function support is odd,
     /// instead of a scoping operator and underscore is used in the identifier name, for example in Lua use the following syntax:
@@ -95,8 +93,11 @@ namespace Mezzanine
         #endif
 
         /// @brief Copy Constructor
-        /// @param OtherColour
-        ColourValue(const ColourValue& OtherColour);
+        /// @param OtherColour The other ColourValue to be copied.
+        ColourValue(const ColourValue& OtherColour) = default;
+        /// @brief Move Constructor.
+        /// @param OtherColour The other ColourValue to be moved.
+        ColourValue(ColourValue&& OtherColour) = default;
         /// @brief XML Constructor.
         /// @param OneNode The XML node to deserialize from.
         ColourValue(const XML::Node& OneNode);
@@ -194,8 +195,13 @@ namespace Mezzanine
         Boole operator!=(const ColourValue& Colour) const;
 
         /// @brief Assignment operator.
-        /// @param OtherColour The colour values you want to overwrite this colour's values with.
-        void operator=(const ColourValue& OtherColour);
+        /// @param OtherColour The other ColourValue to be copied.
+        /// @return Returns a reference to this.
+        ColourValue& operator=(const ColourValue& OtherColour) = default;
+        /// @brief Move Assignment operator.
+        /// @param OtherColour The other ColourValue to be copied.
+        /// @return Returns a reference to this.
+        ColourValue& operator=(ColourValue&& OtherColour) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Prefab Colour fetchers

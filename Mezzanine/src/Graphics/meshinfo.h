@@ -54,10 +54,11 @@ namespace Mezzanine
         typedef std::vector<Vector2> Vector2Vec;
         /// @brief Convenience type for a container of Integers.
         typedef std::vector<Integer> IntVec;
+        /// @brief Convenience type for a container of Reals.
+        typedef std::vector<Real> RealVec;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief A convenience class for the storage of Vertex data in a Mesh/SubMesh.
-        /// @details
         ///////////////////////////////////////
         struct MEZZ_LIB VertexInfo
         {
@@ -74,6 +75,8 @@ namespace Mezzanine
             Vector3Vec Normals;
             /// @brief A container storing the tangent of each vertex.
             Vector3Vec Tangents;
+            /// @brief A container storing the binormal of each vertex.
+            Vector3Vec Binormals;
 
             /// @brief A container of Indexes used to assemble the Vertices for rendering.
             IntVec Indices;
@@ -90,7 +93,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief A convenience class for the storage of rendering data in a Mesh/SubMesh.
-        /// @details
         /// @todo This is fairly simple struct that doesn't encompass all of the data a Vertex can have, just what they commonly have.
         /// As such, this should be extended to better account for the various vertex formats.
         ///////////////////////////////////////

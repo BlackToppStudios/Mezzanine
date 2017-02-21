@@ -129,7 +129,9 @@ namespace Mezzanine
 
         PT_Audio_All_Proxies            = ( PT_Audio_Listener | PT_Audio_SoundProxy ),
         PT_Graphics_All_Proxies         = ( PT_Graphics_BillboardSetProxy | PT_Graphics_CameraProxy |PT_Graphics_EntityProxy |PT_Graphics_LightProxy |PT_Graphics_ParticleSystemProxy ),
-        PT_Physics_All_Proxies          = ( PT_Physics_GhostProxy | PT_Physics_RigidProxy | PT_Physics_SoftProxy )
+        PT_Physics_All_Proxies          = ( PT_Physics_GhostProxy | PT_Physics_RigidProxy | PT_Physics_SoftProxy ),
+
+        PT_All_Proxies                  = ( PT_Audio_All_Proxies | PT_Graphics_All_Proxies | PT_Physics_All_Proxies )
     };
 
     /// @brief Used to identify different Axis in a 3d coordinate system.

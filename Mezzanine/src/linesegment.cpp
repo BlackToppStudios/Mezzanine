@@ -51,17 +51,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction
 
-    LineSegment2D::LineSegment2D()
-        {  }
-
     LineSegment2D::LineSegment2D(const Vector2& A, const Vector2& B) :
         PointA(A),
         PointB(B)
-        {  }
-
-    LineSegment2D::LineSegment2D(const LineSegment2D& Other) :
-        PointA(Other.PointA),
-        PointB(Other.PointB)
         {  }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -71,22 +63,23 @@ namespace Mezzanine
         { return MathTools::Intersects(*this,Other); }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Operators
+
+    Boole LineSegment2D::operator==(const LineSegment2D& Other) const
+        { return ( this->PointA == Other.PointA && this->PointB == Other.PointB ); }
+
+    Boole LineSegment2D::operator!=(const LineSegment2D& Other) const
+        { return ( this->PointA != Other.PointA || this->PointB != Other.PointB ); }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // LineSegment3D
 
     ///////////////////////////////////////////////////////////////////////////////
     // Construction and Destruction
 
-    LineSegment3D::LineSegment3D()
-        {  }
-
     LineSegment3D::LineSegment3D(const Vector3& A, const Vector3& B) :
         PointA(A),
         PointB(B)
-        {  }
-
-    LineSegment3D::LineSegment3D(const LineSegment3D& Other) :
-        PointA(Other.PointA),
-        PointB(Other.PointB)
         {  }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -104,6 +97,27 @@ namespace Mezzanine
 			return LineSegment3D(this->PointB,this->PointA);
 		return *this;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Operators
+
+    Boole LineSegment3D::operator==(const LineSegment3D& Other) const
+        { return ( this->PointA == Other.PointA && this->PointB == Other.PointB ); }
+
+    Boole LineSegment3D::operator!=(const LineSegment3D& Other) const
+        { return ( this->PointA != Other.PointA || this->PointB != Other.PointB ); }
 }//Mezzanine
+
+std::ostream& operator << (std::ostream& Stream, const Mezzanine::LineSegment2D& Data)
+{
+    Stream << "[" << Data.PointA << "," << Data.PointB << "]";
+    return Stream;
+}
+
+std::ostream& operator << (std::ostream& Stream, const Mezzanine::LineSegment3D& Data)
+{
+    Stream << "[" << Data.PointA << "," << Data.PointB << "]";
+    return Stream;
+}
 
 #endif

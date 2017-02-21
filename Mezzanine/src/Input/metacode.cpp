@@ -144,6 +144,12 @@ namespace Mezzanine
                     }
                     break;
                 }
+                case SDL_MOUSEWHEEL:
+                {
+                    Ret.push_back( MetaCode(Raw.wheel.x,Input::MOUSEWHEELHORIZONTAL) );
+                    Ret.push_back( MetaCode(Raw.wheel.y,Input::MOUSEWHEELVERTICAL) );
+                    break;
+                }
                 case SDL_JOYBALLMOTION:
                 {
                     if( 0 == Raw.jball.ball ) {

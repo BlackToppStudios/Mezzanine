@@ -43,6 +43,10 @@
 /// @file
 /// @brief This file contains a generic Sphere class for math and spacial query.
 
+#ifndef SWIG
+    #include "MathTools/mathtypes.h"
+#endif
+
 #include "vector3.h"
 
 namespace Ogre
@@ -57,7 +61,6 @@ namespace Mezzanine
     class Ray;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a generic sphere class used for spacial queries.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB Sphere
     {
@@ -65,7 +68,7 @@ namespace Mezzanine
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.  @n @n
         /// The first member stores whether or not there was a hit.  The second member stores ray containing the points where the ray entered and exited the sphere.
-        typedef std::pair<Boole,Ray> RayTestResult;
+        typedef MathTools::GeometryRayTestResult RayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -82,7 +85,10 @@ namespace Mezzanine
         Sphere();
         /// @brief Copy constructor.
         /// @param Other The other sphere to copy from.
-        Sphere(const Sphere& Other);
+        Sphere(const Sphere& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other sphere to be moved.
+        Sphere(Sphere&& Other) = default;
         /// @brief Radius constructor.
         /// @param SphereRadius The radius of the sphere.
         Sphere(const Real SphereRadius);
@@ -149,7 +155,12 @@ namespace Mezzanine
 
         /// @brief Assignment operator.
         /// @param Other The other Sphere to copy from.
-        void operator=(const Sphere& Other);
+        /// @return Returns a reference to this.
+        Sphere& operator=(const Sphere& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Sphere to be moved.
+        /// @return Returns a reference to this.
+        Sphere& operator=(Sphere&& Other) = default;
 
         /// @brief The assignment operator from Ogre::Sphere to Mezzanine::Sphere.
         /// @param InternalSphere The Ogre::Sphere to take data from.

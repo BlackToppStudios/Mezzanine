@@ -118,34 +118,34 @@ namespace Mezzanine
                     PG.SetOrientation(this->Orientation);
                 }
 
-                PG.SetNumSegX(this->NumSegY).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Y).SetSizeY(this->BoxHalf.X)
+                PG.SetNumSegX(this->NumSegY).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Y * 2.0).SetSizeY(this->BoxHalf.X * 2.0)
                 .SetNormal( Vector3::Neg_Unit_Z() )
-                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_Z() ) * ( this->BoxHalf.Z * 0.5 ) ) )
+                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_Z() ) * ( this->BoxHalf.Z ) ) )
                 .AddToTriangleBuffer(Buffer);
 
-                PG.SetNumSegX(this->NumSegY).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Y).SetSizeY(this->BoxHalf.X)
+                PG.SetNumSegX(this->NumSegY).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Y * 2.0).SetSizeY(this->BoxHalf.X * 2.0)
                 .SetNormal( Vector3::Unit_Z() )
-                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_Z() ) * ( this->BoxHalf.Z * 0.5 ) ) )
+                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_Z() ) * ( this->BoxHalf.Z ) ) )
                 .AddToTriangleBuffer(Buffer);
 
-                PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Z).SetSizeY(this->BoxHalf.X)
+                PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Z * 2.0).SetSizeY(this->BoxHalf.X * 2.0)
                 .SetNormal( Vector3::Neg_Unit_Y() )
-                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_Y() ) * ( this->BoxHalf.Y * 0.5 ) ) )
+                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_Y() ) * ( this->BoxHalf.Y ) ) )
                 .AddToTriangleBuffer(Buffer);
 
-                PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Z).SetSizeY(this->BoxHalf.X)
+                PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegX).SetSizeX(this->BoxHalf.Z * 2.0).SetSizeY(this->BoxHalf.X * 2.0)
                 .SetNormal( Vector3::Unit_Y() )
-                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_Y() ) * ( this->BoxHalf.Y * 0.5 ) ) )
+                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_Y() ) * ( this->BoxHalf.Y ) ) )
                 .AddToTriangleBuffer(Buffer);
 
-                PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegY).SetSizeX(this->BoxHalf.Z).SetSizeY(this->BoxHalf.Y)
+                PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegY).SetSizeX(this->BoxHalf.Z * 2.0).SetSizeY(this->BoxHalf.Y * 2.0)
                 .SetNormal( Vector3::Neg_Unit_X() )
-                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_X() ) * ( this->BoxHalf.X * 0.5 ) ) )
+                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Neg_Unit_X() ) * ( this->BoxHalf.X ) ) )
                 .AddToTriangleBuffer(Buffer);
 
-                PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegY).SetSizeX(this->BoxHalf.Z).SetSizeY(this->BoxHalf.Y)
+                PG.SetNumSegX(this->NumSegZ).SetNumSegY(this->NumSegY).SetSizeX(this->BoxHalf.Z * 2.0).SetSizeY(this->BoxHalf.Y * 2.0)
                 .SetNormal( Vector3::Unit_X() )
-                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_X() ) * ( this->BoxHalf.X * 0.5 ) ) )
+                .SetPosition( this->Scale * ( this->Position + ( this->Orientation * Vector3::Unit_X() ) * ( this->BoxHalf.X ) ) )
                 .AddToTriangleBuffer(Buffer);
             }
 

@@ -42,6 +42,7 @@
 #define _graphicssubmesh_cpp
 
 #include "Graphics/submesh.h"
+#include "Graphics/vertextools.h"
 
 #include <Ogre.h>
 
@@ -49,13 +50,25 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // SubMesh Methods
+
         SubMesh::SubMesh(Ogre::SubMesh* Internal) :
             InternalSubMesh(Internal)
             {  }
 
         SubMesh::~SubMesh()
+            {  }  // Let Ogre Manage submeshes on it's own.
+
+        Ogre::VertexData* SubMesh::GetVertexData() const
         {
-            // Let Ogre Manage submeshes on it's own.
+            Ogre::VertexData* VertData = NULL;
+            if( this->InternalSubMesh->useSharedVertices ) {
+                VertData = this->InternalSubMesh->parent->sharedVertexData;
+            }else{
+                VertData = this->InternalSubMesh->vertexData;
+            }
+            return VertData;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -84,8 +97,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // SubMesh Information Methods
 
-        void SubMesh::GetInfo(MeshInfo& ToFill) const
+        MeshInfo SubMesh::GetMeshInfo() const
         {
+            MeshInfo ToFill;
             // Get the simple stuff first
             Ogre::RenderOperation Render;
             this->InternalSubMesh->_getRenderOperation(Render);
@@ -95,141 +109,73 @@ namespace Mezzanine
 
             /// @todo Should probably be replaced with something that calls our material manager.
             Ogre::MaterialManager* MatMan = Ogre::MaterialManager::getSingletonPtr();
-            if( MatMan != NULL ) {
+            if( !ToFill.MaterialName.empty() && MatMan != NULL ) {
                 Ogre::ResourcePtr Mat = MatMan->getByName( this->InternalSubMesh->getMaterialName() );
                 ToFill.MaterialGroup = Mat->getOrigin();
             }
 
-            this->AppendVertexInfo(ToFill.Vertices);
-        }
-
-        void SubMesh::AppendVertexInfo(VertexInfo& ToFill) const
-        {
             Ogre::VertexData* VertData = ( this->InternalSubMesh->useSharedVertices ? this->InternalSubMesh->parent->sharedVertexData : this->InternalSubMesh->vertexData );
-            ToFill.VertexCount += VertData->vertexCount;
-            ToFill.IndexCount += this->InternalSubMesh->indexData->indexCount;
+            ToFill.Vertices.VertexCount = VertData->vertexCount;
+            ToFill.Vertices.IndexCount = this->InternalSubMesh->indexData->indexCount;
 
-            this->AppendVertexPositionInfo(ToFill.Positions);
-            this->AppendVertexNormalInfo(ToFill.Normals);
-            this->AppendVertexTexCoordInfo(ToFill.UVs);
-            this->AppendVertexTangentInfo(ToFill.Tangents);
-            this->AppendIndexInfo(ToFill.Indices);
+            ToFill.Vertices.Positions = this->GetVertexPositions();
+            ToFill.Vertices.Normals = this->GetVertexNormals();
+            ToFill.Vertices.UVs = this->GetVertexTexCoords();
+            ToFill.Vertices.Tangents = this->GetVertexTangents();
+            ToFill.Vertices.Indices = this->GetIndices();
+
+            return ToFill;
         }
 
-        void SubMesh::AppendVertexPositionInfo(Vector3Vec& ToFill) const
+        VertexInfo SubMesh::GetVertexInfo() const
         {
-            Whole VertexOffset = ToFill.size();
-            Whole NewSize = VertexOffset + this->GetVertexCount();
-
+            VertexInfo ToFill;
             Ogre::VertexData* VertData = ( this->InternalSubMesh->useSharedVertices ? this->InternalSubMesh->parent->sharedVertexData : this->InternalSubMesh->vertexData );
-            const Ogre::VertexElement* PositionElem = VertData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
-            if( PositionElem != NULL ) {
-                ToFill.resize(NewSize);
-                Ogre::HardwareVertexBufferSharedPtr vBuffer = VertData->vertexBufferBinding->getBuffer(PositionElem->getSource());
+            ToFill.VertexCount = VertData->vertexCount;
+            ToFill.IndexCount = this->InternalSubMesh->indexData->indexCount;
 
-                float* pReal = NULL;
-                unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-                for( size_t j = VertexOffset ; j < NewSize ; j++, vertex += vBuffer->getVertexSize() )
-                {
-                    PositionElem->baseVertexPointerToElement(vertex, &pReal);
-                    ToFill[j].X = *pReal++;
-                    ToFill[j].Y = *pReal++;
-                    ToFill[j].Z = *pReal++;
-                }
-                vBuffer->unlock();
-            }
+            ToFill.Positions = this->GetVertexPositions();
+            ToFill.Normals = this->GetVertexNormals();
+            ToFill.UVs = this->GetVertexTexCoords();
+            ToFill.Tangents = this->GetVertexTangents();
+            ToFill.Indices = this->GetIndices();
+            return ToFill;
         }
 
-        void SubMesh::AppendVertexTexCoordInfo(Vector2Vec& ToFill) const
+        Vector3Vec SubMesh::GetVertexPositions() const
         {
-            Whole VertexOffset = ToFill.size();
-            Whole NewSize = VertexOffset + this->GetVertexCount();
-
-            Ogre::VertexData* VertData = ( this->InternalSubMesh->useSharedVertices ? this->InternalSubMesh->parent->sharedVertexData : this->InternalSubMesh->vertexData );
-            const Ogre::VertexElement* TexCoordElem = VertData->vertexDeclaration->findElementBySemantic(Ogre::VES_TEXTURE_COORDINATES);
-            if( TexCoordElem != NULL ) {
-                ToFill.resize(NewSize);
-                Ogre::HardwareVertexBufferSharedPtr vBuffer = VertData->vertexBufferBinding->getBuffer(TexCoordElem->getSource());
-
-                float* pReal = NULL;
-                unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-                for( size_t j = VertexOffset ; j < NewSize ; j++, vertex += vBuffer->getVertexSize() )
-                {
-                    TexCoordElem->baseVertexPointerToElement(vertex, &pReal);
-                    ToFill[j].X = *pReal++;
-                    ToFill[j].Y = *pReal++;
-                }
-                vBuffer->unlock();
-            }
+            Ogre::VertexData* VertData = this->GetVertexData();
+            return VertexTools::GetVertexPositions(VertData);
         }
 
-        void SubMesh::AppendVertexNormalInfo(Vector3Vec& ToFill) const
+        Vector2Vec SubMesh::GetVertexTexCoords() const
         {
-            Whole VertexOffset = ToFill.size();
-            Whole NewSize = VertexOffset + this->GetVertexCount();
-
-            Ogre::VertexData* VertData = ( this->InternalSubMesh->useSharedVertices ? this->InternalSubMesh->parent->sharedVertexData : this->InternalSubMesh->vertexData );
-            const Ogre::VertexElement* NormalElem = VertData->vertexDeclaration->findElementBySemantic(Ogre::VES_NORMAL);
-            if( NormalElem != NULL ) {
-                ToFill.resize(NewSize);
-                Ogre::HardwareVertexBufferSharedPtr vBuffer = VertData->vertexBufferBinding->getBuffer(NormalElem->getSource());
-
-                float* pReal = NULL;
-                unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-                for( size_t j = VertexOffset ; j < NewSize ; j++, vertex += vBuffer->getVertexSize() )
-                {
-                    NormalElem->baseVertexPointerToElement(vertex, &pReal);
-                    ToFill[j].X = *pReal++;
-                    ToFill[j].Y = *pReal++;
-                    ToFill[j].Z = *pReal++;
-                }
-                vBuffer->unlock();
-            }
+            Ogre::VertexData* VertData = this->GetVertexData();
+            return VertexTools::GetVertexTexCoords(VertData);
         }
 
-        void SubMesh::AppendVertexTangentInfo(Vector3Vec& ToFill) const
+        Vector3Vec SubMesh::GetVertexNormals() const
         {
-            Whole VertexOffset = ToFill.size();
-            Whole NewSize = VertexOffset + this->GetVertexCount();
-
-            Ogre::VertexData* VertData = ( this->InternalSubMesh->useSharedVertices ? this->InternalSubMesh->parent->sharedVertexData : this->InternalSubMesh->vertexData );
-            const Ogre::VertexElement* TangentElem = VertData->vertexDeclaration->findElementBySemantic(Ogre::VES_TANGENT);
-            if( TangentElem != NULL ) {
-                ToFill.resize(NewSize);
-                Ogre::HardwareVertexBufferSharedPtr vBuffer = VertData->vertexBufferBinding->getBuffer(TangentElem->getSource());
-
-                float* pReal = NULL;
-                unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-                for( size_t j = VertexOffset ; j < NewSize ; j++, vertex += vBuffer->getVertexSize() )
-                {
-                    TangentElem->baseVertexPointerToElement(vertex, &pReal);
-                    ToFill[j].X = *pReal++;
-                    ToFill[j].Y = *pReal++;
-                    ToFill[j].Z = *pReal++;
-                }
-                vBuffer->unlock();
-            }
+            Ogre::VertexData* VertData = this->GetVertexData();
+            return VertexTools::GetVertexNormals(VertData);
         }
 
-        void SubMesh::AppendIndexInfo(IntVec& ToFill) const
+        Vector3Vec SubMesh::GetVertexTangents() const
         {
-            Whole IndexOffset = ToFill.size();
-            Whole NewSize = IndexOffset + this->GetVertexCount();
+            Ogre::VertexData* VertData = this->GetVertexData();
+            return VertexTools::GetVertexTangents(VertData);
+        }
 
-            Ogre::HardwareIndexBufferSharedPtr iBuffer = this->InternalSubMesh->indexData->indexBuffer;
-            Boole use32bitindexes = ( iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT );
-            ToFill.resize(NewSize);
+        Vector3Vec SubMesh::GetVertexBinormals() const
+        {
+            Ogre::VertexData* VertData = this->GetVertexData();
+            return VertexTools::GetVertexBinormals(VertData);
+        }
 
-            long* pLong = static_cast<long*>( iBuffer->lock( Ogre::HardwareBuffer::HBL_READ_ONLY ) );
-            if( use32bitindexes ) {
-                for( size_t CurrIndex = IndexOffset ; CurrIndex < NewSize ; ++CurrIndex )
-                    { ToFill[CurrIndex] = pLong[CurrIndex]; }
-            }else{
-                short* pShort = reinterpret_cast<short*>(pLong);
-                for( size_t CurrIndex = IndexOffset ; CurrIndex < NewSize ; ++CurrIndex )
-                    { ToFill[CurrIndex] = static_cast<unsigned long>( pShort[CurrIndex] ); }
-            }
-            iBuffer->unlock();
+        IntVec SubMesh::GetIndices() const
+        {
+            Ogre::IndexData* IndexConfig = this->InternalSubMesh->indexData;
+            return VertexTools::GetIndices(IndexConfig);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

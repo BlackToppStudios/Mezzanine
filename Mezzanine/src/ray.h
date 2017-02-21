@@ -69,11 +69,11 @@ namespace Mezzanine
     public:
         /// @brief This is a type used for the ray intersection tests performed on Planes.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boole,Vector3> PlaneRayTestResult;
+        typedef MathTools::Point3DTestResult PlaneRayTestResult;
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
-        //typedef MathTools::PointPointInterection GeometryRayTestResult;
         typedef MathTools::GeometryRayTestResult GeometryRayTestResult;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
@@ -97,7 +97,7 @@ namespace Mezzanine
         Ray(const Vector3& Dir);
         /// @brief Descriptive constructor.
         /// @param From The origin for the new Ray.
-        /// @param Dir The direction this Ray is pointing in. This will be normalizedprior to use.
+        /// @param Dir The direction this Ray is pointing in. This will be normalized prior to use.
         Ray(const Vector3& From, const Vector3& Dir);
         /// @brief Internal constructor.
         /// @param InternalRay This is the Ogre::Ray to copy from.
@@ -125,7 +125,7 @@ namespace Mezzanine
         /// @brief Gets a point on the ray at a distance.
         /// @param Distance The distance from the origin to get the position of.
         /// @return Returns a point in 3D space that is on the ray at the specified distance from the origin.
-        Vector3 GetPointAtDistance(const Real& Distance);
+        Vector3 GetPointAtDistance(const Real& Distance) const;
 
 
         /// @brief Checks to see if this ray intersects a plane.
@@ -184,11 +184,12 @@ namespace Mezzanine
 }//Mezzanine
 
 #ifndef SWIG
-/// @brief Streaming output operator
-/// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout
-/// @param stream This is the stream we send our data to.
+/// @brief Streaming output operator.
+/// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout.
+/// @param Stream This is the stream we send our data to.
+/// @param Data The data to be streamed.
 /// @return This returns an std::ostream which now contains our data.
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Ray& x);
+std::ostream& MEZZ_LIB operator << (std::ostream& Stream, const Mezzanine::Ray& Data);
 #endif
 
 #endif
