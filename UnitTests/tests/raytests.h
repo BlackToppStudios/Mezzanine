@@ -227,7 +227,7 @@ public:
             Ray::GeometryRayTestResult PassResult = Cast.Intersects(PassBall);
             Ray::GeometryRayTestResult FailResult = Cast.Intersects(FailBall);
             TEST(PassResult.first && PassResult.second == LineSegment3D(Vector3(10.0,0.0,0.0),Vector3(30.0,0.0,0.0)), "Intersects(const_Sphere&)_const_positive");
-            TEST(!FailResult.first && FailResult.second == LineSegment3D(Vector3(0.0,0.0,0.0),Vector3(0.0,1.0,0.0)), "Intersects(const_Sphere&)_const_negative");
+            TEST(!FailResult.first && FailResult.second == LineSegment3D(Vector3(0.0,0.0,0.0),Vector3(0.0,0.0,0.0)), "Intersects(const_Sphere&)_const_negative");
         }
 
         {
@@ -239,7 +239,7 @@ public:
             Ray::GeometryRayTestResult PassResult = Cast.Intersects(PassBox);
             Ray::GeometryRayTestResult FailResult = Cast.Intersects(FailBox);
             TEST(PassResult.first && PassResult.second == LineSegment3D(Vector3(-5.0,0.0,0.0),Vector3(5.0,0.0,0.0)), "Intersects(const_AxisAlignedBox&)_const_positive");
-            TEST(!FailResult.first && FailResult.second == LineSegment3D(Vector3(0.0,0.0,0.0),Vector3(0.0,1.0,0.0)), "Intersects(const_AxisAlignedBox&)_const_negative");
+            TEST(!FailResult.first && FailResult.second == LineSegment3D(Vector3(0.0,0.0,0.0),Vector3(0.0,0.0,0.0)), "Intersects(const_AxisAlignedBox&)_const_negative");
         }
 
         { //Timing test for old collision algorithm
