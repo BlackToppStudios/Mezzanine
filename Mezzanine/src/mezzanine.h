@@ -74,7 +74,6 @@
 #include "actormanager.h"
 #include "areaeffect.h"
 #include "areaeffectmanager.h"
-#include "attachable.h"
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "cameracontroller.h"
