@@ -66,6 +66,7 @@ namespace Mezzanine
 #include "Graphics/guillotinetexturepacker.h"
 #include "Graphics/image.h"
 #include "Graphics/lightproxy.h"
+#include "Graphics/linegroupproxy.h"
 #include "Graphics/material.h"
 #include "Graphics/mesh.h"
 #include "Graphics/maxrectstexturepacker.h"

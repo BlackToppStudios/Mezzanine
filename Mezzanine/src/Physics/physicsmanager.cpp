@@ -65,7 +65,6 @@
 #include "debrismanager.h"
 
 #include "stringtool.h"
-#include "linegroup.h"
 #include "vector3.h"
 #include "worldtrigger.h"
 #include "worldobject.h"
@@ -73,6 +72,10 @@
 #include "entresol.h"
 #include "world.h"
 #include "timer.h"
+
+// Graphics includes exist for the debug drawer
+#include "Graphics/linegroupproxy.h"
+#include "Graphics/scenemanager.h"
 
 #include "Physics/collisiondispatcher.h.cpp"
 
@@ -101,12 +104,10 @@
 
 namespace Mezzanine
 {
-    /// @internal
-    /// @namespace Mezzanine::debug
-    /// @brief This namespace is for internal debugging tools. In general it shouldn't be used in game code.
-    /// @details This whole debug namespace is a dirty hack. This is where internal only classes and functions go
-    /// that can and maybe should be ommited from release builds
-    namespace debug
+    #ifdef GetObject
+    #undef GetObject
+    #endif
+    namespace Physics
     {
         /// @internal
         /// @class InternalDebugDrawer
@@ -115,26 +116,26 @@ namespace Mezzanine
         {
         private:
             /// @internal
+            /// @brief A pointer to the scene manager that the drawer will render to.
+            Graphics::SceneManager* SceneMan;
+            /// @internal
             /// @brief This stores the wireframe being used for rendering.
-            Mezzanine::LineGroup* WireFrame;
+            Graphics::LineGroupProxy* WireFrame;
             /// @internal
             /// @brief A pointer to the safe logger for debug output.
-            Mezzanine::Logger* ErrorLogger;
+            Logger* ErrorLogger;
             /// @internal
             /// @brief This stores whether or not to render physics debug lines
             /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
             /// Later we will add support for contact drawing, individual modeling drawing, etc...
             int DebugDrawing;
-
-            /// @brief Parent World To draw in
-            World* ParentWorld;
-
         public:
             /// @internal
-            /// @brief Basic Constructor
-            InternalDebugDrawer(World * ParentWorld);
+            /// @brief Class constructor.
+            /// @param A pointer to the scene manager that the drawer will render to.
+            InternalDebugDrawer(Graphics::SceneManager* Manager);
             /// @internal
-            /// @brief Destructor
+            /// @brief Class destructor.
             virtual ~InternalDebugDrawer();
 
             /// @internal
@@ -182,7 +183,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Sets the safe logger to sent debug output to.
             /// @param Logger A pointer to the safe logger for debug output.
-            virtual void SetLogger(Mezzanine::Logger* Logger);
+            virtual void SetLogger(Logger* Logger);
             /// @internal
             /// @brief Used by the physics subsystem to report errors using the renderer
             /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
@@ -191,37 +192,28 @@ namespace Mezzanine
             virtual void reportErrorWarning(const char* warningString);
         };
 
-        InternalDebugDrawer::InternalDebugDrawer(World * ParentWorld) :
+        InternalDebugDrawer::InternalDebugDrawer(Graphics::SceneManager* Manager) :
+            SceneMan(Manager),
             WireFrame(NULL),
-            DebugDrawing(Physics::DDM_NoDebug),
-            ParentWorld(ParentWorld)
-            {  }
+            DebugDrawing(Physics::DDM_NoDebug)
+            { this->WireFrame = SceneMan->CreateLineGroupProxy(); }
 
         InternalDebugDrawer::~InternalDebugDrawer()
-        {
-            if( this->WireFrame != NULL )
-                delete this->WireFrame;
-        }
+            { SceneMan->DestroyProxy( this->WireFrame ); }
 
         void InternalDebugDrawer::PrepareForUpdate()
         {
-            if( this->WireFrame == NULL ) {
-                this->WireFrame = new Mezzanine::LineGroup(this->ParentWorld);
-                if( this->DebugDrawing != Physics::DDM_NoDebug ) {
-                    this->WireFrame->AddToWorld();
-                }
-            }
             this->WireFrame->AddToWorld();
-            this->WireFrame->ClearLines();
+            this->WireFrame->ClearPoints();
         }
 
         void InternalDebugDrawer::FinalizeUpdate()
         {
-            this->WireFrame->DrawLines();
+            this->WireFrame->UpdateBuffers();
         }
 
         void InternalDebugDrawer::drawLine(const btVector3& from,const btVector3& to,const btVector3& color)
-            { this->WireFrame->DrawLine( Vector3(from), Vector3(to), ColourValue(color.getX(),color.getY(),color.getZ()) ); }
+            { this->WireFrame->AddLine( Vector3(from), Vector3(to), ColourValue(color.getX(),color.getY(),color.getZ()) ); }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
             {  }
@@ -232,30 +224,22 @@ namespace Mezzanine
         void InternalDebugDrawer::setDebugMode(int debugMode)
         {
             this->DebugDrawing = debugMode;
-            if( this->WireFrame != NULL ) {
-                if( this->DebugDrawing != Physics::DDM_NoDebug ) {
-                    this->WireFrame->AddToWorld();
-                }else{
-                    this->WireFrame->RemoveFromWorld();
-                }
+            if( this->DebugDrawing != Physics::DDM_NoDebug ) {
+                this->WireFrame->AddToWorld();
+            }else{
+                this->WireFrame->RemoveFromWorld();
             }
         }
 
         int InternalDebugDrawer::getDebugMode() const
             { return this->DebugDrawing; }
 
-        void InternalDebugDrawer::SetLogger(Mezzanine::Logger* Logger)
+        void InternalDebugDrawer::SetLogger(Logger* Logger)
             { this->ErrorLogger = Logger; }
 
         void InternalDebugDrawer::reportErrorWarning(const char* warningString)
             { (*this->ErrorLogger) << warningString << std::endl; }
-    }// debug
 
-    #ifdef GetObject
-    #undef GetObject
-    #endif
-    namespace Physics
-    {
         ///////////////////////////////////////////////////////////
         // SimulationWorkUnit functions
 
@@ -349,7 +333,7 @@ namespace Mezzanine
         void DebugDrawWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
             // No real logging necessary
-            debug::InternalDebugDrawer* Drawer = this->TargetManager->BulletDrawer;
+            InternalDebugDrawer* Drawer = this->TargetManager->BulletDrawer;
             Drawer->SetLogger( &CurrentThreadStorage.GetUsableLogger() );
             if( Drawer && Drawer->getDebugMode() )        //this part is responsible for drawing the wireframes
             {
@@ -1365,7 +1349,8 @@ namespace Mezzanine
             }
 
             if( this->Initialized && this->BulletDrawer == NULL ) {
-                this->BulletDrawer = new debug::InternalDebugDrawer(this->ParentWorld);
+                Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
+                this->BulletDrawer = new InternalDebugDrawer(SceneMan);
                 this->BulletDrawer->setDebugMode( this->DebugRenderMode );
                 this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
             }
@@ -1424,7 +1409,8 @@ namespace Mezzanine
                 WorldManager::Initialize();
 
                 // Create the debugdrawer
-                this->BulletDrawer = new debug::InternalDebugDrawer(this->ParentWorld);
+                Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
+                this->BulletDrawer = new InternalDebugDrawer(SceneMan);
                 this->BulletDrawer->setDebugMode( this->DebugRenderMode );
                 this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
 

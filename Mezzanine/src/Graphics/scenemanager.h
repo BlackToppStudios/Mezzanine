@@ -71,6 +71,7 @@ namespace Mezzanine
         class CameraProxy;
         class EntityProxy;
         class LightProxy;
+        class LineGroupProxy;
         class ParticleSystemProxy;
         class SceneManager;
         class SceneManagerData;
@@ -302,6 +303,14 @@ namespace Mezzanine
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
             LightProxy* CreateLightProxy(const XML::Node& SelfRoot);
+
+            /// @brief Creates a new LineGroupProxy.
+            /// @return Returns a pointer to the created LineGroupProxy.
+            LineGroupProxy* CreateLineGroupProxy();
+            /// @brief Creates a new LineGroupProxy.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            /// @return Returns a pointer to the created LineGroupProxy.
+            LineGroupProxy* CreateLineGroupProxy(const XML::Node& SelfRoot);
 
             /// @brief Creates a new ParticleSystemProxy.
             /// @param Template Name of the particle script to be used in creating this particle effect.

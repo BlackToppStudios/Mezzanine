@@ -76,14 +76,12 @@ namespace Mezzanine
     class Entresol;
     class World;
     class WorldTrigger;
-    namespace debug {
-        class InternalDebugDrawer;
-    }
     namespace Physics
     {
         class Collision;
         class CollisionDispatcher;
         class ParallelCollisionDispatcher;
+        class InternalDebugDrawer;
         class PhysicsManager;
 
         class CollidableProxy;
@@ -362,7 +360,7 @@ namespace Mezzanine
             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
             /// @internal
             /// @brief A pointer to the debug drawer for rendering the physics world.
-            debug::InternalDebugDrawer* BulletDrawer;
+            InternalDebugDrawer* BulletDrawer;
 
             /// @internal
             /// @brief The work unit that does the stepping of the simulation.

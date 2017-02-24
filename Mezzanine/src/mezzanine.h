@@ -130,7 +130,6 @@
 #include "hashedstring.h"
 #include "interpolator.h"
 #include "interval.h"
-#include "linegroup.h"
 #include "linesegment.h"
 #include "memorystream.h"
 #include "meshterrain.h"
