@@ -90,7 +90,7 @@ namespace Mezzanine
     namespace Graphics
     {
         LightProxy::LightProxy(const UInt32 ID, SceneManager* Creator) :
-            RenderableProxy(Creator),
+            RenderableProxy(ID,Creator),
             GraphicsLight(NULL)
             { this->CreateLight(); }
 

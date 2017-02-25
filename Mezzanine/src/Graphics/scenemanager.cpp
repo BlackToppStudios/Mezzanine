@@ -530,6 +530,7 @@ namespace Mezzanine
             else if( SelfRoot.Name() == CameraProxy::GetSerializableName() ) return this->CreateCamera(SelfRoot);
             else if( SelfRoot.Name() == EntityProxy::GetSerializableName() ) return this->CreateEntityProxy(SelfRoot);
             else if( SelfRoot.Name() == LightProxy::GetSerializableName() ) return this->CreateLightProxy(SelfRoot);
+            else if( SelfRoot.Name() == LineGroupProxy::GetSerializableName() ) return this->CreateLineGroupProxy(SelfRoot);
             else if( SelfRoot.Name() == ParticleSystemProxy::GetSerializableName() ) return this->CreateParticleSystemProxy(SelfRoot);
             else return NULL;
         }

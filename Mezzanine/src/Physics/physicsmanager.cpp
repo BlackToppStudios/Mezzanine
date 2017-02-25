@@ -195,14 +195,24 @@ namespace Mezzanine
         InternalDebugDrawer::InternalDebugDrawer(Graphics::SceneManager* Manager) :
             SceneMan(Manager),
             WireFrame(NULL),
+            ErrorLogger(NULL),
             DebugDrawing(Physics::DDM_NoDebug)
-            { this->WireFrame = SceneMan->CreateLineGroupProxy(); }
+            {  }//this->WireFrame = new Graphics::LineGroupProxy(0,this->SceneMan); }//SceneMan->CreateLineGroupProxy(); }
 
         InternalDebugDrawer::~InternalDebugDrawer()
-            { SceneMan->DestroyProxy( this->WireFrame ); }
+            { if( this->WireFrame != NULL ) delete this->WireFrame; }//SceneMan->DestroyProxy( this->WireFrame ); }
 
         void InternalDebugDrawer::PrepareForUpdate()
         {
+            /// @todo As you can see from the commented code I originally tried making the WireFrame on construction, rather
+            /// than on demand in order to remove unnecessary NULL checks.  However this prevented it from rendering despite
+            /// all the obvious data being valid while debugging (visibility masks, in scene graph, buffer populated with
+            /// valid data, etc.).  This should be investigated but my best theory at the time of the writing is that hardware
+            /// buffers we get when made around the time managers are initialized (since this is created at physics manager
+            /// initialization) aren't valid somehow.
+            if( this->WireFrame == NULL ) {
+                this->WireFrame = new Graphics::LineGroupProxy(0,this->SceneMan);
+            }
             this->WireFrame->AddToWorld();
             this->WireFrame->ClearPoints();
         }
@@ -224,10 +234,12 @@ namespace Mezzanine
         void InternalDebugDrawer::setDebugMode(int debugMode)
         {
             this->DebugDrawing = debugMode;
-            if( this->DebugDrawing != Physics::DDM_NoDebug ) {
-                this->WireFrame->AddToWorld();
-            }else{
-                this->WireFrame->RemoveFromWorld();
+            if( this->WireFrame != NULL ) {
+                if( this->DebugDrawing != Physics::DDM_NoDebug ) {
+                    this->WireFrame->AddToWorld();
+                }else{
+                    this->WireFrame->RemoveFromWorld();
+                }
             }
         }
 

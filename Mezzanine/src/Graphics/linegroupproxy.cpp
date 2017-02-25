@@ -353,7 +353,7 @@ namespace Mezzanine
         // LineGroup Methods
 
         LineGroupProxy::LineGroupProxy(const UInt32 ID, SceneManager* Creator) :
-            RenderableProxy(Creator),
+            RenderableProxy(ID,Creator),
             GraphicsLineData(NULL)
             { this->CreateLineGroup(); }
 
