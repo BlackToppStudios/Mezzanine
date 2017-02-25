@@ -98,9 +98,10 @@ CatchApp::~CatchApp()
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->EndLevelWork );
     delete this->EndLevelWork;
 
+    delete this->ThePlayer;
+
     this->TheEntresol->DestroyWorld(this->TheWorld);
 
-    delete this->ThePlayer;
     delete this->Profiles;
     delete this->LevelMan;
     delete this->Scorer;
@@ -1735,7 +1736,7 @@ int CatchApp::GetCatchin()
     Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
     Audio::SoundScapeManager* SoundScapeMan = static_cast<Audio::SoundScapeManager*>( this->TheWorld->GetManager(ManagerBase::MT_SoundScapeManager) );
     Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
-    Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) );
+    //Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) );
     Input::InputManager* InputMan = static_cast<Input::InputManager*>( this->TheEntresol->GetManager(ManagerBase::MT_InputManager) );
     Physics::PhysicsManager* PhysicsMan = static_cast<Physics::PhysicsManager*>( this->TheWorld->GetManager(ManagerBase::MT_PhysicsManager) );
     Scripting::Lua::Lua51ScriptingEngine* ScriptingMan = static_cast<Scripting::Lua::Lua51ScriptingEngine*>( this->TheEntresol->GetManager(ManagerBase::MT_ScriptingManager) );
