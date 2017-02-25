@@ -154,9 +154,9 @@ public:
 
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->OneWorld->GetManager(ManagerBase::MT_PhysicsManager) );
 
-        static Boole DrawToggle = false;
+        static Boole DrawToggle = true;
         if( SysKeyboard->IsButtonPressing(Input::KEY_C ) ) {
-            if( DrawToggle ) PhysMan->SetDebugRenderingMode(Physics::DDM_All);
+            if( DrawToggle ) PhysMan->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
             else PhysMan->SetDebugRenderingMode(Physics::DDM_NoDebug);
             DrawToggle = !DrawToggle;
         }
