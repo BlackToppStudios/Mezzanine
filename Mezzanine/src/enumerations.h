@@ -108,27 +108,37 @@ namespace Mezzanine
     /// @brief Used by all World proxies to describe what their derived types are.
     enum ProxyType
     {
-        PT_Audio_First                  = 1,//1
-        PT_Audio_Listener               = 1,//1
-        PT_Audio_SoundProxy             = 2,//2
-        PT_Audio_Last                   = 2,//2
+        PT_Audio_First                  = EnumBit(1),
 
-        PT_Graphics_First               = 4,//3
-        PT_Graphics_BillboardSetProxy   = 4,//3
-        PT_Graphics_CameraProxy         = 8,//4
-        PT_Graphics_EntityProxy         = 16,//5
-        PT_Graphics_LightProxy          = 32,//6
-        PT_Graphics_ParticleSystemProxy = 64,//7
-        PT_Graphics_Last                = 64,//7
+        PT_Audio_Listener               = EnumBit(1),
+        PT_Audio_SoundProxy             = EnumBit(2),
 
-        PT_Physics_First                = 128,//8
-        PT_Physics_GhostProxy           = 128,//8
-        PT_Physics_RigidProxy           = 256,//9
-        PT_Physics_SoftProxy            = 512,//10
-        PT_Physics_Last                 = 512,//10
+        PT_Audio_Last                   = EnumBit(2),
 
         PT_Audio_All_Proxies            = ( PT_Audio_Listener | PT_Audio_SoundProxy ),
-        PT_Graphics_All_Proxies         = ( PT_Graphics_BillboardSetProxy | PT_Graphics_CameraProxy |PT_Graphics_EntityProxy |PT_Graphics_LightProxy |PT_Graphics_ParticleSystemProxy ),
+
+        PT_Graphics_First               = EnumBit(3),
+
+        PT_Graphics_BillboardSetProxy   = EnumBit(3),
+        PT_Graphics_CameraProxy         = EnumBit(4),
+        PT_Graphics_EntityProxy         = EnumBit(5),
+        PT_Graphics_LightProxy          = EnumBit(6),
+        PT_Graphics_LineGroupProxy      = EnumBit(7),
+        PT_Graphics_ParticleSystemProxy = EnumBit(8),
+
+        PT_Graphics_Last                = EnumBit(8),
+
+        PT_Graphics_All_Proxies         = ( PT_Graphics_BillboardSetProxy | PT_Graphics_CameraProxy | PT_Graphics_EntityProxy |
+                                            PT_Graphics_LightProxy | PT_Graphics_LineGroupProxy | PT_Graphics_ParticleSystemProxy ),
+
+        PT_Physics_First                = EnumBit(9),
+
+        PT_Physics_GhostProxy           = EnumBit(9),
+        PT_Physics_RigidProxy           = EnumBit(10),
+        PT_Physics_SoftProxy            = EnumBit(11),
+
+        PT_Physics_Last                 = EnumBit(11),
+
         PT_Physics_All_Proxies          = ( PT_Physics_GhostProxy | PT_Physics_RigidProxy | PT_Physics_SoftProxy ),
 
         PT_All_Proxies                  = ( PT_Audio_All_Proxies | PT_Graphics_All_Proxies | PT_Physics_All_Proxies )

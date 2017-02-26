@@ -58,6 +58,7 @@
 #include "Graphics/cameraproxy.h"
 #include "Graphics/entityproxy.h"
 #include "Graphics/lightproxy.h"
+#include "Graphics/linegroupproxy.h"
 #include "Graphics/particlesystemproxy.h"
 
 #include <memory>
@@ -493,6 +494,21 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        LineGroupProxy* SceneManager::CreateLineGroupProxy()
+        {
+            LineGroupProxy* NewProxy = new LineGroupProxy(this->ProxyIDGen.GenerateID(),this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        LineGroupProxy* SceneManager::CreateLineGroupProxy(const XML::Node& SelfRoot)
+        {
+            LineGroupProxy* NewProxy = new LineGroupProxy(SelfRoot,this);
+            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
         ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template)
         {
             ParticleSystemProxy* NewProxy = new ParticleSystemProxy(this->ProxyIDGen.GenerateID(),Template,this);
@@ -514,6 +530,7 @@ namespace Mezzanine
             else if( SelfRoot.Name() == CameraProxy::GetSerializableName() ) return this->CreateCamera(SelfRoot);
             else if( SelfRoot.Name() == EntityProxy::GetSerializableName() ) return this->CreateEntityProxy(SelfRoot);
             else if( SelfRoot.Name() == LightProxy::GetSerializableName() ) return this->CreateLightProxy(SelfRoot);
+            else if( SelfRoot.Name() == LineGroupProxy::GetSerializableName() ) return this->CreateLineGroupProxy(SelfRoot);
             else if( SelfRoot.Name() == ParticleSystemProxy::GetSerializableName() ) return this->CreateParticleSystemProxy(SelfRoot);
             else return NULL;
         }
