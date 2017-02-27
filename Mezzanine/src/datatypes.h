@@ -54,7 +54,6 @@
 #define MEZZANINE_CORE 1
 
 #include "crossplatformexport.h"
-//#include "pstdint.h" // A reimplimentation of the C99 stdint.h for all compilers
 
 // Standard Headers are not included in SWIG preprocessing
 // Most std includes are centralized here to make modifying this list as simple as possible. Other
@@ -62,11 +61,7 @@
 // conditionally may not be compiled in. For example,
 
 #ifndef SWIG
-    #if defined( _MSC_VER )
-        #include "pstdint.h"
-    #else
-        #include <stdint.h> //Not available in all version of mscv
-    #endif
+    #include <stdint.h> //Not available in unsupported versions of MSVC (<2012, we support >=2015)
     #include <cstddef>
 
     #include <algorithm>

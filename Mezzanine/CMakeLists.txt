@@ -152,7 +152,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}playermanager.h"
         "${${PROJECT_NAME}_SRC_DIR}playerprofile.h"
         "${${PROJECT_NAME}_SRC_DIR}playerview.h"
-        "${${PROJECT_NAME}_SRC_DIR}pstdint.h"
         "${${PROJECT_NAME}_SRC_DIR}quaternion.h"
         "${${PROJECT_NAME}_SRC_DIR}ray.h"
         "${${PROJECT_NAME}_SRC_DIR}raycastvehicle.h"
