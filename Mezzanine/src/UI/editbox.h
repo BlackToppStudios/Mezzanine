@@ -63,7 +63,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "EditBox".
             static const String TypeName;
             /// @brief Event name for when the text in this widget has been updated.
-            static const String EventTextUpdated;
+            static const HashedString32 EventTextUpdated;
             /// @brief Callback type for input filtering.
             typedef Boole (FilterCallback)(const Int32 Glyph);
         protected:
@@ -202,7 +202,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the factory implementation for EditBox widgets.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB EditBoxFactory : public WidgetFactory
         {

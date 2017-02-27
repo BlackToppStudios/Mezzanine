@@ -58,7 +58,7 @@ namespace Mezzanine
         // Scrollbar Methods
 
         const String Scrollbar::TypeName                = "Scrollbar";
-        const String Scrollbar::EventScrollValueChanged = "ScrollValueChanged";
+        const HashedString32 Scrollbar::EventScrollValueChanged = "ScrollValueChanged";
 
         Scrollbar::Scrollbar(Screen* Parent) :
             PageProvider(Parent),

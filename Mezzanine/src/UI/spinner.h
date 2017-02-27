@@ -53,7 +53,6 @@ namespace Mezzanine
         class FontData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the EventArguments class for when the spinvalue of a Spinner is updated.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB SpinnerValueChangedArguments : public WidgetEventArguments
         {
@@ -133,7 +132,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "Spinner".
             static const String TypeName;
             /// @brief Event name for when the value in this Spinner is updated.
-            static const String EventSpinValueChanged;
+            static const HashedString32 EventSpinValueChanged;
         protected:
             /// @internal
             /// @brief A pointer to the button that will increment the spin value.
@@ -314,7 +313,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the factory implementation for Spinner widgets.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB SpinnerFactory : public WidgetFactory
         {

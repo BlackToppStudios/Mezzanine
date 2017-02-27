@@ -50,7 +50,6 @@ namespace Mezzanine
         class PageProvider;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the EventArguments class for when a child of a paged container is selected.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ChildSelectedArguments : public WidgetEventArguments
         {
@@ -144,7 +143,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "PagedContainer".
             static const String TypeName;
             /// @brief Event name for when a child of this widget gets selected.
-            static const String EventChildSelected;
+            static const HashedString32 EventChildSelected;
         protected:
             /// @internal
             /// @brief A container of children that meet the criteria for rendering in this container.

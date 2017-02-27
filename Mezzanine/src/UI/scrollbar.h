@@ -51,7 +51,6 @@ namespace Mezzanine
         class Button;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the EventArguments class for when the scrollvalue of a scrollbar is updated.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ScrollbarValueChangedArguments : public WidgetEventArguments
         {
@@ -129,7 +128,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "Scrollbar".
             static const String TypeName;
             /// @brief Event name for when this scrollbar has his scrollvalue updated.
-            static const String EventScrollValueChanged;
+            static const HashedString32 EventScrollValueChanged;
         protected:
             /// @internal
             /// @brief The manipulatable widget that represents the current position on the scrollbar/slider.

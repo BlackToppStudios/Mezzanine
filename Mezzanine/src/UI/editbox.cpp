@@ -63,7 +63,7 @@ namespace Mezzanine
         // EditBox Static Members
 
         const String EditBox::TypeName = "EditBox";
-        const String EditBox::EventTextUpdated = "TextUpdated";
+        const HashedString32 EditBox::EventTextUpdated = "TextUpdated";
 
         ///////////////////////////////////////////////////////////////////////////////
         // EditBox Methods

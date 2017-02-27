@@ -55,7 +55,6 @@ namespace Mezzanine
         class GenericWidgetFactory;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for widget specific event arguments.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB WidgetEventArguments : public EventArguments
         {
@@ -173,25 +172,25 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "GenericWidget".
             static const String TypeName;
             /// @brief Event name for when the mouse enters this widget.
-            static const String EventMouseEnter;
+            static const HashedString32 EventMouseEnter;
             /// @brief Event name for when the mouse leaves this widget.
-            static const String EventMouseExit;
+            static const HashedString32 EventMouseExit;
             /// @brief Event name for when the mouse starts dragging this widget.
-            static const String EventMouseDragStart;
+            static const HashedString32 EventMouseDragStart;
             /// @brief Event name for when the mouse stops dragging this widget.
-            static const String EventMouseDragEnd;
+            static const HashedString32 EventMouseDragEnd;
             /// @brief Event name for when this widget gains focus.
-            static const String EventFocusGained;
+            static const HashedString32 EventFocusGained;
             /// @brief Event name for when this widget loses focus.
-            static const String EventFocusLost;
+            static const HashedString32 EventFocusLost;
             /// @brief Event name for when the system locks focus on this widget.
-            static const String EventFocusLocked;
+            static const HashedString32 EventFocusLocked;
             /// @brief Event name fow when the system removes the focus lock from this widget.
-            static const String EventFocusUnlocked;
+            static const HashedString32 EventFocusUnlocked;
             /// @brief Event name for when this widget is switched from being hidden to being shown.
-            static const String EventVisibilityShown;
+            static const HashedString32 EventVisibilityShown;
             /// @brief Event name for when this widget is switched from being shown to being hidden.
-            static const String EventVisibilityHidden;
+            static const HashedString32 EventVisibilityHidden;
         protected:
             /// @internal
             /// @brief Map containing all the RenderLayerGroups bound to specific widget states.
@@ -387,7 +386,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the factory implementation for generic widgets.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB GenericWidgetFactory : public WidgetFactory
         {

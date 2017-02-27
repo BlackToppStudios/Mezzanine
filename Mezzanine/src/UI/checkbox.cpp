@@ -56,8 +56,8 @@ namespace Mezzanine
 
         const String CheckBox::TypeName = "CheckBox";
 
-        const String CheckBox::EventSelected = "Selected";
-        const String CheckBox::EventDeselected = "Deselected";
+        const HashedString32 CheckBox::EventSelected = "Selected";
+        const HashedString32 CheckBox::EventDeselected = "Deselected";
 
         ///////////////////////////////////////////////////////////////////////////////
         // CheckBox Methods

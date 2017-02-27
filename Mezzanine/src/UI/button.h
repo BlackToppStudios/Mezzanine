@@ -55,8 +55,6 @@ namespace Mezzanine
         class Screen;
         class ButtonCallback;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Button
-        /// @headerfile button.h
         /// @brief This class is a helper class, specifically for use as a button.
         /// @details Unlike rectangles and captions, this class can be interacted with by clicking.
         /// It is important to understand what you want your space to do when selecting the class to use.
@@ -90,11 +88,11 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "Button".
             static const String TypeName;
             /// @brief Event name for when this activatable widget is activated.
-            static const String EventActivated;
+            static const HashedString32 EventActivated;
             /// @brief Event name for when this activatable widget is put into standby.
-            static const String EventStandby;
+            static const HashedString32 EventStandby;
             /// @brief Event name for when this activatable widget is deactivated.
-            static const String EventDeactivated;
+            static const HashedString32 EventDeactivated;
         protected:
             /// @internal
             /// @brief A container of codes that stores the inputs that will trigger this button to be activated.
@@ -234,7 +232,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the factory implementation for Button widgets.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ButtonFactory : public WidgetFactory
         {

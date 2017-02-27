@@ -53,16 +53,16 @@ namespace Mezzanine
         // Widget Static Members
 
         const String Widget::TypeName              = "GenericWidget";
-        const String Widget::EventMouseEnter       = "MouseEnter";
-        const String Widget::EventMouseExit        = "MouseExit";
-        const String Widget::EventMouseDragStart   = "MouseDragStart";
-        const String Widget::EventMouseDragEnd     = "MouseDragEnd";
-        const String Widget::EventFocusGained      = "FocusGained";
-        const String Widget::EventFocusLost        = "FocusLost";
-        const String Widget::EventFocusLocked      = "FocusLocked";
-        const String Widget::EventFocusUnlocked    = "FocusUnlocked";
-        const String Widget::EventVisibilityShown  = "VisibilityShown";
-        const String Widget::EventVisibilityHidden = "VisibilityHidden";
+        const HashedString32 Widget::EventMouseEnter       = "MouseEnter";
+        const HashedString32 Widget::EventMouseExit        = "MouseExit";
+        const HashedString32 Widget::EventMouseDragStart   = "MouseDragStart";
+        const HashedString32 Widget::EventMouseDragEnd     = "MouseDragEnd";
+        const HashedString32 Widget::EventFocusGained      = "FocusGained";
+        const HashedString32 Widget::EventFocusLost        = "FocusLost";
+        const HashedString32 Widget::EventFocusLocked      = "FocusLocked";
+        const HashedString32 Widget::EventFocusUnlocked    = "FocusUnlocked";
+        const HashedString32 Widget::EventVisibilityShown  = "VisibilityShown";
+        const HashedString32 Widget::EventVisibilityHidden = "VisibilityHidden";
 
         ///////////////////////////////////////////////////////////////////////////////
         // Widget Methods

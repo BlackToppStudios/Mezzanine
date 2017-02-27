@@ -54,7 +54,7 @@ namespace Mezzanine
         // PagedContainer Static Members
 
         const String PagedContainer::TypeName               = "PagedContainer";
-        const String PagedContainer::EventChildSelected     = "ChildSelected";
+        const HashedString32 PagedContainer::EventChildSelected     = "ChildSelected";
 
         ///////////////////////////////////////////////////////////////////////////////
         // PagedContainer Methods

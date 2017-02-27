@@ -50,7 +50,6 @@ namespace Mezzanine
         class ActionHandler;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for action specific event arguments.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ActionEventArguments : public EventArguments
         {
@@ -107,15 +106,14 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class represents an action to be taken.  Can have multiple inputs bound to it.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Action : public EventPublisher
         {
         public:
             /// @brief Event name for when this Action is activated.
-            static const String EventActionActivated;
+            static const HashedString32 EventActionActivated;
             /// @brief Event name for when this Action is deactivated.
-            static const String EventActionDeactivated;
+            static const HashedString32 EventActionDeactivated;
         protected:
             friend class ActionHandler;
             /// @internal

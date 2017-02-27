@@ -46,8 +46,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        const String Action::EventActionActivated = "ActionActivated";
-        const String Action::EventActionDeactivated = "ActionDeactivated";
+        const HashedString32 Action::EventActionActivated = "ActionActivated";
+        const HashedString32 Action::EventActionDeactivated = "ActionDeactivated";
 
         Action::Action(const String& Name, ActionHandler* Handler)
             : ActionName(Name),

@@ -70,9 +70,9 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "CheckBox".
             static const String TypeName;
             /// @brief Event name for when this checkbox is Selected.
-            static const String EventSelected;
+            static const HashedString32 EventSelected;
             /// @brief Event name for when this checkbox is Deselected.
-            static const String EventDeselected;
+            static const HashedString32 EventDeselected;
         protected:
             /// @internal
             /// @brief Stores whether or not the current state of this CheckBox is locked.
@@ -145,7 +145,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the factory implementation for CheckBox widgets.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB CheckBoxFactory : public WidgetFactory
         {

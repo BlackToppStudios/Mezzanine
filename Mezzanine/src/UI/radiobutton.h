@@ -49,7 +49,6 @@ namespace Mezzanine
         class RadioButton;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a class designed to facilitate operations across an entire group of RadioButtons.
-        /// @details
         ///////////////////////////////////////
         class RadioButtonGroup : public EventPublisher
         {
@@ -62,7 +61,7 @@ namespace Mezzanine
             typedef RadioButtonContainer::const_iterator            ConstRadioButtonIterator;
 
             /// @brief Event name for when the selection among radio buttons has changed.
-            static const String EventGroupButtonSelected;
+            static const HashedString32 EventGroupButtonSelected;
         protected:
             /// @internal
             /// @brief A container storing all the RadioButtons belonging to this group.
@@ -216,7 +215,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the factory implementation for RadioButton widgets.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB RadioButtonFactory : public WidgetFactory
         {

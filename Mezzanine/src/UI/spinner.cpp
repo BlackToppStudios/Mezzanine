@@ -73,7 +73,7 @@ namespace Mezzanine
         // Spinner Static Members
 
         const String Spinner::TypeName = "Spinner";
-        const String Spinner::EventSpinValueChanged = "SpinValueChanged";
+        const HashedString32 Spinner::EventSpinValueChanged = "SpinValueChanged";
 
         ///////////////////////////////////////////////////////////////////////////////
         // Spinner Methods
