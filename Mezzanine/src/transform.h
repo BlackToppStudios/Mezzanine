@@ -162,6 +162,15 @@ namespace Mezzanine
         /// @return A Transform with
         Transform operator/ (Real rhs) const;
 
+        /// @brief Inequality comparison operator.
+        /// @param Other The other Transform to be compared to.
+        /// @return Returns true if the other Transform is not the same as this, false otherwise.
+        Boole operator== (const Transform& Other) const;
+        /// @brief Equality comparison operator.
+        /// @param Other The other Transform to be compared to.
+        /// @return Returns true if the other Transform is the same as this, false otherwise.
+        Boole operator!= (const Transform& Other) const;
+
         /// @brief Is every value in this Transform less than or equal to its corresponding value in another.
         /// @param rhs The Transform on the right hand side of the sign.
         /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.

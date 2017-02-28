@@ -46,6 +46,8 @@ Graphics::CameraProxy* MainCam = NULL;
 
 CameraController* CamControl = NULL;
 
+TrackLooped< LinearInterpolator< Transform > > CameraTrackTest;
+
 void CreateDemoWorld();
 void DestroyDemoWorld();
 
@@ -142,8 +144,20 @@ public:
         if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
             { CamControl->MoveForward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
             { CamControl->MoveBackward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
+
+        static Real TrackPos = 0.0;
+
+        if( SysKeyboard->IsButtonPressed(Input::KEY_A) ) {
+            TrackPos = ( TrackPos + 0.001 > 1.0 ? ( TrackPos + 0.001 ) - 1.0 : TrackPos + 0.001 );
+            MainCam->SetTransform( CameraTrackTest.GetInterpolated( TrackPos ) );
+        }
+
+        if( SysKeyboard->IsButtonPressed(Input::KEY_D) ) {
+            TrackPos = ( TrackPos - 0.001 < 0.0 ? ( TrackPos - 0.001 ) + 1.0 : TrackPos - 0.001 );
+            MainCam->SetTransform( CameraTrackTest.GetInterpolated( TrackPos ) );
+        }
 
         static bool MouseCam = false;
         if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
@@ -366,12 +380,24 @@ void CreateDemoWorld()
     Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( DemoWorld->GetManager(ManagerBase::MT_PhysicsManager) );
 
     MainCam = SceneMan->CreateCamera();
-    MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
-    MainCam->LookAt(Vector3(0,0,0));
-
+    //MainCam->SetLocation(Vector3(0.0,200.0,1000.0));
+    //MainCam->LookAt(Vector3(0,0,0));
     CamControl = new CameraController(MainCam);
     //CamControl->SetMovementMode(CameraController::CCM_Walk);
     //CamControl->SetHoverHeight(75);
+
+    CameraTrackTest.Add( Transform( Vector3(0.0,200.0,1000.0),
+                         Quaternion(MathTools::DegreesToRadians(-10),Vector3::Unit_X()) * Quaternion(MathTools::DegreesToRadians(360),Vector3::Unit_Y()) ) );
+    CameraTrackTest.Add( Transform( Vector3(-1000.0,200.0,-100.0),
+                         Quaternion(MathTools::DegreesToRadians(-10),Vector3::Unit_X()) * Quaternion(MathTools::DegreesToRadians(270),Vector3::Unit_Y()) ) );
+    CameraTrackTest.Add( Transform( Vector3(0.0,200.0,-1200.0),
+                         Quaternion(MathTools::DegreesToRadians(-10),Vector3::Unit_X()) * Quaternion(MathTools::DegreesToRadians(180),Vector3::Unit_Y()) ) );
+    CameraTrackTest.Add( Transform( Vector3(1000.0,200.0,-100.0),
+                         Quaternion(MathTools::DegreesToRadians(-10),Vector3::Unit_X()) * Quaternion(MathTools::DegreesToRadians(90),Vector3::Unit_Y()) ) );
+    CameraTrackTest.Add( Transform( Vector3(1000.0,200.0,-100.0),
+                         Quaternion(MathTools::DegreesToRadians(-10),Vector3::Unit_X()) * Quaternion(MathTools::DegreesToRadians(0),Vector3::Unit_Y()) ) );//*/
+    //CameraTrackTest.EnforceLoop();
+    MainCam->SetTransform( CameraTrackTest.GetInterpolated(0.0) );
 
     // Create the window(s)!
     FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
