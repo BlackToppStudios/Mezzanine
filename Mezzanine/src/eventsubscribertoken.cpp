@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,30 +37,14 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventsubscriber_h
-#define _eventsubscriber_h
+#ifndef _eventsubscribertoken_cpp
+#define _eventsubscribertoken_cpp
 
-#include "eventarguments.h"
+#include "eventsubscribertoken.h"
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a base class for all classes that subscribe to events.
-    ///////////////////////////////////////
-    class MEZZ_LIB EventSubscriber
-    {
-    protected:
-    //public:
-        /// @brief Class constructor.
-        EventSubscriber();
-        /// @brief Class destructor.
-        virtual ~EventSubscriber();
-    public:
-        /// @internal
-        /// @brief Notifies this subscriber of an event being fired.
-        /// @param Args The arguments containing specific information regarding this event.
-        virtual void _NotifyEvent(EventArgumentsPtr Args) = 0;
-    };//EventSubscriber
+
 }//Mezzanine
 
 #endif

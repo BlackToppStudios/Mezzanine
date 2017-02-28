@@ -47,7 +47,8 @@
 
 namespace Mezzanine
 {
-    Event::Event(const String& Name) :
+    /*
+    Event::Event(const HashedString32& Name) :
         EventName(Name)
         {  }
 
@@ -57,7 +58,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    const String& Event::GetName() const
+    const HashedString32& Event::GetName() const
         { return this->EventName; }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -235,7 +236,7 @@ namespace Mezzanine
         {
             (*SlotIt)->_NotifyEvent(Args);
         }
-    }
+    }//*/
 }
 
 #endif

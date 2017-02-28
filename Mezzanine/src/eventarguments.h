@@ -42,12 +42,12 @@
 
 #include "datatypes.h"
 #include "countedptr.h"
+#include "hashedstring.h"
 
 namespace Mezzanine
 {
 	///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a common class to represent all possible arguments for a given event that is fired.
-    /// @details
     ///////////////////////////////////////
 	class MEZZ_LIB EventArguments
 	{
@@ -59,17 +59,17 @@ namespace Mezzanine
         // Public Data Members
 
         /// @brief The name of the event being fired.
-        const String EventName;
+        const HashedString32 EventName;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
 
         /// @brief Class constructor.
         /// @param Name The name of the event being fired.
-        EventArguments(const String& Name) :
+        EventArguments(const HashedString32& Name) :
             EventName(Name) {  }
         /// @brief Class destructor.
-        virtual ~EventArguments() {  }
+        virtual ~EventArguments() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // CountedPtr Functionality

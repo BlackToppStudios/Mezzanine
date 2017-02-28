@@ -40,57 +40,60 @@
 #ifndef _eventpublisher_h
 #define _eventpublisher_h
 
-#include "event.h"
+#include "hashedstring.h"
 #include "exception.h"
+#include "sortedvector.h"
+#include "eventsubscribertable.h"
 
 namespace Mezzanine
 {
-	class Event;
 	///////////////////////////////////////////////////////////////////////////////
-    /// @class EventPublisher
-    /// @headerfile eventpublisher.h
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
-    /// @details
     ///////////////////////////////////////
 	class MEZZ_LIB EventPublisher
 	{
     public:
         /// @brief Basic container type for @ref Event storage by this class.
-        typedef std::map<String,Event*>         EventContainer;
+        using EventTableContainer = SortedVector<EventSubscriberTable>;
         /// @brief Iterator type for @ref Event instances stored by this class.
-        typedef EventContainer::iterator        EventIterator;
+        using EventTableIterator = EventTableContainer::iterator;
         /// @brief Const Iterator type for @ref Event instances stored by this class.
-        typedef EventContainer::const_iterator  ConstEventIterator;
+        using ConstEventTableIterator = EventTableContainer::const_iterator;
     protected:
-        /// @internal
         /// @brief A container storing all the Events published by this class by name.
-        EventContainer Events;
-        /// @internal
+        EventTableContainer EventTables;
         /// @brief Stores whether or not events will actually be fired when requested.
         Boole MuteEvents;
 
-        /// @internal
-        /// @brief Creates a new event this Publisher can fire.
-        /// @note If the event already exists, this will return the created event instead.
-        /// @param EventName The name to be given to the new event.
-        /// @return Returns a pointer to the created or existing event.
-        Event* AddEvent(const String& EventName);
-        /// @internal
         /// @brief Fires an event.
         /// @param Args The arguments/event specific data related to this event.
-        void FireEvent(EventArgumentsPtr Args);
-        /// @internal
-        /// @brief Removes an existing event in this Publisher.
-        /// @param EventName The name of the event to be removed.
-        void RemoveEvent(const String& EventName);
-        /// @internal
-        /// @brief Removes all events in this Publisher.
-        void RemoveAllEvents();
+        void FireEvent(EventPtr Args) const;
     public:
         /// @brief Class constructor.
         EventPublisher();
+        /// @brief Reserving constructor.
+        /// @param EventCount The number of events to expect this publisher is expected to be populated with.
+        EventPublisher(const Whole EventCount);
+        /// @brief Copy constructor.
+        /// @param Other The other publisher to be copied.
+        EventPublisher(const EventPublisher& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other publisher to be moved.
+        EventPublisher(EventPublisher&& Other) = default;
         /// @brief Class destructor.
-        virtual ~EventPublisher();
+        virtual ~EventPublisher() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other publisher to be copied.
+        /// @return Returns a reference to this.
+        EventPublisher& operator=(const EventPublisher& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other publisher to be moved.
+        /// @return Returns a reference to this.
+        EventPublisher& operator=(EventPublisher&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -99,44 +102,67 @@ namespace Mezzanine
         /// @param Mute True to prevent events from firing, false for normal operation.
         void SetMuteEvents(const Boole Mute);
         /// @brief Gets whether or not event firings by this publisher will be suppressed.
-        /// @return Returns true if events are being supressed, false if this publisher is operating normally.
+        /// @return Returns true if events are being suppressed, false if this publisher is operating normally.
         Boole GetMuteEvents() const;
 
-        /// @brief Gets an event in this publisher.
+        ///////////////////////////////////////////////////////////////////////////////
+        // Event Table Management
+
+        /// @brief Creates a new event this Publisher can fire.
+        /// @note If the event already exists, this will return the created event instead.
+        /// @param EventName The name to be given to the new event.
+        /// @return Returns an iterator to the created or existing event.
+        EventTableIterator AddEventTable(const HashedString32& EventName);
+        /// @brief Checks to see if an event is registered with and has a subscriber table in this publisher.
+        /// @param EventName The name of the event to check for.
+        /// @return Returns true of the named event table is present in this publisher.
+        Boole HasEventTable(const HashedString32& EventName) const;
+
+        /// @brief Gets an event table in this publisher.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to retrieve.
-        /// @return Returns a pointer to the requested event.
-        Event* GetEvent(const String& EventName) const;
-        /// @brief Gets an event in this publisher.
-        /// @exception This version differs from the non-except version in that if it fails to find the event specified
-        /// it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
+        EventTableIterator GetEventTable(const HashedString32& EventName);
+        /// @brief Gets an event table in this publisher.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to retrieve.
-        /// @return Returns a pointer to the requested event.
-        Event* GetEventExcept(const String& EventName) const;
+        /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
+        ConstEventTableIterator GetEventTable(const HashedString32& EventName) const;
+
+        /// @brief Removes an existing event in this Publisher.
+        /// @param EventName The name of the event to be removed.
+        void RemoveEventTable(const HashedString32& EventName);
+        /// @brief Removes all events in this Publisher.
+        void RemoveAllEventTables();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Subscribe Methods
 
         /// @brief Adds a subscriber to this event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to subscribe to.
         /// @param Sub The custom event subscriber.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, EventSubscriber* Sub);
+        EventSubscriberSlot* Subscribe(const HashedString32& EventName, EventSubscriber* Sub);
         /// @brief Subscribes a functor object to this event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to subscribe to.
         /// @param Funct The functor to call when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, FunctorEventSubscriber* Funct, Boole CleanUpAfter);
+        EventSubscriberSlot* Subscribe(const HashedString32& EventName, FunctorEventSubscriber* Funct, Boole CleanUpAfter);
         /// @brief Subscribes a C-style function to this event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to subscribe to.
         /// @param CFunct The C-style function to call when the event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
+        EventSubscriberSlot* Subscribe(const HashedString32& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
         /// @brief Subscribes a script to this event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to subscribe to.
         /// @param SubScript The subscribed script to execute when the event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, Scripting::iScript* SubScript);
+        EventSubscriberSlot* Subscribe(const HashedString32& EventName, Scripting::iScript* SubScript);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Unsubscribe Methods
@@ -161,29 +187,35 @@ namespace Mezzanine
         Whole UnsubscribeAll();
 
         /// @brief Unsubscribes a single subscriber from the named event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @param Subscriber The EventSubscriberSlot (and the subscriber it is holding) to be removed.
-        void Unsubscribe(const String& EventName, EventSubscriber* Subscriber);
+        void Unsubscribe(const HashedString32& EventName, EventSubscriber* Subscriber);
         /// @brief Unsubscribes a single subscriber from the named event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @param Funct The functor to be removed.
-        void Unsubscribe(const String& EventName, FunctorEventSubscriber* Funct);
+        void Unsubscribe(const HashedString32& EventName, FunctorEventSubscriber* Funct);
         /// @brief Unsubscribes a single subscriber from the named event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @param CFunct The function to be removed.
-        void Unsubscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
+        void Unsubscribe(const HashedString32& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
         /// @brief Unsubscribes a single subscriber from the named event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @param SubScript The Script to be removed.
-        void Unsubscribe(const String& EventName, Scripting::iScript* SubScript);
+        void Unsubscribe(const HashedString32& EventName, Scripting::iScript* SubScript);
         /// @brief Unsubscribes a single subscriber from the named event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
-        void Unsubscribe(const String& EventName, EventSubscriberSlot* SubSlot);
+        void Unsubscribe(const HashedString32& EventName, EventSubscriberSlot* SubSlot);
         /// @brief Unsubscribes all subscribers from the named Event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeAll(const String& EventName);
+        Whole UnsubscribeAll(const HashedString32& EventName);
 	};//EventPublisher
 }//Mezzanine
 

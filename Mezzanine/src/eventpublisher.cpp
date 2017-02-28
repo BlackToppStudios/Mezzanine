@@ -44,49 +44,26 @@
 
 namespace Mezzanine
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    // EventPublisherMethods
+
     EventPublisher::EventPublisher() :
         MuteEvents(false)
         {  }
 
-    EventPublisher::~EventPublisher()
-        { this->RemoveAllEvents(); }
+    EventPublisher::EventPublisher(const Whole EventCount) :
+        MuteEvents(false)
+        { this->EventTables.reserve(EventCount); }
 
-    Event* EventPublisher::AddEvent(const String& EventName)
-    {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev;
-        }else{
-            Ev = new Event(EventName);
-            this->Events[EventName] = Ev;
-            return Ev;
-        }
-    }
-
-    void EventPublisher::FireEvent(EventArgumentsPtr Args)
+    void EventPublisher::FireEvent(EventPtr Args) const
     {
         if( !this->MuteEvents ) {
-            this->GetEventExcept(Args->EventName)->_FireEvent(Args);
+            this->GetEventTable(Args->EventName)->_FireEvent(Args);
         }
     }
 
-    void EventPublisher::RemoveEvent(const String& EventName)
-    {
-        EventIterator EvIt = this->Events.find(EventName);
-        if( EvIt != this->Events.end() ) {
-            delete (*EvIt).second;
-            this->Events.erase(EvIt);
-        }
-    }
-
-    void EventPublisher::RemoveAllEvents()
-    {
-        for( EventIterator EvIt = this->Events.begin() ; EvIt != this->Events.end() ; ++EvIt )
-        {
-            delete (*EvIt).second;
-        }
-        this->Events.clear();
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Operators
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
@@ -97,97 +74,133 @@ namespace Mezzanine
     Boole EventPublisher::GetMuteEvents() const
         { return this->MuteEvents; }
 
-    Event* EventPublisher::GetEvent(const String& EventName) const
+    ///////////////////////////////////////////////////////////////////////////////
+    // Event Table Management
+
+    EventPublisher::EventTableIterator EventPublisher::AddEventTable(const HashedString32& EventName)
     {
-        ConstEventIterator EvIt = this->Events.find(EventName);
-        if( EvIt != this->Events.end() ) return (*EvIt).second;
-        else return NULL;
+        EventTableIterator EvIt = this->EventTables.find(EventName);
+        if( EvIt == this->EventTables.end() ) {
+            return this->EventTables.add_emplace([](const EventSubscriberTable& EvTable, const HashedString32& EventName) {
+                return EvTable.GetName() < EventName;
+            }, EventName);
+        }else{
+            return EvIt;
+        }
     }
 
-    Event* EventPublisher::GetEventExcept(const String& EventName) const
+    Boole EventPublisher::HasEventTable(const HashedString32& EventName) const
     {
-        ConstEventIterator EvIt = this->Events.find(EventName);
-        if( EvIt != this->Events.end() ) {
-            return (*EvIt).second;
+        ConstEventTableIterator EvIt = this->EventTables.find(EventName);
+        return EvIt != this->EventTables.end();
+    }
+
+    EventPublisher::EventTableIterator EventPublisher::GetEventTable(const HashedString32& EventName)
+    {
+        EventTableIterator EvIt = this->EventTables.find(EventName);
+        if( EvIt != this->EventTables.end() ) {
+            return EvIt;
         }else{
             MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
         }
-        return NULL;
+        return this->EventTables.end();
     }
+
+    EventPublisher::ConstEventTableIterator EventPublisher::GetEventTable(const HashedString32& EventName) const
+    {
+        ConstEventTableIterator EvIt = this->EventTables.find(EventName);
+        if( EvIt != this->EventTables.end() ) {
+            return EvIt;
+        }else{
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
+        }
+        return this->EventTables.end();
+    }
+
+    void EventPublisher::RemoveEventTable(const HashedString32& EventName)
+    {
+        EventTableIterator EvIt = this->EventTables.find(EventName);
+        if( EvIt != this->EventTables.end() ) {
+            this->EventTables.erase(EvIt);
+        }
+    }
+
+    void EventPublisher::RemoveAllEventTables()
+        { this->EventTables.clear(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Subscribe Methods
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, EventSubscriber* Sub)
-        { return this->GetEventExcept(EventName)->Subscribe(Sub); }
+    EventSubscriberSlot* EventPublisher::Subscribe(const HashedString32& EventName, EventSubscriber* Sub)
+        { return this->GetEventTable(EventName)->Subscribe(Sub); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, FunctorEventSubscriber* Funct, Boole CleanUpAfter)
-        { return this->GetEventExcept(EventName)->Subscribe(Funct,CleanUpAfter); }
+    EventSubscriberSlot* EventPublisher::Subscribe(const HashedString32& EventName, FunctorEventSubscriber* Funct, Boole CleanUpAfter)
+        { return this->GetEventTable(EventName)->Subscribe(Funct,CleanUpAfter); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
-        { return this->GetEventExcept(EventName)->Subscribe(CFunct); }
+    EventSubscriberSlot* EventPublisher::Subscribe(const HashedString32& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
+        { return this->GetEventTable(EventName)->Subscribe(CFunct); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, Scripting::iScript* SubScript)
-        { return this->GetEventExcept(EventName)->Subscribe(SubScript); }
+    EventSubscriberSlot* EventPublisher::Subscribe(const HashedString32& EventName, Scripting::iScript* SubScript)
+        { return this->GetEventTable(EventName)->Subscribe(SubScript); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Unsubscribe Methods
 
     void EventPublisher::Unsubscribe(EventSubscriber* Subscriber)
     {
-        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { (*EventIt).second->Unsubscribe(Subscriber); }
+        for( EventSubscriberTable& CurrTable : this->EventTables )
+            { CurrTable.Unsubscribe(Subscriber); }
     }
 
     void EventPublisher::Unsubscribe(FunctorEventSubscriber* Funct)
     {
-        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { (*EventIt).second->Unsubscribe(Funct); }
+        for( EventSubscriberTable& CurrTable : this->EventTables )
+            { CurrTable.Unsubscribe(Funct); }
     }
 
     void EventPublisher::Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct)
     {
-        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { (*EventIt).second->Unsubscribe(CFunct); }
+        for( EventSubscriberTable& CurrTable : this->EventTables )
+            { CurrTable.Unsubscribe(CFunct); }
     }
 
     void EventPublisher::Unsubscribe(Scripting::iScript* SubScript)
     {
-        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { (*EventIt).second->Unsubscribe(SubScript); }
+        for( EventSubscriberTable& CurrTable : this->EventTables )
+            { CurrTable.Unsubscribe(SubScript); }
     }
 
     void EventPublisher::Unsubscribe(EventSubscriberSlot* SubSlot)
     {
-        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { (*EventIt).second->Unsubscribe(SubSlot); }
+        for( EventSubscriberTable& CurrTable : this->EventTables )
+            { CurrTable.Unsubscribe(SubSlot); }
     }
 
     Whole EventPublisher::UnsubscribeAll()
     {
         Whole Ret = 0;
-        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { Ret += (*EventIt).second->UnsubscribeAll(); }
+        for( EventSubscriberTable& CurrTable : this->EventTables )
+            { Ret += CurrTable.UnsubscribeAll(); }
         return Ret;
     }
 
-    void EventPublisher::Unsubscribe(const String& EventName, EventSubscriber* Subscriber)
-        { this->GetEventExcept(EventName)->Unsubscribe(Subscriber); }
+    void EventPublisher::Unsubscribe(const HashedString32& EventName, EventSubscriber* Subscriber)
+        { this->GetEventTable(EventName)->Unsubscribe(Subscriber); }
 
-    void EventPublisher::Unsubscribe(const String& EventName, FunctorEventSubscriber* Funct)
-        { this->GetEventExcept(EventName)->Unsubscribe(Funct); }
+    void EventPublisher::Unsubscribe(const HashedString32& EventName, FunctorEventSubscriber* Funct)
+        { this->GetEventTable(EventName)->Unsubscribe(Funct); }
 
-    void EventPublisher::Unsubscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
-        { this->GetEventExcept(EventName)->Unsubscribe(CFunct); }
+    void EventPublisher::Unsubscribe(const HashedString32& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
+        { this->GetEventTable(EventName)->Unsubscribe(CFunct); }
 
-    void EventPublisher::Unsubscribe(const String& EventName, Scripting::iScript* SubScript)
-        { this->GetEventExcept(EventName)->Unsubscribe(SubScript); }
+    void EventPublisher::Unsubscribe(const HashedString32& EventName, Scripting::iScript* SubScript)
+        { this->GetEventTable(EventName)->Unsubscribe(SubScript); }
 
-    void EventPublisher::Unsubscribe(const String& EventName, EventSubscriberSlot* SubSlot)
-        { this->GetEventExcept(EventName)->Unsubscribe(SubSlot); }
+    void EventPublisher::Unsubscribe(const HashedString32& EventName, EventSubscriberSlot* SubSlot)
+        { this->GetEventTable(EventName)->Unsubscribe(SubSlot); }
 
-    Whole EventPublisher::UnsubscribeAll(const String& EventName)
-        { return this->GetEventExcept(EventName)->UnsubscribeAll(); }
+    Whole EventPublisher::UnsubscribeAll(const HashedString32& EventName)
+        { return this->GetEventTable(EventName)->UnsubscribeAll(); }
 }//Mezzanine
 
 #endif

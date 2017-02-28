@@ -45,9 +45,86 @@
 
 namespace Mezzanine
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a common class to represent all possible arguments for a given event that is fired.
+    ///////////////////////////////////////
+	class MEZZ_LIB Event
+	{
+    private:
+        /// @brief This is count of the number of references to this object.
+        Whole RefCount;
+    public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Public Data Members
+
+        /// @brief The name of the event being fired.
+        const HashedString32 EventName;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
+
+        /// @brief Class constructor.
+        /// @param Name The name of the event being fired.
+        Event(const HashedString32& Name) :
+            EventName(Name)
+            {  }
+        /// @brief Class destructor.
+        virtual ~Event() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // CountedPtr Functionality
+
+        /// @brief Increase the reference count by one and return the updated count.
+        /// @return Returns a Whole representing the updated count.
+        Whole IncrementReferenceCount()
+            { return ++this->RefCount; }
+        /// @brief Decrease the reference count by one and return the updated count.
+        /// @return Returns a Whole representing the updated count.
+        Whole DecrementReferenceCount()
+            { return --this->RefCount; }
+        /// @brief Get the current amount of references.
+        /// @return A Whole with the current reference count
+        Whole GetReferenceCount() const
+            { return this->RefCount; }
+
+        /// @brief Gets the actual pointer to the target of the base type.
+        /// @return Returns a pointer of the targeted type to the object being managed.
+        Event* GetReferenceCountTargetAsPointer()
+            { return this; }
+        /// @brief Get a pointer to the most Derived type of this instance.
+        /// @return Returns a pointer of the most derived type of this.
+        virtual Event* GetMostDerived()
+            { return this; }
+	};//Event
+
+	///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a metaprogramming traits class used by Events.
+    /// @details This is needed for an intrusive CountedPtr implementation.  Should a working external reference count be made this
+    /// could be dropped in favor of a leaner implementation.
+    ///////////////////////////////////////
+	template <>
+    class ReferenceCountTraits<Event>
+    {
+    public:
+        /// @brief Typedef communicating the reference count type to be used.
+        typedef Event RefCountType;
+
+        /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
+        /// @param Target A pointer to the target class that is to be reference counted.
+        /// @return Returns a pointer to a new reference counter for the templated type.
+        static RefCountType* ConstructionPointer(RefCountType* Target)
+            { return Target; }
+
+        /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
+        enum { IsCastable = CastStatic };
+    };//ReferenceCountTraits<Event>
+
+	/// @brief Convenience typedef for passing around EventArguments.
+	typedef CountedPtr<Event> EventPtr;
+
+    /*
 	///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
-    /// @details
     ///////////////////////////////////////
 	class MEZZ_LIB Event
 	{
@@ -61,16 +138,14 @@ namespace Mezzanine
         /// @brief An std::pair type for working with stored @ref EventSubscriberSlot instances.
         typedef std::pair<UInt8,EventSubscriberSlot*>       SlotPair;
     protected:
-        /// @internal
         /// @brief The name of this Event.
-        const String EventName;
-        /// @internal
+        const HashedString32 EventName;
         /// @brief A container storing all the EventSubscriberSlot instances to subscribers.
         SlotContainer Slots;
     public:
         /// @brief Class constructor.
         /// @param Name The name to be given to this event.
-        Event(const String& Name);
+        Event(const HashedString32& Name);
         /// @brief Class destructor.
         ~Event();
 
@@ -78,8 +153,8 @@ namespace Mezzanine
         // Utility
 
         /// @brief Gets the name of this event.
-        /// @return Returns a const string reference containing the name of this event.
-        const String& GetName() const;
+        /// @return Returns a const reference of a hashed string containing the name of this event.
+        const HashedString32& GetName() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Subscribe Methods
@@ -149,7 +224,7 @@ namespace Mezzanine
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
         void _FireEvent(EventArgumentsPtr Args);
-	};//Event
+	};//Event //*/
 }//Mezzanine
 
 #endif

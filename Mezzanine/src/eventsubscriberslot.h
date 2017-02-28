@@ -52,7 +52,6 @@ namespace Mezzanine
     }
 	///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB EventSubscriberSlot
     {
@@ -98,7 +97,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that passes on the event firing to a custom subscriber class.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB CustomSubscriberSlot : public EventSubscriberSlot
     {
@@ -132,7 +130,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief Basic class definition for functors used by a FunctorSubscriberSlot.
-    /// @details
     ///////////////////////////////////////
     class FunctorEventSubscriber
     {
@@ -149,7 +146,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that makes the appropriate call on a functor.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB FunctorSubscriberSlot : public EventSubscriberSlot
     {
@@ -188,7 +184,6 @@ namespace Mezzanine
 #ifndef SWIG // This is non-sensical in a scripting language
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that triggers a Free/C-style function.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB CFunctionSubscriberSlot : public EventSubscriberSlot
     {
@@ -226,7 +221,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that triggers a provided script.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB ScriptSubscriberSlot : public EventSubscriberSlot
     {
