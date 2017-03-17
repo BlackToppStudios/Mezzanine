@@ -72,6 +72,10 @@ namespace Mezzanine
         /// @param ToBeHashed The string to hash
         /// @return A 32 bit value approximating unique, which represents the passed string.
         static Int32 Murmur32bit(const String& ToBeHashed);
+        /// @brief Compute a MurmurA aka MurmurX86-32bit has of a string and return it.
+        /// @param ToBeHashed The string to hash
+        /// @return A 32 bit value approximating unique, which represents the passed string.
+        static Int32 Murmur32bit(const char* ToBeHashed);
 
     protected:
         ///////////////////////////////////////////////////////////////////////////////
@@ -93,6 +97,10 @@ namespace Mezzanine
         /// @param StartingString The String to work with
         /// @details Compute the hash of the String and hang onto both for future use.
         HashedString32(const String& StartingString);
+        /// @brief C-String Constructor
+        /// @param StartingString The String to work with
+        /// @details Compute the hash of the String and hang onto both for future use.
+        HashedString32(const char* StartingString);
         /// @brief Precomputed Constructor
         /// @param StartingString The String to work with
         /// @param PrecomputedHash The value
@@ -116,6 +124,15 @@ namespace Mezzanine
         /// @param Other The other string to be moved.
         /// @return Returns a reference to this.
         HashedString32& operator=(HashedString32&& Other) = default;
+
+        /// @brief Standard String Assignment operator.
+        /// @param Other The other std::string to be copied.
+        /// @return Returns a reference to this.
+        HashedString32& operator=(const String& Other);
+        /// @brief C-String Assignment operator.
+        /// @param Other The other c-string to be copied.
+        /// @return Returns a reference to this.
+        HashedString32& operator=(const char* Other);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Comparisons
