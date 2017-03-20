@@ -121,9 +121,9 @@ namespace Mezzanine
         {
             this->LockoutTimer.SetCountMode(Mezzanine::CM_CountDown);
             // Add our button events
-            this->AddEvent(Button::EventActivated);
-            this->AddEvent(Button::EventStandby);
-            this->AddEvent(Button::EventDeactivated);
+            this->AddEventTable(Button::EventActivated);
+            this->AddEventTable(Button::EventStandby);
+            this->AddEventTable(Button::EventDeactivated);
             // Handle auto activation registration
             UIManager* Manager = this->ParentScreen->GetManager();
             if( Manager->ButtonAutoRegisterEnabled() ) {
@@ -351,20 +351,20 @@ namespace Mezzanine
 
         void Button::_OnActivate()
         {
-            EventArgumentsPtr Args( new WidgetEventArguments(Button::EventActivated,this->Name) );
-            this->FireEvent(Args);
+            EventPtr Args( new WidgetEvent(Button::EventActivated,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         void Button::_OnStandby()
         {
-            EventArgumentsPtr Args( new WidgetEventArguments(Button::EventStandby,this->Name) );
-            this->FireEvent(Args);
+            EventPtr Args( new WidgetEvent(Button::EventStandby,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         void Button::_OnDeactivate()
         {
-            EventArgumentsPtr Args( new WidgetEventArguments(Button::EventDeactivated,this->Name) );
-            this->FireEvent(Args);
+            EventPtr Args( new WidgetEvent(Button::EventDeactivated,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -49,9 +49,9 @@ namespace Mezzanine
     {
         class PageProvider;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is the EventArguments class for when a child of a paged container is selected.
+        /// @brief This is the Event class for when a child of a paged container is selected.
         ///////////////////////////////////////
-        class MEZZ_LIB ChildSelectedArguments : public WidgetEventArguments
+        class MEZZ_LIB ChildSelectedEvent : public WidgetEvent
         {
         public:
             ///////////////////////////////////////////////////////////////////////////////
@@ -70,46 +70,14 @@ namespace Mezzanine
             /// @param Source The identification of the widget firing this event.
             /// @param Child The name of the child that has gained focus.
             /// @param Select True if the child is becoming the current selection in it's parent container, or false if it is losing the current selection in it's parent container.
-            ChildSelectedArguments(const String& Name, const String& Source, const String& Child, const Boole Select) :
-                WidgetEventArguments(Name,Source), ChildName(Child), Selected(Select) {  }
+            ChildSelectedEvent(const HashedString32& Name, const String& Source, const String& Child, const Boole Select) :
+                WidgetEvent(Name,Source), ChildName(Child), Selected(Select) {  }
             /// @brief Class destructor.
-            virtual ~ChildSelectedArguments() {  }
+            virtual ~ChildSelectedEvent() = default;
+        };//ChildSelectedEvent
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // CountedPtr Functionality
-
-            /// @copydoc EventArguments::GetMostDerived()
-            virtual ChildSelectedArguments* GetMostDerived()
-                { return this; }
-        };//ChildSelectedArguments
-    }//UI
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a metaprogramming traits class used by ChildFocusEventArguments.
-        /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
-        /// could be dropped in favor of a leaner implementation.
-        ///////////////////////////////////////
-        template <>
-        class ReferenceCountTraits<UI::ChildSelectedArguments>
-        {
-        public:
-            /// @brief Typedef communicating the reference count type to be used.
-            typedef UI::ChildSelectedArguments RefCountType;
-
-            /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
-            /// @param Target A pointer to the target class that is to be reference counted.
-            /// @return Returns a pointer to a new reference counter for the templated type.
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
-            enum { IsCastable = CastStatic };
-        };//ReferenceCountTraits<ChildSelectedArguments>
-
-    namespace UI
-    {
-        /// @brief Convenience typedef for passing around ChildSelectedArguments.
-        typedef CountedPtr<ChildSelectedArguments> ChildSelectedArgumentsPtr;
+        /// @brief Convenience type for passing around ChildSelectedEvent.
+        using ChildSelectedEventPtr = std::shared_ptr<ChildSelectedEvent>;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for containers that have a render area and work area of different sizes.

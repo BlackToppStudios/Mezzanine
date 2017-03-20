@@ -50,9 +50,9 @@ namespace Mezzanine
     {
         class Button;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is the EventArguments class for when the scrollvalue of a scrollbar is updated.
+        /// @brief This is the Event class for when the scrollvalue of a scrollbar is updated.
         ///////////////////////////////////////
-        class MEZZ_LIB ScrollbarValueChangedArguments : public WidgetEventArguments
+        class MEZZ_LIB ScrollValueChangedEvent : public WidgetEvent
         {
         public:
             ///////////////////////////////////////////////////////////////////////////////
@@ -71,46 +71,14 @@ namespace Mezzanine
             /// @param Source The identification of the widget firing this event.
             /// @param OldValue The pre-update value of the calling scrollbar.
             /// @param NewValue The post-update value of the calling scrollbar.
-            ScrollbarValueChangedArguments(const String& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
-                WidgetEventArguments(Name,Source), OldScrollerValue(OldValue), NewScrollerValue(NewValue) {  }
+            ScrollValueChangedEvent(const HashedString32& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
+                WidgetEvent(Name,Source), OldScrollerValue(OldValue), NewScrollerValue(NewValue) {  }
             /// @brief Class destructor.
-            virtual ~ScrollbarValueChangedArguments() {  }
+            virtual ~ScrollValueChangedEvent() = default;
+        };//ScrollValueChangedEvent
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // CountedPtr Functionality
-
-            /// @copydoc EventArguments::GetMostDerived()
-            virtual ScrollbarValueChangedArguments* GetMostDerived()
-                { return this; }
-        };//ScrollbarValueChangedArguments
-    }//UI
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a metaprogramming traits class used by ScrollbarValueChangedArguments.
-        /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
-        /// could be dropped in favor of a leaner implementation.
-        ///////////////////////////////////////
-        template <>
-        class ReferenceCountTraits<UI::ScrollbarValueChangedArguments>
-        {
-        public:
-            /// @brief Typedef communicating the reference count type to be used.
-            typedef UI::ScrollbarValueChangedArguments RefCountType;
-
-            /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
-            /// @param Target A pointer to the target class that is to be reference counted.
-            /// @return Returns a pointer to a new reference counter for the templated type.
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
-            enum { IsCastable = CastStatic };
-        };//ReferenceCountTraits<ScrollbarValueChangedArguments>
-
-    namespace UI
-    {
-        /// @brief Convenience typedef for passing around ScrollbarValueChangedArguments.
-        typedef CountedPtr<ScrollbarValueChangedArguments> ScrollbarValueChangedArgumentsPtr;
+        /// @brief Convenience type for passing around ScrollValueChangedEvent.
+        using ScrollValueChangedEventPtr = std::shared_ptr<ScrollValueChangedEvent>;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the scrollbar base class.
@@ -160,7 +128,7 @@ namespace Mezzanine
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode&)
             virtual Boole HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
-            /// @brief Subscribes to all the events of this scrollbars children we care about.  Used only on construction.
+            /// @brief Subscribes to all the events of this scrollbars children we care about.
             virtual void SubscribeToChildEvents();
             /// @internal
             /// @brief Gets the range on which the scroller can be placed.
@@ -262,8 +230,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
-            virtual void _NotifyEvent(EventArgumentsPtr Args);
+            /// @internal
+            /// @brief Callback to be called when an event this widget is interested in occurs.
+            /// @param Args A pointer to the event this widget is being notified of.
+            virtual void _NotifyEvent(EventPtr Args);
             /// @internal
             /// @brief Performs the operations for when the scroller is directly manipulated by the mouse.
             /// @param MouseDelta The amount in pixels the mouse has moved since the last frame.

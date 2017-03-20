@@ -88,8 +88,8 @@ namespace Mezzanine
         void CheckBox::ConstructCheckbox()
         {
             // Add our new events
-            this->AddEvent(CheckBox::EventSelected);
-            this->AddEvent(CheckBox::EventDeselected);
+            this->AddEventTable(CheckBox::EventSelected);
+            this->AddEventTable(CheckBox::EventDeselected);
             // Add some more render layer groups
             RenderLayerGroup* SelectedNormalGroup = this->CreateRenderLayerGroup(CheckBox::WG_SelectedNormal);
             RenderLayerGroup* SelectedHoveredGroup = this->CreateRenderLayerGroup(CheckBox::WG_SelectedHovered);
@@ -204,8 +204,8 @@ namespace Mezzanine
             this->State |= WS_Selected;
             this->SetGroupFromState(this->State);
 
-            EventArgumentsPtr Args( new WidgetEventArguments(CheckBox::EventSelected,this->Name) );
-            this->FireEvent(Args);
+            EventPtr Args( new WidgetEvent(CheckBox::EventSelected,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         void CheckBox::_OnDeselected()
@@ -213,8 +213,8 @@ namespace Mezzanine
             this->State &= ~WS_Selected;
             this->SetGroupFromState(this->State);
 
-            EventArgumentsPtr Args( new WidgetEventArguments(CheckBox::EventDeselected,this->Name) );
-            this->FireEvent(Args);
+            EventPtr Args( new WidgetEvent(CheckBox::EventDeselected,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

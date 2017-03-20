@@ -53,8 +53,8 @@ namespace Mezzanine
             : ActionName(Name),
               Parent(Handler)
         {
-            this->AddEvent(Action::EventActionActivated);
-            this->AddEvent(Action::EventActionDeactivated);
+            this->AddEventTable(Action::EventActionActivated);
+            this->AddEventTable(Action::EventActionDeactivated);
         }
 
         Action::~Action()
@@ -74,14 +74,14 @@ namespace Mezzanine
 
         void Action::_OnActivateAction()
         {
-            EventArgumentsPtr Args( new ActionEventArguments(Action::EventActionActivated,this->ActionName) );
-            this->FireEvent(Args);
+            EventPtr Args( new ActionEvent(Action::EventActionActivated,this->ActionName) );
+            this->DispatchEvent(Args);
         }
 
         void Action::_OnDeactivateAction()
         {
-            EventArgumentsPtr Args( new ActionEventArguments(Action::EventActionDeactivated,this->ActionName) );
-            this->FireEvent(Args);
+            EventPtr Args( new ActionEvent(Action::EventActionDeactivated,this->ActionName) );
+            this->DispatchEvent(Args);
         }
 
         Boole Action::_HandleInput(const Input::MetaCode& Code)

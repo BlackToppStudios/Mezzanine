@@ -63,7 +63,7 @@ namespace Mezzanine
 
         RadioButtonGroup::RadioButtonGroup() :
             CurrentSelection(NULL)
-            { this->AddEvent(RadioButtonGroup::EventGroupButtonSelected); }
+            { this->AddEventTable(RadioButtonGroup::EventGroupButtonSelected); }
 
         RadioButtonGroup::~RadioButtonGroup()
             {  }
@@ -135,8 +135,8 @@ namespace Mezzanine
                 this->CurrentSelection = Selected;
                 this->DeselectOtherButtons(Selected);
 
-                WidgetEventArgumentsPtr Args( new WidgetEventArguments( RadioButtonGroup::EventGroupButtonSelected,Selected->GetName()) );
-                this->FireEvent(Args);
+                WidgetEventPtr Args( new WidgetEvent( RadioButtonGroup::EventGroupButtonSelected,Selected->GetName()) );
+                this->DispatchEvent(Args);
             }
         }
 

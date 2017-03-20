@@ -44,7 +44,6 @@
 #include "UI/widgetfactory.h"
 #include "Input/metacode.h"
 #include "eventpublisher.h"
-#include "eventsubscriber.h"
 
 namespace Mezzanine
 {
@@ -54,9 +53,9 @@ namespace Mezzanine
         class RenderableContainer;
         class GenericWidgetFactory;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is the base class for widget specific event arguments.
+        /// @brief This is the base class for widget specific events.
         ///////////////////////////////////////
-        class MEZZ_LIB WidgetEventArguments : public EventArguments
+        class MEZZ_LIB WidgetEvent : public Event
         {
         public:
             ///////////////////////////////////////////////////////////////////////////////
@@ -71,46 +70,14 @@ namespace Mezzanine
             /// @brief Class constructor.
             /// @param Name The name of the event being fired.
             /// @param Source The identification of the widget firing this event.
-            WidgetEventArguments(const String& Name, const String& Source) :
-                EventArguments(Name), WidgetName(Source) {  }
+            WidgetEvent(const HashedString32& Name, const String& Source) :
+                Event(Name), WidgetName(Source) {  }
             /// @brief Class destructor.
-            virtual ~WidgetEventArguments() {  }
+            virtual ~WidgetEvent() = default;
+        };//WidgetEvent
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // CountedPtr Functionality
-
-            /// @copydoc EventArguments::GetMostDerived()
-            virtual WidgetEventArguments* GetMostDerived()
-                { return this; }
-        };//WidgetEventArguments
-    }//UI
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a metaprogramming traits class used by WidgetEventArguments.
-        /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
-        /// could be dropped in favor of a leaner implementation.
-        ///////////////////////////////////////
-        template <>
-        class ReferenceCountTraits<UI::WidgetEventArguments>
-        {
-        public:
-            /// @brief Typedef communicating the reference count type to be used.
-            typedef UI::WidgetEventArguments RefCountType;
-
-            /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
-            /// @param Target A pointer to the target class that is to be reference counted.
-            /// @return Returns a pointer to a new reference counter for the templated type.
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
-            enum { IsCastable = CastStatic };
-        };//ReferenceCountTraits<WidgetEventArguments>
-
-    namespace UI
-    {
-        /// @brief Convenience typedef for passing around WidgetEventArguments.
-        typedef CountedPtr<WidgetEventArguments> WidgetEventArgumentsPtr;
+        /// @brief Convenience type for passing around WidgetEvent.
+        using WidgetEventPtr = std::shared_ptr<WidgetEvent>;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for all widgets.
@@ -122,7 +89,7 @@ namespace Mezzanine
         /// cases. @n @n
         /// Instances of the Widget base class use the base LayoutStrategy.
         ///////////////////////////////////////
-        class MEZZ_LIB Widget : public QuadRenderable, public EventPublisher, public EventSubscriber
+        class MEZZ_LIB Widget : public QuadRenderable, public EventPublisher
         {
         public:
             /// @brief Enum describing the current state of the widget.
@@ -191,6 +158,12 @@ namespace Mezzanine
             static const HashedString32 EventVisibilityShown;
             /// @brief Event name for when this widget is switched from being shown to being hidden.
             static const HashedString32 EventVisibilityHidden;
+
+            /*/// @brief Generates a lambda to be used as a delegate for event dispatch.
+            /// @param ToWrap The Widget to call when the lambda is evoked.
+            /// @return Returns a Lambda that can be used to connect a widget to an event publisher.
+            static auto CreateEventLambda(Widget* ToWrap) -> decltype( [ToWrap](EventPtr){ ToWrap->_NotifyEvent(Args); } )
+                { return [ToWrap](EventPtr Args){ ToWrap->_NotifyEvent(Args); }; }//*/
         protected:
             /// @internal
             /// @brief Map containing all the RenderLayerGroups bound to specific widget states.
@@ -315,18 +288,18 @@ namespace Mezzanine
             /// @brief Convert the state-group bindings of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeStateGroupBindings(XML::Node& SelfRoot) const;
-            /// @brief Convert the Events of this class to an XML::Node ready for serialization.
+            /*/// @brief Convert the Events of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
-            virtual void ProtoSerializeEvents(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeEvents(XML::Node& SelfRoot) const;//*/
 
             /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the state-group bindings of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeStateGroupBindings(const XML::Node& SelfRoot);
-            /// @brief Take the data stored in an XML Node and overwrite the Events of this object with it.
+            /*/// @brief Take the data stored in an XML Node and overwrite the Events of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-            virtual void ProtoDeSerializeEvents(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeEvents(const XML::Node& SelfRoot);//*/
 
             /// @copydoc Renderable::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
@@ -380,8 +353,10 @@ namespace Mezzanine
             /// @param OldState The pre-update state of the child.
             /// @param NewState The post-update state of the child.
             virtual void _NotifyChildStateChange(Widget* Child, const UInt32& OldState, const UInt32& NewState);
-            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
-            virtual void _NotifyEvent(EventArgumentsPtr Args);
+            /// @internal
+            /// @brief Callback to be called when an event this widget is interested in occurs.
+            /// @param Args A pointer to the event this widget is being notified of.
+            virtual void _NotifyEvent(EventPtr Args);
         };//Widget
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -64,8 +64,6 @@
 #include "timer.h"
 #include "entresol.h"
 
-#include <Ogre.h>
-
 namespace Mezzanine
 {
     template<> UI::UIManager* Singleton<UI::UIManager>::SingletonPtr = NULL;

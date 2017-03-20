@@ -72,7 +72,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Spinner Static Members
 
-        const String Spinner::TypeName = "Spinner";
+        const String Spinner::TypeName                      = "Spinner";
         const HashedString32 Spinner::EventSpinValueChanged = "SpinValueChanged";
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ namespace Mezzanine
 
         void Spinner::ConstructSpinner(const SpinnerStyle SpinStyle, FontData* EditFont)
         {
-            this->AddEvent(Spinner::EventSpinValueChanged);
+            this->AddEventTable(Spinner::EventSpinValueChanged);
 
             // Create the child widgets.
             this->ValueDisplay = this->ParentScreen->CreateEditBox(this->Name+".Display",UI::RLT_SingleLineText,EditFont);
@@ -178,9 +178,17 @@ namespace Mezzanine
             this->ValueDisplay->SetInputFilter( &SpinnerFilter );
             this->ValueDisplay->SetText( StringTools::ConvertToString( this->SpinValue ) );
 
-            this->ValueDisplay->Subscribe(EditBox::EventTextUpdated,this);
-            this->IncrementSpin->Subscribe(Button::EventDeactivated,this);
-            this->DecrementSpin->Subscribe(Button::EventDeactivated,this);
+            this->SubscribeToChildEvents();
+        }
+
+        void Spinner::SubscribeToChildEvents()
+        {
+            this->ValueDisplay->Subscribe(EditBox::EventTextUpdated,this,
+                                          [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->IncrementSpin->Subscribe(Button::EventDeactivated,this,
+                                           [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->DecrementSpin->Subscribe(Button::EventDeactivated,this,
+                                           [this](EventPtr Args){ this->_NotifyEvent(Args); });
         }
 
         void Spinner::ClampToLimits(Real& Value)
@@ -471,16 +479,16 @@ namespace Mezzanine
                 this->Container->UpdateVisibleChildren();
             }
 
-            SpinnerValueChangedArgumentsPtr Args( new SpinnerValueChangedArguments(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue) );
-            this->FireEvent(Args);
+            SpinnerValueChangedEventPtr Args( new SpinnerValueChangedEvent(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue) );
+            this->DispatchEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Spinner::_NotifyEvent(EventArgumentsPtr Args)
+        void Spinner::_NotifyEvent(EventPtr Args)
         {
-            WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+            WidgetEventPtr WidArgs = std::static_pointer_cast<WidgetEvent>(Args);
             Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs->WidgetName);
             if( EventWidget == NULL )
                 return;

@@ -52,9 +52,9 @@ namespace Mezzanine
         class EditBox;
         class FontData;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is the EventArguments class for when the spinvalue of a Spinner is updated.
+        /// @brief This is the Event class for when the spinvalue of a Spinner is updated.
         ///////////////////////////////////////
-        class MEZZ_LIB SpinnerValueChangedArguments : public WidgetEventArguments
+        class MEZZ_LIB SpinnerValueChangedEvent : public WidgetEvent
         {
         public:
             ///////////////////////////////////////////////////////////////////////////////
@@ -73,46 +73,14 @@ namespace Mezzanine
             /// @param Source The identification of the widget firing this event.
             /// @param OldValue The pre-update value of the calling Spinner.
             /// @param NewValue The post-update value of the calling Spinner.
-            SpinnerValueChangedArguments(const String& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
-                WidgetEventArguments(Name,Source), OldSpinValue(OldValue), NewSpinValue(NewValue) {  }
+            SpinnerValueChangedEvent(const HashedString32& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
+                WidgetEvent(Name,Source), OldSpinValue(OldValue), NewSpinValue(NewValue) {  }
             /// @brief Class destructor.
-            virtual ~SpinnerValueChangedArguments() {  }
+            virtual ~SpinnerValueChangedEvent() = default;
+        };//SpinnerValueChangedEvent
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // CountedPtr Functionality
-
-            /// @copydoc EventArguments::GetMostDerived()
-            virtual SpinnerValueChangedArguments* GetMostDerived()
-                { return this; }
-        };//SpinnerValueChangedArguments
-    }//UI
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a metaprogramming traits class used by SpinnerValueChangedArguments.
-        /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
-        /// could be dropped in favor of a leaner implementation.
-        ///////////////////////////////////////
-        template <>
-        class ReferenceCountTraits<UI::SpinnerValueChangedArguments>
-        {
-        public:
-            /// @brief Typedef communicating the reference count type to be used.
-            typedef UI::SpinnerValueChangedArguments RefCountType;
-
-            /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
-            /// @param Target A pointer to the target class that is to be reference counted.
-            /// @return Returns a pointer to a new reference counter for the templated type.
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
-            enum { IsCastable = CastStatic };
-        };//ReferenceCountTraits<SpinnerValueChangedArguments>
-
-    namespace UI
-    {
-        /// @brief Convenience typedef for passing around SpinnerValueChangedArguments.
-        typedef CountedPtr<SpinnerValueChangedArguments> SpinnerValueChangedArgumentsPtr;
+        /// @brief Convenience type for passing around SpinnerValueChangedEvent.
+        using SpinnerValueChangedEventPtr = std::shared_ptr<SpinnerValueChangedEvent>;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a simple widget for a numeric variable in a box.
@@ -164,6 +132,9 @@ namespace Mezzanine
             /// @param SpinStyle The layout of buttons this Spinner will have.
             /// @param EditFont A pointer to the font to be used by the child EditBox.
             virtual void ConstructSpinner(const SpinnerStyle SpinStyle, FontData* EditFont);
+            /// @internal
+            /// @brief Subscribes to all the events of this scrollbars children we care about.
+            virtual void SubscribeToChildEvents();
             /// @internal
             /// @brief Ensures the provided value is within the configured limits.
             /// @param Value The value to verify.
@@ -305,8 +276,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
-            virtual void _NotifyEvent(EventArgumentsPtr Args);
+            /// @internal
+            /// @brief Callback to be called when an event this widget is interested in occurs.
+            /// @param Args A pointer to the event this widget is being notified of.
+            virtual void _NotifyEvent(EventPtr Args);
             /// @copydoc PageProvider::_NotifyContainerUpdated()
             virtual void _NotifyContainerUpdated();
         };//Spinner
