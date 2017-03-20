@@ -47,37 +47,6 @@
 #include <stdexcept> //only used to throw for TEST_THROW
 #include <ostream>
 
-class TestFunctor : public FunctorEventSubscriber
-{
-    public:
-        ostream& Output;
-
-        TestFunctor(ostream& Out)
-            : Output(Out)
-        {
-
-        }
-
-        virtual void operator()(const EventArguments& Args)
-        {
-            Output << "Called from Functor" << endl;
-        }
-};
-
-class TestPublisher: public EventPublisher
-{
-    public:
-
-        TestPublisher()
-            { AddEvent("test"); }
-
-        void DoTest()
-        {
-            EventArgumentsPtr Stuff( new EventArguments("test") );
-            this->FireEvent(Stuff);
-        }
-};
-
 /// @file
 /// @brief This file should be used as template/example for building future Unit Tests
 
