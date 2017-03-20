@@ -65,6 +65,9 @@ namespace Mezzanine
     class MEZZ_LIB HashedString32
     {
     public:
+        /// @brief The hash value of an empty string ("").
+        static const Int32 EmptyHash = 1364076727;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 

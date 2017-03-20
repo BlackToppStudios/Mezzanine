@@ -67,7 +67,7 @@ namespace Mezzanine
     // HashedString32 Methods
 
     HashedString32::HashedString32() :
-        Hash(1364076727) // Magic number is hash of ""
+        Hash(HashedString32::EmptyHash)
         {  }
 
     HashedString32::HashedString32(const String& StartingString) :
@@ -131,7 +131,7 @@ namespace Mezzanine
     }
 
     Boole HashedString32::IsEmpty() const
-        { return 1364076727 == Hash; }
+        { return HashedString32::EmptyHash == Hash; }
 
 
     Int32 HashedString32::GetHash() const

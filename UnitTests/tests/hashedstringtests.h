@@ -129,9 +129,9 @@ class hashedstringtests : public UnitTestGroup
             TEST(Temp.IsEmpty()==false,"NotEmpty");
 
             TestOutput << endl << "Testing Getting and Setting String and Hash." << endl;
-            TEST(1364076727==HashedEmpty.GetHash(),"GetHash");
+            TEST(HashedString32::EmptyHash==HashedEmpty.GetHash(),"GetHash");
             Temp.SetString("");
-            TEST(1364076727==Temp.GetHash(),"SetString");
+            TEST(HashedString32::EmptyHash==Temp.GetHash(),"SetString");
             TEST(""==Temp.GetString(),"GetString");
             TEST(Temp.IsEmpty(),"SetStringEmpty");
 
