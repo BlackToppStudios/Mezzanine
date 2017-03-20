@@ -21,13 +21,13 @@ void AudioSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
     this->SettingsSubscriber->StartUpdate();
     UI::UIManager* UIMan = this->SettingsSubscriber->UITarget;
     Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->SettingsSubscriber->TargetManager );
-    QueuedSubscriber::ConstEventIterator EndEvent = this->SettingsSubscriber->GetEndEvent();
-    for( QueuedSubscriber::ConstEventIterator EvIt = this->SettingsSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
+    CatchQueuedSubscriber::ConstEventIterator EndEvent = this->SettingsSubscriber->GetEndEvent();
+    for( CatchQueuedSubscriber::ConstEventIterator EvIt = this->SettingsSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
     {
-        EventArgumentsPtr Args = (*EvIt);
-        UI::WidgetEventArgumentsPtr WidArgs = CountedPtrCast<UI::WidgetEventArguments>( Args );
+        EventPtr Args = (*EvIt);
+        UI::WidgetEventPtr WidArgs = std::static_pointer_cast<UI::WidgetEvent>( Args );
         if( WidArgs->EventName == UI::Scrollbar::EventScrollValueChanged ) {
-            UI::ScrollbarValueChangedArgumentsPtr ScrollArgs = CountedPtrCast<UI::ScrollbarValueChangedArguments>( WidArgs );
+            UI::ScrollValueChangedEventPtr ScrollArgs = std::static_pointer_cast<UI::ScrollValueChangedEvent>( WidArgs );
             // Check for "MS_MusicVolume" or "GS_MusicVolume"
             // Else check for "MS_EffectsVolume" or "GS_EffectsVolume"
             if( StringTools::EndsWith( WidArgs->WidgetName, "_MusicVolume", true ) ) {
@@ -113,11 +113,11 @@ void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
     UI::UIManager* UIMan = this->SettingsSubscriber->UITarget;
     Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->SettingsSubscriber->TargetManager );
     Graphics::GameWindow* CatchWindow = GraphicsMan->GetGameWindow(0);
-    QueuedSubscriber::ConstEventIterator EndEvent = this->SettingsSubscriber->GetEndEvent();
-    for( QueuedSubscriber::ConstEventIterator EvIt = this->SettingsSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
+    CatchQueuedSubscriber::ConstEventIterator EndEvent = this->SettingsSubscriber->GetEndEvent();
+    for( CatchQueuedSubscriber::ConstEventIterator EvIt = this->SettingsSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
     {
-        EventArgumentsPtr Args = (*EvIt);
-        UI::WidgetEventArgumentsPtr WidArgs = CountedPtrCast<UI::WidgetEventArguments>( Args );
+        EventPtr Args = (*EvIt);
+        UI::WidgetEventPtr WidArgs = std::static_pointer_cast<UI::WidgetEvent>( Args );
 
         // Start by getting the proper screen
         UI::Screen* EventScreen = NULL;
@@ -396,11 +396,11 @@ void CatchPauseWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& C
 {
     this->PauseSubscriber->StartUpdate();
     UI::Screen* GameScreen = this->PauseSubscriber->UITarget->GetScreen("GameScreen");
-    QueuedSubscriber::ConstEventIterator EndEvent = this->PauseSubscriber->GetEndEvent();
-    for( QueuedSubscriber::ConstEventIterator EvIt = this->PauseSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
+    CatchQueuedSubscriber::ConstEventIterator EndEvent = this->PauseSubscriber->GetEndEvent();
+    for( CatchQueuedSubscriber::ConstEventIterator EvIt = this->PauseSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
     {
-        EventArgumentsPtr Args = (*EvIt);
-        UI::WidgetEventArgumentsPtr WidArgs = CountedPtrCast<UI::WidgetEventArguments>( Args );
+        EventPtr Args = (*EvIt);
+        UI::WidgetEventPtr WidArgs = std::static_pointer_cast<UI::WidgetEvent>( Args );
 
         if( (*EvIt)->EventName == UI::Widget::EventVisibilityShown ) {
             UI::MenuEntry* EventMenu = static_cast<UI::MenuEntry*>( GameScreen->GetWidget( WidArgs->WidgetName ) );

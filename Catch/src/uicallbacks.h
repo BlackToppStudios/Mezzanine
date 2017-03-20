@@ -8,21 +8,21 @@ using namespace Mezzanine;
 
 /// @brief Subscriber method allowing publishers to break the main loop.
 /// @param Args An EventArguments struct containing additional data about the event being fired.
-void AllAppExit(EventArgumentsPtr Args);
+void AllAppExit(EventPtr Args);
 
 /// @brief Subscriber method to be used to trigger going back to the main menu from gameplay.
 /// @param Args An EventArguments struct containing additional data about the event being fired.
-void GSMMReturn(EventArgumentsPtr Args);
+void GSMMReturn(EventPtr Args);
 
 /// @brief Subscriber method to be used to trigger the reload/reset of the current level.
 /// @param Args An EventArguments struct containing additional data about the event being fired.
-void GSRestart(EventArgumentsPtr Args);
+void GSRestart(EventPtr Args);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This is a callback class for creating a new empty profile.
 /// @details
 ///////////////////////////////////////
-class MSProfileCreate : public FunctorEventSubscriber
+class MSProfileCreate
 {
 protected:
     /// @internal
@@ -40,14 +40,14 @@ public:
 
     /// @brief Executes subscriber specific functionality when the event is fired.
     /// @param Args The arguments that describe the fired event.
-    virtual void operator()(EventArgumentsPtr Args);
+    virtual void operator()(EventPtr Args);
 };//MSProfileCreate
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This is a callback class for setting a new active profile.
 /// @details
 ///////////////////////////////////////
-class MSProfileSelect : public FunctorEventSubscriber
+class MSProfileSelect
 {
 protected:
     /// @internal
@@ -66,14 +66,14 @@ public:
 
     /// @brief Executes subscriber specific functionality when the event is fired.
     /// @param Args The arguments that describe the fired event.
-    virtual void operator()(EventArgumentsPtr Args);
+    virtual void operator()(EventPtr Args);
 };//MSProfileSelect
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This is a callback class for updating the state of a focused level select child.
 /// @details
 ///////////////////////////////////////
-class MSLevelCellSelect : public FunctorEventSubscriber
+class MSLevelCellSelect
 {
 protected:
     /// @internal
@@ -88,14 +88,14 @@ public:
 
     /// @brief Executes subscriber specific functionality when the event is fired.
     /// @param Args The arguments that describe the fired event.
-    virtual void operator()(EventArgumentsPtr Args);
+    virtual void operator()(EventPtr Args);
 };//MSLevelCellSelect
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This is a callback class for launching a level from the main menu.
 /// @details
 ///////////////////////////////////////
-class MSLevelStart : public FunctorEventSubscriber
+class MSLevelStart
 {
 protected:
     /// @internal
@@ -110,7 +110,7 @@ public:
 
     /// @brief Executes subscriber specific functionality when the event is fired.
     /// @param Args The arguments that describe the fired event.
-    virtual void operator()(EventArgumentsPtr Args);
+    virtual void operator()(EventPtr Args);
 };//MSLevelStart
 
 #endif

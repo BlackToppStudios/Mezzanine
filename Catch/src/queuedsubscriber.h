@@ -11,11 +11,11 @@ class CatchApp;
 /// @brief This is a base class for event subscribers that hold on to thier recieved events for later processing.
 /// @details
 ///////////////////////////////////////
-class QueuedSubscriber : public EventSubscriber
+class CatchQueuedSubscriber
 {
 public:
     /// @brief Container type for EventArguements storage in this class.
-    typedef std::vector<EventArgumentsPtr>        EventContainer;
+    typedef std::vector<EventPtr>                 EventContainer;
     /// @brief Iterator type for EventArguments stored in this class.
     typedef EventContainer::iterator              EventIterator;
     /// @brief Const Iterator type for EventArguments stored in this class.
@@ -31,9 +31,9 @@ public:
     // Construction and Destruction
 
     /// @brief Class constructor.
-    QueuedSubscriber();
+    CatchQueuedSubscriber();
     /// @brief Class destructor.
-    virtual ~QueuedSubscriber();
+    virtual ~CatchQueuedSubscriber();
 
     ///////////////////////////////////////////////////////////////////////////////
     // Convenience and Utility
@@ -52,19 +52,23 @@ public:
     /// @brief Clears the queue of all known events.
     void ClearEvents();
 
+    /// @brief Gets a usable delegate that can be used to subscribe this to an EventPublisher.
+    /// @return Returns a Delegate that will call _NotifyEvent(EventPtr) on this subscriber.
+    EventSubscriberBinding::CallbackType GetDelegate();
+
     ///////////////////////////////////////////////////////////////////////////////
     // Inherited
 
     /// @brief Method used to notify this Subscriber an event it cares about has occured.
     /// @param Args The specific information regarding the event that was fired.
-    virtual void _NotifyEvent(EventArgumentsPtr Args);
-};//QueuedSubscriber
+    virtual void _NotifyEvent(EventPtr Args);
+};//CatchQueuedSubscriber
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This is a convenience class used by some of the settings related work units.
 /// @details
 ///////////////////////////////////////
-class QueuedSettingsSubscriber : public QueuedSubscriber
+class QueuedSettingsSubscriber : public CatchQueuedSubscriber
 {
 public:
     /// @brief A pointer to the manager that this events will eventually change the settings on.
@@ -87,7 +91,7 @@ public:
 /// @brief This is a convenience class used to alter the pause state of the game.
 /// @details
 ///////////////////////////////////////
-class QueuedPauseSubscriber : public QueuedSubscriber
+class QueuedPauseSubscriber : public CatchQueuedSubscriber
 {
 public:
     /// @brief A pointer to the manager that this events will eventually change the settings on.
