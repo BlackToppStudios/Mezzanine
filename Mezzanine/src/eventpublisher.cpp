@@ -55,13 +55,6 @@ namespace Mezzanine
         MuteEvents(false)
         { this->EventTables.reserve(EventCount); }
 
-    void EventPublisher::FireEvent(EventPtr Args) const
-    {
-        if( !this->MuteEvents ) {
-            this->GetEventTable(Args->EventName)->_FireEvent(Args);
-        }
-    }
-
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
 
@@ -73,6 +66,13 @@ namespace Mezzanine
 
     Boole EventPublisher::GetMuteEvents() const
         { return this->MuteEvents; }
+
+    void EventPublisher::DispatchEvent(EventPtr Args) const
+    {
+        if( !this->MuteEvents ) {
+            this->GetEventTable(Args->EventName)->_DispatchEvent(Args);
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Event Table Management
@@ -95,6 +95,17 @@ namespace Mezzanine
         return EvIt != this->EventTables.end();
     }
 
+    Boole EventPublisher::HasEventTable(const Int32 EventHash) const
+    {
+        for( const EventSubscriberTable& CurrTable : this->EventTables )
+        {
+            if( CurrTable.GetName().GetHash() == EventHash ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     EventPublisher::EventTableIterator EventPublisher::GetEventTable(const HashedString32& EventName)
     {
         EventTableIterator EvIt = this->EventTables.find(EventName);
@@ -106,6 +117,19 @@ namespace Mezzanine
         return this->EventTables.end();
     }
 
+    EventPublisher::EventTableIterator EventPublisher::GetEventTable(const Int32 EventHash)
+    {
+        for( EventTableIterator TableIt = this->EventTables.begin() ; TableIt != this->EventTables.end() ; ++TableIt )
+        {
+            if( (*TableIt).GetName().GetHash() == EventHash ) {
+                return TableIt;
+            }
+        }
+        StringStream ExceptionStream;
+        ExceptionStream << "Event hash \"" << EventHash << "\" not found in publisher.";
+        MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+    }
+
     EventPublisher::ConstEventTableIterator EventPublisher::GetEventTable(const HashedString32& EventName) const
     {
         ConstEventTableIterator EvIt = this->EventTables.find(EventName);
@@ -115,6 +139,19 @@ namespace Mezzanine
             MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
         }
         return this->EventTables.end();
+    }
+
+    EventPublisher::ConstEventTableIterator EventPublisher::GetEventTable(const Int32 EventHash) const
+    {
+        for( ConstEventTableIterator TableIt = this->EventTables.begin() ; TableIt != this->EventTables.end() ; ++TableIt )
+        {
+            if( (*TableIt).GetName().GetHash() == EventHash ) {
+                return TableIt;
+            }
+        }
+        StringStream ExceptionStream;
+        ExceptionStream << "Event hash \"" << EventHash << "\" not found in publisher.";
+        MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
     }
 
     void EventPublisher::RemoveEventTable(const HashedString32& EventName)
@@ -129,51 +166,21 @@ namespace Mezzanine
         { this->EventTables.clear(); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Subscribe Methods
+    // Subscription Management
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const HashedString32& EventName, EventSubscriber* Sub)
-        { return this->GetEventTable(EventName)->Subscribe(Sub); }
+    EventSubscriberBindingPtr EventPublisher::Subscribe(const HashedString32& EventName, SubscriberID ID, const CallbackType& Delegate)
+        { return this->GetEventTable(EventName)->Subscribe(ID,Delegate,this); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const HashedString32& EventName, FunctorEventSubscriber* Funct, Boole CleanUpAfter)
-        { return this->GetEventTable(EventName)->Subscribe(Funct,CleanUpAfter); }
+    void EventPublisher::Unsubscribe(const HashedString32& EventName, SubscriberID ID)
+        { this->GetEventTable(EventName)->Unsubscribe(ID); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const HashedString32& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
-        { return this->GetEventTable(EventName)->Subscribe(CFunct); }
+    Whole EventPublisher::UnsubscribeAll(const HashedString32& EventName)
+        { return this->GetEventTable(EventName)->UnsubscribeAll(); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const HashedString32& EventName, Scripting::iScript* SubScript)
-        { return this->GetEventTable(EventName)->Subscribe(SubScript); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Unsubscribe Methods
-
-    void EventPublisher::Unsubscribe(EventSubscriber* Subscriber)
+    void EventPublisher::Unsubscribe(SubscriberID ID)
     {
         for( EventSubscriberTable& CurrTable : this->EventTables )
-            { CurrTable.Unsubscribe(Subscriber); }
-    }
-
-    void EventPublisher::Unsubscribe(FunctorEventSubscriber* Funct)
-    {
-        for( EventSubscriberTable& CurrTable : this->EventTables )
-            { CurrTable.Unsubscribe(Funct); }
-    }
-
-    void EventPublisher::Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct)
-    {
-        for( EventSubscriberTable& CurrTable : this->EventTables )
-            { CurrTable.Unsubscribe(CFunct); }
-    }
-
-    void EventPublisher::Unsubscribe(Scripting::iScript* SubScript)
-    {
-        for( EventSubscriberTable& CurrTable : this->EventTables )
-            { CurrTable.Unsubscribe(SubScript); }
-    }
-
-    void EventPublisher::Unsubscribe(EventSubscriberSlot* SubSlot)
-    {
-        for( EventSubscriberTable& CurrTable : this->EventTables )
-            { CurrTable.Unsubscribe(SubSlot); }
+            { CurrTable.Unsubscribe(ID); }
     }
 
     Whole EventPublisher::UnsubscribeAll()
@@ -183,24 +190,6 @@ namespace Mezzanine
             { Ret += CurrTable.UnsubscribeAll(); }
         return Ret;
     }
-
-    void EventPublisher::Unsubscribe(const HashedString32& EventName, EventSubscriber* Subscriber)
-        { this->GetEventTable(EventName)->Unsubscribe(Subscriber); }
-
-    void EventPublisher::Unsubscribe(const HashedString32& EventName, FunctorEventSubscriber* Funct)
-        { this->GetEventTable(EventName)->Unsubscribe(Funct); }
-
-    void EventPublisher::Unsubscribe(const HashedString32& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
-        { this->GetEventTable(EventName)->Unsubscribe(CFunct); }
-
-    void EventPublisher::Unsubscribe(const HashedString32& EventName, Scripting::iScript* SubScript)
-        { this->GetEventTable(EventName)->Unsubscribe(SubScript); }
-
-    void EventPublisher::Unsubscribe(const HashedString32& EventName, EventSubscriberSlot* SubSlot)
-        { this->GetEventTable(EventName)->Unsubscribe(SubSlot); }
-
-    Whole EventPublisher::UnsubscribeAll(const HashedString32& EventName)
-        { return this->GetEventTable(EventName)->UnsubscribeAll(); }
 }//Mezzanine
 
 #endif

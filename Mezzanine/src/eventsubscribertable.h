@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,12 +41,13 @@
 #define _eventsubscribertable_h
 
 #include "hashedstring.h"
-#include "event.h"
+#include "eventsubscriberbinding.h"
 
 namespace Mezzanine
 {
-    class Event;
-    class EventSubscriber;
+    /// @addtogroup Events
+    /// @{
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     ///////////////////////////////////////
@@ -54,14 +55,18 @@ namespace Mezzanine
 	{
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
-        using CallbackType = std::function< Boole(EventPtr) >;
-        /// @brief Container for the storage of subscribers interested in an event.
-        using SubscriberContainer = std::vector<EventSubscriber*>;
-        /// @brief Iterator type for subscribers stored by this table.
-        using SubscriberIterator = SubscriberContainer::iterator;
-        /// @brief Const Iterator type for subscribers stored by this table.
-        using ConstSubscriberIterator = SubscriberContainer::const_iterator;
+        using CallbackType = EventSubscriberBinding::CallbackType;
+        /// @brief Type used to identify the subscriber uniquely.
+        using SubscriberID = EventSubscriberBinding::SubscriberID;
+        /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
+        using BindingContainer = std::vector<EventSubscriberBindingPtr>;
+        /// @brief Iterator type for subscriber bindings stored by this table.
+        using BindingIterator = BindingContainer::iterator;
+        /// @brief Const Iterator type for subscriber bindings stored by this table.
+        using ConstBindingIterator = BindingContainer::const_iterator;
     protected:
+        /// @brief A container of all the subscriber bindings to this event table.
+        BindingContainer Bindings;
         /// @brief The name of the Event the subscribers in this table are subscribed to.
         HashedString32 EventName;
     public:
@@ -77,17 +82,7 @@ namespace Mezzanine
         /// @param Name The name to be given to this event.
         EventSubscriberTable(const HashedString32& Name);
         /// @brief Class destructor.
-        ~EventSubscriberTable() = default;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @brief Gets the name of the event associated with this table.
-        /// @return Returns a const reference of a hashed string containing the name of this event.
-        const HashedString32& GetName() const;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Subscription Management
+        ~EventSubscriberTable();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
@@ -107,13 +102,43 @@ namespace Mezzanine
         Boole operator<(const EventSubscriberTable& Other) const;
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Gets the name of the event associated with this table.
+        /// @return Returns a const reference of a hashed string containing the name of this event.
+        const HashedString32& GetName() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management
+
+        /// @brief Adds a subscriber to this event table.
+        /// @exception If ID provided is already being used by a binding/subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        /// @param Delegate The callback to be called when the interested event is fired.
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberBindingPtr Subscribe(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub);
+        /// @brief Gets a binding by the subscriber ID.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        /// @return Returns the binding with the specified ID, or NULL of none exists.
+        EventSubscriberBindingPtr GetBinding(SubscriberID ID);
+
+        /// @brief Removes a single subscriber from this event table.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        void Unsubscribe(SubscriberID ID);
+        /// @brief Removes all subscribers from all events in this publisher.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll();
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
         /// @internal
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
-        void _FireEvent(EventArgumentsPtr Args) const;
+        void _DispatchEvent(EventPtr Args) const;
 	};//EventSubscriberTable
+
+    /// @}
 }//Mezzanine
 
 #endif

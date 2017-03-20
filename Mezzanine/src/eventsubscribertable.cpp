@@ -41,12 +41,22 @@
 #define _eventsubscribertable_cpp
 
 #include "eventsubscribertable.h"
+#include "exception.h"
 
 namespace Mezzanine
 {
     EventSubscriberTable::EventSubscriberTable(const HashedString32& Name) :
         EventName(Name)
         {  }
+
+    EventSubscriberTable::~EventSubscriberTable()
+        { this->UnsubscribeAll(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Operators
+
+    Boole EventSubscriberTable::operator<(const EventSubscriberTable& Other) const
+        { return this->EventName < Other.EventName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
@@ -57,18 +67,58 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Subscription Management
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Operators
+    EventSubscriberBindingPtr EventSubscriberTable::Subscribe(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub)
+    {
+        EventSubscriberBindingPtr NewBinding = this->GetBinding(ID);
+        if( NewBinding.use_count() > 0 /* != NULL */ ) {
+            MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+        }
+        NewBinding.reset( new EventSubscriberBinding(ID,Delegate,Pub,this->EventName.GetHash()) );
+        this->Bindings.push_back(NewBinding);
+        return NewBinding;
+    }
 
-    Boole operator<(const EventSubscriberTable& Other) const
-        { return this->EventName < Other.EventName; }
+    EventSubscriberBindingPtr EventSubscriberTable::GetBinding(SubscriberID ID)
+    {
+        for( BindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
+        {
+            if( (*BindIt)->GetSubID() == ID ) {
+                return (*BindIt);
+            }
+        }
+        return NULL;
+    }
+
+    void EventSubscriberTable::Unsubscribe(SubscriberID ID)
+    {
+        for( BindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
+        {
+            if( (*BindIt)->GetSubID() == ID ) {
+                (*BindIt)->Unbind();
+                this->Bindings.erase(BindIt);
+                return;
+            }
+        }
+    }
+
+    Whole EventSubscriberTable::UnsubscribeAll()
+    {
+        Whole RemoveCount = this->Bindings.size();
+        for( BindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
+        {
+            (*BindIt)->Unbind();
+        }
+        this->Bindings.clear();
+        return RemoveCount;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void EventSubscriberTable::_FireEvent(EventArgumentsPtr Args) const
+    void EventSubscriberTable::_DispatchEvent(EventPtr Args) const
     {
-
+        for( ConstBindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
+            { (*BindIt)->DispatchEvent(Args); }
     }
 }//Mezzanine
 

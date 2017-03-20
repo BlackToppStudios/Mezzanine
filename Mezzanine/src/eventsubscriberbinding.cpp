@@ -37,14 +37,60 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventsubscribertoken_cpp
-#define _eventsubscribertoken_cpp
+#ifndef _eventsubscriberbinding_cpp
+#define _eventsubscriberbinding_cpp
 
-#include "eventsubscribertoken.h"
+#include "eventsubscriberbinding.h"
+#include "eventpublisher.h"
 
 namespace Mezzanine
 {
+    EventSubscriberBinding::EventSubscriberBinding(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub, const Int32 Hash) :
+        Callback(Delegate),
+        SubID(ID),
+        Publisher(Pub),
+        NameHash(Hash)
+        {  }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Operators
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    const EventSubscriberBinding::CallbackType& EventSubscriberBinding::GetCallback() const
+        { return this->Callback; }
+
+    EventSubscriberBinding::SubscriberID EventSubscriberBinding::GetSubID() const
+        { return this->SubID; }
+
+    EventPublisher* EventSubscriberBinding::GetPublisher() const
+        { return this->Publisher; }
+
+    Int32 EventSubscriberBinding::GetEventHash() const
+        { return this->NameHash; }
+
+    Boole EventSubscriberBinding::IsSubscribed() const
+        { return ( this->Publisher != NULL ); }
+
+    void EventSubscriberBinding::Unsubscribe()
+    {
+        this->Publisher->GetEventTable(this->NameHash)->Unsubscribe(this->SubID);
+        this->Unbind();
+    }
+
+    void EventSubscriberBinding::Unbind()
+    {
+        this->Publisher = NULL;
+        this->NameHash = HashedString32::EmptyHash;
+    }
+
+    void EventSubscriberBinding::DispatchEvent(EventPtr Args) const
+    {
+        if( this->Callback ) {
+            this->Callback(Args);
+        }
+    }
 }//Mezzanine
 
 #endif

@@ -40,27 +40,39 @@
 #ifndef _eventsubscriber_h
 #define _eventsubscriber_h
 
-#include "eventarguments.h"
+#include "event.h"
+#include <queue>
 
 namespace Mezzanine
 {
+    /// @addtogroup Events
+    /// @{
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a base class for all classes that subscribe to events.
     ///////////////////////////////////////
     class MEZZ_LIB EventSubscriber
     {
-    protected:
-    //public:
-        /// @brief Class constructor.
-        EventSubscriber();
-        /// @brief Class destructor.
-        virtual ~EventSubscriber();
     public:
-        /// @internal
         /// @brief Notifies this subscriber of an event being fired.
-        /// @param Args The arguments containing specific information regarding this event.
-        virtual void _NotifyEvent(EventArgumentsPtr Args) = 0;
+        /// @param Args The specific information regarding the fired event.
+        virtual void NotifyEvent(EventPtr Args) = 0;
     };//EventSubscriber
+
+    class MEZZ_LIB QueuedSubscriber : public EventSubscriber
+    {
+    public:
+        /// @brief Basic container type for Events stored by this class.
+        using QueueType = std::queue<EventPtr>;
+    protected:
+        /// @brief The container storing the queued up events to be processed.
+        QueueType EventQueue;
+    public:
+        /// @copydoc EventSubscriber::NotifyEvent(EventPtr)
+        virtual void NotifyEvent(EventPtr Args);
+    };//QueuedSubscriber
+
+    /// @}
 }//Mezzanine
 
 #endif

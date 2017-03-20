@@ -47,11 +47,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // EventSubscriber Methods
 
-    EventSubscriber::EventSubscriber()
+    /*EventSubscriber::EventSubscriber()
         {  }
 
     EventSubscriber::~EventSubscriber()
-        {  }
+        {  }//*/
 }//Mezzanine
 
 #endif
