@@ -235,6 +235,13 @@ namespace Mezzanine
             /// @return Returns a Real representing the World Object restitution coefficient.
             virtual Real GetRestitution() const;
 
+            /// @brief Sets the maximum distance to be considered for processing collisions with this object.
+            /// @param Threshold The maximum distance in world units that will be considered a collision with this object.
+            virtual void SetContactProcessingThreshold(const Real Threshold);
+            /// @brief Gets the maximum distance to be considered for processing collisions with this object.
+            /// @return Returns a Real representing the maximum distance in world units that is considered a collision with this object.
+            virtual Real GetContactProcessingThreshold() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Activation State
 
@@ -343,17 +350,14 @@ namespace Mezzanine
             /// @return Returns a unique number greater than zero if the object is in the world, or Zero if the
             virtual Integer _GetBroadphaseUniqueID() const;
             /// @internal
-            /// @brief Sets the maximum distance to be considered for processing collisions with this object.
-            /// @param Threshold The maximum distance in world units that will be considered a collision with this object.
-            virtual void _SetContactProcessingThreshold(const Real Threshold);
-            /// @internal
-            /// @brief Gets the maximum distance to be considered for processing collisions with this object.
-            /// @return Returns a Real represnting the maximum distance in world units that is considered a collision with this object.
-            virtual Real _GetContactProcessingThreshold() const;
-            /// @internal
             /// @brief Accessor for the internal physics object.
             /// @return Returns a pointer to the internal object of this proxy.
             virtual btCollisionObject* _GetBasePhysicsObject() const = 0;
+            /// @internal
+            /// @brief Automatically performs a cast from an internal physics object to a Mezzanine object.
+            /// @param ToCast A pointer to the internal object being casted.
+            /// @return Returns a pointer to the CollidableProxy used to represent the internal physics object.
+            static CollidableProxy* _Upcast(const btCollisionObject* ToCast);
         };// CollidableProxy
     }//Physics
 }//Mezzanine

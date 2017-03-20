@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,33 +37,23 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _transformableobject_cpp
-#define _transformableobject_cpp
 
-#include "transformableobject.h"
+#ifndef _playerview_cpp
+#define _playerview_cpp
+
+#include "playerview.h"
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    // TransformableObject Methods
+    PlayerView::PlayerView()
+    {
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Conversion Methods
+    }
 
-    Vector3 TransformableObject::ConvertLocalToGlobal(const Vector3& Location) const
-        { return (this->GetOrientation() * Location * this->GetScale()) + this->GetLocation(); }
+    PlayerView::~PlayerView()
+    {
 
-    Vector3 TransformableObject::ConvertGlobalToLocal(const Vector3& Location) const
-        { return this->GetOrientation().GetInverse() * (Location - this->GetLocation()) / this->GetScale(); }
-
-    Quaternion TransformableObject::ConvertLocalToGlobal(const Quaternion& Orientation) const
-        { return this->GetOrientation() * Orientation; }
-
-    Quaternion TransformableObject::ConvertGlobalToLocal(const Quaternion& Orientation) const
-        { return this->GetOrientation().GetInverse() * Orientation; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // TransformableChildObject Methods
+    }
 }//Mezzanine
 
 #endif

@@ -78,10 +78,12 @@ namespace Mezzanine
 #include "Physics/physicsenumerations.h"
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshapemanager.h"
+
 #include "Physics/boxcollisionshape.h"
 #include "Physics/capsulecollisionshape.h"
 #include "Physics/collidablepair.h"
 #include "Physics/collidableproxy.h"
+#include "Physics/collidablerayquery.h"
 #include "Physics/collision.h"
 #include "Physics/collisionshape.h"
 #include "Physics/compoundcollisionshape.h"

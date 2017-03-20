@@ -66,14 +66,6 @@ namespace Mezzanine
         this->AlphaChannel = OgreValues.a;
     }
 
-    ColourValue::ColourValue(const ColourValue& OtherColour)
-    {
-        this->RedChannel = OtherColour.RedChannel;
-        this->GreenChannel = OtherColour.GreenChannel;
-        this->BlueChannel = OtherColour.BlueChannel;
-        this->AlphaChannel = OtherColour.AlphaChannel;
-    }
-
     ColourValue::ColourValue(const XML::Node& OneNode)
         { this->ProtoDeSerialize(OneNode); }
 
@@ -165,14 +157,6 @@ namespace Mezzanine
 
     Boole ColourValue::operator!=(const ColourValue& Colour) const
         { return ( Colour.RedChannel != this->RedChannel || Colour.GreenChannel != this->GreenChannel || Colour.BlueChannel != this->BlueChannel || Colour.AlphaChannel != this->AlphaChannel ); }
-
-    void ColourValue::operator=(const ColourValue& OtherColour)
-    {
-        this->RedChannel = OtherColour.RedChannel;
-        this->GreenChannel = OtherColour.GreenChannel;
-        this->BlueChannel = OtherColour.BlueChannel;
-        this->AlphaChannel = OtherColour.AlphaChannel;
-    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Prefab Colour fetchers

@@ -154,7 +154,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Movement Factors
 
-            /// @brief Restricts movement on the axis or axies of your choice.
+            /// @brief Restricts movement on the axis or axes of your choice.
             /// @details This function can lock or limit any and all axes you define.
             /// 0.0 means no linear movement on that axis.  1.0 means normal movement.
             /// @param Factor Vector3 containing the Factors for the 3 linear axes.
@@ -215,6 +215,15 @@ namespace Mezzanine
             /// @details This is the gravity applied to this proxy, which may or may not be the same as the world gravity.
             /// @return Returns a Vector3 representing the gravity currently being applied to this proxy.
             virtual Vector3 GetGravity() const;
+            /// @brief Sets whether or not this proxy will ignore the world gravity when it's added to the world.
+            /// @details Normally when a proxy is added to the world, the gravity set on that world is applied to the proxy.
+            /// This will cause the world to which it is being added to not apply it's gravity to it.  This is ideal for objects
+            /// that are having their gravity manipulated through gravity fields or something more manual.
+            /// @param Ignore Whether or not to have the physics world skip applying it's gravity to this proxy when it's added to the world.
+            virtual void SetIgnoreWorldGravity(const Boole Ignore);
+            /// @brief Gets whether or not this proxy will ignore the world gravity when it's added to the world.
+            /// @return Returns true if this proxy is not having the world gravity applied to it when it's added to the world, false otherwise.
+            virtual Boole GetIgnoreWorldGravity() const;
 
             /// @brief Push/Apply force to an proxy.
             /// @param Force The amount and direction of the force in a Vector3

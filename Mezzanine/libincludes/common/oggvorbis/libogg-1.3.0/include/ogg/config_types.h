@@ -3,7 +3,7 @@
 
 // This file added by BTS
 
-#include "pstdint.h" // This is experimental but should work on any gaming platform.
+#include <stdint.h>
 
 typedef int16_t ogg_int16_t;
 typedef uint16_t ogg_uint16_t;

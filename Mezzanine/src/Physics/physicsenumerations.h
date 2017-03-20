@@ -48,13 +48,16 @@ namespace Mezzanine
     namespace Physics
     {
         /// @brief This is used by physics proxies to monitor and set their physics activation.
+        /// @details The physics subsystem can, and will, change the activation state of the objects depending on the state of the simulation.
+        /// This is unless either "AS_Disable*" states are set, which will prevent any changes to the activation state from the subsystem.  Any
+        /// change from either "AS_Disable*" states must be manual.
         enum ActivationState
         {
-            AS_Active               = 1,
-            AS_Island_Sleeping      = 2,
-            AS_Wants_Deactivation   = 3,
-            AS_DisableDeactivation  = 4,
-            AS_DisableSimulation    = 5
+            AS_Active               = 1, ///< Object is processed by the simulation each frame.
+            AS_Island_Sleeping      = 2, ///< Objects' simulation island is dormant, so the object isn't processed.
+            AS_Wants_Deactivation   = 3, ///< Object thinks it can be deactivated but the system hasn't yet deactivated it.
+            AS_DisableDeactivation  = 4, ///< Prevents the object from disabling, causing it to be active until this state is unset.
+            AS_DisableSimulation    = 5  ///< Prevents the object from activating, causing it to be disabled until this state is unset.
         };
 
         /// @brief This is used by physics proxies to help determine the behavior of it's anistropic friction behavior.
@@ -72,19 +75,19 @@ namespace Mezzanine
         enum CollisionFilter
         {
             // Standard base filters
-            CF_GenericFilter    = 1,
-            CF_StaticFilter     = 2,
-            CF_KinematicFilter  = 4,
-            CF_DebrisFilter     = 8,
-            CF_SensorFilter     = 16,
-            CF_CharacterFilter  = 32,
-            CF_AllFilter        = -1,
+            CF_GenericFilter    = 1,  ///< A catch-all filter used when other filters may not be appropriate.
+            CF_StaticFilter     = 2,  ///< Filter used by static objects, most commonly terrain.
+            CF_KinematicFilter  = 4,  ///< Filter used by objects with movement that is explicitly controlled by non-physics logic.
+            CF_DebrisFilter     = 8,  ///< Filter used by dynamic objects with no special movement behavior, simply have collision response.
+            CF_SensorFilter     = 16, ///< Filter used by non-solid objects.
+            CF_CharacterFilter  = 32, ///< Filter used to express objects explicitly controlled by a player.
+            CF_AllFilter        = -1, ///< All the filters!
 
             // Non-Standard Filters
-            CF_UserFilter1      = 64,
-            CF_UserFilter2      = 128,
-            CF_UserFilter3      = 256,
-            CF_UserFilter4      = 512
+            CF_UserFilter1      = 64, ///< Custom User Filter.
+            CF_UserFilter2      = 128,///< Custom User Filter.
+            CF_UserFilter3      = 256,///< Custom User Filter.
+            CF_UserFilter4      = 512 ///< Custom User Filter.
         };
 
         /// @brief This is used by physics proxies to help determine collision response behavior of a proxy.

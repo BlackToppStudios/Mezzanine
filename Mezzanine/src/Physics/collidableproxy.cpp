@@ -510,6 +510,12 @@ namespace Mezzanine
         Real CollidableProxy::GetRestitution() const
             { return this->_GetBasePhysicsObject()->getRestitution(); }
 
+        void CollidableProxy::SetContactProcessingThreshold(const Real Threshold)
+            { this->_GetBasePhysicsObject()->setContactProcessingThreshold(Threshold); }
+
+        Real CollidableProxy::GetContactProcessingThreshold() const
+            { return this->_GetBasePhysicsObject()->getContactProcessingThreshold(); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Activation State
 
@@ -675,7 +681,7 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("Restitution").SetValue( this->GetRestitution() ) &&
                 PropertiesNode.AppendAttribute("ActivationState").SetValue( static_cast<Whole>( this->GetActivationState() ) ) &&
                 PropertiesNode.AppendAttribute("DeactivationTime").SetValue( this->GetDeactivationTime() ) &&
-                PropertiesNode.AppendAttribute("ContactProcessingThreshold").SetValue( this->_GetContactProcessingThreshold() ) )
+                PropertiesNode.AppendAttribute("ContactProcessingThreshold").SetValue( this->GetContactProcessingThreshold() ) )
             {
                 XML::Node AnisotropicFrictionNode = PropertiesNode.AppendChild("AnisotropicFriction");
                 this->GetAnisotropicFriction().ProtoSerialize( AnisotropicFrictionNode );
@@ -748,7 +754,7 @@ namespace Mezzanine
 
                     CurrAttrib = PropertiesNode.GetAttribute("ContactProcessingThreshold");
                     if( !CurrAttrib.Empty() )
-                        this->_SetContactProcessingThreshold( CurrAttrib.AsReal() );
+                        this->SetContactProcessingThreshold( CurrAttrib.AsReal() );
 
                     // Get the properties that need their own nodes
                     XML::Node AnisotropicFrictionNode = PropertiesNode.GetChild("AnisotropicFriction").GetFirstChild();
@@ -792,11 +798,8 @@ namespace Mezzanine
         Integer CollidableProxy::_GetBroadphaseUniqueID() const
             { return ( this->IsInWorld() ? this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_uniqueId : 0 ); }
 
-        void CollidableProxy::_SetContactProcessingThreshold(const Real Threshold)
-            { this->_GetBasePhysicsObject()->setContactProcessingThreshold(Threshold); }
-
-        Real CollidableProxy::_GetContactProcessingThreshold() const
-            { return this->_GetBasePhysicsObject()->getContactProcessingThreshold(); }
+        CollidableProxy* CollidableProxy::_Upcast(const btCollisionObject* ToCast)
+            { return static_cast<CollidableProxy*>( ToCast->getUserPointer() ); }
     }// Physics
 }// Mezzanine
 

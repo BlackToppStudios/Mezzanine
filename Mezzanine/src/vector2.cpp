@@ -64,6 +64,9 @@ namespace Mezzanine
     Vector2::Vector2(const Ogre::Vector2& Vec)
         { this->ExtractOgreVector2(Vec); }
 
+    Vector2::Vector2(XML::Node OneNode)
+        { this->ProtoDeSerialize(OneNode); }
+
     Ogre::Vector2 Vector2::GetOgreVector2() const
     {
         Ogre::Vector2 Theirs;

@@ -59,6 +59,9 @@ namespace Mezzanine
         virtual ~PlayerProfile()
             {  }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
         /// @brief Gets the ID of this profile.
         /// @return Returns a String containing the ID of this profile.
         virtual String GetID() const = 0;

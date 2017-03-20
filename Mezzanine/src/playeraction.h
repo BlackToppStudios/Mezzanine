@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,59 +37,23 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _rayquerytests_h
-#define _rayquerytests_h
 
-#include "mezztest.h"
+#ifndef _playeraction_h
+#define _playeraction_h
 
-#include "rayquerytool.h"
-#include "XML/xml.h"
-
-#include "sstream"
-#include <stdexcept> //only used to throw for TEST_THROW
-
-/// @file
-/// @brief Currently only test serialization of the RayQueryTool, but should be expanded.
-
-using namespace Mezzanine;
-using namespace Mezzanine::Testing;
-
-/// @brief Test of the Mezzanine::RayQueryTool
-class rayquerytests : public UnitTestGroup
+namespace Mezzanine
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A class used represent an action that can or has been taken by a player.
+    ///////////////////////////////////////
+    class PlayerAction
+    {
     public:
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "RayQuery"
-        virtual String Name()
-            { return String("RayQuery"); }
+        /// @brief Class constructor.
+        PlayerAction();
+        /// @brief Class destructor.
+        ~PlayerAction();
+    };//PlayerAction
+}//Mezzanine
 
-        /// @brief This is called when Automatic tests are run
-        void RunAutomaticTests()
-        {
-            XML::Document Doc;
-            RayQueryTool RayCaster;
-            RayCaster.ProtoSerialize(Doc);
-            StringStream Buffer;
-            Doc.Save(Buffer);
-
-            String Expected("<?xml version=\"1.0\"?><RayQueryTool Version=\"1\" ValidResult=\"false\" WorldObject=\"\"><Offset><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></Offset></RayQueryTool>");
-            TestOutput << "Serialized RayCaster looks like:" << endl
-                       << "\"" << Buffer.str() << "\"" << endl
-                       << "Expected:"  << endl
-                       << "\"" << Expected << "\"" << endl;
-
-            Test(Expected==String(Buffer.str()),"Serialize");
-
-            /// @todo Add the rest of the test for
-        }
-
-        /// @brief Since RunAutomaticTests is implemented so is this.
-        /// @return returns true
-        virtual bool HasAutomaticTests() const
-            { return true; }
-
-
-};
-
-#endif
-
+#endif // _playeraction_h

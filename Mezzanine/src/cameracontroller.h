@@ -40,8 +40,7 @@
 #ifndef _cameracontroller_h
 #define _cameracontroller_h
 
-#include "datatypes.h"
-#include "rayquerytool.h"
+#include "Graphics/renderablerayquery.h"
 
 namespace Mezzanine
 {
@@ -103,32 +102,23 @@ namespace Mezzanine
             CCM_Walk        ///< CCM_Walk: This forces the camera to be only a certain distance above the terrain.
         };
     protected:
-        /// @internal
         /// @brief A ray casting tool used to determine surrounding geometry to limit movement.
-        RayQueryTool RayCaster;
-        /// @internal
+        Graphics::RenderableRayQuery RayCaster;
         /// @brief A pointer to the Camera being controlled.
         Graphics::CameraProxy* Controlled;
-        /// @internal
         /// @brief A pointer to the angle limits for rotations on the Y axis.
         AngleData YawData;
-        /// @internal
         /// @brief A pointer to the angle limits for rotations on the X axis.
         AngleData PitchData;
-        /// @internal
         /// @brief A pointer to the angle limits for rotations on the Z axis.
         AngleData RollData;
-        /// @internal
         /// @brief The height at which the camera is to remain above the terrain.
         Real HoverHeight;
-        /// @internal
         /// @brief The mode with which the camera should move around the scene.
         MovementMode CurrentMMode;
 
-        /// @internal
         /// @brief Ensures the camera position is at the desired height above any world terrain.
         void CheckHeight();
-        /// @internal
         /// @brief Performs a raycast to get the distance to any terrain beneath the camera.
         /// @return Returns the distance from the camera to terrain in world units.
         Real FindDistanceToGround();

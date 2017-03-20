@@ -40,12 +40,14 @@
 #ifndef _mathtool_cpp
 #define _mathtool_cpp
 
-#include "mathtools.h"
+#include "MathTools/intersections.h"
+#include "MathTools/arithmetic.h"
 #include "sphere.h"
 #include "axisalignedbox.h"
 #include "ray.h"
 #include "plane.h"
 #include "linesegment.h"
+#include "triangle.h"
 
 #include <cmath>
 #include <limits>
@@ -56,6 +58,9 @@ namespace
 {
     /// @brief This is an std::pair that stores the near and far segement points for ray-aabb intersections.
     typedef std::pair<Mezzanine::Real,Mezzanine::Real> SegmentPosPair;
+    /// @brief Convenience epsilon value used for Plane checks.
+    /// @remarks It's purposefully less precise than what is returned by std::numeric_limits in order to add more stability to checks.
+    const Mezzanine::Real PlaneCheckEpsilon = 1e-6f;
 
     /// @brief Helper fucntion for calculating ray-aabb intersections.
     /// @param Axis The axis to be calculated.
@@ -65,10 +70,9 @@ namespace
     /// @return Returns false if the check has succeeded in ruling out an intersection, true otherwise.
     Mezzanine::Boole CalculateAxis(const Mezzanine::Whole Axis, const Mezzanine::Ray& Cast, const Mezzanine::AxisAlignedBox& Box, SegmentPosPair& PosPair)
     {
-        Mezzanine::Vector3 RayDir = Cast.GetNormal();
-        Mezzanine::Real Denom = 1 / RayDir[Axis];
-        Mezzanine::Real NewStart = ( Box.MinExt[Axis] - Cast.GetOrigin()[Axis] ) * Denom;
-        Mezzanine::Real NewEnd = ( Box.MaxExt[Axis] - Cast.GetOrigin()[Axis] ) * Denom;
+        Mezzanine::Real Denom = 1 / Cast.Normal[Axis];
+        Mezzanine::Real NewStart = ( Box.MinExt[Axis] - Cast.Origin[Axis] ) * Denom;
+        Mezzanine::Real NewEnd = ( Box.MaxExt[Axis] - Cast.Origin[Axis] ) * Denom;
 
         if( NewStart > NewEnd )
             std::swap(NewStart,NewEnd);
@@ -157,7 +161,7 @@ namespace Mezzanine
 
         Boole Overlap(const AxisAlignedBox& Box, const Plane& Surface)
         {
-            return ( Plane::S_Both == Surface.GetSide(Box.GetCenter(),Box.GetHalfSize()) );
+            return ( MathTools::PS_Both == Surface.GetSide(Box.GetCenter(),Box.GetHalfSize()) );
         }
 
         Boole Overlap(const Plane& Surface, const Sphere& Ball)
@@ -182,23 +186,143 @@ namespace Mezzanine
             return ( ( Surface1.Normal == Surface2.Normal ? ( Surface1.Distance == Surface2.Distance ) : true ) );
         }
 
-        Point3DTestResult Intersects(const Plane& Surface, const Ray& Cast)
+        PlaneTestResult Intersects(const Triangle3D& Face, const Ray& Cast)
+        {
+            return Intersects(Face.PointA,Face.PointB,Face.PointC,Cast);
+        }
+
+        PlaneTestResult Intersects(const Triangle3D& Face, const Vector3& Normal, const Ray& Cast)
+        {
+            return Intersects(Face.PointA,Face.PointB,Face.PointC,Normal,Cast);
+        }
+
+        PlaneTestResult Intersects(const Vector3& Vert1, const Vector3& Vert2, const Vector3& Vert3, const Ray& Cast)
+        {
+            // Code is based on the Moller-Trumbor algorithm provided on Wikipedia:
+            // https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
+
+            // Side variable which will be returned on successful hit
+            PlaneSide FaceSide = MathTools::PS_Neither;
+            // Create Edge Vectors
+            Vector3 EdgeOne = Vert2 - Vert1;
+            Vector3 EdgeTwo = Vert3 - Vert1;
+            // Get the Determinate
+            Vector3 PVec = Cast.Normal.CrossProduct(EdgeTwo);
+            Real Det = EdgeOne.DotProduct(PVec);
+            // Make sure we aren't parallel with the triangle and/or do culling
+            if( Det > +PlaneCheckEpsilon ) {
+                // We've struck the forward face of the triangle
+                FaceSide = MathTools::PS_Positive;
+            }else if( Det < -PlaneCheckEpsilon ) {
+                // We've struck the back face of the triangle
+                FaceSide = MathTools::PS_Negative;
+            }else{
+                // We're parallel with the plane of the triangle, or too close to parallel to tell the difference
+                return PlaneTestResult(MathTools::PS_Neither,Vector3());
+            }
+            // Inverse the determinate for easier math
+            Real InvDet = 1 / Det;
+            // Calculate U component
+            Vector3 TVec = Cast.Origin - Vert1;
+            Real U = TVec.DotProduct(PVec) * InvDet;
+            if( U < 0 || U > 1 ) {
+                // We're out of triangle bounds
+                return PlaneTestResult(MathTools::PS_Neither,Vector3());
+            }
+            // Calculate V component
+            Vector3 QVec = TVec.CrossProduct(EdgeOne);
+            Real V = Cast.Normal.DotProduct(QVec) * InvDet;
+            if( V < 0 || U + V > 1 ) {
+                // We're out of triangle bounds
+                return PlaneTestResult(MathTools::PS_Neither,Vector3());
+            }
+            // Get the distance from the ray origin and return
+            Real Dist = EdgeTwo.DotProduct(QVec) * InvDet;
+            if( Dist > 0 ) {
+                return PlaneTestResult(FaceSide,Cast.GetPointAtDistance(Dist));
+            }
+            return PlaneTestResult(MathTools::PS_Neither,Vector3());
+        }
+
+        PlaneTestResult Intersects(const Vector3& Vert1, const Vector3& Vert2, const Vector3& Vert3, const Vector3& Normal, const Ray& Cast)
         {
             // Code in this function is based on the equivalent in Ogre
-            Real Denom = Surface.Normal.DotProduct( Cast.GetNormal() );// + Surface.Distance;
-            if( MathTools::Abs(Denom) < std::numeric_limits<Real>::epsilon() ) {
-                return Point3DTestResult( false, Vector3() );
+            // Ogre::Math::intersects(const Ray& ray, const Vector3&, const Vector3&, const Vector3&, const Vector3&, bool, bool)
+
+            // Set up variables that will get used if we return success
+            Real Dist = 0;
+            PlaneSide FaceSide = MathTools::PS_Neither;
+            // Perform some early escape checks since we have the normal available to us
+            // Start with getting the dot product between the normals we have to see if they can intersect
+            Real Denom = Normal.DotProduct( Cast.Normal );
+            if( Denom > +PlaneCheckEpsilon ) {
+                // We've struck the forward face of the triangle
+                FaceSide = MathTools::PS_Negative;
+            }else if( Denom < -PlaneCheckEpsilon ) {
+                // We've struck the back face of the triangle
+                FaceSide = MathTools::PS_Positive;
             }else{
-                Real Nom = Surface.Normal.DotProduct( Cast.GetOrigin() ) + Surface.Distance;
-                Real Distance = -( Nom / Denom );
-                return Point3DTestResult( true, Cast.GetOrigin() + ( Cast.GetNormal() * Distance) );
+                // We're parallel with the plane of the triangle, or too close to parallel to tell the difference
+                return PlaneTestResult(MathTools::PS_Neither,Vector3());
             }
-            return Point3DTestResult( false, Vector3() );
+            // Check to see if the triangle is in front of the ray at all
+            Dist = Normal.DotProduct( Vert1 - Cast.Origin ) / Denom;
+            if( Dist < 0 ) {
+                // The triangle is behind the ray
+                return PlaneTestResult(MathTools::PS_Neither,Vector3());
+            }
+            // Done with the early escape checks
+            // Find the 2 largest vector components
+            size_t Idx0 = 1;
+            size_t Idx1 = 2;
+            if( Abs( Normal.Y ) > Abs( Normal.Z ) ) {
+                if( Abs( Normal.Y ) > Abs( Normal.X ) )
+                    Idx0 = 0;
+            }else{
+                if( Abs( Normal.Z ) > Abs( Normal.X ) )
+                    Idx1 = 0;
+            }
+            // Finally check the if we're in the bounds of the triangle
+            Vector3 UVec( Dist * Cast.Normal[Idx0] + Cast.Origin[Idx0] - Vert1[Idx0],
+                          Vert2[Idx0] - Vert1[Idx0], Vert3[Idx0] - Vert1[Idx0] );
+            Vector3 VVec( Dist * Cast.Normal[Idx1] + Cast.Origin[Idx1] - Vert1[Idx1],
+                          Vert2[Idx1] - Vert1[Idx1], Vert3[Idx1] - Vert1[Idx1] );
+            const Real Alpha = UVec.X * VVec.Z - UVec.Z * VVec.X;
+            const Real Beta = UVec.Y * VVec.X - UVec.X * VVec.Y;
+            const Real Area = UVec.Y * VVec.Z - UVec.Z * VVec.Y;
+            const Real Tolerance = -PlaneCheckEpsilon * Area;
+            if( Area > 0 ) {
+                if( Alpha < Tolerance || Beta < Tolerance || Alpha + Beta > Area - Tolerance ) {
+                    return PlaneTestResult(MathTools::PS_Neither,Vector3());
+                }
+            }else{
+                if( Alpha > Tolerance || Beta > Tolerance || Alpha + Beta < Area - Tolerance ) {
+                    return PlaneTestResult(MathTools::PS_Neither,Vector3());
+                }
+            }
+            return PlaneTestResult(FaceSide,Cast.GetPointAtDistance(Dist));
+        }
+
+        PlaneTestResult Intersects(const Plane& Surface, const Ray& Cast)
+        {
+            // Code in this function is based on the equivalent in Ogre
+            PlaneSide FaceSide = MathTools::PS_Neither;
+            Real Denom = Surface.Normal.DotProduct( Cast.GetNormal() );// + Surface.Distance;
+            if( Denom > +PlaneCheckEpsilon ) {
+                FaceSide = MathTools::PS_Positive;
+            }else if( Denom < -PlaneCheckEpsilon ) {
+                FaceSide = MathTools::PS_Negative;
+            }else{
+                return PlaneTestResult( MathTools::PS_Neither, Vector3() );
+            }
+            Real Nom = Surface.Normal.DotProduct( Cast.GetOrigin() ) + Surface.Distance;
+            Real Distance = -( Nom / Denom );
+            return PlaneTestResult( FaceSide, Cast.GetOrigin() + ( Cast.GetNormal() * Distance) );
         }
 
         GeometryRayTestResult Intersects(const AxisAlignedBox& Box, const Ray& Cast)
         {
-            // Code in this function is based on the equivalent in Ogre
+            Boole HasHit = false;
             Vector3 CastDir = Cast.GetNormal();
             Vector3 AbsoluteDir = CastDir;
             AbsoluteDir.X = MathTools::Abs( AbsoluteDir.X );
@@ -218,44 +342,31 @@ namespace Mezzanine
                 MaxAxis = 1;
             }
 
-            if(IsInside(Box,Cast.Origin))
-            {
-                Vector3 Intersects;
-                Intersects[MinAxis] = 0;
-                Intersects[MidAxis] = 0;
-                Intersects[MaxAxis] = 1;
-                /*Plane Side(Intersects,)
-                if(CastDir[MaxAxis]>0)
-                {
-
-                }else{
-
-                }
-                return GeometryRayTestResult(true,Ray(,Vector3));*/
-            }
-
             SegmentPosPair Distances(0,std::numeric_limits<Real>::infinity());
 
-            ::CalculateAxis(MaxAxis,Cast,Box,Distances);
+            HasHit = ::CalculateAxis(MaxAxis,Cast,Box,Distances);
             if( AbsoluteDir[MidAxis] < std::numeric_limits<Real>::epsilon() ) {
                 if( Cast.GetOrigin()[MidAxis] < Box.MinExt[MidAxis] || Cast.GetOrigin()[MidAxis] > Box.MaxExt[MidAxis] ||
                     Cast.GetOrigin()[MinAxis] < Box.MinExt[MinAxis] || Cast.GetOrigin()[MinAxis] > Box.MaxExt[MinAxis] )
                 {
-                    return GeometryRayTestResult(false,Ray());
+                    return GeometryRayTestResult(false,LineSegment3D());
                 }
             }else{
-                ::CalculateAxis(MidAxis,Cast,Box,Distances);
+                HasHit = ( HasHit || ::CalculateAxis(MidAxis,Cast,Box,Distances) );
                 if( AbsoluteDir[MinAxis] < std::numeric_limits<Real>::epsilon() ) {
                     if( Cast.GetOrigin()[MinAxis] < Box.MinExt[MinAxis] || Cast.GetOrigin()[MinAxis] > Box.MaxExt[MinAxis] ) {
-                        return GeometryRayTestResult(false,Ray());
+                        return GeometryRayTestResult(false,LineSegment3D());
                     }
                 }else{
-                    ::CalculateAxis(MinAxis,Cast,Box,Distances);
+                    HasHit = ( HasHit || ::CalculateAxis(MinAxis,Cast,Box,Distances) );
                 }
             }
 
-            Ray Ret( Cast.GetOrigin() + (CastDir * Distances.first), Cast.GetOrigin() + (CastDir * Distances.second) );
-            return GeometryRayTestResult(true,Ret);
+            if( HasHit ) {
+                LineSegment3D Ret( Cast.GetOrigin() + (CastDir * Distances.first), Cast.GetOrigin() + (CastDir * Distances.second) );
+                return GeometryRayTestResult(true,Ret);
+            }
+            return GeometryRayTestResult(false,LineSegment3D());
         }
 
         GeometryRayTestResult Intersects(const Sphere& Ball, const Ray& Cast)
@@ -274,12 +385,12 @@ namespace Mezzanine
             // Get the Determinate
             Real Determinate = ( BCoEff * BCoEff ) - ( 4 * ACoEff * CCoEff );
             if( Determinate < 0 ) {
-                return GeometryRayTestResult(false,Ray());
+                return GeometryRayTestResult(false,LineSegment3D());
             }else{
                 Real NearDist = ( -BCoEff - MathTools::Sqrt( Determinate ) ) / ( 2 * ACoEff );
                 Real FarDist = ( -BCoEff + MathTools::Sqrt( Determinate ) ) / ( 2 * ACoEff );
 
-                Ray Ret( Cast.GetOrigin() + (CastDir * NearDist), Cast.GetOrigin() + (CastDir * FarDist) );
+                LineSegment3D Ret( Cast.GetOrigin() + (CastDir * NearDist), Cast.GetOrigin() + (CastDir * FarDist) );
                 return GeometryRayTestResult(true,Ret);
             }
         }

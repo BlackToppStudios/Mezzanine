@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,18 +37,23 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _managedptr_cpp
-#define _managedptr_cpp
 
-/// @file
-/// @brief implement
+#ifndef _playeraction_cpp
+#define _playeraction_cpp
 
-#include "managedptr.h"
+#include "playeraction.h"
 
 namespace Mezzanine
 {
+    PlayerAction::PlayerAction()
+    {
 
-} // /namespace Mezzanine
+    }
 
-#endif // Include guard
+    PlayerAction::~PlayerAction()
+    {
 
+    }
+}//Mezzanine
+
+#endif // _playeraction_cpp

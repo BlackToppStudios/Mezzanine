@@ -65,6 +65,12 @@ namespace Mezzanine
 
         /// @brief Class constructor.
         Circle();
+        /// @brief Copy constructor.
+        /// @param Other The other circle to be copied.
+        Circle(const Circle& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other circle to be moved.
+        Circle(Circle&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param CircleCenter The center point of the circle.
         /// @param CircleRadius The radius of the circle.
@@ -84,6 +90,18 @@ namespace Mezzanine
         /// @param Point The point to check against this circle.
         /// @return Returns true if the specified point is inside this circle, false otherwise.
         Boole IsInside(const Vector2& Point) const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Assignment Operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other Circle to be copied.
+        /// @return Returns a reference to this.
+        Circle& operator=(const Circle& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other Circle to be moved.
+        /// @return Returns a reference to this.
+        Circle& operator=(Circle&& Other) = default;
     };//Circle
 }//Mezzanine
 

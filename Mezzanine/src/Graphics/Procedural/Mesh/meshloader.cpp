@@ -69,10 +69,9 @@ namespace Mezzanine
 
                 for( Whole SubMeshIndex = 0 ; SubMeshIndex < this->GenMesh->GetNumSubMeshes() ; ++SubMeshIndex )
                 {
-                    Graphics::MeshInfo SubMeshInfo;
                     SubMesh* CurrSubMesh = this->GenMesh->GetSubMesh(SubMeshIndex);
+                    Graphics::MeshInfo SubMeshInfo = CurrSubMesh->GetMeshInfo();
 
-                    CurrSubMesh->GetInfo(SubMeshInfo);
                     /// @todo This doesn't account for the submesh name.  Should research/consider adding this.
                     Buffer.BeginSection(SubMeshInfo.MaterialName,SubMeshInfo.MaterialGroup,SubMeshInfo.OperationType);
                     for( Whole CurrVert = 0 ; CurrVert < SubMeshInfo.Vertices.VertexCount ; ++CurrVert )

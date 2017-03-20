@@ -81,7 +81,8 @@ public:
     {
         {
             Plane Blank;
-            TEST( Blank.Normal == Vector3(0,0,0) && Blank.Distance == 0 ,"Plane()");
+            TEST( Blank.Normal == Vector3(0,0,0) && Blank.Distance == 0,
+                  "Plane()");
         }
 
         {
@@ -90,7 +91,8 @@ public:
             Real Const = 15;
             Plane Surface(Norm,Const);
             Plane Copy(Surface);
-            TEST( Copy.Normal == Norm && Copy.Distance == -Const ,"Plane(const_Plane&)");
+            TEST( Copy.Normal == Norm && Copy.Distance == -Const,
+                  "Plane(const_Plane&)");
         }
 
         {
@@ -98,14 +100,16 @@ public:
             Norm.Normalize();
             Real Const = 15;
             Plane Surface(Norm,Const);
-            TEST( Surface.Normal == Norm && Surface.Distance == -Const ,"Plane(const_Vector3&,_const_Real)");
+            TEST( Surface.Normal == Norm && Surface.Distance == -Const,
+                  "Plane(const_Vector3&,_const_Real)");
         }
 
         {
             Vector3 Norm(0.0,1.0,0.0);
             Vector3 Point(10.0,1.0,0.0);
             Plane Surface(Norm,Point);
-            TEST( Surface.Normal == Vector3(0.0,1.0,0.0) && Surface.Distance == -1.0 ,"Plane(const_Vector3&,_const_Vector3&)");
+            TEST( Surface.Normal == Vector3(0.0,1.0,0.0) && Surface.Distance == -1.0,
+                  "Plane(const_Vector3&,_const_Vector3&)");
         }
 
         {
@@ -113,7 +117,8 @@ public:
             Vector3 PointB(-0.5,0.0,1.0);
             Vector3 PointC(0.5,0.0,1.0);
             Plane Surface(PointA,PointB,PointC);
-            TEST( Surface.Normal == Vector3(0.0,0.0,1.0) && Surface.Distance == -1 ,"Plane(const_Vector3&,_const_Vector3&,_const_Vector3&)");
+            TEST( Surface.Normal == Vector3(0.0,0.0,1.0) && Surface.Distance == -1,
+                  "Plane(const_Vector3&,_const_Vector3&,_const_Vector3&)");
         }
 
         {
@@ -121,7 +126,8 @@ public:
             Ogre::Real Const = 15;
             Ogre::Plane Surface(Norm,Const);
             Plane Copy(Surface);
-            TEST( Copy.Normal == Vector3(-1.0,1.0,-1.0) && Copy.Distance == -15 ,"Plane(const_Ogre::Plane&)");
+            TEST( Copy.Normal == Vector3(-1.0,1.0,-1.0) && Copy.Distance == -15,
+                  "Plane(const_Ogre::Plane&)");
         }
 
         {
@@ -130,7 +136,8 @@ public:
             Real Const = 15;
             Plane Surface;
             Surface.Define(Norm,Const);
-            TEST( Surface.Normal == Norm && Surface.Distance == -Const ,"Define(const_Vector3&,_const_Real)");
+            TEST( Surface.Normal == Norm && Surface.Distance == -Const,
+                  "Define(const_Vector3&,_const_Real)");
         }
 
         {
@@ -138,7 +145,8 @@ public:
             Vector3 Point(10.0,1.0,0.0);
             Plane Surface;
             Surface.Define(Norm,Point);
-            TEST( Surface.Normal == Vector3(0.0,1.0,0.0) && Surface.Distance == -1.0 ,"Define(const_Vector3&,_const_Vector3&)");
+            TEST( Surface.Normal == Vector3(0.0,1.0,0.0) && Surface.Distance == -1.0,
+                  "Define(const_Vector3&,_const_Vector3&)");
         }
 
         {
@@ -147,14 +155,16 @@ public:
             Vector3 PointC(0.5,0.0,1.0);
             Plane Surface;
             Surface.Define(PointA,PointB,PointC);
-            TEST( Surface.Normal == Vector3(0.0,0.0,1.0) && Surface.Distance == -1 ,"Define(const_Vector3&,_const_Vector3&,_const_Vector3&)");
+            TEST( Surface.Normal == Vector3(0.0,0.0,1.0) && Surface.Distance == -1,
+                  "Define(const_Vector3&,_const_Vector3&,_const_Vector3&)");
         }
 
         {
             Vector3 PosSide(15.0,10.0,-10.0);
             Vector3 NegSide(-1.0,0.5,-10.0);
             Plane Surface(Vector3(1.0,1.0,1.0).Normalize(),1);
-            TEST( Surface.GetSide(PosSide) == Plane::S_Positive && Surface.GetSide(NegSide) == Plane::S_Negative ,"GetSide(const_Vector3&)_const");
+            TEST( Surface.GetSide(PosSide) == MathTools::PS_Positive && Surface.GetSide(NegSide) == MathTools::PS_Negative,
+                  "GetSide(const_Vector3&)_const");
         }
 
         {
@@ -163,16 +173,17 @@ public:
             Vector3 NegCenter(-10.0,-20.0,-10.0);
             Vector3 BothCenter(0.0,0.0,0.0);
             Plane Surface(Vector3(1.0,1.0,1.0).Normalize(),1);
-            TEST( Surface.GetSide(PosCenter,Size) == Plane::S_Positive &&
-                  Surface.GetSide(NegCenter,Size) == Plane::S_Negative &&
-                  Surface.GetSide(BothCenter,Size) == Plane::S_Both
-                  ,"GetSide(const_Vector3&,_const_Vector3&)_const");
+            TEST( Surface.GetSide(PosCenter,Size) == MathTools::PS_Positive &&
+                  Surface.GetSide(NegCenter,Size) == MathTools::PS_Negative &&
+                  Surface.GetSide(BothCenter,Size) == MathTools::PS_Both,
+                  "GetSide(const_Vector3&,_const_Vector3&)_const");
         }
 
         {
             Vector3 Point(0.0,10.0,0.0);
             Plane Surface(Vector3(0.0,1.0,0.0),2);
-            TEST( Surface.GetDistance(Point) == 8.0 ,"GetDistance(const_Vector3&)_const");
+            TEST( Surface.GetDistance(Point) == 8.0,
+                  "GetDistance(const_Vector3&)_const");
         }
 
         /// @todo Write a unit test for "Ray GetOverlap(const Plane& Other) const"
@@ -181,14 +192,16 @@ public:
             Sphere PassBall(Vector3(-55.0,25,30.0),10);
             Sphere FailBall(Vector3(10.0,10.0,10.0),5);
             Plane Surface(Vector3(0.0,1.0,0.0),20);
-            TEST( Surface.IsOverlapping(PassBall) && !Surface.IsOverlapping(FailBall) ,"IsOverlapping(const_Sphere&)_const");
+            TEST( Surface.IsOverlapping(PassBall) && !Surface.IsOverlapping(FailBall),
+                  "IsOverlapping(const_Sphere&)_const");
         }
 
         {
             AxisAlignedBox PassBox(Vector3(10.0,10.0,10.0),Vector3(40.0,40.0,40.0));
             AxisAlignedBox FailBox(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
             Plane Surface(Vector3(0.0,1.0,0.0),20);
-            TEST( Surface.IsOverlapping(PassBox) && !Surface.IsOverlapping(FailBox) ,"IsOverlapping(const_AxisAlignedBox&)_const");
+            TEST( Surface.IsOverlapping(PassBox) && !Surface.IsOverlapping(FailBox),
+                  "IsOverlapping(const_AxisAlignedBox&)_const");
         }
 
         {
@@ -196,28 +209,36 @@ public:
             Plane OverlapPass2(Vector3(1.0,0.0,0.0),35);
             Plane OverlapFail1(Vector3(0.0,1.0,0.0),20);
             Plane OverlapFail2(Vector3(0.0,1.0,0.0),10);
-            TEST( OverlapPass1.IsOverlapping(OverlapPass2) && !OverlapFail1.IsOverlapping(OverlapFail2) ,"IsOverlapping(const_Plane&)_const");
+            TEST( OverlapPass1.IsOverlapping(OverlapPass2) && !OverlapFail1.IsOverlapping(OverlapFail2),
+                  "IsOverlapping(const_Plane&)_const");
         }
 
         {
-            Ray PassRay(Vector3(0.0,50.0,0.0),Vector3(0.0,-20.0,0.0));
-            Ray FailRay(Vector3(0.0,10.0,50.0),Vector3(0.0,10.0,-50.0));
+            Ray PositiveRay(Vector3(0.0,10.0,50.0),Vector3(0.0,10.0,-50.0));
+            Ray NegativeRay(Vector3(0.0,50.0,0.0),Vector3::Neg_Unit_Y());
+            Ray FailRay(Vector3(0.0,0.0,0.0),Vector3::Unit_X());
             Plane Surface(Vector3(0.0,1.0,0.0),20);
-            Plane::RayTestResult PassResult = Surface.Intersects(PassRay);
+            Plane::RayTestResult PositiveResult = Surface.Intersects(PositiveRay);
+            Plane::RayTestResult NegativeResult = Surface.Intersects(NegativeRay);
             Plane::RayTestResult FailResult = Surface.Intersects(FailRay);
-            TEST( ( PassResult.first && PassResult.second == Vector3(0.0,20.0,0.0) ) && ( !FailResult.first && FailResult.second == Vector3(0.0,0.0,0.0) ) ,"Intersects(const_Ray&)_const");
+            TEST( ( PositiveResult.first == MathTools::PS_Positive && PositiveResult.second == Vector3(0.0,20.0,0.0) ) &&
+                  ( NegativeResult.first == MathTools::PS_Negative && NegativeResult.second == Vector3(0.0,20.0,0.0) ) &&
+                  ( FailResult.first == MathTools::PS_Neither && FailResult.second == Vector3(0.0,0.0,0.0) ),
+                  "Intersects(const_Ray&)_const" );
         }
 
         {
             Ogre::Plane Extract(Ogre::Vector3(-5.5,3.0,9.5).normalisedCopy(),18);
             Plane Surface;
             Surface.ExtractOgrePlane(Extract);
-            TEST( Surface == Plane(Vector3(-5.5,3.0,9.5).Normalize(),18) ,"ExtractOgrePlane(const_Ogre::Plane&)");
+            TEST( Surface == Plane(Vector3(-5.5,3.0,9.5).Normalize(),18),
+                  "ExtractOgrePlane(const_Ogre::Plane&)");
         }
 
         {
             Plane Convert(Vector3(-5.5,3.0,9.5).Normalize(),18);
-            TEST( Convert.GetOgrePlane() == Ogre::Plane(Ogre::Vector3(-5.5,3.0,9.5).normalisedCopy(),18) ,"GetOgrePlane()_const");
+            TEST( Convert.GetOgrePlane() == Ogre::Plane(Ogre::Vector3(-5.5,3.0,9.5).normalisedCopy(),18),
+                  "GetOgrePlane()_const");
         }
 
         {
@@ -229,7 +250,8 @@ public:
             StringStream Buffer;
             Doc.Save(Buffer);
 
-            TEST( Expected == String( Buffer.str() ) ,"ProtoSerialize(XML::Node&)_const");
+            TEST( Expected == String( Buffer.str() ),
+                  "ProtoSerialize(XML::Node&)_const");
         }
 
         {
@@ -243,12 +265,14 @@ public:
             Plane Surface;
             Surface.ProtoDeSerialize(Doc.GetFirstChild());
 
-            TEST( Surface == Plane(Vector3(0.0,0.0,1.0),1.5) ,"ProtoDeSerialize(const_XML::Node&)");
+            TEST( Surface == Plane(Vector3(0.0,0.0,1.0),1.5),
+                  "ProtoDeSerialize(const_XML::Node&)");
         }
 
         {
             String ClassName("Plane");
-            TEST( ClassName == Plane::GetSerializableName() ,"GetSerializableName()");
+            TEST( ClassName == Plane::GetSerializableName(),
+                  "GetSerializableName()");
         }
 
         {
@@ -258,7 +282,8 @@ public:
             Plane Surface(Norm,Const);
             Plane Copy;
             Copy = Surface;
-            TEST( Copy.Normal == Norm && Copy.Distance == -Const ,"operator=(const_Plane&)");
+            TEST( Copy.Normal == Norm && Copy.Distance == -Const,
+                  "operator=(const_Plane&)");
         }
 
         {
@@ -268,21 +293,24 @@ public:
             Ogre::Plane Surface(Norm,Const);
             Plane Copy;
             Copy = Surface;
-            TEST( Copy.Normal == Vector3(Norm) && Copy.Distance == -Const ,"operator=(const_Ogre::Plane&)");
+            TEST( Copy.Normal == Vector3(Norm) && Copy.Distance == -Const,
+                  "operator=(const_Ogre::Plane&)");
         }
 
         {
             Plane Surface(Vector3(0.0,1.0,0.0),25);
             Plane SurfacePass(Vector3(0.0,1.0,0.0),25);
             Plane SurfaceFail(Vector3(-1.0,0.0,0.0),40);
-            TEST( ( Surface == SurfacePass ) && !( Surface == SurfaceFail ) ,"operator==(const_Plane&)_const");
+            TEST( ( Surface == SurfacePass ) && !( Surface == SurfaceFail ),
+                  "operator==(const_Plane&)_const");
         }
 
         {
             Plane Surface(Vector3(0.0,1.0,0.0),25);
             Plane SurfacePass(Vector3(-1.0,0.0,0.0),40);
             Plane SurfaceFail(Vector3(0.0,1.0,0.0),25);
-            TEST( ( Surface != SurfacePass ) && !( Surface != SurfaceFail ) ,"operator!=(const_Plane&)_const");
+            TEST( ( Surface != SurfacePass ) && !( Surface != SurfaceFail ),
+                  "operator!=(const_Plane&)_const");
         }
     }
 

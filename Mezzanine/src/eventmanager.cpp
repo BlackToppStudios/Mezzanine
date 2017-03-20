@@ -461,7 +461,7 @@ namespace Mezzanine
                 case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
                 case SDL_KEYDOWN:           case SDL_MOUSEBUTTONDOWN:   case SDL_JOYBUTTONDOWN:
                 case SDL_JOYAXISMOTION:     case SDL_JOYHATMOTION:      case SDL_JOYBALLMOTION:
-                case SDL_MOUSEMOTION:       case SDL_TEXTINPUT:
+                case SDL_MOUSEMOTION:       case SDL_MOUSEWHEEL:        case SDL_TEXTINPUT:
                     FromSDLEvent->AddCodes( Input::MetaCode::CreateMetaCodes(FromSDLRaw) );
                     break;
 

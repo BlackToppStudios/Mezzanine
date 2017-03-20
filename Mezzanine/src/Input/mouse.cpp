@@ -79,9 +79,19 @@ namespace Mezzanine
             /// as expected.  If you have only one window, then it just stays pointing to that window.  If you have two then it will stay on the first
             /// window until you mouse over the second, even if there is a space between the windows.  This should be updated somehow so that we can set
             /// "HoveredWindow" to NULL when none of our windows are being hovered.
+            /// @todo Wheel update events only occur when the wheel goes up or down.  So left on it's own it will constantly report up or down after one
+            /// is fired.  Resetting it allows us more accurate reporting, but isn't particularly graceful.  More research in SDL ought to be done to see
+            /// if a cleaner solution exists.
             // First do some setup.  Get the window and save our position.
             SDL_Window* Focus = SDL_GetMouseFocus();
             Vector2 OldPosition = this->Position;
+            // Reset the mouse wheel states
+            if( this->VerticalWheelState != Input::DIRECTIONALMOTION_UNCHANGED ) {
+                this->VerticalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
+            }
+            if( this->HorizontalWheelState != Input::DIRECTIONALMOTION_UNCHANGED ) {
+                this->HorizontalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
+            }
             // Update our states
             for( Whole X = 0 ; X < DeltaCodes.size() ; ++X )
             {

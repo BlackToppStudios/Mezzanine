@@ -40,6 +40,10 @@
 #ifndef _linesegment_h
 #define _linesegment_h
 
+#ifndef SWIG
+    #include "MathTools/mathtypes.h"
+#endif
+
 #include "vector2.h"
 #include "vector3.h"
 
@@ -47,7 +51,6 @@ namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A geometry math class for expressing a line connecting 2 points in 2D space.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB LineSegment2D
     {
@@ -55,7 +58,7 @@ namespace Mezzanine
         /// @brief This is a type used for the return of a intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.  @n @n
         /// The first member stores whether or not there was a hit.  The second member stores the point in 2D space where the segments intersect.
-        typedef std::pair<Boole,Vector2> IntersectionTestResult;
+        typedef MathTools::Point2DTestResult IntersectionTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -69,14 +72,17 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        LineSegment2D();
+        LineSegment2D() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other line segment to copy.
+        LineSegment2D(const LineSegment2D& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other line segment to move.
+        LineSegment2D(LineSegment2D&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param A The first point defining the segment.
         /// @param B The second point defining the segment.
         LineSegment2D(const Vector2& A, const Vector2& B);
-        /// @brief Copy constructor.
-        /// @param Other The other line segment to copy from.
-        LineSegment2D(const LineSegment2D& Other);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -85,11 +91,30 @@ namespace Mezzanine
         /// @param Other The other line segment to compare with.
         /// @return Returns true if this line segment intersects with the other segment, false otherwise.
         IntersectionTestResult Intersects(const LineSegment2D& Other) const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other line segment to copy.
+        /// @return Returns a reference to this.
+        LineSegment2D& operator=(const LineSegment2D& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other line segment to move.
+        /// @return Returns a reference to this.
+        LineSegment2D& operator=(LineSegment2D&& Other) = default;
+        /// @brief Equality comparison operator.
+        /// @param Other The other line segment to compare with.
+        /// @return Returns true if the two line segments are equal, false otherwise.
+        Boole operator==(const LineSegment2D& Other) const;
+        /// @brief Inequality comparison operator.
+        /// @param Other The other line segment to compare with.
+        /// @return Returns true if the two line segments are not equal, false otherwise.
+        Boole operator!=(const LineSegment2D& Other) const;
     };//LineSegment2D
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A geometry math class for expressing a line connecting 2 points in 3D space.
-    /// @details
     ///////////////////////////////////////
     class MEZZ_LIB LineSegment3D
     {
@@ -106,14 +131,17 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        LineSegment3D();
+        LineSegment3D() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other line segment to copy.
+        LineSegment3D(const LineSegment3D& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other line segment to move.
+        LineSegment3D(LineSegment3D&& Other) = default;
         /// @brief Descriptive constructor.
         /// @param A The first point defining the segment.
         /// @param B The second point defining the segment.
         LineSegment3D(const Vector3& A, const Vector3& B);
-        /// @brief Copy constructor.
-        /// @param Other The other line segment to copy from.
-        LineSegment3D(const LineSegment3D& Other);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -123,9 +151,44 @@ namespace Mezzanine
         /// @return Returns true if the two line segments are equal within the epsilon.
         Boole EpsilonEquivalent(const LineSegment3D& Other) const;
         /// @brief Gets a copy of this line segment with it's members ordered by length.
-        /// @return Returns a LineSegment3D with the same values as this, but with PointA guarenteed to be the vector with the shorter length.
+        /// @return Returns a LineSegment3D with the same values as this, but with PointA guaranteed to be the vector with the shorter length.
         LineSegment3D GetOrderedCopy() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other line segment to copy.
+        /// @return Returns a reference to this.
+        LineSegment3D& operator=(const LineSegment3D& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other line segment to move.
+        /// @return Returns a reference to this.
+        LineSegment3D& operator=(LineSegment3D&& Other) = default;
+        /// @brief Equality comparison operator.
+        /// @param Other The other line segment to compare with.
+        /// @return Returns true if the two line segments are equal, false otherwise.
+        Boole operator==(const LineSegment3D& Other) const;
+        /// @brief Inequality comparison operator.
+        /// @param Other The other line segment to compare with.
+        /// @return Returns true if the two line segments are not equal, false otherwise.
+        Boole operator!=(const LineSegment3D& Other) const;
     };//LineSegment3D
 }//Mezzanine
+
+#ifndef SWIG
+/// @brief Streaming output operator.
+/// @details This converts the data of the LineSegment2D into a stream Ideal for sending to a log or cout.
+/// @param Stream This is the stream we send our data to.
+/// @param Data The data to be streamed.
+/// @return This returns an std::ostream which now contains our data.
+std::ostream& MEZZ_LIB operator << (std::ostream& Stream, const Mezzanine::LineSegment2D& Data);
+/// @brief Streaming output operator.
+/// @details This converts the data of the LineSegment3D into a stream Ideal for sending to a log or cout.
+/// @param Stream This is the stream we send our data to.
+/// @param Data The data to be streamed.
+/// @return This returns an std::ostream which now contains our data.
+std::ostream& MEZZ_LIB operator << (std::ostream& Stream, const Mezzanine::LineSegment3D& Data);
+#endif
 
 #endif

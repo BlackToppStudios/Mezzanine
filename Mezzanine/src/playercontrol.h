@@ -45,6 +45,15 @@
 
 namespace Mezzanine
 {
+    namespace Input
+    {
+        class InputManager;
+    }
+    namespace Network
+    {
+        class NetworkManager;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A class used to control actions that can be taken by a player.
     ///////////////////////////////////////
@@ -56,7 +65,48 @@ namespace Mezzanine
         PlayerControl();
         /// @brief Class destructor.
         virtual ~PlayerControl();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
     };//PlayerControl
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A control class that collects input from the local host.
+    ///////////////////////////////////////
+    class LocalPlayerControl : public PlayerControl
+    {
+    protected:
+        /// @brief A pointer to the input manager to poll from.
+        Input::InputManager* InputMan;
+    public:
+        /// @brief Class constructor.
+        /// @brief ToCollect A pointer to the manager to collect input from.
+        LocalPlayerControl(Input::InputManager* ToCollect);
+        /// @brief Class destructor.
+        virtual ~LocalPlayerControl();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+    };//LocalPlayerControl
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A control class that collects actions from remote hosts over a network.
+    ///////////////////////////////////////
+    class RemotePlayerControl : public PlayerControl
+    {
+    protected:
+        /// @brief A pointer to the input manager to poll from.
+        Network::NetworkManager* NetworkMan;
+    public:
+        /// @brief Class constructor.
+        /// @brief ToCollect A pointer to the manager to collect actions from.
+        RemotePlayerControl(Network::NetworkManager* ToCollect);
+        /// @brief Class destructor.
+        virtual ~RemotePlayerControl();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+    };//RemotePlayerControl
 }//Mezzanine
 
 #endif
