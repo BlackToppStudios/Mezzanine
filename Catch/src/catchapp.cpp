@@ -378,7 +378,7 @@ void CatchApp::MakeGUI()
     MMProfilesSelectText->HorizontallyAlign(UI::LA_Center);
     MMProfilesSelectText->VerticallyAlign(UI::LA_Center);
     MMProfilesSelectText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
-    MMProfilesSelect->Subscribe(UI::Button::EventDeactivated,0u,MSProfileSelect(this->Profiles,MainMenuScreen));
+    MMProfilesSelect->Subscribe(UI::Button::EventDeactivated,0,MSProfileSelect(this->Profiles,MainMenuScreen));
     MMProfilesWin->AddChild(MMProfilesSelect,6);
 
     // Create the back button for the profile configuration window
@@ -439,7 +439,7 @@ void CatchApp::MakeGUI()
     MMLevelSelectGrid->SetCellSize(2,4);
     MMLevelSelectGrid->SetCellPadding( UI::UnifiedVec2(0.08,0.10) );
     MMLevelSelectGrid->SetXYProvider(MMLevelSelectSpinner);
-    MMLevelSelectGrid->Subscribe(UI::PagedContainer::EventChildSelected,0u,MSLevelCellSelect(MainMenuScreen));
+    MMLevelSelectGrid->Subscribe(UI::PagedContainer::EventChildSelected,0,MSLevelCellSelect(MainMenuScreen));
     MMLevelSelectWin->AddChild(MMLevelSelectGrid,3);
 
     // Create the button that will launch the level
@@ -452,7 +452,7 @@ void CatchApp::MakeGUI()
     MMLevelStartText->HorizontallyAlign(UI::LA_Center);
     MMLevelStartText->VerticallyAlign(UI::LA_Center);
     MMLevelStartText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
-    MMLevelStart->Subscribe(UI::Button::EventDeactivated,0u,MSLevelStart(MMLevelSelectGrid));
+    MMLevelStart->Subscribe(UI::Button::EventDeactivated,0,MSLevelStart(MMLevelSelectGrid));
     MMLevelSelectWin->AddChild(MMLevelStart,4);
 
     ////------------------  Options  ------------------////
