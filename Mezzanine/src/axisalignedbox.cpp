@@ -51,7 +51,7 @@
 #include "exception.h"
 #include "serialization.h"
 
-#include <Ogre.h>
+#include <OgreAxisAlignedBox.h>
 
 #include <algorithm>
 

@@ -48,7 +48,7 @@
 
 //#include <memory>
 
-#include <Ogre.h>
+#include <OgreVector2.h>
 
 namespace Mezzanine
 {

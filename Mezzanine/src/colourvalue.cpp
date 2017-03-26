@@ -45,9 +45,10 @@
 #include "serialization.h"
 #include "exception.h"
 
-#include <Ogre.h>
+#include <OgreColourValue.h>
 
 #include <memory>
+
 namespace Mezzanine
 {
     ColourValue::ColourValue(Real Red, Real Green, Real Blue, Real Alpha)
