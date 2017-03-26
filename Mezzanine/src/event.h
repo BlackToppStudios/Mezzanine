@@ -40,116 +40,43 @@
 #ifndef _event_h
 #define _event_h
 
-#include "eventsubscriber.h"
-#include "eventsubscriberslot.h"
+#include <memory>
+
+#include "hashedstring.h"
 
 namespace Mezzanine
 {
-	///////////////////////////////////////////////////////////////////////////////
-    /// @brief This class represents a given event that can be subscribed to and/or fired.
-    /// @details
+    /// @addtogroup Events
+    /// @{
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a common class to represent all possible arguments for a given event that is fired.
     ///////////////////////////////////////
 	class MEZZ_LIB Event
 	{
     public:
-        /// @brief Basic container type for @ref EventSubscriberSlot storage by this class.
-        typedef std::vector<EventSubscriberSlot*>           SlotContainer;
-        /// @brief Iterator type for @ref EventSubscriberSlot instances stored by this class.
-        typedef SlotContainer::iterator                     SlotIterator;
-        /// @brief Const Iterator type for @ref EventSubscriberSlot instances stored by this class.
-        typedef SlotContainer::const_iterator               ConstSlotIterator;
-        /// @brief An std::pair type for working with stored @ref EventSubscriberSlot instances.
-        typedef std::pair<UInt8,EventSubscriberSlot*>       SlotPair;
-    protected:
-        /// @internal
-        /// @brief The name of this Event.
-        const String EventName;
-        /// @internal
-        /// @brief A container storing all the EventSubscriberSlot instances to subscribers.
-        SlotContainer Slots;
-    public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Public Data Members
+
+        /// @brief The name of the event being fired.
+        const HashedString32 EventName;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
+
         /// @brief Class constructor.
-        /// @param Name The name to be given to this event.
-        Event(const String& Name);
+        /// @param Name The name of the event being fired.
+        Event(const HashedString32& Name) :
+            EventName(Name)
+            {  }
         /// @brief Class destructor.
-        ~Event();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @brief Gets the name of this event.
-        /// @return Returns a const string reference containing the name of this event.
-        const String& GetName() const;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Subscribe Methods
-
-        /// @brief Adds a subscriber to this event.
-        /// @param Subscriber The custom event subscriber.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(EventSubscriber* Subscriber);
-        /// @brief Subscribes a functor object to this event.
-        /// @param Funct The functor to call when the event is fired.
-        /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(FunctorEventSubscriber* Funct, Boole CleanUpAfter);
-        /// @brief Subscribes a C-style function to this event.
-        /// @param CFunct The C-style function to call when the event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct);
-        /// @brief Subscribes a script to this event.
-        /// @param SubScript The subscribed script to execute when the event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(Scripting::iScript* SubScript);
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Unsubscribe Methods
-
-        /// @brief Unsubscribes a single subscriber from this event.
-        /// @param Subscriber The EventSubscriberSlot (and the subscriber it is holding) to be removed.
-        void Unsubscribe(EventSubscriber* Subscriber);
-        /// @brief Unsubscribes a single subscriber from this event.
-        /// @param Funct The functor to be removed.
-        void Unsubscribe(FunctorEventSubscriber* Funct);
-        /// @brief Unsubscribes a single subscriber from this event.
-        /// @param CFunct The function to be removed.
-        void Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct);
-        /// @brief Unsubscribes a single subscriber from this event.
-        /// @param SubScript The Script to be removed.
-        void Unsubscribe(Scripting::iScript* SubScript);
-        /// @brief Unsubscribes a single subscriber from this event.
-        /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
-        void Unsubscribe(EventSubscriberSlot* SubSlot);
-        /// @brief Unsubscribes all subscribers from this Event.
-        /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeAll();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Subscriber Access Methods
-
-        /// @brief Gets an iterator to the first subscriber slot in this event.
-        /// @return Returns an iterator to the first subscriber slot.
-        SlotIterator SubscriberSlotBegin();
-        /// @brief Gets an iterator to one passed the last subscriber slot in this event.
-        /// @return Returns an iterator to one passed the last subscriber slot.
-        SlotIterator SubscriberSlotEnd();
-#ifndef SWIG // Since these functions differ only by constness, they make no sense to most(all?) scripting languages
-        /// @brief Gets an iterator to the first subscriber slot in this event.
-        /// @return Returns a const iterator to the first subscriber slot.
-        ConstSlotIterator SubscriberSlotBegin() const;
-        /// @brief Gets an iterator to one passed the last subscriber slot in this event.
-        /// @return Returns a const iterator to one passed the last subscriber slot.
-        ConstSlotIterator SubscriberSlotEnd() const;
-#endif
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        /// @internal
-        /// @brief Notifies all subscribers of this event that this event is firing.
-        /// @param Args The arguments and extra data related to this event.
-        void _FireEvent(EventArgumentsPtr Args);
+        virtual ~Event() = default;
 	};//Event
+
+	/// @brief Convenience type for passing around Events.
+	using EventPtr = std::shared_ptr<Event>;
+
+    /// @}
 }//Mezzanine
 
 #endif

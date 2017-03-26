@@ -64,102 +64,149 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB HashedString32
     {
-        public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+    public:
+        /// @brief The hash value of an empty string ("").
+        static const Int32 EmptyHash = 1364076727;
 
-            /// @brief Compute a MurmurA aka MurmurX86-32bit has of a string and return it.
-            /// @param ToBeHashed The string to hash
-            /// @return A 32 bit value approximating unique, which represents the passed string.
-            static Int32 Murmur32bit(const String& ToBeHashed);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-        protected:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Data
+        /// @brief Compute a MurmurA aka MurmurX86-32bit has of a string and return it.
+        /// @param ToBeHashed The string to hash
+        /// @return A 32 bit value approximating unique, which represents the passed string.
+        static Int32 Murmur32bit(const String& ToBeHashed);
+        /// @brief Compute a MurmurA aka MurmurX86-32bit has of a string and return it.
+        /// @param ToBeHashed The string to hash
+        /// @return A 32 bit value approximating unique, which represents the passed string.
+        static Int32 Murmur32bit(const char* ToBeHashed);
 
-            /// The Actual string to store.
-            String TheString;
-            /// @brief The computed hash.
-            Int32 Hash;
+    protected:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Data
 
-        public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Creation
+        /// The Actual string to store.
+        String TheString;
+        /// @brief The computed hash.
+        Int32 Hash;
 
-            /// @brief NonComputing Constructor
-            /// @details Skip the hashing overhead and just do the work for h
-            HashedString32();
-            /// @brief String Constructor
-            /// @param StartingString The String to work with
-            /// @details Compute the hash of the String and hang onto both for future use.
-            HashedString32(const String& StartingString);
-            /// @brief Precomputed Constructor
-            /// @param StartingString The String to work with
-            /// @param PrecomputedHash The value
-            /// @details Does not Compute the hash of the String, Just trusts whatever it is given.
-            HashedString32(const String& StartingString, Int32 PrecomputedHash);
-            /// @brief Copy constructor
-            /// @param StartingString The other hashed string
-            HashedString32(const HashedString32& StartingString);
+    public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Creation
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Comparisons
+        /// @brief NonComputing Constructor
+        /// @details Skip the hashing overhead and just do the work for h
+        HashedString32();
+        /// @brief String Constructor
+        /// @param StartingString The String to work with
+        /// @details Compute the hash of the String and hang onto both for future use.
+        HashedString32(const String& StartingString);
+        /// @brief C-String Constructor
+        /// @param StartingString The String to work with
+        /// @details Compute the hash of the String and hang onto both for future use.
+        HashedString32(const char* StartingString);
+        /// @brief Precomputed Constructor
+        /// @param StartingString The String to work with
+        /// @param PrecomputedHash The value
+        /// @details Does not Compute the hash of the String, Just trusts whatever it is given.
+        HashedString32(const String& StartingString, Int32 PrecomputedHash);
+        /// @brief Copy constructor
+        /// @param StartingString The other hashed string
+        HashedString32(const HashedString32& StartingString) = default;
+        /// @brief Move constructor.
+        /// @param MovingString The other hashed string.
+        HashedString32(HashedString32&& MovingString) = default;
 
-            /// @brief Compare The hash of this and another string for equality.
-            /// @param Other The other string to compare this one too.
-            /// @return True if the hashes are the same.
-            /// @note It is imcredibly unlikely, but this could return true in the event of a hash collision.
-            Boole operator==(const HashedString32& Other) const;
-            /// @brief Compare The hash of this and another string for inequality.
-            /// @param Other The other string to compare this one too.
-            /// @return True if the hashes are different.
-            Boole operator!=(const HashedString32& Other) const;
-            /// @brief Provide a semantically useless, but quite fast sorting order for std containers based on only hashes.
-            /// @param Other The other string to compare this one too.
-            /// @return true If the Hash of this is smaller than the hash of the other
-            Boole operator<(const HashedString32& Other) const;
-            /// @brief Provide a semantically useless, but quite fast sorting order for std containers based on only hashes.
-            /// @param Other The other string to compare this one too.
-            /// @return true If the Hash of this is larger than the hash of the other
-            Boole operator>(const HashedString32& Other) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Non-Comparison Operators
 
-            /// @return True if this is equal to "", false otherwise.
-            Boole IsEmpty() const;
+        /// @brief Assignment operator.
+        /// @param Other The other string to be copied.
+        /// @return Returns a reference to this.
+        HashedString32& operator=(const HashedString32& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other string to be moved.
+        /// @return Returns a reference to this.
+        HashedString32& operator=(HashedString32&& Other) = default;
+
+        /// @brief Standard String Assignment operator.
+        /// @param Other The other std::string to be copied.
+        /// @return Returns a reference to this.
+        HashedString32& operator=(const String& Other);
+        /// @brief C-String Assignment operator.
+        /// @param Other The other c-string to be copied.
+        /// @return Returns a reference to this.
+        HashedString32& operator=(const char* Other);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Comparisons
+
+        /// @brief Compare The hash of this and another string for equality.
+        /// @param Other The other string to compare this one too.
+        /// @return True if the hashes are the same.
+        /// @note It is imcredibly unlikely, but this could return true in the event of a hash collision.
+        Boole operator==(const HashedString32& Other) const;
+        /// @brief Compare The hash of this and another string for inequality.
+        /// @param Other The other string to compare this one too.
+        /// @return True if the hashes are different.
+        Boole operator!=(const HashedString32& Other) const;
+        /// @brief Provide a semantically useless, but quite fast sorting order for std containers based on only hashes.
+        /// @param Other The other string to compare this one too.
+        /// @return true If the Hash of this is smaller than the hash of the other
+        Boole operator<(const HashedString32& Other) const;
+        /// @brief Provide a semantically useless, but quite fast sorting order for std containers based on only hashes.
+        /// @param Other The other string to compare this one too.
+        /// @return true If the Hash of this is larger than the hash of the other
+        Boole operator>(const HashedString32& Other) const;
+
+        /// @return True if this is equal to "", false otherwise.
+        Boole IsEmpty() const;
 
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Data Modifiers/observers
+        ///////////////////////////////////////////////////////////////////////////////
+        // Data Modifiers/observers
 
-            /// @brief Get the 32 bit as an Int32.
-            /// @return an Int32 with the hash in it.
-            Int32 GetHash() const;
-            /// @brief Get the string that was used to calculate the hash.
-            /// @return A Mezzanine::String
-            String GetString() const;
-            /// @brief Set a new string and recalculate its hash.
-            /// @param NewString The data to hash and store for later use.
-            void SetString(const String& NewString);
+        /// @brief Gets the hash generated from the provided string.
+        /// @return Returns an Int32 with the hash in it.
+        Int32 GetHash() const;
+        /// @brief Get the string that was used to calculate the hash.
+        /// @return Returns the underlying string.
+        const String& GetString() const;
+        /// @brief Set a new string and recalculate its hash.
+        /// @param NewString The data to hash and store for later use.
+        void SetString(const String& NewString);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
 
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this HashedString32 should be appended to.
-            void ProtoSerialize(XML::Node& CurrentRoot) const;
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            void ProtoDeSerialize(const XML::Node& OneNode);
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "HashedString32"
-            static String GetSerializableName();
-    }; // HashedString32
+        /// @brief Convert this class to an XML::Node ready for serialization
+        /// @param CurrentRoot The point in the XML hierarchy that all this HashedString32 should be appended to.
+        void ProtoSerialize(XML::Node& CurrentRoot) const;
+        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+        /// @param OneNode and XML::Node containing the data.
+        void ProtoDeSerialize(const XML::Node& OneNode);
+        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+        /// @return A string containing "HashedString32"
+        static String GetSerializableName();
+    };//HashedString32
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
+    // Class External Operators
+
+    /// @brief Creates a combined string between a HashedString32 and a string literal.
+    /// @param Hashed The HashedString32 to concatenate.
+    /// @param Literal The string literal to concatenate.
+    /// @return Returns a string containing the concatenated results of a hashed string and a string literal.
+    String MEZZ_LIB operator+(const HashedString32& Hashed, const char* Literal);
+    /// @brief Creates a combined string between a HashedString32 and a string literal.
+    /// @param Literal The string literal to concatenate.
+    /// @param Hashed The HashedString32 to concatenate.
+    /// @return Returns a string containing the concatenated results of a hashed string and a string literal.
+    String MEZZ_LIB operator+(const char* Literal, const HashedString32& Hashed);
 
     /// @brief Send a HashedString32 down a stream serialized.
     /// @param stream The std::ostream to send it down.
-    /// @param x The HashedString32 to Send
+    /// @param x The HashedString32 to Send.
+    /// @return Returns a reference to the stream argument.
     std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::HashedString32& x);
 }//Mezzanine
 

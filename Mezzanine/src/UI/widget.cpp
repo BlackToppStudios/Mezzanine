@@ -52,17 +52,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Widget Static Members
 
-        const String Widget::TypeName              = "GenericWidget";
-        const String Widget::EventMouseEnter       = "MouseEnter";
-        const String Widget::EventMouseExit        = "MouseExit";
-        const String Widget::EventMouseDragStart   = "MouseDragStart";
-        const String Widget::EventMouseDragEnd     = "MouseDragEnd";
-        const String Widget::EventFocusGained      = "FocusGained";
-        const String Widget::EventFocusLost        = "FocusLost";
-        const String Widget::EventFocusLocked      = "FocusLocked";
-        const String Widget::EventFocusUnlocked    = "FocusUnlocked";
-        const String Widget::EventVisibilityShown  = "VisibilityShown";
-        const String Widget::EventVisibilityHidden = "VisibilityHidden";
+        const String Widget::TypeName                      = "GenericWidget";
+        const HashedString32 Widget::EventMouseEnter       = "MouseEnter";
+        const HashedString32 Widget::EventMouseExit        = "MouseExit";
+        const HashedString32 Widget::EventMouseDragStart   = "MouseDragStart";
+        const HashedString32 Widget::EventMouseDragEnd     = "MouseDragEnd";
+        const HashedString32 Widget::EventFocusGained      = "FocusGained";
+        const HashedString32 Widget::EventFocusLost        = "FocusLost";
+        const HashedString32 Widget::EventFocusLocked      = "FocusLocked";
+        const HashedString32 Widget::EventFocusUnlocked    = "FocusUnlocked";
+        const HashedString32 Widget::EventVisibilityShown  = "VisibilityShown";
+        const HashedString32 Widget::EventVisibilityHidden = "VisibilityHidden";
 
         ///////////////////////////////////////////////////////////////////////////////
         // Widget Methods
@@ -98,7 +98,7 @@ namespace Mezzanine
         {
             this->QuadRenderable::ProtoSerializeImpl(SelfRoot);
             this->ProtoSerializeStateGroupBindings(SelfRoot);
-            this->ProtoSerializeEvents(SelfRoot);
+            //this->ProtoSerializeEvents(SelfRoot);
             /// @todo Seriailze subscribed events?  Scripts at least.
         }
 
@@ -106,7 +106,7 @@ namespace Mezzanine
         {
             this->QuadRenderable::ProtoDeSerializeImpl(SelfRoot);
             this->ProtoDeSerializeStateGroupBindings(SelfRoot);
-            this->ProtoDeSerializeEvents(SelfRoot);
+            //this->ProtoDeSerializeEvents(SelfRoot);
         }
 
         Boole Widget::HandleInputImpl(const Input::MetaCode& Code)
@@ -122,16 +122,16 @@ namespace Mezzanine
         void Widget::ConstructWidget()
         {
             // Create our events.
-            this->AddEvent(Widget::EventMouseEnter);
-            this->AddEvent(Widget::EventMouseExit);
-            this->AddEvent(Widget::EventMouseDragStart);
-            this->AddEvent(Widget::EventMouseDragEnd);
-            this->AddEvent(Widget::EventFocusGained);
-            this->AddEvent(Widget::EventFocusLost);
-            this->AddEvent(Widget::EventFocusLocked);
-            this->AddEvent(Widget::EventFocusUnlocked);
-            this->AddEvent(Widget::EventVisibilityShown);
-            this->AddEvent(Widget::EventVisibilityHidden);
+            this->AddEventTable(Widget::EventMouseEnter);
+            this->AddEventTable(Widget::EventMouseExit);
+            this->AddEventTable(Widget::EventMouseDragStart);
+            this->AddEventTable(Widget::EventMouseDragEnd);
+            this->AddEventTable(Widget::EventFocusGained);
+            this->AddEventTable(Widget::EventFocusLost);
+            this->AddEventTable(Widget::EventFocusLocked);
+            this->AddEventTable(Widget::EventFocusUnlocked);
+            this->AddEventTable(Widget::EventVisibilityShown);
+            this->AddEventTable(Widget::EventVisibilityHidden);
 
             // Create our render groups and bind them
             RenderLayerGroup* NormalGroup = this->CreateRenderLayerGroup(Widget::WG_Normal);
@@ -312,7 +312,7 @@ namespace Mezzanine
             }
         }
 
-        void Widget::ProtoSerializeEvents(XML::Node& SelfRoot) const
+        /*void Widget::ProtoSerializeEvents(XML::Node& SelfRoot) const
         {
             XML::Node EventsNode = SelfRoot.AppendChild( "Events" );
 
@@ -332,7 +332,7 @@ namespace Mezzanine
             }else{
                 SerializeError("Create XML Version Attribute","Events",true);
             }
-        }
+        }//*/
 
         void Widget::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
@@ -394,7 +394,7 @@ namespace Mezzanine
             }
         }
 
-        void Widget::ProtoDeSerializeEvents(const XML::Node& SelfRoot)
+        /*void Widget::ProtoDeSerializeEvents(const XML::Node& SelfRoot)
         {
             this->RemoveAllEvents();
 
@@ -413,7 +413,7 @@ namespace Mezzanine
                                 EvName = CurrAttrib.AsString();
 
                             if( !EvName.empty() ) {
-                                this->AddEvent(EvName);
+                                this->AddEventTable(EvName);
                             }
                         }else{
                             MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("Events") + ": Not Version 1.");
@@ -423,7 +423,7 @@ namespace Mezzanine
                     MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("Events") + ": Not Version 1.");
                 }
             }
-        }
+        }//*/
 
         String Widget::GetDerivedSerializableName() const
         {
@@ -444,8 +444,8 @@ namespace Mezzanine
                 UInt32 NewState = this->State | WS_Hovered;
                 this->ForceState(NewState);
 
-                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseEnter,this->Name) );
-                this->FireEvent(Args);
+                WidgetEventPtr Args( new WidgetEvent(Widget::EventMouseEnter,this->Name) );
+                this->DispatchEvent(Args);
             }
         }
 
@@ -455,8 +455,8 @@ namespace Mezzanine
                 UInt32 NewState = this->State & ~WS_Hovered;
                 this->ForceState(NewState);
 
-                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseExit,this->Name) );
-                this->FireEvent(Args);
+                WidgetEventPtr Args( new WidgetEvent(Widget::EventMouseExit,this->Name) );
+                this->DispatchEvent(Args);
             }
         }
 
@@ -466,8 +466,8 @@ namespace Mezzanine
                 UInt32 NewState = this->State | WS_Dragged;
                 this->ForceState(NewState);
 
-                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseDragStart,this->Name) );
-                this->FireEvent(Args);
+                WidgetEventPtr Args( new WidgetEvent(Widget::EventMouseDragStart,this->Name) );
+                this->DispatchEvent(Args);
             }
         }
 
@@ -477,8 +477,8 @@ namespace Mezzanine
                 UInt32 NewState = this->State & ~WS_Dragged;
                 this->ForceState(NewState);
 
-                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseDragEnd,this->Name) );
-                this->FireEvent(Args);
+                WidgetEventPtr Args( new WidgetEvent(Widget::EventMouseDragEnd,this->Name) );
+                this->DispatchEvent(Args);
             }
         }
 
@@ -488,8 +488,8 @@ namespace Mezzanine
                 UInt32 NewState = this->State | WS_Focused;
                 this->ForceState(NewState);
 
-                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusGained,this->Name) );
-                this->FireEvent(Args);
+                WidgetEventPtr Args( new WidgetEvent(Widget::EventFocusGained,this->Name) );
+                this->DispatchEvent(Args);
             }
         }
 
@@ -499,21 +499,21 @@ namespace Mezzanine
                 UInt32 NewState = this->State & ~WS_Focused;
                 this->ForceState(NewState);
 
-                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusLost,this->Name) );
-                this->FireEvent(Args);
+                WidgetEventPtr Args( new WidgetEvent(Widget::EventFocusLost,this->Name) );
+                this->DispatchEvent(Args);
             }
         }
 
         void Widget::_OnFocusLocked()
         {
-            WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusLocked,this->Name) );
-            this->FireEvent(Args);
+            WidgetEventPtr Args( new WidgetEvent(Widget::EventFocusLocked,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         void Widget::_OnFocusUnlocked()
         {
-            WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusUnlocked,this->Name) );
-            this->FireEvent(Args);
+            WidgetEventPtr Args( new WidgetEvent(Widget::EventFocusUnlocked,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         void Widget::_OnVisibilityShown()
@@ -521,8 +521,8 @@ namespace Mezzanine
             this->Visible = true;
             this->_MarkDirty();
 
-            WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventVisibilityShown,this->Name) );
-            this->FireEvent(Args);
+            WidgetEventPtr Args( new WidgetEvent(Widget::EventVisibilityShown,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         void Widget::_OnVisibilityHidden()
@@ -530,8 +530,8 @@ namespace Mezzanine
             this->Visible = false;
             this->_MarkDirty();
 
-            WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventVisibilityHidden,this->Name) );
-            this->FireEvent(Args);
+            WidgetEventPtr Args( new WidgetEvent(Widget::EventVisibilityHidden,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -555,7 +555,7 @@ namespace Mezzanine
                 static_cast<Widget*>(this->ParentQuad)->_NotifyChildStateChange(Child,OldState,NewState);
         }
 
-        void Widget::_NotifyEvent(EventArgumentsPtr Args)
+        void Widget::_NotifyEvent(EventPtr Args)
         {
             // Default to doing nothing, must be overridden to add logic if a widget needs it
         }

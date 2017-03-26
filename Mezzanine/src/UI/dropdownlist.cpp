@@ -110,9 +110,17 @@ namespace Mezzanine
             this->SelectionDisplay->AddLayerToGroup(DisplayText,5,Widget::WG_Normal);
             this->SelectionDisplay->AddLayerToGroup(DisplayText,5,Widget::WG_Hovered);
 
-            this->ListToggle->Subscribe(CheckBox::EventSelected,this);
-            this->ListToggle->Subscribe(CheckBox::EventDeselected,this);
-            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,this);
+            this->SubscribeToChildEvents();
+        }
+
+        void DropDownList::SubscribeToChildEvents()
+        {
+            this->ListToggle->Subscribe(CheckBox::EventSelected,this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->ListToggle->Subscribe(CheckBox::EventDeselected,this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,this,
+                                                               [this](EventPtr Args){ this->_NotifyEvent(Args); });
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -276,9 +284,12 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Selection List not found after DropDownList deserialization.");
             }
 
-            this->ListToggle->Subscribe(CheckBox::EventSelected,this);
-            this->ListToggle->Subscribe(CheckBox::EventDeselected,this);
-            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,this);
+            this->ListToggle->Subscribe(CheckBox::EventSelected,this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->ListToggle->Subscribe(CheckBox::EventDeselected,this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,this,
+                                                               [this](EventPtr Args){ this->_NotifyEvent(Args); });
             this->SelectionList->Hide();
         }
 
@@ -293,9 +304,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void DropDownList::_NotifyEvent(EventArgumentsPtr Args)
+        void DropDownList::_NotifyEvent(EventPtr Args)
         {
-            WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+            WidgetEventPtr WidArgs = std::static_pointer_cast<WidgetEvent>(Args);
             Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs->WidgetName);
 
             if( EventWidget == this->ListToggle ) {
@@ -308,7 +319,7 @@ namespace Mezzanine
 
             if( EventWidget == this->SelectionList->GetListContainer() ) {
                 if( WidArgs->EventName == PagedContainer::EventChildSelected ) {
-                    ChildSelectedArgumentsPtr SelectedArgs = CountedPtrCast<ChildSelectedArguments>(WidArgs);
+                    ChildSelectedEventPtr SelectedArgs = std::static_pointer_cast<ChildSelectedEvent>(WidArgs);
                     if( SelectedArgs->Selected ) {
                         Widget* NewSelected = this->ParentScreen->GetWidget( SelectedArgs->ChildName );
                         if( NewSelected != NULL ) {

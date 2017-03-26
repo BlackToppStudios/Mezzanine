@@ -76,6 +76,9 @@ namespace Mezzanine
             /// @brief Convenience method for the construction of a DropDownList.
             /// @param Style An enum value representing how the scrollbar child of thie ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
             virtual void ConstructDropDownList(const UI::ScrollbarStyle& Style);
+            /// @internal
+            /// @brief Subscribes to all the events of this scrollbars children we care about.
+            virtual void SubscribeToChildEvents();
         public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -162,8 +165,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr)
-            virtual void _NotifyEvent(EventArgumentsPtr Args);
+            /// @internal
+            /// @brief Callback to be called when an event this widget is interested in occurs.
+            /// @param Args A pointer to the event this widget is being notified of.
+            virtual void _NotifyEvent(EventPtr Args);
         };//DropDownList
 
         ///////////////////////////////////////////////////////////////////////////////

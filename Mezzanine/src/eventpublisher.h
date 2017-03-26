@@ -40,57 +40,152 @@
 #ifndef _eventpublisher_h
 #define _eventpublisher_h
 
-#include "event.h"
+#include "hashedstring.h"
 #include "exception.h"
+#include "sortedvector.h"
+#include "eventsubscribertable.h"
 
 namespace Mezzanine
 {
-	class Event;
+    /// @addtogroup Events
+    /// @{
+
+    /// @page Mezzanine Event System
+    /// Despite the name of the primary classes involved, the Mezzanine Event system more closely resembles the
+    /// Observer Pattern for messaging.  It was designed to be as flexible as possible in common game development
+    /// tasks with a number of considerations for speed (although at the time of this writing the system prioritizes
+    /// flexibility over speed in situations where one has to be chosen over the other).
+    /// @n @n
+    /// The primary criteria for the design of the Event System are: @n
+    ///     - Scalable. @n
+    ///       No forced monolithic design or master publisher.  Objects can arbitrarily use the event
+    ///       system classes where they want, be it a simulation object, an application object (such as a
+    ///       window), a manager for a subsystem, or (ironically) a monolithic singleton.  Although I don't
+    ///       recommend that last one.
+    ///     - Modular. @n
+    ///       No EventPublisher needs to be aware of any other EventPublisher.  Each EventPublisher is it's own
+    ///       contained event ecosystem.
+    ///     - Subscribe to specific events. @n
+    ///       In most event systems you subscribe to a publisher and receive all of it's events.  With the
+    ///       Mezzanine Event System you can subscribe to just one, or however many specific events you are
+    ///       interested in.  In some cases this means fewer checks in the callback logic, but it also means
+    ///       less time is wasted on uninterested subscribers during event dispatch.
+    ///     - Non-Polymorphic Subscribers. @n
+    ///       We use templated delegates for event dispatch, not a polymorphic base class.  To be specific, at
+    ///       the time of this writing we use std::function.  This allows an extreme amount of versatility in
+    ///       subscribers with minimal performance overhead provided you make use of it's small function
+    ///       optimization.  Subscribers need only match the signature "void(EventPtr)".
+    ///     - Flexible Publisher usage. @n
+    ///       Publishers are not interfaces and have no virtual methods.  You are free to inherit from it or
+    ///       store it as a data member, whichever is more appropriate.  In fact most of the event system is
+    ///       designed without inheritance or virtual methods.  The dispatched events themselves are the one
+    ///       exception.
+    ///     - No forced binding bookkeeping. @n
+    ///       To help with corner cases where both the publisher and subscriber have finite lifetimes we create
+    ///       bindings to represent the subscriptions which are returned upon subscription.  This are stored in
+    ///       shared_ptr's and your subscribers may hold on to them if needed to check if a publisher exists, or
+    ///       can ignore them entirely.
+    ///     - Non-Enum Event IDs. @n
+    ///       Enums are great, however since publishers are their own event ecosystems, and nothing stops a
+    ///       subscriber from subscribing to multiple publishers it would be possible for event enums between
+    ///       publishers to have the same value, which can be difficult to sort out in the subscriber logic.
+    ///       Instead we use hashed strings (HashedString32) to define our events which are potentially more
+    ///       descriptive as well as easier to distinguish and extend than enums.  It can also facilitate
+    ///       integration in data driven systems.
+    ///     - Flexible Subscriber IDs. @n
+    ///       The EventPublisher class will not generate IDs for you.  Ultimately IDs are stored as uintptr_t
+    ///       specifically to allow pointers to be used as unique IDs, but this isn't required and doesn't match
+    ///       the requirements in all cases.  So you are free to specify whatever identification scheme you wish,
+    ///       the only requirement that exists is that the ID be unique to the event subscribed to.
+    /// @n @n
+    /// The usage of the Mezzanine Event System is pretty straightforward.  First you set up the events in the publisher
+    /// and then subscribe objects to those events, and when appropriate fire events that occur.
+    /// @n @n
+    /// Once an EventPublisher is created you should add subscriber tables to it for each event you want it to dispatch.
+    /// You do this by calling EventPublisher::AddEventTable(const HashedString32&).  If the named event already exists
+    /// then this will return an iterator to the pre-existing table.  Otherwise you'll get an iterator to the created
+    /// table, either way you get a valid table.  The underlying implementation does sort the table based on the hash
+    /// of the event name AND it does so in a vector.  So there's two reasons to not expect the iterator you are given
+    /// to remain valid after multiple insertions.  Once a subscriber table is made via an event name, you are good to
+    /// subscribe to that event with the same name.
+    /// @n @n
+    /// You subscribe to an event by providing the name of the event you want to subscribe to, an ID for the delegate,
+    /// and the delegate itself.  If the publisher doesn't have a subscriber table for the named event, an exception
+    /// will be thrown.  Otherwise you'll get back a binding you can use or ignore.
+    /// @n @n
+    /// Firing events is the most manual part.  Some events are simple enough that the event name is descriptive enough.
+    /// For those events you just create an EventPtr with the name of the event and call DispatchEvent(EventPtr).  Simple.
+    /// If you need to pass additional parameters you are expected to inherit from the Event base class and add the
+    /// parameters as data members.  Your subscribers will also need to be aware of the event and perform a cast on
+    /// its end to access the parameters.  The steps are mostly identical otherwise.  Construct your custom Event
+    /// with the relevant parameters and call DispatchEvent(EventPtr).
+    /// @n @n
+    /// In general it is expected that either the subscriber or the system the subscriber belongs to will manage the
+    /// subscription lifetime.  For some things lifetime isn't a consideration, such as subscribing a non-member
+    /// function.  For the situations where it does matter and it's possible the publisher may disappear before
+    /// the subscriber, it's a VERY good idea to keep track of the returned binding.  It's also possible to retrieve
+    /// a binding from a subscription table using the subscriber ID if you don't want to take it immediately when it's
+    /// returned from the Subscribe method.  The binding has a method that will safely check if it is still bound to
+    /// publisher.  It also has a convenience method that will unsubscribe it from the bound publisher.
+    /// @n @n
+    /// There are a few dont's to keep in mind while using the Mezzanine Event System:
+    ///     - Due to the use of pointers to publishers (in bindings), it is advised to avoid storing EventPublishers
+    ///       where their address may become invalidated.
+    ///     - Do not attempt to remove subscribers or destroy the publisher/subscriber table during the dispatch sequence.
+    ///       The system offers no guarantees that it'll work, although it might.  Robust support for this may be added
+    ///       in the future but does not exist at the time of this writing.
+    ///     - When using the event system to communicate across multiple threads (or in the context of the Mezzanine,
+    ///       across WorkUnits) it is STRONGLY recommended that you store the dispatched Events in a thread-safe Queue
+    ///       and process the Events later, instead of trying to process them immediately.  It's far to easy to create
+    ///       stalls and/or race conditions otherwise.
+
 	///////////////////////////////////////////////////////////////////////////////
-    /// @class EventPublisher
-    /// @headerfile eventpublisher.h
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
-    /// @details
     ///////////////////////////////////////
 	class MEZZ_LIB EventPublisher
 	{
     public:
-        /// @brief Basic container type for @ref Event storage by this class.
-        typedef std::map<String,Event*>         EventContainer;
-        /// @brief Iterator type for @ref Event instances stored by this class.
-        typedef EventContainer::iterator        EventIterator;
-        /// @brief Const Iterator type for @ref Event instances stored by this class.
-        typedef EventContainer::const_iterator  ConstEventIterator;
+        /// @brief Convenience type for the callbacks that will be called when events are fired.
+        using CallbackType = EventSubscriberTable::CallbackType;
+        /// @brief Type used to identify the subscriber uniquely.
+        using SubscriberID = EventSubscriberTable::SubscriberID;
+        /// @brief Basic container type for @ref EventSubscriberTable storage by this class.
+        using EventTableContainer = SortedVector<EventSubscriberTable>;
+        /// @brief Iterator type for @ref EventSubscriberTable instances stored by this class.
+        using EventTableIterator = EventTableContainer::iterator;
+        /// @brief Const Iterator type for @ref EventSubscriberTable instances stored by this class.
+        using ConstEventTableIterator = EventTableContainer::const_iterator;
     protected:
-        /// @internal
         /// @brief A container storing all the Events published by this class by name.
-        EventContainer Events;
-        /// @internal
+        EventTableContainer EventTables;
         /// @brief Stores whether or not events will actually be fired when requested.
         Boole MuteEvents;
-
-        /// @internal
-        /// @brief Creates a new event this Publisher can fire.
-        /// @note If the event already exists, this will return the created event instead.
-        /// @param EventName The name to be given to the new event.
-        /// @return Returns a pointer to the created or existing event.
-        Event* AddEvent(const String& EventName);
-        /// @internal
-        /// @brief Fires an event.
-        /// @param Args The arguments/event specific data related to this event.
-        void FireEvent(EventArgumentsPtr Args);
-        /// @internal
-        /// @brief Removes an existing event in this Publisher.
-        /// @param EventName The name of the event to be removed.
-        void RemoveEvent(const String& EventName);
-        /// @internal
-        /// @brief Removes all events in this Publisher.
-        void RemoveAllEvents();
     public:
         /// @brief Class constructor.
         EventPublisher();
+        /// @brief Reserving constructor.
+        /// @param EventCount The number of events to expect this publisher is expected to be populated with.
+        EventPublisher(const Whole EventCount);
+        /// @brief Copy constructor.
+        /// @param Other The other publisher to be copied.
+        EventPublisher(const EventPublisher& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other publisher to be moved.
+        EventPublisher(EventPublisher&& Other) = default;
         /// @brief Class destructor.
-        virtual ~EventPublisher();
+        ~EventPublisher() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other publisher to be copied.
+        /// @return Returns a reference to this.
+        EventPublisher& operator=(const EventPublisher& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other publisher to be moved.
+        /// @return Returns a reference to this.
+        EventPublisher& operator=(EventPublisher&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -99,92 +194,91 @@ namespace Mezzanine
         /// @param Mute True to prevent events from firing, false for normal operation.
         void SetMuteEvents(const Boole Mute);
         /// @brief Gets whether or not event firings by this publisher will be suppressed.
-        /// @return Returns true if events are being supressed, false if this publisher is operating normally.
+        /// @return Returns true if events are being suppressed, false if this publisher is operating normally.
         Boole GetMuteEvents() const;
 
-        /// @brief Gets an event in this publisher.
-        /// @param EventName The name of the event to retrieve.
-        /// @return Returns a pointer to the requested event.
-        Event* GetEvent(const String& EventName) const;
-        /// @brief Gets an event in this publisher.
-        /// @exception This version differs from the non-except version in that if it fails to find the event specified
-        /// it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
-        /// @param EventName The name of the event to retrieve.
-        /// @return Returns a pointer to the requested event.
-        Event* GetEventExcept(const String& EventName) const;
+        /// @brief Fires an event.
+        /// @param Args The arguments/event specific data related to this event.
+        void DispatchEvent(EventPtr Args) const;
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Subscribe Methods
+        // Event Table Management
+
+        /// @brief Creates a new event this Publisher can fire.
+        /// @note If the event already exists, this will return the created event instead.
+        /// @param EventName The name to be given to the new event.
+        /// @return Returns an iterator to the created or existing event.
+        EventTableIterator AddEventTable(const HashedString32& EventName);
+        /// @brief Checks to see if an event is registered with and has a subscriber table in this publisher.
+        /// @param EventName The name of the event to check for.
+        /// @return Returns true of the named event table is present in this publisher.
+        Boole HasEventTable(const HashedString32& EventName) const;
+        /// @brief Checks to see if an event is registered with and has a subscriber table in this publisher.
+        /// @remarks The HashedString32 overload of this method should be used instead where possible.
+        /// @param EventHash The generated hash for the event name to check for.
+        /// @return Returns true of the named event table is present in this publisher.
+        Boole HasEventTable(const Int32 EventHash) const;
+
+        /// @brief Gets an event table in this publisher.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventName The name of the event to retrieve.
+        /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
+        EventTableIterator GetEventTable(const HashedString32& EventName);
+        /// @brief Gets an event table in this publisher.
+        /// @remarks The HashedString32 overload of this method should be used instead where possible.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventHash The generated hash for the event name to retrieve.
+        /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
+        EventTableIterator GetEventTable(const Int32 EventHash);
+        /// @brief Gets an event table in this publisher.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventName The name of the event to retrieve.
+        /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
+        ConstEventTableIterator GetEventTable(const HashedString32& EventName) const;
+        /// @brief Gets an event table in this publisher.
+        /// @remarks The HashedString32 overload of this method should be used instead where possible.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventHash The generated hash for the event name to retrieve.
+        /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
+        ConstEventTableIterator GetEventTable(const Int32 EventHash) const;
+
+        /// @brief Removes an existing event in this Publisher.
+        /// @param EventName The name of the event to be removed.
+        void RemoveEventTable(const HashedString32& EventName);
+        /// @brief Removes all events in this Publisher.
+        void RemoveAllEventTables();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management
 
         /// @brief Adds a subscriber to this event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to subscribe to.
-        /// @param Sub The custom event subscriber.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        /// @param Delegate The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, EventSubscriber* Sub);
-        /// @brief Subscribes a functor object to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param Funct The functor to call when the event is fired.
-        /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, FunctorEventSubscriber* Funct, Boole CleanUpAfter);
-        /// @brief Subscribes a C-style function to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param CFunct The C-style function to call when the event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
-        /// @brief Subscribes a script to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param SubScript The subscribed script to execute when the event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, Scripting::iScript* SubScript);
+        EventSubscriberBindingPtr Subscribe(const HashedString32& EventName, SubscriberID ID, const CallbackType& Delegate);
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Unsubscribe Methods
+        /// @brief Removes a single subscriber from the named event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        void Unsubscribe(const HashedString32& EventName, SubscriberID ID);
+        /// @brief Removes all subscribers from the named Event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll(const HashedString32& EventName);
 
-        /// @brief Unsubscribes a single subscriber all events in this publisher.
-        /// @param Subscriber The EventSubscriberSlot (and the subscriber it is holding) to be removed.
-        void Unsubscribe(EventSubscriber* Subscriber);
-        /// @brief Unsubscribes a single subscriber all events in this publisher.
-        /// @param Funct The functor to be removed.
-        void Unsubscribe(FunctorEventSubscriber* Funct);
-        /// @brief Unsubscribes a single subscriber from all events in this publisher.
-        /// @param CFunct The function to be removed.
-        void Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct);
-        /// @brief Unsubscribes a single subscriber from all events in this publisher.
-        /// @param SubScript The Script to be removed.
-        void Unsubscribe(Scripting::iScript* SubScript);
-        /// @brief Unsubscribes a single subscriber from all events in this publisher.
-        /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
-        void Unsubscribe(EventSubscriberSlot* SubSlot);
-        /// @brief Unsubscribes all subscribers from all events in this publisher.
+        /// @brief Removes a single subscriber from all events in this publisher.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        void Unsubscribe(SubscriberID ID);
+        /// @brief Removes all subscribers from all events in this publisher.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();
-
-        /// @brief Unsubscribes a single subscriber from the named event.
-        /// @param EventName The name of the event to unsubscribe from.
-        /// @param Subscriber The EventSubscriberSlot (and the subscriber it is holding) to be removed.
-        void Unsubscribe(const String& EventName, EventSubscriber* Subscriber);
-        /// @brief Unsubscribes a single subscriber from the named event.
-        /// @param EventName The name of the event to unsubscribe from.
-        /// @param Funct The functor to be removed.
-        void Unsubscribe(const String& EventName, FunctorEventSubscriber* Funct);
-        /// @brief Unsubscribes a single subscriber from the named event.
-        /// @param EventName The name of the event to unsubscribe from.
-        /// @param CFunct The function to be removed.
-        void Unsubscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
-        /// @brief Unsubscribes a single subscriber from the named event.
-        /// @param EventName The name of the event to unsubscribe from.
-        /// @param SubScript The Script to be removed.
-        void Unsubscribe(const String& EventName, Scripting::iScript* SubScript);
-        /// @brief Unsubscribes a single subscriber from the named event.
-        /// @param EventName The name of the event to unsubscribe from.
-        /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
-        void Unsubscribe(const String& EventName, EventSubscriberSlot* SubSlot);
-        /// @brief Unsubscribes all subscribers from the named Event.
-        /// @param EventName The name of the event to unsubscribe from.
-        /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeAll(const String& EventName);
 	};//EventPublisher
+
+    /// @}
 }//Mezzanine
 
 #endif

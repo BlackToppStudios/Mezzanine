@@ -44,32 +44,10 @@
 
 //Internal includes
 #include "crossplatform.h"
-#include "entresol.h"
-#include "Graphics/graphicsmanager.h"
-#include "UI/uimanager.h"
-#include "Graphics/gamewindow.h"
+
 #include "Threading/systemcalls.h"
 
-//External includes
-#include "SDL.h"
-#include <Ogre.h>
-
-
-#include <dirent.h> //Included with gcc/mingw will likely need replacement with msvc
-
 #include <stdio.h>
-
-//Selective Includes
-#ifdef MEZZ_WINDOWS
-    #include <windows.h>
-    #include <cstdlib>//for sleep
-    #include <Winuser.h>
-    #include "SDL_syswm.h" //for the needed commands
-    #include <direct.h> // for _getcwd
-#else
-    #include <unistd.h>//for sleep and getcwd
-    #include <sys/time.h>
-#endif
 
 namespace Mezzanine
 {

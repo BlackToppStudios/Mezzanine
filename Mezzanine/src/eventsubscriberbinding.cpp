@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,56 +37,60 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventstests_h
-#define _eventstests_h
+#ifndef _eventsubscriberbinding_cpp
+#define _eventsubscriberbinding_cpp
 
-#include "mezztest.h"
-#include "eventsubscriber.h"
+#include "eventsubscriberbinding.h"
 #include "eventpublisher.h"
 
-#include <stdexcept> //only used to throw for TEST_THROW
-#include <ostream>
-
-/// @file
-/// @brief This file should be used as template/example for building future Unit Tests
-
-using namespace Mezzanine;
-using namespace Mezzanine::Testing;
-
-/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
-class eventstests : public UnitTestGroup
+namespace Mezzanine
 {
-    public:
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "BoilerPlate"
-        virtual String Name()
-            { return String("Events"); }
+    EventSubscriberBinding::EventSubscriberBinding(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub, const Int32 Hash) :
+        Callback(Delegate),
+        SubID(ID),
+        Publisher(Pub),
+        NameHash(Hash)
+        {  }
 
-        /// @brief This is called when Automatic tests are run
-        void RunAutomaticTests()
-        {
-            //TestFunctor Func(TestOutput);
+    ///////////////////////////////////////////////////////////////////////////////
+    // Operators
 
-            //TestPublisher Pub;
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
 
+    const EventSubscriberBinding::CallbackType& EventSubscriberBinding::GetCallback() const
+        { return this->Callback; }
 
-            // Why does one of these segfault and the other does not?
-            //EventSubscriberSlot* temp = Pub.Subscribe("test", &Func, false);
-            //Pub.Subscribe("test", &Func, false);
+    EventSubscriberBinding::SubscriberID EventSubscriberBinding::GetSubID() const
+        { return this->SubID; }
 
+    EventPublisher* EventSubscriberBinding::GetPublisher() const
+        { return this->Publisher; }
 
-            //Pub.DoTest();
-            //FunctorSubscriber Sub;
+    Int32 EventSubscriberBinding::GetEventHash() const
+        { return this->NameHash; }
 
+    Boole EventSubscriberBinding::IsSubscribed() const
+        { return ( this->Publisher != NULL ); }
+
+    void EventSubscriberBinding::Unsubscribe()
+    {
+        this->Publisher->GetEventTable(this->NameHash)->Unsubscribe(this->SubID);
+        this->Unbind();
+    }
+
+    void EventSubscriberBinding::Unbind()
+    {
+        this->Publisher = NULL;
+        this->NameHash = HashedString32::EmptyHash;
+    }
+
+    void EventSubscriberBinding::DispatchEvent(EventPtr Args) const
+    {
+        if( this->Callback ) {
+            this->Callback(Args);
         }
-
-        /// @brief Since RunAutomaticTests is implemented so is this.
-        /// @return returns true
-        virtual bool HasAutomaticTests() const
-            { return true; }
-
-
-};
+    }
+}//Mezzanine
 
 #endif
-

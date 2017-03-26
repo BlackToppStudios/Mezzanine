@@ -63,7 +63,7 @@ namespace Mezzanine
         // EditBox Static Members
 
         const String EditBox::TypeName = "EditBox";
-        const String EditBox::EventTextUpdated = "TextUpdated";
+        const HashedString32 EditBox::EventTextUpdated = "TextUpdated";
 
         ///////////////////////////////////////////////////////////////////////////////
         // EditBox Methods
@@ -219,7 +219,7 @@ namespace Mezzanine
         void EditBox::ConstructEditBox(const RenderLayerType EditLayerType, FontData* EditFont)
         {
             // Create our events.
-            this->AddEvent(EditBox::EventTextUpdated);
+            this->AddEventTable(EditBox::EventTextUpdated);
 
             // Create our edit layer.
             TextLayer* EditLayer = NULL;
@@ -366,8 +366,8 @@ namespace Mezzanine
 
         void EditBox::_OnTextUpdated()
         {
-            WidgetEventArgumentsPtr Args( new WidgetEventArguments(EditBox::EventTextUpdated,this->Name) );
-            this->FireEvent(Args);
+            WidgetEventPtr Args( new WidgetEvent(EditBox::EventTextUpdated,this->Name) );
+            this->DispatchEvent(Args);
         }
 
         void EditBox::_OnMouseDragStart()

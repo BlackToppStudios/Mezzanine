@@ -53,8 +53,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // PagedContainer Static Members
 
-        const String PagedContainer::TypeName               = "PagedContainer";
-        const String PagedContainer::EventChildSelected     = "ChildSelected";
+        const String PagedContainer::TypeName                    = "PagedContainer";
+        const HashedString32 PagedContainer::EventChildSelected  = "ChildSelected";
 
         ///////////////////////////////////////////////////////////////////////////////
         // PagedContainer Methods
@@ -64,21 +64,21 @@ namespace Mezzanine
             LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEvent(PagedContainer::EventChildSelected); }
+            { this->AddEventTable(PagedContainer::EventChildSelected); }
 
         PagedContainer::PagedContainer(const String& RendName, Screen* Parent) :
             Widget(RendName,Parent),
             LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEvent(PagedContainer::EventChildSelected); }
+            { this->AddEventTable(PagedContainer::EventChildSelected); }
 
         PagedContainer::PagedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Widget(RendName,RendRect,Parent),
             LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEvent(PagedContainer::EventChildSelected); }
+            { this->AddEventTable(PagedContainer::EventChildSelected); }
 
         PagedContainer::~PagedContainer()
         {
@@ -106,12 +106,12 @@ namespace Mezzanine
                 Widget* DirectChild = this->GetClosestChild(Child);
                 if( this->LastSelectedChild != DirectChild ) {
                     if( this->LastSelectedChild != NULL ) {
-                        ChildSelectedArgumentsPtr DeselectArgs( new ChildSelectedArguments(PagedContainer::EventChildSelected,this->Name,this->LastSelectedChild->GetName(),false) );
-                        this->FireEvent(DeselectArgs);
+                        ChildSelectedEventPtr DeselectArgs( new ChildSelectedEvent(PagedContainer::EventChildSelected,this->Name,this->LastSelectedChild->GetName(),false) );
+                        this->DispatchEvent(DeselectArgs);
                     }
                     if( DirectChild != NULL ) {
-                        ChildSelectedArgumentsPtr SelectArgs( new ChildSelectedArguments(PagedContainer::EventChildSelected,this->Name,DirectChild->GetName(),true) );
-                        this->FireEvent(SelectArgs);
+                        ChildSelectedEventPtr SelectArgs( new ChildSelectedEvent(PagedContainer::EventChildSelected,this->Name,DirectChild->GetName(),true) );
+                        this->DispatchEvent(SelectArgs);
                     }
                     this->LastSelectedChild = DirectChild;
                 }
@@ -152,8 +152,8 @@ namespace Mezzanine
         void PagedContainer::ClearSelectedChild()
         {
             if( this->LastSelectedChild != NULL ) {
-                ChildSelectedArgumentsPtr DeselectArgs( new ChildSelectedArguments(PagedContainer::EventChildSelected,this->Name,this->LastSelectedChild->GetName(),false) );
-                this->FireEvent(DeselectArgs);
+                ChildSelectedEventPtr DeselectArgs( new ChildSelectedEvent(PagedContainer::EventChildSelected,this->Name,this->LastSelectedChild->GetName(),false) );
+                this->DispatchEvent(DeselectArgs);
                 this->LastSelectedChild = NULL;
             }
         }
@@ -486,8 +486,8 @@ namespace Mezzanine
 
         void PagedContainer::_OnChildSelected(const String& ChildName, const Boole Selected)
         {
-            ChildSelectedArgumentsPtr Args( new ChildSelectedArguments(PagedContainer::EventChildSelected,this->Name,ChildName,Selected) );
-            this->FireEvent(Args);
+            ChildSelectedEventPtr Args( new ChildSelectedEvent(PagedContainer::EventChildSelected,this->Name,ChildName,Selected) );
+            this->DispatchEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -67,14 +67,6 @@ namespace Mezzanine
         FutureState = States.end();
     }
 
-    StateMachine::StateMachine(const String& InitialState) //: CurrentState(InitialState)
-    {
-        States.add(InitialState);
-        CurrentState = States.begin();
-        FutureStateTransition = Transitions.end();
-        FutureState = States.end();
-    }
-
     StateMachine::~StateMachine()
     {
         //for(TranstionIterator tran = Transitions.begin(); tran != Transitions.end(); tran++)
@@ -105,9 +97,6 @@ namespace Mezzanine
 
     }
 
-    void StateMachine::AddState(const String& NewState)
-        { AddState(HashedString32(NewState));}
-
     void StateMachine::AddStateTransition(const HashedString32& From,
                                           const HashedString32& To,
                                           StateTransitionAction* PossibleAction)
@@ -115,16 +104,8 @@ namespace Mezzanine
         Transitions.add(StateTransition(From, To, PossibleAction));
     }
 
-    void StateMachine::AddStateTransition(const String& From,
-                                          const String& To,
-                                          StateTransitionAction* PossibleAction)
-    { AddStateTransition(HashedString32(From), HashedString32(To), PossibleAction); }
-
     Boole StateMachine::HasState(const HashedString32& PossibleState) const
         { return States.find(PossibleState) != States.end(); }
-
-    Boole StateMachine::HasState(const String& PossibleState) const
-        { return HasState(HashedString32(PossibleState)); }
 
     Boole StateMachine::HasStateTransition(const HashedString32& FromState,
                                            const HashedString32& ToState) const
@@ -133,14 +114,8 @@ namespace Mezzanine
         return Transitions.find(Needle) != Transitions.end();
     }
 
-    Boole StateMachine::HasStateTransition(const String& FromState, const String& ToState) const
-        { return HasStateTransition(HashedString32(FromState),HashedString32(ToState)); }
-
     Boole StateMachine::CanChangeState(const HashedString32& ToState)
         { return HasStateTransition(*CurrentState, ToState); }
-
-    Boole StateMachine::CanChangeState(const String& ToState)
-        { return CanChangeState(HashedString32(ToState)); }
 
     Boole StateMachine::ChangeState(const HashedString32& ToState)
     {
@@ -161,9 +136,6 @@ namespace Mezzanine
         return true;
     }
 
-    Boole StateMachine::ChangeState(const String& ToState)
-        { return ChangeState(HashedString32(ToState)); }
-
     Boole StateMachine::SetPendingState(const HashedString32& ToState)
     {
         ConstStateIterator FoundState = States.find(ToState);
@@ -179,9 +151,6 @@ namespace Mezzanine
         FutureState = FoundState;
         return true;
     }
-
-    Boole StateMachine::SetPendingState(const String& ToState)
-        { return SetPendingState(HashedString32(ToState)); }
 
     void StateMachine::ClearPendingState()
     {

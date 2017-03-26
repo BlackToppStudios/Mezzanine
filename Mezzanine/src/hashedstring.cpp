@@ -45,6 +45,8 @@
 #include "serialization.h"
 #include "exception.h"
 
+#include <cstring>
+
 namespace Mezzanine
 {
     Int32 HashedString32::Murmur32bit(const String& ToBeHashed)
@@ -54,23 +56,51 @@ namespace Mezzanine
         return Results;
     }
 
+    Int32 HashedString32::Murmur32bit(const char* ToBeHashed)
+    {
+        Int32 Results = 0;
+        Internal::MurmurHash3_x86_32(ToBeHashed, strlen(ToBeHashed), HASHED_STRING_32_SEED, &Results );
+        return Results;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // HashedString32 Methods
+
     HashedString32::HashedString32() :
-        Hash(1364076727) // Magic number is hash of ""
-    {}
+        Hash(HashedString32::EmptyHash)
+        {  }
 
     HashedString32::HashedString32(const String& StartingString) :
         TheString(StartingString), Hash(Murmur32bit(StartingString))
-    {}
+        {  }
+
+    HashedString32::HashedString32(const char* StartingString) :
+        TheString(StartingString), Hash(Murmur32bit(StartingString))
+        {  }
 
     HashedString32::HashedString32(const String& StartingString, Int32 PrecomputedHash) :
         TheString(StartingString), Hash(PrecomputedHash)
-    {}
+        {  }
 
-    HashedString32::HashedString32(const HashedString32& StartingString) :
-        TheString(StartingString.TheString), Hash(StartingString.Hash)
-    {}
+    ///////////////////////////////////////////////////////////////////////////////
+    // Non-Comparison Operators
 
-    bool HashedString32::operator==(const HashedString32& Other) const
+    HashedString32& HashedString32::operator=(const String& Other)
+    {
+        this->TheString = Other;
+        this->Hash = Murmur32bit(Other);
+    }
+
+    HashedString32& HashedString32::operator=(const char* Other)
+    {
+        this->TheString = Other;
+        this->Hash = Murmur32bit(Other);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Comparisons
+
+    Boole HashedString32::operator==(const HashedString32& Other) const
     {
         //if(Hash==Other.Hash)
         //    { return TheString == Other.TheString; }
@@ -78,7 +108,7 @@ namespace Mezzanine
         return Hash==Other.Hash;
     }
 
-    bool HashedString32::operator!=(const HashedString32& Other) const
+    Boole HashedString32::operator!=(const HashedString32& Other) const
     {
         //if(Hash!=Other.Hash)
         //    { return TheString != Other.TheString; }
@@ -86,14 +116,14 @@ namespace Mezzanine
         return Hash!=Other.Hash;
     }
 
-    bool HashedString32::operator<(const HashedString32& Other) const
+    Boole HashedString32::operator<(const HashedString32& Other) const
     {
         //if(Hash==Other.Hash)
         //    { return TheString < Other.TheString; }
         return Hash < Other.Hash;
     }
 
-    bool HashedString32::operator>(const HashedString32& Other) const
+    Boole HashedString32::operator>(const HashedString32& Other) const
     {
         //if(Hash==Other.Hash)
         //    { return TheString > Other.TheString; }
@@ -101,13 +131,13 @@ namespace Mezzanine
     }
 
     Boole HashedString32::IsEmpty() const
-        { return 1364076727 == Hash; }
+        { return HashedString32::EmptyHash == Hash; }
 
 
     Int32 HashedString32::GetHash() const
         { return Hash; }
 
-    String HashedString32::GetString() const
+    const String& HashedString32::GetString() const
         { return TheString; }
 
     void HashedString32::SetString(const String& NewString)
@@ -162,7 +192,13 @@ namespace Mezzanine
         { return String("HashedString32"); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
+    // Class External Operators
+
+    String operator+(const HashedString32& Hashed, const char* Literal)
+        { return Hashed.GetString() + Literal; }
+
+    String operator+(const char* Literal, const HashedString32& Hashed)
+        { return Literal + Hashed.GetString(); }
 
     std::ostream& operator << (std::ostream& stream, const Mezzanine::HashedString32& x)
     {

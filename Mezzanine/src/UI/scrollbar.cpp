@@ -57,8 +57,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Scrollbar Methods
 
-        const String Scrollbar::TypeName                = "Scrollbar";
-        const String Scrollbar::EventScrollValueChanged = "ScrollValueChanged";
+        const String Scrollbar::TypeName                        = "Scrollbar";
+        const HashedString32 Scrollbar::EventScrollValueChanged = "ScrollValueChanged";
 
         Scrollbar::Scrollbar(Screen* Parent) :
             PageProvider(Parent),
@@ -82,7 +82,7 @@ namespace Mezzanine
             IncrementDistance(0.01),
             ScrollerSize(1.0),
             AutoHideScroll(false)
-            { this->AddEvent(Scrollbar::EventScrollValueChanged); }
+            { this->AddEventTable(Scrollbar::EventScrollValueChanged); }
 
         Scrollbar::Scrollbar(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             PageProvider(RendName,RendRect,Parent),
@@ -94,7 +94,7 @@ namespace Mezzanine
             IncrementDistance(0.01),
             ScrollerSize(1.0),
             AutoHideScroll(false)
-            { this->AddEvent(Scrollbar::EventScrollValueChanged); }
+            { this->AddEventTable(Scrollbar::EventScrollValueChanged); }
 
         Scrollbar::~Scrollbar()
             {  }
@@ -125,23 +125,25 @@ namespace Mezzanine
 
         void Scrollbar::SubscribeToChildEvents()
         {
-            this->Scroller->Subscribe(Button::EventActivated,this);
-            //this->Scroller->Subscribe(Button::EventStandby,this);
-            this->Scroller->Subscribe(Button::EventDeactivated,this);
-            this->ScrollBack->Subscribe(Button::EventActivated,this);
-            //this->ScrollBack->Subscribe(Button::EventStandby,this);
-            this->ScrollBack->Subscribe(Button::EventDeactivated,this);
-            if( this->UpLeftButton != NULL )
-            {
-                this->UpLeftButton->Subscribe(Button::EventActivated,this);
-                //this->UpLeftButton->Subscribe(Button::EventStandby,this);
-                this->UpLeftButton->Subscribe(Button::EventDeactivated,this);
+            this->Scroller->Subscribe(Button::EventActivated,this,
+                                      [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->Scroller->Subscribe(Button::EventDeactivated,this,
+                                      [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->ScrollBack->Subscribe(Button::EventActivated,this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->ScrollBack->Subscribe(Button::EventDeactivated,this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            if( this->UpLeftButton != NULL ) {
+                this->UpLeftButton->Subscribe(Button::EventActivated,this,
+                                              [this](EventPtr Args){ this->_NotifyEvent(Args); });
+                this->UpLeftButton->Subscribe(Button::EventDeactivated,this,
+                                              [this](EventPtr Args){ this->_NotifyEvent(Args); });
             }
-            if( this->DownRightButton != NULL )
-            {
-                this->DownRightButton->Subscribe(Button::EventActivated,this);
-                //this->DownRightButton->Subscribe(Button::EventStandby,this);
-                this->DownRightButton->Subscribe(Button::EventDeactivated,this);
+            if( this->DownRightButton != NULL ) {
+                this->DownRightButton->Subscribe(Button::EventActivated,this,
+                                                 [this](EventPtr Args){ this->_NotifyEvent(Args); });
+                this->DownRightButton->Subscribe(Button::EventDeactivated,this,
+                                                 [this](EventPtr Args){ this->_NotifyEvent(Args); });
             }
         }
 
@@ -241,16 +243,16 @@ namespace Mezzanine
                 this->Container->UpdateVisibleChildren();
             }
 
-            ScrollbarValueChangedArgumentsPtr Args( new ScrollbarValueChangedArguments(Scrollbar::EventScrollValueChanged,this->Name,OldValue,NewValue) );
-            this->FireEvent(Args);
+            ScrollValueChangedEventPtr Args( new ScrollValueChangedEvent(Scrollbar::EventScrollValueChanged,this->Name,OldValue,NewValue) );
+            this->DispatchEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Scrollbar::_NotifyEvent(EventArgumentsPtr Args)
+        void Scrollbar::_NotifyEvent(EventPtr Args)
         {
-            WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+            WidgetEventPtr WidArgs = std::static_pointer_cast<WidgetEvent>(Args);
             Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs->WidgetName);
             if( EventWidget == NULL )
                 return;

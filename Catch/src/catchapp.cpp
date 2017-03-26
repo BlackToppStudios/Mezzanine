@@ -310,7 +310,7 @@ void CatchApp::MakeGUI()
     MMProfilesCreateText->HorizontallyAlign(UI::LA_Center);
     MMProfilesCreateText->VerticallyAlign(UI::LA_Center);
     MMProfilesCreateText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
-    MMProfilesCreate->Subscribe(UI::Button::EventDeactivated,new MSProfileCreate(this->Profiles,MainMenuScreen),true);
+    MMProfilesCreate->Subscribe(UI::Button::EventDeactivated,0,MSProfileCreate(this->Profiles,MainMenuScreen));
     MMProfilesWin->AddChild(MMProfilesCreate,3);
 
     // Create the DropdownList that will display the currently available profiles
@@ -378,7 +378,7 @@ void CatchApp::MakeGUI()
     MMProfilesSelectText->HorizontallyAlign(UI::LA_Center);
     MMProfilesSelectText->VerticallyAlign(UI::LA_Center);
     MMProfilesSelectText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
-    MMProfilesSelect->Subscribe(UI::Button::EventDeactivated,new MSProfileSelect(this->Profiles,MainMenuScreen),true);
+    MMProfilesSelect->Subscribe(UI::Button::EventDeactivated,0,MSProfileSelect(this->Profiles,MainMenuScreen));
     MMProfilesWin->AddChild(MMProfilesSelect,6);
 
     // Create the back button for the profile configuration window
@@ -439,7 +439,7 @@ void CatchApp::MakeGUI()
     MMLevelSelectGrid->SetCellSize(2,4);
     MMLevelSelectGrid->SetCellPadding( UI::UnifiedVec2(0.08,0.10) );
     MMLevelSelectGrid->SetXYProvider(MMLevelSelectSpinner);
-    MMLevelSelectGrid->Subscribe(UI::PagedContainer::EventChildSelected,new MSLevelCellSelect(MainMenuScreen),true);
+    MMLevelSelectGrid->Subscribe(UI::PagedContainer::EventChildSelected,0,MSLevelCellSelect(MainMenuScreen));
     MMLevelSelectWin->AddChild(MMLevelSelectGrid,3);
 
     // Create the button that will launch the level
@@ -452,7 +452,7 @@ void CatchApp::MakeGUI()
     MMLevelStartText->HorizontallyAlign(UI::LA_Center);
     MMLevelStartText->VerticallyAlign(UI::LA_Center);
     MMLevelStartText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
-    MMLevelStart->Subscribe(UI::Button::EventDeactivated,new MSLevelStart(MMLevelSelectGrid),true);
+    MMLevelStart->Subscribe(UI::Button::EventDeactivated,0,MSLevelStart(MMLevelSelectGrid));
     MMLevelSelectWin->AddChild(MMLevelStart,4);
 
     ////------------------  Options  ------------------////
@@ -474,6 +474,9 @@ void CatchApp::MakeGUI()
     MMRootEntry->AddChild(MMOptionsWin,6);
 
     // Create the first of the two buttons that will display the two sets of options (video options)
+    QueuedSettingsSubscriber* VideoSettingsSub = this->VideoSettingsWork->GetSettingsSubscriber();
+    EventSubscriberBinding::CallbackType VideoSettingsDelegate = VideoSettingsSub->GetDelegate();
+
     UI::StackButton* MMVideoSetAccess = MainMenuScreen->CreateStackButton("MS_VideoSetAccess",UI::UnifiedRect(0.11,0.0365,0.34,0.11));
     MMVideoSetAccess->CreateSingleImageLayer("MMButton",UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     MMVideoSetAccess->CreateSingleImageLayer("MMHoveredButton",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
@@ -557,7 +560,7 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     MMResolutionOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
     // Wrap up listing configuration
-    MMResolutionList->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
+    MMResolutionList->Subscribe(UI::Widget::EventVisibilityShown,VideoSettingsSub,VideoSettingsDelegate);
     MMVideoSet->AddChild(MMResolutionList,11);
 
     // Create the checkbox for enabling or disabling fullscreen
@@ -567,7 +570,7 @@ void CatchApp::MakeGUI()
     MMFullscreenBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     MMFullscreenBox->CreateSingleImageLayer("MMCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
     MMFullscreenBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
-    MMFullscreenBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
+    MMFullscreenBox->Subscribe(UI::Widget::EventVisibilityShown,VideoSettingsSub,VideoSettingsDelegate);
     MMVideoSet->AddChild(MMFullscreenBox,3);
 
     // Create the label for the fullscreen checkbox
@@ -631,7 +634,7 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     MMFSAAOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
     // Wrap up listing configuration
-    MMFSAAList->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
+    MMFSAAList->Subscribe(UI::Widget::EventVisibilityShown,VideoSettingsSub,VideoSettingsDelegate);
     MMVideoSet->AddChild(MMFSAAList,10);
 
     // Create the checkbox for enabling or disabling FPS stats display
@@ -641,7 +644,7 @@ void CatchApp::MakeGUI()
     MMStatsBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     MMStatsBox->CreateSingleImageLayer("MMCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
     MMStatsBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
-    MMStatsBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
+    MMStatsBox->Subscribe(UI::Widget::EventVisibilityShown,VideoSettingsSub,VideoSettingsDelegate);
     MMVideoSet->AddChild(MMStatsBox,7);
 
     // Create the label for the FPS stats display checkbox
@@ -663,11 +666,14 @@ void CatchApp::MakeGUI()
     MMVideoOptsApplyText->HorizontallyAlign(UI::LA_Center);
     MMVideoOptsApplyText->VerticallyAlign(UI::LA_Center);
     MMVideoOptsApplyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMTightText);
-    MMVideoOptsApply->Subscribe(UI::Button::EventDeactivated,this->VideoSettingsWork->GetSettingsSubscriber());
+    MMVideoOptsApply->Subscribe(UI::Button::EventDeactivated,VideoSettingsSub,VideoSettingsDelegate);
     MMVideoSet->AddChild(MMVideoOptsApply,12);
 
     const Real MMScrollerSize = 0.09;
     // Create the TabbedSubSet that will house all our audio options
+    QueuedSettingsSubscriber* AudioSettingsSub = this->AudioSettingsWork->GetSettingsSubscriber();
+    EventSubscriberBinding::CallbackType AudioSettingsDelegate = AudioSettingsSub->GetDelegate();
+
     UI::TabSet::TabbedSubSet* MMAudioSet = MMOptionsTabSet->CreateTabbedSubSet("MS_AudioSet",2);
 
     // Create the label for the Music volume
@@ -698,8 +704,8 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     MMMusicVol->GetScrollBack()->CreateSingleImageLayer("MMScrollBackground",0,0);
     // Wrap up Effects volume ocnfiguration
-    MMMusicVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,this->AudioSettingsWork->GetSettingsSubscriber());
-    MMMusicVol->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
+    MMMusicVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,AudioSettingsSub,AudioSettingsDelegate);
+    MMMusicVol->Subscribe(UI::Widget::EventVisibilityShown,AudioSettingsSub,AudioSettingsDelegate);
     MMAudioSet->AddChild(MMMusicVol,2);
 
     // Create the label for the Effects volume
@@ -730,8 +736,8 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     MMEffectsVol->GetScrollBack()->CreateSingleImageLayer("MMScrollBackground",0,0);
     // Wrap up Effects volume ocnfiguration
-    MMEffectsVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,this->AudioSettingsWork->GetSettingsSubscriber());
-    MMEffectsVol->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
+    MMEffectsVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,AudioSettingsSub,AudioSettingsDelegate);
+    MMEffectsVol->Subscribe(UI::Widget::EventVisibilityShown,AudioSettingsSub,AudioSettingsDelegate);
     MMAudioSet->AddChild(MMEffectsVol,2);
 
     /*// Create the label for the Audio Device options
@@ -785,7 +791,7 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     MMAudioDeviceOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
     // Wrap up listing configuration
-    MMAudioDeviceList->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
+    MMAudioDeviceList->Subscribe(UI::Widget::EventVisibilityShown,AudioSettingsSub,AudioSettingsSub);
     MMAudioSet->AddChild(MMAudioDeviceList,10);// */
 
     // Create the checkbox for enabling or disabling FPS stats display
@@ -795,9 +801,9 @@ void CatchApp::MakeGUI()
     MMMuteBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     MMMuteBox->CreateSingleImageLayer("MMCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
     MMMuteBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
-    MMMuteBox->Subscribe(UI::CheckBox::EventSelected,this->AudioSettingsWork->GetSettingsSubscriber());
-    MMMuteBox->Subscribe(UI::CheckBox::EventDeselected,this->AudioSettingsWork->GetSettingsSubscriber());
-    MMMuteBox->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
+    MMMuteBox->Subscribe(UI::CheckBox::EventSelected,AudioSettingsSub,AudioSettingsDelegate);
+    MMMuteBox->Subscribe(UI::CheckBox::EventDeselected,AudioSettingsSub,AudioSettingsDelegate);
+    MMMuteBox->Subscribe(UI::Widget::EventVisibilityShown,AudioSettingsSub,AudioSettingsDelegate);
     MMAudioSet->AddChild(MMMuteBox,5);
 
     // Create the label for the FPS stats display checkbox
@@ -877,7 +883,7 @@ void CatchApp::MakeGUI()
     MMAppExitConfText->HorizontallyAlign(UI::LA_Center);
     MMAppExitConfText->VerticallyAlign(UI::LA_Center);
     MMAppExitConfText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
-    MMAppExitConf->Subscribe(UI::Button::EventDeactivated,&AllAppExit);
+    MMAppExitConf->Subscribe(UI::Button::EventDeactivated,&AllAppExit,AllAppExit);
     MMAppExitWin->AddChild(MMAppExitConf,2);
 
     // Create and configure the deny button
@@ -984,12 +990,15 @@ void CatchApp::MakeGUI()
 
     ////-------------------  Game  Menu  -------------------////
     // Create the root entry for the game menu
+    QueuedPauseSubscriber* PauseSub = this->PauseWork->GetPauseSubscriber();
+    EventSubscriberBinding::CallbackType PauseDelegate = PauseSub->GetDelegate();
+
     UI::MenuEntry* GSMenuRoot = GameScreen->CreateMenuEntry("GS_MenuRoot",UI::UnifiedRect(0.35,0.27,0.3,0.45));
     GSMenuRoot->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     GSMenuRoot->CreateSingleImageLayer("GSOptionsMenuBackground",0,0);
     GSMenuRoot->SetPushButton(GSMenuAccess);
-    GSMenuRoot->Subscribe(UI::Widget::EventVisibilityShown,this->PauseWork->GetPauseSubscriber());
-    GSMenuRoot->Subscribe(UI::Widget::EventVisibilityHidden,this->PauseWork->GetPauseSubscriber());
+    GSMenuRoot->Subscribe(UI::Widget::EventVisibilityShown,PauseSub,PauseDelegate);
+    GSMenuRoot->Subscribe(UI::Widget::EventVisibilityHidden,PauseSub,PauseDelegate);
     GameScreen->AddChild(GSMenuRoot,10);
 
     // Create the options accessor button
@@ -1095,7 +1104,7 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     GSResolutionOptionsScroll->GetScrollBack()->CreateSingleImageLayer("GSListScrollBackground",0,0);
     // Wrap up listing configuration
-    GSResolutionList->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
+    GSResolutionList->Subscribe(UI::Widget::EventVisibilityShown,VideoSettingsSub,VideoSettingsDelegate);
     GSVideoSet->AddChild(GSResolutionList,11);
 
     // Create the checkbox for enabling or disabling fullscreen
@@ -1105,7 +1114,7 @@ void CatchApp::MakeGUI()
     GSFullscreenBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     GSFullscreenBox->CreateSingleImageLayer("GSCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
     GSFullscreenBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
-    GSFullscreenBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
+    GSFullscreenBox->Subscribe(UI::Widget::EventVisibilityShown,VideoSettingsSub,VideoSettingsDelegate);
     GSVideoSet->AddChild(GSFullscreenBox,3);
 
     // Create the label for the fullscreen checkbox
@@ -1169,7 +1178,7 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     GSFSAAOptionsScroll->GetScrollBack()->CreateSingleImageLayer("GSListScrollBackground",0,0);
     // Wrap up listing configuration
-    GSFSAAList->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
+    GSFSAAList->Subscribe(UI::Widget::EventVisibilityShown,VideoSettingsSub,VideoSettingsDelegate);
     GSVideoSet->AddChild(GSFSAAList,10);
 
     // Create the checkbox for enabling or disabling FPS stats display
@@ -1179,7 +1188,7 @@ void CatchApp::MakeGUI()
     GSStatsBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     GSStatsBox->CreateSingleImageLayer("GSCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
     GSStatsBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
-    GSStatsBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
+    GSStatsBox->Subscribe(UI::Widget::EventVisibilityShown,VideoSettingsSub,VideoSettingsDelegate);
     GSVideoSet->AddChild(GSStatsBox,7);
 
     // Create the label for the FPS stats display checkbox
@@ -1201,7 +1210,7 @@ void CatchApp::MakeGUI()
     GSVideoOptsApplyText->HorizontallyAlign(UI::LA_Center);
     GSVideoOptsApplyText->VerticallyAlign(UI::LA_Center);
     GSVideoOptsApplyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
-    GSVideoOptsApply->Subscribe(UI::Button::EventDeactivated,this->VideoSettingsWork->GetSettingsSubscriber());
+    GSVideoOptsApply->Subscribe(UI::Button::EventDeactivated,VideoSettingsSub,VideoSettingsDelegate);
     GSVideoSet->AddChild(GSVideoOptsApply,12);
 
     const Real GSScrollerSize = 0.09;
@@ -1236,8 +1245,8 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     GSMusicVol->GetScrollBack()->CreateSingleImageLayer("GSScrollBackground",0,0);
     // Wrap up Effects volume ocnfiguration
-    GSMusicVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,this->AudioSettingsWork->GetSettingsSubscriber());
-    GSMusicVol->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
+    GSMusicVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,AudioSettingsSub,AudioSettingsDelegate);
+    GSMusicVol->Subscribe(UI::Widget::EventVisibilityShown,AudioSettingsSub,AudioSettingsDelegate);
     GSAudioSet->AddChild(GSMusicVol,2);
 
     // Create the label for the Effects volume
@@ -1268,8 +1277,8 @@ void CatchApp::MakeGUI()
     // Configure the scroll back
     GSEffectsVol->GetScrollBack()->CreateSingleImageLayer("GSScrollBackground",0,0);
     // Wrap up Effects volume ocnfiguration
-    GSEffectsVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,this->AudioSettingsWork->GetSettingsSubscriber());
-    GSEffectsVol->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
+    GSEffectsVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,AudioSettingsSub,AudioSettingsDelegate);
+    GSEffectsVol->Subscribe(UI::Widget::EventVisibilityShown,AudioSettingsSub,AudioSettingsDelegate);
     GSAudioSet->AddChild(GSEffectsVol,2);
 
     /*// Create the label for the Audio Device options
@@ -1333,9 +1342,9 @@ void CatchApp::MakeGUI()
     GSMuteBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     GSMuteBox->CreateSingleImageLayer("GSCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
     GSMuteBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
-    GSMuteBox->Subscribe(UI::CheckBox::EventSelected,this->AudioSettingsWork->GetSettingsSubscriber());
-    GSMuteBox->Subscribe(UI::CheckBox::EventDeselected,this->AudioSettingsWork->GetSettingsSubscriber());
-    GSMuteBox->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
+    GSMuteBox->Subscribe(UI::CheckBox::EventSelected,AudioSettingsSub,AudioSettingsDelegate);
+    GSMuteBox->Subscribe(UI::CheckBox::EventDeselected,AudioSettingsSub,AudioSettingsDelegate);
+    GSMuteBox->Subscribe(UI::Widget::EventVisibilityShown,AudioSettingsSub,AudioSettingsDelegate);
     GSAudioSet->AddChild(GSMuteBox,5);
 
     // Create the label for the FPS stats display checkbox
@@ -1371,7 +1380,7 @@ void CatchApp::MakeGUI()
     GSMenuRestartText->HorizontallyAlign(UI::LA_Center);
     GSMenuRestartText->VerticallyAlign(UI::LA_Center);
     GSMenuRestartText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
-    GSMenuRestart->Subscribe(UI::Button::EventDeactivated,&GSRestart);
+    GSMenuRestart->Subscribe(UI::Button::EventDeactivated,&GSRestart,GSRestart);
     GSMenuRoot->AddChild(GSMenuRestart,3);
 
     // Create the game return button
@@ -1395,7 +1404,7 @@ void CatchApp::MakeGUI()
     GSMenuExitText->HorizontallyAlign(UI::LA_Center);
     GSMenuExitText->VerticallyAlign(UI::LA_Center);
     GSMenuExitText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
-    GSMenuExit->Subscribe(UI::Button::EventDeactivated,&GSMMReturn);
+    GSMenuExit->Subscribe(UI::Button::EventDeactivated,&GSMMReturn,GSMMReturn);
     GSMenuRoot->AddChild(GSMenuExit,5);
 
     ////-----------------  Item Shop Menu  -----------------////
@@ -1404,8 +1413,8 @@ void CatchApp::MakeGUI()
     GSItemShopRoot->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     GSItemShopRoot->CreateSingleImageLayer("GSStoreBackground",0,0);
     GSItemShopRoot->SetPushButton(GSItemShopAccess);
-    GSItemShopRoot->Subscribe(UI::Widget::EventVisibilityShown,this->PauseWork->GetPauseSubscriber());
-    GSItemShopRoot->Subscribe(UI::Widget::EventVisibilityHidden,this->PauseWork->GetPauseSubscriber());
+    GSItemShopRoot->Subscribe(UI::Widget::EventVisibilityShown,PauseSub,PauseDelegate);
+    GSItemShopRoot->Subscribe(UI::Widget::EventVisibilityHidden,PauseSub,PauseDelegate);
     GameScreen->AddChild(GSItemShopRoot,8);
 
     // Create the "titlebar" for the item shop window
@@ -1511,7 +1520,7 @@ void CatchApp::MakeGUI()
     GSLevelReportFinishText->HorizontallyAlign(UI::LA_Center);
     GSLevelReportFinishText->VerticallyAlign(UI::LA_Center);
     GSLevelReportFinishText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
-    GSLevelReportFinish->Subscribe(UI::Button::EventDeactivated,&GSMMReturn);
+    GSLevelReportFinish->Subscribe(UI::Button::EventDeactivated,&GSMMReturn,GSMMReturn);
     GSLevelReport->AddChild(GSLevelReportFinish,3);
 
     UI::Button* GSLevelReportRetry = GameScreen->CreateButton("GS_LevelReportRetry",UI::UnifiedRect(0.54,0.815,0.25,0.125));
@@ -1522,7 +1531,7 @@ void CatchApp::MakeGUI()
     GSLevelReportRetryText->HorizontallyAlign(UI::LA_Center);
     GSLevelReportRetryText->VerticallyAlign(UI::LA_Center);
     GSLevelReportRetryText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
-    GSLevelReportRetry->Subscribe(UI::Button::EventDeactivated,&GSRestart);
+    GSLevelReportRetry->Subscribe(UI::Button::EventDeactivated,&GSRestart,GSRestart);
     GSLevelReport->AddChild(GSLevelReportRetry,4);
     GSLevelReport->Hide();
 }

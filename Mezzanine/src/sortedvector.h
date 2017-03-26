@@ -173,15 +173,26 @@ namespace Mezzanine
 
             /// @brief Since this container has no array-like concept this inserts the item were
             /// it needs to go.
-            /// @details This has all the potentional allocation slow downs of push_back
+            /// @details This has all the potential allocation slow downs of push_back
             /// and costs of find the required place to insert. This sorts the whole container after
             /// adding items, so calling this after for a many additions is really slow, use
             /// @ref add_range to only sort once.
             /// @param value The value to put into the vector.
-            void add(T value)
+            /// @return Returns an iterator to the added element.
+            iterator add(T value)
             {
-                InternalStorage.push_back(value);
-                sort();
+                typename StorageVector::const_iterator InsertPos = std::lower_bound(begin(),end(),value,Sorter());
+                return InternalStorage.insert(InsertPos,value);
+            }
+
+            /// @brief As "add" but allows construction of the element in the container.
+            /// @tparam Args A variadic template of arguments to be used to construct the element in place.
+            /// @param Params List of arguments needed to construct the element.
+            template<typename Compare, class... Args>
+            iterator add_emplace(Compare PosFinder, Args&&... Params)
+            {
+                typename StorageVector::const_iterator InsertPos = std::lower_bound(begin(),end(),Params...,PosFinder);
+                return InternalStorage.emplace(InsertPos,Params...);
             }
 
             /// @brief Add several items at once efficiently.

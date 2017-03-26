@@ -7,35 +7,40 @@
 ///////////////////////////////////////////////////////////////////////////////
 // QueuedSubscriber Methods
 
-QueuedSubscriber::QueuedSubscriber() :
+CatchQueuedSubscriber::CatchQueuedSubscriber() :
     Updating(false)
     {  }
 
-QueuedSubscriber::~QueuedSubscriber()
+CatchQueuedSubscriber::~CatchQueuedSubscriber()
     { this->ClearEvents(); }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Convenience and Utility
 
-void QueuedSubscriber::StartUpdate()
+void CatchQueuedSubscriber::StartUpdate()
     { this->Updating = true; }
 
-void QueuedSubscriber::EndUpdate()
+void CatchQueuedSubscriber::EndUpdate()
     { this->Updating = false; }
 
-QueuedSubscriber::ConstEventIterator QueuedSubscriber::GetFirstEvent() const
+CatchQueuedSubscriber::ConstEventIterator CatchQueuedSubscriber::GetFirstEvent() const
     { return this->Events.begin(); }
 
-QueuedSubscriber::ConstEventIterator QueuedSubscriber::GetEndEvent() const
+CatchQueuedSubscriber::ConstEventIterator CatchQueuedSubscriber::GetEndEvent() const
     { return this->Events.end(); }
 
-void QueuedSubscriber::ClearEvents()
+void CatchQueuedSubscriber::ClearEvents()
     { this->Events.clear(); }
+
+EventSubscriberBinding::CallbackType CatchQueuedSubscriber::GetDelegate()
+{
+    return [this](EventPtr Args){ this->_NotifyEvent(Args); };
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Inherited
 
-void QueuedSubscriber::_NotifyEvent(EventArgumentsPtr Args)
+void CatchQueuedSubscriber::_NotifyEvent(EventPtr Args)
 {
     if( !this->Updating ) {
         this->Events.push_back(Args);
