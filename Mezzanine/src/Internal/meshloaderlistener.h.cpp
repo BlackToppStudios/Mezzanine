@@ -43,8 +43,11 @@
 // Keeps this file form being documented by doxygen
 /// @cond DontDocumentInternal
 
-#include <Ogre.h>
 #include "datatypes.h"
+
+#include <OgreDataStream.h>
+#include <OgreIteratorWrapper.h>
+#include <OgreMeshSerializer.h>
 
 namespace Mezzanine
 {
