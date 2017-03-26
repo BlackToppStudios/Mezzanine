@@ -42,7 +42,8 @@
 #define _graphicspass_cpp
 
 #include "Graphics/pass.h"
-#include <Ogre.h>
+
+#include <OgrePass.h>
 
 namespace Mezzanine
 {

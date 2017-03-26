@@ -49,7 +49,9 @@
 #include "serialization.h"
 #include "stringtool.h"
 
-#include <Ogre.h>
+#include <OgreVector3.h>
+#include <OgreMath.h>
+#include <OgreBillboard.h>
 
 namespace Mezzanine
 {

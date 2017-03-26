@@ -45,8 +45,9 @@
 
 #include "exception.h"
 
-#include <Ogre.h>
+#include <OgreTexture.h>
 #include <OgrePixelFormat.h>
+#include <OgreHardwarePixelBuffer.h>
 
 namespace Mezzanine
 {

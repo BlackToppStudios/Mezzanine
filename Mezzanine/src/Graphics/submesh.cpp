@@ -44,7 +44,11 @@
 #include "Graphics/submesh.h"
 #include "Graphics/vertextools.h"
 
-#include <Ogre.h>
+#include <OgreMesh.h>
+#include <OgreSubMesh.h>
+#include <OgreVertexIndexData.h>
+#include <OgreMaterialManager.h>
+#include <OgreMaterial.h>
 
 namespace Mezzanine
 {
@@ -110,7 +114,7 @@ namespace Mezzanine
             /// @todo Should probably be replaced with something that calls our material manager.
             Ogre::MaterialManager* MatMan = Ogre::MaterialManager::getSingletonPtr();
             if( !ToFill.MaterialName.empty() && MatMan != NULL ) {
-                Ogre::ResourcePtr Mat = MatMan->getByName( this->InternalSubMesh->getMaterialName() );
+                Ogre::MaterialPtr Mat = MatMan->getByName( this->InternalSubMesh->getMaterialName() );
                 ToFill.MaterialGroup = Mat->getOrigin();
             }
 

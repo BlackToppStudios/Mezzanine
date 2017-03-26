@@ -49,7 +49,10 @@
 
 #include "Internal/iostreamwrapper.h.cpp"
 
-#include <Ogre.h>
+#include <OgreColourValue.h>
+#include <OgreImage.h>
+#include <OgreTexture.h>
+#include <OgreHardwarePixelBuffer.h>
 
 namespace Mezzanine
 {

@@ -44,9 +44,8 @@
 
 #include "exception.h"
 
-#include <Ogre.h>
-
-#include "OgreGLESPlugin.h"
+#include <OgreRoot.h>
+#include <OgreGLESPlugin.h>
 
 namespace
 {

@@ -47,7 +47,8 @@
 #include "serialization.h"
 #include "exception.h"
 
-#include <Ogre.h>
+#include <OgreViewport.h>
+#include <OgreRenderWindow.h>
 
 namespace Mezzanine
 {

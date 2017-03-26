@@ -43,7 +43,7 @@
 #include "Graphics/texturemanager.h"
 #include "Graphics/texture.h"
 
-#include <Ogre.h>
+#include <OgreTextureManager.h>
 
 namespace Mezzanine
 {
