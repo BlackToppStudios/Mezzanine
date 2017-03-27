@@ -44,9 +44,8 @@
 
 #include "exception.h"
 
-#include <Ogre.h>
-
-#include "OgreD3D9Plugin.h"
+#include <OgreRoot.h>
+#include <OgreD3D9Plugin.h>
 
 namespace
 {

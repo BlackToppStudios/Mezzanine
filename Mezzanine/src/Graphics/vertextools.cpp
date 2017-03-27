@@ -42,7 +42,7 @@
 
 #include "Graphics/vertextools.h"
 
-#include <Ogre.h>
+#include <OgreVertexIndexData.h>
 
 namespace Mezzanine
 {

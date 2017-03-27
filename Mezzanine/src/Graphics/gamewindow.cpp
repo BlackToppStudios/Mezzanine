@@ -66,7 +66,9 @@
 
 #include <SDL.h>
 #include "../src/video/SDL_sysvideo.h"
-#include <Ogre.h>
+
+#include <OgreRoot.h>
+#include <OgreRenderWindow.h>
 
 namespace Mezzanine
 {

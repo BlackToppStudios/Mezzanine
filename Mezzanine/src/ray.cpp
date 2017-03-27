@@ -49,7 +49,7 @@
 #include "exception.h"
 #include "serialization.h"
 
-#include <Ogre.h>
+#include <OgreRay.h>
 
 #include <ostream>
 

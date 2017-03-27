@@ -43,7 +43,12 @@
 #include "linegroupproxy.h"
 #include "Graphics/scenemanager.h"
 
-#include <Ogre.h>
+#include <OgreSceneManager.h>
+#include <OgreSceneNode.h>
+#include <OgreCamera.h>
+#include <OgreSimpleRenderable.h>
+#include <OgreHardwareBufferManager.h>
+
 #include <vector>
 
 namespace Mezzanine

@@ -55,7 +55,9 @@
 #include <fstream>
 #include <cstdlib>
 
-#include <Ogre.h>
+#include <OgreResourceGroupManager.h>
+#include <OgreDataStream.h>
+#include <OgreArchive.h>
 //#include <btBulletWorldImporter.h>
 //#include <btBulletDynamicsCommon.h>
 

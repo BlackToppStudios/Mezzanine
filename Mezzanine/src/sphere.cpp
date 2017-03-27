@@ -52,7 +52,7 @@
 #include "exception.h"
 #include "serialization.h"
 
-#include <Ogre.h>
+#include <OgreSphere.h>
 
 namespace Mezzanine
 {

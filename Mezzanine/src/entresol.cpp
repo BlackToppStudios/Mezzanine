@@ -82,23 +82,17 @@
     #include "Scripting/Lua51/lua51scriptingengine.h"
 #endif // MEZZLUA51
 
-
-//#include "OgreBspSceneManagerPlugin.h"
-//#include "OgreCgPlugin.h"
-//#include "OgreOctreePlugin.h"
-//#include "OgreOctreeZonePlugin.h"
-#include "OgreParticleFXPlugin.h"
-//#include "OgrePCZPlugin.h"
+#include <OgreParticleFXPlugin.h>
 
 #include <SDL.h>
-#include <Ogre.h>
-#include <btBulletDynamicsCommon.h>
+
+#include <OgreRoot.h>
+#include <OgreLogManager.h>
+#include <OgreParticleFXPlugin.h>
 
 #include <sstream>
 #include <string>
 #include <cassert>
-
-using namespace std;
 
 namespace Mezzanine
 {
@@ -531,7 +525,7 @@ namespace Mezzanine
         for( ManagerIterator Iter = this->ManagerList.begin() ; Iter != this->ManagerList.end() ; ++Iter )
         {
             StringStream InitStream;
-            InitStream << "Initializing " << (*Iter)->GetImplementationTypeName() << " as " << (*Iter)->GetInterfaceTypeAsString() << "." << endl;
+            InitStream << "Initializing " << (*Iter)->GetImplementationTypeName() << " as " << (*Iter)->GetInterfaceTypeAsString() << "." << std::endl;
             this->_Log( InitStream.str() );
             if( (*Iter)->GetInterfaceType() != ManagerBase::MT_GraphicsManager ) {
                 (*Iter)->Initialize();
@@ -557,7 +551,7 @@ namespace Mezzanine
         for( ManagerIterator Iter = this->ManagerList.begin() ; Iter != this->ManagerList.end() ; ++Iter )
         {
             StringStream DeinitStream;
-            DeinitStream << "Deinitializing " << (*Iter)->GetImplementationTypeName() << " as " << (*Iter)->GetInterfaceTypeAsString() << "." << endl;
+            DeinitStream << "Deinitializing " << (*Iter)->GetImplementationTypeName() << " as " << (*Iter)->GetInterfaceTypeAsString() << "." << std::endl;
             this->_Log( DeinitStream.str() );
             (*Iter)->Deinitialize();
         }
@@ -587,7 +581,7 @@ namespace Mezzanine
     void Entresol::DoOneFrame()
     {
         #ifdef MEZZDEBUG
-        WorkScheduler.GetLog() << "<FrameCounterStart Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << endl;
+        WorkScheduler.GetLog() << "<FrameCounterStart Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << std::endl;
         #endif
         WorkScheduler.RunAllMonopolies(); //1
         WorkScheduler.CreateThreads();    //2
@@ -595,11 +589,11 @@ namespace Mezzanine
         WorkScheduler.JoinAllThreads();   //4
         WorkScheduler.ResetAllWorkUnits();//5
         #ifdef MEZZDEBUG
-        WorkScheduler.GetLog() << "<FrameCounterPrePause Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << endl;
+        WorkScheduler.GetLog() << "<FrameCounterPrePause Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << std::endl;
         #endif
         WorkScheduler.WaitUntilNextFrame(); //6
         #ifdef MEZZDEBUG
-        WorkScheduler.GetLog() << "<FrameCounterEnd Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << endl;
+        WorkScheduler.GetLog() << "<FrameCounterEnd Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << std::endl;
         #endif
     }
 

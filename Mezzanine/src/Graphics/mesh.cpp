@@ -43,7 +43,7 @@
 #include "Graphics/mesh.h"
 #include "Graphics/submesh.h"
 
-#include <Ogre.h>
+#include <OgreMesh.h>
 
 namespace Mezzanine
 {

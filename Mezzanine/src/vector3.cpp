@@ -46,12 +46,9 @@
 #include "serialization.h"
 #include "stringtool.h"
 #include "MathTools/mathtools.h"
-#ifndef SWIG
-    #include "XML/xml.h"
-#endif
 #include "XML/xml.h"            // Needed for streaming to xml
 
-#include <Ogre.h>
+#include <OgreVector3.h>
 #include "btBulletDynamicsCommon.h"
 
 #include <memory>

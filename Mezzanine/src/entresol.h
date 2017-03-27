@@ -286,10 +286,10 @@
 #endif
 
 //Other forward declarations
-//forward Declarations so that we do not need #include "SDL.h"
+//forward Declarations for SDL
 class SDL_Surface;
 
-//forward Declarations so that we do not need #include <Ogre.h>
+//forward Declarations for Ogre
 namespace Ogre
 {
     class ParticleFXPlugin;

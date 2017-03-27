@@ -42,7 +42,8 @@
 #define _graphicstechnique_cpp
 
 #include "Graphics/technique.h"
-#include <Ogre.h>
+
+#include <OgreTechnique.h>
 
 namespace Mezzanine
 {
