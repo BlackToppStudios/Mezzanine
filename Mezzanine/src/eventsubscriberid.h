@@ -104,6 +104,17 @@ namespace Mezzanine
         /// @return Returns a reference to this.
         EventSubscriberID& operator=(EventSubscriberID&& Other) = default;
 
+        /// @brief Equality comparison operator.
+        /// @param Other The other subscriber ID to compare with.
+        /// @return Returns true if this EventSubscriberID is the same as the other, false otherwise.
+        Boole operator==(const EventSubscriberID& Other) const
+            { return ( this->ID == Other.ID ); }
+        /// @brief Inequality comparison operator.
+        /// @param Other The other subscriber ID to compare with.
+        /// @return Returns true if this EventSubscriberID is not the same as the other, false otherwise.
+        Boole operator!=(const EventSubscriberID& Other) const
+            { return ( this->ID != Other.ID ); }
+
         /// @brief ID datatype conversion operator.
         /// @return Returns the underlying identifier for the subscriber.
         operator IDType() const

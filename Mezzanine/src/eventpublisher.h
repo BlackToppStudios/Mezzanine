@@ -43,7 +43,7 @@
 #include "hashedstring.h"
 #include "exception.h"
 #include "sortedvector.h"
-#include "eventsubscribertable.h"
+#include "eventsubscriptiontable.h"
 
 namespace Mezzanine
 {
@@ -131,9 +131,9 @@ namespace Mezzanine
     /// There are a few dont's to keep in mind while using the Mezzanine Event System:
     ///     - Due to the use of pointers to publishers (in bindings), it is advised to avoid storing EventPublishers
     ///       where their address may become invalidated.
-    ///     - Do not attempt to remove subscribers or destroy the publisher/subscriber table during the dispatch sequence.
-    ///       The system offers no guarantees that it'll work, although it might.  Robust support for this may be added
-    ///       in the future but does not exist at the time of this writing.
+    ///     - Do not attempt to add/remove subscribers or destroy the publisher/subscription table during the dispatch
+    ///       sequence.  The system offers no guarantees that it'll work, although it might.  Robust support for this
+    ///       may be added in the future but does not exist at the time of this writing.
     ///     - When using the event system to communicate across multiple threads (or in the context of the Mezzanine,
     ///       across WorkUnits) it is STRONGLY recommended that you store the dispatched Events in a thread-safe Queue
     ///       and process the Events later, instead of trying to process them immediately.  It's far to easy to create
@@ -146,14 +146,14 @@ namespace Mezzanine
 	{
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
-        using CallbackType = EventSubscriberTable::CallbackType;
+        using CallbackType = EventSubscriptionTable::CallbackType;
         /// @brief Type used to identify the subscriber uniquely.
-        using SubscriberID = EventSubscriberTable::SubscriberID;
-        /// @brief Basic container type for @ref EventSubscriberTable storage by this class.
-        using EventTableContainer = SortedVector<EventSubscriberTable>;
-        /// @brief Iterator type for @ref EventSubscriberTable instances stored by this class.
+        using SubscriberID = EventSubscriptionTable::SubscriberID;
+        /// @brief Basic container type for @ref EventSubscriptionTable storage by this class.
+        using EventTableContainer = SortedVector<EventSubscriptionTable>;
+        /// @brief Iterator type for @ref EventSubscriptionTable instances stored by this class.
         using EventTableIterator = EventTableContainer::iterator;
-        /// @brief Const Iterator type for @ref EventSubscriberTable instances stored by this class.
+        /// @brief Const Iterator type for @ref EventSubscriptionTable instances stored by this class.
         using ConstEventTableIterator = EventTableContainer::const_iterator;
     protected:
         /// @brief A container storing all the Events published by this class by name.
@@ -164,8 +164,8 @@ namespace Mezzanine
         /// @brief Class constructor.
         EventPublisher();
         /// @brief Reserving constructor.
-        /// @param EventCount The number of events to expect this publisher is expected to be populated with.
-        EventPublisher(const Whole EventCount);
+        /// @param EventCapacity The number of events to expect this publisher is expected to be populated with.
+        EventPublisher(const Whole EventCapacity);
         /// @brief Copy constructor.
         /// @param Other The other publisher to be copied.
         EventPublisher(const EventPublisher& Other) = default;
@@ -204,24 +204,24 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Event Table Management
 
-        /// @brief Creates a new event this Publisher can fire.
-        /// @note If the event already exists, this will return the created event instead.
-        /// @param EventName The name to be given to the new event.
-        /// @return Returns an iterator to the created or existing event.
+        /// @brief Creates a new event table representing an event that can be subscribed to.
+        /// @exception If a subscription table with that name already exists it will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
+        /// @param EventName The name to be given to the new event subscription table.
+        /// @return Returns an iterator to the created event table.
         EventTableIterator AddEventTable(const HashedString32& EventName);
-        /// @brief Checks to see if an event is registered with and has a subscriber table in this publisher.
-        /// @param EventName The name of the event to check for.
+        /// @brief Checks to see if an event table is registered with and has a subscriber table in this publisher.
+        /// @param EventName The name of the table to check for.
         /// @return Returns true of the named event table is present in this publisher.
         Boole HasEventTable(const HashedString32& EventName) const;
-        /// @brief Checks to see if an event is registered with and has a subscriber table in this publisher.
+        /// @brief Checks to see if an event table is registered with and has a subscriber table in this publisher.
         /// @remarks The HashedString32 overload of this method should be used instead where possible.
-        /// @param EventHash The generated hash for the event name to check for.
+        /// @param EventHash The generated hash for the table name to check for.
         /// @return Returns true of the named event table is present in this publisher.
         Boole HasEventTable(const Int32 EventHash) const;
 
         /// @brief Gets an event table in this publisher.
-        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
-        /// @param EventName The name of the event to retrieve.
+        /// @exception If this fails to find the table specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventName The name of the table to retrieve.
         /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
         EventTableIterator GetEventTable(const HashedString32& EventName);
         /// @brief Gets an event table in this publisher.

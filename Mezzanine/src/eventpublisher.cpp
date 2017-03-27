@@ -51,9 +51,9 @@ namespace Mezzanine
         MuteEvents(false)
         {  }
 
-    EventPublisher::EventPublisher(const Whole EventCount) :
+    EventPublisher::EventPublisher(const Whole EventCapacity) :
         MuteEvents(false)
-        { this->EventTables.reserve(EventCount); }
+        { this->EventTables.reserve(EventCapacity); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
@@ -81,11 +81,11 @@ namespace Mezzanine
     {
         EventTableIterator EvIt = this->EventTables.find(EventName);
         if( EvIt == this->EventTables.end() ) {
-            return this->EventTables.add_emplace([](const EventSubscriberTable& EvTable, const HashedString32& EventName) {
+            return this->EventTables.add_emplace([](const EventSubscriptionTable& EvTable, const HashedString32& EventName) {
                 return EvTable.GetName() < EventName;
             }, EventName);
         }else{
-            return EvIt;
+            MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"An EventSubscriptionTable with the name \"" + EventName + "\" already exists!");
         }
     }
 
@@ -97,7 +97,7 @@ namespace Mezzanine
 
     Boole EventPublisher::HasEventTable(const Int32 EventHash) const
     {
-        for( const EventSubscriberTable& CurrTable : this->EventTables )
+        for( const EventSubscriptionTable& CurrTable : this->EventTables )
         {
             if( CurrTable.GetName().GetHash() == EventHash ) {
                 return true;
@@ -179,14 +179,14 @@ namespace Mezzanine
 
     void EventPublisher::Unsubscribe(SubscriberID ID)
     {
-        for( EventSubscriberTable& CurrTable : this->EventTables )
+        for( EventSubscriptionTable& CurrTable : this->EventTables )
             { CurrTable.Unsubscribe(ID); }
     }
 
     Whole EventPublisher::UnsubscribeAll()
     {
         Whole Ret = 0;
-        for( EventSubscriberTable& CurrTable : this->EventTables )
+        for( EventSubscriptionTable& CurrTable : this->EventTables )
             { Ret += CurrTable.UnsubscribeAll(); }
         return Ret;
     }

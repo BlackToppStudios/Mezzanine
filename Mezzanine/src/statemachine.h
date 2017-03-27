@@ -127,7 +127,7 @@ namespace Mezzanine
             /// immediately after construction
             /// @note This is the preferred constructor because it can copy the hashes from the
             /// HashString32 and not recalculate it.
-            StateMachine(const HashedString32& InitialState);
+            explicit StateMachine(const HashedString32& InitialState);
 
             /// @brief Empty destructor
             ~StateMachine();

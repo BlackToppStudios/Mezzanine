@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventsubscribertable_h
-#define _eventsubscribertable_h
+#ifndef _eventsubscriptiontable_h
+#define _eventsubscriptiontable_h
 
 #include "hashedstring.h"
 #include "eventsubscriberbinding.h"
@@ -51,7 +51,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     ///////////////////////////////////////
-	class MEZZ_LIB EventSubscriberTable
+	class MEZZ_LIB EventSubscriptionTable
 	{
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
@@ -71,18 +71,18 @@ namespace Mezzanine
         HashedString32 EventName;
     public:
         /// @brief Blank constructor.
-        EventSubscriberTable() = delete;
+        EventSubscriptionTable() = delete;
         /// @brief Copy constructor.
         /// @param Other The other table to be copied.
-        EventSubscriberTable(const EventSubscriberTable& Other) = default;
+        EventSubscriptionTable(const EventSubscriptionTable& Other) = default;
         /// @brief Move constructor.
         /// @param Other The other table to be moved.
-        EventSubscriberTable(EventSubscriberTable&& Other) = default;
+        EventSubscriptionTable(EventSubscriptionTable&& Other) = default;
         /// @brief Class constructor.
         /// @param Name The name to be given to this event.
-        EventSubscriberTable(const HashedString32& Name);
+        EventSubscriptionTable(const HashedString32& Name);
         /// @brief Class destructor.
-        ~EventSubscriberTable();
+        ~EventSubscriptionTable();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
@@ -90,16 +90,16 @@ namespace Mezzanine
         /// @brief Assignment operator.
         /// @param Other The other table to be copied.
         /// @return Returns a reference to this.
-        EventSubscriberTable& operator=(const EventSubscriberTable& Other) = default;
+        EventSubscriptionTable& operator=(const EventSubscriptionTable& Other) = default;
         /// @brief Move assignment operator.
         /// @param Other The other table to be moved.
         /// @return Returns a reference to this.
-        EventSubscriberTable& operator=(EventSubscriberTable&& Other) = default;
+        EventSubscriptionTable& operator=(EventSubscriptionTable&& Other) = default;
 
         /// @brief Less-than operator.
         /// @param Other The other table to be compared to.
         /// @return Returns true if this table is considered less than the other, or should be sorted before the other table.
-        Boole operator<(const EventSubscriberTable& Other) const;
+        Boole operator<(const EventSubscriptionTable& Other) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -136,7 +136,7 @@ namespace Mezzanine
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
         void _DispatchEvent(EventPtr Args) const;
-	};//EventSubscriberTable
+	};//EventSubscriptionTable
 
     /// @}
 }//Mezzanine
