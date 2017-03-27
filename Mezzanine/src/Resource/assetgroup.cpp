@@ -44,7 +44,8 @@
 #include "memorystream.h"
 #include "filestream.h"
 
-#include <Ogre.h>
+#include <OgreResourceGroupManager.h>
+#include <OgreDataStream.h>
 
 namespace Mezzanine
 {

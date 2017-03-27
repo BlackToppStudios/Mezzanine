@@ -50,7 +50,9 @@
 #include "serialization.h"
 #include "stringtool.h"
 
-#include <Ogre.h>
+#include <OgreSceneManager.h>
+#include <OgreSceneNode.h>
+#include <OgreLight.h>
 
 namespace
 {

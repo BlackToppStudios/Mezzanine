@@ -48,7 +48,7 @@
 #include "matrix3x3.h"
 #include "exception.h"
 
-#include <Ogre.h>
+#include <OgreQuaternion.h>
 #include "btBulletDynamicsCommon.h"
 
 #include <cmath>

@@ -48,6 +48,11 @@
 
 #include "Resource/resourcemanager.h"
 
+#include <OgreMesh.h>
+#include <OgreSkeleton.h>
+#include <OgreSkeletonManager.h>
+#include <OgreSkeletonSerializer.h>
+
 namespace Mezzanine
 {
     namespace Internal

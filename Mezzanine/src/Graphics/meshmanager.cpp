@@ -48,7 +48,8 @@
 
 #include "Internal/iostreamwrapper.h.cpp"
 
-#include <Ogre.h>
+#include <OgreMeshManager.h>
+#include <OgreMeshSerializer.h>
 
 namespace Mezzanine
 {

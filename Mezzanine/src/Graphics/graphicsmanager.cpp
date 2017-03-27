@@ -55,7 +55,12 @@
 #include "entresol.h"
 
 #include <SDL.h>
-#include <Ogre.h>
+
+#include <OgreRoot.h>
+#include <OgreRenderSystem.h>
+#include <OgreRenderSystemCapabilities.h>
+#include <OgreRenderWindow.h>
+#include <OgreWindowEventUtilities.h>
 
 #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
 #include "d3d9rendersyshelper.h.cpp"

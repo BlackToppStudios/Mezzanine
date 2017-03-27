@@ -66,7 +66,12 @@
 #include "stringtool.h"
 #include "entresol.h"
 
-#include <Ogre.h>
+#include <OgreMesh.h>
+#include <OgreSubMesh.h>
+#include <OgreHardwareBufferManager.h>
+#include <OgreHardwareVertexBuffer.h>
+#include <OgreHardwareIndexBuffer.h>
+
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 #include "BulletCollision/CollisionShapes/btShapeHull.h"

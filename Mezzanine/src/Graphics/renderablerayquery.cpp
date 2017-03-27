@@ -56,7 +56,11 @@
 #include "world.h"
 #include "managerbase.h"
 
-#include <Ogre.h>
+#include <OgreSceneManager.h>
+#include <OgreEntity.h>
+#include <OgreParticleSystem.h>
+#include <OgreParticleSystemManager.h>
+#include <OgreBillboardSet.h>
 #include <OgreBillboardParticleRenderer.h>
 
 #include <limits>

@@ -42,7 +42,8 @@
 #define _graphicsmaterial_cpp
 
 #include "Graphics/material.h"
-#include <Ogre.h>
+
+#include <OgreMaterial.h>
 
 namespace Mezzanine
 {

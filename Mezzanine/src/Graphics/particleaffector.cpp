@@ -47,7 +47,7 @@
 #include "serialization.h"
 #include "stringtool.h"
 
-#include <Ogre.h>
+#include <OgreParticleAffector.h>
 
 namespace Mezzanine
 {

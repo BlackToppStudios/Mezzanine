@@ -63,7 +63,8 @@
 
 #include <memory>
 
-#include <Ogre.h>
+#include <OgreRoot.h>
+#include <OgreSceneManager.h>
 
 namespace Mezzanine
 {

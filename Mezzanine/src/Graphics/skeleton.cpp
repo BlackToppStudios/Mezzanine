@@ -43,7 +43,7 @@
 #include "Graphics/skeleton.h"
 #include "Graphics/bone.h"
 
-#include <Ogre.h>
+#include <OgreSkeleton.h>
 
 namespace Mezzanine
 {
