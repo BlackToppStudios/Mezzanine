@@ -65,19 +65,21 @@ class eventstests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            //TestFunctor Func(TestOutput);
+            {//EventSubscriberID
 
-            //TestPublisher Pub;
+            }//EventSubscriberID
 
+            {//EventSubscriberBinding
 
-            // Why does one of these segfault and the other does not?
-            //EventSubscriberSlot* temp = Pub.Subscribe("test", &Func, false);
-            //Pub.Subscribe("test", &Func, false);
+            }//EventSubscriberBinding
 
+            {//EventSubscriptionTable
 
-            //Pub.DoTest();
-            //FunctorSubscriber Sub;
+            }//EventSubscriptionTable
 
+            {//EventPublisher
+
+            }//EventPublisher
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
