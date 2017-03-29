@@ -52,7 +52,7 @@
 /* Signed size type formatter */
 #define TIFF_SSIZE_FORMAT "%ld"
 
-/* 
+/*
 -----------------------------------------------------------------------
 Byte order
 -----------------------------------------------------------------------
@@ -82,7 +82,7 @@ If your big endian system isn't being detected, add an OS specific check
 #undef HOST_BIGENDIAN
 #endif // BYTE_ORDER
 
-#ifdef _WIN32
+#ifdef MSC_VER//_WIN32
 #define snprintf _snprintf
 #define lfind _lfind
 #endif // _WIN32
