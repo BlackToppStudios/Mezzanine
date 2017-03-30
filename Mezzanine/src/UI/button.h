@@ -88,11 +88,11 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "Button".
             static const String TypeName;
             /// @brief Event name for when this activatable widget is activated.
-            static const HashedString32 EventActivated;
+            static const EventNameType EventActivated;
             /// @brief Event name for when this activatable widget is put into standby.
-            static const HashedString32 EventStandby;
+            static const EventNameType EventStandby;
             /// @brief Event name for when this activatable widget is deactivated.
-            static const HashedString32 EventDeactivated;
+            static const EventNameType EventDeactivated;
         protected:
             /// @internal
             /// @brief A container of codes that stores the inputs that will trigger this button to be activated.

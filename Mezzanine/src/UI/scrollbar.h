@@ -71,7 +71,7 @@ namespace Mezzanine
             /// @param Source The identification of the widget firing this event.
             /// @param OldValue The pre-update value of the calling scrollbar.
             /// @param NewValue The post-update value of the calling scrollbar.
-            ScrollValueChangedEvent(const HashedString32& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
+            ScrollValueChangedEvent(const EventNameType& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
                 WidgetEvent(Name,Source), OldScrollerValue(OldValue), NewScrollerValue(NewValue) {  }
             /// @brief Class destructor.
             virtual ~ScrollValueChangedEvent() = default;
@@ -96,7 +96,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "Scrollbar".
             static const String TypeName;
             /// @brief Event name for when this scrollbar has his scrollvalue updated.
-            static const HashedString32 EventScrollValueChanged;
+            static const EventNameType EventScrollValueChanged;
         protected:
             /// @internal
             /// @brief The manipulatable widget that represents the current position on the scrollbar/slider.

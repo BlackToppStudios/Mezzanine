@@ -56,8 +56,6 @@ namespace Mezzanine
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
         using CallbackType = EventSubscriberBinding::CallbackType;
-        /// @brief Type used to identify the subscriber uniquely.
-        using SubscriberID = EventSubscriberBinding::SubscriberID;
         /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
         using BindingContainer = std::vector<EventSubscriberBindingPtr>;
         /// @brief Iterator type for subscriber bindings stored by this table.
@@ -68,7 +66,7 @@ namespace Mezzanine
         /// @brief A container of all the subscriber bindings to this event table.
         BindingContainer Bindings;
         /// @brief The name of the Event the subscribers in this table are subscribed to.
-        HashedString32 EventName;
+        EventNameType EventName;
     public:
         /// @brief Blank constructor.
         EventSubscriptionTable() = delete;
@@ -80,7 +78,7 @@ namespace Mezzanine
         EventSubscriptionTable(EventSubscriptionTable&& Other) = default;
         /// @brief Class constructor.
         /// @param Name The name to be given to this event.
-        EventSubscriptionTable(const HashedString32& Name);
+        EventSubscriptionTable(const EventNameType& Name);
         /// @brief Class destructor.
         ~EventSubscriptionTable();
 
@@ -106,7 +104,7 @@ namespace Mezzanine
 
         /// @brief Gets the name of the event associated with this table.
         /// @return Returns a const reference of a hashed string containing the name of this event.
-        const HashedString32& GetName() const;
+        const EventNameType& GetName() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Subscription Management
@@ -116,15 +114,15 @@ namespace Mezzanine
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
         /// @param Delegate The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberBindingPtr Subscribe(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub);
+        EventSubscriberBindingPtr Subscribe(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub);
         /// @brief Gets a binding by the subscriber ID.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
         /// @return Returns the binding with the specified ID, or NULL of none exists.
-        EventSubscriberBindingPtr GetBinding(SubscriberID ID);
+        EventSubscriberBindingPtr GetBinding(EventSubscriberID ID);
 
         /// @brief Removes a single subscriber from this event table.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(SubscriberID ID);
+        void Unsubscribe(EventSubscriberID ID);
         /// @brief Removes all subscribers from all events in this publisher.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();

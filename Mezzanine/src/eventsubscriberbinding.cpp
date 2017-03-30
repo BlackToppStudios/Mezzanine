@@ -45,7 +45,7 @@
 
 namespace Mezzanine
 {
-    EventSubscriberBinding::EventSubscriberBinding(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub, const Int32 Hash) :
+    EventSubscriberBinding::EventSubscriberBinding(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub, const EventHashType Hash) :
         Callback(Delegate),
         SubID(ID),
         Publisher(Pub),
@@ -61,13 +61,13 @@ namespace Mezzanine
     const EventSubscriberBinding::CallbackType& EventSubscriberBinding::GetCallback() const
         { return this->Callback; }
 
-    EventSubscriberBinding::SubscriberID EventSubscriberBinding::GetSubID() const
+    EventSubscriberID EventSubscriberBinding::GetSubID() const
         { return this->SubID; }
 
     EventPublisher* EventSubscriberBinding::GetPublisher() const
         { return this->Publisher; }
 
-    Int32 EventSubscriberBinding::GetEventHash() const
+    EventHashType EventSubscriberBinding::GetEventHash() const
         { return this->NameHash; }
 
     Boole EventSubscriberBinding::IsSubscribed() const
@@ -82,7 +82,7 @@ namespace Mezzanine
     void EventSubscriberBinding::Unbind()
     {
         this->Publisher = NULL;
-        this->NameHash = HashedString32::EmptyHash;
+        this->NameHash = EventNameType::EmptyHash;
     }
 
     void EventSubscriberBinding::DispatchEvent(EventPtr Args) const

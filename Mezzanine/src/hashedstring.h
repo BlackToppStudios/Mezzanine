@@ -65,8 +65,10 @@ namespace Mezzanine
     class MEZZ_LIB HashedString32
     {
     public:
+        /// @brief The type of the computed hash.
+        using HashType = Int32;
         /// @brief The hash value of an empty string ("").
-        static const Int32 EmptyHash = 1364076727;
+        static const HashType EmptyHash = 1364076727;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -74,11 +76,11 @@ namespace Mezzanine
         /// @brief Compute a MurmurA aka MurmurX86-32bit has of a string and return it.
         /// @param ToBeHashed The string to hash
         /// @return A 32 bit value approximating unique, which represents the passed string.
-        static Int32 Murmur32bit(const String& ToBeHashed);
+        static HashType Murmur32bit(const String& ToBeHashed);
         /// @brief Compute a MurmurA aka MurmurX86-32bit has of a string and return it.
         /// @param ToBeHashed The string to hash
         /// @return A 32 bit value approximating unique, which represents the passed string.
-        static Int32 Murmur32bit(const char* ToBeHashed);
+        static HashType Murmur32bit(const char* ToBeHashed);
 
     protected:
         ///////////////////////////////////////////////////////////////////////////////
@@ -87,7 +89,7 @@ namespace Mezzanine
         /// The Actual string to store.
         String TheString;
         /// @brief The computed hash.
-        Int32 Hash;
+        HashType Hash;
 
     public:
         ///////////////////////////////////////////////////////////////////////////////
@@ -108,7 +110,7 @@ namespace Mezzanine
         /// @param StartingString The String to work with
         /// @param PrecomputedHash The value
         /// @details Does not Compute the hash of the String, Just trusts whatever it is given.
-        HashedString32(const String& StartingString, Int32 PrecomputedHash);
+        HashedString32(const String& StartingString, HashType PrecomputedHash);
         /// @brief Copy constructor
         /// @param StartingString The other hashed string
         HashedString32(const HashedString32& StartingString) = default;
@@ -166,8 +168,8 @@ namespace Mezzanine
         // Data Modifiers/observers
 
         /// @brief Gets the hash generated from the provided string.
-        /// @return Returns an Int32 with the hash in it.
-        Int32 GetHash() const;
+        /// @return Returns a HashType with the hash in it.
+        HashType GetHash() const;
         /// @brief Get the string that was used to calculate the hash.
         /// @return Returns the underlying string.
         const String& GetString() const;

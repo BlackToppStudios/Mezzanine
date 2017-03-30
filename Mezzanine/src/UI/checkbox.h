@@ -70,9 +70,9 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "CheckBox".
             static const String TypeName;
             /// @brief Event name for when this checkbox is Selected.
-            static const HashedString32 EventSelected;
+            static const EventNameType EventSelected;
             /// @brief Event name for when this checkbox is Deselected.
-            static const HashedString32 EventDeselected;
+            static const EventNameType EventDeselected;
         protected:
             /// @internal
             /// @brief Stores whether or not the current state of this CheckBox is locked.

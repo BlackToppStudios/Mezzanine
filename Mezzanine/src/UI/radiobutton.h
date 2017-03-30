@@ -61,7 +61,7 @@ namespace Mezzanine
             typedef RadioButtonContainer::const_iterator            ConstRadioButtonIterator;
 
             /// @brief Event name for when the selection among radio buttons has changed.
-            static const HashedString32 EventGroupButtonSelected;
+            static const EventNameType EventGroupButtonSelected;
         protected:
             /// @internal
             /// @brief A container storing all the RadioButtons belonging to this group.

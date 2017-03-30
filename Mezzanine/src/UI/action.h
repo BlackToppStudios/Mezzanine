@@ -66,7 +66,7 @@ namespace Mezzanine
             /// @brief Class constructor.
             /// @param Name The name of the event being fired.
             /// @param Source The identification of the action firing this event.
-            ActionEvent(const HashedString32& Name, const String& Source) :
+            ActionEvent(const EventNameType& Name, const String& Source) :
                 Event(Name), ActionName(Source) {  }
             /// @brief Class destructor.
             virtual ~ActionEvent() {  }
@@ -79,9 +79,9 @@ namespace Mezzanine
         {
         public:
             /// @brief Event name for when this Action is activated.
-            static const HashedString32 EventActionActivated;
+            static const EventNameType EventActionActivated;
             /// @brief Event name for when this Action is deactivated.
-            static const HashedString32 EventActionDeactivated;
+            static const EventNameType EventActionDeactivated;
         protected:
             friend class ActionHandler;
             /// @internal

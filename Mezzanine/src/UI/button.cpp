@@ -50,9 +50,9 @@ namespace Mezzanine
     {
         const String Button::TypeName = "Button";
 
-        const HashedString32 Button::EventActivated = "Activated";
-        const HashedString32 Button::EventStandby = "Standby";
-        const HashedString32 Button::EventDeactivated = "Deactivated";
+        const EventNameType Button::EventActivated = "Activated";
+        const EventNameType Button::EventStandby = "Standby";
+        const EventNameType Button::EventDeactivated = "Deactivated";
 
         ///////////////////////////////////////////////////////////////////////////////
         // Button Methods

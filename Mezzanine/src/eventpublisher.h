@@ -89,7 +89,7 @@ namespace Mezzanine
     ///       Enums are great, however since publishers are their own event ecosystems, and nothing stops a
     ///       subscriber from subscribing to multiple publishers it would be possible for event enums between
     ///       publishers to have the same value, which can be difficult to sort out in the subscriber logic.
-    ///       Instead we use hashed strings (HashedString32) to define our events which are potentially more
+    ///       Instead we use hashed strings (EventNameType) to define our events which are potentially more
     ///       descriptive as well as easier to distinguish and extend than enums.  It can also facilitate
     ///       integration in data driven systems.
     ///     - Flexible Subscriber IDs. @n
@@ -102,7 +102,7 @@ namespace Mezzanine
     /// and then subscribe objects to those events, and when appropriate fire events that occur.
     /// @n @n
     /// Once an EventPublisher is created you should add subscriber tables to it for each event you want it to dispatch.
-    /// You do this by calling EventPublisher::AddEventTable(const HashedString32&).  If the named event already exists
+    /// You do this by calling EventPublisher::AddEventTable(const EventNameType&).  If the named event already exists
     /// then this will return an iterator to the pre-existing table.  Otherwise you'll get an iterator to the created
     /// table, either way you get a valid table.  The underlying implementation does sort the table based on the hash
     /// of the event name AND it does so in a vector.  So there's two reasons to not expect the iterator you are given
@@ -147,8 +147,6 @@ namespace Mezzanine
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
         using CallbackType = EventSubscriptionTable::CallbackType;
-        /// @brief Type used to identify the subscriber uniquely.
-        using SubscriberID = EventSubscriptionTable::SubscriberID;
         /// @brief Basic container type for @ref EventSubscriptionTable storage by this class.
         using EventTableContainer = SortedVector<EventSubscriptionTable>;
         /// @brief Iterator type for @ref EventSubscriptionTable instances stored by this class.
@@ -208,13 +206,13 @@ namespace Mezzanine
         /// @exception If a subscription table with that name already exists it will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
         /// @param EventName The name to be given to the new event subscription table.
         /// @return Returns an iterator to the created event table.
-        EventTableIterator AddEventTable(const HashedString32& EventName);
+        EventTableIterator AddEventTable(const EventNameType& EventName);
         /// @brief Checks to see if an event table is registered with and has a subscriber table in this publisher.
         /// @param EventName The name of the table to check for.
         /// @return Returns true of the named event table is present in this publisher.
-        Boole HasEventTable(const HashedString32& EventName) const;
+        Boole HasEventTable(const EventNameType& EventName) const;
         /// @brief Checks to see if an event table is registered with and has a subscriber table in this publisher.
-        /// @remarks The HashedString32 overload of this method should be used instead where possible.
+        /// @remarks The EventNameType overload of this method should be used instead where possible.
         /// @param EventHash The generated hash for the table name to check for.
         /// @return Returns true of the named event table is present in this publisher.
         Boole HasEventTable(const Int32 EventHash) const;
@@ -223,9 +221,9 @@ namespace Mezzanine
         /// @exception If this fails to find the table specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the table to retrieve.
         /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
-        EventTableIterator GetEventTable(const HashedString32& EventName);
+        EventTableIterator GetEventTable(const EventNameType& EventName);
         /// @brief Gets an event table in this publisher.
-        /// @remarks The HashedString32 overload of this method should be used instead where possible.
+        /// @remarks The EventNameType overload of this method should be used instead where possible.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventHash The generated hash for the event name to retrieve.
         /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
@@ -234,9 +232,9 @@ namespace Mezzanine
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to retrieve.
         /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
-        ConstEventTableIterator GetEventTable(const HashedString32& EventName) const;
+        ConstEventTableIterator GetEventTable(const EventNameType& EventName) const;
         /// @brief Gets an event table in this publisher.
-        /// @remarks The HashedString32 overload of this method should be used instead where possible.
+        /// @remarks The EventNameType overload of this method should be used instead where possible.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventHash The generated hash for the event name to retrieve.
         /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
@@ -244,7 +242,7 @@ namespace Mezzanine
 
         /// @brief Removes an existing event in this Publisher.
         /// @param EventName The name of the event to be removed.
-        void RemoveEventTable(const HashedString32& EventName);
+        void RemoveEventTable(const EventNameType& EventName);
         /// @brief Removes all events in this Publisher.
         void RemoveAllEventTables();
 
@@ -257,22 +255,22 @@ namespace Mezzanine
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
         /// @param Delegate The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberBindingPtr Subscribe(const HashedString32& EventName, SubscriberID ID, const CallbackType& Delegate);
+        EventSubscriberBindingPtr Subscribe(const EventNameType& EventName, EventSubscriberID ID, const CallbackType& Delegate);
 
         /// @brief Removes a single subscriber from the named event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(const HashedString32& EventName, SubscriberID ID);
+        void Unsubscribe(const EventNameType& EventName, EventSubscriberID ID);
         /// @brief Removes all subscribers from the named Event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeAll(const HashedString32& EventName);
+        Whole UnsubscribeAll(const EventNameType& EventName);
 
         /// @brief Removes a single subscriber from all events in this publisher.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(SubscriberID ID);
+        void Unsubscribe(EventSubscriberID ID);
         /// @brief Removes all subscribers from all events in this publisher.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();

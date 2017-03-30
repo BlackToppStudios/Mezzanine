@@ -45,7 +45,7 @@
 
 namespace Mezzanine
 {
-    EventSubscriptionTable::EventSubscriptionTable(const HashedString32& Name) :
+    EventSubscriptionTable::EventSubscriptionTable(const EventNameType& Name) :
         EventName(Name)
         {  }
 
@@ -61,13 +61,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    const HashedString32& EventSubscriptionTable::GetName() const
+    const EventNameType& EventSubscriptionTable::GetName() const
         { return this->EventName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Subscription Management
 
-    EventSubscriberBindingPtr EventSubscriptionTable::Subscribe(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub)
+    EventSubscriberBindingPtr EventSubscriptionTable::Subscribe(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub)
     {
         EventSubscriberBindingPtr NewBinding = this->GetBinding(ID);
         if( NewBinding.use_count() > 0 /* != NULL */ ) {
@@ -78,7 +78,7 @@ namespace Mezzanine
         return NewBinding;
     }
 
-    EventSubscriberBindingPtr EventSubscriptionTable::GetBinding(SubscriberID ID)
+    EventSubscriberBindingPtr EventSubscriptionTable::GetBinding(EventSubscriberID ID)
     {
         for( BindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
         {
@@ -89,7 +89,7 @@ namespace Mezzanine
         return NULL;
     }
 
-    void EventSubscriptionTable::Unsubscribe(SubscriberID ID)
+    void EventSubscriptionTable::Unsubscribe(EventSubscriberID ID)
     {
         for( BindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
         {

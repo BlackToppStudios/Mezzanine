@@ -49,16 +49,16 @@
 
 namespace Mezzanine
 {
-    Int32 HashedString32::Murmur32bit(const String& ToBeHashed)
+    HashedString32::HashType HashedString32::Murmur32bit(const String& ToBeHashed)
     {
-        Int32 Results = 0;
+        HashType Results = 0;
         Internal::MurmurHash3_x86_32(ToBeHashed.data(), ToBeHashed.size(), HASHED_STRING_32_SEED, &Results );
         return Results;
     }
 
-    Int32 HashedString32::Murmur32bit(const char* ToBeHashed)
+    HashedString32::HashType HashedString32::Murmur32bit(const char* ToBeHashed)
     {
-        Int32 Results = 0;
+        HashType Results = 0;
         Internal::MurmurHash3_x86_32(ToBeHashed, strlen(ToBeHashed), HASHED_STRING_32_SEED, &Results );
         return Results;
     }
@@ -78,7 +78,7 @@ namespace Mezzanine
         TheString(StartingString), Hash(Murmur32bit(StartingString))
         {  }
 
-    HashedString32::HashedString32(const String& StartingString, Int32 PrecomputedHash) :
+    HashedString32::HashedString32(const String& StartingString, HashType PrecomputedHash) :
         TheString(StartingString), Hash(PrecomputedHash)
         {  }
 
@@ -134,7 +134,7 @@ namespace Mezzanine
         { return HashedString32::EmptyHash == Hash; }
 
 
-    Int32 HashedString32::GetHash() const
+    HashedString32::HashType HashedString32::GetHash() const
         { return Hash; }
 
     const String& HashedString32::GetString() const

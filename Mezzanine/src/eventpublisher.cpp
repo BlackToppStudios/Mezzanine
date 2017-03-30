@@ -77,11 +77,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Event Table Management
 
-    EventPublisher::EventTableIterator EventPublisher::AddEventTable(const HashedString32& EventName)
+    EventPublisher::EventTableIterator EventPublisher::AddEventTable(const EventNameType& EventName)
     {
         EventTableIterator EvIt = this->EventTables.find(EventName);
         if( EvIt == this->EventTables.end() ) {
-            return this->EventTables.add_emplace([](const EventSubscriptionTable& EvTable, const HashedString32& EventName) {
+            return this->EventTables.add_emplace([](const EventSubscriptionTable& EvTable, const EventNameType& EventName) {
                 return EvTable.GetName() < EventName;
             }, EventName);
         }else{
@@ -89,7 +89,7 @@ namespace Mezzanine
         }
     }
 
-    Boole EventPublisher::HasEventTable(const HashedString32& EventName) const
+    Boole EventPublisher::HasEventTable(const EventNameType& EventName) const
     {
         ConstEventTableIterator EvIt = this->EventTables.find(EventName);
         return EvIt != this->EventTables.end();
@@ -106,7 +106,7 @@ namespace Mezzanine
         return false;
     }
 
-    EventPublisher::EventTableIterator EventPublisher::GetEventTable(const HashedString32& EventName)
+    EventPublisher::EventTableIterator EventPublisher::GetEventTable(const EventNameType& EventName)
     {
         EventTableIterator EvIt = this->EventTables.find(EventName);
         if( EvIt != this->EventTables.end() ) {
@@ -130,7 +130,7 @@ namespace Mezzanine
         MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
     }
 
-    EventPublisher::ConstEventTableIterator EventPublisher::GetEventTable(const HashedString32& EventName) const
+    EventPublisher::ConstEventTableIterator EventPublisher::GetEventTable(const EventNameType& EventName) const
     {
         ConstEventTableIterator EvIt = this->EventTables.find(EventName);
         if( EvIt != this->EventTables.end() ) {
@@ -154,7 +154,7 @@ namespace Mezzanine
         MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
     }
 
-    void EventPublisher::RemoveEventTable(const HashedString32& EventName)
+    void EventPublisher::RemoveEventTable(const EventNameType& EventName)
     {
         EventTableIterator EvIt = this->EventTables.find(EventName);
         if( EvIt != this->EventTables.end() ) {
@@ -168,16 +168,16 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Subscription Management
 
-    EventSubscriberBindingPtr EventPublisher::Subscribe(const HashedString32& EventName, SubscriberID ID, const CallbackType& Delegate)
+    EventSubscriberBindingPtr EventPublisher::Subscribe(const EventNameType& EventName, EventSubscriberID ID, const CallbackType& Delegate)
         { return this->GetEventTable(EventName)->Subscribe(ID,Delegate,this); }
 
-    void EventPublisher::Unsubscribe(const HashedString32& EventName, SubscriberID ID)
+    void EventPublisher::Unsubscribe(const EventNameType& EventName, EventSubscriberID ID)
         { this->GetEventTable(EventName)->Unsubscribe(ID); }
 
-    Whole EventPublisher::UnsubscribeAll(const HashedString32& EventName)
+    Whole EventPublisher::UnsubscribeAll(const EventNameType& EventName)
         { return this->GetEventTable(EventName)->UnsubscribeAll(); }
 
-    void EventPublisher::Unsubscribe(SubscriberID ID)
+    void EventPublisher::Unsubscribe(EventSubscriberID ID)
     {
         for( EventSubscriptionTable& CurrTable : this->EventTables )
             { CurrTable.Unsubscribe(ID); }

@@ -56,7 +56,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RadioButtonGroup Static Members
 
-        const HashedString32 RadioButtonGroup::EventGroupButtonSelected = "GroupButtonSelected";
+        const EventNameType RadioButtonGroup::EventGroupButtonSelected = "GroupButtonSelected";
 
         ///////////////////////////////////////////////////////////////////////////////
         // RadioButtonGroup Methods

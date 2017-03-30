@@ -60,24 +60,22 @@ namespace Mezzanine
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
         using CallbackType = std::function< void(EventPtr) >;
-        /// @brief Type used to identify the subscriber uniquely.
-        using SubscriberID = EventSubscriberID;
     protected:
         /// @brief The delegate that will be called (if valid) when a desired event is fired.
         CallbackType Callback;
         /// @brief The unique identifier for the subscriber/delegate.
-        SubscriberID SubID;
+        EventSubscriberID SubID;
         /// @brief A pointer to the publisher dispatching the interested event.
         EventPublisher* Publisher;
         /// @brief The hash of the event name this binding is subscribed to.
-        Int32 NameHash;
+        EventHashType NameHash;
     public:
         /// @brief Descriptive constructor.
         /// @param ID The unique identifier for the subscriber/delegate.
         /// @param Delegate The callback to dispatch the event to.
         /// @param Pub A pointer to the publisher dispatching the interested event.
         /// @param Hash The hash of the event name this binding is subscribed to.
-        EventSubscriberBinding(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub, const Int32 Hash);
+        EventSubscriberBinding(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub, const EventHashType Hash);
         /// @brief Copy constructor.
         /// @param Other The other binding to not be copied.
         EventSubscriberBinding(const EventSubscriberBinding& Other) = delete;
@@ -107,13 +105,13 @@ namespace Mezzanine
         const CallbackType& GetCallback() const;
         /// @brief Gets the unique identifier of the subscriber.
         /// @return Returns a SubscriberID that uniquely identifies the subscription in the publisher.
-        SubscriberID GetSubID() const;
+        EventSubscriberID GetSubID() const;
         /// @brief Gets the publisher that has been subscribed to.
         /// @return Returns a pointer to the EventPublisher that the subscriber will receive events from.
         EventPublisher* GetPublisher() const;
         /// @brief Gets the hash of the event this binding is bound to.
         /// @return Returns the hash for the event name this binding is subscribed to.
-        Int32 GetEventHash() const;
+        EventHashType GetEventHash() const;
 
         /// @brief Check if this binding is still valid.
         /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
