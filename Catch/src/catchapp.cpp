@@ -58,6 +58,15 @@ CatchApp::CatchApp() :
     this->Picker.Initialize( static_cast<Input::InputManager*>( this->TheEntresol->GetManager(ManagerBase::MT_InputManager) )->GetSystemMouse(),
                              new Graphics::RenderableRayQuery( static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) ) ),
                              new PlaneDragger(PlaneOfPlay) );
+    this->PickerFilter = [this](const RayQueryHit& ToFilter) {
+        if( ToFilter.IsValid() ) {
+            WorldObject* ParentObject = ToFilter.Object->GetParentObject();
+            if( ParentObject->GetType() & Mezzanine::WO_AllDebris ) {
+                return this->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
+            }
+        }
+        return false;
+    };
 
     if( this->Profiles == NULL ) {
         this->Profiles = new ProfileManager(this->TheEntresol,"$ShareableAppData$/.Catch/Profiles/");
@@ -1999,6 +2008,9 @@ World* CatchApp::GetTheWorld() const
 
 MousePicker& CatchApp::GetPicker()
     { return this->Picker; }
+
+const MousePicker::FilterDelegate& CatchApp::GetPickerFilter() const
+    { return this->PickerFilter; }
 
 CatchApp::ThrowableContainer& CatchApp::GetThrowables()
     { return this->ThrownItems; }

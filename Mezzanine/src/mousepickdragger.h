@@ -66,13 +66,31 @@ namespace Mezzanine
     class MEZZ_LIB MousePickDragger
     {
     public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Types
+
+        /// @brief Convenience type for the delegate to use for custom filter of draggable bodies.
+        using FilterDelegate = std::function< Boole(const RayQueryHit&) >;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
+
         /// @brief Class destructor.
         virtual ~MousePickDragger() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
         /// @brief Determines a single target to be dragged from a container of candidates.
         /// @param Targets The container of candidates to choose from.
         /// @return Returns a pointer to the proxy that will be dragged.
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets) const = 0;
+        /// @brief Determines a single target to be dragged from a container of candidates.
+        /// @param Targets The container of candidates to choose from.
+        /// @param Filter A delegate to perform custom filtering of which bodies should and shouldn't be draggable.
+        /// @return Returns a pointer to the proxy that will be dragged.
+        virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const = 0;
+
         /// @brief Checks the parent WorldObject (if available) for more suitable proxies to be dragged.
         /// @param Target A pointer to the target to be dragged.
         /// @return Returns a pointer to a sibling WorldProxy from the parent WorldObject if a better match is found, or the Target parameter if not.
@@ -146,6 +164,8 @@ namespace Mezzanine
 
         /// @copydoc MousePickDragger::GetBestQueryHit(const RayQuery::ResultContainer&) const
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets) const;
+        /// @copydoc MousePickDragger::GetBestQueryHit(const RayQuery::ResultContainer&) const
+        virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const;
         /// @copydoc MousePickDragger::GetBestProxy(WorldProxy*) const
         virtual WorldProxy* GetBestProxy(WorldProxy* Target) const;
         /// @copydoc MousePickDragger::GetCurrentTarget() const
@@ -215,6 +235,8 @@ namespace Mezzanine
 
         /// @copydoc MousePickDragger::GetQueryHit(const RayQuery::ResultContainer&) const
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets) const;
+        /// @copydoc MousePickDragger::GetBestQueryHit(const RayQuery::ResultContainer&) const
+        virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const;
         /// @copydoc MousePickDragger::GetBestProxy(WorldProxy*) const
         virtual WorldProxy* GetBestProxy(WorldProxy* Target) const;
         /// @copydoc MousePickDragger::GetCurrentTarget() const

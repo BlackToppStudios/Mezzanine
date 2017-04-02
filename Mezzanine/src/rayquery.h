@@ -82,6 +82,15 @@ namespace Mezzanine
         /// @return Returns true if this has hit an actual object, false otherwise.
         Boole IsValid() const
             { return this->Object != NULL; }
+        /// @brief Gets whether or not this hit is of a valid and static object.
+        /// @return Returns true if this hit is valid and striking a static object.  Returns false if there is no hit or strikes a dynamic object.
+        Boole IsStatic() const
+            { return this->IsValid() && this->Object->IsStatic(); }
+        /// @brief Gets whether or not this hit is of a valid and dynamic object.
+        /// @return Returns true if this hit is valid and striking a dynamic object.  Returns false if there is no hit or strikes a static object.
+        Boole IsDynamic() const
+            { return this->IsValid() && !this->Object->IsStatic(); }
+
         /// @brief Gets the parent world object of the proxy hit by this ray query.
         /// @return Returns a WorldObject pointer to the parent of the it proxy.
         WorldObject* GetObjectParent() const

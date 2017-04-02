@@ -124,7 +124,7 @@ namespace Mezzanine
         return NULL;
     }
 
-    void MousePicker::Execute()
+    void MousePicker::Execute(const FilterDelegate& Filter)
     {
         Input::ButtonState LeftClickState = this->Selector->GetButtonState(1);
         if( LeftClickState >= Input::BUTTON_PRESSING ) {
@@ -134,7 +134,7 @@ namespace Mezzanine
                 if( VisitingWorld != NULL ) {
                     this->Query->SetWorld(VisitingWorld);
                     RayQueryHit Result = this->Query->GetFirstShapeResult(MouseRay);
-                    if( Result.IsValid() && !Result.Object->IsStatic() ) {
+                    if( Filter ? Result.IsDynamic() && Filter(Result) : Result.IsDynamic() ) {
                         this->Dragger->StartDragging(this->Dragger->GetBestProxy(Result.Object),Result.GetLocalHitLocation(),MouseRay);
                     }
                 }
