@@ -238,7 +238,7 @@ public:
         }
 
         if( !MouseInUI ) {
-            this->Picker.Execute();
+            this->Picker.Execute(nullptr);
         }
     }
 };//DemoPostInputWorkUnit

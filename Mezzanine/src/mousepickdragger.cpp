@@ -70,7 +70,6 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( Target->GetCreator() );
 
         Physics::Generic6DofConstraint* NewDragger = PhysMan->CreateGeneric6DofConstraint(Target,LocalTrans);
-        //NewDragger->SetUseLinearReferenceFrameA(true);
         NewDragger->SetLinearLimitLower(Vector3(0,0,0));
         NewDragger->SetLinearLimitUpper(Vector3(0,0,0));
         NewDragger->SetAngularLimitLower(Vector3(1,1,1));
@@ -103,6 +102,17 @@ namespace Mezzanine
     {
         if( Targets.size() > 0 ) {
             return Targets[0];
+        }
+        return RayQueryHit();
+    }
+
+    RayQueryHit PlaneDragger::GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const
+    {
+        for( const RayQueryHit& CurrResult : Targets )
+        {
+            if( Filter(CurrResult) ) {
+                return CurrResult;
+            }
         }
         return RayQueryHit();
     }
@@ -143,7 +153,6 @@ namespace Mezzanine
             }/*else if( Target->GetProxyType() & Mezzanine::PT_Physics_SoftProxy ) {
 
             }*/
-            //this->ContinueDragging(MouseRay);
         }
         return false;
     }
@@ -186,7 +195,6 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( Target->GetCreator() );
 
         Physics::Generic6DofConstraint* NewDragger = PhysMan->CreateGeneric6DofConstraint(Target,LocalTrans);
-        //NewDragger->SetUseLinearReferenceFrameA(true);
         NewDragger->SetLinearLimitLower(Vector3(0,0,0));
         NewDragger->SetLinearLimitUpper(Vector3(0,0,0));
         NewDragger->SetAngularLimitLower(Vector3(1,1,1));
@@ -229,6 +237,17 @@ namespace Mezzanine
         return RayQueryHit();
     }
 
+    RayQueryHit DistanceDragger::GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const
+    {
+        for( const RayQueryHit& CurrResult : Targets )
+        {
+            if( Filter(CurrResult) ) {
+                return CurrResult;
+            }
+        }
+        return RayQueryHit();
+    }
+
     WorldProxy* DistanceDragger::GetBestProxy(WorldProxy* Target) const
     {
         const UInt32 DesiredTypes = Mezzanine::PT_Physics_RigidProxy;// | Mezzanine::PT_Physics_SoftBody;
@@ -266,7 +285,6 @@ namespace Mezzanine
             }/*else if( Target->GetProxyType() & Mezzanine::PT_Physics_SoftProxy ) {
 
             }*/
-            //this->ContinueDragging(MouseRay);
         }
         return false;
     }

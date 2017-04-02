@@ -48,6 +48,7 @@ namespace Mezzanine
     class WorldObject;
     class MousePickDragger;
     class RayQuery;
+    class RayQueryHit;
     namespace Input
     {
         class Mouse;
@@ -58,6 +59,9 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB MousePicker
     {
+    public:
+        /// @brief Convenience type for the delegate to use for custom filter of pickable bodies.
+        using FilterDelegate = std::function< Boole(const RayQueryHit&) >;
     protected:
         /// @brief A pointer to the mouse being used for selection.
         Input::Mouse* Selector;
@@ -115,7 +119,9 @@ namespace Mezzanine
         World* GetMouseWorld() const;
 
         /// @brief Performs all the checks and updates to drag a target under the mouse.
-        void Execute();
+        /// @note When implementing the delegate return true to allow picking to proceed, false to prevent it.
+        /// @param Filter A delegate to perform custom filtering of which bodies should and shouldn't be pickable.
+        void Execute(const FilterDelegate& Filter);
     };//MousePicker
 }//Mezzanine
 
