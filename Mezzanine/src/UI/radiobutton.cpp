@@ -63,7 +63,7 @@ namespace Mezzanine
 
         RadioButtonGroup::RadioButtonGroup() :
             CurrentSelection(NULL)
-            { this->AddEventTable(RadioButtonGroup::EventGroupButtonSelected); }
+            { this->AddSubscriptionTable(RadioButtonGroup::EventGroupButtonSelected); }
 
         RadioButtonGroup::~RadioButtonGroup()
             {  }

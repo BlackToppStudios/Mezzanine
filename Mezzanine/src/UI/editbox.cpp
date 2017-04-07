@@ -219,7 +219,7 @@ namespace Mezzanine
         void EditBox::ConstructEditBox(const RenderLayerType EditLayerType, FontData* EditFont)
         {
             // Create our events.
-            this->AddEventTable(EditBox::EventTextUpdated);
+            this->AddSubscriptionTable(EditBox::EventTextUpdated);
 
             // Create our edit layer.
             TextLayer* EditLayer = NULL;

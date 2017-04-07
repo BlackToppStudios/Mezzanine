@@ -53,8 +53,8 @@ namespace Mezzanine
             : ActionName(Name),
               Parent(Handler)
         {
-            this->AddEventTable(Action::EventActionActivated);
-            this->AddEventTable(Action::EventActionDeactivated);
+            this->AddSubscriptionTable(Action::EventActionActivated);
+            this->AddSubscriptionTable(Action::EventActionDeactivated);
         }
 
         Action::~Action()

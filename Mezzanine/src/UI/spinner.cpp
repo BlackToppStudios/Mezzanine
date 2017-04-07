@@ -166,7 +166,7 @@ namespace Mezzanine
 
         void Spinner::ConstructSpinner(const SpinnerStyle SpinStyle, FontData* EditFont)
         {
-            this->AddEventTable(Spinner::EventSpinValueChanged);
+            this->AddSubscriptionTable(Spinner::EventSpinValueChanged);
 
             // Create the child widgets.
             this->ValueDisplay = this->ParentScreen->CreateEditBox(this->Name+".Display",UI::RLT_SingleLineText,EditFont);

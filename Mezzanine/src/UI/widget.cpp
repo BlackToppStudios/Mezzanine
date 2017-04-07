@@ -122,16 +122,16 @@ namespace Mezzanine
         void Widget::ConstructWidget()
         {
             // Create our events.
-            this->AddEventTable(Widget::EventMouseEnter);
-            this->AddEventTable(Widget::EventMouseExit);
-            this->AddEventTable(Widget::EventMouseDragStart);
-            this->AddEventTable(Widget::EventMouseDragEnd);
-            this->AddEventTable(Widget::EventFocusGained);
-            this->AddEventTable(Widget::EventFocusLost);
-            this->AddEventTable(Widget::EventFocusLocked);
-            this->AddEventTable(Widget::EventFocusUnlocked);
-            this->AddEventTable(Widget::EventVisibilityShown);
-            this->AddEventTable(Widget::EventVisibilityHidden);
+            this->AddSubscriptionTable(Widget::EventMouseEnter);
+            this->AddSubscriptionTable(Widget::EventMouseExit);
+            this->AddSubscriptionTable(Widget::EventMouseDragStart);
+            this->AddSubscriptionTable(Widget::EventMouseDragEnd);
+            this->AddSubscriptionTable(Widget::EventFocusGained);
+            this->AddSubscriptionTable(Widget::EventFocusLost);
+            this->AddSubscriptionTable(Widget::EventFocusLocked);
+            this->AddSubscriptionTable(Widget::EventFocusUnlocked);
+            this->AddSubscriptionTable(Widget::EventVisibilityShown);
+            this->AddSubscriptionTable(Widget::EventVisibilityHidden);
 
             // Create our render groups and bind them
             RenderLayerGroup* NormalGroup = this->CreateRenderLayerGroup(Widget::WG_Normal);
@@ -413,7 +413,7 @@ namespace Mezzanine
                                 EvName = CurrAttrib.AsString();
 
                             if( !EvName.empty() ) {
-                                this->AddEventTable(EvName);
+                                this->AddSubscriptionTable(EvName);
                             }
                         }else{
                             MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("Events") + ": Not Version 1.");
