@@ -43,6 +43,8 @@
 #include "eventsubscriptiontable.h"
 #include "exception.h"
 
+#include <memory>
+
 namespace Mezzanine
 {
     EventSubscriptionTable::EventSubscriptionTable(const EventNameType& Name) :
@@ -73,7 +75,7 @@ namespace Mezzanine
         if( NewBinding.use_count() > 0 /* != NULL */ ) {
             MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
         }
-        NewBinding.reset( new EventSubscriberBinding(ID,Delegate,Pub,this->EventName.GetHash()) );
+        NewBinding = std::make_shared<EventSubscriberBinding>( ID,Delegate,Pub,this->EventName.GetHash() );
         this->Bindings.push_back(NewBinding);
         return NewBinding;
     }
@@ -115,7 +117,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void EventSubscriptionTable::_DispatchEvent(EventPtr Args) const
+    void EventSubscriptionTable::DispatchEvent(EventPtr Args) const
     {
         for( ConstBindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
             { (*BindIt)->DispatchEvent(Args); }

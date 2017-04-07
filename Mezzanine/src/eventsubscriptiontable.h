@@ -133,7 +133,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
-        void _DispatchEvent(EventPtr Args) const;
+        void DispatchEvent(EventPtr Args) const;
 	};//EventSubscriptionTable
 
     /// @}

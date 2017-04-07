@@ -75,7 +75,7 @@ namespace Mezzanine
 
     void EventSubscriberBinding::Unsubscribe()
     {
-        this->Publisher->GetEventTable(this->NameHash)->Unsubscribe(this->SubID);
+        this->Publisher->GetSubscriptionTable(this->NameHash)->Unsubscribe(this->SubID);
         this->Unbind();
     }
 
@@ -86,11 +86,7 @@ namespace Mezzanine
     }
 
     void EventSubscriberBinding::DispatchEvent(EventPtr Args) const
-    {
-        if( this->Callback ) {
-            this->Callback(Args);
-        }
-    }
+        { this->Callback(Args); }
 }//Mezzanine
 
 #endif
