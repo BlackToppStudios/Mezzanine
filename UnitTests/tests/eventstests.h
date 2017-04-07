@@ -170,6 +170,9 @@ public:
                  SecondBinding->GetSubID() == 32 && SecondBinding->GetPublisher() == nullptr && SecondBinding->GetEventHash() == TestName.GetHash() &&
                  ThirdBinding->GetSubID() == 48 && ThirdBinding->GetPublisher() == &TestPublisher && ThirdBinding->GetEventHash() == TestName.GetHash(),
                  "EventSubscriptionTable::Subscribe");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION>::Type,
+                       TestTable.Subscribe(16,TestCallback,nullptr),
+                       "EventSubscriptionTable::Subscribe-Throw");
 
             EventSubscriberBindingPtr FirstFetchedBinding = TestTable.GetBinding(16);
             EventSubscriberBindingPtr SecondFetchedBinding = TestTable.GetBinding(32);
@@ -215,6 +218,9 @@ public:
             Boole ThirdTestAdd = (*TableIt).GetName() == ThirdTestName;
             TEST(FirstTestAdd && SecondTestAdd && ThirdTestAdd,
                  "EventPublisher::ConstructionAndAddSubscriptionTable");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION>::Type,
+                       TestPublisher.AddSubscriptionTable(FirstTestName),
+                       "EventPublisher::AddSubscriptionTable-Throw");
 
             TEST(TestPublisher.HasSubscriptionTable(FirstTestName) &&
                  TestPublisher.HasSubscriptionTable(SecondTestName.GetHash()) &&
@@ -230,6 +236,18 @@ public:
                  ConstTestPublisher.GetSubscriptionTable(SecondTestName)->GetName() == SecondTestName &&
                  ConstTestPublisher.GetSubscriptionTable(ThirdTestName)->GetName() == ThirdTestName,
                  "EventPublisher::GetSubscriptionTable");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
+                       TestPublisher.GetSubscriptionTable("FailFetch"),
+                       "EventPublisher::GetSubscriptionTable-ThrowString");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
+                       TestPublisher.GetSubscriptionTable(EventNameType::EmptyHash),
+                       "EventPublisher::GetSubscriptionTable-ThrowHash");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
+                       ConstTestPublisher.GetSubscriptionTable("FailFetch"),
+                       "EventPublisher::GetSubscriptionTable-ThrowStringConst");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
+                       ConstTestPublisher.GetSubscriptionTable(EventNameType::EmptyHash),
+                       "EventPublisher::GetSubscriptionTable-ThrowHashConst");
 
             EventSubscriberBindingPtr FirstBinding = TestPublisher.Subscribe(FirstTestName,18,TestCallback);
             EventSubscriberBindingPtr SecondBinding = TestPublisher.Subscribe(FirstTestName,36,TestCallback);
@@ -244,6 +262,9 @@ public:
                  FifthBinding->GetSubID() == 90 && FifthBinding->GetEventHash() == SecondTestName.GetHash() &&
                  SixthBinding->GetSubID() == 108 && SixthBinding->GetEventHash() == SecondTestName.GetHash(),
                  "EventPublisher::Subscribe");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
+                       TestPublisher.Subscribe("FailTableName",0,TestCallback),
+                       "EventPublisher::Subscribe-Throw");
 
             TestPublisher.DispatchEvent(FirstTestEvent);
             Whole PostFirstDispatchCount = DispatchCount;
@@ -268,6 +289,9 @@ public:
                  SecondBinding.use_count() == 1 &&
                  ThirdBinding.use_count() == 2,
                  "EventPublisher::UnsubscribeFromEvent");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
+                       TestPublisher.Unsubscribe("FailTableName",0),
+                       "EventPublisher::UnsubscribeFromEvent-Throw");
 
             Whole FirstRemoveCount = TestPublisher.UnsubscribeAll(FirstTestName);
             TestPublisher.DispatchEvent(FirstTestEvent);
@@ -277,6 +301,9 @@ public:
                  SecondBinding.use_count() == 1 &&
                  ThirdBinding.use_count() == 1,
                  "EventPublisher::UnsubscribeAllFromEvent");
+            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
+                       TestPublisher.UnsubscribeAll("FailTableName"),
+                       "EventPublisher::UnsubscribeAllFromEvent-Throw");
 
             TestPublisher.Subscribe(FirstTestName,108,TestCallback);
             Whole PreRemoveAllUseCount = SixthBinding.use_count();
