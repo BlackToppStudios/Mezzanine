@@ -56,8 +56,8 @@ namespace Mezzanine
 
         const String CheckBox::TypeName = "CheckBox";
 
-        const HashedString32 CheckBox::EventSelected = "Selected";
-        const HashedString32 CheckBox::EventDeselected = "Deselected";
+        const EventNameType CheckBox::EventSelected = "Selected";
+        const EventNameType CheckBox::EventDeselected = "Deselected";
 
         ///////////////////////////////////////////////////////////////////////////////
         // CheckBox Methods
@@ -88,8 +88,8 @@ namespace Mezzanine
         void CheckBox::ConstructCheckbox()
         {
             // Add our new events
-            this->AddEventTable(CheckBox::EventSelected);
-            this->AddEventTable(CheckBox::EventDeselected);
+            this->AddSubscriptionTable(CheckBox::EventSelected);
+            this->AddSubscriptionTable(CheckBox::EventDeselected);
             // Add some more render layer groups
             RenderLayerGroup* SelectedNormalGroup = this->CreateRenderLayerGroup(CheckBox::WG_SelectedNormal);
             RenderLayerGroup* SelectedHoveredGroup = this->CreateRenderLayerGroup(CheckBox::WG_SelectedHovered);

@@ -58,7 +58,7 @@ namespace Mezzanine
         // Scrollbar Methods
 
         const String Scrollbar::TypeName                        = "Scrollbar";
-        const HashedString32 Scrollbar::EventScrollValueChanged = "ScrollValueChanged";
+        const EventNameType Scrollbar::EventScrollValueChanged = "ScrollValueChanged";
 
         Scrollbar::Scrollbar(Screen* Parent) :
             PageProvider(Parent),
@@ -82,7 +82,7 @@ namespace Mezzanine
             IncrementDistance(0.01),
             ScrollerSize(1.0),
             AutoHideScroll(false)
-            { this->AddEventTable(Scrollbar::EventScrollValueChanged); }
+            { this->AddSubscriptionTable(Scrollbar::EventScrollValueChanged); }
 
         Scrollbar::Scrollbar(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             PageProvider(RendName,RendRect,Parent),
@@ -94,7 +94,7 @@ namespace Mezzanine
             IncrementDistance(0.01),
             ScrollerSize(1.0),
             AutoHideScroll(false)
-            { this->AddEventTable(Scrollbar::EventScrollValueChanged); }
+            { this->AddSubscriptionTable(Scrollbar::EventScrollValueChanged); }
 
         Scrollbar::~Scrollbar()
             {  }

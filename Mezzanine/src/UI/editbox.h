@@ -63,7 +63,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "EditBox".
             static const String TypeName;
             /// @brief Event name for when the text in this widget has been updated.
-            static const HashedString32 EventTextUpdated;
+            static const EventNameType EventTextUpdated;
             /// @brief Callback type for input filtering.
             typedef Boole (FilterCallback)(const Int32 Glyph);
         protected:

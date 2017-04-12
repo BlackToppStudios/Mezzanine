@@ -70,7 +70,7 @@ namespace Mezzanine
             /// @brief Class constructor.
             /// @param Name The name of the event being fired.
             /// @param Source The identification of the widget firing this event.
-            WidgetEvent(const HashedString32& Name, const String& Source) :
+            WidgetEvent(const EventNameType& Name, const String& Source) :
                 Event(Name), WidgetName(Source) {  }
             /// @brief Class destructor.
             virtual ~WidgetEvent() = default;
@@ -139,25 +139,25 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "GenericWidget".
             static const String TypeName;
             /// @brief Event name for when the mouse enters this widget.
-            static const HashedString32 EventMouseEnter;
+            static const EventNameType EventMouseEnter;
             /// @brief Event name for when the mouse leaves this widget.
-            static const HashedString32 EventMouseExit;
+            static const EventNameType EventMouseExit;
             /// @brief Event name for when the mouse starts dragging this widget.
-            static const HashedString32 EventMouseDragStart;
+            static const EventNameType EventMouseDragStart;
             /// @brief Event name for when the mouse stops dragging this widget.
-            static const HashedString32 EventMouseDragEnd;
+            static const EventNameType EventMouseDragEnd;
             /// @brief Event name for when this widget gains focus.
-            static const HashedString32 EventFocusGained;
+            static const EventNameType EventFocusGained;
             /// @brief Event name for when this widget loses focus.
-            static const HashedString32 EventFocusLost;
+            static const EventNameType EventFocusLost;
             /// @brief Event name for when the system locks focus on this widget.
-            static const HashedString32 EventFocusLocked;
+            static const EventNameType EventFocusLocked;
             /// @brief Event name fow when the system removes the focus lock from this widget.
-            static const HashedString32 EventFocusUnlocked;
+            static const EventNameType EventFocusUnlocked;
             /// @brief Event name for when this widget is switched from being hidden to being shown.
-            static const HashedString32 EventVisibilityShown;
+            static const EventNameType EventVisibilityShown;
             /// @brief Event name for when this widget is switched from being shown to being hidden.
-            static const HashedString32 EventVisibilityHidden;
+            static const EventNameType EventVisibilityHidden;
 
             /*/// @brief Generates a lambda to be used as a delegate for event dispatch.
             /// @param ToWrap The Widget to call when the lambda is evoked.

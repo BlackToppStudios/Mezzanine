@@ -73,7 +73,7 @@ namespace Mezzanine
             /// @param Source The identification of the widget firing this event.
             /// @param OldValue The pre-update value of the calling Spinner.
             /// @param NewValue The post-update value of the calling Spinner.
-            SpinnerValueChangedEvent(const HashedString32& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
+            SpinnerValueChangedEvent(const EventNameType& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
                 WidgetEvent(Name,Source), OldSpinValue(OldValue), NewSpinValue(NewValue) {  }
             /// @brief Class destructor.
             virtual ~SpinnerValueChangedEvent() = default;
@@ -100,7 +100,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "Spinner".
             static const String TypeName;
             /// @brief Event name for when the value in this Spinner is updated.
-            static const HashedString32 EventSpinValueChanged;
+            static const EventNameType EventSpinValueChanged;
         protected:
             /// @internal
             /// @brief A pointer to the button that will increment the spin value.

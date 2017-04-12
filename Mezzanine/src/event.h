@@ -49,6 +49,11 @@ namespace Mezzanine
     /// @addtogroup Events
     /// @{
 
+    /// @brief The type to use for the names of events.
+    using EventNameType = HashedString32;
+    /// @brief The type to use for the hashed generated from the names of events.
+    using EventHashType = EventNameType::HashType;
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a common class to represent all possible arguments for a given event that is fired.
     ///////////////////////////////////////
@@ -59,14 +64,14 @@ namespace Mezzanine
         // Public Data Members
 
         /// @brief The name of the event being fired.
-        const HashedString32 EventName;
+        const EventNameType EventName;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
 
         /// @brief Class constructor.
         /// @param Name The name of the event being fired.
-        Event(const HashedString32& Name) :
+        Event(const EventNameType& Name) :
             EventName(Name)
             {  }
         /// @brief Class destructor.

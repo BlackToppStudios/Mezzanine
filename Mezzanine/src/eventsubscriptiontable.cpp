@@ -37,48 +37,50 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventsubscribertable_cpp
-#define _eventsubscribertable_cpp
+#ifndef _eventsubscriptiontable_cpp
+#define _eventsubscriptiontable_cpp
 
-#include "eventsubscribertable.h"
+#include "eventsubscriptiontable.h"
 #include "exception.h"
+
+#include <memory>
 
 namespace Mezzanine
 {
-    EventSubscriberTable::EventSubscriberTable(const HashedString32& Name) :
+    EventSubscriptionTable::EventSubscriptionTable(const EventNameType& Name) :
         EventName(Name)
         {  }
 
-    EventSubscriberTable::~EventSubscriberTable()
+    EventSubscriptionTable::~EventSubscriptionTable()
         { this->UnsubscribeAll(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
 
-    Boole EventSubscriberTable::operator<(const EventSubscriberTable& Other) const
+    Boole EventSubscriptionTable::operator<(const EventSubscriptionTable& Other) const
         { return this->EventName < Other.EventName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    const HashedString32& EventSubscriberTable::GetName() const
+    const EventNameType& EventSubscriptionTable::GetName() const
         { return this->EventName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Subscription Management
 
-    EventSubscriberBindingPtr EventSubscriberTable::Subscribe(SubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub)
+    EventSubscriberBindingPtr EventSubscriptionTable::Subscribe(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub)
     {
         EventSubscriberBindingPtr NewBinding = this->GetBinding(ID);
         if( NewBinding.use_count() > 0 /* != NULL */ ) {
             MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
         }
-        NewBinding.reset( new EventSubscriberBinding(ID,Delegate,Pub,this->EventName.GetHash()) );
+        NewBinding = std::make_shared<EventSubscriberBinding>( ID,Delegate,Pub,this->EventName.GetHash() );
         this->Bindings.push_back(NewBinding);
         return NewBinding;
     }
 
-    EventSubscriberBindingPtr EventSubscriberTable::GetBinding(SubscriberID ID)
+    EventSubscriberBindingPtr EventSubscriptionTable::GetBinding(EventSubscriberID ID)
     {
         for( BindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
         {
@@ -89,7 +91,7 @@ namespace Mezzanine
         return NULL;
     }
 
-    void EventSubscriberTable::Unsubscribe(SubscriberID ID)
+    void EventSubscriptionTable::Unsubscribe(EventSubscriberID ID)
     {
         for( BindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
         {
@@ -101,7 +103,7 @@ namespace Mezzanine
         }
     }
 
-    Whole EventSubscriberTable::UnsubscribeAll()
+    Whole EventSubscriptionTable::UnsubscribeAll()
     {
         Whole RemoveCount = this->Bindings.size();
         for( BindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
@@ -115,7 +117,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void EventSubscriberTable::_DispatchEvent(EventPtr Args) const
+    void EventSubscriptionTable::DispatchEvent(EventPtr Args) const
     {
         for( ConstBindingIterator BindIt = this->Bindings.begin() ; BindIt != this->Bindings.end() ; ++BindIt )
             { (*BindIt)->DispatchEvent(Args); }

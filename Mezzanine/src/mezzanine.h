@@ -121,7 +121,7 @@
 #include "eventpublisher.h"
 #include "eventsubscriber.h"
 #include "eventsubscriberbinding.h"
-#include "eventsubscribertable.h"
+#include "eventsubscriptiontable.h"
 #include "eventuserinput.h"
 #include "fieldofforce.h"
 #include "filestream.h"

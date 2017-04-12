@@ -54,7 +54,7 @@ namespace Mezzanine
         // PagedContainer Static Members
 
         const String PagedContainer::TypeName                    = "PagedContainer";
-        const HashedString32 PagedContainer::EventChildSelected  = "ChildSelected";
+        const EventNameType PagedContainer::EventChildSelected  = "ChildSelected";
 
         ///////////////////////////////////////////////////////////////////////////////
         // PagedContainer Methods
@@ -64,21 +64,21 @@ namespace Mezzanine
             LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEventTable(PagedContainer::EventChildSelected); }
+            { this->AddSubscriptionTable(PagedContainer::EventChildSelected); }
 
         PagedContainer::PagedContainer(const String& RendName, Screen* Parent) :
             Widget(RendName,Parent),
             LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEventTable(PagedContainer::EventChildSelected); }
+            { this->AddSubscriptionTable(PagedContainer::EventChildSelected); }
 
         PagedContainer::PagedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Widget(RendName,RendRect,Parent),
             LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEventTable(PagedContainer::EventChildSelected); }
+            { this->AddSubscriptionTable(PagedContainer::EventChildSelected); }
 
         PagedContainer::~PagedContainer()
         {

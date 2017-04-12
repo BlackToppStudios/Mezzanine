@@ -73,7 +73,7 @@ namespace Mezzanine
         // Spinner Static Members
 
         const String Spinner::TypeName                      = "Spinner";
-        const HashedString32 Spinner::EventSpinValueChanged = "SpinValueChanged";
+        const EventNameType Spinner::EventSpinValueChanged = "SpinValueChanged";
 
         ///////////////////////////////////////////////////////////////////////////////
         // Spinner Methods
@@ -166,7 +166,7 @@ namespace Mezzanine
 
         void Spinner::ConstructSpinner(const SpinnerStyle SpinStyle, FontData* EditFont)
         {
-            this->AddEventTable(Spinner::EventSpinValueChanged);
+            this->AddSubscriptionTable(Spinner::EventSpinValueChanged);
 
             // Create the child widgets.
             this->ValueDisplay = this->ParentScreen->CreateEditBox(this->Name+".Display",UI::RLT_SingleLineText,EditFont);

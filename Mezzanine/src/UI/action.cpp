@@ -46,15 +46,15 @@ namespace Mezzanine
 {
     namespace UI
     {
-        const HashedString32 Action::EventActionActivated = "ActionActivated";
-        const HashedString32 Action::EventActionDeactivated = "ActionDeactivated";
+        const EventNameType Action::EventActionActivated = "ActionActivated";
+        const EventNameType Action::EventActionDeactivated = "ActionDeactivated";
 
         Action::Action(const String& Name, ActionHandler* Handler)
             : ActionName(Name),
               Parent(Handler)
         {
-            this->AddEventTable(Action::EventActionActivated);
-            this->AddEventTable(Action::EventActionDeactivated);
+            this->AddSubscriptionTable(Action::EventActionActivated);
+            this->AddSubscriptionTable(Action::EventActionDeactivated);
         }
 
         Action::~Action()

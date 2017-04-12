@@ -70,7 +70,7 @@ namespace Mezzanine
             /// @param Source The identification of the widget firing this event.
             /// @param Child The name of the child that has gained focus.
             /// @param Select True if the child is becoming the current selection in it's parent container, or false if it is losing the current selection in it's parent container.
-            ChildSelectedEvent(const HashedString32& Name, const String& Source, const String& Child, const Boole Select) :
+            ChildSelectedEvent(const EventNameType& Name, const String& Source, const String& Child, const Boole Select) :
                 WidgetEvent(Name,Source), ChildName(Child), Selected(Select) {  }
             /// @brief Class destructor.
             virtual ~ChildSelectedEvent() = default;
@@ -111,7 +111,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "PagedContainer".
             static const String TypeName;
             /// @brief Event name for when a child of this widget gets selected.
-            static const HashedString32 EventChildSelected;
+            static const EventNameType EventChildSelected;
         protected:
             /// @internal
             /// @brief A container of children that meet the criteria for rendering in this container.

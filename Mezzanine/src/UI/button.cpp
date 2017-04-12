@@ -50,9 +50,9 @@ namespace Mezzanine
     {
         const String Button::TypeName = "Button";
 
-        const HashedString32 Button::EventActivated = "Activated";
-        const HashedString32 Button::EventStandby = "Standby";
-        const HashedString32 Button::EventDeactivated = "Deactivated";
+        const EventNameType Button::EventActivated = "Activated";
+        const EventNameType Button::EventStandby = "Standby";
+        const EventNameType Button::EventDeactivated = "Deactivated";
 
         ///////////////////////////////////////////////////////////////////////////////
         // Button Methods
@@ -121,9 +121,9 @@ namespace Mezzanine
         {
             this->LockoutTimer.SetCountMode(Mezzanine::CM_CountDown);
             // Add our button events
-            this->AddEventTable(Button::EventActivated);
-            this->AddEventTable(Button::EventStandby);
-            this->AddEventTable(Button::EventDeactivated);
+            this->AddSubscriptionTable(Button::EventActivated);
+            this->AddSubscriptionTable(Button::EventStandby);
+            this->AddSubscriptionTable(Button::EventDeactivated);
             // Handle auto activation registration
             UIManager* Manager = this->ParentScreen->GetManager();
             if( Manager->ButtonAutoRegisterEnabled() ) {
