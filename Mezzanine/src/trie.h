@@ -1466,8 +1466,7 @@ public:
      * @return Iterator to the elements with prefix specified in 'prefix'
      */
     iterator startsWith(const std::vector<T>& prefix) {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->startsWith(&prefix[0]);
+        return this->startsWith(prefix.data());
     }
 
     /*!
@@ -1485,8 +1484,7 @@ public:
      * @return const_iterator to the elements with prefix specified in 'prefix'
      */
     const_iterator startsWith(const std::vector<T>& prefix) const {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->startsWith(&prefix[0]);
+        return this->startsWith(prefix.data());
     }
 
     /*!
