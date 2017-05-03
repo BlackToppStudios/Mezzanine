@@ -131,20 +131,20 @@ public:
         //User Input through a WorldQueryTool
         Input::Mouse* SysMouse = InputMan->GetSystemMouse();
         Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-        Input::Controller* Controller1 = NULL;
-        if( InputMan->GetNumControllers() > 0 )
-            Controller1 = InputMan->GetController(0);
+        Input::Joystick* Joystick1 = NULL;
+        if( InputMan->GetNumJoysticks() > 0 )
+            Joystick1 = InputMan->GetJoystick(0);
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_LEFT) : false) )
             { CamControl->StrafeLeft( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_RIGHT) : false) )
             { CamControl->StrafeRight( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_UP) : false) )
             { CamControl->MoveForward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_DOWN) : false) )
             { CamControl->MoveBackward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
         static Real TrackPos = 0.0;
@@ -196,14 +196,14 @@ public:
         if( MouseCam && Vector2(0,0) != Offset )
             CamControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
-        if( SysKeyboard->IsButtonPressing(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) ) {
+        if( SysKeyboard->IsButtonPressing(Input::KEY_M) || (Joystick1 ? Joystick1->IsButtonPressed(1) : false) ) {
             Audio::iSound* Theme = Soundtrack.at(1);
             if( !Theme->IsPlaying() ) {
                 Theme->Play();
             }
         }
 
-        if( SysKeyboard->IsButtonPressing(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) ) {
+        if( SysKeyboard->IsButtonPressing(Input::KEY_N) || (Joystick1 ? Joystick1->IsButtonPressed(2) : false) ) {
             Audio::iSound* Theme = Soundtrack.at(1);
             if( Theme->IsPlaying() ) {
                 Theme->Stop();
