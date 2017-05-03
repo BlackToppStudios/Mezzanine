@@ -320,7 +320,7 @@ namespace Mezzanine
         delete _Data;
 
         if( Input::InputManager::SingletonValid() )
-            Input::InputManager::GetSingletonPtr()->ReleaseAllControllers();
+            Input::InputManager::GetSingletonPtr()->ReleaseAllDevices();
 
         UInt32 InitSDLSystems = SDL_WasInit(0);
         if( SDL_INIT_JOYSTICK | InitSDLSystems )
@@ -634,12 +634,12 @@ namespace Mezzanine
 
     void EventManager::AddPollingCheck(const Input::MetaCode& InputToTryPolling)
     {
-        if(InputToTryPolling.IsPollable())
-        {
+        //if(InputToTryPolling.IsPollable())
+        //{
             this->_Data->AddInputCodeToManualCheck(InputToTryPolling.GetCode(), Internal::EventManagerInternalData::Polling);
-        }else{
-            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
-        }
+        //}else{
+            //MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
+        //}
     }
 
     void EventManager::RemovePollingCheck(const Input::MetaCode& InputToStopPolling)

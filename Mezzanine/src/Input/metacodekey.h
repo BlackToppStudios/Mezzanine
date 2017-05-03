@@ -47,11 +47,39 @@ namespace Mezzanine
 {
 	namespace Input
 	{
+	    /// @brief Function used for sorting keyboard MetaCodes.
+        /// @param First The first MetaCode to compare.
+        /// @param Second The second MetaCode to compare.
+        /// @return Returns true if First should be placed before Second, false otherwise.
+        Boole MEZZ_LIB KeyboardCodeCompare(const MetaCode& First, const MetaCode& Second);
+        /// @brief Function used for sorting mouse MetaCodes.
+        /// @param First The first MetaCode to compare.
+        /// @param Second The second MetaCode to compare.
+        /// @return Returns true if First should be placed before Second, false otherwise.
+        Boole MEZZ_LIB MouseCodeCompare(const MetaCode& First, const MetaCode& Second);
+        /// @brief Function used for sorting multi-touch MetaCodes.
+        /// @param First The first MetaCode to compare.
+        /// @param Second The second MetaCode to compare.
+        /// @return Returns true if First should be placed before Second, false otherwise.
+        Boole MEZZ_LIB MultitouchCodeCompare(const MetaCode& First, const MetaCode& Second);
+        /// @brief Function used for sorting controller MetaCodes.
+        /// @param First The first MetaCode to compare.
+        /// @param Second The second MetaCode to compare.
+        /// @return Returns true if First should be placed before Second, false otherwise.
+        Boole MEZZ_LIB ControllerCodeCompare(const MetaCode& First, const MetaCode& Second);
+        /// @brief Function used for sorting controller MetaCodes.
+        /// @param First The first MetaCode to compare.
+        /// @param Second The second MetaCode to compare.
+        /// @return Returns true if First should be placed before Second, false otherwise.
+        Boole MEZZ_LIB SequenceCodeCompare(const MetaCode& First, const MetaCode& Second);
+        /// @brief Function used to sort MetaCodes of every supported device.
+        /// @param First The first MetaCode to compare.
+        /// @param Second The second MetaCode to compare.
+        /// @return Returns true if First should be placed before Second, false otherwise.
+        Boole MEZZ_LIB MultiDeviceCompare(const MetaCode& First, const MetaCode& Second);
+
 	    ///////////////////////////////////////////////////////////////////////////////
-        /// @class MetaCodeKey
-        /// @headerfile metacodekey.h
         /// @brief A key class for MetaCodes to be used in associative containers.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB MetaCodeKey
         {
@@ -59,10 +87,8 @@ namespace Mezzanine
             /// @brief Convenience typedef for the compare method to be used by this key.
             typedef Boole (DeviceCompare)(const MetaCode& First, const MetaCode& Second);
         protected:
-            /// @internal
-            /// @brief The metacode being used as the compare object.
-            const MetaCode MCode;
-            /// @internal
+            /// @brief The MetaCode being used as the compare object.
+            MetaCode MCode;
             /// @brief The compare method being used for this key.
             DeviceCompare* Compare;
         public:
@@ -70,10 +96,30 @@ namespace Mezzanine
             /// @param Code The MetaCode this key is to use for sorting.
             MetaCodeKey(const MetaCode& Code);
             /// @brief Copy constructor.
-            /// @param Other The other MetaCodeKey to copy.
-            MetaCodeKey(const MetaCodeKey& Other);
+            /// @param Other The other MetaCodeKey to be copied.
+            MetaCodeKey(const MetaCodeKey& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other MetaCodeKey to be moved.
+            MetaCodeKey(MetaCodeKey&& Other) = default;
             /// @brief Class destructor.
-            ~MetaCodeKey();
+            ~MetaCodeKey() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other MetaCodeKey to be copied.
+            /// @return Returns a reference to this.
+            MetaCodeKey& operator=(const MetaCodeKey& Other) = default;
+            /// @brief Move assignment operator.
+            /// @param Other The other MetaCodeKey to be moved.
+            /// @return Returns a reference to this.
+            MetaCodeKey& operator=(MetaCodeKey&& Other) = default;
+
+            /// @brief Less-than operator.
+            /// @param Other The other key to compare against.
+            /// @return Returns true if this key is less than another key.
+            Boole operator<(const MetaCodeKey& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -81,14 +127,6 @@ namespace Mezzanine
             /// @brief Gets the MetaCode this object is using for sorting.
             /// @return Returns a const reference to the MetaCode stored by this object.
             const MetaCode& GetKeyData() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Operators
-
-            /// @brief Less-than operator.
-            /// @param Other The other key to compare against.
-            /// @return Returns true if this key is less than another key.
-            Boole operator<(const MetaCodeKey& Other) const;
         };//MetaCodeKey
 	}//Input
 }//Mezzanine

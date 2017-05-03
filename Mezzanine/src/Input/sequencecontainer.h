@@ -41,6 +41,7 @@
 #define _inputsequencecontainer_h
 
 #include "trie.h"
+#include "timer.h"
 #include "Input/metacode.h"
 
 namespace Mezzanine
@@ -55,48 +56,60 @@ namespace Mezzanine
         {
         public:
             /// @brief Container type for recognized input sequences.
-            typedef Trie<Input::MetaCode,Int32>          SequencedInputContainer;
+            using SequencedInputContainer = Trie<Input::MetaCode,Int32>;
             /// @brief Iterator type for recognized input sequences.
-            typedef SequencedInputContainer::iterator    SequencedInputIterator;
+            using SequencedInputIterator = SequencedInputContainer::iterator;
+            /// @brief Const Iterator type for recognized input sequences.
+            using ConstSequencedInputIterator = SequencedInputContainer::const_iterator;
         protected:
-            /// @internal
             /// @brief Container storing all the recognized input sequences.
             SequencedInputContainer SequencedInputs;
-            /// @internal
             /// @brief Container storing the current input sequence.
-            MetaCodeContainer CurrSequenceCache;
-            /// @internal
+            MetaCodeContainer CurrSequence;
             /// @brief Timer used to help detect input sequences.
-            Timer* SequenceTimer;
-            /// @internal
+            Timer SequenceTimer;
             /// @brief The index of the device to detect sequenced inputs for.
-            const UInt32 DeviceIndex;
-            /// @internal
+            UInt32 DeviceID;
             /// @brief The maximum number of inputs to keep cached for detecting sequenced inputs.
             UInt16 MaxSequenceSize;
 
-            /// @internal
             /// @brief Verify's a sequence of MetaCode's is terminated with a null MetaCode.
             /// @param Codes The vector of MetaCode's to verify.
-            virtual void VerifyInputSequence(const MetaCodeContainer& Codes) const;
-            /// @internal
-            /// @brief Verify's a numer is valid to be used as an ID for an input sequence being inserted.
+            void VerifyInputSequence(const MetaCodeContainer& Codes) const;
+            /// @brief Verify's a number is valid to be used as an ID for an input sequence being inserted.
             /// @param ID The identification number to verify.
-            void VerifyInputID(const Int32& ID) const;
-            /// @internal
+            void VerifyInputID(const Int32 ID) const;
             /// @brief Processes a sequence(as defined by an iterator range) to see if any action needs to be taken.
-            /// @param First An iterator to the first metacode in the sequence.
-            /// @param OneAfterLast An iterator to the space after the last metacode in the sequence.
-            /// @return Returns a new metacode for a completed sequence, or a "Null" metacode if no sequence was completed.
+            /// @param First An iterator to the first MetaCode in the sequence.
+            /// @param OneAfterLast An iterator to the space after the last MetaCode in the sequence.
+            /// @return Returns a new MetaCode for a completed sequence, or a "Null" MetaCode if no sequence was completed.
             MetaCode ProcessSequence(MetaCodeIterator First, MetaCodeIterator OneAfterLast);
         public:
             /// @brief Class constructor.
             SequenceContainer();
+            /// @brief Copy constructor.
+            /// @param Other The other sequence container to be copied.
+            SequenceContainer(const SequenceContainer& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other the other sequence container to be moved.
+            SequenceContainer(SequenceContainer&& Other) = default;
             /// @brief Controller constructor.
             /// @param Device The index of the controller device this container belongs to.
-            SequenceContainer(const UInt32& Device);
+            SequenceContainer(const UInt32 Device);
             /// @brief Class destructor.
-            virtual ~SequenceContainer();
+            ~SequenceContainer();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other sequence container to be copied.
+            /// @return Returns a reference to this.
+            SequenceContainer& operator=(const SequenceContainer& Other) = default;
+            /// @brief Move assignment operator.
+            /// @param Other The other sequence container to be moved.
+            /// @return Returns a reference to this.
+            SequenceContainer& operator=(SequenceContainer&& Other) = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sequenced Input Management
@@ -105,7 +118,7 @@ namespace Mezzanine
             /// @exception If the vector of MetaCode's doesn't end with a null MetaCode, an exception will be thrown.  An exception can also be thrown if the ID provided is the max value of an Int32.
             /// @param Codes A vector containing the sequence of MetaCode's to be added.
             /// @param SequenceID A unique UInt32 to be used as the identifier for this sequence when a MetaCode is generated.
-            void AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID);
+            void AddInputSequence(const MetaCodeContainer& Codes, const Int32 SequenceID);
             /// @brief Checks to see if the provided sequence of MetaCode's is already being checked for.
             /// @exception If the vector of MetaCode's doesn't end with a null MetaCode, an exception will be thrown.
             /// @param Codes A vector containing the sequence of MetaCode's to check for.
@@ -130,9 +143,10 @@ namespace Mezzanine
             /// @return Returns a UInt32 containing the number of sequences stored.
             UInt32 GetNumInputSequences() const;
             /// @brief Adds provided codes to the cache if necessary and checks for sequences that have been met.
-            /// @param NormalCodes A vector of the codes to add and/or check as a part of another sequence.
-            /// @param SequenceCodes A vector to which generated sequence codes will be added if they are generated.
-            void Update(const MetaCodeContainer& NormalCodes, MetaCodeContainer& SequenceCodes);
+            /// @param DeltaBegin An iterator to the start of the range of new codes to update with.
+            /// @param DeltaEnd An iterator to the end of the range of new codes to update with.
+            /// @return Returns a vector of the codes generated during the update.
+            MetaCodeContainer Update(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd);
         };//SequenceContainer
     }//Input
 }//Mezzanine

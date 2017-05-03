@@ -46,18 +46,18 @@ namespace Mezzanine
 {
     namespace Input
     {
-        Device::Device()
-            {  }
-
-        Device::~Device()
-            {  }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Sequenced Input Management
 
-        void Device::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
+        /*void Device::AddInputSequence(const MetaCodeContainer& Codes, const Int32 SequenceID)
         {
-            this->VerifySequenceImpl(Codes);
+            Input::InputDevice SelfDevice = this->GetDeviceType();
+            for( const MetaCode& CurrCode : Codes )
+            {
+                if( CurrCode.GetDeviceType() != SelfDevice ) {
+                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Mismatched device on MetaCode detected when attempting to insert an Input Sequence.");
+                }
+            }
             this->Sequences.AddInputSequence(Codes,SequenceID);
         }
 
@@ -71,7 +71,7 @@ namespace Mezzanine
             { this->Sequences.RemoveInputSequence(Codes); }
 
         void Device::RemoveAllInputSequences()
-            { this->Sequences.RemoveAllInputSequences(); }
+            { this->Sequences.RemoveAllInputSequences(); }//*/
     }//Input
 }//Mezzanine
 

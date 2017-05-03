@@ -159,9 +159,9 @@ namespace Mezzanine
     vector<Input::MetaCode> EventUserInput::AddCodeFromSDLJoyStickHat(const RawEvent& RawEvent_)
     {
         vector<Input::MetaCode> Results;
-        Input::InputCode Hat = (Input::InputCode)(RawEvent_.jhat.hat + Input::CONTROLLERHAT_FIRST);
+        Input::InputCode Hat = (Input::InputCode)(RawEvent_.jhat.hat + Input::JOYSTICKHAT_FIRST);
 
-        if( Input::CONTROLLERHAT_FIRST > Hat || Input::CONTROLLERHAT_LAST < Hat )
+        if( Input::JOYSTICKHAT_FIRST > Hat || Input::JOYSTICKHAT_LAST < Hat )
         {
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Unsupported Controller Hat Event");
         }
@@ -177,14 +177,14 @@ namespace Mezzanine
         if( 0 == RawEvent_.jball.ball )
         {
             if( RawEvent_.jball.yrel != 0 )
-                { Results.push_back(this->AddCode(RawEvent_.jball.yrel, Input::CONTROLLERBALL_1_VERTICAL, RawEvent_.jball.which)); }
+                { Results.push_back(this->AddCode(RawEvent_.jball.yrel, Input::JOYSTICKBALL_1_VERTICAL, RawEvent_.jball.which)); }
             if( RawEvent_.jball.xrel != 0 )
-                { Results.push_back(this->AddCode(RawEvent_.jball.xrel, Input::CONTROLLERBALL_1_HORIZONTAL, RawEvent_.jball.which)); }
+                { Results.push_back(this->AddCode(RawEvent_.jball.xrel, Input::JOYSTICKBALL_1_HORIZONTAL, RawEvent_.jball.which)); }
         }else if( 1 == RawEvent_.jball.ball ){
             if( RawEvent_.jball.yrel != 0 )
-                { Results.push_back(this->AddCode(RawEvent_.jball.yrel, Input::CONTROLLERBALL_2_VERTICAL, RawEvent_.jball.which)); }
+                { Results.push_back(this->AddCode(RawEvent_.jball.yrel, Input::JOYSTICKBALL_2_VERTICAL, RawEvent_.jball.which)); }
             if( RawEvent_.jball.xrel != 0 )
-                { Results.push_back(this->AddCode(RawEvent_.jball.xrel, Input::CONTROLLERBALL_2_HORIZONTAL, RawEvent_.jball.which)); }
+                { Results.push_back(this->AddCode(RawEvent_.jball.xrel, Input::JOYSTICKBALL_2_HORIZONTAL, RawEvent_.jball.which)); }
         }else{
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"More then 2 trackballs is currently not supported.  Perhaps we should expand our enum.");
         }

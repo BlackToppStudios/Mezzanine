@@ -46,23 +46,26 @@ namespace Mezzanine
 {
     namespace Input
     {
-        ButtonDevice::ButtonDevice()
+        /*ButtonDevice::ButtonDevice() :
+            TransitioningIndexes(4)
             {  }
 
-        ButtonDevice::~ButtonDevice()
-            {  }
-
-        void ButtonDevice::UpdateButtonTransitions()
+        MetaCodeContainer ButtonDevice::UpdateButtonTransitions()
         {
-            for( std::vector<Whole>::iterator It = this->TransitioningIndexes.begin() ; It != this->TransitioningIndexes.end() ; ++It )
+            MetaCodeContainer GeneratedCodes;
+            for( Whole CurrIndex : this->TransitioningIndexes )
             {
-                Input::ButtonState State = this->Buttons.at( (*It) );
-                if( Input::BUTTON_PRESSING == State )
-                    this->Buttons.at( (*It) ) = Input::BUTTON_DOWN;
-                else if( Input::BUTTON_LIFTING == State )
-                    this->Buttons.at( (*It) ) = Input::BUTTON_UP;
+                Input::ButtonState State = this->Buttons.at( CurrIndex );
+                if( Input::BUTTON_PRESSING == State ) {
+                    this->Buttons.at( CurrIndex ) = Input::BUTTON_DOWN;
+                    Input::InputCode ButtonCode = static_cast<Input::InputCode>(this->GetFirstButtonCode() + CurrIndex);
+                    GeneratedCodes.emplace_back(Input::BUTTON_DOWN,ButtonCode,this->GetDeviceIndex());
+                }else if( Input::BUTTON_LIFTING == State ) {
+                    this->Buttons.at( CurrIndex ) = Input::BUTTON_UP;
+                }
             }
             this->TransitioningIndexes.clear();
+            return GeneratedCodes;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -74,19 +77,19 @@ namespace Mezzanine
         Boole ButtonDevice::IsButtonPressed(const UInt16 Button) const
             { return Input::BUTTON_UP < this->GetButtonState(Button); }
 
-        Boole ButtonDevice::IsButtonPressed(const Input::InputCode& Button) const
+        Boole ButtonDevice::IsButtonPressed(const Input::InputCode Button) const
             { return Input::BUTTON_UP < this->GetButtonState(Button); }
 
         Boole ButtonDevice::IsButtonPressing(const UInt16 Button) const
             { return Input::BUTTON_PRESSING == this->GetButtonState(Button); }
 
-        Boole ButtonDevice::IsButtonPressing(const Input::InputCode& Button) const
+        Boole ButtonDevice::IsButtonPressing(const Input::InputCode Button) const
             { return Input::BUTTON_PRESSING == this->GetButtonState(Button); }
 
         Boole ButtonDevice::IsButtonLifting(const UInt16 Button) const
             { return Input::BUTTON_LIFTING == this->GetButtonState(Button); }
 
-        Boole ButtonDevice::IsButtonLifting(const Input::InputCode& Button) const
+        Boole ButtonDevice::IsButtonLifting(const Input::InputCode Button) const
             { return Input::BUTTON_LIFTING == this->GetButtonState(Button); }
 
         Boole ButtonDevice::IsButtonTransitioning(const UInt16 Button) const
@@ -95,24 +98,28 @@ namespace Mezzanine
             return (Input::BUTTON_LIFTING == State || Input::BUTTON_PRESSING == State);
         }
 
-        Boole ButtonDevice::IsButtonTransitioning(const Input::ButtonState& Button) const
+        Boole ButtonDevice::IsButtonTransitioning(const Input::ButtonState Button) const
         {
             Input::ButtonState State = this->GetButtonState(Button);
             return (Input::BUTTON_LIFTING == State || Input::BUTTON_PRESSING == State);
         }
 
-        Boole ButtonDevice::CheckButtonState(const UInt16 Button, const Input::ButtonState& State) const
+        Boole ButtonDevice::CheckButtonState(const UInt16 Button, const Input::ButtonState State) const
             { return State == this->GetButtonState(Button); }
 
-        Boole ButtonDevice::CheckButtonState(const Input::InputCode& Button, const Input::ButtonState& State) const
+        Boole ButtonDevice::CheckButtonState(const Input::InputCode Button, const Input::ButtonState State) const
             { return State == this->GetButtonState(Button); }
 
-        void ButtonDevice::_Update(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        MetaCodeContainer ButtonDevice::_Update(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd)
         {
-            this->UpdateButtonTransitions();
-            this->UpdateImpl(DeltaCodes,GeneratedCodes);
-            this->AddPressedButtons(GeneratedCodes);
-        }
+            MetaCodeContainer Ret = std::move( this->UpdateButtonTransitions() );
+            MetaCodeContainer Temp = std::move( this->UpdateImpl(DeltaBegin,DeltaEnd) );
+            Ret.insert(Ret.begin(),Temp.begin(),Temp.end());
+            return Ret;
+        }//*/
     }//Input
 }//Mezzanine
 

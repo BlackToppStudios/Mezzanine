@@ -52,7 +52,7 @@ namespace Mezzanine
 
         /// @brief Sets system clipboard text.
         /// @param ClipboardText A string containing desired clipboard text.
-        void SetClipboardText( const String & ClipboardText );
+        void SetClipboardText(const String& ClipboardText);
     }
 }
 

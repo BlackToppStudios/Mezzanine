@@ -53,11 +53,15 @@ namespace Mezzanine
 
 #include "Input/inputenumerations.h"
 #include "Input/inputmanager.h"
+#include "Input/inpututilities.h"
 
 #include "Input/controller.h"
 #include "Input/device.h"
+#include "Input/joystick.h"
 #include "Input/keyboard.h"
 #include "Input/metacode.h"
+#include "Input/metacodekey.h"
 #include "Input/mouse.h"
+#include "Input/sequencecontainer.h"
 
 #endif

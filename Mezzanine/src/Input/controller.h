@@ -40,7 +40,6 @@
 #ifndef _inputcontroller_h
 #define _inputcontroller_h
 
-#include "vector2.h"
 #include "Input/inputenumerations.h"
 #include "Input/buttondevice.h"
 
@@ -49,108 +48,88 @@ namespace Mezzanine
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This class represents a controller input device, such as a gamepad or joystick.
+        /// @brief This class represents a controller input device.
         ///////////////////////////////////////
-        class MEZZ_LIB Controller : public ButtonDevice
+        class MEZZ_LIB Controller : public ButtonDevice<Input::CONTROLLER_BUTTONMAX>
         {
+        public:
+            /// @brief Convenience type for the storage of controller axis states.
+            using AxisContainer = std::array<Int16,Input::CONTROLLER_AXISMAX>;
         protected:
-            /// @internal
             /// @brief Container storing the states for each axis on the controller.
-            std::vector<Int16> Axes;
-            /// @internal
-            /// @brief Container storing the states for each trackball on the controller.
-            std::vector<Vector2> Trackballs;
-            /// @internal
-            /// @brief Container storing the states for each hat on the controller.
-            std::vector<Input::HatState> Hats;
-            /// @internal
+            AxisContainer Axes;
             /// @brief The name of the controller device.
             String DeviceName;
-            /// @internal
+            /// @brief A pointer to the internal Controller device.
+            SDL_GameController* Control;
             /// @brief The index of the controller device.
-            UInt16 Index;
+            UInt16 DeviceIndex;
 
-            /// @copydoc ButtonDevice::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
-            void UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes);
-            /// @copydoc Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)
-            virtual void VerifySequenceImpl(const MetaCodeContainer& Sequence) const;
-            /// @copydoc Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const
-            virtual void AddPressedButtons(MetaCodeContainer& GeneratedCodes) const;
+            /// @copydoc ButtonDevice::UpdateImpl(ConstMetaCodeIterator, ConstMetaCodeIterator)
+            MetaCodeContainer UpdateImpl(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd);
         public:
             /// @brief Class constructor.
-            /// @param InternalControl A pointer to the internal struct of this controller.
-            /// @remarks A void pointer is necessary because SDL forward declares it's own struct already and this won't
-            /// compile with two forward declares.
-            Controller(void* InternalControl, int Count);
+            /// @param InternalControl A pointer to the internal struct of this Controller.
+            /// @param Index The internal index of this device.
+            Controller(SDL_GameController* InternalControl, int Index);
+            /// @brief Copy constructor.
+            /// @param Other The other Controller to be copied.
+            Controller(const Controller& Other) = delete;
+            /// @brief Move constructor.
+            /// @param Other The other Controller to be moved.
+            Controller(Controller&& Other) = delete;
             /// @brief Class destructor.
-            virtual ~Controller();
+            virtual ~Controller() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other Controller to be copied.
+            /// @return Returns a reference to this.
+            Controller& operator=(const Controller& Other) = delete;
+            /// @brief Move assignment operator.
+            /// @param Other The other Controller to be moved.
+            /// @return Returns a reference to this.
+            Controller& operator=(Controller&& Other) = delete;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query Methods
 
-            /// @brief Gets the device index of this controller.
-            /// @return Returns a UInt16 representing the device index for this controller.
+            /// @copydoc Device::GetDeviceIndex() const
             UInt16 GetDeviceIndex() const;
+            /// @copydoc Device::GetDeviceType() const
+            Input::InputDevice GetDeviceType() const;
+            /// @copydoc ButtonDevice::GetButtonState(const UInt16) const
+            virtual Input::ButtonState GetButtonState(const UInt16 Button) const;
+            /// @copydoc ButtonDevice::GetButtonState(const Input::InputCode) const
+            virtual Input::ButtonState GetButtonState(const Input::InputCode Button) const;
+            /// @copydoc ButtonDevice::GetFirstButtonCode() const
+            Input::InputCode GetFirstButtonCode() const;
+
             /// @brief Gets the name of this device.
-            /// @return Returns a const string reference containing the name of this device.
+            /// @return Returns a const String reference containing the name of this device.
             const String& GetDeviceName() const;
+
             /// @brief Gets the number of Axes on this device.
-            /// @return Returns a UInt16 representing the number of Axes present on this controller.
+            /// @return Returns a UInt16 representing the number of Axes present on this Controller.
             UInt16 GetNumAxes() const;
-            /// @brief Gets the number of Trackballs on this device.
-            /// @return Returns a UInt16 representing the number of Trackballs present on this controller.
-            UInt16 GetNumTrackballs() const;
-            /// @brief Gets the number of Hats on this device.
-            /// @return Returns a UInt16 representing the number of Hats present on this controller.
-            UInt16 GetNumHats() const;
-            /// @brief Gets whether a specific hat is pressed in a specific direction.
-            /// @param WhichWay The hat direction to check for.  This value is expected to be 1-6.
-            /// @return Returns true if the specified hat is pressed in the requested direction.
-            Boole IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay) const;
-            /// @brief This Gets the value of the given joystick axis.
+            /// @brief This Gets the value of the given Controller axis.
             /// @param Axis The axis that you want.  This value is expected to be 1-20.
-            /// @return An integer with the Value of the joystick axis.
+            /// @return An integer with the Value of the Controller axis.
             Int16 GetAxis(const UInt16 Axis) const;
-            /// @brief Gets the delta movement on the requested trackball.
-            /// @param Trackball The trackball to query.  This value is expected to be at least 1.
-            /// @return Returns a vector2 representing the delta movement for the specified trackball.
-            Vector2 GetTrackballDelta(const UInt16 Trackball) const;
-            /// @brief Gets the delta movement on the X axis on the requested trackball.
-            /// @param Trackball The trackball to query.  This value is expected to be at least 1.
-            /// @return Returns a Real representing the delta movement on the X axis for the specified trackball.
-            Real GetTrackballDeltaX(const UInt16 Trackball) const;
-            /// @brief Gets the delta movement on the Y axis on the requested trackball.
-            /// @param Trackball The trackball to query.  This value is expected to be at least 1.
-            /// @return Returns a Real representing the delta movement on the Y axis for the specified trackball.
-            Real GetTrackballDeltaY(const UInt16 Trackball) const;
-            /// @brief Gets the current state of the requested hat.
-            /// @param Hat The hat to query.  This value is expected to be 1-6.
-            /// @return Returns a HatState representing the current state of the specified hat.
-            const Input::HatState& GetHatState(const UInt16 Hat) const;
-            /// @brief This Gets the value of the given joystick axis.
+            /// @brief This Gets the value of the given Controller axis.
             /// @param Axis An InputCode representing the axis that you want.
-            /// @return An integer with the Value of the joystick axis.
-            Int16 GetAxis(const Input::InputCode& Axis) const;
-            /// @brief Gets the delta movement on the requested trackball.
-            /// @param Trackball An InputCode representing the trackball to query.
-            /// @return Returns a vector2 representing the delta movement for the specified trackball.
-            /// @throw A @ref InvalidParametersException is thrown if anything other than a controllerball value from the @ref Input enum is passed.
-            Real GetTrackballDelta(const Input::InputCode& Trackball) const;
-            /// @copydoc ButtonDevice::GetButtonState(const UInt16 Button) const
-            virtual const Input::ButtonState& GetButtonState(const UInt16 Button) const;
-            /// @copydoc ButtonDevice::GetButtonState(const Input::InputCode& Button) const
-            virtual const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
-            /// @brief Gets the current state of the requested hat.
-            /// @param Hat An InputCode representing the hat to query.
-            /// @return Returns a HatState representing the current state of the specified hat.
-            const Input::HatState& GetHatState(const Input::InputCode& Hat) const;
+            /// @return An integer with the Value of the Controller axis.
+            Int16 GetAxis(const Input::InputCode Axis) const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Configuration Methods
+            // Internal Methods
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility Methods
-        };// Controller
+            /// @brief Gets the internal representation of the Controller.
+            /// @return Returns a pointer to the internal Controller device.
+            SDL_GameController* _GetInternalDevice() const;
+        };//Controller
     }//Input
 }//Mezzanine
 

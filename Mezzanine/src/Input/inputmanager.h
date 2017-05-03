@@ -45,22 +45,20 @@
 #include "singleton.h"
 #include "Input/metacode.h"
 #include "Input/sequencecontainer.h"
+#include "Input/keyboard.h"
+#include "Input/mouse.h"
 #include "Threading/workunit.h"
 
 namespace Mezzanine
 {
     namespace Input
     {
-        class Timer;
+        class Joystick;
         class Controller;
-        class Keyboard;
-        class Mouse;
         class InputManager;
-        class InputManagerInternalData;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer.
-        /// @details
+        /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of input device state from the OS.
         ///////////////////////////////////////
         class MEZZ_LIB DeviceUpdateWorkUnit : public Threading::DefaultWorkUnit
         {
@@ -91,14 +89,12 @@ namespace Mezzanine
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
         };//DeviceUpdateWorkUnit
 
-        // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+        // Used by the scripting language binder to help create bindings for this class. SWIG does know to creation template instances
         #ifdef SWIG
         %template(SingletonInputManager) Singleton<InputManager>;
         #endif
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class InputManager
-        /// @headerfile inputmanager.h
         /// @brief This is the manager responsible for the handling of input devices and events.
         /// @details Inputs can be checked one of two ways in the input system.  Either you can get the class instance
         /// for the device you want to query and use the query methods on it to check it's current state, or you can
@@ -128,12 +124,18 @@ namespace Mezzanine
         class MEZZ_LIB InputManager : public EntresolManager, public Singleton<InputManager>
         {
         public:
-            /// @brief Basic container type for game controller instances.
-            typedef std::vector< Controller* >           ControllerContainer;
-            /// @brief Iterator type for game controller instances stored by this class.
-            typedef ControllerContainer::iterator        ControllerIterator;
-            /// @brief Const Iterator type for game controller instances stored by this class.
-            typedef ControllerContainer::const_iterator  ConstControllerIterator;
+            /// @brief Basic container type for game Joystick instances.
+            using JoystickContainer = std::vector< Joystick* >;
+            /// @brief Iterator type for game Joystick instances stored by this class.
+            using JoystickIterator = JoystickContainer::iterator;
+            /// @brief Const Iterator type for game Joystick instances stored by this class.
+            using ConstJoystickIterator = JoystickContainer::const_iterator;
+            /// @brief Basic container type for game Controller instances.
+            using ControllerContainer = std::vector< Controller* >;
+            /// @brief Iterator type for game Controller instances stored by this class.
+            using ControllerIterator = ControllerContainer::iterator;
+            /// @brief Const Iterator type for game Controller instances stored by this class.
+            using ConstControllerIterator = ControllerContainer::const_iterator;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
@@ -142,29 +144,47 @@ namespace Mezzanine
         protected:
             friend class DeviceUpdateWorkUnit;
 
-            /// @internal
-            /// @brief Container storing all the cross-device sequences this manager is to check for.
-            SequenceContainer Sequences;
-            /// @internal
+            /// @brief Container storing all the detected Joysticks on this system.
+            JoystickContainer Joysticks;
+            /// @brief Container storing all the detected Controllers on this system.
+            ControllerContainer Controllers;
             /// @brief Container storing all the MetaCodes generated for the current frame.
             MetaCodeContainer InputDeltas;
+            /// @brief Container storing all the cross-device sequences this manager is to check for.
+            SequenceContainer Sequences;
 
-            /// @internal
-            /// @brief The pointer to the internal data handled by this manager.
-            InputManagerInternalData* IMID;
-            /// @internal
             /// @brief The pointer to the object representing the system mouse.
             Mouse* SystemMouse;
-            /// @internal
             /// @brief The pointer to the object representing the system keyboard.
             Keyboard* SystemKeyboard;
 
-            /// @internal
             /// @brief The work unit that updates the input devices with the newest data.
             DeviceUpdateWorkUnit* DeviceUpdateWork;
-            /// @internal
             /// @brief Can be used for thread safe logging and other thread specific resources.
             Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
+
+            /// @brief Pumps the internal event queue and populates our input deltas.
+            void PumpInternalEvents();
+            /// @brief Updates the Keyboard state from a range of MetaCodes.
+            /// @param UpdateBegin A mutable iterator to the start of the range to update.
+            /// @param RangeEnd A const iterator to the end of the entire range.
+            /// @return Returns a container of the codes the device generated during the update.
+            MetaCodeContainer UpdateKeyboard(MetaCodeIterator& UpdateBegin, const MetaCodeIterator RangeEnd);
+            /// @brief Updates the Mouse state from a range of MetaCodes.
+            /// @param UpdateBegin A mutable iterator to the start of the range to update.
+            /// @param RangeEnd A const iterator to the end of the entire range.
+            /// @return Returns a container of the codes the device generated during the update.
+            MetaCodeContainer UpdateMouse(MetaCodeIterator& UpdateBegin, const MetaCodeIterator RangeEnd);
+            /// @brief Updates the Joystick state from a range of MetaCodes.
+            /// @param UpdateBegin A mutable iterator to the start of the range to update.
+            /// @param RangeEnd A const iterator to the end of the entire range.
+            /// @return Returns a container of the codes the device generated during the update.
+            MetaCodeContainer UpdateJoysticks(MetaCodeIterator& UpdateBegin, const MetaCodeIterator RangeEnd);
+            /// @brief Updates the Controller state from a range of MetaCodes.
+            /// @param UpdateBegin A mutable iterator to the start of the range to update.
+            /// @param RangeEnd A const iterator to the end of the entire range.
+            /// @return Returns a container of the codes the device generated during the update.
+            MetaCodeContainer UpdateControllers(MetaCodeIterator& UpdateBegin, const MetaCodeIterator RangeEnd);
         public:
             /// @brief Class constructor.
             InputManager();
@@ -184,21 +204,27 @@ namespace Mezzanine
             /// @return Returns a pointer to the keyboard device.
             Keyboard* GetSystemKeyboard() const;
 
-            /// @brief Gets a controller by index.
-            /// @return Returns a pointer to the controller at the specified index.
+            /// @brief Gets a Joysticks by index.
+            /// @return Returns a pointer to the Joysticks at the specified index.
+            Joystick* GetJoystick(const UInt16 Index) const;
+            /// @brief Gets the number of Joysticks detected.
+            /// @return Returns the number of Joysticks that have been detected on this system.
+            UInt16 GetNumJoysticks() const;
+            /// @brief Gets a Controller by index.
+            /// @return Returns a pointer to the Controller at the specified index.
             Controller* GetController(const UInt16 Index) const;
-            /// @brief Gets the number of controllers detected.
-            /// @return Returns the number of controllers that have been detected on this system.
+            /// @brief Gets the number of Controllers detected.
+            /// @return Returns the number of Controllers that have been detected on this system.
             UInt16 GetNumControllers() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // InputDevice Detection
 
-            /// @brief Gathers all of the controllers that are connected to the system and creates corresponding devices for each one.
-            /// @return Returns the number of controllers that have been detected.
-            UInt16 DetectControllers();
-            /// @brief Releases all controller devices from this manager.
-            void ReleaseAllControllers();
+            /// @brief Detects all of the Controllers and Joysticks that are connected to the system and prepares them for use.
+            /// @return Returns the number of devices that have been detected.
+            UInt16 DetectDevices();
+            /// @brief Releases all Controller and Joystick devices from this manager.
+            void ReleaseAllDevices();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sequenced Input Management
@@ -217,6 +243,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
+            /// @brief Updates the state of all input devices from the application event queue.
+            void UpdateInputDevices();
             /// @brief Gets all the input codes that were generated this frame.
             /// @return Returns a const reference to a vector containing all the inputs updated this frame.
             const MetaCodeContainer& GetInputDeltas() const;

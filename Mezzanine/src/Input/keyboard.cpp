@@ -50,40 +50,16 @@ namespace Mezzanine
     namespace Input
     {
         Keyboard::Keyboard()
-        {
-            this->Buttons.resize(Input::KEY_LAST,Input::BUTTON_UP);
-        }
+            { this->Buttons.fill(Input::BUTTON_UP); }
 
-        Keyboard::~Keyboard()
+        MetaCodeContainer Keyboard::UpdateImpl(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd)
         {
-        }
-
-        void Keyboard::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
-        {
-            for( Whole X = 0 ; X < DeltaCodes.size() ; ++X )
+            for( ConstMetaCodeIterator CurrDelta = DeltaBegin ; CurrDelta != DeltaEnd ; ++CurrDelta )
             {
-                this->TransitioningIndexes.push_back( DeltaCodes[X].GetCode() );
-                this->Buttons.at( DeltaCodes[X].GetCode() ) = static_cast<Input::ButtonState>(DeltaCodes[X].GetMetaValue());
+                this->TransitioningIndexes.push_back( (*CurrDelta).GetCode() );
+                this->Buttons.at( (*CurrDelta).GetCode() ) = static_cast<Input::ButtonState>( (*CurrDelta).GetMetaValue() );
             }
-            this->Sequences.Update(DeltaCodes,GeneratedCodes);
-        }
-
-        void Keyboard::VerifySequenceImpl(const MetaCodeContainer& Sequence) const
-        {
-            for( ConstMetaCodeIterator MCIt = Sequence.begin() ; MCIt != Sequence.end() ; ++MCIt )
-            {
-                if( !MCIt->IsKeyboardEvent() )
-                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Non-Keyboard MetaCode detected when attempting to insert an Input Sequence into Keyboard input device."); }
-            }
-        }
-
-        void Keyboard::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const
-        {
-            for( UInt32 Index = 0 ; Index < this->Buttons.size() ; ++Index )
-            {
-                if( this->Buttons.at(Index) == Input::BUTTON_DOWN )
-                    GeneratedCodes.push_back( MetaCode(Input::BUTTON_DOWN,static_cast<Input::InputCode>(Input::KEY_FIRST + Index),GetDeviceIndex()) );
-            }
+            return std::move( this->Sequences.Update(DeltaBegin,DeltaEnd) );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -92,11 +68,17 @@ namespace Mezzanine
         UInt16 Keyboard::GetDeviceIndex() const
             { return std::numeric_limits<UInt16>::max(); }
 
-        const Input::ButtonState& Keyboard::GetButtonState(const UInt16 Button) const
+        Input::InputDevice Keyboard::GetDeviceType() const
+            { return Input::DEVICE_KEYBOARD; }
+
+        Input::ButtonState Keyboard::GetButtonState(const UInt16 Button) const
             { return this->Buttons.at( Button - 1 ); }
 
-        const Input::ButtonState& Keyboard::GetButtonState(const Input::InputCode& Button) const
-            { return this->Buttons.at(Button); }
+        Input::ButtonState Keyboard::GetButtonState(const Input::InputCode Button) const
+            { return this->Buttons.at( Button ); }
+
+        Input::InputCode Keyboard::GetFirstButtonCode() const
+            { return Input::KEY_FIRST; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Configuration Methods
