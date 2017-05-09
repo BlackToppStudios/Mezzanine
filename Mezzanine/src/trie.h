@@ -804,7 +804,7 @@ public:
  *
  *
  * With this class the container used for storing node item is STL vector.
- * Here each node will use a space propotional to Max.
+ * Here each node will use a space proportional to Max.
  * For searching only constant time taken at each node.
  * @tparam T Type for each element in the key
  * @tparam V Type of the value that the key will be representing
@@ -928,7 +928,7 @@ protected:
  *
  * With this class the container used for storing node item is STL set.
  * Here no extra space will used for storing node item.
- * For searching in each node the time taken is propotional to number of item in the node.
+ * For searching in each node the time taken is proportional to number of item in the node.
  * @tparam T Type for each element in the key
  * @tparam V Type of the value that the key will be representing
  * @tparam Cmp Comparison functor
@@ -1066,7 +1066,7 @@ protected:
  *               Max is the integer representing number of elements in each Trie node.
  *
  * @section usage_sec Usage of the Trie
- * @subsection usage_declaration Declarating the Trie
+ * @subsection usage_declaration Declaring the Trie
  * A Trie with key as chars and value as std::string can be declared as given below
  * @code
  * #include <string>
@@ -1080,7 +1080,7 @@ protected:
  * }
  * @endcode
  *
- * @subsection usage_population Populatiion and deletion from the Trie
+ * @subsection usage_population Population and deletion from the Trie
  * Trie can be populated by using the Trie::insert method and element can be removed using Trie::erase.
  * @code
  * #include <trie.h>
@@ -1132,7 +1132,7 @@ protected:
  * @endcode
  *
  * @subsection usage_searching Searching keys which have common prefix
- * Keys which begins with a specific charactars can be retrieved using Trie::startsWith method
+ * Keys which begins with a specific characters can be retrieved using Trie::startsWith method
  * @code
  * #include <trie.h>
  * #include <string>
@@ -1239,7 +1239,7 @@ protected:
  * @subsection usage_set_of_node Trie with each Node as a set
  * Here each node will be an ordered set.
  * Here there will be no extra usage of space but search for a symbol in the node takes logarithmic time.
- * Trie with this feature can also be used for caseinsensitive symbol handling.
+ * Trie with this feature can also be used for case insensitive symbol handling.
  * @code
  *
  * #include <trie.h>
@@ -1257,7 +1257,7 @@ protected:
  * @endcode
  * @subsection usage_iterator Using Trie::iterator
  * Trie iterator can be used the same way as STL iterator.
- * Key and value can be accessed from iterator using first and secod member.
+ * Key and value can be accessed from iterator using first and second member.
  * first is vector of key characters and second is a pointer to the value.
  * @code
  * #include <trie.h>
@@ -1316,8 +1316,7 @@ public:
      * @return An std::pair with pair::first set to the iterator points to the element and pair::second to true is key is newly inserted, false otherwise
      */
     std::pair<iterator, bool> insert(const std::vector<T>& key, V const &value) {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->insert(&key[0], value);
+        return this->insert(key.data(), value);
     }
 
     /*!
@@ -1335,8 +1334,7 @@ public:
      * @return true if the given key is erased from the Trie, false otherwise
      */
     bool erase(const std::vector<T>& key) {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->erase(&key[0]);
+        return this->erase(key.data());
     }
 
     /*!
@@ -1363,8 +1361,7 @@ public:
      * @return Constant pointer to value for the given key, 0 on failure
      */
     const V *get(const std::vector<T>& key) const {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->get(&key[0]);
+        return this->get(key.data());
     }
 
     /*!
@@ -1382,8 +1379,7 @@ public:
      * @return Pointer to value for the given key, 0 on failure
      */
     V *get(const std::vector<T>& key) {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->get(&key[0]);
+        return this->get(key.data());
     }
 
     /*!
@@ -1405,13 +1401,12 @@ public:
      * @return Reference to value for the given key
      */
     V &operator[](const std::vector<T>& key) {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->operator[](&key[0]);
+        return this->operator[](key.data());
     }
 
     /*!
      * Checks whether the given key is present in the Trie
-     * @param key Key to be searched for, should be terminated by 'end' symol
+     * @param key Key to be searched for, should be terminated by 'end' symbol
      * @return true if the key is present
      */
     bool hasKey(const T *key) const {
@@ -1420,12 +1415,11 @@ public:
 
     /*!
      * Checks whether the given key is present in the Trie
-     * @param key Key to be searched for, should be terminated by 'end' symol
+     * @param key Key to be searched for, should be terminated by 'end' symbol
      * @return true if the key is present
      */
     bool hasKey(const std::vector<T>& key) const {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->hasKey(&key[0]);
+        return this->hasKey(key.data());
     }
 
     /*!
@@ -1526,8 +1520,7 @@ public:
      * @return Iterator to the element with key 'key' if found, otherwise an iterator to Trie::end
      */
     iterator find(const std::vector<T>& key) {
-        /// @todo Currently this uses a hack that isn't safe for all types and circumstances.  This should be changed to use "data()" function member new to C++11 when we make that dive.
-        return this->find(&key[0]);
+        return this->find(key.data());
     }
 
     /*!
@@ -1545,7 +1538,7 @@ public:
      * @return const_iterator to the element with key 'key' if found, otherwise an const_iterator to Trie::end
      */
     const_iterator find(const std::vector<T>& key) const {
-        return this->find(&key[0]);
+        return this->find(key.data());
     }
 
     /*!
