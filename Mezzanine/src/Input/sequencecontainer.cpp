@@ -45,6 +45,7 @@
 #include "exception.h"
 
 #include <limits>
+#include <cassert>
 
 namespace Mezzanine
 {
@@ -53,7 +54,7 @@ namespace Mezzanine
         SequenceContainer::SequenceContainer() :
             MaxSequenceSize(0),
             DeviceID(std::numeric_limits<UInt32>::max()),
-            SequencedInputs(MetaCode())
+            SequencedInputs(MetaCode::NullCode)
         {
             this->SequenceTimer.SetCurrentTimeInMilliseconds(300);
             this->SequenceTimer.SetCountMode(Mezzanine::CM_CountDown);
@@ -62,7 +63,7 @@ namespace Mezzanine
         SequenceContainer::SequenceContainer(const UInt32 Device) :
             MaxSequenceSize(0),
             DeviceID(Device),
-            SequencedInputs(MetaCode())
+            SequencedInputs(MetaCode::NullCode)
         {
             this->SequenceTimer.SetCurrentTimeInMilliseconds(300);
             this->SequenceTimer.SetCountMode(Mezzanine::CM_CountDown);
@@ -73,42 +74,16 @@ namespace Mezzanine
             this->SequencedInputs.clear();
         }
 
-        void SequenceContainer::VerifyInputSequence(const MetaCodeContainer& Codes) const
+        MetaCode SequenceContainer::TestCurrentSequence()
         {
-            const MetaCode NullCode;
-            if( Codes.size() < 3 ) {
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to add a Sequenced Input that is less then 3 MetaCodes long(including the Null MetaCode).  "
-                                                                       "A sequence with only one(or less) actual MetaCode isn't a sequence.");
-            }
-            if( NullCode != Codes.back() ) {
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to add a Sequenced Input that is not terminated with a null MetaCode.");
-            }
-        }
+            this->CurrSequence.push_back(MetaCode::NullCode);
+            SequencedInputIterator SeqIt = this->SequencedInputs.find(this->CurrSequence);
+            this->CurrSequence.pop_back();
 
-        void SequenceContainer::VerifyInputID(const Int32 ID) const
-        {
-            if( std::numeric_limits<Int32>::max() == ID ) {
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to use max value of Int32 as an ID for an input sequence.  This value is reserved for error conditions.");
-            }
-        }
-
-        MetaCode SequenceContainer::ProcessSequence(MetaCodeIterator First, MetaCodeIterator OneAfterLast)
-        {
-            // Set up our data
-            MetaCode Ret;
-            MetaCodeContainer Key(this->CurrSequence.begin(),this->CurrSequence.end());
-            Key.push_back(this->SequencedInputs.endSymbol());
-            // Do the actual search
-            SequencedInputIterator SeqIt = this->SequencedInputs.find(Key);
-            // Return a "Null" metacode if nothing was found
             if( SeqIt == this->SequencedInputs.end() ) {
-                return Ret;
-            }else{
-                Ret.SetCode(Input::COMPOUNDINPUT_CUSTOMSEQUENCE);
-                Ret.SetMetaValue( *(*SeqIt).second );
-                Ret.SetDeviceID(this->DeviceID);
-                return Ret;
+                return MetaCode::NullCode;
             }
+            return MetaCode(*(*SeqIt).second,Input::COMPOUNDINPUT_CUSTOMSEQUENCE,this->DeviceID);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -116,38 +91,34 @@ namespace Mezzanine
 
         void SequenceContainer::AddInputSequence(const MetaCodeContainer& Codes, const Int32 SequenceID)
         {
-            this->VerifyInputSequence(Codes);
-            this->VerifyInputID(SequenceID);
-            this->SequencedInputs.insert(Codes,SequenceID);
-            if( this->MaxSequenceSize < Codes.size() - 1 ) {
-                this->MaxSequenceSize = Codes.size() - 1;
+            assert(std::numeric_limits<Int32>::max() != SequenceID &&
+                   "Attempting to use max value of Int32 as an ID for an input sequence.  This value is reserved for error conditions.");
+
+            if( MetaCode::NullCode != Codes.back() ) {
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to add a Sequenced Input that is not terminated with a null MetaCode.");
             }
+            this->SequencedInputs.insert(Codes,SequenceID);
+            this->MaxSequenceSize = std::max(static_cast<size_t>(this->MaxSequenceSize),Codes.size());
         }
 
         Boole SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
-        {
-            this->VerifyInputSequence(Codes);
-            return this->SequencedInputs.hasKey(Codes);
-        }
+            { return this->SequencedInputs.hasKey(Codes); }
 
         Int32 SequenceContainer::GetIDofInputSequence(const MetaCodeContainer& Codes)
         {
-            this->VerifyInputSequence(Codes);
             SequencedInputIterator SqIt = this->SequencedInputs.find(Codes);
-            if( SqIt != this->SequencedInputs.end() ) return *(SqIt->second);
-            else return std::numeric_limits<Int32>::max();
+            if( SqIt != this->SequencedInputs.end() ) {
+                return *(SqIt->second);
+            }else{
+                return std::numeric_limits<Int32>::max();
+            }
         }
 
         void SequenceContainer::RemoveInputSequence(const MetaCodeContainer& Codes)
-        {
-            this->VerifyInputSequence(Codes);
-            this->SequencedInputs.erase(Codes);
-        }
+            { this->SequencedInputs.erase(Codes); }
 
         void SequenceContainer::RemoveAllInputSequences()
-        {
-            this->SequencedInputs.clear();
-        }
+            { this->SequencedInputs.clear(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -160,15 +131,13 @@ namespace Mezzanine
         MetaCodeContainer SequenceContainer::Update(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd)
         {
             MetaCodeContainer Ret;
-            // Set up our compare data
-            const MetaCode NullMetaCode;
             // Escape early if we have nothing to do
             if( this->SequencedInputs.empty() ) {
                 return Ret;
             }
 
             // Check our timer and clear our cache if it's been long enough since the last input
-            if( this->SequenceTimer.IsStopped() <= 0 ) {
+            if( this->SequenceTimer.IsStopped() ) {
                 this->CurrSequence.clear();
             }else{
                 this->SequenceTimer.Reset(300 * 1000);
@@ -179,7 +148,7 @@ namespace Mezzanine
             {
                 if( this->CurrSequence.empty() ) {
                     this->CurrSequence.push_back( (*DeltaBegin) );
-                    this->CurrSequence.push_back( NullMetaCode );
+                    this->CurrSequence.push_back( MetaCode::NullCode );
                     SequencedInputIterator SeqIt = this->SequencedInputs.startsWith( this->CurrSequence );
                     if( SeqIt != this->SequencedInputs.end() ) {
                         this->CurrSequence.pop_back();
@@ -192,9 +161,8 @@ namespace Mezzanine
                     if( this->MaxSequenceSize == this->CurrSequence.size() ) {
                         this->CurrSequence.erase( this->CurrSequence.begin() );
                     }
-                    // Compare current cache to existing stored sequences
-                    MetaCode New = this->ProcessSequence(this->CurrSequence.begin(),this->CurrSequence.end());
-                    if( NullMetaCode != New ) {
+                    MetaCode New = this->TestCurrentSequence();
+                    if( MetaCode::NullCode != New ) {
                         Ret.push_back(New);
                     }
                 }

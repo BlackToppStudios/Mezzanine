@@ -83,8 +83,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Query Methods
 
-            /// @copydoc Device::GetDeviceIndex() const
-            UInt16 GetDeviceIndex() const;
+            /// @copydoc Device::GetDeviceID() const
+            DeviceIDType GetDeviceID() const;
             /// @copydoc Device::GetDeviceType() const
             Input::InputDevice GetDeviceType() const;
             /// @copydoc ButtonDevice::GetButtonState(const UInt16) const

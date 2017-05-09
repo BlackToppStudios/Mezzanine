@@ -68,22 +68,14 @@ namespace Mezzanine
             MetaCodeContainer CurrSequence;
             /// @brief Timer used to help detect input sequences.
             Timer SequenceTimer;
-            /// @brief The index of the device to detect sequenced inputs for.
-            UInt32 DeviceID;
             /// @brief The maximum number of inputs to keep cached for detecting sequenced inputs.
             UInt16 MaxSequenceSize;
+            /// @brief The index of the device to detect sequenced inputs for.
+            UInt32 DeviceID;
 
-            /// @brief Verify's a sequence of MetaCode's is terminated with a null MetaCode.
-            /// @param Codes The vector of MetaCode's to verify.
-            void VerifyInputSequence(const MetaCodeContainer& Codes) const;
-            /// @brief Verify's a number is valid to be used as an ID for an input sequence being inserted.
-            /// @param ID The identification number to verify.
-            void VerifyInputID(const Int32 ID) const;
             /// @brief Processes a sequence(as defined by an iterator range) to see if any action needs to be taken.
-            /// @param First An iterator to the first MetaCode in the sequence.
-            /// @param OneAfterLast An iterator to the space after the last MetaCode in the sequence.
             /// @return Returns a new MetaCode for a completed sequence, or a "Null" MetaCode if no sequence was completed.
-            MetaCode ProcessSequence(MetaCodeIterator First, MetaCodeIterator OneAfterLast);
+            MetaCode TestCurrentSequence();
         public:
             /// @brief Class constructor.
             SequenceContainer();

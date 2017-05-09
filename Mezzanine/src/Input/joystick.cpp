@@ -51,14 +51,14 @@ namespace Mezzanine
     namespace Input
     {
         Joystick::Joystick(SDL_Joystick* InternalStick, int Index) :
-            Stick(InternalStick),
-            DeviceIndex(Index)
+            Stick(InternalStick)
         {
             //this->Axes.resize( SDL_JoystickNumAxes(InternalStick), 0 );
             //this->Trackballs.resize( SDL_JoystickNumBalls(InternalStick), Vector2(0,0) );
             //this->Buttons.resize( SDL_JoystickNumButtons(InternalStick), Input::BUTTON_UP );
             //this->Hats.resize( SDL_JoystickNumHats(InternalStick), Input::CONTROLLERHAT_CENTERED );
             this->DeviceName = SDL_JoystickName(InternalStick);
+            this->DeviceID = SDL_JoystickInstanceID(InternalStick);
         }
 
         MetaCodeContainer Joystick::UpdateImpl(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd)
@@ -87,8 +87,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
-        UInt16 Joystick::GetDeviceIndex() const
-            { return this->DeviceIndex; }
+        DeviceIDType Joystick::GetDeviceID() const
+            { return this->DeviceID; }
 
         Input::InputDevice Joystick::GetDeviceType() const
             { return Input::DEVICE_JOYSTICK; }

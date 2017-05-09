@@ -77,7 +77,7 @@ namespace Mezzanine
                     if( Input::BUTTON_PRESSING == State ) {
                         this->Buttons.at( CurrIndex ) = Input::BUTTON_DOWN;
                         Input::InputCode ButtonCode = static_cast<Input::InputCode>(this->GetFirstButtonCode() + CurrIndex);
-                        GeneratedCodes.emplace_back(Input::BUTTON_DOWN,ButtonCode,this->GetDeviceIndex());
+                        GeneratedCodes.emplace_back(Input::BUTTON_DOWN,ButtonCode,this->GetDeviceID());
                     }else if( Input::BUTTON_LIFTING == State ) {
                         this->Buttons.at( CurrIndex ) = Input::BUTTON_UP;
                     }

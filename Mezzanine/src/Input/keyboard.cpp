@@ -65,8 +65,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
-        UInt16 Keyboard::GetDeviceIndex() const
-            { return std::numeric_limits<UInt16>::max(); }
+        DeviceIDType Keyboard::GetDeviceID() const
+            { return std::numeric_limits<DeviceIDType>::max(); }
 
         Input::InputDevice Keyboard::GetDeviceType() const
             { return Input::DEVICE_KEYBOARD; }

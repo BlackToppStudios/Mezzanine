@@ -153,8 +153,8 @@ namespace Mezzanine
             /// @return Returns a real with the offset from the previous update on the Y axis.
             Real GetDeltaY() const;
 
-            /// @copydoc Device::GetDeviceIndex() const
-            UInt16 GetDeviceIndex() const;
+            /// @copydoc Device::GetDeviceID() const
+            DeviceIDType GetDeviceID() const;
             /// @copydoc Device::GetDeviceType() const
             Input::InputDevice GetDeviceType() const;
             /// @copydoc ButtonDevice::GetButtonState(const UInt16) const
@@ -200,7 +200,7 @@ namespace Mezzanine
             // Utility Methods
 
             /// @brief Sets the mouse cursor's position to the specified point in the specified window.
-            /// @param Win The window to warp the cursor to.
+            /// @param Win The window to warp the cursor to.  Pointer is expected to be valid.
             /// @param Position The position on the specified window to warp the cursor to.
             void WarpCursorToPosition(Graphics::GameWindow* Win, const Vector2& Position);
         };//Mouse

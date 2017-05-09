@@ -54,6 +54,9 @@ namespace Mezzanine
 {
     namespace Input
     {
+        /// @brief A convenience type for ID of input devices where applicable.
+        using DeviceIDType = Integer;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a base class for all input devices.
         ///////////////////////////////////////
@@ -91,8 +94,8 @@ namespace Mezzanine
 
             /// @brief Gets the device index of this device.
             /// @remarks Keyboards and mice do not have device ID's, and the ID returned will be the maximum representable value.
-            /// @return Returns a UInt16 representing the device index for this device.
-            virtual UInt16 GetDeviceIndex() const = 0;
+            /// @return Returns a DeviceIDType representing the device index for this device.
+            virtual DeviceIDType GetDeviceID() const = 0;
             /// @brief Gets the type of input device this is.
             /// @return Returns an InputDevice enum value representing the type of input device this is.
             virtual Input::InputDevice GetDeviceType() const = 0;

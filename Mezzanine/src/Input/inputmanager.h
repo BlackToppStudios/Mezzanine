@@ -43,6 +43,7 @@
 #include "entresolmanager.h"
 #include "entresolmanagerfactory.h"
 #include "singleton.h"
+#include "eventpublisher.h"
 #include "Input/metacode.h"
 #include "Input/sequencecontainer.h"
 #include "Input/keyboard.h"
@@ -53,9 +54,36 @@ namespace Mezzanine
 {
     namespace Input
     {
+        class InputManager;
         class Joystick;
         class Controller;
-        class InputManager;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the base Event class for input devices.
+        ///////////////////////////////////////
+        class MEZZ_LIB DeviceEvent : public Event
+        {
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
+            /// @brief A pointer to the device that was connected or disconnected.
+            DeviceIDType EventDevice;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Class constructor.
+            /// @param Name The name of the event being fired.
+            /// @param Device The ID of the device that was connected or disconnected.
+            DeviceEvent(const EventNameType& Name, DeviceIDType Device) :
+                Event(Name), EventDevice(Device) {  }
+            /// @brief Class destructor.
+            virtual ~DeviceEvent() = default;
+        };//DeviceEvent
+
+        /// @brief Convenience type for passing around DeviceEvent.
+        using DeviceEventPtr = std::shared_ptr<DeviceEvent>;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of input device state from the OS.
@@ -63,14 +91,11 @@ namespace Mezzanine
         class MEZZ_LIB DeviceUpdateWorkUnit : public Threading::DefaultWorkUnit
         {
         protected:
-            /// @internal
             /// @brief A pointer to the manager this work unit is processing.
             InputManager* TargetManager;
-            /// @internal
             /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             DeviceUpdateWorkUnit(const DeviceUpdateWorkUnit& Other);
-            /// @internal
             /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             DeviceUpdateWorkUnit& operator=(const DeviceUpdateWorkUnit& Other);
@@ -141,8 +166,32 @@ namespace Mezzanine
             static const String ImplementationName;
             /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
             static const ManagerBase::ManagerType InterfaceType;
+
+            /// @brief Identifier for the event that is raised when a Joystick is added to the system.
+            /// @details Events with this name are of type: DeviceEvent.
+            static const EventNameType EventJoystickAdded;
+            /// @brief Identifier for the event that is raised when a Joystick is removed from the system.
+            /// @details Events with this name are of type: DeviceEvent.
+            static const EventNameType EventJoystickRemoved;
+            /// @brief Identifier for the event that is raised when a Controller is added to the system.
+            /// @details Events with this name are of type: DeviceEvent.
+            static const EventNameType EventControllerAdded;
+            /// @brief Identifier for the event that is raised when a Controller is removed from the system.
+            /// @details Events with this name are of type: DeviceEvent.
+            static const EventNameType EventControllerRemoved;
+            /// @brief Identifier for the event that is raised when a Controller has it's buttons remapped.
+            /// @details Events with this name are of type: DeviceEvent.
+            static const EventNameType EventControllerRemapped;
+            /// @brief Identifier for the event that is raised when the keyboard key layout is changed.
+            /// @details Events with this name are of type: DeviceEvent.
+            static const EventNameType EventKeymapChanged;
+            /// @brief Identifier for the event that is raised when the system clipboard has it's contents updated.
+            /// @details Events with this name are of type: Event.
+            static const EventNameType EventClipboardUpdated;
         protected:
             friend class DeviceUpdateWorkUnit;
+            /// @brief A publisher for notifying when the system input configuration changes.
+            EventPublisher InputPublisher;
 
             /// @brief Container storing all the detected Joysticks on this system.
             JoystickContainer Joysticks;
@@ -162,6 +211,17 @@ namespace Mezzanine
             DeviceUpdateWorkUnit* DeviceUpdateWork;
             /// @brief Can be used for thread safe logging and other thread specific resources.
             Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
+
+            /// @brief Common construction logic for multiple constructors.
+            void ConstructManager();
+            /// @brief Creates a new Joystick from a device index.
+            /// @param Index The device index of the Joystick to construct.
+            /// @return Returns a pointer to the created Joystick.
+            Joystick* ConstructJoystick(int Index);
+            /// @brief Creates a new Controller from a device index.
+            /// @param Index The device index of the Controller to construct.
+            /// @return Returns a pointer to the created Controller.
+            Controller* ConstructController(int Index);
 
             /// @brief Pumps the internal event queue and populates our input deltas.
             void PumpInternalEvents();
@@ -204,13 +264,24 @@ namespace Mezzanine
             /// @return Returns a pointer to the keyboard device.
             Keyboard* GetSystemKeyboard() const;
 
+            /// @brief Gets a Joystick by device ID.
+            /// @param ID The ID of the device to retrieve.
+            /// @return Returns the Joystick with the specified ID, or NULL if no Joystick with that ID exists.
+            Joystick* GetJoystick(const DeviceIDType ID) const;
             /// @brief Gets a Joysticks by index.
+            /// @param Index The index of the Joystick to retrieve.
             /// @return Returns a pointer to the Joysticks at the specified index.
             Joystick* GetJoystick(const UInt16 Index) const;
             /// @brief Gets the number of Joysticks detected.
             /// @return Returns the number of Joysticks that have been detected on this system.
             UInt16 GetNumJoysticks() const;
+
+            /// @brief Gets a Controller by device ID.
+            /// @param ID The ID of the device to retrieve.
+            /// @return Returns the Controller with the specified ID, or NULL if no Controller with that ID exists.
+            Controller* GetController(const DeviceIDType ID) const;
             /// @brief Gets a Controller by index.
+            /// @param Index The index of the Controller to retrieve.
             /// @return Returns a pointer to the Controller at the specified index.
             Controller* GetController(const UInt16 Index) const;
             /// @brief Gets the number of Controllers detected.
@@ -257,6 +328,12 @@ namespace Mezzanine
             /// @brief Gets the work unit responsible for updating the input device classes.
             /// @return Returns a pointer to the DeviceUpdateWorkUnit used by this manager.
             DeviceUpdateWorkUnit* GetDeviceUpdateWork();
+            /// @brief Gets the publisher for the input system events.
+            /// @return Returns a reference to the publisher that will dispatch input events.
+            EventPublisher& GetInputPublisher();
+            /// @brief Gets the publisher for the input system events.
+            /// @return Returns a const reference to the publisher that will dispatch input events.
+            const EventPublisher& GetInputPublisher() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods
@@ -268,8 +345,6 @@ namespace Mezzanine
         };//InputManager
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class DefaultInputManagerFactory
-        /// @headerfile inputmanager.h
         /// @brief A factory responsible for the creation and destruction of the default inputmanager.
         ///////////////////////////////////////
         class MEZZ_LIB DefaultInputManagerFactory : public EntresolManagerFactory

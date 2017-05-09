@@ -71,7 +71,7 @@ namespace Mezzanine
             /// @brief A pointer to the internal Joystick device.
             SDL_Joystick* Stick;
             /// @brief The index of the Joystick device.
-            UInt16 DeviceIndex;
+            DeviceIDType DeviceID;
 
             /// @copydoc ButtonDevice::UpdateImpl(ConstMetaCodeIterator, ConstMetaCodeIterator)
             MetaCodeContainer UpdateImpl(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd);
@@ -104,8 +104,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Query Methods
 
-            /// @copydoc Device::GetDeviceIndex() const
-            UInt16 GetDeviceIndex() const;
+            /// @copydoc Device::GetDeviceID() const
+            DeviceIDType GetDeviceID() const;
             /// @copydoc Device::GetDeviceType() const
             Input::InputDevice GetDeviceType() const;
             /// @copydoc ButtonDevice::GetButtonState(const UInt16) const

@@ -51,12 +51,13 @@ namespace Mezzanine
     namespace Input
     {
         Controller::Controller(SDL_GameController* InternalControl, int Index) :
-            Control(InternalControl),
-            DeviceIndex(Index)
+            Control(InternalControl)
         {
             //this->Axes.resize( SDL_JoystickNumAxes(InternalControl), 0 );
             //this->Buttons.resize( SDL_JoystickNumButtons(InternalControl), Input::BUTTON_UP );
+            SDL_Joystick* InternalStick = SDL_GameControllerGetJoystick(InternalControl);
             this->DeviceName = SDL_GameControllerName(InternalControl);
+            this->DeviceID = SDL_JoystickInstanceID(InternalStick);
         }
 
         MetaCodeContainer Controller::UpdateImpl(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd)
@@ -81,8 +82,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
-        UInt16 Controller::GetDeviceIndex() const
-            { return this->DeviceIndex; }
+        DeviceIDType Controller::GetDeviceID() const
+            { return this->DeviceID; }
 
         Input::InputDevice Controller::GetDeviceType() const
             { return Input::DEVICE_CONTROLLER; }

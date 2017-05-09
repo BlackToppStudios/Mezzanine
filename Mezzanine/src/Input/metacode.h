@@ -97,6 +97,9 @@ namespace Mezzanine
             typedef MetaCodeContainer::iterator        MetaCodeIterator;
             /// @brief Const Iterator type for convenient MetaCode storage.
             typedef MetaCodeContainer::const_iterator  ConstMetaCodeIterator;
+
+            /// @brief Convenience MetaCode of null values for comparisons.
+            static const MetaCode NullCode;
         protected:
             /// @brief The relevant value for the type of input this is, if applicable.
             Int32 MetaValue;

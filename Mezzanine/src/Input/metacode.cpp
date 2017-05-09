@@ -99,6 +99,8 @@ namespace Mezzanine
 {
     namespace Input
     {
+        const MetaCode MetaCode::NullCode = MetaCode();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion Methods
 
@@ -283,7 +285,7 @@ namespace Mezzanine
         Input::ButtonState MetaCode::GetMetaValueAsButtonState() const
         {
             if( Input::BUTTON_LIFTING <= this->MetaValue && Input::BUTTON_DOWN >= this->MetaValue) {
-                return (Input::ButtonState) this->MetaValue;
+                return static_cast<Input::ButtonState>( this->MetaValue );
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid ButtonState in MetaValue");
             }
@@ -292,7 +294,7 @@ namespace Mezzanine
         Input::DirectionalMotionState MetaCode::GetMetaValueAsDirectionalMotionState() const
         {
             if( Input::DIRECTIONALMOTION_DOWNRIGHT <= this->MetaValue && Input::DIRECTIONALMOTION_UPLEFT >= this->MetaValue) {
-                return (Input::DirectionalMotionState) this->MetaValue;
+                return static_cast<Input::DirectionalMotionState>( this->MetaValue );
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid DirectionalMotionState in MetaValue");
             }

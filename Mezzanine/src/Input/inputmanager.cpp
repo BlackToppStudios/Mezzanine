@@ -45,12 +45,9 @@
 #include "Input/keyboard.h"
 #include "Input/controller.h"
 #include "Input/joystick.h"
+#include "Input/metacodekey.h"
 
-#include "eventmanager.h"
-#include "eventuserinput.h"
-#include "entresol.h"
 #include "timer.h"
-#include "sortedvector.h"
 
 #include "SDL.h"
 
@@ -89,61 +86,32 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // InputManager Methods
 
-        //template<> InputManager* Singleton<InputManager>::SingletonPtr = NULL;
         const String InputManager::ImplementationName = "DefaultInputManager";
         const ManagerBase::ManagerType InputManager::InterfaceType = ManagerBase::MT_InputManager;
 
+        const EventNameType InputManager::EventJoystickAdded = "JoystickAdded";
+        const EventNameType InputManager::EventJoystickRemoved = "JoystickRemoved";
+        const EventNameType InputManager::EventControllerAdded = "ControllerAdded";
+        const EventNameType InputManager::EventControllerRemoved = "ControllerRemoved";
+        const EventNameType InputManager::EventControllerRemapped = "ControllerRemapped";
+        const EventNameType InputManager::EventKeymapChanged = "KeymapChanged";
+        const EventNameType InputManager::EventClipboardUpdated = "ClipboardUpdated";
+
         InputManager::InputManager() :
-            InputDeltas(4),
+            InputDeltas(8),
             SystemMouse(NULL),
             SystemKeyboard(NULL),
             DeviceUpdateWork(NULL),
             ThreadResources(NULL)
-        {
-            UInt32 InitSDLSystems = SDL_WasInit(0);
-            if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 ) {
-                if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 ) {
-                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError());
-                }
-            }
-            if( (SDL_INIT_GAMECONTROLLER & InitSDLSystems) == 0 ) {
-                if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 ) {
-                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError());
-                }
-            }
-
-            this->SystemMouse = new Mouse();
-            this->SystemKeyboard = new Keyboard();
-            this->DetectDevices();
-
-            this->DeviceUpdateWork = new DeviceUpdateWorkUnit(this);
-        }
+            { ConstructManager(); }
 
         InputManager::InputManager(const XML::Node& XMLNode) :
-            InputDeltas(4),
+            InputDeltas(8),
             SystemMouse(NULL),
             SystemKeyboard(NULL),
             DeviceUpdateWork(NULL),
             ThreadResources(NULL)
-        {
-            UInt32 InitSDLSystems = SDL_WasInit(0);
-            if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 ) {
-                if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 ) {
-                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError());
-                }
-            }
-            if( (SDL_INIT_GAMECONTROLLER & InitSDLSystems) == 0 ) {
-                if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 ) {
-                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError());
-                }
-            }
-
-            this->SystemMouse = new Mouse();
-            this->SystemKeyboard = new Keyboard();
-            this->DetectDevices();
-
-            this->DeviceUpdateWork = new DeviceUpdateWorkUnit(this);
-        }
+            { ConstructManager(); }
 
         InputManager::~InputManager()
         {
@@ -154,6 +122,50 @@ namespace Mezzanine
             delete this->SystemMouse;
             delete this->SystemKeyboard;
             this->ReleaseAllDevices();
+        }
+
+        void InputManager::ConstructManager()
+        {
+            UInt32 InitSDLSystems = SDL_WasInit(0);
+            if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 ) {
+                if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 ) {
+                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError());
+                }
+            }
+            if( (SDL_INIT_GAMECONTROLLER & InitSDLSystems) == 0 ) {
+                if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 ) {
+                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError());
+                }
+            }
+
+            this->SystemMouse = new Mouse();
+            this->SystemKeyboard = new Keyboard();
+            this->DetectDevices();
+
+            this->DeviceUpdateWork = new DeviceUpdateWorkUnit(this);
+
+            this->InputPublisher.AddSubscriptionTable(InputManager::EventJoystickAdded);
+            this->InputPublisher.AddSubscriptionTable(InputManager::EventJoystickRemoved);
+            this->InputPublisher.AddSubscriptionTable(InputManager::EventControllerAdded);
+            this->InputPublisher.AddSubscriptionTable(InputManager::EventControllerRemoved);
+            this->InputPublisher.AddSubscriptionTable(InputManager::EventControllerRemapped);
+            this->InputPublisher.AddSubscriptionTable(InputManager::EventClipboardUpdated);
+        }
+
+        Joystick* InputManager::ConstructJoystick(int Index)
+        {
+            SDL_Joystick* InternalStick = SDL_JoystickOpen( Index );
+            Input::Joystick* NewStick = new Input::Joystick( InternalStick, Index );
+            this->Joysticks.push_back( NewStick );
+            return NewStick;
+        }
+
+        Controller* InputManager::ConstructController(int Index)
+        {
+            SDL_GameController* InternalControl = SDL_GameControllerOpen( Index );
+            Input::Controller* NewController = new Input::Controller( InternalControl, Index );
+            this->Controllers.push_back( NewController );
+            return NewController;
         }
 
         void InputManager::PumpInternalEvents()
@@ -229,21 +241,46 @@ namespace Mezzanine
                     }
                     /*case SDL_KEYMAPCHANGED:
                     {
-                        // Not currently supported.  Do nothing.
+                        DeviceIDType RemapID = std::numeric_limits<DeviceIDType>::max();
+                        DeviceEventPtr DeviceRemapped = std::make_shared<DeviceEvent>(EventKeymapChanged,RemapID);
+                        this->InputPublisher.DispatchEvent(DeviceRemapped);
                         break;
                     }//*/
                     case SDL_JOYDEVICEADDED:
+                    {
+                        Joystick* Added = this->ConstructJoystick( InternalEvents[CurrEv].jdevice.which );
+                        DeviceIDType AddID = Added->GetDeviceID();
+                        DeviceEventPtr DeviceAdded = std::make_shared<DeviceEvent>(EventJoystickAdded,AddID);
+                        this->InputPublisher.DispatchEvent(DeviceAdded);
+                        break;
+                    }
                     case SDL_JOYDEVICEREMOVED:
                     {
+                        DeviceIDType RemoveID = InternalEvents[CurrEv].jdevice.which;
+                        DeviceEventPtr DeviceRemoved = std::make_shared<DeviceEvent>(EventJoystickRemoved,RemoveID);
+                        this->InputPublisher.DispatchEvent(DeviceRemoved);
                         break;
                     }
                     case SDL_CONTROLLERDEVICEADDED:
+                    {
+                        Controller* Added = this->ConstructController( InternalEvents[CurrEv].cdevice.which );
+                        DeviceIDType AddID = Added->GetDeviceID();
+                        DeviceEventPtr DeviceAdded = std::make_shared<DeviceEvent>(EventControllerAdded,AddID);
+                        this->InputPublisher.DispatchEvent(DeviceAdded);
+                        break;
+                    }
                     case SDL_CONTROLLERDEVICEREMOVED:
                     {
+                        DeviceIDType RemoveID = InternalEvents[CurrEv].cdevice.which;
+                        DeviceEventPtr DeviceRemoved = std::make_shared<DeviceEvent>(EventControllerRemoved,RemoveID);
+                        this->InputPublisher.DispatchEvent(DeviceRemoved);
                         break;
                     }
                     case SDL_CONTROLLERDEVICEREMAPPED:
                     {
+                        DeviceIDType RemapID = InternalEvents[CurrEv].cdevice.which;
+                        DeviceEventPtr DeviceRemapped = std::make_shared<DeviceEvent>(EventControllerRemapped,RemapID);
+                        this->InputPublisher.DispatchEvent(DeviceRemapped);
                         break;
                     }
                     case SDL_FINGERDOWN:
@@ -262,14 +299,15 @@ namespace Mezzanine
                     }
                     case SDL_CLIPBOARDUPDATE:
                     {
+                        EventPtr ClipboardUpdated = std::make_shared<Event>(EventClipboardUpdated);
+                        this->InputPublisher.DispatchEvent(ClipboardUpdated);
                         break;
                     }
                     default:
-                    {
-                        break;
-                    }
+                        { break; }
                 }// switch event type
             }// for each event
+            std::sort(this->InputDeltas.begin(),this->InputDeltas.end(),MultiDeviceCompare);
         }
 
         MetaCodeContainer InputManager::UpdateKeyboard(MetaCodeIterator& UpdateBegin, const MetaCodeIterator RangeEnd)
@@ -323,11 +361,33 @@ namespace Mezzanine
         Keyboard* InputManager::GetSystemKeyboard() const
             { return this->SystemKeyboard; }
 
+        Joystick* InputManager::GetJoystick(const DeviceIDType ID) const
+        {
+            for( Joystick* CurrStick : this->Joysticks )
+            {
+                if( CurrStick->GetDeviceID() == ID ) {
+                    return CurrStick;
+                }
+            }
+            return NULL;
+        }
+
         Joystick* InputManager::GetJoystick(const UInt16 Index) const
             { return this->Joysticks.at(Index); }
 
         UInt16 InputManager::GetNumJoysticks() const
             { return this->Joysticks.size(); }
+
+        Controller* InputManager::GetController(const DeviceIDType ID) const
+        {
+            for( Controller* CurrControl : this->Controllers )
+            {
+                if( CurrControl->GetDeviceID() == ID ) {
+                    return CurrControl;
+                }
+            }
+            return NULL;
+        }
 
         Controller* InputManager::GetController(const UInt16 Index) const
             { return this->Controllers.at(Index); }
@@ -344,13 +404,9 @@ namespace Mezzanine
             for( UInt16 DeviceIndex = 0 ; DeviceIndex < DeviceTotal ; ++DeviceIndex )
             {
                 if( SDL_IsGameController( DeviceIndex ) ) {
-                    SDL_GameController* InternalControl = SDL_GameControllerOpen( DeviceIndex );
-                    Input::Controller* NewController = new Input::Controller( InternalControl, DeviceIndex );
-                    this->Controllers.push_back( NewController );
+                    this->ConstructController( DeviceIndex );
                 }else{
-                    SDL_Joystick* InternalStick = SDL_JoystickOpen( DeviceIndex );
-                    Input::Joystick* NewStick = new Input::Joystick( InternalStick, DeviceIndex );
-                    this->Joysticks.push_back( NewStick );
+                    this->ConstructJoystick( DeviceIndex );
                 }
             }
             return DeviceTotal;
@@ -406,8 +462,8 @@ namespace Mezzanine
             }
 
             // Setup some containers .
-            MetaCodeContainer GeneratedCodes;
-            MetaCodeContainer TempCodes(4);
+            MetaCodeContainer GeneratedCodes(4);
+            MetaCodeContainer TempCodes;
             // Setup some iterators .
             MetaCodeIterator UpdateBegin = this->InputDeltas.begin();
             const MetaCodeIterator RangeEnd = this->InputDeltas.end();
@@ -443,6 +499,12 @@ namespace Mezzanine
 
         DeviceUpdateWorkUnit* InputManager::GetDeviceUpdateWork()
             { return this->DeviceUpdateWork; }
+
+        EventPublisher& InputManager::GetInputPublisher()
+            { return this->InputPublisher; }
+
+        const EventPublisher& InputManager::GetInputPublisher() const
+            { return this->InputPublisher; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Type Identifier Methods

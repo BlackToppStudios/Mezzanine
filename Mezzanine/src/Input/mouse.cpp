@@ -153,10 +153,8 @@ namespace Mezzanine
         void Mouse::HandleMultiClick(const MetaCode& ToCheck)
         {
             if( this->IsMultiClickable(ToCheck) && Input::BUTTON_PRESSING == ToCheck.GetMetaValueAsButtonState() ) {
-                /// @todo This code isn't as graceful as I am sure it can be made.
-                // Update our multiclick timer
                 if( this->MulticlickTimer.IsStopped() ) {
-                    this->MulticlickTimer.SetCurrentTimeInMilliseconds(500);
+                    this->MulticlickTimer.SetCurrentTime(500 * 1000);
                     this->MulticlickCode.SetMetaValue(0);
                 }else{
                     this->MulticlickTimer.Reset(500 * 1000);
@@ -229,8 +227,8 @@ namespace Mezzanine
         Real Mouse::GetDeltaY() const
             { return this->Delta.Y; }
 
-        UInt16 Mouse::GetDeviceIndex() const
-            { return std::numeric_limits<UInt16>::max(); }
+        DeviceIDType Mouse::GetDeviceID() const
+            { return std::numeric_limits<DeviceIDType>::max(); }
 
         Input::InputDevice Mouse::GetDeviceType() const
             { return Input::DEVICE_MOUSE; }
@@ -275,7 +273,7 @@ namespace Mezzanine
         // Utility Methods
 
         void Mouse::WarpCursorToPosition(Graphics::GameWindow* Win, const Vector2& Position)
-            { if(Win) SDL_WarpMouseInWindow(Win->_GetSDLWindowPointer(),(int)Position.X,(int)Position.Y); }
+            { SDL_WarpMouseInWindow(Win->_GetSDLWindowPointer(),(int)Position.X,(int)Position.Y); }
     }//Input
 }//Mezzanine
 
