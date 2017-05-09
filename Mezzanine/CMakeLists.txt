@@ -349,6 +349,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Input/input.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/inputmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/inputenumerations.h"
+        "${${PROJECT_NAME}_SRC_DIR}Input/inputtypes.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/buttondevice.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/controller.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/device.h"
@@ -830,9 +831,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/woodgenerator.cpp"
         # Input Items
         "${${PROJECT_NAME}_SRC_DIR}Input/inputmanager.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Input/buttondevice.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/controller.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Input/device.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/joystick.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/keyboard.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/metacode.cpp"

@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,41 +37,18 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _inputdevice_cpp
-#define _inputdevice_cpp
 
-#include "Input/device.h"
+#ifndef _inputtypes_h
+#define _inputtypes_h
+
+#include "datatypes.h"
 
 namespace Mezzanine
 {
     namespace Input
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Sequenced Input Management
-
-        /*void Device::AddInputSequence(const MetaCodeContainer& Codes, const Int32 SequenceID)
-        {
-            Input::InputDevice SelfDevice = this->GetDeviceType();
-            for( const MetaCode& CurrCode : Codes )
-            {
-                if( CurrCode.GetDeviceType() != SelfDevice ) {
-                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Mismatched device on MetaCode detected when attempting to insert an Input Sequence.");
-                }
-            }
-            this->Sequences.AddInputSequence(Codes,SequenceID);
-        }
-
-        Boole Device::InputSequenceExists(const MetaCodeContainer& Codes)
-            { return this->Sequences.InputSequenceExists(Codes); }
-
-        Int32 Device::GetIDofInputSequence(const MetaCodeContainer& Codes)
-            { return this->Sequences.GetIDofInputSequence(Codes); }
-
-        void Device::RemoveInputSequence(const MetaCodeContainer& Codes)
-            { this->Sequences.RemoveInputSequence(Codes); }
-
-        void Device::RemoveAllInputSequences()
-            { this->Sequences.RemoveAllInputSequences(); }//*/
+        /// @brief A type for uniquely identifying connected input devices on the system.
+        using DeviceIDType = Integer;
     }//Input
 }//Mezzanine
 

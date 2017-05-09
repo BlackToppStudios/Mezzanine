@@ -116,7 +116,7 @@ namespace Mezzanine
             Code(NewCode)
             {  }
 
-        MetaCode::MetaCode(const Int32 Value, const Input::InputCode NewCode, const Int32 ID) :
+        MetaCode::MetaCode(const Int32 Value, const Input::InputCode NewCode, const DeviceIDType ID) :
             MetaValue(Value),
             DeviceID(ID),
             Code(NewCode)
@@ -266,10 +266,10 @@ namespace Mezzanine
         Int32 MetaCode::GetMetaValue() const
             { return this->MetaValue; }
 
-        void MetaCode::SetDeviceID(const Int32 ID)
+        void MetaCode::SetDeviceID(const DeviceIDType ID)
             { this->DeviceID = ID; }
 
-        Int32 MetaCode::GetDeviceID() const
+        DeviceIDType MetaCode::GetDeviceID() const
             { return this->DeviceID; }
 
         void MetaCode::SetNullValues()
@@ -470,7 +470,7 @@ namespace Mezzanine
 
                     CurrAttrib = OneNode.GetAttribute("DeviceID");
                     if( !CurrAttrib.Empty() )
-                        this->DeviceID = CurrAttrib.AsInt();
+                        this->DeviceID = static_cast<DeviceIDType>( CurrAttrib.AsInt() );
 
                     CurrAttrib = OneNode.GetAttribute("Code");
                     if( !CurrAttrib.Empty() )

@@ -68,8 +68,8 @@
     slouken@libsdl.org
 */
 
-#include "datatypes.h"
 #include "Input/inputenumerations.h"
+#include "Input/inputtypes.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif
@@ -80,7 +80,7 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This determines the kind of user input.
-        /// @details A Metacode contains the data that is passed around with an input
+        /// @details A MetaCode contains the data that is passed around with an input
         /// event. It stores one type of button press or analog representation (Mouse
         /// move, joystick tilt, wheel spin, etc...). If it is an analog representation
         /// it will also store how far or how it is pushed, pressed, rotated, or
@@ -91,7 +91,7 @@ namespace Mezzanine
         class MEZZ_LIB MetaCode
         {
         public:
-            /// @brief Convenience datatype for storage of MetaCodes.
+            /// @brief Convenience type for storage of MetaCodes.
             typedef std::vector< Input::MetaCode >     MetaCodeContainer;
             /// @brief Iterator type for convenient MetaCode storage.
             typedef MetaCodeContainer::iterator        MetaCodeIterator;
@@ -104,7 +104,7 @@ namespace Mezzanine
             /// @brief The relevant value for the type of input this is, if applicable.
             Int32 MetaValue;
             /// @brief The device id if this is input from a controller.  For keyboards and mice this is the max value representable by the type.
-            Int32 DeviceID;
+            DeviceIDType DeviceID;
             /// @brief The code indicating what type of input this is.
             Input::InputCode Code;
         public:
@@ -127,17 +127,17 @@ namespace Mezzanine
             /// @brief Descriptive Constructor.
             /// @param Value How much is something moving, tilting, rotating or whatever.
             /// @param NewCode Which key or which type of input was pressed.
-            /// @param ID The ID of the device this metacode is describing.
-            MetaCode(const Int32 Value, const Input::InputCode NewCode, const Int32 ID);
+            /// @param ID The ID of the device this MetaCode is describing.
+            MetaCode(const Int32 Value, const Input::InputCode NewCode, const DeviceIDType ID);
             /// @brief The Heavy Lifting Constructor.
             /// @details This constructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information
             /// from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \n
-            /// This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the
+            /// This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of MetaCode. Depending on the
             /// User input subsystem, this could be all RawEvents, or even just some RawEvents.
-            /// @exception "RawEvent which creates Multiple Metacodes inserted into Metacode" - Thrown when passed a certain (system dependant) incorrect type of RawEvent.
-            /// @exception "Unknown User Input Inserted into Metacode" - Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent.
+            /// @exception "RawEvent which creates Multiple MetaCodes inserted into MetaCode" - Thrown when passed a certain (system dependent) incorrect type of RawEvent.
+            /// @exception "Unknown User Input Inserted into MetaCode" - Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent.
             /// @warning We recommend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In
-            /// that event you would have to recompile your application to get it working with a new version of Mezzanine. Using this function in Game code removes any gaurantees of Game Code
+            /// that event you would have to recompile your application to get it working with a new version of Mezzanine. Using this function in Game code removes any guarantees of Game Code
             /// Portability.
             MetaCode(const RawEvent& Raw);
             /// @brief Class destructor.
@@ -147,7 +147,7 @@ namespace Mezzanine
             /// @brief Internal creation method.
             /// @remarks This method accepts a RawEvent from the input event subsystem internal to the engine.  This converts all the required information
             /// from the lower level format and store what is needed in the event that is created.  This is used heavily by engine internals. @n
-            /// This constructor expects to receive a type of RawEvent that can be converted into one or more kinds of Metacode.
+            /// This constructor expects to receive a type of RawEvent that can be converted into one or more kinds of MetaCode.
             /// @warning We recommend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In
             /// that event you would have to recompile your application to get it working with a new version of Mezzanine. Using this function in Game code removes any gaurantees of Game Code
             /// Portability.
@@ -171,7 +171,7 @@ namespace Mezzanine
             /// the provided functions that do the math for you like.
             /// @param NewCode The value you want the stored code to become.
             void SetCode(const Int32 NewCode);
-            /// @brief This Returns the Inputcode.
+            /// @brief This Returns the InputCode.
             /// @details This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred.
             /// This value can be set with @ref SetCode .
             /// @return This returns the input code for this MetaCode.
@@ -187,12 +187,12 @@ namespace Mezzanine
             /// to represent how tilted a joystick or how much a mouse moved.
             Int32 GetMetaValue() const;
             /// @brief Sets the device ID if applicable.
-            /// @param ID The ID of the device this metacode applies to.
-            void SetDeviceID(const Int32 ID);
+            /// @param ID The ID of the device this MetaCode applies to.
+            void SetDeviceID(const DeviceIDType ID);
             /// @brief Gets the currently set device ID.
             /// @remarks If no device is set or applicable, this will return the max representable value for the type.
-            /// @return Returns a Int32 that is the for the device this metacode applies to.
-            Int32 GetDeviceID() const;
+            /// @return Returns a Int32 that is the for the device this MetaCode applies to.
+            DeviceIDType GetDeviceID() const;
             /// @brief Sets all the values of this MetaCode to Null values.
             void SetNullValues();
 
@@ -353,7 +353,7 @@ namespace Mezzanine
         };//MetaCode
     }//Input
 
-    /// @brief Convenience datatype for storage of MetaCodes.
+    /// @brief Convenience type for storage of MetaCodes.
     typedef Input::MetaCode::MetaCodeContainer        MetaCodeContainer;
     /// @brief Iterator type for convenient MetaCode storage.
     typedef Input::MetaCode::MetaCodeIterator         MetaCodeIterator;

@@ -41,6 +41,7 @@
 #define _inputdevice_h
 
 #include "Input/sequencecontainer.h"
+#include "Input/inputtypes.h"
 #include "exception.h"
 
 /// @file
@@ -54,9 +55,6 @@ namespace Mezzanine
 {
     namespace Input
     {
-        /// @brief A convenience type for ID of input devices where applicable.
-        using DeviceIDType = Integer;
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a base class for all input devices.
         ///////////////////////////////////////
