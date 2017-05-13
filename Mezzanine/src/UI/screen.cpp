@@ -919,7 +919,7 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( Screen::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("WindowTitle").SetValue( this->GameViewport->GetParentWindow()->GetWindowCaption() ) &&
+                PropertiesNode.AppendAttribute("WindowTitle").SetValue( this->GameViewport->GetParentWindow()->GetCaption() ) &&
                 PropertiesNode.AppendAttribute("ViewportZOrder").SetValue( this->GameViewport->GetZOrder() ) &&
                 PropertiesNode.AppendAttribute("PriAtlas").SetValue( this->PrimaryAtlas ) )
             {
@@ -970,7 +970,7 @@ namespace Mezzanine
 
                     if( !WindowTitle.empty() ) {
                         Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
-                        Graphics::GameWindow* NamedWindow = GraphicsMan->GetGameWindow(WindowTitle);
+                        Graphics::GameWindow* NamedWindow = GraphicsMan->GetGameWindowByCaption(WindowTitle);
                         if( NamedWindow != NULL ) {
                             this->GameViewport = NamedWindow->GetViewportByZOrder(ViewZOrder);
                             if( this->GameViewport != NULL ) {
