@@ -58,12 +58,18 @@ void CatchPlayer::Update(Input::InputManager* InputMan, const Whole DeltaTime)
         this->Control.StrafeRight( 300 * (DeltaTime * 0.001) );
     if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W) )
         this->Control.MoveForward( 300 * (DeltaTime * 0.001) );
-    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
+    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || SysKeyboard->IsButtonPressed(Input::KEY_S) )
         this->Control.MoveBackward( 300 * (DeltaTime * 0.001) );
     // Determine our camera angular movement
-    Vector2 Offset = SysMouse->GetMouseDelta();
-    if( SysMouse->IsButtonPressed(Input::MOUSEBUTTON_2) && !Offset.IsZero() ) {
-        this->Control.Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+    static Boole EnableRotation = false; // Temporary measure
+    if( SysKeyboard->IsButtonPressing(Input::KEY_HOME) )
+        EnableRotation = !EnableRotation;
+
+    if( EnableRotation ) {
+        Vector2 Offset = SysMouse->GetMouseDelta();
+        if( SysMouse->IsButtonPressed(Input::MOUSEBUTTON_2) && !Offset.IsZero() ) {
+            this->Control.Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+        }
     }
 #endif
 }
