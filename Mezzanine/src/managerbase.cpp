@@ -91,8 +91,6 @@ namespace Mezzanine
                 return "CompositorManager";  break;
             case ManagerBase::MT_DebrisManager:
                 return "DebrisManager";  break;
-            case ManagerBase::MT_EventManager:
-                return "EventManager";  break;
             case ManagerBase::MT_GraphicsManager:
                 return "GraphicsManager";  break;
             case ManagerBase::MT_InputManager:
@@ -157,11 +155,6 @@ namespace Mezzanine
             case 'd':
             {
                 return ManagerBase::MT_DebrisManager;
-                break;
-            }
-            case 'e':
-            {
-                return ManagerBase::MT_EventManager;
                 break;
             }
             case 'g':

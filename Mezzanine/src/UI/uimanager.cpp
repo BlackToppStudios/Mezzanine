@@ -58,7 +58,6 @@
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
 #include "Resource/resourcemanager.h"
-#include "eventmanager.h"
 
 #include "MathTools/mathtools.h"
 #include "timer.h"

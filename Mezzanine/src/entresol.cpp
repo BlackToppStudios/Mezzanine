@@ -57,7 +57,6 @@
 #include "actormanager.h"
 #include "areaeffectmanager.h"
 #include "debrismanager.h"
-#include "eventmanager.h"
 #include "terrainmanager.h"
 #include "vehiclemanager.h"
 #include "Graphics/graphicsmanager.h"
@@ -205,9 +204,6 @@ namespace Mezzanine
         }
         if( this->GetManager(ManagerBase::MT_GraphicsManager) == 0 ) {
             this->CreateManager( "DefaultGraphicsManager", Params );
-        }
-        if( this->GetManager(ManagerBase::MT_EventManager) == 0 ) {
-            this->CreateManager( "DefaultEventManager", Params );
         }
         if( this->GetManager(ManagerBase::MT_InputManager) == 0 ) {
             this->CreateManager( "DefaultInputManager", Params );
@@ -683,9 +679,6 @@ namespace Mezzanine
         //DefaultCollisionShapeManager
         ManIt = Entresol::ManagerFactories.find("DefaultCollisionShapeManager");
         if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Physics::DefaultCollisionShapeManagerFactory());
-        //DefaultEventManager
-        ManIt = Entresol::ManagerFactories.find("DefaultEventManager");
-        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new DefaultEventManagerFactory());
         //DefaultGraphicsManager
         ManIt = Entresol::ManagerFactories.find("DefaultGraphicsManager");
         if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Graphics::DefaultGraphicsManagerFactory());
