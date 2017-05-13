@@ -51,54 +51,6 @@ TrackLooped< LinearInterpolator< Transform > > CameraTrackTest;
 void CreateDemoWorld();
 void DestroyDemoWorld();
 
-class DemoPreEventWorkUnit : public Threading::DefaultWorkUnit
-{
-public:
-    DemoPreEventWorkUnit() {  }
-    virtual ~DemoPreEventWorkUnit() {  }
-
-    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-    {
-        //this will either set the pointer to 0 or return a valid pointer to work with.
-        EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
-        EventUserInput* OneInput = EventMan->PopNextUserInputEvent();
-
-        //We check each Event
-        while( 0 != OneInput )
-        {
-            if( OneInput->GetType() != EventBase::UserInput )
-                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
-
-            //we check each MetaCode in each Event
-            for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
-            {
-                //Is the key we just pushed ESCAPE
-                if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
-                    { TheEntresol->BreakMainLoop(); }
-            }
-
-            delete OneInput;
-            OneInput = EventMan->PopNextUserInputEvent();
-        }
-
-        EventGameWindow* OneWindowEvent = EventMan->PopNextGameWindowEvent();
-        while(0 != OneWindowEvent)
-        {
-            if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
-
-            if( !OneWindowEvent->IsEventIDValid() ) {
-                StringStream ExceptionStream;
-                ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
-            }
-
-            delete OneWindowEvent;
-            OneWindowEvent = EventMan->PopNextGameWindowEvent();
-        }
-    }
-};//DemoPreEventWorkUnit
-
 class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
@@ -373,7 +325,6 @@ void CreateDemoWorld()
     DemoWorld->Initialize();
 
     AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( DemoWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
-    EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
     Graphics::GraphicsManager* GraphMan = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( DemoWorld->GetManager(ManagerBase::MT_SceneManager) );
     Input::InputManager* InputMan = static_cast<Input::InputManager*>( TheEntresol->GetManager(ManagerBase::MT_InputManager) );
@@ -404,10 +355,6 @@ void CreateDemoWorld()
     FirstWindow->CreateViewport(MainCam,0);
 
     // Setup our workunits
-    DemoPreEventWork = new DemoPreEventWorkUnit();
-    EventMan->GetEventPumpWork()->AddDependency( DemoPreEventWork );
-    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork, "DemoPreEventWork" );
-
     DemoPostInputWork = new DemoPostInputWorkUnit(DemoWorld,InputMan);
     DemoPostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork, "DemoPostInputWork" );
@@ -424,9 +371,6 @@ void CreateDemoWorld()
     // Configure Shadows
     SceneMan->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
     SceneMan->SetShadowFarDistance(3000);
-
-    //Set up polling for the letter Q
-    EventMan->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
 
     //Actually Load the game stuff
     LoadContent();
@@ -458,10 +402,6 @@ void DestroyDemoWorld()
 
     // Check if Threaded Workunits are still alive
     // RemoveWorkUnitMain
-    if( DemoPreEventWork ) {
-        TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPreEventWork );
-        DemoPreEventWork = NULL;
-    }
     if( DemoPostInputWork ) {
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostInputWork );
         DemoPostInputWork = NULL;
