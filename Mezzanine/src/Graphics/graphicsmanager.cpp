@@ -373,7 +373,7 @@ namespace Mezzanine
                     }
                     case SDL_WINDOWEVENT_CLOSE:
                     {
-
+                        this->DestroyGameWindow(EventWindow);
                         break;
                     }
                     default: // Ignore the event.

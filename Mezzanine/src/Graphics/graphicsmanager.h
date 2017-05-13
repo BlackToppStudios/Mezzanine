@@ -278,10 +278,10 @@ namespace Mezzanine
             // Utility Methods
 
             /// @brief Renders one frame of the scene.
-            virtual void RenderOneFrame();
+            void RenderOneFrame();
             /// @brief Swaps all the buffers of all GameWindows.
             /// @param WaitForVsync Whether or not the buffer should swap after the vsync interval is completed.
-            virtual void SwapAllBuffers(Boole WaitForVsync);
+            void SwapAllBuffers(Boole WaitForVsync);
 
             /// @copydoc ManagerBase::Initialize()
             /// @details Added a GraphicWorkUnit to the WorkScheduler on the Entresol as a
