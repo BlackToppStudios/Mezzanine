@@ -47,6 +47,7 @@
 #include "Input/joystick.h"
 #include "Input/metacodekey.h"
 
+#include "entresol.h"
 #include "timer.h"
 
 #include "SDL.h"
@@ -171,14 +172,15 @@ namespace Mezzanine
         void InputManager::PumpInternalEvents()
         {
             /* A listing of all the SDL_Events we care about in the Input System.
-            // A * next to the event denotes working support for that event does not yet exist.
-            // A - next to the event denotes that a class other than the MetaCode processes that type of event.
+            // A * next to the Event denotes working support for that event does not yet exist.
+            // A + next to the Event denotes that the input manager handles conversions for that Event instead of MetaCode.
+            // A - next to the Event denotes that the event is disabled by Mezzanine.
             // Keyboard events
             SDL_KEYDOWN        = 0x300, // Key pressed
             SDL_KEYUP,                  // Key released
-            *SDL_TEXTEDITING,            // Keyboard text editing (composition)
+            *SDL_TEXTEDITING,           // Keyboard text editing (composition)
             SDL_TEXTINPUT,              // Keyboard text input
-            *SDL_KEYMAPCHANGED,          // Keymap changed due to a system event such as an input language or keyboard layout change.
+            *SDL_KEYMAPCHANGED,         // Keymap changed due to a system event such as an input language or keyboard layout change.
             // Mouse events
             SDL_MOUSEMOTION    = 0x400, // Mouse moved
             SDL_MOUSEBUTTONDOWN,        // Mouse button pressed
@@ -190,15 +192,15 @@ namespace Mezzanine
             SDL_JOYHATMOTION,           // Joystick hat position change
             SDL_JOYBUTTONDOWN,          // Joystick button pressed
             SDL_JOYBUTTONUP,            // Joystick button released
-            -SDL_JOYDEVICEADDED,         // A new joystick has been inserted into the system
-            -SDL_JOYDEVICEREMOVED,       // An opened joystick has been removed
+            +SDL_JOYDEVICEADDED,        // A new joystick has been inserted into the system
+            +SDL_JOYDEVICEREMOVED,      // An opened joystick has been removed
             // Game controller events
             *SDL_CONTROLLERAXISMOTION  = 0x650, // Game controller axis motion
             *SDL_CONTROLLERBUTTONDOWN,          // Game controller button pressed
             *SDL_CONTROLLERBUTTONUP,            // Game controller button released
-            -SDL_CONTROLLERDEVICEADDED,         // A new Game controller has been inserted into the system
-            -SDL_CONTROLLERDEVICEREMOVED,       // An opened Game controller has been removed
-            -SDL_CONTROLLERDEVICEREMAPPED,      // The controller mapping was updated
+            +SDL_CONTROLLERDEVICEADDED,         // A new Game controller has been inserted into the system
+            +SDL_CONTROLLERDEVICEREMOVED,       // An opened Game controller has been removed
+            +SDL_CONTROLLERDEVICEREMAPPED,      // The controller mapping was updated
             // Touch events
             *SDL_FINGERDOWN      = 0x700,
             *SDL_FINGERUP,
@@ -208,7 +210,7 @@ namespace Mezzanine
             *SDL_DOLLARRECORD,
             *SDL_MULTIGESTURE,
             // Clipboard events
-            -SDL_CLIPBOARDUPDATE = 0x900, // The clipboard changed
+            +SDL_CLIPBOARDUPDATE = 0x900, // The clipboard changed
             */
 
             // Make a fixed size array and grab our events.
@@ -303,7 +305,7 @@ namespace Mezzanine
                         this->InputPublisher.DispatchEvent(ClipboardUpdated);
                         break;
                     }
-                    default:
+                    default: // Ignore the event.
                         { break; }
                 }// switch event type
             }// for each event
@@ -361,7 +363,7 @@ namespace Mezzanine
         Keyboard* InputManager::GetSystemKeyboard() const
             { return this->SystemKeyboard; }
 
-        Joystick* InputManager::GetJoystick(const DeviceIDType ID) const
+        Joystick* InputManager::GetJoystickByID(const DeviceIDType ID) const
         {
             for( Joystick* CurrStick : this->Joysticks )
             {
@@ -378,7 +380,7 @@ namespace Mezzanine
         UInt16 InputManager::GetNumJoysticks() const
             { return this->Joysticks.size(); }
 
-        Controller* InputManager::GetController(const DeviceIDType ID) const
+        Controller* InputManager::GetControllerByID(const DeviceIDType ID) const
         {
             for( Controller* CurrControl : this->Controllers )
             {
@@ -457,9 +459,11 @@ namespace Mezzanine
         {
             this->PumpInternalEvents();
 
-            if( this->InputDeltas.empty() ) {
-                return;
-            }
+            /// @todo We can't escape early here because devices have updates to perform
+            /// regardless of whether there are new deltas.
+            //if( this->InputDeltas.empty() ) {
+            //    return;
+            //}
 
             // Setup some containers .
             MetaCodeContainer GeneratedCodes(4);
@@ -492,10 +496,23 @@ namespace Mezzanine
             { return this->InputDeltas; }
 
         void InputManager::Initialize()
-            { this->Initialized = true; }
+        {
+            if( !this->Initialized ) {
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->DeviceUpdateWork, "DeviceUpdateWork" );
+
+                this->Initialized = true;
+            }
+        }
 
         void InputManager::Deinitialize()
-            { this->Initialized = false; }
+        {
+            if( this->Initialized ) {
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DeviceUpdateWork );
+                this->DeviceUpdateWork->ClearDependencies();
+
+                this->Initialized = false;
+            }
+        }
 
         DeviceUpdateWorkUnit* InputManager::GetDeviceUpdateWork()
             { return this->DeviceUpdateWork; }

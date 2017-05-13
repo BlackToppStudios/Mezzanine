@@ -116,12 +116,8 @@ namespace Mezzanine
             /// @todo Wheel update events only occur when the wheel goes up or down.  So left on it's own it will constantly report up or down after one
             /// is fired.  Resetting it allows us more accurate reporting, but isn't particularly graceful.  More research in SDL ought to be done to see
             /// if a cleaner solution exists.
-            if( this->VerticalWheelState != Input::DIRECTIONALMOTION_UNCHANGED ) {
-                this->VerticalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
-            }
-            if( this->HorizontalWheelState != Input::DIRECTIONALMOTION_UNCHANGED ) {
-                this->HorizontalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
-            }
+            this->VerticalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
+            this->HorizontalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
         }
 
         void Mouse::UpdateViewport()
@@ -133,12 +129,10 @@ namespace Mezzanine
             SDL_Window* Focus = SDL_GetMouseFocus();
             if( NULL != Focus ) {
                 Graphics::GameWindow* Win = static_cast<Graphics::GameWindow*>(Focus->data->data);
-                for( Graphics::GameWindow::ReverseViewportIterator ViewIt = Win->ReverseBeginViewport() ; ViewIt != Win->ReverseEndViewport() ; ++ViewIt )
+                for( Whole VPIndex = Win->GetNumViewports() ; VPIndex > 0 ; --VPIndex )
                 {
-                    Graphics::Viewport* VP = (*ViewIt);
-                    if( (this->Position.X >= (Real)(VP->GetActualLeft()) && this->Position.X <= (Real)(VP->GetActualLeft() + VP->GetActualWidth())) &&
-                        (this->Position.Y >= (Real)(VP->GetActualTop()) && this->Position.Y <= (Real)(VP->GetActualTop() + VP->GetActualHeight()) ) )
-                    {
+                    Graphics::Viewport* VP = Win->GetViewport( VPIndex - 1 );
+                    if( VP->IsWithinBounds(this->Position) ) {
                         this->CurrentViewport = VP;
                         break;
                     }

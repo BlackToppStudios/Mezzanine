@@ -238,12 +238,7 @@ namespace Mezzanine
                     break;
                 }
                 default:
-                {
-                    // Create a safe but gibberish default
-                    Ret.emplace_back( Input::BUTTON_UP,Input::KEY_FIRST );
-                    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unknown User Input Inserted into Metacode");
-                    break;
-                }
+                    { break; }
             }
             return Ret;
         }

@@ -67,7 +67,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Public Data Members
 
-            /// @brief A pointer to the device that was connected or disconnected.
+            /// @brief The ID of the device that was connected or disconnected.
             DeviceIDType EventDevice;
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -76,8 +76,9 @@ namespace Mezzanine
             /// @brief Class constructor.
             /// @param Name The name of the event being fired.
             /// @param Device The ID of the device that was connected or disconnected.
-            DeviceEvent(const EventNameType& Name, DeviceIDType Device) :
-                Event(Name), EventDevice(Device) {  }
+            DeviceEvent(const EventNameType& Name, const DeviceIDType Device) :
+                Event(Name), EventDevice(Device)
+                {  }
             /// @brief Class destructor.
             virtual ~DeviceEvent() = default;
         };//DeviceEvent
@@ -167,25 +168,25 @@ namespace Mezzanine
             /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
             static const ManagerBase::ManagerType InterfaceType;
 
-            /// @brief Identifier for the event that is raised when a Joystick is added to the system.
+            /// @brief Identifier for the Event that is raised when a Joystick is added to the system.
             /// @details Events with this name are of type: DeviceEvent.
             static const EventNameType EventJoystickAdded;
-            /// @brief Identifier for the event that is raised when a Joystick is removed from the system.
+            /// @brief Identifier for the Event that is raised when a Joystick is removed from the system.
             /// @details Events with this name are of type: DeviceEvent.
             static const EventNameType EventJoystickRemoved;
-            /// @brief Identifier for the event that is raised when a Controller is added to the system.
+            /// @brief Identifier for the Event that is raised when a Controller is added to the system.
             /// @details Events with this name are of type: DeviceEvent.
             static const EventNameType EventControllerAdded;
-            /// @brief Identifier for the event that is raised when a Controller is removed from the system.
+            /// @brief Identifier for the Event that is raised when a Controller is removed from the system.
             /// @details Events with this name are of type: DeviceEvent.
             static const EventNameType EventControllerRemoved;
-            /// @brief Identifier for the event that is raised when a Controller has it's buttons remapped.
+            /// @brief Identifier for the Event that is raised when a Controller has it's buttons remapped.
             /// @details Events with this name are of type: DeviceEvent.
             static const EventNameType EventControllerRemapped;
-            /// @brief Identifier for the event that is raised when the keyboard key layout is changed.
+            /// @brief Identifier for the Event that is raised when the keyboard key layout is changed.
             /// @details Events with this name are of type: DeviceEvent.
             static const EventNameType EventKeymapChanged;
-            /// @brief Identifier for the event that is raised when the system clipboard has it's contents updated.
+            /// @brief Identifier for the Event that is raised when the system clipboard has it's contents updated.
             /// @details Events with this name are of type: Event.
             static const EventNameType EventClipboardUpdated;
         protected:
@@ -267,7 +268,7 @@ namespace Mezzanine
             /// @brief Gets a Joystick by device ID.
             /// @param ID The ID of the device to retrieve.
             /// @return Returns the Joystick with the specified ID, or NULL if no Joystick with that ID exists.
-            Joystick* GetJoystick(const DeviceIDType ID) const;
+            Joystick* GetJoystickByID(const DeviceIDType ID) const;
             /// @brief Gets a Joysticks by index.
             /// @param Index The index of the Joystick to retrieve.
             /// @return Returns a pointer to the Joysticks at the specified index.
@@ -279,7 +280,7 @@ namespace Mezzanine
             /// @brief Gets a Controller by device ID.
             /// @param ID The ID of the device to retrieve.
             /// @return Returns the Controller with the specified ID, or NULL if no Controller with that ID exists.
-            Controller* GetController(const DeviceIDType ID) const;
+            Controller* GetControllerByID(const DeviceIDType ID) const;
             /// @brief Gets a Controller by index.
             /// @param Index The index of the Controller to retrieve.
             /// @return Returns a pointer to the Controller at the specified index.
@@ -328,11 +329,11 @@ namespace Mezzanine
             /// @brief Gets the work unit responsible for updating the input device classes.
             /// @return Returns a pointer to the DeviceUpdateWorkUnit used by this manager.
             DeviceUpdateWorkUnit* GetDeviceUpdateWork();
-            /// @brief Gets the publisher for the input system events.
-            /// @return Returns a reference to the publisher that will dispatch input events.
+            /// @brief Gets the publisher for the Input system events.
+            /// @return Returns a reference to the publisher that will dispatch Input events.
             EventPublisher& GetInputPublisher();
-            /// @brief Gets the publisher for the input system events.
-            /// @return Returns a const reference to the publisher that will dispatch input events.
+            /// @brief Gets the publisher for the Input system events.
+            /// @return Returns a const reference to the publisher that will dispatch Input events.
             const EventPublisher& GetInputPublisher() const;
 
             ///////////////////////////////////////////////////////////////////////////////
