@@ -70,10 +70,73 @@
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
 
+namespace
+{
+    using namespace Mezzanine::Graphics;
+
+    /// @brief Converts a bitmask of creation options to something that can be used internally.
+    /// @param CreationFlags A bitmask containing the features to enable for a Window to be created.
+    /// @return Returns a NameValuePairList of all the relevant options in the CreationFlags parameter.
+    Ogre::NameValuePairList ConvertToOgreWindowOptions(const Mezzanine::Whole CreationFlags)
+    {
+        Ogre::NameValuePairList Opts;
+
+        if( GameWindow::WF_Hidden & CreationFlags ) {
+            Opts["hidden"] = "true";
+        }
+
+        if( GameWindow::WF_VsyncEnabled & CreationFlags ) {
+            Opts["vsync"] = "true";
+        }
+
+        if( GameWindow::WF_FSAA_16 & CreationFlags ) {
+            Opts["FSAA"] = "16";
+        }else if( GameWindow::WF_FSAA_8 & CreationFlags ) {
+            Opts["FSAA"] = "8";
+        }else if( GameWindow::WF_FSAA_4 & CreationFlags ) {
+            Opts["FSAA"] = "4";
+        }else if( GameWindow::WF_FSAA_2 & CreationFlags ) {
+            Opts["FSAA"] = "2";
+        }
+
+        if( GameWindow::WF_Resizeable & CreationFlags ) {
+            Opts["border"] = "resize";
+        }else if( GameWindow::WF_Borderless & CreationFlags ) {
+            Opts["border"] = "none";
+        }else{
+            Opts["border"] = "fixed";
+        }
+
+        if( GameWindow::WF_Maximized & CreationFlags ) {
+
+        }
+
+        #ifdef MEZZ_MACOSX
+        Opts["macAPI"] = "cocoa";
+        #endif
+
+        return Opts;
+    }
+}
+
 namespace Mezzanine
 {
     namespace Graphics
     {
+        const EventNameType GameWindow::EventWindowShown = "WindowShown";
+        const EventNameType GameWindow::EventWindowHidden = "WindowHidden";
+        const EventNameType GameWindow::EventWindowExposed = "WindowExposed";
+        const EventNameType GameWindow::EventWindowMoved = "WindowMoved";
+        const EventNameType GameWindow::EventWindowResizing = "WindowResizing";
+        const EventNameType GameWindow::EventWindowResized = "WindowResized";
+        const EventNameType GameWindow::EventWindowMinimized = "WindowMinimized";
+        const EventNameType GameWindow::EventWindowMaximized = "WindowMaximized";
+        const EventNameType GameWindow::EventWindowRestored = "WindowRestored";
+        const EventNameType GameWindow::EventWindowEnter = "WindowEnter";
+        const EventNameType GameWindow::EventWindowLeave = "WindowLeave";
+        const EventNameType GameWindow::EventWindowFocusGained = "WindowFocusGained";
+        const EventNameType GameWindow::EventWindowFocusLost = "WindowFocusLost";
+
         GameWindow::GameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags) :
             OgreWindow(NULL),
             SDLWindow(NULL),
@@ -109,63 +172,23 @@ namespace Mezzanine
             this->Manager = Graphics::GraphicsManager::GetSingletonPtr();
             this->CreationFlags = Flags;
             this->Settings.WinRes.SetResolution(Width,Height);
+            this->Settings.Fullscreen = ( WF_Fullscreen & Flags );
+            this->Settings.VSync = ( WF_VsyncEnabled & Flags );
 
-            Ogre::NameValuePairList Opts;
-            if(WF_Fullscreen & Flags) {
-                this->Settings.Fullscreen = true;
-            }
-
-            if(WF_Hidden & Flags) {
-                Opts["hidden"] = "true";
-            }
-
-            if(WF_VsyncEnabled & Flags) {
-                Opts["vsync"] = "true";
-                this->Settings.VSync = true;
-            }
-
-            if(WF_FSAA_16 & Flags) {
-                Opts["FSAA"] = "16";
-            }else if(WF_FSAA_8 & Flags) {
-                Opts["FSAA"] = "8";
-            }else if(WF_FSAA_4 & Flags) {
-                Opts["FSAA"] = "4";
-            }else if(WF_FSAA_2 & Flags) {
-                Opts["FSAA"] = "2";
-            }
-
-            if(WF_Resizeable & Flags) {
-                Opts["border"] = "resize";
-            }else if(WF_Borderless & Flags) {
-                Opts["border"] = "none";
-            }else{
-                Opts["border"] = "fixed";
-            }
-
-            if(WF_Maximized & Flags) {
-
-            }
-
-            #ifdef MEZZ_MACOSX
-			Opts["macAPI"] = "cocoa";
-            #endif
-
-            //#ifdef MEZZ_LINUX
-            //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(ResourceManager::GetSingletonPtr()->GetEngineDataDirectory(),"FileSystem");
-            //#endif
+            Ogre::NameValuePairList Opts = ConvertToOgreWindowOptions(Flags);
             this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.WinRes.Width, this->Settings.WinRes.Height, this->Settings.Fullscreen, &Opts);// */
             this->RequestedFSAA = this->GetActualFSAALevel();
 
-            if( !(WF_Hidden & Flags) ) {
-                #ifdef MEZZ_WINDOWS
+            if( !this->OgreWindow->isHidden() /* !(WF_Hidden & Flags) */ ) {
+            #ifdef MEZZ_WINDOWS
                 HWND Data = 0;
-                #endif
-                #ifdef MEZZ_LINUX
+            #endif
+            #ifdef MEZZ_LINUX
                 Window Data = 0;
-                #endif
-                #ifdef MEZZ_MACOSX
+            #endif
+            #ifdef MEZZ_MACOSX
                 NSWindow* Data = 0;
-                #endif
+            #endif
                 this->OgreWindow->getCustomAttribute("WINDOW",&Data);
                 this->SDLWindow = SDL_CreateWindowFrom((void*)Data);
                 this->SDLWindow->data = new SDL_WindowUserData();
@@ -173,6 +196,20 @@ namespace Mezzanine
                 this->SDLWindow->data->data = this;
                 this->SDLWindow->data->next = NULL;
             }
+
+            this->AddSubscriptionTable(GameWindow::EventWindowShown);
+            this->AddSubscriptionTable(GameWindow::EventWindowHidden);
+            this->AddSubscriptionTable(GameWindow::EventWindowExposed);
+            this->AddSubscriptionTable(GameWindow::EventWindowMoved);
+            this->AddSubscriptionTable(GameWindow::EventWindowResizing);
+            this->AddSubscriptionTable(GameWindow::EventWindowResized);
+            this->AddSubscriptionTable(GameWindow::EventWindowMinimized);
+            this->AddSubscriptionTable(GameWindow::EventWindowMaximized);
+            this->AddSubscriptionTable(GameWindow::EventWindowRestored);
+            this->AddSubscriptionTable(GameWindow::EventWindowEnter);
+            this->AddSubscriptionTable(GameWindow::EventWindowLeave);
+            this->AddSubscriptionTable(GameWindow::EventWindowFocusGained);
+            this->AddSubscriptionTable(GameWindow::EventWindowFocusLost);
         }
 
         void GameWindow::AddViewport(Viewport* NewVP)
@@ -209,12 +246,7 @@ namespace Mezzanine
 
         Viewport* GameWindow::GetViewport(const Whole Index) const
         {
-            Whole Count = Index;
-            ConstViewportIterator ViewIt = this->Viewports.begin();
-            while( Count-- )
-                ++ViewIt;
-
-            return (*ViewIt);
+            return this->Viewports.at(Index);
         }
 
         Viewport* GameWindow::GetViewportByZOrder(const Integer ZOrder) const
@@ -237,7 +269,7 @@ namespace Mezzanine
         {
             for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
             {
-                if ( ToBeDestroyed == (*ViewIt) ) {
+                if( ToBeDestroyed == (*ViewIt) ) {
                     delete ToBeDestroyed;
                     this->Viewports.erase(ViewIt);
                     return;
@@ -248,46 +280,20 @@ namespace Mezzanine
         void GameWindow::DestroyAllViewports()
         {
             for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
-            {
-                delete (*ViewIt);
-            }
+                { delete (*ViewIt); }
             this->Viewports.clear();
         }
-
-        GameWindow::ViewportIterator GameWindow::BeginViewport()
-            { return this->Viewports.begin(); }
-
-        GameWindow::ViewportIterator GameWindow::EndViewport()
-            { return this->Viewports.end(); }
-
-        GameWindow::ConstViewportIterator GameWindow::BeginViewport() const
-            { return this->Viewports.begin(); }
-
-        GameWindow::ConstViewportIterator GameWindow::EndViewport() const
-            { return this->Viewports.end(); }
-
-        GameWindow::ReverseViewportIterator GameWindow::ReverseBeginViewport()
-            { return this->Viewports.rbegin(); }
-
-        GameWindow::ReverseViewportIterator GameWindow::ReverseEndViewport()
-            { return this->Viewports.rend(); }
-
-        GameWindow::ConstReverseViewportIterator GameWindow::ReverseBeginViewport() const
-            { return this->Viewports.rbegin(); }
-
-        GameWindow::ConstReverseViewportIterator GameWindow::ReverseEndViewport() const
-            { return this->Viewports.rend(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Window Metrics Management
 
-        void GameWindow::SetWidth(const Whole& Width)
+        void GameWindow::SetWidth(const Whole Width)
             { this->SetResolution(Width,this->Settings.WinRes.Height); }
 
         Whole GameWindow::GetWidth() const
             { return this->Settings.WinRes.Width; }
 
-        void GameWindow::SetHeight(const Whole& Height)
+        void GameWindow::SetHeight(const Whole Height)
             { this->SetResolution(this->Settings.WinRes.Width,Height); }
 
         Whole GameWindow::GetHeight() const
@@ -296,7 +302,7 @@ namespace Mezzanine
         void GameWindow::SetResolution(const Resolution& WinRes)
             { this->SetResolution(WinRes.Width,WinRes.Height); }
 
-        void GameWindow::SetResolution(const Whole& Width, const Whole& Height)
+        void GameWindow::SetResolution(const Whole Width, const Whole Height)
         {
             if( this->Settings.WinRes.Width != Width || this->Settings.WinRes.Height != Height ) {
                 if( this->Settings.Fullscreen ) {
@@ -351,7 +357,7 @@ namespace Mezzanine
                     SDL_SetWindowDisplayMode(SDLWindow,&FSDisplayMode);
                 }// */
 
-                if(SDL_SetWindowFullscreen(SDLWindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0) {
+                if( SDL_SetWindowFullscreen( SDLWindow, Fullscreen ? SDL_TRUE : SDL_FALSE ) == 0 ) {
                     this->OgreWindow->setFullscreen(Fullscreen,this->Settings.WinRes.Width,this->Settings.WinRes.Height);
                     this->UpdateViewportsAndCameras();
                     this->Settings.Fullscreen = Fullscreen;
@@ -378,8 +384,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Window Settings Methods
 
-        const String& GameWindow::GetWindowCaption() const
+        const String& GameWindow::GetCaption() const
             { return this->OgreWindow->getName(); }
+
+        UInt32 GameWindow::GetID() const
+            { return SDL_GetWindowID(this->SDLWindow); }
 
         void GameWindow::SetFSAALevel(const Whole FSAA)
             { this->RequestedFSAA = FSAA; }
@@ -445,7 +454,7 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( GameWindow::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("Caption").SetValue( this->GetWindowCaption() ) &&
+                PropertiesNode.AppendAttribute("Caption").SetValue( this->GetCaption() ) &&
                 PropertiesNode.AppendAttribute("Width").SetValue( this->GetWidth() ) &&
                 PropertiesNode.AppendAttribute("Height").SetValue( this->GetHeight() ) &&
                 PropertiesNode.AppendAttribute("Fullscreen").SetValue( this->GetFullscreen() ) &&

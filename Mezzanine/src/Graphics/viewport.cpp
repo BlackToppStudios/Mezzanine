@@ -99,11 +99,19 @@ namespace Mezzanine
 
         Mezzanine::OrientationMode Viewport::GetOrientationMode() const
         {
-            #if OGRE_NO_VIEWPORT_ORIENTATIONMODE != 0
+        #if OGRE_NO_VIEWPORT_ORIENTATIONMODE != 0
             return Mezzanine::OM_Degree_0;
-            #else
+        #else
             return static_cast<Mezzanine::OrientationMode>( OgreViewport->getOrientationMode() );
-            #endif
+        #endif
+        }
+
+        Boole Viewport::IsWithinBounds(const Vector2& Point) const
+        {
+            return ( Point.X >= static_cast<Real>( this->GetActualLeft() ) &&
+                     Point.X <= static_cast<Real>( this->GetActualLeft() + this->GetActualWidth() ) &&
+                     Point.Y >= static_cast<Real>( this->GetActualTop() ) &&
+                     Point.Y <= static_cast<Real>( this->GetActualTop() + this->GetActualHeight() ) );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
