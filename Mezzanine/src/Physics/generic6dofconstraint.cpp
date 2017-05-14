@@ -151,6 +151,12 @@ namespace Mezzanine
             { return Quaternion(this->Generic6dof->getFrameOffsetB().getRotation()); }
 
         ////////////////////////////////////////////////////////////////////////////////
+        // Query
+
+        Real Generic6DofConstraint::GetLinearDistance() const
+            { return this->Generic6dof->getTranslationalLimitMotor()->m_currentLinearDiff.length(); }
+
+        ////////////////////////////////////////////////////////////////////////////////
         // Utility
 
         void Generic6DofConstraint::SetUseFrameOffset(const Boole FrameOffset)
