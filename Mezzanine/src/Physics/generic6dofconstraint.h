@@ -175,10 +175,18 @@ namespace Mezzanine
             virtual Quaternion GetPivotBRotation() const;
 
             ////////////////////////////////////////////////////////////////////////////////
+            // Query
+
+            /// @brief Gets the linear distance between both bodies of this constraint.
+            /// @remarks If this is anchored to the world it should return 0.
+            /// @return Returns the distance between the two bodies in this constraint.
+            virtual Real GetLinearDistance() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
             // Utility
 
             /// @brief Sets whether or not an offset of the constraint frame should be used to calculate internal data.
-            /// @param FrameOffset The full effect of this being true or false is uknown, but internal documentation suggests "true" provides more stable results.
+            /// @param FrameOffset The full effect of this being true or false is unknown, but internal documentation suggests "true" provides more stable results.
             virtual void SetUseFrameOffset(const Boole FrameOffset);
             /// @brief Gets whether or not an offset of the constraint frame should be used to calculate internal data.
             /// @return Returns whether or not an offset in the constraint frame is being used by the internal constraint.

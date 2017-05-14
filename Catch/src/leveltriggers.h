@@ -8,13 +8,14 @@ using namespace Mezzanine;
 class BNS_Fan : public WorldTrigger
 {
 protected:
-    RigidDebris* Fan;
-    RigidDebris* Button;
-    FieldOfForce* Wind;
-    Graphics::ParticleSystemProxy* WindClutter;
-    Physics::HingeConstraint* Motor;
+    RigidDebris* TrigFan;
+    RigidDebris* TrigButton;
+    FieldOfForce* TrigWind;
+    Graphics::ParticleSystemProxy* TrigWindClutter;
+    Physics::HingeConstraint* TrigMotor;
+    Physics::Generic6DofSpringConstraint* TrigSpring;
 public:
-    BNS_Fan(const String& name, Physics::HingeConstraint* Motor, RigidDebris* Button, RigidDebris* Fan, FieldOfForce* Wind, Graphics::ParticleSystemProxy* WindClutter);
+    BNS_Fan(const String& name, Physics::HingeConstraint* Motor, Physics::Generic6DofSpringConstraint* Spring, RigidDebris* Fan, FieldOfForce* Wind, Graphics::ParticleSystemProxy* WindClutter);
     virtual ~BNS_Fan();
     virtual bool ConditionsAreMet();
     virtual void ApplyTrigger();

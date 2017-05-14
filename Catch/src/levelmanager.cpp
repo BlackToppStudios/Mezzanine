@@ -516,6 +516,7 @@ void LoadBlowsNotSucks()
     ButtonToBody->SetAngularLimitLower(Vector3(0,0,0));
     ButtonToBody->SetSpringEnabled(1,true);
     ButtonToBody->SetSpringStiffness(1,500.f);
+    ButtonToBody->SetSpringDamping(1,0.5);
     ButtonToBody->CalculateSpringEquilibriumPoint(1);
     ButtonToBody->SetAllowCollisions(false);
     ButtonToBody->EnableConstraint(true);
@@ -541,7 +542,7 @@ void LoadBlowsNotSucks()
     WindParticle->AddToWorld();// */
 
     // Create the trigger for the fan
-    BNS_Fan* FanTrigger = new BNS_Fan("FanTigger",FanToBody,FanButton,Fan,FanWind,WindParticle);
+    BNS_Fan* FanTrigger = new BNS_Fan("FanTigger",FanToBody,ButtonToBody,Fan,FanWind,WindParticle);
     PhysMan->AddWorldTrigger(FanTrigger);
 
     // Create the goal tray
