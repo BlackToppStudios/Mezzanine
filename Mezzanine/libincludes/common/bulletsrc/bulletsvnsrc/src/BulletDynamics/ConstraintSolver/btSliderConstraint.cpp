@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -364,7 +364,6 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 	int srow;
 	btScalar limit_err;
 	int limit;
-	int powered;
 
 	// next two rows. 
 	// we want: velA + wA x relA == velB + wB x relB ... but this would
@@ -426,6 +425,8 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 		for (i=0; i<3; i++) info->m_J2angularAxis[s3+i] = -tmpB[i];
 		for (i=0; i<3; i++) info->m_J1linearAxis[s2+i] = p[i];
 		for (i=0; i<3; i++) info->m_J1linearAxis[s3+i] = q[i];
+		for (i=0; i<3; i++) info->m_J2linearAxis[s2+i] = -p[i];
+		for (i=0; i<3; i++) info->m_J2linearAxis[s3+i] = -q[i];
 	}
 	else
 	{	// old way - maybe incorrect if bodies are not on the slider axis
@@ -440,6 +441,8 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 
 		for (i=0; i<3; i++) info->m_J1linearAxis[s2+i] = p[i];
 		for (i=0; i<3; i++) info->m_J1linearAxis[s3+i] = q[i];
+		for (i=0; i<3; i++) info->m_J2linearAxis[s2+i] = -p[i];
+		for (i=0; i<3; i++) info->m_J2linearAxis[s3+i] = -q[i];
 	}
 	// compute two elements of right hand side
 
@@ -466,19 +469,18 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 		limit_err = getLinDepth() *  signFact;
 		limit = (limit_err > btScalar(0.0)) ? 2 : 1;
 	}
-	powered = 0;
-	if(getPoweredLinMotor())
-	{
-		powered = 1;
-	}
+	bool powered = getPoweredLinMotor();
 	// if the slider has joint limits or motor, add in the extra row
-	if (limit || powered) 
+	if (limit || powered)
 	{
 		nrow++;
 		srow = nrow * info->rowskip;
 		info->m_J1linearAxis[srow+0] = ax1[0];
 		info->m_J1linearAxis[srow+1] = ax1[1];
 		info->m_J1linearAxis[srow+2] = ax1[2];
+		info->m_J2linearAxis[srow+0] = -ax1[0];
+		info->m_J2linearAxis[srow+1] = -ax1[1];
+		info->m_J2linearAxis[srow+2] = -ax1[2];
 		// linear torque decoupling step:
 		//
 		// we have to be careful that the linear constraint forces (+/- ax1) applied to the two bodies
@@ -517,7 +519,7 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 		btScalar histop = getUpperLinLimit();
 		if(limit && (lostop == histop))
 		{  // the joint motor is ineffective
-			powered = 0;
+			powered = false;
 		}
 		info->m_constraintError[srow] = 0.;
 		info->m_lowerLimit[srow] = 0.;
@@ -532,8 +534,8 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 			btScalar tag_vel = getTargetLinMotorVelocity();
 			btScalar mot_fact = getMotorFactor(m_linPos, m_lowerLinLimit, m_upperLinLimit, tag_vel, info->fps * currERP);
 			info->m_constraintError[srow] -= signFact * mot_fact * getTargetLinMotorVelocity();
-			info->m_lowerLimit[srow] += -getMaxLinMotorForce() * info->fps;
-			info->m_upperLimit[srow] += getMaxLinMotorForce() * info->fps;
+			info->m_lowerLimit[srow] += -getMaxLinMotorForce() / info->fps;
+			info->m_upperLimit[srow] += getMaxLinMotorForce() / info->fps;
 		}
 		if(limit)
 		{
@@ -602,12 +604,8 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 		limit = (limit_err > btScalar(0.0)) ? 1 : 2;
 	}
 	// if the slider has joint limits, add in the extra row
-	powered = 0;
-	if(getPoweredAngMotor())
-	{
-		powered = 1;
-	}
-	if(limit || powered) 
+	powered = getPoweredAngMotor();
+	if(limit || powered)
 	{
 		nrow++;
 		srow = nrow * info->rowskip;
@@ -623,7 +621,7 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 		btScalar histop = getUpperAngLimit();
 		if(limit && (lostop == histop))
 		{  // the joint motor is ineffective
-			powered = 0;
+			powered = false;
 		}
 		currERP = (m_flags & BT_SLIDER_FLAGS_ERP_LIMANG) ? m_softnessLimAng : info->erp;
 		if(powered)
@@ -634,8 +632,8 @@ void btSliderConstraint::getInfo2NonVirtual(btConstraintInfo2* info, const btTra
 			}
 			btScalar mot_fact = getMotorFactor(m_angPos, m_lowerAngLimit, m_upperAngLimit, getTargetAngMotorVelocity(), info->fps * currERP);
 			info->m_constraintError[srow] = mot_fact * getTargetAngMotorVelocity();
-			info->m_lowerLimit[srow] = -getMaxAngMotorForce() * info->fps;
-			info->m_upperLimit[srow] = getMaxAngMotorForce() * info->fps;
+			info->m_lowerLimit[srow] = -getMaxAngMotorForce() / info->fps;
+			info->m_upperLimit[srow] = getMaxAngMotorForce() / info->fps;
 		}
 		if(limit)
 		{

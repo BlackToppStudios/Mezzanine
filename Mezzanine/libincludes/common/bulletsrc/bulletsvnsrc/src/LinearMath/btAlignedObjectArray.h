@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -23,7 +23,7 @@ subject to the following restrictions:
 ///If the platform doesn't support placement new, you can disable BT_USE_PLACEMENT_NEW
 ///then the btAlignedObjectArray doesn't support objects with virtual methods, and non-trivial constructors/destructors
 ///You can enable BT_USE_MEMCPY, then swapping elements in the array will use memcpy instead of operator=
-///see discussion here: http:// ©ontinuousphysics.com/Bullet/phpBB2/viewtopic.php?t=1231 and
+///see discussion here: http://continuousphysics.com/Bullet/phpBB2/viewtopic.php?t=1231 and
 ///http://www.continuousphysics.com/Bullet/phpBB2/viewtopic.php?t=1240
 
 #define BT_USE_PLACEMENT_NEW 1
@@ -39,6 +39,12 @@ subject to the following restrictions:
 #include <new> //for placement new
 #endif //BT_USE_PLACEMENT_NEW
 
+// The register keyword is deprecated in C++11 so don't use it.
+#if __cplusplus > 199711L
+#define BT_REGISTER
+#else
+#define BT_REGISTER register
+#endif
 
 ///The btAlignedObjectArray template class uses a subset of the stl::vector interface for its methods
 ///It is developed to replace stl::vector to avoid portability issues, including STL alignment issues to add SIMD/SSE data
@@ -180,7 +186,7 @@ protected:
 		}
 		
 
-		/// ©lear the array, deallocated memory. Generally it is better to use array.resize(0), to reduce performance overhead of run-time memory (de)allocations.
+		///clear the array, deallocated memory. Generally it is better to use array.resize(0), to reduce performance overhead of run-time memory (de)allocations.
 		SIMD_FORCE_INLINE	void	clear()
 		{
 			destroy(0,size());
@@ -202,24 +208,16 @@ protected:
 		///when the new number of elements is smaller, the destructor will be called, but memory will not be freed, to reduce performance overhead of run-time memory (de)allocations.
 		SIMD_FORCE_INLINE	void	resizeNoInitialize(int newsize)
 		{
-			int curSize = size();
-
-			if (newsize < curSize)
+			if (newsize > size())
 			{
-			} else
-			{
-				if (newsize > size())
-				{
-					reserve(newsize);
-				}
-				//leave this uninitialized
+				reserve(newsize);
 			}
 			m_size = newsize;
 		}
 	
 		SIMD_FORCE_INLINE	void	resize(int newsize, const T& fillData=T())
 		{
-			int curSize = size();
+			const BT_REGISTER int curSize = size();
 
 			if (newsize < curSize)
 			{
@@ -229,7 +227,7 @@ protected:
 				}
 			} else
 			{
-				if (newsize > size())
+				if (newsize > curSize)
 				{
 					reserve(newsize);
 				}
@@ -246,7 +244,7 @@ protected:
 		}
 		SIMD_FORCE_INLINE	T&  expandNonInitializing( )
 		{	
-			int sz = size();
+			const BT_REGISTER int sz = size();
 			if( sz == capacity() )
 			{
 				reserve( allocSize(size()) );
@@ -259,7 +257,7 @@ protected:
 
 		SIMD_FORCE_INLINE	T&  expand( const T& fillValue=T())
 		{	
-			int sz = size();
+			const BT_REGISTER int sz = size();
 			if( sz == capacity() )
 			{
 				reserve( allocSize(size()) );
@@ -275,7 +273,7 @@ protected:
 
 		SIMD_FORCE_INLINE	void push_back(const T& _Val)
 		{	
-			int sz = size();
+			const BT_REGISTER int sz = size();
 			if( sz == capacity() )
 			{
 				reserve( allocSize(size()) );
@@ -324,7 +322,7 @@ protected:
 		{
 			public:
 
-				bool operator() ( const T& a, const T& b )
+				bool operator() ( const T& a, const T& b ) const
 				{
 					return ( a < b );
 				}
@@ -477,16 +475,37 @@ protected:
 		}
 		return index;
 	}
+    
+    // If the key is not in the array, return -1 instead of 0,
+    // since 0 also means the first element in the array.
+    int	findLinearSearch2(const T& key) const
+    {
+        int index=-1;
+        int i;
+        
+        for (i=0;i<size();i++)
+        {
+            if (m_data[i] == key)
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 
+    void removeAtIndex(int index)
+    {
+        if (index<size())
+        {
+            swap( index,size()-1);
+            pop_back();
+        }
+    }
 	void	remove(const T& key)
 	{
-
 		int findIndex = findLinearSearch(key);
-		if (findIndex<size())
-		{
-			swap( findIndex,size()-1);
-			pop_back();
-		}
+        removeAtIndex(findIndex);
 	}
 
 	//PCK: whole function

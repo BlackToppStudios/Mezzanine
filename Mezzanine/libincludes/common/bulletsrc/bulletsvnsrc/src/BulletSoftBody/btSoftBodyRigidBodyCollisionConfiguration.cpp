@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -51,7 +51,7 @@ btSoftBodyRigidBodyCollisionConfiguration::btSoftBodyRigidBodyCollisionConfigura
 	if (m_ownsCollisionAlgorithmPool && m_collisionAlgorithmPool)
 	{
 		int curElemSize = m_collisionAlgorithmPool->getElementSize();
-		/// ©alculate maximum element size, big enough to fit any collision algorithm in the memory pool
+		///calculate maximum element size, big enough to fit any collision algorithm in the memory pool
 
 
 		int maxSize0 = sizeof(btSoftSoftCollisionAlgorithm);
@@ -92,7 +92,7 @@ btSoftBodyRigidBodyCollisionConfiguration::~btSoftBodyRigidBodyCollisionConfigur
 #endif
 }
 
-/// ©reation of soft-soft and soft-rigid, and otherwise fallback to base class implementation
+///creation of soft-soft and soft-rigid, and otherwise fallback to base class implementation
 btCollisionAlgorithmCreateFunc* btSoftBodyRigidBodyCollisionConfiguration::getCollisionAlgorithmCreateFunc(int proxyType0,int proxyType1)
 {
 
@@ -109,7 +109,7 @@ btCollisionAlgorithmCreateFunc* btSoftBodyRigidBodyCollisionConfiguration::getCo
 		return	m_softRigidConvexCreateFunc;
 	}
 
-	/// ©onvex versus soft body
+	///convex versus soft body
 	if (btBroadphaseProxy::isConvex(proxyType0) && proxyType1 == SOFTBODY_SHAPE_PROXYTYPE )
 	{
 		return	m_swappedSoftRigidConvexCreateFunc;
@@ -122,7 +122,7 @@ btCollisionAlgorithmCreateFunc* btSoftBodyRigidBodyCollisionConfiguration::getCo
 		return	m_softRigidConcaveCreateFunc;
 	}
 
-	/// ©onvex versus soft body
+	///convex versus soft body
 	if (btBroadphaseProxy::isConcave(proxyType0) && proxyType1 == SOFTBODY_SHAPE_PROXYTYPE )
 	{
 		return	m_swappedSoftRigidConcaveCreateFunc;

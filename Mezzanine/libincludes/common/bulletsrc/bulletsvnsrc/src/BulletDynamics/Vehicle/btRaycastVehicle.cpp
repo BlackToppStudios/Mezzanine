@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005 Erwin Coumans http:// ©ontinuousphysics.com/Bullet/
+ * Copyright (c) 2005 Erwin Coumans http://continuousphysics.com/Bullet/
  *
  * Permission to use, copy, modify, distribute and sell this software
  * and its documentation for any purpose is hereby granted without fee,
@@ -201,7 +201,7 @@ btScalar btRaycastVehicle::rayCast(btWheelInfo& wheel)
 
 		btScalar hitDistance = param*raylen;
 		wheel.m_raycastInfo.m_suspensionLength = hitDistance - wheel.m_wheelsRadius;
-		// ©lamp on max suspension travel
+		//clamp on max suspension travel
 
 		btScalar  minSuspensionLength = wheel.getSuspensionRestLength() - wheel.m_maxSuspensionTravelCm*btScalar(0.01);
 		btScalar maxSuspensionLength = wheel.getSuspensionRestLength()+ wheel.m_maxSuspensionTravelCm*btScalar(0.01);
@@ -296,8 +296,9 @@ void btRaycastVehicle::updateVehicle( btScalar step )
 	int i=0;
 	for (i=0;i<m_wheelInfo.size();i++)
 	{
-		btScalar depth; 
-		depth = rayCast( m_wheelInfo[i]);
+		//btScalar depth; 
+		//depth = 
+		rayCast( m_wheelInfo[i]);
 	}
 
 	updateSuspension(step);
@@ -526,7 +527,7 @@ btScalar sideFrictionStiffness2 = btScalar(1.0);
 void	btRaycastVehicle::updateFriction(btScalar	timeStep)
 {
 
-		// ©alculate the impulse, so that the wheels don't move sidewards
+		//calculate the impulse, so that the wheels don't move sidewards
 		int numWheel = getNumWheels();
 		if (!numWheel)
 			return;
@@ -539,7 +540,7 @@ void	btRaycastVehicle::updateFriction(btScalar	timeStep)
 		int numWheelsOnGround = 0;
 	
 
-		// ©ollapse all those loops into one!
+		//collapse all those loops into one!
 		for (int i=0;i<getNumWheels();i++)
 		{
 			btWheelInfo& wheelInfo = m_wheelInfo[i];

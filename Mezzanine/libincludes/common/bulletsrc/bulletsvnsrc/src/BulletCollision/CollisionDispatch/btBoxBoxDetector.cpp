@@ -3,7 +3,7 @@
  * Original version is from Open Dynamics Engine, Copyright (C) 2001,2002 Russell L. Smith.
  * All rights reserved.  Email: russ@q12.org   Web: www.q12.org
  Bullet Continuous Collision Detection and Physics Library
- Bullet is Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+ Bullet is Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -427,8 +427,8 @@ int dBoxBox2 (const btVector3& p1, const dMatrix3 R1,
 
 	{
 		
-		// ©ontact[0].pos[i] = btScalar(0.5)*(pa[i]+pb[i]);
-		// ©ontact[0].depth = *depth;
+		//contact[0].pos[i] = btScalar(0.5)*(pa[i]+pb[i]);
+		//contact[0].depth = *depth;
 		btVector3 pointInWorld;
 
 #ifdef USE_CENTER_POINT

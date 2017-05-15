@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -76,7 +76,7 @@ void	btSoftRigidDynamicsWorld::predictUnconstraintMotion(btScalar timeStep)
 	btDiscreteDynamicsWorld::predictUnconstraintMotion( timeStep );
 	{
 		BT_PROFILE("predictUnconstraintMotionSoftBody");
-		m_softBodySolver->predictMotion( timeStep );
+		m_softBodySolver->predictMotion( float(timeStep) );
 	}
 }
 
@@ -125,7 +125,7 @@ void	btSoftRigidDynamicsWorld::solveSoftBodiesConstraints( btScalar timeStep )
 
 }
 
-void	btSoftRigidDynamicsWorld::addSoftBody(btSoftBody* body,short int collisionFilterGroup,short int collisionFilterMask)
+void	btSoftRigidDynamicsWorld::addSoftBody(btSoftBody* body, int collisionFilterGroup, int collisionFilterMask)
 {
 	m_softBodies.push_back(body);
 
@@ -247,7 +247,7 @@ struct btSoftSingleRayCallback : public btBroadphaseRayCallback
 #endif
 #endif
 			//btScalar hitLambda = m_resultCallback.m_closestHitFraction;
-			// ©ulling already done by broadphase
+			//culling already done by broadphase
 			//if (btRayAabb(m_rayFromWorld,m_rayToWorld,collisionObjectAabbMin,collisionObjectAabbMax,hitLambda,m_hitNormal))
 			{
 				m_world->rayTestSingle(m_rayFromTrans,m_rayToTrans,

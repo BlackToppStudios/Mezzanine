@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -45,6 +45,7 @@ struct	btSoftBodyWorldInfo
 	btScalar				air_density;
 	btScalar				water_density;
 	btScalar				water_offset;
+	btScalar				m_maxDisplacement;
 	btVector3				water_normal;
 	btBroadphaseInterface*	m_broadphase;
 	btDispatcher*	m_dispatcher;
@@ -55,6 +56,7 @@ struct	btSoftBodyWorldInfo
 		:air_density((btScalar)1.2),
 		water_density(0),
 		water_offset(0),
+		m_maxDisplacement(1000.f),//avoid soft body from 'exploding' so use some upper threshold of maximum motion that a node can travel per frame
 		water_normal(0,0,0),
 		m_broadphase(0),
 		m_dispatcher(0),
@@ -134,12 +136,12 @@ public:
 	struct fCollision { enum _ {
 		RVSmask	=	0x000f,	///Rigid versus soft mask
 		SDF_RS	=	0x0001,	///SDF based rigid vs soft
-		CL_RS	=	0x0002, /// ©luster vs convex rigid vs soft
+		CL_RS	=	0x0002, ///Cluster vs convex rigid vs soft
 
 		SVSmask	=	0x0030,	///Rigid versus soft mask		
 		VF_SS	=	0x0010,	///Vertex vs face soft vs soft handling
-		CL_SS	=	0x0020, /// ©luster vs cluster soft vs soft handling
-		CL_SELF =	0x0040, /// ©luster soft body self collision
+		CL_SS	=	0x0020, ///Cluster vs cluster soft vs soft handling
+		CL_SELF =	0x0040, ///Cluster soft body self collision
 		/* presets	*/ 
 		Default	=	SDF_RS,
 		END
@@ -169,6 +171,7 @@ public:
 	/* ImplicitFn	*/ 
 	struct	ImplicitFn
 	{
+		virtual ~ImplicitFn() {}
 		virtual btScalar	Eval(const btVector3& x)=0;
 	};
 
@@ -229,15 +232,18 @@ public:
 		int						m_battach:1;	// Attached
 	};
 	/* Link			*/ 
-	struct	Link : Feature
+	ATTRIBUTE_ALIGNED16(struct)	Link : Feature
 	{
+		btVector3				m_c3;			// gradient
 		Node*					m_n[2];			// Node pointers
 		btScalar				m_rl;			// Rest length		
 		int						m_bbending:1;	// Bending link
 		btScalar				m_c0;			// (ima+imb)*kLST
 		btScalar				m_c1;			// rl^2
 		btScalar				m_c2;			// |gradient|^2/c0
-		btVector3				m_c3;			// gradient
+	
+		BT_DECLARE_ALIGNED_ALLOCATOR();
+
 	};
 	/* Face			*/ 
 	struct	Face : Feature
@@ -526,6 +532,7 @@ public:
 	{
 		struct IControl
 		{
+			virtual ~IControl() {}
 			virtual void			Prepare(AJoint*)				{}
 			virtual btScalar		Speed(AJoint*,btScalar current) { return(current); }
 			static IControl*		Default()						{ static IControl def;return(&def); }
@@ -610,7 +617,7 @@ public:
 		RayFromToCaster(const btVector3& rayFrom,const btVector3& rayTo,btScalar mxt);
 		void					Process(const btDbvtNode* leaf);
 
-		static inline btScalar	rayFromToTriangle(const btVector3& rayFrom,
+		static /*inline*/ btScalar	rayFromToTriangle(const btVector3& rayFrom,
 			const btVector3& rayTo,
 			const btVector3& rayNormalizedDirection,
 			const btVector3& a,
@@ -666,7 +673,7 @@ public:
 	btDbvt					m_cdbvt;		// Clusters tree
 	tClusterArray			m_clusters;		// Clusters
 
-	btAlignedObjectArray<bool>m_clusterConnectivity;// ©luster connectivity, for self-collision
+	btAlignedObjectArray<bool>m_clusterConnectivity;//cluster connectivity, for self-collision
 
 	btTransform			m_initialWorldTransform;
 

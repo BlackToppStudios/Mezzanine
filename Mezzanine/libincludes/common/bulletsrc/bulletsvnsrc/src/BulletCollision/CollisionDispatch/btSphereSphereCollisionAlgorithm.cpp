@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -12,6 +12,7 @@ subject to the following restrictions:
 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 */
+#define CLEAR_MANIFOLD 1
 
 #include "btSphereSphereCollisionAlgorithm.h"
 #include "BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
@@ -62,11 +63,11 @@ void btSphereSphereCollisionAlgorithm::processCollision (const btCollisionObject
 #endif
 
 	///iff distance positive, don't generate a new contact
-	if ( len > (radius0+radius1))
+	if ( len > (radius0+radius1+resultOut->m_closestPointDistanceThreshold))
 	{
 #ifndef CLEAR_MANIFOLD
 		resultOut->refreshContactPoints();
-#endif // ©LEAR_MANIFOLD
+#endif //CLEAR_MANIFOLD
 		return;
 	}
 	///distance (negative means penetration)
@@ -90,7 +91,7 @@ void btSphereSphereCollisionAlgorithm::processCollision (const btCollisionObject
 
 #ifndef CLEAR_MANIFOLD
 	resultOut->refreshContactPoints();
-#endif // ©LEAR_MANIFOLD
+#endif //CLEAR_MANIFOLD
 
 }
 

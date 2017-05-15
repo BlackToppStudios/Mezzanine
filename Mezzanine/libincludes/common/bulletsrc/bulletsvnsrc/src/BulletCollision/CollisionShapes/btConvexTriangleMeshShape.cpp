@@ -150,11 +150,11 @@ btVector3	btConvexTriangleMeshShape::localGetSupportingVertex(const btVector3& v
 
 
 
-// ©urrently just for debugging (drawing), perhaps future support for algebraic continuous collision detection
+//currently just for debugging (drawing), perhaps future support for algebraic continuous collision detection
 //Please note that you can debug-draw btConvexTriangleMeshShape with the Raytracer Demo
 int	btConvexTriangleMeshShape::getNumVertices() const
 {
-	// ©ache this?
+	//cache this?
 	return 0;
 	
 }

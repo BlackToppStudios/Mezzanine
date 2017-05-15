@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://bulletphysics.com/Bullet/
+Copyright (c) 2003-2013 Erwin Coumans  http://bulletphysics.org
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -18,21 +18,28 @@ subject to the following restrictions:
  * @mainpage Bullet Documentation
  *
  * @section intro_sec Introduction
- * Bullet Collision Detection & Physics SDK
- *
  * Bullet is a Collision Detection and Rigid Body Dynamics Library. The Library is Open Source and free for commercial use, under the ZLib license ( http://opensource.org/licenses/zlib-license.php ).
  *
  * The main documentation is Bullet_User_Manual.pdf, included in the source code distribution.
  * There is the Physics Forum for feedback and general Collision Detection and Physics discussions.
- * Please visit http://www.bulletphysics.com
+ * Please visit http://www.bulletphysics.org
  *
  * @section install_sec Installation
  *
  * @subsection step1 Step 1: Download
- * You can download the Bullet Physics Library from the Google Code repository: http:// ©ode.google.com/p/bullet/downloads/list
+ * You can download the Bullet Physics Library from the github repository: https://github.com/bulletphysics/bullet3/releases 
  *
  * @subsection step2 Step 2: Building
- * Bullet main build system for all platforms is cmake, you can download http://www.cmake.org
+ * Bullet has multiple build systems, including premake, cmake and autotools. Premake and cmake support all platforms.
+ * Premake is included in the Bullet/build folder for Windows, Mac OSX and Linux. 
+ * Under Windows you can click on Bullet/build/vs2010.bat to create Microsoft Visual Studio projects. 
+ * On Mac OSX and Linux you can open a terminal and generate Makefile, codeblocks or Xcode4 projects:
+ * cd Bullet/build
+ * ./premake4_osx gmake or ./premake4_linux gmake or ./premake4_linux64 gmake or (for Mac) ./premake4_osx xcode4
+ * cd Bullet/build/gmake
+ * make
+ * 
+ * An alternative to premake is cmake. You can download cmake from http://www.cmake.org
  * cmake can autogenerate projectfiles for Microsoft Visual Studio, Apple Xcode, KDevelop and Unix Makefiles.
  * The easiest is to run the CMake cmake-gui graphical user interface and choose the options and generate projectfiles.
  * You can also use cmake in the command-line. Here are some examples for various platforms:
@@ -65,7 +72,6 @@ subject to the following restrictions:
 #ifndef BT_COLLISION_WORLD_H
 #define BT_COLLISION_WORLD_H
 
-class btStackAlloc;
 class btCollisionShape;
 class btConvexShape;
 class btBroadphaseInterface;
@@ -78,7 +84,7 @@ class btSerializer;
 #include "BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
 #include "LinearMath/btAlignedObjectArray.h"
 
-/// ©ollisionWorld is interface and container for the collision detection
+///CollisionWorld is interface and container for the collision detection
 class btCollisionWorld
 {
 
@@ -90,8 +96,6 @@ protected:
 	btDispatcher*	m_dispatcher1;
 
 	btDispatcherInfo	m_dispatchInfo;
-
-	btStackAlloc*	m_stackAlloc;
 
 	btBroadphaseInterface*	m_broadphasePairCache;
 
@@ -166,14 +170,14 @@ public:
 
 
 	///LocalShapeInfo gives extra information for complex shapes
-	/// ©urrently, only btTriangleMeshShape is available, so it just contains triangleIndex and subpart
+	///Currently, only btTriangleMeshShape is available, so it just contains triangleIndex and subpart
 	struct	LocalShapeInfo
 	{
 		int	m_shapePart;
 		int	m_triangleIndex;
 		
-		// ©onst btCollisionShape*	m_shapeTemp;
-		// ©onst btTransform*	m_shapeLocalTransform;
+		//const btCollisionShape*	m_shapeTemp;
+		//const btTransform*	m_shapeLocalTransform;
 	};
 
 	struct	LocalRayResult
@@ -201,8 +205,8 @@ public:
 	{
 		btScalar	m_closestHitFraction;
 		const btCollisionObject*		m_collisionObject;
-		short int	m_collisionFilterGroup;
-		short int	m_collisionFilterMask;
+		int	m_collisionFilterGroup;
+		int	m_collisionFilterMask;
 		//@BP Mod - Custom flags, currently used to enable backface culling on tri-meshes, see btRaycastCallback.h. Apply any of the EFlags defined there on m_flags here to invoke.
 		unsigned int m_flags;
 
@@ -251,7 +255,7 @@ public:
 			
 		virtual	btScalar	addSingleResult(LocalRayResult& rayResult,bool normalInWorldSpace)
 		{
-			// ©aller already does the filter on the m_closestHitFraction
+			//caller already does the filter on the m_closestHitFraction
 			btAssert(rayResult.m_hitFraction <= m_closestHitFraction);
 			
 			m_closestHitFraction = rayResult.m_hitFraction;
@@ -336,8 +340,8 @@ public:
 	struct	ConvexResultCallback
 	{
 		btScalar	m_closestHitFraction;
-		short int	m_collisionFilterGroup;
-		short int	m_collisionFilterMask;
+		int	m_collisionFilterGroup;
+		int	m_collisionFilterMask;
 		
 		ConvexResultCallback()
 			:m_closestHitFraction(btScalar(1.)),
@@ -385,7 +389,7 @@ public:
 		
 		virtual	btScalar	addSingleResult(LocalConvexResult& convexResult,bool normalInWorldSpace)
 		{
-// ©aller already does the filter on the m_closestHitFraction
+//caller already does the filter on the m_closestHitFraction
 			btAssert(convexResult.m_hitFraction <= m_closestHitFraction);
 						
 			m_closestHitFraction = convexResult.m_hitFraction;
@@ -403,15 +407,17 @@ public:
 		}
 	};
 
-	/// ©ontactResultCallback is used to report contact points
+	///ContactResultCallback is used to report contact points
 	struct	ContactResultCallback
 	{
-		short int	m_collisionFilterGroup;
-		short int	m_collisionFilterMask;
-		
+		int	m_collisionFilterGroup;
+		int	m_collisionFilterMask;
+		btScalar	m_closestDistanceThreshold;
+
 		ContactResultCallback()
 			:m_collisionFilterGroup(btBroadphaseProxy::DefaultFilter),
-			m_collisionFilterMask(btBroadphaseProxy::AllFilter)
+			m_collisionFilterMask(btBroadphaseProxy::AllFilter),
+			m_closestDistanceThreshold(0)
 		{
 		}
 
@@ -444,11 +450,11 @@ public:
 	/// This allows for several queries: first hit, all hits, any hit, dependent on the value return by the callback.
 	void    convexSweepTest (const btConvexShape* castShape, const btTransform& from, const btTransform& to, ConvexResultCallback& resultCallback,  btScalar allowedCcdPenetration = btScalar(0.)) const;
 
-	/// ©ontactTest performs a discrete collision test between colObj against all objects in the btCollisionWorld, and calls the resultCallback.
+	///contactTest performs a discrete collision test between colObj against all objects in the btCollisionWorld, and calls the resultCallback.
 	///it reports one or more contact points for every overlapping object (including the one with deepest penetration)
 	void	contactTest(btCollisionObject* colObj, ContactResultCallback& resultCallback);
 
-	/// ©ontactTest performs a discrete collision test between two collision objects and calls the resultCallback if overlap if detected.
+	///contactTest performs a discrete collision test between two collision objects and calls the resultCallback if overlap if detected.
 	///it reports one or more contact points (including the one with deepest penetration)
 	void	contactPairTest(btCollisionObject* colObjA, btCollisionObject* colObjB, ContactResultCallback& resultCallback);
 
@@ -477,7 +483,7 @@ public:
 											const btCollisionObjectWrapper* colObjWrap,
 											ConvexResultCallback& resultCallback, btScalar allowedPenetration);
 
-	virtual void	addCollisionObject(btCollisionObject* collisionObject,short int collisionFilterGroup=btBroadphaseProxy::DefaultFilter,short int collisionFilterMask=btBroadphaseProxy::AllFilter);
+	virtual void	addCollisionObject(btCollisionObject* collisionObject, int collisionFilterGroup=btBroadphaseProxy::DefaultFilter, int collisionFilterMask=btBroadphaseProxy::AllFilter);
 
 	btCollisionObjectArray& getCollisionObjectArray()
 	{

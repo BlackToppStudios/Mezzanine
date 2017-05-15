@@ -29,7 +29,7 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISI
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -----------------------------------------------------------------------*/
 
-// http:// ©odesuppository.blogspot.com
+// http://codesuppository.blogspot.com
 //
 // mailto: jratcliff@infiniplex.net
 //

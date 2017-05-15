@@ -43,7 +43,7 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 	
 	const btVector3& getHalfExtentsWithoutMargin() const
 	{
-		return m_implicitShapeDimensions;// ©hanged in Bullet 2.63: assume the scaling and margin are included
+		return m_implicitShapeDimensions;//changed in Bullet 2.63: assume the scaling and margin are included
 	}
 
 	btCylinderShape (const btVector3& halfExtents);
@@ -58,7 +58,7 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 
 	virtual void setMargin(btScalar collisionMargin)
 	{
-		// ©orrect the m_implicitShapeDimensions for the margin
+		//correct the m_implicitShapeDimensions for the margin
 		btVector3 oldMargin(getMargin(),getMargin(),getMargin());
 		btVector3 implicitShapeDimensionsWithMargin = m_implicitShapeDimensions+oldMargin;
 		
@@ -199,11 +199,17 @@ SIMD_FORCE_INLINE	int	btCylinderShape::calculateSerializeBufferSize() const
 SIMD_FORCE_INLINE	const char*	btCylinderShape::serialize(void* dataBuffer, btSerializer* serializer) const
 {
 	btCylinderShapeData* shapeData = (btCylinderShapeData*) dataBuffer;
-	
+
 	btConvexInternalShape::serialize(&shapeData->m_convexInternalShapeData,serializer);
 
 	shapeData->m_upAxis = m_upAxis;
-	
+
+	// Fill padding with zeros to appease msan.
+	shapeData->m_padding[0] = 0;
+	shapeData->m_padding[1] = 0;
+	shapeData->m_padding[2] = 0;
+	shapeData->m_padding[3] = 0;
+
 	return "btCylinderShapeData";
 }
 

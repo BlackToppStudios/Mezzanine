@@ -47,7 +47,7 @@ void	btStridingMeshInterface::InternalProcessAllTriangles(btInternalTriangleInde
 
 		///unlike that developers want to pass in double-precision meshes in single-precision Bullet build
 		///so disable this feature by default
-		///see patch http:// ©ode.google.com/p/bullet/issues/detail?id=213
+		///see patch http://code.google.com/p/bullet/issues/detail?id=213
 
 		switch (type)
 		{
@@ -293,6 +293,9 @@ const char*	btStridingMeshInterface::serialize(void* dataBuffer, btSerializer* s
 							tmpIndices[gfxindex].m_values[0] = tri_indices[0];
 							tmpIndices[gfxindex].m_values[1] = tri_indices[1];
 							tmpIndices[gfxindex].m_values[2] = tri_indices[2];
+							// Fill padding with zeros to appease msan.
+							tmpIndices[gfxindex].m_pad[0] = 0;
+							tmpIndices[gfxindex].m_pad[1] = 0;
 						}
 						serializer->finalizeChunk(chunk,"btShortIntIndexTripletData",BT_ARRAY_CODE,(void*)chunk->m_oldPtr);
 					}
@@ -311,6 +314,8 @@ const char*	btStridingMeshInterface::serialize(void* dataBuffer, btSerializer* s
 							tmpIndices[gfxindex].m_values[0] = tri_indices[0];
 							tmpIndices[gfxindex].m_values[1] = tri_indices[1];
 							tmpIndices[gfxindex].m_values[2] = tri_indices[2];
+							// Fill padding with zeros to appease msan.
+							tmpIndices[gfxindex].m_pad = 0;
 						}
 						serializer->finalizeChunk(chunk,"btCharIndexTripletData",BT_ARRAY_CODE,(void*)chunk->m_oldPtr);
 					}
@@ -375,6 +380,8 @@ const char*	btStridingMeshInterface::serialize(void* dataBuffer, btSerializer* s
 		serializer->finalizeChunk(chunk,"btMeshPartData",BT_ARRAY_CODE,chunk->m_oldPtr);
 	}
 
+	// Fill padding with zeros to appease msan.
+	memset(trimeshData->m_padding, 0, sizeof(trimeshData->m_padding));
 
 	m_scaling.serializeFloat(trimeshData->m_scaling);
 	return "btStridingMeshInterfaceData";

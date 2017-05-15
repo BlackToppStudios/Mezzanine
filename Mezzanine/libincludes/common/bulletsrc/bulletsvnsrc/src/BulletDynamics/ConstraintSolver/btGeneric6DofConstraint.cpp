@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -163,7 +163,7 @@ btScalar btRotationalLimitMotor::solveAngularLimits(
 	btScalar target_velocity = m_targetVelocity;
 	btScalar maxMotorForce = m_maxMotorForce;
 
-	// ©urrent error correction
+	//current error correction
 	if (m_currentLimit!=0)
 	{
 		target_velocity = -m_stopERP*m_currentLimitError/(timeStep);
@@ -468,7 +468,7 @@ void btGeneric6DofConstraint::buildJacobian()
 		{
 			m_angularLimits[i].m_accumulatedImpulse = btScalar(0.);
 		}
-		// ©alculates transform
+		//calculates transform
 		calculateTransforms(m_rbA.getCenterOfMassTransform(),m_rbB.getCenterOfMassTransform());
 
 		//  const btVector3& pivotAInW = m_calculatedTransformA.getOrigin();
@@ -502,7 +502,7 @@ void btGeneric6DofConstraint::buildJacobian()
 		// angular part
 		for (i=0;i<3;i++)
 		{
-			// ©alculates error angle
+			//calculates error angle
 			if (testAngularLimitMotor(i))
 			{
 				normalWorld = this->getAxis(i);
@@ -776,22 +776,21 @@ int btGeneric6DofConstraint::get_limit_motor_info2(
 	btConstraintInfo2 *info, int row, btVector3& ax1, int rotational,int rotAllowed)
 {
     int srow = row * info->rowskip;
-    int powered = limot->m_enableMotor;
+    bool powered = limot->m_enableMotor;
     int limit = limot->m_currentLimit;
     if (powered || limit)
     {   // if the joint is powered, or has joint limits, add in the extra row
         btScalar *J1 = rotational ? info->m_J1angularAxis : info->m_J1linearAxis;
-        btScalar *J2 = rotational ? info->m_J2angularAxis : 0;
+        btScalar *J2 = rotational ? info->m_J2angularAxis : info->m_J2linearAxis;
         J1[srow+0] = ax1[0];
         J1[srow+1] = ax1[1];
         J1[srow+2] = ax1[2];
-        if(rotational)
-        {
-            J2[srow+0] = -ax1[0];
-            J2[srow+1] = -ax1[1];
-            J2[srow+2] = -ax1[2];
-        }
-        if((!rotational))
+
+        J2[srow+0] = -ax1[0];
+        J2[srow+1] = -ax1[1];
+        J2[srow+2] = -ax1[2];
+
+		if((!rotational))
         {
 			if (m_useOffsetForConstraintFrame)
 			{
@@ -841,7 +840,7 @@ int btGeneric6DofConstraint::get_limit_motor_info2(
         }
         // if we're limited low and high simultaneously, the joint motor is
         // ineffective
-        if (limit && (limot->m_loLimit == limot->m_hiLimit)) powered = 0;
+        if (limit && (limot->m_loLimit == limot->m_hiLimit)) powered = false;
         info->m_constraintError[srow] = btScalar(0.f);
         if (powered)
         {

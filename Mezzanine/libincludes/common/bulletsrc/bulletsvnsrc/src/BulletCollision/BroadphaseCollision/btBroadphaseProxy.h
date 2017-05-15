@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -49,7 +49,7 @@ IMPLICIT_CONVEX_SHAPES_START_HERE,
 	BOX_2D_SHAPE_PROXYTYPE,
 	CONVEX_2D_SHAPE_PROXYTYPE,
 	CUSTOM_CONVEX_SHAPE_TYPE,
-// ©oncave shapes
+//concave shapes
 CONCAVE_SHAPES_START_HERE,
 	//keep all the convex shapetype below here, for the check IsConvexShape in broadphase proxy!
 	TRIANGLE_MESH_SHAPE_PROXYTYPE,
@@ -101,10 +101,10 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 
 	//Usually the client btCollisionObject or Rigidbody class
 	void*	m_clientObject;
-	short int m_collisionFilterGroup;
-	short int m_collisionFilterMask;
-	void*	m_multiSapParentProxy;		
-	int			m_uniqueId;//m_uniqueId is introduced for paircache. could get rid of this, by calculating the address offset etc.
+	int		m_collisionFilterGroup;
+	int		m_collisionFilterMask;
+
+	int		m_uniqueId;//m_uniqueId is introduced for paircache. could get rid of this, by calculating the address offset etc.
 
 	btVector3	m_aabbMin;
 	btVector3	m_aabbMax;
@@ -115,18 +115,17 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 	}
 
 	//used for memory pools
-	btBroadphaseProxy() :m_clientObject(0),m_multiSapParentProxy(0)
+	btBroadphaseProxy() :m_clientObject(0)
 	{
 	}
 
-	btBroadphaseProxy(const btVector3& aabbMin,const btVector3& aabbMax,void* userPtr,short int collisionFilterGroup, short int collisionFilterMask,void* multiSapParentProxy=0)
+	btBroadphaseProxy(const btVector3& aabbMin,const btVector3& aabbMax,void* userPtr, int collisionFilterGroup,  int collisionFilterMask)
 		:m_clientObject(userPtr),
 		m_collisionFilterGroup(collisionFilterGroup),
 		m_collisionFilterMask(collisionFilterMask),
 		m_aabbMin(aabbMin),
 		m_aabbMax(aabbMax)
 	{
-		m_multiSapParentProxy = multiSapParentProxy;
 	}
 
 	
@@ -232,7 +231,7 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 };
 
 /*
-// ©omparison for set operation, see Solid DT_Encounter
+//comparison for set operation, see Solid DT_Encounter
 SIMD_FORCE_INLINE bool operator<(const btBroadphasePair& a, const btBroadphasePair& b) 
 { 
     return a.m_pProxy0 < b.m_pProxy0 || 

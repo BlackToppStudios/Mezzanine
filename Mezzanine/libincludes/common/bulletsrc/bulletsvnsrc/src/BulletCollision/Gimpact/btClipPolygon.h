@@ -78,7 +78,7 @@ SIMD_FORCE_INLINE int bt_plane_clip_polygon(
     int clipped_count = 0;
 
 
-    // ©lip first point
+    //clip first point
 	btScalar firstdist = bt_distance_point_plane(plane,polygon_points[0]);;
 	if(!(firstdist>SIMD_EPSILON))
 	{
@@ -129,7 +129,7 @@ SIMD_FORCE_INLINE int bt_plane_clip_triangle(
 {
     int clipped_count = 0;
 
-    // ©lip first point0
+    //clip first point0
 	btScalar firstdist = bt_distance_point_plane(plane,point0);;
 	if(!(firstdist>SIMD_EPSILON))
 	{

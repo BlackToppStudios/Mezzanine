@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -29,7 +29,7 @@ m_convexA(convexA),m_convexB(convexB)
 }
 
 ///Typically the conservative advancement reaches solution in a few iterations, clip it to 32 for degenerate cases.
-///See discussion about this here http:// ©ontinuousphysics.com/Bullet/phpBB2/viewtopic.php?t=565
+///See discussion about this here http://continuousphysics.com/Bullet/phpBB2/viewtopic.php?t=565
 #ifdef BT_USE_DOUBLE_PRECISION
 #define MAX_ITERATIONS 64
 #else
@@ -65,10 +65,10 @@ bool	btSubsimplexConvexCast::calcTimeOfImpact(
 
 	btVector3 n;
 	n.setValue(btScalar(0.),btScalar(0.),btScalar(0.));
-	bool hasResult = false;
+	
 	btVector3 c;
 
-	btScalar lastLambda = lambda;
+	
 
 
 	btScalar dist2 = v.length2();
@@ -107,11 +107,11 @@ bool	btSubsimplexConvexCast::calcTimeOfImpact(
 				interpolatedTransA.getOrigin().setInterpolate3(fromA.getOrigin(),toA.getOrigin(),lambda);
 				interpolatedTransB.getOrigin().setInterpolate3(fromB.getOrigin(),toB.getOrigin(),lambda);
 				//m_simplexSolver->reset();
-				// ©heck next line
+				//check next line
 				 w = supVertexA-supVertexB;
-				lastLambda = lambda;
+				
 				n = v;
-				hasResult = true;
+				
 			}
 		} 
 		///Just like regular GJK only add the vertex if it isn't already (close) to current vertex, it would lead to divisions by zero and NaN etc.
@@ -121,7 +121,7 @@ bool	btSubsimplexConvexCast::calcTimeOfImpact(
 		if (m_simplexSolver->closest(v))
 		{
 			dist2 = v.length2();
-			hasResult = true;
+			
 			//todo: check this normal for validity
 			//n=v;
 			//printf("V=%f , %f, %f\n",v[0],v[1],v[2]);

@@ -36,7 +36,7 @@ public:
 	
 	btMultiSphereShape (const btVector3* positions,const btScalar* radi,int numSpheres);
 
-	/// ©ollisionShape Interface
+	///CollisionShape Interface
 	virtual void	calculateLocalInertia(btScalar mass,btVector3& inertia) const;
 
 	/// btConvexShape Interface

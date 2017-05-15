@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -47,13 +47,19 @@ public:
 	#ifdef QUATERNION_DERIVATIVE
 		btQuaternion predictedOrn = curTrans.getRotation();
 		predictedOrn += (angvel * predictedOrn) * (timeStep * btScalar(0.5));
-		predictedOrn.normalize();
+		predictedOrn.safeNormalize();
 	#else
 		//Exponential map
 		//google for "Practical Parameterization of Rotations Using the Exponential Map", F. Sebastian Grassia
 
 		btVector3 axis;
-		btScalar	fAngle = angvel.length(); 
+		btScalar	fAngle2 = angvel.length2();
+        	btScalar    fAngle = 0;
+        	if (fAngle2>SIMD_EPSILON)
+        	{
+            		fAngle = btSqrt(fAngle2);
+        	}
+
 		//limit the angular motion
 		if (fAngle*timeStep > ANGULAR_MOTION_THRESHOLD)
 		{
@@ -74,9 +80,16 @@ public:
 		btQuaternion orn0 = curTrans.getRotation();
 
 		btQuaternion predictedOrn = dorn * orn0;
-		predictedOrn.normalize();
+		predictedOrn.safeNormalize();
 	#endif
-		predictedTransform.setRotation(predictedOrn);
+		if (predictedOrn.length2()>SIMD_EPSILON)
+		{
+			predictedTransform.setRotation(predictedOrn);
+		}
+		else
+		{
+			predictedTransform.setBasis(curTrans.getBasis());
+		}
 	}
 
 	static void	calculateVelocityQuaternion(const btVector3& pos0,const btVector3& pos1,const btQuaternion& orn0,const btQuaternion& orn1,btScalar timeStep,btVector3& linVel,btVector3& angVel)
@@ -101,7 +114,7 @@ public:
 		angle = dorn.getAngle();
 		axis = btVector3(dorn.x(),dorn.y(),dorn.z());
 		axis[3] = btScalar(0.);
-		// ©heck for axis length
+		//check for axis length
 		btScalar len = axis.length2();
 		if (len < SIMD_EPSILON*SIMD_EPSILON)
 			axis = btVector3(btScalar(1.),btScalar(0.),btScalar(0.));
@@ -130,7 +143,7 @@ public:
 		angle = dorn.getAngle();
 		axis = btVector3(dorn.x(),dorn.y(),dorn.z());
 		axis[3] = btScalar(0.);
-		// ©heck for axis length
+		//check for axis length
 		btScalar len = axis.length2();
 		if (len < SIMD_EPSILON*SIMD_EPSILON)
 			axis = btVector3(btScalar(1.),btScalar(0.),btScalar(0.));

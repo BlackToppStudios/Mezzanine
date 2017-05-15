@@ -33,7 +33,8 @@ namespace bParse {
 		FD_BITS_VARIES    =16,
 		FD_VERSION_VARIES = 32,
 		FD_DOUBLE_PRECISION =64,
-		FD_BROKEN_DNA = 128
+		FD_BROKEN_DNA = 128,
+		FD_FILEDNA_IS_MEMDNA = 256
 	};
 
 	enum bFileVerboseMode
@@ -41,7 +42,7 @@ namespace bParse {
 		FD_VERBOSE_EXPORT_XML = 1,
 		FD_VERBOSE_DUMP_DNA_TYPE_DEFINITIONS = 2,
 		FD_VERBOSE_DUMP_CHUNKS = 4,
-		FD_VERBOSE_DUMP_FILE_INFO=8
+		FD_VERBOSE_DUMP_FILE_INFO=8,
 	};
 	// ----------------------------------------------------- //
 	class bFile
@@ -96,18 +97,17 @@ namespace bParse {
 		char* getFileElement(short *firstStruct, char *lookupName, char *lookupType, char *data, short **foundPos);
 
 
-		void swap(char *head, class bChunkInd& ch);
-
-		void swapData(char *data, short type, int arraySize);
-		void swapStruct(int dna_nr, char *data);
-
-
+		void swap(char *head, class bChunkInd& ch, bool ignoreEndianFlag);
+		void swapData(char *data, short type, int arraySize, bool ignoreEndianFlag);
+		void swapStruct(int dna_nr, char *data, bool ignoreEndianFlag);
+		void swapLen(char *dataPtr);
+		void swapDNA(char* ptr);
 
 
 		char* readStruct(char *head, class bChunkInd& chunk);
 		char *getAsString(int code);
 
-		void	parseInternal(int verboseMode, char* memDna,int memDnaLength);
+		virtual void	parseInternal(int verboseMode, char* memDna,int memDnaLength);
 
 	public:
 		bFile(const char *filename, const char headerString[7]);
@@ -127,6 +127,11 @@ namespace bParse {
 		int	getFlags() const
 		{
 			return mFlags;
+		}
+
+		void setFileDNAisMemoryDNA()
+		{
+			mFlags |= FD_FILEDNA_IS_MEMDNA;
 		}
 
 		bPtrMap&		getLibPointers()
@@ -151,12 +156,18 @@ namespace bParse {
 
 		void	dumpChunks(bDNA* dna);
 		
+		virtual void setFileDNA(int verboseMode, char* buffer, int len);
+
 		int		getVersion() const
 		{
 			return mVersion;
 		}
+		//pre-swap the endianness, so that data loaded on a target with different endianness doesn't need to be swapped
+		void preSwap();
+		void writeFile(const char* fileName);
 
-		
+
+
 	};
 }
 

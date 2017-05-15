@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -116,10 +116,9 @@ void btPoint2PointConstraint::getInfo2NonVirtual (btConstraintInfo2* info, const
 		a1neg.getSkewSymmetricMatrix(angular0,angular1,angular2);
 	}
     
-	/*info->m_J2linearAxis[0] = -1;
-    info->m_J2linearAxis[s+1] = -1;
-    info->m_J2linearAxis[2*s+2] = -1;
-	*/
+	info->m_J2linearAxis[0] = -1;
+    info->m_J2linearAxis[info->rowskip+1] = -1;
+    info->m_J2linearAxis[2*info->rowskip+2] = -1;
 	
 	btVector3 a2 = body1_trans.getBasis()*getPivotInB();
    

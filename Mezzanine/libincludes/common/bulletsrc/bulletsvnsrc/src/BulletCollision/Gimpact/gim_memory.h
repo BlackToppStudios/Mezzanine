@@ -132,7 +132,7 @@ inline void gim_simd_memcpy(void * dst, const void * src, size_t copysize)
 #ifdef GIM_SIMD_MEMORY
 /*
 //'long long int' is incompatible with visual studio 6...
-    // ©opy words
+    //copy words
     SIMD_T * ui_src_ptr = (SIMD_T *)src;
     SIMD_T * ui_dst_ptr = (SIMD_T *)dst;
     while(copysize>=SIMD_T_SIZE)

@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -26,11 +26,10 @@ bool btMinkowskiPenetrationDepthSolver::calcPenDepth(btSimplexSolverInterface& s
 												   const btConvexShape* convexA,const btConvexShape* convexB,
 												   const btTransform& transA,const btTransform& transB,
 												   btVector3& v, btVector3& pa, btVector3& pb,
-												   class btIDebugDraw* debugDraw,btStackAlloc* stackAlloc
+												   class btIDebugDraw* debugDraw
 												   )
 {
 
-	(void)stackAlloc;
 	(void)v;
 	
 	bool check2d= convexA->isConvex2d() && convexB->isConvex2d();

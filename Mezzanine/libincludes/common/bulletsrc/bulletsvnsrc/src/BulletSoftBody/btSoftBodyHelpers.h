@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2008 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2008 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -137,7 +137,12 @@ struct	btSoftBodyHelpers
 													bool bfacelinks,
 													bool btetralinks,
 													bool bfacesfromtetras);
-	
+
+	/// Sort the list of links to move link calculations that are dependent upon earlier
+	/// ones as far as possible away from the calculation of those values
+	/// This tends to make adjacent loop iterations not dependent upon one another,
+	/// so out-of-order processors can execute instructions from multiple iterations at once
+	static void ReoptimizeLinkOrder(btSoftBody *psb );
 };
 
 #endif //BT_SOFT_BODY_HELPERS_H

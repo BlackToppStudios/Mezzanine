@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -84,7 +84,7 @@ btSimpleBroadphase::~btSimpleBroadphase()
 }
 
 
-btBroadphaseProxy*	btSimpleBroadphase::createProxy(  const btVector3& aabbMin,  const btVector3& aabbMax,int shapeType,void* userPtr ,short int collisionFilterGroup,short int collisionFilterMask, btDispatcher* /*dispatcher*/,void* multiSapProxy)
+btBroadphaseProxy*	btSimpleBroadphase::createProxy(  const btVector3& aabbMin,  const btVector3& aabbMax,int shapeType,void* userPtr , int collisionFilterGroup, int collisionFilterMask, btDispatcher* /*dispatcher*/)
 {
 	if (m_numHandles >= m_maxHandles)
 	{
@@ -94,7 +94,7 @@ btBroadphaseProxy*	btSimpleBroadphase::createProxy(  const btVector3& aabbMin,  
 	btAssert(aabbMin[0]<= aabbMax[0] && aabbMin[1]<= aabbMax[1] && aabbMin[2]<= aabbMax[2]);
 
 	int newHandleIndex = allocHandle();
-	btSimpleBroadphaseProxy* proxy = new (&m_pHandles[newHandleIndex])btSimpleBroadphaseProxy(aabbMin,aabbMax,shapeType,userPtr,collisionFilterGroup,collisionFilterMask,multiSapProxy);
+	btSimpleBroadphaseProxy* proxy = new (&m_pHandles[newHandleIndex])btSimpleBroadphaseProxy(aabbMin,aabbMax,shapeType,userPtr,collisionFilterGroup,collisionFilterMask);
 
 	return proxy;
 }
@@ -293,7 +293,7 @@ void	btSimpleBroadphase::calculateOverlappingPairs(btDispatcher* dispatcher)
 
 					if (hasOverlap)
 					{
-						needsRemoval = false;// ©allback->processOverlap(pair);
+						needsRemoval = false;//callback->processOverlap(pair);
 					} else
 					{
 						needsRemoval = true;
@@ -329,7 +329,7 @@ void	btSimpleBroadphase::calculateOverlappingPairs(btDispatcher* dispatcher)
 
 			overlappingPairArray.resize(overlappingPairArray.size() - m_invalidPair);
 			m_invalidPair = 0;
-#endif// ©LEAN_INVALID_PAIRS
+#endif//CLEAN_INVALID_PAIRS
 
 		}
 	}

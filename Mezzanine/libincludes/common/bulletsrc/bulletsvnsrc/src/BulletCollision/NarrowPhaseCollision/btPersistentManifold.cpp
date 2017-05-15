@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -21,6 +21,8 @@ subject to the following restrictions:
 btScalar					gContactBreakingThreshold = btScalar(0.02);
 ContactDestroyedCallback	gContactDestroyedCallback = 0;
 ContactProcessedCallback	gContactProcessedCallback = 0;
+ContactStartedCallback		gContactStartedCallback = 0;
+ContactEndedCallback		gContactEndedCallback = 0;
 ///gContactCalcArea3Points will approximate the convex hull area using 3 points
 ///when setting it to false, it will use 4 points to compute the area: it is more accurate but slower
 bool						gContactCalcArea3Points = true;
@@ -108,7 +110,7 @@ static inline btScalar calcArea4Points(const btVector3 &p0,const btVector3 &p1,c
 
 int btPersistentManifold::sortCachedPoints(const btManifoldPoint& pt) 
 {
-		// ©alculate 4 possible cases areas, and take biggest area
+		//calculate 4 possible cases areas, and take biggest area
 		//also need to keep 'deepest'
 		
 		int maxPenetrationIndex = -1;
@@ -273,13 +275,14 @@ void btPersistentManifold::refreshContactPoints(const btTransform& trA,const btT
 	{
 		
 		btManifoldPoint &manifoldPoint = m_pointCache[i];
-		// ©ontact becomes invalid when signed distance exceeds margin (projected on contactnormal direction)
+		//contact becomes invalid when signed distance exceeds margin (projected on contactnormal direction)
 		if (!validContactDistance(manifoldPoint))
 		{
 			removeContactPoint(i);
 		} else
 		{
-			// ©ontact also becomes invalid when relative movement orthogonal to normal exceeds margin
+            //todo: friction anchor may require the contact to be around a bit longer
+			//contact also becomes invalid when relative movement orthogonal to normal exceeds margin
 			projectedPoint = manifoldPoint.m_positionWorldOnA - manifoldPoint.m_normalWorldOnB * manifoldPoint.m_distance1;
 			projectedDifference = manifoldPoint.m_positionWorldOnB - projectedPoint;
 			distance2d = projectedDifference.dot(projectedDifference);
@@ -288,7 +291,7 @@ void btPersistentManifold::refreshContactPoints(const btTransform& trA,const btT
 				removeContactPoint(i);
 			} else
 			{
-				// ©ontact point processed callback
+				//contact point processed callback
 				if (gContactProcessedCallback)
 					(*gContactProcessedCallback)(manifoldPoint,(void*)m_body0,(void*)m_body1);
 			}
