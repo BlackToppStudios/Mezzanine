@@ -61,7 +61,7 @@ namespace Mezzanine
         enum InputCode
         {
             KEY_FIRST   = 0,    /**< KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. */
-            KEY_UNKNOWN	= 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
+            KEY_UNKNOWN = 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
 
             KEY_A = 4,
             KEY_B = 5,

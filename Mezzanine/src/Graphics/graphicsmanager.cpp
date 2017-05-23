@@ -268,8 +268,8 @@ namespace Mezzanine
             // Make a fixed size array and grab our events.
             // Internally the event queue is capped at 128 events.  16 seems sane for this, but may need modifying.
             // SDL_KEYDOWN to SDL_MULTIGESTURE are all input events.  Everything in between those values, as well as those values, will be pulled.
-            SDL_Event InternalEvents[16];
-            Integer NumEvents = SDL_PeepEvents(InternalEvents,16,SDL_GETEVENT,SDL_WINDOWEVENT,SDL_SYSWMEVENT);
+            std::array<SDL_Event,16> InternalEvents;
+            Integer NumEvents = SDL_PeepEvents(InternalEvents.data(),InternalEvents.size(),SDL_GETEVENT,SDL_WINDOWEVENT,SDL_SYSWMEVENT);
             assert( NumEvents >= 0 && SDL_GetError() );
 
             for( Integer CurrEv = 0 ; CurrEv < NumEvents ; ++CurrEv )

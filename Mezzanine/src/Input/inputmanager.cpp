@@ -217,8 +217,8 @@ namespace Mezzanine
             // Internally the event queue is capped at 128 events.  32 seems sane for this, but may need modifying.
             // SDL_KEYDOWN to SDL_MULTIGESTURE are all input events.  Everything in between those values, as well as those values, will be pulled.
             this->InputDeltas.clear();
-            SDL_Event InternalEvents[32];
-            Integer NumEvents = SDL_PeepEvents(InternalEvents,32,SDL_GETEVENT,SDL_KEYDOWN,SDL_MULTIGESTURE);
+            std::array<SDL_Event,32> InternalEvents;
+            Integer NumEvents = SDL_PeepEvents(InternalEvents.data(),InternalEvents.size(),SDL_GETEVENT,SDL_KEYDOWN,SDL_MULTIGESTURE);
             assert( NumEvents >= 0 && SDL_GetError() );
 
             for( Integer CurrEv = 0 ; CurrEv < NumEvents ; ++CurrEv )
