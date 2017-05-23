@@ -83,6 +83,138 @@
 #include <cstdlib>
 #include <algorithm>
 
+namespace
+{
+    using namespace Mezzanine;
+    using namespace Mezzanine::Graphics;
+
+    /// @brief Handles the "Shown" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventShown(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowShown,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Hidden" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventHidden(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowHidden,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Exposed" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventExposed(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowExposed,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Moved" Window event from internal sources.
+    /// @param InternalEvent The internal Window event to handle.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventMoved(const SDL_WindowEvent& InternalEvent, GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        Integer X = InternalEvent.data1;
+        Integer Y = InternalEvent.data2;
+        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowMoved,WindowID,X,Y);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Resizing" Window event from internal sources.
+    /// @param InternalEvent The internal Window event to handle.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventResizing(const SDL_WindowEvent& InternalEvent, GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        Integer X = InternalEvent.data1;
+        Integer Y = InternalEvent.data2;
+        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowResizing,WindowID,X,Y);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Resized" Window event from internal sources.
+    /// @param InternalEvent The internal Window event to handle.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventResized(const SDL_WindowEvent& InternalEvent, GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        Integer X = InternalEvent.data1;
+        Integer Y = InternalEvent.data2;
+        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowResized,WindowID,X,Y);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Minimized" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventMinimized(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowMinimized,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Maximized" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventMaximized(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowMaximized,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Restored" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventRestored(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowRestored,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Enter" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventEnter(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowEnter,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Leave" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventLeave(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowLeave,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Focus Gained" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventFocusGained(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowFocusGained,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Focus Lost" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventFocusLost(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowFocusLost,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+}
+
 namespace Mezzanine
 {
     template<> Graphics::GraphicsManager* Singleton<Graphics::GraphicsManager>::SingletonPtr = nullptr;
@@ -279,105 +411,31 @@ namespace Mezzanine
                     continue;
                 }
 
-                UInt32 WindowID = InternalEvents[CurrEv].window.windowID;
+                SDL_WindowEvent InternalEvent = InternalEvents[CurrEv].window;
+
+                UInt32 WindowID = InternalEvent.windowID;
                 GameWindow* EventWindow = this->GetGameWindowByID( WindowID );
                 if( EventWindow == nullptr ) {
                     continue;
                 }
 
-                switch( InternalEvents[CurrEv].window.event )
+                switch( InternalEvent.event )
                 {
-                    case SDL_WINDOWEVENT_SHOWN:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowShown,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_HIDDEN:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowHidden,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_EXPOSED:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowExposed,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_MOVED:
-                    {
-                        Integer X = InternalEvents[CurrEv].window.data1;
-                        Integer Y = InternalEvents[CurrEv].window.data2;
-                        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowMoved,WindowID,X,Y);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_RESIZED:
-                    {
-                        Integer X = InternalEvents[CurrEv].window.data1;
-                        Integer Y = InternalEvents[CurrEv].window.data2;
-                        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowResizing,WindowID,X,Y);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_SIZE_CHANGED:
-                    {
-                        Integer X = InternalEvents[CurrEv].window.data1;
-                        Integer Y = InternalEvents[CurrEv].window.data2;
-                        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowResized,WindowID,X,Y);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_MINIMIZED:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowMinimized,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_MAXIMIZED:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowMaximized,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_RESTORED:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowRestored,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_ENTER:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowEnter,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_LEAVE:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowLeave,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_FOCUS_GAINED:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowFocusGained,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_FOCUS_LOST:
-                    {
-                        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowFocusLost,WindowID);
-                        EventWindow->DispatchEvent(WinEv);
-                        break;
-                    }
-                    case SDL_WINDOWEVENT_CLOSE:
-                    {
-                        this->DestroyGameWindow(EventWindow);
-                        break;
-                    }
-                    default: // Ignore the event.
-                        { break; }
+                    case SDL_WINDOWEVENT_SHOWN:         HandleWindowEventShown(EventWindow,WindowID);       break;
+                    case SDL_WINDOWEVENT_HIDDEN:        HandleWindowEventHidden(EventWindow,WindowID);      break;
+                    case SDL_WINDOWEVENT_EXPOSED:       HandleWindowEventExposed(EventWindow,WindowID);     break;
+                    case SDL_WINDOWEVENT_MOVED:         HandleWindowEventMoved(InternalEvent,EventWindow,WindowID);    break;
+                    case SDL_WINDOWEVENT_RESIZED:       HandleWindowEventResizing(InternalEvent,EventWindow,WindowID); break;
+                    case SDL_WINDOWEVENT_SIZE_CHANGED:  HandleWindowEventResized(InternalEvent,EventWindow,WindowID);  break;
+                    case SDL_WINDOWEVENT_MINIMIZED:     HandleWindowEventMinimized(EventWindow,WindowID);   break;
+                    case SDL_WINDOWEVENT_MAXIMIZED:     HandleWindowEventMaximized(EventWindow,WindowID);   break;
+                    case SDL_WINDOWEVENT_RESTORED:      HandleWindowEventRestored(EventWindow,WindowID);    break;
+                    case SDL_WINDOWEVENT_ENTER:         HandleWindowEventEnter(EventWindow,WindowID);       break;
+                    case SDL_WINDOWEVENT_LEAVE:         HandleWindowEventLeave(EventWindow,WindowID);       break;
+                    case SDL_WINDOWEVENT_FOCUS_GAINED:  HandleWindowEventFocusGained(EventWindow,WindowID); break;
+                    case SDL_WINDOWEVENT_FOCUS_LOST:    HandleWindowEventFocusLost(EventWindow,WindowID);   break;
+                    case SDL_WINDOWEVENT_CLOSE:         this->DestroyGameWindow(EventWindow);               break;
+                    default:                            break; // Ignore the event.
                 }// switch window event type
 
                 // We don't care about events other than Window Events.
