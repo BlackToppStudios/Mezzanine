@@ -116,7 +116,6 @@
             MT_AnimationManager,       // Graphics
             MT_CollisionShapeManager,  // Physics
             MT_GraphicsManager,        // Graphics
-            MT_EventManager,           // Mezzanine
             MT_InputManager,           // Input-
             MT_LogManager,             // Mezzanine
             MT_MaterialManager,        // Graphics

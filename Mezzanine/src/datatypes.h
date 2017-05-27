@@ -77,6 +77,7 @@
     #include <utility>
     #include <memory>
     #include <ostream>
+    #include <chrono>
 #endif
 
 #include "swig.h"

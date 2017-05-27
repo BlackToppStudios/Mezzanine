@@ -41,10 +41,16 @@
 #define _inputdevice_h
 
 #include "Input/sequencecontainer.h"
+#include "Input/inputtypes.h"
+#include "exception.h"
 
 /// @file
 /// @brief The declaration of the User input Device class.
 
+struct _SDL_Joystick;
+typedef _SDL_Joystick SDL_Joystick;
+struct _SDL_GameController;
+typedef _SDL_GameController SDL_GameController;
 namespace Mezzanine
 {
     namespace Input
@@ -55,49 +61,78 @@ namespace Mezzanine
         class MEZZ_LIB Device
         {
         protected:
-            /// @internal
             /// @brief A container for storing and detecting input sequences for an input device.
             SequenceContainer Sequences;
-
-            /// @internal
-            /// @brief Provides the device specific logic for filtering code sequences.
-            /// @param Sequence The MetaCode sequence to be verified.
-            virtual void VerifySequenceImpl(const MetaCodeContainer& Sequence) const = 0;
         public:
             /// @brief Class constructor.
-            Device();
+            Device() = default;
+            /// @brief Copy constructor.
+            /// @param Other The other Device to be copied.
+            Device(const Device& Other) = delete;
+            /// @brief Move constructor.
+            /// @param Other The other Device to be moved.
+            Device(Device&& Other) = delete;
             /// @brief Class destructor.
-            virtual ~Device();
+            virtual ~Device() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other Device to be copied.
+            /// @return Returns a reference to this.
+            Device& operator=(const Device& Other) = delete;
+            /// @brief Move assignment operator.
+            /// @param Other The other Device to be moved.
+            /// @return Returns a reference to this.
+            Device& operator=(Device&& Other) = delete;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query Methods
 
-            /// @brief Gets the device index of this controller.
-            /// @return Returns a UInt16 representing the device index for this controller.
-            virtual UInt16 GetDeviceIndex() const = 0;
+            /// @brief Gets the device index of this device.
+            /// @remarks Keyboards and mice do not have device ID's, and the ID returned will be the maximum representable value.
+            /// @return Returns a DeviceIDType representing the device index for this device.
+            virtual DeviceIDType GetDeviceID() const = 0;
+            /// @brief Gets the type of input device this is.
+            /// @return Returns an InputDevice enum value representing the type of input device this is.
+            virtual Input::InputDevice GetDeviceType() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sequenced Input Management
 
-            /// @copydoc SequenceContainer::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
-            void AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID);
-            /// @copydoc SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
-            Boole InputSequenceExists(const MetaCodeContainer& Codes);
-            /// @copydoc SequenceContainer::GetIDofInputSequence(const MetaCodeContainer& Codes)
-            Int32 GetIDofInputSequence(const MetaCodeContainer& Codes);
-            /// @copydoc SequenceContainer::RemoveInputSequence(const MetaCodeContainer& Codes)
-            void RemoveInputSequence(const MetaCodeContainer& Codes);
+            /// @copydoc SequenceContainer::AddInputSequence(const MetaCodeContainer&, const Int32)
+            void AddInputSequence(const MetaCodeContainer& Codes, const Int32 SequenceID)
+            {
+                for( const MetaCode& CurrCode : Codes )
+                {
+                    if( CurrCode.GetDeviceType() != this->GetDeviceType() ) {
+                        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Mismatched device on MetaCode detected when attempting to insert an Input Sequence.");
+                    }
+                }
+                this->Sequences.AddInputSequence(Codes,SequenceID);
+            }
+            /// @copydoc SequenceContainer::InputSequenceExists(const MetaCodeContainer&)
+            Boole InputSequenceExists(const MetaCodeContainer& Codes)
+                { return this->Sequences.InputSequenceExists(Codes); }
+            /// @copydoc SequenceContainer::GetIDofInputSequence(const MetaCodeContainer&)
+            Int32 GetIDofInputSequence(const MetaCodeContainer& Codes)
+                { return this->Sequences.InputSequenceExists(Codes); }
+            /// @copydoc SequenceContainer::RemoveInputSequence(const MetaCodeContainer&)
+            void RemoveInputSequence(const MetaCodeContainer& Codes)
+                { this->Sequences.RemoveInputSequence(Codes); }
             /// @copydoc SequenceContainer::RemoveAllInputSequences()
-            void RemoveAllInputSequences();
+            void RemoveAllInputSequences()
+                { this->Sequences.RemoveAllInputSequences(); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @internal
             /// @brief Updates this device with the newest data.
-            /// @param DeltaCodes A vector of the codes to process and update this device with.
-            /// @param GeneratedCodes A vector to which generated codes (sequence or otherwise) will be added.
-            virtual void _Update(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes) = 0;
+            /// @param DeltaBegin An iterator to the start of the range of new codes to update this devices state with.
+            /// @param DeltaEnd An iterator to the end of the range of new codes to update this devices state with.
+            /// @return Returns a vector of the codes this device generated during the update.  Generally sequences and/or button transitions.
+            virtual MetaCodeContainer _Update(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd) = 0;
         };//Device
     }//Input
 }//Mezzanine

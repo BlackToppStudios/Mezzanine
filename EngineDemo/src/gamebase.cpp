@@ -51,54 +51,6 @@ TrackLooped< LinearInterpolator< Transform > > CameraTrackTest;
 void CreateDemoWorld();
 void DestroyDemoWorld();
 
-class DemoPreEventWorkUnit : public Threading::DefaultWorkUnit
-{
-public:
-    DemoPreEventWorkUnit() {  }
-    virtual ~DemoPreEventWorkUnit() {  }
-
-    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-    {
-        //this will either set the pointer to 0 or return a valid pointer to work with.
-        EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
-        EventUserInput* OneInput = EventMan->PopNextUserInputEvent();
-
-        //We check each Event
-        while( 0 != OneInput )
-        {
-            if( OneInput->GetType() != EventBase::UserInput )
-                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
-
-            //we check each MetaCode in each Event
-            for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
-            {
-                //Is the key we just pushed ESCAPE
-                if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
-                    { TheEntresol->BreakMainLoop(); }
-            }
-
-            delete OneInput;
-            OneInput = EventMan->PopNextUserInputEvent();
-        }
-
-        EventGameWindow* OneWindowEvent = EventMan->PopNextGameWindowEvent();
-        while(0 != OneWindowEvent)
-        {
-            if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
-
-            if( !OneWindowEvent->IsEventIDValid() ) {
-                StringStream ExceptionStream;
-                ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
-            }
-
-            delete OneWindowEvent;
-            OneWindowEvent = EventMan->PopNextGameWindowEvent();
-        }
-    }
-};//DemoPreEventWorkUnit
-
 class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
@@ -131,20 +83,20 @@ public:
         //User Input through a WorldQueryTool
         Input::Mouse* SysMouse = InputMan->GetSystemMouse();
         Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-        Input::Controller* Controller1 = NULL;
-        if( InputMan->GetNumControllers() > 0 )
-            Controller1 = InputMan->GetController(0);
+        Input::Joystick* Joystick1 = NULL;
+        if( InputMan->GetNumJoysticks() > 0 )
+            Joystick1 = InputMan->GetJoystick(0);
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_LEFT) : false) )
             { CamControl->StrafeLeft( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_RIGHT) : false) )
             { CamControl->StrafeRight( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_UP) : false) )
             { CamControl->MoveForward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_DOWN) : false) )
             { CamControl->MoveBackward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
         static Real TrackPos = 0.0;
@@ -196,14 +148,14 @@ public:
         if( MouseCam && Vector2(0,0) != Offset )
             CamControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
-        if( SysKeyboard->IsButtonPressing(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) ) {
+        if( SysKeyboard->IsButtonPressing(Input::KEY_M) || (Joystick1 ? Joystick1->IsButtonPressed(1) : false) ) {
             Audio::iSound* Theme = Soundtrack.at(1);
             if( !Theme->IsPlaying() ) {
                 Theme->Play();
             }
         }
 
-        if( SysKeyboard->IsButtonPressing(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) ) {
+        if( SysKeyboard->IsButtonPressing(Input::KEY_N) || (Joystick1 ? Joystick1->IsButtonPressed(2) : false) ) {
             Audio::iSound* Theme = Soundtrack.at(1);
             if( Theme->IsPlaying() ) {
                 Theme->Stop();
@@ -373,7 +325,6 @@ void CreateDemoWorld()
     DemoWorld->Initialize();
 
     AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( DemoWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
-    EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
     Graphics::GraphicsManager* GraphMan = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( DemoWorld->GetManager(ManagerBase::MT_SceneManager) );
     Input::InputManager* InputMan = static_cast<Input::InputManager*>( TheEntresol->GetManager(ManagerBase::MT_InputManager) );
@@ -404,10 +355,6 @@ void CreateDemoWorld()
     FirstWindow->CreateViewport(MainCam,0);
 
     // Setup our workunits
-    DemoPreEventWork = new DemoPreEventWorkUnit();
-    EventMan->GetEventPumpWork()->AddDependency( DemoPreEventWork );
-    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork, "DemoPreEventWork" );
-
     DemoPostInputWork = new DemoPostInputWorkUnit(DemoWorld,InputMan);
     DemoPostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork, "DemoPostInputWork" );
@@ -424,9 +371,6 @@ void CreateDemoWorld()
     // Configure Shadows
     SceneMan->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
     SceneMan->SetShadowFarDistance(3000);
-
-    //Set up polling for the letter Q
-    EventMan->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
 
     //Actually Load the game stuff
     LoadContent();
@@ -458,10 +402,6 @@ void DestroyDemoWorld()
 
     // Check if Threaded Workunits are still alive
     // RemoveWorkUnitMain
-    if( DemoPreEventWork ) {
-        TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPreEventWork );
-        DemoPreEventWork = NULL;
-    }
     if( DemoPostInputWork ) {
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostInputWork );
         DemoPostInputWork = NULL;

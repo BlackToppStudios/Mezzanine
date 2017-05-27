@@ -50,6 +50,8 @@
 #include <OgreViewport.h>
 #include <OgreRenderWindow.h>
 
+#include <cassert>
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -99,11 +101,19 @@ namespace Mezzanine
 
         Mezzanine::OrientationMode Viewport::GetOrientationMode() const
         {
-            #if OGRE_NO_VIEWPORT_ORIENTATIONMODE != 0
+        #if OGRE_NO_VIEWPORT_ORIENTATIONMODE != 0
             return Mezzanine::OM_Degree_0;
-            #else
+        #else
             return static_cast<Mezzanine::OrientationMode>( OgreViewport->getOrientationMode() );
-            #endif
+        #endif
+        }
+
+        Boole Viewport::IsWithinBounds(const Whole XPos, const Whole YPos) const
+        {
+            return ( XPos >= this->GetActualLeft() &&
+                     XPos <= this->GetActualLeft() + this->GetActualWidth() &&
+                     YPos >= this->GetActualTop() &&
+                     YPos <= this->GetActualTop() + this->GetActualHeight() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

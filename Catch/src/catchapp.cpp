@@ -16,7 +16,6 @@ CatchApp* CatchApp::TheRealCatchApp = 0;
 CatchApp::CatchApp() :
     AudioSettingsWork(NULL),
     VideoSettingsWork(NULL),
-    PreInputWork(NULL),
     PostInputWork(NULL),
     PostUIWork(NULL),
     PauseWork(NULL),
@@ -88,9 +87,6 @@ CatchApp::~CatchApp()
 
     this->TheEntresol->GetScheduler().RemoveWorkUnitAffinity( this->VideoSettingsWork );
     delete this->VideoSettingsWork;
-
-    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PreInputWork );
-    delete this->PreInputWork;
 
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostInputWork );
     delete this->PostInputWork;
@@ -1749,7 +1745,6 @@ int CatchApp::GetCatchin()
     this->VerifySettings();
 
     // Get our manager pointers we'll use.
-    EventManager* EventMan = static_cast<EventManager*>( this->TheEntresol->GetManager(ManagerBase::MT_EventManager) );
     AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( this->TheWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
     Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
     Audio::SoundScapeManager* SoundScapeMan = static_cast<Audio::SoundScapeManager*>( this->TheWorld->GetManager(ManagerBase::MT_SoundScapeManager) );
@@ -1773,10 +1768,6 @@ int CatchApp::GetCatchin()
     this->VideoSettingsWork->AddDependency( UIMan->GetWidgetUpdateWork() );
     // Add a line here setting the graphics monopoly as a dependency?
     this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->VideoSettingsWork, "VideoSettingsWork" );
-
-    this->PreInputWork = new CatchPreInputWorkUnit(this);
-    EventMan->GetEventPumpWork()->AddDependency( this->PreInputWork );
-    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PreInputWork, "PreInputWork" );
 
     this->PostInputWork = new CatchPostInputWorkUnit(this);
     this->PostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
@@ -1978,9 +1969,6 @@ AudioSettingsWorkUnit* CatchApp::GetAudioSettingsWork() const
 
 VideoSettingsWorkUnit* CatchApp::GetVideoSettingsWork() const
     { return this->VideoSettingsWork; }
-
-CatchPreInputWorkUnit* CatchApp::GetPreInputWork() const
-    { return this->PreInputWork; }
 
 CatchPostInputWorkUnit* CatchApp::GetPostInputWork() const
     { return this->PostInputWork; }

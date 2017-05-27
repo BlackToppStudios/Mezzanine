@@ -68,8 +68,8 @@
     slouken@libsdl.org
 */
 
-#include "datatypes.h"
 #include "Input/inputenumerations.h"
+#include "Input/inputtypes.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif
@@ -79,10 +79,8 @@ namespace Mezzanine
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class MetaCode
-        /// @headerfile metacode.h
-        /// @brief This Determines the kind of user input.
-        /// @details A Metacode contains the data that is passed around with an input
+        /// @brief This determines the kind of user input.
+        /// @details A MetaCode contains the data that is passed around with an input
         /// event. It stores one type of button press or analog representation (Mouse
         /// move, joystick tilt, wheel spin, etc...). If it is an analog representation
         /// it will also store how far or how it is pushed, pressed, rotated, or
@@ -93,38 +91,22 @@ namespace Mezzanine
         class MEZZ_LIB MetaCode
         {
         public:
-            /// @brief Convenience datatype for storage of MetaCodes.
+            /// @brief Convenience type for storage of MetaCodes.
             typedef std::vector< Input::MetaCode >     MetaCodeContainer;
             /// @brief Iterator type for convenient MetaCode storage.
             typedef MetaCodeContainer::iterator        MetaCodeIterator;
             /// @brief Const Iterator type for convenient MetaCode storage.
             typedef MetaCodeContainer::const_iterator  ConstMetaCodeIterator;
+
+            /// @brief Convenience MetaCode of null values for comparisons.
+            static const MetaCode NullCode;
         protected:
-            /// @internal
             /// @brief The relevant value for the type of input this is, if applicable.
             Int32 MetaValue;
-            /// @internal
-            /// @brief The device index if this is input from a controller.  For keyboards and mice this is the max value if a Int32.
-            Int32 DeviceIndex;
-            /// @internal
+            /// @brief The device id if this is input from a controller.  For keyboards and mice this is the max value representable by the type.
+            DeviceIDType DeviceID;
             /// @brief The code indicating what type of input this is.
             Input::InputCode Code;
-
-            /// @internal
-            /// @brief Converts an internal keyboard input event into a Mezzanine keyboard InputCode.
-            /// @param Raw The internal event to be converted into a keyboard InputCode.
-            /// @return Returns the converted Mezzanine InputCode.
-            static Input::InputCode GetInputCodeFromSDL_KEY(const RawEvent& Raw);
-            /// @internal
-            /// @brief Converts an internal mouse input event into a Mezzanine mouse InputCode.
-            /// @param Raw The internal event to be converted into a mouse InputCode.
-            /// @return Returns the converted Mezzanine InputCode.
-            static Input::InputCode GetInputCodeFromSDL_MOUSE(const RawEvent& Raw);
-            /// @internal
-            /// @brief Converts an internal controller input event into a Mezzanine controller InputCode.
-            /// @param Raw The internal event to be converted into a controller InputCode.
-            /// @return Returns the converted Mezzanine InputCode.
-            static Input::InputCode GetInputCodeFromSDL_JOYSTICK(const RawEvent& Raw);
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Construction and Deconstruction
@@ -134,7 +116,10 @@ namespace Mezzanine
             MetaCode();
             /// @brief Copy constructor.
             /// @param Other The other MetaCode to copy from.
-            MetaCode(const MetaCode& Other);
+            MetaCode(const MetaCode& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other MetaCode to be moved to this.
+            MetaCode(MetaCode&& Other) = default;
             /// @brief Descriptive Constructor.
             /// @param Value How much is something moving, tilting, rotating or whatever.
             /// @param NewCode Which key or which type of input was pressed.
@@ -142,28 +127,28 @@ namespace Mezzanine
             /// @brief Descriptive Constructor.
             /// @param Value How much is something moving, tilting, rotating or whatever.
             /// @param NewCode Which key or which type of input was pressed.
-            /// @param Index The index of the device this metacode is describing.
-            MetaCode(const Int32 Value, const Input::InputCode NewCode, const Int32 Index);
+            /// @param ID The ID of the device this MetaCode is describing.
+            MetaCode(const Int32 Value, const Input::InputCode NewCode, const DeviceIDType ID);
             /// @brief The Heavy Lifting Constructor.
-            /// @details This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information
+            /// @details This constructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information
             /// from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \n
-            /// This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the
+            /// This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of MetaCode. Depending on the
             /// User input subsystem, this could be all RawEvents, or even just some RawEvents.
-            /// @exception "RawEvent which creates Multiple Metacodes inserted into Metacode" - Thrown when passed a certain (system dependant) incorrect type of RawEvent.
-            /// @exception "Unknown User Input Inserted into Metacode" - Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent.
-            /// @warning We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In
-            /// that event you would have to recompile your application to get it working with a new version of Mezzanine. Using this function in Game code removes any gaurantees of Game Code
+            /// @exception "RawEvent which creates Multiple MetaCodes inserted into MetaCode" - Thrown when passed a certain (system dependent) incorrect type of RawEvent.
+            /// @exception "Unknown User Input Inserted into MetaCode" - Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent.
+            /// @warning We recommend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In
+            /// that event you would have to recompile your application to get it working with a new version of Mezzanine. Using this function in Game code removes any guarantees of Game Code
             /// Portability.
             MetaCode(const RawEvent& Raw);
             /// @brief Class destructor.
-            ~MetaCode();
+            ~MetaCode() = default;
 
             /// @internal
             /// @brief Internal creation method.
             /// @remarks This method accepts a RawEvent from the input event subsystem internal to the engine.  This converts all the required information
             /// from the lower level format and store what is needed in the event that is created.  This is used heavily by engine internals. @n
-            /// This constructor expects to receive a type of RawEvent that can be converted into one or more kinds of Metacode.
-            /// @warning We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In
+            /// This constructor expects to receive a type of RawEvent that can be converted into one or more kinds of MetaCode.
+            /// @warning We recommend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In
             /// that event you would have to recompile your application to get it working with a new version of Mezzanine. Using this function in Game code removes any gaurantees of Game Code
             /// Portability.
             /// @exception "RawEvent which creates Multiple Metacodes inserted into Metacode" - Thrown when passed a certain (system dependant) incorrect type of RawEvent.
@@ -182,11 +167,11 @@ namespace Mezzanine
             /// @brief This Sets The InputCode using an Int32.
             /// @warning This will cast an Int32 into an InputCode. Be careful, it is possible to put impossible or ridiculous values, in with
             /// this. For example Accidentally stuffing in the result of MOUSEBUTTON + 22 looks like it would give you MOUSEBUTTON_22. But that
-            /// Doesn't exist, at the time of this writing you would get MOUSEABSOLUTEVERTICAL. Be careful, or skip this alltogether and use one of
+            /// Doesn't exist, at the time of this writing you would get MOUSEABSOLUTEVERTICAL. Be careful, or skip this all together and use one of
             /// the provided functions that do the math for you like.
             /// @param NewCode The value you want the stored code to become.
             void SetCode(const Int32 NewCode);
-            /// @brief This Returns the Inputcode.
+            /// @brief This Returns the InputCode.
             /// @details This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred.
             /// This value can be set with @ref SetCode .
             /// @return This returns the input code for this MetaCode.
@@ -201,13 +186,13 @@ namespace Mezzanine
             /// @return This returns the input code for this MetaCode. This could return any number inside a range (depending on hardware and configuration)
             /// to represent how tilted a joystick or how much a mouse moved.
             Int32 GetMetaValue() const;
-            /// @brief Sets the device index if applicable.
-            /// @param Index The index of the device this metacode applies to.
-            void SetDeviceIndex(const Int32 Index);
-            /// @brief Gets the currently set device index.
-            /// @remarks If no device is set or applicable, this will return the max value for a Int32 (-1).
-            /// @return Returns a Int32 that is the for the device this metacode applies to.
-            Int32 GetDeviceIndex() const;
+            /// @brief Sets the device ID if applicable.
+            /// @param ID The ID of the device this MetaCode applies to.
+            void SetDeviceID(const DeviceIDType ID);
+            /// @brief Gets the currently set device ID.
+            /// @remarks If no device is set or applicable, this will return the max representable value for the type.
+            /// @return Returns a Int32 that is the for the device this MetaCode applies to.
+            DeviceIDType GetDeviceID() const;
             /// @brief Sets all the values of this MetaCode to Null values.
             void SetNullValues();
 
@@ -227,6 +212,18 @@ namespace Mezzanine
             /// @param ButtonerNumber The number of the button you want the code for.
             /// @return When passed 0 this returns Input::MOUSEBUTTON, otherwise this returns Input::MOUSEBUTTON_X where X is the number that was passed in.
             static Input::InputCode GetMouseButtonCode(const UInt16 ButtonNumber);
+            /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick button.
+            /// @param ButtonerNumber The number of the button you want the code for.
+            /// @return When passed 0 this returns Input::JOYSTICKBUTTON, otherwise this returns Input::JOYSTICKBUTTON_X where X is the number that was passed in.
+            static Input::InputCode GetJoystickButtonCode(const UInt16 ButtonNumber);
+            /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick Axis.
+            /// @param AxisNumber The number of the axis you want the code for.
+            /// @return When passed 0 this returns Input::JOYSTICKAXIS, otherwise this returns Input::JOYSTICKAXIS_X where X is the number that was passed in.
+            static Input::InputCode GetJoystickAxisCode(const UInt16 AxisNumber);
+            /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick Hat.
+            /// @param HatNumber The index of the hat you want the code for.
+            /// @return When passed 0 this returns Input::JOYSTICKHAT, otherwise this returns Input::JOYSTICKHAT_X where X is the number that was passed in.
+            static Input::InputCode GetJoystickHatCode(const UInt16 HatNumber);
             /// @brief Accepts a int and returns the InputCode for the Corresponding Controller button.
             /// @param ButtonerNumber The number of the button you want the code for.
             /// @return When passed 0 this returns Input::CONTROLLERBUTTON, otherwise this returns Input::CONTROLLERBUTTON_X where X is the number that was passed in.
@@ -235,54 +232,63 @@ namespace Mezzanine
             /// @param AxisNumber The number of the axis you want the code for.
             /// @return When passed 0 this returns Input::CONTROLLERAXIS, otherwise this returns Input::CONTROLLERAXIS_X where X is the number that was passed in.
             static Input::InputCode GetControllerAxisCode(const UInt16 AxisNumber);
-            /// @brief Accepts a int and returns the InputCode for the Corresponding Controller Hat.
-            /// @param HatNumber The index of the hat you want the code for.
-            /// @return When passed 0 this returns Input::CONTROLLERHAT, otherwise this returns Input::CONTROLLERHAT_X where X is the number that was passed in.
-            static Input::InputCode GetControllerHatCode(const UInt16 HatNumber);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Checks
 
-            /// @brief Does this MetaCode Represent a state of a keyboard key.
+            /// @brief Does this MetaCode represent a state of a keyboard Event.
+            /// @return This returns a Boole which will be true if this is between KEY_FIRST and KEY_LAST.
+            Boole IsKeyboardEvent() const;
+            /// @brief Does this MetaCode represent a state of a keyboard key.
             /// @return This returns a Boole which will be true if this is a keyboard event.
             Boole IsKeyboardButton() const;
-            /// @brief Does this MetaCode Represent a state of a Mouse button.
+
+            /// @brief Does this MetaCode represent a state of a Mouse Event.
+            /// @return This returns a Boole which will be true if this is between MOUSE_FIRST and MOUSE_LAST.
+            Boole IsMouseEvent() const;
+            /// @brief Does this MetaCode represent a state of a Mouse button.
             /// @return This returns a Boole which will be true if this is a MOUSEBUTTON_X event.
             Boole IsMouseButton() const;
-            /// @brief Does this MetaCode Represent a state of a Controller button.
+            /// @brief Does this MetaCode represent movement of the Mouse or Mouse wheel.
+            /// @return This returns a Boole which will be true if this is between MOUSEMOTION_FIRST and MOUSEMOTION_LAST.
+            Boole IsMouseMotion() const;
+            /// @brief Does this MetaCode represent multiple clicks of a Mouse button.
+            /// @return This returns a Boole which will be true if this is between the first Mouse multi-click input code and the last Mouse multi-click input code.
+            Boole IsMouseMultiClick() const;
+
+            /// @brief Does this MetaCode represent a state of a Joystick Event.
+            /// @return This returns a Boole which will be true if this is between JOYSTICK_FIRST and JOYSTICK_LAST.
+            Boole IsJoystickEvent() const;
+            /// @brief Does this MetaCode represent a state of a Joystick button.
+            /// @return This returns a Boole which will be true if this is a JOYSTICKBUTTON_X event.
+            Boole IsJoystickButton() const;
+            /// @brief Does this MetaCode represent an axis position on a Joystick.
+            /// @return This returns a Boole which will be true if this is between JOYSTICKAXIS_FIRST and JOYSTICKAXIS_LAST.
+            Boole IsJoystickAxis() const;
+            /// @brief Does this MetaCode represent a trackball on a Joystick.
+            /// @return This returns a Boole which will be true if this is between JOYSTICKBALL_FIRST and JOYSTICKBALL_LAST.
+            Boole IsJoystickBall() const;
+            /// @brief Does this MetaCode represent a hat position on a Joystick.
+            /// @return This returns a Boole which will be true if this is between JOYSTICKHAT_FIRST and JOYSTICKHAT_LAST.
+            Boole IsJoystickHat() const;
+
+            /// @brief Does this MetaCode represent a state of a Controller Event
+            /// @return This returns a Boole which will be true if this is between CONTROLLER_FIRST and CONTROLLER_LAST.
+            Boole IsControllerEvent() const;
+            /// @brief Does this MetaCode represent a state of a Controller button.
             /// @return This returns a Boole which will be true if this is a CONTROLLERBUTTON_X event.
             Boole IsControllerButton() const;
-            /// @brief Does this MetaCode Represent a state of any button on an input device.
+            /// @brief Does this MetaCode represent an axis position on a Controller.
+            /// @return This returns a Boole which will be true if this is between CONTROLLERAXIS_FIRST and CONTROLLERAXIS_LAST.
+            Boole IsControllerAxis() const;
+
+            /// @brief Does this MetaCode represent a state of any button on an input device.
             /// @return This returns a Boole which will be true if this is event pertains to any button on any input device.
             Boole IsDeviceButton() const;
 
-            /// @brief Does this MetaCode Represent a state of a keyboard Event.
-            /// @return This returns a Boole which will be true if this is between KEY_FIRST and KEY_LAST.
-            Boole IsKeyboardEvent() const;
-            /// @brief Does this MetaCode Represent a state of a mouse Event.
-            /// @return This returns a Boole which will be true if this is between MOUSE_FIRST and MOUSE_LAST.
-            Boole IsMouseEvent() const;
-            /// @brief Does this MetaCode Represent movement of the mouse or mouse wheel.
-            /// @return This returns a Boole which will be true if this is between MOUSEMOTION_FIRST and MOUSEMOTION_LAST.
-            Boole IsMouseMotionEvent() const;
-            /// @brief Does this MetaCode Represent multiple clicks of a mouse button.
-            /// @return This returns a Boole which will be true if this is between the first mouse multiclick input code and the last mouse multiclick input code.
-            Boole IsMouseMultiClickEvent() const;
-            /// @brief Does this MetaCode Represent a state of a multitouch device.
+            /// @brief Does this MetaCode represent a state of a multi-touch device.
             /// @return This returns a Boole which will be true if this is between the MULTITOUCH_FIRST and MULTITOUCH_LAST.
             Boole IsMultitouchEvent() const;
-            /// @brief Does this MetaCode Represent a state of a Controller Event
-            /// @return This returns a Boole which will be true if this is between CONTROLLER_FIRST and CONTROLLER_LAST.
-            Boole IsControllerEvent() const;
-            /// @brief Does this MetaCode Represent an axis position on a controller.
-            /// @return This returns a Boole which will be true if this is between CONTROLLERAXIS_FIRST and CONTROLLERAXIS_LAST.
-            Boole IsControllerAxisEvent() const;
-            /// @brief Does this MetaCode Represent a hat position on a controller.
-            /// @return This returns a Boole which will be true if this is between CONTROLLERHAT_FIRST and CONTROLLERHAT_LAST.
-            Boole IsControllerHatEvent() const;
-            /// @brief Does this MetaCode Represent some other (non-keyboard and non-mouse button).
-            /// @return This returns a Boole which will be true if this is between INPUTEVENT_FIRST and INPUTEVENT_LAST.
-            Boole IsInputEvent() const;
 
             /// @brief Is this a left or right Alt key.
             /// @return This returns a Boole which will be true if this is a left or right Alt key.
@@ -297,10 +303,6 @@ namespace Mezzanine
             /// @return This returns a Boole which will be true if this is a left or right Super key.
             Boole IsSuperKey() const;
 
-            /// @brief Is this metacode a pollable event.
-            /// @return if this metacode stores a device button then this is a pollable event.
-            Boole IsPollable() const;
-
             /// @brief Gets the device-type this MetaCode is representing.
             /// @return Returns an Input::InputDevice value for the device this MetaCode is representing.
             Input::InputDevice GetDeviceType() const;
@@ -311,7 +313,11 @@ namespace Mezzanine
             /// @brief Assignment operator.
             /// @param Other The other MetaCode to assign to this.
             /// @return Returns a reference to this.
-            MetaCode& operator=(const MetaCode& Other);
+            MetaCode& operator=(const MetaCode& Other) = default;
+            /// @brief Move assignment operator.
+            /// @param Other The other MetaCode to be moved to this.
+            /// @return Returns a reference to this.
+            MetaCode& operator=(MetaCode&& Other) = default;
             /// @brief Compares two MetaCode's for equality.
             /// @param Other The other MetaCode to compare with.
             /// @return Returns true if the two MetaCode's are equal, false otherwise.
@@ -347,7 +353,7 @@ namespace Mezzanine
         };//MetaCode
     }//Input
 
-    /// @brief Convenience datatype for storage of MetaCodes.
+    /// @brief Convenience type for storage of MetaCodes.
     typedef Input::MetaCode::MetaCodeContainer        MetaCodeContainer;
     /// @brief Iterator type for convenient MetaCode storage.
     typedef Input::MetaCode::MetaCodeIterator         MetaCodeIterator;

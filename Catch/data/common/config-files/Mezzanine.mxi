@@ -12,8 +12,6 @@
         </OALSAudioManager>
         <DefaultCollisionShapeManager>
         </DefaultCollisionShapeManager>
-        <DefaultEventManager>
-        </DefaultEventManager>
         <DefaultGraphicsManager>
             <SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
             <SettingsFiles>

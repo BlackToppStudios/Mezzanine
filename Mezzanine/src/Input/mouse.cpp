@@ -45,8 +45,6 @@
 #include "Graphics/gamewindow.h"
 #include "exception.h"
 
-#include "timer.h"
-
 #include <limits>
 
 #include "SDL.h"
@@ -61,95 +59,82 @@ namespace Mezzanine
             HorizontalWheelState(Input::DIRECTIONALMOTION_UNCHANGED),
             VerticalWheelState(Input::DIRECTIONALMOTION_UNCHANGED)
         {
-            this->Buttons.resize( (Input::MOUSEBUTTON_LAST - Input::MOUSEBUTTON_FIRST) + 1, Input::BUTTON_UP );
+            //this->Buttons.resize( (Input::MOUSEBUTTON_LAST - Input::MOUSEBUTTON_FIRST) + 1, Input::BUTTON_UP );
 
-            this->MulticlickTimer = new Timer();
-            this->MulticlickTimer->SetCurrentTimeInMilliseconds(500);
-            this->MulticlickTimer->SetCountMode(Mezzanine::CM_CountDown);
+            this->MulticlickTimer.SetCurrentTimeInMilliseconds(500);
+            this->MulticlickTimer.SetCountMode(Mezzanine::CM_CountDown);
         }
 
-        Mouse::~Mouse()
+        MetaCodeContainer Mouse::UpdateImpl(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd)
         {
-            delete MulticlickTimer;
-        }
-
-        void Mouse::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
-        {
-            /// @todo Getting the mouse focus doesn't do what I originally thought it would.  When a mouse leaves a window, the focus isn't set to NULL
-            /// as expected.  If you have only one window, then it just stays pointing to that window.  If you have two then it will stay on the first
-            /// window until you mouse over the second, even if there is a space between the windows.  This should be updated somehow so that we can set
-            /// "HoveredWindow" to NULL when none of our windows are being hovered.
-            /// @todo Wheel update events only occur when the wheel goes up or down.  So left on it's own it will constantly report up or down after one
-            /// is fired.  Resetting it allows us more accurate reporting, but isn't particularly graceful.  More research in SDL ought to be done to see
-            /// if a cleaner solution exists.
-            // First do some setup.  Get the window and save our position.
+            // First save our position.
             SDL_Window* Focus = SDL_GetMouseFocus();
             Vector2 OldPosition = this->Position;
-            // Reset the mouse wheel states
-            if( this->VerticalWheelState != Input::DIRECTIONALMOTION_UNCHANGED ) {
-                this->VerticalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
-            }
-            if( this->HorizontalWheelState != Input::DIRECTIONALMOTION_UNCHANGED ) {
-                this->HorizontalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
-            }
+
+            this->ResetWheelState();
             // Update our states
-            for( Whole X = 0 ; X < DeltaCodes.size() ; ++X )
+            for( ConstMetaCodeIterator CurrDelta = DeltaBegin ; CurrDelta != DeltaEnd ; ++CurrDelta )
             {
-                const MetaCode& CurrCode = DeltaCodes[X];
+                const MetaCode& CurrCode = (*CurrDelta);
                 const Input::InputCode ICode = CurrCode.GetCode();
                 if( ICode >= Input::MOUSEBUTTON_FIRST && ICode <= Input::MOUSEBUTTON_LAST ) {
                     // Mark the index for transition on the next update and then place it's state in the button vector
                     TransitioningIndexes.push_back( ICode - Input::MOUSEBUTTON_FIRST );
                     Buttons.at( ICode - Input::MOUSEBUTTON_FIRST ) = static_cast<Input::ButtonState>(CurrCode.GetMetaValue());
-                    // Now do our checks for multi-click
-                    if( this->IsMultiClickable(ICode) && Input::BUTTON_PRESSING == CurrCode.GetMetaValueAsButtonState() ) {
-                        /// @todo This code isn't as graceful as I am sure it can be made.
-                        // Update our multiclick timer
-                        if( this->MulticlickTimer->IsStopped() ) {
-                            this->MulticlickTimer->SetCurrentTimeInMilliseconds(500);
-                            this->MulticlickCode.SetMetaValue(0);
-                        }else{
-                            this->MulticlickTimer->Reset(500 * 1000);
-                        }
-
-                        const Input::InputCode MCICode = this->ConvertToMultiClickCode(ICode);
-                        if( this->MulticlickCode.GetCode() != MCICode ) {
-                            this->MulticlickCode.SetMetaValue(1);
-                            this->MulticlickCode.SetCode(MCICode);
-                        }else{
-                            Int32 ClickCount = this->MulticlickCode.GetMetaValue();
-                            this->MulticlickCode.SetMetaValue( ++ClickCount );
-                        }
-                        this->MulticlickTimer->Start();
-                    }
+                    this->HandleMultiClick(CurrCode);
                 }else if( Input::MOUSEWHEELVERTICAL == ICode ) {
                     this->VerticalWheelState = static_cast<Input::DirectionalMotionState>(CurrCode.GetMetaValue());
                 }else if( Input::MOUSEWHEELHORIZONTAL == ICode ) {
                     this->HorizontalWheelState = static_cast<Input::DirectionalMotionState>(CurrCode.GetMetaValue());
                 }
                 // Only if we're on a window
-                if( Focus ) {
+                if( Focus != NULL ) {
                     if( Input::MOUSEABSOLUTEVERTICAL == ICode ) {
                         this->Position.Y = (Real)(CurrCode.GetMetaValue());
                     }else if( Input::MOUSEABSOLUTEHORIZONTAL == ICode ) {
                         this->Position.X = (Real)(CurrCode.GetMetaValue());
-                    }/*else if( Input::MOUSEVERTICAL == ICode ) {
-                        Delta.Y = (Real)(CurrCode.GetMetaValue());
-                    }else if( Input::MOUSEHORIZONTAL == ICode ) {
-                        Delta.X = (Real)(CurrCode.GetMetaValue());
-                    }*/
+                    }
                 }
             }
 
             // Update our current window
+            this->UpdateViewport();
+            this->Delta = this->Position - OldPosition;
+
+            // Do our sequence updates
+            MetaCodeContainer Ret = std::move( this->Sequences.DetectSequence(DeltaBegin,DeltaEnd) );
+
+            // Do our Multiclick check
+            if( this->MulticlickCode.GetMetaValue() > 1 )
+                Ret.push_back(MulticlickCode);
+
+            return Ret;
+        }
+
+        void Mouse::ResetWheelState()
+        {
+            /// @todo Wheel update events only occur when the wheel goes up or down.  So left on it's own it will constantly report up or down after one
+            /// is fired.  Resetting it allows us more accurate reporting, but isn't particularly graceful.  More research in SDL ought to be done to see
+            /// if a cleaner solution exists.
+            this->VerticalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
+            this->HorizontalWheelState = Input::DIRECTIONALMOTION_UNCHANGED;
+        }
+
+        void Mouse::UpdateViewport()
+        {
+            /// @todo Getting the mouse focus doesn't do what I originally thought it would.  When a mouse leaves a window, the focus isn't set to NULL
+            /// as expected.  If you have only one window, then it just stays pointing to that window.  If you have two then it will stay on the first
+            /// window until you mouse over the second, even if there is a space between the windows.  This should be updated somehow so that we can set
+            /// "HoveredWindow" to NULL when none of our windows are being hovered.
+            SDL_Window* Focus = SDL_GetMouseFocus();
             if( NULL != Focus ) {
                 Graphics::GameWindow* Win = static_cast<Graphics::GameWindow*>(Focus->data->data);
-                for( Graphics::GameWindow::ReverseViewportIterator ViewIt = Win->ReverseBeginViewport() ; ViewIt != Win->ReverseEndViewport() ; ++ViewIt )
+                for( Whole VPIndex = Win->GetNumViewports() ; VPIndex > 0 ; --VPIndex )
                 {
-                    Graphics::Viewport* VP = (*ViewIt);
-                    if( (this->Position.X >= (Real)(VP->GetActualLeft()) && this->Position.X <= (Real)(VP->GetActualLeft() + VP->GetActualWidth())) &&
-                        (this->Position.Y >= (Real)(VP->GetActualTop()) && this->Position.Y <= (Real)(VP->GetActualTop() + VP->GetActualHeight()) ) )
-                    {
+                    Graphics::Viewport* VP = Win->GetViewport( VPIndex - 1 );
+                    Whole XPos = static_cast<Whole>( this->Position.X );
+                    Whole YPos = static_cast<Whole>( this->Position.Y );
+                    if( VP->IsWithinBounds(XPos,YPos) ) {
                         this->CurrentViewport = VP;
                         break;
                     }
@@ -159,36 +144,33 @@ namespace Mezzanine
                 this->Position.SetIdentity();
                 this->Delta.SetIdentity();
             }
-            this->Delta = this->Position - OldPosition;
-
-            // Do our Multiclick check
-            if( this->MulticlickCode.GetMetaValue() > 1 )
-                GeneratedCodes.push_back(MulticlickCode);
-
-            // Do our sequence updates
-            this->Sequences.Update(DeltaCodes,GeneratedCodes);
         }
 
-        void Mouse::VerifySequenceImpl(const MetaCodeContainer& Sequence) const
+        void Mouse::HandleMultiClick(const MetaCode& ToCheck)
         {
-            for( ConstMetaCodeIterator MCIt = Sequence.begin() ; MCIt != Sequence.end() ; ++MCIt )
-            {
-                if( !MCIt->IsMouseEvent() )
-                    { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Non-Mouse MetaCode detected when attempting to insert an Input Sequence into Mouse input device.") }
+            if( this->IsMultiClickable(ToCheck) && Input::BUTTON_PRESSING == ToCheck.GetMetaValueAsButtonState() ) {
+                if( this->MulticlickTimer.IsStopped() ) {
+                    this->MulticlickTimer.SetCurrentTime(500 * 1000);
+                    this->MulticlickCode.SetMetaValue(0);
+                }else{
+                    this->MulticlickTimer.Reset(500 * 1000);
+                }
+
+                const Input::InputCode MCICode = this->ConvertToMultiClickCode(ToCheck.GetCode());
+                if( this->MulticlickCode.GetCode() != MCICode ) {
+                    this->MulticlickCode.SetMetaValue(1);
+                    this->MulticlickCode.SetCode(MCICode);
+                }else{
+                    Int32 ClickCount = this->MulticlickCode.GetMetaValue();
+                    this->MulticlickCode.SetMetaValue( ++ClickCount );
+                }
+                this->MulticlickTimer.Start();
             }
         }
 
-        void Mouse::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const
+        Boole Mouse::IsMultiClickable(const MetaCode& ToCheck) const
         {
-            for( UInt32 Index = 0 ; Index < this->Buttons.size() ; ++Index )
-            {
-                if( this->Buttons.at(Index) == Input::BUTTON_DOWN )
-                    GeneratedCodes.push_back( MetaCode(Input::BUTTON_DOWN,static_cast<Input::InputCode>(Input::MOUSEBUTTON_FIRST + Index),GetDeviceIndex()) );
-            }
-        }
-
-        Boole Mouse::IsMultiClickable(const Input::InputCode Code) const
-        {
+            Input::InputCode Code = ToCheck.GetCode();
             return (Input::MOUSEBUTTON_1 <= Code && Input::MOUSEBUTTON_2 >= Code);
         }
 
@@ -241,19 +223,25 @@ namespace Mezzanine
         Real Mouse::GetDeltaY() const
             { return this->Delta.Y; }
 
-        UInt16 Mouse::GetDeviceIndex() const
-            { return std::numeric_limits<UInt16>::max(); }
+        DeviceIDType Mouse::GetDeviceID() const
+            { return std::numeric_limits<DeviceIDType>::max(); }
 
-        const Input::ButtonState& Mouse::GetButtonState(const UInt16 Button) const
+        Input::InputDevice Mouse::GetDeviceType() const
+            { return Input::DEVICE_MOUSE; }
+
+        Input::ButtonState Mouse::GetButtonState(const UInt16 Button) const
             { return this->Buttons.at( Button - 1 ); }
 
-        const Input::ButtonState& Mouse::GetButtonState(const Input::InputCode& Button) const
+        Input::ButtonState Mouse::GetButtonState(const Input::InputCode Button) const
             { return this->Buttons.at( Button - Input::MOUSEBUTTON_FIRST ); }
 
-        const Input::DirectionalMotionState& Mouse::GetVerticalWheelState() const
+        Input::InputCode Mouse::GetFirstButtonCode() const
+            { return Input::MOUSEBUTTON_FIRST; }
+
+        Input::DirectionalMotionState Mouse::GetVerticalWheelState() const
             { return this->VerticalWheelState; }
 
-        const Input::DirectionalMotionState& Mouse::GetHorizontalWheelState() const
+        Input::DirectionalMotionState Mouse::GetHorizontalWheelState() const
             { return this->HorizontalWheelState; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -281,7 +269,7 @@ namespace Mezzanine
         // Utility Methods
 
         void Mouse::WarpCursorToPosition(Graphics::GameWindow* Win, const Vector2& Position)
-            { if(Win) SDL_WarpMouseInWindow(Win->_GetSDLWindowPointer(),(int)Position.X,(int)Position.Y); }
+            { SDL_WarpMouseInWindow(Win->_GetSDLWindowPointer(),(int)Position.X,(int)Position.Y); }
     }//Input
 }//Mezzanine
 

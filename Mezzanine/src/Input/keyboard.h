@@ -51,31 +51,48 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class represents the keyboard input device.
         ///////////////////////////////////////
-        /// @todo SDL mentions a ModState for keys.  May want to implement that.
-        class MEZZ_LIB Keyboard : public ButtonDevice
+        class MEZZ_LIB Keyboard : public ButtonDevice<Input::KEYBOARD_BUTTONMAX>
         {
         protected:
-            /// @copydoc ButtonDevice::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
-            void UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes);
-            /// @copydoc Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)
-            void VerifySequenceImpl(const MetaCodeContainer& Sequence) const;
-            /// @copydoc Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const
-            void AddPressedButtons(MetaCodeContainer& GeneratedCodes) const;
+            /// @copydoc ButtonDevice::UpdateImpl(ConstMetaCodeIterator, ConstMetaCodeIterator)
+            MetaCodeContainer UpdateImpl(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd);
         public:
             /// @brief Class constructor.
             Keyboard();
+            /// @brief Copy constructor.
+            /// @param Other The other Keyboard to be copied.
+            Keyboard(const Keyboard& Other) = delete;
+            /// @brief Move constructor.
+            /// @param Other The other Keyboard to be moved.
+            Keyboard(Keyboard&& Other) = delete;
             /// @brief Class destructor.
-            virtual ~Keyboard();
+            virtual ~Keyboard() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other Keyboard to be copied.
+            /// @return Returns a reference to this.
+            Keyboard& operator=(const Keyboard& Other) = delete;
+            /// @brief Move assignment operator.
+            /// @param Other The other Keyboard to be moved.
+            /// @return Returns a reference to this.
+            Keyboard& operator=(Keyboard&& Other) = delete;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query Methods
 
-            /// @copydoc Device::GetDeviceIndex() const
-            UInt16 GetDeviceIndex() const;
-            /// @copydoc Device::GetButtonState(const UInt16 Button) const
-            const Input::ButtonState& GetButtonState(const UInt16 Button) const;
-            /// @copydoc Device::GetButtonState(const Input::InputCode& Button) const
-            const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
+            /// @copydoc Device::GetDeviceID() const
+            DeviceIDType GetDeviceID() const;
+            /// @copydoc Device::GetDeviceType() const
+            Input::InputDevice GetDeviceType() const;
+            /// @copydoc ButtonDevice::GetButtonState(const UInt16) const
+            Input::ButtonState GetButtonState(const UInt16 Button) const;
+            /// @copydoc ButtonDevice::GetButtonState(const Input::InputCode) const
+            Input::ButtonState GetButtonState(const Input::InputCode Button) const;
+            /// @copydoc ButtonDevice::GetFirstButtonCode() const
+            Input::InputCode GetFirstButtonCode() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration Methods

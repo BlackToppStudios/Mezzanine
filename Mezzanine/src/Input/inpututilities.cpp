@@ -48,16 +48,16 @@ namespace Mezzanine
     {
         String GetClipboardText()
         {
-            // Because SDL strdups this, we are resonsible for this char* and therefore
+            // Because SDL strdups this, we are responsible for this char* and therefore
             // need to store it and free it ourselves
-            char * temp_clipboard_buffer = SDL_GetClipboardText();
+            char* temp_clipboard_buffer = SDL_GetClipboardText();
             String clipboard_text( temp_clipboard_buffer );
             free( temp_clipboard_buffer );
 
             return clipboard_text;
         }
 
-        void SetClipboardText( const String & ClipboardText )
+        void SetClipboardText(const String& ClipboardText)
         {
             SDL_SetClipboardText( ClipboardText.c_str() );
         }

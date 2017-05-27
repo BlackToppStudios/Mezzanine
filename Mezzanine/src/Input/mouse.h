@@ -41,12 +41,12 @@
 #define _inputmouse_h
 
 #include "vector2.h"
+#include "timer.h"
 #include "Input/inputenumerations.h"
 #include "Input/buttondevice.h"
 
 namespace Mezzanine
 {
-    class Timer;
     namespace Graphics
     {
         class Viewport;
@@ -57,48 +57,63 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class represents the mouse input device.
         ///////////////////////////////////////
-        class MEZZ_LIB Mouse : public ButtonDevice
+        class MEZZ_LIB Mouse : public ButtonDevice<Input::MOUSE_BUTTONMAX>
         {
         protected:
-            /// @internal
+            /// @brief The timer used to detect multi-clicks.
+            Timer MulticlickTimer;
             /// @brief A copy of the current MetaCode being tracked for multi-click detection.
             MetaCode MulticlickCode;
-            /// @internal
             /// @brief The current screen position of the mouse cursor.
             Vector2 Position;
-            /// @internal
             /// @brief The change in the mouse cursor position since the last update.
             Vector2 Delta;
-            /// @internal
             /// @brief The viewport that the mouse cursor is currently in.
             Graphics::Viewport* CurrentViewport;
-            /// @internal
-            /// @brief The timer used to detect multi-clicks.
-            Timer* MulticlickTimer;
-            /// @internal
             /// @brief The current state of the horizontal mouse wheel (if present).
             Input::DirectionalMotionState HorizontalWheelState;
-            /// @internal
             /// @brief The current state of the vertical mouse wheel (if present).
             Input::DirectionalMotionState VerticalWheelState;
 
-            /// @copydoc Device::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
-            void UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes);
-            /// @copydoc Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)
-            void VerifySequenceImpl(const MetaCodeContainer& Sequence) const;
-            /// @copydoc Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const
-            void AddPressedButtons(MetaCodeContainer& GeneratedCodes) const;
-            /// @internal
+            /// @copydoc ButtonDevice::UpdateImpl(ConstMetaCodeIterator, ConstMetaCodeIterator)
+            MetaCodeContainer UpdateImpl(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd);
+            /// @brief Resets the saved mouse wheel states to their defaults.
+            void ResetWheelState();
+            /// @brief Updates the current viewport (if applicable) based on the mouse cursor.
+            void UpdateViewport();
+            /// @brief Checks a MetaCode to see if it can generate multi-click codes and updates the state if necessary.
+            /// @param ToCheck The MetaCode to verify for multi-click updates.
+            void HandleMultiClick(const MetaCode& ToCheck);
+
             /// @brief Checks to see if this code pertains to a button we can track multiple clicks for.
-            Boole IsMultiClickable(const Input::InputCode Code) const;
-            /// @internal
-            /// @brief Converts a standard mouse button code to the appropriate multiclick code for that button.
+            /// @param ToCheck The MetaCode to check.
+            Boole IsMultiClickable(const MetaCode& ToCheck) const;
+            /// @brief Converts a standard mouse button code to the appropriate multi-click code for that button.
+            /// @param Code The InputCode to be converted.
             Input::InputCode ConvertToMultiClickCode(const Input::InputCode Code) const;
         public:
             /// @brief Class constructor.
             Mouse();
+            /// @brief Copy constructor.
+            /// @param Other The other Mouse to be copied.
+            Mouse(const Mouse& Other) = delete;
+            /// @brief Move constructor.
+            /// @param Other The other Mouse to be moved.
+            Mouse(Mouse&& Other) = delete;
             /// @brief Class destructor.
-            virtual ~Mouse();
+            virtual ~Mouse() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other Mouse to be copied.
+            /// @return Returns a reference to this.
+            Mouse& operator=(const Mouse& Other) = delete;
+            /// @brief Move assignment operator.
+            /// @param Other The other Mouse to be moved.
+            /// @return Returns a reference to this.
+            Mouse& operator=(Mouse&& Other) = delete;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query Methods
@@ -138,20 +153,25 @@ namespace Mezzanine
             /// @return Returns a real with the offset from the previous update on the Y axis.
             Real GetDeltaY() const;
 
-            /// @copydoc Device::GetDeviceIndex() const
-            UInt16 GetDeviceIndex() const;
-            /// @copydoc Device::GetButtonState(const UInt16 Button) const
-            const Input::ButtonState& GetButtonState(const UInt16 Button) const;
-            /// @copydoc Device::GetButtonState(const Input::InputCode& Button) const
-            const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
+            /// @copydoc Device::GetDeviceID() const
+            DeviceIDType GetDeviceID() const;
+            /// @copydoc Device::GetDeviceType() const
+            Input::InputDevice GetDeviceType() const;
+            /// @copydoc ButtonDevice::GetButtonState(const UInt16) const
+            Input::ButtonState GetButtonState(const UInt16 Button) const;
+            /// @copydoc ButtonDevice::GetButtonState(const Input::InputCode) const
+            Input::ButtonState GetButtonState(const Input::InputCode Button) const;
+            /// @copydoc ButtonDevice::GetFirstButtonCode() const
+            Input::InputCode GetFirstButtonCode() const;
+
             /// @brief Gets the current state of the vertical mouse wheel.
             /// @remarks If a mouse doesn't have a mouse wheel this will always report "DIRECTIONALMOTION_UNCHANGED".
             /// @return Returns a directional motion update of the mouse wheel.
-            const Input::DirectionalMotionState& GetVerticalWheelState() const;
+            Input::DirectionalMotionState GetVerticalWheelState() const;
             /// @brief Gets the current state of the horizontal mouse wheel.
             /// @remarks If a mouse doesn't have a mouse wheel this will always report "DIRECTIONALMOTION_UNCHANGED".
             /// @return Returns a directional motion update of the mouse wheel.
-            const Input::DirectionalMotionState& GetHorizontalWheelState() const;
+            Input::DirectionalMotionState GetHorizontalWheelState() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration Methods
@@ -180,7 +200,7 @@ namespace Mezzanine
             // Utility Methods
 
             /// @brief Sets the mouse cursor's position to the specified point in the specified window.
-            /// @param Win The window to warp the cursor to.
+            /// @param Win The window to warp the cursor to.  Pointer is expected to be valid.
             /// @param Position The position on the specified window to warp the cursor to.
             void WarpCursorToPosition(Graphics::GameWindow* Win, const Vector2& Position);
         };//Mouse

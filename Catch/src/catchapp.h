@@ -29,7 +29,6 @@ public:
         Catch_ScoreScreen
     };
 protected:
-    friend class CatchPreInputWorkUnit;
     friend class CatchPostInputWorkUnit;
     friend class CatchPostUIWorkUnit;
     friend class CatchHUDUpdateWorkUnit;
@@ -39,7 +38,6 @@ protected:
 
     AudioSettingsWorkUnit* AudioSettingsWork;
     VideoSettingsWorkUnit* VideoSettingsWork;
-    CatchPreInputWorkUnit* PreInputWork;
     CatchPostInputWorkUnit* PostInputWork;
     CatchPostUIWorkUnit* PostUIWork;
     CatchPauseWorkUnit* PauseWork;
@@ -111,7 +109,6 @@ public:
 
     AudioSettingsWorkUnit* GetAudioSettingsWork() const;
     VideoSettingsWorkUnit* GetVideoSettingsWork() const;
-    CatchPreInputWorkUnit* GetPreInputWork() const;
     CatchPostInputWorkUnit* GetPostInputWork() const;
     CatchPostUIWorkUnit* GetPostUIWork() const;
     CatchPauseWorkUnit* GetPauseWork() const;

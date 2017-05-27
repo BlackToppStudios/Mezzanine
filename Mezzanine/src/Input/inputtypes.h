@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2016 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,59 +37,19 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef EVENTQUIT_CPP
-#define EVENTQUIT_CPP
 
-#include "eventquit.h"
-#include "stringtool.h"
-#include "exception.h"
+#ifndef _inputtypes_h
+#define _inputtypes_h
 
-#include <memory>
+#include "datatypes.h"
 
 namespace Mezzanine
 {
-
-    EventBase::EventType EventQuit::GetType() const
+    namespace Input
     {
-        return EventBase::QuitMessage;
-    }
-
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-std::ostream& operator << (std::ostream& stream, const Mezzanine::EventQuit& Ev)
-{
-    stream << "<EventQuit Version=\"1\" />";
-    return stream;
-}
-
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventQuit& Ev)
-{
-    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventQuit", OneTag) );
-
-    Doc->GetFirstChild() >> Ev;
-
-    return stream;
-}
-
-const Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventQuit& Ev)
-{
-    if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventQuit") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-            Ev = Mezzanine::EventQuit();
-        }else{
-            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventQuit: Not Version 1.");
-        }
-    }else{
-        MEZZ_EXCEPTION(Mezzanine::ExceptionBase::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventQuit, found a " + Mezzanine::String(OneNode.Name()));
-    }
-    return OneNode;
-}
-
+        /// @brief A type for uniquely identifying connected input devices on the system.
+        using DeviceIDType = Integer;
+    }//Input
+}//Mezzanine
 
 #endif
-

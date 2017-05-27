@@ -55,34 +55,29 @@ namespace Mezzanine
         class GameWindow;
         class CameraProxy;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Viewport
-        /// @headerfile viewport.h
-        /// @brief This class is for creating and managing viewports within a game window.
-        /// @details A game window can contain several veiwports, and veiwports can overlap.  This is
+        /// @brief This class is for creating and managing Viewports within a game window.
+        /// @details A game window can contain several Veiwports, and Veiwports can overlap.  This is
         /// useful for editors mostly, but can be of use in games as well.  Be careful about positioning
         /// Veiwports in a game window.
         ///////////////////////////////////////
         class MEZZ_LIB Viewport
         {
         protected:
-            /// @internal
-            /// @brief A pointer to the internal viewport providing this classes functionality.
+            /// @brief A pointer to the internal Viewport providing this classes functionality.
             Ogre::Viewport* OgreViewport;
-            /// @internal
-            /// @brief A pointer to the window that created this viewport.
+            /// @brief A pointer to the window that created this Viewport.
             GameWindow* Parent;
-            /// @internal
-            /// @brief A pointer to the camera being used to render this viewport, or NULL if one isn't set.
+            /// @brief A pointer to the camera being used to render this Viewport, or NULL if one isn't set.
             CameraProxy* ViewportCam;
         public:
             /// @brief Class constructor.
-            /// @param ViewportCamera The CameraProxy that is to be attached to this veiwport.
-            /// @param ZOrder The render order of this viewport relative to other viewports in the game window.
-            /// @param ParentWindow The game window this viewport belongs to.
+            /// @param ViewportCamera The CameraProxy that is to be attached to this Veiwport.
+            /// @param ZOrder The render order of this Viewport relative to other Viewports in the game window.
+            /// @param ParentWindow The game window this Viewport belongs to.
             Viewport(CameraProxy* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            /// @param ParentWindow The game window this viewport belongs to.
+            /// @param ParentWindow The game window this Viewport belongs to.
             Viewport(const XML::Node& XMLNode, GameWindow* ParentWindow);
             /// @brief Class destructor.
             ~Viewport();
@@ -90,80 +85,86 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Camera and parent Management
 
-            /// @brief Sets which CameraProxy is bound to this viewport.
-            /// @param ViewportCamera Pointer to the CameraProxy to be bount to this viewport, or NULL to simply unbind a CameraProxy.
+            /// @brief Sets which CameraProxy is bound to this Viewport.
+            /// @param ViewportCamera Pointer to the CameraProxy to be bound to this Viewport, or NULL to simply unbind a CameraProxy.
             void SetCamera(CameraProxy* ViewportCamera);
-            /// @brief Gets the CameraProxy associated with this viewport.
-            /// @return Returns a pointer to the CameraProxy using this viewport.
+            /// @brief Gets the CameraProxy associated with this Viewport.
+            /// @return Returns a pointer to the CameraProxy using this Viewport.
             CameraProxy* GetCamera() const;
-            /// @brief Gets the game window this viewport belongs to.
-            /// @return Returns a pointer to the game window that created this viewport.
+            /// @brief Gets the game window this Viewport belongs to.
+            /// @return Returns a pointer to the game window that created this Viewport.
             GameWindow* GetParentWindow() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Gets the Zorder assigned to this viewport.
-            /// @return Returns an integer that represents this viewports rendering order in it's parent GameWindow.
+            /// @brief Gets the Zorder assigned to this Viewport.
+            /// @return Returns an integer that represents this Viewports rendering order in it's parent GameWindow.
             Integer GetZOrder() const;
-            /// @brief Gets the current Orientation of the viewport.
-            /// @return Returns an enum representing the current orientation of the viewport.
+            /// @brief Gets the current Orientation of the Viewport.
+            /// @return Returns an enum representing the current orientation of the Viewport.
             Mezzanine::OrientationMode GetOrientationMode() const;
+
+            /// @brief Checks whether or not a point is within the bounds of this Viewport.
+            /// @param XPos The point on the X axis of the window to check.
+            /// @param YPos The point on the Y axis of the window to check.
+            /// @return Returns true if the point is within this Viewport, false otherwise.
+            Boole IsWithinBounds(const Whole XPos, const Whole YPos) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Viewport Metrics Management
 
-            /// @brief Sets the position and size of this viewport within the game window.
-            /// @param Position Vector2 of relative values(range: 0-1) representing the top left corner of the viewport.
-            /// Values are relative to the game window this viewport belongs to.
-            /// @param Size Vector2 of relative values(range: 0-1) representing the width and height of the viewport.
-            /// Values are relative to the game window this viewport belongs to.
+            /// @brief Sets the position and size of this Viewport within the game window.
+            /// @param Position Vector2 of relative values(range: 0-1) representing the top left corner of the Viewport.
+            /// Values are relative to the game window this Viewport belongs to.
+            /// @param Size Vector2 of relative values(range: 0-1) representing the width and height of the Viewport.
+            /// Values are relative to the game window this Viewport belongs to.
             void SetDimensions(const Vector2& Position, const Vector2& Size);
-            /// @brief Sets the position and size of this viewport within the game window.
-            /// @param Left A relative value(range: 0-1) representing the leftmost position of the viewport.
-            /// @param Top A relative value(range: 0-1) representing the topmost position of the viewport.
-            /// @param Width A relative value(range: 0-1) representing the width of the viewport.
-            /// @param Height A relative value(range: 0-1) representing the height of the viewport.
+            /// @brief Sets the position and size of this Viewport within the game window.
+            /// @param Left A relative value(range: 0-1) representing the leftmost position of the Viewport.
+            /// @param Top A relative value(range: 0-1) representing the topmost position of the Viewport.
+            /// @param Width A relative value(range: 0-1) representing the width of the Viewport.
+            /// @param Height A relative value(range: 0-1) representing the height of the Viewport.
             void SetDimensions(const Real& Left, const Real& Top, const Real& Width, const Real& Height);
 
-            /// @brief Gets the position of this viewport in it's parent GameWindow in relative units.
-            /// @return Returns a Vector2 containing the relative position of this viewport within the GameWindow.
+            /// @brief Gets the position of this Viewport in it's parent GameWindow in relative units.
+            /// @return Returns a Vector2 containing the relative position of this Viewport within the GameWindow.
             Vector2 GetPosition() const;
-            /// @brief Gets the size of this viewport relative to it's parent GameWindow.
-            /// @return Returns a Vector2 containing the relative size of this viewport.
+            /// @brief Gets the size of this Viewport relative to it's parent GameWindow.
+            /// @return Returns a Vector2 containing the relative size of this Viewport.
             Vector2 GetSize() const;
 
-            /// @brief Gets the relative left position of the viewport.
-            /// @return Returns a real representing the relative left position of this veiwport.
+            /// @brief Gets the relative left position of the Viewport.
+            /// @return Returns a real representing the relative left position of this Viewport.
             Real GetLeft() const;
-            /// @brief Gets the relative top position of the viewport.
-            /// @return Returns a real representing the relative top position of this veiwport.
+            /// @brief Gets the relative top position of the Viewport.
+            /// @return Returns a real representing the relative top position of this Viewport.
             Real GetTop() const;
-            /// @brief Gets the relative width of the viewport.
-            /// @return Returns a real representing the relative width of this veiwport.
+            /// @brief Gets the relative width of the Viewport.
+            /// @return Returns a real representing the relative width of this Viewport.
             Real GetWidth() const;
-            /// @brief Gets the relative height of the viewport.
-            /// @return Returns a real representing the relative height of this veiwport.
+            /// @brief Gets the relative height of the Viewport.
+            /// @return Returns a real representing the relative height of this Viewport.
             Real GetHeight() const;
 
-            /// @brief Gets the position of this viewport in it's parent GameWindow in pixels.
-            /// @return Returns a Vector2 containing the pixel position of this viewport within the GameWindow.
+            /// @brief Gets the position of this Viewport in it's parent GameWindow in pixels.
+            /// @return Returns a Vector2 containing the pixel position of this Viewport within the GameWindow.
             Vector2 GetActualPosition() const;
-            /// @brief Gets the size of this viewport in pixels.
-            /// @return Returns a Vector2 containing the pixel size of this viewport.
+            /// @brief Gets the size of this Viewport in pixels.
+            /// @return Returns a Vector2 containing the pixel size of this Viewport.
             Vector2 GetActualSize() const;
 
-            /// @brief Gets the left position of the viewport in pixels.
-            /// @return Returns a whole representing the left position of this veiwport in pixels.
+            /// @brief Gets the left position of the Viewport in pixels.
+            /// @return Returns a whole representing the left position of this Viewport in pixels.
             Whole GetActualLeft() const;
-            /// @brief Gets the top position of the viewport in pixels.
-            /// @return Returns a whole representing the top position of this veiwport in pixels.
+            /// @brief Gets the top position of the Viewport in pixels.
+            /// @return Returns a whole representing the top position of this Viewport in pixels.
             Whole GetActualTop() const;
-            /// @brief Gets the width of the viewport in pixels.
-            /// @return Returns a whole representing the width of this veiwport in pixels.
+            /// @brief Gets the width of the Viewport in pixels.
+            /// @return Returns a whole representing the width of this Viewport in pixels.
             Whole GetActualWidth() const;
-            /// @brief Gets the height of the viewport in pixels.
-            /// @return Returns a whole representing the height of this veiwport in pixels.
+            /// @brief Gets the height of the Viewport in pixels.
+            /// @return Returns a whole representing the height of this Viewport in pixels.
             Whole GetActualHeight() const;
 
             ///////////////////////////////////////////////////////////////////////////////

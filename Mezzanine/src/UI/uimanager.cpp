@@ -58,7 +58,6 @@
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
 #include "Resource/resourcemanager.h"
-#include "eventmanager.h"
 
 #include "MathTools/mathtools.h"
 #include "timer.h"
@@ -205,7 +204,7 @@ namespace Mezzanine
                 }else if( Input::BUTTON_LIFTING == Code.GetMetaValue() ) {
                     if( this->WidgetFocus ) {
                         // Check the code to see if we're releasing the focus lock.
-                        if( this->FocusLockCode.GetCode() == Code.GetCode() && this->FocusLockCode.GetDeviceIndex() == Code.GetDeviceIndex() ) {
+                        if( this->FocusLockCode.GetCode() == Code.GetCode() && this->FocusLockCode.GetDeviceID() == Code.GetDeviceID() ) {
                             this->WidgetFocus->_OnFocusUnlocked();
                             this->WidgetFocus->_OnMouseDragEnd();
                             this->FocusLockCode.SetNullValues();
@@ -235,7 +234,7 @@ namespace Mezzanine
 
         void UIManager::HandlePostFocusMouseInput(const Input::MetaCode& Code)
         {
-            if( Code.IsMouseMotionEvent() )
+            if( Code.IsMouseMotion() )
             {
 
             }

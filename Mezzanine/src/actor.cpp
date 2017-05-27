@@ -46,8 +46,6 @@
     #include "XML/xml.h"
 #endif
 
-#include "entresol.h"
-
 #include "serialization.h"
 
 /// @file

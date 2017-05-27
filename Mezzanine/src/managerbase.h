@@ -50,7 +50,6 @@ namespace Mezzanine
 {
     class Entresol;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @headerfile managerbase.h
     /// @brief This is the base class from which all the Entresol and World Managers inherit.
     /// @details This creates a base set of functions that Managers are all
     /// expected to implement.
@@ -79,7 +78,6 @@ namespace Mezzanine
             MT_CollisionShapeManager   = 3,   // Physics
             MT_CompositorManager       = 4,   // Graphics
             MT_GraphicsManager         = 5,   // Graphics
-            MT_EventManager            = 6,   // Mezzanine
             MT_InputManager            = 7,   // Input
             MT_LogManager              = 8,   // Mezzanine
             MT_MaterialManager         = 9,   // Graphics
