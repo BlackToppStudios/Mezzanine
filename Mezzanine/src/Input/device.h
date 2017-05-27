@@ -104,10 +104,9 @@ namespace Mezzanine
             /// @copydoc SequenceContainer::AddInputSequence(const MetaCodeContainer&, const Int32)
             void AddInputSequence(const MetaCodeContainer& Codes, const Int32 SequenceID)
             {
-                Input::InputDevice SelfDevice = this->GetDeviceType();
                 for( const MetaCode& CurrCode : Codes )
                 {
-                    if( CurrCode.GetDeviceType() != SelfDevice ) {
+                    if( CurrCode.GetDeviceType() != this->GetDeviceType() ) {
                         MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Mismatched device on MetaCode detected when attempting to insert an Input Sequence.");
                     }
                 }

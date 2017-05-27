@@ -102,7 +102,7 @@ namespace Mezzanine
             this->Delta = this->Position - OldPosition;
 
             // Do our sequence updates
-            MetaCodeContainer Ret = std::move( this->Sequences.Update(DeltaBegin,DeltaEnd) );
+            MetaCodeContainer Ret = std::move( this->Sequences.DetectSequence(DeltaBegin,DeltaEnd) );
 
             // Do our Multiclick check
             if( this->MulticlickCode.GetMetaValue() > 1 )
@@ -132,7 +132,9 @@ namespace Mezzanine
                 for( Whole VPIndex = Win->GetNumViewports() ; VPIndex > 0 ; --VPIndex )
                 {
                     Graphics::Viewport* VP = Win->GetViewport( VPIndex - 1 );
-                    if( VP->IsWithinBounds(this->Position) ) {
+                    Whole XPos = static_cast<Whole>( this->Position.X );
+                    Whole YPos = static_cast<Whole>( this->Position.Y );
+                    if( VP->IsWithinBounds(XPos,YPos) ) {
                         this->CurrentViewport = VP;
                         break;
                     }

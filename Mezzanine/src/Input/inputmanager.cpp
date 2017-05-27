@@ -82,6 +82,7 @@ namespace Mezzanine
         {
             this->TargetManager->ThreadResources = &CurrentThreadStorage;
             this->TargetManager->UpdateInputDevices();
+            this->TargetManager->ThreadResources = nullptr;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -104,7 +105,7 @@ namespace Mezzanine
             SystemKeyboard(NULL),
             DeviceUpdateWork(NULL),
             ThreadResources(NULL)
-            { ConstructManager(); }
+            { this->ConstructManager(); }
 
         InputManager::InputManager(const XML::Node& XMLNode) :
             InputDeltas(8),
@@ -112,7 +113,7 @@ namespace Mezzanine
             SystemKeyboard(NULL),
             DeviceUpdateWork(NULL),
             ThreadResources(NULL)
-            { ConstructManager(); }
+            { this->ConstructManager(); }
 
         InputManager::~InputManager()
         {
@@ -486,7 +487,7 @@ namespace Mezzanine
 
             // Do sub-system wide sequence checks if we've done anything
             if( !this->InputDeltas.empty() )
-                this->Sequences.Update(this->InputDeltas.begin(),RangeEnd);
+                this->Sequences.DetectSequence(this->InputDeltas.begin(),RangeEnd);
             // Update our delta's if there is anything to update
             if( !GeneratedCodes.empty() )
                 this->InputDeltas.insert(this->InputDeltas.end(),GeneratedCodes.begin(),GeneratedCodes.end());

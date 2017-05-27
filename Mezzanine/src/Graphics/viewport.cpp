@@ -50,6 +50,8 @@
 #include <OgreViewport.h>
 #include <OgreRenderWindow.h>
 
+#include <cassert>
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -106,12 +108,12 @@ namespace Mezzanine
         #endif
         }
 
-        Boole Viewport::IsWithinBounds(const Vector2& Point) const
+        Boole Viewport::IsWithinBounds(const Whole XPos, const Whole YPos) const
         {
-            return ( Point.X >= static_cast<Real>( this->GetActualLeft() ) &&
-                     Point.X <= static_cast<Real>( this->GetActualLeft() + this->GetActualWidth() ) &&
-                     Point.Y >= static_cast<Real>( this->GetActualTop() ) &&
-                     Point.Y <= static_cast<Real>( this->GetActualTop() + this->GetActualHeight() ) );
+            return ( XPos >= this->GetActualLeft() &&
+                     XPos <= this->GetActualLeft() + this->GetActualWidth() &&
+                     YPos >= this->GetActualTop() &&
+                     YPos <= this->GetActualTop() + this->GetActualHeight() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

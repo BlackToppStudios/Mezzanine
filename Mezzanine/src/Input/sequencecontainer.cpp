@@ -47,25 +47,36 @@
 #include <limits>
 #include <cassert>
 
+namespace
+{
+    using namespace Mezzanine;
+    enum SequenceConstants
+    {
+        InvalidSequenceID = std::numeric_limits<Int32>::max()
+    };
+}
+
 namespace Mezzanine
 {
     namespace Input
     {
         SequenceContainer::SequenceContainer() :
+            SequencedInputs(MetaCode::NullCode),
+            SequenceTimeout(300),
             MaxSequenceSize(0),
-            DeviceID(std::numeric_limits<UInt32>::max()),
-            SequencedInputs(MetaCode::NullCode)
+            DeviceID(std::numeric_limits<UInt32>::max())
         {
-            this->SequenceTimer.SetCurrentTimeInMilliseconds(300);
+            this->SequenceTimer.SetCurrentTimeInMilliseconds(this->SequenceTimeout);
             this->SequenceTimer.SetCountMode(Mezzanine::CM_CountDown);
         }
 
         SequenceContainer::SequenceContainer(const UInt32 Device) :
+            SequencedInputs(MetaCode::NullCode),
+            SequenceTimeout(300),
             MaxSequenceSize(0),
-            DeviceID(Device),
-            SequencedInputs(MetaCode::NullCode)
+            DeviceID(Device)
         {
-            this->SequenceTimer.SetCurrentTimeInMilliseconds(300);
+            this->SequenceTimer.SetCurrentTimeInMilliseconds(this->SequenceTimeout);
             this->SequenceTimer.SetCountMode(Mezzanine::CM_CountDown);
         }
 
@@ -74,16 +85,61 @@ namespace Mezzanine
             this->SequencedInputs.clear();
         }
 
-        MetaCode SequenceContainer::TestCurrentSequence()
+        void SequenceContainer::CheckTimeout()
         {
-            this->CurrSequence.push_back(MetaCode::NullCode);
-            SequencedInputIterator SeqIt = this->SequencedInputs.find(this->CurrSequence);
-            this->CurrSequence.pop_back();
-
-            if( SeqIt == this->SequencedInputs.end() ) {
-                return MetaCode::NullCode;
+            // Check our timer and clear our cache if it's been long enough since the last input
+            if( this->SequenceTimer.IsStopped() ) {
+                this->CurrSequence.clear();
+            }else{
+                this->SequenceTimer.Reset(this->SequenceTimeout * 1000);
             }
-            return MetaCode(*(*SeqIt).second,Input::COMPOUNDINPUT_CUSTOMSEQUENCE,this->DeviceID);
+        }
+
+        void SequenceContainer::TruncateSequenceCache()
+        {
+            Whole CurrentSize = this->CurrSequence.size();
+            if( CurrentSize > this->MaxSequenceSize ) {
+                Whole NewStartIndex = CurrentSize - this->MaxSequenceSize;
+                MetaCodeIterator EraseIt = this->CurrSequence.begin();
+                this->CurrSequence.erase(EraseIt,EraseIt + NewStartIndex);
+            }
+        }
+
+        Int32 SequenceContainer::TestSequenceSingle(ConstMetaCodeIterator TestBegin, ConstMetaCodeIterator TestEnd)
+        {
+            MetaCodeContainer TestContainer(TestEnd,TestBegin);
+            TestContainer.push_back( MetaCode::NullCode );
+            SequencedInputIterator SeqIt = this->SequencedInputs.find(TestContainer);
+            /// @todo The line below is how the logic SHOULD go, if our Trie allowed us to give it arbitrary
+            /// iterators and used those to determine the range, rather than a pointer with the end symbol at
+            /// the end of the range.  The above code is horrible for performance.  Grumble, Grumble.
+            //SequencedInputIterator SeqIt = this->SequencedInputs.find(TestBegin,TestEnd);
+            if( SeqIt == this->SequencedInputs.end() ) {
+                return InvalidSequenceID;
+            }
+            return *(*SeqIt).second;
+        }
+
+        Int32 SequenceContainer::TestCurrentSequence()
+        {
+            if( this->CurrSequence.empty() ) {
+                return InvalidSequenceID;
+            }
+
+            ConstMetaCodeIterator BeginIt = this->CurrSequence.begin();
+            ConstMetaCodeIterator EndIt = this->CurrSequence.end();
+            for( ConstMetaCodeIterator SeqBeginIt = BeginIt ; SeqBeginIt != EndIt ; ++SeqBeginIt )
+            {
+                for( ConstMetaCodeIterator SeqEndIt = SeqBeginIt + 1 ; SeqEndIt != EndIt ; ++SeqEndIt )
+                {
+                    Int32 Result = this->TestSequenceSingle(SeqBeginIt,SeqEndIt);
+                    if( Result != InvalidSequenceID ) {
+                        this->CurrSequence.erase(BeginIt,SeqEndIt);
+                        return Result;
+                    }
+                }
+            }
+            return InvalidSequenceID;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -91,7 +147,7 @@ namespace Mezzanine
 
         void SequenceContainer::AddInputSequence(const MetaCodeContainer& Codes, const Int32 SequenceID)
         {
-            assert(std::numeric_limits<Int32>::max() != SequenceID &&
+            assert(InvalidSequenceID != SequenceID &&
                    "Attempting to use max value of Int32 as an ID for an input sequence.  This value is reserved for error conditions.");
 
             if( MetaCode::NullCode != Codes.back() ) {
@@ -99,6 +155,7 @@ namespace Mezzanine
             }
             this->SequencedInputs.insert(Codes,SequenceID);
             this->MaxSequenceSize = std::max(static_cast<size_t>(this->MaxSequenceSize),Codes.size());
+            this->CurrSequence.reserve(this->MaxSequenceSize);
         }
 
         Boole SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
@@ -110,7 +167,7 @@ namespace Mezzanine
             if( SqIt != this->SequencedInputs.end() ) {
                 return *(SqIt->second);
             }else{
-                return std::numeric_limits<Int32>::max();
+                return InvalidSequenceID;
             }
         }
 
@@ -123,12 +180,35 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        void SequenceContainer::SetSequenceTimeout(const Whole Timeout)
+            { this->SequenceTimeout = Timeout; }
+
+        Whole SequenceContainer::GetSequenceTimeout() const
+            { return this->SequenceTimeout; }
+
         UInt32 SequenceContainer::GetNumInputSequences() const
         {
             return static_cast<UInt32>( this->SequencedInputs.size() );
         }
 
-        MetaCodeContainer SequenceContainer::Update(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd)
+        MetaCode SequenceContainer::DetectSequence(const MetaCode& Delta)
+        {
+            // Escape early if we have nothing to do
+            if( this->SequencedInputs.empty() ) {
+                return MetaCode::NullCode;
+            }
+
+            this->CheckTimeout();
+            this->CurrSequence.push_back( Delta );
+            Int32 Result = this->TestCurrentSequence();
+            this->TruncateSequenceCache();
+            if( Result != InvalidSequenceID ) {
+                return MetaCode(Result,Input::COMPOUNDINPUT_CUSTOMSEQUENCE,this->DeviceID);
+            }
+            return MetaCode::NullCode;
+        }
+
+        MetaCodeContainer SequenceContainer::DetectSequence(ConstMetaCodeIterator DeltaBegin, ConstMetaCodeIterator DeltaEnd)
         {
             MetaCodeContainer Ret;
             // Escape early if we have nothing to do
@@ -136,38 +216,16 @@ namespace Mezzanine
                 return Ret;
             }
 
-            // Check our timer and clear our cache if it's been long enough since the last input
-            if( this->SequenceTimer.IsStopped() ) {
-                this->CurrSequence.clear();
-            }else{
-                this->SequenceTimer.Reset(300 * 1000);
-            }
-
-            // Perform our per-code processing
-            while( DeltaBegin != DeltaEnd )
-            {
-                if( this->CurrSequence.empty() ) {
-                    this->CurrSequence.push_back( (*DeltaBegin) );
-                    this->CurrSequence.push_back( MetaCode::NullCode );
-                    SequencedInputIterator SeqIt = this->SequencedInputs.startsWith( this->CurrSequence );
-                    if( SeqIt != this->SequencedInputs.end() ) {
-                        this->CurrSequence.pop_back();
-                        this->SequenceTimer.Start();
-                    }else{
-                        this->CurrSequence.clear();
-                    }
-                }else{
-                    this->CurrSequence.push_back( (*DeltaBegin) );
-                    if( this->MaxSequenceSize == this->CurrSequence.size() ) {
-                        this->CurrSequence.erase( this->CurrSequence.begin() );
-                    }
-                    MetaCode New = this->TestCurrentSequence();
-                    if( MetaCode::NullCode != New ) {
-                        Ret.push_back(New);
-                    }
+            this->CheckTimeout();
+            this->CurrSequence.insert(this->CurrSequence.end(),DeltaBegin,DeltaEnd);
+            Int32 Result = InvalidSequenceID;
+            do{
+                Result = this->TestCurrentSequence();
+                if( Result != InvalidSequenceID ) {
+                    Ret.emplace_back(Result,Input::COMPOUNDINPUT_CUSTOMSEQUENCE,this->DeviceID);
                 }
-                ++DeltaBegin;
-            }
+            }while( Result != InvalidSequenceID );
+            this->TruncateSequenceCache();
             return Ret;
         }
     }//Input

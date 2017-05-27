@@ -106,9 +106,10 @@ namespace Mezzanine
             Mezzanine::OrientationMode GetOrientationMode() const;
 
             /// @brief Checks whether or not a point is within the bounds of this Viewport.
-            /// @param Point The point on the Window to check.
+            /// @param XPos The point on the X axis of the window to check.
+            /// @param YPos The point on the Y axis of the window to check.
             /// @return Returns true if the point is within this Viewport, false otherwise.
-            Boole IsWithinBounds(const Vector2& Point) const;
+            Boole IsWithinBounds(const Whole XPos, const Whole YPos) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Viewport Metrics Management

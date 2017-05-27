@@ -59,7 +59,7 @@ namespace Mezzanine
                 this->TransitioningIndexes.push_back( (*CurrDelta).GetCode() );
                 this->Buttons.at( (*CurrDelta).GetCode() ) = static_cast<Input::ButtonState>( (*CurrDelta).GetMetaValue() );
             }
-            return std::move( this->Sequences.Update(DeltaBegin,DeltaEnd) );
+            return std::move( this->Sequences.DetectSequence(DeltaBegin,DeltaEnd) );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -78,7 +78,7 @@ namespace Mezzanine
                     this->Hats.at( ICode - Input::JOYSTICKHAT_FIRST ) = static_cast<Input::HatState>(CurrCode.GetMetaValue());
                 }
             }
-            return std::move( this->Sequences.Update(DeltaBegin,DeltaEnd) );
+            return std::move( this->Sequences.DetectSequence(DeltaBegin,DeltaEnd) );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

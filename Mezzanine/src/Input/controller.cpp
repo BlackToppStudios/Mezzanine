@@ -73,7 +73,7 @@ namespace Mezzanine
                     this->Buttons.at( ICode - Input::CONTROLLERBUTTON_FIRST ) = static_cast<Input::ButtonState>(CurrCode.GetMetaValue());
                 }
             }
-            return std::move( this->Sequences.Update(DeltaBegin,DeltaEnd) );
+            return std::move( this->Sequences.DetectSequence(DeltaBegin,DeltaEnd) );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
