@@ -1353,7 +1353,7 @@ add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/ogresrc)
 add_subdirectory (libincludes/common/oggvorbis)
 add_subdirectory (libincludes/common/openalsoftsrc)
-add_subdirectory (libincludes/common/sdlsrc/SDL)
+add_subdirectory (libincludes/common/sdlsrc)
 
 #######################################
 # Extra includes from Ogre
@@ -1371,22 +1371,6 @@ endif(${WIN32})
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
 target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
-
-set(SDL_ATOMIC    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_CPUINFO   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_EVENTS    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_FILE      on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_HAPTIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_JOYSTICK  on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_LOADSO    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_POWER     on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_RENDER    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_THREADS   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_VIDEO     on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-
-set(SDL_SHARED    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_STATIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 
 if(${Mezz_Lua51})
         add_subdirectory (libincludes/common/lua51)

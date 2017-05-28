@@ -1,0 +1,136 @@
+71c71
+<   if(OSS)
+---
+>   if(SDL_OSS)
+105c105
+<   if(ALSA)
+---
+>   if(SDL_ALSA)
+137c137
+<   if(PULSEAUDIO)
+---
+>   if(SDL_PULSEAUDIO)
+145c145
+<       if(PULSEAUDIO_SHARED)
+---
+>       if(SDL_PULSEAUDIO_SHARED)
+167c167
+<   if(ESD)
+---
+>   if(SDL_ESD)
+175c175
+<       if(ESD_SHARED)
+---
+>       if(SDL_ESD_SHARED)
+197c197
+<   if(ARTS)
+---
+>   if(SDL_ARTS)
+209c209
+<       if(ARTS_SHARED)
+---
+>       if(SDL_ARTS_SHARED)
+232c232
+<   if(NAS)
+---
+>   if(SDL_NAS)
+241c241
+<       if(NAS_SHARED)
+---
+>       if(SDL_NAS_SHARED)
+263c263
+<   if(SNDIO)
+---
+>   if(SDL_SNDIO)
+294c294
+<   if(FUSIONSOUND)
+---
+>   if(SDL_FUSIONSOUND)
+302c302
+<       if(FUSIONSOUND_SHARED)
+---
+>       if(SDL_FUSIONSOUND_SHARED)
+324c324
+<   if(LIBSAMPLERATE)
+---
+>   if(SDL_LIBSAMPLERATE)
+347c347
+<   if(VIDEO_X11)
+---
+>   if(SDL_VIDEO_X11)
+380c380
+<         set(X11_SHARED OFF)
+---
+>         set(SDL_X11_SHARED OFF)
+395c395
+<       if(X11_SHARED)
+---
+>       if(SDL_X11_SHARED)
+439c439
+<       if(VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
+---
+>       if(SDL_VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
+449c449
+<       if(VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
+---
+>       if(SDL_VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
+459c459
+<       if(VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
+---
+>       if(SDL_VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
+485c485
+<       if(VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
+---
+>       if(SDL_VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
+495c495
+<       if(VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
+---
+>       if(SDL_VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
+505c505
+<       if(VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
+---
+>       if(SDL_VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
+510c510
+<       if(VIDEO_X11_XVM AND HAVE_XF86VM_H)
+---
+>       if(SDL_VIDEO_X11_XVM AND HAVE_XF86VM_H)
+532c532
+<     if(VIDEO_MIR)
+---
+>     if(SDL_VIDEO_MIR)
+593c593
+<   if(VIDEO_WAYLAND)
+---
+>   if(SDL_VIDEO_WAYLAND)
+694c694
+<   if(VIDEO_COCOA)
+---
+>   if(SDL_VIDEO_COCOA)
+714c714
+<   if(VIDEO_DIRECTFB)
+---
+>   if(SDL_VIDEO_DIRECTFB)
+742c742
+<   if(VIDEO_VIVANTE)
+---
+>   if(SDL_VIDEO_VIVANTE)
+772c772
+<   if(VIDEO_OPENGL)
+---
+>   if(SDL_VIDEO_OPENGL)
+790c790
+<   if(VIDEO_OPENGLES)
+---
+>   if(SDL_VIDEO_OPENGLES)
+828c828
+<   if(PTHREADS)
+---
+>   if(SDL_PTHREADS)
+1096c1096
+<   if(VIDEO_RPI)
+---
+>   if(SDL_VIDEO_RPI)
+1120c1120
+<   endif(VIDEO_RPI)
+---
+>   endif(SDL_VIDEO_RPI)

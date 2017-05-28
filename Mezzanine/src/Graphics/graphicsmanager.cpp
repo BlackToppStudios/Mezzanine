@@ -337,8 +337,8 @@ namespace Mezzanine
             this->GraphicsPublisher.AddSubscriptionTable(EventWindowDestroyed);
 
             // Ogre handles this stuff for us
-            //SDL_EventState(SDL_RENDER_TARGETS_RESET,SDL_DISABLE);
-            //SDL_EventState(SDL_RENDER_DEVICE_RESET,SDL_DISABLE);
+            SDL_EventState(SDL_RENDER_TARGETS_RESET,SDL_DISABLE);
+            SDL_EventState(SDL_RENDER_DEVICE_RESET,SDL_DISABLE);
 
             SDL_DisplayMode DeskMode;
             SDL_GetDesktopDisplayMode(0,&DeskMode);
