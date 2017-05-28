@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -13,22 +13,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten/emscripten.h>
+#endif
+
 #include "SDL_test_common.h"
 
 static SDLTest_CommonState *state;
+int done;
 
-/* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
-static void
-quit(int rc)
-{
-    SDLTest_CommonQuit(state);
-    exit(rc);
-}
-
-int
-main(int argc, char *argv[])
-{
-    static const char *cursorNames[] = {
+static const char *cursorNames[] = {
         "arrow",
         "ibeam",
         "wait",
@@ -41,41 +35,23 @@ main(int argc, char *argv[])
         "sizeALL",
         "NO",
         "hand",
-    };
+};
+int system_cursor = -1;
+SDL_Cursor *cursor = NULL;
 
-    int i, done;
+/* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
+static void
+quit(int rc)
+{
+    SDLTest_CommonQuit(state);
+    exit(rc);
+}
+
+void
+loop()
+{
+    int i;
     SDL_Event event;
-    int system_cursor = -1;
-    SDL_Cursor *cursor = NULL;
-
-    SDL_assert(SDL_arraysize(cursorNames) == SDL_NUM_SYSTEM_CURSORS);
-
-    /* Initialize test framework */
-    state = SDLTest_CommonCreateState(argv, SDL_INIT_VIDEO);
-    if (!state) {
-        return 1;
-    }
-    state->skip_renderer = SDL_TRUE;
-    for (i = 1; i < argc;) {
-        int consumed;
-
-        consumed = SDLTest_CommonArg(state, i);
-        if (consumed == 0) {
-            consumed = -1;
-        }
-        if (consumed < 0) {
-            fprintf(stderr, "Usage: %s %s\n", argv[0], SDLTest_CommonUsage(state));
-            quit(1);
-        }
-        i += consumed;
-    }
-    if (!SDLTest_CommonInit(state)) {
-        quit(2);
-    }
-
-    /* Main render loop */
-    done = 0;
-    while (!done) {
         /* Check for events */
         while (SDL_PollEvent(&event)) {
             SDLTest_CommonEvent(state, &event, &done);
@@ -84,7 +60,7 @@ main(int argc, char *argv[])
                 if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                     SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
                     if (window) {
-                        printf("Window %d resized to %dx%d\n",
+                        SDL_Log("Window %d resized to %dx%d\n",
                             event.window.windowID,
                             event.window.data1,
                             event.window.data2);
@@ -93,7 +69,7 @@ main(int argc, char *argv[])
                 if (event.window.event == SDL_WINDOWEVENT_MOVED) {
                     SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
                     if (window) {
-                        printf("Window %d moved to %d,%d (display %s)\n",
+                        SDL_Log("Window %d moved to %d,%d (display %s)\n",
                             event.window.windowID,
                             event.window.data1,
                             event.window.data2,
@@ -125,11 +101,70 @@ main(int argc, char *argv[])
                 }
             }
         }
+
+        for (i = 0; i < state->num_windows; ++i) {
+            SDL_Renderer *renderer = state->renderers[i];
+            SDL_RenderClear(renderer);
+            SDL_RenderPresent(renderer);
+        }
+#ifdef __EMSCRIPTEN__
+    if (done) {
+        emscripten_cancel_main_loop();
     }
+#endif
+}
+
+int
+main(int argc, char *argv[])
+{
+    int i;
+
+    /* Enable standard application logging */
+    SDL_LogSetPriority(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO);
+
+    SDL_assert(SDL_arraysize(cursorNames) == SDL_NUM_SYSTEM_CURSORS);
+
+    /* Initialize test framework */
+    state = SDLTest_CommonCreateState(argv, SDL_INIT_VIDEO);
+    if (!state) {
+        return 1;
+    }
+    for (i = 1; i < argc;) {
+        int consumed;
+
+        consumed = SDLTest_CommonArg(state, i);
+        if (consumed == 0) {
+            consumed = -1;
+        }
+        if (consumed < 0) {
+            SDL_Log("Usage: %s %s\n", argv[0], SDLTest_CommonUsage(state));
+            quit(1);
+        }
+        i += consumed;
+    }
+    if (!SDLTest_CommonInit(state)) {
+        quit(2);
+    }
+
+    for (i = 0; i < state->num_windows; ++i) {
+        SDL_Renderer *renderer = state->renderers[i];
+        SDL_SetRenderDrawColor(renderer, 0xA0, 0xA0, 0xA0, 0xFF);
+        SDL_RenderClear(renderer);
+    }
+ 
+    /* Main render loop */
+    done = 0;
+#ifdef __EMSCRIPTEN__
+    emscripten_set_main_loop(loop, 0, 1);
+#else
+    while (!done) {
+        loop();
+    }
+#endif
     SDL_FreeCursor(cursor);
 
     quit(0);
-    // keep the compiler happy ...
+    /* keep the compiler happy ... */
     return(0);
 }
 

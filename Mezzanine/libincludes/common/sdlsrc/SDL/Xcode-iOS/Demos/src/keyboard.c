@@ -4,8 +4,8 @@
  *  use however you want
  */
 
-#import "SDL.h"
-#import "common.h"
+#include "SDL.h"
+#include "common.h"
 
 #define GLYPH_SIZE_IMAGE 16     /* size of glyphs (characters) in the bitmap font file */
 #define GLYPH_SIZE_SCREEN 32    /* size of glyphs (characters) as shown on the screen */
@@ -80,7 +80,7 @@ fontMapping map[TABLE_SIZE] = {
     {SDL_SCANCODE_7, 1, 0, 23}, /* 7 */
     {SDL_SCANCODE_8, 1, 0, 24}, /* 8 */
     {SDL_SCANCODE_9, 1, 0, 25}, /* 9 */
-    {SDL_SCANCODE_SPACE, 1, 0, 0},      /*' ' */
+    {SDL_SCANCODE_SPACE, 1, 0, 0},      /* ' ' */
     {SDL_SCANCODE_1, 0, KMOD_SHIFT, 1}, /* ! */
     {SDL_SCANCODE_SLASH, 0, KMOD_SHIFT, 31},    /* ? */
     {SDL_SCANCODE_SLASH, 1, 0, 15},     /* / */
@@ -132,10 +132,13 @@ keyToIndex(SDL_Keysym key)
 void
 getPositionForCharNumber(int n, int *x, int *y)
 {
+    int renderW, renderH;
+    SDL_RenderGetLogicalSize(renderer, &renderW, &renderH);
+
     int x_padding = 16;         /* padding space on left and right side of screen */
     int y_padding = 32;         /* padding space at top of screen */
     /* figure out the number of characters that can fit horizontally across the screen */
-    int max_x_chars = (SCREEN_WIDTH - 2 * x_padding) / GLYPH_SIZE_SCREEN;
+    int max_x_chars = (renderW - 2 * x_padding) / GLYPH_SIZE_SCREEN;
     int line_separation = 5;    /* pixels between each line */
     *x = (n % max_x_chars) * GLYPH_SIZE_SCREEN + x_padding;
     *y = (n / max_x_chars) * (GLYPH_SIZE_SCREEN + line_separation) +
@@ -168,8 +171,7 @@ void
 drawBlank(int x, int y)
 {
     SDL_Rect rect = { x, y, GLYPH_SIZE_SCREEN, GLYPH_SIZE_SCREEN };
-    SDL_SetRenderDrawColor(renderer, bg_color.r, bg_color.g, bg_color.b,
-                           bg_color.unused);
+    SDL_SetRenderDrawColor(renderer, bg_color.r, bg_color.g, bg_color.b, bg_color.a);
     SDL_RenderFillRect(renderer, &rect);
 }
 
@@ -229,33 +231,36 @@ loadFont(void)
 int
 main(int argc, char *argv[])
 {
-
     int index;                  /* index of last key we pushed in the bitmap font */
     SDL_Window *window;
     SDL_Event event;            /* last event received */
     SDL_Keymod mod;             /* key modifiers of last key we pushed */
     SDL_Scancode scancode;      /* scancode of last key we pushed */
+    int width;
+    int height;
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("Error initializing SDL: %s", SDL_GetError());
     }
     /* create window */
-    window = SDL_CreateWindow("iPhone keyboard test", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+    window = SDL_CreateWindow("iPhone keyboard test", 0, 0, 320, 480, SDL_WINDOW_ALLOW_HIGHDPI);
     /* create renderer */
     renderer = SDL_CreateRenderer(window, -1, 0);
+
+    SDL_GetWindowSize(window, &width, &height);
+    SDL_RenderSetLogicalSize(renderer, width, height);
 
     /* load up our font */
     loadFont();
 
     /* draw the background, we'll just paint over it */
-    SDL_SetRenderDrawColor(renderer, bg_color.r, bg_color.g, bg_color.b,
-                           bg_color.unused);
+    SDL_SetRenderDrawColor(renderer, bg_color.r, bg_color.g, bg_color.b, bg_color.a);
     SDL_RenderFillRect(renderer, NULL);
     SDL_RenderPresent(renderer);
 
     int done = 0;
     /* loop till we get SDL_Quit */
-    while (SDL_WaitEvent(&event)) {
+    while (!done && SDL_WaitEvent(&event)) {
         switch (event.type) {
         case SDL_QUIT:
             done = 1;

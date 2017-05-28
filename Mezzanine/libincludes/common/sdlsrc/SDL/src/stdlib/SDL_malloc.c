@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,22 +18,38 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+
+#if defined(__clang_analyzer__) && !defined(SDL_DISABLE_ANALYZE_MACROS)
+#define SDL_DISABLE_ANALYZE_MACROS 1
+#endif
+
+#include "../SDL_internal.h"
 
 /* This file contains portable memory management functions for SDL */
 
 #include "SDL_stdinc.h"
 
-#ifdef SDL_malloc
-/* expose the symbol, but use what we figured out elsewhere. */
-#undef SDL_malloc
-#undef SDL_calloc
-#undef SDL_realloc
-#undef SDL_free
-void *SDL_malloc(size_t size) { return SDL_malloc_inline(size); }
-void *SDL_calloc(size_t nmemb, size_t size) { return SDL_calloc_inline(nmemb, size); }
-void *SDL_realloc(void *ptr, size_t size) { return SDL_realloc_inline(ptr, size); }
-void SDL_free(void *ptr) { SDL_free_inline(ptr); }
+#if defined(HAVE_MALLOC)
+
+void *SDL_malloc(size_t size)
+{
+    return malloc(size);
+}
+
+void *SDL_calloc(size_t nmemb, size_t size)
+{
+    return calloc(nmemb, size);
+}
+
+void *SDL_realloc(void *ptr, size_t size)
+{
+    return realloc(ptr, size);
+}
+
+void SDL_free(void *ptr)
+{
+    free(ptr);
+}
 
 #else  /* the rest of this is a LOT of tapdancing to implement malloc. :) */
 
@@ -43,11 +59,12 @@ void SDL_free(void *ptr) { SDL_free_inline(ptr); }
 #define LACKS_STRING_H
 #define LACKS_STDLIB_H
 #define ABORT
+#define USE_LOCKS 1
 
 /*
   This is a version (aka dlmalloc) of malloc/free/realloc written by
   Doug Lea and released to the public domain, as explained at
-  http:// ©reativecommons.org/licenses/publicdomain.  Send questions,
+  http://creativecommons.org/licenses/publicdomain.  Send questions,
   comments, complaints, performance data, etc to dl@cs.oswego.edu
 
 * Version 2.8.3 Thu Sep 22 11:16:15 2005  Doug Lea  (dl at gee)

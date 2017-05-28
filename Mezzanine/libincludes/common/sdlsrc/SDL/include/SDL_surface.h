@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -22,11 +22,11 @@
 /**
  *  \file SDL_surface.h
  *
- *  Header file for ::SDL_surface definition and management functions.
+ *  Header file for ::SDL_Surface definition and management functions.
  */
 
-#ifndef _SDL_surface_h
-#define _SDL_surface_h
+#ifndef SDL_surface_h_
+#define SDL_surface_h_
 
 #include "SDL_stdinc.h"
 #include "SDL_pixels.h"
@@ -43,17 +43,17 @@ extern "C" {
 /**
  *  \name Surface flags
  *
- *  These are the currently supported flags for the ::SDL_surface.
+ *  These are the currently supported flags for the ::SDL_Surface.
  *
  *  \internal
  *  Used internally (read-only).
  */
-/*@{*/
+/* @{ */
 #define SDL_SWSURFACE       0           /**< Just here for compatibility */
 #define SDL_PREALLOC        0x00000001  /**< Surface uses preallocated memory */
 #define SDL_RLEACCEL        0x00000002  /**< Surface is RLE encoded */
 #define SDL_DONTFREE        0x00000004  /**< Surface is referenced internally */
-/*@}*//*Surface flags*/
+/* @} *//* Surface flags */
 
 /**
  *  Evaluates to true if the surface needs to be locked before access.
@@ -118,6 +118,8 @@ typedef int (*SDL_blit) (struct SDL_Surface * src, SDL_Rect * srcrect,
 extern DECLSPEC SDL_Surface *SDLCALL SDL_CreateRGBSurface
     (Uint32 flags, int width, int height, int depth,
      Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
+extern DECLSPEC SDL_Surface *SDLCALL SDL_CreateRGBSurfaceWithFormat
+    (Uint32 flags, int width, int height, int depth, Uint32 format);
 extern DECLSPEC SDL_Surface *SDLCALL SDL_CreateRGBSurfaceFrom(void *pixels,
                                                               int width,
                                                               int height,
@@ -127,6 +129,8 @@ extern DECLSPEC SDL_Surface *SDLCALL SDL_CreateRGBSurfaceFrom(void *pixels,
                                                               Uint32 Gmask,
                                                               Uint32 Bmask,
                                                               Uint32 Amask);
+extern DECLSPEC SDL_Surface *SDLCALL SDL_CreateRGBSurfaceWithFormatFrom
+    (void *pixels, int width, int height, int depth, int pitch, Uint32 format);
 extern DECLSPEC void SDLCALL SDL_FreeSurface(SDL_Surface * surface);
 
 /**
@@ -183,6 +187,12 @@ extern DECLSPEC SDL_Surface *SDLCALL SDL_LoadBMP_RW(SDL_RWops * src,
 
 /**
  *  Save a surface to a seekable SDL data stream (memory or file).
+ *
+ *  Surfaces with a 24-bit, 32-bit and paletted 8-bit format get saved in the
+ *  BMP directly. Other RGB formats with 8-bit or higher get converted to a
+ *  24-bit surface or, if they have an alpha mask or a colorkey, to a 32-bit
+ *  surface before they are saved. YUV and paletted 1-bit and 4-bit formats are
+ *  not supported.
  *
  *  If \c freedst is non-zero, the stream will be closed after being written.
  *
@@ -357,7 +367,7 @@ extern DECLSPEC void SDLCALL SDL_GetClipRect(SDL_Surface * surface,
  *  surface.
  */
 extern DECLSPEC SDL_Surface *SDLCALL SDL_ConvertSurface
-    (SDL_Surface * src, SDL_PixelFormat * fmt, Uint32 flags);
+    (SDL_Surface * src, const SDL_PixelFormat * fmt, Uint32 flags);
 extern DECLSPEC SDL_Surface *SDLCALL SDL_ConvertSurfaceFormat
     (SDL_Surface * src, Uint32 pixel_format, Uint32 flags);
 
@@ -399,44 +409,42 @@ extern DECLSPEC int SDLCALL SDL_FillRects
  *
  *  The blit function should not be called on a locked surface.
  *
- *  The blit semantics for surfaces with and without alpha and colorkey
+ *  The blit semantics for surfaces with and without blending and colorkey
  *  are defined as follows:
  *  \verbatim
     RGBA->RGB:
-      SDL_SRCALPHA set:
-        alpha-blend (using alpha-channel).
+      Source surface blend mode set to SDL_BLENDMODE_BLEND:
+        alpha-blend (using the source alpha-channel and per-surface alpha)
         SDL_SRCCOLORKEY ignored.
-      SDL_SRCALPHA not set:
+      Source surface blend mode set to SDL_BLENDMODE_NONE:
         copy RGB.
         if SDL_SRCCOLORKEY set, only copy the pixels matching the
         RGB values of the source color key, ignoring alpha in the
         comparison.
 
     RGB->RGBA:
-      SDL_SRCALPHA set:
-        alpha-blend (using the source per-surface alpha value);
-        set destination alpha to opaque.
-      SDL_SRCALPHA not set:
+      Source surface blend mode set to SDL_BLENDMODE_BLEND:
+        alpha-blend (using the source per-surface alpha)
+      Source surface blend mode set to SDL_BLENDMODE_NONE:
         copy RGB, set destination alpha to source per-surface alpha value.
       both:
         if SDL_SRCCOLORKEY set, only copy the pixels matching the
         source color key.
 
     RGBA->RGBA:
-      SDL_SRCALPHA set:
-        alpha-blend (using the source alpha channel) the RGB values;
-        leave destination alpha untouched. [Note: is this correct?]
+      Source surface blend mode set to SDL_BLENDMODE_BLEND:
+        alpha-blend (using the source alpha-channel and per-surface alpha)
         SDL_SRCCOLORKEY ignored.
-      SDL_SRCALPHA not set:
+      Source surface blend mode set to SDL_BLENDMODE_NONE:
         copy all of RGBA to the destination.
         if SDL_SRCCOLORKEY set, only copy the pixels matching the
         RGB values of the source color key, ignoring alpha in the
-       comparison.
+        comparison.
 
     RGB->RGB:
-      SDL_SRCALPHA set:
-        alpha-blend (using the source per-surface alpha value).
-      SDL_SRCALPHA not set:
+      Source surface blend mode set to SDL_BLENDMODE_BLEND:
+        alpha-blend (using the source per-surface alpha)
+      Source surface blend mode set to SDL_BLENDMODE_NONE:
         copy RGB.
       both:
         if SDL_SRCCOLORKEY set, only copy the pixels matching the
@@ -500,6 +508,6 @@ extern DECLSPEC int SDLCALL SDL_LowerBlitScaled
 #endif
 #include "close_code.h"
 
-#endif /* _SDL_surface_h */
+#endif /* SDL_surface_h_ */
 
 /* vi: set ts=4 sw=4 expandtab: */

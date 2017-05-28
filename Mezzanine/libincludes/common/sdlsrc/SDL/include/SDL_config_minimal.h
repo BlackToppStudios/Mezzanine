@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -19,8 +19,9 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef _SDL_config_minimal_h
-#define _SDL_config_minimal_h
+#ifndef SDL_config_minimal_h_
+#define SDL_config_minimal_h_
+#define SDL_config_h_
 
 #include "SDL_platform.h"
 
@@ -30,10 +31,12 @@
  *  This is the minimal configuration that can be used to build SDL.
  */
 
-#include <stddef.h>
-#include <stdarg.h>
+#define HAVE_STDARG_H   1
+#define HAVE_STDDEF_H   1
 
-#if !defined(_STDINT_H_) && !defined(_STDINT_H) && (!defined(HAVE_STDINT_H) || !_HAVE_STDINT_H)
+/* Most everything except Visual Studio 2008 and earlier has stdint.h now */
+#if defined(_MSC_VER) && (_MSC_VER < 1600)
+/* Here are some reasonable defaults */
 typedef unsigned int size_t;
 typedef signed char int8_t;
 typedef unsigned char uint8_t;
@@ -44,7 +47,9 @@ typedef unsigned int uint32_t;
 typedef signed long long int64_t;
 typedef unsigned long long uint64_t;
 typedef unsigned long uintptr_t;
-#endif /* if (stdint.h isn't available) */
+#else
+#define HAVE_STDINT_H 1
+#endif /* Visual Studio 2008 */
 
 #ifdef __GNUC__
 #define HAVE_GCC_SYNC_LOCK_TEST_AND_SET 1
@@ -71,4 +76,7 @@ typedef unsigned long uintptr_t;
 /* Enable the dummy video driver (src/video/dummy/\*.c) */
 #define SDL_VIDEO_DRIVER_DUMMY  1
 
-#endif /* _SDL_config_minimal_h */
+/* Enable the dummy filesystem driver (src/filesystem/dummy/\*.c) */
+#define SDL_FILESYSTEM_DUMMY  1
+
+#endif /* SDL_config_minimal_h_ */
