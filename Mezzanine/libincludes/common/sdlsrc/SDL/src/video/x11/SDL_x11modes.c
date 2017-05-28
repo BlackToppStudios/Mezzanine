@@ -27,6 +27,8 @@
 #include "SDL_timer.h"
 #include "edid.h"
 
+#include <stdio.h>
+
 /* #define X11MODES_DEBUG */
 
 /* I'm becoming more and more convinced that the application should never
