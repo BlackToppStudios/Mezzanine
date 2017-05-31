@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../SDL_internal.h"
 
 #include "SDL.h"
 #include "SDL_assert.h"
@@ -33,7 +33,7 @@ SDL_Window*
 SDL_CreateShapedWindow(const char *title,unsigned int x,unsigned int y,unsigned int w,unsigned int h,Uint32 flags)
 {
     SDL_Window *result = NULL;
-    result = SDL_CreateWindow(title,-1000,-1000,w,h,(flags | SDL_WINDOW_BORDERLESS) & (~SDL_WINDOW_FULLSCREEN) & (~SDL_WINDOW_RESIZABLE) /*& (~SDL_WINDOW_SHOWN)*/);
+    result = SDL_CreateWindow(title,-1000,-1000,w,h,(flags | SDL_WINDOW_BORDERLESS) & (~SDL_WINDOW_FULLSCREEN) & (~SDL_WINDOW_RESIZABLE) /* & (~SDL_WINDOW_SHOWN) */);
     if(result != NULL) {
         result->shaper = SDL_GetVideoDevice()->shape_driver.CreateShaper(result);
         if(result->shaper != NULL) {
@@ -128,6 +128,7 @@ RecursivelyCalculateShapeTree(SDL_WindowShapeMode mode,SDL_Surface* mask,SDL_Rec
     SDL_Color key;
     SDL_ShapeTree* result = (SDL_ShapeTree*)SDL_malloc(sizeof(SDL_ShapeTree));
     SDL_Rect next = {0,0,0,0};
+
     for(y=dimensions.y;y<dimensions.y + dimensions.h;y++) {
         for(x=dimensions.x;x<dimensions.x + dimensions.w;x++) {
             pixel_value = 0;
@@ -165,27 +166,37 @@ RecursivelyCalculateShapeTree(SDL_WindowShapeMode mode,SDL_Surface* mask,SDL_Rec
             if(last_opaque == -1)
                 last_opaque = pixel_opaque;
             if(last_opaque != pixel_opaque) {
+                const int halfwidth = dimensions.w / 2;
+                const int halfheight = dimensions.h / 2;
+
                 result->kind = QuadShape;
-                /* These will stay the same. */
-                next.w = dimensions.w / 2;
-                next.h = dimensions.h / 2;
-                /* These will change from recursion to recursion. */
+
                 next.x = dimensions.x;
                 next.y = dimensions.y;
+                next.w = halfwidth;
+                next.h = halfheight;
                 result->data.children.upleft = (struct SDL_ShapeTree *)RecursivelyCalculateShapeTree(mode,mask,next);
-                next.x += next.w;
-                /* Unneeded: next.y = dimensions.y; */
+
+                next.x = dimensions.x + halfwidth;
+                next.w = dimensions.w - halfwidth;
                 result->data.children.upright = (struct SDL_ShapeTree *)RecursivelyCalculateShapeTree(mode,mask,next);
+
                 next.x = dimensions.x;
-                next.y += next.h;
+                next.w = halfwidth;
+                next.y = dimensions.y + halfheight;
+                next.h = dimensions.h - halfheight;
                 result->data.children.downleft = (struct SDL_ShapeTree *)RecursivelyCalculateShapeTree(mode,mask,next);
-                next.x += next.w;
-                /* Unneeded: next.y = dimensions.y + dimensions.h /2; */
+
+                next.x = dimensions.x + halfwidth;
+                next.w = dimensions.w - halfwidth;
                 result->data.children.downright = (struct SDL_ShapeTree *)RecursivelyCalculateShapeTree(mode,mask,next);
+
                 return result;
             }
         }
     }
+
+
     /* If we never recursed, all the pixels in this quadrant have the same "value". */
     result->kind = (last_opaque == SDL_TRUE ? OpaqueShape : TransparentShape);
     result->data.shape = dimensions;
@@ -195,8 +206,14 @@ RecursivelyCalculateShapeTree(SDL_WindowShapeMode mode,SDL_Surface* mask,SDL_Rec
 SDL_ShapeTree*
 SDL_CalculateShapeTree(SDL_WindowShapeMode mode,SDL_Surface* shape)
 {
-    SDL_Rect dimensions = {0,0,shape->w,shape->h};
+    SDL_Rect dimensions;
     SDL_ShapeTree* result = NULL;
+
+    dimensions.x = 0;
+    dimensions.y = 0;
+    dimensions.w = shape->w;
+    dimensions.h = shape->h;
+
     if(SDL_MUSTLOCK(shape))
         SDL_LockSurface(shape);
     result = RecursivelyCalculateShapeTree(mode,shape,dimensions);
@@ -223,10 +240,10 @@ void
 SDL_FreeShapeTree(SDL_ShapeTree** shape_tree)
 {
     if((*shape_tree)->kind == QuadShape) {
-        SDL_FreeShapeTree((SDL_ShapeTree **)&(*shape_tree)->data.children.upleft);
-        SDL_FreeShapeTree((SDL_ShapeTree **)&(*shape_tree)->data.children.upright);
-        SDL_FreeShapeTree((SDL_ShapeTree **)&(*shape_tree)->data.children.downleft);
-        SDL_FreeShapeTree((SDL_ShapeTree **)&(*shape_tree)->data.children.downright);
+        SDL_FreeShapeTree((SDL_ShapeTree **)(char*)&(*shape_tree)->data.children.upleft);
+        SDL_FreeShapeTree((SDL_ShapeTree **)(char*)&(*shape_tree)->data.children.upright);
+        SDL_FreeShapeTree((SDL_ShapeTree **)(char*)&(*shape_tree)->data.children.downleft);
+        SDL_FreeShapeTree((SDL_ShapeTree **)(char*)&(*shape_tree)->data.children.downright);
     }
     SDL_free(*shape_tree);
     *shape_tree = NULL;

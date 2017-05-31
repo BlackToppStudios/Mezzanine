@@ -65,7 +65,6 @@
 #endif
 
 #include <SDL.h>
-#include "../src/video/SDL_sysvideo.h"
 
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
@@ -156,10 +155,6 @@ namespace Mezzanine
             this->DestroyAllViewports();
             // first lets clear out the user data manually, the alternative is using SDL's allocation methods to make it, which we can opt for later
             if( this->SDLWindow ) {
-                SDL_WindowUserData* WindowData = this->SDLWindow->data;
-                this->SDLWindow->data = NULL;
-                delete WindowData;
-
                 SDL_DestroyWindow(this->SDLWindow);
             }
 
@@ -191,10 +186,7 @@ namespace Mezzanine
             #endif
                 this->OgreWindow->getCustomAttribute("WINDOW",&Data);
                 this->SDLWindow = SDL_CreateWindowFrom((void*)Data);
-                this->SDLWindow->data = new SDL_WindowUserData();
-                this->SDLWindow->data->name = NULL;
-                this->SDLWindow->data->data = this;
-                this->SDLWindow->data->next = NULL;
+                SDL_SetWindowData(this->SDLWindow,"MezzWin",this);
             }
 
             this->AddSubscriptionTable(GameWindow::EventWindowShown);

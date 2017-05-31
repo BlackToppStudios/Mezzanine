@@ -5,6 +5,8 @@
  */
 
 #include "SDL.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 #define SCREEN_WIDTH 320
@@ -20,6 +22,7 @@ void
 render(SDL_Renderer *renderer)
 {
 
+    SDL_Rect rect;
     Uint8 r, g, b;
 
     /* Clear the screen */
@@ -27,7 +30,6 @@ render(SDL_Renderer *renderer)
     SDL_RenderClear(renderer);
 
     /*  Come up with a random rectangle */
-    SDL_Rect rect;
     rect.w = randomInt(64, 128);
     rect.h = randomInt(64, 128);
     rect.x = randomInt(0, SCREEN_WIDTH);
@@ -67,7 +69,7 @@ main(int argc, char *argv[])
     /* create window and renderer */
     window =
         SDL_CreateWindow(NULL, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
-                         SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+                         SDL_WINDOW_OPENGL);
     if (!window) {
         printf("Could not initialize Window\n");
         return 1;

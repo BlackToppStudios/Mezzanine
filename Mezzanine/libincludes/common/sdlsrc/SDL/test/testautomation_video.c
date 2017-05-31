@@ -51,7 +51,7 @@ void _destroyVideoSuiteTestWindow(SDL_Window *window)
   if (window != NULL) {
      SDL_DestroyWindow(window);
      window = NULL;
-     SDLTest_AssertPass("Call to SDL_DestroyWindow");
+     SDLTest_AssertPass("Call to SDL_DestroyWindow()");
   }
 }
 
@@ -342,7 +342,7 @@ video_getWindowFlags(void *arg)
   window = _createVideoSuiteTestWindow(title);
   if (window != NULL) {
       actualFlags = SDL_GetWindowFlags(window);
-      SDLTest_AssertPass("Call to SDL_GetWindowFlags");
+      SDLTest_AssertPass("Call to SDL_GetWindowFlags()");
       SDLTest_AssertCheck((flags & actualFlags) == flags, "Verify returned value has flags %d set, got: %d", flags, actualFlags);
   }
 
@@ -364,7 +364,7 @@ video_getNumDisplayModes(void *arg)
 
   /* Get number of displays */
   displayNum = SDL_GetNumVideoDisplays();
-  SDLTest_AssertPass("Call to SDL_GetNumVideoDisplays");
+  SDLTest_AssertPass("Call to SDL_GetNumVideoDisplays()");
 
   /* Make call for each display */
   for (i=0; i<displayNum; i++) {
@@ -388,7 +388,7 @@ video_getNumDisplayModesNegative(void *arg)
 
   /* Get number of displays */
   displayNum = SDL_GetNumVideoDisplays();
-  SDLTest_AssertPass("Call to SDL_GetNumVideoDisplays");
+  SDLTest_AssertPass("Call to SDL_GetNumVideoDisplays()");
 
   /* Invalid boundary values */
   displayIndex =  SDLTest_RandomSint32BoundaryValue(0, displayNum, SDL_FALSE);
@@ -427,7 +427,7 @@ video_getClosestDisplayModeCurrentResolution(void *arg)
 
   /* Get number of displays */
   displayNum = SDL_GetNumVideoDisplays();
-  SDLTest_AssertPass("Call to SDL_GetNumVideoDisplays");
+  SDLTest_AssertPass("Call to SDL_GetNumVideoDisplays()");
 
   /* Make calls for each display */
   for (i=0; i<displayNum; i++) {
@@ -435,7 +435,7 @@ video_getClosestDisplayModeCurrentResolution(void *arg)
 
     /* Get first display mode to get a sane resolution; this should always work */
     result = SDL_GetDisplayMode(i, 0, &current);
-    SDLTest_AssertPass("Call to SDL_GetDisplayMode");
+    SDLTest_AssertPass("Call to SDL_GetDisplayMode()");
     SDLTest_AssertCheck(result == 0, "Verify return value, expected: 0, got: %d", result);
     if (result != 0) {
       return TEST_ABORTED;
@@ -481,7 +481,7 @@ video_getClosestDisplayModeRandomResolution(void *arg)
 
   /* Get number of displays */
   displayNum = SDL_GetNumVideoDisplays();
-  SDLTest_AssertPass("Call to SDL_GetNumVideoDisplays");
+  SDLTest_AssertPass("Call to SDL_GetNumVideoDisplays()");
 
   /* Make calls for each display */
   for (i=0; i<displayNum; i++) {
@@ -521,7 +521,7 @@ video_getWindowBrightness(void *arg)
   window = _createVideoSuiteTestWindow(title);
   if (window != NULL) {
       result = SDL_GetWindowBrightness(window);
-      SDLTest_AssertPass("Call to SDL_GetWindowBrightness");
+      SDLTest_AssertPass("Call to SDL_GetWindowBrightness()");
       SDLTest_AssertCheck(result >= 0.0 && result <= 1.0, "Validate range of result value; expected: [0.0, 1.0], got: %f", result);
   }
 
@@ -541,7 +541,6 @@ video_getWindowBrightnessNegative(void *arg)
 {
   const char *invalidWindowError = "Invalid window";
   char *lastError;
-  const char* title = "video_getWindowBrightnessNegative Test Window";
   float result;
 
   /* Call against invalid window */
@@ -583,7 +582,7 @@ video_getWindowDisplayMode(void *arg)
   window = _createVideoSuiteTestWindow(title);
   if (window != NULL) {
       result = SDL_GetWindowDisplayMode(window, &mode);
-      SDLTest_AssertPass("Call to SDL_GetWindowDisplayMode");
+      SDLTest_AssertPass("Call to SDL_GetWindowDisplayMode()");
       SDLTest_AssertCheck(result == 0, "Validate result value; expected: 0, got: %d", result);
       SDLTest_AssertCheck(mode.w > 0, "Validate mode.w content; expected: >0, got: %d", mode.w);
       SDLTest_AssertCheck(mode.h > 0, "Validate mode.h content; expected: >0, got: %d", mode.h);
@@ -728,7 +727,6 @@ video_getWindowGammaRamp(void *arg)
 int
 video_getWindowGammaRampNegative(void *arg)
 {
-  const char* title = "video_getWindowGammaRampNegative Test Window";
   Uint16 red[256];
   Uint16 green[256];
   Uint16 blue[256];
@@ -740,7 +738,7 @@ video_getWindowGammaRampNegative(void *arg)
   /* Call against invalid window */
   result = SDL_GetWindowGammaRamp(NULL, red, green, blue);
   SDLTest_AssertPass("Call to SDL_GetWindowGammaRamp(window=NULL,r,g,b)");
-  SDLTest_AssertCheck(result == -1, "Validate result value; expected: -1, got: %f", result);
+  SDLTest_AssertCheck(result == -1, "Validate result value; expected: -1, got: %i", result);
   _checkInvalidWindowError();
 
   return TEST_COMPLETED;
@@ -876,7 +874,7 @@ video_getWindowId(void *arg)
   /* Clean up */
   _destroyVideoSuiteTestWindow(window);
 
-  /* Get window from ID for closed window*/
+  /* Get window from ID for closed window */
   result = SDL_GetWindowFromID(id);
   SDLTest_AssertPass("Call to SDL_GetWindowID(%d/closed_window)", id);
   SDLTest_AssertCheck(result == NULL, "Verify result is NULL");
@@ -1081,6 +1079,7 @@ video_getSetWindowSize(void *arg)
   SDL_Window* window;
   int result;
   SDL_Rect display;
+  int maxwVariation, maxhVariation;
   int wVariation, hVariation;
   int referenceW, referenceH;
   int currentW, currentH;
@@ -1096,8 +1095,18 @@ video_getSetWindowSize(void *arg)
   window = _createVideoSuiteTestWindow(title);
   if (window == NULL) return TEST_ABORTED;
 
-  for (wVariation = 0; wVariation < 4; wVariation++) {
-   for (hVariation = 0; hVariation < 4; hVariation++) {
+#ifdef __WIN32__
+  /* Platform clips window size to screen size */
+  maxwVariation = 4;
+  maxhVariation = 4;
+#else
+  /* Platform allows window size >= screen size */
+  maxwVariation = 5;
+  maxhVariation = 5;
+#endif
+  
+  for (wVariation = 0; wVariation < maxwVariation; wVariation++) {
+   for (hVariation = 0; hVariation < maxhVariation; hVariation++) {
     switch(wVariation) {
      case 0:
       /* 1 Pixel Wide */
@@ -1108,10 +1117,14 @@ video_getSetWindowSize(void *arg)
       desiredW = SDLTest_RandomIntegerInRange(1, 100);
       break;
      case 2:
+      /* Width 1 pixel smaller than screen */
+      desiredW = display.w - 1;
+      break;
+     case 3:
       /* Width at screen size */
       desiredW = display.w;
       break;
-     case 3:
+     case 4:
       /* Width 1 pixel larger than screen */
       desiredW = display.w + 1;
       break;
@@ -1127,10 +1140,14 @@ video_getSetWindowSize(void *arg)
       desiredH = SDLTest_RandomIntegerInRange(1, 100);
       break;
      case 2:
+      /* Height 1 pixel smaller than screen */
+      desiredH = display.h - 1;
+      break;
+     case 3:
       /* Height at screen size */
       desiredH = display.h;
       break;
-     case 3:
+     case 4:
       /* Height 1 pixel larger than screen */
       desiredH = display.h + 1;
       break;
@@ -1152,13 +1169,13 @@ video_getSetWindowSize(void *arg)
     currentW = desiredW + 1;
     SDL_GetWindowSize(window, &currentW, NULL);
     SDLTest_AssertPass("Call to SDL_GetWindowSize(&h=NULL)");
-    SDLTest_AssertCheck(desiredW == currentW, "Verify returned width; expected: %d, got: %d", desiredW, currentH);
+    SDLTest_AssertCheck(desiredW == currentW, "Verify returned width; expected: %d, got: %d", desiredW, currentW);
 
     /* Get just height */
     currentH = desiredH + 1;
     SDL_GetWindowSize(window, NULL, &currentH);
     SDLTest_AssertPass("Call to SDL_GetWindowSize(&w=NULL)");
-    SDLTest_AssertCheck(desiredH == currentH, "Verify returned height; expected: %d, got: %d", desiredW, currentH);
+    SDLTest_AssertCheck(desiredH == currentH, "Verify returned height; expected: %d, got: %d", desiredH, currentH);
    }
   }
 
@@ -1505,10 +1522,10 @@ video_getSetWindowData(void *arg)
   const char *referenceName2 = "TestName2";
   const char *name2 = "TestName2";
   int datasize;
-  char *referenceUserdata;
-  char *userdata;
-  char *referenceUserdata2;
-  char *userdata2;
+  char *referenceUserdata = NULL;
+  char *userdata = NULL;
+  char *referenceUserdata2 = NULL;
+  char *userdata2 = NULL;
   char *result;
   int iteration;
 
@@ -1600,7 +1617,7 @@ video_getSetWindowData(void *arg)
 
   /* Set data with NULL to clear */
   result = (char *)SDL_SetWindowData(window, name, NULL);
-  SDLTest_AssertPass("Call to SDL_SetWindowData(...%s,NULL)", name, userdata);
+  SDLTest_AssertPass("Call to SDL_SetWindowData(...%s,NULL)", name);
   SDLTest_AssertCheck(SDL_strcmp(referenceUserdata2, result) == 0, "Validate that correct result was returned; expected: %s, got: %s", referenceUserdata2, result);
   SDLTest_AssertCheck(SDL_strcmp(referenceName, name) == 0, "Validate that name was not changed, expected: %s, got: %s", referenceName, name);
   SDLTest_AssertCheck(SDL_strcmp(referenceUserdata, userdata) == 0, "Validate that userdata was not changed, expected: %s, got: %s", referenceUserdata, userdata);
@@ -1608,7 +1625,7 @@ video_getSetWindowData(void *arg)
 
   /* Set data with NULL to clear again */
   result = (char *)SDL_SetWindowData(window, name, NULL);
-  SDLTest_AssertPass("Call to SDL_SetWindowData(...%s,NULL) [again]", name, userdata);
+  SDLTest_AssertPass("Call to SDL_SetWindowData(...%s,NULL) [again]", name);
   SDLTest_AssertCheck(result == NULL, "Validate that result is NULL");
   SDLTest_AssertCheck(SDL_strcmp(referenceName, name) == 0, "Validate that name was not changed, expected: %s, got: %s", referenceName, name);
   SDLTest_AssertCheck(SDL_strcmp(referenceUserdata, userdata) == 0, "Validate that userdata was not changed, expected: %s, got: %s", referenceUserdata, userdata);
@@ -1695,10 +1712,10 @@ video_getSetWindowData(void *arg)
   _destroyVideoSuiteTestWindow(window);
 
   cleanup:
-  if (referenceUserdata != NULL) SDL_free(referenceUserdata);
-  if (referenceUserdata2 != NULL) SDL_free(referenceUserdata2);
-  if (userdata != NULL) SDL_free(userdata);
-  if (userdata2 != NULL) SDL_free(userdata2);
+  SDL_free(referenceUserdata);
+  SDL_free(referenceUserdata2);
+  SDL_free(userdata);
+  SDL_free(userdata2);
 
   return returnValue;
 }

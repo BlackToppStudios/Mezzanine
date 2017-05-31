@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../../SDL_internal.h"
 
 #if SDL_VIDEO_DRIVER_DIRECTFB
 
@@ -34,8 +34,6 @@
 #include "SDL_DirectFB_window.h"
 #include "SDL_DirectFB_WM.h"
 
-
-#include "SDL_config.h"
 
 /* DirectFB video driver implementation.
 */
@@ -110,8 +108,6 @@ DirectFB_CreateDevice(int devindex)
     SDL_DFB_ALLOC_CLEAR(device, sizeof(SDL_VideoDevice));
 
     /* Set the function pointers */
-
-    /* Set the function pointers */
     device->VideoInit = DirectFB_VideoInit;
     device->VideoQuit = DirectFB_VideoQuit;
     device->GetDisplayModes = DirectFB_GetDisplayModes;
@@ -123,6 +119,7 @@ DirectFB_CreateDevice(int devindex)
     device->SetWindowIcon = DirectFB_SetWindowIcon;
     device->SetWindowPosition = DirectFB_SetWindowPosition;
     device->SetWindowSize = DirectFB_SetWindowSize;
+    device->SetWindowOpacity = DirectFB_SetWindowOpacity;
     device->ShowWindow = DirectFB_ShowWindow;
     device->HideWindow = DirectFB_HideWindow;
     device->RaiseWindow = DirectFB_RaiseWindow;
@@ -158,7 +155,7 @@ DirectFB_CreateDevice(int devindex)
     return device;
   error:
     if (device)
-        free(device);
+        SDL_free(device);
     return (0);
 }
 
@@ -179,7 +176,7 @@ DirectFB_DeviceInformation(IDirectFB * dfb)
     SDL_DFB_LOG( "Driver Version: %d.%d", desc.driver.major,
             desc.driver.minor);
 
-    SDL_DFB_LOG( "Video memoory:  %d", desc.video_memory);
+    SDL_DFB_LOG( "Video memory:   %d", desc.video_memory);
 
     SDL_DFB_LOG( "Blitting flags:");
     for (n = 0; blitting_flags[n].flag; n++) {
@@ -240,7 +237,7 @@ DirectFB_VideoInit(_THIS)
 
     if (!devdata->use_linux_input)
     {
-        SDL_DFB_LOG("Disabling linxu input\n");
+        SDL_DFB_LOG("Disabling linux input\n");
         DirectFBSetOption("disable-module", "linux_input");
     }
 
@@ -258,7 +255,7 @@ DirectFB_VideoInit(_THIS)
                                                      &devdata->events));
     } else {
         SDL_DFB_CHECKERR(dfb->CreateInputEventBuffer(dfb, DICAPS_AXES
-                                                     /*DICAPS_ALL */ ,
+                                                     /* DICAPS_ALL */ ,
                                                      DFB_TRUE,
                                                      &devdata->events));
     }

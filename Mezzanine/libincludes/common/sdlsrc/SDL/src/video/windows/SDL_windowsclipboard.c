@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../../SDL_internal.h"
 
 #if SDL_VIDEO_DRIVER_WINDOWS
 
@@ -77,15 +77,17 @@ WIN_SetClipboardText(_THIS, const char *text)
         hMem = GlobalAlloc(GMEM_MOVEABLE, size);
         if (hMem) {
             LPTSTR dst = (LPTSTR)GlobalLock(hMem);
-            /* Copy the text over, adding carriage returns as necessary */
-            for (i = 0; tstr[i]; ++i) {
-                if (tstr[i] == '\n' && (i == 0 || tstr[i-1] != '\r')) {
-                    *dst++ = '\r';
+            if (dst) {
+                /* Copy the text over, adding carriage returns as necessary */
+                for (i = 0; tstr[i]; ++i) {
+                    if (tstr[i] == '\n' && (i == 0 || tstr[i-1] != '\r')) {
+                        *dst++ = '\r';
+                    }
+                    *dst++ = tstr[i];
                 }
-                *dst++ = tstr[i];
+                *dst = 0;
+                GlobalUnlock(hMem);
             }
-            *dst = 0;
-            GlobalUnlock(hMem);
 
             EmptyClipboard();
             if (!SetClipboardData(TEXT_FORMAT, hMem)) {
@@ -135,7 +137,7 @@ WIN_HasClipboardText(_THIS)
     SDL_bool result = SDL_FALSE;
     char *text = WIN_GetClipboardText(_this);
     if (text) {
-        result = (SDL_strlen(text)>0) ? SDL_TRUE : SDL_FALSE;
+        result = text[0] != '\0' ? SDL_TRUE : SDL_FALSE;
         SDL_free(text);
     }
     return result;

@@ -79,14 +79,16 @@ char* _RGBPixelFormatsVerbose[] =
   };
 
 /* Definition of all Non-RGB formats used to test pixel conversions */
-const int _numNonRGBPixelFormats = 5;
+const int _numNonRGBPixelFormats = 7;
 Uint32 _nonRGBPixelFormats[] =
   {
     SDL_PIXELFORMAT_YV12,
     SDL_PIXELFORMAT_IYUV,
     SDL_PIXELFORMAT_YUY2,
     SDL_PIXELFORMAT_UYVY,
-    SDL_PIXELFORMAT_YVYU
+    SDL_PIXELFORMAT_YVYU,
+    SDL_PIXELFORMAT_NV12,
+    SDL_PIXELFORMAT_NV21
   };
 char* _nonRGBPixelFormatsVerbose[] =
   {
@@ -94,7 +96,9 @@ char* _nonRGBPixelFormatsVerbose[] =
     "SDL_PIXELFORMAT_IYUV",
     "SDL_PIXELFORMAT_YUY2",
     "SDL_PIXELFORMAT_UYVY",
-    "SDL_PIXELFORMAT_YVYU"
+    "SDL_PIXELFORMAT_YVYU",
+    "SDL_PIXELFORMAT_NV12",
+    "SDL_PIXELFORMAT_NV21"
   };
 
 /* Definition of some invalid formats for negative tests */
@@ -242,7 +246,7 @@ pixels_getPixelFormatName(void *arg)
   SDLTest_AssertPass("Call to SDL_GetPixelFormatName()");
   SDLTest_AssertCheck(result != NULL, "Verify result is not NULL");
   if (result != NULL) {
-      SDLTest_AssertCheck(SDL_strlen(result) > 0, "Verify result is non-empty");
+      SDLTest_AssertCheck(result[0] != '\0', "Verify result is non-empty");
       SDLTest_AssertCheck(SDL_strcmp(result, unknownFormat) == 0,
         "Verify result text; expected: %s, got %s", unknownFormat, result);
   }
@@ -257,7 +261,7 @@ pixels_getPixelFormatName(void *arg)
     SDLTest_AssertPass("Call to SDL_GetPixelFormatName()");
     SDLTest_AssertCheck(result != NULL, "Verify result is not NULL");
     if (result != NULL) {
-      SDLTest_AssertCheck(SDL_strlen(result) > 0, "Verify result is non-empty");
+      SDLTest_AssertCheck(result[0] != '\0', "Verify result is non-empty");
       SDLTest_AssertCheck(SDL_strcmp(result, _RGBPixelFormatsVerbose[i]) == 0,
         "Verify result text; expected: %s, got %s", _RGBPixelFormatsVerbose[i], result);
     }
@@ -273,7 +277,7 @@ pixels_getPixelFormatName(void *arg)
     SDLTest_AssertPass("Call to SDL_GetPixelFormatName()");
     SDLTest_AssertCheck(result != NULL, "Verify result is not NULL");
     if (result != NULL) {
-      SDLTest_AssertCheck(SDL_strlen(result) > 0, "Verify result is non-empty");
+      SDLTest_AssertCheck(result[0] != '\0', "Verify result is non-empty");
       SDLTest_AssertCheck(SDL_strcmp(result, _nonRGBPixelFormatsVerbose[i]) == 0,
         "Verify result text; expected: %s, got %s", _nonRGBPixelFormatsVerbose[i], result);
     }
@@ -290,14 +294,14 @@ pixels_getPixelFormatName(void *arg)
     SDLTest_AssertPass("Call to SDL_GetPixelFormatName(%u)", format);
     SDLTest_AssertCheck(result != NULL, "Verify result is not NULL");
     if (result != NULL) {
-      SDLTest_AssertCheck(SDL_strlen(result) > 0,
+      SDLTest_AssertCheck(result[0] != '\0',
         "Verify result is non-empty; got: %s", result);
       SDLTest_AssertCheck(SDL_strcmp(result, _invalidPixelFormatsVerbose[i]) == 0,
         "Validate name is UNKNOWN, expected: '%s', got: '%s'", _invalidPixelFormatsVerbose[i], result);
     }
     error = SDL_GetError();
     SDLTest_AssertPass("Call to SDL_GetError()");
-    SDLTest_AssertCheck(error != NULL && SDL_strlen(error) == 0, "Validate that error message is empty");
+    SDLTest_AssertCheck(error == NULL || error[0] == '\0', "Validate that error message is empty");
   }
 
   return TEST_COMPLETED;
@@ -411,7 +415,7 @@ pixels_calcGammaRamp(void *arg)
   int changed;
   Uint16 magic = 0xbeef;
 
-  /* Allocate temp ramp array and fill with some value*/
+  /* Allocate temp ramp array and fill with some value */
   ramp = (Uint16 *)SDL_malloc(256 * sizeof(Uint16));
   SDLTest_AssertCheck(ramp != NULL, "Validate temp ramp array could be allocated");
   if (ramp == NULL) return TEST_ABORTED;

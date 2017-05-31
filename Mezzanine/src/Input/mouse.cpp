@@ -48,7 +48,6 @@
 #include <limits>
 
 #include "SDL.h"
-#include "../src/video/SDL_sysvideo.h"
 
 namespace Mezzanine
 {
@@ -128,7 +127,7 @@ namespace Mezzanine
             /// "HoveredWindow" to NULL when none of our windows are being hovered.
             SDL_Window* Focus = SDL_GetMouseFocus();
             if( NULL != Focus ) {
-                Graphics::GameWindow* Win = static_cast<Graphics::GameWindow*>(Focus->data->data);
+                Graphics::GameWindow* Win = static_cast<Graphics::GameWindow*>( SDL_GetWindowData(Focus,"MezzWin") );
                 for( Whole VPIndex = Win->GetNumViewports() ; VPIndex > 0 ; --VPIndex )
                 {
                     Graphics::Viewport* VP = Win->GetViewport( VPIndex - 1 );

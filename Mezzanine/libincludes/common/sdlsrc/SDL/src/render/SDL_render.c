@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,10 +18,11 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../SDL_internal.h"
 
 /* The SDL 2D rendering system */
 
+#include "SDL_assert.h"
 #include "SDL_hints.h"
 #include "SDL_log.h"
 #include "SDL_render.h"
@@ -48,6 +49,9 @@
 static const SDL_RenderDriver *render_drivers[] = {
 #if SDL_VIDEO_RENDER_D3D
     &D3D_RenderDriver,
+#endif
+#if SDL_VIDEO_RENDER_D3D11
+    &D3D11_RenderDriver,
 #endif
 #if SDL_VIDEO_RENDER_OGL
     &GL_RenderDriver,
@@ -110,32 +114,25 @@ SDL_RendererEventWatch(void *userdata, SDL_Event *event)
                 renderer->WindowEvent(renderer, &event->window);
             }
 
-            if (event->window.event == SDL_WINDOWEVENT_RESIZED) {
-                if (renderer->logical_w) {
-                    /* We'll update the renderer in the SIZE_CHANGED event */
-                } else {
-                    /* Try to keep the previous viewport centered */
-                    int w, h;
-
-                    SDL_GetWindowSize(window, &w, &h);
-                    if (renderer->target) {
-                        renderer->viewport_backup.x = (w - renderer->viewport_backup.w) / 2;
-                        renderer->viewport_backup.y = (h - renderer->viewport_backup.h) / 2;
-                    } else {
-                        renderer->viewport.x = (w - renderer->viewport.w) / 2;
-                        renderer->viewport.y = (h - renderer->viewport.h) / 2;
-                        renderer->UpdateViewport(renderer);
-                    }
+            if (event->window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+                /* Make sure we're operating on the default render target */
+                SDL_Texture *saved_target = SDL_GetRenderTarget(renderer);
+                if (saved_target) {
+                    SDL_SetRenderTarget(renderer, NULL);
                 }
-                renderer->resized = SDL_TRUE;
-            } else if (event->window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+
                 if (renderer->logical_w) {
                     UpdateLogicalSize(renderer);
-                } else if (!renderer->resized) {
-                    /* Window was programmatically resized, reset viewport */
+                } else {
+                    /* Window was resized, reset viewport */
                     int w, h;
 
-                    SDL_GetWindowSize(window, &w, &h);
+                    if (renderer->GetOutputSize) {
+                        renderer->GetOutputSize(renderer, &w, &h);
+                    } else {
+                        SDL_GetWindowSize(renderer->window, &w, &h);
+                    }
+
                     if (renderer->target) {
                         renderer->viewport_backup.x = 0;
                         renderer->viewport_backup.y = 0;
@@ -149,7 +146,10 @@ SDL_RendererEventWatch(void *userdata, SDL_Event *event)
                         renderer->UpdateViewport(renderer);
                     }
                 }
-                renderer->resized = SDL_FALSE;
+
+                if (saved_target) {
+                    SDL_SetRenderTarget(renderer, saved_target);
+                }
             } else if (event->window.event == SDL_WINDOWEVENT_HIDDEN) {
                 renderer->hidden = SDL_TRUE;
             } else if (event->window.event == SDL_WINDOWEVENT_SHOWN) {
@@ -158,22 +158,35 @@ SDL_RendererEventWatch(void *userdata, SDL_Event *event)
                 }
             } else if (event->window.event == SDL_WINDOWEVENT_MINIMIZED) {
                 renderer->hidden = SDL_TRUE;
-            } else if (event->window.event == SDL_WINDOWEVENT_RESTORED) {
+            } else if (event->window.event == SDL_WINDOWEVENT_RESTORED || 
+                       event->window.event == SDL_WINDOWEVENT_MAXIMIZED) {
                 if (!(SDL_GetWindowFlags(window) & SDL_WINDOW_HIDDEN)) {
                     renderer->hidden = SDL_FALSE;
                 }
             }
         }
     } else if (event->type == SDL_MOUSEMOTION) {
-        if (renderer->logical_w) {
+        SDL_Window *window = SDL_GetWindowFromID(event->motion.windowID);
+        if (renderer->logical_w && window == renderer->window) {
             event->motion.x -= renderer->viewport.x;
             event->motion.y -= renderer->viewport.y;
             event->motion.x = (int)(event->motion.x / renderer->scale.x);
             event->motion.y = (int)(event->motion.y / renderer->scale.y);
+            if (event->motion.xrel > 0) {
+                event->motion.xrel = SDL_max(1, (int)(event->motion.xrel / renderer->scale.x));
+            } else if (event->motion.xrel < 0) {
+                event->motion.xrel = SDL_min(-1, (int)(event->motion.xrel / renderer->scale.x));
+            }
+            if (event->motion.yrel > 0) {
+                event->motion.yrel = SDL_max(1, (int)(event->motion.yrel / renderer->scale.y));
+            } else if (event->motion.yrel < 0) {
+                event->motion.yrel = SDL_min(-1, (int)(event->motion.yrel / renderer->scale.y));
+            }
         }
     } else if (event->type == SDL_MOUSEBUTTONDOWN ||
                event->type == SDL_MOUSEBUTTONUP) {
-        if (renderer->logical_w) {
+        SDL_Window *window = SDL_GetWindowFromID(event->button.windowID);
+        if (renderer->logical_w && window == renderer->window) {
             event->button.x -= renderer->viewport.x;
             event->button.y -= renderer->viewport.y;
             event->button.x = (int)(event->button.x / renderer->scale.x);
@@ -221,12 +234,11 @@ SDL_CreateRenderer(SDL_Window * window, int index, Uint32 flags)
         return NULL;
     }
 
-    hint = SDL_GetHint(SDL_HINT_RENDER_VSYNC);
-    if (hint) {
-        if (*hint == '0') {
-            flags &= ~SDL_RENDERER_PRESENTVSYNC;
-        } else {
+    if (SDL_GetHint(SDL_HINT_RENDER_VSYNC)) {
+        if (SDL_GetHintBoolean(SDL_HINT_RENDER_VSYNC, SDL_TRUE)) {
             flags |= SDL_RENDERER_PRESENTVSYNC;
+        } else {
+            flags &= ~SDL_RENDERER_PRESENTVSYNC;
         }
     }
 
@@ -337,6 +349,24 @@ SDL_GetRendererInfo(SDL_Renderer * renderer, SDL_RendererInfo * info)
     return 0;
 }
 
+int
+SDL_GetRendererOutputSize(SDL_Renderer * renderer, int *w, int *h)
+{
+    CHECK_RENDERER_MAGIC(renderer, -1);
+
+    if (renderer->target) {
+        return SDL_QueryTexture(renderer->target, NULL, NULL, w, h);
+    } else if (renderer->GetOutputSize) {
+        return renderer->GetOutputSize(renderer, w, h);
+    } else if (renderer->window) {
+        SDL_GetWindowSize(renderer->window, w, h);
+        return 0;
+    } else {
+        SDL_assert(0 && "This should never happen");
+        return SDL_SetError("Renderer doesn't support querying output size");
+    }
+}
+
 static SDL_bool
 IsSupportedFormat(SDL_Renderer * renderer, Uint32 format)
 {
@@ -386,12 +416,21 @@ SDL_CreateTexture(SDL_Renderer * renderer, Uint32 format, int access, int w, int
     if (!format) {
         format = renderer->info.texture_formats[0];
     }
+    if (SDL_BYTESPERPIXEL(format) == 0) {
+        SDL_SetError("Invalid texture format");
+        return NULL;
+    }
     if (SDL_ISPIXELFORMAT_INDEXED(format)) {
         SDL_SetError("Palettized textures are not supported");
         return NULL;
     }
     if (w <= 0 || h <= 0) {
         SDL_SetError("Texture dimensions can't be 0");
+        return NULL;
+    }
+    if ((renderer->info.max_texture_width && w > renderer->info.max_texture_width) ||
+        (renderer->info.max_texture_height && h > renderer->info.max_texture_height)) {
+        SDL_SetError("Texture dimensions are limited to %dx%d", renderer->info.max_texture_width, renderer->info.max_texture_height);
         return NULL;
     }
     texture = (SDL_Texture *) SDL_calloc(1, sizeof(*texture));
@@ -418,7 +457,7 @@ SDL_CreateTexture(SDL_Renderer * renderer, Uint32 format, int access, int w, int
     if (IsSupportedFormat(renderer, format)) {
         if (renderer->CreateTexture(renderer, texture) < 0) {
             SDL_DestroyTexture(texture);
-            return 0;
+            return NULL;
         }
     } else {
         texture->native = SDL_CreateTexture(renderer,
@@ -513,6 +552,10 @@ SDL_CreateTextureFromSurface(SDL_Renderer * renderer, SDL_Surface * surface)
 
         /* Set up a destination surface for the texture update */
         dst_fmt = SDL_AllocFormat(format);
+        if (!dst_fmt) {
+           SDL_DestroyTexture(texture);
+           return NULL;
+        }
         temp = SDL_ConvertSurface(surface, dst_fmt, 0);
         SDL_FreeFormat(dst_fmt);
         if (temp) {
@@ -691,8 +734,8 @@ SDL_UpdateTextureYUV(SDL_Texture * texture, const SDL_Rect * rect,
 
     if (texture->access == SDL_TEXTUREACCESS_STREAMING) {
         /* We can lock the texture and copy to it */
-        void *native_pixels;
-        int native_pitch;
+        void *native_pixels = NULL;
+        int native_pitch = 0;
 
         if (SDL_LockTexture(native, rect, &native_pixels, &native_pitch) < 0) {
             return -1;
@@ -702,18 +745,18 @@ SDL_UpdateTextureYUV(SDL_Texture * texture, const SDL_Rect * rect,
         SDL_UnlockTexture(native);
     } else {
         /* Use a temporary buffer for updating */
-        void *temp_pixels;
-        int temp_pitch;
-
-        temp_pitch = (((rect->w * SDL_BYTESPERPIXEL(native->format)) + 3) & ~3);
-        temp_pixels = SDL_malloc(rect->h * temp_pitch);
-        if (!temp_pixels) {
-            return SDL_OutOfMemory();
+        const int temp_pitch = (((rect->w * SDL_BYTESPERPIXEL(native->format)) + 3) & ~3);
+        const size_t alloclen = rect->h * temp_pitch;
+        if (alloclen > 0) {
+            void *temp_pixels = SDL_malloc(alloclen);
+            if (!temp_pixels) {
+                return SDL_OutOfMemory();
+            }
+            SDL_SW_CopyYUVToRGB(texture->yuv, rect, native->format,
+                                rect->w, rect->h, temp_pixels, temp_pitch);
+            SDL_UpdateTexture(native, rect, temp_pixels, temp_pitch);
+            SDL_free(temp_pixels);
         }
-        SDL_SW_CopyYUVToRGB(texture->yuv, rect, native->format,
-                            rect->w, rect->h, temp_pixels, temp_pitch);
-        SDL_UpdateTexture(native, rect, temp_pixels, temp_pitch);
-        SDL_free(temp_pixels);
     }
     return 0;
 }
@@ -724,10 +767,14 @@ SDL_UpdateTextureNative(SDL_Texture * texture, const SDL_Rect * rect,
 {
     SDL_Texture *native = texture->native;
 
+    if (!rect->w || !rect->h) {
+        return 0;  /* nothing to do. */
+    }
+
     if (texture->access == SDL_TEXTUREACCESS_STREAMING) {
         /* We can lock the texture and copy to it */
-        void *native_pixels;
-        int native_pitch;
+        void *native_pixels = NULL;
+        int native_pitch = 0;
 
         if (SDL_LockTexture(native, rect, &native_pixels, &native_pitch) < 0) {
             return -1;
@@ -738,19 +785,19 @@ SDL_UpdateTextureNative(SDL_Texture * texture, const SDL_Rect * rect,
         SDL_UnlockTexture(native);
     } else {
         /* Use a temporary buffer for updating */
-        void *temp_pixels;
-        int temp_pitch;
-
-        temp_pitch = (((rect->w * SDL_BYTESPERPIXEL(native->format)) + 3) & ~3);
-        temp_pixels = SDL_malloc(rect->h * temp_pitch);
-        if (!temp_pixels) {
-            return SDL_OutOfMemory();
+        const int temp_pitch = (((rect->w * SDL_BYTESPERPIXEL(native->format)) + 3) & ~3);
+        const size_t alloclen = rect->h * temp_pitch;
+        if (alloclen > 0) {
+            void *temp_pixels = SDL_malloc(alloclen);
+            if (!temp_pixels) {
+                return SDL_OutOfMemory();
+            }
+            SDL_ConvertPixels(rect->w, rect->h,
+                              texture->format, pixels, pitch,
+                              native->format, temp_pixels, temp_pitch);
+            SDL_UpdateTexture(native, rect, temp_pixels, temp_pitch);
+            SDL_free(temp_pixels);
         }
-        SDL_ConvertPixels(rect->w, rect->h,
-                          texture->format, pixels, pitch,
-                          native->format, temp_pixels, temp_pitch);
-        SDL_UpdateTexture(native, rect, temp_pixels, temp_pitch);
-        SDL_free(temp_pixels);
     }
     return 0;
 }
@@ -764,6 +811,13 @@ SDL_UpdateTexture(SDL_Texture * texture, const SDL_Rect * rect,
 
     CHECK_TEXTURE_MAGIC(texture, -1);
 
+    if (!pixels) {
+        return SDL_InvalidParamError("pixels");
+    }
+    if (!pitch) {
+        return SDL_InvalidParamError("pitch");
+    }
+
     if (!rect) {
         full_rect.x = 0;
         full_rect.y = 0;
@@ -772,13 +826,127 @@ SDL_UpdateTexture(SDL_Texture * texture, const SDL_Rect * rect,
         rect = &full_rect;
     }
 
-    if (texture->yuv) {
+    if ((rect->w == 0) || (rect->h == 0)) {
+        return 0;  /* nothing to do. */
+    } else if (texture->yuv) {
         return SDL_UpdateTextureYUV(texture, rect, pixels, pitch);
     } else if (texture->native) {
         return SDL_UpdateTextureNative(texture, rect, pixels, pitch);
     } else {
         renderer = texture->renderer;
         return renderer->UpdateTexture(renderer, texture, rect, pixels, pitch);
+    }
+}
+
+static int
+SDL_UpdateTextureYUVPlanar(SDL_Texture * texture, const SDL_Rect * rect,
+                           const Uint8 *Yplane, int Ypitch,
+                           const Uint8 *Uplane, int Upitch,
+                           const Uint8 *Vplane, int Vpitch)
+{
+    SDL_Texture *native = texture->native;
+    SDL_Rect full_rect;
+
+    if (SDL_SW_UpdateYUVTexturePlanar(texture->yuv, rect, Yplane, Ypitch, Uplane, Upitch, Vplane, Vpitch) < 0) {
+        return -1;
+    }
+
+    full_rect.x = 0;
+    full_rect.y = 0;
+    full_rect.w = texture->w;
+    full_rect.h = texture->h;
+    rect = &full_rect;
+
+    if (!rect->w || !rect->h) {
+        return 0;  /* nothing to do. */
+    }
+
+    if (texture->access == SDL_TEXTUREACCESS_STREAMING) {
+        /* We can lock the texture and copy to it */
+        void *native_pixels = NULL;
+        int native_pitch = 0;
+
+        if (SDL_LockTexture(native, rect, &native_pixels, &native_pitch) < 0) {
+            return -1;
+        }
+        SDL_SW_CopyYUVToRGB(texture->yuv, rect, native->format,
+                            rect->w, rect->h, native_pixels, native_pitch);
+        SDL_UnlockTexture(native);
+    } else {
+        /* Use a temporary buffer for updating */
+        const int temp_pitch = (((rect->w * SDL_BYTESPERPIXEL(native->format)) + 3) & ~3);
+        const size_t alloclen = rect->h * temp_pitch;
+        if (alloclen > 0) {
+            void *temp_pixels = SDL_malloc(alloclen);
+            if (!temp_pixels) {
+                return SDL_OutOfMemory();
+            }
+            SDL_SW_CopyYUVToRGB(texture->yuv, rect, native->format,
+                                rect->w, rect->h, temp_pixels, temp_pitch);
+            SDL_UpdateTexture(native, rect, temp_pixels, temp_pitch);
+            SDL_free(temp_pixels);
+        }
+    }
+    return 0;
+}
+
+int SDL_UpdateYUVTexture(SDL_Texture * texture, const SDL_Rect * rect,
+                         const Uint8 *Yplane, int Ypitch,
+                         const Uint8 *Uplane, int Upitch,
+                         const Uint8 *Vplane, int Vpitch)
+{
+    SDL_Renderer *renderer;
+    SDL_Rect full_rect;
+
+    CHECK_TEXTURE_MAGIC(texture, -1);
+
+    if (!Yplane) {
+        return SDL_InvalidParamError("Yplane");
+    }
+    if (!Ypitch) {
+        return SDL_InvalidParamError("Ypitch");
+    }
+    if (!Uplane) {
+        return SDL_InvalidParamError("Uplane");
+    }
+    if (!Upitch) {
+        return SDL_InvalidParamError("Upitch");
+    }
+    if (!Vplane) {
+        return SDL_InvalidParamError("Vplane");
+    }
+    if (!Vpitch) {
+        return SDL_InvalidParamError("Vpitch");
+    }
+
+    if (texture->format != SDL_PIXELFORMAT_YV12 &&
+        texture->format != SDL_PIXELFORMAT_IYUV) {
+        return SDL_SetError("Texture format must by YV12 or IYUV");
+    }
+
+    if (!rect) {
+        full_rect.x = 0;
+        full_rect.y = 0;
+        full_rect.w = texture->w;
+        full_rect.h = texture->h;
+        rect = &full_rect;
+    }
+
+    if (!rect->w || !rect->h) {
+        return 0;  /* nothing to do. */
+    }
+
+    if (texture->yuv) {
+        return SDL_UpdateTextureYUVPlanar(texture, rect, Yplane, Ypitch, Uplane, Upitch, Vplane, Vpitch);
+    } else {
+        SDL_assert(!texture->native);
+        renderer = texture->renderer;
+        SDL_assert(renderer->UpdateTextureYUV);
+        if (renderer->UpdateTextureYUV) {
+            return renderer->UpdateTextureYUV(renderer, texture, rect, Yplane, Ypitch, Uplane, Upitch, Vplane, Vpitch);
+        } else {
+            return SDL_Unsupported();
+        }
     }
 }
 
@@ -836,8 +1004,8 @@ static void
 SDL_UnlockTextureYUV(SDL_Texture * texture)
 {
     SDL_Texture *native = texture->native;
-    void *native_pixels;
-    int native_pitch;
+    void *native_pixels = NULL;
+    int native_pitch = 0;
     SDL_Rect rect;
 
     rect.x = 0;
@@ -857,8 +1025,8 @@ static void
 SDL_UnlockTextureNative(SDL_Texture * texture)
 {
     SDL_Texture *native = texture->native;
-    void *native_pixels;
-    int native_pitch;
+    void *native_pixels = NULL;
+    int native_pitch = 0;
     const SDL_Rect *rect = &texture->locked_rect;
     const void* pixels = (void *) ((Uint8 *) texture->pixels +
                         rect->y * texture->pitch +
@@ -933,6 +1101,7 @@ SDL_SetRenderTarget(SDL_Renderer *renderer, SDL_Texture *texture)
         /* Make a backup of the viewport */
         renderer->viewport_backup = renderer->viewport;
         renderer->clip_rect_backup = renderer->clip_rect;
+        renderer->clipping_enabled_backup = renderer->clipping_enabled;
         renderer->scale_backup = renderer->scale;
         renderer->logical_w_backup = renderer->logical_w;
         renderer->logical_h_backup = renderer->logical_h;
@@ -948,13 +1117,16 @@ SDL_SetRenderTarget(SDL_Renderer *renderer, SDL_Texture *texture)
         renderer->viewport.y = 0;
         renderer->viewport.w = texture->w;
         renderer->viewport.h = texture->h;
+        SDL_zero(renderer->clip_rect);
+        renderer->clipping_enabled = SDL_FALSE;
         renderer->scale.x = 1.0f;
         renderer->scale.y = 1.0f;
-        renderer->logical_w = 0;
-        renderer->logical_h = 0;
+        renderer->logical_w = texture->w;
+        renderer->logical_h = texture->h;
     } else {
         renderer->viewport = renderer->viewport_backup;
         renderer->clip_rect = renderer->clip_rect_backup;
+        renderer->clipping_enabled = renderer->clipping_enabled_backup;
         renderer->scale = renderer->scale_backup;
         renderer->logical_w = renderer->logical_w_backup;
         renderer->logical_h = renderer->logical_h_backup;
@@ -979,19 +1151,17 @@ SDL_GetRenderTarget(SDL_Renderer *renderer)
 static int
 UpdateLogicalSize(SDL_Renderer *renderer)
 {
-    int w, h;
+    int w = 1, h = 1;
     float want_aspect;
     float real_aspect;
     float scale;
     SDL_Rect viewport;
 
-    if (renderer->target) {
-        SDL_QueryTexture(renderer->target, NULL, NULL, &w, &h);
-    } else if (renderer->window) {
-        SDL_GetWindowSize(renderer->window, &w, &h);
-    } else {
-        /* FIXME */
-        return SDL_SetError("Internal error: No way to get output resolution");
+    if (!renderer->logical_w || !renderer->logical_h) {
+        return 0;
+    }
+    if (SDL_GetRendererOutputSize(renderer, &w, &h) < 0) {
+        return -1;
     }
 
     want_aspect = (float)renderer->logical_w / renderer->logical_h;
@@ -1000,7 +1170,19 @@ UpdateLogicalSize(SDL_Renderer *renderer)
     /* Clear the scale because we're setting viewport in output coordinates */
     SDL_RenderSetScale(renderer, 1.0f, 1.0f);
 
-    if (SDL_fabs(want_aspect-real_aspect) < 0.0001) {
+    if (renderer->integer_scale) {
+        if (want_aspect > real_aspect) {
+            scale = (float)(w / renderer->logical_w);
+        } else {
+            scale = (float)(h / renderer->logical_h);
+        }
+        viewport.w = (int)SDL_ceil(renderer->logical_w * scale);
+        viewport.x = (w - viewport.w) / 2;
+        viewport.h = (int)SDL_ceil(renderer->logical_h * scale);
+        viewport.y = (h - viewport.h) / 2;
+
+        SDL_RenderSetViewport(renderer, &viewport);
+    } else if (SDL_fabs(want_aspect-real_aspect) < 0.0001) {
         /* The aspect ratios are the same, just scale appropriately */
         scale = (float)w / renderer->logical_w;
         SDL_RenderSetViewport(renderer, NULL);
@@ -1062,6 +1244,24 @@ SDL_RenderGetLogicalSize(SDL_Renderer * renderer, int *w, int *h)
 }
 
 int
+SDL_RenderSetIntegerScale(SDL_Renderer * renderer, SDL_bool enable)
+{
+    CHECK_RENDERER_MAGIC(renderer, -1);
+
+    renderer->integer_scale = enable;
+
+    return UpdateLogicalSize(renderer);
+}
+
+SDL_bool
+SDLCALL SDL_RenderGetIntegerScale(SDL_Renderer * renderer)
+{
+    CHECK_RENDERER_MAGIC(renderer, SDL_FALSE);
+
+    return renderer->integer_scale;
+}
+
+int
 SDL_RenderSetViewport(SDL_Renderer * renderer, const SDL_Rect * rect)
 {
     CHECK_RENDERER_MAGIC(renderer, -1);
@@ -1074,16 +1274,8 @@ SDL_RenderSetViewport(SDL_Renderer * renderer, const SDL_Rect * rect)
     } else {
         renderer->viewport.x = 0;
         renderer->viewport.y = 0;
-        if (renderer->target) {
-            SDL_QueryTexture(renderer->target, NULL, NULL,
-                              &renderer->viewport.w, &renderer->viewport.h);
-        } else if (renderer->window) {
-            SDL_GetWindowSize(renderer->window,
-                              &renderer->viewport.w, &renderer->viewport.h);
-        } else {
-            /* This will be filled in by UpdateViewport() */
-            renderer->viewport.w = 0;
-            renderer->viewport.h = 0;
+        if (SDL_GetRendererOutputSize(renderer, &renderer->viewport.w, &renderer->viewport.h) < 0) {
+            return -1;
         }
     }
     return renderer->UpdateViewport(renderer);
@@ -1108,11 +1300,13 @@ SDL_RenderSetClipRect(SDL_Renderer * renderer, const SDL_Rect * rect)
     CHECK_RENDERER_MAGIC(renderer, -1)
 
     if (rect) {
+        renderer->clipping_enabled = SDL_TRUE;
         renderer->clip_rect.x = (int)SDL_floor(rect->x * renderer->scale.x);
         renderer->clip_rect.y = (int)SDL_floor(rect->y * renderer->scale.y);
         renderer->clip_rect.w = (int)SDL_ceil(rect->w * renderer->scale.x);
         renderer->clip_rect.h = (int)SDL_ceil(rect->h * renderer->scale.y);
     } else {
+        renderer->clipping_enabled = SDL_FALSE;
         SDL_zero(renderer->clip_rect);
     }
     return renderer->UpdateClipRect(renderer);
@@ -1129,6 +1323,13 @@ SDL_RenderGetClipRect(SDL_Renderer * renderer, SDL_Rect * rect)
         rect->w = (int)(renderer->clip_rect.w / renderer->scale.x);
         rect->h = (int)(renderer->clip_rect.h / renderer->scale.y);
     }
+}
+
+SDL_bool
+SDL_RenderIsClipEnabled(SDL_Renderer * renderer)
+{
+    CHECK_RENDERER_MAGIC(renderer, SDL_FALSE)
+    return renderer->clipping_enabled;
 }
 
 int
@@ -1270,6 +1471,7 @@ SDL_RenderDrawPoints(SDL_Renderer * renderer,
     if (count < 1) {
         return 0;
     }
+
     /* Don't draw while we're hidden */
     if (renderer->hidden) {
         return 0;
@@ -1379,6 +1581,7 @@ SDL_RenderDrawLines(SDL_Renderer * renderer,
     if (count < 2) {
         return 0;
     }
+
     /* Don't draw while we're hidden */
     if (renderer->hidden) {
         return 0;
@@ -1452,6 +1655,7 @@ SDL_RenderDrawRects(SDL_Renderer * renderer,
     if (renderer->hidden) {
         return 0;
     }
+
     for (i = 0; i < count; ++i) {
         if (SDL_RenderDrawRect(renderer, &rects[i]) < 0) {
             return -1;
@@ -1463,7 +1667,7 @@ SDL_RenderDrawRects(SDL_Renderer * renderer,
 int
 SDL_RenderFillRect(SDL_Renderer * renderer, const SDL_Rect * rect)
 {
-    SDL_Rect full_rect;
+    SDL_Rect full_rect = { 0, 0, 0, 0 };
 
     CHECK_RENDERER_MAGIC(renderer, -1);
 
@@ -1493,6 +1697,7 @@ SDL_RenderFillRects(SDL_Renderer * renderer,
     if (count < 1) {
         return 0;
     }
+
     /* Don't draw while we're hidden */
     if (renderer->hidden) {
         return 0;
@@ -1531,6 +1736,11 @@ SDL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
         return SDL_SetError("Texture was not created with this renderer");
     }
 
+    /* Don't draw while we're hidden */
+    if (renderer->hidden) {
+        return 0;
+    }
+
     real_srcrect.x = 0;
     real_srcrect.y = 0;
     real_srcrect.w = texture->w;
@@ -1545,31 +1755,14 @@ SDL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
     real_dstrect.x = 0;
     real_dstrect.y = 0;
     if (dstrect) {
-        if (!SDL_IntersectRect(dstrect, &real_dstrect, &real_dstrect)) {
+        if (!SDL_HasIntersection(dstrect, &real_dstrect)) {
             return 0;
         }
-        /* Clip srcrect by the same amount as dstrect was clipped */
-        if (dstrect->w != real_dstrect.w) {
-            int deltax = (real_dstrect.x - dstrect->x);
-            int deltaw = (real_dstrect.w - dstrect->w);
-            real_srcrect.x += (deltax * real_srcrect.w) / dstrect->w;
-            real_srcrect.w += (deltaw * real_srcrect.w) / dstrect->w;
-        }
-        if (dstrect->h != real_dstrect.h) {
-            int deltay = (real_dstrect.y - dstrect->y);
-            int deltah = (real_dstrect.h - dstrect->h);
-            real_srcrect.y += (deltay * real_srcrect.h) / dstrect->h;
-            real_srcrect.h += (deltah * real_srcrect.h) / dstrect->h;
-        }
+        real_dstrect = *dstrect;
     }
 
     if (texture->native) {
         texture = texture->native;
-    }
-
-    /* Don't draw while we're hidden */
-    if (renderer->hidden) {
-        return 0;
     }
 
     frect.x = real_dstrect.x * renderer->scale.x;
@@ -1592,6 +1785,10 @@ SDL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     SDL_FRect frect;
     SDL_FPoint fcenter;
 
+    if (flip == SDL_FLIP_NONE && (int)(angle/360) == angle/360) { /* fast path when we don't need rotation or flipping */
+        return SDL_RenderCopy(renderer, texture, srcrect, dstrect);
+    }
+
     CHECK_RENDERER_MAGIC(renderer, -1);
     CHECK_TEXTURE_MAGIC(texture, -1);
 
@@ -1600,6 +1797,11 @@ SDL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     }
     if (!renderer->RenderCopyEx) {
         return SDL_SetError("Renderer does not support RenderCopyEx");
+    }
+
+    /* Don't draw while we're hidden */
+    if (renderer->hidden) {
+        return 0;
     }
 
     real_srcrect.x = 0;
@@ -1625,8 +1827,9 @@ SDL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
         texture = texture->native;
     }
 
-    if(center) real_center = *center;
-    else {
+    if (center) {
+        real_center = *center;
+    } else {
         real_center.x = real_dstrect.w/2;
         real_center.y = real_dstrect.h/2;
     }
@@ -1697,9 +1900,14 @@ SDL_DestroyTexture(SDL_Texture * texture)
     SDL_Renderer *renderer;
 
     CHECK_TEXTURE_MAGIC(texture, );
-    texture->magic = NULL;
 
     renderer = texture->renderer;
+    if (texture == renderer->target) {
+        SDL_SetRenderTarget(renderer, NULL);
+    }
+
+    texture->magic = NULL;
+
     if (texture->next) {
         texture->next->prev = texture->prev;
     }
@@ -1715,9 +1923,7 @@ SDL_DestroyTexture(SDL_Texture * texture)
     if (texture->yuv) {
         SDL_SW_DestroyYUVTexture(texture->yuv);
     }
-    if (texture->pixels) {
-        SDL_free(texture->pixels);
-    }
+    SDL_free(texture->pixels);
 
     renderer->DestroyTexture(renderer, texture);
     SDL_free(texture);
@@ -1732,7 +1938,9 @@ SDL_DestroyRenderer(SDL_Renderer * renderer)
 
     /* Free existing textures for this renderer */
     while (renderer->textures) {
+        SDL_Texture *tex = renderer->textures; (void) tex;
         SDL_DestroyTexture(renderer->textures);
+        SDL_assert(tex != renderer->textures);  /* satisfy static analysis. */
     }
 
     if (renderer->window) {
@@ -1752,11 +1960,13 @@ int SDL_GL_BindTexture(SDL_Texture *texture, float *texw, float *texh)
 
     CHECK_TEXTURE_MAGIC(texture, -1);
     renderer = texture->renderer;
-    if (renderer && renderer->GL_BindTexture) {
+    if (texture->native) {
+        return SDL_GL_BindTexture(texture->native, texw, texh);
+    } else if (renderer && renderer->GL_BindTexture) {
         return renderer->GL_BindTexture(renderer, texture, texw, texh);
+    } else {
+        return SDL_Unsupported();
     }
-
-    return SDL_Unsupported();
 }
 
 int SDL_GL_UnbindTexture(SDL_Texture *texture)
@@ -1765,7 +1975,9 @@ int SDL_GL_UnbindTexture(SDL_Texture *texture)
 
     CHECK_TEXTURE_MAGIC(texture, -1);
     renderer = texture->renderer;
-    if (renderer && renderer->GL_UnbindTexture) {
+    if (texture->native) {
+        return SDL_GL_UnbindTexture(texture->native);
+    } else if (renderer && renderer->GL_UnbindTexture) {
         return renderer->GL_UnbindTexture(renderer, texture);
     }
 

@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -15,6 +15,10 @@
 #include <stdio.h>
 #include <time.h>
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten/emscripten.h>
+#endif
+
 #include "SDL.h"
 
 #define WINDOW_WIDTH    640
@@ -26,6 +30,9 @@ static SDL_Texture *sprite;
 static SDL_Rect positions[NUM_SPRITES];
 static SDL_Rect velocities[NUM_SPRITES];
 static int sprite_w, sprite_h;
+
+SDL_Renderer *renderer;
+int done;
 
 /* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
 static void
@@ -42,7 +49,7 @@ LoadSprite(char *file, SDL_Renderer *renderer)
     /* Load the sprite image */
     temp = SDL_LoadBMP(file);
     if (temp == NULL) {
-        fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't load %s: %s\n", file, SDL_GetError());
         return (-1);
     }
     sprite_w = temp->w;
@@ -73,7 +80,7 @@ LoadSprite(char *file, SDL_Renderer *renderer)
     /* Create textures from the image */
     sprite = SDL_CreateTextureFromSurface(renderer, temp);
     if (!sprite) {
-        fprintf(stderr, "Couldn't create texture: %s\n", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture: %s\n", SDL_GetError());
         SDL_FreeSurface(temp);
         return (-1);
     }
@@ -84,7 +91,7 @@ LoadSprite(char *file, SDL_Renderer *renderer)
 }
 
 void
-MoveSprites(SDL_Window * window, SDL_Renderer * renderer, SDL_Texture * sprite)
+MoveSprites(SDL_Renderer * renderer, SDL_Texture * sprite)
 {
     int i;
     int window_w = WINDOW_WIDTH;
@@ -118,13 +125,33 @@ MoveSprites(SDL_Window * window, SDL_Renderer * renderer, SDL_Texture * sprite)
     SDL_RenderPresent(renderer);
 }
 
+void loop()
+{
+    SDL_Event event;
+
+    /* Check for events */
+    while (SDL_PollEvent(&event)) {
+        if (event.type == SDL_QUIT || event.type == SDL_KEYDOWN) {
+            done = 1;
+        }
+    }
+    MoveSprites(renderer, sprite);
+#ifdef __EMSCRIPTEN__
+    if (done) {
+        emscripten_cancel_main_loop();
+    }
+#endif
+}
+
 int
 main(int argc, char *argv[])
 {
     SDL_Window *window;
-    SDL_Renderer *renderer;
-    int i, done;
-    SDL_Event event;
+    int i;
+
+
+    /* Enable standard application logging */
+    SDL_LogSetPriority(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO);
 
     if (SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window, &renderer) < 0) {
         quit(2);
@@ -151,17 +178,17 @@ main(int argc, char *argv[])
 
     /* Main render loop */
     done = 0;
-    while (!done) {
-        /* Check for events */
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT || event.type == SDL_KEYDOWN) {
-                done = 1;
-            }
-        }
-        MoveSprites(window, renderer, sprite);
-    }
 
+#ifdef __EMSCRIPTEN__
+    emscripten_set_main_loop(loop, 0, 1);
+#else
+    while (!done) {
+        loop();
+    }
+#endif
     quit(0);
+
+    return 0; /* to prevent compiler warning */
 }
 
 /* vi: set ts=4 sw=4 expandtab: */

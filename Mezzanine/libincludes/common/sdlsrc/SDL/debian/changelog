@@ -1,3 +1,33 @@
+libsdl2 (2.0.5ubuntu1) UNRELEASED; urgency=low
+
+  * Updated SDL to version 2.0.5
+
+ -- Sam Lantinga <slouken@libsdl.org>  Mon, 28 Nov 2016 07:32:52 -0800
+
+libsdl2 (2.0.4ubuntu1) UNRELEASED; urgency=low
+
+  * Updated SDL to version 2.0.4
+
+ -- Sam Lantinga <slouken@libsdl.org>  Thu, 07 Jan 2016 11:02:39 -0800
+
+libsdl2 (2.0.3) UNRELEASED; urgency=low
+
+  * Updated SDL to version 2.0.3
+
+ -- Sam Lantinga <slouken@libsdl.org>  Sun, 9 Mar 2014 10:35:54 -0800
+
+libsdl2 (2.0.2) UNRELEASED; urgency=low
+
+  * Updated SDL to version 2.0.2
+
+ -- Sam Lantinga <slouken@libsdl.org>  Sun, 9 Feb 2014 2:55:59 -0800
+
+libsdl2 (2.0.1) UNRELEASED; urgency=low
+
+  * Updated SDL to version 2.0.1
+
+ -- Sam Lantinga <slouken@libsdl.org>  Wed, 23 Oct 2013 16:31:38 -0800
+
 libsdl2 (2.0.0) UNRELEASED; urgency=low
 
   * SDL is now a native debian package.
