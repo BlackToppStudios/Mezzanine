@@ -52,13 +52,12 @@ namespace Mezzanine
         // internal forward declarations
         class PhysicsManager;
 
-        /// @brief Convenience datatype for a collection of Collision Algorithms.
-        typedef std::list<btCollisionAlgorithm*> AlgoList;
+        /// @brief Convenience type for a collection of Collision Algorithms.
+        using AlgoList = std::list<btCollisionAlgorithm*>;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
         /// @brief Used to provide better reporting of collisions.
-        /// @details
         ///////////////////////////////////////
         class CollisionDispatcher : public btCollisionDispatcher
         {
@@ -77,7 +76,7 @@ namespace Mezzanine
             virtual ~CollisionDispatcher();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // New Implementation based on Algorithm creation
+            // Implementation based on Algorithm creation
 
             /// @brief Allocates space for a new Collision Algorithm between two objects.
             /// @note This usually means that a collision has started between two objects.
@@ -90,19 +89,11 @@ namespace Mezzanine
             /// @brief Gets the list of algorithms that have been created and need processing.
             /// @return Returns a reference to the list of algorithms that need processing.
             AlgoList* GetAlgoCreationQueue();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Old Implementation based on Manifold creation
-
-            /*btPersistentManifold* getNewManifold(void* b0, void* b1);
-            void releaseManifold(btPersistentManifold* manifold);
-            void releaseManifoldManual(btPersistentManifold* manifold);// */
         };// CollisionDispatcher
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
-        /// @brief Used to provide better reporting of collisions in a multithreaded environment.
-        /// @details
+        /// @brief Used to provide better reporting of collisions in a multi-threaded environment.
         ///////////////////////////////////////
         class ParallelCollisionDispatcher : public SpuGatheringCollisionDispatcher
         {
@@ -121,7 +112,7 @@ namespace Mezzanine
             virtual ~ParallelCollisionDispatcher();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // New Implementation based on Algorithm creation
+            // Implementation based on Algorithm creation
 
             /// @brief Allocates space for a new Collision Algorithm between two objects.
             /// @note This usually means that a collision has started between two objects.
@@ -134,13 +125,6 @@ namespace Mezzanine
             /// @brief Gets the list of algorithms that have been created and need processing.
             /// @return Returns a reference to the list of algorithms that need processing.
             AlgoList* GetAlgoCreationQueue();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Old Implementation based on Manifold creation
-
-            /*btPersistentManifold* getNewManifold(void* b0, void* b1);
-            void releaseManifold(btPersistentManifold* manifold);
-            void releaseManifoldManual(btPersistentManifold* manifold);// */
         };// CollisionDispatcher
     }//Physics
 }//Mezzanine

@@ -1175,8 +1175,7 @@ if(Mezz_Audio_EnableFlacEncoding)
     set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_FLAC_ENCODE")
 endif(Mezz_Audio_EnableFlacEncoding)
 
-option(Mezz_Audio_EnableVorbisEncoding
-        "Enable the encoding and decoding of .ogg (vorbis) encoded data." ON)
+option(Mezz_Audio_EnableVorbisEncoding "Enable the encoding and decoding of .ogg (vorbis) encoded data." ON)
 if(Mezz_Audio_EnableVorbisEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling .ogg (vorbis) encoding.")
     set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_VORBIS_ENCODE")
@@ -1248,6 +1247,11 @@ if(${Mezz_BuildRenderSystemOpenGLES2})
 endif(${Mezz_BuildRenderSystemOpenGLES2})
 
 ###############################################################################
+# Physics configuration
+
+option(Mezz_Physics_MultiThreaded "Enable multi-threading support for the physics system." ON)
+
+###############################################################################
 # Functions for Later use
 
 #Description: This function copies items from the Data/lib directory into it's expected location in
@@ -1276,19 +1280,6 @@ endfunction(CopyFilesDuringBuild)
 
 set(LIBTYPE "STATIC") # OpenAL
 file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL build process
-
-# Bullet related values
-set(BUILD_AMD_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_INTEL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_NVIDIA_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_MINICL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_CPU_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(USE_GLUT OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(INSTALL_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
-set(INSTALL_EXTRA_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
-set(BUILD_UNIT_TESTS OFF CACHE BOOL "Do not build unit tests!" FORCE)
-set(BUILD_MULTITHREADING ON CACHE BOOL "Do build multithreading constructs!" FORCE)
 
 #######################################
 # Windows Build Specific Items
