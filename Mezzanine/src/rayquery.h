@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2017 BlackTopp Studios Inc.
+// ï¿½ Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -121,7 +121,7 @@ namespace Mezzanine
         /// @brief Less-than Operator.
         /// @param Other The other RayQueryHit to be compared to.
         /// @return Returns true if this RayQueryHit should be sorted before the other RayQueryHit.
-        Boole operator<(const RayQueryHit& Other)
+        Boole operator<(const RayQueryHit& Other) const
             { return this->Distance < Other.Distance; }
 
         ///////////////////////////////////////////////////////////////////////////////
