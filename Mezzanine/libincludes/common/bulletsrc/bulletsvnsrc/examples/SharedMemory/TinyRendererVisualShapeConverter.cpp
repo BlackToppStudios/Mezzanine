@@ -115,11 +115,11 @@ TinyRendererVisualShapeConverter::TinyRendererVisualShapeConverter()
 	m_data = new TinyRendererVisualShapeConverterInternalData();
 	
 	float dist = 1.5;
-	float pitch = -80;
-	float yaw = 10;
+	float pitch = -10;
+	float yaw = -80;
 	float targetPos[3]={0,0,0};
 	m_data->m_camera.setCameraUpAxis(m_data->m_upAxis);
-	resetCamera(dist,pitch,yaw,targetPos[0],targetPos[1],targetPos[2]);
+	resetCamera(dist,yaw,pitch,targetPos[0],targetPos[1],targetPos[2]);
 
 
 }
@@ -179,10 +179,10 @@ void convertURDFToVisualShape(const UrdfShape* visual, const char* urdfPathPrefi
 	visualShapeOut.m_dimensions[2] = 0;
 	visualShapeOut.m_meshAssetFileName[0] = 0;
 	if (visual->m_geometry.m_hasLocalMaterial) {
-		visualShapeOut.m_rgbaColor[0] = visual->m_geometry.m_localMaterial.m_rgbaColor[0];
-		visualShapeOut.m_rgbaColor[1] = visual->m_geometry.m_localMaterial.m_rgbaColor[1];
-		visualShapeOut.m_rgbaColor[2] = visual->m_geometry.m_localMaterial.m_rgbaColor[2];
-		visualShapeOut.m_rgbaColor[3] = visual->m_geometry.m_localMaterial.m_rgbaColor[3];
+		visualShapeOut.m_rgbaColor[0] = visual->m_geometry.m_localMaterial.m_matColor.m_rgbaColor[0];
+		visualShapeOut.m_rgbaColor[1] = visual->m_geometry.m_localMaterial.m_matColor.m_rgbaColor[1];
+		visualShapeOut.m_rgbaColor[2] = visual->m_geometry.m_localMaterial.m_matColor.m_rgbaColor[2];
+		visualShapeOut.m_rgbaColor[3] = visual->m_geometry.m_localMaterial.m_matColor.m_rgbaColor[3];
 	}
 	
 	GLInstanceGraphicsShape* glmesh = 0;
@@ -516,7 +516,6 @@ void TinyRendererVisualShapeConverter::convertVisualShapes(
 	btAssert(linkPtr); // TODO: remove if (not doing it now, because diff will be 50+ lines)
 	if (linkPtr)
 	{
-		const btArray<UrdfVisual>* shapeArray;
 		bool useVisual;
 		int cnt = 0;
 		if (linkPtr->m_visualArray.size() > 0)
@@ -556,7 +555,7 @@ void TinyRendererVisualShapeConverter::convertVisualShapes(
 				{
 					for (int i=0; i<4; i++)
 					{
-						rgbaColor[i] = (*matPtr)->m_rgbaColor[i];
+						rgbaColor[i] = (*matPtr)->m_matColor.m_rgbaColor[i];
 					}
 					//printf("UrdfMaterial %s, rgba = %f,%f,%f,%f\n",mat->m_name.c_str(),mat->m_rgbaColor[0],mat->m_rgbaColor[1],mat->m_rgbaColor[2],mat->m_rgbaColor[3]);
 					//m_data->m_linkColors.insert(linkIndex,mat->m_rgbaColor);
@@ -672,6 +671,34 @@ int TinyRendererVisualShapeConverter::getVisualShapesData(int bodyUniqueId, int 
 	return 0;
 }
 
+void TinyRendererVisualShapeConverter::changeRGBAColor(int bodyUniqueId, int linkIndex, const double rgbaColor[4])
+{
+	int start = -1;
+	for (int i = 0; i < m_data->m_visualShapes.size(); i++)
+	{
+		if (m_data->m_visualShapes[i].m_objectUniqueId == bodyUniqueId && m_data->m_visualShapes[i].m_linkIndex == linkIndex)
+		{
+			start = i;
+			m_data->m_visualShapes[i].m_rgbaColor[0] = rgbaColor[0];
+			m_data->m_visualShapes[i].m_rgbaColor[1] = rgbaColor[1];
+			m_data->m_visualShapes[i].m_rgbaColor[2] = rgbaColor[2];
+			m_data->m_visualShapes[i].m_rgbaColor[3] = rgbaColor[3];
+			break;
+		}
+	}
+	
+	TinyRendererObjectArray** visualArrayPtr = m_data->m_swRenderInstances.getAtIndex(start);
+	TinyRendererObjectArray* visualArray = *visualArrayPtr;
+	
+	btHashPtr colObjHash = m_data->m_swRenderInstances.getKeyAtIndex(start);
+	const btCollisionObject* colObj = (btCollisionObject*) colObjHash.getPointer();
+	
+	float rgba[4] = {rgbaColor[0], rgbaColor[1], rgbaColor[2], rgbaColor[3]};
+	for (int v=0;v<visualArray->m_renderObjects.size();v++)
+	{
+		visualArray->m_renderObjects[v]->m_model->setColorRGBA(rgba);
+	}
+}
 
 void TinyRendererVisualShapeConverter::setUpAxis(int axis)
 {
@@ -679,7 +706,7 @@ void TinyRendererVisualShapeConverter::setUpAxis(int axis)
     m_data->m_camera.setCameraUpAxis(axis);
     m_data->m_camera.update();
 }
-void TinyRendererVisualShapeConverter::resetCamera(float camDist, float pitch, float yaw, float camPosX,float camPosY, float camPosZ)
+void TinyRendererVisualShapeConverter::resetCamera(float camDist, float yaw, float pitch, float camPosX,float camPosY, float camPosZ)
 {
     m_data->m_camera.setCameraDistance(camDist);
     m_data->m_camera.setCameraPitch(pitch);
@@ -727,7 +754,12 @@ void TinyRendererVisualShapeConverter::render(const float viewMat[16], const flo
     clearColor.bgra[3] = 255;
     
     clearBuffers(clearColor);
+	float near = projMat[14]/(projMat[10]-1);
+	float far = projMat[14]/(projMat[10]+1);
 
+	m_data->m_camera.setCameraFrustumNear( near);
+	m_data->m_camera.setCameraFrustumFar(far);
+		
     
     ATTRIBUTE_ALIGNED16(btScalar modelMat[16]);
     

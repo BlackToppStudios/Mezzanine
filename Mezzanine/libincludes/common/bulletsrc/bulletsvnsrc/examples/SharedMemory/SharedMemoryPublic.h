@@ -4,7 +4,9 @@
 #define SHARED_MEMORY_KEY 12347
 ///increase the SHARED_MEMORY_MAGIC_NUMBER whenever incompatible changes are made in the structures
 ///my convention is year/month/day/rev
-#define SHARED_MEMORY_MAGIC_NUMBER 201703024
+#define SHARED_MEMORY_MAGIC_NUMBER 201706001
+//#define SHARED_MEMORY_MAGIC_NUMBER 201703024
+
 
 enum EnumSharedMemoryClientCommand
 {
@@ -59,6 +61,9 @@ enum EnumSharedMemoryClientCommand
 	CMD_CHANGE_DYNAMICS_INFO,
 	CMD_GET_DYNAMICS_INFO,
 	CMD_PROFILE_TIMING,
+	CMD_CREATE_COLLISION_SHAPE,
+	CMD_CREATE_VISUAL_SHAPE,
+	CMD_CREATE_MULTI_BODY,
     //don't go beyond this command!
     CMD_MAX_CLIENT_COMMANDS,
     
@@ -144,6 +149,12 @@ enum EnumSharedMemoryServerStatus
 		CMD_REMOVE_BODY_FAILED,
 		CMD_GET_DYNAMICS_INFO_COMPLETED,
 		CMD_GET_DYNAMICS_INFO_FAILED,
+		CMD_CREATE_COLLISION_SHAPE_FAILED,
+		CMD_CREATE_COLLISION_SHAPE_COMPLETED,
+		CMD_CREATE_VISUAL_SHAPE_FAILED,
+		CMD_CREATE_VISUAL_SHAPE_COMPLETED,
+		CMD_CREATE_MULTI_BODY_FAILED,
+		CMD_CREATE_MULTI_BODY_COMPLETED,
         //don't go beyond 'CMD_MAX_SERVER_COMMANDS!
         CMD_MAX_SERVER_COMMANDS
 };
@@ -202,6 +213,7 @@ struct b3JointInfo
 		double m_childFrame[7]; // ^^^
 		double m_jointAxis[3]; // joint axis in parent local frame
 };
+
 
 struct b3UserConstraint
 {
@@ -285,6 +297,11 @@ struct b3OpenGLVisualizerCameraInfo
 
 	float m_horizontal[3];
 	float m_vertical[3];
+	
+	float m_yaw;
+	float m_pitch;
+	float m_dist;
+	float m_target[3];
 };
 
 enum b3VREventType
@@ -318,6 +335,11 @@ enum eVRDeviceTypeEnums
 	VR_DEVICE_CONTROLLER=1,
 	VR_DEVICE_HMD=2,
 	VR_DEVICE_GENERIC_TRACKER=4,
+};
+
+enum EVRCameraFlags
+{
+	VR_CAMERA_TRACK_OBJECT_ORIENTATION=1,
 };
 
 struct b3VRControllerEvent
@@ -419,7 +441,7 @@ struct b3RaycastInformation
 };
 
 
-#define VISUAL_SHAPE_MAX_PATH_LEN 128
+#define VISUAL_SHAPE_MAX_PATH_LEN 1024
 
 struct b3VisualShapeData
 {
@@ -495,6 +517,18 @@ enum b3ConfigureDebugVisualizerEnum
     COV_ENABLE_GUI=1,
     COV_ENABLE_SHADOWS,
     COV_ENABLE_WIREFRAME,
+	COV_ENABLE_VR_TELEPORTING,
+	COV_ENABLE_VR_PICKING,
+	COV_ENABLE_VR_RENDER_CONTROLLERS,
+	COV_ENABLE_RENDERING,
+	COV_ENABLE_SYNC_RENDERING_INTERNAL,
+};
+
+enum b3AddUserDebugItemEnum
+{
+	DEB_DEBUG_TEXT_USE_ORIENTATION=1,
+	DEB_DEBUG_TEXT_USE_TRUE_TYPE_FONTS=2,
+	DEB_DEBUG_TEXT_HAS_TRACKING_OBJECT=4,
 };
 
 enum eCONNECT_METHOD {
@@ -513,5 +547,18 @@ enum eURDF_Flags
 	URDF_USE_SELF_COLLISION_EXCLUDE_PARENT=16,
 	URDF_USE_SELF_COLLISION_EXCLUDE_ALL_PARENTS=32,
 };
+
+enum eUrdfGeomTypes //sync with UrdfParser UrdfGeomTypes
+{
+	GEOM_SPHERE=2,
+	GEOM_BOX,
+	GEOM_CYLINDER,
+	GEOM_MESH,
+	GEOM_PLANE,
+	GEOM_CAPSULE, //non-standard URDF?
+	GEOM_UNKNOWN, 
+};
+
+
 
 #endif//SHARED_MEMORY_PUBLIC_H

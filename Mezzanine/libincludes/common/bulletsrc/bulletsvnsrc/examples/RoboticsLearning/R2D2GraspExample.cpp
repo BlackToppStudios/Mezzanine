@@ -92,7 +92,7 @@ public:
 				m_robotSim.loadSDF("kiva_shelf/model.sdf",results);
 			}
 			{
-				m_robotSim.loadURDF("results");
+				m_robotSim.loadURDF("plane.urdf");
 			}
 
 			m_robotSim.setGravity(b3MakeVector3(0,0,-10));
@@ -188,8 +188,8 @@ public:
 	virtual void resetCamera()
 	{
 		float dist = 3;
-		float pitch = -75;
-		float yaw = 30;
+		float pitch = -30;
+		float yaw = -75;
 		float targetPos[3]={-0.2,0.8,0.3};
 		if (m_app->m_renderer  && m_app->m_renderer->getActiveCamera())
 		{

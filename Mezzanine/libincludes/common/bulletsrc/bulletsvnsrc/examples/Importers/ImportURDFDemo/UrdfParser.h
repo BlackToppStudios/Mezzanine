@@ -17,13 +17,15 @@ struct ErrorLogger
 	virtual void printMessage(const char* msg)=0;
 };
 
+
+
 struct UrdfMaterial
 {
 	std::string m_name;
 	std::string m_textureFilename;
-	btVector4 m_rgbaColor; // [0]==r [1]==g [2]==b [3]==a
-	UrdfMaterial():
-		m_rgbaColor(0.8, 0.8, 0.8, 1)
+	UrdfMaterialColor m_matColor;
+
+	UrdfMaterial()
 	{
 	}
 };
@@ -87,7 +89,16 @@ struct UrdfGeometry
 
 	UrdfGeometry()
 	:m_type(URDF_GEOM_UNKNOWN),
-	m_hasFromTo(false),
+		m_sphereRadius(1),
+		m_boxSize(1,1,1),
+		m_capsuleRadius(1),
+		m_capsuleHeight(1),
+		m_hasFromTo(0),
+		m_capsuleFrom(0,1,0),
+		m_capsuleTo(1,0,0),
+		m_planeNormal(0,0,1),
+		m_meshFileType(0),
+		m_meshScale(1,1,1),
 	m_hasLocalMaterial(false)
 	{
 	}
@@ -271,12 +282,11 @@ public:
     int getNumModels() const
     {
         //user should have loaded an SDF when calling this method
-        btAssert(m_parseSDF);
         if (m_parseSDF)
         {
             return m_sdfModels.size();
         }
-		return 0;
+		return 1;
     }
     
     void activateModel(int modelIndex);
