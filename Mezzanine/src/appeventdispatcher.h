@@ -83,7 +83,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class will check for high level application events from internal sources and dispatch them to subscribers.
     ///////////////////////////////////////
-    class AppEventDispatcher : public EventPublisher
+    class MEZZ_LIB AppEventDispatcher : public EventPublisher
     {
     public:
         /// @brief Event name for when a file is dragged over the application from an external source.

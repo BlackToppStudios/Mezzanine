@@ -108,6 +108,7 @@
 #include "worldproxy.h"
 
 #ifndef SWIG
+#include "appeventdispatcher.h"
 #include "assetid.h"
 #include "datastream.h"
 #include "entresol.h"

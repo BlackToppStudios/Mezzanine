@@ -42,6 +42,8 @@ CatchApp::CatchApp() :
 
     // Initialize the engine
     this->TheEntresol = new Entresol( "Data/", Resource::AT_FileSystem );
+    // Set up our quit lamda
+    this->AppEvents.Subscribe(AppEventDispatcher::EventAppQuit,this,[=](EventPtr Args){ this->TheEntresol->BreakMainLoop(); });
     //this->TheWorld = this->TheEntresol->CreateWorld("Catching");
     this->CreateWorld();
 

@@ -39,6 +39,7 @@ DemoPostInputWorkUnit*      DemoPostInputWork    = NULL;
 DemoPostRenderWorkUnit*     DemoPostRenderWork   = NULL;
 DemoPostPhysicsWorkUnit*    DemoPostPhysicsWork  = NULL;
 
+AppEventDispatcher* DemoAppEvents = NULL;
 World* DemoWorld = NULL;
 
 Graphics::GameWindow* FirstWindow = NULL;
@@ -270,6 +271,8 @@ int main(int argc, char **argv)
     {
         TheEntresol = new Entresol( "data/common/", "EngineDemoLog.txt");
         TheEntresol->SetTargetFrameRate(60);
+        DemoAppEvents = new AppEventDispatcher();
+        DemoAppEvents->Subscribe(AppEventDispatcher::EventAppQuit,1,[=](EventPtr Args){ TheEntresol->BreakMainLoop(); });
 
         TheEntresol->Initialize(false);
 
@@ -293,6 +296,7 @@ int main(int argc, char **argv)
         TheEntresol->MainLoop();
 
         DestroyDemoWorld();
+        delete DemoAppEvents;
         delete TheEntresol;
     }catch(std::exception& excep){
         std::cerr << "Exception: " << excep.what() << std::endl;
