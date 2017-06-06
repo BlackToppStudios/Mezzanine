@@ -160,10 +160,7 @@ namespace Mezzanine
         this->AddSubscriptionTable(AppEventDispatcher::EventAppWillEnterForeground);
         this->AddSubscriptionTable(AppEventDispatcher::EventAppDidEnterForeground);
 
-        SDL_EventFilter* FilterCheck = nullptr;
-        void* UserDataCheck = nullptr;
-        SDL_GetEventFilter(FilterCheck,&UserDataCheck);
-        if( FilterCheck == nullptr && UserDataCheck == nullptr ) {
+        if( !SDL_GetEventFilter(nullptr,nullptr) ) {
             SDL_SetEventFilter(AppEventFilter,this);
         }else{
             MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"An internal EventFilter has already been set.");
