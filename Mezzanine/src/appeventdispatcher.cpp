@@ -54,6 +54,7 @@ namespace
 
     /// @brief Handles the "AppTerminating" application event from internal sources.
     /// @param Dispatcher A pointer to the dispatcher that till notify interested subscribers of the event.
+    /// @return Returns zero, to avoid adding the internal event to the internal queue.
     int HandleAppTerminating(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppTerminating);
@@ -63,6 +64,7 @@ namespace
 
     /// @brief Handles the "AppLowMemory" application event from internal sources.
     /// @param Dispatcher A pointer to the dispatcher that till notify interested subscribers of the event.
+    /// @return Returns zero, to avoid adding the internal event to the internal queue.
     int HandleAppLowMemory(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppLowMemory);
@@ -72,6 +74,7 @@ namespace
 
     /// @brief Handles the "AppWillEnterBackground" application event from internal sources.
     /// @param Dispatcher A pointer to the dispatcher that till notify interested subscribers of the event.
+    /// @return Returns zero, to avoid adding the internal event to the internal queue.
     int HandleAppWillEnterBackground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppWillEnterBackground);
@@ -81,6 +84,7 @@ namespace
 
     /// @brief Handles the "AppDidEnterBackground" application event from internal sources.
     /// @param Dispatcher A pointer to the dispatcher that till notify interested subscribers of the event.
+    /// @return Returns zero, to avoid adding the internal event to the internal queue.
     int HandleAppDidEnterBackground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppDidEnterBackground);
@@ -90,6 +94,7 @@ namespace
 
     /// @brief Handles the "AppWillEnterForeground" application event from internal sources.
     /// @param Dispatcher A pointer to the dispatcher that till notify interested subscribers of the event.
+    /// @return Returns zero, to avoid adding the internal event to the internal queue.
     int HandleAppWillEnterForeground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppWillEnterForeground);
@@ -99,6 +104,7 @@ namespace
 
     /// @brief Handles the "AppDidEnterForeground" application event from internal sources.
     /// @param Dispatcher A pointer to the dispatcher that till notify interested subscribers of the event.
+    /// @return Returns zero, to avoid adding the internal event to the internal queue.
     int HandleAppDidEnterForeground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppDidEnterForeground);
@@ -109,6 +115,7 @@ namespace
     /// @brief A custom event filter for SDL to enable immediate dispatch of application events.
     /// @param userdata A pointer to the user set data for processing the event, in this case the AppEventDispatcher.
     /// @param event The SDL event being dispatched.
+    /// @return Returns zero if the internal event shouldn't be forwarded to the internal queue, one if it should.
     int AppEventFilter(void* userdata, SDL_Event* event)
     {
         AppEventDispatcher* Dispatcher = static_cast<AppEventDispatcher*>(userdata);
