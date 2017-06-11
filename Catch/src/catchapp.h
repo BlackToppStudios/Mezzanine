@@ -70,6 +70,8 @@ protected:
     ThrowableContainer ThrownItems;
     StartAreaContainer StartAreas;
 
+    AppEventDispatcher AppEvents;
+
     void InitializeFromXML(const String& CatchDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile);
 
     /// @brief Creates a game world ready to be populated.
