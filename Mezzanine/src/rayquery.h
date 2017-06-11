@@ -92,8 +92,8 @@ namespace Mezzanine
             { return this->IsValid() && !this->Object->IsStatic(); }
 
         /// @brief Gets the parent world object of the proxy hit by this ray query.
-        /// @return Returns a WorldObject pointer to the parent of the it proxy.
-        WorldObject* GetObjectParent() const
+        /// @return Returns a WorldEntity pointer to the parent of the it proxy.
+        WorldEntity* GetObjectParent() const
             { return this->Object->GetParentObject(); }
         /// @brief Gets the hit location in world space.
         /// @return Returns a Vector3 containing the world location of the ray hit.

@@ -45,7 +45,7 @@
 #include "enumerations.h"
 #include "ray.h"
 #include "worldproxymanager.h"
-#include "worldobject.h"
+#include "worldentity.h"
 
 #include "Graphics/cameraproxy.h"
 #include "Graphics/scenemanager.h"

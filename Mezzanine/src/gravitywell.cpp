@@ -92,14 +92,14 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::WorldObjectType GravityWell::GetType() const
+    Mezzanine::WorldEntityType GravityWell::GetType() const
         { return Mezzanine::WO_AreaEffectGravityWell; }
 
     void GravityWell::ApplyEffect()
     {
-        /// @todo This currently will apply this fields force uniformly to all rigid proxies contained in a WorldObject.
+        /// @todo This currently will apply this fields force uniformly to all rigid proxies contained in a WorldEntity.
         /// Instead this should perhaps apply only to the ones in the field, or perhaps apply force based on the proxy position
-        /// rather than the WorldObject position to get more interesting results.
+        /// rather than the WorldEntity position to get more interesting results.
         /// @todo Update to allow the application of force to soft proxies.
         AreaEffect::ApplyEffect();
 

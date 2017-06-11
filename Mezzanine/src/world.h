@@ -42,7 +42,7 @@
 #define _world_h
 
 #include "enumerations.h"
-#include "worldobjectmanager.h"
+#include "worldentitymanager.h"
 #include "worldproxymanager.h"
 
 namespace Mezzanine
@@ -188,10 +188,10 @@ namespace Mezzanine
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
         /// @return This returns a pointer to a WorldManager, or a NULL pointer if no matching manager exists.
         WorldManager* GetManager(const Whole ManagerToGet) const;
-        /// @brief This is will find the WorldObject manager of a given type.
+        /// @brief This is will find the WorldEntity manager of a given type.
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
-        /// @return This returns a pointer to a WorldObjectManager, or a NULL pointer if no matching manager exists.
-        WorldObjectManager* GetObjectManager(const Whole ManagerToGet) const;
+        /// @return This returns a pointer to a WorldEntityManager, or a NULL pointer if no matching manager exists.
+        WorldEntityManager* GetObjectManager(const Whole ManagerToGet) const;
         /// @brief This is will find the WorldProxy manager of a given type.
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
         /// @return This returns a pointer to a WorldProxyManager, or a NULL pointer if no matching manager exists.

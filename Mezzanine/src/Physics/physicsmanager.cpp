@@ -59,7 +59,7 @@
 
 #include "Graphics/graphicsmanager.h"
 
-// WorldObject Manager includes are here for the debug draw work unit dependency setting
+// WorldEntity Manager includes are here for the debug draw work unit dependency setting
 #include "actormanager.h"
 #include "areaeffectmanager.h"
 #include "debrismanager.h"
@@ -67,7 +67,7 @@
 #include "stringtool.h"
 #include "vector3.h"
 #include "worldtrigger.h"
-#include "worldobject.h"
+#include "worldentity.h"
 #include "crossplatform.h"
 #include "entresol.h"
 #include "world.h"
@@ -699,7 +699,7 @@ namespace Mezzanine
                         break;
                     }
                 }// */
-                // Old method involving detecting the actual WorldObject pair
+                // Old method involving detecting the actual WorldEntity pair
                 CollidableProxy* ProxA = NULL;
                 CollidableProxy* ProxB = NULL;
                 /// @todo This is an absurd round-about way to get the data we need,
@@ -917,7 +917,7 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
-                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
                     if( Parent )
                         Parent->RemoveProxy( (*ProxIt) );
 
@@ -935,7 +935,7 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( (*ProxIt)->GetProxyType() & Types ) {
-                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
                     if( Parent )
                         Parent->RemoveProxy( (*ProxIt) );
 
@@ -953,7 +953,7 @@ namespace Mezzanine
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                WorldObject* Parent = (*ProxIt)->GetParentObject();
+                WorldEntity* Parent = (*ProxIt)->GetParentObject();
                 if( Parent )
                     Parent->RemoveProxy( (*ProxIt) );
 

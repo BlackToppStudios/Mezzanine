@@ -42,7 +42,7 @@
 
 #include "Internal/motionstate.h.cpp"
 #include "Physics/rigidproxy.h"
-#include "worldobject.h"
+#include "worldentity.h"
 #include "exception.h"
 
 #include <algorithm>
@@ -160,37 +160,37 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // WorldObjectMotionState methods
+        // WorldEntityMotionState methods
 
-        WorldObjectMotionState::WorldObjectMotionState() :
+        WorldEntityMotionState::WorldEntityMotionState() :
             ParentObject(NULL),
             SyncObject(NULL)
             { this->WorldTrans.setIdentity(); }
 
-        WorldObjectMotionState::WorldObjectMotionState(Physics::RigidProxy* PO) :
+        WorldEntityMotionState::WorldEntityMotionState(Physics::RigidProxy* PO) :
             ParentObject(PO),
             SyncObject(NULL)
             { this->WorldTrans.setIdentity(); }
 
-        WorldObjectMotionState::~WorldObjectMotionState()
+        WorldEntityMotionState::~WorldEntityMotionState()
             {  }
 
-        void WorldObjectMotionState::SetParentObject(Physics::RigidProxy* PO)
+        void WorldEntityMotionState::SetParentObject(Physics::RigidProxy* PO)
             { this->ParentObject = PO; }
 
-        void WorldObjectMotionState::SetSyncObject(WorldObject* WO)
+        void WorldEntityMotionState::SetSyncObject(WorldEntity* WO)
             { this->SyncObject = WO; }
 
-        void WorldObjectMotionState::SetPosition(const Vector3& Position)
+        void WorldEntityMotionState::SetPosition(const Vector3& Position)
             { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }
 
-        void WorldObjectMotionState::SetOrientation(const Quaternion& Orientation)
+        void WorldEntityMotionState::SetOrientation(const Quaternion& Orientation)
             { this->WorldTrans.setRotation(Orientation.GetBulletQuaternion()); }
 
-        void WorldObjectMotionState::getWorldTransform(btTransform& worldTrans) const
+        void WorldEntityMotionState::getWorldTransform(btTransform& worldTrans) const
             { worldTrans = this->WorldTrans; }
 
-        void WorldObjectMotionState::setWorldTransform(const btTransform& worldTrans)
+        void WorldEntityMotionState::setWorldTransform(const btTransform& worldTrans)
         {
             this->WorldTrans = worldTrans;
             if( this->ParentObject != NULL && this->SyncObject != NULL ) {

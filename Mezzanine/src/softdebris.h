@@ -95,8 +95,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Configuration
 
-        /// @copydoc Mezzanine::WorldObject::GetType() const
-        virtual WorldObjectType GetType() const;
+        /// @copydoc Mezzanine::WorldEntity::GetType() const
+        virtual WorldEntityType GetType() const;
 
         /// @brief Gets a pointer to the graphics portion of this debris.
         /// @remarks This is a convenience method that just calls "GetProxy(const UInt32 Types, Whole TypeIndex) const",
@@ -116,20 +116,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node&) const
+        /// @copydoc Mezzanine::WorldEntity::ProtoSerializeProperties(XML::Node&) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node&)
+        /// @copydoc Mezzanine::WorldEntity::ProtoDeSerializeProperties(const XML::Node&)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-        /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+        /// @copydoc Mezzanine::WorldEntity::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
-        /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+        /// @copydoc Mezzanine::WorldEntity::GetSerializableName()
         static String GetSerializableName();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc Mezzanine::WorldObject::_Update(const Whole)
+        /// @copydoc Mezzanine::WorldEntity::_Update(const Whole)
         virtual void _Update(const Whole Delta);
     };//SoftDebris
 

@@ -104,7 +104,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    WorldObjectType SoftDebris::GetType() const
+    WorldEntityType SoftDebris::GetType() const
         { return Mezzanine::WO_SoftDebris; }
 
     Graphics::EntityProxy* SoftDebris::GetEntityProxy() const

@@ -134,7 +134,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    WorldObjectType RigidDebris::GetType() const
+    WorldEntityType RigidDebris::GetType() const
         { return Mezzanine::WO_RigidDebris; }
 
     Graphics::EntityProxy* RigidDebris::GetEntityProxy() const

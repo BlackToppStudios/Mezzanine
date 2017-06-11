@@ -174,7 +174,7 @@ namespace Mezzanine
 
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This enum can be used to express any object which could be considered "insertable" into the game world.
-    enum WorldObjectType
+    enum WorldEntityType
     {
         WO_None                   = 0,          ///< Used to help report error conditions.
         // Terrain Objects

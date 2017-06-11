@@ -44,7 +44,7 @@
 #include "mousepickdragger.h"
 #include "rayquery.h"
 #include "world.h"
-#include "worldobject.h"
+#include "worldentity.h"
 #include "worldproxy.h"
 
 #include "Input/mouse.h"

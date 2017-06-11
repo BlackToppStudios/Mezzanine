@@ -52,7 +52,7 @@ class btCollisionShape;
 
 namespace Mezzanine
 {
-    class WorldObject;
+    class WorldEntity;
     namespace Physics
     {
         class PhysicsManager;

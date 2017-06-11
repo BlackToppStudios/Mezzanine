@@ -40,7 +40,7 @@
 #ifndef _areaeffect_h
 #define _areaeffect_h
 
-#include "worldobject.h"
+#include "worldentity.h"
 #include "colourvalue.h"
 
 namespace Mezzanine
@@ -62,11 +62,11 @@ namespace Mezzanine
     /// AreaEffect class that does what you want it to, simple inherit from this class with an AE class of your own,
     /// and define the ApplyEffect() function to do what you want your effect to do.
     ///////////////////////////////////////
-    class MEZZ_LIB AreaEffect : public WorldObject
+    class MEZZ_LIB AreaEffect : public WorldEntity
     {
     public:
         /// @brief Basic container type for Object storage by this class.
-        typedef std::vector< WorldObject* >         ObjectContainer;
+        typedef std::vector< WorldEntity* >         ObjectContainer;
         /// @brief Iterator type for Object instances stored by this class.
         typedef ObjectContainer::iterator           ObjectIterator;
         /// @brief Const Iterator type for Object instances stored by this class.
@@ -83,7 +83,7 @@ namespace Mezzanine
         ObjectContainer RemovedObjects;
         /// @internal
         /// @brief An optional pointer to an object this AreaEffect will follow.
-        WorldObject* SyncTarget;
+        WorldEntity* SyncTarget;
 
         /// @internal
         /// @brief Common constructor method for AreaEffect base class.
@@ -111,8 +111,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @copydoc Mezzanine::WorldObject::GetType() const
-        virtual WorldObjectType GetType() const;
+        /// @copydoc Mezzanine::WorldEntity::GetType() const
+        virtual WorldEntityType GetType() const;
         /// @brief Gets a pointer to the physics portion of this AreaEffect.
         /// @return Returns a pointer to the Ghost proxy representing the physics portion of this AreaEffect.
         virtual Physics::GhostProxy* GetGhostProxy() const;
@@ -122,12 +122,12 @@ namespace Mezzanine
         /// This function will be called on by the physics manager and shouldn't be called manually.
         virtual void ApplyEffect();
 
-        /// @brief Gets the WorldObject this AreaEffect will sync it's transform with.
-        /// @param ToSync A pointer to the WorldObject to sync transforms with.
-        virtual void SetSyncTarget(WorldObject* ToSync);
-        /// @brief Gets the WorldObject this AreaEffect is syncing it's transform with.
-        /// @return Returns a pointer to the WorldObject that will be sync'd with.
-        virtual WorldObject* GetSyncTarget() const;
+        /// @brief Gets the WorldEntity this AreaEffect will sync it's transform with.
+        /// @param ToSync A pointer to the WorldEntity to sync transforms with.
+        virtual void SetSyncTarget(WorldEntity* ToSync);
+        /// @brief Gets the WorldEntity this AreaEffect is syncing it's transform with.
+        /// @return Returns a pointer to the WorldEntity that will be sync'd with.
+        virtual WorldEntity* GetSyncTarget() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Overlapping Object Management
@@ -159,20 +159,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        /// @copydoc Mezzanine::WorldEntity::ProtoSerializeProperties(XML::Node& SelfRoot) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        /// @copydoc Mezzanine::WorldEntity::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-        /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+        /// @copydoc Mezzanine::WorldEntity::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
-        /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+        /// @copydoc Mezzanine::WorldEntity::GetSerializableName()
         static String GetSerializableName();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc Mezzanine::WorldObject::_Update(const Whole)
+        /// @copydoc Mezzanine::WorldEntity::_Update(const Whole)
         virtual void _Update(const Whole Delta);
     };//AreaEffect
 

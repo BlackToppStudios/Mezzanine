@@ -331,12 +331,12 @@ namespace Mezzanine
         return NULL;
     }
 
-    WorldObjectManager* World::GetObjectManager(const Whole ManagerToGet) const
+    WorldEntityManager* World::GetObjectManager(const Whole ManagerToGet) const
     {
-        if( ManagerToGet >= ManagerBase::MT_WorldObjectManagerFirst &&
-            ManagerToGet <= ManagerBase::MT_WorldObjectManagerLast )
+        if( ManagerToGet >= ManagerBase::MT_WorldEntityManagerFirst &&
+            ManagerToGet <= ManagerBase::MT_WorldEntityManagerLast )
         {
-            return static_cast<WorldObjectManager*>( this->GetManager(ManagerToGet) );
+            return static_cast<WorldEntityManager*>( this->GetManager(ManagerToGet) );
         }
         return NULL;
     }

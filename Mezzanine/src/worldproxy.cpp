@@ -41,7 +41,7 @@
 #define _worldproxy_cpp
 
 #include "worldproxy.h"
-#include "worldobject.h"
+#include "worldentity.h"
 
 #include "enumerations.h"
 #include "exception.h"
@@ -72,7 +72,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    WorldObject* WorldProxy::GetParentObject() const
+    WorldEntity* WorldProxy::GetParentObject() const
         { return this->ParentObject; }
 
     UInt32 WorldProxy::GetProxyID() const
@@ -171,7 +171,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void WorldProxy::_Bind(WorldObject* NewParent)
+    void WorldProxy::_Bind(WorldEntity* NewParent)
     {
         if( ParentObject != NewParent ) {
             ParentObject = NewParent;

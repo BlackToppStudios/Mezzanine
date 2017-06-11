@@ -45,7 +45,7 @@
 namespace Mezzanine
 {
     class World;
-    class WorldObject;
+    class WorldEntity;
     class MousePickDragger;
     class RayQuery;
     class RayQueryHit;

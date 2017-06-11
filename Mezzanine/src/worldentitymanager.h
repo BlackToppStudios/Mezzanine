@@ -37,35 +37,35 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _worldobjectmanager_h
-#define _worldobjectmanager_h
+#ifndef _worldentitymanager_h
+#define _worldentitymanager_h
 
 #include "worldmanager.h"
 
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is an interface class for a world manager responsible for the management of WorldObject instances.
+    /// @brief This is an interface class for a world manager responsible for the management of WorldEntity instances.
     ///////////////////////////////////////
-    class MEZZ_LIB WorldObjectManager : public WorldManager
+    class MEZZ_LIB WorldEntityManager : public WorldManager
     {
     public:
     protected:
     public:
         /// @brief Class constructor.
         /// @param Creator The parent world that is creating the manager.
-        WorldObjectManager(World* Creator) :
+        WorldEntityManager(World* Creator) :
             WorldManager(Creator)
             {  }
         /// @brief Class destructor.
-        virtual ~WorldObjectManager()
+        virtual ~WorldEntityManager()
             {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Object Management
 
 
-    };//WorldObjectManager
+    };//WorldEntityManager
 }//Mezzanine
 
 #endif

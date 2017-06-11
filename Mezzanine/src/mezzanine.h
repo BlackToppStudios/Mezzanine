@@ -104,7 +104,8 @@
 #include "world.h"
 #include "worldmanager.h"
 #include "worldmanagerfactory.h"
-#include "worldobject.h"
+#include "worldentity.h"
+#include "worldentitymanager.h"
 #include "worldproxy.h"
 
 #ifndef SWIG

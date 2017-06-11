@@ -48,11 +48,11 @@
 namespace Mezzanine
 {
     Debris::Debris(World* TheWorld) :
-        WorldObject(TheWorld)
+        WorldEntity(TheWorld)
         {  }
 
     Debris::Debris(const String& Name, World* TheWorld) :
-        WorldObject(Name,TheWorld)
+        WorldEntity(Name,TheWorld)
         {  }
 
     Debris::~Debris()
@@ -69,12 +69,12 @@ namespace Mezzanine
 
     void Debris::ProtoSerializeProperties(XML::Node& SelfRoot) const
     {
-        this->WorldObject::ProtoSerializeProperties(SelfRoot);
+        this->WorldEntity::ProtoSerializeProperties(SelfRoot);
     }
 
     void Debris::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
-        this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
+        this->WorldEntity::ProtoDeSerializeProperties(SelfRoot);
     }
 
     String Debris::GetDerivedSerializableName() const

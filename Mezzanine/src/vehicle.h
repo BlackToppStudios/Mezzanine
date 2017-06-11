@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file contains the declaration for the vehicle base class used to represent a solid self-propelling object.
 
-#include "worldobject.h"
+#include "worldentity.h"
 
 namespace Mezzanine
 {
@@ -52,7 +52,7 @@ namespace Mezzanine
     /// @details The vehicle classes are responsible for solid objects capable of self propulsion and may have unique rules
     /// for their locomotion.
     ///////////////////////////////////////
-    class MEZZ_LIB Vehicle : public WorldObject
+    class MEZZ_LIB Vehicle : public WorldEntity
     {
     protected:
     public:
