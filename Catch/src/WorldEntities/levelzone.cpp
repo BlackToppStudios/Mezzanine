@@ -41,13 +41,13 @@ void LevelZone::DestroyLevelZone()
 ///////////////////////////////////////////////////////////////////////////////
 // Utility
 
-Mezzanine::WorldObjectType LevelZone::GetType() const
+Mezzanine::WorldEntityType LevelZone::GetType() const
     { return Mezzanine::WO_AreaEffectUnknown; }
 
 Graphics::EntityProxy* LevelZone::GetEntityProxy() const
     { return static_cast<Graphics::EntityProxy*>( this->GetProxy(Mezzanine::PT_Graphics_EntityProxy,0) ); }
 
-Boole LevelZone::IsInside(WorldObject* Object)
+Boole LevelZone::IsInside(WorldEntity* Object)
     { return ( std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), Object ) != this->OverlappingObjects.end() ); }
 
 Boole LevelZone::IsEmpty()

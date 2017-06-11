@@ -26,7 +26,7 @@ void CatchPlayer::SetIdentity(GameProfile* CatchPlayerProfile)
     this->ProMan->LoadProfile(this->Profile);
 }
 
-void CatchPlayer::InitWorldObjects(World* GameWorld)
+void CatchPlayer::InitWorldEntitys(World* GameWorld)
 {
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( GameWorld->GetManager( ManagerBase::MT_SceneManager ) );
     if( SceneMan != NULL && SceneMan->GetNumProxies(Mezzanine::PT_Graphics_CameraProxy) == 0 ) {

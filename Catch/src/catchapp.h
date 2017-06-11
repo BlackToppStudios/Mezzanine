@@ -3,8 +3,8 @@
 
 #include <mezzanine.h>
 
-#include "WorldObjects/scorearea.h"
-#include "WorldObjects/startarea.h"
+#include "WorldEntities/levelzone.h"
+#include "WorldEntities/startarea.h"
 #include "levelmanager.h"
 #include "levelscorer.h"
 #include "itemshop.h"
@@ -104,7 +104,7 @@ public:
 
     void SetVisibleScreens(const CatchApp::GameState State);
 
-    Boole IsAThrowable(WorldObject* Throwable) const;
+    Boole IsAThrowable(WorldEntity* Throwable) const;
     Boole IsInsideAnyStartZone(Debris* Throwable) const;
     void RegisterStartArea(StartArea* Start);
     void AddThrowable(Debris* Throwable);
