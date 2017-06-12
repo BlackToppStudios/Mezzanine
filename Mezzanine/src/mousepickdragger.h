@@ -48,7 +48,7 @@
 namespace Mezzanine
 {
     class World;
-    class WorldObject;
+    class WorldEntity;
     namespace Input
     {
         class Mouse;
@@ -91,9 +91,9 @@ namespace Mezzanine
         /// @return Returns a pointer to the proxy that will be dragged.
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const = 0;
 
-        /// @brief Checks the parent WorldObject (if available) for more suitable proxies to be dragged.
+        /// @brief Checks the parent WorldEntity (if available) for more suitable proxies to be dragged.
         /// @param Target A pointer to the target to be dragged.
-        /// @return Returns a pointer to a sibling WorldProxy from the parent WorldObject if a better match is found, or the Target parameter if not.
+        /// @return Returns a pointer to a sibling WorldProxy from the parent WorldEntity if a better match is found, or the Target parameter if not.
         virtual WorldProxy* GetBestProxy(WorldProxy* Target) const = 0;
         /// @brief Gets the object currently being dragged by this dragger.
         /// @return Returns a pointer to the object currently being dragged, or NULL if no object is being dragged.

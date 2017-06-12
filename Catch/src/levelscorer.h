@@ -1,7 +1,7 @@
 #ifndef _levelscorer_h
 #define _levelscorer_h
 
-#include "WorldObjects/scorearea.h"
+#include "WorldEntities/scorearea.h"
 #include <mezzanine.h>
 
 using namespace Mezzanine;

@@ -37,10 +37,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _worldobject_cpp
-#define _worldobject_cpp
+#ifndef _worldentity_cpp
+#define _worldentity_cpp
 
-#include "worldobject.h"
+#include "worldentity.h"
 #include "world.h"
 #include "worldproxy.h"
 #include "worldproxymanager.h"
@@ -54,21 +54,21 @@
 
 namespace Mezzanine
 {
-    WorldObject::WorldObject(World* TheWorld) :
+    WorldEntity::WorldEntity(World* TheWorld) :
         PrimaryProxy(NULL),
         ParentWorld(TheWorld)
         {  }
 
-    WorldObject::WorldObject(const String& Name, World* TheWorld) :
+    WorldEntity::WorldEntity(const String& Name, World* TheWorld) :
         ObjectName(Name),
         PrimaryProxy(NULL),
         ParentWorld(TheWorld)
         {  }
 
-    WorldObject::~WorldObject()
+    WorldEntity::~WorldEntity()
         {  }
 
-    void WorldObject::DestroyAllProxies()
+    void WorldEntity::DestroyAllProxies()
     {
         ProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
@@ -84,34 +84,34 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    const String& WorldObject::GetName() const
+    const String& WorldEntity::GetName() const
         { return this->ObjectName; }
 
-    World* WorldObject::GetWorld() const
+    World* WorldEntity::GetWorld() const
         { return this->ParentWorld; }
 
-    Boole WorldObject::IsInWorld() const
+    Boole WorldEntity::IsInWorld() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query if WorldObject is in world.");
+        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query if WorldEntity is in world.");
         return this->PrimaryProxy->IsInWorld();
     }
 
-    Boole WorldObject::IsStatic() const
+    Boole WorldEntity::IsStatic() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query if WorldObject is static.");
+        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query if WorldEntity is static.");
         return this->PrimaryProxy->IsStatic();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Proxy Management
 
-    void WorldObject::AddProxy(WorldProxy* ToAdd)
+    void WorldEntity::AddProxy(WorldProxy* ToAdd)
     {
         ToAdd->_Bind( this );
         this->Proxies.push_back(ToAdd);
     }
 
-    WorldProxy* WorldObject::RemoveProxy(WorldProxy* ToRemove)
+    WorldProxy* WorldEntity::RemoveProxy(WorldProxy* ToRemove)
     {
         ProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
@@ -125,7 +125,7 @@ namespace Mezzanine
         return NULL;
     }
 
-    WorldObject::ProxyContainer WorldObject::RemoveAllProxiesOfType(const UInt32 Types)
+    WorldEntity::ProxyContainer WorldEntity::RemoveAllProxiesOfType(const UInt32 Types)
     {
         ProxyContainer Ret;
         ProxyIterator ProxIt = this->Proxies.begin();
@@ -142,7 +142,7 @@ namespace Mezzanine
         return Ret;
     }
 
-    WorldObject::ProxyContainer WorldObject::RemoveAllProxies()
+    WorldEntity::ProxyContainer WorldEntity::RemoveAllProxies()
     {
         ProxyContainer Ret;
         ProxyIterator ProxIt = this->Proxies.begin();
@@ -152,17 +152,17 @@ namespace Mezzanine
         return Ret;
     }
 
-    Whole WorldObject::GetNumProxies() const
+    Whole WorldEntity::GetNumProxies() const
     {
         return this->Proxies.size();
     }
 
-    WorldProxy* WorldObject::GetProxy(const Whole Index) const
+    WorldProxy* WorldEntity::GetProxy(const Whole Index) const
     {
         return this->Proxies.at(Index);
     }
 
-    WorldProxy* WorldObject::GetProxy(const UInt32 Types, Whole TypeIndex) const
+    WorldProxy* WorldEntity::GetProxy(const UInt32 Types, Whole TypeIndex) const
     {
         ConstProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
@@ -176,12 +176,12 @@ namespace Mezzanine
         return NULL;
     }
 
-    const WorldObject::ProxyContainer& WorldObject::GetProxies() const
+    const WorldEntity::ProxyContainer& WorldEntity::GetProxies() const
     {
         return this->Proxies;
     }
 
-    WorldObject::ProxyContainer WorldObject::GetProxies(const UInt32 Types) const
+    WorldEntity::ProxyContainer WorldEntity::GetProxies(const UInt32 Types) const
     {
         ProxyContainer Ret;
         ConstProxyIterator ProxIt = this->Proxies.begin();
@@ -195,13 +195,13 @@ namespace Mezzanine
         return Ret;
     }
 
-    void WorldObject::SetPrimaryProxy(WorldProxy* Primary)
+    void WorldEntity::SetPrimaryProxy(WorldProxy* Primary)
     {
-        assert(this == Primary->GetParentObject() && "WorldProxies can only be made PrimaryProxy of a WorldObject they are bound to.");
+        assert(this == Primary->GetParentObject() && "WorldProxies can only be made PrimaryProxy of a WorldEntity they are bound to.");
         this->PrimaryProxy = Primary;
     }
 
-    WorldProxy* WorldObject::GetPrimaryProxy() const
+    WorldProxy* WorldEntity::GetPrimaryProxy() const
     {
         return this->PrimaryProxy;
     }
@@ -209,13 +209,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Working with the World
 
-    void WorldObject::AddToWorld()
+    void WorldEntity::AddToWorld()
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->AddToWorld(); }
     }
 
-    void WorldObject::RemoveFromWorld()
+    void WorldEntity::RemoveFromWorld()
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->RemoveFromWorld(); }
@@ -224,127 +224,127 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Transform Methods
 
-    void WorldObject::SetTransform(const Transform& Trans)
+    void WorldEntity::SetTransform(const Transform& Trans)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->SetTransform(Trans); }
     }
 
-    void WorldObject::SetTransform(const Vector3& Loc, const Quaternion& Ori)
+    void WorldEntity::SetTransform(const Vector3& Loc, const Quaternion& Ori)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->SetTransform(Loc,Ori); }
     }
 
-    Transform WorldObject::GetTransform() const
+    Transform WorldEntity::GetTransform() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldObject transform.");
+        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldEntity transform.");
         return this->PrimaryProxy->GetTransform();
     }
 
-    void WorldObject::SetLocation(const Vector3& Loc)
+    void WorldEntity::SetLocation(const Vector3& Loc)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->SetLocation(Loc); }
     }
 
-    void WorldObject::SetLocation(const Real X, const Real Y, const Real Z)
+    void WorldEntity::SetLocation(const Real X, const Real Y, const Real Z)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->SetLocation(X,Y,Z); }
     }
 
-    Vector3 WorldObject::GetLocation() const
+    Vector3 WorldEntity::GetLocation() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldObject transform.");
+        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldEntity transform.");
         return this->PrimaryProxy->GetLocation();
     }
 
-    void WorldObject::SetOrientation(const Quaternion& Ori)
+    void WorldEntity::SetOrientation(const Quaternion& Ori)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->SetOrientation(Ori); }
     }
 
-    void WorldObject::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+    void WorldEntity::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->SetOrientation(X,Y,Z,W); }
     }
 
-    Quaternion WorldObject::GetOrientation() const
+    Quaternion WorldEntity::GetOrientation() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldObject transform.");
+        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldEntity transform.");
         return this->PrimaryProxy->GetOrientation();
     }
 
-    void WorldObject::SetScale(const Vector3& Sc)
+    void WorldEntity::SetScale(const Vector3& Sc)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->SetScale(Sc); }
     }
 
-    void WorldObject::SetScale(const Real X, const Real Y, const Real Z)
+    void WorldEntity::SetScale(const Real X, const Real Y, const Real Z)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->SetScale(X,Y,Z); }
     }
 
-    Vector3 WorldObject::GetScale() const
+    Vector3 WorldEntity::GetScale() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldObject transform.");
+        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldEntity transform.");
         return this->PrimaryProxy->GetScale();
     }
 
-    void WorldObject::Translate(const Vector3& Trans)
+    void WorldEntity::Translate(const Vector3& Trans)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Translate(Trans); }
     }
 
-    void WorldObject::Translate(const Real X, const Real Y, const Real Z)
+    void WorldEntity::Translate(const Real X, const Real Y, const Real Z)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Translate(X,Y,Z); }
     }
 
-    void WorldObject::Yaw(const Real Angle)
+    void WorldEntity::Yaw(const Real Angle)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Yaw(Angle); }
     }
 
-    void WorldObject::Pitch(const Real Angle)
+    void WorldEntity::Pitch(const Real Angle)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Pitch(Angle); }
     }
 
-    void WorldObject::Roll(const Real Angle)
+    void WorldEntity::Roll(const Real Angle)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Roll(Angle); }
     }
 
-    void WorldObject::Rotate(const Vector3& Axis, const Real Angle)
+    void WorldEntity::Rotate(const Vector3& Axis, const Real Angle)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Rotate(Axis,Angle); }
     }
 
-    void WorldObject::Rotate(const Quaternion& Rotation)
+    void WorldEntity::Rotate(const Quaternion& Rotation)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Rotate(Rotation); }
     }
 
-    void WorldObject::Scale(const Vector3& Sc)
+    void WorldEntity::Scale(const Vector3& Sc)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Scale(Sc); }
     }
 
-    void WorldObject::Scale(const Real X, const Real Y, const Real Z)
+    void WorldEntity::Scale(const Real X, const Real Y, const Real Z)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             { (*ProxIt)->Scale(X,Y,Z); }
@@ -353,7 +353,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
-    void WorldObject::ProtoSerialize(XML::Node& ParentNode) const
+    void WorldEntity::ProtoSerialize(XML::Node& ParentNode) const
     {
         XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
@@ -361,9 +361,9 @@ namespace Mezzanine
         this->ProtoSerializeProxies(SelfRoot);
     }
 
-    void WorldObject::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    void WorldEntity::ProtoSerializeProperties(XML::Node& SelfRoot) const
     {
-        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldObject::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldEntity::GetSerializableName() + "Properties" );
 
         if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
             PropertiesNode.AppendAttribute("Name").SetValue( this->GetName() ) )
@@ -378,13 +378,13 @@ namespace Mezzanine
 
             return;
         }else{
-            SerializeError("Create XML Attribute Values",WorldObject::GetSerializableName() + "Properties",true);
+            SerializeError("Create XML Attribute Values",WorldEntity::GetSerializableName() + "Properties",true);
         }
     }
 
-    void WorldObject::ProtoSerializeProxies(XML::Node& SelfRoot) const
+    void WorldEntity::ProtoSerializeProxies(XML::Node& SelfRoot) const
     {
-        XML::Node ProxiesNode = SelfRoot.AppendChild( WorldObject::GetSerializableName() + "Proxies" );
+        XML::Node ProxiesNode = SelfRoot.AppendChild( WorldEntity::GetSerializableName() + "Proxies" );
 
         if( ProxiesNode.AppendAttribute("Version").SetValue("1") &&
             ProxiesNode.AppendAttribute("ProxyCount").SetValue( this->Proxies.size() ) )
@@ -398,26 +398,26 @@ namespace Mezzanine
                 {
                     continue;
                 }else{
-                    SerializeError("Create XML Attribute Values",WorldObject::GetSerializableName() + "Proxies",true);
+                    SerializeError("Create XML Attribute Values",WorldEntity::GetSerializableName() + "Proxies",true);
                 }
             }
 
             return;
         }else{
-            SerializeError("Create XML Attribute Values",WorldObject::GetSerializableName() + "Proxies",true);
+            SerializeError("Create XML Attribute Values",WorldEntity::GetSerializableName() + "Proxies",true);
         }
     }
 
-    void WorldObject::ProtoDeSerialize(const XML::Node& SelfRoot)
+    void WorldEntity::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
         this->ProtoDeSerializeProxies(SelfRoot);
         this->ProtoDeSerializeProperties(SelfRoot);
     }
 
-    void WorldObject::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    void WorldEntity::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
         XML::Attribute CurrAttrib;
-        XML::Node PropertiesNode = SelfRoot.GetChild( WorldObject::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.GetChild( WorldEntity::GetSerializableName() + "Properties" );
 
         if( !PropertiesNode.Empty() ) {
             if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
@@ -443,19 +443,19 @@ namespace Mezzanine
                     this->SetScale(Scale);
                 }
             }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldObject::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldEntity::GetSerializableName() + "Properties" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldObject::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldEntity::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
         }
     }
 
-    void WorldObject::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
+    void WorldEntity::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
     {
         this->DestroyAllProxies();
 
         XML::Attribute CurrAttrib;
-        XML::Node ProxiesNode = SelfRoot.GetChild( WorldObject::GetSerializableName() + "Proxies" );
+        XML::Node ProxiesNode = SelfRoot.GetChild( WorldEntity::GetSerializableName() + "Proxies" );
 
         if( !ProxiesNode.Empty() ) {
             if(ProxiesNode.GetAttribute("Version").AsInt() == 1) {
@@ -488,23 +488,23 @@ namespace Mezzanine
 
                 return;
             }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldObject::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldEntity::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldObject::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldEntity::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
         }
     }
 
-    String WorldObject::GetDerivedSerializableName() const
-        { return WorldObject::GetSerializableName(); }
+    String WorldEntity::GetDerivedSerializableName() const
+        { return WorldEntity::GetSerializableName(); }
 
-    String WorldObject::GetSerializableName()
-        { return "WorldObject"; }
+    String WorldEntity::GetSerializableName()
+        { return "WorldEntity"; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void WorldObject::_SyncTransforms(WorldProxy* Exclude, const Transform& NewTrans)
+    void WorldEntity::_SyncTransforms(WorldProxy* Exclude, const Transform& NewTrans)
     {
         for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
         {

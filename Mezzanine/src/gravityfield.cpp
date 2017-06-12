@@ -75,7 +75,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::WorldObjectType GravityField::GetType() const
+    Mezzanine::WorldEntityType GravityField::GetType() const
         { return Mezzanine::WO_AreaEffectGravityField; }
 
     void GravityField::ApplyEffect()
@@ -126,7 +126,7 @@ namespace Mezzanine
     {
         this->AreaEffect::ProtoSerializeProperties(SelfRoot);
 
-        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldObject::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldEntity::GetSerializableName() + "Properties" );
 
         if( PropertiesNode.AppendAttribute("Version").SetValue("1") )
         {
@@ -135,7 +135,7 @@ namespace Mezzanine
 
             return;
         }else{
-            SerializeError("Create XML Attribute Values",WorldObject::GetSerializableName() + "Properties",true);
+            SerializeError("Create XML Attribute Values",WorldEntity::GetSerializableName() + "Properties",true);
         }
     }
 
@@ -143,7 +143,7 @@ namespace Mezzanine
     {
         this->AreaEffect::ProtoDeSerializeProperties(SelfRoot);
 
-        XML::Node PropertiesNode = SelfRoot.GetChild( WorldObject::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.GetChild( WorldEntity::GetSerializableName() + "Properties" );
 
         if( !PropertiesNode.Empty() ) {
             if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
@@ -153,10 +153,10 @@ namespace Mezzanine
                     this->SetFieldGravity(Gravity);
                 }
             }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldObject::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldEntity::GetSerializableName() + "Properties" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldObject::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldEntity::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
         }
     }
 

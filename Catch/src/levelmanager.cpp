@@ -36,7 +36,7 @@ void LoadFerris()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    GameApp->GetPlayer()->InitWorldObjects(CatchWorld);
+    GameApp->GetPlayer()->InitWorldEntities(CatchWorld);
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
@@ -315,7 +315,7 @@ void LoadBigCurve()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    GameApp->GetPlayer()->InitWorldObjects(CatchWorld);
+    GameApp->GetPlayer()->InitWorldEntities(CatchWorld);
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
@@ -440,7 +440,7 @@ void LoadBlowsNotSucks()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    GameApp->GetPlayer()->InitWorldObjects(CatchWorld);
+    GameApp->GetPlayer()->InitWorldEntities(CatchWorld);
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
@@ -659,7 +659,7 @@ void LoadJustice()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    GameApp->GetPlayer()->InitWorldObjects(CatchWorld);
+    GameApp->GetPlayer()->InitWorldEntities(CatchWorld);
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
@@ -887,7 +887,7 @@ void LoadRollers()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    GameApp->GetPlayer()->InitWorldObjects(CatchWorld);
+    GameApp->GetPlayer()->InitWorldEntities(CatchWorld);
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
@@ -1029,7 +1029,7 @@ void LoadJustBounce()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-    GameApp->GetPlayer()->InitWorldObjects(CatchWorld);
+    GameApp->GetPlayer()->InitWorldEntities(CatchWorld);
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup

@@ -41,7 +41,7 @@
 #define _physicscollision_cpp
 
 #include "collision.h"
-#include "worldobject.h"
+#include "worldentity.h"
 
 #include "entresol.h"
 #include "stringtool.h"
@@ -71,12 +71,12 @@ namespace Mezzanine
         {
             this->InternalData = new CollisionInternalData();
 
-            /*WorldObject* ObjectA = this->ProxyA->GetParentObject();
+            /*WorldEntity* ObjectA = this->ProxyA->GetParentObject();
             if( ObjectA ) {
                 ObjectA->_NotifyCollisionState(this,Physics::Col_Begin);
             }
 
-            WorldObject* ObjectB = this->ProxyB->GetParentObject();
+            WorldEntity* ObjectB = this->ProxyB->GetParentObject();
             if( ObjectB ) {
                 ObjectB->_NotifyCollisionState(this,Physics::Col_Begin);
             }//*/
@@ -107,12 +107,12 @@ namespace Mezzanine
 
         Collision::~Collision()
         {
-            WorldObject* ObjectA = this->ProxyA->GetParentObject();
+            WorldEntity* ObjectA = this->ProxyA->GetParentObject();
             /*if( ObjectA ) {
                 ObjectA->_NotifyCollisionState(this,Physics::Col_End);
             }
 
-            WorldObject* ObjectB = this->ProxyB->GetParentObject();
+            WorldEntity* ObjectB = this->ProxyB->GetParentObject();
             if( ObjectB ) {
                 ObjectB->_NotifyCollisionState(this,Physics::Col_End);
             }//*/
@@ -154,16 +154,16 @@ namespace Mezzanine
         CollidableProxy* Collision::GetProxyB() const
             { return this->ProxyB; }
 
-        WorldObject* Collision::GetObjectA() const
+        WorldEntity* Collision::GetObjectA() const
             { return this->ProxyA->GetParentObject(); }
 
-        WorldObject* Collision::GetObjectB() const
+        WorldEntity* Collision::GetObjectB() const
             { return this->ProxyB->GetParentObject(); }
 
-        Boole Collision::PairsMatch(WorldObject* A, WorldObject* B) const
+        Boole Collision::PairsMatch(WorldEntity* A, WorldEntity* B) const
         {
-            WorldObject* ObjA = this->GetObjectA();
-            WorldObject* ObjB = this->GetObjectB();
+            WorldEntity* ObjA = this->GetObjectA();
+            WorldEntity* ObjB = this->GetObjectB();
             if( ObjA && ObjB ) {
                 Boole ContainsA = ( A == ObjA ) || ( A == ObjB );
                 Boole ContainsB = ( B == ObjA ) || ( B == ObjB );
@@ -188,12 +188,12 @@ namespace Mezzanine
             if( NumManifolds != 0 && this->PenetrationDistances.size() != NumManifolds ) {
                 this->UpdatePenetrationDistances();
 
-                /*WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                /*WorldEntity* ObjectA = this->ProxyA->GetParentObject();
                 if( ObjectA ) {
                     ObjectA->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
                 }
 
-                WorldObject* ObjectB = this->ProxyB->GetParentObject();
+                WorldEntity* ObjectB = this->ProxyB->GetParentObject();
                 if( ObjectB ) {
                     ObjectB->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
                 }//*/
@@ -205,12 +205,12 @@ namespace Mezzanine
                 if( this->PenetrationDistances[X] != this->GetDistance(X) ) {
                     this->UpdatePenetrationDistances();
 
-                    /*WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                    /*WorldEntity* ObjectA = this->ProxyA->GetParentObject();
                     if( ObjectA ) {
                         ObjectA->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
                     }
 
-                    WorldObject* ObjectB = this->ProxyB->GetParentObject();
+                    WorldEntity* ObjectB = this->ProxyB->GetParentObject();
                     if( ObjectB ) {
                         ObjectB->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
                     }//*/
@@ -258,7 +258,7 @@ namespace Mezzanine
         {
             if( !this->ProxyA ) {
                 this->ProxyA = A;
-                /*WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                /*WorldEntity* ObjectA = this->ProxyA->GetParentObject();
                 if( ObjectA ) {
                     ObjectA->_NotifyCollisionState(this,Physics::Col_Begin);
                 }//*/
@@ -269,7 +269,7 @@ namespace Mezzanine
         {
             if( !this->ProxyB ) {
                 this->ProxyB = B;
-                /*WorldObject* ObjectB = this->ProxyB->GetParentObject();
+                /*WorldEntity* ObjectB = this->ProxyB->GetParentObject();
                 if( ObjectB ) {
                     ObjectB->_NotifyCollisionState(this,Physics::Col_Begin);
                 }//*/

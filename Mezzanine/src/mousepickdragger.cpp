@@ -42,7 +42,7 @@
 
 #include "mousepickdragger.h"
 #include "rayquery.h"
-#include "worldobject.h"
+#include "worldentity.h"
 #include "worldproxy.h"
 
 #include "Input/mouse.h"
@@ -123,7 +123,7 @@ namespace Mezzanine
         if( Target->GetProxyType() & DesiredTypes )
             return Target;
 
-        WorldObject* Parent = Target->GetParentObject();
+        WorldEntity* Parent = Target->GetParentObject();
         if( Parent != NULL ) {
             WorldProxy* NewTarget = Parent->GetProxy(DesiredTypes,0);
             return ( NewTarget != NULL ? NewTarget : Target );
@@ -254,7 +254,7 @@ namespace Mezzanine
         if( Target->GetProxyType() & DesiredTypes )
             return Target;
 
-        WorldObject* Parent = Target->GetParentObject();
+        WorldEntity* Parent = Target->GetParentObject();
         if( Parent != NULL ) {
             WorldProxy* NewTarget = Parent->GetProxy(DesiredTypes,0);
             return ( NewTarget != NULL ? NewTarget : Target );

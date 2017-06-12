@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _worldobject_h
-#define _worldobject_h
+#ifndef _worldentity_h
+#define _worldentity_h
 
 #include "enumerations.h"
 #include "transformableobject.h"
@@ -56,7 +56,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class from which classes that are insertable into the physical world.
     ///////////////////////////////////////
-    class MEZZ_LIB WorldObject : public TransformableObject
+    class MEZZ_LIB WorldEntity : public TransformableObject
     {
     public:
         /// @brief Basic container type for WorldProxy storage by this class.
@@ -85,20 +85,20 @@ namespace Mezzanine
     public:
         /// @brief Blank constructor.
         /// @param TheWorld A pointer to the world this object belongs to.
-        WorldObject(World* TheWorld);
+        WorldEntity(World* TheWorld);
         /// @brief Class constructor.
         /// @param Name The name to be given to this object.
         /// @param TheWorld A pointer to the world this object belongs to.
-        WorldObject(const String& Name, World* TheWorld);
+        WorldEntity(const String& Name, World* TheWorld);
         /// @brief Class destructor.
-        virtual ~WorldObject();
+        virtual ~WorldEntity();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Configuration
 
         /// @brief Gets the type of the object instance
         /// @return Returns the type of the object instance
-        virtual Mezzanine::WorldObjectType GetType() const = 0;
+        virtual Mezzanine::WorldEntityType GetType() const = 0;
         /// @brief Gets the name of this object.
         /// @return Returns a string containing the name of this object.
         virtual const String& GetName() const;
@@ -120,34 +120,34 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Proxy Management
 
-        /// @brief Adds a WorldProxy to this WorldObject.
+        /// @brief Adds a WorldProxy to this WorldEntity.
         /// @remarks The order in which WorldProxy instances are inserted/stored slightly matters.  The first (index 0) proxy
         /// will be treated as the primary transform proxy.  When this object is queried for it's transform, that is the proxy
-        /// that will be queried and thus used to represent this objects transform.  Prefab WorldObjects provided by the
-        /// engine will have this taken care of for you.  However when using custom WorldObjects or heavily modifying/removing
-        /// WorldProxy instances from a WorldObject, take care.
+        /// that will be queried and thus used to represent this objects transform.  Prefab WorldEntities provided by the
+        /// engine will have this taken care of for you.  However when using custom WorldEntities or heavily modifying/removing
+        /// WorldProxy instances from a WorldEntity, take care.
         /// @param ToAdd A pointer to the WorldProxy to be added.
         virtual void AddProxy(WorldProxy* ToAdd);
-        /// @brief Removes a WorldProxy from this WorldObject.
-        /// @warning This method is intended for use with custom WorldObject implementations.  Many WorldObjects in engine
+        /// @brief Removes a WorldProxy from this WorldEntity.
+        /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
         /// care about the placement of proxies and tampering with that can disrupt their operation.
         /// @param ToRemove A pointer to the WorldProxy to be removed.
-        /// @return Returns a pointer to the removed WorldProxy or NULL if the WorldProxy was not in this WorldObject.
+        /// @return Returns a pointer to the removed WorldProxy or NULL if the WorldProxy was not in this WorldEntity.
         virtual WorldProxy* RemoveProxy(WorldProxy* ToRemove);
-        /// @brief Removes all WorldProxy instances of the specified types from this WorldObject.
-        /// @warning This method is intended for use with custom WorldObject implementations.  Many WorldObjects in engine
+        /// @brief Removes all WorldProxy instances of the specified types from this WorldEntity.
+        /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
         /// care about the placement of proxies and tampering with that can disrupt their operation.
         /// @param Types A bitfield of the types of WorldProxy instances to remove.
         /// @return Returns a container of the removed proxies.
         virtual ProxyContainer RemoveAllProxiesOfType(const UInt32 Types);
-        /// @brief Removes all WorldProxy instances from this WorldObject.
-        /// @warning This method is intended for use with custom WorldObject implementations.  Many WorldObjects in engine
+        /// @brief Removes all WorldProxy instances from this WorldEntity.
+        /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
         /// care about the placement of proxies and tampering with that can disrupt their operation.
         /// @return Returns a container of the removed proxies.
         virtual ProxyContainer RemoveAllProxies();
 
-        /// @brief Gets the number of WorldProxy instances in this WorldObject.
-        /// @return Returns the number of WorldProxies being stored in this WorldObject.
+        /// @brief Gets the number of WorldProxy instances in this WorldEntity.
+        /// @return Returns the number of WorldProxies being stored in this WorldEntity.
         virtual Whole GetNumProxies() const;
         /// @brief Gets the WorldProxy by index.
         /// @param Index The index of the WorldProxy to retrieve.
@@ -159,26 +159,26 @@ namespace Mezzanine
         /// @return Returns a pointer to the WorldProxy at the specified index.
         virtual WorldProxy* GetProxy(const UInt32 Types, Whole TypeIndex) const;
 
-        /// @brief Gets a container of the WorldProxies stored in this WorldObject.
+        /// @brief Gets a container of the WorldProxies stored in this WorldEntity.
         /// @return Returns a const reference to the internal WorldProxy storage.
         virtual const ProxyContainer& GetProxies() const;
-        /// @brief Gets a container of the WorldProxies stored in this WorldObject.
+        /// @brief Gets a container of the WorldProxies stored in this WorldEntity.
         /// @param Types A bitfield of the types of WorldProxies to retrieve.
-        /// @return Returns a container of all the proxies in this WorldObject of the specified type.
+        /// @return Returns a container of all the proxies in this WorldEntity of the specified type.
         virtual ProxyContainer GetProxies(const UInt32 Types) const;
 
-        /// @brief Sets the primary proxy in this WorldObject.
+        /// @brief Sets the primary proxy in this WorldEntity.
         /// @remarks The primary proxy is responsible for being the WorldProxy to be queried where it doesn't
-        /// make sense to query multiple proxies, such as if you want to know the location of the WorldObject.
+        /// make sense to query multiple proxies, such as if you want to know the location of the WorldEntity.
         /// The GetLocation() method is directed to the primary proxy.  This is not limited to just location,
         /// and is also responsible for other transform and non-transform queries. @n @n
-        /// Every WorldObject instance should have the PrimaryProxy set as a part of it's initialization
-        /// before use.  Some WorldObjects will do this automatically.  Some may not.  Consult the WorldObjects
+        /// Every WorldEntity instance should have the PrimaryProxy set as a part of it's initialization
+        /// before use.  Some WorldEntitys will do this automatically.  Some may not.  Consult the WorldEntities
         /// documentation.
         /// @param Primary The WorldProxy to be set as the primary proxy.
         virtual void SetPrimaryProxy(WorldProxy* Primary);
-        /// @brief Gets the primary proxy in this WorldObject.
-        /// @return Returns a pointer to the primary proxy of this WorldObject.
+        /// @brief Gets the primary proxy in this WorldEntity.
+        /// @return Returns a pointer to the primary proxy of this WorldEntity.
         virtual WorldProxy* GetPrimaryProxy() const;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -260,8 +260,8 @@ namespace Mezzanine
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeProxies(const XML::Node& SelfRoot);
 
-        /// @brief Gets the most derived serializable name of this WorldObject.
-        /// @note When creating a new WorldObject class verify this method has a valid return for it in order for serialization to work properly.
+        /// @brief Gets the most derived serializable name of this WorldEntity.
+        /// @note When creating a new WorldEntity class verify this method has a valid return for it in order for serialization to work properly.
         /// @return Returns the name of the XML tag from the most derived class of "this".
         virtual String GetDerivedSerializableName() const;
         /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
@@ -280,7 +280,7 @@ namespace Mezzanine
         /// @param Exclude The WorldProxy to be exempted from the sync (usually because it already has the updated transform).
         /// @param NewTrans The transform to be applied to each WorldProxy other than the Exclude.
         virtual void _SyncTransforms(WorldProxy* Exclude, const Transform& NewTrans);
-    };//WorldObject
+    };//WorldEntity
 }//Mezzanine
 
 #endif

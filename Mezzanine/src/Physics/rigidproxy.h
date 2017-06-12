@@ -47,7 +47,7 @@ class btRigidBody;
 
 namespace Mezzanine
 {
-    class WorldObject;
+    class WorldEntity;
     class CollisionShape;
 
     namespace Physics
@@ -254,7 +254,7 @@ namespace Mezzanine
             // Transform Synchronization
 
             /*/// @brief Adds a TransformableObject that will force it's transform to sync with this RigidProxy.
-            /// @param ToBeAdded A pointer to the WorldObject being added.
+            /// @param ToBeAdded A pointer to the WorldEntity being added.
             virtual void AddSyncObject(TransformableObject* ToBeAdded);
             /// @brief Gets a TransformableObject being sync'd to this RigidProxy by it's index.
             /// @param Index The index of the sync object to retrieve.
@@ -285,8 +285,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc WorldProxy::_Bind(WorldObject*)
-            virtual void _Bind(WorldObject* NewParent);
+            /// @copydoc WorldProxy::_Bind(WorldEntity*)
+            virtual void _Bind(WorldEntity* NewParent);
 
             /// @internal
             /// @brief Accessor for the internal rigid body physics proxy.

@@ -129,12 +129,12 @@ endif(${UseCatchArchives})
 ##############################################################################
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/levelzone.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/levelzone.h"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/scorearea.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/scorearea.h"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/levelzone.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/levelzone.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/scorearea.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/scorearea.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/startarea.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/startarea.h"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.h"
     "${${PROJECT_NAME}_SRC_DIR}catchplayer.cpp"

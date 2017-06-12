@@ -67,17 +67,17 @@
 namespace Mezzanine
 {
     AreaEffect::AreaEffect(World* TheWorld) :
-        WorldObject(TheWorld),
+        WorldEntity(TheWorld),
         SyncTarget(NULL)
         { this->CreateAreaEffect(NULL); }
 
     AreaEffect::AreaEffect(const String& Name, World* TheWorld) :
-        WorldObject(Name,TheWorld),
+        WorldEntity(Name,TheWorld),
         SyncTarget(NULL)
         { this->CreateAreaEffect(NULL); }
 
     AreaEffect::AreaEffect(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        WorldObject(Name,TheWorld),
+        WorldEntity(Name,TheWorld),
         SyncTarget(NULL)
         { this->CreateAreaEffect(Shape); }
 
@@ -113,7 +113,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::WorldObjectType AreaEffect::GetType() const
+    Mezzanine::WorldEntityType AreaEffect::GetType() const
         { return Mezzanine::WO_AreaEffectUnknown; }
 
     Physics::GhostProxy* AreaEffect::GetGhostProxy() const
@@ -126,10 +126,10 @@ namespace Mezzanine
         }
     }
 
-    void AreaEffect::SetSyncTarget(WorldObject* ToSync)
+    void AreaEffect::SetSyncTarget(WorldEntity* ToSync)
         { this->SyncTarget = ToSync; }
 
-    WorldObject* AreaEffect::GetSyncTarget() const
+    WorldEntity* AreaEffect::GetSyncTarget() const
         { return this->SyncTarget; }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -161,12 +161,12 @@ namespace Mezzanine
 
     void AreaEffect::ProtoSerializeProperties(XML::Node& SelfRoot) const
     {
-        this->WorldObject::ProtoSerializeProperties(SelfRoot);
+        this->WorldEntity::ProtoSerializeProperties(SelfRoot);
     }
 
     void AreaEffect::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
-        this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
+        this->WorldEntity::ProtoDeSerializeProperties(SelfRoot);
     }
 
     String AreaEffect::GetDerivedSerializableName() const
@@ -194,7 +194,7 @@ namespace Mezzanine
         for( UInt32 ProxIndex = 0 ; ProxIndex < NumProxies ; ++ProxIndex )
         {
             Physics::CollidableProxy* CurrProxy = Ghost->GetShapeOverlappingProxy( ProxIndex );
-            WorldObject* CurrObject = ( CurrProxy ? CurrProxy->GetParentObject() : NULL );
+            WorldEntity* CurrObject = ( CurrProxy ? CurrProxy->GetParentObject() : NULL );
             if( CurrObject != NULL ) {
                 // We need to check for unique world objects just in case a world object contains multiple collidable proxies
                 ObjectIterator UniqueCheck = std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), CurrObject );

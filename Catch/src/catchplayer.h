@@ -29,7 +29,7 @@ public:
     void SetIdentity(GameProfile* CatchPlayerProfile);
     /// @brief Creates all the necessary objects to represent the player in the game world.
     /// @param GameWorld A pointer to the world in which to create the player objects.
-    void InitWorldObjects(World* GameWorld);
+    void InitWorldEntities(World* GameWorld);
 
     /// @brief Gets the controller for the player objects.
     /// @return Returns a reference to the CatchPlayerControl that facilitates player movement in the game world.

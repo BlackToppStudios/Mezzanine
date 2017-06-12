@@ -45,7 +45,7 @@
 namespace Mezzanine
 {
     Terrain::Terrain() :
-        WorldObject(NULL)
+        WorldEntity(NULL)
         {  }
 
     Terrain::~Terrain()

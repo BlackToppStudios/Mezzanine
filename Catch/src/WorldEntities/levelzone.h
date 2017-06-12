@@ -35,7 +35,7 @@ public:
     // Utility
 
     /// @copydoc Mezzanine::AreaEffect::GetType() const
-    virtual Mezzanine::WorldObjectType GetType() const;
+    virtual Mezzanine::WorldEntityType GetType() const;
     /// @brief Gets a pointer to the graphics portion of this zone.
     /// @return Returns a pointer to the Entity proxy representing the graphics portion of this zone.
     virtual Graphics::EntityProxy* GetEntityProxy() const;
@@ -45,7 +45,7 @@ public:
     /// @brief Checks if an object is inside this zone.
     /// @param Object The object to check inside this zone for.
     /// @return Returns true if the provided object is currently in this zone, false otherwise.
-    virtual Boole IsInside(WorldObject* Object);
+    virtual Boole IsInside(WorldEntity* Object);
     /// @brief Checks if this zone is false.
     /// @return Returns true if this zone contains no objects, false otherwise.
     virtual Boole IsEmpty();
@@ -63,14 +63,14 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
-    /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node&) const
+    /// @copydoc Mezzanine::WorldEntity::ProtoSerializeProperties(XML::Node&) const
     virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-    /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node&)
+    /// @copydoc Mezzanine::WorldEntity::ProtoDeSerializeProperties(const XML::Node&)
     virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-    /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+    /// @copydoc Mezzanine::WorldEntity::GetDerivedSerializableName() const
     virtual String GetDerivedSerializableName() const;
-    /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+    /// @copydoc Mezzanine::WorldEntity::GetSerializableName()
     static String GetSerializableName();
 };//LevelZone
 

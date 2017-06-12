@@ -48,7 +48,7 @@
 
 #include "areaeffectmanager.h"
 #include "plane.h"
-#include "worldobject.h"
+#include "worldentity.h"
 #include "stringtool.h"
 #include "entresol.h"
 #include "world.h"
@@ -583,7 +583,7 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
-                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
                     if( Parent )
                         Parent->RemoveProxy( (*ProxIt) );
 
@@ -601,7 +601,7 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( (*ProxIt)->GetProxyType() & Types ) {
-                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
                     if( Parent )
                         Parent->RemoveProxy( (*ProxIt) );
 
@@ -619,7 +619,7 @@ namespace Mezzanine
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                WorldObject* Parent = (*ProxIt)->GetParentObject();
+                WorldEntity* Parent = (*ProxIt)->GetParentObject();
                 if( Parent )
                     Parent->RemoveProxy( (*ProxIt) );
 

@@ -61,7 +61,7 @@ CatchApp::CatchApp() :
                              new PlaneDragger(PlaneOfPlay) );
     this->PickerFilter = [this](const RayQueryHit& ToFilter) {
         if( ToFilter.IsValid() ) {
-            WorldObject* ParentObject = ToFilter.Object->GetParentObject();
+            WorldEntity* ParentObject = ToFilter.Object->GetParentObject();
             if( ParentObject->GetType() & Mezzanine::WO_AllDebris ) {
                 return this->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
             }
@@ -1657,7 +1657,7 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
     this->SetVisibleScreens(StateToSet);
     if( StateToSet == CatchApp::Catch_MenuScreen ) {
         // This code block was created due to cameras being destroyed on every level unload.
-        this->ThePlayer->InitWorldObjects(this->TheWorld);
+        this->ThePlayer->InitWorldEntities(this->TheWorld);
     }
     if( StateToSet == CatchApp::Catch_ScoreScreen ) {
         this->PauseGame(true);
@@ -1805,7 +1805,7 @@ int CatchApp::GetCatchin()
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "LuaWork" );
 
     this->Profiles->Initialize();
-    this->ThePlayer->InitWorldObjects(this->TheWorld); /* Why the hell is this line important? */
+    this->ThePlayer->InitWorldEntities(this->TheWorld); /* Why the hell is this line important? */
     this->ThePlayer->SetIdentity(this->Profiles->GetLastLoadedProfile());
 
     this->CreateLoadingScreen();
@@ -1938,7 +1938,7 @@ void CatchApp::SetVisibleScreens(const CatchApp::GameState State)
     }
 }
 
-Boole CatchApp::IsAThrowable(WorldObject* Throwable) const
+Boole CatchApp::IsAThrowable(WorldEntity* Throwable) const
 {
     for( ThrowableContainer::const_iterator ObjIt = this->ThrownItems.begin() ; ObjIt != this->ThrownItems.end() ; ObjIt++ )
     {

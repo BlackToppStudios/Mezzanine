@@ -66,14 +66,14 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
-    /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node&) const
+    /// @copydoc Mezzanine::WorldEntity::ProtoSerializeProperties(XML::Node&) const
     virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-    /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node&)
+    /// @copydoc Mezzanine::WorldEntity::ProtoDeSerializeProperties(const XML::Node&)
     virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-    /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+    /// @copydoc Mezzanine::WorldEntity::GetDerivedSerializableName() const
     virtual String GetDerivedSerializableName() const;
-    /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+    /// @copydoc Mezzanine::WorldEntity::GetSerializableName()
     static String GetSerializableName();
 };//StartArea
 
@@ -88,7 +88,7 @@ public:
     /// @brief Class destructor.
     virtual ~StartAreaFactory();
 
-    /// @copydoc Mezzanine::WorldObjectFactory::GetTypeName() const
+    /// @copydoc Mezzanine::WorldEntityFactory::GetTypeName() const
     virtual String GetTypeName() const;
 
     /// @brief Creates a StartArea object.
@@ -101,11 +101,11 @@ public:
     /// @param TheWorld A pointer to the world this object belongs to.
     virtual StartArea* CreateStartArea(const XML::Node& XMLNode, World* TheWorld);
 
-    /// @copydoc Mezzanine::WorldObjectFactory::CreateAreaEffect(const String&, World*, const NameValuePairMap&)
+    /// @copydoc Mezzanine::WorldEntityFactory::CreateAreaEffect(const String&, World*, const NameValuePairMap&)
     virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params);
-    /// @copydoc Mezzanine::WorldObjectFactory::CreateAreaEffect(const XML::Node&)
+    /// @copydoc Mezzanine::WorldEntityFactory::CreateAreaEffect(const XML::Node&)
     virtual AreaEffect* CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld);
-    /// @copydoc Mezzanine::WorldObjectFactory::DestroyAreaEffect(AreaEffect*)
+    /// @copydoc Mezzanine::WorldEntityFactory::DestroyAreaEffect(AreaEffect*)
     virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed);
 };//StartAreaFactory
 

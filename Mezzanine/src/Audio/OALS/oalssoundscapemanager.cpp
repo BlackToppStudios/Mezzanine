@@ -60,7 +60,7 @@
 #include "entresol.h"
 #include "exception.h"
 #include "stringtool.h"
-#include "worldobject.h"
+#include "worldentity.h"
 
 namespace Mezzanine
 {
@@ -430,7 +430,7 @@ namespace Mezzanine
                     if( (*ListIt) == ToBeDestroyed ) {
                         ListenerContext = static_cast<OALS::Listener*>(ToBeDestroyed)->_GetListenerContext();
 
-                        WorldObject* Parent = (*ListIt)->GetParentObject();
+                        WorldEntity* Parent = (*ListIt)->GetParentObject();
                         if( Parent )
                             Parent->RemoveProxy( (*ListIt) );
 
@@ -448,7 +448,7 @@ namespace Mezzanine
             {
                 for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
-                    WorldObject* Parent = (*ListIt)->GetParentObject();
+                    WorldEntity* Parent = (*ListIt)->GetParentObject();
                     if( Parent )
                         Parent->RemoveProxy( (*ListIt) );
 
@@ -470,7 +470,7 @@ namespace Mezzanine
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     if( (*ProxIt) == ToBeDestroyed ) {
-                        WorldObject* Parent = (*ProxIt)->GetParentObject();
+                        WorldEntity* Parent = (*ProxIt)->GetParentObject();
                         if( Parent )
                             Parent->RemoveProxy( (*ProxIt) );
 
@@ -485,7 +485,7 @@ namespace Mezzanine
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
-                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
                     if( Parent )
                         Parent->RemoveProxy( (*ProxIt) );
 
