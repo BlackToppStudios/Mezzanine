@@ -1657,7 +1657,7 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
     this->SetVisibleScreens(StateToSet);
     if( StateToSet == CatchApp::Catch_MenuScreen ) {
         // This code block was created due to cameras being destroyed on every level unload.
-        this->ThePlayer->InitWorldEntitys(this->TheWorld);
+        this->ThePlayer->InitWorldEntities(this->TheWorld);
     }
     if( StateToSet == CatchApp::Catch_ScoreScreen ) {
         this->PauseGame(true);
@@ -1805,7 +1805,7 @@ int CatchApp::GetCatchin()
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "LuaWork" );
 
     this->Profiles->Initialize();
-    this->ThePlayer->InitWorldEntitys(this->TheWorld); /* Why the hell is this line important? */
+    this->ThePlayer->InitWorldEntities(this->TheWorld); /* Why the hell is this line important? */
     this->ThePlayer->SetIdentity(this->Profiles->GetLastLoadedProfile());
 
     this->CreateLoadingScreen();
